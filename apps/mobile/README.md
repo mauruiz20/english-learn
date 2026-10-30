@@ -60,7 +60,10 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   replays and reviews earn answer XP only.
 - `use-exercise-session.ts`: hook shared by lesson and review (answer → feedback → next →
   save). Saving is guarded against double submission; a failed save shows "Reintentar"; the
-  header back button and swipe gesture are disabled while saving.
+  header back button and swipe gesture are disabled while saving. The browser back button is
+  not blocked during the save: the save keeps running after the screen goes away, and the app's
+  repository is wrapped in `awaitPendingWrites` (`src/infrastructure/persistence/`), so every
+  read (home's reload on focus) waits for in-flight writes and shows the committed progress.
 - **Leaving mid-session asks first.** Once at least one answer was given and the lesson, review
   or placement test is not finished, `useLeaveConfirmation` (`src/shared/navigation/`, built on
   expo-router's `usePreventRemove`) blocks leaving and shows an in-app dialog ("Seguir aquí" /

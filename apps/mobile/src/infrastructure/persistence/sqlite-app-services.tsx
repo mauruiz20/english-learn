@@ -5,6 +5,7 @@ import { Platform } from "react-native";
 import { createAppClock } from "../clock/app-clock";
 import { AppErrorBoundary } from "../errors/app-error-boundary";
 import { AppServicesProvider, type AppServices } from "../services/app-services";
+import { awaitPendingWrites } from "./await-pending-writes";
 import { DatabaseOpenError } from "./database-open-error";
 
 export const DATABASE_NAME = "english-learn.db";
@@ -15,7 +16,8 @@ function SqliteServices({ children }: { children: ReactNode }) {
   const [clock] = useState(createAppClock);
   const services = useMemo<AppServices>(
     () => ({
-      progressRepository: createSqliteProgressRepository(db),
+      // Reads wait for in-flight saves: leaving mid-save must not show stale progress.
+      progressRepository: awaitPendingWrites(createSqliteProgressRepository(db)),
       clock,
       random: Math.random,
     }),
