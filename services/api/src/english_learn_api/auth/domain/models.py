@@ -28,6 +28,19 @@ class AccessToken:
 
 
 @dataclass(frozen=True, slots=True)
+class AccessClaims:
+    """What a valid access token proves.
+
+    `issued_at` changes on every refresh; `authenticated_at` is when the user last signed in with
+    Google (the start of the refresh family), which is what sensitive operations check.
+    """
+
+    user_id: UUID
+    issued_at: datetime
+    authenticated_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
 class RefreshFamily:
     """One sign-in: every refresh token rotated from it belongs to this family.
 

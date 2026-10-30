@@ -8,6 +8,7 @@ import jwt
 import pytest
 
 from english_learn_api.auth.domain.errors import InvalidAccessTokenError
+from english_learn_api.auth.domain.models import AccessClaims
 from english_learn_api.auth.infrastructure.jwt_access_tokens import (
     AUDIENCE,
     ISSUER,
@@ -36,6 +37,7 @@ def forge(*, kid: str | None = ACTIVE_KID, secret: str = SECRET, **overrides: An
         "exp": int((T0 + TTL).timestamp()),
         "iss": ISSUER,
         "aud": AUDIENCE,
+        "auth_time": int(T0.timestamp()),
         **overrides,
     }
     headers = None if kid is None else {"kid": kid}
@@ -50,7 +52,7 @@ def with_header(token: str, header: dict[str, Any]) -> str:
 
 
 def test_issues_an_hs256_jwt_with_the_expected_claims(tokens: JwtAccessTokens) -> None:
-    access = tokens.issue(USER_ID, T0 + timedelta(microseconds=999))
+    access = tokens.issue(USER_ID, T0 + timedelta(microseconds=999), authenticated_at=T0)
 
     header = jwt.get_unverified_header(access.value)
     assert header["alg"] == "HS256"
@@ -68,30 +70,42 @@ def test_issues_an_hs256_jwt_with_the_expected_claims(tokens: JwtAccessTokens) -
         "exp": int((T0 + TTL).timestamp()),
         "iss": ISSUER,
         "aud": AUDIENCE,
+        "auth_time": int(T0.timestamp()),
     }
     assert access.expires_at == T0 + TTL
 
 
 def test_verifies_its_own_tokens(tokens: JwtAccessTokens) -> None:
-    access = tokens.issue(USER_ID, T0)
+    access = tokens.issue(USER_ID, T0, authenticated_at=T0)
 
-    assert tokens.verify(access.value, T0 + TTL - timedelta(seconds=1)) == USER_ID
+    assert tokens.verify(access.value, T0 + TTL - timedelta(seconds=1)).user_id == USER_ID
+
+
+def test_carries_the_time_of_the_sign_in(tokens: JwtAccessTokens) -> None:
+    """A refresh issues a new access token (new `iat`) but keeps the original `auth_time`."""
+    access = tokens.issue(USER_ID, T0 + timedelta(days=3), authenticated_at=T0)
+
+    claims = tokens.verify(access.value, T0 + timedelta(days=3))
+
+    assert claims == AccessClaims(
+        user_id=USER_ID, issued_at=T0 + timedelta(days=3), authenticated_at=T0
+    )
 
 
 def test_verifies_tokens_signed_with_any_listed_key(tokens: JwtAccessTokens) -> None:
     """During a rotation, tokens signed with the previous key stay valid until they expire."""
-    assert tokens.verify(forge(kid=OLD_KID, secret=OLD_SECRET), T0) == USER_ID
+    assert tokens.verify(forge(kid=OLD_KID, secret=OLD_SECRET), T0).user_id == USER_ID
 
 
 def test_rejects_expired_tokens(tokens: JwtAccessTokens) -> None:
-    access = tokens.issue(USER_ID, T0)
+    access = tokens.issue(USER_ID, T0, authenticated_at=T0)
 
     with pytest.raises(InvalidAccessTokenError):
         tokens.verify(access.value, T0 + TTL)
 
 
 def test_rejects_tokens_issued_in_the_future(tokens: JwtAccessTokens) -> None:
-    access = tokens.issue(USER_ID, T0 + timedelta(minutes=5))
+    access = tokens.issue(USER_ID, T0 + timedelta(minutes=5), authenticated_at=T0)
 
     with pytest.raises(InvalidAccessTokenError):
         tokens.verify(access.value, T0)
@@ -106,6 +120,8 @@ def test_rejects_tokens_issued_in_the_future(tokens: JwtAccessTokens) -> None:
         pytest.param(forge(sub=None), id="missing sub"),
         pytest.param(forge(exp=None), id="missing exp"),
         pytest.param(forge(iat=None), id="missing iat"),
+        pytest.param(forge(auth_time=None), id="missing auth_time"),
+        pytest.param(forge(auth_time="yesterday"), id="auth_time is not a number"),
         pytest.param(
             jwt.encode({"sub": str(USER_ID)}, "x" * 32, "HS256"), id="signed with another key"
         ),

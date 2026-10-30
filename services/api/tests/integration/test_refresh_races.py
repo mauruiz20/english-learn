@@ -97,11 +97,13 @@ class TestRefreshRacingWithAccountDeletion:
         refresh = auth.refresh_with(
             lambda: PauseBeforeIssuingARefreshToken(auth.session_factory, gate)
         )
-        delete = DeleteAccount(unit_of_work=auth.uow)
+        delete = DeleteAccount(unit_of_work=auth.uow, clock=auth.clock)
 
         refreshing = asyncio.create_task(refresh.execute(signed_in.tokens.refresh_token))
         await gate.reached.wait()
-        deleting = asyncio.create_task(delete.execute(signed_in.user.id))
+        deleting = asyncio.create_task(
+            delete.execute(signed_in.user.id, authenticated_at=auth.clock.now())
+        )
         await wait_until_a_transaction_waits_for_a_lock(auth.engine)
         gate.opened.set()
         refreshed, deleted = await asyncio.gather(refreshing, deleting, return_exceptions=True)
@@ -114,9 +116,13 @@ class TestRefreshRacingWithAccountDeletion:
     async def test_refresh_arrives_while_the_deletion_is_uncommitted(self, auth: Auth) -> None:
         signed_in = await auth.sign_in.execute("google-ana")
         gate = Gate()
-        delete = DeleteAccount(unit_of_work=lambda: PauseBeforeCommit(auth.session_factory, gate))
+        delete = DeleteAccount(
+            unit_of_work=lambda: PauseBeforeCommit(auth.session_factory, gate), clock=auth.clock
+        )
 
-        deleting = asyncio.create_task(delete.execute(signed_in.user.id))
+        deleting = asyncio.create_task(
+            delete.execute(signed_in.user.id, authenticated_at=auth.clock.now())
+        )
         await gate.reached.wait()
         refreshing = asyncio.create_task(auth.refresh.execute(signed_in.tokens.refresh_token))
         await wait_until_a_transaction_waits_for_a_lock(auth.engine)

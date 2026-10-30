@@ -37,3 +37,15 @@ class RefreshTokenReuseError(AuthenticationError):
 
 class InvalidAccessTokenError(AuthenticationError):
     code: ClassVar[str] = "invalid_token"
+
+
+class AccountNotFoundError(AuthenticationError):
+    """A valid access token whose account was deleted in the meantime."""
+
+    code: ClassVar[str] = "account_not_found"
+
+
+class ReauthenticationRequiredError(AuthenticationError):
+    """The operation needs a recent Google sign-in, not just a refreshed session."""
+
+    code: ClassVar[str] = "reauthentication_required"

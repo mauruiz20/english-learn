@@ -61,7 +61,9 @@ class SessionIssuer:
         )
         await uow.refresh_tokens.add(record)
         pair = TokenPair(
-            access_token=self._access_tokens.issue(user_id, now),
+            access_token=self._access_tokens.issue(
+                user_id, now, authenticated_at=family.created_at
+            ),
             refresh_token=secret,
             refresh_token_expires_at=record.expires_at,
         )

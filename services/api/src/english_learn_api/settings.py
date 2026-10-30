@@ -50,6 +50,8 @@ class Settings(DatabaseSettings):
     refresh_token_ttl: timedelta = timedelta(days=14)  # idle timeout, slid by every refresh
     session_max_lifetime: timedelta = timedelta(days=60)  # absolute, from the sign-in
     refresh_retry_grace: timedelta = timedelta(seconds=45)
+    # How recent the Google sign-in must be for DELETE /v1/account.
+    reauthentication_window: timedelta = timedelta(minutes=5)
     cors_origins: Annotated[list[str], NoDecode] = list(DEFAULT_CORS_ORIGINS)
     max_request_body_bytes: int = 1024 * 1024
     log_level: str = "INFO"
@@ -91,6 +93,7 @@ class Settings(DatabaseSettings):
         "refresh_token_ttl",
         "session_max_lifetime",
         "refresh_retry_grace",
+        "reauthentication_window",
         mode="before",
     )
     @classmethod
@@ -100,7 +103,9 @@ class Settings(DatabaseSettings):
             return int(value)
         return value
 
-    @field_validator("access_token_ttl", "refresh_token_ttl", "session_max_lifetime")
+    @field_validator(
+        "access_token_ttl", "refresh_token_ttl", "session_max_lifetime", "reauthentication_window"
+    )
     @classmethod
     def _positive(cls, value: timedelta) -> timedelta:
         if value <= timedelta(0):

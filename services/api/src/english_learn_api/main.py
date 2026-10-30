@@ -11,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from english_learn_api.account.api import build_account_router
 from english_learn_api.account.application import DeleteAccount, GetProfile
-from english_learn_api.auth.api.bearer import build_current_user_id
+from english_learn_api.auth.api.bearer import build_current_claims
 from english_learn_api.auth.api.router import STATUS_BY_ERROR, build_auth_router
 from english_learn_api.auth.application.ports import GoogleTokenVerifier
 from english_learn_api.auth.application.use_cases import (
@@ -87,9 +87,13 @@ def create_app(
     )
     app.include_router(
         build_account_router(
-            current_user_id=build_current_user_id(access_tokens, clock),
+            current_claims=build_current_claims(access_tokens, unit_of_work, clock),
             get_profile=GetProfile(unit_of_work=unit_of_work),
-            delete_account=DeleteAccount(unit_of_work=unit_of_work),
+            delete_account=DeleteAccount(
+                unit_of_work=unit_of_work,
+                clock=clock,
+                reauthentication_window=settings.reauthentication_window,
+            ),
         )
     )
 

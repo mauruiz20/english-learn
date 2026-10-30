@@ -6,6 +6,7 @@ from typing import Protocol, Self
 from uuid import UUID
 
 from english_learn_api.auth.domain.models import (
+    AccessClaims,
     AccessToken,
     GoogleIdentity,
     RefreshFamily,
@@ -22,10 +23,12 @@ class GoogleTokenVerifier(Protocol):
 
 
 class AccessTokens(Protocol):
-    def issue(self, user_id: UUID, now: datetime) -> AccessToken: ...
+    def issue(self, user_id: UUID, now: datetime, *, authenticated_at: datetime) -> AccessToken:
+        """`authenticated_at`: when the user signed in with Google (kept across refreshes)."""
+        ...
 
-    def verify(self, token: str, now: datetime) -> UUID:
-        """Return the user id, or raise `InvalidAccessTokenError`."""
+    def verify(self, token: str, now: datetime) -> AccessClaims:
+        """Return the claims, or raise `InvalidAccessTokenError`."""
         ...
 
 

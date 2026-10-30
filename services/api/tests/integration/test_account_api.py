@@ -1,4 +1,5 @@
 from collections.abc import AsyncIterator
+from datetime import timedelta
 
 import pytest
 from sqlalchemy import text
@@ -49,7 +50,24 @@ async def test_a_deleted_account_cannot_be_used(api: Api) -> None:
     assert me.status_code == 401
     assert me.json()["error"]["code"] == "account_not_found"
     assert again.status_code == 401
+    assert again.json()["error"]["code"] == "account_not_found"
     assert refresh.status_code == 401
+
+
+async def test_delete_requires_a_sign_in_within_five_minutes(api: Api) -> None:
+    signed_in = await api.sign_in()
+    api.clock.advance(timedelta(minutes=10))
+    refreshed = (await api.refresh(signed_in["refreshToken"])).json()  # new iat, old sign-in
+
+    response = await api.client.delete("/v1/account", headers=bearer(refreshed["accessToken"]))
+
+    assert response.status_code == 401
+    assert response.json()["error"]["code"] == "reauthentication_required"
+    assert (await api.me(refreshed["accessToken"])).status_code == 200
+
+    fresh = await api.sign_in()
+    deleted = await api.client.delete("/v1/account", headers=bearer(fresh["accessToken"]))
+    assert deleted.status_code == 204
 
 
 async def test_signing_in_after_deleting_creates_a_new_account(api: Api) -> None:

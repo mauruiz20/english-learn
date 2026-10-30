@@ -16,6 +16,7 @@ from english_learn_api.auth.domain.errors import (
     InvalidGoogleTokenError,
 )
 from english_learn_api.auth.domain.models import (
+    AccessClaims,
     AccessToken,
     GoogleIdentity,
     RefreshFamily,
@@ -61,15 +62,21 @@ class FakeAccessTokens:
     def __init__(self, ttl: timedelta = timedelta(minutes=15)) -> None:
         self.ttl = ttl
 
-    def issue(self, user_id: UUID, now: datetime) -> AccessToken:
-        return AccessToken(value=f"access:{user_id}:{now.isoformat()}", expires_at=now + self.ttl)
+    def issue(self, user_id: UUID, now: datetime, *, authenticated_at: datetime) -> AccessToken:
+        value = f"access|{user_id}|{now.isoformat()}|{authenticated_at.isoformat()}"
+        return AccessToken(value=value, expires_at=now + self.ttl)
 
-    def verify(self, token: str, now: datetime) -> UUID:
-        prefix, user_id, issued = token.split(":", 2)
-        if prefix != "access" or now >= datetime.fromisoformat(issued) + self.ttl:
+    def verify(self, token: str, now: datetime) -> AccessClaims:
+        prefix, user_id, issued, authenticated = token.split("|")
+        issued_at = datetime.fromisoformat(issued)
+        if prefix != "access" or now >= issued_at + self.ttl:
             msg = "Access token is invalid"
             raise InvalidAccessTokenError(msg)
-        return UUID(user_id)
+        return AccessClaims(
+            user_id=UUID(user_id),
+            issued_at=issued_at,
+            authenticated_at=datetime.fromisoformat(authenticated),
+        )
 
 
 @dataclass
