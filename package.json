@@ -6,7 +6,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && pnpm --filter \"./apps/**\" lint",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "validate:content": "pnpm --filter @english-learn/content validate",
