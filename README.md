@@ -6,8 +6,8 @@ bundled with the app.
 
 [![CI](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml)
 
-**Live demo:** <https://english-learn-iwl.pages.dev> (deployed from `main` to Cloudflare Pages after
-every check passes; progress is stored in your browser only).
+**Live demo:** <https://english.maumar.com.ar> (deployed from `main` to Cloudflare Pages after
+every check passes; installable and usable offline; progress is stored in your browser only).
 
 | At a glance  |                                                                                   |
 | ------------ | --------------------------------------------------------------------------------- |
