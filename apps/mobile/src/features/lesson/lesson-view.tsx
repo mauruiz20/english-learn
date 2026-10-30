@@ -44,6 +44,7 @@ type LessonViewProps = {
   onSubmit: (response: ExerciseResponse) => void;
   onContinue: () => void;
   onGoHome: () => void;
+  onRetrySave: () => void;
 };
 
 function ExerciseBody({
@@ -74,18 +75,37 @@ function ExerciseBody({
   }
 }
 
-function Message({ text, onGoHome }: { text: string; onGoHome: () => void }) {
+function Message({
+  text,
+  onRetry,
+  onGoHome,
+}: {
+  text: string;
+  onRetry?: () => void;
+  onGoHome: () => void;
+}) {
   return (
     <>
       <Text accessibilityRole="alert" style={styles.error}>
         {text}
       </Text>
-      <Button label="Volver al inicio" onPress={onGoHome} />
+      {onRetry !== undefined && <Button label="Reintentar" onPress={onRetry} />}
+      <Button
+        label="Volver al inicio"
+        variant={onRetry === undefined ? "primary" : "secondary"}
+        onPress={onGoHome}
+      />
     </>
   );
 }
 
-export function LessonView({ state, onSubmit, onContinue, onGoHome }: LessonViewProps) {
+export function LessonView({
+  state,
+  onSubmit,
+  onContinue,
+  onGoHome,
+  onRetrySave,
+}: LessonViewProps) {
   switch (state.status) {
     case "not-found":
       return (
@@ -96,7 +116,11 @@ export function LessonView({ state, onSubmit, onContinue, onGoHome }: LessonView
     case "save-error":
       return (
         <Screen title="Lección">
-          <Message text="No pudimos guardar tu progreso." onGoHome={onGoHome} />
+          <Message
+            text="No pudimos guardar tu progreso."
+            onRetry={onRetrySave}
+            onGoHome={onGoHome}
+          />
         </Screen>
       );
     case "saving":

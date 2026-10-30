@@ -9,7 +9,7 @@ function summary(itemOutcomes: LessonSummary["itemOutcomes"]): LessonSummary {
     lessonId: "a2.routine.lesson-001",
     verdicts: [],
     accuracy: 1,
-    xpEarned: 0,
+    answerXp: 0,
     itemOutcomes,
   };
 }
@@ -44,6 +44,59 @@ describe("applyLessonResults", () => {
 
     expect(state).toEqual(review(existing, 1, today));
     expect(state?.lapses).toBe(1);
+  });
+
+  it("keeps the interval of a non-due item practiced again today", () => {
+    // Learned today: next review is tomorrow. Replaying the lesson today is practice only.
+    const learned = review(initialState("a", today), 5, today);
+
+    const states = applyLessonResults({
+      summary: summary([
+        { itemId: "a", exerciseType: "vocab", verdict: "correct", responseMs: 1000 },
+        { itemId: "a", exerciseType: "cloze", verdict: "almost", responseMs: 1000 },
+      ]),
+      states: [learned],
+      today,
+    });
+
+    expect(states).toEqual([learned]);
+  });
+
+  it("still lapses a non-due item answered wrong", () => {
+    const known: ReviewState = {
+      ...initialState("a", localDate("2026-10-01")),
+      reps: 3,
+      intervalDays: 15,
+      dueDate: localDate("2026-11-10"),
+    };
+
+    const [state] = applyLessonResults({
+      summary: summary([
+        { itemId: "a", exerciseType: "vocab", verdict: "wrong", responseMs: 1000 },
+      ]),
+      states: [known],
+      today,
+    });
+
+    expect(state).toEqual(review(known, 1, today));
+    expect(state?.dueDate).toBe(localDate("2026-10-30"));
+  });
+
+  it("reviews an item due today normally", () => {
+    const due: ReviewState = {
+      ...review(initialState("a", localDate("2026-10-28")), 5, localDate("2026-10-28")),
+    };
+
+    const [state] = applyLessonResults({
+      summary: summary([
+        { itemId: "a", exerciseType: "vocab", verdict: "correct", responseMs: 1000 },
+      ]),
+      states: [due],
+      today,
+    });
+
+    expect(state).toEqual(review(due, 5, today));
+    expect(state?.intervalDays).toBe(6);
   });
 
   it("grades slow correct answers lower using the per-type expected time", () => {

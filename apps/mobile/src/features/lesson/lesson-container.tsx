@@ -1,9 +1,9 @@
 import type { Corpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
-import { completeLesson } from "./application/complete-lesson";
+import { completeSession } from "./application/complete-session";
 import { lessonExercises } from "./model/lesson-catalog";
 import {
   lessonSessionReducer,
@@ -17,7 +17,7 @@ import { LessonView, type LessonViewState } from "./lesson-view";
 
 type SaveState =
   | { readonly status: "idle" | "saving" | "error" }
-  | { readonly status: "saved"; readonly streakDays: number };
+  | { readonly status: "saved"; readonly xpEarned: number; readonly streakDays: number };
 
 type Session = {
   readonly state: LessonSessionState;
@@ -52,16 +52,29 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
   // Guards against saving twice (e.g. a double tap on the last "Continuar").
   const saving = useRef(false);
 
+  // Saving is all-or-nothing, so after a failure the same summary can be saved again.
   const persist = (summary: LessonSummary) => {
     if (saving.current) return;
     saving.current = true;
     setSave({ status: "saving" });
-    completeLesson({ repository: progressRepository, summary, today: clock.today() })
-      .then(({ streak }) => setSave({ status: "saved", streakDays: streak.current }))
+    completeSession({
+      repository: progressRepository,
+      summary,
+      today: clock.today(),
+      bonus: "lesson",
+    })
+      .then(({ xpEarned, streak }) =>
+        setSave({ status: "saved", xpEarned, streakDays: streak.current }),
+      )
       .catch((error: unknown) => {
         console.error("Failed to save lesson results", error);
+        saving.current = false;
         setSave({ status: "error" });
       });
+  };
+
+  const retrySave = () => {
+    if (session?.status === "finished") persist(session.summary);
   };
 
   const goHome = () => (router.canDismiss() ? router.dismissAll() : router.replace("/"));
@@ -81,13 +94,19 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
     if (next.status === "finished") persist(next.summary);
   };
 
+  // Leaving mid-save would show a stale home; the save is quick, so block back until it ends.
+  const canLeave = save.status !== "saving";
   return (
-    <LessonView
-      state={toViewState(session, initial?.prepared ?? [], save, content)}
-      onSubmit={onSubmit}
-      onContinue={onContinue}
-      onGoHome={goHome}
-    />
+    <>
+      <Stack.Screen options={{ gestureEnabled: canLeave, headerBackVisible: canLeave }} />
+      <LessonView
+        state={toViewState(session, initial?.prepared ?? [], save, content)}
+        onSubmit={onSubmit}
+        onContinue={onContinue}
+        onGoHome={goHome}
+        onRetrySave={retrySave}
+      />
+    </>
   );
 }
 
@@ -101,12 +120,12 @@ function toViewState(
   if (session.status === "finished") {
     if (save.status === "error") return { status: "save-error" };
     if (save.status !== "saved") return { status: "saving" };
-    const { verdicts, xpEarned } = session.summary;
+    const { verdicts } = session.summary;
     return {
       status: "summary",
       correct: verdicts.filter((v) => v === "correct").length,
       total: verdicts.length,
-      xpEarned,
+      xpEarned: save.xpEarned,
       streakDays: save.streakDays,
     };
   }

@@ -91,12 +91,12 @@ describe("lessonSession", () => {
       lessonId: lesson.id,
       verdicts: ["correct", "correct", "correct", "correct", "correct", "correct"],
       accuracy: 1,
-      // 6 × 10 XP + 20 XP completion bonus (≥ 80 %).
-      xpEarned: 80,
+      // 6 × 10 XP; the completion bonus is decided when the results are saved.
+      answerXp: 60,
     });
   });
 
-  it("sums answer XP and the smaller completion bonus below 80 % accuracy", () => {
+  it("sums answer XP per verdict", () => {
     const responses: readonly ExerciseResponse[] = [
       { kind: "choice", option: "dormirse" },
       { kind: "choice", option: "do" },
@@ -109,8 +109,19 @@ describe("lessonSession", () => {
     expect(finished.status === "finished" && finished.summary).toMatchObject({
       verdicts: ["wrong", "wrong", "correct", "correct", "correct", "almost"],
       accuracy: 0.5,
-      // 3 × 10 + 5 (almost) + 10 completion bonus.
-      xpEarned: 45,
+      // 3 × 10 + 5 (almost).
+      answerXp: 35,
+    });
+  });
+
+  it("runs a session that is not a lesson (e.g. a review)", () => {
+    const finished = play(startLesson({ id: "review", title: "Repaso" }, [vocab]), [
+      correctResponses[0] as ExerciseResponse,
+    ]);
+
+    expect(finished.status === "finished" && finished.summary).toMatchObject({
+      lessonId: "review",
+      answerXp: 10,
     });
   });
 
