@@ -22,6 +22,7 @@ from english_learn_api.auth.infrastructure.sqlalchemy_unit_of_work import SqlAlc
 from english_learn_api.shared.database import create_session_factory
 from tests.fakes import FakeAccessTokens, FakeClock, FakeGoogleVerifier
 from tests.integration.concurrency import (
+    LOCK_WAIT_TIMEOUT_SECONDS,
     Gate,
     PauseBeforeCommit,
     PauseBeforeIssuingARefreshToken,
@@ -86,6 +87,37 @@ async def test_reuse_revocation_reaches_a_successor_issued_concurrently(auth: Au
         with pytest.raises(InvalidRefreshTokenError):
             await auth.refresh.execute(results[0].refresh_token)
     assert await auth.live_tokens() == 0
+
+
+async def test_refreshes_of_one_user_do_not_wait_for_each_other_but_a_deletion_waits(
+    auth: Auth,
+) -> None:
+    """Two devices (families) of one user refresh at once; the user lock blocks deletion only."""
+    phone = (await auth.sign_in.execute("google-ana")).tokens.refresh_token
+    laptop_sign_in = await auth.sign_in.execute("google-ana")
+    gate = Gate()
+    paused = auth.refresh_with(lambda: PauseBeforeIssuingARefreshToken(auth.session_factory, gate))
+    delete = DeleteAccount(unit_of_work=auth.uow, clock=auth.clock)
+
+    phone_refreshing = asyncio.create_task(paused.execute(phone))
+    await gate.reached.wait()  # the phone's refresh holds its user, family and token locks
+    try:
+        async with asyncio.timeout(LOCK_WAIT_TIMEOUT_SECONDS):
+            laptop = await auth.refresh.execute(laptop_sign_in.tokens.refresh_token)
+        deleting = asyncio.create_task(
+            delete.execute(laptop_sign_in.user.id, authenticated_at=auth.clock.now())
+        )
+        await wait_until_a_transaction_waits_for_a_lock(auth.engine)
+        assert not deleting.done()
+    finally:
+        gate.opened.set()
+    refreshed, deleted = await asyncio.gather(phone_refreshing, deleting, return_exceptions=True)
+
+    assert deleted is None
+    assert not isinstance(refreshed, BaseException), refreshed
+    for token in (refreshed.refresh_token, laptop.refresh_token):
+        with pytest.raises(InvalidRefreshTokenError):
+            await auth.refresh.execute(token)
 
 
 class TestRefreshRacingWithAccountDeletion:
