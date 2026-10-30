@@ -1,7 +1,8 @@
 import { useLocalSearchParams } from "expo-router";
-import { PlaceholderScreen } from "@/features/placeholder/placeholder-screen";
+import { LessonContainer } from "@/features/lesson/lesson-container";
 
 export default function LessonRoute() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  return <PlaceholderScreen title={`Lección ${id}`} />;
+  // Remount per lesson so a new lesson always starts a fresh session.
+  return <LessonContainer key={id} lessonId={id ?? ""} />;
 }
