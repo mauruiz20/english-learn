@@ -30,7 +30,7 @@ one Expo codebase.
 - **Web build**: static SPA export with the cross-origin isolation headers SQLite needs, tested
   with Playwright on Chromium and WebKit.
 - **Android build configuration**: package name, version code and EAS profiles (`preview` APK,
-  `production` app bundle).
+  `production` app bundle); unused template permissions are blocked.
 - Leaving an unfinished lesson, review or placement test asks for confirmation.
 - Clear error screens when the database cannot open (another tab, newer schema, storage
   unavailable).
