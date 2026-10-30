@@ -33,7 +33,9 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   word order 20 s, translate-write 30 s, reading 60 s — slower correct answers get grade 4).
   An item that is **not due yet** (`dueDate > today`, e.g. a lesson replayed the same day) is
   only practiced: a passing grade leaves its state unchanged; a wrong answer still applies the
-  SM-2 lapse (forgetting is real evidence).
+  SM-2 lapse (forgetting is real evidence). A **new** item (no state yet) answered wrong is not a
+  lapse (nothing was learned yet to forget): it starts fresh with the default ease, 0 reps and
+  0 lapses, due tomorrow.
 - `application/complete-session.ts`: saves a finished lesson or review through
   `ProgressRepository.saveSessionResults`, which reads the current states and streak and writes
   states + XP + streak in ONE transaction (all or nothing). XP = sum of `xpForAnswer`, plus the
