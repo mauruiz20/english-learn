@@ -1,0 +1,153 @@
+{
+  "items": [
+    {
+      "id": "b1.travel.although",
+      "level": "B1",
+      "topics": ["travel"],
+      "kind": "word",
+      "term": "although",
+      "es": "aunque"
+    },
+    {
+      "id": "b1.travel.book",
+      "level": "B1",
+      "topics": ["travel"],
+      "kind": "word",
+      "term": "book",
+      "es": "reservar"
+    },
+    {
+      "id": "b1.travel.delayed",
+      "level": "B1",
+      "topics": ["travel"],
+      "kind": "word",
+      "term": "delayed",
+      "es": "retrasado"
+    },
+    {
+      "id": "b1.travel.get-lost",
+      "level": "B1",
+      "topics": ["travel"],
+      "kind": "phrase",
+      "term": "get lost",
+      "es": "perderse"
+    },
+    {
+      "id": "b1.travel.used-to",
+      "level": "B1",
+      "topics": ["travel", "grammar"],
+      "kind": "grammar",
+      "term": "used to + infinitive",
+      "es": "solía + infinitivo"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.travel.lisbon-trip",
+      "level": "B1",
+      "topics": ["travel"],
+      "title": "A trip to Lisbon",
+      "text": "Last summer, my friends and I travelled to Lisbon. Although our flight was delayed for two hours, we arrived in time for dinner. We had booked a small room near the river. On the second day we got lost in the old town, but a friendly local showed us the way back. When I was a child, I used to think Portugal was very far away, but now it feels like a second home.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.travel.vocab-001",
+      "itemIds": ["b1.travel.delayed"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'delayed'.",
+      "options": ["retrasado", "cancelado", "completo"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.travel.cloze-001",
+      "itemIds": ["b1.travel.although"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "___ the hotel was expensive, we decided to stay.",
+      "answers": ["Although"],
+      "distractors": ["Because", "Unless"],
+      "es": "Aunque el hotel era caro, decidimos quedarnos."
+    },
+    {
+      "id": "b1.travel.order-001",
+      "itemIds": ["b1.travel.book"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["We", "booked", "a", "room", "online."],
+      "accepted": ["We booked a room online."],
+      "es": "Reservamos una habitación por internet."
+    },
+    {
+      "id": "b1.travel.choice-001",
+      "itemIds": ["b1.travel.get-lost"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We got lost in the old town.",
+      "options": [
+        "Nos perdimos en el casco antiguo.",
+        "Nos quedamos en el casco antiguo.",
+        "Compramos algo en el casco antiguo."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.travel.reading-001",
+      "itemIds": ["b1.travel.delayed", "b1.travel.get-lost", "b1.travel.used-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.travel.lisbon-trip",
+      "questions": [
+        {
+          "prompt": "How long was the flight delayed?",
+          "options": ["Two hours", "Ten minutes", "All day"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What happened on the second day?",
+          "options": [
+            "They got lost in the old town.",
+            "They missed their flight.",
+            "They cancelled the room."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.travel.write-001",
+      "itemIds": ["b1.travel.although", "b1.travel.delayed"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Aunque el vuelo se retrasó, llegamos a tiempo.",
+      "accepted": [
+        "Although the flight was delayed, we arrived on time.",
+        "Even though the flight was delayed, we arrived on time."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.travel.lesson-001",
+      "level": "B1",
+      "topic": "travel",
+      "title": "De viaje",
+      "exerciseIds": [
+        "b1.travel.vocab-001",
+        "b1.travel.cloze-001",
+        "b1.travel.order-001",
+        "b1.travel.choice-001",
+        "b1.travel.reading-001",
+        "b1.travel.write-001"
+      ]
+    }
+  ]
+}
