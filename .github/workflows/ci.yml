@@ -83,6 +83,27 @@ jobs:
       - name: Test
         run: uv run pytest
 
+  # The committed OpenAPI schema and TypeScript types (packages/api-client) must match the API.
+  # Its own job because regenerating needs both uv/Python and Node; the package's typecheck and
+  # tests run in `check`.
+  api-client:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          enable-cache: true
+          cache-dependency-glob: services/api/uv.lock
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: API client is up to date
+        run: pnpm api-client:check
+
   # Production deploy to Cloudflare Pages: only from main, only after every check passed.
   # public/_headers ships the COOP/COEP headers expo-sqlite needs on the web.
   deploy-web:
