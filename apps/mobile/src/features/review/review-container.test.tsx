@@ -7,12 +7,16 @@ import {
   createFakeRepository,
   type FakeProgressRepository,
 } from "@/testing/fake-progress-repository";
+import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { ReviewContainer } from "./review-container";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
 const mockScreenOptions = jest.fn();
+const mockPreventRemove = createPreventRemoveMock();
 jest.mock("expo-router", () => ({
   useRouter: () => mockRouter,
+  usePreventRemove: (...args: Parameters<typeof mockPreventRemove.hook>) =>
+    mockPreventRemove.hook(...args),
   Stack: {
     Screen: ({ options }: { options: unknown }) => {
       mockScreenOptions(options);
@@ -99,6 +103,30 @@ describe("ReviewContainer", () => {
     const states = repository.snapshot().states;
     expect(states.find((s) => s.itemId === "a2.routine.wake-up")).toEqual(notDue);
     expect(states.find((s) => s.itemId === "a2.routine.usually")?.reps).toBe(2);
+  });
+
+  it("asks before leaving mid-review and leaves without saving on confirm", async () => {
+    const repository = createFakeRepository({
+      states: [learnedYesterday("a2.routine.wake-up"), learnedYesterday("a2.routine.breakfast")],
+    });
+    await renderReview(repository);
+    await screen.findByText("Ejercicio 1 de 2");
+    expect(mockPreventRemove.active).toBe(false);
+
+    await answer("have");
+    await answer("Comprobar", "button");
+    expect(mockPreventRemove.active).toBe(true);
+
+    let repeat = await mockPreventRemove.attemptLeave();
+    expect(screen.getByText("¿Salir del repaso?")).toBeOnTheScreen();
+    await answer("Seguir aquí", "button");
+    expect(repeat).not.toHaveBeenCalled();
+    expect(screen.queryByText("¿Salir del repaso?")).toBeNull();
+
+    repeat = await mockPreventRemove.attemptLeave();
+    await answer("Salir", "button");
+    expect(repeat).toHaveBeenCalledTimes(1);
+    expect(repository.snapshot().xp).toBe(0);
   });
 
   it("explains when the review cannot be loaded", async () => {

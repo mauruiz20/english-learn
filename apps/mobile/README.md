@@ -19,6 +19,23 @@ root layout provides the SQLite-backed implementations (`@english-learn/storage-
 in `onInit`), the system clock and `Math.random`; tests wrap components in
 `<AppServicesProvider services={...}>` with in-memory fakes and a deterministic rng.
 
+### When the database cannot open
+
+`SqliteAppServicesProvider` wraps the app in `AppErrorBoundary`
+(`src/infrastructure/errors/`). If the database fails to open or migrate, `SQLiteProvider`'s
+`onError` throws a `DatabaseOpenError` and the boundary shows a message with "Reintentar"
+instead of a blank screen; any other render error shows "Algo salió mal.". "Reintentar"
+reloads the page on web (expo-sqlite's worker cannot reopen after a failed open) and remounts
+the app on native. Messages by cause (`database-open-error.ts`):
+
+- **Another tab has the app open** (web): expo-sqlite keeps OPFS sync access handles for the
+  whole session and only one tab can hold them. Recognized by the messages browsers actually
+  report (Chromium: "Access Handles cannot be created if there is another open Access Handle…";
+  WebKit: "The object is in an invalid state."): "La app ya está abierta en otra pestaña."
+- **Database from a newer app version** (`SchemaTooNewError` from `migrate`): asks to update.
+- **Anything else** (corrupt file, storage disabled, e.g. WebKit without OPFS in private
+  browsing): "No pudimos abrir tus datos."
+
 Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod at runtime).
 
 ## Lessons (`src/features/lesson/`)
@@ -33,7 +50,9 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   word order 20 s, translate-write 30 s, reading 60 s — slower correct answers get grade 4).
   An item that is **not due yet** (`dueDate > today`, e.g. a lesson replayed the same day) is
   only practiced: a passing grade leaves its state unchanged; a wrong answer still applies the
-  SM-2 lapse (forgetting is real evidence).
+  SM-2 lapse (forgetting is real evidence). A **new** item (no state yet) answered wrong is not a
+  lapse (nothing was learned yet to forget): it starts fresh with the default ease, 0 reps and
+  0 lapses, due tomorrow.
 - `application/complete-session.ts`: saves a finished lesson or review through
   `ProgressRepository.saveSessionResults`, which reads the current states and streak and writes
   states + XP + streak in ONE transaction (all or nothing). XP = sum of `xpForAnswer`, plus the
@@ -41,7 +60,17 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   replays and reviews earn answer XP only.
 - `use-exercise-session.ts`: hook shared by lesson and review (answer → feedback → next →
   save). Saving is guarded against double submission; a failed save shows "Reintentar"; the
-  header back button and swipe gesture are disabled while saving.
+  header back button and swipe gesture are disabled while saving. The browser back button is
+  not blocked during the save: the save keeps running after the screen goes away, and the app's
+  repository is wrapped in `awaitPendingWrites` (`src/infrastructure/persistence/`), so every
+  read (home's reload on focus) waits for in-flight writes and shows the committed progress.
+- **Leaving mid-session asks first.** Once at least one answer was given and the lesson, review
+  or placement test is not finished, `useLeaveConfirmation` (`src/shared/navigation/`, built on
+  expo-router's `usePreventRemove`) blocks leaving and shows an in-app dialog ("Seguir aquí" /
+  "Salir"; not `Alert` or `window.confirm`). It covers the header back button, the swipe
+  gesture, Android back and, on web, the browser back button (the URL is restored when the
+  learner stays); on web, reloading or closing the tab mid-session also shows the browser's own
+  "leave site?" prompt. Leaving saves nothing.
 - `components/`: one presentational component per exercise type, `ExerciseBody` (picks the
   component by type; tagged `testID="exercise-<id>"`) and `AnswerFeedback`.
 - `lesson-container.tsx` / `lesson-view.tsx`: the `/lesson/[id]` screen, summary and unknown-id
@@ -98,7 +127,12 @@ the real time). It only exists in builds exported with `EXPO_PUBLIC_E2E=1`
 production export the branch and its module are dropped. `scripts/check-prod-bundle.mjs` (run
 by `export:web`, hence in CI) fails if the override ever shows up in `dist/`.
 
-First-time Playwright setup: `pnpm exec playwright install chromium`.
+First-time Playwright setup: `pnpm exec playwright install chromium webkit`. Every spec runs on
+Chromium and on WebKit (Safari / iOS web). Specs import `test` from `e2e/support/test.ts`, which
+runs each test in a fresh persistent browser profile: WebKit has no OPFS in Playwright's default
+ephemeral contexts (like Safari Private Browsing), so expo-sqlite could not open the database
+there. Playwright's WebKit also shares website data between profiles, so the webkit project runs
+on one worker and each test first empties OPFS.
 
 ## Hosting the web build
 
@@ -106,9 +140,15 @@ First-time Playwright setup: `pnpm exec playwright install chromium`.
 enable on cross-origin isolated pages. Every response must carry:
 
 ```
-Cross-Origin-Embedder-Policy: credentialless
+Cross-Origin-Embedder-Policy: require-corp
 Cross-Origin-Opener-Policy: same-origin
 ```
+
+`require-corp`, not `credentialless`: Safari / WebKit does not implement `credentialless`, so with
+it the page is not cross-origin isolated on Safari and iOS and the database cannot open. The app
+loads nothing cross-origin, so `require-corp` costs nothing today. A cross-origin resource added
+later (fonts, images, analytics) must be served with `Cross-Origin-Resource-Policy: cross-origin`
+(or CORS), or the browser will block it.
 
 - **Cloudflare Pages / Netlify**: `public/_headers` is copied into `dist/` and applies them.
 - **Other hosts** (e.g. Vercel, S3/CloudFront, nginx): configure the same two headers for all
@@ -117,3 +157,16 @@ Cross-Origin-Opener-Policy: same-origin
 
 The Playwright smoke test fails if the page is not cross-origin isolated, if SQLite/WASM logs
 console errors, or if progress loaded from the database is not rendered.
+
+## Known limitations
+
+- **Reading grades all its items with one verdict.** A reading exercise is correct only if every
+  question is, and that single verdict (and its response time) is applied to every item the
+  exercise lists in `itemIds`. The content schema does not link a question to the items it
+  tests, so one wrong answer counts as a miss for all of the passage's items, and a slow read
+  lowers all of them to grade 4. Fixing it needs per-question `itemIds` in the content schema;
+  until then, reading items may come back for review sooner than strictly needed.
+- **One tab at a time on web.** expo-sqlite holds the database file exclusively; a second tab
+  shows "La app ya está abierta en otra pestaña." until the first one is closed.
+- **No storage in private browsing on Safari / WebKit.** Without OPFS the database cannot open
+  and the app shows "No pudimos abrir tus datos."

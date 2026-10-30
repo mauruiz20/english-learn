@@ -47,8 +47,8 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Install Chromium
-        run: pnpm --filter @english-learn/mobile exec playwright install --with-deps chromium
+      - name: Install Chromium and WebKit
+        run: pnpm --filter @english-learn/mobile exec playwright install --with-deps chromium webkit
       # Production export; fails if test-only hooks (e2e clock override) leak into it.
       - name: Export web build
         run: pnpm --filter @english-learn/mobile export:web

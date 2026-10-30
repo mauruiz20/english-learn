@@ -35,6 +35,21 @@ const MIGRATIONS: readonly string[] = [
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */
 export const SCHEMA_VERSION = MIGRATIONS.length;
 
+/** The on-device database was written by a newer app version; this one cannot read it. */
+export class SchemaTooNewError extends Error {
+  readonly databaseVersion: number;
+  readonly supportedVersion: number;
+
+  constructor(databaseVersion: number, supportedVersion: number) {
+    super(
+      `Database schema version ${databaseVersion} is newer than this app supports (${supportedVersion})`,
+    );
+    this.name = "SchemaTooNewError";
+    this.databaseVersion = databaseVersion;
+    this.supportedVersion = supportedVersion;
+  }
+}
+
 /**
  * Brings the database schema up to `SCHEMA_VERSION`. Idempotent: already-applied migrations
  * are skipped. Each migration and its version bump run in one transaction.
@@ -44,9 +59,7 @@ export async function migrate(db: SqlDatabase): Promise<void> {
   const current = row?.user_version ?? 0;
 
   if (current > SCHEMA_VERSION) {
-    throw new Error(
-      `Database schema version ${current} is newer than this app supports (${SCHEMA_VERSION})`,
-    );
+    throw new SchemaTooNewError(current, SCHEMA_VERSION);
   }
 
   for (let version = current; version < SCHEMA_VERSION; version++) {

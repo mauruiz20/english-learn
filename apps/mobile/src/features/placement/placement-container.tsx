@@ -16,6 +16,7 @@ import { lessonLevelFor } from "@/features/lesson/model/lesson-catalog";
 import { prepareExercise, type PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { placementExercise, toPlacementCandidate } from "./model/placement-bank";
 import { PlacementView, type PlacementViewState } from "./placement-view";
 
@@ -43,6 +44,10 @@ export function PlacementContainer({ content = corpus }: { content?: Corpus }) {
 
   const questionsById = useMemo(() => new Map(content.placement.map((q) => [q.id, q])), [content]);
   const maxQuestions = Math.min(PLACEMENT_MAX_QUESTIONS, content.placement.length);
+  const { dialog } = useLeaveConfirmation(
+    phase.status === "question" && phase.session.answers.length > 0,
+    "¿Salir del test de nivel?",
+  );
 
   const ask = (session: PlacementSession): Phase | null => {
     const candidate = currentQuestion(session);
@@ -96,13 +101,16 @@ export function PlacementContainer({ content = corpus }: { content?: Corpus }) {
   const onGoToLessons = () => (router.canDismiss() ? router.dismissAll() : router.replace("/"));
 
   return (
-    <PlacementView
-      state={toViewState(phase, maxQuestions, content)}
-      onStart={onStart}
-      onSubmit={onSubmit}
-      onRetrySave={onRetrySave}
-      onGoToLessons={onGoToLessons}
-    />
+    <>
+      <PlacementView
+        state={toViewState(phase, maxQuestions, content)}
+        onStart={onStart}
+        onSubmit={onSubmit}
+        onRetrySave={onRetrySave}
+        onGoToLessons={onGoToLessons}
+      />
+      {dialog}
+    </>
   );
 }
 

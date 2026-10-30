@@ -1,5 +1,6 @@
 import type { Exercise } from "@english-learn/content";
 import {
+  addDays,
   compareLocalDate,
   gradeFromOutcome,
   initialState,
@@ -46,6 +47,10 @@ export type ApplyLessonResultsInput = {
  * practiced: a passing grade leaves its state unchanged, so replays cannot inflate intervals.
  * A failing grade still applies the SM-2 lapse, because forgetting is real evidence that the
  * item needs to come back sooner.
+ *
+ * A NEW item (no state yet) answered wrong is not a lapse: the learner saw it for the first time,
+ * so nothing was forgotten. It starts fresh instead (default ease, reps 0, lapses 0) and is due
+ * tomorrow, like any item learned today.
  */
 export function applyLessonResults({
   summary,
@@ -67,8 +72,15 @@ export function applyLessonResults({
   }
   const byId = new Map(states.map((s) => [s.itemId, s]));
   return [...worst].map(([itemId, grade]) => {
-    const current = byId.get(itemId) ?? initialState(itemId, today);
+    const existing = byId.get(itemId);
+    if (existing === undefined && grade < 3) return firstSightMiss(itemId, today);
+    const current = existing ?? initialState(itemId, today);
     const notDue = compareLocalDate(current.dueDate, today) > 0;
     return notDue && grade >= 3 ? current : review(current, grade, today);
   });
+}
+
+/** State of a new item missed on first sight: untouched SM-2 values, back tomorrow. */
+function firstSightMiss(itemId: string, today: LocalDate): ReviewState {
+  return { ...initialState(itemId, today), intervalDays: 1, dueDate: addDays(today, 1) };
 }

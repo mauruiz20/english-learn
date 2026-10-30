@@ -36,7 +36,8 @@ describe("completeSession", () => {
     expect(saved.streak.current).toBe(3);
     expect(saved.states).toEqual([
       review(initialState("a", today), 5, today),
-      review(initialState("b", today), 1, today),
+      // New and missed: starts fresh tomorrow, not as a lapse.
+      { ...initialState("b", today), intervalDays: 1, dueDate: localDate("2026-10-30") },
     ]);
   });
 

@@ -1,4 +1,4 @@
-import { expect, test, type ConsoleMessage } from "@playwright/test";
+import { expect, test, type ConsoleMessage } from "./support/test";
 import { playSessionCorrectly } from "./support/content";
 
 // `?today=` is a test-only clock override, compiled in only with EXPO_PUBLIC_E2E=1.

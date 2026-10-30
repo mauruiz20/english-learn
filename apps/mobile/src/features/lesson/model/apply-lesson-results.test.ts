@@ -27,6 +27,22 @@ describe("applyLessonResults", () => {
     expect(states).toEqual([review(initialState("new", today), 5, today)]);
   });
 
+  it("starts a new item answered wrong fresh: due tomorrow, no lapse, default ease", () => {
+    // First sight is not forgetting: nothing was learned yet, so nothing lapsed.
+    const states = applyLessonResults({
+      summary: summary([
+        { itemId: "new", exerciseType: "vocab", verdict: "correct", responseMs: 1000 },
+        { itemId: "new", exerciseType: "cloze", verdict: "wrong", responseMs: 1000 },
+      ]),
+      states: [],
+      today,
+    });
+
+    expect(states).toEqual([
+      { ...initialState("new", today), intervalDays: 1, dueDate: localDate("2026-10-30") },
+    ]);
+  });
+
   it("reviews existing states from where they were", () => {
     const existing: ReviewState = {
       ...initialState("known", localDate("2026-10-01")),

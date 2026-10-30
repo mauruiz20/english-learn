@@ -34,14 +34,17 @@ export function ReadingExercise({ prepared, passage, disabled, onSubmit }: Readi
         )}
       </View>
       {prepared.questions.map((question, i) => (
-        <View key={question.prompt} style={styles.question}>
+        // Prompts may repeat; the question list is fixed for the exercise, so the index is stable.
+        <View key={i} style={styles.question}>
           <Text style={styles.prompt}>{`${i + 1}. ${question.prompt}`}</Text>
           <ChoiceList
             label={question.prompt}
             options={question.options}
             selected={answers[i] ?? null}
             disabled={disabled}
-            onSelect={(option) => setAnswers(answers.map((a, j) => (j === i ? option : a)))}
+            onSelect={(option) =>
+              setAnswers((current) => current.map((a, j) => (j === i ? option : a)))
+            }
           />
         </View>
       ))}

@@ -1,4 +1,4 @@
-import { expect, test, type ConsoleMessage, type Page } from "@playwright/test";
+import { expect, test, type ConsoleMessage, type Page } from "./support/test";
 
 async function choose(page: Page, option: string) {
   await page.getByRole("radio", { name: option, exact: true }).click();

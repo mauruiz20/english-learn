@@ -11,6 +11,7 @@ import {
   type SaveState,
 } from "@/features/lesson/use-exercise-session";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { pendingReviewItems, pickReviewExercises, restrictToItems } from "./model/review-plan";
 import { ReviewView, type ReviewViewState } from "./review-view";
 
@@ -88,16 +89,18 @@ const noSession = { onSubmit: noop, onContinue: noop, onRetrySave: noop };
  */
 function ReviewSession({ plan, onGoHome }: { plan: Plan; onGoHome: () => void }) {
   const { progressRepository, clock } = useAppServices();
-  const { session, save, onSubmit, onContinue, retrySave, canLeave } = useExerciseSession({
-    initial: plan.session,
-    complete: (summary) =>
-      completeSession({
-        repository: progressRepository,
-        summary: restrictToItems(summary, plan.itemIds),
-        today: clock.today(),
-        bonus: "none",
-      }),
-  });
+  const { session, save, onSubmit, onContinue, retrySave, canLeave, hasUnsavedAnswers } =
+    useExerciseSession({
+      initial: plan.session,
+      complete: (summary) =>
+        completeSession({
+          repository: progressRepository,
+          summary: restrictToItems(summary, plan.itemIds),
+          today: clock.today(),
+          bonus: "none",
+        }),
+    });
+  const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir del repaso?");
 
   return (
     <>
@@ -109,6 +112,7 @@ function ReviewSession({ plan, onGoHome }: { plan: Plan; onGoHome: () => void })
         onGoHome={onGoHome}
         onRetrySave={retrySave}
       />
+      {dialog}
     </>
   );
 }
