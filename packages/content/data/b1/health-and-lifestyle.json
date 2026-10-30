@@ -1,0 +1,366 @@
+{
+  "items": [
+    {
+      "id": "b1.health-and-lifestyle.healthy",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "word",
+      "term": "healthy",
+      "es": "saludable, sano"
+    },
+    {
+      "id": "b1.health-and-lifestyle.habit",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "word",
+      "term": "habit",
+      "es": "hábito, costumbre"
+    },
+    {
+      "id": "b1.health-and-lifestyle.diet",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "word",
+      "term": "diet",
+      "es": "alimentación, dieta"
+    },
+    {
+      "id": "b1.health-and-lifestyle.lose-weight",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "phrase",
+      "term": "lose weight",
+      "es": "bajar de peso, adelgazar"
+    },
+    {
+      "id": "b1.health-and-lifestyle.keep-fit",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "phrase",
+      "term": "keep fit",
+      "es": "mantenerse en forma"
+    },
+    {
+      "id": "b1.health-and-lifestyle.give-up",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "phrase",
+      "term": "give up",
+      "es": "dejar (un hábito); rendirse"
+    },
+    {
+      "id": "b1.health-and-lifestyle.stress",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "word",
+      "term": "stress",
+      "es": "estrés"
+    },
+    {
+      "id": "b1.health-and-lifestyle.get-enough-sleep",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "kind": "phrase",
+      "term": "get enough sleep",
+      "es": "dormir lo suficiente"
+    },
+    {
+      "id": "b1.health-and-lifestyle.used-to",
+      "level": "B1",
+      "topics": ["health-and-lifestyle", "grammar"],
+      "kind": "grammar",
+      "term": "used to + infinitive",
+      "es": "solía + infinitivo (hábitos del pasado)"
+    },
+    {
+      "id": "b1.health-and-lifestyle.should",
+      "level": "B1",
+      "topics": ["health-and-lifestyle", "grammar"],
+      "kind": "grammar",
+      "term": "should / shouldn't",
+      "es": "debería / no debería (consejos)"
+    },
+    {
+      "id": "b1.health-and-lifestyle.gerund-infinitive",
+      "level": "B1",
+      "topics": ["health-and-lifestyle", "grammar"],
+      "kind": "grammar",
+      "term": "gerund vs infinitive (enjoy doing / decide to do)",
+      "es": "gerundio o infinitivo según el verbo (disfrutar hacer algo / decidir hacer algo)"
+    },
+    {
+      "id": "b1.health-and-lifestyle.stop-doing",
+      "level": "B1",
+      "topics": ["health-and-lifestyle", "grammar"],
+      "kind": "grammar",
+      "term": "stop doing vs stop to do",
+      "es": "dejar de hacer algo vs. detenerse para hacer algo"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.health-and-lifestyle.small-changes",
+      "level": "B1",
+      "topics": ["health-and-lifestyle"],
+      "title": "Small changes, big results",
+      "text": "Daniel used to eat fast food almost every day, and he didn't use to do any exercise. He also smoked, and he often stayed up until two in the morning. Last year his doctor told him that he should change his habits. At first Daniel didn't want to listen, but after a few weeks he decided to try. He started by giving up smoking. It wasn't easy, and he almost gave up twice. Then he stopped buying fast food and learned to cook simple meals. Now he enjoys cooking for his friends on weekends. To keep fit, he walks to work instead of driving, and he goes swimming twice a week. He has lost twenty pounds, but the biggest change is in his mood. He gets enough sleep, so he feels less stress at work. \"I don't follow a strict diet,\" he says. \"I just try to make one healthy choice at a time.\"",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.health-and-lifestyle.vocab-001",
+      "itemIds": ["b1.health-and-lifestyle.habit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'habit' mean?",
+      "options": ["habitación", "hábito", "habilidad", "hábitat"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.health-and-lifestyle.cloze-001",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I've decided ___ more vegetables.",
+      "answers": ["to eat"],
+      "distractors": ["eating", "eat", "ate"],
+      "es": "He decidido comer más verduras."
+    },
+    {
+      "id": "b1.health-and-lifestyle.order-001",
+      "itemIds": ["b1.health-and-lifestyle.give-up"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 321717,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["year", "ago.", "a", "gave", "I", "smoking", "up"],
+      "accepted": ["I gave up smoking a year ago."],
+      "es": "Dejé de fumar hace un año."
+    },
+    {
+      "id": "b1.health-and-lifestyle.choice-001",
+      "itemIds": ["b1.health-and-lifestyle.lose-weight"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 257276,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I'm trying to lose weight.",
+      "options": [
+        "Estoy intentando subir de peso.",
+        "Estoy intentando bajar de peso.",
+        "Ya bajé de peso.",
+        "No quiero perder tiempo."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.health-and-lifestyle.reading-001",
+      "itemIds": [
+        "b1.health-and-lifestyle.keep-fit",
+        "b1.health-and-lifestyle.give-up",
+        "b1.health-and-lifestyle.get-enough-sleep"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.health-and-lifestyle.small-changes",
+      "questions": [
+        {
+          "prompt": "What did Daniel give up first?",
+          "options": ["Fast food", "Smoking", "Driving"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "How does he keep fit now?",
+          "options": ["He walks and swims.", "He runs every morning.", "He plays soccer."],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "According to Daniel, what changed the most?",
+          "options": ["His mood", "His weight", "His job"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.health-and-lifestyle.write-001",
+      "itemIds": ["b1.health-and-lifestyle.get-enough-sleep"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 270955,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "¿Duermes lo suficiente?",
+      "accepted": [
+        "Do you get enough sleep?",
+        "Do you sleep enough?",
+        "Are you getting enough sleep?"
+      ]
+    },
+    {
+      "id": "b1.health-and-lifestyle.vocab-002",
+      "itemIds": ["b1.health-and-lifestyle.stress"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'estrés'.",
+      "options": ["stress", "strength", "rest", "illness"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.health-and-lifestyle.vocab-003",
+      "itemIds": ["b1.health-and-lifestyle.healthy"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'healthy' mean?",
+      "options": ["pesado", "cansado", "enfermo", "saludable"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.health-and-lifestyle.cloze-002",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My father quit ___ last year.",
+      "answers": ["smoking"],
+      "distractors": ["to smoke", "smoke", "smoked"],
+      "es": "Mi padre dejó de fumar el año pasado."
+    },
+    {
+      "id": "b1.health-and-lifestyle.cloze-003",
+      "itemIds": ["b1.health-and-lifestyle.should"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "You look tired. You ___ go to bed earlier.",
+      "answers": ["should"],
+      "distractors": ["shouldn't", "doesn't", "mustn't"],
+      "es": "Te ves cansado. Deberías acostarte más temprano."
+    },
+    {
+      "id": "b1.health-and-lifestyle.order-002",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["a", "I", "used", "to", "of", "drink", "soda.", "lot"],
+      "accepted": ["I used to drink a lot of soda."],
+      "es": "Antes tomaba mucho refresco."
+    },
+    {
+      "id": "b1.health-and-lifestyle.choice-002",
+      "itemIds": ["b1.health-and-lifestyle.stop-doing", "b1.health-and-lifestyle.diet"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She stopped eating sugar.",
+      "options": [
+        "Dejó de comer azúcar.",
+        "Se detuvo para comer azúcar.",
+        "Empezó a comer azúcar.",
+        "No puede comer azúcar."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.health-and-lifestyle.write-002",
+      "itemIds": ["b1.health-and-lifestyle.should", "b1.health-and-lifestyle.keep-fit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Deberías hacer ejercicio para mantenerte en forma.",
+      "accepted": [
+        "You should exercise to keep fit.",
+        "You should exercise to stay fit.",
+        "You should exercise to stay in shape.",
+        "You should exercise to keep in shape.",
+        "You should do exercise to keep fit.",
+        "You should do exercise to stay fit.",
+        "You should do exercise to stay in shape.",
+        "You should do exercise to keep in shape.",
+        "You should work out to keep fit.",
+        "You should work out to stay fit.",
+        "You should work out to stay in shape.",
+        "You should work out to keep in shape.",
+        "You should get some exercise to keep fit.",
+        "You should get some exercise to stay fit.",
+        "You should get some exercise to stay in shape.",
+        "You should get some exercise to keep in shape.",
+        "You should get exercise to keep fit.",
+        "You should get exercise to stay fit.",
+        "You should get exercise to stay in shape.",
+        "You should get exercise to keep in shape."
+      ]
+    },
+    {
+      "id": "b1.health-and-lifestyle.write-003",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Me encanta nadar.",
+      "accepted": [
+        "I love swimming.",
+        "I love to swim.",
+        "I love going swimming.",
+        "I love to go swimming.",
+        "I really love swimming.",
+        "I really love to swim.",
+        "I really love going swimming.",
+        "I really love to go swimming.",
+        "I really like swimming.",
+        "I really like to swim.",
+        "I really like going swimming.",
+        "I really like to go swimming."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.health-and-lifestyle.lesson-001",
+      "level": "B1",
+      "topic": "health-and-lifestyle",
+      "title": "Hábitos saludables",
+      "exerciseIds": [
+        "b1.health-and-lifestyle.vocab-001",
+        "b1.health-and-lifestyle.cloze-001",
+        "b1.health-and-lifestyle.order-001",
+        "b1.health-and-lifestyle.choice-001",
+        "b1.health-and-lifestyle.reading-001",
+        "b1.health-and-lifestyle.write-001",
+        "b1.health-and-lifestyle.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.health-and-lifestyle.lesson-002",
+      "level": "B1",
+      "topic": "health-and-lifestyle",
+      "title": "Consejos para sentirse mejor",
+      "exerciseIds": [
+        "b1.health-and-lifestyle.vocab-003",
+        "b1.health-and-lifestyle.cloze-002",
+        "b1.health-and-lifestyle.cloze-003",
+        "b1.health-and-lifestyle.order-002",
+        "b1.health-and-lifestyle.choice-002",
+        "b1.health-and-lifestyle.write-002",
+        "b1.health-and-lifestyle.write-003"
+      ]
+    }
+  ]
+}
