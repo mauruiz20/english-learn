@@ -9,7 +9,8 @@ async function startLessonAndAnswerOne(page: Page) {
   await expect(page.getByRole("alert")).toHaveText("Correcto");
 }
 
-const headerBack = (page: Page) => page.getByRole("link", { name: "Inicio, back" });
+const headerBack = (page: Page) =>
+  page.getByRole("button", { name: "Volver a Inicio", exact: true });
 
 const dialogTitle = (page: Page) => page.getByRole("heading", { name: "¿Salir de la lección?" });
 
