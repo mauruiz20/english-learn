@@ -1,0 +1,172 @@
+{
+  "placement": [
+    {
+      "id": "placement.b1.001",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "If it rains tomorrow, we ___ at home.",
+        "answers": ["will stay"],
+        "distractors": ["stayed", "would stay"],
+        "es": "Si llueve mañana, nos quedaremos en casa."
+      }
+    },
+    {
+      "id": "placement.b1.002",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "She has been working here since 2019.",
+        "options": [
+          "Ella trabajó aquí en 2019.",
+          "Ella trabaja aquí desde 2019.",
+          "Ella trabajará aquí en 2019."
+        ],
+        "answerIndex": 1
+      }
+    },
+    {
+      "id": "placement.b1.003",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I've lived here ___ 2015.",
+        "answers": ["since"],
+        "distractors": ["for", "from", "during"],
+        "es": "Vivo aquí desde 2015."
+      }
+    },
+    {
+      "id": "placement.b1.004",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'achieve' mean?",
+        "options": ["archivar", "acercar", "lograr", "aceptar"],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.b1.005",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "If I ___ you, I would talk to her.",
+        "answers": ["were", "was"],
+        "distractors": ["am", "will be", "be"],
+        "es": "Yo que tú, hablaría con ella."
+      }
+    },
+    {
+      "id": "placement.b1.006",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "I used to play the piano when I was a child.",
+        "options": [
+          "Estoy acostumbrado a tocar el piano.",
+          "Usé el piano cuando era niño.",
+          "Solía tocar el piano cuando era niño.",
+          "Toco el piano desde que era niño."
+        ],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.b1.007",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "This bridge ___ in 1890.",
+        "answers": ["was built"],
+        "distractors": ["built", "is building", "has built"],
+        "es": "Este puente fue construido en 1890."
+      }
+    },
+    {
+      "id": "placement.b1.008",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'actually' mean?",
+        "options": ["actualmente", "en realidad", "exactamente", "a veces"],
+        "answerIndex": 1
+      }
+    },
+    {
+      "id": "placement.b1.009",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I'm looking forward to ___ you.",
+        "answers": ["seeing"],
+        "distractors": ["see", "saw", "have seen"],
+        "es": "Tengo muchas ganas de verte."
+      }
+    },
+    {
+      "id": "placement.b1.010",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "You don't need to bring anything.",
+        "options": [
+          "No debes traer nada.",
+          "No trajiste nada.",
+          "No hace falta que traigas nada.",
+          "No necesitas comprar nada."
+        ],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.b1.011",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "Choose the English for 'darse cuenta'.",
+        "options": ["realize", "remember", "pretend", "resume"],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.b1.012",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "The movie was so ___ that I fell asleep.",
+        "answers": ["boring"],
+        "distractors": ["bored", "bore", "boredom"],
+        "es": "La película era tan aburrida que me quedé dormido."
+      }
+    },
+    {
+      "id": "placement.b1.013",
+      "level": "B1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "He's the man whose car was stolen.",
+        "options": [
+          "Es el hombre al que le robaron el auto.",
+          "Es el hombre que robó el auto.",
+          "Es el hombre que vendió su auto.",
+          "Es el hombre que encontró el auto robado."
+        ],
+        "answerIndex": 0
+      }
+    }
+  ]
+}
