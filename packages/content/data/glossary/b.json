@@ -1,0 +1,808 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.back",
+      "headword": "back",
+      "kind": "word",
+      "forms": ["back"],
+      "senses": [
+        {
+          "es": "de vuelta, de regreso",
+          "pos": "adverb"
+        },
+        {
+          "es": "espalda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.back-up",
+      "headword": "back up",
+      "kind": "phrase",
+      "forms": ["back up", "backs up", "backed up", "backing up"],
+      "senses": [
+        {
+          "es": "hacer una copia de seguridad, respaldar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.backpack",
+      "headword": "backpack",
+      "kind": "word",
+      "forms": ["backpack", "backpacks"],
+      "senses": [
+        {
+          "es": "mochila",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.backup",
+      "headword": "backup",
+      "kind": "word",
+      "forms": ["backup", "backups", "back-up"],
+      "senses": [
+        {
+          "es": "copia de seguridad, respaldo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bad",
+      "headword": "bad",
+      "kind": "word",
+      "forms": ["bad"],
+      "senses": [
+        {
+          "es": "malo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bag",
+      "headword": "bag",
+      "kind": "word",
+      "forms": ["bag", "bags"],
+      "senses": [
+        {
+          "es": "bolsa, bolso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bakery",
+      "headword": "bakery",
+      "kind": "word",
+      "forms": ["bakery", "bakeries"],
+      "senses": [
+        {
+          "es": "panadería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.balcony",
+      "headword": "balcony",
+      "kind": "word",
+      "forms": ["balcony", "balconies"],
+      "senses": [
+        {
+          "es": "balcón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.band",
+      "headword": "band",
+      "kind": "word",
+      "forms": ["band", "bands"],
+      "senses": [
+        {
+          "es": "banda, grupo (musical)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bank",
+      "headword": "bank",
+      "kind": "word",
+      "forms": ["bank", "banks"],
+      "senses": [
+        {
+          "es": "banco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bargain",
+      "headword": "bargain",
+      "kind": "word",
+      "forms": ["bargain", "bargains"],
+      "senses": [
+        {
+          "es": "ganga, oferta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.base",
+      "headword": "base",
+      "kind": "word",
+      "forms": ["base"],
+      "senses": [
+        {
+          "es": "base",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bathroom",
+      "headword": "bathroom",
+      "kind": "word",
+      "forms": ["bathroom", "bathrooms"],
+      "senses": [
+        {
+          "es": "baño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.battery",
+      "headword": "battery",
+      "kind": "word",
+      "forms": ["battery", "batteries"],
+      "senses": [
+        {
+          "es": "batería, pila",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.be",
+      "headword": "be",
+      "kind": "word",
+      "forms": ["be", "am", "are", "was", "been", "being"],
+      "senses": [
+        {
+          "es": "ser",
+          "pos": "verb"
+        },
+        {
+          "es": "estar",
+          "pos": "verb"
+        },
+        {
+          "es": "(there is/are) haber",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.be-like",
+      "headword": "be like",
+      "kind": "phrase",
+      "forms": ["be like", "is like", "was like"],
+      "senses": [
+        {
+          "es": "ser como",
+          "pos": "expression"
+        },
+        {
+          "es": "(what's … like?) ¿cómo es…?",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.because",
+      "headword": "because",
+      "kind": "word",
+      "forms": ["because"],
+      "senses": [
+        {
+          "es": "porque",
+          "pos": "conjunction"
+        },
+        {
+          "es": "(because of) por, a causa de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.because-of",
+      "headword": "because of",
+      "kind": "phrase",
+      "forms": ["because of"],
+      "senses": [
+        {
+          "es": "por, a causa de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.become",
+      "headword": "become",
+      "kind": "word",
+      "forms": ["become", "becomes", "became", "becoming"],
+      "senses": [
+        {
+          "es": "llegar a ser, volverse, convertirse en",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bed",
+      "headword": "bed",
+      "kind": "word",
+      "forms": ["bed", "beds"],
+      "senses": [
+        {
+          "es": "cama",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bedroom",
+      "headword": "bedroom",
+      "kind": "word",
+      "forms": ["bedroom", "bedrooms"],
+      "senses": [
+        {
+          "es": "dormitorio, recámara",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.before",
+      "headword": "before",
+      "kind": "word",
+      "forms": ["before"],
+      "senses": [
+        {
+          "es": "antes de",
+          "pos": "preposition"
+        },
+        {
+          "es": "antes de que",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.begin",
+      "headword": "begin",
+      "kind": "word",
+      "forms": ["begin", "begins", "began", "begun", "beginning"],
+      "senses": [
+        {
+          "es": "empezar, comenzar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.behind",
+      "headword": "behind",
+      "kind": "word",
+      "forms": ["behind"],
+      "senses": [
+        {
+          "es": "detrás de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.best",
+      "headword": "best",
+      "kind": "word",
+      "forms": ["best"],
+      "senses": [
+        {
+          "es": "mejor (el mejor)",
+          "pos": "adjective"
+        },
+        {
+          "es": "mejor",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.better",
+      "headword": "better",
+      "kind": "word",
+      "forms": ["better"],
+      "senses": [
+        {
+          "es": "mejor",
+          "pos": "adjective"
+        },
+        {
+          "es": "mejor",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.between",
+      "headword": "between",
+      "kind": "word",
+      "forms": ["between"],
+      "senses": [
+        {
+          "es": "entre",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bicycle",
+      "headword": "bicycle",
+      "kind": "word",
+      "forms": ["bicycle", "bicycles"],
+      "senses": [
+        {
+          "es": "bicicleta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.big",
+      "headword": "big",
+      "kind": "word",
+      "forms": ["big", "bigger", "biggest"],
+      "senses": [
+        {
+          "es": "grande",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bike",
+      "headword": "bike",
+      "kind": "word",
+      "forms": ["bike", "bikes"],
+      "senses": [
+        {
+          "es": "bicicleta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bin",
+      "headword": "bin",
+      "kind": "word",
+      "forms": ["bin", "bins"],
+      "senses": [
+        {
+          "es": "bote de basura, contenedor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.block",
+      "headword": "block",
+      "kind": "word",
+      "forms": ["block", "blocks"],
+      "senses": [
+        {
+          "es": "cuadra (de una calle)",
+          "pos": "noun"
+        },
+        {
+          "es": "bloque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.book",
+      "headword": "book",
+      "kind": "word",
+      "forms": ["book", "books", "booked", "booking"],
+      "senses": [
+        {
+          "es": "reservar",
+          "pos": "verb"
+        },
+        {
+          "es": "libro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bookstore",
+      "headword": "bookstore",
+      "kind": "word",
+      "forms": ["bookstore", "bookstores"],
+      "senses": [
+        {
+          "es": "librería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bore",
+      "headword": "bore",
+      "kind": "word",
+      "forms": ["bore", "bores"],
+      "senses": [
+        {
+          "es": "aburrir",
+          "pos": "verb"
+        },
+        {
+          "es": "persona aburrida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bored",
+      "headword": "bored",
+      "kind": "word",
+      "forms": ["bored"],
+      "senses": [
+        {
+          "es": "aburrido (que siente aburrimiento)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boredom",
+      "headword": "boredom",
+      "kind": "word",
+      "forms": ["boredom"],
+      "senses": [
+        {
+          "es": "aburrimiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boring",
+      "headword": "boring",
+      "kind": "word",
+      "forms": ["boring"],
+      "senses": [
+        {
+          "es": "aburrido (que aburre)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.born",
+      "headword": "born",
+      "kind": "word",
+      "forms": ["born"],
+      "senses": [
+        {
+          "es": "(be born) nacer",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.borrow",
+      "headword": "borrow",
+      "kind": "word",
+      "forms": ["borrow", "borrows", "borrowed", "borrowing"],
+      "senses": [
+        {
+          "es": "pedir prestado",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boss",
+      "headword": "boss",
+      "kind": "word",
+      "forms": ["boss", "bosses"],
+      "senses": [
+        {
+          "es": "jefe, jefa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bottle",
+      "headword": "bottle",
+      "kind": "word",
+      "forms": ["bottle", "bottles"],
+      "senses": [
+        {
+          "es": "botella",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bottled",
+      "headword": "bottled",
+      "kind": "word",
+      "forms": ["bottled"],
+      "senses": [
+        {
+          "es": "embotellado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bound",
+      "headword": "bound",
+      "kind": "word",
+      "forms": ["bound"],
+      "senses": [
+        {
+          "es": "(be bound to) seguro que (va a)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.box",
+      "headword": "box",
+      "kind": "word",
+      "forms": ["box", "boxes"],
+      "senses": [
+        {
+          "es": "caja",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boy",
+      "headword": "boy",
+      "kind": "word",
+      "forms": ["boy", "boys"],
+      "senses": [
+        {
+          "es": "niño, chico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boyfriend",
+      "headword": "boyfriend",
+      "kind": "word",
+      "forms": ["boyfriend", "boyfriends"],
+      "senses": [
+        {
+          "es": "novio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bread",
+      "headword": "bread",
+      "kind": "word",
+      "forms": ["bread"],
+      "senses": [
+        {
+          "es": "pan",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.break",
+      "headword": "break",
+      "kind": "word",
+      "forms": ["break", "breaks", "broke", "broken", "breaking"],
+      "senses": [
+        {
+          "es": "romper",
+          "pos": "verb"
+        },
+        {
+          "es": "descanso, pausa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.break-up",
+      "headword": "break up",
+      "kind": "phrase",
+      "forms": ["break up", "breaks up", "broke up", "breaking up"],
+      "senses": [
+        {
+          "es": "terminar (una relación), romper (con)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.breakfast",
+      "headword": "breakfast",
+      "kind": "word",
+      "forms": ["breakfast", "breakfasts"],
+      "senses": [
+        {
+          "es": "desayuno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bride",
+      "headword": "bride",
+      "kind": "word",
+      "forms": ["bride", "brides"],
+      "senses": [
+        {
+          "es": "novia (en una boda)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bridesmaid",
+      "headword": "bridesmaid",
+      "kind": "word",
+      "forms": ["bridesmaid", "bridesmaids"],
+      "senses": [
+        {
+          "es": "dama de honor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bridge",
+      "headword": "bridge",
+      "kind": "word",
+      "forms": ["bridge", "bridges"],
+      "senses": [
+        {
+          "es": "puente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bring",
+      "headword": "bring",
+      "kind": "word",
+      "forms": ["bring", "brings", "brought", "bringing"],
+      "senses": [
+        {
+          "es": "traer, llevar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.brother",
+      "headword": "brother",
+      "kind": "word",
+      "forms": ["brother", "brothers"],
+      "senses": [
+        {
+          "es": "hermano",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.build",
+      "headword": "build",
+      "kind": "word",
+      "forms": ["build", "builds", "built", "building"],
+      "senses": [
+        {
+          "es": "construir",
+          "pos": "verb"
+        },
+        {
+          "es": "(building) edificio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bus",
+      "headword": "bus",
+      "kind": "word",
+      "forms": ["bus", "buses"],
+      "senses": [
+        {
+          "es": "autobús",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.but",
+      "headword": "but",
+      "kind": "word",
+      "forms": ["but"],
+      "senses": [
+        {
+          "es": "pero",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.buy",
+      "headword": "buy",
+      "kind": "word",
+      "forms": ["buy", "buys", "bought", "buying"],
+      "senses": [
+        {
+          "es": "comprar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.by",
+      "headword": "by",
+      "kind": "word",
+      "forms": ["by"],
+      "senses": [
+        {
+          "es": "en (medio de transporte: by bus)",
+          "pos": "preposition"
+        },
+        {
+          "es": "por (en pasiva)",
+          "pos": "preposition"
+        },
+        {
+          "es": "para (by Friday)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.by-the-time",
+      "headword": "by the time",
+      "kind": "phrase",
+      "forms": ["by the time"],
+      "senses": [
+        {
+          "es": "para cuando",
+          "pos": "conjunction"
+        }
+      ]
+    }
+  ]
+}

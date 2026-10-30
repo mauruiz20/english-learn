@@ -1,0 +1,124 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.keep",
+      "headword": "keep",
+      "kind": "word",
+      "forms": ["keep", "keeps", "kept", "keeping"],
+      "senses": [
+        {
+          "es": "guardar, quedarse con",
+          "pos": "verb"
+        },
+        {
+          "es": "seguir (keep going)",
+          "pos": "verb"
+        },
+        {
+          "es": "mantener(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.keep-fit",
+      "headword": "keep fit",
+      "kind": "phrase",
+      "forms": ["keep fit", "keeps fit", "kept fit", "keeping fit"],
+      "senses": [
+        {
+          "es": "mantenerse en forma",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.keep-going",
+      "headword": "keep going",
+      "kind": "phrase",
+      "forms": ["keep going", "keeps going", "kept going", "keeping going"],
+      "senses": [
+        {
+          "es": "seguir adelante, continuar",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.keep-in-shape",
+      "headword": "keep in shape",
+      "kind": "phrase",
+      "forms": ["keep in shape", "keeps in shape", "kept in shape"],
+      "senses": [
+        {
+          "es": "mantenerse en forma",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.keyboard",
+      "headword": "keyboard",
+      "kind": "word",
+      "forms": ["keyboard", "keyboards"],
+      "senses": [
+        {
+          "es": "teclado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.king",
+      "headword": "king",
+      "kind": "word",
+      "forms": ["king", "kings"],
+      "senses": [
+        {
+          "es": "rey",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.kitchen",
+      "headword": "kitchen",
+      "kind": "word",
+      "forms": ["kitchen", "kitchens"],
+      "senses": [
+        {
+          "es": "cocina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.know",
+      "headword": "know",
+      "kind": "word",
+      "forms": ["know", "knows", "knew", "known", "knowing"],
+      "senses": [
+        {
+          "es": "saber",
+          "pos": "verb"
+        },
+        {
+          "es": "conocer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.korea",
+      "headword": "Korea",
+      "kind": "word",
+      "forms": ["korea"],
+      "senses": [
+        {
+          "es": "Corea",
+          "pos": "proper noun"
+        }
+      ]
+    }
+  ]
+}

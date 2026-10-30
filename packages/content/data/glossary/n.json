@@ -1,0 +1,396 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.name",
+      "headword": "name",
+      "kind": "word",
+      "forms": ["name", "names"],
+      "senses": [
+        {
+          "es": "nombre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.near",
+      "headword": "near",
+      "kind": "word",
+      "forms": ["near", "nearer", "nearest"],
+      "senses": [
+        {
+          "es": "cerca de",
+          "pos": "preposition"
+        },
+        {
+          "es": "cercano",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.need",
+      "headword": "need",
+      "kind": "word",
+      "forms": ["need", "needs", "needed", "needing"],
+      "senses": [
+        {
+          "es": "necesitar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.neighbor",
+      "headword": "neighbor",
+      "kind": "word",
+      "forms": ["neighbor", "neighbors"],
+      "senses": [
+        {
+          "es": "vecino, vecina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.neighborhood",
+      "headword": "neighborhood",
+      "kind": "word",
+      "forms": ["neighborhood", "neighborhoods"],
+      "senses": [
+        {
+          "es": "barrio, vecindario",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nephew",
+      "headword": "nephew",
+      "kind": "word",
+      "forms": ["nephew", "nephews"],
+      "senses": [
+        {
+          "es": "sobrino",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nervous",
+      "headword": "nervous",
+      "kind": "word",
+      "forms": ["nervous"],
+      "senses": [
+        {
+          "es": "nervioso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.never",
+      "headword": "never",
+      "kind": "word",
+      "forms": ["never"],
+      "senses": [
+        {
+          "es": "nunca",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nevertheless",
+      "headword": "nevertheless",
+      "kind": "word",
+      "forms": ["nevertheless"],
+      "senses": [
+        {
+          "es": "sin embargo, no obstante",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.new",
+      "headword": "new",
+      "kind": "word",
+      "forms": ["new", "newer", "newest"],
+      "senses": [
+        {
+          "es": "nuevo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.news",
+      "headword": "news",
+      "kind": "word",
+      "forms": ["news"],
+      "senses": [
+        {
+          "es": "noticias",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.newspaper",
+      "headword": "newspaper",
+      "kind": "word",
+      "forms": ["newspaper", "newspapers"],
+      "senses": [
+        {
+          "es": "periódico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.next",
+      "headword": "next",
+      "kind": "word",
+      "forms": ["next"],
+      "senses": [
+        {
+          "es": "próximo, siguiente",
+          "pos": "adjective"
+        },
+        {
+          "es": "(next to) al lado de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.next-to",
+      "headword": "next to",
+      "kind": "phrase",
+      "forms": ["next to"],
+      "senses": [
+        {
+          "es": "al lado de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nice",
+      "headword": "nice",
+      "kind": "word",
+      "forms": ["nice"],
+      "senses": [
+        {
+          "es": "lindo, agradable",
+          "pos": "adjective"
+        },
+        {
+          "es": "amable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.night",
+      "headword": "night",
+      "kind": "word",
+      "forms": ["night", "nights"],
+      "senses": [
+        {
+          "es": "noche",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nine",
+      "headword": "nine",
+      "kind": "word",
+      "forms": ["nine"],
+      "senses": [
+        {
+          "es": "nueve",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.no",
+      "headword": "no",
+      "kind": "word",
+      "forms": ["no"],
+      "senses": [
+        {
+          "es": "ningún, nada de",
+          "pos": "determiner"
+        },
+        {
+          "es": "no",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nobody",
+      "headword": "nobody",
+      "kind": "word",
+      "forms": ["nobody"],
+      "senses": [
+        {
+          "es": "nadie",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.noisy",
+      "headword": "noisy",
+      "kind": "word",
+      "forms": ["noisy"],
+      "senses": [
+        {
+          "es": "ruidoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.none",
+      "headword": "none",
+      "kind": "word",
+      "forms": ["none"],
+      "senses": [
+        {
+          "es": "ninguno, nada",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.normally",
+      "headword": "normally",
+      "kind": "word",
+      "forms": ["normally"],
+      "senses": [
+        {
+          "es": "normalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.not",
+      "headword": "not",
+      "kind": "word",
+      "forms": ["not"],
+      "senses": [
+        {
+          "es": "no",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.not-only",
+      "headword": "not only",
+      "kind": "phrase",
+      "forms": ["not only"],
+      "senses": [
+        {
+          "es": "no solo",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.note",
+      "headword": "note",
+      "kind": "word",
+      "forms": ["note", "notes"],
+      "senses": [
+        {
+          "es": "apunte, nota",
+          "pos": "noun"
+        },
+        {
+          "es": "(take notes) tomar apuntes",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nothing",
+      "headword": "nothing",
+      "kind": "word",
+      "forms": ["nothing"],
+      "senses": [
+        {
+          "es": "nada",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.notice",
+      "headword": "notice",
+      "kind": "word",
+      "forms": ["notice", "notices", "noticed", "noticing"],
+      "senses": [
+        {
+          "es": "notar, darse cuenta de",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.notwithstanding",
+      "headword": "notwithstanding",
+      "kind": "word",
+      "forms": ["notwithstanding"],
+      "senses": [
+        {
+          "es": "a pesar de, no obstante",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.november",
+      "headword": "November",
+      "kind": "word",
+      "forms": ["november"],
+      "senses": [
+        {
+          "es": "noviembre",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.now",
+      "headword": "now",
+      "kind": "word",
+      "forms": ["now"],
+      "senses": [
+        {
+          "es": "ahora",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nurse",
+      "headword": "nurse",
+      "kind": "word",
+      "forms": ["nurse", "nurses"],
+      "senses": [
+        {
+          "es": "enfermero, enfermera",
+          "pos": "noun"
+        }
+      ]
+    }
+  ]
+}

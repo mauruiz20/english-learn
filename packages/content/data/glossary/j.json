@@ -1,0 +1,124 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.jacket",
+      "headword": "jacket",
+      "kind": "word",
+      "forms": ["jacket", "jackets"],
+      "senses": [
+        {
+          "es": "chaqueta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.jam",
+      "headword": "jam",
+      "kind": "word",
+      "forms": ["jam", "jams"],
+      "senses": [
+        {
+          "es": "atasco, embotellamiento",
+          "pos": "noun"
+        },
+        {
+          "es": "mermelada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.jar",
+      "headword": "jar",
+      "kind": "word",
+      "forms": ["jar", "jars"],
+      "senses": [
+        {
+          "es": "frasco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.jealous",
+      "headword": "jealous",
+      "kind": "word",
+      "forms": ["jealous"],
+      "senses": [
+        {
+          "es": "celoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.job",
+      "headword": "job",
+      "kind": "word",
+      "forms": ["job", "jobs"],
+      "senses": [
+        {
+          "es": "trabajo, empleo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.journalist",
+      "headword": "journalist",
+      "kind": "word",
+      "forms": ["journalist", "journalists"],
+      "senses": [
+        {
+          "es": "periodista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.july",
+      "headword": "July",
+      "kind": "word",
+      "forms": ["july"],
+      "senses": [
+        {
+          "es": "julio",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.june",
+      "headword": "June",
+      "kind": "word",
+      "forms": ["june"],
+      "senses": [
+        {
+          "es": "junio",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.just",
+      "headword": "just",
+      "kind": "word",
+      "forms": ["just"],
+      "senses": [
+        {
+          "es": "solo, simplemente",
+          "pos": "adverb"
+        },
+        {
+          "es": "justo",
+          "pos": "adverb"
+        },
+        {
+          "es": "(have just + participio) acabar de",
+          "pos": "adverb"
+        }
+      ]
+    }
+  ]
+}

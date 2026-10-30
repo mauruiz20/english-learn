@@ -1,0 +1,1088 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.cafe",
+      "headword": "café",
+      "kind": "word",
+      "forms": ["café", "cafes", "cafe", "cafés"],
+      "senses": [
+        {
+          "es": "café, cafetería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cake",
+      "headword": "cake",
+      "kind": "word",
+      "forms": ["cake", "cakes"],
+      "senses": [
+        {
+          "es": "pastel",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.california",
+      "headword": "California",
+      "kind": "word",
+      "forms": ["california"],
+      "senses": [
+        {
+          "es": "California",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.call",
+      "headword": "call",
+      "kind": "word",
+      "forms": ["call", "calls", "called", "calling"],
+      "senses": [
+        {
+          "es": "llamar (por teléfono)",
+          "pos": "verb"
+        },
+        {
+          "es": "llamada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.can",
+      "headword": "can",
+      "kind": "word",
+      "forms": ["can", "cans"],
+      "senses": [
+        {
+          "es": "poder",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "saber (hacer algo)",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "lata",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.can-t",
+      "headword": "can't",
+      "kind": "word",
+      "forms": ["can't", "cannot"],
+      "senses": [
+        {
+          "es": "no poder",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.can-t-help",
+      "headword": "can't help",
+      "kind": "phrase",
+      "forms": ["can't help", "couldn't help"],
+      "senses": [
+        {
+          "es": "no poder evitar (can't help feeling = no puedo evitar sentir)",
+          "pos": "expression"
+        },
+        {
+          "es": "no poder ayudar",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cancel",
+      "headword": "cancel",
+      "kind": "word",
+      "forms": ["cancel", "cancels", "canceled", "canceling"],
+      "senses": [
+        {
+          "es": "cancelar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.capital",
+      "headword": "capital",
+      "kind": "word",
+      "forms": ["capital", "capitals"],
+      "senses": [
+        {
+          "es": "capital",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.car",
+      "headword": "car",
+      "kind": "word",
+      "forms": ["car", "cars"],
+      "senses": [
+        {
+          "es": "auto, carro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.card",
+      "headword": "card",
+      "kind": "word",
+      "forms": ["card", "cards"],
+      "senses": [
+        {
+          "es": "tarjeta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.care",
+      "headword": "care",
+      "kind": "word",
+      "forms": ["care"],
+      "senses": [
+        {
+          "es": "cuidado",
+          "pos": "noun"
+        },
+        {
+          "es": "(care about) importar",
+          "pos": "verb"
+        },
+        {
+          "es": "(take care of) cuidar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.careful",
+      "headword": "careful",
+      "kind": "word",
+      "forms": ["careful"],
+      "senses": [
+        {
+          "es": "cuidadoso, con cuidado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carefully",
+      "headword": "carefully",
+      "kind": "word",
+      "forms": ["carefully"],
+      "senses": [
+        {
+          "es": "con cuidado, cuidadosamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carlos",
+      "headword": "Carlos",
+      "kind": "word",
+      "forms": ["carlos"],
+      "senses": [
+        {
+          "es": "Carlos (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carry",
+      "headword": "carry",
+      "kind": "word",
+      "forms": ["carry", "carries", "carried", "carrying"],
+      "senses": [
+        {
+          "es": "llevar, cargar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.case",
+      "headword": "case",
+      "kind": "word",
+      "forms": ["case", "cases"],
+      "senses": [
+        {
+          "es": "caso",
+          "pos": "noun"
+        },
+        {
+          "es": "(in case) por si acaso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cash",
+      "headword": "cash",
+      "kind": "word",
+      "forms": ["cash"],
+      "senses": [
+        {
+          "es": "efectivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cat",
+      "headword": "cat",
+      "kind": "word",
+      "forms": ["cat", "cats"],
+      "senses": [
+        {
+          "es": "gato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.catch",
+      "headword": "catch",
+      "kind": "word",
+      "forms": ["catch", "catches", "caught", "catching"],
+      "senses": [
+        {
+          "es": "atrapar",
+          "pos": "verb"
+        },
+        {
+          "es": "tomar (un transporte)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cause",
+      "headword": "cause",
+      "kind": "word",
+      "forms": ["cause", "causes", "caused", "causing"],
+      "senses": [
+        {
+          "es": "causar",
+          "pos": "verb"
+        },
+        {
+          "es": "causa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cell",
+      "headword": "cell",
+      "kind": "word",
+      "forms": ["cell"],
+      "senses": [
+        {
+          "es": "(cell phone) celular",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cell-phone",
+      "headword": "cell phone",
+      "kind": "phrase",
+      "forms": ["cell phone", "cell phones"],
+      "senses": [
+        {
+          "es": "celular",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.center",
+      "headword": "center",
+      "kind": "word",
+      "forms": ["center", "centers"],
+      "senses": [
+        {
+          "es": "centro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chance",
+      "headword": "chance",
+      "kind": "word",
+      "forms": ["chance", "chances"],
+      "senses": [
+        {
+          "es": "oportunidad",
+          "pos": "noun"
+        },
+        {
+          "es": "posibilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.change",
+      "headword": "change",
+      "kind": "word",
+      "forms": ["change", "changes", "changed", "changing"],
+      "senses": [
+        {
+          "es": "cambiar",
+          "pos": "verb"
+        },
+        {
+          "es": "cambio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.charger",
+      "headword": "charger",
+      "kind": "word",
+      "forms": ["charger", "chargers"],
+      "senses": [
+        {
+          "es": "cargador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cheap",
+      "headword": "cheap",
+      "kind": "word",
+      "forms": ["cheap", "cheaper", "cheapest"],
+      "senses": [
+        {
+          "es": "barato",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.check",
+      "headword": "check",
+      "kind": "word",
+      "forms": ["check", "checks", "checked", "checking"],
+      "senses": [
+        {
+          "es": "revisar, comprobar",
+          "pos": "verb"
+        },
+        {
+          "es": "cheque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.check-in",
+      "headword": "check in",
+      "kind": "phrase",
+      "forms": ["check in", "checks in", "checked in", "checking in"],
+      "senses": [
+        {
+          "es": "registrarse (en un hotel), hacer check-in",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.check-into",
+      "headword": "check into",
+      "kind": "phrase",
+      "forms": ["check into", "checks into", "checked into", "checking into"],
+      "senses": [
+        {
+          "es": "registrarse en (un hotel)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chicken",
+      "headword": "chicken",
+      "kind": "word",
+      "forms": ["chicken", "chickens"],
+      "senses": [
+        {
+          "es": "pollo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.child",
+      "headword": "child",
+      "kind": "word",
+      "forms": ["child", "children"],
+      "senses": [
+        {
+          "es": "niño, niña",
+          "pos": "noun"
+        },
+        {
+          "es": "hijo, hija",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chile",
+      "headword": "Chile",
+      "kind": "word",
+      "forms": ["chile"],
+      "senses": [
+        {
+          "es": "Chile",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chinese",
+      "headword": "Chinese",
+      "kind": "word",
+      "forms": ["chinese"],
+      "senses": [
+        {
+          "es": "chino",
+          "pos": "adjective"
+        },
+        {
+          "es": "chino (idioma)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chocolate",
+      "headword": "chocolate",
+      "kind": "word",
+      "forms": ["chocolate", "chocolates"],
+      "senses": [
+        {
+          "es": "chocolate",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.choice",
+      "headword": "choice",
+      "kind": "word",
+      "forms": ["choice", "choices"],
+      "senses": [
+        {
+          "es": "elección, opción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.choose",
+      "headword": "choose",
+      "kind": "word",
+      "forms": ["choose", "chooses", "chose", "chosen", "choosing"],
+      "senses": [
+        {
+          "es": "elegir, escoger",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.city",
+      "headword": "city",
+      "kind": "word",
+      "forms": ["city", "cities"],
+      "senses": [
+        {
+          "es": "ciudad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.city-center",
+      "headword": "city center",
+      "kind": "phrase",
+      "forms": ["city center"],
+      "senses": [
+        {
+          "es": "centro de la ciudad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.class",
+      "headword": "class",
+      "kind": "word",
+      "forms": ["class", "classes"],
+      "senses": [
+        {
+          "es": "clase",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.classroom",
+      "headword": "classroom",
+      "kind": "word",
+      "forms": ["classroom", "classrooms"],
+      "senses": [
+        {
+          "es": "salón de clases, aula",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.clause",
+      "headword": "clause",
+      "kind": "word",
+      "forms": ["clause", "clauses"],
+      "senses": [
+        {
+          "es": "oración (gramatical), cláusula",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.clean",
+      "headword": "clean",
+      "kind": "word",
+      "forms": ["clean", "cleans", "cleaned", "cleaning"],
+      "senses": [
+        {
+          "es": "limpiar",
+          "pos": "verb"
+        },
+        {
+          "es": "limpio",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.climate",
+      "headword": "climate",
+      "kind": "word",
+      "forms": ["climate"],
+      "senses": [
+        {
+          "es": "clima",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.close",
+      "headword": "close",
+      "kind": "word",
+      "forms": ["close"],
+      "senses": [
+        {
+          "es": "cerca",
+          "pos": "adjective"
+        },
+        {
+          "es": "cerrar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.closed",
+      "headword": "closed",
+      "kind": "word",
+      "forms": ["closed"],
+      "senses": [
+        {
+          "es": "cerrado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.clothes",
+      "headword": "clothes",
+      "kind": "word",
+      "forms": ["clothes"],
+      "senses": [
+        {
+          "es": "ropa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cloudy",
+      "headword": "cloudy",
+      "kind": "word",
+      "forms": ["cloudy"],
+      "senses": [
+        {
+          "es": "nublado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.coffee",
+      "headword": "coffee",
+      "kind": "word",
+      "forms": ["coffee"],
+      "senses": [
+        {
+          "es": "café",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cold",
+      "headword": "cold",
+      "kind": "word",
+      "forms": ["cold", "colder", "coldest"],
+      "senses": [
+        {
+          "es": "frío",
+          "pos": "adjective"
+        },
+        {
+          "es": "resfriado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.colleague",
+      "headword": "colleague",
+      "kind": "word",
+      "forms": ["colleague", "colleagues"],
+      "senses": [
+        {
+          "es": "colega, compañero de trabajo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.college",
+      "headword": "college",
+      "kind": "word",
+      "forms": ["college", "colleges"],
+      "senses": [
+        {
+          "es": "universidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.color",
+      "headword": "color",
+      "kind": "word",
+      "forms": ["color", "colors"],
+      "senses": [
+        {
+          "es": "color",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.come",
+      "headword": "come",
+      "kind": "word",
+      "forms": ["come", "comes", "came", "coming"],
+      "senses": [
+        {
+          "es": "venir",
+          "pos": "verb"
+        },
+        {
+          "es": "llegar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.comic",
+      "headword": "comic",
+      "kind": "word",
+      "forms": ["comic", "comics"],
+      "senses": [
+        {
+          "es": "cómic, historieta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.commute",
+      "headword": "commute",
+      "kind": "word",
+      "forms": ["commute", "commutes", "commuted", "commuting"],
+      "senses": [
+        {
+          "es": "trayecto (al trabajo o a la escuela)",
+          "pos": "noun"
+        },
+        {
+          "es": "viajar diariamente (al trabajo o a la escuela)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.company",
+      "headword": "company",
+      "kind": "word",
+      "forms": ["company", "companies"],
+      "senses": [
+        {
+          "es": "empresa, compañía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.completely",
+      "headword": "completely",
+      "kind": "word",
+      "forms": ["completely"],
+      "senses": [
+        {
+          "es": "completamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.computer",
+      "headword": "computer",
+      "kind": "word",
+      "forms": ["computer", "computers"],
+      "senses": [
+        {
+          "es": "computadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.concentrate",
+      "headword": "concentrate",
+      "kind": "word",
+      "forms": ["concentrate", "concentrates", "concentrated", "concentrating"],
+      "senses": [
+        {
+          "es": "concentrarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.concerned",
+      "headword": "concerned",
+      "kind": "word",
+      "forms": ["concerned"],
+      "senses": [
+        {
+          "es": "preocupado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.concert",
+      "headword": "concert",
+      "kind": "word",
+      "forms": ["concert", "concerts"],
+      "senses": [
+        {
+          "es": "concierto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conditional",
+      "headword": "conditional",
+      "kind": "word",
+      "forms": ["conditional", "conditionals"],
+      "senses": [
+        {
+          "es": "condicional",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conserve",
+      "headword": "conserve",
+      "kind": "word",
+      "forms": ["conserve", "conserves", "conserved"],
+      "senses": [
+        {
+          "es": "conservar, ahorrar (energía, agua)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.continue",
+      "headword": "continue",
+      "kind": "word",
+      "forms": ["continue", "continues", "continued", "continuing"],
+      "senses": [
+        {
+          "es": "continuar, seguir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.continuous",
+      "headword": "continuous",
+      "kind": "word",
+      "forms": ["continuous"],
+      "senses": [
+        {
+          "es": "continuo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cook",
+      "headword": "cook",
+      "kind": "word",
+      "forms": ["cook", "cooks", "cooked"],
+      "senses": [
+        {
+          "es": "cocinar",
+          "pos": "verb"
+        },
+        {
+          "es": "cocinero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cooking",
+      "headword": "cooking",
+      "kind": "word",
+      "forms": ["cooking"],
+      "senses": [
+        {
+          "es": "cocina (actividad de cocinar)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.copy",
+      "headword": "copy",
+      "kind": "word",
+      "forms": ["copy", "copies"],
+      "senses": [
+        {
+          "es": "copia",
+          "pos": "noun"
+        },
+        {
+          "es": "copiar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.corner",
+      "headword": "corner",
+      "kind": "word",
+      "forms": ["corner", "corners"],
+      "senses": [
+        {
+          "es": "esquina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cost",
+      "headword": "cost",
+      "kind": "word",
+      "forms": ["cost", "costs"],
+      "senses": [
+        {
+          "es": "costar",
+          "pos": "verb"
+        },
+        {
+          "es": "costo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cough",
+      "headword": "cough",
+      "kind": "word",
+      "forms": ["cough", "coughs"],
+      "senses": [
+        {
+          "es": "tos",
+          "pos": "noun"
+        },
+        {
+          "es": "toser",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.could",
+      "headword": "could",
+      "kind": "word",
+      "forms": ["could"],
+      "senses": [
+        {
+          "es": "podía, pudo",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "podría (cortesía o posibilidad)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.couldn-t",
+      "headword": "couldn't",
+      "kind": "word",
+      "forms": ["couldn't"],
+      "senses": [
+        {
+          "es": "no podía, no pudo",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "no podría",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.country",
+      "headword": "country",
+      "kind": "word",
+      "forms": ["country", "countries"],
+      "senses": [
+        {
+          "es": "país",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cousin",
+      "headword": "cousin",
+      "kind": "word",
+      "forms": ["cousin", "cousins"],
+      "senses": [
+        {
+          "es": "primo, prima",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.credit",
+      "headword": "credit",
+      "kind": "word",
+      "forms": ["credit"],
+      "senses": [
+        {
+          "es": "crédito",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.credit-card",
+      "headword": "credit card",
+      "kind": "phrase",
+      "forms": ["credit card", "credit cards"],
+      "senses": [
+        {
+          "es": "tarjeta de crédito",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.criticism",
+      "headword": "criticism",
+      "kind": "word",
+      "forms": ["criticism"],
+      "senses": [
+        {
+          "es": "críticas, crítica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.crowded",
+      "headword": "crowded",
+      "kind": "word",
+      "forms": ["crowded"],
+      "senses": [
+        {
+          "es": "lleno de gente, abarrotado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cry",
+      "headword": "cry",
+      "kind": "word",
+      "forms": ["cry", "cries", "cried", "crying"],
+      "senses": [
+        {
+          "es": "llorar",
+          "pos": "verb"
+        }
+      ]
+    }
+  ]
+}

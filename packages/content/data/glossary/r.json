@@ -1,0 +1,580 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.rain",
+      "headword": "rain",
+      "kind": "word",
+      "forms": ["rain", "rains", "rained", "raining"],
+      "senses": [
+        {
+          "es": "llover",
+          "pos": "verb"
+        },
+        {
+          "es": "lluvia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rainy",
+      "headword": "rainy",
+      "kind": "word",
+      "forms": ["rainy"],
+      "senses": [
+        {
+          "es": "lluvioso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rang",
+      "headword": "rang",
+      "kind": "word",
+      "forms": ["rang"],
+      "senses": [
+        {
+          "es": "sonó (pasado de ring)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rather",
+      "headword": "rather",
+      "kind": "word",
+      "forms": ["rather"],
+      "senses": [
+        {
+          "es": "bastante",
+          "pos": "adverb"
+        },
+        {
+          "es": "(would rather) preferir",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reaction",
+      "headword": "reaction",
+      "kind": "word",
+      "forms": ["reaction", "reactions"],
+      "senses": [
+        {
+          "es": "reacción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.read",
+      "headword": "read",
+      "kind": "word",
+      "forms": ["read", "reads", "reading"],
+      "senses": [
+        {
+          "es": "leer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ready",
+      "headword": "ready",
+      "kind": "word",
+      "forms": ["ready"],
+      "senses": [
+        {
+          "es": "listo, preparado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.real",
+      "headword": "real",
+      "kind": "word",
+      "forms": ["real"],
+      "senses": [
+        {
+          "es": "real, verdadero",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.really",
+      "headword": "really",
+      "kind": "word",
+      "forms": ["really"],
+      "senses": [
+        {
+          "es": "realmente, de verdad",
+          "pos": "adverb"
+        },
+        {
+          "es": "muy",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reason",
+      "headword": "reason",
+      "kind": "word",
+      "forms": ["reason", "reasons"],
+      "senses": [
+        {
+          "es": "razón, motivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.receipt",
+      "headword": "receipt",
+      "kind": "word",
+      "forms": ["receipt", "receipts"],
+      "senses": [
+        {
+          "es": "recibo, comprobante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.recent",
+      "headword": "recent",
+      "kind": "word",
+      "forms": ["recent"],
+      "senses": [
+        {
+          "es": "reciente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.recommend",
+      "headword": "recommend",
+      "kind": "word",
+      "forms": ["recommend", "recommends", "recommended", "recommending"],
+      "senses": [
+        {
+          "es": "recomendar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.recycle",
+      "headword": "recycle",
+      "kind": "word",
+      "forms": ["recycle", "recycles", "recycled"],
+      "senses": [
+        {
+          "es": "reciclar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.recycling",
+      "headword": "recycling",
+      "kind": "word",
+      "forms": ["recycling"],
+      "senses": [
+        {
+          "es": "reciclaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reduce",
+      "headword": "reduce",
+      "kind": "word",
+      "forms": ["reduce", "reduces", "reduced", "reducing"],
+      "senses": [
+        {
+          "es": "reducir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.refund",
+      "headword": "refund",
+      "kind": "word",
+      "forms": ["refund", "refunds"],
+      "senses": [
+        {
+          "es": "reembolso",
+          "pos": "noun"
+        },
+        {
+          "es": "reembolsar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reject",
+      "headword": "reject",
+      "kind": "word",
+      "forms": ["reject", "rejects", "rejected", "rejecting"],
+      "senses": [
+        {
+          "es": "rechazar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.relative",
+      "headword": "relative",
+      "kind": "word",
+      "forms": ["relative", "relatives"],
+      "senses": [
+        {
+          "es": "relativo (relative clause = oración de relativo)",
+          "pos": "adjective"
+        },
+        {
+          "es": "pariente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reliable",
+      "headword": "reliable",
+      "kind": "word",
+      "forms": ["reliable"],
+      "senses": [
+        {
+          "es": "confiable, fiable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reluctant",
+      "headword": "reluctant",
+      "kind": "word",
+      "forms": ["reluctant"],
+      "senses": [
+        {
+          "es": "reacio, poco dispuesto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rent",
+      "headword": "rent",
+      "kind": "word",
+      "forms": ["rent", "rents", "rented", "renting"],
+      "senses": [
+        {
+          "es": "alquilar, rentar",
+          "pos": "verb"
+        },
+        {
+          "es": "alquiler, renta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.repair",
+      "headword": "repair",
+      "kind": "word",
+      "forms": ["repair", "repairs", "repaired", "repairing"],
+      "senses": [
+        {
+          "es": "reparar",
+          "pos": "verb"
+        },
+        {
+          "es": "reparación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.repair-shop",
+      "headword": "repair shop",
+      "kind": "phrase",
+      "forms": ["repair shop", "repair shops"],
+      "senses": [
+        {
+          "es": "taller de reparación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.report",
+      "headword": "report",
+      "kind": "word",
+      "forms": ["report", "reports", "reported", "reporting"],
+      "senses": [
+        {
+          "es": "informar, reportar",
+          "pos": "verb"
+        },
+        {
+          "es": "(reported speech) estilo indirecto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.responsibility",
+      "headword": "responsibility",
+      "kind": "word",
+      "forms": ["responsibility", "responsibilities"],
+      "senses": [
+        {
+          "es": "responsabilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rest",
+      "headword": "rest",
+      "kind": "word",
+      "forms": ["rest", "rests", "rested", "resting"],
+      "senses": [
+        {
+          "es": "descansar",
+          "pos": "verb"
+        },
+        {
+          "es": "descanso",
+          "pos": "noun"
+        },
+        {
+          "es": "(the rest) el resto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.restaurant",
+      "headword": "restaurant",
+      "kind": "word",
+      "forms": ["restaurant", "restaurants"],
+      "senses": [
+        {
+          "es": "restaurante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.result",
+      "headword": "result",
+      "kind": "word",
+      "forms": ["result", "results"],
+      "senses": [
+        {
+          "es": "resultado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.return",
+      "headword": "return",
+      "kind": "word",
+      "forms": ["return", "returns", "returned", "returning"],
+      "senses": [
+        {
+          "es": "regresar, volver",
+          "pos": "verb"
+        },
+        {
+          "es": "devolver",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.review",
+      "headword": "review",
+      "kind": "word",
+      "forms": ["review", "reviews"],
+      "senses": [
+        {
+          "es": "reseña, crítica",
+          "pos": "noun"
+        },
+        {
+          "es": "repasar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rice",
+      "headword": "rice",
+      "kind": "word",
+      "forms": ["rice"],
+      "senses": [
+        {
+          "es": "arroz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ride",
+      "headword": "ride",
+      "kind": "word",
+      "forms": ["ride", "rides", "rode", "ridden", "riding"],
+      "senses": [
+        {
+          "es": "andar en, montar (bicicleta)",
+          "pos": "verb"
+        },
+        {
+          "es": "viaje, paseo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.right",
+      "headword": "right",
+      "kind": "word",
+      "forms": ["right"],
+      "senses": [
+        {
+          "es": "correcto, adecuado",
+          "pos": "adjective"
+        },
+        {
+          "es": "derecha",
+          "pos": "noun"
+        },
+        {
+          "es": "(be right) tener razón",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rise",
+      "headword": "rise",
+      "kind": "word",
+      "forms": ["rise", "rises", "rose", "risen", "rising"],
+      "senses": [
+        {
+          "es": "subir, aumentar",
+          "pos": "verb"
+        },
+        {
+          "es": "aumento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.river",
+      "headword": "river",
+      "kind": "word",
+      "forms": ["river", "rivers"],
+      "senses": [
+        {
+          "es": "río",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rome",
+      "headword": "Rome",
+      "kind": "word",
+      "forms": ["rome"],
+      "senses": [
+        {
+          "es": "Roma",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.room",
+      "headword": "room",
+      "kind": "word",
+      "forms": ["room", "rooms"],
+      "senses": [
+        {
+          "es": "cuarto, habitación",
+          "pos": "noun"
+        },
+        {
+          "es": "sala",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.routine",
+      "headword": "routine",
+      "kind": "word",
+      "forms": ["routine", "routines"],
+      "senses": [
+        {
+          "es": "rutina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.row",
+      "headword": "row",
+      "kind": "word",
+      "forms": ["row", "rows"],
+      "senses": [
+        {
+          "es": "fila",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rule",
+      "headword": "rule",
+      "kind": "word",
+      "forms": ["rule", "rules"],
+      "senses": [
+        {
+          "es": "regla, norma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.run",
+      "headword": "run",
+      "kind": "word",
+      "forms": ["run", "runs", "ran", "running"],
+      "senses": [
+        {
+          "es": "correr",
+          "pos": "verb"
+        },
+        {
+          "es": "funcionar, operar",
+          "pos": "verb"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,696 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.habit",
+      "headword": "habit",
+      "kind": "word",
+      "forms": ["habit", "habits"],
+      "senses": [
+        {
+          "es": "hábito, costumbre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.had",
+      "headword": "had",
+      "kind": "word",
+      "forms": ["had"],
+      "senses": [
+        {
+          "es": "tuvo, tenía (pasado de have)",
+          "pos": "verb"
+        },
+        {
+          "es": "había (had + participio)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hadn-t",
+      "headword": "hadn't",
+      "kind": "word",
+      "forms": ["hadn't"],
+      "senses": [
+        {
+          "es": "no había (hadn't + participio)",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "no tenía",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.half",
+      "headword": "half",
+      "kind": "word",
+      "forms": ["half", "halves"],
+      "senses": [
+        {
+          "es": "mitad",
+          "pos": "noun"
+        },
+        {
+          "es": "medio",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hand",
+      "headword": "hand",
+      "kind": "word",
+      "forms": ["hand", "hands", "handed"],
+      "senses": [
+        {
+          "es": "mano",
+          "pos": "noun"
+        },
+        {
+          "es": "(hand in) entregar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hand-in",
+      "headword": "hand in",
+      "kind": "phrase",
+      "forms": ["hand in", "hands in", "handed in", "handing in"],
+      "senses": [
+        {
+          "es": "entregar (una tarea)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.happen",
+      "headword": "happen",
+      "kind": "word",
+      "forms": ["happen", "happens", "happened", "happening"],
+      "senses": [
+        {
+          "es": "pasar, suceder",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hard",
+      "headword": "hard",
+      "kind": "word",
+      "forms": ["hard", "harder", "hardest"],
+      "senses": [
+        {
+          "es": "mucho, con esfuerzo (work hard, study harder)",
+          "pos": "adverb"
+        },
+        {
+          "es": "difícil",
+          "pos": "adjective"
+        },
+        {
+          "es": "duro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.has",
+      "headword": "has",
+      "kind": "word",
+      "forms": ["has"],
+      "senses": [
+        {
+          "es": "tiene (3.ª persona de have)",
+          "pos": "verb"
+        },
+        {
+          "es": "ha (has + participio)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hasn-t",
+      "headword": "hasn't",
+      "kind": "word",
+      "forms": ["hasn't"],
+      "senses": [
+        {
+          "es": "no ha (hasn't + participio)",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "no tiene",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hat",
+      "headword": "hat",
+      "kind": "word",
+      "forms": ["hat", "hats"],
+      "senses": [
+        {
+          "es": "sombrero, gorra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.have",
+      "headword": "have",
+      "kind": "word",
+      "forms": ["have", "having"],
+      "senses": [
+        {
+          "es": "tener",
+          "pos": "verb"
+        },
+        {
+          "es": "haber (have + participio)",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "tomar, comer (have breakfast)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.have-a-cold",
+      "headword": "have a cold",
+      "kind": "phrase",
+      "forms": ["have a cold", "has a cold", "had a cold"],
+      "senses": [
+        {
+          "es": "estar resfriado",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.have-a-falling-out",
+      "headword": "have a falling-out",
+      "kind": "phrase",
+      "forms": ["have a falling-out", "had a falling-out"],
+      "senses": [
+        {
+          "es": "pelearse, distanciarse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.have-breakfast",
+      "headword": "have breakfast",
+      "kind": "phrase",
+      "forms": ["have breakfast", "has breakfast", "had breakfast", "having breakfast"],
+      "senses": [
+        {
+          "es": "desayunar",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.have-lunch",
+      "headword": "have lunch",
+      "kind": "phrase",
+      "forms": ["have lunch", "has lunch", "had lunch", "having lunch"],
+      "senses": [
+        {
+          "es": "almorzar",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.have-to",
+      "headword": "have to",
+      "kind": "phrase",
+      "forms": ["have to", "has to", "had to", "having to", "got to"],
+      "senses": [
+        {
+          "es": "tener que",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.haven-t",
+      "headword": "haven't",
+      "kind": "word",
+      "forms": ["haven't"],
+      "senses": [
+        {
+          "es": "no he, no hemos (haven't + participio)",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "no tener",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.he",
+      "headword": "he",
+      "kind": "word",
+      "forms": ["he"],
+      "senses": [
+        {
+          "es": "él",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.he-s",
+      "headword": "he's",
+      "kind": "word",
+      "forms": ["he's"],
+      "senses": [
+        {
+          "es": "él es, él está (he is)",
+          "pos": "expression"
+        },
+        {
+          "es": "él ha (he has)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.headache",
+      "headword": "headache",
+      "kind": "word",
+      "forms": ["headache", "headaches"],
+      "senses": [
+        {
+          "es": "dolor de cabeza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.headline",
+      "headword": "headline",
+      "kind": "word",
+      "forms": ["headline", "headlines"],
+      "senses": [
+        {
+          "es": "titular (de una noticia)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.health",
+      "headword": "health",
+      "kind": "word",
+      "forms": ["health"],
+      "senses": [
+        {
+          "es": "salud",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.healthy",
+      "headword": "healthy",
+      "kind": "word",
+      "forms": ["healthy", "healthier", "healthiest"],
+      "senses": [
+        {
+          "es": "saludable, sano",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.help",
+      "headword": "help",
+      "kind": "word",
+      "forms": ["help", "helps", "helped", "helping"],
+      "senses": [
+        {
+          "es": "ayudar",
+          "pos": "verb"
+        },
+        {
+          "es": "ayuda",
+          "pos": "noun"
+        },
+        {
+          "es": "(can't help + -ing) no poder evitar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.her",
+      "headword": "her",
+      "kind": "word",
+      "forms": ["her"],
+      "senses": [
+        {
+          "es": "la, le, ella",
+          "pos": "pronoun"
+        },
+        {
+          "es": "su (de ella)",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.here",
+      "headword": "here",
+      "kind": "word",
+      "forms": ["here"],
+      "senses": [
+        {
+          "es": "aquí",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.high",
+      "headword": "high",
+      "kind": "word",
+      "forms": ["high", "higher", "highest"],
+      "senses": [
+        {
+          "es": "alto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.high-school",
+      "headword": "high school",
+      "kind": "phrase",
+      "forms": ["high school"],
+      "senses": [
+        {
+          "es": "escuela secundaria, preparatoria",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.high-time",
+      "headword": "high time",
+      "kind": "phrase",
+      "forms": ["high time"],
+      "senses": [
+        {
+          "es": "(it's high time) ya es hora de",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.him",
+      "headword": "him",
+      "kind": "word",
+      "forms": ["him"],
+      "senses": [
+        {
+          "es": "lo, le, él",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.his",
+      "headword": "his",
+      "kind": "word",
+      "forms": ["his"],
+      "senses": [
+        {
+          "es": "su (de él)",
+          "pos": "determiner"
+        },
+        {
+          "es": "suyo (de él)",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hobby",
+      "headword": "hobby",
+      "kind": "word",
+      "forms": ["hobby", "hobbies"],
+      "senses": [
+        {
+          "es": "pasatiempo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.home",
+      "headword": "home",
+      "kind": "word",
+      "forms": ["home", "homes"],
+      "senses": [
+        {
+          "es": "casa, hogar",
+          "pos": "noun"
+        },
+        {
+          "es": "a casa",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.homework",
+      "headword": "homework",
+      "kind": "word",
+      "forms": ["homework"],
+      "senses": [
+        {
+          "es": "tarea (escolar)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hostel",
+      "headword": "hostel",
+      "kind": "word",
+      "forms": ["hostel", "hostels"],
+      "senses": [
+        {
+          "es": "hostal, albergue",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hot",
+      "headword": "hot",
+      "kind": "word",
+      "forms": ["hot", "hotter", "hottest"],
+      "senses": [
+        {
+          "es": "caliente",
+          "pos": "adjective"
+        },
+        {
+          "es": "caluroso (clima)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hotel",
+      "headword": "hotel",
+      "kind": "word",
+      "forms": ["hotel", "hotels"],
+      "senses": [
+        {
+          "es": "hotel",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hour",
+      "headword": "hour",
+      "kind": "word",
+      "forms": ["hour", "hours"],
+      "senses": [
+        {
+          "es": "hora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.house",
+      "headword": "house",
+      "kind": "word",
+      "forms": ["house", "houses"],
+      "senses": [
+        {
+          "es": "casa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.how",
+      "headword": "how",
+      "kind": "word",
+      "forms": ["how"],
+      "senses": [
+        {
+          "es": "cómo",
+          "pos": "adverb"
+        },
+        {
+          "es": "(how much / how many) cuánto, cuántos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.how-long",
+      "headword": "how long",
+      "kind": "phrase",
+      "forms": ["how long"],
+      "senses": [
+        {
+          "es": "cuánto tiempo",
+          "pos": "adverb"
+        },
+        {
+          "es": "qué tan largo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.how-many",
+      "headword": "how many",
+      "kind": "phrase",
+      "forms": ["how many"],
+      "senses": [
+        {
+          "es": "cuántos, cuántas",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.how-much",
+      "headword": "how much",
+      "kind": "phrase",
+      "forms": ["how much"],
+      "senses": [
+        {
+          "es": "cuánto",
+          "pos": "determiner"
+        },
+        {
+          "es": "(how much is it?) ¿cuánto cuesta?",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.however",
+      "headword": "however",
+      "kind": "word",
+      "forms": ["however"],
+      "senses": [
+        {
+          "es": "sin embargo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hug",
+      "headword": "hug",
+      "kind": "word",
+      "forms": ["hug", "hugs", "hugged", "hugging"],
+      "senses": [
+        {
+          "es": "abrazar",
+          "pos": "verb"
+        },
+        {
+          "es": "abrazo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hundred",
+      "headword": "hundred",
+      "kind": "word",
+      "forms": ["hundred", "hundreds"],
+      "senses": [
+        {
+          "es": "cien, ciento",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hungry",
+      "headword": "hungry",
+      "kind": "word",
+      "forms": ["hungry"],
+      "senses": [
+        {
+          "es": "con hambre (be hungry = tener hambre)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hurt",
+      "headword": "hurt",
+      "kind": "word",
+      "forms": ["hurt", "hurts", "hurting"],
+      "senses": [
+        {
+          "es": "doler",
+          "pos": "verb"
+        },
+        {
+          "es": "lastimar(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hurted",
+      "headword": "hurted",
+      "kind": "word",
+      "forms": ["hurted"],
+      "senses": [
+        {
+          "es": "(forma incorrecta; el pasado de hurt es hurt)",
+          "pos": "verb"
+        }
+      ]
+    }
+  ]
+}

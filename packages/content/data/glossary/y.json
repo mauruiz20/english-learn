@@ -1,0 +1,116 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.yard",
+      "headword": "yard",
+      "kind": "word",
+      "forms": ["yard", "yards"],
+      "senses": [
+        {
+          "es": "patio, jardín",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.year",
+      "headword": "year",
+      "kind": "word",
+      "forms": ["year", "years"],
+      "senses": [
+        {
+          "es": "año",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.yesterday",
+      "headword": "yesterday",
+      "kind": "word",
+      "forms": ["yesterday"],
+      "senses": [
+        {
+          "es": "ayer",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.yet",
+      "headword": "yet",
+      "kind": "word",
+      "forms": ["yet"],
+      "senses": [
+        {
+          "es": "todavía (en negativas), ya (en preguntas)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.you",
+      "headword": "you",
+      "kind": "word",
+      "forms": ["you"],
+      "senses": [
+        {
+          "es": "tú, usted, ustedes",
+          "pos": "pronoun"
+        },
+        {
+          "es": "te, lo, la, les",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.you-re",
+      "headword": "you're",
+      "kind": "word",
+      "forms": ["you're"],
+      "senses": [
+        {
+          "es": "tú eres, tú estás (you are)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.young",
+      "headword": "young",
+      "kind": "word",
+      "forms": ["young", "younger", "youngest"],
+      "senses": [
+        {
+          "es": "joven",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.your",
+      "headword": "your",
+      "kind": "word",
+      "forms": ["your"],
+      "senses": [
+        {
+          "es": "tu, tus, su (de usted)",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.yours",
+      "headword": "yours",
+      "kind": "word",
+      "forms": ["yours"],
+      "senses": [
+        {
+          "es": "tuyo, suyo",
+          "pos": "pronoun"
+        }
+      ]
+    }
+  ]
+}

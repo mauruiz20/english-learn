@@ -1,0 +1,1740 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.s",
+      "headword": "s",
+      "kind": "word",
+      "forms": ["s"],
+      "senses": [
+        {
+          "es": "('s) posesivo: my father's car = el carro de mi papá",
+          "pos": "noun"
+        },
+        {
+          "es": "('s) es, está (is) / ha (has)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sad",
+      "headword": "sad",
+      "kind": "word",
+      "forms": ["sad"],
+      "senses": [
+        {
+          "es": "triste",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.said",
+      "headword": "said",
+      "kind": "word",
+      "forms": ["said"],
+      "senses": [
+        {
+          "es": "dijo, dicho (pasado de say)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.salad",
+      "headword": "salad",
+      "kind": "word",
+      "forms": ["salad", "salads"],
+      "senses": [
+        {
+          "es": "ensalada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.salary",
+      "headword": "salary",
+      "kind": "word",
+      "forms": ["salary", "salaries"],
+      "senses": [
+        {
+          "es": "sueldo, salario",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sale",
+      "headword": "sale",
+      "kind": "word",
+      "forms": ["sale", "sales"],
+      "senses": [
+        {
+          "es": "rebaja, oferta (have a sale = tener rebajas)",
+          "pos": "noun"
+        },
+        {
+          "es": "venta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sam",
+      "headword": "Sam",
+      "kind": "word",
+      "forms": ["sam"],
+      "senses": [
+        {
+          "es": "Sam (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.same",
+      "headword": "same",
+      "kind": "word",
+      "forms": ["same"],
+      "senses": [
+        {
+          "es": "mismo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sandwich",
+      "headword": "sandwich",
+      "kind": "word",
+      "forms": ["sandwich", "sandwiches"],
+      "senses": [
+        {
+          "es": "sándwich",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.saturday",
+      "headword": "Saturday",
+      "kind": "word",
+      "forms": ["saturday", "saturdays"],
+      "senses": [
+        {
+          "es": "sábado",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.save",
+      "headword": "save",
+      "kind": "word",
+      "forms": ["save", "saves", "saved", "saving"],
+      "senses": [
+        {
+          "es": "ahorrar",
+          "pos": "verb"
+        },
+        {
+          "es": "guardar",
+          "pos": "verb"
+        },
+        {
+          "es": "salvar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.save-up",
+      "headword": "save up",
+      "kind": "phrase",
+      "forms": ["save up", "saves up", "saved up", "saving up"],
+      "senses": [
+        {
+          "es": "ahorrar (para algo)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.saw",
+      "headword": "saw",
+      "kind": "word",
+      "forms": ["saw"],
+      "senses": [
+        {
+          "es": "vio (pasado de see)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.say",
+      "headword": "say",
+      "kind": "word",
+      "forms": ["say", "says", "saying"],
+      "senses": [
+        {
+          "es": "decir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scene",
+      "headword": "scene",
+      "kind": "word",
+      "forms": ["scene", "scenes"],
+      "senses": [
+        {
+          "es": "escena",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scholarship",
+      "headword": "scholarship",
+      "kind": "word",
+      "forms": ["scholarship", "scholarships"],
+      "senses": [
+        {
+          "es": "beca",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.school",
+      "headword": "school",
+      "kind": "word",
+      "forms": ["school", "schools"],
+      "senses": [
+        {
+          "es": "escuela",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scientist",
+      "headword": "scientist",
+      "kind": "word",
+      "forms": ["scientist", "scientists"],
+      "senses": [
+        {
+          "es": "científico, científica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.screen",
+      "headword": "screen",
+      "kind": "word",
+      "forms": ["screen", "screens"],
+      "senses": [
+        {
+          "es": "pantalla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.seat",
+      "headword": "seat",
+      "kind": "word",
+      "forms": ["seat", "seats"],
+      "senses": [
+        {
+          "es": "asiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.second",
+      "headword": "second",
+      "kind": "word",
+      "forms": ["second"],
+      "senses": [
+        {
+          "es": "segundo",
+          "pos": "adjective"
+        },
+        {
+          "es": "segundo (tiempo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.see",
+      "headword": "see",
+      "kind": "word",
+      "forms": ["see", "sees", "seen", "seeing"],
+      "senses": [
+        {
+          "es": "ver",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sell",
+      "headword": "sell",
+      "kind": "word",
+      "forms": ["sell", "sells", "selling"],
+      "senses": [
+        {
+          "es": "vender",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.semester",
+      "headword": "semester",
+      "kind": "word",
+      "forms": ["semester", "semesters"],
+      "senses": [
+        {
+          "es": "semestre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sensible",
+      "headword": "sensible",
+      "kind": "word",
+      "forms": ["sensible"],
+      "senses": [
+        {
+          "es": "sensato",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sentence",
+      "headword": "sentence",
+      "kind": "word",
+      "forms": ["sentence", "sentences"],
+      "senses": [
+        {
+          "es": "oración, frase",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.serve",
+      "headword": "serve",
+      "kind": "word",
+      "forms": ["serve", "serves", "served", "serving"],
+      "senses": [
+        {
+          "es": "servir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.set",
+      "headword": "set",
+      "kind": "word",
+      "forms": ["set", "sets", "setting"],
+      "senses": [
+        {
+          "es": "poner, fijar",
+          "pos": "verb"
+        },
+        {
+          "es": "(set off / set out) salir, ponerse en camino",
+          "pos": "verb"
+        },
+        {
+          "es": "conjunto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.set-off",
+      "headword": "set off",
+      "kind": "phrase",
+      "forms": ["set off", "sets off"],
+      "senses": [
+        {
+          "es": "salir, ponerse en camino",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.set-out",
+      "headword": "set out",
+      "kind": "phrase",
+      "forms": ["set out", "sets out"],
+      "senses": [
+        {
+          "es": "salir, ponerse en camino",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.seven",
+      "headword": "seven",
+      "kind": "word",
+      "forms": ["seven"],
+      "senses": [
+        {
+          "es": "siete",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.several",
+      "headword": "several",
+      "kind": "word",
+      "forms": ["several"],
+      "senses": [
+        {
+          "es": "varios",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shape",
+      "headword": "shape",
+      "kind": "word",
+      "forms": ["shape"],
+      "senses": [
+        {
+          "es": "forma",
+          "pos": "noun"
+        },
+        {
+          "es": "(in shape) en forma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.share",
+      "headword": "share",
+      "kind": "word",
+      "forms": ["share", "shares", "shared", "sharing"],
+      "senses": [
+        {
+          "es": "compartir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.she",
+      "headword": "she",
+      "kind": "word",
+      "forms": ["she"],
+      "senses": [
+        {
+          "es": "ella",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.she-s",
+      "headword": "she's",
+      "kind": "word",
+      "forms": ["she's"],
+      "senses": [
+        {
+          "es": "ella es, ella está (she is)",
+          "pos": "expression"
+        },
+        {
+          "es": "ella ha (she has)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shed",
+      "headword": "shed",
+      "kind": "word",
+      "forms": ["shed", "sheds", "shedding"],
+      "senses": [
+        {
+          "es": "(shed light on) aclarar, arrojar luz sobre",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shoe",
+      "headword": "shoe",
+      "kind": "word",
+      "forms": ["shoe", "shoes"],
+      "senses": [
+        {
+          "es": "zapato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shop",
+      "headword": "shop",
+      "kind": "word",
+      "forms": ["shop", "shops"],
+      "senses": [
+        {
+          "es": "tienda",
+          "pos": "noun"
+        },
+        {
+          "es": "ir de compras",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.should",
+      "headword": "should",
+      "kind": "word",
+      "forms": ["should"],
+      "senses": [
+        {
+          "es": "debería (consejo)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shouldn-t",
+      "headword": "shouldn't",
+      "kind": "word",
+      "forms": ["shouldn't"],
+      "senses": [
+        {
+          "es": "no debería",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.show",
+      "headword": "show",
+      "kind": "word",
+      "forms": ["show", "shows", "showed", "shown", "showing"],
+      "senses": [
+        {
+          "es": "espectáculo, función",
+          "pos": "noun"
+        },
+        {
+          "es": "mostrar, enseñar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.show-around",
+      "headword": "show around",
+      "kind": "phrase",
+      "forms": ["show around", "shows around", "show me around", "showed me around"],
+      "senses": [
+        {
+          "es": "mostrar (un lugar), enseñar (la ciudad)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shower",
+      "headword": "shower",
+      "kind": "word",
+      "forms": ["shower", "showers"],
+      "senses": [
+        {
+          "es": "regadera, ducha",
+          "pos": "noun"
+        },
+        {
+          "es": "(take a shower) bañarse",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sick",
+      "headword": "sick",
+      "kind": "word",
+      "forms": ["sick"],
+      "senses": [
+        {
+          "es": "enfermo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sight",
+      "headword": "sight",
+      "kind": "word",
+      "forms": ["sight"],
+      "senses": [
+        {
+          "es": "vista",
+          "pos": "noun"
+        },
+        {
+          "es": "(at first sight) a primera vista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sightseeing",
+      "headword": "sightseeing",
+      "kind": "word",
+      "forms": ["sightseeing"],
+      "senses": [
+        {
+          "es": "turismo, visitas a lugares turísticos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.silent",
+      "headword": "silent",
+      "kind": "word",
+      "forms": ["silent"],
+      "senses": [
+        {
+          "es": "en silencio, callado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.simple",
+      "headword": "simple",
+      "kind": "word",
+      "forms": ["simple"],
+      "senses": [
+        {
+          "es": "simple, sencillo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.since",
+      "headword": "since",
+      "kind": "word",
+      "forms": ["since"],
+      "senses": [
+        {
+          "es": "desde",
+          "pos": "preposition"
+        },
+        {
+          "es": "desde que",
+          "pos": "conjunction"
+        },
+        {
+          "es": "ya que",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sing",
+      "headword": "sing",
+      "kind": "word",
+      "forms": ["sing", "sings", "sang", "sung", "singing"],
+      "senses": [
+        {
+          "es": "cantar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sister",
+      "headword": "sister",
+      "kind": "word",
+      "forms": ["sister", "sisters"],
+      "senses": [
+        {
+          "es": "hermana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sit",
+      "headword": "sit",
+      "kind": "word",
+      "forms": ["sit", "sits", "sat", "sitting"],
+      "senses": [
+        {
+          "es": "sentarse",
+          "pos": "verb"
+        },
+        {
+          "es": "estar sentado",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sit-down",
+      "headword": "sit down",
+      "kind": "phrase",
+      "forms": ["sit down", "sits down", "sat down", "sitting down"],
+      "senses": [
+        {
+          "es": "sentarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.site",
+      "headword": "site",
+      "kind": "word",
+      "forms": ["site", "sites"],
+      "senses": [
+        {
+          "es": "sitio (web)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.situation",
+      "headword": "situation",
+      "kind": "word",
+      "forms": ["situation", "situations"],
+      "senses": [
+        {
+          "es": "situación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.six",
+      "headword": "six",
+      "kind": "word",
+      "forms": ["six"],
+      "senses": [
+        {
+          "es": "seis",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sixteen",
+      "headword": "sixteen",
+      "kind": "word",
+      "forms": ["sixteen"],
+      "senses": [
+        {
+          "es": "dieciséis",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.size",
+      "headword": "size",
+      "kind": "word",
+      "forms": ["size", "sizes"],
+      "senses": [
+        {
+          "es": "talla",
+          "pos": "noun"
+        },
+        {
+          "es": "tamaño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sleep",
+      "headword": "sleep",
+      "kind": "word",
+      "forms": ["sleep", "sleeps", "slept", "sleeping"],
+      "senses": [
+        {
+          "es": "dormir",
+          "pos": "verb"
+        },
+        {
+          "es": "sueño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.slow",
+      "headword": "slow",
+      "kind": "word",
+      "forms": ["slow", "slower", "slowest"],
+      "senses": [
+        {
+          "es": "lento",
+          "pos": "adjective"
+        },
+        {
+          "es": "(slow down) frenar, reducir la velocidad",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.slow-down",
+      "headword": "slow down",
+      "kind": "phrase",
+      "forms": ["slow down", "slows down", "slowed down"],
+      "senses": [
+        {
+          "es": "frenar, reducir (la velocidad)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.small",
+      "headword": "small",
+      "kind": "word",
+      "forms": ["small", "smaller", "smallest"],
+      "senses": [
+        {
+          "es": "pequeño, chico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.smartphone",
+      "headword": "smartphone",
+      "kind": "word",
+      "forms": ["smartphone", "smartphones"],
+      "senses": [
+        {
+          "es": "teléfono inteligente, smartphone",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.smoke",
+      "headword": "smoke",
+      "kind": "word",
+      "forms": ["smoke", "smokes", "smoked", "smoking"],
+      "senses": [
+        {
+          "es": "fumar",
+          "pos": "verb"
+        },
+        {
+          "es": "humo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.snack",
+      "headword": "snack",
+      "kind": "word",
+      "forms": ["snack", "snacks"],
+      "senses": [
+        {
+          "es": "bocadillo, botana, snack",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.snow",
+      "headword": "snow",
+      "kind": "word",
+      "forms": ["snow", "snows", "snowed", "snowing"],
+      "senses": [
+        {
+          "es": "nevar",
+          "pos": "verb"
+        },
+        {
+          "es": "nieve",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.so",
+      "headword": "so",
+      "kind": "word",
+      "forms": ["so"],
+      "senses": [
+        {
+          "es": "así que, por eso",
+          "pos": "conjunction"
+        },
+        {
+          "es": "tan",
+          "pos": "adverb"
+        },
+        {
+          "es": "(so much / so many) tanto, tantos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.soccer",
+      "headword": "soccer",
+      "kind": "word",
+      "forms": ["soccer"],
+      "senses": [
+        {
+          "es": "fútbol",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.social",
+      "headword": "social",
+      "kind": "word",
+      "forms": ["social"],
+      "senses": [
+        {
+          "es": "social",
+          "pos": "adjective"
+        },
+        {
+          "es": "(social media) redes sociales",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.social-media",
+      "headword": "social media",
+      "kind": "phrase",
+      "forms": ["social media"],
+      "senses": [
+        {
+          "es": "redes sociales",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.soda",
+      "headword": "soda",
+      "kind": "word",
+      "forms": ["soda", "sodas"],
+      "senses": [
+        {
+          "es": "refresco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sofia",
+      "headword": "Sofía",
+      "kind": "word",
+      "forms": ["sofía"],
+      "senses": [
+        {
+          "es": "Sofía (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sold",
+      "headword": "sold",
+      "kind": "word",
+      "forms": ["sold"],
+      "senses": [
+        {
+          "es": "vendió, vendido (pasado de sell)",
+          "pos": "verb"
+        },
+        {
+          "es": "(sold out) agotado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sold-out",
+      "headword": "sold out",
+      "kind": "phrase",
+      "forms": ["sold out"],
+      "senses": [
+        {
+          "es": "agotado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.some",
+      "headword": "some",
+      "kind": "word",
+      "forms": ["some"],
+      "senses": [
+        {
+          "es": "algunos, unos",
+          "pos": "determiner"
+        },
+        {
+          "es": "algo de, un poco de",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.something",
+      "headword": "something",
+      "kind": "word",
+      "forms": ["something"],
+      "senses": [
+        {
+          "es": "algo",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sometimes",
+      "headword": "sometimes",
+      "kind": "word",
+      "forms": ["sometimes"],
+      "senses": [
+        {
+          "es": "a veces",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.soon",
+      "headword": "soon",
+      "kind": "word",
+      "forms": ["soon", "sooner", "soonest"],
+      "senses": [
+        {
+          "es": "pronto",
+          "pos": "adverb"
+        },
+        {
+          "es": "(sooner or later) tarde o temprano",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sooner-or-later",
+      "headword": "sooner or later",
+      "kind": "phrase",
+      "forms": ["sooner or later"],
+      "senses": [
+        {
+          "es": "tarde o temprano",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sore",
+      "headword": "sore",
+      "kind": "word",
+      "forms": ["sore"],
+      "senses": [
+        {
+          "es": "adolorido (sore throat = dolor de garganta)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sorry",
+      "headword": "sorry",
+      "kind": "word",
+      "forms": ["sorry"],
+      "senses": [
+        {
+          "es": "perdón, lo siento",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.soup",
+      "headword": "soup",
+      "kind": "word",
+      "forms": ["soup", "soups"],
+      "senses": [
+        {
+          "es": "sopa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.source",
+      "headword": "source",
+      "kind": "word",
+      "forms": ["source", "sources"],
+      "senses": [
+        {
+          "es": "fuente (de información)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.south",
+      "headword": "south",
+      "kind": "word",
+      "forms": ["south"],
+      "senses": [
+        {
+          "es": "sur",
+          "pos": "noun"
+        },
+        {
+          "es": "del sur",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.souvenir",
+      "headword": "souvenir",
+      "kind": "word",
+      "forms": ["souvenir", "souvenirs"],
+      "senses": [
+        {
+          "es": "recuerdo, souvenir",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spark",
+      "headword": "spark",
+      "kind": "word",
+      "forms": ["spark", "sparks", "sparked"],
+      "senses": [
+        {
+          "es": "provocar, desatar",
+          "pos": "verb"
+        },
+        {
+          "es": "chispa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.speak",
+      "headword": "speak",
+      "kind": "word",
+      "forms": ["speak", "speaks", "spoke", "spoken", "speaking"],
+      "senses": [
+        {
+          "es": "hablar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.speech",
+      "headword": "speech",
+      "kind": "word",
+      "forms": ["speech", "speeches"],
+      "senses": [
+        {
+          "es": "discurso",
+          "pos": "noun"
+        },
+        {
+          "es": "(reported speech) estilo indirecto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spend",
+      "headword": "spend",
+      "kind": "word",
+      "forms": ["spend", "spends", "spent", "spending"],
+      "senses": [
+        {
+          "es": "gastar (dinero)",
+          "pos": "verb"
+        },
+        {
+          "es": "pasar (tiempo)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.split",
+      "headword": "split",
+      "kind": "word",
+      "forms": ["split", "splits", "splitting"],
+      "senses": [
+        {
+          "es": "(split up) separarse, terminar",
+          "pos": "verb"
+        },
+        {
+          "es": "dividir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.split-up",
+      "headword": "split up",
+      "kind": "phrase",
+      "forms": ["split up", "splits up"],
+      "senses": [
+        {
+          "es": "separarse, terminar (una relación)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spring",
+      "headword": "spring",
+      "kind": "word",
+      "forms": ["spring", "springs"],
+      "senses": [
+        {
+          "es": "primavera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stage",
+      "headword": "stage",
+      "kind": "word",
+      "forms": ["stage", "stages"],
+      "senses": [
+        {
+          "es": "escenario",
+          "pos": "noun"
+        },
+        {
+          "es": "etapa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stand",
+      "headword": "stand",
+      "kind": "word",
+      "forms": ["stand", "stands", "stood", "standing"],
+      "senses": [
+        {
+          "es": "estar de pie",
+          "pos": "verb"
+        },
+        {
+          "es": "(stand up) ponerse de pie, pararse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stand-up",
+      "headword": "stand up",
+      "kind": "phrase",
+      "forms": ["stand up", "stands up", "stood up"],
+      "senses": [
+        {
+          "es": "ponerse de pie, pararse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.start",
+      "headword": "start",
+      "kind": "word",
+      "forms": ["start", "starts", "started", "starting"],
+      "senses": [
+        {
+          "es": "empezar, comenzar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.station",
+      "headword": "station",
+      "kind": "word",
+      "forms": ["station", "stations"],
+      "senses": [
+        {
+          "es": "estación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stay",
+      "headword": "stay",
+      "kind": "word",
+      "forms": ["stay", "stays", "stayed", "staying"],
+      "senses": [
+        {
+          "es": "quedarse",
+          "pos": "verb"
+        },
+        {
+          "es": "hospedarse",
+          "pos": "verb"
+        },
+        {
+          "es": "mantenerse (stay fit)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stay-fit",
+      "headword": "stay fit",
+      "kind": "phrase",
+      "forms": ["stay fit", "stays fit", "stayed fit"],
+      "senses": [
+        {
+          "es": "mantenerse en forma",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stay-in-shape",
+      "headword": "stay in shape",
+      "kind": "phrase",
+      "forms": ["stay in shape", "stays in shape", "stayed in shape"],
+      "senses": [
+        {
+          "es": "mantenerse en forma",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stay-up",
+      "headword": "stay up",
+      "kind": "phrase",
+      "forms": ["stay up", "stays up", "stayed up", "staying up"],
+      "senses": [
+        {
+          "es": "quedarse despierto, desvelarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.still",
+      "headword": "still",
+      "kind": "word",
+      "forms": ["still"],
+      "senses": [
+        {
+          "es": "todavía, aún",
+          "pos": "adverb"
+        },
+        {
+          "es": "aun así",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stolen",
+      "headword": "stolen",
+      "kind": "word",
+      "forms": ["stolen"],
+      "senses": [
+        {
+          "es": "robado (participio de steal)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stomachache",
+      "headword": "stomachache",
+      "kind": "word",
+      "forms": ["stomachache", "stomachaches"],
+      "senses": [
+        {
+          "es": "dolor de estómago",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stop",
+      "headword": "stop",
+      "kind": "word",
+      "forms": ["stop", "stops", "stopped", "stopping"],
+      "senses": [
+        {
+          "es": "dejar de (stop + -ing)",
+          "pos": "verb"
+        },
+        {
+          "es": "parar, detener(se)",
+          "pos": "verb"
+        },
+        {
+          "es": "parada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.store",
+      "headword": "store",
+      "kind": "word",
+      "forms": ["store", "stores"],
+      "senses": [
+        {
+          "es": "tienda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.story",
+      "headword": "story",
+      "kind": "word",
+      "forms": ["story", "stories"],
+      "senses": [
+        {
+          "es": "historia",
+          "pos": "noun"
+        },
+        {
+          "es": "noticia, artículo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.straight",
+      "headword": "straight",
+      "kind": "word",
+      "forms": ["straight"],
+      "senses": [
+        {
+          "es": "derecho, recto (go straight = seguir derecho)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.straight-ahead",
+      "headword": "straight ahead",
+      "kind": "phrase",
+      "forms": ["straight ahead"],
+      "senses": [
+        {
+          "es": "todo derecho, todo recto",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.street",
+      "headword": "street",
+      "kind": "word",
+      "forms": ["street", "streets"],
+      "senses": [
+        {
+          "es": "calle",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stress",
+      "headword": "stress",
+      "kind": "word",
+      "forms": ["stress"],
+      "senses": [
+        {
+          "es": "estrés",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.strict",
+      "headword": "strict",
+      "kind": "word",
+      "forms": ["strict"],
+      "senses": [
+        {
+          "es": "estricto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.strong",
+      "headword": "strong",
+      "kind": "word",
+      "forms": ["strong", "stronger", "strongest"],
+      "senses": [
+        {
+          "es": "fuerte",
+          "pos": "adjective"
+        },
+        {
+          "es": "seguro (strong password = contraseña segura)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.student",
+      "headword": "student",
+      "kind": "word",
+      "forms": ["student", "students"],
+      "senses": [
+        {
+          "es": "estudiante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.study",
+      "headword": "study",
+      "kind": "word",
+      "forms": ["study", "studies", "studied", "studying"],
+      "senses": [
+        {
+          "es": "estudiar",
+          "pos": "verb"
+        },
+        {
+          "es": "estudio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.subject",
+      "headword": "subject",
+      "kind": "word",
+      "forms": ["subject", "subjects"],
+      "senses": [
+        {
+          "es": "materia, asignatura",
+          "pos": "noun"
+        },
+        {
+          "es": "tema",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.subway",
+      "headword": "subway",
+      "kind": "word",
+      "forms": ["subway", "subways"],
+      "senses": [
+        {
+          "es": "metro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sugar",
+      "headword": "sugar",
+      "kind": "word",
+      "forms": ["sugar"],
+      "senses": [
+        {
+          "es": "azúcar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suit",
+      "headword": "suit",
+      "kind": "word",
+      "forms": ["suit", "suits"],
+      "senses": [
+        {
+          "es": "traje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.summer",
+      "headword": "summer",
+      "kind": "word",
+      "forms": ["summer", "summers"],
+      "senses": [
+        {
+          "es": "verano",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sun",
+      "headword": "sun",
+      "kind": "word",
+      "forms": ["sun"],
+      "senses": [
+        {
+          "es": "sol",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sunday",
+      "headword": "Sunday",
+      "kind": "word",
+      "forms": ["sunday", "sundays"],
+      "senses": [
+        {
+          "es": "domingo",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sunglasses",
+      "headword": "sunglasses",
+      "kind": "word",
+      "forms": ["sunglasses"],
+      "senses": [
+        {
+          "es": "lentes de sol, gafas de sol",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sunny",
+      "headword": "sunny",
+      "kind": "word",
+      "forms": ["sunny"],
+      "senses": [
+        {
+          "es": "soleado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.supermarket",
+      "headword": "supermarket",
+      "kind": "word",
+      "forms": ["supermarket", "supermarkets"],
+      "senses": [
+        {
+          "es": "supermercado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.support",
+      "headword": "support",
+      "kind": "word",
+      "forms": ["support", "supports", "supported", "supporting"],
+      "senses": [
+        {
+          "es": "apoyar",
+          "pos": "verb"
+        },
+        {
+          "es": "apoyo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.surprising",
+      "headword": "surprising",
+      "kind": "word",
+      "forms": ["surprising"],
+      "senses": [
+        {
+          "es": "sorprendente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.survey",
+      "headword": "survey",
+      "kind": "word",
+      "forms": ["survey", "surveys"],
+      "senses": [
+        {
+          "es": "encuesta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.swim",
+      "headword": "swim",
+      "kind": "word",
+      "forms": ["swim", "swims", "swam", "swum", "swimming"],
+      "senses": [
+        {
+          "es": "nadar",
+          "pos": "verb"
+        }
+      ]
+    }
+  ]
+}

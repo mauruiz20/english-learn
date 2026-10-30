@@ -1,0 +1,732 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.madrid",
+      "headword": "Madrid",
+      "kind": "word",
+      "forms": ["madrid"],
+      "senses": [
+        {
+          "es": "Madrid",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.main",
+      "headword": "main",
+      "kind": "word",
+      "forms": ["main"],
+      "senses": [
+        {
+          "es": "principal",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.make",
+      "headword": "make",
+      "kind": "word",
+      "forms": ["make", "makes", "made", "making"],
+      "senses": [
+        {
+          "es": "hacer",
+          "pos": "verb"
+        },
+        {
+          "es": "preparar (comida)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.make-up",
+      "headword": "make up",
+      "kind": "phrase",
+      "forms": ["make up", "makes up", "made up", "making up"],
+      "senses": [
+        {
+          "es": "reconciliarse, hacer las paces",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "inventar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.man",
+      "headword": "man",
+      "kind": "word",
+      "forms": ["man", "men"],
+      "senses": [
+        {
+          "es": "hombre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.manager",
+      "headword": "manager",
+      "kind": "word",
+      "forms": ["manager", "managers"],
+      "senses": [
+        {
+          "es": "gerente, jefe",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.many",
+      "headword": "many",
+      "kind": "word",
+      "forms": ["many"],
+      "senses": [
+        {
+          "es": "muchos",
+          "pos": "determiner"
+        },
+        {
+          "es": "(how many) cuántos",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.map",
+      "headword": "map",
+      "kind": "word",
+      "forms": ["map", "maps"],
+      "senses": [
+        {
+          "es": "mapa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.march",
+      "headword": "March",
+      "kind": "word",
+      "forms": ["march"],
+      "senses": [
+        {
+          "es": "marzo",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.marco",
+      "headword": "Marco",
+      "kind": "word",
+      "forms": ["marco"],
+      "senses": [
+        {
+          "es": "Marco (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.market",
+      "headword": "market",
+      "kind": "word",
+      "forms": ["market", "markets"],
+      "senses": [
+        {
+          "es": "mercado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.married",
+      "headword": "married",
+      "kind": "word",
+      "forms": ["married"],
+      "senses": [
+        {
+          "es": "casado",
+          "pos": "adjective"
+        },
+        {
+          "es": "(get married) casarse",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.math",
+      "headword": "math",
+      "kind": "word",
+      "forms": ["math"],
+      "senses": [
+        {
+          "es": "matemáticas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mathematics",
+      "headword": "mathematics",
+      "kind": "word",
+      "forms": ["mathematics"],
+      "senses": [
+        {
+          "es": "matemáticas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.may",
+      "headword": "may",
+      "kind": "word",
+      "forms": ["may"],
+      "senses": [
+        {
+          "es": "poder (permiso: May I…? = ¿Puedo…?)",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "puede que, quizás",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "(May) mayo",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.maybe",
+      "headword": "maybe",
+      "kind": "word",
+      "forms": ["maybe"],
+      "senses": [
+        {
+          "es": "quizás, tal vez",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.me",
+      "headword": "me",
+      "kind": "word",
+      "forms": ["me"],
+      "senses": [
+        {
+          "es": "me, mí",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.meal",
+      "headword": "meal",
+      "kind": "word",
+      "forms": ["meal", "meals"],
+      "senses": [
+        {
+          "es": "comida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mean",
+      "headword": "mean",
+      "kind": "word",
+      "forms": ["mean", "means", "meant"],
+      "senses": [
+        {
+          "es": "significar, querer decir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.meaning",
+      "headword": "meaning",
+      "kind": "word",
+      "forms": ["meaning", "meanings"],
+      "senses": [
+        {
+          "es": "significado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.media",
+      "headword": "media",
+      "kind": "word",
+      "forms": ["media"],
+      "senses": [
+        {
+          "es": "medios (de comunicación)",
+          "pos": "noun"
+        },
+        {
+          "es": "(social media) redes sociales",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.medicine",
+      "headword": "medicine",
+      "kind": "word",
+      "forms": ["medicine", "medicines"],
+      "senses": [
+        {
+          "es": "medicina, medicamento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.meet",
+      "headword": "meet",
+      "kind": "word",
+      "forms": ["meet", "meets", "met"],
+      "senses": [
+        {
+          "es": "conocer (a alguien)",
+          "pos": "verb"
+        },
+        {
+          "es": "encontrarse, reunirse con",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.meeting",
+      "headword": "meeting",
+      "kind": "word",
+      "forms": ["meeting", "meetings"],
+      "senses": [
+        {
+          "es": "reunión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.meg",
+      "headword": "Meg",
+      "kind": "word",
+      "forms": ["meg"],
+      "senses": [
+        {
+          "es": "Meg (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mention",
+      "headword": "mention",
+      "kind": "word",
+      "forms": ["mention", "mentions", "mentioned", "mentioning"],
+      "senses": [
+        {
+          "es": "mencionar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.metro",
+      "headword": "metro",
+      "kind": "word",
+      "forms": ["metro"],
+      "senses": [
+        {
+          "es": "metro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mexico",
+      "headword": "Mexico",
+      "kind": "word",
+      "forms": ["mexico"],
+      "senses": [
+        {
+          "es": "México",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mia",
+      "headword": "Mia",
+      "kind": "word",
+      "forms": ["mia"],
+      "senses": [
+        {
+          "es": "Mia (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.might",
+      "headword": "might",
+      "kind": "word",
+      "forms": ["might"],
+      "senses": [
+        {
+          "es": "podría, quizás (posibilidad)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.milk",
+      "headword": "milk",
+      "kind": "word",
+      "forms": ["milk"],
+      "senses": [
+        {
+          "es": "leche",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.minute",
+      "headword": "minute",
+      "kind": "word",
+      "forms": ["minute", "minutes"],
+      "senses": [
+        {
+          "es": "minuto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.miss",
+      "headword": "miss",
+      "kind": "word",
+      "forms": ["miss", "misses", "missed", "missing"],
+      "senses": [
+        {
+          "es": "perder (un tren, un vuelo)",
+          "pos": "verb"
+        },
+        {
+          "es": "extrañar",
+          "pos": "verb"
+        },
+        {
+          "es": "faltar a",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mobile",
+      "headword": "mobile",
+      "kind": "word",
+      "forms": ["mobile"],
+      "senses": [
+        {
+          "es": "móvil",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.modern",
+      "headword": "modern",
+      "kind": "word",
+      "forms": ["modern"],
+      "senses": [
+        {
+          "es": "moderno",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mom",
+      "headword": "mom",
+      "kind": "word",
+      "forms": ["mom", "moms"],
+      "senses": [
+        {
+          "es": "mamá",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.monday",
+      "headword": "Monday",
+      "kind": "word",
+      "forms": ["monday", "mondays"],
+      "senses": [
+        {
+          "es": "lunes",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.money",
+      "headword": "money",
+      "kind": "word",
+      "forms": ["money"],
+      "senses": [
+        {
+          "es": "dinero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.money-back",
+      "headword": "money back",
+      "kind": "phrase",
+      "forms": ["money back"],
+      "senses": [
+        {
+          "es": "(get your money back) reembolso, devolución del dinero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.monterrey",
+      "headword": "Monterrey",
+      "kind": "word",
+      "forms": ["monterrey"],
+      "senses": [
+        {
+          "es": "Monterrey",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.month",
+      "headword": "month",
+      "kind": "word",
+      "forms": ["month", "months"],
+      "senses": [
+        {
+          "es": "mes",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mood",
+      "headword": "mood",
+      "kind": "word",
+      "forms": ["mood", "moods"],
+      "senses": [
+        {
+          "es": "estado de ánimo, humor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.more",
+      "headword": "more",
+      "kind": "word",
+      "forms": ["more"],
+      "senses": [
+        {
+          "es": "más",
+          "pos": "determiner"
+        },
+        {
+          "es": "más",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.morning",
+      "headword": "morning",
+      "kind": "word",
+      "forms": ["morning", "mornings"],
+      "senses": [
+        {
+          "es": "mañana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.most",
+      "headword": "most",
+      "kind": "word",
+      "forms": ["most"],
+      "senses": [
+        {
+          "es": "la mayoría de",
+          "pos": "determiner"
+        },
+        {
+          "es": "más (the most = el más)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mother",
+      "headword": "mother",
+      "kind": "word",
+      "forms": ["mother", "mothers"],
+      "senses": [
+        {
+          "es": "madre, mamá",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.move",
+      "headword": "move",
+      "kind": "word",
+      "forms": ["move", "moves", "moved", "moving"],
+      "senses": [
+        {
+          "es": "mudarse",
+          "pos": "verb"
+        },
+        {
+          "es": "mover(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.movie",
+      "headword": "movie",
+      "kind": "word",
+      "forms": ["movie", "movies"],
+      "senses": [
+        {
+          "es": "película",
+          "pos": "noun"
+        },
+        {
+          "es": "(the movies) el cine",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.much",
+      "headword": "much",
+      "kind": "word",
+      "forms": ["much"],
+      "senses": [
+        {
+          "es": "mucho",
+          "pos": "determiner"
+        },
+        {
+          "es": "mucho",
+          "pos": "adverb"
+        },
+        {
+          "es": "(how much) cuánto",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.museum",
+      "headword": "museum",
+      "kind": "word",
+      "forms": ["museum", "museums"],
+      "senses": [
+        {
+          "es": "museo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.music",
+      "headword": "music",
+      "kind": "word",
+      "forms": ["music"],
+      "senses": [
+        {
+          "es": "música",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.musical",
+      "headword": "musical",
+      "kind": "word",
+      "forms": ["musical"],
+      "senses": [
+        {
+          "es": "musical",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.must",
+      "headword": "must",
+      "kind": "word",
+      "forms": ["must"],
+      "senses": [
+        {
+          "es": "deber, tener que",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "deber de (deducción: she must be = debe de ser)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mustn-t",
+      "headword": "mustn't",
+      "kind": "word",
+      "forms": ["mustn't"],
+      "senses": [
+        {
+          "es": "no deber (prohibición)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.my",
+      "headword": "my",
+      "kind": "word",
+      "forms": ["my"],
+      "senses": [
+        {
+          "es": "mi, mis",
+          "pos": "determiner"
+        }
+      ]
+    }
+  ]
+}

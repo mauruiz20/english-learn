@@ -1,0 +1,816 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.factory",
+      "headword": "factory",
+      "kind": "word",
+      "forms": ["factory", "factories"],
+      "senses": [
+        {
+          "es": "fábrica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fail",
+      "headword": "fail",
+      "kind": "word",
+      "forms": ["fail", "fails", "failed", "failing"],
+      "senses": [
+        {
+          "es": "reprobar (un examen)",
+          "pos": "verb"
+        },
+        {
+          "es": "fallar, fracasar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fake",
+      "headword": "fake",
+      "kind": "word",
+      "forms": ["fake"],
+      "senses": [
+        {
+          "es": "falso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fake-news",
+      "headword": "fake news",
+      "kind": "phrase",
+      "forms": ["fake news"],
+      "senses": [
+        {
+          "es": "noticias falsas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fall",
+      "headword": "fall",
+      "kind": "word",
+      "forms": ["fall", "falls", "fell", "fallen", "falling"],
+      "senses": [
+        {
+          "es": "otoño",
+          "pos": "noun"
+        },
+        {
+          "es": "caer(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fall-asleep",
+      "headword": "fall asleep",
+      "kind": "phrase",
+      "forms": ["fall asleep", "falls asleep", "fell asleep", "falling asleep"],
+      "senses": [
+        {
+          "es": "dormirse, quedarse dormido",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fall-in-love",
+      "headword": "fall in love",
+      "kind": "phrase",
+      "forms": ["fall in love", "falls in love", "fell in love", "falling in love"],
+      "senses": [
+        {
+          "es": "enamorarse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.falling-out",
+      "headword": "falling-out",
+      "kind": "word",
+      "forms": ["falling-out"],
+      "senses": [
+        {
+          "es": "(have a falling-out) pelea, distanciamiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.family",
+      "headword": "family",
+      "kind": "word",
+      "forms": ["family", "families"],
+      "senses": [
+        {
+          "es": "familia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.famous",
+      "headword": "famous",
+      "kind": "word",
+      "forms": ["famous"],
+      "senses": [
+        {
+          "es": "famoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.far",
+      "headword": "far",
+      "kind": "word",
+      "forms": ["far"],
+      "senses": [
+        {
+          "es": "lejos",
+          "pos": "adverb"
+        },
+        {
+          "es": "lejano",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.far-away",
+      "headword": "far away",
+      "kind": "phrase",
+      "forms": ["far away"],
+      "senses": [
+        {
+          "es": "muy lejos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.far-from",
+      "headword": "far from",
+      "kind": "phrase",
+      "forms": ["far from"],
+      "senses": [
+        {
+          "es": "lejos de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fast",
+      "headword": "fast",
+      "kind": "word",
+      "forms": ["fast"],
+      "senses": [
+        {
+          "es": "rápido",
+          "pos": "adjective"
+        },
+        {
+          "es": "rápido",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fast-food",
+      "headword": "fast food",
+      "kind": "phrase",
+      "forms": ["fast food"],
+      "senses": [
+        {
+          "es": "comida rápida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.father",
+      "headword": "father",
+      "kind": "word",
+      "forms": ["father", "fathers"],
+      "senses": [
+        {
+          "es": "padre, papá",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.february",
+      "headword": "February",
+      "kind": "word",
+      "forms": ["february"],
+      "senses": [
+        {
+          "es": "febrero",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feel",
+      "headword": "feel",
+      "kind": "word",
+      "forms": ["feel", "feels", "felt"],
+      "senses": [
+        {
+          "es": "sentir(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feel-better",
+      "headword": "feel better",
+      "kind": "phrase",
+      "forms": ["feel better", "feels better", "felt better", "feeling better"],
+      "senses": [
+        {
+          "es": "sentirse mejor",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feeling",
+      "headword": "feeling",
+      "kind": "word",
+      "forms": ["feeling", "feelings"],
+      "senses": [
+        {
+          "es": "sentimiento, sensación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fever",
+      "headword": "fever",
+      "kind": "word",
+      "forms": ["fever"],
+      "senses": [
+        {
+          "es": "fiebre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.few",
+      "headword": "few",
+      "kind": "word",
+      "forms": ["few"],
+      "senses": [
+        {
+          "es": "pocos",
+          "pos": "determiner"
+        },
+        {
+          "es": "(a few) unos pocos, algunos",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.field",
+      "headword": "field",
+      "kind": "word",
+      "forms": ["field", "fields"],
+      "senses": [
+        {
+          "es": "campo, cancha",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.file",
+      "headword": "file",
+      "kind": "word",
+      "forms": ["file", "files"],
+      "senses": [
+        {
+          "es": "archivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.film",
+      "headword": "film",
+      "kind": "word",
+      "forms": ["film", "films"],
+      "senses": [
+        {
+          "es": "película",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.final",
+      "headword": "final",
+      "kind": "word",
+      "forms": ["final"],
+      "senses": [
+        {
+          "es": "final, último",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.finally",
+      "headword": "finally",
+      "kind": "word",
+      "forms": ["finally"],
+      "senses": [
+        {
+          "es": "por fin, finalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.find",
+      "headword": "find",
+      "kind": "word",
+      "forms": ["find", "finds", "found", "finding"],
+      "senses": [
+        {
+          "es": "encontrar",
+          "pos": "verb"
+        },
+        {
+          "es": "(find out) descubrir, averiguar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.find-out",
+      "headword": "find out",
+      "kind": "phrase",
+      "forms": ["find out", "finds out", "found out", "finding out"],
+      "senses": [
+        {
+          "es": "descubrir, averiguar, enterarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.finish",
+      "headword": "finish",
+      "kind": "word",
+      "forms": ["finish", "finishes", "finished", "finishing"],
+      "senses": [
+        {
+          "es": "terminar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.firm",
+      "headword": "firm",
+      "kind": "word",
+      "forms": ["firm", "firms"],
+      "senses": [
+        {
+          "es": "empresa, firma",
+          "pos": "noun"
+        },
+        {
+          "es": "firme",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.first",
+      "headword": "first",
+      "kind": "word",
+      "forms": ["first"],
+      "senses": [
+        {
+          "es": "primero",
+          "pos": "adjective"
+        },
+        {
+          "es": "primero",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fit",
+      "headword": "fit",
+      "kind": "word",
+      "forms": ["fit"],
+      "senses": [
+        {
+          "es": "en forma",
+          "pos": "adjective"
+        },
+        {
+          "es": "quedar bien (ropa)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.five",
+      "headword": "five",
+      "kind": "word",
+      "forms": ["five"],
+      "senses": [
+        {
+          "es": "cinco",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.flat",
+      "headword": "flat",
+      "kind": "word",
+      "forms": ["flat", "flats"],
+      "senses": [
+        {
+          "es": "departamento (inglés británico)",
+          "pos": "noun"
+        },
+        {
+          "es": "plano",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.flight",
+      "headword": "flight",
+      "kind": "word",
+      "forms": ["flight", "flights"],
+      "senses": [
+        {
+          "es": "vuelo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.foggy",
+      "headword": "foggy",
+      "kind": "word",
+      "forms": ["foggy"],
+      "senses": [
+        {
+          "es": "con niebla, neblinoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.follow",
+      "headword": "follow",
+      "kind": "word",
+      "forms": ["follow", "follows", "followed", "following"],
+      "senses": [
+        {
+          "es": "seguir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.food",
+      "headword": "food",
+      "kind": "word",
+      "forms": ["food", "foods"],
+      "senses": [
+        {
+          "es": "comida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.foot",
+      "headword": "foot",
+      "kind": "word",
+      "forms": ["foot", "feet"],
+      "senses": [
+        {
+          "es": "pie",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.for",
+      "headword": "for",
+      "kind": "word",
+      "forms": ["for"],
+      "senses": [
+        {
+          "es": "para",
+          "pos": "preposition"
+        },
+        {
+          "es": "por, durante (for two years)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.forecast",
+      "headword": "forecast",
+      "kind": "word",
+      "forms": ["forecast", "forecasts"],
+      "senses": [
+        {
+          "es": "pronóstico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.forest",
+      "headword": "forest",
+      "kind": "word",
+      "forms": ["forest", "forests"],
+      "senses": [
+        {
+          "es": "bosque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.forget",
+      "headword": "forget",
+      "kind": "word",
+      "forms": ["forget", "forgets", "forgot", "forgotten", "forgetting"],
+      "senses": [
+        {
+          "es": "olvidar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.forty",
+      "headword": "forty",
+      "kind": "word",
+      "forms": ["forty"],
+      "senses": [
+        {
+          "es": "cuarenta",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.forward",
+      "headword": "forward",
+      "kind": "word",
+      "forms": ["forward"],
+      "senses": [
+        {
+          "es": "adelante",
+          "pos": "adverb"
+        },
+        {
+          "es": "(look forward to) tener ganas de",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fountain",
+      "headword": "fountain",
+      "kind": "word",
+      "forms": ["fountain", "fountains"],
+      "senses": [
+        {
+          "es": "fuente (de agua)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.four",
+      "headword": "four",
+      "kind": "word",
+      "forms": ["four"],
+      "senses": [
+        {
+          "es": "cuatro",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fourteen",
+      "headword": "fourteen",
+      "kind": "word",
+      "forms": ["fourteen"],
+      "senses": [
+        {
+          "es": "catorce",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.france",
+      "headword": "France",
+      "kind": "word",
+      "forms": ["france"],
+      "senses": [
+        {
+          "es": "Francia",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.free",
+      "headword": "free",
+      "kind": "word",
+      "forms": ["free"],
+      "senses": [
+        {
+          "es": "libre",
+          "pos": "adjective"
+        },
+        {
+          "es": "gratis",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.free-time",
+      "headword": "free time",
+      "kind": "phrase",
+      "forms": ["free time"],
+      "senses": [
+        {
+          "es": "tiempo libre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fresh",
+      "headword": "fresh",
+      "kind": "word",
+      "forms": ["fresh"],
+      "senses": [
+        {
+          "es": "fresco",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.friday",
+      "headword": "Friday",
+      "kind": "word",
+      "forms": ["friday", "fridays"],
+      "senses": [
+        {
+          "es": "viernes",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fridge",
+      "headword": "fridge",
+      "kind": "word",
+      "forms": ["fridge", "fridges"],
+      "senses": [
+        {
+          "es": "refrigerador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.friend",
+      "headword": "friend",
+      "kind": "word",
+      "forms": ["friend", "friends"],
+      "senses": [
+        {
+          "es": "amigo, amiga",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.friendly",
+      "headword": "friendly",
+      "kind": "word",
+      "forms": ["friendly"],
+      "senses": [
+        {
+          "es": "amable, simpático",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.from",
+      "headword": "from",
+      "kind": "word",
+      "forms": ["from"],
+      "senses": [
+        {
+          "es": "de, desde",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.front",
+      "headword": "front",
+      "kind": "word",
+      "forms": ["front"],
+      "senses": [
+        {
+          "es": "frente, parte delantera",
+          "pos": "noun"
+        },
+        {
+          "es": "(in front of) delante de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fruit",
+      "headword": "fruit",
+      "kind": "word",
+      "forms": ["fruit", "fruits"],
+      "senses": [
+        {
+          "es": "fruta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.full",
+      "headword": "full",
+      "kind": "word",
+      "forms": ["full"],
+      "senses": [
+        {
+          "es": "lleno",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.funny",
+      "headword": "funny",
+      "kind": "word",
+      "forms": ["funny"],
+      "senses": [
+        {
+          "es": "gracioso, divertido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.future",
+      "headword": "future",
+      "kind": "word",
+      "forms": ["future"],
+      "senses": [
+        {
+          "es": "futuro",
+          "pos": "noun"
+        }
+      ]
+    }
+  ]
+}
