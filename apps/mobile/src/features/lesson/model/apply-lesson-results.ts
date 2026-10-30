@@ -1,5 +1,6 @@
 import type { Exercise } from "@english-learn/content";
 import {
+  compareLocalDate,
   gradeFromOutcome,
   initialState,
   review,
@@ -37,9 +38,14 @@ export type ApplyLessonResultsInput = {
 };
 
 /**
- * Reviews every item the lesson practiced once: new items start from `initialState`, and an
- * item practiced by several exercises gets its worst grade. Returns only the updated states,
- * in order of first appearance.
+ * Reviews every item the session practiced once: new items start from `initialState`, and an
+ * item practiced by several exercises gets its worst grade. Returns only the practiced items'
+ * states, in order of first appearance.
+ *
+ * An item that is not due yet (`dueDate > today`, e.g. a lesson replayed the same day) is only
+ * practiced: a passing grade leaves its state unchanged, so replays cannot inflate intervals.
+ * A failing grade still applies the SM-2 lapse, because forgetting is real evidence that the
+ * item needs to come back sooner.
  */
 export function applyLessonResults({
   summary,
@@ -60,7 +66,9 @@ export function applyLessonResults({
     );
   }
   const byId = new Map(states.map((s) => [s.itemId, s]));
-  return [...worst].map(([itemId, grade]) =>
-    review(byId.get(itemId) ?? initialState(itemId, today), grade, today),
-  );
+  return [...worst].map(([itemId, grade]) => {
+    const current = byId.get(itemId) ?? initialState(itemId, today);
+    const notDue = compareLocalDate(current.dueDate, today) > 0;
+    return notDue && grade >= 3 ? current : review(current, grade, today);
+  });
 }

@@ -2,7 +2,12 @@ import { fireEvent, render, screen } from "@testing-library/react-native";
 import { passage, reading, vocab } from "./model/fixtures";
 import { LessonView, type LessonViewState } from "./lesson-view";
 
-const handlers = { onSubmit: jest.fn(), onContinue: jest.fn(), onGoHome: jest.fn() };
+const handlers = {
+  onSubmit: jest.fn(),
+  onContinue: jest.fn(),
+  onGoHome: jest.fn(),
+  onRetrySave: jest.fn(),
+};
 beforeEach(() => jest.clearAllMocks());
 
 async function renderView(state: LessonViewState) {
@@ -95,5 +100,13 @@ describe("LessonView", () => {
     expect(screen.getByRole("alert")).toHaveTextContent(message);
     await fireEvent.press(screen.getByRole("button", { name: "Volver al inicio" }));
     expect(handlers.onGoHome).toHaveBeenCalledTimes(1);
+  });
+
+  it("offers to retry a failed save", async () => {
+    await renderView({ status: "save-error" });
+
+    await fireEvent.press(screen.getByRole("button", { name: "Reintentar" }));
+
+    expect(handlers.onRetrySave).toHaveBeenCalledTimes(1);
   });
 });

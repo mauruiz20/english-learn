@@ -9,6 +9,7 @@ type ExerciseLayoutProps = {
   children: ReactNode;
   canSubmit: boolean;
   onSubmit: () => void;
+  submitLabel?: string | undefined;
 };
 
 /** Instruction + exercise body + "Comprobar" button shared by every exercise type. */
@@ -17,6 +18,7 @@ export function ExerciseLayout({
   children,
   canSubmit,
   onSubmit,
+  submitLabel = "Comprobar",
 }: ExerciseLayoutProps) {
   return (
     <View style={styles.layout}>
@@ -24,7 +26,7 @@ export function ExerciseLayout({
         {instruction}
       </Text>
       {children}
-      <Button label="Comprobar" disabled={!canSubmit} onPress={onSubmit} />
+      <Button label={submitLabel} disabled={!canSubmit} onPress={onSubmit} />
     </View>
   );
 }

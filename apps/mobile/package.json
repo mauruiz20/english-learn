@@ -42,9 +42,10 @@
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "jest",
-    "export:web": "expo export -p web",
+    "export:web": "expo export -p web && node scripts/check-prod-bundle.mjs",
+    "export:web:e2e": "EXPO_PUBLIC_E2E=1 expo export -p web --output-dir dist-e2e",
     "serve:web": "node scripts/serve-web.mjs",
-    "e2e:web": "playwright test"
+    "e2e:web": "pnpm export:web:e2e && playwright test"
   },
   "private": true,
   "jest": {
@@ -52,7 +53,8 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/e2e/",
-      "/dist/"
+      "/dist/",
+      "/dist-e2e/"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!(.pnpm|(jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg))"

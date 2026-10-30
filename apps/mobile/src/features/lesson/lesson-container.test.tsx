@@ -1,5 +1,11 @@
 import { createCorpus } from "@english-learn/content";
-import { localDate, type Clock } from "@english-learn/domain";
+import {
+  initialState,
+  localDate,
+  review,
+  type Clock,
+  type SavedSession,
+} from "@english-learn/domain";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import {
@@ -10,7 +16,16 @@ import { LessonContainer } from "./lesson-container";
 import { allExercises, lesson, passage, sequenceRng } from "./model/fixtures";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
-jest.mock("expo-router", () => ({ useRouter: () => mockRouter }));
+const mockScreenOptions = jest.fn();
+jest.mock("expo-router", () => ({
+  useRouter: () => mockRouter,
+  Stack: {
+    Screen: ({ options }: { options: unknown }) => {
+      mockScreenOptions(options);
+      return null;
+    },
+  },
+}));
 
 const TODAY = localDate("2026-10-29");
 const content = createCorpus([{ exercises: allExercises, passages: [passage], lessons: [lesson] }]);
@@ -137,15 +152,65 @@ describe("LessonContainer", () => {
     expect(mockRouter.dismissAll).toHaveBeenCalledTimes(1);
   });
 
-  it("explains when progress cannot be saved", async () => {
+  it("explains a failed save and saves on retry without duplicating anything", async () => {
     const repository = createFakeRepository();
-    repository.saveStreak = () => Promise.reject(new Error("disk I/O error"));
+    const save = repository.saveSessionResults;
+    repository.saveSessionResults = jest
+      .fn<Promise<SavedSession>, Parameters<typeof save>>()
+      .mockRejectedValueOnce(new Error("disk I/O error"))
+      .mockImplementation(save);
     jest.spyOn(console, "error").mockImplementation(() => {});
     await renderLesson(repository);
 
     await playCorrectly();
 
     expect(await screen.findByRole("alert")).toHaveTextContent("No pudimos guardar tu progreso.");
+    expect(repository.snapshot().xp).toBe(0);
+
+    await press("Reintentar");
+
+    expect(await screen.findByText("¡Lección completada!")).toBeOnTheScreen();
+    expect(screen.getByText("XP ganada: 80")).toBeOnTheScreen();
+    expect(repository.snapshot().xp).toBe(80);
+    expect(repository.saveSessionResults).toHaveBeenCalledTimes(2);
+  });
+
+  it("gives answer XP but no completion bonus when replaying a done lesson", async () => {
+    const itemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
+    const learned = itemIds.map((id) => review(initialState(id, TODAY), 5, TODAY));
+    const repository = createFakeRepository({ states: learned });
+    await renderLesson(repository);
+
+    await playCorrectly();
+
+    expect(await screen.findByText("XP ganada: 60")).toBeOnTheScreen();
+    // Not due yet: practice keeps every interval.
+    expect(repository.snapshot().states).toEqual(learned);
+  });
+
+  it("blocks going back while the results are being saved", async () => {
+    const repository = createFakeRepository();
+    const save = repository.saveSessionResults;
+    let finish: () => void = () => {};
+    repository.saveSessionResults = (ids, compute) =>
+      new Promise((resolve) => {
+        finish = () => resolve(save(ids, compute));
+      });
+    await renderLesson(repository);
+
+    await playCorrectly();
+
+    expect(screen.getByLabelText("Guardando tu progreso")).toBeOnTheScreen();
+    expect(mockScreenOptions).toHaveBeenLastCalledWith(
+      expect.objectContaining({ gestureEnabled: false, headerBackVisible: false }),
+    );
+
+    finish();
+
+    expect(await screen.findByText("¡Lección completada!")).toBeOnTheScreen();
+    expect(mockScreenOptions).toHaveBeenLastCalledWith(
+      expect.objectContaining({ gestureEnabled: true, headerBackVisible: true }),
+    );
   });
 
   it("handles an unknown lesson id", async () => {

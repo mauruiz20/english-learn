@@ -1,5 +1,5 @@
 import type { Exercise, Lesson } from "@english-learn/content";
-import { accuracy, xpForAnswer, xpForLessonCompletion, type Verdict } from "@english-learn/domain";
+import { accuracy, xpForAnswer, type Verdict } from "@english-learn/domain";
 import { gradeExercise, type GradeResult } from "./grade-exercise";
 import type { ExerciseResponse } from "./response";
 
@@ -16,16 +16,22 @@ export type LessonSummary = {
   readonly verdicts: readonly Verdict[];
   /** Share of fully correct exercises (0..1). */
   readonly accuracy: number;
-  /** Sum of `xpForAnswer` plus `xpForLessonCompletion`. */
-  readonly xpEarned: number;
+  /**
+   * Sum of `xpForAnswer`. Any completion bonus is decided when the results are saved, because
+   * it depends on stored progress (a replayed lesson gets none).
+   */
+  readonly answerXp: number;
   /** One outcome per item of every exercise (an item may appear several times). */
   readonly itemOutcomes: readonly ItemOutcome[];
 };
 
 type Answered = { readonly verdict: Verdict; readonly responseMs: number };
 
+/** What the session runs: a lesson, or e.g. a review with a synthetic id and title. */
+export type SessionInfo = Pick<Lesson, "id" | "title">;
+
 type InProgress = {
-  readonly lesson: Lesson;
+  readonly lesson: SessionInfo;
   readonly exercises: readonly Exercise[];
   readonly index: number;
   readonly answered: readonly Answered[];
@@ -40,7 +46,10 @@ export type LessonSessionAction =
   | { readonly type: "answer"; readonly response: ExerciseResponse; readonly responseMs: number }
   | { readonly type: "next" };
 
-export function startLesson(lesson: Lesson, exercises: readonly Exercise[]): LessonSessionState {
+export function startLesson(
+  lesson: SessionInfo,
+  exercises: readonly Exercise[],
+): LessonSessionState {
   if (exercises.length === 0) throw new RangeError(`Lesson ${lesson.id} has no exercises`);
   return { status: "answering", lesson, exercises, index: 0, answered: [] };
 }
@@ -53,8 +62,7 @@ export function currentExercise(state: LessonSessionState): Exercise | null {
 function summarize({ lesson, exercises, answered }: InProgress): LessonSummary {
   const verdicts = answered.map((a) => a.verdict);
   const ratio = accuracy(verdicts);
-  const xpEarned =
-    verdicts.reduce((sum, v) => sum + xpForAnswer(v), 0) + xpForLessonCompletion(ratio);
+  const answerXp = verdicts.reduce((sum, v) => sum + xpForAnswer(v), 0);
   const itemOutcomes = exercises.flatMap((exercise, i) => {
     const { verdict, responseMs } = answered[i] ?? { verdict: "wrong", responseMs: 0 };
     return exercise.itemIds.map((itemId) => ({
@@ -64,7 +72,7 @@ function summarize({ lesson, exercises, answered }: InProgress): LessonSummary {
       responseMs,
     }));
   });
-  return { lessonId: lesson.id, verdicts, accuracy: ratio, xpEarned, itemOutcomes };
+  return { lessonId: lesson.id, verdicts, accuracy: ratio, answerXp, itemOutcomes };
 }
 
 /** Pure lesson flow: answering → feedback → (next exercise | finished). Invalid actions are ignored. */

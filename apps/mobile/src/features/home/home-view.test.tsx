@@ -30,7 +30,14 @@ describe("HomeView", () => {
   });
 
   it("invites to take the placement test when there is no level", async () => {
-    await renderView({ status: "ready", streakDays: 0, xp: 0, level: null, lessons: noLessons });
+    await renderView({
+      status: "ready",
+      pendingReviews: 0,
+      streakDays: 0,
+      xp: 0,
+      level: null,
+      lessons: noLessons,
+    });
 
     expect(screen.getByText("Racha: 0 días")).toBeOnTheScreen();
     expect(screen.getByText("XP: 0")).toBeOnTheScreen();
@@ -40,8 +47,30 @@ describe("HomeView", () => {
     expect(handlers.onStartPlacement).toHaveBeenCalledTimes(1);
   });
 
+  it("offers to retake the placement test once placed", async () => {
+    await renderView({
+      status: "ready",
+      pendingReviews: 0,
+      streakDays: 0,
+      xp: 0,
+      level: "B1",
+      lessons: noLessons,
+    });
+
+    await fireEvent.press(screen.getByRole("button", { name: "Repetir test de nivel" }));
+
+    expect(handlers.onStartPlacement).toHaveBeenCalledTimes(1);
+  });
+
   it("shows the level and hides the placement CTA once placed", async () => {
-    await renderView({ status: "ready", streakDays: 5, xp: 120, level: "B1", lessons: noLessons });
+    await renderView({
+      status: "ready",
+      pendingReviews: 0,
+      streakDays: 5,
+      xp: 120,
+      level: "B1",
+      lessons: noLessons,
+    });
 
     expect(screen.getByText("Racha: 5 días")).toBeOnTheScreen();
     expect(screen.getByText("XP: 120")).toBeOnTheScreen();
@@ -50,24 +79,69 @@ describe("HomeView", () => {
   });
 
   it("uses the singular for a one-day streak", async () => {
-    await renderView({ status: "ready", streakDays: 1, xp: 10, level: "A2", lessons: noLessons });
+    await renderView({
+      status: "ready",
+      pendingReviews: 0,
+      streakDays: 1,
+      xp: 10,
+      level: "A2",
+      lessons: noLessons,
+    });
 
     expect(screen.getByText("Racha: 1 día")).toBeOnTheScreen();
   });
 
-  it("navigates to review and about", async () => {
-    await renderView({ status: "ready", streakDays: 0, xp: 0, level: "A2", lessons: noLessons });
+  it.each([
+    [3, "Repaso: 3 pendientes"],
+    [1, "Repaso: 1 pendiente"],
+  ])("shows %i pending reviews and opens the review", async (pendingReviews, text) => {
+    await renderView({
+      status: "ready",
+      pendingReviews,
+      streakDays: 0,
+      xp: 0,
+      level: "A2",
+      lessons: noLessons,
+    });
 
+    expect(screen.getByText(text)).toBeOnTheScreen();
     await fireEvent.press(screen.getByRole("button", { name: "Repasar" }));
+    expect(handlers.onOpenReview).toHaveBeenCalledTimes(1);
+  });
+
+  it("says when there is nothing to review", async () => {
+    await renderView({
+      status: "ready",
+      pendingReviews: 0,
+      streakDays: 0,
+      xp: 0,
+      level: "A2",
+      lessons: noLessons,
+    });
+
+    expect(screen.getByText("Nada para repasar hoy")).toBeOnTheScreen();
+    expect(screen.queryByRole("button", { name: "Repasar" })).not.toBeOnTheScreen();
+  });
+
+  it("navigates to about", async () => {
+    await renderView({
+      status: "ready",
+      pendingReviews: 0,
+      streakDays: 0,
+      xp: 0,
+      level: "A2",
+      lessons: noLessons,
+    });
+
     await fireEvent.press(screen.getByRole("button", { name: "Acerca de" }));
 
-    expect(handlers.onOpenReview).toHaveBeenCalledTimes(1);
     expect(handlers.onOpenAbout).toHaveBeenCalledTimes(1);
   });
 
   it("lists the lessons of the level with a done marker and opens one", async () => {
     await renderView({
       status: "ready",
+      pendingReviews: 0,
       streakDays: 0,
       xp: 0,
       level: null,
@@ -89,7 +163,14 @@ describe("HomeView", () => {
   });
 
   it("says when there are no lessons yet", async () => {
-    await renderView({ status: "ready", streakDays: 0, xp: 0, level: "A2", lessons: noLessons });
+    await renderView({
+      status: "ready",
+      pendingReviews: 0,
+      streakDays: 0,
+      xp: 0,
+      level: "A2",
+      lessons: noLessons,
+    });
 
     expect(screen.getByText("Todavía no hay lecciones para este nivel.")).toBeOnTheScreen();
   });

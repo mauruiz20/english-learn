@@ -5,12 +5,7 @@ import { formatDays } from "@/shared/ui/format";
 import { Screen } from "@/shared/ui/screen";
 import { colors, radius, spacing } from "@/shared/ui/theme";
 import { AnswerFeedback } from "./components/answer-feedback";
-import { ClozeExercise } from "./components/cloze-exercise";
-import { ReadingExercise } from "./components/reading-exercise";
-import { TranslateWriteExercise } from "./components/translate-write-exercise";
-import { TranslationChoiceExercise } from "./components/translation-choice-exercise";
-import { VocabExercise } from "./components/vocab-exercise";
-import { WordOrderExercise } from "./components/word-order-exercise";
+import { ExerciseBody } from "./components/exercise-body";
 import type { GradeResult } from "./model/grade-exercise";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
@@ -44,48 +39,40 @@ type LessonViewProps = {
   onSubmit: (response: ExerciseResponse) => void;
   onContinue: () => void;
   onGoHome: () => void;
+  onRetrySave: () => void;
 };
 
-function ExerciseBody({
-  prepared,
-  passage,
-  disabled,
-  onSubmit,
+function Message({
+  text,
+  onRetry,
+  onGoHome,
 }: {
-  prepared: PreparedExercise;
-  passage: Passage | undefined;
-  disabled: boolean;
-  onSubmit: (response: ExerciseResponse) => void;
+  text: string;
+  onRetry?: () => void;
+  onGoHome: () => void;
 }) {
-  const common = { disabled, onSubmit };
-  switch (prepared.type) {
-    case "vocab":
-      return <VocabExercise prepared={prepared} {...common} />;
-    case "cloze":
-      return <ClozeExercise prepared={prepared} {...common} />;
-    case "translation_choice":
-      return <TranslationChoiceExercise prepared={prepared} {...common} />;
-    case "word_order":
-      return <WordOrderExercise prepared={prepared} {...common} />;
-    case "reading":
-      return <ReadingExercise prepared={prepared} passage={passage} {...common} />;
-    case "translate_write":
-      return <TranslateWriteExercise prepared={prepared} {...common} />;
-  }
-}
-
-function Message({ text, onGoHome }: { text: string; onGoHome: () => void }) {
   return (
     <>
       <Text accessibilityRole="alert" style={styles.error}>
         {text}
       </Text>
-      <Button label="Volver al inicio" onPress={onGoHome} />
+      {onRetry !== undefined && <Button label="Reintentar" onPress={onRetry} />}
+      <Button
+        label="Volver al inicio"
+        variant={onRetry === undefined ? "primary" : "secondary"}
+        onPress={onGoHome}
+      />
     </>
   );
 }
 
-export function LessonView({ state, onSubmit, onContinue, onGoHome }: LessonViewProps) {
+export function LessonView({
+  state,
+  onSubmit,
+  onContinue,
+  onGoHome,
+  onRetrySave,
+}: LessonViewProps) {
   switch (state.status) {
     case "not-found":
       return (
@@ -96,7 +83,11 @@ export function LessonView({ state, onSubmit, onContinue, onGoHome }: LessonView
     case "save-error":
       return (
         <Screen title="Lección">
-          <Message text="No pudimos guardar tu progreso." onGoHome={onGoHome} />
+          <Message
+            text="No pudimos guardar tu progreso."
+            onRetry={onRetrySave}
+            onGoHome={onGoHome}
+          />
         </Screen>
       );
     case "saving":

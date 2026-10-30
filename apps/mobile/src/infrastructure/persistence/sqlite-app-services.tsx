@@ -1,20 +1,22 @@
 import { createSqliteProgressRepository, migrate } from "@english-learn/storage-sqlite";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
-import { useMemo, type ReactNode } from "react";
-import { systemClock } from "../clock/system-clock";
+import { useMemo, useState, type ReactNode } from "react";
+import { createAppClock } from "../clock/app-clock";
 import { AppServicesProvider, type AppServices } from "../services/app-services";
 
 export const DATABASE_NAME = "english-learn.db";
 
 function SqliteServices({ children }: { children: ReactNode }) {
   const db = useSQLiteContext();
+  // Read once per page load (an e2e `?today=` override must survive in-app navigation).
+  const [clock] = useState(createAppClock);
   const services = useMemo<AppServices>(
     () => ({
       progressRepository: createSqliteProgressRepository(db),
-      clock: systemClock,
+      clock,
       random: Math.random,
     }),
-    [db],
+    [db, clock],
   );
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;
 }

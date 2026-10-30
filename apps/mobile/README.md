@@ -31,14 +31,46 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   XP and per-item outcomes); `applyLessonResults` turns the summary into SM-2 review states
   (worst grade per item; `EXPECTED_MS` per type: vocab 8 s, cloze 10 s, translation choice 12 s,
   word order 20 s, translate-write 30 s, reading 60 s — slower correct answers get grade 4).
-- `application/complete-lesson.ts`: saves review states, adds XP and records streak activity.
-- `components/`: one presentational component per exercise type plus `AnswerFeedback`.
+  An item that is **not due yet** (`dueDate > today`, e.g. a lesson replayed the same day) is
+  only practiced: a passing grade leaves its state unchanged; a wrong answer still applies the
+  SM-2 lapse (forgetting is real evidence).
+- `application/complete-session.ts`: saves a finished lesson or review through
+  `ProgressRepository.saveSessionResults`, which reads the current states and streak and writes
+  states + XP + streak in ONE transaction (all or nothing). XP = sum of `xpForAnswer`, plus the
+  lesson completion bonus only the first time a lesson is completed (some item had no state);
+  replays and reviews earn answer XP only.
+- `use-exercise-session.ts`: hook shared by lesson and review (answer → feedback → next →
+  save). Saving is guarded against double submission; a failed save shows "Reintentar"; the
+  header back button and swipe gesture are disabled while saving.
+- `components/`: one presentational component per exercise type, `ExerciseBody` (picks the
+  component by type; tagged `testID="exercise-<id>"`) and `AnswerFeedback`.
 - `lesson-container.tsx` / `lesson-view.tsx`: the `/lesson/[id]` screen, summary and unknown-id
   message.
 
-Home lists the lessons of the placement level, or A2 when there is no placement or the level has
-no lessons (MVP content covers A2 and B1). A lesson shows as done once every item it practices has
-a review state.
+Home lists the lessons of the level nearest to the placement level that has lessons (ties go to
+the lower level; with MVP content A1 → A2 and B2/C1 → B1), or A2 without a placement. A lesson
+shows as done once every item it practices has a review state.
+
+## Placement test (`src/features/placement/`)
+
+`/placement`: intro, then the adaptive test from the domain (`createPlacementSession` /
+`answer` / `placementResult`, max 20 questions). Questions from `corpus.placement` are mapped to
+`PlacementCandidate`s (`optionCount` = options, or `answers[0]` + distractors for cloze) and
+rendered as regular exercises (`prepareExercise`, `ExerciseBody`, `gradeExercise`) with a
+"Siguiente" button and no per-question feedback. The result screen shows the estimated level, a
+short CEFR description and which lessons the learner gets. Only `savePlacementResult` is written
+(never review states, XP or streak); "Repetir test de nivel" on home retakes it and overwrites
+the result.
+
+## Daily review (`src/features/review/`)
+
+`/review` plans the session with `selectSession({ maxReviews: 20, maxNew: 0 })` over the due
+states that some non-reading exercise covers (new items come from lessons only). For each due
+item, in priority order, it picks one exercise that practices it, preferring a different type
+than the previous pick, chosen with the injected rng; an exercise covering several due items
+reviews all of them. Only the due items are saved (an exercise may also practice items that are
+not due; those are untouched). XP is answer XP only, no completion bonus. Home shows
+"Repaso: N pendientes" (same plan) with a "Repasar" button, or "Nada para repasar hoy".
 
 ## Commands
 
@@ -51,10 +83,20 @@ pnpm lint           # ESLint (eslint-config-expo); also run by `pnpm lint` at th
 pnpm typecheck      # tsc --noEmit
 pnpm test           # Jest (jest-expo + React Native Testing Library)
 
-pnpm export:web     # static SPA export to dist/
+pnpm export:web     # production static SPA export to dist/ (+ check it has no e2e hooks)
 pnpm serve:web      # serve dist/ on http://localhost:4173 with the required headers
-pnpm e2e:web        # Playwright tests (serve dist/ themselves; run export:web first)
+pnpm export:web:e2e # e2e export to dist-e2e/ (EXPO_PUBLIC_E2E=1)
+pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
 ```
+
+### E2E-only clock override
+
+E2E tests simulate days passing with `?today=YYYY-MM-DD` on the page URL (e.g.
+`/?today=2030-01-03`); it replaces `Clock.today()` for that page load (response timing keeps
+the real time). It only exists in builds exported with `EXPO_PUBLIC_E2E=1`
+(`src/infrastructure/clock/app-clock.ts`): Expo inlines the variable at build time, so in the
+production export the branch and its module are dropped. `scripts/check-prod-bundle.mjs` (run
+by `export:web`, hence in CI) fails if the override ever shows up in `dist/`.
 
 First-time Playwright setup: `pnpm exec playwright install chromium`.
 

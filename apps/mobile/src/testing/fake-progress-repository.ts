@@ -40,6 +40,20 @@ export function createFakeRepository(
     },
     getXp: async () => xp,
     addXp: async (amount) => (xp += amount),
+    // Mirrors the SQLite all-or-nothing contract: compute and validate before writing anything.
+    saveSessionResults: async (itemIds, compute) => {
+      const results = compute({
+        states: [...states.values()].filter((s) => itemIds.includes(s.itemId)),
+        streak,
+      });
+      if (!Number.isInteger(results.xpDelta) || results.xpDelta < 0) {
+        throw new RangeError(`XP amount must be a non-negative integer, got ${results.xpDelta}`);
+      }
+      for (const s of results.states) states.set(s.itemId, s);
+      streak = results.streak;
+      xp += results.xpDelta;
+      return { xp, results };
+    },
     getPlacementResult: async () => placement,
     savePlacementResult: async (level, theta) => {
       placement = { level, theta };

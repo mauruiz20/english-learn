@@ -139,6 +139,88 @@ describe("createSqliteProgressRepository", () => {
     });
   });
 
+  describe("session results", () => {
+    const today = localDate("2026-10-29");
+    const streak: Streak = { current: 3, longest: 4, lastActiveDate: today };
+
+    it("computes the results from reads inside the transaction and writes them", async () => {
+      await repo.addXp(5);
+      await repo.saveReviewStates([state("a"), state("other")]);
+      await repo.saveStreak({ current: 2, longest: 4, lastActiveDate: localDate("2026-10-28") });
+      const updated = state("a", { reps: 1, intervalDays: 1, dueDate: localDate("2026-10-30") });
+      const seen: unknown[] = [];
+
+      const saved = await repo.saveSessionResults(["a", "b"], (current) => {
+        seen.push(current);
+        return { states: [updated, state("b")], xpDelta: 30, streak };
+      });
+
+      expect(seen).toEqual([
+        {
+          states: [state("a")],
+          streak: { current: 2, longest: 4, lastActiveDate: localDate("2026-10-28") },
+        },
+      ]);
+      expect(saved).toEqual({
+        xp: 35,
+        results: { states: [updated, state("b")], xpDelta: 30, streak },
+      });
+      expect(await repo.getXp()).toBe(35);
+      expect(await repo.getReviewStates()).toEqual([updated, state("b"), state("other")]);
+      expect(await repo.getStreak()).toEqual(streak);
+    });
+
+    it("accepts no items and zero XP", async () => {
+      const saved = await repo.saveSessionResults([], () => ({ states: [], xpDelta: 0, streak }));
+
+      expect(saved.xp).toBe(0);
+      expect(await repo.getStreak()).toEqual(streak);
+    });
+
+    it.each([-1, 1.5, Number.NaN])("rejects xpDelta %f without writing anything", async (xp) => {
+      await expect(
+        repo.saveSessionResults(["a"], () => ({ states: [state("a")], xpDelta: xp, streak })),
+      ).rejects.toThrow(RangeError);
+
+      expect(await repo.getReviewStates()).toEqual([]);
+      expect(await repo.getStreak()).toEqual(EMPTY_STREAK);
+    });
+
+    it("writes nothing when compute throws", async () => {
+      await expect(
+        repo.saveSessionResults(["a"], () => {
+          throw new Error("bug");
+        }),
+      ).rejects.toThrow("bug");
+
+      expect(await repo.getStreak()).toEqual(EMPTY_STREAK);
+    });
+
+    it("rolls back every write when the streak write fails", async () => {
+      const failing: typeof db = {
+        ...db,
+        async runAsync(source, params) {
+          if (source.includes("INSERT INTO streak")) throw new Error("disk I/O error");
+          return db.runAsync(source, params);
+        },
+      };
+      const failingRepo = createSqliteProgressRepository(failing);
+      await repo.addXp(10);
+
+      await expect(
+        failingRepo.saveSessionResults(["a"], () => ({
+          states: [state("a")],
+          xpDelta: 20,
+          streak,
+        })),
+      ).rejects.toThrow("disk I/O error");
+
+      expect(await repo.getReviewStates()).toEqual([]);
+      expect(await repo.getXp()).toBe(10);
+      expect(await repo.getStreak()).toEqual(EMPTY_STREAK);
+    });
+  });
+
   it("persists across repository instances on the same database", async () => {
     await repo.addXp(15);
     await repo.savePlacementResult("B2", 1.1);

@@ -6,6 +6,7 @@ import {
   type PlacementResult,
   type ProgressRepository,
   type ReviewState,
+  type SavedSession,
   type Streak,
 } from "@english-learn/domain";
 import type { SqlDatabase } from "./sql-database";
@@ -46,6 +47,12 @@ function toLevel(value: string): Level {
   return level;
 }
 
+function assertXpAmount(amount: number): void {
+  if (!Number.isInteger(amount) || amount < 0) {
+    throw new RangeError(`XP amount must be a non-negative integer, got ${amount}`);
+  }
+}
+
 function byItemId(a: ReviewState, b: ReviewState): number {
   return a.itemId < b.itemId ? -1 : a.itemId > b.itemId ? 1 : 0;
 }
@@ -67,6 +74,57 @@ export function createSqliteProgressRepository(db: SqlDatabase): ProgressReposit
     return states.sort(byItemId);
   }
 
+  // Helpers below run no transaction of their own, so they compose inside one.
+  async function upsertStates(states: readonly ReviewState[]): Promise<void> {
+    for (const state of states) {
+      await db.runAsync(
+        `INSERT INTO review_state (item_id, ease, interval_days, reps, lapses, due_date)
+         VALUES (?, ?, ?, ?, ?, ?)
+         ON CONFLICT (item_id) DO UPDATE SET
+           ease = excluded.ease,
+           interval_days = excluded.interval_days,
+           reps = excluded.reps,
+           lapses = excluded.lapses,
+           due_date = excluded.due_date`,
+        [state.itemId, state.ease, state.intervalDays, state.reps, state.lapses, state.dueDate],
+      );
+    }
+  }
+
+  async function readStreak(): Promise<Streak> {
+    const row = await db.getFirstAsync<StreakRow>(
+      "SELECT current, longest, last_active_date FROM streak WHERE id = 1",
+      [],
+    );
+    if (row === null) return EMPTY_STREAK;
+    return {
+      current: row.current,
+      longest: row.longest,
+      lastActiveDate: row.last_active_date === null ? null : localDate(row.last_active_date),
+    };
+  }
+
+  async function upsertStreak(streak: Streak): Promise<void> {
+    await db.runAsync(
+      `INSERT INTO streak (id, current, longest, last_active_date) VALUES (1, ?, ?, ?)
+       ON CONFLICT (id) DO UPDATE SET
+         current = excluded.current,
+         longest = excluded.longest,
+         last_active_date = excluded.last_active_date`,
+      [streak.current, streak.longest, streak.lastActiveDate],
+    );
+  }
+
+  async function incrementXp(amount: number): Promise<number> {
+    await db.runAsync(
+      `INSERT INTO xp (id, total) VALUES (1, ?)
+       ON CONFLICT (id) DO UPDATE SET total = total + excluded.total`,
+      [amount],
+    );
+    const row = await db.getFirstAsync<{ total: number }>("SELECT total FROM xp WHERE id = 1", []);
+    return row?.total ?? 0;
+  }
+
   return {
     async getReviewStates(itemIds) {
       if (itemIds !== undefined) return getStatesByIds(itemIds);
@@ -79,46 +137,13 @@ export function createSqliteProgressRepository(db: SqlDatabase): ProgressReposit
 
     async saveReviewStates(states) {
       if (states.length === 0) return;
-      await db.withTransactionAsync(async () => {
-        for (const state of states) {
-          await db.runAsync(
-            `INSERT INTO review_state (item_id, ease, interval_days, reps, lapses, due_date)
-             VALUES (?, ?, ?, ?, ?, ?)
-             ON CONFLICT (item_id) DO UPDATE SET
-               ease = excluded.ease,
-               interval_days = excluded.interval_days,
-               reps = excluded.reps,
-               lapses = excluded.lapses,
-               due_date = excluded.due_date`,
-            [state.itemId, state.ease, state.intervalDays, state.reps, state.lapses, state.dueDate],
-          );
-        }
-      });
+      await db.withTransactionAsync(() => upsertStates(states));
     },
 
-    async getStreak() {
-      const row = await db.getFirstAsync<StreakRow>(
-        "SELECT current, longest, last_active_date FROM streak WHERE id = 1",
-        [],
-      );
-      if (row === null) return EMPTY_STREAK;
-      const streak: Streak = {
-        current: row.current,
-        longest: row.longest,
-        lastActiveDate: row.last_active_date === null ? null : localDate(row.last_active_date),
-      };
-      return streak;
-    },
+    getStreak: readStreak,
 
     async saveStreak(streak) {
-      await db.runAsync(
-        `INSERT INTO streak (id, current, longest, last_active_date) VALUES (1, ?, ?, ?)
-         ON CONFLICT (id) DO UPDATE SET
-           current = excluded.current,
-           longest = excluded.longest,
-           last_active_date = excluded.last_active_date`,
-        [streak.current, streak.longest, streak.lastActiveDate],
-      );
+      await upsertStreak(streak);
     },
 
     async getXp() {
@@ -130,23 +155,29 @@ export function createSqliteProgressRepository(db: SqlDatabase): ProgressReposit
     },
 
     async addXp(amount) {
-      if (!Number.isInteger(amount) || amount < 0) {
-        throw new RangeError(`XP amount must be a non-negative integer, got ${amount}`);
-      }
+      assertXpAmount(amount);
       let total = 0;
       await db.withTransactionAsync(async () => {
-        await db.runAsync(
-          `INSERT INTO xp (id, total) VALUES (1, ?)
-           ON CONFLICT (id) DO UPDATE SET total = total + excluded.total`,
-          [amount],
-        );
-        const row = await db.getFirstAsync<{ total: number }>(
-          "SELECT total FROM xp WHERE id = 1",
-          [],
-        );
-        total = row?.total ?? 0;
+        total = await incrementXp(amount);
       });
       return total;
+    },
+
+    async saveSessionResults(itemIds, compute) {
+      let saved: SavedSession | null = null;
+      await db.withTransactionAsync(async () => {
+        const results = compute({
+          states: await getStatesByIds(itemIds),
+          streak: await readStreak(),
+        });
+        assertXpAmount(results.xpDelta);
+        await upsertStates(results.states);
+        const xp = await incrementXp(results.xpDelta);
+        await upsertStreak(results.streak);
+        saved = { xp, results };
+      });
+      if (saved === null) throw new Error("Session results were not saved");
+      return saved;
     },
 
     async getPlacementResult() {

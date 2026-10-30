@@ -2,6 +2,7 @@ import { createCorpus } from "@english-learn/content";
 import {
   initialState,
   localDate,
+  review,
   type Clock,
   type ProgressRepository,
 } from "@english-learn/domain";
@@ -112,10 +113,10 @@ describe("HomeContainer", () => {
     expect(screen.getByRole("button", { name: "Rutina B1" })).toBeOnTheScreen();
   });
 
-  it("falls back to A2 when the placement level has no lessons", async () => {
+  it("lists the nearest lower level's lessons for a level without lessons", async () => {
     await renderContainer(createFakeRepository({ placement: { level: "C1", theta: 2 } }));
 
-    expect(await screen.findByText("Lecciones de nivel A2")).toBeOnTheScreen();
+    expect(await screen.findByText("Lecciones de nivel B1")).toBeOnTheScreen();
     expect(screen.getByText("Tu nivel: C1")).toBeOnTheScreen();
   });
 
@@ -126,6 +127,26 @@ describe("HomeContainer", () => {
     );
 
     expect(await screen.findByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
+  });
+
+  it("counts the items due for review", async () => {
+    const yesterday = localDate("2026-10-28");
+    const learned = (id: string) => review(initialState(id, yesterday), 5, yesterday);
+    await renderContainer(
+      createFakeRepository({
+        // Due: wake-up and breakfast. Commute only has a reading exercise: not reviewable.
+        states: [
+          learned("a2.routine.wake-up"),
+          learned("a2.routine.breakfast"),
+          learned("a2.routine.commute"),
+          review(initialState("a2.routine.usually", TODAY), 5, TODAY),
+        ],
+      }),
+    );
+
+    expect(await screen.findByText("Repaso: 2 pendientes")).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Repasar" }));
+    expect(mockPush).toHaveBeenCalledWith("/review");
   });
 
   it("opens a lesson", async () => {

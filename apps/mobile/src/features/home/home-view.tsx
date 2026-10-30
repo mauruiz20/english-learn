@@ -14,6 +14,8 @@ export type HomeViewState =
   | { readonly status: "error" }
   | {
       readonly status: "ready";
+      /** Items the daily review would practice today. */
+      readonly pendingReviews: number;
       readonly streakDays: number;
       readonly xp: number;
       readonly level: Level | null;
@@ -84,7 +86,28 @@ export function HomeView({
                 />
               </>
             ) : (
-              <Text style={styles.stat}>{`Tu nivel: ${state.level}`}</Text>
+              <>
+                <Text style={styles.stat}>{`Tu nivel: ${state.level}`}</Text>
+                <Button
+                  label="Repetir test de nivel"
+                  variant="secondary"
+                  accessibilityHint="Vuelve a hacer el test; el nuevo resultado reemplaza al anterior"
+                  onPress={onStartPlacement}
+                />
+              </>
+            )}
+          </View>
+
+          <View style={styles.card}>
+            {state.pendingReviews > 0 ? (
+              <>
+                <Text style={styles.stat}>
+                  {`Repaso: ${state.pendingReviews} ${state.pendingReviews === 1 ? "pendiente" : "pendientes"}`}
+                </Text>
+                <Button label="Repasar" onPress={onOpenReview} />
+              </>
+            ) : (
+              <Text style={styles.body}>Nada para repasar hoy</Text>
             )}
           </View>
 
@@ -105,7 +128,6 @@ export function HomeView({
             )}
           </View>
 
-          <Button label="Repasar" variant="secondary" onPress={onOpenReview} />
           <Button label="Acerca de" variant="secondary" onPress={onOpenAbout} />
         </>
       )}
