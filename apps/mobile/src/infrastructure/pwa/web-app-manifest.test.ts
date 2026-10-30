@@ -79,7 +79,7 @@ function parseHeaders(source: string): Map<string, Record<string, string>> {
       rules.set(line.trim(), current);
     } else if (current !== undefined) {
       const [name, ...value] = line.trim().split(":");
-      current[name.trim()] = value.join(":").trim();
+      current[(name ?? "").trim()] = value.join(":").trim();
     }
   }
   return rules;

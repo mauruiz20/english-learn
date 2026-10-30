@@ -2,6 +2,7 @@
 // The worker runs against a fake ServiceWorkerGlobalScope: Node provides Request, Response,
 // Headers and crypto.subtle; the Cache API and the events are faked below.
 import assert from "node:assert/strict";
+import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { beforeEach, describe, it } from "node:test";
 import { serviceWorker } from "./service-worker.mjs";

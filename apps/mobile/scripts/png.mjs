@@ -1,5 +1,6 @@
 // A tiny PNG codec (8-bit RGB / RGBA, non-interlaced) and an area-averaging downscaler, enough
 // to derive the PWA icons from the app icon without an image-processing dependency.
+import { Buffer } from "node:buffer";
 import { deflateSync, inflateSync } from "node:zlib";
 
 const SIGNATURE = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
