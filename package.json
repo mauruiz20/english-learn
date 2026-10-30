@@ -11,7 +11,8 @@
     "test": "pnpm -r test",
     "validate:content": "pnpm --filter @english-learn/content validate",
     "format": "prettier --write .",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm validate:content"
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm validate:content"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
