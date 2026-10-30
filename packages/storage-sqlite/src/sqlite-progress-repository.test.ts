@@ -459,7 +459,9 @@ describe("createSqliteProgressRepository", () => {
   });
 
   describe("performance", () => {
-    it("appends a session over a 5k-event log in under 50 ms", async () => {
+    // Canary for order-of-magnitude regressions (e.g. accidental quadratic refolds), not a
+    // benchmark: ~25 ms on a laptop, but CI runners share CPU with the other test suites.
+    it("appends a session over a 5k-event log without an order-of-magnitude slowdown", async () => {
       const start = Date.parse("2025-01-01T00:00:00Z");
       const events: ProgressEvent[] = [];
       for (let s = 0; events.length < 5_000; s++) {
@@ -486,7 +488,7 @@ describe("createSqliteProgressRepository", () => {
       console.info(
         `append+refold over ${await eventCount(db)} events: ${timings.map((t) => t.toFixed(1)).join(" / ")} ms`,
       );
-      expect(best).toBeLessThan(50);
+      expect(best).toBeLessThan(400);
       expect(await cacheOf(repo)).toEqual(foldedCache(await storedEvents(db)));
     });
   });
