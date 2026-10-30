@@ -157,3 +157,16 @@ later (fonts, images, analytics) must be served with `Cross-Origin-Resource-Poli
 
 The Playwright smoke test fails if the page is not cross-origin isolated, if SQLite/WASM logs
 console errors, or if progress loaded from the database is not rendered.
+
+## Known limitations
+
+- **Reading grades all its items with one verdict.** A reading exercise is correct only if every
+  question is, and that single verdict (and its response time) is applied to every item the
+  exercise lists in `itemIds`. The content schema does not link a question to the items it
+  tests, so one wrong answer counts as a miss for all of the passage's items, and a slow read
+  lowers all of them to grade 4. Fixing it needs per-question `itemIds` in the content schema;
+  until then, reading items may come back for review sooner than strictly needed.
+- **One tab at a time on web.** expo-sqlite holds the database file exclusively; a second tab
+  shows "La app ya está abierta en otra pestaña." until the first one is closed.
+- **No storage in private browsing on Safari / WebKit.** Without OPFS the database cannot open
+  and the app shows "No pudimos abrir tus datos."
