@@ -1,63 +1,89 @@
-import type {
-  PlacementResult,
-  ProgressRepository,
-  ReviewState,
-  Streak,
+import {
+  EMPTY_STREAK,
+  foldEvents,
+  type PlacementResult,
+  type ProgressEvent,
+  type ProgressRepository,
+  type ReviewState,
+  type Streak,
 } from "@english-learn/domain";
 
+export const FAKE_DEVICE_ID = "test-device";
+
 export type FakeProgressRepository = ProgressRepository & {
-  /** Current in-memory contents, for assertions. */
+  /** Current progress (the fold of every event), for assertions. */
   readonly snapshot: () => {
     streak: Streak;
     xp: number;
     placement: PlacementResult | null;
     states: ReviewState[];
   };
+  /** Every event appended so far (the seed baseline first, when there is one). */
+  readonly events: () => ProgressEvent[];
 };
 
-/** In-memory `ProgressRepository` for tests. */
+/**
+ * In-memory, event-backed `ProgressRepository` for tests: like the SQLite adapter, every read is
+ * the fold of the log. Initial progress is seeded as ONE `baseline_imported` event, as an upgraded
+ * install would have it (pass `completedLessonIds` for lessons done before the upgrade).
+ */
 export function createFakeRepository(
   initial: {
     streak?: Streak;
     xp?: number;
     placement?: PlacementResult | null;
     states?: readonly ReviewState[];
+    completedLessonIds?: readonly string[];
   } = {},
 ): FakeProgressRepository {
-  let streak: Streak = initial.streak ?? { current: 0, longest: 0, lastActiveDate: null };
-  let xp = initial.xp ?? 0;
-  let placement = initial.placement ?? null;
-  const states = new Map((initial.states ?? []).map((s) => [s.itemId, s]));
+  const log: ProgressEvent[] = [];
+  const seeded = Object.values(initial).some((v) => v !== undefined && v !== null);
+  if (seeded) {
+    log.push({
+      id: "00000000-0000-7000-8000-000000000000",
+      deviceId: FAKE_DEVICE_ID,
+      occurredAt: 0,
+      localDate: "2000-01-01" as ProgressEvent["localDate"],
+      type: "baseline_imported",
+      payload: {
+        v: 1,
+        states: initial.states ?? [],
+        xp: initial.xp ?? 0,
+        streak: initial.streak ?? EMPTY_STREAK,
+        placement: initial.placement ?? null,
+        completedLessonIds: initial.completedLessonIds ?? [],
+      },
+    });
+  }
+  const progress = () => foldEvents(log);
+  const totals = () => {
+    const { xp, streak } = progress();
+    return { xp, streak };
+  };
+
   return {
     getReviewStates: async (itemIds) =>
-      [...states.values()].filter((s) => itemIds === undefined || itemIds.includes(s.itemId)),
-    saveReviewStates: async (next) => {
-      for (const s of next) states.set(s.itemId, s);
-    },
-    getStreak: async () => streak,
-    saveStreak: async (next) => {
-      streak = next;
-    },
-    getXp: async () => xp,
-    addXp: async (amount) => (xp += amount),
-    // Mirrors the SQLite all-or-nothing contract: compute and validate before writing anything.
-    saveSessionResults: async (itemIds, compute) => {
-      const results = compute({
-        states: [...states.values()].filter((s) => itemIds.includes(s.itemId)),
-        streak,
-      });
-      if (!Number.isInteger(results.xpDelta) || results.xpDelta < 0) {
-        throw new RangeError(`XP amount must be a non-negative integer, got ${results.xpDelta}`);
+      progress().states.filter((s) => itemIds === undefined || itemIds.includes(s.itemId)),
+    getStreak: async () => progress().streak,
+    getXp: async () => progress().xp,
+    getPlacementResult: async () => progress().placement,
+    getDeviceId: async () => FAKE_DEVICE_ID,
+    // Mirrors the SQLite all-or-nothing contract: validate before writing anything.
+    appendEvents: async (events) => {
+      const { anomalies } = foldEvents(events);
+      const ids = new Set(log.map((e) => e.id));
+      if (anomalies.length > 0 || events.some((e) => ids.has(e.id))) {
+        throw new RangeError(`Refusing to write invalid events: ${JSON.stringify(anomalies)}`);
       }
-      for (const s of results.states) states.set(s.itemId, s);
-      streak = results.streak;
-      xp += results.xpDelta;
-      return { xp, results };
+      const before = totals();
+      log.push(...events);
+      return { before, after: totals() };
     },
-    getPlacementResult: async () => placement,
-    savePlacementResult: async (level, theta) => {
-      placement = { level, theta };
+    rebuildFromEvents: async () => {},
+    snapshot: () => {
+      const { streak, xp, placement, states } = progress();
+      return { streak, xp, placement, states: [...states] };
     },
-    snapshot: () => ({ streak, xp, placement, states: [...states.values()] }),
+    events: () => [...log],
   };
 }

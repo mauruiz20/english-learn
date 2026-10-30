@@ -1,9 +1,10 @@
 export type { Clock } from "./clock";
 export type {
+  AppendedEvents,
   PlacementResult,
   ProgressRepository,
-  SavedSession,
-  SessionResults,
-  SessionSnapshot,
+  ProgressSyncStore,
+  ProgressTotals,
+  RemoteEvent,
 } from "./progress-repository";
 export type { SettingsRepository } from "./settings-repository";

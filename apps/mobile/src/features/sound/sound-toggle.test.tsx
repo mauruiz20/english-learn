@@ -6,12 +6,15 @@ import { createFakeSettingsRepository } from "@/testing/fake-settings-repository
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "./sound-preference";
 import { SoundToggle } from "./sound-toggle";
+import { testRandomBytes } from "@/testing/random-bytes";
 
 function renderToggle(settings = createFakeSettingsRepository(), sounds = createFakeSoundPlayer()) {
   const services = {
     progressRepository: createFakeRepository(),
     clock: { today: () => localDate("2026-10-29"), nowMs: () => 0 },
     random: () => 0,
+    randomBytes: testRandomBytes,
+    deviceId: "test-device",
     settingsRepository: settings,
     sounds,
   };

@@ -27,15 +27,11 @@ export function awaitPendingWrites(repository: ProgressRepository): ProgressRepo
 
   return {
     getReviewStates: (itemIds) => read(() => repository.getReviewStates(itemIds)),
-    saveReviewStates: (states) => write(() => repository.saveReviewStates(states)),
     getStreak: () => read(() => repository.getStreak()),
-    saveStreak: (streak) => write(() => repository.saveStreak(streak)),
     getXp: () => read(() => repository.getXp()),
-    addXp: (amount) => write(() => repository.addXp(amount)),
-    saveSessionResults: (itemIds, compute) =>
-      write(() => repository.saveSessionResults(itemIds, compute)),
     getPlacementResult: () => read(() => repository.getPlacementResult()),
-    savePlacementResult: (level, theta) =>
-      write(() => repository.savePlacementResult(level, theta)),
+    getDeviceId: () => repository.getDeviceId(),
+    appendEvents: (events) => write(() => repository.appendEvents(events)),
+    rebuildFromEvents: () => write(() => repository.rebuildFromEvents()),
   };
 }

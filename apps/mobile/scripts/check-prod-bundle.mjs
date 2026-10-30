@@ -9,7 +9,7 @@ import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { precacheEntries, renderServiceWorker, versionOf } from "./build-service-worker.mjs";
 
-const FORBIDDEN = ['get("today")', "EXPO_PUBLIC_E2E", "playedSounds"];
+const FORBIDDEN = ['get("today")', 'get("rebuildProgress")', "EXPO_PUBLIC_E2E", "playedSounds"];
 
 async function* jsFiles(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
