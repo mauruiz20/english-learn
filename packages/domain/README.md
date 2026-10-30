@@ -13,6 +13,7 @@ It does not import `@english-learn/content`; the app layer maps content into the
 | `scoring`         | XP per answer, lesson completion bonus, accuracy                                    |
 | `streak`          | Daily streak (current / longest)                                                    |
 | `progress`        | Per-level seen / mastered counts                                                    |
+| `progress-log`    | Append-only progress events, UUIDv7 ids, deterministic `foldEvents`                 |
 | `placement`       | Adaptive placement test (CAT) → CEFR level                                          |
 | `shuffle`         | Fisher–Yates shuffle, option shuffling, word-order token scrambling                 |
 | `local-date`      | Branded `YYYY-MM-DD` date with pure calendar math (no timezones)                    |
@@ -58,7 +59,82 @@ Both the input and every accepted answer go through the same pipeline:
   | correct, `responseMs > expectedMs` | 4     |
   | correct, on time                   | 5     |
 
+- `applyReview(state | undefined, itemId, grade, today)`: how one item moves after a session, given
+  its FINAL grade for that session. New + grade ≥ 3 → `review(initialState)`; new + grade < 3 → fresh
+  (default ease, reps 0, lapses 0) due tomorrow — first sight is not forgetting; not due yet
+  (`dueDate > today`) + grade ≥ 3 → unchanged (practice, replays cannot inflate intervals); not due
+  - grade < 3 → SM-2 lapse; due → `review`.
 - `selectSession`: due items (`dueDate ≤ today`) by dueDate asc, lapses desc, itemId; then unseen new items.
+
+## Progress event log
+
+Learner progress is an **append-only log of immutable events**; every number the app shows (review
+states, XP, streak, placement) is `foldEvents(events)`. Devices sync by exchanging events they do
+not have yet (set union). Because the fold depends only on the _set_ of events — not on arrival
+order or duplicates — every device that holds the same events computes the same progress, with no
+conflict resolution and no "last write wins" data loss.
+
+### Events
+
+Envelope: `{ id, deviceId, occurredAt, localDate, type, payload }`. `id` is a UUIDv7
+(`uuidv7(nowMs, random)`, RFC 9562: 48-bit ms timestamp, version 7, variant `10`, 74 random bits;
+ids from different milliseconds sort by time). Every payload carries `v: 1`.
+
+| `type`                | Payload                                                                | Written                                   |
+| --------------------- | ---------------------------------------------------------------------- | ----------------------------------------- |
+| `item_reviewed`       | `sessionId, itemId, grade`                                             | once per item per session, FINAL grade    |
+| `session_completed`   | `sessionId, kind: "lesson" \| "review", lessonId?, answerXp, accuracy` | when a session is saved                   |
+| `placement_completed` | `level, theta`                                                         | when the placement test ends              |
+| `baseline_imported`   | `states, xp, streak, placement, completedLessonIds?`                   | once per device, migrating pre-event data |
+
+The app applies worst-grade-wins and the looked-up cap (grade ≤ 3) **before** writing
+`item_reviewed`. The fold decides everything else, including the lesson bonus. All events of one
+session carry the same `localDate` (the day it was completed), as the app used one `today` per save.
+
+### Fold
+
+1. Events whose envelope cannot be ordered (empty id, invalid `localDate`, non-finite
+   `occurredAt`) are skipped and reported.
+2. Total order: `(localDate, occurredAt, id)`, then canonical JSON content (so the order is total
+   even for corrupted duplicates).
+3. Dedupe by `id`: identical copies fold once; different content under one id keeps the first in
+   order and reports a `conflicting_duplicate`.
+4. Every event is applied at its position — **baselines too** (they are not hoisted to the front).
+   Unknown `type` or payload `v` → skipped and reported `unsupported_event` (forward compatible);
+   malformed fields → `invalid_event`. The fold never throws; skipped events are listed in
+   `anomalies`.
+
+| Data             | Rule                                                                                                                                                              |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Review states    | `item_reviewed` → `applyReview(state, itemId, grade, event.localDate)`; a second review of the same item in the same session is skipped                           |
+| XP               | Σ `answerXp` + Σ baseline `xp` + the lesson bonus; a repeated `sessionId` is skipped (never paid twice)                                                           |
+| Lesson bonus     | The FIRST `session_completed` for a `lessonId` in fold order gets `xpForLessonCompletion(accuracy)`; later ones (any device) and baseline-completed lessons get 0 |
+| Streak           | `recordActivity` replayed over the sorted unique `localDate`s of `session_completed`, starting from the merged baseline streak                                    |
+| `activeDates`    | Sorted unique `localDate`s of `session_completed`                                                                                                                 |
+| Placement        | The last `placement_completed` or non-null baseline placement in fold order                                                                                       |
+| Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                               |
+| Baseline streaks | `longest` = max; `current` and `lastActiveDate` from the most recent `lastActiveDate` (larger `current` on a tie)                                                 |
+| Baseline lessons | `completedLessonIds` are unioned (no bonus for them later)                                                                                                        |
+
+Property tests (fast-check) check permutation invariance, idempotence under duplication, union
+convergence of two devices, a single bonus per lesson across devices, and an oracle: replaying
+generated single-device histories with the pre-event app rules gives the same progress as folding
+the events the app would write.
+
+**Change from the pre-event app rule**: the app paid the lesson bonus when "at least one item of the
+lesson had no review state yet". Lessons share items, so a lesson first completed after its items
+were learned elsewhere earned no bonus. The fold pays it (first completion per `lessonId`); this is
+the only difference the oracle finds, and it never removes a bonus the app paid. The baseline's
+`completedLessonIds` (lessons whose items all have a state at migration) keeps replays of lessons
+finished before the migration from earning the bonus again.
+
+### Limitations
+
+- `localDate` comes from the device calendar and is the primary ordering key; device clock skew
+  only affects ordering among events with the same `localDate`.
+- Ids from the same millisecond have no monotonic counter; order there falls back to the random
+  bits (still deterministic, since the id is part of the event).
+- A device whose calendar is wrong writes events on the wrong date; the fold cannot detect that.
 
 ## Glossary
 
