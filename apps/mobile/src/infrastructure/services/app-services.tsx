@@ -1,5 +1,6 @@
 import type { Clock, ProgressRepository, Rng, SettingsRepository } from "@english-learn/domain";
 import { createContext, use, type ReactNode } from "react";
+import type { RandomBytes } from "@/features/progress/progress-events";
 import { silentSoundPlayer, type SoundPlayer } from "../sound/sound-player";
 
 /** Side-effect services features depend on. Injected so tests can pass in-memory fakes. */
@@ -8,6 +9,10 @@ export type AppServices = {
   readonly clock: Clock;
   /** Random source in [0, 1) for shuffling options; tests inject a deterministic one. */
   readonly random: Rng;
+  /** Cryptographically secure bytes for event and session ids (UUIDv7). */
+  readonly randomBytes: RandomBytes;
+  /** This install's id, stamped on every progress event it writes (read once at start). */
+  readonly deviceId: string;
   /** App preferences (sound on/off). */
   readonly settingsRepository: SettingsRepository;
   /** Interaction sounds and haptics. */

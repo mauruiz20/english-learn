@@ -1,4 +1,5 @@
 import type { Level } from "../cefr";
+import type { ProgressEvent, StoredEvent } from "../progress-log/events";
 import type { ReviewState } from "../srs";
 import type { Streak } from "../streak";
 
@@ -7,55 +8,60 @@ export type PlacementResult = {
   readonly theta: number;
 };
 
-/** What a session's completion reads, inside the same transaction that writes its results. */
-export type SessionSnapshot = {
-  /** Stored states of the requested items (items without a state are absent). */
-  readonly states: readonly ReviewState[];
-  readonly streak: Streak;
-};
-
-/** Everything a finished lesson or review session writes, atomically. */
-export type SessionResults = {
-  /** Review states to upsert by itemId. */
-  readonly states: readonly ReviewState[];
-  /** Non-negative integer XP to add to the total. */
-  readonly xpDelta: number;
-  /** The streak after recording today's activity (replaces the stored one). */
-  readonly streak: Streak;
-};
-
-export type SavedSession = {
-  /** XP total after adding `results.xpDelta`. */
+/** The totals a progress screen shows after a write. */
+export type ProgressTotals = {
   readonly xp: number;
-  readonly results: SessionResults;
+  readonly streak: Streak;
 };
 
-/** Persistence of the learner's progress. Implemented by the app layer (e.g. SQLite). */
+/** Totals read in the same transaction as an append: just before it and after the refold. */
+export type AppendedEvents = {
+  readonly before: ProgressTotals;
+  readonly after: ProgressTotals;
+};
+
+/**
+ * Persistence of the learner's progress as an append-only event log (see `foldEvents`).
+ * Reads come from a cache of the fold (review states, XP, streak, placement) that every write
+ * refreshes, so they stay fast. Implemented by the app layer (e.g. SQLite).
+ */
 export interface ProgressRepository {
-  /** All stored review states, or only those for `itemIds` when given. */
+  /** All cached review states (sorted by itemId), or only those for `itemIds` when given. */
   getReviewStates(itemIds?: readonly string[]): Promise<readonly ReviewState[]>;
-  /** Upserts the given states by itemId. */
-  saveReviewStates(states: readonly ReviewState[]): Promise<void>;
-
-  /** The stored streak, or EMPTY_STREAK when none exists. */
+  /** The cached streak, or EMPTY_STREAK when none exists. */
   getStreak(): Promise<Streak>;
-  saveStreak(streak: Streak): Promise<void>;
-
   getXp(): Promise<number>;
-  /** Adds `amount` to the XP total and resolves to the new total. */
-  addXp(amount: number): Promise<number>;
+  getPlacementResult(): Promise<PlacementResult | null>;
+
+  /** Stable id of this install; every event it writes carries it as `deviceId`. */
+  getDeviceId(): Promise<string>;
 
   /**
-   * Completes a session in ONE transaction: reads the states of `itemIds` and the streak,
-   * passes them to the pure `compute`, then upserts the returned states, adds `xpDelta` and
-   * stores the streak. All or nothing: if anything fails (including `compute`), nothing is
-   * written, so the caller can safely retry.
+   * Appends locally written events and refreshes the cache from the fold of the whole log, in ONE
+   * transaction: all or nothing, so a failed append can be retried. Resolves to the totals just
+   * before and after (the difference is what these events earned, as the fold decides it).
    */
-  saveSessionResults(
-    itemIds: readonly string[],
-    compute: (current: SessionSnapshot) => SessionResults,
-  ): Promise<SavedSession>;
+  appendEvents(events: readonly ProgressEvent[]): Promise<AppendedEvents>;
 
-  getPlacementResult(): Promise<PlacementResult | null>;
-  savePlacementResult(level: Level, theta: number): Promise<void>;
+  /** Recomputes the whole cache from the event log (e.g. after events arrived by sync). */
+  rebuildFromEvents(): Promise<void>;
+}
+
+/** An event received from the sync server, with the sequence number the server gave it. */
+export type RemoteEvent = StoredEvent & { readonly serverSeq?: number };
+
+/** The event log as the sync engine sees it. Implemented next to `ProgressRepository`. */
+export interface ProgressSyncStore {
+  /** Events written on this device that the server has not acknowledged, oldest first. */
+  getUnsyncedEvents(limit: number): Promise<readonly StoredEvent[]>;
+  /** Marks events as acknowledged; `serverSeqs[i]` is the server sequence of `ids[i]`. */
+  markSynced(ids: readonly string[], serverSeqs: readonly number[]): Promise<void>;
+  /** The last server sequence pulled (0 before the first pull). */
+  getSyncCursor(): Promise<number>;
+  setSyncCursor(cursor: number): Promise<void>;
+  /**
+   * Stores events pulled from the server, ignoring ids already stored (idempotent), then
+   * rebuilds the cache, in one transaction. Resolves to the number of new events stored.
+   */
+  insertRemoteEvents(events: readonly RemoteEvent[]): Promise<number>;
 }

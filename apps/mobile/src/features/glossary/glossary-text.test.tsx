@@ -8,6 +8,7 @@ import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { GlossaryProvider } from "./glossary-provider";
 import { GlossaryText } from "./glossary-text";
 import { LookupHint } from "./lookup-hint";
+import { testRandomBytes } from "@/testing/random-bytes";
 
 const ENTRIES: readonly GlossaryEntry[] = [
   {
@@ -49,6 +50,8 @@ function setup({
     progressRepository: createFakeRepository(),
     clock: { today: () => "2026-10-30" as never, nowMs: () => 0 },
     random: () => 0.5,
+    randomBytes: testRandomBytes,
+    deviceId: "test-device",
     settingsRepository,
     sounds,
   };

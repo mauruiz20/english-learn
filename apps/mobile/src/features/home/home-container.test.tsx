@@ -15,6 +15,7 @@ import { createFakeSettingsRepository } from "@/testing/fake-settings-repository
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { HomeContainer } from "./home-container";
+import { testRandomBytes } from "@/testing/random-bytes";
 
 const mockPush = jest.fn();
 
@@ -46,6 +47,8 @@ function renderContainer(repository: ProgressRepository) {
         progressRepository: repository,
         clock: fixedClock,
         random: () => 0,
+        randomBytes: testRandomBytes,
+        deviceId: "test-device",
         settingsRepository: createFakeSettingsRepository(),
         sounds: createFakeSoundPlayer(),
       }}
