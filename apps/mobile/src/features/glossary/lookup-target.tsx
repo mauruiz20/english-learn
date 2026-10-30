@@ -1,7 +1,12 @@
 import { StyleSheet, Text } from "react-native";
 import { themedStyles } from "@/shared/ui/use-theme";
 import { useGlossary } from "./glossary-provider";
-import { LOOKUP_HINT_A11Y, lookupLabel, type LookupTargetProps } from "./lookup-labels";
+import {
+  LOOKUP_HINT_A11Y,
+  lookupLabel,
+  underlineColor,
+  type LookupTargetProps,
+} from "./lookup-labels";
 
 /**
  * A word or phrase that opens its lookup card when tapped (native: a nested `Text`, so the
@@ -31,7 +36,7 @@ const useStyles = themedStyles(({ colors }) =>
     target: {
       textDecorationLine: "underline",
       textDecorationStyle: "dotted",
-      textDecorationColor: colors.textMuted,
+      textDecorationColor: underlineColor(colors.textMuted),
     },
   }),
 );

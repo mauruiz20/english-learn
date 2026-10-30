@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    flexWrap: "wrap",
-    columnGap: spacing.sm,
+    columnGap: spacing.md,
     marginBottom: -spacing.sm,
   },
   text: { flexShrink: 1 },

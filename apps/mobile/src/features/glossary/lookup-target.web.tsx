@@ -1,7 +1,12 @@
 import { useEffect, useRef, type CSSProperties, type KeyboardEvent, type MouseEvent } from "react";
 import { useTheme } from "@/shared/ui/use-theme";
 import { useGlossary } from "./glossary-provider";
-import { LOOKUP_HINT_A11Y, lookupLabel, type LookupTargetProps } from "./lookup-labels";
+import {
+  LOOKUP_HINT_A11Y,
+  lookupLabel,
+  underlineColor,
+  type LookupTargetProps,
+} from "./lookup-labels";
 
 /** How long the pointer rests on a word before its tooltip shows (skips passing movements). */
 export const HOVER_DELAY_MS = 250;
@@ -35,9 +40,9 @@ export function LookupTarget({ text, entryId }: LookupTargetProps) {
   const style: CSSProperties = {
     textDecorationLine: "underline",
     textDecorationStyle: "dotted",
-    textDecorationColor: colors.textMuted,
-    textDecorationThickness: "1.5px",
-    textUnderlineOffset: "0.22em",
+    textDecorationColor: underlineColor(colors.textMuted),
+    textDecorationThickness: "1px",
+    textUnderlineOffset: "0.24em",
     cursor: "pointer",
   };
 
