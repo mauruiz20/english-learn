@@ -60,6 +60,8 @@ jobs:
   # using the runner's Docker daemon, exactly as they do locally.
   api:
     runs-on: ubuntu-latest
+    # testcontainers can occasionally stall on container startup; fail fast instead of hanging.
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: services/api
