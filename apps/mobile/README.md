@@ -427,7 +427,9 @@ console errors, or if progress loaded from the database is not rendered.
   lowers all of them to grade 4. Fixing it needs per-question `itemIds` in the content schema;
   until then, reading items may come back for review sooner than strictly needed.
 - **One tab at a time on web.** expo-sqlite holds the database file exclusively; a second tab
-  shows "La app ya está abierta en otra pestaña." until the first one is closed.
+  shows "La app ya está abierta en otra pestaña." until the first one is closed. With the service
+  worker running, WebKit may release the closed tab's database a moment later, so the first
+  "Reintentar" right after closing it can still show the message; pressing it again works.
 - **iOS / Safari PWA.** Installing is manual (Share → "Añadir a pantalla de inicio"); there is no
   install prompt. The home screen app has its own storage, separate from Safari's: progress made
   in the Safari tab does not carry over to the installed app. Safari may evict the data of a site
