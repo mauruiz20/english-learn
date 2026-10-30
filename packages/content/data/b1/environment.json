@@ -103,7 +103,7 @@
       "level": "B1",
       "topics": ["environment"],
       "title": "A greener school",
-      "text": "Two years ago, students at Lincoln High School noticed a problem: the trash cans were always full of plastic bottles. A group of students decided to do something about it. First, they talked to the principal. They told her that if the school installed water fountains, students would stop buying bottled water. She agreed to try it. Then the students started a recycling program. Every classroom now has three bins: one for paper, one for plastic and one for food waste. Nobody is allowed to throw anything away without checking the bins first. The results have been impressive. The school has reduced its waste by half, and it has saved money on energy too, because classrooms turn off the lights when nobody is inside. \"Unless young people take action, nothing will change,\" says Mia, one of the students. \"If every school does a little, we will slow down global warming.\" Next year, the group wants to plant trees around the soccer field.",
+      "text": "Two years ago, students at Lincoln High School noticed a problem: the trash cans were always full of plastic bottles. A group of students decided to do something about it. First, they talked to the principal. They told her that if the school installed water fountains, students would stop buying bottled water. She agreed to try it. Then the students started a recycling program. Every classroom now has three bins: one for paper, one for plastic and one for food waste. Nobody is allowed to throw anything away without checking the bins first. The results have been impressive. The school has reduced its waste by half, and it has saved money on energy too, because students turn off the lights when nobody is in the classroom. \"Unless young people take action, nothing will change,\" says Mia, one of the students. \"If every school does a little, we will slow down global warming.\" Next year, the group wants to plant trees around the soccer field.",
       "source": { "kind": "original" }
     }
   ],
@@ -175,7 +175,7 @@
         {
           "prompt": "What problem did the students notice?",
           "options": [
-            "Classrooms with the lights off",
+            "Lights left on in empty rooms",
             "No trees near the school",
             "Too many plastic bottles in the trash"
           ],
@@ -304,7 +304,10 @@
         "Unless we recycle, there will be more waste.",
         "Unless we recycle, there'll be more trash.",
         "Unless we recycle, there'll be more garbage.",
-        "Unless we recycle, there'll be more waste."
+        "Unless we recycle, there'll be more waste.",
+        "There will be more trash if we don't recycle.",
+        "There will be more garbage if we don't recycle.",
+        "There will be more waste if we don't recycle."
       ]
     },
     {
