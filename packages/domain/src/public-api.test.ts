@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   LEVELS,
   addDays,
+  annotateText,
   answer,
+  buildGlossaryIndex,
   createPlacementSession,
   currentQuestion,
   levelFromTheta,
@@ -75,5 +77,12 @@ describe("public API (barrel)", () => {
 
   it("exposes the CEFR levels in ascending order", () => {
     expect(LEVELS).toEqual(["A1", "A2", "B1", "B2", "C1"]);
+  });
+
+  it("exposes the glossary lookup", () => {
+    const index = buildGlossaryIndex([
+      { id: "g.city", headword: "city", kind: "word", forms: ["city"], senses: [{ es: "ciudad" }] },
+    ]);
+    expect(annotateText("City!", index).map((s) => s.entryId)).toEqual(["g.city", null]);
   });
 });

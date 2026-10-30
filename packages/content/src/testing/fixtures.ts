@@ -3,9 +3,11 @@
  * Each builder returns a fully valid object; tests override single fields to
  * make it invalid.
  */
+import type { LoadedFile } from "../validate/types";
 import type {
   ClozeExercise,
   ContentFile,
+  GlossaryEntry,
   Item,
   Lesson,
   Passage,
@@ -169,4 +171,77 @@ export function validFile(): ContentFile {
     passages: [passage()],
     lessons: [lesson()],
   };
+}
+
+export function glossaryEntry(o: Partial<GlossaryEntry> = {}): GlossaryEntry {
+  return {
+    id: "glossary.although",
+    headword: "although",
+    kind: "word",
+    forms: ["although"],
+    senses: [{ es: "aunque", pos: "conjunction" }],
+    ...o,
+  };
+}
+
+/** [headword, forms (headword first), Spanish] for every word in `validFile()`. */
+const FIXTURE_GLOSSARY: readonly (readonly [string, readonly string[], string])[] = [
+  ["a", ["a"], "un, una"],
+  ["although", ["although"], "aunque"],
+  ["be", ["be", "was"], "ser, estar"],
+  ["because", ["because"], "porque"],
+  ["best", ["best"], "mejor"],
+  ["choose", ["choose"], "elegir"],
+  ["do", ["do", "did"], "hacer"],
+  ["go", ["go", "went"], "ir"],
+  ["go out", ["go out", "went out"], "salir"],
+  ["he", ["he"], "él"],
+  ["it", ["it"], "eso, ello"],
+  ["keep", ["keep", "kept"], "seguir, mantener"],
+  ["last", ["last"], "pasado, último"],
+  ["late", ["late"], "tarde"],
+  ["Lisbon", ["lisbon"], "Lisboa"],
+  ["Madrid", ["madrid"], "Madrid"],
+  ["meaning", ["meaning"], "significado"],
+  ["of", ["of"], "de"],
+  ["out", ["out"], "afuera"],
+  ["Paris", ["paris"], "París"],
+  ["rain", ["rain", "rained", "raining"], "llover"],
+  ["short", ["short"], "corto"],
+  ["summer", ["summer"], "verano"],
+  ["the", ["the"], "el, la, los, las"],
+  ["they", ["they"], "ellos, ellas"],
+  ["tired", ["tired"], "cansado"],
+  ["to", ["to"], "a"],
+  ["trip", ["trip"], "viaje"],
+  ["unless", ["unless"], "a menos que"],
+  ["walk", ["walk", "walking"], "caminar"],
+  ["we", ["we"], "nosotros"],
+  ["where", ["where"], "dónde"],
+];
+
+/**
+ * A glossary covering every English word in `validFile()` and
+ * `placementQuestion()`, split into `glossary/<letter>.json` files.
+ */
+export function glossaryFiles(): LoadedFile[] {
+  const byLetter = new Map<string, GlossaryEntry[]>();
+  for (const [headword, forms, es] of FIXTURE_GLOSSARY) {
+    const letter = headword[0]?.toLowerCase() ?? "";
+    const list = byLetter.get(letter) ?? [];
+    list.push(
+      glossaryEntry({
+        id: `glossary.${headword.toLowerCase().replace(/ /g, "-")}`,
+        headword,
+        kind: headword.includes(" ") ? "phrase" : "word",
+        forms: [...forms],
+        senses: [{ es }],
+      }),
+    );
+    byLetter.set(letter, list);
+  }
+  return [...byLetter].map(([letter, glossary]) => ({
+    file: `glossary/${letter}.json`,
+    data: { glossary },
+  }));
 }

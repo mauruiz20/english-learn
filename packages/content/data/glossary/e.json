@@ -1,0 +1,512 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.each",
+      "headword": "each",
+      "kind": "word",
+      "forms": ["each"],
+      "senses": [
+        {
+          "es": "cada",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.each-other",
+      "headword": "each other",
+      "kind": "phrase",
+      "forms": ["each other"],
+      "senses": [
+        {
+          "es": "el uno al otro, mutuamente",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.early",
+      "headword": "early",
+      "kind": "word",
+      "forms": ["early", "earlier", "earliest"],
+      "senses": [
+        {
+          "es": "temprano",
+          "pos": "adverb"
+        },
+        {
+          "es": "temprano, primero",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.easy",
+      "headword": "easy",
+      "kind": "word",
+      "forms": ["easy", "easier", "easiest"],
+      "senses": [
+        {
+          "es": "fácil",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.eat",
+      "headword": "eat",
+      "kind": "word",
+      "forms": ["eat", "eats", "ate", "eaten", "eating"],
+      "senses": [
+        {
+          "es": "comer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.economics",
+      "headword": "economics",
+      "kind": "word",
+      "forms": ["economics"],
+      "senses": [
+        {
+          "es": "economía (carrera)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.eight",
+      "headword": "eight",
+      "kind": "word",
+      "forms": ["eight"],
+      "senses": [
+        {
+          "es": "ocho",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.elena",
+      "headword": "Elena",
+      "kind": "word",
+      "forms": ["elena"],
+      "senses": [
+        {
+          "es": "Elena (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.eleven",
+      "headword": "eleven",
+      "kind": "word",
+      "forms": ["eleven"],
+      "senses": [
+        {
+          "es": "once",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.emergency",
+      "headword": "emergency",
+      "kind": "word",
+      "forms": ["emergency", "emergencies"],
+      "senses": [
+        {
+          "es": "emergencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.employee",
+      "headword": "employee",
+      "kind": "word",
+      "forms": ["employee", "employees"],
+      "senses": [
+        {
+          "es": "empleado, empleada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.empty",
+      "headword": "empty",
+      "kind": "word",
+      "forms": ["empty"],
+      "senses": [
+        {
+          "es": "vacío",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.end",
+      "headword": "end",
+      "kind": "word",
+      "forms": ["end", "ends", "ended", "ending"],
+      "senses": [
+        {
+          "es": "fin, final",
+          "pos": "noun"
+        },
+        {
+          "es": "terminar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.energy",
+      "headword": "energy",
+      "kind": "word",
+      "forms": ["energy"],
+      "senses": [
+        {
+          "es": "energía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.engineering",
+      "headword": "engineering",
+      "kind": "word",
+      "forms": ["engineering"],
+      "senses": [
+        {
+          "es": "ingeniería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.english",
+      "headword": "English",
+      "kind": "word",
+      "forms": ["english"],
+      "senses": [
+        {
+          "es": "inglés (idioma)",
+          "pos": "noun"
+        },
+        {
+          "es": "inglés",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.enjoy",
+      "headword": "enjoy",
+      "kind": "word",
+      "forms": ["enjoy", "enjoys", "enjoyed", "enjoying"],
+      "senses": [
+        {
+          "es": "disfrutar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.enough",
+      "headword": "enough",
+      "kind": "word",
+      "forms": ["enough"],
+      "senses": [
+        {
+          "es": "suficiente",
+          "pos": "determiner"
+        },
+        {
+          "es": "lo suficiente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.environment",
+      "headword": "environment",
+      "kind": "word",
+      "forms": ["environment"],
+      "senses": [
+        {
+          "es": "medio ambiente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.essay",
+      "headword": "essay",
+      "kind": "word",
+      "forms": ["essay", "essays"],
+      "senses": [
+        {
+          "es": "ensayo, redacción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.even",
+      "headword": "even",
+      "kind": "word",
+      "forms": ["even"],
+      "senses": [
+        {
+          "es": "incluso, aun",
+          "pos": "adverb"
+        },
+        {
+          "es": "(even though) aunque",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.even-though",
+      "headword": "even though",
+      "kind": "phrase",
+      "forms": ["even though"],
+      "senses": [
+        {
+          "es": "aunque",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.evening",
+      "headword": "evening",
+      "kind": "word",
+      "forms": ["evening", "evenings"],
+      "senses": [
+        {
+          "es": "noche (temprano), tarde",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ever",
+      "headword": "ever",
+      "kind": "word",
+      "forms": ["ever"],
+      "senses": [
+        {
+          "es": "alguna vez",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.every",
+      "headword": "every",
+      "kind": "word",
+      "forms": ["every"],
+      "senses": [
+        {
+          "es": "cada, todos los",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.everyone",
+      "headword": "everyone",
+      "kind": "word",
+      "forms": ["everyone"],
+      "senses": [
+        {
+          "es": "todos, todo el mundo",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.everything",
+      "headword": "everything",
+      "kind": "word",
+      "forms": ["everything"],
+      "senses": [
+        {
+          "es": "todo",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.everywhere",
+      "headword": "everywhere",
+      "kind": "word",
+      "forms": ["everywhere"],
+      "senses": [
+        {
+          "es": "en todas partes",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exact",
+      "headword": "exact",
+      "kind": "word",
+      "forms": ["exact"],
+      "senses": [
+        {
+          "es": "exacto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exactly",
+      "headword": "exactly",
+      "kind": "word",
+      "forms": ["exactly"],
+      "senses": [
+        {
+          "es": "exactamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exam",
+      "headword": "exam",
+      "kind": "word",
+      "forms": ["exam", "exams"],
+      "senses": [
+        {
+          "es": "examen",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.excited",
+      "headword": "excited",
+      "kind": "word",
+      "forms": ["excited"],
+      "senses": [
+        {
+          "es": "emocionado, entusiasmado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.excuse",
+      "headword": "excuse",
+      "kind": "word",
+      "forms": ["excuse"],
+      "senses": [
+        {
+          "es": "(excuse me) disculpe, perdone",
+          "pos": "verb"
+        },
+        {
+          "es": "excusa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.excuse-me",
+      "headword": "excuse me",
+      "kind": "phrase",
+      "forms": ["excuse me"],
+      "senses": [
+        {
+          "es": "disculpe, perdón",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exercise",
+      "headword": "exercise",
+      "kind": "word",
+      "forms": ["exercise", "exercises"],
+      "senses": [
+        {
+          "es": "ejercicio",
+          "pos": "noun"
+        },
+        {
+          "es": "hacer ejercicio",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exhibition",
+      "headword": "exhibition",
+      "kind": "word",
+      "forms": ["exhibition", "exhibitions"],
+      "senses": [
+        {
+          "es": "exposición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.expensive",
+      "headword": "expensive",
+      "kind": "word",
+      "forms": ["expensive"],
+      "senses": [
+        {
+          "es": "caro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.experience",
+      "headword": "experience",
+      "kind": "word",
+      "forms": ["experience", "experiences"],
+      "senses": [
+        {
+          "es": "experiencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.explain",
+      "headword": "explain",
+      "kind": "word",
+      "forms": ["explain", "explains", "explained", "explaining"],
+      "senses": [
+        {
+          "es": "explicar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.eye",
+      "headword": "eye",
+      "kind": "word",
+      "forms": ["eye", "eyes"],
+      "senses": [
+        {
+          "es": "ojo",
+          "pos": "noun"
+        }
+      ]
+    }
+  ]
+}

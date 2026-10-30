@@ -11,6 +11,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   findDuplicateKeys,
+  glossaryReport,
   validateCorpus,
   validateLocal,
   validateSchema,
@@ -28,12 +29,26 @@ export function listJsonFiles(dir: string): string[] {
 }
 
 export function main(dir: string = DEFAULT_DATA_DIR): ValidationError[] {
+  return load(dir).errors;
+}
+
+/** Loads and validates `dir`; `loaded` holds every file that passed the schema. */
+export function load(dir: string = DEFAULT_DATA_DIR): {
+  errors: ValidationError[];
+  loaded: LoadedFile[];
+} {
   if (!existsSync(dir) || !statSync(dir).isDirectory()) {
-    return [{ file: dir, path: "(root)", message: "content directory does not exist" }];
+    return {
+      errors: [{ file: dir, path: "(root)", message: "content directory does not exist" }],
+      loaded: [],
+    };
   }
   const files = listJsonFiles(dir);
   if (files.length === 0) {
-    return [{ file: dir, path: "(root)", message: "no content files found" }];
+    return {
+      errors: [{ file: dir, path: "(root)", message: "no content files found" }],
+      loaded: [],
+    };
   }
 
   const errors: ValidationError[] = [];
@@ -65,7 +80,7 @@ export function main(dir: string = DEFAULT_DATA_DIR): ValidationError[] {
   // Cross-file rules need a complete corpus; reference-free rules still run on
   // every file that parsed, so one broken file does not hide other mistakes.
   errors.push(...(errors.length === 0 ? validateCorpus(loaded) : validateLocal(loaded)));
-  return errors;
+  return { errors, loaded };
 }
 
 export function formatErrors(errors: readonly ValidationError[]): string {
@@ -76,8 +91,13 @@ export function run(
   dir: string = DEFAULT_DATA_DIR,
   log: (line: string) => void = console.error,
 ): { code: 0 | 1 } {
-  const errors = main(dir);
+  const { errors, loaded } = load(dir);
   if (errors.length === 0) {
+    const g = glossaryReport(loaded);
+    log(
+      `glossary: ${g.entries} entries (${g.phrases} phrases), ${g.forms} forms; ` +
+        `warning: ${g.unusedForms.length} unused forms`,
+    );
     log("content: OK");
     return { code: 0 };
   }

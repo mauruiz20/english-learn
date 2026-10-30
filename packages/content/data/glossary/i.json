@@ -1,0 +1,468 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.i",
+      "headword": "I",
+      "kind": "word",
+      "forms": ["i"],
+      "senses": [
+        {
+          "es": "yo",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.i-d",
+      "headword": "I'd",
+      "kind": "word",
+      "forms": ["i'd"],
+      "senses": [
+        {
+          "es": "yo (I would) -ría: I'd like = me gustaría",
+          "pos": "expression"
+        },
+        {
+          "es": "yo había (I had)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.i-ll",
+      "headword": "I'll",
+      "kind": "word",
+      "forms": ["i'll"],
+      "senses": [
+        {
+          "es": "yo (I will): futuro, I'll go = iré",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.i-m",
+      "headword": "I'm",
+      "kind": "word",
+      "forms": ["i'm"],
+      "senses": [
+        {
+          "es": "yo soy, yo estoy (I am)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.i-ve",
+      "headword": "I've",
+      "kind": "word",
+      "forms": ["i've"],
+      "senses": [
+        {
+          "es": "yo he (I have + participio)",
+          "pos": "expression"
+        },
+        {
+          "es": "yo tengo (I've got)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.idea",
+      "headword": "idea",
+      "kind": "word",
+      "forms": ["idea", "ideas"],
+      "senses": [
+        {
+          "es": "idea",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.if",
+      "headword": "if",
+      "kind": "word",
+      "forms": ["if"],
+      "senses": [
+        {
+          "es": "si (condicional)",
+          "pos": "conjunction"
+        },
+        {
+          "es": "si (en preguntas indirectas)",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.immediately",
+      "headword": "immediately",
+      "kind": "word",
+      "forms": ["immediately"],
+      "senses": [
+        {
+          "es": "inmediatamente, de inmediato",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.imperative",
+      "headword": "imperative",
+      "kind": "word",
+      "forms": ["imperative", "imperatives"],
+      "senses": [
+        {
+          "es": "imperativo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.important",
+      "headword": "important",
+      "kind": "word",
+      "forms": ["important"],
+      "senses": [
+        {
+          "es": "importante",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.impressive",
+      "headword": "impressive",
+      "kind": "word",
+      "forms": ["impressive"],
+      "senses": [
+        {
+          "es": "impresionante",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.in",
+      "headword": "in",
+      "kind": "word",
+      "forms": ["in"],
+      "senses": [
+        {
+          "es": "en",
+          "pos": "preposition"
+        },
+        {
+          "es": "dentro de",
+          "pos": "preposition"
+        },
+        {
+          "es": "dentro, adentro",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.in-case",
+      "headword": "in case",
+      "kind": "phrase",
+      "forms": ["in case"],
+      "senses": [
+        {
+          "es": "por si, en caso de que",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.in-cash",
+      "headword": "in cash",
+      "kind": "phrase",
+      "forms": ["in cash"],
+      "senses": [
+        {
+          "es": "en efectivo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.in-front-of",
+      "headword": "in front of",
+      "kind": "phrase",
+      "forms": ["in front of"],
+      "senses": [
+        {
+          "es": "delante de, frente a",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.in-time",
+      "headword": "in time",
+      "kind": "phrase",
+      "forms": ["in time"],
+      "senses": [
+        {
+          "es": "a tiempo (para)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.infinitive",
+      "headword": "infinitive",
+      "kind": "word",
+      "forms": ["infinitive", "infinitives"],
+      "senses": [
+        {
+          "es": "infinitivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ing",
+      "headword": "ing",
+      "kind": "word",
+      "forms": ["ing"],
+      "senses": [
+        {
+          "es": "(-ing) terminación del gerundio (reading = leer, leyendo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.inside",
+      "headword": "inside",
+      "kind": "word",
+      "forms": ["inside"],
+      "senses": [
+        {
+          "es": "adentro",
+          "pos": "adverb"
+        },
+        {
+          "es": "dentro de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.install",
+      "headword": "install",
+      "kind": "word",
+      "forms": ["install", "installs", "installed", "installing"],
+      "senses": [
+        {
+          "es": "instalar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.instead",
+      "headword": "instead",
+      "kind": "word",
+      "forms": ["instead"],
+      "senses": [
+        {
+          "es": "en cambio, en su lugar",
+          "pos": "adverb"
+        },
+        {
+          "es": "(instead of) en lugar de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.interesting",
+      "headword": "interesting",
+      "kind": "word",
+      "forms": ["interesting"],
+      "senses": [
+        {
+          "es": "interesante",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.intersection",
+      "headword": "intersection",
+      "kind": "word",
+      "forms": ["intersection", "intersections"],
+      "senses": [
+        {
+          "es": "cruce, intersección",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.interview",
+      "headword": "interview",
+      "kind": "word",
+      "forms": ["interview", "interviews"],
+      "senses": [
+        {
+          "es": "entrevista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.into",
+      "headword": "into",
+      "kind": "word",
+      "forms": ["into"],
+      "senses": [
+        {
+          "es": "en, dentro de (con movimiento)",
+          "pos": "preposition"
+        },
+        {
+          "es": "a",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.invent",
+      "headword": "invent",
+      "kind": "word",
+      "forms": ["invent", "invents", "invented", "inventing"],
+      "senses": [
+        {
+          "es": "inventar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.invite",
+      "headword": "invite",
+      "kind": "word",
+      "forms": ["invite", "invites", "invited", "inviting"],
+      "senses": [
+        {
+          "es": "invitar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.is",
+      "headword": "is",
+      "kind": "word",
+      "forms": ["is"],
+      "senses": [
+        {
+          "es": "es, está (3.ª persona de be)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.isn-t",
+      "headword": "isn't",
+      "kind": "word",
+      "forms": ["isn't"],
+      "senses": [
+        {
+          "es": "no es, no está (is not)",
+          "pos": "verb"
+        },
+        {
+          "es": "(there isn't) no hay",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.it",
+      "headword": "it",
+      "kind": "word",
+      "forms": ["it"],
+      "senses": [
+        {
+          "es": "eso, lo, la (no se traduce como sujeto: it rains = llueve)",
+          "pos": "pronoun"
+        },
+        {
+          "es": "(IT) informática, TI",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.it-ll",
+      "headword": "it'll",
+      "kind": "word",
+      "forms": ["it'll"],
+      "senses": [
+        {
+          "es": "(it will) futuro: it'll rain = va a llover, lloverá",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.it-s",
+      "headword": "it's",
+      "kind": "word",
+      "forms": ["it's"],
+      "senses": [
+        {
+          "es": "es, está (it is)",
+          "pos": "expression"
+        },
+        {
+          "es": "ha (it has)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.italy",
+      "headword": "Italy",
+      "kind": "word",
+      "forms": ["italy"],
+      "senses": [
+        {
+          "es": "Italia",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.item",
+      "headword": "item",
+      "kind": "word",
+      "forms": ["item", "items"],
+      "senses": [
+        {
+          "es": "artículo, cosa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.its",
+      "headword": "its",
+      "kind": "word",
+      "forms": ["its"],
+      "senses": [
+        {
+          "es": "su (de una cosa o animal)",
+          "pos": "determiner"
+        }
+      ]
+    }
+  ]
+}

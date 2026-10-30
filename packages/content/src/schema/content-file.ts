@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ExerciseSchema } from "./exercise";
+import { GlossaryEntrySchema } from "./glossary";
 import { ItemSchema, LessonSchema, PassageSchema } from "./entities";
 import { PlacementQuestionSchema } from "./placement";
 
@@ -10,5 +11,6 @@ export const ContentFileSchema = z.strictObject({
   passages: z.array(PassageSchema).optional(),
   lessons: z.array(LessonSchema).optional(),
   placement: z.array(PlacementQuestionSchema).optional(),
+  glossary: z.array(GlossaryEntrySchema).optional(),
 });
 export type ContentFile = z.infer<typeof ContentFileSchema>;

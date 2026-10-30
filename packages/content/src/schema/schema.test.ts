@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   ContentFileSchema,
   ExerciseSchema,
+  GlossaryEntrySchema,
   ItemSchema,
   LessonSchema,
   LevelSchema,
@@ -213,5 +214,46 @@ describe("ContentFileSchema", () => {
   });
   it("rejects unknown top-level keys", () => {
     expect(ContentFileSchema.safeParse({ itemz: [] }).success).toBe(false);
+  });
+});
+
+describe("GlossaryEntrySchema", () => {
+  it("accepts a word entry and a phrase entry, with or without pos", () => {
+    expect(GlossaryEntrySchema.safeParse(fx.glossaryEntry()).success).toBe(true);
+    const phrase = fx.glossaryEntry({
+      id: "glossary.traffic-jam",
+      headword: "traffic jam",
+      kind: "phrase",
+      forms: ["traffic jam", "traffic jams"],
+      senses: [{ es: "embotellamiento" }],
+    });
+    expect(GlossaryEntrySchema.safeParse(phrase).success).toBe(true);
+  });
+  it("rejects ids that do not look like glossary.<slug>", () => {
+    for (const id of ["although", "glossary.", "glossary.Although", "b1.travel.although"]) {
+      expect(GlossaryEntrySchema.safeParse(fx.glossaryEntry({ id })).success, id).toBe(false);
+    }
+  });
+  it("needs 1 to 3 senses and at least one form", () => {
+    const sense = { es: "aunque" };
+    for (const senses of [[], [sense, sense, sense, sense]]) {
+      expect(GlossaryEntrySchema.safeParse(fx.glossaryEntry({ senses })).success).toBe(false);
+    }
+    expect(GlossaryEntrySchema.safeParse(fx.glossaryEntry({ forms: [] })).success).toBe(false);
+  });
+  it("applies NonEmptyString to headword, forms and senses, and rejects unknown keys or pos", () => {
+    const bad: unknown[] = [
+      fx.glossaryEntry({ headword: " although" }),
+      fx.glossaryEntry({ forms: [""] }),
+      fx.glossaryEntry({ senses: [{ es: "aunque " }] }),
+      { ...fx.glossaryEntry(), extra: 1 },
+      { ...fx.glossaryEntry(), senses: [{ es: "aunque", note: "x" }] },
+      { ...fx.glossaryEntry(), senses: [{ es: "aunque", pos: "thing" }] },
+      { ...fx.glossaryEntry(), kind: "grammar" },
+    ];
+    for (const value of bad) expect(GlossaryEntrySchema.safeParse(value).success).toBe(false);
+  });
+  it("is allowed in a content file", () => {
+    expect(ContentFileSchema.safeParse({ glossary: [fx.glossaryEntry()] }).success).toBe(true);
   });
 });

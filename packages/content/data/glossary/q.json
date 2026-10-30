@@ -1,0 +1,44 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.question",
+      "headword": "question",
+      "kind": "word",
+      "forms": ["question", "questions"],
+      "senses": [
+        {
+          "es": "pregunta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.quiet",
+      "headword": "quiet",
+      "kind": "word",
+      "forms": ["quiet"],
+      "senses": [
+        {
+          "es": "tranquilo, silencioso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.quit",
+      "headword": "quit",
+      "kind": "word",
+      "forms": ["quit", "quits", "quitting"],
+      "senses": [
+        {
+          "es": "renunciar (a un trabajo)",
+          "pos": "verb"
+        },
+        {
+          "es": "dejar (un hábito)",
+          "pos": "verb"
+        }
+      ]
+    }
+  ]
+}

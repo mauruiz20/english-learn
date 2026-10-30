@@ -1,0 +1,128 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.vegetable",
+      "headword": "vegetable",
+      "kind": "word",
+      "forms": ["vegetable", "vegetables"],
+      "senses": [
+        {
+          "es": "verdura, vegetal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.verb",
+      "headword": "verb",
+      "kind": "word",
+      "forms": ["verb", "verbs"],
+      "senses": [
+        {
+          "es": "verbo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.very",
+      "headword": "very",
+      "kind": "word",
+      "forms": ["very"],
+      "senses": [
+        {
+          "es": "muy",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.video",
+      "headword": "video",
+      "kind": "word",
+      "forms": ["video", "videos"],
+      "senses": [
+        {
+          "es": "video",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.video-call",
+      "headword": "video call",
+      "kind": "phrase",
+      "forms": ["video call", "video calls"],
+      "senses": [
+        {
+          "es": "videollamada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.video-game",
+      "headword": "video game",
+      "kind": "phrase",
+      "forms": ["video game", "video games"],
+      "senses": [
+        {
+          "es": "videojuego",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.village",
+      "headword": "village",
+      "kind": "word",
+      "forms": ["village", "villages"],
+      "senses": [
+        {
+          "es": "pueblo, aldea",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.virus",
+      "headword": "virus",
+      "kind": "word",
+      "forms": ["virus", "viruses"],
+      "senses": [
+        {
+          "es": "virus",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.visit",
+      "headword": "visit",
+      "kind": "word",
+      "forms": ["visit", "visits", "visited", "visiting"],
+      "senses": [
+        {
+          "es": "visitar",
+          "pos": "verb"
+        },
+        {
+          "es": "visita",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.vs",
+      "headword": "vs",
+      "kind": "word",
+      "forms": ["vs"],
+      "senses": [
+        {
+          "es": "versus, frente a",
+          "pos": "preposition"
+        }
+      ]
+    }
+  ]
+}

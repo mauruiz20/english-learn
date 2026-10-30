@@ -1,0 +1,620 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.laptop",
+      "headword": "laptop",
+      "kind": "word",
+      "forms": ["laptop", "laptops"],
+      "senses": [
+        {
+          "es": "laptop, computadora portátil",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.last",
+      "headword": "last",
+      "kind": "word",
+      "forms": ["last", "lasts", "lasted"],
+      "senses": [
+        {
+          "es": "pasado (last week = la semana pasada)",
+          "pos": "adjective"
+        },
+        {
+          "es": "último",
+          "pos": "adjective"
+        },
+        {
+          "es": "durar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.late",
+      "headword": "late",
+      "kind": "word",
+      "forms": ["late", "later", "latest"],
+      "senses": [
+        {
+          "es": "tarde",
+          "pos": "adverb"
+        },
+        {
+          "es": "tarde, con retraso",
+          "pos": "adjective"
+        },
+        {
+          "es": "(later) después, más tarde",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.laugh",
+      "headword": "laugh",
+      "kind": "word",
+      "forms": ["laugh", "laughs", "laughed", "laughing"],
+      "senses": [
+        {
+          "es": "reír(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.leader",
+      "headword": "leader",
+      "kind": "word",
+      "forms": ["leader", "leaders"],
+      "senses": [
+        {
+          "es": "líder",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.learn",
+      "headword": "learn",
+      "kind": "word",
+      "forms": ["learn", "learns", "learned", "learning"],
+      "senses": [
+        {
+          "es": "aprender",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.least",
+      "headword": "least",
+      "kind": "word",
+      "forms": ["least"],
+      "senses": [
+        {
+          "es": "menos",
+          "pos": "adverb"
+        },
+        {
+          "es": "(at least) al menos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.leave",
+      "headword": "leave",
+      "kind": "word",
+      "forms": ["leave", "leaves", "leaving"],
+      "senses": [
+        {
+          "es": "irse, salir",
+          "pos": "verb"
+        },
+        {
+          "es": "dejar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.left",
+      "headword": "left",
+      "kind": "word",
+      "forms": ["left"],
+      "senses": [
+        {
+          "es": "salió, se fue; dejó (pasado de leave)",
+          "pos": "verb"
+        },
+        {
+          "es": "izquierda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lend",
+      "headword": "lend",
+      "kind": "word",
+      "forms": ["lend", "lends", "lent", "lending"],
+      "senses": [
+        {
+          "es": "prestar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.less",
+      "headword": "less",
+      "kind": "word",
+      "forms": ["less"],
+      "senses": [
+        {
+          "es": "menos",
+          "pos": "adverb"
+        },
+        {
+          "es": "menos",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.let",
+      "headword": "let",
+      "kind": "word",
+      "forms": ["let", "lets", "letting"],
+      "senses": [
+        {
+          "es": "dejar, permitir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.letter",
+      "headword": "letter",
+      "kind": "word",
+      "forms": ["letter", "letters"],
+      "senses": [
+        {
+          "es": "carta",
+          "pos": "noun"
+        },
+        {
+          "es": "letra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.library",
+      "headword": "library",
+      "kind": "word",
+      "forms": ["library", "libraries"],
+      "senses": [
+        {
+          "es": "biblioteca",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.life",
+      "headword": "life",
+      "kind": "word",
+      "forms": ["life"],
+      "senses": [
+        {
+          "es": "vida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.light",
+      "headword": "light",
+      "kind": "word",
+      "forms": ["light", "lights"],
+      "senses": [
+        {
+          "es": "luz",
+          "pos": "noun"
+        },
+        {
+          "es": "ligero, claro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.like",
+      "headword": "like",
+      "kind": "word",
+      "forms": ["like", "likes", "liked", "liking"],
+      "senses": [
+        {
+          "es": "gustar (I like = me gusta)",
+          "pos": "verb"
+        },
+        {
+          "es": "como (look like = parecerse a)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.likely",
+      "headword": "likely",
+      "kind": "word",
+      "forms": ["likely"],
+      "senses": [
+        {
+          "es": "probable (be likely to = es probable que)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lincoln",
+      "headword": "Lincoln",
+      "kind": "word",
+      "forms": ["lincoln"],
+      "senses": [
+        {
+          "es": "Lincoln (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.line",
+      "headword": "line",
+      "kind": "word",
+      "forms": ["line", "lines"],
+      "senses": [
+        {
+          "es": "línea",
+          "pos": "noun"
+        },
+        {
+          "es": "fila",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lisbon",
+      "headword": "Lisbon",
+      "kind": "word",
+      "forms": ["lisbon"],
+      "senses": [
+        {
+          "es": "Lisboa",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.listen",
+      "headword": "listen",
+      "kind": "word",
+      "forms": ["listen", "listens", "listened", "listening"],
+      "senses": [
+        {
+          "es": "escuchar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.little",
+      "headword": "little",
+      "kind": "word",
+      "forms": ["little"],
+      "senses": [
+        {
+          "es": "pequeño",
+          "pos": "adjective"
+        },
+        {
+          "es": "poco",
+          "pos": "determiner"
+        },
+        {
+          "es": "(a little) un poco",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.live",
+      "headword": "live",
+      "kind": "word",
+      "forms": ["live", "lived", "living"],
+      "senses": [
+        {
+          "es": "vivir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lives",
+      "headword": "lives",
+      "kind": "word",
+      "forms": ["lives"],
+      "senses": [
+        {
+          "es": "vive (3.ª persona de live)",
+          "pos": "verb"
+        },
+        {
+          "es": "vidas (plural de life)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.living-room",
+      "headword": "living room",
+      "kind": "phrase",
+      "forms": ["living room", "living rooms"],
+      "senses": [
+        {
+          "es": "sala, sala de estar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.local",
+      "headword": "local",
+      "kind": "word",
+      "forms": ["local", "locals"],
+      "senses": [
+        {
+          "es": "local",
+          "pos": "adjective"
+        },
+        {
+          "es": "lugareño, persona del lugar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.log",
+      "headword": "log",
+      "kind": "word",
+      "forms": ["log", "logs", "logged", "logging"],
+      "senses": [
+        {
+          "es": "(log in) iniciar sesión",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.log-in",
+      "headword": "log in",
+      "kind": "phrase",
+      "forms": ["log in", "logs in", "logged in", "logging in"],
+      "senses": [
+        {
+          "es": "iniciar sesión, entrar (a una cuenta)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.long",
+      "headword": "long",
+      "kind": "word",
+      "forms": ["long", "longer", "longest"],
+      "senses": [
+        {
+          "es": "largo",
+          "pos": "adjective"
+        },
+        {
+          "es": "mucho tiempo (how long = cuánto tiempo)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.look",
+      "headword": "look",
+      "kind": "word",
+      "forms": ["look", "looks", "looked", "looking"],
+      "senses": [
+        {
+          "es": "mirar",
+          "pos": "verb"
+        },
+        {
+          "es": "verse, parecer (look tired)",
+          "pos": "verb"
+        },
+        {
+          "es": "(look for) buscar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.look-after",
+      "headword": "look after",
+      "kind": "phrase",
+      "forms": ["look after", "looks after", "looked after", "looking after"],
+      "senses": [
+        {
+          "es": "cuidar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.look-for",
+      "headword": "look for",
+      "kind": "phrase",
+      "forms": ["look for", "looks for", "looked for", "looking for"],
+      "senses": [
+        {
+          "es": "buscar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.look-forward-to",
+      "headword": "look forward to",
+      "kind": "phrase",
+      "forms": ["look forward to", "looks forward to", "looked forward to", "looking forward to"],
+      "senses": [
+        {
+          "es": "tener muchas ganas de, esperar con ilusión",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.look-like",
+      "headword": "look like",
+      "kind": "phrase",
+      "forms": ["look like", "looks like", "looked like", "looking like"],
+      "senses": [
+        {
+          "es": "parecerse a",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "parecer",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lose",
+      "headword": "lose",
+      "kind": "word",
+      "forms": ["lose", "loses", "lost", "losing"],
+      "senses": [
+        {
+          "es": "perder",
+          "pos": "verb"
+        },
+        {
+          "es": "(lose weight) bajar de peso",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lose-weight",
+      "headword": "lose weight",
+      "kind": "phrase",
+      "forms": ["lose weight", "loses weight", "lost weight", "losing weight"],
+      "senses": [
+        {
+          "es": "bajar de peso",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lot",
+      "headword": "lot",
+      "kind": "word",
+      "forms": ["lot", "lots"],
+      "senses": [
+        {
+          "es": "(a lot / lots of) mucho, muchos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lottery",
+      "headword": "lottery",
+      "kind": "word",
+      "forms": ["lottery", "lotteries"],
+      "senses": [
+        {
+          "es": "lotería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.love",
+      "headword": "love",
+      "kind": "word",
+      "forms": ["love", "loves", "loved", "loving"],
+      "senses": [
+        {
+          "es": "amar, encantar (I love it = me encanta)",
+          "pos": "verb"
+        },
+        {
+          "es": "amor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lucia",
+      "headword": "Lucía",
+      "kind": "word",
+      "forms": ["lucía"],
+      "senses": [
+        {
+          "es": "Lucía (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lucky",
+      "headword": "lucky",
+      "kind": "word",
+      "forms": ["lucky"],
+      "senses": [
+        {
+          "es": "afortunado, con suerte",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.luggage",
+      "headword": "luggage",
+      "kind": "word",
+      "forms": ["luggage"],
+      "senses": [
+        {
+          "es": "equipaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lunch",
+      "headword": "lunch",
+      "kind": "word",
+      "forms": ["lunch", "lunches"],
+      "senses": [
+        {
+          "es": "almuerzo, comida",
+          "pos": "noun"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.o-clock",
+      "headword": "o'clock",
+      "kind": "word",
+      "forms": ["o'clock"],
+      "senses": [
+        {
+          "es": "en punto (eleven o'clock = las once en punto)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.of",
+      "headword": "of",
+      "kind": "word",
+      "forms": ["of"],
+      "senses": [
+        {
+          "es": "de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.off",
+      "headword": "off",
+      "kind": "word",
+      "forms": ["off"],
+      "senses": [
+        {
+          "es": "apagado",
+          "pos": "adverb"
+        },
+        {
+          "es": "(day off) libre",
+          "pos": "adverb"
+        },
+        {
+          "es": "fuera de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.offer",
+      "headword": "offer",
+      "kind": "word",
+      "forms": ["offer", "offers", "offered", "offering"],
+      "senses": [
+        {
+          "es": "ofrecer",
+          "pos": "verb"
+        },
+        {
+          "es": "oferta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.office",
+      "headword": "office",
+      "kind": "word",
+      "forms": ["office", "offices"],
+      "senses": [
+        {
+          "es": "oficina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.often",
+      "headword": "often",
+      "kind": "word",
+      "forms": ["often"],
+      "senses": [
+        {
+          "es": "a menudo, con frecuencia",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ok",
+      "headword": "OK",
+      "kind": "word",
+      "forms": ["ok", "okay"],
+      "senses": [
+        {
+          "es": "bien",
+          "pos": "adjective"
+        },
+        {
+          "es": "de acuerdo, está bien",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.old",
+      "headword": "old",
+      "kind": "word",
+      "forms": ["old", "older", "oldest"],
+      "senses": [
+        {
+          "es": "viejo",
+          "pos": "adjective"
+        },
+        {
+          "es": "antiguo (my old friends)",
+          "pos": "adjective"
+        },
+        {
+          "es": "(be … years old) tener … años",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.on",
+      "headword": "on",
+      "kind": "word",
+      "forms": ["on"],
+      "senses": [
+        {
+          "es": "en, sobre",
+          "pos": "preposition"
+        },
+        {
+          "es": "el (día: on Monday = el lunes)",
+          "pos": "preposition"
+        },
+        {
+          "es": "encendido",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.on-foot",
+      "headword": "on foot",
+      "kind": "phrase",
+      "forms": ["on foot"],
+      "senses": [
+        {
+          "es": "a pie, caminando",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.on-sale",
+      "headword": "on sale",
+      "kind": "phrase",
+      "forms": ["on sale"],
+      "senses": [
+        {
+          "es": "en oferta, rebajado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.on-time",
+      "headword": "on time",
+      "kind": "phrase",
+      "forms": ["on time"],
+      "senses": [
+        {
+          "es": "a tiempo, puntual",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.once",
+      "headword": "once",
+      "kind": "word",
+      "forms": ["once"],
+      "senses": [
+        {
+          "es": "una vez",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.one",
+      "headword": "one",
+      "kind": "word",
+      "forms": ["one", "ones"],
+      "senses": [
+        {
+          "es": "uno",
+          "pos": "number"
+        },
+        {
+          "es": "uno (the first one = el primero)",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.online",
+      "headword": "online",
+      "kind": "word",
+      "forms": ["online"],
+      "senses": [
+        {
+          "es": "en línea, por internet",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.only",
+      "headword": "only",
+      "kind": "word",
+      "forms": ["only"],
+      "senses": [
+        {
+          "es": "solo, solamente",
+          "pos": "adverb"
+        },
+        {
+          "es": "único (only child = hijo único)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.only-child",
+      "headword": "only child",
+      "kind": "phrase",
+      "forms": ["only child", "only children"],
+      "senses": [
+        {
+          "es": "hijo único, hija única",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.open",
+      "headword": "open",
+      "kind": "word",
+      "forms": ["open", "opens", "opened", "opening"],
+      "senses": [
+        {
+          "es": "abrir",
+          "pos": "verb"
+        },
+        {
+          "es": "abierto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.opposite",
+      "headword": "opposite",
+      "kind": "word",
+      "forms": ["opposite"],
+      "senses": [
+        {
+          "es": "opuesto",
+          "pos": "adjective"
+        },
+        {
+          "es": "enfrente de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.or",
+      "headword": "or",
+      "kind": "word",
+      "forms": ["or"],
+      "senses": [
+        {
+          "es": "o",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.other",
+      "headword": "other",
+      "kind": "word",
+      "forms": ["other", "others"],
+      "senses": [
+        {
+          "es": "otro",
+          "pos": "adjective"
+        },
+        {
+          "es": "(each other) el uno al otro",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.our",
+      "headword": "our",
+      "kind": "word",
+      "forms": ["our"],
+      "senses": [
+        {
+          "es": "nuestro, nuestra",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.out",
+      "headword": "out",
+      "kind": "word",
+      "forms": ["out"],
+      "senses": [
+        {
+          "es": "fuera, afuera",
+          "pos": "adverb"
+        },
+        {
+          "es": "(go out) salir",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.over",
+      "headword": "over",
+      "kind": "word",
+      "forms": ["over"],
+      "senses": [
+        {
+          "es": "por (a causa de: a falling-out over a boy)",
+          "pos": "preposition"
+        },
+        {
+          "es": "más que, antes que (prefer A over B)",
+          "pos": "preposition"
+        },
+        {
+          "es": "sobre, encima de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.owe",
+      "headword": "owe",
+      "kind": "word",
+      "forms": ["owe", "owes", "owed", "owing"],
+      "senses": [
+        {
+          "es": "deber (dinero)",
+          "pos": "verb"
+        }
+      ]
+    }
+  ]
+}

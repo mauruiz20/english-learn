@@ -1,0 +1,612 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.dance",
+      "headword": "dance",
+      "kind": "word",
+      "forms": ["dance", "dances", "danced", "dancing"],
+      "senses": [
+        {
+          "es": "bailar",
+          "pos": "verb"
+        },
+        {
+          "es": "baile",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.daniel",
+      "headword": "Daniel",
+      "kind": "word",
+      "forms": ["daniel"],
+      "senses": [
+        {
+          "es": "Daniel (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.date",
+      "headword": "date",
+      "kind": "word",
+      "forms": ["date", "dates", "dated", "dating"],
+      "senses": [
+        {
+          "es": "salir con (alguien)",
+          "pos": "verb"
+        },
+        {
+          "es": "fecha",
+          "pos": "noun"
+        },
+        {
+          "es": "cita",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.day",
+      "headword": "day",
+      "kind": "word",
+      "forms": ["day", "days"],
+      "senses": [
+        {
+          "es": "día",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.day-off",
+      "headword": "day off",
+      "kind": "phrase",
+      "forms": ["day off", "days off"],
+      "senses": [
+        {
+          "es": "día libre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.deadline",
+      "headword": "deadline",
+      "kind": "word",
+      "forms": ["deadline", "deadlines"],
+      "senses": [
+        {
+          "es": "fecha límite, plazo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.decide",
+      "headword": "decide",
+      "kind": "word",
+      "forms": ["decide", "decides", "decided", "deciding"],
+      "senses": [
+        {
+          "es": "decidir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.decision",
+      "headword": "decision",
+      "kind": "word",
+      "forms": ["decision", "decisions"],
+      "senses": [
+        {
+          "es": "decisión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.deduction",
+      "headword": "deduction",
+      "kind": "word",
+      "forms": ["deduction", "deductions"],
+      "senses": [
+        {
+          "es": "deducción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.definitely",
+      "headword": "definitely",
+      "kind": "word",
+      "forms": ["definitely"],
+      "senses": [
+        {
+          "es": "definitivamente, sin duda",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.degree",
+      "headword": "degree",
+      "kind": "word",
+      "forms": ["degree", "degrees"],
+      "senses": [
+        {
+          "es": "título (universitario)",
+          "pos": "noun"
+        },
+        {
+          "es": "grado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.delay",
+      "headword": "delay",
+      "kind": "word",
+      "forms": ["delay", "delays", "delayed"],
+      "senses": [
+        {
+          "es": "retrasar",
+          "pos": "verb"
+        },
+        {
+          "es": "retraso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.delicious",
+      "headword": "delicious",
+      "kind": "word",
+      "forms": ["delicious"],
+      "senses": [
+        {
+          "es": "delicioso, rico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.deny",
+      "headword": "deny",
+      "kind": "word",
+      "forms": ["deny", "denies", "denied", "denying"],
+      "senses": [
+        {
+          "es": "negar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.design",
+      "headword": "design",
+      "kind": "word",
+      "forms": ["design", "designs", "designed", "designing"],
+      "senses": [
+        {
+          "es": "diseño",
+          "pos": "noun"
+        },
+        {
+          "es": "diseñar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.despite",
+      "headword": "despite",
+      "kind": "word",
+      "forms": ["despite"],
+      "senses": [
+        {
+          "es": "a pesar de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.device",
+      "headword": "device",
+      "kind": "word",
+      "forms": ["device", "devices"],
+      "senses": [
+        {
+          "es": "dispositivo, aparato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.didn-t",
+      "headword": "didn't",
+      "kind": "word",
+      "forms": ["didn't"],
+      "senses": [
+        {
+          "es": "no (pasado: I didn't = yo no …)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.diet",
+      "headword": "diet",
+      "kind": "word",
+      "forms": ["diet", "diets"],
+      "senses": [
+        {
+          "es": "dieta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.differently",
+      "headword": "differently",
+      "kind": "word",
+      "forms": ["differently"],
+      "senses": [
+        {
+          "es": "de otra manera, de forma diferente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.difficult",
+      "headword": "difficult",
+      "kind": "word",
+      "forms": ["difficult"],
+      "senses": [
+        {
+          "es": "difícil",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dinner",
+      "headword": "dinner",
+      "kind": "word",
+      "forms": ["dinner", "dinners"],
+      "senses": [
+        {
+          "es": "cena",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.direction",
+      "headword": "direction",
+      "kind": "word",
+      "forms": ["direction", "directions"],
+      "senses": [
+        {
+          "es": "dirección",
+          "pos": "noun"
+        },
+        {
+          "es": "(directions) indicaciones (para llegar)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.director",
+      "headword": "director",
+      "kind": "word",
+      "forms": ["director", "directors"],
+      "senses": [
+        {
+          "es": "director, directora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.discount",
+      "headword": "discount",
+      "kind": "word",
+      "forms": ["discount", "discounts"],
+      "senses": [
+        {
+          "es": "descuento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dish",
+      "headword": "dish",
+      "kind": "word",
+      "forms": ["dish", "dishes"],
+      "senses": [
+        {
+          "es": "plato",
+          "pos": "noun"
+        },
+        {
+          "es": "(do the dishes) lavar los platos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.do",
+      "headword": "do",
+      "kind": "word",
+      "forms": ["do", "does", "did", "done", "doing"],
+      "senses": [
+        {
+          "es": "(auxiliar en preguntas y negativas; no se traduce)",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "hacer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.do-exercise",
+      "headword": "do exercise",
+      "kind": "phrase",
+      "forms": ["do exercise", "does exercise", "did exercise", "doing exercise"],
+      "senses": [
+        {
+          "es": "hacer ejercicio",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.do-the-dishes",
+      "headword": "do the dishes",
+      "kind": "phrase",
+      "forms": ["do the dishes", "does the dishes", "did the dishes", "doing the dishes"],
+      "senses": [
+        {
+          "es": "lavar los platos",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.doctor",
+      "headword": "doctor",
+      "kind": "word",
+      "forms": ["doctor", "doctors"],
+      "senses": [
+        {
+          "es": "doctor, médico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.document",
+      "headword": "document",
+      "kind": "word",
+      "forms": ["document", "documents"],
+      "senses": [
+        {
+          "es": "documento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.doesn-t",
+      "headword": "doesn't",
+      "kind": "word",
+      "forms": ["doesn't"],
+      "senses": [
+        {
+          "es": "no (presente, 3.ª persona: she doesn't = ella no)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dollar",
+      "headword": "dollar",
+      "kind": "word",
+      "forms": ["dollar", "dollars"],
+      "senses": [
+        {
+          "es": "dólar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.don-t",
+      "headword": "don't",
+      "kind": "word",
+      "forms": ["don't"],
+      "senses": [
+        {
+          "es": "no (presente: I don't = yo no)",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.door",
+      "headword": "door",
+      "kind": "word",
+      "forms": ["door", "doors"],
+      "senses": [
+        {
+          "es": "puerta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.down",
+      "headword": "down",
+      "kind": "word",
+      "forms": ["down"],
+      "senses": [
+        {
+          "es": "abajo, hacia abajo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.download",
+      "headword": "download",
+      "kind": "word",
+      "forms": ["download", "downloads", "downloaded", "downloading"],
+      "senses": [
+        {
+          "es": "descargar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.downtown",
+      "headword": "downtown",
+      "kind": "word",
+      "forms": ["downtown"],
+      "senses": [
+        {
+          "es": "el centro (de la ciudad)",
+          "pos": "noun"
+        },
+        {
+          "es": "en el centro",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drama",
+      "headword": "drama",
+      "kind": "word",
+      "forms": ["drama"],
+      "senses": [
+        {
+          "es": "teatro, arte dramático",
+          "pos": "noun"
+        },
+        {
+          "es": "drama",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.draw",
+      "headword": "draw",
+      "kind": "word",
+      "forms": ["draw", "draws", "drew", "drawn", "drawing"],
+      "senses": [
+        {
+          "es": "dibujar",
+          "pos": "verb"
+        },
+        {
+          "es": "atraer (draw criticism)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dressed",
+      "headword": "dressed",
+      "kind": "word",
+      "forms": ["dressed"],
+      "senses": [
+        {
+          "es": "(get dressed) vestirse",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drink",
+      "headword": "drink",
+      "kind": "word",
+      "forms": ["drink", "drinks", "drank", "drunk", "drinking"],
+      "senses": [
+        {
+          "es": "beber, tomar",
+          "pos": "verb"
+        },
+        {
+          "es": "bebida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drive",
+      "headword": "drive",
+      "kind": "word",
+      "forms": ["drive", "drives", "drove", "driven", "driving"],
+      "senses": [
+        {
+          "es": "manejar, conducir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.due",
+      "headword": "due",
+      "kind": "word",
+      "forms": ["due"],
+      "senses": [
+        {
+          "es": "(be due) que se debe entregar",
+          "pos": "adjective"
+        },
+        {
+          "es": "(due to) debido a",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.due-to",
+      "headword": "due to",
+      "kind": "phrase",
+      "forms": ["due to"],
+      "senses": [
+        {
+          "es": "debido a",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.during",
+      "headword": "during",
+      "kind": "word",
+      "forms": ["during"],
+      "senses": [
+        {
+          "es": "durante",
+          "pos": "preposition"
+        }
+      ]
+    }
+  ]
+}
