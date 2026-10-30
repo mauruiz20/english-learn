@@ -56,6 +56,31 @@ jobs:
       - name: Web e2e tests
         run: pnpm --filter @english-learn/mobile e2e:web
 
+  # Python API (services/api). Integration tests start PostgreSQL 18 with testcontainers,
+  # using the runner's Docker daemon, exactly as they do locally.
+  api:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/api
+    steps:
+      - uses: actions/checkout@v7
+      # setup-uv publishes no floating major tag; pin the release.
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          enable-cache: true
+          cache-dependency-glob: services/api/uv.lock
+      # Python comes from services/api/.python-version (uv downloads it).
+      - run: uv sync --frozen
+      - name: Lint
+        run: uv run ruff check .
+      - name: Format
+        run: uv run ruff format --check .
+      - name: Typecheck
+        run: uv run mypy
+      - name: Test
+        run: uv run pytest
+
   # Production deploy to Cloudflare Pages: only from main, only after every check passed.
   # public/_headers ships the COOP/COEP headers expo-sqlite needs on the web.
   deploy-web:
