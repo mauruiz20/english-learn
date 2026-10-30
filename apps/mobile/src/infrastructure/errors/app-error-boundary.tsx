@@ -1,9 +1,8 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
-import { StyleSheet, Text } from "react-native";
 import { DatabaseOpenError } from "@/infrastructure/persistence/database-open-error";
 import { Button } from "@/shared/ui/button";
-import { Screen } from "@/shared/ui/screen";
-import { colors } from "@/shared/ui/theme";
+import { ScreenContainer } from "@/shared/ui/screen-container";
+import { Text } from "@/shared/ui/text";
 
 type Message = { readonly title: string; readonly detail: string };
 
@@ -53,14 +52,10 @@ export class AppErrorBoundary extends Component<AppErrorBoundaryProps, { error: 
     if (this.state.error === null) return this.props.children;
     const { title, detail } = messageFor(this.state.error);
     return (
-      <Screen title={title}>
-        <Text style={styles.detail}>{detail}</Text>
+      <ScreenContainer title={title} insetTop>
+        <Text>{detail}</Text>
         <Button label="Reintentar" onPress={this.props.onRetry} />
-      </Screen>
+      </ScreenContainer>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  detail: { fontSize: 16, color: colors.text },
-});

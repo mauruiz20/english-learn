@@ -107,21 +107,3 @@ export function themeFor(scheme: string | null | undefined): Theme {
   const resolved: ColorScheme = scheme === "dark" ? "dark" : "light";
   return { scheme: resolved, colors: palettes[resolved] };
 }
-
-/** @deprecated Pre-notebook tokens; removed once every screen uses `useTheme`. */
-export const colors = {
-  background: "#F7F8FA",
-  surface: "#FFFFFF",
-  text: "#1B1F24",
-  textMuted: "#5B6470",
-  primary: "#1F6FEB",
-  primarySoft: "#E8F0FE",
-  onPrimary: "#FFFFFF",
-  border: "#D8DDE3",
-  danger: "#B42318",
-  success: "#067647",
-  warning: "#B54708",
-} as const;
-
-/** @deprecated Use `MAX_TEXT_WIDTH`. */
-export const MAX_CONTENT_WIDTH = 640;
