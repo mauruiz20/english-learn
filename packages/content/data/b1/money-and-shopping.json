@@ -1,0 +1,394 @@
+{
+  "items": [
+    {
+      "id": "b1.money-and-shopping.afford",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "word",
+      "term": "afford",
+      "es": "poder pagar, alcanzarle a uno (el dinero)"
+    },
+    {
+      "id": "b1.money-and-shopping.borrow",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "word",
+      "term": "borrow",
+      "es": "pedir prestado"
+    },
+    {
+      "id": "b1.money-and-shopping.lend",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "word",
+      "term": "lend",
+      "es": "prestar"
+    },
+    {
+      "id": "b1.money-and-shopping.pay-back",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "phrase",
+      "term": "pay back",
+      "es": "devolver (dinero prestado)"
+    },
+    {
+      "id": "b1.money-and-shopping.save-up",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "phrase",
+      "term": "save up (for)",
+      "es": "ahorrar (para)"
+    },
+    {
+      "id": "b1.money-and-shopping.discount",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "word",
+      "term": "discount",
+      "es": "descuento"
+    },
+    {
+      "id": "b1.money-and-shopping.receipt",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "word",
+      "term": "receipt",
+      "es": "recibo, comprobante"
+    },
+    {
+      "id": "b1.money-and-shopping.bargain",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "word",
+      "term": "bargain",
+      "es": "ganga, buena compra"
+    },
+    {
+      "id": "b1.money-and-shopping.refund",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "word",
+      "term": "refund",
+      "es": "reembolso, devolución del dinero"
+    },
+    {
+      "id": "b1.money-and-shopping.credit-card",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "phrase",
+      "term": "credit card",
+      "es": "tarjeta de crédito"
+    },
+    {
+      "id": "b1.money-and-shopping.second-conditional",
+      "level": "B1",
+      "topics": ["money-and-shopping", "grammar"],
+      "kind": "grammar",
+      "term": "second conditional: if + past, would + verb",
+      "es": "segundo condicional: si + pasado de subjuntivo, condicional (situaciones hipotéticas)"
+    },
+    {
+      "id": "b1.money-and-shopping.as-long-as",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "kind": "phrase",
+      "term": "as long as",
+      "es": "siempre que, con tal de que"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.money-and-shopping.saving-for-guitar",
+      "level": "B1",
+      "topics": ["money-and-shopping"],
+      "title": "Saving for a guitar",
+      "text": "When Marco turned sixteen, he decided he wanted a guitar. The one he liked cost four hundred dollars, and he couldn't afford it. His parents said they would lend him the money as long as he paid them back within six months. Marco didn't like the idea of owing money, so he chose to save up instead. He got a weekend job at a supermarket and stopped buying snacks and video games. Every Friday he put half of his pay in a jar. After five months, he had almost enough. Then something lucky happened: the music store had a sale, and the guitar had a twenty percent discount. Marco bought it the same day and kept the receipt in case there was a problem. \"If I had to do it again, I would do exactly the same,\" he says. \"When you really want something, you find a way to pay for it.\"",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.money-and-shopping.vocab-001",
+      "itemIds": ["b1.money-and-shopping.receipt"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'receipt' mean?",
+      "options": ["receta", "recepción", "recibo", "regalo"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.money-and-shopping.cloze-001",
+      "itemIds": ["b1.money-and-shopping.afford"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 241228,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I can't ___ to buy it.",
+      "answers": ["afford"],
+      "distractors": ["cost", "spend", "worth"],
+      "es": "No me alcanza el dinero para comprarlo."
+    },
+    {
+      "id": "b1.money-and-shopping.order-001",
+      "itemIds": ["b1.money-and-shopping.pay-back"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 953806,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["I", "as", "back", "you", "can.", "pay", "as", "soon", "I'll"],
+      "accepted": ["I'll pay you back as soon as I can."],
+      "es": "Te devolveré el dinero en cuanto pueda."
+    },
+    {
+      "id": "b1.money-and-shopping.choice-001",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 4099431,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "If I won the lottery, I'd buy a new car.",
+      "options": [
+        "Si ganara la lotería, me compraría un auto nuevo.",
+        "Si gano la lotería, me compraré un auto nuevo.",
+        "Cuando gané la lotería, me compré un auto nuevo.",
+        "Si ganara la lotería, me compraría una casa nueva."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.money-and-shopping.reading-001",
+      "itemIds": [
+        "b1.money-and-shopping.save-up",
+        "b1.money-and-shopping.discount",
+        "b1.money-and-shopping.afford"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.money-and-shopping.saving-for-guitar",
+      "questions": [
+        {
+          "prompt": "Why didn't Marco borrow money from his parents?",
+          "options": [
+            "His parents had no money.",
+            "The guitar was on sale.",
+            "He didn't like owing money."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Where did Marco work?",
+          "options": ["At a supermarket", "At a music store", "At a restaurant"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "How much was the discount on the guitar?",
+          "options": ["Twenty percent", "Half the price", "Four hundred dollars"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.money-and-shopping.write-001",
+      "itemIds": ["b1.money-and-shopping.as-long-as", "b1.money-and-shopping.lend"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Te presto mi bicicleta siempre que la cuides.",
+      "accepted": [
+        "I'll lend you my bike as long as you take care of it.",
+        "I'll lend you my bike as long as you look after it.",
+        "I'll lend you my bike as long as you are careful with it.",
+        "I'll lend you my bicycle as long as you take care of it.",
+        "I'll lend you my bicycle as long as you look after it.",
+        "I'll lend you my bicycle as long as you are careful with it.",
+        "I will lend you my bike as long as you take care of it.",
+        "I will lend you my bike as long as you look after it.",
+        "I will lend you my bike as long as you are careful with it.",
+        "I will lend you my bicycle as long as you take care of it.",
+        "I will lend you my bicycle as long as you look after it.",
+        "I will lend you my bicycle as long as you are careful with it.",
+        "I can lend you my bike as long as you take care of it.",
+        "I can lend you my bike as long as you look after it.",
+        "I can lend you my bike as long as you are careful with it.",
+        "I can lend you my bicycle as long as you take care of it.",
+        "I can lend you my bicycle as long as you look after it.",
+        "I can lend you my bicycle as long as you are careful with it."
+      ]
+    },
+    {
+      "id": "b1.money-and-shopping.vocab-002",
+      "itemIds": ["b1.money-and-shopping.borrow"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'Can I borrow your umbrella?' mean?",
+      "options": [
+        "¿Te presto mi paraguas?",
+        "¿Me vendes tu paraguas?",
+        "¿Me devuelves mi paraguas?",
+        "¿Me prestas tu paraguas?"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.money-and-shopping.vocab-003",
+      "itemIds": ["b1.money-and-shopping.bargain"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'bargain' mean in 'This jacket was a bargain'?",
+      "options": ["una ganga", "un error", "un regalo", "una devolución"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.money-and-shopping.cloze-002",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "If I ___ more money, I would travel around the world.",
+      "answers": ["had"],
+      "distractors": ["have", "will have", "would have"],
+      "es": "Si tuviera más dinero, viajaría por el mundo."
+    },
+    {
+      "id": "b1.money-and-shopping.cloze-003",
+      "itemIds": ["b1.money-and-shopping.lend", "b1.money-and-shopping.borrow"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Could you ___ me ten dollars until Friday?",
+      "answers": ["lend"],
+      "distractors": ["borrow", "owe", "spend"],
+      "es": "¿Podrías prestarme diez dólares hasta el viernes?"
+    },
+    {
+      "id": "b1.money-and-shopping.order-002",
+      "itemIds": ["b1.money-and-shopping.discount"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 239530,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["I", "if", "cash?", "I", "get", "pay", "discount", "Could", "in", "a"],
+      "accepted": ["Could I get a discount if I pay in cash?"],
+      "es": "¿Me podría hacer un descuento si pago en efectivo?"
+    },
+    {
+      "id": "b1.money-and-shopping.choice-002",
+      "itemIds": ["b1.money-and-shopping.credit-card"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2238,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "Can I pay by credit card?",
+      "options": [
+        "¿Puedo pagar en efectivo?",
+        "¿Puedo pagar con tarjeta de crédito?",
+        "¿Aceptan cheques?",
+        "¿Puedo sacar dinero con tarjeta de crédito?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.money-and-shopping.write-002",
+      "itemIds": ["b1.money-and-shopping.save-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Estoy ahorrando para un teléfono nuevo.",
+      "accepted": [
+        "I'm saving up for a new phone.",
+        "I'm saving up for a new cell phone.",
+        "I'm saving up for a new smartphone.",
+        "I'm saving for a new phone.",
+        "I'm saving for a new cell phone.",
+        "I'm saving for a new smartphone.",
+        "I am saving up for a new phone.",
+        "I am saving up for a new cell phone.",
+        "I am saving up for a new smartphone.",
+        "I am saving for a new phone.",
+        "I am saving for a new cell phone.",
+        "I am saving for a new smartphone."
+      ]
+    },
+    {
+      "id": "b1.money-and-shopping.write-003",
+      "itemIds": ["b1.money-and-shopping.refund"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Me gustaría un reembolso, por favor.",
+      "accepted": [
+        "I would like a refund, please.",
+        "I would like my money back, please.",
+        "I'd like a refund, please.",
+        "I'd like my money back, please.",
+        "I want a refund, please.",
+        "I want my money back, please.",
+        "Can I have a refund, please?",
+        "Can I have my money back, please?",
+        "Can I get a refund, please?",
+        "Can I get my money back, please?",
+        "Could I have a refund, please?",
+        "Could I have my money back, please?",
+        "Could I get a refund, please?",
+        "Could I get my money back, please?"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.money-and-shopping.lesson-001",
+      "level": "B1",
+      "topic": "money-and-shopping",
+      "title": "Ahorrar y gastar",
+      "exerciseIds": [
+        "b1.money-and-shopping.vocab-001",
+        "b1.money-and-shopping.cloze-001",
+        "b1.money-and-shopping.order-001",
+        "b1.money-and-shopping.choice-001",
+        "b1.money-and-shopping.reading-001",
+        "b1.money-and-shopping.write-001",
+        "b1.money-and-shopping.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.money-and-shopping.lesson-002",
+      "level": "B1",
+      "topic": "money-and-shopping",
+      "title": "De compras",
+      "exerciseIds": [
+        "b1.money-and-shopping.vocab-003",
+        "b1.money-and-shopping.cloze-002",
+        "b1.money-and-shopping.cloze-003",
+        "b1.money-and-shopping.order-002",
+        "b1.money-and-shopping.choice-002",
+        "b1.money-and-shopping.write-002",
+        "b1.money-and-shopping.write-003"
+      ]
+    }
+  ]
+}
