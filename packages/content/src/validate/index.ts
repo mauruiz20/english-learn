@@ -7,4 +7,5 @@ export { validateClozes, CLOZE_BLANK } from "./cloze";
 export { validateWordOrders } from "./word-order";
 export { validateListDuplicates } from "./duplicates";
 export { validateLevels } from "./levels";
+export { validateLayout } from "./layout";
 export { validateCorpus } from "./corpus";

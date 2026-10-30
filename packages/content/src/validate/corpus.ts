@@ -1,5 +1,6 @@
 import { validateClozes } from "./cloze";
 import { validateListDuplicates } from "./duplicates";
+import { validateLayout } from "./layout";
 import { validateLevels } from "./levels";
 import { validateAnswerIndexes, validateOptionDuplicates } from "./options";
 import { validateReferences } from "./references";
@@ -15,6 +16,7 @@ const RULES = [
   validateClozes,
   validateWordOrders,
   validateListDuplicates,
+  validateLayout,
   validateLevels,
 ];
 

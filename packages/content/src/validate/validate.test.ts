@@ -5,6 +5,7 @@ import {
   validateAnswerIndexes,
   validateClozes,
   validateCorpus,
+  validateLayout,
   validateLevels,
   validateListDuplicates,
   validateOptionDuplicates,
@@ -373,21 +374,104 @@ describe("validateLevels", () => {
     const f = fx.validFile();
     const exercises = [{ ...fx.vocab(), level: "A2" as const }, ...(f.exercises ?? []).slice(1)];
     const errs = validateLevels([file({ ...f, exercises }, "b1/travel.json")]);
-    expect(paths(errs)).toContain("lessons[0].exerciseIds[0]");
-  });
-  it("flags entities in data/a2 that are not A2", () => {
-    const errs = validateLevels([file({ items: [fx.item()] }, "a2/words.json")]);
-    expect(paths(errs)).toContain("items[0].level");
-  });
-  it("exempts the placement directory", () => {
-    const errs = validateLevels([
-      file({ placement: [fx.placementQuestion()] }, "placement/s.json"),
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "lessons[0].exerciseIds[0]",
+        message: 'exercise "b1.travel.vocab-001" is A2 but the lesson is B1',
+      },
     ]);
-    expect(errs).toEqual([]);
+  });
+});
+
+describe("validateLayout", () => {
+  const ROOT_MSG =
+    'content files must live in data/<a1|a2|b1|b2|c1|placement>/; "x.json" is at the root';
+  it("passes for a level file and a placement file", () => {
+    expect(
+      validateLayout([
+        file(fx.validFile(), "b1/travel.json"),
+        file({ placement: [fx.placementQuestion()] }, "placement/s.json"),
+      ]),
+    ).toEqual([]);
+  });
+  it("rejects root-level files (and does not guess their level)", () => {
+    const errs = validateLayout([
+      file({ items: [fx.item({ id: "a2.travel.x", level: "A2" })] }, "x.json"),
+    ]);
+    expect(errs).toEqual([{ file: "x.json", path: "(root)", message: ROOT_MSG }]);
+  });
+  it("rejects unknown first directories, including upper-case levels", () => {
+    const errs = validateLayout([
+      file({ items: [fx.item()] }, "misc/x.json"),
+      file({ items: [fx.item()] }, "B1/x.json"),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "misc/x.json",
+        path: "(root)",
+        message: 'unknown content directory "misc"; expected one of a1, a2, b1, b2, c1, placement',
+      },
+      {
+        file: "B1/x.json",
+        path: "(root)",
+        message: 'unknown content directory "B1"; expected one of a1, a2, b1, b2, c1, placement',
+      },
+    ]);
+  });
+  it("only allows placement entries under placement/", () => {
+    const errs = validateLayout([
+      file({ items: [fx.item()], placement: [fx.placementQuestion()] }, "placement/s.json"),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "placement/s.json",
+        path: "items[0]",
+        message: "placement/ may contain only placement entries",
+      },
+    ]);
+  });
+  it("rejects placement entries inside a level directory", () => {
+    const errs = validateLayout([file({ placement: [fx.placementQuestion()] }, "b1/s.json")]);
+    expect(errs).toEqual([
+      {
+        file: "b1/s.json",
+        path: "placement[0]",
+        message: "placement entries belong in placement/, not b1/",
+      },
+    ]);
+  });
+  it("flags entities whose level differs from their directory (nested dirs too)", () => {
+    const errs = validateLayout([file({ items: [fx.item()] }, "a2/sub/words.json")]);
+    expect(errs).toEqual([
+      {
+        file: "a2/sub/words.json",
+        path: "items[0].level",
+        message: "level B1 does not match directory level A2",
+      },
+    ]);
   });
   it("flags ids whose level prefix disagrees with the level field", () => {
-    const errs = validateLevels([file({ items: [fx.item({ id: "a2.travel.x" })] })]);
-    expect(paths(errs)).toContain("items[0].id");
+    const errs = validateLayout([file({ items: [fx.item({ id: "a2.travel.x" })] })]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "items[0].id",
+        message: 'id "a2.travel.x" does not start with its level "b1."',
+      },
+    ]);
+  });
+  it("flags placement ids whose level prefix disagrees with the level field", () => {
+    const errs = validateLayout([
+      file({ placement: [fx.placementQuestion({ id: "placement.a2.001" })] }, "placement/s.json"),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "placement/s.json",
+        path: "placement[0].id",
+        message: 'id "placement.a2.001" does not start with "placement.b1."',
+      },
+    ]);
   });
 });
 
