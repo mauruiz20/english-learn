@@ -1,0 +1,351 @@
+{
+  "items": [
+    {
+      "id": "a2.free-time.free-time",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "phrase",
+      "term": "free time",
+      "es": "tiempo libre"
+    },
+    {
+      "id": "a2.free-time.weekend",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "word",
+      "term": "weekend",
+      "es": "fin de semana"
+    },
+    {
+      "id": "a2.free-time.hobby",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "word",
+      "term": "hobby",
+      "es": "pasatiempo"
+    },
+    {
+      "id": "a2.free-time.play-soccer",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "phrase",
+      "term": "play soccer",
+      "es": "jugar al fútbol"
+    },
+    {
+      "id": "a2.free-time.play-the-guitar",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "phrase",
+      "term": "play the guitar",
+      "es": "tocar la guitarra"
+    },
+    {
+      "id": "a2.free-time.go-swimming",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "phrase",
+      "term": "go swimming",
+      "es": "ir a nadar"
+    },
+    {
+      "id": "a2.free-time.watch-a-movie",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "phrase",
+      "term": "watch a movie",
+      "es": "ver una película"
+    },
+    {
+      "id": "a2.free-time.go-out",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "phrase",
+      "term": "go out",
+      "es": "salir (a divertirse)"
+    },
+    {
+      "id": "a2.free-time.dance",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "word",
+      "term": "dance",
+      "es": "bailar"
+    },
+    {
+      "id": "a2.free-time.like-ing",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "grammar",
+      "term": "like + -ing (I like reading)",
+      "es": "gustar + infinitivo (me gusta leer)"
+    },
+    {
+      "id": "a2.free-time.can-ability",
+      "level": "A2",
+      "topics": ["free-time"],
+      "kind": "grammar",
+      "term": "can (ability)",
+      "es": "saber / poder (habilidad)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.free-time.my-weekends",
+      "level": "A2",
+      "topics": ["free-time"],
+      "title": "My weekends",
+      "text": "I work hard during the week, so I love my free time. On Saturday mornings I go swimming with my sister. In the afternoon I usually read or play the guitar. I can't sing very well, but I really like playing music. On Saturday nights my friends and I go out. Last weekend we watched a movie and then went dancing.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.free-time.vocab-001",
+      "itemIds": ["a2.free-time.free-time"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'free time' mean?",
+      "options": ["tiempo extra", "horario laboral", "día festivo", "tiempo libre"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.free-time.cloze-001",
+      "itemIds": ["a2.free-time.play-soccer"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 249383,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I ___ soccer every day.",
+      "answers": ["play"],
+      "distractors": ["do", "go", "make"],
+      "es": "Juego al fútbol todos los días."
+    },
+    {
+      "id": "a2.free-time.order-001",
+      "itemIds": ["a2.free-time.weekend"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 58568,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["you", "weekend?", "this", "Are", "free"],
+      "accepted": ["Are you free this weekend?"],
+      "es": "¿Estás libre este fin de semana?"
+    },
+    {
+      "id": "a2.free-time.choice-001",
+      "itemIds": ["a2.free-time.play-the-guitar", "a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1173652,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "He can play the guitar.",
+      "options": [
+        "Él está tocando la guitarra.",
+        "Él quiere tocar la guitarra.",
+        "Él sabe tocar la guitarra.",
+        "Él tocó la guitarra."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.free-time.reading-001",
+      "itemIds": ["a2.free-time.go-swimming", "a2.free-time.go-out", "a2.free-time.watch-a-movie"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.free-time.my-weekends",
+      "questions": [
+        {
+          "prompt": "Who does the writer go swimming with?",
+          "options": ["Their friends", "Their sister", "Their brother"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does the writer usually do on Saturday afternoons?",
+          "options": ["Goes swimming", "Reads or plays the guitar", "Plays soccer"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What did the writer and their friends do last weekend?",
+          "options": [
+            "They played soccer",
+            "They watched a movie and went dancing",
+            "They stayed at home"
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "a2.free-time.write-001",
+      "itemIds": ["a2.free-time.dance"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 3965994,
+        "author": "Hybrid",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "No quiero bailar.",
+      "accepted": ["I don't want to dance."]
+    },
+    {
+      "id": "a2.free-time.vocab-002",
+      "itemIds": ["a2.free-time.go-out"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'salir (a divertirse)'.",
+      "options": ["go away", "go out", "come in", "go off"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.free-time.vocab-003",
+      "itemIds": ["a2.free-time.hobby"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'hobby' mean?",
+      "options": ["trabajo", "deporte", "costumbre", "pasatiempo"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.free-time.cloze-002",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My brother likes ___ video games.",
+      "answers": ["playing", "to play"],
+      "distractors": ["play", "plays", "played"],
+      "es": "A mi hermano le gusta jugar videojuegos."
+    },
+    {
+      "id": "a2.free-time.cloze-003",
+      "itemIds": ["a2.free-time.go-swimming"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We ___ swimming every Sunday.",
+      "answers": ["go"],
+      "distractors": ["play", "make", "have"],
+      "es": "Vamos a nadar todos los domingos."
+    },
+    {
+      "id": "a2.free-time.order-002",
+      "itemIds": ["a2.free-time.hobby"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 321511,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["is", "reading", "My", "comics.", "hobby"],
+      "accepted": ["My hobby is reading comics."],
+      "es": "Mi pasatiempo es leer cómics."
+    },
+    {
+      "id": "a2.free-time.choice-002",
+      "itemIds": ["a2.free-time.watch-a-movie"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 3310094,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "We've already seen this movie.",
+      "options": [
+        "Ya hemos visto esta película.",
+        "Todavía no hemos visto esta película.",
+        "Vamos a ver esta película.",
+        "Queremos ver esta película otra vez."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.free-time.choice-003",
+      "itemIds": ["a2.free-time.play-soccer"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2626951,
+        "author": "Joseph",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "Do you want to play soccer with us?",
+      "options": [
+        "¿Quieres ver el fútbol con nosotros?",
+        "¿Juegas al fútbol con nosotros?",
+        "¿Quieres jugar al fútbol con nosotros?",
+        "¿Quieres jugar al tenis con nosotros?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.free-time.write-002",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 256170,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Sé nadar.",
+      "accepted": ["I know how to swim.", "I can swim."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.free-time.lesson-001",
+      "level": "A2",
+      "topic": "free-time",
+      "title": "Mi tiempo libre",
+      "exerciseIds": [
+        "a2.free-time.vocab-001",
+        "a2.free-time.cloze-001",
+        "a2.free-time.order-001",
+        "a2.free-time.choice-001",
+        "a2.free-time.reading-001",
+        "a2.free-time.write-001",
+        "a2.free-time.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.free-time.lesson-002",
+      "level": "A2",
+      "topic": "free-time",
+      "title": "Deportes y aficiones",
+      "exerciseIds": [
+        "a2.free-time.vocab-003",
+        "a2.free-time.cloze-002",
+        "a2.free-time.cloze-003",
+        "a2.free-time.order-002",
+        "a2.free-time.choice-002",
+        "a2.free-time.choice-003",
+        "a2.free-time.write-002"
+      ]
+    }
+  ]
+}
