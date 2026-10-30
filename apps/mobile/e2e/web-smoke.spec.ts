@@ -1,4 +1,4 @@
-import { expect, test, type ConsoleMessage } from "@playwright/test";
+import { expect, test, type ConsoleMessage } from "./support/test";
 
 test("home loads progress from SQLite in the static web build", async ({ page }) => {
   const problems: string[] = [];

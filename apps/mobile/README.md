@@ -98,7 +98,12 @@ the real time). It only exists in builds exported with `EXPO_PUBLIC_E2E=1`
 production export the branch and its module are dropped. `scripts/check-prod-bundle.mjs` (run
 by `export:web`, hence in CI) fails if the override ever shows up in `dist/`.
 
-First-time Playwright setup: `pnpm exec playwright install chromium`.
+First-time Playwright setup: `pnpm exec playwright install chromium webkit`. Every spec runs on
+Chromium and on WebKit (Safari / iOS web). Specs import `test` from `e2e/support/test.ts`, which
+runs each test in a fresh persistent browser profile: WebKit has no OPFS in Playwright's default
+ephemeral contexts (like Safari Private Browsing), so expo-sqlite could not open the database
+there. Playwright's WebKit also shares website data between profiles, so the webkit project runs
+on one worker and each test first empties OPFS.
 
 ## Hosting the web build
 
@@ -106,9 +111,15 @@ First-time Playwright setup: `pnpm exec playwright install chromium`.
 enable on cross-origin isolated pages. Every response must carry:
 
 ```
-Cross-Origin-Embedder-Policy: credentialless
+Cross-Origin-Embedder-Policy: require-corp
 Cross-Origin-Opener-Policy: same-origin
 ```
+
+`require-corp`, not `credentialless`: Safari / WebKit does not implement `credentialless`, so with
+it the page is not cross-origin isolated on Safari and iOS and the database cannot open. The app
+loads nothing cross-origin, so `require-corp` costs nothing today. A cross-origin resource added
+later (fonts, images, analytics) must be served with `Cross-Origin-Resource-Policy: cross-origin`
+(or CORS), or the browser will block it.
 
 - **Cloudflare Pages / Netlify**: `public/_headers` is copied into `dist/` and applies them.
 - **Other hosts** (e.g. Vercel, S3/CloudFront, nginx): configure the same two headers for all

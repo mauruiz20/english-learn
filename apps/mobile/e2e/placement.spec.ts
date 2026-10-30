@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./support/test";
 import { answerCorrectly } from "./support/content";
 
 test("placement: answering everything correctly places at C1 and lists B1 lessons", async ({

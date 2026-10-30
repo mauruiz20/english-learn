@@ -10,7 +10,7 @@ config.resolver.assetExts.push("wasm");
 // expo-sqlite on web needs SharedArrayBuffer, which requires cross-origin isolation.
 // Production hosts must send the same headers (see public/_headers).
 config.server.enhanceMiddleware = (middleware) => (req, res, next) => {
-  res.setHeader("Cross-Origin-Embedder-Policy", "credentialless");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
   middleware(req, res, next);
 };

@@ -18,7 +18,7 @@ const portFlag = process.argv.indexOf("--port");
 const PORT = Number(portFlag === -1 ? (process.env.PORT ?? 4173) : process.argv[portFlag + 1]);
 
 const ISOLATION_HEADERS = {
-  "Cross-Origin-Embedder-Policy": "credentialless",
+  "Cross-Origin-Embedder-Policy": "require-corp",
   "Cross-Origin-Opener-Policy": "same-origin",
 };
 
