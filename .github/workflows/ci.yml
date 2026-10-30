@@ -49,7 +49,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Install Chromium
         run: pnpm --filter @english-learn/mobile exec playwright install --with-deps chromium
+      # Production export; fails if test-only hooks (e2e clock override) leak into it.
       - name: Export web build
         run: pnpm --filter @english-learn/mobile export:web
-      - name: Web smoke test
+      # Builds its own export with EXPO_PUBLIC_E2E=1 (dist-e2e/) and runs Playwright on it.
+      - name: Web e2e tests
         run: pnpm --filter @english-learn/mobile e2e:web

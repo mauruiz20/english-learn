@@ -2,7 +2,8 @@ import { defineConfig, devices } from "@playwright/test";
 
 const PORT = 4173;
 
-// Smoke tests against the static web export. Run `pnpm export:web` first.
+// E2E tests against the static web export built with EXPO_PUBLIC_E2E=1 (dist-e2e/), which
+// enables the test-only `?today=YYYY-MM-DD` clock override. `pnpm e2e:web` builds it first.
 export default defineConfig({
   testDir: "./e2e",
   forbidOnly: !!process.env.CI,
@@ -14,7 +15,7 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: `node scripts/serve-web.mjs --port ${PORT}`,
+    command: `node scripts/serve-web.mjs --port ${PORT} --dir dist-e2e`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
   },

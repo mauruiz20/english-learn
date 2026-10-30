@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 // Serves the static web export (dist/) like a production host would: SPA fallback to
 // index.html plus the cross-origin isolation headers expo-sqlite needs (SharedArrayBuffer).
-// Usage: node scripts/serve-web.mjs [--port 4173]   (or PORT=4173)
+// Usage: node scripts/serve-web.mjs [--port 4173] [--dir dist-e2e]   (or PORT=4173)
 import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, join, normalize, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const DIST = resolve(fileURLToPath(new URL("../dist", import.meta.url)));
+const dirFlag = process.argv.indexOf("--dir");
+const DIST = resolve(
+  fileURLToPath(
+    new URL(`../${dirFlag === -1 ? "dist" : process.argv[dirFlag + 1]}`, import.meta.url),
+  ),
+);
 const portFlag = process.argv.indexOf("--port");
 const PORT = Number(portFlag === -1 ? (process.env.PORT ?? 4173) : process.argv[portFlag + 1]);
 
