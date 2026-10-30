@@ -1,13 +1,15 @@
+import { createCorpus } from "@english-learn/content";
 import {
+  initialState,
   localDate,
   type Clock,
-  type PlacementResult,
   type ProgressRepository,
-  type Streak,
 } from "@english-learn/domain";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import type React from "react";
+import { allExercises, lesson, passage } from "@/features/lesson/model/fixtures";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
+import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { HomeContainer } from "./home-container";
 
 const mockPush = jest.fn();
@@ -23,34 +25,22 @@ jest.mock("expo-router", () => {
 const TODAY = localDate("2026-10-29");
 const fixedClock: Clock = { today: () => TODAY, nowMs: () => 0 };
 
-function createFakeRepository(
-  initial: { streak?: Streak; xp?: number; placement?: PlacementResult | null } = {},
-): ProgressRepository {
-  let streak: Streak = initial.streak ?? { current: 0, longest: 0, lastActiveDate: null };
-  let xp = initial.xp ?? 0;
-  let placement = initial.placement ?? null;
-  return {
-    getReviewStates: async () => [],
-    saveReviewStates: async () => {},
-    getStreak: async () => streak,
-    saveStreak: async (next) => {
-      streak = next;
-    },
-    getXp: async () => xp,
-    addXp: async (amount) => (xp += amount),
-    getPlacementResult: async () => placement,
-    savePlacementResult: async (level, theta) => {
-      placement = { level, theta };
-    },
-  };
-}
+const b1Lesson = {
+  ...lesson,
+  id: "b1.routine.lesson-001",
+  level: "B1",
+  title: "Rutina B1",
+} as const;
+const content = createCorpus([
+  { exercises: allExercises, passages: [passage], lessons: [lesson, b1Lesson] },
+]);
 
 function renderContainer(repository: ProgressRepository) {
   return render(
     <AppServicesProvider
       services={{ progressRepository: repository, clock: fixedClock, random: () => 0 }}
     >
-      <HomeContainer />
+      <HomeContainer content={content} />
     </AppServicesProvider>,
   );
 }
@@ -105,5 +95,44 @@ describe("HomeContainer", () => {
     await fireEvent.press(await screen.findByRole("button", { name: "Hacer test de nivel" }));
 
     expect(mockPush).toHaveBeenCalledWith("/placement");
+  });
+
+  it("lists A2 lessons when the learner has no level yet", async () => {
+    await renderContainer(createFakeRepository());
+
+    expect(await screen.findByText("Lecciones de nivel A2")).toBeOnTheScreen();
+    expect(screen.getByRole("button", { name: "Mi rutina" })).toBeOnTheScreen();
+    expect(screen.queryByRole("button", { name: "Rutina B1" })).not.toBeOnTheScreen();
+  });
+
+  it("lists the lessons of the placement level", async () => {
+    await renderContainer(createFakeRepository({ placement: { level: "B1", theta: 0.2 } }));
+
+    expect(await screen.findByText("Lecciones de nivel B1")).toBeOnTheScreen();
+    expect(screen.getByRole("button", { name: "Rutina B1" })).toBeOnTheScreen();
+  });
+
+  it("falls back to A2 when the placement level has no lessons", async () => {
+    await renderContainer(createFakeRepository({ placement: { level: "C1", theta: 2 } }));
+
+    expect(await screen.findByText("Lecciones de nivel A2")).toBeOnTheScreen();
+    expect(screen.getByText("Tu nivel: C1")).toBeOnTheScreen();
+  });
+
+  it("marks a lesson as done once all its items have review states", async () => {
+    const itemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
+    await renderContainer(
+      createFakeRepository({ states: itemIds.map((id) => initialState(id, TODAY)) }),
+    );
+
+    expect(await screen.findByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
+  });
+
+  it("opens a lesson", async () => {
+    await renderContainer(createFakeRepository());
+
+    await fireEvent.press(await screen.findByRole("button", { name: "Mi rutina" }));
+
+    expect(mockPush).toHaveBeenCalledWith("/lesson/a2.routine.lesson-001");
   });
 });
