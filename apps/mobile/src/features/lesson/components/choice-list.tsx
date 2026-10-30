@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+import { useSoundPlayer } from "@/infrastructure/services/app-services";
 import { ChoiceRow, type ChoiceMark } from "@/shared/ui/choice-row";
 import { spacing } from "@/shared/ui/theme";
 
@@ -32,6 +33,7 @@ export function ChoiceList({
   onSelect,
   correctOptions,
 }: ChoiceListProps) {
+  const sounds = useSoundPlayer();
   return (
     <View accessibilityRole="radiogroup" accessibilityLabel={label} style={styles.list}>
       {options.map((option) => (
@@ -41,7 +43,10 @@ export function ChoiceList({
           checked={option === selected}
           disabled={disabled || correctOptions !== undefined}
           mark={markOf(option, selected, correctOptions)}
-          onPress={() => onSelect(option)}
+          onPress={() => {
+            sounds.play("tap");
+            onSelect(option);
+          }}
         />
       ))}
     </View>

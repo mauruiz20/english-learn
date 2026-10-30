@@ -15,7 +15,7 @@ import { gradeExercise } from "@/features/lesson/model/grade-exercise";
 import { lessonLevelFor } from "@/features/lesson/model/lesson-catalog";
 import { prepareExercise, type PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
-import { useAppServices } from "@/infrastructure/services/app-services";
+import { useAppServices, useSoundPlayer } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { placementExercise, toPlacementCandidate } from "./model/placement-bank";
 import { PlacementView, type PlacementViewState } from "./placement-view";
@@ -38,6 +38,7 @@ type Phase =
  */
 export function PlacementContainer({ content = corpus }: { content?: Corpus }) {
   const { progressRepository, random } = useAppServices();
+  const sounds = useSoundPlayer();
   const router = useRouter();
   const [phase, setPhase] = useState<Phase>({ status: "intro" });
   const saving = useRef(false);
@@ -66,7 +67,10 @@ export function PlacementContainer({ content = corpus }: { content?: Corpus }) {
     setPhase({ status: "saving", outcome });
     progressRepository
       .savePlacementResult(outcome.level, outcome.theta)
-      .then(() => setPhase({ status: "saved", outcome }))
+      .then(() => {
+        setPhase({ status: "saved", outcome });
+        sounds.play("complete");
+      })
       .catch((error: unknown) => {
         console.error("Failed to save the placement result", error);
         saving.current = false;

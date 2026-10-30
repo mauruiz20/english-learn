@@ -11,6 +11,8 @@ import type React from "react";
 import { allExercises, lesson, passage } from "@/features/lesson/model/fixtures";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import { createFakeRepository } from "@/testing/fake-progress-repository";
+import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
+import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { HomeContainer } from "./home-container";
 
 const mockPush = jest.fn();
@@ -39,7 +41,13 @@ const content = createCorpus([
 function renderContainer(repository: ProgressRepository) {
   return render(
     <AppServicesProvider
-      services={{ progressRepository: repository, clock: fixedClock, random: () => 0 }}
+      services={{
+        progressRepository: repository,
+        clock: fixedClock,
+        random: () => 0,
+        settingsRepository: createFakeSettingsRepository(),
+        sounds: createFakeSoundPlayer(),
+      }}
     >
       <HomeContainer content={content} />
     </AppServicesProvider>,
