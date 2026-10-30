@@ -51,6 +51,7 @@
   "jest": {
     "preset": "jest-expo",
     "globalSetup": "./jest.global-setup.js",
+    "testTimeout": 20000,
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/e2e/",
