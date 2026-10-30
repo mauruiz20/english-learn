@@ -223,6 +223,22 @@ async function capture(browserType, size, scheme) {
     {
       const { exercise, scope } = await currentExercise(page);
       await snap(`${step()}-lesson-reading`, { full: true });
+      // Word lookups: the card anchored to a word (web), then to a word at the passage's end.
+      const word = (name) => scope.getByRole("button", { name: `${name}, ver traducción` }).first();
+      if (size.name === "desktop") {
+        await word("brother").hover();
+        await page.getByRole("tooltip").waitFor();
+        await snap(`${step()}-lookup-tooltip`);
+        await page.mouse.move(0, 0);
+      }
+      await word("brother").click();
+      await page.getByRole("dialog").waitFor();
+      await snap(`${step()}-lookup-open`);
+      await page.keyboard.press("Escape");
+      await word("eleven").click();
+      await page.getByRole("dialog").waitFor();
+      await snap(`${step()}-lookup-open-end`);
+      await page.keyboard.press("Escape");
       await fillCorrectly(page);
       const [first] = exercise.questions;
       await scope
