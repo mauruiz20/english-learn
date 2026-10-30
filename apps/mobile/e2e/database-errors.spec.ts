@@ -6,7 +6,7 @@ test("a second tab explains the app is already open, and works once the first on
   context,
 }) => {
   await page.goto("/");
-  await expect(page.getByText("XP: 0")).toBeVisible();
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
 
   // Same browser profile: the first tab holds the database (OPFS access handles).
   const second = await context.newPage();
@@ -16,7 +16,7 @@ test("a second tab explains the app is already open, and works once the first on
 
   await page.close();
   await second.getByRole("button", { name: "Reintentar", exact: true }).click();
-  await expect(second.getByText("XP: 0")).toBeVisible();
+  await expect(second.getByText("0 XP", { exact: true })).toBeVisible();
 });
 
 // Playwright's default ephemeral contexts are what Safari Private Browsing looks like to WebKit:

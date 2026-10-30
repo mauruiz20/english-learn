@@ -23,14 +23,14 @@ test("placement: answering everything correctly places at C1 and lists B1 lesson
   expect(asked).toBeGreaterThanOrEqual(15);
   expect(asked).toBeLessThanOrEqual(20);
 
-  await expect(page.getByText("Tu nivel estimado: C1")).toBeVisible();
+  await expect(page.getByLabel("Tu nivel estimado: C1")).toBeVisible();
   await expect(page.getByText(/Te recomendamos las de nivel B1/)).toBeVisible();
   await page.getByRole("button", { name: "Ir a mis lecciones", exact: true }).click();
 
   await expect(page.getByText("Tu nivel: C1")).toBeVisible();
   await expect(page.getByText("Lecciones de nivel B1")).toBeVisible();
   // Placement never touches XP or the streak.
-  await expect(page.getByText("XP: 0")).toBeVisible();
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
 
   await page.reload();
   await expect(page.getByText("Tu nivel: C1")).toBeVisible();
