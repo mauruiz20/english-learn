@@ -14,7 +14,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from english_learn_api.account.api import build_account_router
 from english_learn_api.account.application import DeleteAccount, GetProfile
 from english_learn_api.auth.api.bearer import build_current_claims
-from english_learn_api.auth.api.router import STATUS_BY_ERROR, build_auth_router
+from english_learn_api.auth.api.router import STATUS_BY_ERROR as AUTH_STATUS_BY_ERROR
+from english_learn_api.auth.api.router import build_auth_router
 from english_learn_api.auth.application.ports import GoogleTokenVerifier
 from english_learn_api.auth.application.use_cases import (
     Logout,
@@ -38,21 +39,27 @@ from english_learn_api.shared.errors import install_error_handlers
 from english_learn_api.shared.logging import configure_logging
 from english_learn_api.shared.middleware import BodySizeLimitMiddleware, RequestLogMiddleware
 from english_learn_api.shared.rate_limit import Rate, TokenBucketLimiter, limit_by_client_ip
+from english_learn_api.sync.api.router import STATUS_BY_ERROR as SYNC_STATUS_BY_ERROR
+from english_learn_api.sync.api.router import build_sync_router
+from english_learn_api.sync.application.use_cases import SyncProgress
+from english_learn_api.sync.infrastructure.sqlalchemy_unit_of_work import SqlAlchemySyncUnitOfWork
 
 SIGN_IN_RATE = Rate(10, timedelta(minutes=1))
 REFRESH_RATE = Rate(30, timedelta(minutes=1))
 LOGOUT_RATE = Rate(30, timedelta(minutes=1))
 DELETE_ACCOUNT_RATE = Rate(5, timedelta(hours=1))
+SYNC_RATE = Rate(60, timedelta(minutes=1))
 
 
 @dataclass(frozen=True, slots=True)
 class RateLimits:
-    """Per client IP for the auth endpoints, per user for account deletion."""
+    """Per client IP for the auth endpoints, per user for account deletion and sync."""
 
     sign_in: Rate = SIGN_IN_RATE
     refresh: Rate = REFRESH_RATE
     logout: Rate = LOGOUT_RATE
     delete_account: Rate = DELETE_ACCOUNT_RATE
+    sync: Rate = SYNC_RATE
 
 
 def create_app(
@@ -77,6 +84,9 @@ def create_app(
 
     def unit_of_work() -> SqlAlchemyUnitOfWork:
         return SqlAlchemyUnitOfWork(session_factory)
+
+    def sync_unit_of_work() -> SqlAlchemySyncUnitOfWork:
+        return SqlAlchemySyncUnitOfWork(session_factory)
 
     jwt_keys, active_kid = settings.jwt_signing_keys()
     access_tokens = JwtAccessTokens(
@@ -104,7 +114,7 @@ def create_app(
         docs_url="/docs" if public_docs else None,
         redoc_url="/redoc" if public_docs else None,
     )
-    install_error_handlers(app, status_by_error=STATUS_BY_ERROR)
+    install_error_handlers(app, status_by_error=AUTH_STATUS_BY_ERROR | SYNC_STATUS_BY_ERROR)
 
     app.include_router(build_health_router(engine))
     app.include_router(
@@ -127,9 +137,10 @@ def create_app(
             logout_limit=limit_by_client_ip(TokenBucketLimiter(limits.logout)),
         )
     )
+    current_claims = build_current_claims(access_tokens, unit_of_work, clock)
     app.include_router(
         build_account_router(
-            current_claims=build_current_claims(access_tokens, unit_of_work, clock),
+            current_claims=current_claims,
             get_profile=GetProfile(unit_of_work=unit_of_work),
             delete_account=DeleteAccount(
                 unit_of_work=unit_of_work,
@@ -137,6 +148,13 @@ def create_app(
                 reauthentication_window=settings.reauthentication_window,
             ),
             delete_limiter=TokenBucketLimiter(limits.delete_account),
+        )
+    )
+    app.include_router(
+        build_sync_router(
+            current_claims=current_claims,
+            sync=SyncProgress(unit_of_work=sync_unit_of_work, clock=clock),
+            limiter=TokenBucketLimiter(limits.sync),
         )
     )
 

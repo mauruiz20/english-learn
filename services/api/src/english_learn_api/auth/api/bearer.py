@@ -2,7 +2,7 @@
 
 Every protected route goes through it, so it also checks that the account still exists: a
 deleted user's access token stays cryptographically valid until it expires, and must not reach
-any handler (from stage 5 on, a sync write for a missing user would otherwise fail deep inside).
+any handler (a sync write for a missing user would otherwise fail deep inside).
 """
 
 from collections.abc import Awaitable, Callable

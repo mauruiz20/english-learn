@@ -86,6 +86,42 @@ async def test_account_deletion_allows_five_attempts_per_hour_per_user(
     assert int(limited.headers["retry-after"]) == 720  # one attempt every 12 minutes
 
 
+async def test_sync_allows_sixty_per_minute_per_user(app: object) -> None:
+    async with client_from(app) as client:
+        ana = (await client.post("/v1/auth/google", json={"idToken": "google-ana"})).json()
+        statuses = [
+            (await client.post("/v1/sync", json={}, headers=bearer(ana["accessToken"])))
+            for _ in range(60)
+        ]
+        limited = await client.post("/v1/sync", json={}, headers=bearer(ana["accessToken"]))
+        unauthenticated = await client.post("/v1/sync", json={})
+
+    assert {s.status_code for s in statuses} == {422}  # counted before the body is validated
+    assert_rate_limited(limited)
+    assert int(limited.headers["retry-after"]) == 1
+    assert unauthenticated.status_code == 401
+
+
+async def test_the_sync_limit_is_per_user_not_per_address(
+    app: object, google: FakeGoogleVerifier
+) -> None:
+    google.register("google-ben", sub="sub-ben", email="ben@example.com")
+    async with client_from(app) as client:  # both users behind the same address
+        ana = (await client.post("/v1/auth/google", json={"idToken": "google-ana"})).json()
+        ben = (await client.post("/v1/auth/google", json={"idToken": "google-ben"})).json()
+        for _ in range(60):
+            await client.post("/v1/sync", json={}, headers=bearer(ana["accessToken"]))
+        ana_limited = await client.post("/v1/sync", json={}, headers=bearer(ana["accessToken"]))
+        ben_allowed = await client.post(
+            "/v1/sync",
+            json={"deviceId": "6f1c2a4e-0b1d-4c2e-9f3a-5b6c7d8e9f01", "cursor": None, "events": []},
+            headers=bearer(ben["accessToken"]),
+        )
+
+    assert_rate_limited(ana_limited)
+    assert ben_allowed.status_code == 200
+
+
 async def test_google_verification_is_capped_and_busy_beyond_a_short_wait(
     database_url: str,
 ) -> None:
