@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
+import { struckText } from "@/shared/ui/struck";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
 import { themedStyles } from "@/shared/ui/use-theme";
@@ -105,13 +106,7 @@ const useStyles = themedStyles(({ colors }) =>
     },
     marking: { gap: spacing.xs },
     answer: { fontSize: 23, lineHeight: 31 },
-    struck: {
-      textDecorationLine: "line-through",
-      textDecorationColor: colors.redPen,
-      textDecorationStyle: "solid",
-      // A firmer pen stroke on web (ignored elsewhere).
-      ...({ textDecorationThickness: 2 } as object),
-    },
+    struck: struckText(colors),
     note: { fontSize: 29, lineHeight: 34 },
   }),
 );
