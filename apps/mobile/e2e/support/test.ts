@@ -55,11 +55,11 @@ export const test = base.extend({
 });
 
 /**
- * Empties OPFS for the app's origin from a same-origin page that is not the app (a 404 text
- * response), so no database is open while its files are removed.
+ * Empties OPFS for the app's origin from a same-origin page that is not the app (a static JSON
+ * file the export always contains), so no database is open while its files are removed.
  */
 async function clearOriginPrivateFileSystem(page: Page) {
-  await page.goto("/__e2e-blank.txt");
+  await page.goto("/metadata.json");
   await page.evaluate(async () => {
     const root = await navigator.storage.getDirectory();
     const names: string[] = [];
