@@ -67,3 +67,37 @@ describe("index.html", () => {
     );
   });
 });
+
+/** Cloudflare Pages `_headers`: a path line, then indented `Name: value` lines. */
+function parseHeaders(source: string): Map<string, Record<string, string>> {
+  const rules = new Map<string, Record<string, string>>();
+  let current: Record<string, string> | undefined;
+  for (const line of source.split("\n")) {
+    if (line.trim() === "" || line.trimStart().startsWith("#")) continue;
+    if (!line.startsWith(" ")) {
+      current = {};
+      rules.set(line.trim(), current);
+    } else if (current !== undefined) {
+      const [name, ...value] = line.trim().split(":");
+      current[name.trim()] = value.join(":").trim();
+    }
+  }
+  return rules;
+}
+
+describe("_headers (Cloudflare Pages)", () => {
+  const rules = parseHeaders(readFileSync(join(PUBLIC, "_headers"), "utf8"));
+
+  it("cross-origin isolates every path, the service worker included", () => {
+    expect(rules.get("/*")).toEqual({
+      "Cross-Origin-Embedder-Policy": "require-corp",
+      "Cross-Origin-Opener-Policy": "same-origin",
+    });
+  });
+
+  it("revalidates the shell, the service worker and the manifest so deploys propagate", () => {
+    for (const path of ["/", "/index.html", "/sw.js", "/manifest.webmanifest"]) {
+      expect(rules.get(path)).toEqual({ "Cache-Control": "no-cache" });
+    }
+  });
+});

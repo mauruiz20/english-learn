@@ -1,3 +1,20 @@
 /*
   Cross-Origin-Embedder-Policy: require-corp
   Cross-Origin-Opener-Policy: same-origin
+
+# Revalidated on every request, so a deploy reaches learners: the app shell, the service worker
+# (the browser compares its bytes to detect a new version) and the manifest.
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/sw.js
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+# Build output named by content hash: it never changes under the same URL.
+/_expo/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
