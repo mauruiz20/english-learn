@@ -4,5 +4,6 @@ export * from "./local-date";
 export * from "./ports";
 export * from "./progress";
 export * from "./scoring";
+export * from "./shuffle";
 export * from "./srs";
 export * from "./streak";

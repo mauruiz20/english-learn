@@ -10,7 +10,10 @@ import {
   matchAnswer,
   recordActivity,
   review,
+  scrambleTokens,
   selectSession,
+  shuffle,
+  shuffleChoices,
   xpForAnswer,
   EMPTY_STREAK,
   type Clock,
@@ -45,6 +48,13 @@ describe("public API (barrel)", () => {
 
     const streak = recordActivity(EMPTY_STREAK, today);
     expect(isStreakAlive(streak, addDays(today, 1))).toBe(true);
+  });
+
+  it("exposes rng-injected shuffling helpers", () => {
+    const rng = () => 0;
+    expect(shuffleChoices({ options: ["a", "b"], answerIndex: 0 }, rng).answerIndex).toBe(1);
+    expect(shuffle([1, 2], rng)).toEqual([2, 1]);
+    expect(scrambleTokens(["x", "y"], rng)).toEqual(["y", "x"]);
   });
 
   it("exposes the CEFR levels in ascending order", () => {
