@@ -307,7 +307,14 @@
       "source": { "kind": "original" },
       "type": "translate_write",
       "es": "¿Me lo puedo probar?",
-      "accepted": ["Can I try it on?", "May I try it on?", "Could I try it on?"]
+      "accepted": [
+        "Can I try it on?",
+        "May I try it on?",
+        "Could I try it on?",
+        "Can I try this on?",
+        "May I try this on?",
+        "Could I try this on?"
+      ]
     }
   ],
   "lessons": [
