@@ -17,6 +17,7 @@ It does not import `@english-learn/content`; the app layer maps content into the
 | `shuffle`         | Fisher–Yates shuffle, option shuffling, word-order token scrambling                 |
 | `local-date`      | Branded `YYYY-MM-DD` date with pure calendar math (no timezones)                    |
 | `cefr`            | `Level` (`A1`…`C1`)                                                                 |
+| `glossary`        | Static word/phrase lookup: tokenizer, index, text annotation                        |
 | `ports`           | Side-effect interfaces: `Clock`, `ProgressRepository`, `SettingsRepository` (types) |
 
 Everything is re-exported from `src/index.ts`.
@@ -58,6 +59,32 @@ Both the input and every accepted answer go through the same pipeline:
   | correct, on time                   | 5     |
 
 - `selectSession`: due items (`dueDate ≤ today`) by dueDate asc, lapses desc, itemId; then unseen new items.
+
+## Glossary
+
+Static English → Spanish lookup for hover (web) / tap (mobile). Entries come from
+`@english-learn/content` (`data/glossary/`); this module only tokenizes and matches.
+
+- `GlossaryEntry`: `{ id, headword, kind: "word" | "phrase", forms, senses: { es, pos? }[] }`.
+  `forms` are lowercase surface forms (headword, inflections, contractions such as `won't`).
+- `glossaryKey(text)`: lookup key — NFC, curly → straight apostrophes, lowercase.
+- `tokenizeForGlossary(text, isForm?)`: `Token[]` (`{ kind: "word" | "other", text, start, end }`)
+  alternating words and the text between them; the texts concatenate to the input exactly.
+  - Apostrophes stay inside words (`won't`, `I'm`, `city's`). A trailing apostrophe is left out
+    (a plural possessive `students'` looks like a closing quote `'the dishes'`), so both read as
+    the bare word. Dotted abbreviations stay whole (`p.m.`).
+  - Anything containing a digit (`2019`, `3rd`, `8:30`) and punctuation is `other`.
+  - A hyphenated word stays whole only if `isForm(key)` knows it; otherwise it is split at hyphens.
+- `buildGlossaryIndex(entries)`: maps forms to entry ids (first entry wins on a duplicate form; the
+  content validator forbids duplicates).
+- `lookupWord(index, word)`: case-insensitive. **Possessives**: if `x's` / `xs'` is not itself a
+  listed form, it falls back to `x` / `xs` (`city's` → `city`, `students'` → `students`). A listed
+  form always wins, so `it's` resolves to its own entry. (`annotateText` never sees `xs'`, since
+  the tokenizer drops the trailing apostrophe.)
+- `annotateText(text, index)`: `Segment[]` (`{ text, start, end, entryId, kind }`). Phrases first,
+  longest form wins (`show me around` over `show me`), and phrase words must be separated by
+  whitespace only (no match across punctuation or a cloze `___`); then single words. Uncovered
+  words and other text have `entryId: null`. Segments rebuild the text exactly.
 
 ## Placement (CAT)
 

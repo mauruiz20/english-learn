@@ -15,7 +15,8 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
   connection may land inside the transaction; the app issues none while saving.) Empty database →
   `[]`, `EMPTY_STREAK`, `0`, `null`.
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
-  (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off.
+  (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
+  `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

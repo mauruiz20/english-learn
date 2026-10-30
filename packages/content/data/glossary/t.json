@@ -1,0 +1,1088 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.take",
+      "headword": "take",
+      "kind": "word",
+      "forms": ["take", "takes", "took", "taken", "taking"],
+      "senses": [
+        {
+          "es": "tomar",
+          "pos": "verb"
+        },
+        {
+          "es": "tardar, llevar (tiempo: it takes ten minutes)",
+          "pos": "verb"
+        },
+        {
+          "es": "llevar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-a-shower",
+      "headword": "take a shower",
+      "kind": "phrase",
+      "forms": ["take a shower", "takes a shower", "took a shower", "taking a shower"],
+      "senses": [
+        {
+          "es": "bañarse, ducharse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-action",
+      "headword": "take action",
+      "kind": "phrase",
+      "forms": ["take action", "takes action", "took action", "taking action"],
+      "senses": [
+        {
+          "es": "actuar, tomar medidas",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-care-of",
+      "headword": "take care of",
+      "kind": "phrase",
+      "forms": ["take care of", "takes care of", "took care of", "taking care of"],
+      "senses": [
+        {
+          "es": "cuidar, encargarse de",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-notes",
+      "headword": "take notes",
+      "kind": "phrase",
+      "forms": ["take notes", "takes notes", "took notes", "taking notes"],
+      "senses": [
+        {
+          "es": "tomar apuntes",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.taken-aback",
+      "headword": "taken aback",
+      "kind": "phrase",
+      "forms": ["taken aback"],
+      "senses": [
+        {
+          "es": "(be taken aback) quedarse desconcertado, sorprenderse",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.talk",
+      "headword": "talk",
+      "kind": "word",
+      "forms": ["talk", "talks", "talked", "talking"],
+      "senses": [
+        {
+          "es": "hablar, conversar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.teacher",
+      "headword": "teacher",
+      "kind": "word",
+      "forms": ["teacher", "teachers"],
+      "senses": [
+        {
+          "es": "maestro, profesor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.team",
+      "headword": "team",
+      "kind": "word",
+      "forms": ["team", "teams"],
+      "senses": [
+        {
+          "es": "equipo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.team-leader",
+      "headword": "team leader",
+      "kind": "phrase",
+      "forms": ["team leader", "team leaders"],
+      "senses": [
+        {
+          "es": "líder de equipo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.technician",
+      "headword": "technician",
+      "kind": "word",
+      "forms": ["technician", "technicians"],
+      "senses": [
+        {
+          "es": "técnico, técnica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.teenager",
+      "headword": "teenager",
+      "kind": "word",
+      "forms": ["teenager", "teenagers"],
+      "senses": [
+        {
+          "es": "adolescente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tell",
+      "headword": "tell",
+      "kind": "word",
+      "forms": ["tell", "tells", "telling"],
+      "senses": [
+        {
+          "es": "decir (a alguien)",
+          "pos": "verb"
+        },
+        {
+          "es": "contar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ten",
+      "headword": "ten",
+      "kind": "word",
+      "forms": ["ten"],
+      "senses": [
+        {
+          "es": "diez",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.terrible",
+      "headword": "terrible",
+      "kind": "word",
+      "forms": ["terrible"],
+      "senses": [
+        {
+          "es": "terrible",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.test",
+      "headword": "test",
+      "kind": "word",
+      "forms": ["test", "tests"],
+      "senses": [
+        {
+          "es": "prueba, examen",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.text",
+      "headword": "text",
+      "kind": "word",
+      "forms": ["text", "texts"],
+      "senses": [
+        {
+          "es": "texto",
+          "pos": "noun"
+        },
+        {
+          "es": "mensaje de texto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.than",
+      "headword": "than",
+      "kind": "word",
+      "forms": ["than"],
+      "senses": [
+        {
+          "es": "que (en comparaciones: bigger than = más grande que)",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thank",
+      "headword": "thank",
+      "kind": "word",
+      "forms": ["thank", "thanks", "thanked", "thanking"],
+      "senses": [
+        {
+          "es": "agradecer, dar las gracias",
+          "pos": "verb"
+        },
+        {
+          "es": "(thanks) gracias",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.that",
+      "headword": "that",
+      "kind": "word",
+      "forms": ["that"],
+      "senses": [
+        {
+          "es": "ese, esa, aquel",
+          "pos": "determiner"
+        },
+        {
+          "es": "que",
+          "pos": "conjunction"
+        },
+        {
+          "es": "que (relativo)",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.that-s",
+      "headword": "that's",
+      "kind": "word",
+      "forms": ["that's"],
+      "senses": [
+        {
+          "es": "eso es (that is)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.the",
+      "headword": "the",
+      "kind": "word",
+      "forms": ["the"],
+      "senses": [
+        {
+          "es": "el, la, los, las",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.theater",
+      "headword": "theater",
+      "kind": "word",
+      "forms": ["theater", "theaters"],
+      "senses": [
+        {
+          "es": "teatro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.their",
+      "headword": "their",
+      "kind": "word",
+      "forms": ["their"],
+      "senses": [
+        {
+          "es": "su, sus (de ellos)",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.them",
+      "headword": "them",
+      "kind": "word",
+      "forms": ["them"],
+      "senses": [
+        {
+          "es": "los, las, les, ellos",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.then",
+      "headword": "then",
+      "kind": "word",
+      "forms": ["then"],
+      "senses": [
+        {
+          "es": "luego, después",
+          "pos": "adverb"
+        },
+        {
+          "es": "entonces",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.there",
+      "headword": "there",
+      "kind": "word",
+      "forms": ["there"],
+      "senses": [
+        {
+          "es": "(there is / there are) hay",
+          "pos": "pronoun"
+        },
+        {
+          "es": "allí, allá",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.there-ll",
+      "headword": "there'll",
+      "kind": "word",
+      "forms": ["there'll"],
+      "senses": [
+        {
+          "es": "habrá (there will be)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.there-s",
+      "headword": "there's",
+      "kind": "word",
+      "forms": ["there's"],
+      "senses": [
+        {
+          "es": "hay (there is)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.these",
+      "headword": "these",
+      "kind": "word",
+      "forms": ["these"],
+      "senses": [
+        {
+          "es": "estos, estas",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.they",
+      "headword": "they",
+      "kind": "word",
+      "forms": ["they"],
+      "senses": [
+        {
+          "es": "ellos, ellas",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.they-ll",
+      "headword": "they'll",
+      "kind": "word",
+      "forms": ["they'll"],
+      "senses": [
+        {
+          "es": "ellos (they will): futuro, they'll live = vivirán",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.they-re",
+      "headword": "they're",
+      "kind": "word",
+      "forms": ["they're"],
+      "senses": [
+        {
+          "es": "ellos son, ellos están (they are)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thing",
+      "headword": "thing",
+      "kind": "word",
+      "forms": ["thing", "things"],
+      "senses": [
+        {
+          "es": "cosa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.think",
+      "headword": "think",
+      "kind": "word",
+      "forms": ["think", "thinks", "thought", "thinking"],
+      "senses": [
+        {
+          "es": "pensar",
+          "pos": "verb"
+        },
+        {
+          "es": "creer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thirsty",
+      "headword": "thirsty",
+      "kind": "word",
+      "forms": ["thirsty"],
+      "senses": [
+        {
+          "es": "sediento (be thirsty = tener sed)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thirty",
+      "headword": "thirty",
+      "kind": "word",
+      "forms": ["thirty"],
+      "senses": [
+        {
+          "es": "treinta",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.this",
+      "headword": "this",
+      "kind": "word",
+      "forms": ["this"],
+      "senses": [
+        {
+          "es": "este, esta",
+          "pos": "determiner"
+        },
+        {
+          "es": "esto",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.though",
+      "headword": "though",
+      "kind": "word",
+      "forms": ["though"],
+      "senses": [
+        {
+          "es": "aunque",
+          "pos": "conjunction"
+        },
+        {
+          "es": "sin embargo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thousand",
+      "headword": "thousand",
+      "kind": "word",
+      "forms": ["thousand", "thousands"],
+      "senses": [
+        {
+          "es": "mil",
+          "pos": "number"
+        },
+        {
+          "es": "(thousands of) miles de",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.three",
+      "headword": "three",
+      "kind": "word",
+      "forms": ["three"],
+      "senses": [
+        {
+          "es": "tres",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.throat",
+      "headword": "throat",
+      "kind": "word",
+      "forms": ["throat", "throats"],
+      "senses": [
+        {
+          "es": "garganta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.throughout",
+      "headword": "throughout",
+      "kind": "word",
+      "forms": ["throughout"],
+      "senses": [
+        {
+          "es": "durante todo, por todo",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.throw",
+      "headword": "throw",
+      "kind": "word",
+      "forms": ["throw", "throws", "threw", "thrown", "throwing"],
+      "senses": [
+        {
+          "es": "tirar, lanzar",
+          "pos": "verb"
+        },
+        {
+          "es": "(throw away) tirar a la basura",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.throw-away",
+      "headword": "throw away",
+      "kind": "phrase",
+      "forms": ["throw away", "throws away", "threw away", "throwing away"],
+      "senses": [
+        {
+          "es": "tirar (a la basura)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thursday",
+      "headword": "Thursday",
+      "kind": "word",
+      "forms": ["thursday", "thursdays"],
+      "senses": [
+        {
+          "es": "jueves",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ticket",
+      "headword": "ticket",
+      "kind": "word",
+      "forms": ["ticket", "tickets"],
+      "senses": [
+        {
+          "es": "boleto, entrada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tie",
+      "headword": "tie",
+      "kind": "word",
+      "forms": ["tie", "ties"],
+      "senses": [
+        {
+          "es": "corbata",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.time",
+      "headword": "time",
+      "kind": "word",
+      "forms": ["time", "times"],
+      "senses": [
+        {
+          "es": "tiempo",
+          "pos": "noun"
+        },
+        {
+          "es": "vez (twice = dos veces)",
+          "pos": "noun"
+        },
+        {
+          "es": "hora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tired",
+      "headword": "tired",
+      "kind": "word",
+      "forms": ["tired"],
+      "senses": [
+        {
+          "es": "cansado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.to",
+      "headword": "to",
+      "kind": "word",
+      "forms": ["to"],
+      "senses": [
+        {
+          "es": "a",
+          "pos": "preposition"
+        },
+        {
+          "es": "para",
+          "pos": "preposition"
+        },
+        {
+          "es": "(to + verbo) marca del infinitivo",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.today",
+      "headword": "today",
+      "kind": "word",
+      "forms": ["today"],
+      "senses": [
+        {
+          "es": "hoy",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.together",
+      "headword": "together",
+      "kind": "word",
+      "forms": ["together"],
+      "senses": [
+        {
+          "es": "juntos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.told",
+      "headword": "told",
+      "kind": "word",
+      "forms": ["told"],
+      "senses": [
+        {
+          "es": "dijo (a alguien), contó (pasado de tell)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tomorrow",
+      "headword": "tomorrow",
+      "kind": "word",
+      "forms": ["tomorrow"],
+      "senses": [
+        {
+          "es": "mañana",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tonight",
+      "headword": "tonight",
+      "kind": "word",
+      "forms": ["tonight"],
+      "senses": [
+        {
+          "es": "esta noche",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.too",
+      "headword": "too",
+      "kind": "word",
+      "forms": ["too"],
+      "senses": [
+        {
+          "es": "demasiado",
+          "pos": "adverb"
+        },
+        {
+          "es": "también",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tourist",
+      "headword": "tourist",
+      "kind": "word",
+      "forms": ["tourist", "tourists"],
+      "senses": [
+        {
+          "es": "turista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.town",
+      "headword": "town",
+      "kind": "word",
+      "forms": ["town", "towns"],
+      "senses": [
+        {
+          "es": "pueblo, ciudad pequeña",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.traffic",
+      "headword": "traffic",
+      "kind": "word",
+      "forms": ["traffic"],
+      "senses": [
+        {
+          "es": "tráfico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.traffic-jam",
+      "headword": "traffic jam",
+      "kind": "phrase",
+      "forms": ["traffic jam", "traffic jams"],
+      "senses": [
+        {
+          "es": "embotellamiento, atasco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.train",
+      "headword": "train",
+      "kind": "word",
+      "forms": ["train", "trains"],
+      "senses": [
+        {
+          "es": "tren",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trash",
+      "headword": "trash",
+      "kind": "word",
+      "forms": ["trash"],
+      "senses": [
+        {
+          "es": "basura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.travel",
+      "headword": "travel",
+      "kind": "word",
+      "forms": ["travel", "travels", "traveled", "traveling"],
+      "senses": [
+        {
+          "es": "viajar",
+          "pos": "verb"
+        },
+        {
+          "es": "viajes",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.traveler",
+      "headword": "traveler",
+      "kind": "word",
+      "forms": ["traveler", "travelers"],
+      "senses": [
+        {
+          "es": "viajero, viajera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tree",
+      "headword": "tree",
+      "kind": "word",
+      "forms": ["tree", "trees"],
+      "senses": [
+        {
+          "es": "árbol",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trip",
+      "headword": "trip",
+      "kind": "word",
+      "forms": ["trip", "trips"],
+      "senses": [
+        {
+          "es": "viaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.true",
+      "headword": "true",
+      "kind": "word",
+      "forms": ["true"],
+      "senses": [
+        {
+          "es": "verdadero, cierto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trust",
+      "headword": "trust",
+      "kind": "word",
+      "forms": ["trust", "trusts", "trusted", "trusting"],
+      "senses": [
+        {
+          "es": "confiar en",
+          "pos": "verb"
+        },
+        {
+          "es": "confianza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.try",
+      "headword": "try",
+      "kind": "word",
+      "forms": ["try", "tries", "tried", "trying"],
+      "senses": [
+        {
+          "es": "intentar, tratar de",
+          "pos": "verb"
+        },
+        {
+          "es": "probar",
+          "pos": "verb"
+        },
+        {
+          "es": "(try on) probarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.try-on",
+      "headword": "try on",
+      "kind": "phrase",
+      "forms": ["try on", "tries on", "tried on", "trying on"],
+      "senses": [
+        {
+          "es": "probarse (ropa)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tuesday",
+      "headword": "Tuesday",
+      "kind": "word",
+      "forms": ["tuesday", "tuesdays"],
+      "senses": [
+        {
+          "es": "martes",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn",
+      "headword": "turn",
+      "kind": "word",
+      "forms": ["turn", "turns", "turned", "turning"],
+      "senses": [
+        {
+          "es": "girar, doblar",
+          "pos": "verb"
+        },
+        {
+          "es": "cumplir (años: turned sixteen)",
+          "pos": "verb"
+        },
+        {
+          "es": "(turn off) apagar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-down",
+      "headword": "turn down",
+      "kind": "phrase",
+      "forms": ["turn down", "turns down", "turned down", "turned him down"],
+      "senses": [
+        {
+          "es": "rechazar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-left",
+      "headword": "turn left",
+      "kind": "phrase",
+      "forms": ["turn left", "turns left", "turned left"],
+      "senses": [
+        {
+          "es": "girar a la izquierda, doblar a la izquierda",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-off",
+      "headword": "turn off",
+      "kind": "phrase",
+      "forms": ["turn off", "turns off", "turned off", "turning off"],
+      "senses": [
+        {
+          "es": "apagar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-right",
+      "headword": "turn right",
+      "kind": "phrase",
+      "forms": ["turn right", "turns right", "turned right"],
+      "senses": [
+        {
+          "es": "girar a la derecha, doblar a la derecha",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tv",
+      "headword": "TV",
+      "kind": "word",
+      "forms": ["tv"],
+      "senses": [
+        {
+          "es": "televisión, tele",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.twelve",
+      "headword": "twelve",
+      "kind": "word",
+      "forms": ["twelve"],
+      "senses": [
+        {
+          "es": "doce",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.twenty",
+      "headword": "twenty",
+      "kind": "word",
+      "forms": ["twenty"],
+      "senses": [
+        {
+          "es": "veinte",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.twice",
+      "headword": "twice",
+      "kind": "word",
+      "forms": ["twice"],
+      "senses": [
+        {
+          "es": "dos veces",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.two",
+      "headword": "two",
+      "kind": "word",
+      "forms": ["two"],
+      "senses": [
+        {
+          "es": "dos",
+          "pos": "number"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,880 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.p-m",
+      "headword": "p.m.",
+      "kind": "word",
+      "forms": ["p.m.", "pm"],
+      "senses": [
+        {
+          "es": "de la tarde, de la noche (8 p.m. = 8 de la noche)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pablo",
+      "headword": "Pablo",
+      "kind": "word",
+      "forms": ["pablo"],
+      "senses": [
+        {
+          "es": "Pablo (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.page",
+      "headword": "page",
+      "kind": "word",
+      "forms": ["page", "pages"],
+      "senses": [
+        {
+          "es": "página",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.paid",
+      "headword": "paid",
+      "kind": "word",
+      "forms": ["paid"],
+      "senses": [
+        {
+          "es": "pagó, pagado (pasado de pay)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.panic",
+      "headword": "panic",
+      "kind": "word",
+      "forms": ["panic", "panics", "panicked"],
+      "senses": [
+        {
+          "es": "entrar en pánico",
+          "pos": "verb"
+        },
+        {
+          "es": "pánico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.paper",
+      "headword": "paper",
+      "kind": "word",
+      "forms": ["paper", "papers"],
+      "senses": [
+        {
+          "es": "periódico (the paper)",
+          "pos": "noun"
+        },
+        {
+          "es": "papel",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.paragraph",
+      "headword": "paragraph",
+      "kind": "word",
+      "forms": ["paragraph", "paragraphs"],
+      "senses": [
+        {
+          "es": "párrafo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pardon",
+      "headword": "pardon",
+      "kind": "word",
+      "forms": ["pardon"],
+      "senses": [
+        {
+          "es": "¿perdón? ¿cómo dice?",
+          "pos": "interjection"
+        },
+        {
+          "es": "perdón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.parent",
+      "headword": "parent",
+      "kind": "word",
+      "forms": ["parent", "parents"],
+      "senses": [
+        {
+          "es": "padre o madre",
+          "pos": "noun"
+        },
+        {
+          "es": "(parents) padres",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.park",
+      "headword": "park",
+      "kind": "word",
+      "forms": ["park", "parks"],
+      "senses": [
+        {
+          "es": "parque",
+          "pos": "noun"
+        },
+        {
+          "es": "estacionar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.part",
+      "headword": "part",
+      "kind": "word",
+      "forms": ["part", "parts"],
+      "senses": [
+        {
+          "es": "parte",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.part-time",
+      "headword": "part-time",
+      "kind": "word",
+      "forms": ["part-time"],
+      "senses": [
+        {
+          "es": "de medio tiempo",
+          "pos": "adjective"
+        },
+        {
+          "es": "medio tiempo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.participle",
+      "headword": "participle",
+      "kind": "word",
+      "forms": ["participle", "participles"],
+      "senses": [
+        {
+          "es": "participio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.party",
+      "headword": "party",
+      "kind": "word",
+      "forms": ["party", "parties"],
+      "senses": [
+        {
+          "es": "fiesta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pass",
+      "headword": "pass",
+      "kind": "word",
+      "forms": ["pass", "passes", "passed", "passing"],
+      "senses": [
+        {
+          "es": "aprobar (un examen)",
+          "pos": "verb"
+        },
+        {
+          "es": "pasar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.passive",
+      "headword": "passive",
+      "kind": "word",
+      "forms": ["passive"],
+      "senses": [
+        {
+          "es": "voz pasiva",
+          "pos": "noun"
+        },
+        {
+          "es": "pasivo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.password",
+      "headword": "password",
+      "kind": "word",
+      "forms": ["password", "passwords"],
+      "senses": [
+        {
+          "es": "contraseña",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.past",
+      "headword": "past",
+      "kind": "word",
+      "forms": ["past"],
+      "senses": [
+        {
+          "es": "pasado",
+          "pos": "noun"
+        },
+        {
+          "es": "por delante de, más allá de (walk past)",
+          "pos": "preposition"
+        },
+        {
+          "es": "pasado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pay",
+      "headword": "pay",
+      "kind": "word",
+      "forms": ["pay", "pays", "paying"],
+      "senses": [
+        {
+          "es": "pagar",
+          "pos": "verb"
+        },
+        {
+          "es": "sueldo, paga",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pay-back",
+      "headword": "pay back",
+      "kind": "phrase",
+      "forms": ["pay back", "pays back", "paid back", "paid them back", "paying back"],
+      "senses": [
+        {
+          "es": "devolver (dinero), pagar (una deuda)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pay-in-cash",
+      "headword": "pay in cash",
+      "kind": "phrase",
+      "forms": ["pay in cash", "pays in cash", "paid in cash"],
+      "senses": [
+        {
+          "es": "pagar en efectivo",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.people",
+      "headword": "people",
+      "kind": "word",
+      "forms": ["people"],
+      "senses": [
+        {
+          "es": "gente, personas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.percent",
+      "headword": "percent",
+      "kind": "word",
+      "forms": ["percent"],
+      "senses": [
+        {
+          "es": "por ciento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.perfect",
+      "headword": "perfect",
+      "kind": "word",
+      "forms": ["perfect"],
+      "senses": [
+        {
+          "es": "perfecto",
+          "pos": "adjective"
+        },
+        {
+          "es": "(present perfect) presente perfecto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.performance",
+      "headword": "performance",
+      "kind": "word",
+      "forms": ["performance", "performances"],
+      "senses": [
+        {
+          "es": "función, actuación",
+          "pos": "noun"
+        },
+        {
+          "es": "rendimiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.phone",
+      "headword": "phone",
+      "kind": "word",
+      "forms": ["phone", "phones"],
+      "senses": [
+        {
+          "es": "teléfono, celular",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.piano",
+      "headword": "piano",
+      "kind": "word",
+      "forms": ["piano", "pianos"],
+      "senses": [
+        {
+          "es": "piano",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.place",
+      "headword": "place",
+      "kind": "word",
+      "forms": ["place", "places"],
+      "senses": [
+        {
+          "es": "lugar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plan",
+      "headword": "plan",
+      "kind": "word",
+      "forms": ["plan", "plans", "planned", "planning"],
+      "senses": [
+        {
+          "es": "planear",
+          "pos": "verb"
+        },
+        {
+          "es": "plan",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plant",
+      "headword": "plant",
+      "kind": "word",
+      "forms": ["plant", "plants", "planted", "planting"],
+      "senses": [
+        {
+          "es": "planta",
+          "pos": "noun"
+        },
+        {
+          "es": "plantar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plastic",
+      "headword": "plastic",
+      "kind": "word",
+      "forms": ["plastic"],
+      "senses": [
+        {
+          "es": "plástico",
+          "pos": "noun"
+        },
+        {
+          "es": "de plástico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.play",
+      "headword": "play",
+      "kind": "word",
+      "forms": ["play", "plays", "played", "playing"],
+      "senses": [
+        {
+          "es": "jugar",
+          "pos": "verb"
+        },
+        {
+          "es": "obra de teatro",
+          "pos": "noun"
+        },
+        {
+          "es": "tocar (un instrumento)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.play-soccer",
+      "headword": "play soccer",
+      "kind": "phrase",
+      "forms": ["play soccer", "plays soccer", "played soccer", "playing soccer"],
+      "senses": [
+        {
+          "es": "jugar fútbol",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.play-the-guitar",
+      "headword": "play the guitar",
+      "kind": "phrase",
+      "forms": ["play the guitar", "plays the guitar", "played the guitar", "playing the guitar"],
+      "senses": [
+        {
+          "es": "tocar la guitarra",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.please",
+      "headword": "please",
+      "kind": "word",
+      "forms": ["please"],
+      "senses": [
+        {
+          "es": "por favor",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plenty",
+      "headword": "plenty",
+      "kind": "word",
+      "forms": ["plenty"],
+      "senses": [
+        {
+          "es": "(plenty of) mucho, bastante",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.police",
+      "headword": "police",
+      "kind": "word",
+      "forms": ["police"],
+      "senses": [
+        {
+          "es": "policía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.policy",
+      "headword": "policy",
+      "kind": "word",
+      "forms": ["policy", "policies"],
+      "senses": [
+        {
+          "es": "política, norma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pollute",
+      "headword": "pollute",
+      "kind": "word",
+      "forms": ["pollute", "pollutes", "polluted", "polluting"],
+      "senses": [
+        {
+          "es": "contaminar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pollution",
+      "headword": "pollution",
+      "kind": "word",
+      "forms": ["pollution"],
+      "senses": [
+        {
+          "es": "contaminación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.portugal",
+      "headword": "Portugal",
+      "kind": "word",
+      "forms": ["portugal"],
+      "senses": [
+        {
+          "es": "Portugal",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.position",
+      "headword": "position",
+      "kind": "word",
+      "forms": ["position", "positions"],
+      "senses": [
+        {
+          "es": "puesto (de trabajo)",
+          "pos": "noun"
+        },
+        {
+          "es": "posición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pound",
+      "headword": "pound",
+      "kind": "word",
+      "forms": ["pound", "pounds"],
+      "senses": [
+        {
+          "es": "libra (peso: 0.45 kg; moneda)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.practice",
+      "headword": "practice",
+      "kind": "word",
+      "forms": ["practice", "practices", "practiced", "practicing"],
+      "senses": [
+        {
+          "es": "practicar",
+          "pos": "verb"
+        },
+        {
+          "es": "práctica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.prediction",
+      "headword": "prediction",
+      "kind": "word",
+      "forms": ["prediction", "predictions"],
+      "senses": [
+        {
+          "es": "predicción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.prefer",
+      "headword": "prefer",
+      "kind": "word",
+      "forms": ["prefer", "prefers", "preferred", "preferring"],
+      "senses": [
+        {
+          "es": "preferir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.prepare",
+      "headword": "prepare",
+      "kind": "word",
+      "forms": ["prepare", "prepares", "prepared", "preparing"],
+      "senses": [
+        {
+          "es": "preparar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.present",
+      "headword": "present",
+      "kind": "word",
+      "forms": ["present"],
+      "senses": [
+        {
+          "es": "presente (tiempo verbal)",
+          "pos": "adjective"
+        },
+        {
+          "es": "regalo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.price",
+      "headword": "price",
+      "kind": "word",
+      "forms": ["price", "prices"],
+      "senses": [
+        {
+          "es": "precio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.principal",
+      "headword": "principal",
+      "kind": "word",
+      "forms": ["principal", "principals"],
+      "senses": [
+        {
+          "es": "director, directora (de escuela)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.problem",
+      "headword": "problem",
+      "kind": "word",
+      "forms": ["problem", "problems"],
+      "senses": [
+        {
+          "es": "problema",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.production",
+      "headword": "production",
+      "kind": "word",
+      "forms": ["production", "productions"],
+      "senses": [
+        {
+          "es": "producción, obra (de teatro)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.professor",
+      "headword": "professor",
+      "kind": "word",
+      "forms": ["professor", "professors"],
+      "senses": [
+        {
+          "es": "profesor, profesora (universitario)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.program",
+      "headword": "program",
+      "kind": "word",
+      "forms": ["program", "programs"],
+      "senses": [
+        {
+          "es": "programa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.project",
+      "headword": "project",
+      "kind": "word",
+      "forms": ["project", "projects"],
+      "senses": [
+        {
+          "es": "proyecto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.promise",
+      "headword": "promise",
+      "kind": "word",
+      "forms": ["promise", "promises", "promised", "promising"],
+      "senses": [
+        {
+          "es": "prometer",
+          "pos": "verb"
+        },
+        {
+          "es": "promesa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.promote",
+      "headword": "promote",
+      "kind": "word",
+      "forms": ["promote", "promotes", "promoted", "promoting"],
+      "senses": [
+        {
+          "es": "ascender (en el trabajo)",
+          "pos": "verb"
+        },
+        {
+          "es": "promover",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.proposal",
+      "headword": "proposal",
+      "kind": "word",
+      "forms": ["proposal", "proposals"],
+      "senses": [
+        {
+          "es": "propuesta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.protect",
+      "headword": "protect",
+      "kind": "word",
+      "forms": ["protect", "protects", "protected", "protecting"],
+      "senses": [
+        {
+          "es": "proteger",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.proud",
+      "headword": "proud",
+      "kind": "word",
+      "forms": ["proud"],
+      "senses": [
+        {
+          "es": "orgulloso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.provoke",
+      "headword": "provoke",
+      "kind": "word",
+      "forms": ["provoke", "provokes", "provoked", "provoking"],
+      "senses": [
+        {
+          "es": "provocar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.public",
+      "headword": "public",
+      "kind": "word",
+      "forms": ["public"],
+      "senses": [
+        {
+          "es": "público",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.publish",
+      "headword": "publish",
+      "kind": "word",
+      "forms": ["publish", "publishes", "published", "publishing"],
+      "senses": [
+        {
+          "es": "publicar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.put",
+      "headword": "put",
+      "kind": "word",
+      "forms": ["put", "puts", "putting"],
+      "senses": [
+        {
+          "es": "poner",
+          "pos": "verb"
+        },
+        {
+          "es": "(put off) posponer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.put-off",
+      "headword": "put off",
+      "kind": "phrase",
+      "forms": ["put off", "puts off"],
+      "senses": [
+        {
+          "es": "posponer, aplazar",
+          "pos": "phrasal verb"
+        }
+      ]
+    }
+  ]
+}

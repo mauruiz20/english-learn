@@ -12,6 +12,7 @@ import {
   type ExerciseSession,
   type SaveState,
 } from "@/features/lesson/use-exercise-session";
+import { SessionGlossary } from "@/features/glossary/session-glossary";
 import { topicByExerciseId, topicByItemId } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
@@ -100,7 +101,7 @@ function ReviewSession({
   onGoHome: () => void;
 }) {
   const { progressRepository, clock } = useAppServices();
-  const { session, save, onSubmit, onContinue, retrySave, canLeave, hasUnsavedAnswers } =
+  const { session, save, onSubmit, onContinue, onLookup, retrySave, canLeave, hasUnsavedAnswers } =
     useExerciseSession({
       initial: plan.session,
       complete: (summary) =>
@@ -112,17 +113,24 @@ function ReviewSession({
         }),
     });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir del repaso?");
+  const state = toViewState(session, plan, save, content);
 
   return (
     <>
       <Stack.Screen options={{ gestureEnabled: canLeave, headerBackVisible: canLeave }} />
-      <ReviewView
-        state={toViewState(session, plan, save, content)}
-        onSubmit={onSubmit}
-        onContinue={onContinue}
-        onGoHome={onGoHome}
-        onRetrySave={retrySave}
-      />
+      <SessionGlossary
+        content={content}
+        topic={state.status === "exercise" ? state.topic : undefined}
+        onLookupItems={onLookup}
+      >
+        <ReviewView
+          state={state}
+          onSubmit={onSubmit}
+          onContinue={onContinue}
+          onGoHome={onGoHome}
+          onRetrySave={retrySave}
+        />
+      </SessionGlossary>
       {dialog}
     </>
   );

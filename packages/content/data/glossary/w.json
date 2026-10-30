@@ -1,0 +1,888 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.wait",
+      "headword": "wait",
+      "kind": "word",
+      "forms": ["wait", "waits", "waited", "waiting"],
+      "senses": [
+        {
+          "es": "esperar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wake",
+      "headword": "wake",
+      "kind": "word",
+      "forms": ["wake", "wakes", "woke", "woken", "waking"],
+      "senses": [
+        {
+          "es": "(wake up) despertarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wake-up",
+      "headword": "wake up",
+      "kind": "phrase",
+      "forms": ["wake up", "wakes up", "woke up", "waking up"],
+      "senses": [
+        {
+          "es": "despertarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.walk",
+      "headword": "walk",
+      "kind": "word",
+      "forms": ["walk", "walks", "walked", "walking"],
+      "senses": [
+        {
+          "es": "caminar",
+          "pos": "verb"
+        },
+        {
+          "es": "paseo, caminata",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.walk-past",
+      "headword": "walk past",
+      "kind": "phrase",
+      "forms": ["walk past", "walks past", "walked past"],
+      "senses": [
+        {
+          "es": "pasar (caminando) junto a",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.want",
+      "headword": "want",
+      "kind": "word",
+      "forms": ["want", "wants", "wanted", "wanting"],
+      "senses": [
+        {
+          "es": "querer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.warm",
+      "headword": "warm",
+      "kind": "word",
+      "forms": ["warm", "warmer", "warmest"],
+      "senses": [
+        {
+          "es": "cálido, templado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.warming",
+      "headword": "warming",
+      "kind": "word",
+      "forms": ["warming"],
+      "senses": [
+        {
+          "es": "(global warming) calentamiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wasn-t",
+      "headword": "wasn't",
+      "kind": "word",
+      "forms": ["wasn't"],
+      "senses": [
+        {
+          "es": "no era, no estaba (was not)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.waste",
+      "headword": "waste",
+      "kind": "word",
+      "forms": ["waste", "wastes", "wasted", "wasting"],
+      "senses": [
+        {
+          "es": "desperdicio, residuos",
+          "pos": "noun"
+        },
+        {
+          "es": "desperdiciar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.watch",
+      "headword": "watch",
+      "kind": "word",
+      "forms": ["watch", "watches", "watched", "watching"],
+      "senses": [
+        {
+          "es": "ver, mirar",
+          "pos": "verb"
+        },
+        {
+          "es": "reloj",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.watch-a-movie",
+      "headword": "watch a movie",
+      "kind": "phrase",
+      "forms": ["watch a movie", "watches a movie", "watched a movie", "watching a movie"],
+      "senses": [
+        {
+          "es": "ver una película",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.water",
+      "headword": "water",
+      "kind": "word",
+      "forms": ["water"],
+      "senses": [
+        {
+          "es": "agua",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.way",
+      "headword": "way",
+      "kind": "word",
+      "forms": ["way", "ways"],
+      "senses": [
+        {
+          "es": "camino",
+          "pos": "noun"
+        },
+        {
+          "es": "manera, forma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.we",
+      "headword": "we",
+      "kind": "word",
+      "forms": ["we"],
+      "senses": [
+        {
+          "es": "nosotros, nosotras",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.we-ll",
+      "headword": "we'll",
+      "kind": "word",
+      "forms": ["we'll"],
+      "senses": [
+        {
+          "es": "nosotros (we will): futuro, we'll have = tendremos",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.we-re",
+      "headword": "we're",
+      "kind": "word",
+      "forms": ["we're"],
+      "senses": [
+        {
+          "es": "nosotros somos, nosotros estamos (we are)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.we-ve",
+      "headword": "we've",
+      "kind": "word",
+      "forms": ["we've"],
+      "senses": [
+        {
+          "es": "nosotros hemos (we have + participio)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wear",
+      "headword": "wear",
+      "kind": "word",
+      "forms": ["wear", "wears", "wore", "worn", "wearing"],
+      "senses": [
+        {
+          "es": "llevar puesto, usar (ropa)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.weather",
+      "headword": "weather",
+      "kind": "word",
+      "forms": ["weather"],
+      "senses": [
+        {
+          "es": "tiempo, clima",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.website",
+      "headword": "website",
+      "kind": "word",
+      "forms": ["website", "websites"],
+      "senses": [
+        {
+          "es": "sitio web",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wedding",
+      "headword": "wedding",
+      "kind": "word",
+      "forms": ["wedding", "weddings"],
+      "senses": [
+        {
+          "es": "boda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.week",
+      "headword": "week",
+      "kind": "word",
+      "forms": ["week", "weeks"],
+      "senses": [
+        {
+          "es": "semana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.weekend",
+      "headword": "weekend",
+      "kind": "word",
+      "forms": ["weekend", "weekends"],
+      "senses": [
+        {
+          "es": "fin de semana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.weight",
+      "headword": "weight",
+      "kind": "word",
+      "forms": ["weight"],
+      "senses": [
+        {
+          "es": "peso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.well",
+      "headword": "well",
+      "kind": "word",
+      "forms": ["well"],
+      "senses": [
+        {
+          "es": "bien",
+          "pos": "adverb"
+        },
+        {
+          "es": "bien (de salud)",
+          "pos": "adjective"
+        },
+        {
+          "es": "bueno",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.were",
+      "headword": "were",
+      "kind": "word",
+      "forms": ["were"],
+      "senses": [
+        {
+          "es": "eran, estaban, fueron (pasado de be)",
+          "pos": "verb"
+        },
+        {
+          "es": "(if I were you) si yo fuera tú",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.what",
+      "headword": "what",
+      "kind": "word",
+      "forms": ["what"],
+      "senses": [
+        {
+          "es": "qué",
+          "pos": "pronoun"
+        },
+        {
+          "es": "lo que",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.what-s",
+      "headword": "what's",
+      "kind": "word",
+      "forms": ["what's"],
+      "senses": [
+        {
+          "es": "qué es, cuál es (what is)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.what-s-the-weather-like",
+      "headword": "what's the weather like",
+      "kind": "phrase",
+      "forms": ["what's the weather like", "what is the weather like"],
+      "senses": [
+        {
+          "es": "¿qué tiempo hace? ¿cómo está el clima?",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.when",
+      "headword": "when",
+      "kind": "word",
+      "forms": ["when"],
+      "senses": [
+        {
+          "es": "cuándo",
+          "pos": "adverb"
+        },
+        {
+          "es": "cuando",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.where",
+      "headword": "where",
+      "kind": "word",
+      "forms": ["where"],
+      "senses": [
+        {
+          "es": "dónde",
+          "pos": "adverb"
+        },
+        {
+          "es": "donde",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.where-s",
+      "headword": "where's",
+      "kind": "word",
+      "forms": ["where's"],
+      "senses": [
+        {
+          "es": "dónde está (where is)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.whether",
+      "headword": "whether",
+      "kind": "word",
+      "forms": ["whether"],
+      "senses": [
+        {
+          "es": "si (en preguntas indirectas)",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.which",
+      "headword": "which",
+      "kind": "word",
+      "forms": ["which"],
+      "senses": [
+        {
+          "es": "cuál",
+          "pos": "pronoun"
+        },
+        {
+          "es": "que (relativo, para cosas)",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.while",
+      "headword": "while",
+      "kind": "word",
+      "forms": ["while"],
+      "senses": [
+        {
+          "es": "mientras",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.who",
+      "headword": "who",
+      "kind": "word",
+      "forms": ["who"],
+      "senses": [
+        {
+          "es": "quién",
+          "pos": "pronoun"
+        },
+        {
+          "es": "que (relativo, para personas)",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.whole",
+      "headword": "whole",
+      "kind": "word",
+      "forms": ["whole"],
+      "senses": [
+        {
+          "es": "entero, todo (the whole family = toda la familia)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.whose",
+      "headword": "whose",
+      "kind": "word",
+      "forms": ["whose"],
+      "senses": [
+        {
+          "es": "cuyo",
+          "pos": "pronoun"
+        },
+        {
+          "es": "de quién",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.why",
+      "headword": "why",
+      "kind": "word",
+      "forms": ["why"],
+      "senses": [
+        {
+          "es": "por qué",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.widespread",
+      "headword": "widespread",
+      "kind": "word",
+      "forms": ["widespread"],
+      "senses": [
+        {
+          "es": "generalizado, extendido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.will",
+      "headword": "will",
+      "kind": "word",
+      "forms": ["will"],
+      "senses": [
+        {
+          "es": "(will + verbo) futuro: I will go = iré",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.window",
+      "headword": "window",
+      "kind": "word",
+      "forms": ["window", "windows"],
+      "senses": [
+        {
+          "es": "ventana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.windy",
+      "headword": "windy",
+      "kind": "word",
+      "forms": ["windy"],
+      "senses": [
+        {
+          "es": "con viento, ventoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.winner",
+      "headword": "winner",
+      "kind": "word",
+      "forms": ["winner", "winners"],
+      "senses": [
+        {
+          "es": "ganador, ganadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.winter",
+      "headword": "winter",
+      "kind": "word",
+      "forms": ["winter", "winters"],
+      "senses": [
+        {
+          "es": "invierno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wish",
+      "headword": "wish",
+      "kind": "word",
+      "forms": ["wish", "wishes", "wished", "wishing"],
+      "senses": [
+        {
+          "es": "desear (I wish = ojalá)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.with",
+      "headword": "with",
+      "kind": "word",
+      "forms": ["with"],
+      "senses": [
+        {
+          "es": "con",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.within",
+      "headword": "within",
+      "kind": "word",
+      "forms": ["within"],
+      "senses": [
+        {
+          "es": "dentro de (within six months = en un plazo de seis meses)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.without",
+      "headword": "without",
+      "kind": "word",
+      "forms": ["without"],
+      "senses": [
+        {
+          "es": "sin",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.woman",
+      "headword": "woman",
+      "kind": "word",
+      "forms": ["woman", "women"],
+      "senses": [
+        {
+          "es": "mujer",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.won",
+      "headword": "won",
+      "kind": "word",
+      "forms": ["won"],
+      "senses": [
+        {
+          "es": "ganó (pasado de win)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.won-t",
+      "headword": "won't",
+      "kind": "word",
+      "forms": ["won't"],
+      "senses": [
+        {
+          "es": "(will not) no + futuro: won't need = no necesitará",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "(won't open) no quiere abrir, no abre",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.word",
+      "headword": "word",
+      "kind": "word",
+      "forms": ["word", "words"],
+      "senses": [
+        {
+          "es": "palabra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.work",
+      "headword": "work",
+      "kind": "word",
+      "forms": ["work", "works", "worked", "working"],
+      "senses": [
+        {
+          "es": "trabajar",
+          "pos": "verb"
+        },
+        {
+          "es": "trabajo",
+          "pos": "noun"
+        },
+        {
+          "es": "funcionar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.work-from-home",
+      "headword": "work from home",
+      "kind": "phrase",
+      "forms": ["work from home", "works from home", "worked from home", "working from home"],
+      "senses": [
+        {
+          "es": "trabajar desde casa",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.work-out",
+      "headword": "work out",
+      "kind": "phrase",
+      "forms": ["work out", "works out", "worked out", "working out"],
+      "senses": [
+        {
+          "es": "hacer ejercicio",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "resolver",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.world",
+      "headword": "world",
+      "kind": "word",
+      "forms": ["world", "worlds"],
+      "senses": [
+        {
+          "es": "mundo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.worried",
+      "headword": "worried",
+      "kind": "word",
+      "forms": ["worried"],
+      "senses": [
+        {
+          "es": "preocupado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.worry",
+      "headword": "worry",
+      "kind": "word",
+      "forms": ["worry", "worries", "worrying"],
+      "senses": [
+        {
+          "es": "preocuparse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.worth",
+      "headword": "worth",
+      "kind": "word",
+      "forms": ["worth"],
+      "senses": [
+        {
+          "es": "(be worth + -ing) valer la pena",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.would",
+      "headword": "would",
+      "kind": "word",
+      "forms": ["would"],
+      "senses": [
+        {
+          "es": "(would + verbo) -ría: I would go = iría",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "(would like) me gustaría",
+          "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.would-like",
+      "headword": "would like",
+      "kind": "phrase",
+      "forms": ["would like", "i'd like", "we'd like"],
+      "senses": [
+        {
+          "es": "me gustaría, quisiera (I would like = me gustaría)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.would-rather",
+      "headword": "would rather",
+      "kind": "phrase",
+      "forms": ["would rather", "i'd rather"],
+      "senses": [
+        {
+          "es": "preferiría",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.write",
+      "headword": "write",
+      "kind": "word",
+      "forms": ["write", "writes", "wrote", "written", "writing"],
+      "senses": [
+        {
+          "es": "escribir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.writer",
+      "headword": "writer",
+      "kind": "word",
+      "forms": ["writer", "writers"],
+      "senses": [
+        {
+          "es": "escritor, escritora",
+          "pos": "noun"
+        },
+        {
+          "es": "autor, autora (the writer = quien escribe)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wrong",
+      "headword": "wrong",
+      "kind": "word",
+      "forms": ["wrong"],
+      "senses": [
+        {
+          "es": "equivocado, incorrecto",
+          "pos": "adjective"
+        },
+        {
+          "es": "(be wrong) estar equivocado",
+          "pos": "adjective"
+        }
+      ]
+    }
+  ]
+}

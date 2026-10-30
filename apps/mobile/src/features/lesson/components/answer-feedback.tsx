@@ -1,5 +1,6 @@
 import type { Verdict } from "@english-learn/domain";
 import { StyleSheet, View } from "react-native";
+import { GlossaryRuns } from "@/features/glossary/glossary-text";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
@@ -14,6 +15,8 @@ type AnswerFeedbackProps = {
   /** What the learner answered, as text. */
   given: string;
   correctAnswer: string;
+  /** The correct answer is English: its words can be looked up in the margin note. */
+  lookupAnswer?: boolean | undefined;
   onContinue: () => void;
 };
 
@@ -45,32 +48,36 @@ function struckSegments(verdict: Verdict, given: string, correctAnswer: string):
  * whole answer if nothing lines up), with "Casi. Fíjate: …". Screen readers get a plain
  * sentence instead (`feedbackAnnouncement`).
  */
-export function AnswerFeedback({ verdict, given, correctAnswer, onContinue }: AnswerFeedbackProps) {
+export function AnswerFeedback({
+  verdict,
+  given,
+  correctAnswer,
+  lookupAnswer = false,
+  onContinue,
+}: AnswerFeedbackProps) {
   const styles = useStyles();
   const shown = given.length > 0 ? given : "(sin respuesta)";
+  // The marking is visual only (screen readers get the alert). A note whose words can be looked
+  // up stays reachable, though, so its lookup buttons are not hidden.
+  const hideNote = !lookupAnswer;
   return (
     <View style={styles.panel}>
       <Text accessibilityRole="alert" accessibilityLiveRegion="polite" style={styles.announcement}>
         {feedbackAnnouncement(verdict, correctAnswer)}
       </Text>
-      <View
-        aria-hidden
-        accessibilityElementsHidden
-        importantForAccessibility="no-hide-descendants"
-        style={styles.marking}
-      >
+      <View style={styles.marking}>
         {verdict === "correct" ? (
-          <>
+          <View {...hidden} style={styles.marking}>
             <Highlight animate variant="title" style={styles.answer}>
               {shown}
             </Highlight>
             <Text variant="title" tone="success">
               Correcto
             </Text>
-          </>
+          </View>
         ) : (
           <>
-            <Text variant="title" style={styles.answer}>
+            <Text {...hidden} variant="title" style={styles.answer}>
               {struckSegments(verdict, shown, correctAnswer).map((segment, i) => (
                 <Text
                   key={i}
@@ -82,8 +89,9 @@ export function AnswerFeedback({ verdict, given, correctAnswer, onContinue }: An
                 </Text>
               ))}
             </Text>
-            <MarginNote style={styles.note}>
-              {verdict === "almost" ? `Casi. Fíjate: ${correctAnswer}` : `Era: ${correctAnswer}`}
+            <MarginNote {...(hideNote ? hidden : {})} style={styles.note}>
+              {verdict === "almost" ? "Casi. Fíjate: " : "Era: "}
+              <GlossaryRuns text={correctAnswer} enabled={lookupAnswer} />
             </MarginNote>
           </>
         )}
@@ -92,6 +100,12 @@ export function AnswerFeedback({ verdict, given, correctAnswer, onContinue }: An
     </View>
   );
 }
+
+const hidden = {
+  "aria-hidden": true,
+  accessibilityElementsHidden: true,
+  importantForAccessibility: "no-hide-descendants",
+} as const;
 
 const useStyles = themedStyles(({ colors }) =>
   StyleSheet.create({

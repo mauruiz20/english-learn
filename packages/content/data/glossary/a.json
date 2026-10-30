@@ -1,0 +1,1144 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.a",
+      "headword": "a",
+      "kind": "word",
+      "forms": ["a"],
+      "senses": [
+        {
+          "es": "un, una",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.a-few",
+      "headword": "a few",
+      "kind": "phrase",
+      "forms": ["a few"],
+      "senses": [
+        {
+          "es": "unos pocos, algunos",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.a-little",
+      "headword": "a little",
+      "kind": "phrase",
+      "forms": ["a little"],
+      "senses": [
+        {
+          "es": "un poco",
+          "pos": "determiner"
+        },
+        {
+          "es": "pequeño (a little house)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.a-lot",
+      "headword": "a lot",
+      "kind": "phrase",
+      "forms": ["a lot", "a lot of", "lots of"],
+      "senses": [
+        {
+          "es": "mucho",
+          "pos": "pronoun"
+        },
+        {
+          "es": "(a lot of / lots of) mucho, muchos",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aback",
+      "headword": "aback",
+      "kind": "word",
+      "forms": ["aback"],
+      "senses": [
+        {
+          "es": "(taken aback) desconcertado, sorprendido",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ability",
+      "headword": "ability",
+      "kind": "word",
+      "forms": ["ability", "abilities"],
+      "senses": [
+        {
+          "es": "capacidad, habilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.about",
+      "headword": "about",
+      "kind": "word",
+      "forms": ["about"],
+      "senses": [
+        {
+          "es": "sobre, acerca de",
+          "pos": "preposition"
+        },
+        {
+          "es": "aproximadamente, unos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.about-to",
+      "headword": "about to",
+      "kind": "phrase",
+      "forms": ["about to"],
+      "senses": [
+        {
+          "es": "a punto de",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.abroad",
+      "headword": "abroad",
+      "kind": "word",
+      "forms": ["abroad"],
+      "senses": [
+        {
+          "es": "en el extranjero, al extranjero",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.according",
+      "headword": "according",
+      "kind": "word",
+      "forms": ["according"],
+      "senses": [
+        {
+          "es": "(according to) según",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.according-to",
+      "headword": "according to",
+      "kind": "phrase",
+      "forms": ["according to"],
+      "senses": [
+        {
+          "es": "según",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.account",
+      "headword": "account",
+      "kind": "word",
+      "forms": ["account", "accounts"],
+      "senses": [
+        {
+          "es": "cuenta (de usuario, de banco)",
+          "pos": "noun"
+        },
+        {
+          "es": "relato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.achieve",
+      "headword": "achieve",
+      "kind": "word",
+      "forms": ["achieve", "achieves", "achieved", "achieving"],
+      "senses": [
+        {
+          "es": "lograr, alcanzar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.across",
+      "headword": "across",
+      "kind": "word",
+      "forms": ["across"],
+      "senses": [
+        {
+          "es": "a través de, al otro lado de",
+          "pos": "preposition"
+        },
+        {
+          "es": "(across from) enfrente de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.across-from",
+      "headword": "across from",
+      "kind": "phrase",
+      "forms": ["across from"],
+      "senses": [
+        {
+          "es": "enfrente de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.act",
+      "headword": "act",
+      "kind": "word",
+      "forms": ["act", "acts", "acted", "acting"],
+      "senses": [
+        {
+          "es": "actuar",
+          "pos": "verb"
+        },
+        {
+          "es": "acto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.action",
+      "headword": "action",
+      "kind": "word",
+      "forms": ["action", "actions"],
+      "senses": [
+        {
+          "es": "acción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.actor",
+      "headword": "actor",
+      "kind": "word",
+      "forms": ["actor", "actors"],
+      "senses": [
+        {
+          "es": "actor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.actress",
+      "headword": "actress",
+      "kind": "word",
+      "forms": ["actress", "actresses"],
+      "senses": [
+        {
+          "es": "actriz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.actually",
+      "headword": "actually",
+      "kind": "word",
+      "forms": ["actually"],
+      "senses": [
+        {
+          "es": "en realidad, de hecho",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.adjective",
+      "headword": "adjective",
+      "kind": "word",
+      "forms": ["adjective", "adjectives"],
+      "senses": [
+        {
+          "es": "adjetivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.adventure",
+      "headword": "adventure",
+      "kind": "word",
+      "forms": ["adventure", "adventures"],
+      "senses": [
+        {
+          "es": "aventura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.advice",
+      "headword": "advice",
+      "kind": "word",
+      "forms": ["advice"],
+      "senses": [
+        {
+          "es": "consejo, consejos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.afford",
+      "headword": "afford",
+      "kind": "word",
+      "forms": ["afford", "affords", "afforded"],
+      "senses": [
+        {
+          "es": "poder pagar, permitirse (comprar)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.after",
+      "headword": "after",
+      "kind": "word",
+      "forms": ["after"],
+      "senses": [
+        {
+          "es": "después de",
+          "pos": "preposition"
+        },
+        {
+          "es": "después de que",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.after-all",
+      "headword": "after all",
+      "kind": "phrase",
+      "forms": ["after all"],
+      "senses": [
+        {
+          "es": "después de todo, al fin y al cabo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.afternoon",
+      "headword": "afternoon",
+      "kind": "word",
+      "forms": ["afternoon", "afternoons"],
+      "senses": [
+        {
+          "es": "tarde",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.again",
+      "headword": "again",
+      "kind": "word",
+      "forms": ["again"],
+      "senses": [
+        {
+          "es": "otra vez, de nuevo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ago",
+      "headword": "ago",
+      "kind": "word",
+      "forms": ["ago"],
+      "senses": [
+        {
+          "es": "hace (two years ago = hace dos años)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.agree",
+      "headword": "agree",
+      "kind": "word",
+      "forms": ["agree", "agrees", "agreed", "agreeing"],
+      "senses": [
+        {
+          "es": "estar de acuerdo",
+          "pos": "verb"
+        },
+        {
+          "es": "aceptar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ahead",
+      "headword": "ahead",
+      "kind": "word",
+      "forms": ["ahead"],
+      "senses": [
+        {
+          "es": "adelante, al frente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.airline",
+      "headword": "airline",
+      "kind": "word",
+      "forms": ["airline", "airlines"],
+      "senses": [
+        {
+          "es": "aerolínea",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.all",
+      "headword": "all",
+      "kind": "word",
+      "forms": ["all"],
+      "senses": [
+        {
+          "es": "todo, todos",
+          "pos": "determiner"
+        },
+        {
+          "es": "todo",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.all-over",
+      "headword": "all over",
+      "kind": "phrase",
+      "forms": ["all over"],
+      "senses": [
+        {
+          "es": "por todo (all over the world = en todo el mundo)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.allow",
+      "headword": "allow",
+      "kind": "word",
+      "forms": ["allow", "allows", "allowed", "allowing"],
+      "senses": [
+        {
+          "es": "permitir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.almost",
+      "headword": "almost",
+      "kind": "word",
+      "forms": ["almost"],
+      "senses": [
+        {
+          "es": "casi",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.alone",
+      "headword": "alone",
+      "kind": "word",
+      "forms": ["alone"],
+      "senses": [
+        {
+          "es": "solo, sola",
+          "pos": "adjective"
+        },
+        {
+          "es": "a solas",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.along",
+      "headword": "along",
+      "kind": "word",
+      "forms": ["along"],
+      "senses": [
+        {
+          "es": "a lo largo de, por",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.already",
+      "headword": "already",
+      "kind": "word",
+      "forms": ["already"],
+      "senses": [
+        {
+          "es": "ya",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.also",
+      "headword": "also",
+      "kind": "word",
+      "forms": ["also"],
+      "senses": [
+        {
+          "es": "también",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.although",
+      "headword": "although",
+      "kind": "word",
+      "forms": ["although"],
+      "senses": [
+        {
+          "es": "aunque",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.always",
+      "headword": "always",
+      "kind": "word",
+      "forms": ["always"],
+      "senses": [
+        {
+          "es": "siempre",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.amazing",
+      "headword": "amazing",
+      "kind": "word",
+      "forms": ["amazing"],
+      "senses": [
+        {
+          "es": "increíble, asombroso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.america",
+      "headword": "America",
+      "kind": "word",
+      "forms": ["america"],
+      "senses": [
+        {
+          "es": "América",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.an",
+      "headword": "an",
+      "kind": "word",
+      "forms": ["an"],
+      "senses": [
+        {
+          "es": "un, una (antes de sonido vocal)",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ana",
+      "headword": "Ana",
+      "kind": "word",
+      "forms": ["ana"],
+      "senses": [
+        {
+          "es": "Ana (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.and",
+      "headword": "and",
+      "kind": "word",
+      "forms": ["and"],
+      "senses": [
+        {
+          "es": "y",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.animal",
+      "headword": "animal",
+      "kind": "word",
+      "forms": ["animal", "animals"],
+      "senses": [
+        {
+          "es": "animal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.announce",
+      "headword": "announce",
+      "kind": "word",
+      "forms": ["announce", "announces", "announced", "announcing"],
+      "senses": [
+        {
+          "es": "anunciar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.annoying",
+      "headword": "annoying",
+      "kind": "word",
+      "forms": ["annoying"],
+      "senses": [
+        {
+          "es": "molesto, fastidioso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.answer",
+      "headword": "answer",
+      "kind": "word",
+      "forms": ["answer", "answers", "answered", "answering"],
+      "senses": [
+        {
+          "es": "respuesta",
+          "pos": "noun"
+        },
+        {
+          "es": "responder, contestar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.any",
+      "headword": "any",
+      "kind": "word",
+      "forms": ["any"],
+      "senses": [
+        {
+          "es": "algún, alguno (en preguntas)",
+          "pos": "determiner"
+        },
+        {
+          "es": "ningún (en negativas)",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.anyone",
+      "headword": "anyone",
+      "kind": "word",
+      "forms": ["anyone"],
+      "senses": [
+        {
+          "es": "alguien (en preguntas)",
+          "pos": "pronoun"
+        },
+        {
+          "es": "nadie (en negativas), cualquiera",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.anything",
+      "headword": "anything",
+      "kind": "word",
+      "forms": ["anything"],
+      "senses": [
+        {
+          "es": "algo (en preguntas)",
+          "pos": "pronoun"
+        },
+        {
+          "es": "nada (en negativas), cualquier cosa",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.anyway",
+      "headword": "anyway",
+      "kind": "word",
+      "forms": ["anyway"],
+      "senses": [
+        {
+          "es": "de todas formas, de todos modos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.apartment",
+      "headword": "apartment",
+      "kind": "word",
+      "forms": ["apartment", "apartments"],
+      "senses": [
+        {
+          "es": "departamento, apartamento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.apologize",
+      "headword": "apologize",
+      "kind": "word",
+      "forms": ["apologize", "apologizes", "apologized", "apologizing"],
+      "senses": [
+        {
+          "es": "disculparse, pedir perdón",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.app",
+      "headword": "app",
+      "kind": "word",
+      "forms": ["app", "apps"],
+      "senses": [
+        {
+          "es": "aplicación, app",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.appear",
+      "headword": "appear",
+      "kind": "word",
+      "forms": ["appear", "appears", "appeared", "appearing"],
+      "senses": [
+        {
+          "es": "aparecer",
+          "pos": "verb"
+        },
+        {
+          "es": "parecer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.apple",
+      "headword": "apple",
+      "kind": "word",
+      "forms": ["apple", "apples"],
+      "senses": [
+        {
+          "es": "manzana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.apply",
+      "headword": "apply",
+      "kind": "word",
+      "forms": ["apply", "applies", "applied", "applying"],
+      "senses": [
+        {
+          "es": "(apply for) solicitar, postularse a",
+          "pos": "verb"
+        },
+        {
+          "es": "aplicar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.apply-for",
+      "headword": "apply for",
+      "kind": "phrase",
+      "forms": ["apply for", "applies for", "applied for", "applying for"],
+      "senses": [
+        {
+          "es": "solicitar, postularse a (un trabajo, una beca)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aren-t",
+      "headword": "aren't",
+      "kind": "word",
+      "forms": ["aren't"],
+      "senses": [
+        {
+          "es": "no son, no están (are not)",
+          "pos": "verb"
+        },
+        {
+          "es": "(there aren't) no hay",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.argue",
+      "headword": "argue",
+      "kind": "word",
+      "forms": ["argue", "argues", "argued", "arguing"],
+      "senses": [
+        {
+          "es": "discutir, pelear",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.argument",
+      "headword": "argument",
+      "kind": "word",
+      "forms": ["argument", "arguments"],
+      "senses": [
+        {
+          "es": "discusión, pelea",
+          "pos": "noun"
+        },
+        {
+          "es": "argumento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.around",
+      "headword": "around",
+      "kind": "word",
+      "forms": ["around"],
+      "senses": [
+        {
+          "es": "alrededor de, por",
+          "pos": "preposition"
+        },
+        {
+          "es": "aproximadamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.arrangement",
+      "headword": "arrangement",
+      "kind": "word",
+      "forms": ["arrangement", "arrangements"],
+      "senses": [
+        {
+          "es": "plan, arreglo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.arrive",
+      "headword": "arrive",
+      "kind": "word",
+      "forms": ["arrive", "arrives", "arrived", "arriving"],
+      "senses": [
+        {
+          "es": "llegar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.art",
+      "headword": "art",
+      "kind": "word",
+      "forms": ["art"],
+      "senses": [
+        {
+          "es": "arte",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.article",
+      "headword": "article",
+      "kind": "word",
+      "forms": ["article", "articles"],
+      "senses": [
+        {
+          "es": "artículo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.as",
+      "headword": "as",
+      "kind": "word",
+      "forms": ["as"],
+      "senses": [
+        {
+          "es": "como",
+          "pos": "conjunction"
+        },
+        {
+          "es": "mientras",
+          "pos": "conjunction"
+        },
+        {
+          "es": "como (en calidad de)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.as-long-as",
+      "headword": "as long as",
+      "kind": "phrase",
+      "forms": ["as long as"],
+      "senses": [
+        {
+          "es": "siempre que, con tal de que",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.as-soon-as",
+      "headword": "as soon as",
+      "kind": "phrase",
+      "forms": ["as soon as"],
+      "senses": [
+        {
+          "es": "en cuanto, tan pronto como",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ask",
+      "headword": "ask",
+      "kind": "word",
+      "forms": ["ask", "asks", "asked", "asking"],
+      "senses": [
+        {
+          "es": "preguntar",
+          "pos": "verb"
+        },
+        {
+          "es": "pedir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.asleep",
+      "headword": "asleep",
+      "kind": "word",
+      "forms": ["asleep"],
+      "senses": [
+        {
+          "es": "dormido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.at",
+      "headword": "at",
+      "kind": "word",
+      "forms": ["at"],
+      "senses": [
+        {
+          "es": "en (lugar)",
+          "pos": "preposition"
+        },
+        {
+          "es": "a (hora: at six)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.at-all",
+      "headword": "at all",
+      "kind": "phrase",
+      "forms": ["at all"],
+      "senses": [
+        {
+          "es": "(en negativas) en absoluto, para nada",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.at-first",
+      "headword": "at first",
+      "kind": "phrase",
+      "forms": ["at first"],
+      "senses": [
+        {
+          "es": "al principio",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.at-first-sight",
+      "headword": "at first sight",
+      "kind": "phrase",
+      "forms": ["at first sight"],
+      "senses": [
+        {
+          "es": "a primera vista",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.at-home",
+      "headword": "at home",
+      "kind": "phrase",
+      "forms": ["at home"],
+      "senses": [
+        {
+          "es": "en casa",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.at-least",
+      "headword": "at least",
+      "kind": "phrase",
+      "forms": ["at least"],
+      "senses": [
+        {
+          "es": "al menos, por lo menos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.at-night",
+      "headword": "at night",
+      "kind": "phrase",
+      "forms": ["at night"],
+      "senses": [
+        {
+          "es": "de noche, en la noche",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.attract",
+      "headword": "attract",
+      "kind": "word",
+      "forms": ["attract", "attracts", "attracted", "attracting"],
+      "senses": [
+        {
+          "es": "atraer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.audience",
+      "headword": "audience",
+      "kind": "word",
+      "forms": ["audience", "audiences"],
+      "senses": [
+        {
+          "es": "público, audiencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aunt",
+      "headword": "aunt",
+      "kind": "word",
+      "forms": ["aunt", "aunts"],
+      "senses": [
+        {
+          "es": "tía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.automatically",
+      "headword": "automatically",
+      "kind": "word",
+      "forms": ["automatically"],
+      "senses": [
+        {
+          "es": "automáticamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.away",
+      "headword": "away",
+      "kind": "word",
+      "forms": ["away"],
+      "senses": [
+        {
+          "es": "lejos, fuera",
+          "pos": "adverb"
+        },
+        {
+          "es": "(de) distancia",
+          "pos": "adverb"
+        }
+      ]
+    }
+  ]
+}

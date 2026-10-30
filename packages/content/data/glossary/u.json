@@ -1,0 +1,248 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.ubiquitous",
+      "headword": "ubiquitous",
+      "kind": "word",
+      "forms": ["ubiquitous"],
+      "senses": [
+        {
+          "es": "omnipresente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.umbrella",
+      "headword": "umbrella",
+      "kind": "word",
+      "forms": ["umbrella", "umbrellas"],
+      "senses": [
+        {
+          "es": "paraguas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.uncle",
+      "headword": "uncle",
+      "kind": "word",
+      "forms": ["uncle", "uncles"],
+      "senses": [
+        {
+          "es": "tío",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.under",
+      "headword": "under",
+      "kind": "word",
+      "forms": ["under"],
+      "senses": [
+        {
+          "es": "debajo de, bajo",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.undermine",
+      "headword": "undermine",
+      "kind": "word",
+      "forms": ["undermine", "undermines", "undermined", "undermining"],
+      "senses": [
+        {
+          "es": "socavar, debilitar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unfortunately",
+      "headword": "unfortunately",
+      "kind": "word",
+      "forms": ["unfortunately"],
+      "senses": [
+        {
+          "es": "desafortunadamente, por desgracia",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.uniform",
+      "headword": "uniform",
+      "kind": "word",
+      "forms": ["uniform", "uniforms"],
+      "senses": [
+        {
+          "es": "uniforme",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.university",
+      "headword": "university",
+      "kind": "word",
+      "forms": ["university", "universities"],
+      "senses": [
+        {
+          "es": "universidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unless",
+      "headword": "unless",
+      "kind": "word",
+      "forms": ["unless"],
+      "senses": [
+        {
+          "es": "a menos que, si no",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.until",
+      "headword": "until",
+      "kind": "word",
+      "forms": ["until"],
+      "senses": [
+        {
+          "es": "hasta",
+          "pos": "preposition"
+        },
+        {
+          "es": "hasta que",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.up",
+      "headword": "up",
+      "kind": "word",
+      "forms": ["up"],
+      "senses": [
+        {
+          "es": "arriba, hacia arriba",
+          "pos": "adverb"
+        },
+        {
+          "es": "(con verbos: get up, wake up) levantarse, despertarse",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.update",
+      "headword": "update",
+      "kind": "word",
+      "forms": ["update", "updates", "updated", "updating"],
+      "senses": [
+        {
+          "es": "actualizar",
+          "pos": "verb"
+        },
+        {
+          "es": "actualización",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.us",
+      "headword": "us",
+      "kind": "word",
+      "forms": ["us"],
+      "senses": [
+        {
+          "es": "nos, nosotros",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.use",
+      "headword": "use",
+      "kind": "word",
+      "forms": ["use", "uses", "using"],
+      "senses": [
+        {
+          "es": "usar, utilizar",
+          "pos": "verb"
+        },
+        {
+          "es": "uso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.used",
+      "headword": "used",
+      "kind": "word",
+      "forms": ["used"],
+      "senses": [
+        {
+          "es": "usó, usado (pasado de use)",
+          "pos": "verb"
+        },
+        {
+          "es": "(used to) solía",
+          "pos": "auxiliary"
+        },
+        {
+          "es": "(be used to) acostumbrado a",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.used-to",
+      "headword": "used to",
+      "kind": "phrase",
+      "forms": ["used to", "use to"],
+      "senses": [
+        {
+          "es": "solía, acostumbraba (hábito pasado)",
+          "pos": "expression"
+        },
+        {
+          "es": "(be used to + -ing) estar acostumbrado a",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.useful",
+      "headword": "useful",
+      "kind": "word",
+      "forms": ["useful"],
+      "senses": [
+        {
+          "es": "útil",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.usually",
+      "headword": "usually",
+      "kind": "word",
+      "forms": ["usually"],
+      "senses": [
+        {
+          "es": "normalmente, por lo general",
+          "pos": "adverb"
+        }
+      ]
+    }
+  ]
+}

@@ -23,11 +23,35 @@ import file17 from "../../data/b1/relationships.json";
 import file18 from "../../data/b1/technology.json";
 import file19 from "../../data/b1/travel.json";
 import file20 from "../../data/b1/work-and-careers.json";
-import file21 from "../../data/placement/a1.json";
-import file22 from "../../data/placement/a2.json";
-import file23 from "../../data/placement/b1.json";
-import file24 from "../../data/placement/b2.json";
-import file25 from "../../data/placement/c1.json";
+import file21 from "../../data/glossary/a.json";
+import file22 from "../../data/glossary/b.json";
+import file23 from "../../data/glossary/c.json";
+import file24 from "../../data/glossary/d.json";
+import file25 from "../../data/glossary/e.json";
+import file26 from "../../data/glossary/f.json";
+import file27 from "../../data/glossary/g.json";
+import file28 from "../../data/glossary/h.json";
+import file29 from "../../data/glossary/i.json";
+import file30 from "../../data/glossary/j.json";
+import file31 from "../../data/glossary/k.json";
+import file32 from "../../data/glossary/l.json";
+import file33 from "../../data/glossary/m.json";
+import file34 from "../../data/glossary/n.json";
+import file35 from "../../data/glossary/o.json";
+import file36 from "../../data/glossary/p.json";
+import file37 from "../../data/glossary/q.json";
+import file38 from "../../data/glossary/r.json";
+import file39 from "../../data/glossary/s.json";
+import file40 from "../../data/glossary/t.json";
+import file41 from "../../data/glossary/u.json";
+import file42 from "../../data/glossary/v.json";
+import file43 from "../../data/glossary/w.json";
+import file44 from "../../data/glossary/y.json";
+import file45 from "../../data/placement/a1.json";
+import file46 from "../../data/placement/a2.json";
+import file47 from "../../data/placement/b1.json";
+import file48 from "../../data/placement/b2.json";
+import file49 from "../../data/placement/c1.json";
 
 const files = [
   file0,
@@ -56,6 +80,30 @@ const files = [
   file23,
   file24,
   file25,
+  file26,
+  file27,
+  file28,
+  file29,
+  file30,
+  file31,
+  file32,
+  file33,
+  file34,
+  file35,
+  file36,
+  file37,
+  file38,
+  file39,
+  file40,
+  file41,
+  file42,
+  file43,
+  file44,
+  file45,
+  file46,
+  file47,
+  file48,
+  file49,
 ] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);

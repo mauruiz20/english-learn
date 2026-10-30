@@ -159,4 +159,38 @@ describe("PlacementContainer", () => {
     expect(repository.snapshot().placement?.level).toBe("C1");
     expect(mockRouter.dismissAll).toHaveBeenCalledTimes(1);
   });
+
+  it("never offers word lookups (the test measures the level)", async () => {
+    const withGlossary = createCorpus([
+      {
+        lessons: [lesson, b1Lesson],
+        placement: placementBank(5),
+        glossary: ["what", "does", "mean", "it", "is", "ok"].map((word) => ({
+          id: `glossary.${word}`,
+          headword: word,
+          kind: "word" as const,
+          forms: [word],
+          senses: [{ es: word }],
+        })),
+      },
+    ]);
+    await render(
+      <AppServicesProvider
+        services={{
+          progressRepository: createFakeRepository(),
+          clock: { today: () => TODAY, nowMs: () => 0 },
+          random: () => 0.5,
+          settingsRepository: createFakeSettingsRepository(),
+          sounds,
+        }}
+      >
+        <PlacementContainer content={withGlossary} />
+      </AppServicesProvider>,
+    );
+    await fireEvent.press(screen.getByRole("button", { name: "Empezar" }));
+
+    expect(screen.getByText("Pregunta 1 de hasta 20")).toBeOnTheScreen();
+    expect(screen.queryAllByLabelText(/ver traducción/)).toHaveLength(0);
+    expect(screen.queryByText(/para ver su traducción/)).toBeNull();
+  });
 });

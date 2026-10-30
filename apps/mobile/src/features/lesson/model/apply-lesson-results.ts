@@ -31,6 +31,9 @@ export const EXPECTED_MS: Readonly<Record<Exercise["type"], number>> = {
   reading: 60_000,
 };
 
+/** Best review grade for an item looked up before answering: "almost". */
+export const LOOKED_UP_MAX_GRADE: Grade = 3;
+
 export type ApplyLessonResultsInput = {
   readonly summary: LessonSummary;
   /** Current states of (at least) the lesson's items; other states are ignored. */
@@ -48,6 +51,10 @@ export type ApplyLessonResultsInput = {
  * A failing grade still applies the SM-2 lapse, because forgetting is real evidence that the
  * item needs to come back sooner.
  *
+ * An item the learner LOOKED UP in the glossary before answering (`outcome.lookedUp`) is capped
+ * at grade 3 ("almost"): they needed help, so it should come back sooner. The cap never upgrades a
+ * wrong answer (grade 1 stays 1).
+ *
  * A NEW item (no state yet) answered wrong is not a lapse: the learner saw it for the first time,
  * so nothing was forgotten. It starts fresh instead (default ease, reps 0, lapses 0) and is due
  * tomorrow, like any item learned today.
@@ -59,11 +66,13 @@ export function applyLessonResults({
 }: ApplyLessonResultsInput): ReviewState[] {
   const worst = new Map<string, Grade>();
   for (const outcome of summary.itemOutcomes) {
-    const grade = gradeFromOutcome({
+    const earned = gradeFromOutcome({
       verdict: outcome.verdict,
       responseMs: outcome.responseMs,
       expectedMs: EXPECTED_MS[outcome.exerciseType],
     });
+    const grade =
+      outcome.lookedUp === true ? (Math.min(earned, LOOKED_UP_MAX_GRADE) as Grade) : earned;
     const previous = worst.get(outcome.itemId);
     worst.set(
       outcome.itemId,

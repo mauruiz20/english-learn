@@ -549,7 +549,7 @@ describe("validateExerciseTopics", () => {
 
 describe("validateLayout", () => {
   const ROOT_MSG =
-    'content files must live in data/<a1|a2|b1|b2|c1|placement>/; "x.json" is at the root';
+    'content files must live in data/<a1|a2|b1|b2|c1|placement|glossary>/; "x.json" is at the root';
   it("passes for a level file and a placement file", () => {
     expect(
       validateLayout([
@@ -573,12 +573,14 @@ describe("validateLayout", () => {
       {
         file: "misc/x.json",
         path: "(root)",
-        message: 'unknown content directory "misc"; expected one of a1, a2, b1, b2, c1, placement',
+        message:
+          'unknown content directory "misc"; expected one of a1, a2, b1, b2, c1, placement, glossary',
       },
       {
         file: "B1/x.json",
         path: "(root)",
-        message: 'unknown content directory "B1"; expected one of a1, a2, b1, b2, c1, placement',
+        message:
+          'unknown content directory "B1"; expected one of a1, a2, b1, b2, c1, placement, glossary',
       },
     ]);
   });
@@ -591,6 +593,37 @@ describe("validateLayout", () => {
         file: "placement/s.json",
         path: "items[0]",
         message: "placement/ may contain only placement entries",
+      },
+    ]);
+  });
+  it("only allows glossary entries under glossary/", () => {
+    expect(validateLayout(fx.glossaryFiles())).toEqual([]);
+    const errs = validateLayout([
+      file({ items: [fx.item()], glossary: [fx.glossaryEntry()] }, "glossary/a.json"),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "glossary/a.json",
+        path: "items[0]",
+        message: "glossary/ may contain only glossary entries",
+      },
+    ]);
+  });
+  it("rejects glossary entries in level and placement directories", () => {
+    const errs = validateLayout([
+      file({ glossary: [fx.glossaryEntry()] }, "b1/g.json"),
+      file({ glossary: [fx.glossaryEntry()] }, "placement/g.json"),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/g.json",
+        path: "glossary[0]",
+        message: "glossary entries belong in glossary/, not b1/",
+      },
+      {
+        file: "placement/g.json",
+        path: "glossary[0]",
+        message: "glossary entries belong in glossary/, not placement/",
       },
     ]);
   });
@@ -640,7 +673,7 @@ describe("validateLayout", () => {
 
 describe("validateCorpus", () => {
   it("returns no errors for a valid corpus and never throws", () => {
-    expect(validateCorpus([file(fx.validFile())])).toEqual([]);
+    expect(validateCorpus([file(fx.validFile()), ...fx.glossaryFiles()])).toEqual([]);
     expect(() => validateCorpus([])).not.toThrow();
   });
   it("aggregates errors from all rules", () => {
@@ -649,7 +682,7 @@ describe("validateCorpus", () => {
       ...f,
       exercises: [fx.vocab({ answerIndex: 9 }), ...(f.exercises ?? []).slice(1)],
     };
-    const errs = validateCorpus([file(bad)]);
+    const errs = validateCorpus([file(bad), ...fx.glossaryFiles()]);
     expect(paths(errs)).toContain("exercises[0].answerIndex");
   });
 });

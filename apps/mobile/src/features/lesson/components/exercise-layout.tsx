@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
+import { GlossaryText } from "@/features/glossary/glossary-text";
+import type { LookupLocks } from "@/features/glossary/model/lookup-runs";
 import { Button } from "@/shared/ui/button";
 import { RuledArea, ruledText } from "@/shared/ui/ruled-area";
 import { Text } from "@/shared/ui/text";
@@ -41,9 +43,12 @@ export function Prompt({
   text,
   hint,
   accessibilityLabel,
+  lookup,
   children,
 }: {
   text?: string;
+  /** `text` is English: its words can be looked up (when `enabled`), except locked ones. */
+  lookup?: (LookupLocks & { enabled: boolean }) | undefined;
   /** Spanish translation or help, under the lines. */
   hint?: string | undefined;
   accessibilityLabel?: string;
@@ -53,14 +58,23 @@ export function Prompt({
   return (
     <View style={styles.prompt}>
       <RuledArea>
-        {children ?? (
-          <Text
-            style={exerciseText.sentence}
-            {...(accessibilityLabel === undefined ? {} : { accessibilityLabel })}
-          >
-            {text}
-          </Text>
-        )}
+        {children ??
+          (lookup !== undefined && text !== undefined ? (
+            <GlossaryText
+              text={text}
+              enabled={lookup.enabled}
+              lockedRanges={lookup.lockedRanges}
+              lockedEntryIds={lookup.lockedEntryIds}
+              style={exerciseText.sentence}
+            />
+          ) : (
+            <Text
+              style={exerciseText.sentence}
+              {...(accessibilityLabel === undefined ? {} : { accessibilityLabel })}
+            >
+              {text}
+            </Text>
+          ))}
       </RuledArea>
       {hint !== undefined && (
         <Text tone="muted" style={exerciseText.hint}>

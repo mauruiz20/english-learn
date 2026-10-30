@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useGlossary } from "@/features/glossary/glossary-provider";
+import { GlossaryRuns } from "@/features/glossary/glossary-text";
 import { useSoundPlayer } from "@/infrastructure/services/app-services";
 import { PaperStrip } from "@/shared/ui/paper-strip";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
 import { themedStyles } from "@/shared/ui/use-theme";
+import { lookupEnabled } from "../model/lookup-policy";
 import { ExerciseLayout, Prompt } from "./exercise-layout";
 import type { ExerciseProps } from "./types";
 
 /** Tap tokens to build the sentence; tap a built token to send it back. Tokens are tracked by index. */
-export function WordOrderExercise({ prepared, disabled, onSubmit }: ExerciseProps<"word_order">) {
+export function WordOrderExercise({
+  prepared,
+  disabled,
+  reveal = false,
+  onSubmit,
+}: ExerciseProps<"word_order">) {
   const styles = useStyles();
   const sounds = useSoundPlayer();
   const { tokens } = prepared;
+  // Looking each token up would hand out the sentence: locked until the answer is checked.
+  const lookup = useGlossary() !== null && lookupEnabled("word_order.tokens", reveal);
+  const lookupContent = (token: string) => (lookup ? <GlossaryRuns text={token} /> : undefined);
   const place = (next: readonly number[]) => {
     sounds.play("tap");
     setBuilt(next);
@@ -38,6 +49,7 @@ export function WordOrderExercise({ prepared, disabled, onSubmit }: ExerciseProp
             label={`Quitar ${tokens[index] ?? ""}`}
             text={tokens[index] ?? ""}
             disabled={disabled}
+            lockedContent={lookupContent(tokens[index] ?? "")}
             onPress={() => place(built.filter((_, p) => p !== position))}
           />
         ))}
@@ -49,6 +61,7 @@ export function WordOrderExercise({ prepared, disabled, onSubmit }: ExerciseProp
             label={tokens[index] ?? ""}
             text={tokens[index] ?? ""}
             disabled={disabled}
+            lockedContent={lookupContent(tokens[index] ?? "")}
             onPress={() => place([...built, index])}
           />
         ))}

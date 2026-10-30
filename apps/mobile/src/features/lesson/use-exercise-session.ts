@@ -69,6 +69,14 @@ export function useExerciseSession({
     if (next.status === "feedback" && next !== session) sounds.verdict(next.feedback.verdict);
   };
 
+  /** The learner looked up a word matching these items (see `lessonSessionReducer`). */
+  const onLookup = (itemIds: readonly string[]) => {
+    if (itemIds.length === 0) return;
+    setSession((current) =>
+      current === null ? current : lessonSessionReducer(current, { type: "lookup", itemIds }),
+    );
+  };
+
   const onContinue = () => {
     if (session === null) return;
     const next = lessonSessionReducer(session, { type: "next" });
@@ -83,6 +91,7 @@ export function useExerciseSession({
     save,
     onSubmit,
     onContinue,
+    onLookup,
     retrySave,
     // Leaving mid-save would show a stale home; the save is quick, so block back until it ends.
     canLeave: save.status !== "saving",

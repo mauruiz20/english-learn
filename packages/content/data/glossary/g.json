@@ -1,0 +1,586 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.game",
+      "headword": "game",
+      "kind": "word",
+      "forms": ["game", "games"],
+      "senses": [
+        {
+          "es": "juego",
+          "pos": "noun"
+        },
+        {
+          "es": "partido",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.garbage",
+      "headword": "garbage",
+      "kind": "word",
+      "forms": ["garbage"],
+      "senses": [
+        {
+          "es": "basura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gerund",
+      "headword": "gerund",
+      "kind": "word",
+      "forms": ["gerund", "gerunds"],
+      "senses": [
+        {
+          "es": "gerundio (forma -ing)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get",
+      "headword": "get",
+      "kind": "word",
+      "forms": ["get", "gets", "got", "gotten", "getting"],
+      "senses": [
+        {
+          "es": "conseguir, obtener",
+          "pos": "verb"
+        },
+        {
+          "es": "llegar",
+          "pos": "verb"
+        },
+        {
+          "es": "ponerse, volverse (get tired)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-along",
+      "headword": "get along",
+      "kind": "phrase",
+      "forms": ["get along", "gets along", "got along", "getting along"],
+      "senses": [
+        {
+          "es": "llevarse (bien) con alguien",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-dressed",
+      "headword": "get dressed",
+      "kind": "phrase",
+      "forms": ["get dressed", "gets dressed", "got dressed", "getting dressed"],
+      "senses": [
+        {
+          "es": "vestirse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-enough-sleep",
+      "headword": "get enough sleep",
+      "kind": "phrase",
+      "forms": ["get enough sleep", "gets enough sleep", "got enough sleep"],
+      "senses": [
+        {
+          "es": "dormir lo suficiente",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-lost",
+      "headword": "get lost",
+      "kind": "phrase",
+      "forms": ["get lost", "gets lost", "got lost", "getting lost"],
+      "senses": [
+        {
+          "es": "perderse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-married",
+      "headword": "get married",
+      "kind": "phrase",
+      "forms": ["get married", "gets married", "got married", "getting married"],
+      "senses": [
+        {
+          "es": "casarse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-on",
+      "headword": "get on",
+      "kind": "phrase",
+      "forms": ["get on", "gets on", "got on", "getting on"],
+      "senses": [
+        {
+          "es": "llevarse (bien) con alguien",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "subirse (a un transporte)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-promoted",
+      "headword": "get promoted",
+      "kind": "phrase",
+      "forms": ["get promoted", "gets promoted", "got promoted", "getting promoted"],
+      "senses": [
+        {
+          "es": "ser ascendido, conseguir un ascenso",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-to",
+      "headword": "get to",
+      "kind": "phrase",
+      "forms": ["get to", "gets to", "getting to"],
+      "senses": [
+        {
+          "es": "llegar a",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-up",
+      "headword": "get up",
+      "kind": "phrase",
+      "forms": ["get up", "gets up", "got up", "getting up"],
+      "senses": [
+        {
+          "es": "levantarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.girl",
+      "headword": "girl",
+      "kind": "word",
+      "forms": ["girl", "girls"],
+      "senses": [
+        {
+          "es": "niña, chica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.give",
+      "headword": "give",
+      "kind": "word",
+      "forms": ["give", "gives", "gave", "given", "giving"],
+      "senses": [
+        {
+          "es": "dar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.give-up",
+      "headword": "give up",
+      "kind": "phrase",
+      "forms": ["give up", "gives up", "gave up", "giving up"],
+      "senses": [
+        {
+          "es": "dejar (un hábito)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "rendirse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.global",
+      "headword": "global",
+      "kind": "word",
+      "forms": ["global"],
+      "senses": [
+        {
+          "es": "global, mundial",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.global-warming",
+      "headword": "global warming",
+      "kind": "phrase",
+      "forms": ["global warming"],
+      "senses": [
+        {
+          "es": "calentamiento global",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go",
+      "headword": "go",
+      "kind": "word",
+      "forms": ["go", "goes", "went", "gone", "going"],
+      "senses": [
+        {
+          "es": "ir",
+          "pos": "verb"
+        },
+        {
+          "es": "(going to) ir a (futuro)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-abroad",
+      "headword": "go abroad",
+      "kind": "phrase",
+      "forms": ["go abroad", "goes abroad", "went abroad", "going abroad"],
+      "senses": [
+        {
+          "es": "ir al extranjero",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-ahead",
+      "headword": "go ahead",
+      "kind": "phrase",
+      "forms": ["go ahead", "goes ahead", "went ahead"],
+      "senses": [
+        {
+          "es": "seguir adelante, llevarse a cabo",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-back",
+      "headword": "go back",
+      "kind": "phrase",
+      "forms": ["go back", "goes back", "went back", "going back"],
+      "senses": [
+        {
+          "es": "volver, regresar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-dancing",
+      "headword": "go dancing",
+      "kind": "phrase",
+      "forms": ["go dancing", "goes dancing", "went dancing"],
+      "senses": [
+        {
+          "es": "ir a bailar",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-for-coffee",
+      "headword": "go for coffee",
+      "kind": "phrase",
+      "forms": ["go for coffee", "went for coffee"],
+      "senses": [
+        {
+          "es": "ir a tomar un café",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-out",
+      "headword": "go out",
+      "kind": "phrase",
+      "forms": ["go out", "goes out", "went out", "going out"],
+      "senses": [
+        {
+          "es": "salir (a divertirse)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "apagarse (una luz)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-straight",
+      "headword": "go straight",
+      "kind": "phrase",
+      "forms": [
+        "go straight",
+        "go straight ahead",
+        "go straight on",
+        "goes straight",
+        "went straight"
+      ],
+      "senses": [
+        {
+          "es": "seguir derecho, ir todo recto",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-swimming",
+      "headword": "go swimming",
+      "kind": "phrase",
+      "forms": ["go swimming", "goes swimming", "went swimming"],
+      "senses": [
+        {
+          "es": "ir a nadar",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-to-bed",
+      "headword": "go to bed",
+      "kind": "phrase",
+      "forms": ["go to bed", "goes to bed", "went to bed", "going to bed"],
+      "senses": [
+        {
+          "es": "acostarse, irse a dormir",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.going-to",
+      "headword": "going to",
+      "kind": "phrase",
+      "forms": ["going to"],
+      "senses": [
+        {
+          "es": "(be going to + verbo) ir a (futuro)",
+          "pos": "expression"
+        },
+        {
+          "es": "ir a (un lugar)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.good",
+      "headword": "good",
+      "kind": "word",
+      "forms": ["good"],
+      "senses": [
+        {
+          "es": "bueno",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grade",
+      "headword": "grade",
+      "kind": "word",
+      "forms": ["grade", "grades"],
+      "senses": [
+        {
+          "es": "calificación, nota",
+          "pos": "noun"
+        },
+        {
+          "es": "grado (escolar)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.graduate",
+      "headword": "graduate",
+      "kind": "word",
+      "forms": ["graduate", "graduates", "graduated", "graduating"],
+      "senses": [
+        {
+          "es": "graduarse, recibirse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grandmother",
+      "headword": "grandmother",
+      "kind": "word",
+      "forms": ["grandmother", "grandmothers"],
+      "senses": [
+        {
+          "es": "abuela",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grandparent",
+      "headword": "grandparent",
+      "kind": "word",
+      "forms": ["grandparent", "grandparents"],
+      "senses": [
+        {
+          "es": "abuelo, abuela",
+          "pos": "noun"
+        },
+        {
+          "es": "(grandparents) abuelos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.great",
+      "headword": "great",
+      "kind": "word",
+      "forms": ["great"],
+      "senses": [
+        {
+          "es": "genial, excelente",
+          "pos": "adjective"
+        },
+        {
+          "es": "gran, grande",
+          "pos": "adjective"
+        },
+        {
+          "es": "muy bien (get along great)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.green",
+      "headword": "green",
+      "kind": "word",
+      "forms": ["green", "greener", "greenest"],
+      "senses": [
+        {
+          "es": "verde",
+          "pos": "adjective"
+        },
+        {
+          "es": "ecológico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ground",
+      "headword": "ground",
+      "kind": "word",
+      "forms": ["ground", "grounds"],
+      "senses": [
+        {
+          "es": "suelo",
+          "pos": "noun"
+        },
+        {
+          "es": "(on the grounds that) con el argumento de que",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.group",
+      "headword": "group",
+      "kind": "word",
+      "forms": ["group", "groups"],
+      "senses": [
+        {
+          "es": "grupo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grow",
+      "headword": "grow",
+      "kind": "word",
+      "forms": ["grow", "grows", "grew", "grown", "growing"],
+      "senses": [
+        {
+          "es": "crecer",
+          "pos": "verb"
+        },
+        {
+          "es": "cultivar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grow-up",
+      "headword": "grow up",
+      "kind": "phrase",
+      "forms": ["grow up", "grows up", "grew up", "growing up"],
+      "senses": [
+        {
+          "es": "crecer, criarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.guest",
+      "headword": "guest",
+      "kind": "word",
+      "forms": ["guest", "guests"],
+      "senses": [
+        {
+          "es": "invitado, huésped",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.guitar",
+      "headword": "guitar",
+      "kind": "word",
+      "forms": ["guitar", "guitars"],
+      "senses": [
+        {
+          "es": "guitarra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gym",
+      "headword": "gym",
+      "kind": "word",
+      "forms": ["gym", "gyms"],
+      "senses": [
+        {
+          "es": "gimnasio",
+          "pos": "noun"
+        }
+      ]
+    }
+  ]
+}

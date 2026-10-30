@@ -10,5 +10,17 @@ export { validateListDuplicates } from "./duplicates";
 export { validateLevels } from "./levels";
 export { validateLayout } from "./layout";
 export { validateTopics, validateExerciseTopics } from "./topics";
+export {
+  findUncoveredWords,
+  glossaryIndex,
+  glossaryReport,
+  glossaryTexts,
+  validateGlossaryCoverage,
+  validateGlossaryEntries,
+  validateGlossaryForms,
+  type GlossaryReport,
+  type GlossaryText,
+  type UncoveredWord,
+} from "./glossary";
 export { validateCorpus, validateLocal } from "./corpus";
 export { findDuplicateKeys, type DuplicateKey } from "./json-keys";

@@ -159,4 +159,69 @@ describe("lessonSession", () => {
       },
     ]);
   });
+
+  describe("word lookups", () => {
+    const outcomesOf = (state: LessonSessionState) =>
+      state.status === "finished" ? state.summary.itemOutcomes : [];
+    const lookup = (state: LessonSessionState, itemIds: readonly string[]) =>
+      lessonSessionReducer(state, { type: "lookup", itemIds });
+
+    it("flags an item looked up before answering an exercise that practices it", () => {
+      const state = lookup(startLesson(lesson, allExercises), ["a2.routine.wake-up"]);
+      const finished = play(state, correctResponses);
+
+      expect(outcomesOf(finished).filter((o) => o.lookedUp)).toEqual([
+        expect.objectContaining({ itemId: "a2.routine.wake-up", exerciseType: "vocab" }),
+        expect.objectContaining({ itemId: "a2.routine.wake-up", exerciseType: "word_order" }),
+      ]);
+    });
+
+    it("flags later exercises when the lookup happens during an earlier feedback", () => {
+      // Looked up after the vocab exercise was checked: only the word order answer is affected.
+      const afterVocab = lessonSessionReducer(startLesson(lesson, allExercises), {
+        type: "answer",
+        response: correctResponses[0]!,
+        responseMs: 1000,
+      });
+      const finished = play(
+        lessonSessionReducer(lookup(afterVocab, ["a2.routine.wake-up"]), { type: "next" }),
+        correctResponses.slice(1),
+      );
+
+      expect(outcomesOf(finished).filter((o) => o.lookedUp)).toEqual([
+        expect.objectContaining({ itemId: "a2.routine.wake-up", exerciseType: "word_order" }),
+      ]);
+    });
+
+    it("does not flag items that were never looked up", () => {
+      const finished = play(
+        lookup(startLesson(lesson, allExercises), ["somewhere.else"]),
+        correctResponses,
+      );
+
+      expect(outcomesOf(finished).some((o) => o.lookedUp)).toBe(false);
+    });
+
+    it("keeps the verdicts, accuracy and XP the learner earned", () => {
+      const plain = play(startLesson(lesson, allExercises), correctResponses);
+      const looked = play(
+        lookup(startLesson(lesson, allExercises), ["a2.routine.wake-up"]),
+        correctResponses,
+      );
+
+      expect(looked.status === "finished" && looked.summary.verdicts).toEqual(
+        plain.status === "finished" && plain.summary.verdicts,
+      );
+      expect(looked.status === "finished" && looked.summary.answerXp).toBe(
+        plain.status === "finished" && plain.summary.answerXp,
+      );
+    });
+
+    it("ignores an empty lookup and lookups once the session is finished", () => {
+      const start = startLesson(lesson, allExercises);
+      expect(lookup(start, [])).toBe(start);
+      const finished = play(start, correctResponses);
+      expect(lookup(finished, ["a2.routine.wake-up"])).toBe(finished);
+    });
+  });
 });

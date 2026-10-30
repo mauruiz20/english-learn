@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Animated, Easing, StyleSheet, View, type TextProps } from "react-native";
 import { Text, type TextVariant } from "./text";
 import type { HighlighterName } from "./theme";
@@ -7,6 +7,8 @@ import { useTheme } from "./use-theme";
 
 type HighlightProps = Omit<TextProps, "children"> & {
   children: string;
+  /** What the visible text renders instead of `children` (e.g. with lookup targets); same text. */
+  content?: ReactNode;
   variant?: TextVariant;
   /** Swipe the highlighter left to right once (≈ 250 ms) instead of showing it at once. */
   animate?: boolean;
@@ -29,6 +31,7 @@ const SWIPE_OVERHANG = 6;
  */
 export function Highlight({
   children,
+  content,
   variant,
   animate = false,
   shape = "lines",
@@ -99,7 +102,7 @@ export function Highlight({
         </Animated.View>
       )}
       <Text variant={textVariant} {...props} style={[style, { color: colors.onHighlighter }]}>
-        {children}
+        {content ?? children}
       </Text>
     </View>
   );
