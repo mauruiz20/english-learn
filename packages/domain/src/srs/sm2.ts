@@ -19,7 +19,7 @@ export function initialState(itemId: string, today: LocalDate): ReviewState {
   return { itemId, ease: DEFAULT_EASE, intervalDays: 0, reps: 0, lapses: 0, dueDate: today };
 }
 
-function assertGrade(grade: number): asserts grade is Grade {
+export function assertGrade(grade: number): asserts grade is Grade {
   if (!Number.isInteger(grade) || grade < 0 || grade > 5) {
     throw new RangeError(`Grade must be an integer 0..5, got ${grade}`);
   }
