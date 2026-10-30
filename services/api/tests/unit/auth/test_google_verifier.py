@@ -32,6 +32,7 @@ from english_learn_api.auth.infrastructure.google_verifier import (
 )
 
 CLIENT_ID = "test-client.apps.googleusercontent.com"
+ANDROID_CLIENT_ID = "test-android.apps.googleusercontent.com"
 KID = "test-key"
 
 
@@ -110,13 +111,31 @@ def id_token(private_pem: bytes = PRIVATE_PEM, **overrides: Any) -> str:
 
 
 def verifier(endpoint: FakeCertsEndpoint | None = None) -> GoogleIdTokenVerifier:
-    return GoogleIdTokenVerifier(client_id=CLIENT_ID, request=endpoint or FakeCertsEndpoint())
+    return GoogleIdTokenVerifier(
+        client_ids=[CLIENT_ID, ANDROID_CLIENT_ID], request=endpoint or FakeCertsEndpoint()
+    )
 
 
 async def test_returns_the_identity_of_a_valid_token() -> None:
     identity = await verifier().verify(id_token())
 
     assert identity == GoogleIdentity(sub="1234567890", email="ana@example.com")
+
+
+class TestClientIdAllowlist:
+    async def test_accepts_any_allowed_audience(self) -> None:
+        assert await verifier().verify(id_token(aud=ANDROID_CLIENT_ID))
+
+    async def test_accepts_an_allowed_authorized_party(self) -> None:
+        assert await verifier().verify(id_token(azp=ANDROID_CLIENT_ID))
+
+    async def test_rejects_an_authorized_party_outside_the_allowlist(self) -> None:
+        with pytest.raises(InvalidGoogleTokenError):
+            await verifier().verify(id_token(azp="someone-else.apps.googleusercontent.com"))
+
+    async def test_rejects_an_audience_outside_the_allowlist(self) -> None:
+        with pytest.raises(InvalidGoogleTokenError):
+            await verifier().verify(id_token(aud="someone-else.apps.googleusercontent.com"))
 
 
 async def test_accepts_the_issuer_without_scheme() -> None:
@@ -347,7 +366,7 @@ class TestCertificateCache:
 async def test_verification_has_a_total_timeout() -> None:
     fetcher = ControlledFetcher()
     fetcher.blocked_urls.add(GOOGLE_CERTS_URL)
-    google = GoogleIdTokenVerifier(client_id=CLIENT_ID, request=fetcher, total_timeout=0.2)
+    google = GoogleIdTokenVerifier(client_ids=[CLIENT_ID], request=fetcher, total_timeout=0.2)
 
     started = time.monotonic()
     with pytest.raises(GoogleUnavailableError):
@@ -360,7 +379,7 @@ async def test_verification_has_a_total_timeout() -> None:
 @pytest.mark.google_network
 async def test_the_real_google_endpoint_rejects_a_forged_token() -> None:
     """Opt in with RUN_GOOGLE_NETWORK_TESTS=1: fetches Google's real certificates."""
-    real = GoogleIdTokenVerifier(client_id=CLIENT_ID)
+    real = GoogleIdTokenVerifier(client_ids=[CLIENT_ID])
 
     with pytest.raises(InvalidGoogleTokenError):
         await real.verify(id_token())

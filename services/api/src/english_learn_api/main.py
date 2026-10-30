@@ -40,7 +40,9 @@ def create_app(
 ) -> FastAPI:
     """Build the app. Tests swap the Google verifier and the clock; everything else is real."""
     clock = clock or SystemClock()
-    google_verifier = google_verifier or GoogleIdTokenVerifier(client_id=settings.google_client_id)
+    google_verifier = google_verifier or GoogleIdTokenVerifier(
+        client_ids=settings.google_client_ids
+    )
     engine = create_engine(settings.database_url)
     session_factory = create_session_factory(engine)
 

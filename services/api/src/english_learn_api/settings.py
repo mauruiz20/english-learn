@@ -10,6 +10,10 @@ DEFAULT_CORS_ORIGINS = (
     "https://english-learn-iwl.pages.dev",
     "http://localhost:8081",
 )
+# Public OAuth client ids allowed as `aud` (and `azp`) of Google ID tokens: the web client today.
+DEFAULT_GOOGLE_CLIENT_IDS = (
+    "78200832989-odkefhj0s4vla7h5p83gevs2440mctev.apps.googleusercontent.com",
+)
 MIN_JWT_SECRET_BYTES = 32
 _ASYNC_DRIVER = "postgresql+asyncpg://"
 _POSTGRES_SCHEMES = ("postgres://", "postgresql://", _ASYNC_DRIVER)
@@ -34,7 +38,7 @@ class DatabaseSettings(BaseSettings):
 
 
 class Settings(DatabaseSettings):
-    google_client_id: str
+    google_client_ids: Annotated[list[str], NoDecode] = list(DEFAULT_GOOGLE_CLIENT_IDS)
     jwt_secret: SecretStr
     access_token_ttl: timedelta = timedelta(minutes=15)
     refresh_token_ttl: timedelta = timedelta(days=14)  # idle timeout, slid by every refresh
@@ -82,10 +86,18 @@ class Settings(DatabaseSettings):
             raise ValueError(msg)
         return value
 
-    @field_validator("cors_origins", mode="before")
+    @field_validator("cors_origins", "google_client_ids", mode="before")
     @classmethod
-    def _split_origins(cls, value: object) -> object:
+    def _split_commas(cls, value: object) -> object:
         # `CORS_ORIGINS=https://a.example,https://b.example` in the environment.
         if isinstance(value, str):
-            return [origin.strip() for origin in value.split(",") if origin.strip()]
+            return [item.strip() for item in value.split(",") if item.strip()]
+        return value
+
+    @field_validator("google_client_ids")
+    @classmethod
+    def _some_client_id(cls, value: list[str]) -> list[str]:
+        if not value:
+            msg = "GOOGLE_CLIENT_IDS needs at least one client id"
+            raise ValueError(msg)
         return value

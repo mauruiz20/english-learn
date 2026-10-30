@@ -1,7 +1,8 @@
 """Verifies Google ID tokens with google-auth (`id_token.verify_oauth2_token`).
 
 google-auth checks the RS256 signature against Google's certificates, `exp`/`iat`, the audience
-(our OAuth client id) and the issuer (`accounts.google.com`); we also require a verified email.
+(one of our OAuth client ids) and the issuer (`accounts.google.com`); we also check that `azp`,
+when present, is one of our client ids and require a verified email.
 It is synchronous, so it runs in a worker thread with a total timeout, and its certificate
 download is cached (see `CachingRequest`).
 """
@@ -10,7 +11,7 @@ import asyncio
 import re
 import threading
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -160,11 +161,14 @@ class GoogleIdTokenVerifier:
     def __init__(
         self,
         *,
-        client_id: str,
+        client_ids: Sequence[str],
         request: transport.Request | None = None,
         total_timeout: float = TOTAL_TIMEOUT_SECONDS,
     ) -> None:
-        self._client_id = client_id
+        if not client_ids:
+            msg = "at least one Google client id is required"
+            raise ValueError(msg)
+        self._client_ids = list(client_ids)
         self._request = CachingRequest(request or google_requests.Request())
         self._total_timeout = total_timeout
 
@@ -184,7 +188,7 @@ class GoogleIdTokenVerifier:
             claims = google_id_token.verify_oauth2_token(
                 id_token,
                 self._request,
-                audience=self._client_id,
+                audience=self._client_ids,
                 clock_skew_in_seconds=CLOCK_SKEW_SECONDS,
             )
         except exceptions.TransportError as error:
@@ -202,6 +206,9 @@ class GoogleIdTokenVerifier:
             # payload of the wrong shape (`{"alg": ["RS256"]}`) that google-auth does not check.
             raise _invalid() from error
 
+        # `azp` is the client that requested the token; when present it must be one of ours too.
+        if "azp" in claims and claims["azp"] not in self._client_ids:
+            raise _invalid()
         sub, email = claims.get("sub"), claims.get("email")
         if not isinstance(sub, str) or not sub or not isinstance(email, str) or not email:
             raise _invalid()
