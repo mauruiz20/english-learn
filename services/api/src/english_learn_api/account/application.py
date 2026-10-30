@@ -1,20 +1,22 @@
 """The signed-in user's own account: read the profile, delete everything."""
 
 import logging
-from typing import ClassVar
+from datetime import datetime, timedelta
 from uuid import UUID
 
 from english_learn_api.auth.application.use_cases import UnitOfWorkFactory
-from english_learn_api.auth.domain.errors import AuthenticationError
+from english_learn_api.auth.domain.errors import (
+    AccountNotFoundError,
+    ReauthenticationRequiredError,
+)
 from english_learn_api.auth.domain.models import User
+from english_learn_api.shared.clock import Clock
 
 logger = logging.getLogger(__name__)
 
+DEFAULT_REAUTHENTICATION_WINDOW = timedelta(minutes=5)
 
-class AccountNotFoundError(AuthenticationError):
-    """A valid access token whose account was deleted in the meantime."""
-
-    code: ClassVar[str] = "account_not_found"
+__all__ = ["AccountNotFoundError", "DeleteAccount", "GetProfile"]
 
 
 class GetProfile:
@@ -30,12 +32,27 @@ class GetProfile:
 
 
 class DeleteAccount:
-    """Hard delete: the database cascades to devices, events and refresh tokens."""
+    """Hard delete: the database cascades to devices, events and refresh tokens.
 
-    def __init__(self, *, unit_of_work: UnitOfWorkFactory) -> None:
+    Irreversible, so it needs a recent Google sign-in (`authenticated_at`), not only a valid
+    session: a stolen refresh token can mint fresh access tokens but cannot sign in again.
+    """
+
+    def __init__(
+        self,
+        *,
+        unit_of_work: UnitOfWorkFactory,
+        clock: Clock,
+        reauthentication_window: timedelta = DEFAULT_REAUTHENTICATION_WINDOW,
+    ) -> None:
         self._unit_of_work = unit_of_work
+        self._clock = clock
+        self._window = reauthentication_window
 
-    async def execute(self, user_id: UUID) -> None:
+    async def execute(self, user_id: UUID, *, authenticated_at: datetime) -> None:
+        if self._clock.now() - authenticated_at >= self._window:
+            msg = "Sign in with Google again to delete the account"
+            raise ReauthenticationRequiredError(msg)
         async with self._unit_of_work() as uow:
             if not await uow.users.delete(user_id):
                 raise _not_found()
