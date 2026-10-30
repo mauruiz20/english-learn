@@ -374,13 +374,46 @@ describe("validateLevels", () => {
   });
   it("flags an exercise whose level differs from its lesson", () => {
     const f = fx.validFile();
-    const exercises = [{ ...fx.vocab(), level: "A2" as const }, ...(f.exercises ?? []).slice(1)];
+    const exercises = [{ ...fx.vocab(), level: "B2" as const }, ...(f.exercises ?? []).slice(1)];
     const errs = validateLevels([file({ ...f, exercises }, "b1/travel.json")]);
     expect(errs).toEqual([
       {
         file: "b1/travel.json",
         path: "lessons[0].exerciseIds[0]",
-        message: 'exercise "b1.travel.vocab-001" is A2 but the lesson is B1',
+        message: 'exercise "b1.travel.vocab-001" is B2 but the lesson is B1',
+      },
+    ]);
+  });
+  it("flags a reading exercise whose passage has a different level", () => {
+    const errs = validateLevels([
+      file({
+        passages: [fx.passage({ id: "a2.travel.trip", level: "A2" })],
+        exercises: [fx.reading({ passageId: "a2.travel.trip" })],
+      }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].passageId",
+        message: 'passage "a2.travel.trip" is A2 but the reading exercise is B1',
+      },
+    ]);
+  });
+  it("allows easier items but flags items above the exercise level", () => {
+    const errs = validateLevels([
+      file({
+        items: [
+          fx.item({ id: "a1.travel.go", level: "A1" }),
+          fx.item({ id: "c1.travel.whereas", level: "C1" }),
+        ],
+        exercises: [fx.vocab({ itemIds: ["a1.travel.go", "c1.travel.whereas", "b1.travel.nope"] })],
+      }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].itemIds[1]",
+        message: 'item "c1.travel.whereas" is C1, above the exercise level B1',
       },
     ]);
   });
