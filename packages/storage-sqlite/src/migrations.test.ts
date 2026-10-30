@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { SCHEMA_VERSION, migrate } from "./migrations";
+import { SCHEMA_VERSION, SchemaTooNewError, migrate } from "./migrations";
 import { createNodeSqliteDatabase } from "./testing/node-sqlite-database";
 
 type Db = ReturnType<typeof createNodeSqliteDatabase>;
@@ -47,5 +47,10 @@ describe("migrate", () => {
     await db.execAsync(`PRAGMA user_version = ${SCHEMA_VERSION + 1}`);
 
     await expect(migrate(db)).rejects.toThrow(/newer/);
+    await expect(migrate(db)).rejects.toBeInstanceOf(SchemaTooNewError);
+    await expect(migrate(db)).rejects.toMatchObject({
+      databaseVersion: SCHEMA_VERSION + 1,
+      supportedVersion: SCHEMA_VERSION,
+    });
   });
 });
