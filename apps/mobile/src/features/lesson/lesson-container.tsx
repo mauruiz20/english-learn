@@ -8,6 +8,7 @@ import { completeSession } from "./application/complete-session";
 import { lessonExercises } from "./model/lesson-catalog";
 import { startLesson, type LessonSessionState } from "./model/lesson-session";
 import { prepareExercise, type PreparedExercise } from "./model/prepare-exercise";
+import { responseText } from "./model/response";
 import { LessonView, type LessonViewState } from "./lesson-view";
 import { useExerciseSession, type ExerciseSession, type SaveState } from "./use-exercise-session";
 
@@ -91,6 +92,9 @@ function toViewState(
     prepared: current,
     passage:
       current.type === "reading" ? content.passagesById.get(current.exercise.passageId) : undefined,
-    feedback: session.status === "feedback" ? session.feedback : null,
+    feedback:
+      session.status === "feedback"
+        ? { ...session.feedback, given: responseText(session.response) }
+        : null,
   };
 }

@@ -10,7 +10,7 @@ web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
 | `src/app/`            | Routes only (`/`, `/placement`, `/lesson/[id]`, `/review`, `/about`) |
 | `src/features/*`      | Feature screens; containers load data, views are pure (props only)   |
 | `src/infrastructure/` | Adapters: `SystemClock`, SQLite wiring, `AppServicesProvider` (DI)   |
-| `src/shared/ui/`      | Small UI primitives and theme tokens                                 |
+| `src/shared/ui/`      | Notebook design system: theme tokens, `useTheme`, UI primitives      |
 | `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                        |
 | `e2e/`                | Playwright tests against the exported web build                      |
 
@@ -98,8 +98,36 @@ states that some non-reading exercise covers (new items come from lessons only).
 item, in priority order, it picks one exercise that practices it, preferring a different type
 than the previous pick, chosen with the injected rng; an exercise covering several due items
 reviews all of them. Only the due items are saved (an exercise may also practice items that are
-not due; those are untouched). XP is answer XP only, no completion bonus. Home shows
-"Repaso: N pendientes" (same plan) with a "Repasar" button, or "Nada para repasar hoy".
+not due; those are untouched). XP is answer XP only, no completion bonus. Home shows a sticky note
+"Repaso, N pendientes" (same plan) with a "Repasar" button, or "Nada para repasar hoy".
+
+## Design: "el cuaderno de inglés" (`src/shared/ui/`)
+
+The UI borrows from a school English notebook: ruled paper, blue ballpoint ink, yellow
+highlighter and the teacher's red pen. Boldness is spent on the answer feedback; everything else
+stays quiet.
+
+- **Tokens** (`theme.ts`): paper, sheet, rule, ink, text, muted text, highlighter, red pen and
+  success, for light and a "cuaderno nocturno" dark palette. `useTheme()` follows the system color
+  scheme (`app.json` `userInterfaceStyle: automatic`); `ThemeOverride` forces one for a subtree
+  (the sticky note is always yellow paper). Styles are built per scheme with `themedStyles`.
+- **Fonts** (bundled with `expo-font` + `@expo-google-fonts/*`, so they work offline and are
+  same-origin on web): Bricolage Grotesque for headings and big numbers, Atkinson Hyperlegible
+  for body and UI text, Caveat only for the teacher's notes and the summary grade. The root layout
+  keeps the splash screen up until they load.
+- **Primitives**: `Text` (variants and tones), `Button` (primary ink, secondary outline, text),
+  `ScreenContainer` (one ≤ 560 px column; on wide screens a notebook margin rule; optional pinned
+  footer), `RuledArea` (ruled lines behind exercise prompts only), `Highlight` (highlighter mark,
+  optional one-off swipe that respects reduced motion), `MarginNote` (red-pen handwriting),
+  `StickyNote` (the only rotated element), `PaperStrip` (word-order tokens), `ProgressLine`,
+  `ChoiceRow` (radio rows).
+- **Feedback** (`features/lesson/components/answer-feedback.tsx`): correct → the learner's answer
+  is swiped with the highlighter and a green "Correcto"; wrong → struck through in red pen with a
+  margin note "Era: …"; almost → only the words that are off are struck (`model/answer-diff.ts`)
+  with "Casi. Fíjate: …". The marking is hidden from screen readers, which get a plain alert
+  ("Incorrecto. Respuesta correcta: …").
+- **Accessibility floor**: touch targets ≥ 44 pt, an ink focus ring on web (`:focus-visible`,
+  `web-global-styles.ts`), AA contrast for text, reduced motion respected, labels kept.
 
 ## Commands
 
@@ -117,6 +145,16 @@ pnpm serve:web      # serve dist/ on http://localhost:4173 with the required hea
 pnpm export:web:e2e # e2e export to dist-e2e/ (EXPO_PUBLIC_E2E=1)
 pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
 ```
+
+### Screenshots (dev tool)
+
+`node scripts/screenshots.mjs <out-dir> [--skip-build] [--port 4174]` builds `dist-e2e/` (skip
+with `--skip-build` if it is fresh), serves it and walks the app with Playwright Chromium:
+home (fresh and with progress plus pending reviews via `?today=`), placement intro and question,
+one screen per exercise type, correct / almost / wrong feedback, the leave dialog, the lesson
+summary, review, about and the "open in another tab" error screen. Every screen is captured at
+390×844 and 1280×800, in light and dark color schemes (`mobile-dark-09-feedback-wrong.png`, …);
+long screens also get a `-full.png`. It is for design review, not part of the test suite.
 
 ### E2E-only clock override
 
@@ -191,6 +229,8 @@ later (fonts, images, analytics) must be served with `Cross-Origin-Resource-Poli
 - **Other hosts** (e.g. Vercel, S3/CloudFront, nginx): configure the same two headers for all
   paths, plus an SPA fallback that serves `index.html` for unknown routes.
 - The dev server (`metro.config.js`) and `scripts/serve-web.mjs` already send them.
+- The fonts are bundled assets served from the same origin, so `require-corp` does not affect
+  them.
 
 The Playwright smoke test fails if the page is not cross-origin isolated, if SQLite/WASM logs
 console errors, or if progress loaded from the database is not rendered.

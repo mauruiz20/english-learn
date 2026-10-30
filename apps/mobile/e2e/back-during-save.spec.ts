@@ -5,7 +5,7 @@ test("browser back right as the lesson saves keeps the save once and home shows 
   page,
 }) => {
   await page.goto("/");
-  await expect(page.getByText("XP: 0")).toBeVisible();
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
 
   // Answer every exercise; stop on the last feedback, before the save starts.
@@ -22,10 +22,10 @@ test("browser back right as the lesson saves keeps the save once and home shows 
 
   // 6 × 10 answer XP + 20 completion bonus, saved exactly once.
   await expect(page.getByText("Lecciones de nivel A2")).toBeVisible();
-  await expect(page.getByText("XP: 80")).toBeVisible();
+  await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("XP: 80")).toBeVisible();
-  await expect(page.getByText("Racha: 1 día")).toBeVisible();
+  await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Racha: 1 día")).toBeVisible();
 });

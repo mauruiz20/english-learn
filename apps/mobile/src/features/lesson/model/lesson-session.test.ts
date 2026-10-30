@@ -56,6 +56,7 @@ describe("lessonSession", () => {
       status: "feedback",
       index: 0,
       feedback: { verdict: "wrong", correctAnswer: "despertarse" },
+      response: { kind: "choice", option: "dormirse" },
     });
     expect(currentExercise(answered)).toBe(vocab);
 

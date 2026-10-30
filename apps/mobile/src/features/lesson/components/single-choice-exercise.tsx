@@ -29,6 +29,7 @@ export function SingleChoiceExercise({
     <ExerciseLayout
       instruction={instruction}
       canSubmit={!disabled && selected !== null}
+      locked={disabled}
       submitLabel={submitLabel}
       onSubmit={() => selected !== null && onSubmit({ kind: "choice", option: selected })}
     >
