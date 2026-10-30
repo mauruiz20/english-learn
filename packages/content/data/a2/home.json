@@ -33,12 +33,12 @@
       "es": "sala de estar"
     },
     {
-      "id": "a2.home.garden",
+      "id": "a2.home.yard",
       "level": "A2",
       "topics": ["home"],
       "kind": "word",
-      "term": "garden",
-      "es": "jardín"
+      "term": "yard",
+      "es": "patio, jardín"
     },
     {
       "id": "a2.home.apartment",
@@ -103,7 +103,7 @@
       "level": "A2",
       "topics": ["home"],
       "title": "Our new apartment",
-      "text": "We moved to a new apartment last month. It is bigger than our old one. There are two bedrooms, a small kitchen and a living room with a big window. There isn't a garden, but there is a balcony with lots of plants. My brother and I share a bedroom. On Saturdays we clean the apartment together, and I always do the dishes.",
+      "text": "We moved to a new apartment last month. It is bigger than our old one. There are two bedrooms, a small kitchen and a living room with a big window. There isn't a yard, but there is a balcony with lots of plants. My brother and I share a bedroom. On Saturdays we clean the apartment together, and I always do the dishes.",
       "source": { "kind": "original" }
     }
   ],
@@ -131,18 +131,13 @@
     },
     {
       "id": "a2.home.order-001",
-      "itemIds": ["a2.home.garden", "a2.home.there-is-are"],
+      "itemIds": ["a2.home.yard", "a2.home.there-is-are"],
       "level": "A2",
-      "source": {
-        "kind": "tatoeba",
-        "sentenceId": 247435,
-        "author": "sundown",
-        "license": "CC BY 2.0 FR"
-      },
+      "source": { "kind": "original" },
       "type": "word_order",
-      "tokens": ["of", "back", "at", "house.", "our", "There's", "a", "the", "garden"],
-      "accepted": ["There's a garden at the back of our house."],
-      "es": "Hay un jardín detrás de nuestra casa."
+      "tokens": ["yard", "our", "There's", "behind", "big", "house.", "a"],
+      "accepted": ["There's a big yard behind our house."],
+      "es": "Hay un patio grande detrás de nuestra casa."
     },
     {
       "id": "a2.home.choice-001",
@@ -179,7 +174,7 @@
         },
         {
           "prompt": "What does the new apartment NOT have?",
-          "options": ["A kitchen", "A garden", "A balcony"],
+          "options": ["A kitchen", "A yard", "A balcony"],
           "answerIndex": 1
         },
         {
