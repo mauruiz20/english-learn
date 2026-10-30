@@ -1,5 +1,6 @@
 """The google-auth adapter, exercised offline with our own signing key and certificate endpoint."""
 
+import base64
 import json
 import time
 from datetime import UTC, datetime, timedelta
@@ -128,6 +129,42 @@ async def test_accepts_the_issuer_without_scheme() -> None:
     ],
 )
 async def test_rejects_invalid_tokens(token: str) -> None:
+    with pytest.raises(InvalidGoogleTokenError):
+        await verifier().verify(token)
+
+
+def crafted(header: object, payload: object = None, signature: bytes = b"sig") -> str:
+    def segment(value: bytes) -> str:
+        return base64.urlsafe_b64encode(value).rstrip(b"=").decode()
+
+    claims = payload if payload is not None else {"iss": "accounts.google.com", "aud": CLIENT_ID}
+    return ".".join(
+        [
+            segment(json.dumps(header).encode()),
+            segment(json.dumps(claims).encode()),
+            segment(signature),
+        ]
+    )
+
+
+@pytest.mark.parametrize(
+    "token",
+    [
+        pytest.param(crafted({"alg": ["RS256"], "kid": KID}), id="alg is a list"),
+        pytest.param(crafted({"alg": "RS256", "kid": ["x"]}), id="kid is a list"),
+        pytest.param(crafted({"alg": "RS256", "kid": {"a": 1}}), id="kid is an object"),
+        pytest.param(crafted(["RS256"]), id="header is a list"),
+        pytest.param(crafted("RS256"), id="header is a string"),
+        pytest.param(crafted({"alg": "RS256", "kid": KID}, payload=[1, 2]), id="payload is a list"),
+        pytest.param(crafted({"alg": "RS256", "kid": KID}, payload=42), id="payload is a number"),
+        pytest.param(crafted({"alg": "RS256", "kid": KID}) + ".extra", id="four segments"),
+        pytest.param("a.b", id="two segments"),
+        pytest.param("..", id="empty segments"),
+        pytest.param("abc.d*f.ghi", id="not base64url"),
+        pytest.param("a" * 4000, id="one long segment"),
+    ],
+)
+async def test_rejects_malformed_tokens_with_401_not_500(token: str) -> None:
     with pytest.raises(InvalidGoogleTokenError):
         await verifier().verify(token)
 

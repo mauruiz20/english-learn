@@ -27,6 +27,8 @@ CLOCK_SKEW_SECONDS = 10
 DEFAULT_CACHE_SECONDS = 3600
 REQUEST_TIMEOUT_SECONDS = 5
 _MAX_AGE = re.compile(r"max-age=(\d+)")
+# A compact JWS: three base64url segments. Anything else is rejected before google-auth parses it.
+_COMPACT_JWS = re.compile(r"[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 
 
 class CachingRequest(transport.Request):
@@ -87,6 +89,8 @@ class GoogleIdTokenVerifier:
         return await asyncio.to_thread(self._verify, id_token)
 
     def _verify(self, id_token: str) -> GoogleIdentity:
+        if not _COMPACT_JWS.fullmatch(id_token):
+            raise _invalid()
         try:
             claims = google_id_token.verify_oauth2_token(
                 id_token,
@@ -97,9 +101,16 @@ class GoogleIdTokenVerifier:
         except exceptions.TransportError as error:
             msg = "Google sign-in is temporarily unavailable"
             raise GoogleUnavailableError(msg) from error
-        except (ValueError, exceptions.GoogleAuthError) as error:
+        except (
+            ValueError,
+            TypeError,
+            KeyError,
+            AttributeError,
+            exceptions.GoogleAuthError,
+        ) as error:
             # ValueError: bad signature, expired, wrong audience, malformed token.
-            # GoogleAuthError: wrong issuer.
+            # GoogleAuthError: wrong issuer. TypeError/KeyError/AttributeError: a header or
+            # payload of the wrong shape (`{"alg": ["RS256"]}`) that google-auth does not check.
             raise _invalid() from error
 
         sub, email = claims.get("sub"), claims.get("email")
