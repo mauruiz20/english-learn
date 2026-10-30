@@ -17,12 +17,12 @@
       "es": "terminar (una relación con alguien)"
     },
     {
-      "id": "b1.relationships.fall-out",
+      "id": "b1.relationships.falling-out",
       "level": "B1",
       "topics": ["relationships"],
       "kind": "phrase",
-      "term": "fall out (with)",
-      "es": "pelearse, enemistarse (con)"
+      "term": "have a falling-out (with)",
+      "es": "pelearse, distanciarse (con)"
     },
     {
       "id": "b1.relationships.make-up",
@@ -103,7 +103,7 @@
       "level": "B1",
       "topics": ["relationships"],
       "title": "Best friends again",
-      "text": "Ana and Lucía have known each other since they were six. They used to do everything together, and everyone thought they would always be best friends. Then, in their last year of high school, they fell out over a boy. Ana started dating him, and Lucía was jealous because she had liked him first. The two girls argued in front of the whole class, and after that they didn't speak for months. Ana broke up with the boy a few weeks later, but she was too proud to call Lucía. Finally, Ana's mother gave her some advice. \"If I were you, I would apologize,\" she said. \"Good friends are hard to find.\" Ana wrote Lucía a long letter. Lucía read it twice and called her that same night. They made up and talked for three hours. Today they still get along really well, and Lucía will be a bridesmaid when Ana gets married next spring.",
+      "text": "Ana and Lucía have known each other since they were six. They used to do everything together, and everyone thought they would always be best friends. Then, in their last year of high school, they had a falling-out over a boy. Ana started dating him, and Lucía was jealous because she had liked him first. The two girls argued in front of the whole class, and after that they didn't speak for months. Ana broke up with the boy a few weeks later, but she was too proud to call Lucía. Finally, Ana's mother gave her some advice. \"If I were you, I would apologize,\" she said. \"Good friends are hard to find.\" Ana wrote Lucía a long letter. Lucía read it twice and called her that same night. They made up and talked for three hours. Today they still get along really well, and Lucía will be a bridesmaid when Ana gets married next spring.",
       "source": { "kind": "original" }
     }
   ],
@@ -172,7 +172,7 @@
     {
       "id": "b1.relationships.reading-001",
       "itemIds": [
-        "b1.relationships.fall-out",
+        "b1.relationships.falling-out",
         "b1.relationships.make-up",
         "b1.relationships.jealous"
       ],
@@ -182,7 +182,7 @@
       "passageId": "b1.relationships.friends-again",
       "questions": [
         {
-          "prompt": "Why did the two friends fall out?",
+          "prompt": "Why did the two friends have a falling-out?",
           "options": ["Because of a bad grade", "Because of a boy", "Because Ana moved away"],
           "answerIndex": 1
         },
@@ -254,13 +254,13 @@
     },
     {
       "id": "b1.relationships.cloze-003",
-      "itemIds": ["b1.relationships.fall-out"],
+      "itemIds": ["b1.relationships.falling-out"],
       "level": "B1",
       "source": { "kind": "original" },
       "type": "cloze",
-      "sentence": "I ___ out with my brother last year, and we still don't talk.",
-      "answers": ["fell"],
-      "distractors": ["felt", "fall", "failed"],
+      "sentence": "I had a falling-___ with my brother last year, and we still don't talk.",
+      "answers": ["out"],
+      "distractors": ["off", "down", "up"],
       "es": "Me peleé con mi hermano el año pasado y todavía no nos hablamos."
     },
     {
@@ -321,7 +321,10 @@
       "accepted": [
         "She broke up with her boyfriend last week.",
         "Last week, she broke up with her boyfriend.",
-        "Last week she broke up with her boyfriend."
+        "Last week she broke up with her boyfriend.",
+        "She split up with her boyfriend last week.",
+        "Last week, she split up with her boyfriend.",
+        "She ended things with her boyfriend last week."
       ]
     }
   ],

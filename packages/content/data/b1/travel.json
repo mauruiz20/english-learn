@@ -163,9 +163,9 @@
       "type": "translation_choice",
       "sentence": "We got lost in the old town.",
       "options": [
-        "Nos quedamos en el casco antiguo.",
-        "Compramos algo en el casco antiguo.",
-        "Nos perdimos en el casco antiguo."
+        "Nos quedamos en el centro histórico.",
+        "Compramos algo en el centro histórico.",
+        "Nos perdimos en el centro histórico."
       ],
       "answerIndex": 2
     },
@@ -206,7 +206,12 @@
         "Though the flight was delayed, we arrived on time.",
         "Although the flight was delayed, we got there on time.",
         "Even though the flight was delayed, we got there on time.",
-        "Though the flight was delayed, we got there on time."
+        "Though the flight was delayed, we got there on time.",
+        "Although the flight was delayed, we still arrived on time.",
+        "Even though the flight was delayed, we still arrived on time.",
+        "Although the flight was late, we arrived on time.",
+        "Even though the flight was late, we arrived on time.",
+        "Although the flight was delayed, we made it on time."
       ]
     },
     {
@@ -341,7 +346,12 @@
         "We set out yesterday very early in the morning.",
         "We set out yesterday really early in the morning.",
         "We left yesterday very early in the morning.",
-        "We left yesterday really early in the morning."
+        "We left yesterday really early in the morning.",
+        "We left very early yesterday morning.",
+        "We left really early yesterday morning.",
+        "We set off very early yesterday morning.",
+        "We set out very early yesterday morning.",
+        "Yesterday morning, we left very early."
       ]
     },
     {
@@ -359,7 +369,9 @@
         "We checked into the hotel at three.",
         "We checked into the hotel at 3.",
         "We checked into the hotel at three o'clock.",
-        "We checked into the hotel at 3:00."
+        "We checked into the hotel at 3:00.",
+        "We checked in at the hotel at 3 p.m.",
+        "We checked into the hotel at 3 p.m."
       ]
     }
   ],

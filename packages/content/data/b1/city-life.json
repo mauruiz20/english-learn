@@ -221,7 +221,10 @@
         "The bus came late because of the traffic jam.",
         "The bus came late because of the traffic.",
         "The bus came late due to the traffic jam.",
-        "The bus came late due to the traffic."
+        "The bus came late due to the traffic.",
+        "The bus was late because of a traffic jam.",
+        "The bus arrived late because of a traffic jam.",
+        "The bus was late because of traffic."
       ]
     },
     {
@@ -316,7 +319,10 @@
         "Tomorrow I'll take the subway to work.",
         "Tomorrow I will take the subway to work.",
         "Tomorrow I'm taking the subway to work.",
-        "Tomorrow I am taking the subway to work."
+        "Tomorrow I am taking the subway to work.",
+        "I'm going to take the subway to go to work tomorrow.",
+        "Tomorrow I'm going to take the subway to go to work.",
+        "I'm going to ride the subway to work tomorrow."
       ]
     },
     {
@@ -334,7 +340,11 @@
         "My commute takes forty minutes.",
         "My commute takes 40 minutes.",
         "My commute is forty minutes.",
-        "My commute is 40 minutes."
+        "My commute is 40 minutes.",
+        "My commute to work lasts forty minutes.",
+        "My commute to work lasts 40 minutes.",
+        "My commute to work takes me forty minutes.",
+        "My commute to work takes me 40 minutes."
       ]
     }
   ],

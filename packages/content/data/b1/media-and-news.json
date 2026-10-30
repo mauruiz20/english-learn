@@ -203,7 +203,8 @@
       "accepted": [
         "The article was interesting. However, it was too long.",
         "The article was interesting; however, it was too long.",
-        "The article was interesting, but it was too long."
+        "The article was interesting, but it was too long.",
+        "The article was interesting. Nevertheless, it was too long."
       ]
     },
     {
@@ -296,7 +297,10 @@
         "The news story was published by a young journalist.",
         "A young journalist published the news.",
         "A young journalist published the story.",
-        "A young journalist published the news story."
+        "A young journalist published the news story.",
+        "The article was published by a young journalist.",
+        "The news item was published by a young journalist.",
+        "A young journalist published the article."
       ]
     },
     {
@@ -309,7 +313,10 @@
       "accepted": [
         "Many people share fake news without reading it.",
         "A lot of people share fake news without reading it.",
-        "Lots of people share fake news without reading it."
+        "Lots of people share fake news without reading it.",
+        "Many people share fake news stories without reading them.",
+        "A lot of people share fake news stories without reading them.",
+        "Lots of people share fake news stories without reading them."
       ]
     }
   ],
