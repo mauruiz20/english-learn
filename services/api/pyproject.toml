@@ -1,0 +1,81 @@
+[project]
+name = "english-learn-api"
+version = "0.1.0"
+description = "Sync and sign-in API for English Learn: Google sign-in, tokens and an opaque progress event store."
+readme = "README.md"
+authors = [
+    { name = "Ruiz, Francisco Mauricio", email = "69861356+mauruiz20@users.noreply.github.com" }
+]
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "alembic>=1.20.1",
+    "asyncpg>=0.32.0",
+    "fastapi>=0.162.0",
+    "google-auth>=2.62.0",
+    "pydantic-settings>=2.16.2",
+    "pyjwt>=2.15.1",
+    "requests>=2.34.2",
+    "sqlalchemy[asyncio]>=2.1.6",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.4.1",
+    "ruff>=0.17.3",
+    "testcontainers[postgres]>=4.15.0",
+    "types-requests>=2.33.0.20261030",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+extend-exclude = ["migrations/versions"]
+
+[tool.ruff.lint]
+select = [
+  "E", "W", "F", "I", "N", "UP", "B", "A", "C4", "SIM", "RUF", "S", "ASYNC", "PT", "RET",
+  "TC", "PL", "PTH", "DTZ", "LOG", "G", "T20", "ERA", "FAST",
+]
+ignore = ["PLR0913"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "PLR2004"]
+
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-base-classes = ["pydantic.BaseModel", "pydantic_settings.BaseSettings"]
+
+[tool.mypy]
+strict = true
+python_version = "3.14"
+files = ["src", "tests", "migrations"]
+plugins = ["pydantic.mypy"]
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["testcontainers.*", "google.*"]
+ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-markers", "--strict-config", "-ra"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+markers = [
+  "integration: needs Docker (a real PostgreSQL through testcontainers)",
+  "google_network: calls Google's certificate endpoint; opt in with RUN_GOOGLE_NETWORK_TESTS=1",
+]
+filterwarnings = ["error"]
