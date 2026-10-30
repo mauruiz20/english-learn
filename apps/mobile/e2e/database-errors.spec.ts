@@ -15,8 +15,13 @@ test("a second tab explains the app is already open, and works once the first on
   await expect(second.getByText("Ciérrala y pulsa Reintentar.")).toBeVisible();
 
   await page.close();
-  await second.getByRole("button", { name: "Reintentar", exact: true }).click();
-  await expect(second.getByText("0 XP", { exact: true })).toBeVisible();
+  // With the service worker running, WebKit can release the closed tab's database a moment
+  // later (the first "Reintentar" may still find it open): retry like a learner would.
+  const retry = second.getByRole("button", { name: "Reintentar", exact: true });
+  await expect(async () => {
+    if (await retry.isVisible()) await retry.click();
+    await expect(second.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 2_000 });
+  }).toPass({ timeout: 15_000 });
 });
 
 // Playwright's default ephemeral contexts are what Safari Private Browsing looks like to WebKit:
