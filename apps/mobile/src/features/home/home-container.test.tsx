@@ -47,7 +47,9 @@ function createFakeRepository(
 
 function renderContainer(repository: ProgressRepository) {
   return render(
-    <AppServicesProvider services={{ progressRepository: repository, clock: fixedClock }}>
+    <AppServicesProvider
+      services={{ progressRepository: repository, clock: fixedClock, random: () => 0 }}
+    >
       <HomeContainer />
     </AppServicesProvider>,
   );
