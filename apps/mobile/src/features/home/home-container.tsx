@@ -4,6 +4,7 @@ import { isStreakAlive, type Level, type ReviewState } from "@english-learn/doma
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { isLessonDone, lessonsForLevel } from "@/features/lesson/model/lesson-catalog";
+import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
 
@@ -42,9 +43,12 @@ export function HomeContainer({ content = corpus }: { content?: Corpus }) {
       ([streak, xp, placement, states]) => {
         if (!active) return;
         const level = placement?.level ?? null;
+        const today = clock.today();
         setState({
           status: "ready",
-          streakDays: isStreakAlive(streak, clock.today()) ? streak.current : 0,
+          pendingReviews: pendingReviewItems({ states, today, exercises: content.exercises })
+            .length,
+          streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
           level,
           lessons: homeLessons(content, level, states),

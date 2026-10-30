@@ -2,6 +2,7 @@ import { createCorpus } from "@english-learn/content";
 import {
   initialState,
   localDate,
+  review,
   type Clock,
   type ProgressRepository,
 } from "@english-learn/domain";
@@ -126,6 +127,26 @@ describe("HomeContainer", () => {
     );
 
     expect(await screen.findByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
+  });
+
+  it("counts the items due for review", async () => {
+    const yesterday = localDate("2026-10-28");
+    const learned = (id: string) => review(initialState(id, yesterday), 5, yesterday);
+    await renderContainer(
+      createFakeRepository({
+        // Due: wake-up and breakfast. Commute only has a reading exercise: not reviewable.
+        states: [
+          learned("a2.routine.wake-up"),
+          learned("a2.routine.breakfast"),
+          learned("a2.routine.commute"),
+          review(initialState("a2.routine.usually", TODAY), 5, TODAY),
+        ],
+      }),
+    );
+
+    expect(await screen.findByText("Repaso: 2 pendientes")).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Repasar" }));
+    expect(mockPush).toHaveBeenCalledWith("/review");
   });
 
   it("opens a lesson", async () => {
