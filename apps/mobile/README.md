@@ -54,6 +54,11 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   SM-2 lapse (forgetting is real evidence). A **new** item (no state yet) answered wrong is not a
   lapse (nothing was learned yet to forget): it starts fresh with the default ease, 0 reps and
   0 lapses, due tomorrow.
+  **Word lookups cap the grade**: the reducer's `lookup` action records the items whose glossary
+  entry the learner opened (see "Word lookup" below), at any point of the session; an exercise
+  answered after that marks those of its items `lookedUp`, and `applyLessonResults` caps their
+  grade at 3 ("almost") — a wrong answer stays wrong. Verdicts, accuracy and XP are unchanged.
+  Lessons and reviews share it.
 - `application/complete-session.ts`: saves a finished lesson or review through
   `ProgressRepository.saveSessionResults`, which reads the current states and streak and writes
   states + XP + streak in ONE transaction (all or nothing). XP = sum of `xpForAnswer`, plus the
