@@ -1,4 +1,5 @@
 import type { Exercise, Lesson, Level } from "@english-learn/content";
+import { LEVELS } from "@english-learn/domain";
 
 /**
  * Level used when the learner has no placement result, or when their level has no lessons
@@ -25,14 +26,30 @@ export function lessonItemIds(
   return [...new Set(lessonExercises(lesson, exercisesById).flatMap((e) => e.itemIds))];
 }
 
-/** Lessons for `level`, falling back to `DEFAULT_LEVEL` when there is no level or no lesson. */
+/**
+ * The level whose lessons a learner at `level` should take: the nearest level that has
+ * lessons, preferring the lower one on a tie (with MVP content: A1 → A2, B2 and C1 → B1).
+ * No level yet, or no lessons at all → `DEFAULT_LEVEL`.
+ */
+export function lessonLevelFor(lessons: readonly Lesson[], level: Level | null): Level {
+  if (level === null) return DEFAULT_LEVEL;
+  const withLessons = new Set(lessons.map((l) => l.level));
+  const rank = LEVELS.indexOf(level);
+  for (let distance = 0; distance < LEVELS.length; distance++) {
+    for (const candidate of [LEVELS[rank - distance], LEVELS[rank + distance]]) {
+      if (candidate !== undefined && withLessons.has(candidate)) return candidate;
+    }
+  }
+  return DEFAULT_LEVEL;
+}
+
+/** The lessons a learner at `level` should take (see `lessonLevelFor`). */
 export function lessonsForLevel(
   lessons: readonly Lesson[],
   level: Level | null,
 ): { level: Level; lessons: Lesson[] } {
-  const atLevel = level === null ? [] : lessons.filter((l) => l.level === level);
-  if (level !== null && atLevel.length > 0) return { level, lessons: atLevel };
-  return { level: DEFAULT_LEVEL, lessons: lessons.filter((l) => l.level === DEFAULT_LEVEL) };
+  const target = lessonLevelFor(lessons, level);
+  return { level: target, lessons: lessons.filter((l) => l.level === target) };
 }
 
 /** A lesson is done once every item it practices has a review state. */

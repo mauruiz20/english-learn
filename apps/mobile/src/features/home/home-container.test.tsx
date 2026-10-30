@@ -112,10 +112,10 @@ describe("HomeContainer", () => {
     expect(screen.getByRole("button", { name: "Rutina B1" })).toBeOnTheScreen();
   });
 
-  it("falls back to A2 when the placement level has no lessons", async () => {
+  it("lists the nearest lower level's lessons for a level without lessons", async () => {
     await renderContainer(createFakeRepository({ placement: { level: "C1", theta: 2 } }));
 
-    expect(await screen.findByText("Lecciones de nivel A2")).toBeOnTheScreen();
+    expect(await screen.findByText("Lecciones de nivel B1")).toBeOnTheScreen();
     expect(screen.getByText("Tu nivel: C1")).toBeOnTheScreen();
   });
 

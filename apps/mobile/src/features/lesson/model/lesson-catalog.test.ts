@@ -4,6 +4,7 @@ import {
   DEFAULT_LEVEL,
   isLessonDone,
   lessonExercises,
+  lessonLevelFor,
   lessonItemIds,
   lessonsForLevel,
 } from "./lesson-catalog";
@@ -38,9 +39,30 @@ describe("lesson catalog", () => {
     });
   });
 
-  it.each([null, "C1"] as const)("falls back to A2 when the level is %s", (level) => {
+  it("falls back to A2 when there is no level yet", () => {
     expect(DEFAULT_LEVEL).toBe("A2");
-    expect(lessonsForLevel(content.lessons, level)).toEqual({ level: "A2", lessons: [lesson] });
+    expect(lessonsForLevel(content.lessons, null)).toEqual({ level: "A2", lessons: [lesson] });
+  });
+
+  it.each([
+    ["A1", "A2"],
+    ["A2", "A2"],
+    ["B1", "B1"],
+    ["B2", "B1"],
+    ["C1", "B1"],
+  ] as const)("maps level %s to the nearest level with lessons (%s)", (level, expected) => {
+    expect(lessonLevelFor(content.lessons, level)).toBe(expected);
+    expect(lessonsForLevel(content.lessons, level).level).toBe(expected);
+  });
+
+  it("prefers the lower level on a tie", () => {
+    const c1 = { ...lesson, id: "c1.x.lesson-001", level: "C1" } as const;
+
+    expect(lessonLevelFor([...content.lessons, c1], "B2")).toBe("B1");
+  });
+
+  it("uses the default level when there are no lessons at all", () => {
+    expect(lessonsForLevel([], "C1")).toEqual({ level: "A2", lessons: [] });
   });
 
   it("counts a lesson as done once every item has a review state", () => {
