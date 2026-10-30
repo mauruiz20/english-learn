@@ -17,6 +17,12 @@ class GoogleEmailNotVerifiedError(DomainError):
     code: ClassVar[str] = "google_email_not_verified"
 
 
+class GoogleUnavailableError(DomainError):
+    """Google's signing certificates could not be fetched; the client may retry later."""
+
+    code: ClassVar[str] = "google_unavailable"
+
+
 class InvalidRefreshTokenError(AuthenticationError):
     """Unknown, revoked or expired. Deliberately one code: the client signs in again."""
 
