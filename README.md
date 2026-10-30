@@ -4,9 +4,7 @@ An offline-first English course for Spanish speakers, for **web and Android from
 codebase**. No accounts, no network and no AI at runtime: content is static, validated in CI and
 bundled with the app.
 
-<!-- CI badge: fill in OWNER once the repository is published on GitHub.
-[![CI](https://github.com/OWNER/english-learn/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/OWNER/english-learn/actions/workflows/ci.yml)
--->
+[![CI](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml)
 
 | At a glance  |                                                                                   |
 | ------------ | --------------------------------------------------------------------------------- |
