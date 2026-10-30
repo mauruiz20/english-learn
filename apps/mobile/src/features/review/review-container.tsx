@@ -3,6 +3,7 @@ import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { completeSession } from "@/features/lesson/application/complete-session";
+import { itemsToReview } from "@/features/lesson/model/items-to-review";
 import { startLesson, type LessonSessionState } from "@/features/lesson/model/lesson-session";
 import { prepareExercise } from "@/features/lesson/model/prepare-exercise";
 import { responseText } from "@/features/lesson/model/response";
@@ -78,7 +79,7 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
   if (load.status !== "ready") {
     return <ReviewView state={load} {...noSession} onGoHome={goHome} />;
   }
-  return <ReviewSession plan={load.plan} onGoHome={goHome} />;
+  return <ReviewSession plan={load.plan} content={content} onGoHome={goHome} />;
 }
 
 const noop = () => {};
@@ -88,7 +89,15 @@ const noSession = { onSubmit: noop, onContinue: noop, onRetrySave: noop };
  * Runs the planned review with the lesson session flow and feedback, then saves it like a lesson
  * (worst grade per item, streak) but with answer XP only and only for the due items.
  */
-function ReviewSession({ plan, onGoHome }: { plan: Plan; onGoHome: () => void }) {
+function ReviewSession({
+  plan,
+  content,
+  onGoHome,
+}: {
+  plan: Plan;
+  content: Corpus;
+  onGoHome: () => void;
+}) {
   const { progressRepository, clock } = useAppServices();
   const { session, save, onSubmit, onContinue, retrySave, canLeave, hasUnsavedAnswers } =
     useExerciseSession({
@@ -107,7 +116,7 @@ function ReviewSession({ plan, onGoHome }: { plan: Plan; onGoHome: () => void })
     <>
       <Stack.Screen options={{ gestureEnabled: canLeave, headerBackVisible: canLeave }} />
       <ReviewView
-        state={toViewState(session, plan.session, save)}
+        state={toViewState(session, plan, save, content)}
         onSubmit={onSubmit}
         onContinue={onContinue}
         onGoHome={onGoHome}
@@ -120,8 +129,9 @@ function ReviewSession({ plan, onGoHome }: { plan: Plan; onGoHome: () => void })
 
 function toViewState(
   session: LessonSessionState | null,
-  initial: ExerciseSession,
+  plan: Plan,
   save: SaveState,
+  content: Corpus,
 ): ReviewViewState {
   if (session === null) return { status: "empty" };
   if (session.status === "finished") {
@@ -134,9 +144,14 @@ function toViewState(
       total: verdicts.length,
       xpEarned: save.xpEarned,
       streakDays: save.streakDays,
+      // Only the due items, like the saved results.
+      toReview: itemsToReview(
+        restrictToItems(session.summary, plan.itemIds).itemOutcomes,
+        content.itemsById,
+      ),
     };
   }
-  const prepared = initial.prepared[session.index];
+  const prepared = plan.session.prepared[session.index];
   if (prepared === undefined) return { status: "empty" };
   return {
     status: "exercise",

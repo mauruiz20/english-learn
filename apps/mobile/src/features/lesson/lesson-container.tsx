@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { completeSession } from "./application/complete-session";
+import { itemsToReview } from "./model/items-to-review";
 import { lessonExercises } from "./model/lesson-catalog";
 import { startLesson, type LessonSessionState } from "./model/lesson-session";
 import { prepareExercise, type PreparedExercise } from "./model/prepare-exercise";
@@ -73,13 +74,14 @@ function toViewState(
   if (session.status === "finished") {
     if (save.status === "error") return { status: "save-error" };
     if (save.status !== "saved") return { status: "saving" };
-    const { verdicts } = session.summary;
+    const { verdicts, itemOutcomes } = session.summary;
     return {
       status: "summary",
       correct: verdicts.filter((v) => v === "correct").length,
       total: verdicts.length,
       xpEarned: save.xpEarned,
       streakDays: save.streakDays,
+      toReview: itemsToReview(itemOutcomes, content.itemsById),
     };
   }
   const current = prepared[session.index];

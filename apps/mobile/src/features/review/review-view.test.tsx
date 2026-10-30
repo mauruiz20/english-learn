@@ -48,12 +48,22 @@ describe("ReviewView", () => {
   });
 
   it("summarizes the review", async () => {
-    await renderView({ status: "summary", correct: 3, total: 4, xpEarned: 35, streakDays: 2 });
+    await renderView({
+      status: "summary",
+      correct: 3,
+      total: 4,
+      xpEarned: 35,
+      streakDays: 2,
+      toReview: [{ id: "a2.routine.wake-up", term: "wake up", es: "despertarse" }],
+    });
 
     expect(screen.getByText("¡Repaso completado!")).toBeOnTheScreen();
     expect(screen.getByText("Aciertos: 3 de 4")).toBeOnTheScreen();
     expect(screen.getByText("XP ganada: 35")).toBeOnTheScreen();
     expect(screen.getByText("Racha: 2 días")).toBeOnTheScreen();
+    expect(screen.getByRole("header", { name: "Para repasar" })).toBeOnTheScreen();
+    expect(screen.getByText("wake up")).toBeOnTheScreen();
+    expect(screen.getByText("despertarse")).toBeOnTheScreen();
   });
 
   it("explains load and save errors", async () => {

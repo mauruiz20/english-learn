@@ -8,6 +8,7 @@ import {
   SessionSummary,
 } from "@/features/lesson/components/session-screens";
 import type { ShownFeedback } from "@/features/lesson/lesson-view";
+import type { ReviewNote } from "@/features/lesson/model/items-to-review";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { Button } from "@/shared/ui/button";
@@ -36,6 +37,8 @@ export type ReviewViewState =
       readonly total: number;
       readonly xpEarned: number;
       readonly streakDays: number;
+      /** Items missed in the session, to look at again. */
+      readonly toReview: readonly ReviewNote[];
     };
 
 type ReviewViewProps = {

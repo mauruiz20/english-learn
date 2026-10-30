@@ -7,6 +7,7 @@ import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
+import type { ReviewNote } from "../model/items-to-review";
 
 /**
  * A thin ink line with "Ejercicio 2 de 6" (and the lesson title) under it: where the learner is
@@ -43,6 +44,8 @@ type SummaryProps = {
   total: number;
   xpEarned: number;
   streakDays: number;
+  /** Items missed in the session (wrong or almost), at most a handful. */
+  toReview: readonly ReviewNote[];
   onGoHome: () => void;
 };
 
@@ -53,6 +56,7 @@ export function SessionSummary({
   total,
   xpEarned,
   streakDays,
+  toReview,
   onGoHome,
 }: SummaryProps) {
   const styles = useStyles();
@@ -81,6 +85,26 @@ export function SessionSummary({
             {line}
           </Text>
         ))}
+      </View>
+      <View style={styles.review}>
+        <Text accessibilityRole="header" variant="title" tone="ink">
+          Para repasar
+        </Text>
+        {toReview.length === 0 ? (
+          <Text tone="muted" style={styles.line}>
+            Nada que corregir: todo correcto a la primera. Estas palabras volverán en tus próximos
+            repasos.
+          </Text>
+        ) : (
+          <View>
+            {toReview.map((note) => (
+              <View key={note.id} style={[styles.line, styles.note]}>
+                <Text variant="bodyStrong">{note.term}</Text>
+                <Text tone="muted">{note.es}</Text>
+              </View>
+            ))}
+          </View>
+        )}
       </View>
       <Button label="Volver al inicio" onPress={onGoHome} />
     </ScreenContainer>
@@ -136,6 +160,14 @@ const useStyles = themedStyles(({ colors }) =>
       paddingVertical: spacing.sm + 2,
       borderBottomWidth: 1,
       borderBottomColor: colors.rule,
+    },
+    review: { gap: spacing.xs },
+    // "have breakfast   desayunar": the word and its meaning on one ruled line (wraps if long).
+    note: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      alignItems: "baseline",
+      columnGap: spacing.md,
     },
   }),
 );
