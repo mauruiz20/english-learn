@@ -1,4 +1,7 @@
-# Local development database. Start with `docker compose up -d` from services/api.
+# Local development database. Start with `docker compose up -d --wait` from services/api.
+# Host port 5433 (not 5432) so it does not clash with a natively installed PostgreSQL.
+name: english-learn-api
+
 services:
   postgres:
     image: postgres:18-alpine
@@ -7,7 +10,7 @@ services:
       POSTGRES_PASSWORD: english_learn
       POSTGRES_DB: english_learn
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
     volumes:
       # Postgres 18 images keep data in a versioned subdirectory of /var/lib/postgresql.
       - postgres-data:/var/lib/postgresql
