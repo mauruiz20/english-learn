@@ -3,6 +3,7 @@ import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { completeSession } from "./application/complete-session";
 import { lessonExercises } from "./model/lesson-catalog";
 import { startLesson, type LessonSessionState } from "./model/lesson-session";
@@ -31,16 +32,18 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
       prepared: exercises.map((e) => prepareExercise(e, random)),
     };
   });
-  const { session, save, onSubmit, onContinue, retrySave, canLeave } = useExerciseSession({
-    initial,
-    complete: (summary) =>
-      completeSession({
-        repository: progressRepository,
-        summary,
-        today: clock.today(),
-        bonus: "lesson",
-      }),
-  });
+  const { session, save, onSubmit, onContinue, retrySave, canLeave, hasUnsavedAnswers } =
+    useExerciseSession({
+      initial,
+      complete: (summary) =>
+        completeSession({
+          repository: progressRepository,
+          summary,
+          today: clock.today(),
+          bonus: "lesson",
+        }),
+    });
+  const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir de la lección?");
 
   const goHome = () => (router.canDismiss() ? router.dismissAll() : router.replace("/"));
 
@@ -54,6 +57,7 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
         onGoHome={goHome}
         onRetrySave={retrySave}
       />
+      {dialog}
     </>
   );
 }

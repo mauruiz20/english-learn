@@ -7,11 +7,17 @@ import {
   createFakeRepository,
   type FakeProgressRepository,
 } from "@/testing/fake-progress-repository";
+import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { placementBank } from "./model/fixtures";
 import { PlacementContainer } from "./placement-container";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
-jest.mock("expo-router", () => ({ useRouter: () => mockRouter }));
+const mockPreventRemove = createPreventRemoveMock();
+jest.mock("expo-router", () => ({
+  useRouter: () => mockRouter,
+  usePreventRemove: (...args: Parameters<typeof mockPreventRemove.hook>) =>
+    mockPreventRemove.hook(...args),
+}));
 
 const TODAY = localDate("2026-10-29");
 const b1Lesson = { ...lesson, id: "b1.routine.lesson-001", level: "B1" } as const;
@@ -67,6 +73,29 @@ describe("PlacementContainer", () => {
     expect(saved.placement?.theta).toBeGreaterThanOrEqual(1.5);
     // Placement never touches SRS, XP or streak.
     expect(saved).toMatchObject(progress);
+  });
+
+  it("asks before leaving once a question was answered, and never after the result", async () => {
+    const repository = createFakeRepository();
+    await renderPlacement(repository);
+    await fireEvent.press(screen.getByRole("button", { name: "Empezar" }));
+    expect(mockPreventRemove.active).toBe(false);
+
+    await fireEvent.press(screen.getByRole("radio", { name: "ok" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Siguiente" }));
+    expect(mockPreventRemove.active).toBe(true);
+
+    const repeat = await mockPreventRemove.attemptLeave();
+    expect(screen.getByText("¿Salir del test de nivel?")).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Seguir aquí" }));
+    expect(repeat).not.toHaveBeenCalled();
+
+    while (screen.queryByRole("button", { name: "Siguiente" }) !== null) {
+      await fireEvent.press(screen.getByRole("radio", { name: "ok" }));
+      await fireEvent.press(screen.getByRole("button", { name: "Siguiente" }));
+    }
+    await screen.findByText("Tu nivel estimado: C1");
+    expect(mockPreventRemove.active).toBe(false);
   });
 
   it("recommends A2 lessons when the estimate is A1", async () => {

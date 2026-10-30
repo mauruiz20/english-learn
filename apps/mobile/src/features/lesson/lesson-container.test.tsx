@@ -12,13 +12,17 @@ import {
   createFakeRepository,
   type FakeProgressRepository,
 } from "@/testing/fake-progress-repository";
+import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { LessonContainer } from "./lesson-container";
 import { allExercises, lesson, passage, sequenceRng } from "./model/fixtures";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
 const mockScreenOptions = jest.fn();
+const mockPreventRemove = createPreventRemoveMock();
 jest.mock("expo-router", () => ({
   useRouter: () => mockRouter,
+  usePreventRemove: (...args: Parameters<typeof mockPreventRemove.hook>) =>
+    mockPreventRemove.hook(...args),
   Stack: {
     Screen: ({ options }: { options: unknown }) => {
       mockScreenOptions(options);
@@ -211,6 +215,51 @@ describe("LessonContainer", () => {
     expect(mockScreenOptions).toHaveBeenLastCalledWith(
       expect.objectContaining({ gestureEnabled: true, headerBackVisible: true }),
     );
+  });
+
+  it("lets the learner leave freely before answering anything", async () => {
+    await renderLesson(createFakeRepository());
+
+    expect(mockPreventRemove.active).toBe(false);
+  });
+
+  it("asks before leaving mid-lesson and stays when the learner cancels", async () => {
+    await renderLesson(createFakeRepository());
+    await press("despertarse", "radio");
+    await check();
+
+    expect(mockPreventRemove.active).toBe(true);
+    const repeat = await mockPreventRemove.attemptLeave();
+
+    expect(screen.getByText("¿Salir de la lección?")).toBeOnTheScreen();
+    expect(screen.getByText("Perderás las respuestas de esta sesión.")).toBeOnTheScreen();
+    await press("Seguir aquí");
+
+    expect(screen.queryByText("¿Salir de la lección?")).toBeNull();
+    expect(repeat).not.toHaveBeenCalled();
+    expect(screen.getByText("Ejercicio 1 de 6")).toBeOnTheScreen();
+  });
+
+  it("leaves mid-lesson when the learner confirms, without saving anything", async () => {
+    const repository = createFakeRepository();
+    await renderLesson(repository);
+    await press("despertarse", "radio");
+    await check();
+
+    const repeat = await mockPreventRemove.attemptLeave();
+    await press("Salir");
+
+    expect(repeat).toHaveBeenCalledTimes(1);
+    expect(mockPreventRemove.active).toBe(false);
+    expect(repository.snapshot().states).toEqual([]);
+  });
+
+  it("does not ask once the lesson is finished", async () => {
+    await renderLesson(createFakeRepository());
+    await playCorrectly();
+    await screen.findByText("¡Lección completada!");
+
+    expect(mockPreventRemove.active).toBe(false);
   });
 
   it("handles an unknown lesson id", async () => {

@@ -61,6 +61,13 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
 - `use-exercise-session.ts`: hook shared by lesson and review (answer → feedback → next →
   save). Saving is guarded against double submission; a failed save shows "Reintentar"; the
   header back button and swipe gesture are disabled while saving.
+- **Leaving mid-session asks first.** Once at least one answer was given and the lesson, review
+  or placement test is not finished, `useLeaveConfirmation` (`src/shared/navigation/`, built on
+  expo-router's `usePreventRemove`) blocks leaving and shows an in-app dialog ("Seguir aquí" /
+  "Salir"; not `Alert` or `window.confirm`). It covers the header back button, the swipe
+  gesture, Android back and, on web, the browser back button (the URL is restored when the
+  learner stays); on web, reloading or closing the tab mid-session also shows the browser's own
+  "leave site?" prompt. Leaving saves nothing.
 - `components/`: one presentational component per exercise type, `ExerciseBody` (picks the
   component by type; tagged `testID="exercise-<id>"`) and `AnswerFeedback`.
 - `lesson-container.tsx` / `lesson-view.tsx`: the `/lesson/[id]` screen, summary and unknown-id

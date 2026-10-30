@@ -81,5 +81,10 @@ export function useExerciseSession({
     retrySave,
     // Leaving mid-save would show a stale home; the save is quick, so block back until it ends.
     canLeave: save.status !== "saving",
+    /** At least one answer was given and the session is not finished: leaving loses them. */
+    hasUnsavedAnswers:
+      session !== null &&
+      session.status !== "finished" &&
+      (session.status === "feedback" || session.answered.length > 0),
   };
 }
