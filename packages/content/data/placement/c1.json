@@ -44,9 +44,9 @@
       "exercise": {
         "source": { "kind": "original" },
         "type": "vocab",
-        "prompt": "What does 'thorough' mean?",
-        "options": ["a través de", "sediento", "duro", "minucioso"],
-        "answerIndex": 3
+        "prompt": "What does 'notwithstanding' mean?",
+        "options": ["por lo tanto", "a pesar de", "además de", "en lugar de"],
+        "answerIndex": 1
       }
     },
     {
