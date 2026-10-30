@@ -24,8 +24,20 @@ export function exerciseEntries(files: readonly LoadedFile[]): ExerciseEntry[] {
   return out;
 }
 
-/** Normalization used for option comparison: trimmed and lower-cased. */
-export const normalize = (s: string): string => s.trim().toLowerCase();
+/**
+ * Normalization used to compare learner-facing text (options, answers,
+ * accepted sentences): Unicode NFC, curly quotes -> straight quotes,
+ * lower-cased, whitespace trimmed and collapsed, trailing `.,!?;:` stripped.
+ */
+export const normalize = (s: string): string =>
+  s
+    .normalize("NFC")
+    .replace(/[‘’]/g, "'")
+    .replace(/[“”]/g, '"')
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/[\s.,!?;:]+$/, "");
 
 /** Zod issue path -> `a[0].b` notation. */
 export function formatPath(path: readonly PropertyKey[]): string {

@@ -13,6 +13,7 @@ import {
   validateWordOrders,
   type LoadedFile,
 } from "./index";
+import { normalize } from "./helpers";
 
 const file = (data: ContentFile, name = "b1/travel.json"): LoadedFile => ({ file: name, data });
 const paths = (errs: { path: string }[]) => errs.map((e) => e.path);
@@ -30,6 +31,17 @@ describe("validateSchema", () => {
     expect(r.errors.length).toBeGreaterThan(0);
     expect(r.errors[0]).toMatchObject({ file: "b1/x.json", path: "exercises[0].options" });
     expect(r.errors[0]?.message).toBeTruthy();
+  });
+});
+
+describe("normalize", () => {
+  it("applies NFC, lowercases, trims, collapses whitespace, strips trailing punctuation", () => {
+    expect(normalize("  Café   LATE?! ")).toBe("café late");
+    expect(normalize("Aunque.")).toBe("aunque");
+    expect(normalize("Hello, world;:")).toBe("hello, world");
+  });
+  it("maps curly quotes to straight quotes", () => {
+    expect(normalize("“It’s”")).toBe("\"it's\"");
   });
 });
 
@@ -125,9 +137,21 @@ describe("validateOptionDuplicates", () => {
   it("passes for distinct options", () => {
     expect(validateOptionDuplicates([file(fx.validFile())])).toEqual([]);
   });
-  it("flags case-insensitive trimmed duplicates", () => {
+  it("flags duplicates after normalization (case, trailing punctuation)", () => {
     const errs = validateOptionDuplicates([
-      file({ exercises: [fx.vocab({ options: ["Aunque", " aunque ", "porque"] })] }),
+      file({ exercises: [fx.vocab({ options: ["aunque", "aunque.", "porque"] })] }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].options[1]",
+        message: 'duplicate option "aunque." (normalized)',
+      },
+    ]);
+  });
+  it("flags duplicates that differ only by curly quotes or inner whitespace", () => {
+    const errs = validateOptionDuplicates([
+      file({ exercises: [fx.vocab({ options: ["It’s  late", "it's late", "porque"] })] }),
     ]);
     expect(paths(errs)).toEqual(["exercises[0].options[1]"]);
   });
