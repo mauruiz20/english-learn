@@ -193,8 +193,12 @@
         },
         {
           "prompt": "What did the doctor tell her to do?",
-          "options": ["Go back to work", "Eat more fruit", "Rest and drink a lot of water"],
-          "answerIndex": 2
+          "options": [
+            "Stay in bed and rest",
+            "Rest and drink a lot of water",
+            "Take medicine and go back to work"
+          ],
+          "answerIndex": 1
         }
       ]
     },
