@@ -65,6 +65,14 @@ test.describe("offline web app", () => {
     await page.getByRole("radio", { name: "despertarse", exact: true }).click();
     await page.getByRole("button", { name: "Comprobar", exact: true }).click();
     await expect(page.getByRole("alert")).toHaveText("Correcto");
+    // They really played, offline: the e2e build logs each sound Web Audio started.
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () => (window as unknown as { __e2e?: { playedSounds?: string[] } }).__e2e?.playedSounds,
+        ),
+      )
+      .toEqual(["tap", "correct"]);
 
     // Fonts load on demand: the ones this screen uses came from the cache, none failed.
     const fonts = await page.evaluate(() => {
