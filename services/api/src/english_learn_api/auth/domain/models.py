@@ -28,6 +28,24 @@ class AccessToken:
 
 
 @dataclass(frozen=True, slots=True)
+class RefreshFamily:
+    """One sign-in: every refresh token rotated from it belongs to this family.
+
+    The family row is the lock that serializes refresh, logout and reuse revocation, and
+    `revoked_at` is authoritative: once set, no token of the family is accepted.
+    """
+
+    id: UUID
+    user_id: UUID
+    created_at: datetime
+    revoked_at: datetime | None = None
+
+    @property
+    def is_revoked(self) -> bool:
+        return self.revoked_at is not None
+
+
+@dataclass(frozen=True, slots=True)
 class RefreshToken:
     """A stored refresh token. Only the SHA-256 hash of the secret is ever persisted.
 

@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 
 from english_learn_api.auth.application.use_cases import RefreshSession, SessionIssuer
 from english_learn_api.auth.domain.errors import RefreshTokenReuseError
-from english_learn_api.auth.domain.models import GoogleIdentity, RefreshToken, User
+from english_learn_api.auth.domain.models import GoogleIdentity, RefreshFamily, RefreshToken, User
 from english_learn_api.auth.infrastructure.sqlalchemy_unit_of_work import SqlAlchemyUnitOfWork
 from english_learn_api.shared.database import create_session_factory
 from tests.fakes import T0, FakeAccessTokens, FakeClock
@@ -29,6 +29,14 @@ async def create_user(engine: AsyncEngine, identity: GoogleIdentity = ANA) -> Us
         user, _ = await uow.users.upsert_by_google_sub(identity, uuid.uuid7(), T0)
         await uow.commit()
     return user
+
+
+async def create_family(engine: AsyncEngine, user: User) -> uuid.UUID:
+    family = RefreshFamily(id=uuid.uuid7(), user_id=user.id, created_at=T0)
+    async with new_uow(engine) as uow:
+        await uow.refresh_families.add(family)
+        await uow.commit()
+    return family.id
 
 
 def refresh_token(user: User, family_id: uuid.UUID, token_hash: str) -> RefreshToken:
@@ -94,19 +102,22 @@ class TestUsers:
 class TestRefreshTokens:
     async def test_add_and_find_by_hash(self, engine: AsyncEngine) -> None:
         user = await create_user(engine)
-        token = refresh_token(user, uuid.uuid7(), "hash-1")
+        token = refresh_token(user, await create_family(engine, user), "hash-1")
 
         async with new_uow(engine) as uow:
             await uow.refresh_tokens.add(token)
             await uow.commit()
 
         async with new_uow(engine) as uow:
+            assert await uow.refresh_tokens.find_by_hash("hash-1") == token
             assert await uow.refresh_tokens.get_by_hash_for_update("hash-1") == token
+            assert await uow.refresh_tokens.get(token.id) == token
             assert await uow.refresh_tokens.get_by_hash_for_update("other") is None
+            assert await uow.refresh_tokens.find_by_hash("other") is None
 
     async def test_save_persists_a_rotation(self, engine: AsyncEngine) -> None:
         user = await create_user(engine)
-        token = refresh_token(user, uuid.uuid7(), "hash-1")
+        token = refresh_token(user, await create_family(engine, user), "hash-1")
         successor = refresh_token(user, token.family_id, "hash-2")
         rotated = token.rotated(successor.id, T0 + timedelta(minutes=1))
 
@@ -121,7 +132,7 @@ class TestRefreshTokens:
 
     async def test_revoke_family_keeps_earlier_revocations(self, engine: AsyncEngine) -> None:
         user = await create_user(engine)
-        family, other_family = uuid.uuid7(), uuid.uuid7()
+        family, other_family = await create_family(engine, user), await create_family(engine, user)
         earlier = T0 + timedelta(minutes=1)
         later = T0 + timedelta(minutes=2)
         already_revoked = refresh_token(user, family, "a").rotated(uuid.uuid7(), earlier)
@@ -142,6 +153,36 @@ class TestRefreshTokens:
             "b": later,
             "c": None,
         }
+
+
+class TestRefreshFamilies:
+    async def test_add_lock_and_revoke(self, engine: AsyncEngine) -> None:
+        user = await create_user(engine)
+        family_id = await create_family(engine, user)
+
+        async with new_uow(engine) as uow:
+            family = await uow.refresh_families.get_for_update(family_id)
+            assert family == RefreshFamily(id=family_id, user_id=user.id, created_at=T0)
+            await uow.refresh_families.revoke(family_id, T0 + timedelta(minutes=1))
+            await uow.refresh_families.revoke(family_id, T0 + timedelta(minutes=2))
+            await uow.commit()
+
+        async with new_uow(engine) as uow:
+            revoked = await uow.refresh_families.get_for_update(family_id)
+            assert revoked is not None
+            assert revoked.revoked_at == T0 + timedelta(minutes=1)
+            assert await uow.refresh_families.get_for_update(uuid.uuid7()) is None
+
+    async def test_a_family_dies_with_its_user(self, engine: AsyncEngine) -> None:
+        user = await create_user(engine)
+        family_id = await create_family(engine, user)
+
+        async with new_uow(engine) as uow:
+            await uow.users.delete(user.id)
+            await uow.commit()
+
+        async with new_uow(engine) as uow:
+            assert await uow.refresh_families.get_for_update(family_id) is None
 
 
 class TestUnitOfWork:
@@ -171,8 +212,10 @@ async def test_concurrent_refreshes_rotate_a_token_only_once(engine: AsyncEngine
     """The row lock serializes them: one rotates, the other sees a reused token."""
     user = await create_user(engine)
     sessions = SessionIssuer(access_tokens=FakeAccessTokens(), refresh_token_ttl=timedelta(days=1))
+    family = RefreshFamily(id=uuid.uuid7(), user_id=user.id, created_at=T0)
     async with new_uow(engine) as uow:
-        tokens, _ = await sessions.issue(uow, user_id=user.id, family_id=uuid.uuid7(), now=T0)
+        await uow.refresh_families.add(family)
+        tokens, _ = await sessions.issue(uow, family=family, now=T0)
         await uow.commit()
     refresh = RefreshSession(
         sessions=sessions, unit_of_work=lambda: new_uow(engine), clock=FakeClock()

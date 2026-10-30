@@ -1,3 +1,4 @@
+from dataclasses import replace
 from datetime import timedelta
 
 import pytest
@@ -88,6 +89,7 @@ class TestSignInWithGoogle:
         assert len(auth.store.users) == 1
         families = {t.family_id for t in auth.store.refresh_tokens.values()}
         assert len(families) == 2
+        assert set(auth.store.refresh_families) == families
 
     async def test_updates_the_email_when_google_reports_a_new_one(self, auth: Auth) -> None:
         first = await auth.sign_in.execute("google-ana")
@@ -179,6 +181,28 @@ class TestRefreshSession:
 
         assert await auth.refresh.execute(signed_in.tokens.refresh_token)
 
+    async def test_a_revoked_family_refuses_refresh_even_if_the_token_is_live(
+        self, auth: Auth
+    ) -> None:
+        signed_in = await auth.sign_in.execute("google-ana")
+        token = self._stored(auth, signed_in.tokens.refresh_token)
+        family = auth.store.refresh_families[token.family_id]
+        auth.store.refresh_families[family.id] = replace(family, revoked_at=T0)
+
+        with pytest.raises(InvalidRefreshTokenError):
+            await auth.refresh.execute(signed_in.tokens.refresh_token)
+
+    async def test_reuse_marks_the_family_revoked(self, auth: Auth) -> None:
+        signed_in = await auth.sign_in.execute("google-ana")
+        await auth.refresh.execute(signed_in.tokens.refresh_token)
+        auth.clock.advance(timedelta(minutes=5))
+
+        with pytest.raises(RefreshTokenReuseError):
+            await auth.refresh.execute(signed_in.tokens.refresh_token)
+
+        (family,) = auth.store.refresh_families.values()
+        assert family.revoked_at == T0 + timedelta(minutes=5)
+
     async def test_rejects_tokens_of_a_deleted_user(self, auth: Auth) -> None:
         signed_in = await auth.sign_in.execute("google-ana")
         auth.store.users.clear()
@@ -201,6 +225,7 @@ class TestLogout:
         await auth.logout.execute(rotated.refresh_token)
 
         assert all(t.revoked_at == T0 for t in auth.store.refresh_tokens.values())
+        assert all(f.revoked_at == T0 for f in auth.store.refresh_families.values())
         with pytest.raises(InvalidRefreshTokenError):
             await auth.refresh.execute(rotated.refresh_token)
 

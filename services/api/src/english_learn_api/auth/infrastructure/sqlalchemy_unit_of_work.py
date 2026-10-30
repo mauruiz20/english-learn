@@ -4,6 +4,7 @@ from typing import Self
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from english_learn_api.auth.infrastructure.sqlalchemy_repositories import (
+    SqlAlchemyRefreshFamilyRepository,
     SqlAlchemyRefreshTokenRepository,
     SqlAlchemyUserRepository,
 )
@@ -21,6 +22,7 @@ class SqlAlchemyUnitOfWork:
     async def __aenter__(self) -> Self:
         self._session = self._session_factory()
         self.users = SqlAlchemyUserRepository(self._session)
+        self.refresh_families = SqlAlchemyRefreshFamilyRepository(self._session)
         self.refresh_tokens = SqlAlchemyRefreshTokenRepository(self._session)
         return self
 

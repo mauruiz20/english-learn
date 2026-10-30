@@ -15,7 +15,13 @@ from english_learn_api.auth.domain.errors import (
     InvalidAccessTokenError,
     InvalidGoogleTokenError,
 )
-from english_learn_api.auth.domain.models import AccessToken, GoogleIdentity, RefreshToken, User
+from english_learn_api.auth.domain.models import (
+    AccessToken,
+    GoogleIdentity,
+    RefreshFamily,
+    RefreshToken,
+    User,
+)
 
 T0 = datetime(2026, 10, 30, 12, 0, tzinfo=UTC)
 
@@ -69,10 +75,18 @@ class FakeAccessTokens:
 @dataclass
 class InMemoryStore:
     users: dict[UUID, User] = field(default_factory=dict)
+    refresh_families: dict[UUID, RefreshFamily] = field(default_factory=dict)
     refresh_tokens: dict[UUID, RefreshToken] = field(default_factory=dict)
 
     def copy(self) -> InMemoryStore:
-        return InMemoryStore(dict(self.users), dict(self.refresh_tokens))
+        return InMemoryStore(
+            dict(self.users), dict(self.refresh_families), dict(self.refresh_tokens)
+        )
+
+    def replace_with(self, other: InMemoryStore) -> None:
+        self.users = dict(other.users)
+        self.refresh_families = dict(other.refresh_families)
+        self.refresh_tokens = dict(other.refresh_tokens)
 
     def family(self, family_id: UUID) -> list[RefreshToken]:
         return [t for t in self.refresh_tokens.values() if t.family_id == family_id]
@@ -97,12 +111,34 @@ class InMemoryUsers:
     async def get(self, user_id: UUID) -> User | None:
         return self._store.users.get(user_id)
 
+    async def lock_against_deletion(self, user_id: UUID) -> bool:
+        return user_id in self._store.users
+
     async def delete(self, user_id: UUID) -> bool:
         if self._store.users.pop(user_id, None) is None:
             return False
+        # ON DELETE CASCADE
+        for family in [f for f in self._store.refresh_families.values() if f.user_id == user_id]:
+            del self._store.refresh_families[family.id]
         for token in [t for t in self._store.refresh_tokens.values() if t.user_id == user_id]:
-            del self._store.refresh_tokens[token.id]  # ON DELETE CASCADE
+            del self._store.refresh_tokens[token.id]
         return True
+
+
+class InMemoryRefreshFamilies:
+    def __init__(self, store: InMemoryStore) -> None:
+        self._store = store
+
+    async def add(self, family: RefreshFamily) -> None:
+        self._store.refresh_families[family.id] = family
+
+    async def get_for_update(self, family_id: UUID) -> RefreshFamily | None:
+        return self._store.refresh_families.get(family_id)
+
+    async def revoke(self, family_id: UUID, now: datetime) -> None:
+        family = self._store.refresh_families.get(family_id)
+        if family is not None and family.revoked_at is None:
+            self._store.refresh_families[family_id] = replace(family, revoked_at=now)
 
 
 class InMemoryRefreshTokens:
@@ -112,10 +148,16 @@ class InMemoryRefreshTokens:
     async def add(self, token: RefreshToken) -> None:
         self._store.refresh_tokens[token.id] = token
 
-    async def get_by_hash_for_update(self, token_hash: str) -> RefreshToken | None:
+    async def find_by_hash(self, token_hash: str) -> RefreshToken | None:
         return next(
             (t for t in self._store.refresh_tokens.values() if t.token_hash == token_hash), None
         )
+
+    async def get_by_hash_for_update(self, token_hash: str) -> RefreshToken | None:
+        return await self.find_by_hash(token_hash)
+
+    async def get(self, token_id: UUID) -> RefreshToken | None:
+        return self._store.refresh_tokens.get(token_id)
 
     async def save(self, token: RefreshToken) -> None:
         self._store.refresh_tokens[token.id] = token
@@ -131,6 +173,7 @@ class FakeUnitOfWork:
         self._store = store
         self._working = store.copy()
         self.users = InMemoryUsers(self._working)
+        self.refresh_families = InMemoryRefreshFamilies(self._working)
         self.refresh_tokens = InMemoryRefreshTokens(self._working)
 
     async def __aenter__(self) -> Self:
@@ -145,5 +188,4 @@ class FakeUnitOfWork:
         """Uncommitted changes stay in the discarded working copy."""
 
     async def commit(self) -> None:
-        self._store.users = dict(self._working.users)
-        self._store.refresh_tokens = dict(self._working.refresh_tokens)
+        self._store.replace_with(self._working)

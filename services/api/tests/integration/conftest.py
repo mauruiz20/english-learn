@@ -69,5 +69,8 @@ async def engine(database_url: str) -> AsyncIterator[AsyncEngine]:
 async def empty_tables(engine: AsyncEngine) -> None:
     async with engine.begin() as connection:
         await connection.execute(
-            text("TRUNCATE users, devices, events, refresh_tokens RESTART IDENTITY CASCADE")
+            text(
+                "TRUNCATE users, devices, events, refresh_families, refresh_tokens "
+                "RESTART IDENTITY CASCADE"
+            )
         )
