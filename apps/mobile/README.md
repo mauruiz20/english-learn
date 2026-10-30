@@ -86,6 +86,67 @@ Home lists the lessons of the level nearest to the placement level that has less
 the lower level; with MVP content A1 → A2 and B2/C1 → B1), or A2 without a placement. A lesson
 shows as done once every item it practices has a review state.
 
+## Word lookup (`src/features/glossary/`)
+
+Learners look up the Spanish of English words and phrases from the static glossary
+(`corpus.glossaryIndex`, `annotateText` from `@english-learn/domain`; no network, no AI).
+
+- **Interaction**: on web with a mouse, hovering a word for 250 ms shows a tooltip; a click, or
+  Enter / Space on a focused word, opens the card as a dialog. On native a tap opens it. It
+  closes on a tap / click outside, Escape (focus goes back to the word), any scroll, a resize,
+  "Cerrar" (native) or opening another word. Opening a card plays the soft `tap` sound (muting
+  applies; hovering is silent). A phrase (`wake up`) is one target spanning its words.
+- **Card** (`lookup-card.tsx`): the learner's own dictionary slip, not the teacher's red pen:
+  sheet paper, hairline border, hard offset shadow, headword in Bricolage, part of speech in
+  Spanish (small, muted; next to the headword when all senses share it), 1–3 senses in
+  Atkinson, and a thin tab in the topic's highlighter on the left edge. Light and dark themes.
+- **Positioning**: web anchors the card to the word (`model/popover-position.ts`: under it, or
+  above when there is no room below; clamped to a 16 px viewport margin and narrower on small
+  screens), in a portal on `document.body` so no scroll container clips it. Native shows a
+  bottom sheet-style card in a transparent `Modal`: nested `Text` spans cannot be measured, so
+  anchoring would be guesswork, and the bottom of the screen is in reach of the thumb.
+- **Rendering**: `GlossaryText` / `GlossaryRuns` annotate a text once (memoized) and render the
+  words with an entry as inline targets: a nested `Text` on native (the paragraph wraps and is
+  read as one), a `<span role="button" tabindex="0">` on web (react-native-web would render a
+  `<button>`, which does not wrap or select). Targets are labelled "<word>, ver traducción"
+  with a hint. Linked words get a dotted underline in the muted ink at ~55 % opacity.
+- **Where** (`features/lesson/model/lookup-policy.ts`, the locking matrix): only English text
+  inside exercises, their feedback and the summary; never Spanish text or UI copy. What the
+  exercise evaluates is locked until the answer is checked; then everything unlocks. Locked
+  words render as plain text (no underline, no interaction, no "locked" affordance).
+
+  | Area                                   | Before checking             | After |
+  | -------------------------------------- | --------------------------- | ----- |
+  | vocab prompt                           | yes, except the quoted term | yes   |
+  | vocab options (English, "Choose the…") | no (Spanish options never)  | yes   |
+  | cloze sentence                         | yes                         | yes   |
+  | cloze chips (answer + distractors)     | no                          | yes   |
+  | translation choice sentence            | no                          | yes   |
+  | word order tokens and built sentence   | no                          | yes   |
+  | translate write                        | nothing English shown       | —     |
+  | reading title, text and questions      | yes                         | yes   |
+  | reading options                        | no                          | yes   |
+  | feedback margin note (English answer)  | —                           | yes   |
+  | summary "Para repasar" terms           | yes                         | yes   |
+
+  The vocab term is locked by its character range and, for "What does 'X' mean in 'Y'?", by its
+  entry ids wherever it appears. The quoted Spanish term of "Choose the English for 'X'." never
+  links. The **placement test** has no `GlossaryProvider`, so nothing links there.
+
+- **First-time hint**: "Toca una palabra para ver su traducción" (web with a mouse: "Pasa el
+  mouse o haz clic en una palabra para ver su traducción") above exercises that have lookups,
+  until the learner taps "Entendido" or opens a first card; stored with
+  `SettingsRepository.setLookupHintDismissed()`.
+- **SRS signal**: `SessionGlossary` maps each opened entry to the lesson items whose term it is
+  (`model/item-entries.ts`, built once per corpus: the term, without / with its parenthesized
+  part, each side of a `/`, and the part before a `+ pattern`, must annotate to exactly one
+  linked word or phrase; grammar items and sentences match nothing) and sends them to the
+  session reducer (`lookup` action). See "Lessons" for the grade cap.
+- **Accessibility**: targets are focusable buttons (web) / button-role spans (native); the web
+  dialog has `role="dialog"`, takes focus and returns it on Escape; the native card is a modal
+  with a polite live region and a "Cerrar" button. The feedback's margin note stays readable by
+  screen readers when its answer links.
+
 ## Placement test (`src/features/placement/`)
 
 `/placement`: intro, then the adaptive test from the domain (`createPlacementSession` /
@@ -164,6 +225,7 @@ stays quiet.
   muting does not affect them. The speaker button ("Silenciar sonidos" / "Activar sonidos") sits
   at the top of home and in the header of lesson, review and placement; the choice is stored in
   SQLite (`setting` table) and defaults to on.
+- **Word lookup**: see "Word lookup" above.
 - **Accessibility floor**: touch targets ≥ 44 pt, an ink focus ring on web (`:focus-visible`,
   `web-global-styles.ts`), AA contrast for text (`theme.test.tsx` asserts ≥ 4.5:1 for text,
   muted, ink, success and red pen on paper and sheet, and dark text on every highlighter, in
@@ -193,7 +255,9 @@ pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
 `node scripts/screenshots.mjs <out-dir> [--skip-build] [--port 4174]` builds `dist-e2e/` (skip
 with `--skip-build` if it is fresh), serves it and walks the app with Playwright Chromium:
 home (fresh and with progress plus pending reviews via `?today=`), placement intro and question,
-one screen per exercise type, correct / almost / wrong feedback (choice options marked), reading
+one screen per exercise type, correct / almost / wrong feedback (choice options marked), word
+lookups on the reading passage (hover tooltip on desktop, the open card mid-passage and at its
+end), reading
 feedback, the leave dialog, the lesson summary with words to review, review and a perfect review
 summary, about and the "open in another tab" error screen. Every screen is captured at
 390×844 and 1280×800, in light and dark color schemes (`mobile-dark-09-feedback-wrong.png`, …);
@@ -282,6 +346,11 @@ The Playwright smoke test fails if the page is not cross-origin isolated, if SQL
 console errors, or if progress loaded from the database is not rendered.
 
 ## Known limitations
+
+- **Word lookup on native is not verified on a device yet.** RNTL covers the native card;
+  e2e covers web (Chromium and WebKit). Android draws the lookup underline solid and in the text
+  color (no dotted style or decoration color there). Inside a revealed choice row (a radio) or
+  the feedback, a screen reader reads the row's label rather than each lookup button.
 
 - **Sounds are not verified on a device yet.** Unit tests cover the wiring with a fake player and
   e2e checks the web build loads and plays them without errors in Chromium; Playwright's WebKit
