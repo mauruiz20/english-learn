@@ -1,4 +1,5 @@
 from datetime import timedelta
+from typing import Any
 
 import pytest
 from pydantic import ValidationError
@@ -8,14 +9,14 @@ from english_learn_api.settings import DEFAULT_CORS_ORIGINS, Settings
 SECRET = "x" * 32
 
 
-def make(**overrides: object) -> Settings:
-    values: dict[str, object] = {
+def make(**overrides: Any) -> Settings:
+    values: dict[str, Any] = {
         "database_url": "postgresql+asyncpg://app:app@localhost:5432/app",
         "google_client_id": "client.apps.googleusercontent.com",
         "jwt_secret": SECRET,
         **overrides,
     }
-    return Settings(_env_file=None, **values)  # type: ignore[call-arg]
+    return Settings(_env_file=None, **values)
 
 
 def test_defaults() -> None:
@@ -69,7 +70,7 @@ def test_reads_environment_variables(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("REFRESH_TOKEN_TTL", "P7D")
     monkeypatch.setenv("CORS_ORIGINS", "https://a.example, https://b.example")
 
-    settings = Settings(_env_file=None)  # type: ignore[call-arg]
+    settings = Settings(_env_file=None)
 
     assert settings.database_url == "postgresql+asyncpg://u:p@h:5432/d"
     assert settings.google_client_id == "id.apps.googleusercontent.com"
