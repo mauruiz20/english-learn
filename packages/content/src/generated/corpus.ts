@@ -12,12 +12,22 @@ import file6 from "../../data/a2/home.json";
 import file7 from "../../data/a2/shopping.json";
 import file8 from "../../data/a2/weather.json";
 import file9 from "../../data/a2/work.json";
-import file10 from "../../data/b1/travel.json";
-import file11 from "../../data/placement/a1.json";
-import file12 from "../../data/placement/a2.json";
-import file13 from "../../data/placement/b1.json";
-import file14 from "../../data/placement/b2.json";
-import file15 from "../../data/placement/c1.json";
+import file10 from "../../data/b1/city-life.json";
+import file11 from "../../data/b1/culture-and-entertainment.json";
+import file12 from "../../data/b1/education.json";
+import file13 from "../../data/b1/environment.json";
+import file14 from "../../data/b1/health-and-lifestyle.json";
+import file15 from "../../data/b1/media-and-news.json";
+import file16 from "../../data/b1/money-and-shopping.json";
+import file17 from "../../data/b1/relationships.json";
+import file18 from "../../data/b1/technology.json";
+import file19 from "../../data/b1/travel.json";
+import file20 from "../../data/b1/work-and-careers.json";
+import file21 from "../../data/placement/a1.json";
+import file22 from "../../data/placement/a2.json";
+import file23 from "../../data/placement/b1.json";
+import file24 from "../../data/placement/b2.json";
+import file25 from "../../data/placement/c1.json";
 
 const files = [
   file0,
@@ -36,6 +46,16 @@ const files = [
   file13,
   file14,
   file15,
+  file16,
+  file17,
+  file18,
+  file19,
+  file20,
+  file21,
+  file22,
+  file23,
+  file24,
+  file25,
 ] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);

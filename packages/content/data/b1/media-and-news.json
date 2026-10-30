@@ -1,0 +1,348 @@
+{
+  "items": [
+    {
+      "id": "b1.media-and-news.headline",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "word",
+      "term": "headline",
+      "es": "titular"
+    },
+    {
+      "id": "b1.media-and-news.article",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "word",
+      "term": "article",
+      "es": "artículo (de prensa)"
+    },
+    {
+      "id": "b1.media-and-news.journalist",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "word",
+      "term": "journalist",
+      "es": "periodista"
+    },
+    {
+      "id": "b1.media-and-news.news",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "word",
+      "term": "news",
+      "es": "noticias, noticia (incontable: the news is…)"
+    },
+    {
+      "id": "b1.media-and-news.according-to",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "phrase",
+      "term": "according to",
+      "es": "según"
+    },
+    {
+      "id": "b1.media-and-news.announce",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "word",
+      "term": "announce",
+      "es": "anunciar"
+    },
+    {
+      "id": "b1.media-and-news.fake-news",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "phrase",
+      "term": "fake news",
+      "es": "noticias falsas"
+    },
+    {
+      "id": "b1.media-and-news.find-out",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "phrase",
+      "term": "find out",
+      "es": "averiguar, enterarse (de)"
+    },
+    {
+      "id": "b1.media-and-news.however",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "kind": "word",
+      "term": "however",
+      "es": "sin embargo"
+    },
+    {
+      "id": "b1.media-and-news.say-tell",
+      "level": "B1",
+      "topics": ["media-and-news", "grammar"],
+      "kind": "grammar",
+      "term": "say / tell",
+      "es": "decir: say (algo) / tell (a alguien algo)"
+    },
+    {
+      "id": "b1.media-and-news.passive-past",
+      "level": "B1",
+      "topics": ["media-and-news", "grammar"],
+      "kind": "grammar",
+      "term": "passive (past): was/were + past participle",
+      "es": "voz pasiva en pasado: fue publicado, se anunció"
+    },
+    {
+      "id": "b1.media-and-news.reported-speech",
+      "level": "B1",
+      "topics": ["media-and-news", "grammar"],
+      "kind": "grammar",
+      "term": "reported speech: she said (that)…",
+      "es": "estilo indirecto: ella dijo que…"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.media-and-news.trust-headline",
+      "level": "B1",
+      "topics": ["media-and-news"],
+      "title": "Can you trust that headline?",
+      "text": "Yesterday a surprising headline appeared on my phone: \"Chocolate is now healthier than fruit, scientists say.\" It was shared thousands of times in just a few hours. However, when I read the article carefully, I found out that the study was very small and that it was paid for by a chocolate company. The journalist didn't mention this until the last paragraph. Our media teacher told us that this happens a lot. She said that many people only read headlines and never check the source. According to a recent survey, more than half of teenagers get their news from social media, not from newspapers or TV. That's not always bad, but it means we have to be careful. Before I share a story now, I ask three questions: Who wrote it? When was it published? Do other news sites say the same thing? If the answer to the last question is no, it might be fake news.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.media-and-news.vocab-001",
+      "itemIds": ["b1.media-and-news.headline"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'headline' mean?",
+      "options": ["dolor de cabeza", "titular", "fecha límite", "portada"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.media-and-news.cloze-001",
+      "itemIds": ["b1.media-and-news.say-tell"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She ___ me that the story wasn't true.",
+      "answers": ["told"],
+      "distractors": ["said", "spoke", "talked"],
+      "es": "Me dijo que la historia no era cierta."
+    },
+    {
+      "id": "b1.media-and-news.order-001",
+      "itemIds": ["b1.media-and-news.news"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 254832,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["in", "the", "read", "it", "I", "newspaper.", "about"],
+      "accepted": ["I read about it in the newspaper."],
+      "es": "Lo leí en el periódico."
+    },
+    {
+      "id": "b1.media-and-news.choice-001",
+      "itemIds": ["b1.media-and-news.article"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 20602,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "Several newspapers published the story.",
+      "options": [
+        "Un solo periódico publicó la historia.",
+        "Varios periódicos publicaron la historia.",
+        "Varios periódicos rechazaron la historia.",
+        "Varios periodistas escribieron la historia."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.media-and-news.reading-001",
+      "itemIds": [
+        "b1.media-and-news.headline",
+        "b1.media-and-news.according-to",
+        "b1.media-and-news.fake-news"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.media-and-news.trust-headline",
+      "questions": [
+        {
+          "prompt": "Who paid for the chocolate study?",
+          "options": ["A university", "A news website", "A chocolate company"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Where did the journalist mention who paid for the study?",
+          "options": ["In the headline", "In the last paragraph", "In the first sentence"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "According to the survey, where do most teenagers get their news?",
+          "options": ["From newspapers", "From social media", "From TV"],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "b1.media-and-news.write-001",
+      "itemIds": ["b1.media-and-news.however"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "El artículo era interesante. Sin embargo, era demasiado largo.",
+      "accepted": [
+        "The article was interesting. However, it was too long.",
+        "The article was interesting; however, it was too long.",
+        "The article was interesting, but it was too long."
+      ]
+    },
+    {
+      "id": "b1.media-and-news.vocab-002",
+      "itemIds": ["b1.media-and-news.journalist"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'periodista'.",
+      "options": ["journalist", "journal", "newsstand", "actor"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.media-and-news.vocab-003",
+      "itemIds": ["b1.media-and-news.announce"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'announce' mean?",
+      "options": ["renunciar", "denunciar", "pronunciar", "anunciar"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.media-and-news.cloze-002",
+      "itemIds": ["b1.media-and-news.passive-past"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The winner ___ announced on the evening news.",
+      "answers": ["was"],
+      "distractors": ["were", "did", "have"],
+      "es": "El ganador fue anunciado en el noticiero de la noche."
+    },
+    {
+      "id": "b1.media-and-news.cloze-003",
+      "itemIds": ["b1.media-and-news.find-out"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 25101,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I need to find ___ exactly what went wrong.",
+      "answers": ["out"],
+      "distractors": ["up", "off", "on"],
+      "es": "Necesito averiguar exactamente qué salió mal."
+    },
+    {
+      "id": "b1.media-and-news.order-002",
+      "itemIds": ["b1.media-and-news.according-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["news,", "the", "closed.", "the", "bridge", "to", "was", "According"],
+      "accepted": ["According to the news, the bridge was closed."],
+      "es": "Según las noticias, el puente estaba cerrado."
+    },
+    {
+      "id": "b1.media-and-news.choice-002",
+      "itemIds": ["b1.media-and-news.say-tell", "b1.media-and-news.news"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 31825,
+        "author": "AlanF_US",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I met Meg, who told me the news.",
+      "options": [
+        "Me encontré con Meg, quien me contó la noticia.",
+        "Me encontré con Meg y le conté la noticia.",
+        "Conocí a Meg cuando leía las noticias.",
+        "Me encontraré con Meg, que me contará la noticia."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.media-and-news.write-002",
+      "itemIds": ["b1.media-and-news.passive-past", "b1.media-and-news.journalist"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "La noticia fue publicada por un periodista joven.",
+      "accepted": [
+        "The news was published by a young journalist.",
+        "The story was published by a young journalist.",
+        "The news story was published by a young journalist.",
+        "A young journalist published the news.",
+        "A young journalist published the story.",
+        "A young journalist published the news story."
+      ]
+    },
+    {
+      "id": "b1.media-and-news.write-003",
+      "itemIds": ["b1.media-and-news.fake-news"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Muchas personas comparten noticias falsas sin leerlas.",
+      "accepted": [
+        "Many people share fake news without reading it.",
+        "A lot of people share fake news without reading it.",
+        "Lots of people share fake news without reading it."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.media-and-news.lesson-001",
+      "level": "B1",
+      "topic": "media-and-news",
+      "title": "Leer las noticias",
+      "exerciseIds": [
+        "b1.media-and-news.vocab-001",
+        "b1.media-and-news.cloze-001",
+        "b1.media-and-news.order-001",
+        "b1.media-and-news.choice-001",
+        "b1.media-and-news.reading-001",
+        "b1.media-and-news.write-001",
+        "b1.media-and-news.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.media-and-news.lesson-002",
+      "level": "B1",
+      "topic": "media-and-news",
+      "title": "Quién dijo qué",
+      "exerciseIds": [
+        "b1.media-and-news.vocab-003",
+        "b1.media-and-news.cloze-002",
+        "b1.media-and-news.cloze-003",
+        "b1.media-and-news.order-002",
+        "b1.media-and-news.choice-002",
+        "b1.media-and-news.write-002",
+        "b1.media-and-news.write-003"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "items": [
+    {
+      "id": "b1.education.degree",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "word",
+      "term": "degree",
+      "es": "título universitario, carrera"
+    },
+    {
+      "id": "b1.education.graduate",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "word",
+      "term": "graduate",
+      "es": "graduarse, egresar"
+    },
+    {
+      "id": "b1.education.fail",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "word",
+      "term": "fail (an exam)",
+      "es": "reprobar (un examen)"
+    },
+    {
+      "id": "b1.education.pass-an-exam",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "phrase",
+      "term": "pass an exam",
+      "es": "aprobar un examen"
+    },
+    {
+      "id": "b1.education.scholarship",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "word",
+      "term": "scholarship",
+      "es": "beca"
+    },
+    {
+      "id": "b1.education.subject",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "word",
+      "term": "subject",
+      "es": "materia, asignatura"
+    },
+    {
+      "id": "b1.education.take-notes",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "phrase",
+      "term": "take notes",
+      "es": "tomar apuntes"
+    },
+    {
+      "id": "b1.education.hand-in",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "phrase",
+      "term": "hand in",
+      "es": "entregar (una tarea, un trabajo)"
+    },
+    {
+      "id": "b1.education.past-continuous",
+      "level": "B1",
+      "topics": ["education", "grammar"],
+      "kind": "grammar",
+      "term": "past continuous (was/were + -ing)",
+      "es": "pasado continuo: estaba + gerundio (acción en curso en el pasado)"
+    },
+    {
+      "id": "b1.education.reported-speech",
+      "level": "B1",
+      "topics": ["education", "grammar"],
+      "kind": "grammar",
+      "term": "reported speech: said (that) / told me (that) / told me to",
+      "es": "estilo indirecto: dijo que / me dijo que / me dijo que hiciera algo"
+    },
+    {
+      "id": "b1.education.asked-if",
+      "level": "B1",
+      "topics": ["education", "grammar"],
+      "kind": "grammar",
+      "term": "reported questions: asked if / whether",
+      "es": "preguntas indirectas: preguntó si"
+    },
+    {
+      "id": "b1.education.homework",
+      "level": "B1",
+      "topics": ["education"],
+      "kind": "word",
+      "term": "homework",
+      "es": "tarea (para la casa)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.education.difficult-semester",
+      "level": "B1",
+      "topics": ["education"],
+      "title": "A difficult semester",
+      "text": "Last semester was hard for Sofía. She was studying engineering at a public university, and she was also working at a café three evenings a week. One night in November, while she was taking notes in the library, her phone rang. It was her manager. He said that he needed her at work immediately. Sofía told him that she had an important exam the next day, and he finally agreed to let her stay. Unfortunately, she failed that exam anyway, because she was too tired to concentrate. A few days later, her math teacher asked her if everything was OK. Sofía explained her situation, and the teacher told her about a scholarship for students who work. She applied, and two months later she got it. Now she doesn't have to work in the evenings. She hands in her homework on time, and she passed all her subjects in the spring. \"I was trying to do everything alone,\" she says. \"Asking for help was the best decision I made.\"",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.education.vocab-001",
+      "itemIds": ["b1.education.scholarship"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'scholarship' mean?",
+      "options": ["escolaridad", "colegio", "matrícula", "beca"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.education.cloze-001",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 26903,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "What ___ you doing when it began to rain?",
+      "answers": ["were"],
+      "distractors": ["did", "are", "was"],
+      "es": "¿Qué estabas haciendo cuando empezó a llover?"
+    },
+    {
+      "id": "b1.education.order-001",
+      "itemIds": ["b1.education.reported-speech"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 272966,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["to", "teacher", "told", "stand", "me", "The", "up."],
+      "accepted": ["The teacher told me to stand up."],
+      "es": "El profesor me dijo que me pusiera de pie."
+    },
+    {
+      "id": "b1.education.choice-001",
+      "itemIds": ["b1.education.graduate"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 953084,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "After I graduated from college, I spent two years traveling around the world.",
+      "options": [
+        "Antes de graduarme de la universidad, pasé dos años viajando por el mundo.",
+        "Cuando me gradúe de la universidad, pasaré dos años viajando por el mundo.",
+        "Después de graduarme de la universidad, trabajé dos años en otro país.",
+        "Después de graduarme de la universidad, pasé dos años viajando por el mundo."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.education.reading-001",
+      "itemIds": [
+        "b1.education.past-continuous",
+        "b1.education.scholarship",
+        "b1.education.take-notes"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.education.difficult-semester",
+      "questions": [
+        {
+          "prompt": "What was Sofía doing when her manager called?",
+          "options": [
+            "Taking notes in the library",
+            "Serving coffee at the café",
+            "Taking an important exam"
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What did her math teacher tell her about?",
+          "options": ["A job at a café", "An easier exam", "A scholarship"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Why did she fail the exam?",
+          "options": [
+            "She arrived late.",
+            "She was too tired.",
+            "She didn't study the right subject."
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "b1.education.write-001",
+      "itemIds": ["b1.education.pass-an-exam"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Aprobé todos mis exámenes.",
+      "accepted": [
+        "I passed all my exams.",
+        "I passed all my tests.",
+        "I passed all of my exams.",
+        "I passed all of my tests."
+      ]
+    },
+    {
+      "id": "b1.education.vocab-002",
+      "itemIds": ["b1.education.fail"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "If you 'fail' an exam, you…",
+      "options": ["lo apruebas", "lo copias", "lo repruebas", "lo cancelas"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.education.vocab-003",
+      "itemIds": ["b1.education.subject"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'asignatura'.",
+      "options": ["signature", "subject", "grade", "desk"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.education.cloze-002",
+      "itemIds": ["b1.education.reported-speech"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She said that she ___ tired.",
+      "answers": ["was"],
+      "distractors": ["were", "be", "being"],
+      "es": "Dijo que estaba cansada."
+    },
+    {
+      "id": "b1.education.cloze-003",
+      "itemIds": ["b1.education.asked-if"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 297665,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "He asked me ___ I liked mathematics.",
+      "answers": ["if", "whether"],
+      "distractors": ["that", "what", "which"],
+      "es": "Me preguntó si me gustaban las matemáticas."
+    },
+    {
+      "id": "b1.education.order-002",
+      "itemIds": ["b1.education.hand-in", "b1.education.homework"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["hand", "your", "essay", "by", "to", "Friday.", "You", "have", "in"],
+      "accepted": [
+        "You have to hand in your essay by Friday.",
+        "You have to hand your essay in by Friday."
+      ],
+      "es": "Tienes que entregar tu ensayo a más tardar el viernes."
+    },
+    {
+      "id": "b1.education.choice-002",
+      "itemIds": ["b1.education.take-notes", "b1.education.past-continuous"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I was taking notes when the lights went out.",
+      "options": [
+        "Tomé apuntes después de que se fue la luz.",
+        "Estaba tomando apuntes cuando encendieron la luz.",
+        "Estaba tomando apuntes cuando se fue la luz.",
+        "Estoy tomando apuntes porque se fue la luz."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.education.write-002",
+      "itemIds": ["b1.education.reported-speech"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Mi profesora me dijo que estudiara más.",
+      "accepted": [
+        "My teacher told me to study more.",
+        "My teacher told me to study harder.",
+        "My teacher asked me to study more.",
+        "My teacher asked me to study harder.",
+        "My teacher said that I should study more.",
+        "My teacher said that I should study harder.",
+        "My teacher said I should study more.",
+        "My teacher said I should study harder.",
+        "My teacher told me that I should study more.",
+        "My teacher told me that I should study harder.",
+        "My teacher told me I should study more.",
+        "My teacher told me I should study harder."
+      ]
+    },
+    {
+      "id": "b1.education.write-003",
+      "itemIds": ["b1.education.degree"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Mi hermano tiene un título en economía.",
+      "accepted": [
+        "My brother has a degree in economics.",
+        "My brother has an economics degree.",
+        "My brother has got a degree in economics.",
+        "My brother has got an economics degree.",
+        "My brother's got a degree in economics.",
+        "My brother's got an economics degree."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.education.lesson-001",
+      "level": "B1",
+      "topic": "education",
+      "title": "Vida de estudiante",
+      "exerciseIds": [
+        "b1.education.vocab-001",
+        "b1.education.cloze-001",
+        "b1.education.order-001",
+        "b1.education.choice-001",
+        "b1.education.reading-001",
+        "b1.education.write-001",
+        "b1.education.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.education.lesson-002",
+      "level": "B1",
+      "topic": "education",
+      "title": "Lo que dijo el profesor",
+      "exerciseIds": [
+        "b1.education.vocab-003",
+        "b1.education.cloze-002",
+        "b1.education.cloze-003",
+        "b1.education.order-002",
+        "b1.education.choice-002",
+        "b1.education.write-002",
+        "b1.education.write-003"
+      ]
+    }
+  ]
+}

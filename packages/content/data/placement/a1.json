@@ -63,10 +63,10 @@
       "exercise": {
         "source": { "kind": "original" },
         "type": "cloze",
-        "sentence": "There ___ a cat in the garden.",
+        "sentence": "There ___ a cat in the yard.",
         "answers": ["is"],
         "distractors": ["are", "am", "be"],
-        "es": "Hay un gato en el jardín."
+        "es": "Hay un gato en el patio."
       }
     },
     {

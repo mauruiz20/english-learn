@@ -94,7 +94,7 @@
       "topics": ["food"],
       "kind": "grammar",
       "term": "some / any",
-      "es": "algo de, unos (afirmativas) / nada de, ningún (negativas y preguntas)"
+      "es": "algo de, unos (afirmativas) / nada de, ningún (negativas); algo de, alguno (preguntas)"
     }
   ],
   "passages": [
@@ -205,7 +205,7 @@
         "license": "CC BY 2.0 FR"
       },
       "type": "translate_write",
-      "es": "Tenía hambre y sed.",
+      "es": "Yo tenía hambre y sed.",
       "accepted": ["I was hungry and thirsty.", "I was thirsty and hungry."]
     },
     {
@@ -237,7 +237,7 @@
       "sentence": "There isn't ___ milk in the fridge.",
       "answers": ["any"],
       "distractors": ["some", "many", "a"],
-      "es": "No hay nada de leche en el refrigerador."
+      "es": "No hay leche en el refrigerador."
     },
     {
       "id": "a2.food.cloze-003",
@@ -315,7 +315,9 @@
       "accepted": [
         "I prefer rice to bread.",
         "I like rice better than bread.",
-        "I like rice more than bread."
+        "I like rice more than bread.",
+        "I prefer rice over bread.",
+        "I'd rather have rice than bread."
       ]
     }
   ],
