@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Response, status
+from collections.abc import Awaitable, Callable
+
+from fastapi import APIRouter, Depends, Request, Response, status
 
 from english_learn_api.auth.api.schemas import (
     GoogleSignInRequest,
@@ -9,6 +11,7 @@ from english_learn_api.auth.api.schemas import (
 from english_learn_api.auth.application.use_cases import Logout, RefreshSession, SignInWithGoogle
 from english_learn_api.auth.domain.errors import (
     AuthenticationError,
+    GoogleBusyError,
     GoogleEmailNotVerifiedError,
     GoogleUnavailableError,
 )
@@ -18,25 +21,38 @@ STATUS_BY_ERROR: dict[type[DomainError], int] = {
     AuthenticationError: status.HTTP_401_UNAUTHORIZED,
     GoogleEmailNotVerifiedError: status.HTTP_403_FORBIDDEN,
     GoogleUnavailableError: status.HTTP_503_SERVICE_UNAVAILABLE,
+    GoogleBusyError: status.HTTP_503_SERVICE_UNAVAILABLE,
 }
+
+type RateLimit = Callable[[Request], Awaitable[None]]
 
 
 def build_auth_router(
-    *, sign_in: SignInWithGoogle, refresh: RefreshSession, logout: Logout
+    *,
+    sign_in: SignInWithGoogle,
+    refresh: RefreshSession,
+    logout: Logout,
+    sign_in_limit: RateLimit,
+    refresh_limit: RateLimit,
+    logout_limit: RateLimit,
 ) -> APIRouter:
     router = APIRouter(prefix="/v1/auth", tags=["auth"])
 
-    @router.post("/google")
+    @router.post("/google", dependencies=[Depends(sign_in_limit)])
     async def sign_in_with_google(body: GoogleSignInRequest) -> SignInResponse:
         """Exchange a Google ID token (from Google Identity Services) for API tokens."""
         return SignInResponse.of_sign_in(await sign_in.execute(body.id_token))
 
-    @router.post("/refresh")
+    @router.post("/refresh", dependencies=[Depends(refresh_limit)])
     async def refresh_session(body: RefreshTokenRequest) -> TokensResponse:
         """Rotate the refresh token. Each refresh token works once."""
         return TokensResponse.of(await refresh.execute(body.refresh_token))
 
-    @router.post("/logout", status_code=status.HTTP_204_NO_CONTENT)
+    @router.post(
+        "/logout",
+        status_code=status.HTTP_204_NO_CONTENT,
+        dependencies=[Depends(logout_limit)],
+    )
     async def log_out(body: RefreshTokenRequest) -> Response:
         """Revoke the refresh token and every token rotated from the same sign-in."""
         await logout.execute(body.refresh_token)

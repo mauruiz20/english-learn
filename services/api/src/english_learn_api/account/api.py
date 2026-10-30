@@ -6,10 +6,15 @@ from english_learn_api.account.application import DeleteAccount, GetProfile
 from english_learn_api.auth.api.bearer import CurrentClaims
 from english_learn_api.auth.api.schemas import UserResponse
 from english_learn_api.auth.domain.models import AccessClaims
+from english_learn_api.shared.rate_limit import TokenBucketLimiter, enforce
 
 
 def build_account_router(
-    *, current_claims: CurrentClaims, get_profile: GetProfile, delete_account: DeleteAccount
+    *,
+    current_claims: CurrentClaims,
+    get_profile: GetProfile,
+    delete_account: DeleteAccount,
+    delete_limiter: TokenBucketLimiter,
 ) -> APIRouter:
     router = APIRouter(prefix="/v1", tags=["account"])
     Claims = Annotated[AccessClaims, Depends(current_claims)]  # noqa: N806
@@ -25,6 +30,7 @@ def build_account_router(
         Needs an access token from a Google sign-in less than 5 minutes old (401
         `reauthentication_required` otherwise): the client signs in again first.
         """
+        enforce(delete_limiter, f"user:{claims.user_id}")
         await delete_account.execute(claims.user_id, authenticated_at=claims.authenticated_at)
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 

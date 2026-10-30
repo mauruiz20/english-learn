@@ -23,6 +23,12 @@ class GoogleUnavailableError(DomainError):
     code: ClassVar[str] = "google_unavailable"
 
 
+class GoogleBusyError(DomainError):
+    """Too many Google verifications in flight; the client may retry shortly."""
+
+    code: ClassVar[str] = "google_busy"
+
+
 class InvalidRefreshTokenError(AuthenticationError):
     """Unknown, revoked or expired. Deliberately one code: the client signs in again."""
 

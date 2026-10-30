@@ -5,6 +5,8 @@ Run locally with `uv run uvicorn english_learn_api.main:app_from_env --factory -
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from dataclasses import dataclass
+from datetime import timedelta
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,6 +22,11 @@ from english_learn_api.auth.application.use_cases import (
     SessionIssuer,
     SignInWithGoogle,
 )
+from english_learn_api.auth.infrastructure.bounded_google_verifier import (
+    DEFAULT_MAX_CONCURRENT,
+    DEFAULT_WAIT_SECONDS,
+    BoundedGoogleVerifier,
+)
 from english_learn_api.auth.infrastructure.google_verifier import GoogleIdTokenVerifier
 from english_learn_api.auth.infrastructure.jwt_access_tokens import JwtAccessTokens
 from english_learn_api.auth.infrastructure.sqlalchemy_unit_of_work import SqlAlchemyUnitOfWork
@@ -30,6 +37,22 @@ from english_learn_api.shared.database import create_engine, create_session_fact
 from english_learn_api.shared.errors import install_error_handlers
 from english_learn_api.shared.logging import configure_logging
 from english_learn_api.shared.middleware import BodySizeLimitMiddleware, RequestLogMiddleware
+from english_learn_api.shared.rate_limit import Rate, TokenBucketLimiter, limit_by_client_ip
+
+SIGN_IN_RATE = Rate(10, timedelta(minutes=1))
+REFRESH_RATE = Rate(30, timedelta(minutes=1))
+LOGOUT_RATE = Rate(30, timedelta(minutes=1))
+DELETE_ACCOUNT_RATE = Rate(5, timedelta(hours=1))
+
+
+@dataclass(frozen=True, slots=True)
+class RateLimits:
+    """Per client IP for the auth endpoints, per user for account deletion."""
+
+    sign_in: Rate = SIGN_IN_RATE
+    refresh: Rate = REFRESH_RATE
+    logout: Rate = LOGOUT_RATE
+    delete_account: Rate = DELETE_ACCOUNT_RATE
 
 
 def create_app(
@@ -37,11 +60,17 @@ def create_app(
     *,
     google_verifier: GoogleTokenVerifier | None = None,
     clock: Clock | None = None,
+    rate_limits: RateLimits | None = None,
+    google_concurrency: tuple[int, float] = (DEFAULT_MAX_CONCURRENT, DEFAULT_WAIT_SECONDS),
 ) -> FastAPI:
     """Build the app. Tests swap the Google verifier and the clock; everything else is real."""
     clock = clock or SystemClock()
-    google_verifier = google_verifier or GoogleIdTokenVerifier(
-        client_ids=settings.google_client_ids
+    limits = rate_limits or RateLimits()
+    max_concurrent, wait_seconds = google_concurrency
+    google_verifier = BoundedGoogleVerifier(
+        google_verifier or GoogleIdTokenVerifier(client_ids=settings.google_client_ids),
+        max_concurrent=max_concurrent,
+        wait_seconds=wait_seconds,
     )
     engine = create_engine(settings.database_url)
     session_factory = create_session_factory(engine)
@@ -83,6 +112,9 @@ def create_app(
                 retry_grace=settings.refresh_retry_grace,
             ),
             logout=Logout(unit_of_work=unit_of_work, clock=clock),
+            sign_in_limit=limit_by_client_ip(TokenBucketLimiter(limits.sign_in)),
+            refresh_limit=limit_by_client_ip(TokenBucketLimiter(limits.refresh)),
+            logout_limit=limit_by_client_ip(TokenBucketLimiter(limits.logout)),
         )
     )
     app.include_router(
@@ -94,6 +126,7 @@ def create_app(
                 clock=clock,
                 reauthentication_window=settings.reauthentication_window,
             ),
+            delete_limiter=TokenBucketLimiter(limits.delete_account),
         )
     )
 
