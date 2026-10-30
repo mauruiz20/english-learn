@@ -51,7 +51,8 @@
     "export:web:e2e": "EXPO_PUBLIC_E2E=1 expo export -p web --output-dir dist-e2e",
     "serve:web": "node scripts/serve-web.mjs",
     "e2e:web": "pnpm export:web:e2e && playwright test",
-    "generate:sounds": "node scripts/generate-sounds.mjs"
+    "generate:sounds": "node scripts/generate-sounds.mjs",
+    "generate:pwa-icons": "node scripts/generate-pwa-icons.mjs"
   },
   "private": true,
   "jest": {
