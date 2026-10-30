@@ -91,11 +91,19 @@ describe("tokenizeForGlossary", () => {
     expect(words(tokenizeForGlossary("I don’t know"))).toEqual(["I", "don’t", "know"]);
   });
 
-  it("keeps a plural possessive apostrophe after s", () => {
+  it("leaves a trailing apostrophe (plural possessive or closing quote) out of the word", () => {
     expect(words(tokenizeForGlossary("The students' books."))).toEqual([
       "The",
-      "students'",
+      "students",
       "books",
+    ]);
+    expect(words(tokenizeForGlossary("What does 'do the dishes' mean?"))).toEqual([
+      "What",
+      "does",
+      "do",
+      "the",
+      "dishes",
+      "mean",
     ]);
   });
 

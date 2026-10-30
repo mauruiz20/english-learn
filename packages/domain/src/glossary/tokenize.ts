@@ -7,10 +7,13 @@ const WORD_CHAR = String.raw`\p{L}\p{M}\p{N}`;
  * A word candidate, tried in order:
  * - dotted abbreviations (`p.m.`, `U.S.`);
  * - letters/digits joined by inner apostrophes or hyphens (`won't`, `city's`,
- *   `well-known`), plus a trailing apostrophe after `s` (`students'`).
+ *   `well-known`).
+ * A trailing apostrophe is never part of a word: a plural possessive
+ * (`students'`) cannot be told apart from a closing quote (`'the dishes'`), and
+ * both read correctly as the bare word.
  */
 const WORD = new RegExp(
-  String.raw`(?:\p{L}\.){2,}|[${WORD_CHAR}]+(?:[${APOSTROPHE}-][${WORD_CHAR}]+)*(?:(?<=s)[${APOSTROPHE}](?![${WORD_CHAR}]))?`,
+  String.raw`(?:\p{L}\.){2,}|[${WORD_CHAR}]+(?:[${APOSTROPHE}-][${WORD_CHAR}]+)*`,
   "gu",
 );
 const DIGIT = /\p{N}/u;
