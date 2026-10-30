@@ -185,6 +185,68 @@ describe("validateClozes", () => {
     ]);
     expect(paths(errs)).toEqual(["exercises[0].sentence", "exercises[1].sentence"]);
   });
+  it("rejects a blank written with 4+ underscores", () => {
+    const errs = validateClozes([
+      file({ exercises: [fx.cloze({ sentence: "____ it was raining, we went out." })] }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].sentence",
+        message: 'cloze sentence must contain exactly one blank written as "___" (found "____")',
+      },
+    ]);
+  });
+  it("counts every underscore run, whatever its length", () => {
+    const errs = validateClozes([
+      file({ exercises: [fx.cloze({ sentence: "___ it was raining, we went _ out." })] }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].sentence",
+        message: 'cloze sentence must contain exactly one blank written as "___" (found "___", "_")',
+      },
+    ]);
+  });
+  it("rejects underscores inside answers and distractors", () => {
+    const errs = validateClozes([
+      file({ exercises: [fx.cloze({ answers: ["Al_though"], distractors: ["Because", "__"] })] }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].answers[0]",
+        message: 'answer "Al_though" must not contain "_"',
+      },
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].distractors[1]",
+        message: 'distractor "__" must not contain "_"',
+      },
+    ]);
+  });
+  it("flags normalized duplicates among answers and among distractors", () => {
+    const errs = validateClozes([
+      file({
+        exercises: [
+          fx.cloze({ answers: ["Although", "although."], distractors: ["Because", "because"] }),
+        ],
+      }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].answers[1]",
+        message: 'duplicate answer "although." (normalized)',
+      },
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].distractors[1]",
+        message: 'duplicate distractor "because" (normalized)',
+      },
+    ]);
+  });
   it("flags answers that also appear in distractors (case-insensitive)", () => {
     const errs = validateClozes([
       file({

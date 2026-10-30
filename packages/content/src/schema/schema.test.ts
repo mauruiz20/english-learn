@@ -159,6 +159,11 @@ describe("ExerciseSchema", () => {
   it("cloze needs at least one answer", () => {
     expect(ExerciseSchema.safeParse(fx.cloze({ answers: [] })).success).toBe(false);
   });
+  it("cloze needs at least two distractors", () => {
+    const r = ExerciseSchema.safeParse(fx.cloze({ distractors: ["Because"] }));
+    expect(r.error?.issues.map((i) => i.path)).toEqual([["distractors"]]);
+    expect(ExerciseSchema.safeParse(fx.cloze({ distractors: [] })).success).toBe(false);
+  });
   it("reading needs at least one question", () => {
     expect(ExerciseSchema.safeParse(fx.reading({ questions: [] })).success).toBe(false);
   });

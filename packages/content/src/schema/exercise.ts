@@ -30,8 +30,8 @@ export const ClozeExerciseSchema = z.strictObject({
   sentence: NonEmptyString,
   /** Accepted variants for the blank. */
   answers: z.array(NonEmptyString).min(1),
-  /** Wrong choices rendered next to the answer. */
-  distractors: z.array(NonEmptyString),
+  /** Wrong choices rendered next to the answer (at least 2, so it is never a coin flip). */
+  distractors: z.array(NonEmptyString).min(2),
   /** Spanish translation of the full sentence. */
   es: NonEmptyString.optional(),
 });
