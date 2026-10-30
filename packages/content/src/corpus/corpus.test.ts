@@ -76,4 +76,34 @@ describe("generated corpus", () => {
     expect(corpus.placement.length).toBeGreaterThan(0);
     expect(corpus.glossary.length).toBeGreaterThan(0);
   });
+
+  it("annotates every learner-visible text: exact rebuild, contiguous offsets, every word linked", async () => {
+    const { corpus } = await import("../index");
+    const { glossaryTexts } = await import("../validate");
+    const { items, exercises, passages, placement } = corpus;
+    const texts = glossaryTexts([
+      {
+        file: "corpus",
+        data: {
+          items: [...items],
+          exercises: [...exercises],
+          passages: [...passages],
+          placement: [...placement],
+        },
+      },
+    ]);
+    expect(texts.length).toBeGreaterThan(1000);
+
+    for (const { path, text } of texts) {
+      const segments = annotateText(text, corpus.glossaryIndex);
+      expect(segments.map((s) => s.text).join(""), path).toBe(text);
+      let cursor = 0;
+      for (const s of segments) {
+        expect([s.start, text.slice(s.start, s.end)], path).toEqual([cursor, s.text]);
+        if (s.kind !== "other") expect(corpus.glossaryById.has(s.entryId ?? ""), path).toBe(true);
+        cursor = s.end;
+      }
+      expect(cursor, path).toBe(text.length);
+    }
+  });
 });
