@@ -1,5 +1,5 @@
 import { corpus } from "@english-learn/content/corpus";
-import type { Clock } from "@english-learn/domain";
+import type { Clock, SettingsRepository } from "@english-learn/domain";
 import {
   createSqliteProgressRepository,
   createSqliteSettingsRepository,
@@ -16,6 +16,7 @@ import { createExpoSoundPlayer } from "../sound/expo-sound-player";
 import { awaitPendingWrites } from "./await-pending-writes";
 import { DatabaseOpenError } from "./database-open-error";
 import type * as E2eProgress from "./e2e-progress";
+import type * as E2eSettingsWrites from "./e2e-settings-writes";
 import { initProgressStore } from "./init-progress-store";
 
 export const DATABASE_NAME = "english-learn.db";
@@ -38,11 +39,23 @@ async function initDatabase(db: SqlDatabase, clock: Clock): Promise<void> {
   }
 }
 
+function createSettingsRepository(db: SqlDatabase): SettingsRepository {
+  const repository = createSqliteSettingsRepository(db);
+  // `EXPO_PUBLIC_E2E` is inlined at build time: production builds drop this branch and its module.
+  if (process.env.EXPO_PUBLIC_E2E === "1") {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { exposeSettingsWrites } = require("./e2e-settings-writes") as typeof E2eSettingsWrites;
+    return exposeSettingsWrites(repository);
+  }
+  return repository;
+}
+
 function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode }) {
   const db = useSQLiteContext();
   // Sounds are loaded once and kept for the app's lifetime.
   const [sounds] = useState(createExpoSoundPlayer);
   const [progressRepository] = useState(() => createSqliteProgressRepository(db));
+  const [settingsRepository] = useState(() => createSettingsRepository(db));
   // Stored by `initDatabase`; read once so every save stamps it without an extra async step.
   const [deviceId, setDeviceId] = useState<string | null>(null);
   const [failure, setFailure] = useState<Error | null>(null);
@@ -62,10 +75,10 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
             random: Math.random,
             randomBytes: cryptoRandomBytes,
             deviceId,
-            settingsRepository: createSqliteSettingsRepository(db),
+            settingsRepository,
             sounds,
           },
-    [db, progressRepository, clock, deviceId, sounds],
+    [progressRepository, settingsRepository, clock, deviceId, sounds],
   );
   if (services === null) return null;
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;

@@ -11,12 +11,17 @@ test("muting sounds is remembered after a reload and shows in the lesson header"
 
   await page.goto("/");
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
-  // The switch saves in the background and the test reloads right away: let the first visit's
-  // precaching finish first so it does not slow the write down.
   await waitForServiceWorker(page);
   await page.getByRole("button", { name: "Silenciar sonidos", exact: true }).click();
   await expect(page.getByRole("button", { name: "Activar sonidos", exact: true })).toBeVisible();
 
+  // The switch flips at once and saves in the background (a few ms): wait for the save to commit
+  // before reloading, or the reload can stop it midway (test-only hook, EXPO_PUBLIC_E2E=1).
+  await page.evaluate(() =>
+    (
+      window as unknown as { __e2e: { settingsWritesSettled: () => Promise<void> } }
+    ).__e2e.settingsWritesSettled(),
+  );
   await page.reload();
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
   await expect(page.getByRole("button", { name: "Activar sonidos", exact: true })).toBeVisible();

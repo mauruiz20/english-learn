@@ -41,8 +41,15 @@ class SqlAlchemyUserRepository:
         return None if row is None else _user(row)
 
     async def lock_against_deletion(self, user_id: UUID) -> bool:
-        # FOR KEY SHARE conflicts with the FOR UPDATE lock a DELETE takes, and with nothing else.
-        statement = select(users.c.id).where(users.c.id == user_id).with_for_update(key_share=True)
+        # FOR KEY SHARE conflicts with the FOR UPDATE lock a DELETE takes (and key updates), not
+        # with other FOR KEY SHARE locks nor a sync's FOR NO KEY UPDATE: refreshes and syncs of
+        # one user do not wait for each other. SQLAlchemy spells it `read=True, key_share=True`
+        # (`key_share=True` alone is FOR NO KEY UPDATE).
+        statement = (
+            select(users.c.id)
+            .where(users.c.id == user_id)
+            .with_for_update(read=True, key_share=True)
+        )
         return (await self._session.execute(statement)).first() is not None
 
     async def delete(self, user_id: UUID) -> bool:
