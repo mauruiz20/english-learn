@@ -9,6 +9,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from english_learn_api.health.api import build_health_router
 from english_learn_api.settings import Settings
 from english_learn_api.shared.database import create_engine
 from english_learn_api.shared.errors import install_error_handlers
@@ -26,6 +27,7 @@ def create_app(settings: Settings) -> FastAPI:
 
     app = FastAPI(title="English Learn API", version="0.1.0", lifespan=lifespan)
     install_error_handlers(app, status_by_error={})
+    app.include_router(build_health_router(engine))
 
     # Added last = outermost: CORS headers also land on 413 responses.
     app.add_middleware(BodySizeLimitMiddleware, max_bytes=settings.max_request_body_bytes)
