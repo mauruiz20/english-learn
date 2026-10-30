@@ -76,6 +76,18 @@ describe("foldEvents", () => {
       expect(result.completedLessonIds).toEqual(["L1", "L2"]);
     });
 
+    it("pays the bonus for a new lesson whose items were all learned in other lessons", () => {
+      // Deliberate change from the pre-event app rule ("some item had no state yet"), which
+      // withheld this bonus whenever lessons share items.
+      const result = foldEvents([
+        itemReviewed({ id: "e1", localDate: d1, occurredAt: 1 }, "s1", "shared", 5),
+        lessonCompleted({ id: "e2", localDate: d1, occurredAt: 2 }, "s1", "L1", 10, 1),
+        itemReviewed({ id: "e3", localDate: d2, occurredAt: 1 }, "s2", "shared", 5),
+        lessonCompleted({ id: "e4", localDate: d2, occurredAt: 2 }, "s2", "L2", 10, 1),
+      ]);
+      expect(result.xp).toBe(10 + 20 + 10 + 20);
+    });
+
     it("gives the bonus to the earliest completion in fold order, whatever the input order", () => {
       const early = lessonCompleted({ id: "e1", localDate: d1 }, "s1", "L1", 0, 0.5);
       const late = lessonCompleted({ id: "e2", localDate: d2 }, "s2", "L1", 0, 1);
