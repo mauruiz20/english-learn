@@ -3,9 +3,39 @@
 import type { ContentFile } from "../schema/content-file";
 import { createCorpus, type Corpus } from "../corpus/corpus";
 import file0 from "../../data/a2/daily-routine.json";
-import file1 from "../../data/b1/travel.json";
-import file2 from "../../data/placement/seed.json";
+import file1 from "../../data/a2/directions.json";
+import file2 from "../../data/a2/family.json";
+import file3 from "../../data/a2/food.json";
+import file4 from "../../data/a2/free-time.json";
+import file5 from "../../data/a2/health.json";
+import file6 from "../../data/a2/home.json";
+import file7 from "../../data/a2/shopping.json";
+import file8 from "../../data/a2/weather.json";
+import file9 from "../../data/a2/work.json";
+import file10 from "../../data/b1/travel.json";
+import file11 from "../../data/placement/a1.json";
+import file12 from "../../data/placement/a2.json";
+import file13 from "../../data/placement/b1.json";
+import file14 from "../../data/placement/b2.json";
+import file15 from "../../data/placement/c1.json";
 
-const files = [file0, file1, file2] as unknown as readonly ContentFile[];
+const files = [
+  file0,
+  file1,
+  file2,
+  file3,
+  file4,
+  file5,
+  file6,
+  file7,
+  file8,
+  file9,
+  file10,
+  file11,
+  file12,
+  file13,
+  file14,
+  file15,
+] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);
