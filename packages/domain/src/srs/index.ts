@@ -1,5 +1,6 @@
 export { DEFAULT_EASE, MIN_EASE, initialState, review } from "./sm2";
 export type { Grade, ReviewState } from "./sm2";
+export { applyReview } from "./apply-review";
 export { gradeFromOutcome } from "./grade";
 export type { AnswerOutcome } from "./grade";
 export { selectSession } from "./select-session";
