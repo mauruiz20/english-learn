@@ -79,7 +79,7 @@
       "level": "B1",
       "source": { "kind": "original" },
       "type": "word_order",
-      "tokens": ["We", "booked", "a", "room", "online."],
+      "tokens": ["a", "online.", "We", "room", "booked"],
       "accepted": ["We booked a room online."],
       "es": "Reservamos una habitación por internet."
     },

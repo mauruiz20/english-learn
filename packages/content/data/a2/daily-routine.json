@@ -79,7 +79,7 @@
       "level": "A2",
       "source": { "kind": "original" },
       "type": "word_order",
-      "tokens": ["I", "usually", "wake", "up", "at", "six."],
+      "tokens": ["wake", "at", "I", "six.", "usually", "up"],
       "accepted": ["I usually wake up at six."],
       "es": "Normalmente me despierto a las seis."
     },

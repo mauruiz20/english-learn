@@ -67,7 +67,7 @@ export function wordOrder(o: Partial<WordOrderExercise> = {}): WordOrderExercise
     level: "B1",
     source: original,
     type: "word_order",
-    tokens: ["we", "went", "out", "although", "it", "rained."],
+    tokens: ["although", "we", "rained.", "went", "it", "out"],
     accepted: ["we went out although it rained."],
     ...o,
   };

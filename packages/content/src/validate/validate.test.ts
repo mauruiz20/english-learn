@@ -274,14 +274,40 @@ describe("validateWordOrders", () => {
     });
     expect(validateWordOrders([file({ exercises: [w] })])).toEqual([]);
   });
-  it("passes when only a non-first accepted sentence matches", () => {
+  it("flags an accepted sentence the tokens cannot build, even if another one matches", () => {
     const w = fx.wordOrder({
       accepted: ["we went out although it was raining.", "we went out although it rained."],
     });
-    expect(validateWordOrders([file({ exercises: [w] })])).toEqual([]);
+    expect(validateWordOrders([file({ exercises: [w] })])).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].accepted[0]",
+        message:
+          "accepted sentence cannot be built from the tokens (compare as a multiset of whitespace-split words, punctuation attached)",
+      },
+    ]);
   });
-  it("flags tokens that match no accepted sentence", () => {
-    const w = fx.wordOrder({ tokens: ["we", "went", "out", "although", "it", "rained"] });
+  it("flags every accepted sentence when the tokens match none", () => {
+    const w = fx.wordOrder({ tokens: ["although", "we", "rained", "went", "it", "out"] });
+    expect(paths(validateWordOrders([file({ exercises: [w] })]))).toEqual([
+      "exercises[0].accepted[0]",
+    ]);
+  });
+  it("flags tokens already in the order of the canonical sentence", () => {
+    const w = fx.wordOrder({ tokens: ["we", "went", "out", "although", "it", "rained."] });
+    expect(validateWordOrders([file({ exercises: [w] })])).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].tokens",
+        message: "tokens are already in the order of an accepted sentence; scramble them",
+      },
+    ]);
+  });
+  it("flags tokens already in the order of a non-first accepted sentence", () => {
+    const w = fx.wordOrder({
+      tokens: ["usually", "I", "go", "there"],
+      accepted: ["I usually go there", "usually I go there"],
+    });
     expect(paths(validateWordOrders([file({ exercises: [w] })]))).toEqual(["exercises[0].tokens"]);
   });
   it("is whitespace-normalized on the accepted side", () => {
