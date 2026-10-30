@@ -20,7 +20,7 @@ import {
 
 const DEFAULT_DATA_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "data");
 
-function listJsonFiles(dir: string): string[] {
+export function listJsonFiles(dir: string): string[] {
   return readdirSync(dir, { recursive: true, encoding: "utf8" })
     .map((p) => p.split("\\").join("/"))
     .filter((p) => p.endsWith(".json") && statSync(join(dir, p)).isFile())

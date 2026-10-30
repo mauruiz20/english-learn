@@ -11,11 +11,34 @@ web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
 | `src/features/*`      | Feature screens; containers load data, views are pure (props only)   |
 | `src/infrastructure/` | Adapters: `SystemClock`, SQLite wiring, `AppServicesProvider` (DI)   |
 | `src/shared/ui/`      | Small UI primitives and theme tokens                                 |
-| `e2e/`                | Playwright smoke tests against the exported web build                |
+| `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                        |
+| `e2e/`                | Playwright tests against the exported web build                      |
 
-Features read `ProgressRepository` and `Clock` from `useAppServices()`. The root layout provides
-the SQLite-backed implementations (`@english-learn/storage-sqlite`, migrated in `onInit`); tests
-wrap components in `<AppServicesProvider services={...}>` with in-memory fakes.
+Features read `ProgressRepository`, `Clock` and `random` (an `Rng`) from `useAppServices()`. The
+root layout provides the SQLite-backed implementations (`@english-learn/storage-sqlite`, migrated
+in `onInit`), the system clock and `Math.random`; tests wrap components in
+`<AppServicesProvider services={...}>` with in-memory fakes and a deterministic rng.
+
+Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod at runtime).
+
+## Lessons (`src/features/lesson/`)
+
+- `model/` (pure, unit-tested): `prepareExercise` shuffles options / scrambles tokens with the
+  injected rng; `gradeExercise` grades a response (option types and reading → correct/wrong;
+  reading is correct only if every question is; word order → `matchAnswer` on the tokens joined by
+  single spaces, only "correct" counts; translate-write → correct/almost/wrong); the
+  `lessonSession` reducer (answering → feedback → next → finished summary with verdicts, accuracy,
+  XP and per-item outcomes); `applyLessonResults` turns the summary into SM-2 review states
+  (worst grade per item; `EXPECTED_MS` per type: vocab 8 s, cloze 10 s, translation choice 12 s,
+  word order 20 s, translate-write 30 s, reading 60 s — slower correct answers get grade 4).
+- `application/complete-lesson.ts`: saves review states, adds XP and records streak activity.
+- `components/`: one presentational component per exercise type plus `AnswerFeedback`.
+- `lesson-container.tsx` / `lesson-view.tsx`: the `/lesson/[id]` screen, summary and unknown-id
+  message.
+
+Home lists the lessons of the placement level, or A2 when there is no placement or the level has
+no lessons (MVP content covers A2 and B1). A lesson shows as done once every item it practices has
+a review state.
 
 ## Commands
 
@@ -30,7 +53,7 @@ pnpm test           # Jest (jest-expo + React Native Testing Library)
 
 pnpm export:web     # static SPA export to dist/
 pnpm serve:web      # serve dist/ on http://localhost:4173 with the required headers
-pnpm e2e:web        # Playwright smoke test (serves dist/ itself; run export:web first)
+pnpm e2e:web        # Playwright tests (serve dist/ themselves; run export:web first)
 ```
 
 First-time Playwright setup: `pnpm exec playwright install chromium`.

@@ -1,8 +1,13 @@
 import type { Level } from "@english-learn/domain";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 import { Button } from "@/shared/ui/button";
+import { formatDays } from "@/shared/ui/format";
 import { Screen } from "@/shared/ui/screen";
 import { colors, radius, spacing } from "@/shared/ui/theme";
+
+export type HomeLesson = { readonly id: string; readonly title: string; readonly done: boolean };
+
+export type HomeLessons = { readonly level: Level; readonly items: readonly HomeLesson[] };
 
 export type HomeViewState =
   | { readonly status: "loading" }
@@ -12,20 +17,39 @@ export type HomeViewState =
       readonly streakDays: number;
       readonly xp: number;
       readonly level: Level | null;
+      /** Lessons of the learner's level (or the default level). */
+      readonly lessons: HomeLessons;
     };
 
 type HomeViewProps = {
   state: HomeViewState;
+  onOpenLesson: (lessonId: string) => void;
   onStartPlacement: () => void;
   onOpenReview: () => void;
   onOpenAbout: () => void;
 };
 
-function formatStreak(days: number): string {
-  return `Racha: ${days} ${days === 1 ? "día" : "días"}`;
+function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => void }) {
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={lesson.done ? `${lesson.title}, completada` : lesson.title}
+      onPress={onPress}
+      style={({ pressed }) => [styles.lesson, pressed && styles.pressed]}
+    >
+      <Text style={styles.lessonTitle}>{lesson.title}</Text>
+      {lesson.done && <Text style={styles.done}>Completada</Text>}
+    </Pressable>
+  );
 }
 
-export function HomeView({ state, onStartPlacement, onOpenReview, onOpenAbout }: HomeViewProps) {
+export function HomeView({
+  state,
+  onOpenLesson,
+  onStartPlacement,
+  onOpenReview,
+  onOpenAbout,
+}: HomeViewProps) {
   return (
     <Screen title="Inicio">
       {state.status === "loading" && (
@@ -42,7 +66,7 @@ export function HomeView({ state, onStartPlacement, onOpenReview, onOpenAbout }:
         <>
           <View style={styles.stats}>
             <View style={styles.card}>
-              <Text style={styles.stat}>{formatStreak(state.streakDays)}</Text>
+              <Text style={styles.stat}>{`Racha: ${formatDays(state.streakDays)}`}</Text>
             </View>
             <View style={styles.card}>
               <Text style={styles.stat}>{`XP: ${state.xp}`}</Text>
@@ -61,6 +85,23 @@ export function HomeView({ state, onStartPlacement, onOpenReview, onOpenAbout }:
               </>
             ) : (
               <Text style={styles.stat}>{`Tu nivel: ${state.level}`}</Text>
+            )}
+          </View>
+
+          <View style={styles.section}>
+            <Text accessibilityRole="header" style={styles.heading}>
+              {`Lecciones de nivel ${state.lessons.level}`}
+            </Text>
+            {state.lessons.items.length === 0 ? (
+              <Text style={styles.body}>Todavía no hay lecciones para este nivel.</Text>
+            ) : (
+              state.lessons.items.map((lesson) => (
+                <LessonRow
+                  key={lesson.id}
+                  lesson={lesson}
+                  onPress={() => onOpenLesson(lesson.id)}
+                />
+              ))
             )}
           </View>
 
@@ -86,4 +127,22 @@ const styles = StyleSheet.create({
   stat: { fontSize: 18, fontWeight: "600", color: colors.text },
   body: { fontSize: 16, color: colors.textMuted },
   error: { fontSize: 16, color: colors.danger },
+  section: { gap: spacing.sm },
+  heading: { fontSize: 20, fontWeight: "700", color: colors.text },
+  lesson: {
+    minHeight: 56,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: spacing.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: radius.md,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  pressed: { opacity: 0.8 },
+  lessonTitle: { flexShrink: 1, fontSize: 17, fontWeight: "600", color: colors.text },
+  done: { fontSize: 15, fontWeight: "600", color: colors.success },
 });

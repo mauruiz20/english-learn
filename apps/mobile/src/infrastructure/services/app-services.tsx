@@ -1,10 +1,12 @@
-import type { Clock, ProgressRepository } from "@english-learn/domain";
+import type { Clock, ProgressRepository, Rng } from "@english-learn/domain";
 import { createContext, use, type ReactNode } from "react";
 
 /** Side-effect services features depend on. Injected so tests can pass in-memory fakes. */
 export type AppServices = {
   readonly progressRepository: ProgressRepository;
   readonly clock: Clock;
+  /** Random source in [0, 1) for shuffling options; tests inject a deterministic one. */
+  readonly random: Rng;
 };
 
 const AppServicesContext = createContext<AppServices | null>(null);

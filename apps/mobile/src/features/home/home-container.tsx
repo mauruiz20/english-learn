@@ -1,11 +1,32 @@
-import { isStreakAlive } from "@english-learn/domain";
+import type { Corpus } from "@english-learn/content";
+import { corpus } from "@english-learn/content/corpus";
+import { isStreakAlive, type Level, type ReviewState } from "@english-learn/domain";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
+import { isLessonDone, lessonsForLevel } from "@/features/lesson/model/lesson-catalog";
 import { useAppServices } from "@/infrastructure/services/app-services";
-import { HomeView, type HomeViewState } from "./home-view";
+import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
+
+/** Lessons for the learner's level (A2 by default), each marked done when all its items were reviewed. */
+function homeLessons(
+  content: Corpus,
+  level: Level | null,
+  states: readonly ReviewState[],
+): HomeLessons {
+  const reviewed = new Set(states.map((s) => s.itemId));
+  const selection = lessonsForLevel(content.lessons, level);
+  return {
+    level: selection.level,
+    items: selection.lessons.map((lesson) => ({
+      id: lesson.id,
+      title: lesson.title,
+      done: isLessonDone(lesson, content.exercisesById, reviewed),
+    })),
+  };
+}
 
 /** Loads the learner's progress from the repository every time the screen gains focus. */
-export function HomeContainer() {
+export function HomeContainer({ content = corpus }: { content?: Corpus }) {
   const { progressRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
@@ -16,14 +37,17 @@ export function HomeContainer() {
       progressRepository.getStreak(),
       progressRepository.getXp(),
       progressRepository.getPlacementResult(),
+      progressRepository.getReviewStates(),
     ]).then(
-      ([streak, xp, placement]) => {
+      ([streak, xp, placement, states]) => {
         if (!active) return;
+        const level = placement?.level ?? null;
         setState({
           status: "ready",
           streakDays: isStreakAlive(streak, clock.today()) ? streak.current : 0,
           xp,
-          level: placement?.level ?? null,
+          level,
+          lessons: homeLessons(content, level, states),
         });
       },
       (error: unknown) => {
@@ -35,13 +59,14 @@ export function HomeContainer() {
     return () => {
       active = false;
     };
-  }, [progressRepository, clock]);
+  }, [progressRepository, clock, content]);
 
   useFocusEffect(load);
 
   return (
     <HomeView
       state={state}
+      onOpenLesson={(lessonId) => router.push(`/lesson/${lessonId}`)}
       onStartPlacement={() => router.push("/placement")}
       onOpenReview={() => router.push("/review")}
       onOpenAbout={() => router.push("/about")}

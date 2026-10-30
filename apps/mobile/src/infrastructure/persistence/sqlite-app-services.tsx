@@ -9,7 +9,11 @@ export const DATABASE_NAME = "english-learn.db";
 function SqliteServices({ children }: { children: ReactNode }) {
   const db = useSQLiteContext();
   const services = useMemo<AppServices>(
-    () => ({ progressRepository: createSqliteProgressRepository(db), clock: systemClock }),
+    () => ({
+      progressRepository: createSqliteProgressRepository(db),
+      clock: systemClock,
+      random: Math.random,
+    }),
     [db],
   );
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;
