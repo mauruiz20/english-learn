@@ -6,6 +6,7 @@ import {
   validateClozes,
   validateCorpus,
   validateLevels,
+  validateListDuplicates,
   validateOptionDuplicates,
   validateReferences,
   validateSchema,
@@ -313,6 +314,54 @@ describe("validateWordOrders", () => {
   it("is whitespace-normalized on the accepted side", () => {
     const w = fx.wordOrder({ accepted: ["  we went  out although it rained. "] });
     expect(validateWordOrders([file({ exercises: [w] })])).toEqual([]);
+  });
+});
+
+describe("validateListDuplicates", () => {
+  it("passes for a valid corpus", () => {
+    expect(validateListDuplicates([file(fx.validFile())])).toEqual([]);
+  });
+  it("flags repeated ids (exact) and repeated text (normalized) inside one entity", () => {
+    const f = fx.validFile();
+    const errs = validateListDuplicates([
+      file({
+        items: [fx.item({ topics: ["travel", "Travel"] })],
+        passages: [fx.passage({ topics: ["travel", "travel"] })],
+        exercises: [
+          fx.vocab({ itemIds: ["b1.travel.although", "b1.travel.although"] }),
+          fx.wordOrder({
+            accepted: ["we went out although it rained.", "We went out although it rained"],
+          }),
+          fx.translateWrite({
+            accepted: ["Although he was tired, he kept walking.", "although he was tired, he kept walking!"],
+          }),
+        ],
+        lessons: [
+          fx.lesson({ exerciseIds: [...f.lessons![0]!.exerciseIds, "b1.travel.vocab-001"] }),
+        ],
+      }),
+    ]);
+    const at = (path: string, message: string) => ({ file: "b1/travel.json", path, message });
+    expect(errs).toEqual([
+      at("items[0].topics[1]", 'duplicate topic "Travel" (normalized)'),
+      at("passages[0].topics[1]", 'duplicate topic "travel" (normalized)'),
+      at("exercises[0].itemIds[1]", 'duplicate item id "b1.travel.although"'),
+      at(
+        "exercises[1].accepted[1]",
+        'duplicate accepted sentence "We went out although it rained" (normalized)',
+      ),
+      at(
+        "exercises[2].accepted[1]",
+        'duplicate accepted sentence "although he was tired, he kept walking!" (normalized)',
+      ),
+      at("lessons[0].exerciseIds[5]", 'duplicate exercise id "b1.travel.vocab-001"'),
+    ]);
+  });
+  it("compares ids exactly, not normalized", () => {
+    const errs = validateListDuplicates([
+      file({ exercises: [fx.vocab({ itemIds: ["b1.travel.a", "b1.travel.a-"] })] }),
+    ]);
+    expect(errs).toEqual([]);
   });
 });
 
