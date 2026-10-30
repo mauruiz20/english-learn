@@ -108,7 +108,7 @@
         "type": "cloze",
         "sentence": "You ___ wear a uniform at my school. It's a rule.",
         "answers": ["have to"],
-        "distractors": ["don't have to", "can", "has to"],
+        "distractors": ["don't have to", "doesn't have to", "has to"],
         "es": "En mi escuela tienes que llevar uniforme. Es una regla."
       }
     },

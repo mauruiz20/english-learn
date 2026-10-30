@@ -71,7 +71,7 @@
         "options": [
           "Está obligada a averiguarlo cuanto antes.",
           "Quizás se entere algún día.",
-          "Está atada a su pasado tarde o temprano.",
+          "Está decidida a averiguarlo tarde o temprano.",
           "Seguro que se entera tarde o temprano."
         ],
         "answerIndex": 3
@@ -135,7 +135,7 @@
         "source": { "kind": "original" },
         "type": "vocab",
         "prompt": "Choose the best meaning of 'to shed light on'.",
-        "options": ["apagar la luz", "arrojar luz sobre", "deshacerse de", "echar la culpa a"],
+        "options": ["apagar la luz", "esclarecer", "deshacerse de", "echar la culpa a"],
         "answerIndex": 1
       }
     },

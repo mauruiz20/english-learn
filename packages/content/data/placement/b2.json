@@ -144,7 +144,7 @@
         "type": "cloze",
         "sentence": "I'd rather you ___ smoke in here.",
         "answers": ["didn't"],
-        "distractors": ["don't", "won't", "not"],
+        "distractors": ["not", "won't", "haven't"],
         "es": "Preferiría que no fumaras aquí."
       }
     },
