@@ -55,3 +55,38 @@ jobs:
       # Builds its own export with EXPO_PUBLIC_E2E=1 (dist-e2e/) and runs Playwright on it.
       - name: Web e2e tests
         run: pnpm --filter @english-learn/mobile e2e:web
+
+  # Production deploy to Cloudflare Pages: only from main, only after every check passed.
+  # public/_headers ships the COOP/COEP headers expo-sqlite needs on the web.
+  deploy-web:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [check, web-e2e]
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    concurrency:
+      group: deploy-web-production
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      WRANGLER: pnpm dlx wrangler@4.156.0
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Export web build
+        run: pnpm --filter @english-learn/mobile export:web
+      # Idempotent: the first deploy creates the project, later runs keep it.
+      - name: Ensure Pages project exists
+        run: $WRANGLER pages project create english-learn --production-branch=main || echo "Pages project already exists"
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        run: |
+          $WRANGLER pages deploy apps/mobile/dist --project-name=english-learn --branch=main --commit-dirty=true | tee deploy.log
+          echo "url=$(grep -oE 'https://[a-z0-9.-]+\.pages\.dev' deploy.log | tail -1)" >> "$GITHUB_OUTPUT"
