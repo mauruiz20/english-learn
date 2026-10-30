@@ -52,8 +52,8 @@ describe("HomeContainer", () => {
   it("renders the empty progress of a new learner", async () => {
     await renderContainer(createFakeRepository());
 
-    expect(await screen.findByText("Racha: 0 días")).toBeOnTheScreen();
-    expect(screen.getByText("XP: 0")).toBeOnTheScreen();
+    expect(await screen.findByLabelText("Racha: 0 días")).toBeOnTheScreen();
+    expect(screen.getByText("0 XP")).toBeOnTheScreen();
     expect(screen.getByRole("button", { name: "Hacer test de nivel" })).toBeOnTheScreen();
   });
 
@@ -66,8 +66,8 @@ describe("HomeContainer", () => {
       }),
     );
 
-    expect(await screen.findByText("Racha: 4 días")).toBeOnTheScreen();
-    expect(screen.getByText("XP: 250")).toBeOnTheScreen();
+    expect(await screen.findByLabelText("Racha: 4 días")).toBeOnTheScreen();
+    expect(screen.getByText("250 XP")).toBeOnTheScreen();
     expect(screen.getByText("Tu nivel: B2")).toBeOnTheScreen();
   });
 
@@ -78,7 +78,7 @@ describe("HomeContainer", () => {
       }),
     );
 
-    expect(await screen.findByText("Racha: 0 días")).toBeOnTheScreen();
+    expect(await screen.findByLabelText("Racha: 0 días")).toBeOnTheScreen();
   });
 
   it("shows an error when the repository fails", async () => {
@@ -144,7 +144,7 @@ describe("HomeContainer", () => {
       }),
     );
 
-    expect(await screen.findByText("Repaso: 2 pendientes")).toBeOnTheScreen();
+    expect(await screen.findByText("2 pendientes")).toBeOnTheScreen();
     await fireEvent.press(screen.getByRole("button", { name: "Repasar" }));
     expect(mockPush).toHaveBeenCalledWith("/review");
   });
