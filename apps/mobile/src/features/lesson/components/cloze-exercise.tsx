@@ -10,6 +10,7 @@ const BLANK = /_{2,}/;
 export function ClozeExercise({
   prepared,
   disabled,
+  reveal,
   onSubmit,
   submitLabel,
 }: ExerciseProps<"cloze">) {
@@ -21,7 +22,9 @@ export function ClozeExercise({
       instruction="Completa la frase"
       label="Palabra para el espacio"
       options={prepared.options}
+      correctOptions={prepared.exercise.answers}
       disabled={disabled}
+      reveal={reveal}
       onSubmit={onSubmit}
       submitLabel={submitLabel}
     >

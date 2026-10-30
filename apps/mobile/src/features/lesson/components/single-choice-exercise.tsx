@@ -9,7 +9,10 @@ type SingleChoiceExerciseProps = {
   label: string;
   children: ReactNode;
   options: readonly string[];
+  /** The options that are right; marked once `reveal` is set. */
+  correctOptions: readonly string[];
   disabled: boolean;
+  reveal?: boolean | undefined;
   onSubmit: (response: ExerciseResponse) => void;
   submitLabel?: string | undefined;
 };
@@ -20,7 +23,9 @@ export function SingleChoiceExercise({
   label,
   children,
   options,
+  correctOptions,
   disabled,
+  reveal = false,
   onSubmit,
   submitLabel,
 }: SingleChoiceExerciseProps) {
@@ -40,6 +45,7 @@ export function SingleChoiceExercise({
         selected={selected}
         disabled={disabled}
         onSelect={setSelected}
+        correctOptions={reveal ? correctOptions : undefined}
       />
     </ExerciseLayout>
   );

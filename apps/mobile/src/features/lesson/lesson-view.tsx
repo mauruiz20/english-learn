@@ -96,6 +96,7 @@ export function LessonView({
             prepared={state.prepared}
             passage={state.passage}
             disabled={state.feedback !== null}
+            reveal={state.feedback !== null}
             onSubmit={onSubmit}
           />
         </ScreenContainer>

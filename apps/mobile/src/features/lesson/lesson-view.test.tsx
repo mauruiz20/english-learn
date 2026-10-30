@@ -53,6 +53,7 @@ describe("LessonView", () => {
       "Incorrecto. Respuesta correcta: despertarse",
     );
     expect(screen.getByRole("radio", { name: "dormirse" })).toBeDisabled();
+    expect(screen.getByRole("radio", { name: "despertarse, respuesta correcta" })).toBeDisabled();
 
     await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));
     expect(handlers.onContinue).toHaveBeenCalledTimes(1);

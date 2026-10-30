@@ -42,6 +42,7 @@ describe("ReviewView", () => {
     expect(screen.getByRole("alert")).toHaveTextContent(
       "Incorrecto. Respuesta correcta: despertarse",
     );
+    expect(screen.getByRole("radio", { name: "despertarse, respuesta correcta" })).toBeDisabled();
     await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));
     expect(handlers.onContinue).toHaveBeenCalledTimes(1);
   });

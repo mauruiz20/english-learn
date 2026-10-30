@@ -112,6 +112,7 @@ export function ReviewView({
             prepared={state.prepared}
             passage={undefined}
             disabled={state.feedback !== null}
+            reveal={state.feedback !== null}
             onSubmit={onSubmit}
           />
         </ScreenContainer>
