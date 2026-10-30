@@ -8,3 +8,9 @@ pnpm-lock.yaml
 .expo
 test-results
 playwright-report
+
+# Python tooling (services/api)
+.venv
+.pytest_cache
+.mypy_cache
+.ruff_cache

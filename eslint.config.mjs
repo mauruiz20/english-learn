@@ -11,6 +11,7 @@ export default tseslint.config(
       "**/dist-e2e/**",
       "**/coverage/**",
       "**/.expo/**",
+      "**/.venv/**",
       ".claude/**",
       "apps/mobile/**",
     ],
