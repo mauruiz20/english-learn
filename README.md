@@ -6,6 +6,9 @@ bundled with the app.
 
 [![CI](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml)
 
+**Live demo:** <https://english-learn-iwl.pages.dev> (deployed from `main` to Cloudflare Pages after
+every check passes; progress is stored in your browser only).
+
 | At a glance  |                                                                                   |
 | ------------ | --------------------------------------------------------------------------------- |
 | Stack        | Expo SDK 58 · React Native 0.88 · React 19 · TypeScript · expo-router · SQLite    |
