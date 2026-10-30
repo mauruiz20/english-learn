@@ -6,3 +6,4 @@ export type {
   SessionResults,
   SessionSnapshot,
 } from "./progress-repository";
+export type { SettingsRepository } from "./settings-repository";

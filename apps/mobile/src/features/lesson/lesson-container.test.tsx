@@ -6,14 +6,17 @@ import {
   type Clock,
   type SavedSession,
 } from "@english-learn/domain";
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react-native";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import {
   createFakeRepository,
   type FakeProgressRepository,
 } from "@/testing/fake-progress-repository";
+import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
+import { createFakeSoundPlayer, type FakeSoundPlayer } from "@/testing/fake-sound-player";
 import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { LessonContainer } from "./lesson-container";
+import { STREAK_SOUND_DELAY_MS } from "./use-session-sounds";
 import { allExercises, lesson, passage, sequenceRng } from "./model/fixtures";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
@@ -54,6 +57,8 @@ function renderLesson(repository: FakeProgressRepository, lessonId = lesson.id, 
     progressRepository: repository,
     clock: clock ?? { today: () => TODAY, nowMs: () => 0 },
     random: sequenceRng([0.3, 0.8, 0.1, 0.6]),
+    settingsRepository: createFakeSettingsRepository(),
+    sounds,
   };
   return render(
     <AppServicesProvider services={services}>
@@ -107,7 +112,11 @@ async function playAfterVocab() {
   await press("Continuar");
 }
 
-beforeEach(() => jest.clearAllMocks());
+let sounds: FakeSoundPlayer;
+beforeEach(() => {
+  jest.clearAllMocks();
+  sounds = createFakeSoundPlayer();
+});
 
 describe("LessonContainer", () => {
   it("plays the lesson, persists the results and shows the summary", async () => {
@@ -134,6 +143,83 @@ describe("LessonContainer", () => {
       "a2.routine.wake-up",
     ]);
     expect(saved.states.every((s) => s.reps === 1)).toBe(true);
+  });
+
+  it("taps when an option is chosen and chimes the verdict with the feedback", async () => {
+    await renderLesson(createFakeRepository());
+
+    await press("despertarse", "radio");
+    expect(sounds.played).toEqual(["tap"]);
+    await check();
+    expect(sounds.played).toEqual(["tap", "correct"]);
+    await press("Continuar");
+
+    await press("have", "radio");
+    await check();
+    expect(sounds.played.slice(-1)).toEqual(["correct"]);
+    await press("Continuar");
+
+    await press("I");
+    await press("usually");
+    expect(sounds.played.slice(-2)).toEqual(["tap", "tap"]);
+  });
+
+  it("plays the wrong sound after a mistake", async () => {
+    await renderLesson(createFakeRepository());
+
+    await press("dormirse", "radio");
+    await check();
+
+    expect(sounds.played).toEqual(["tap", "wrong"]);
+  });
+
+  it("plays the almost sound for a nearly right translation", async () => {
+    await renderLesson(createFakeRepository());
+    await press("despertarse", "radio");
+    await check();
+    await press("Continuar");
+    await press("have", "radio");
+    await check();
+    await press("Continuar");
+    for (const token of ["I", "usually", "wake", "up"]) await press(token);
+    await check();
+    await press("Continuar");
+    await press("Ella se acuesta a las once.", "radio");
+    await check();
+    await press("Continuar");
+    await press("At six thirty", "radio");
+    await press("By bus", "radio");
+    await check();
+    await press("Continuar");
+
+    await fireEvent.changeText(
+      screen.getByLabelText("Tu traducción en inglés"),
+      "I usualy go to bed at eleven",
+    );
+    await check();
+
+    expect(sounds.played.slice(-1)).toEqual(["almost"]);
+  });
+
+  it("celebrates the finished lesson, and the streak when it grew", async () => {
+    await renderLesson(createFakeRepository());
+    await playCorrectly();
+    await screen.findByText("¡Lección completada!");
+
+    expect(sounds.played).toContain("complete");
+    await waitFor(() => expect(sounds.played.slice(-2)).toEqual(["complete", "streak"]));
+  });
+
+  it("does not play the streak sound when the streak did not grow", async () => {
+    await renderLesson(
+      createFakeRepository({ streak: { current: 3, longest: 3, lastActiveDate: TODAY } }),
+    );
+    await playCorrectly();
+    await screen.findByText("¡Lección completada!");
+
+    await act(() => new Promise((resolve) => setTimeout(resolve, STREAK_SOUND_DELAY_MS + 100)));
+    expect(sounds.played.slice(-1)).toEqual(["complete"]);
+    expect(sounds.played).not.toContain("streak");
   });
 
   it("shows the correct answer after a mistake", async () => {

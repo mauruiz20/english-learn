@@ -29,6 +29,8 @@ export type CompleteSessionResult = {
   /** XP this session added. */
   readonly xpEarned: number;
   readonly streak: Streak;
+  /** This session extended the streak (the first session of a day; celebrated with a sound). */
+  readonly streakIncreased: boolean;
 };
 
 /**
@@ -42,7 +44,9 @@ export async function completeSession({
   bonus,
 }: CompleteSessionInput): Promise<CompleteSessionResult> {
   const itemIds = [...new Set(summary.itemOutcomes.map((o) => o.itemId))];
+  let streakBefore = 0;
   const { xp, results } = await repository.saveSessionResults(itemIds, (current) => {
+    streakBefore = current.streak.current;
     const known = new Set(current.states.map((s) => s.itemId));
     const firstCompletion = itemIds.some((id) => !known.has(id));
     const bonusXp =
@@ -53,5 +57,10 @@ export async function completeSession({
       streak: recordActivity(current.streak, today),
     };
   });
-  return { xp, xpEarned: results.xpDelta, streak: results.streak };
+  return {
+    xp,
+    xpEarned: results.xpDelta,
+    streak: results.streak,
+    streakIncreased: results.streak.current > streakBefore,
+  };
 }

@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
+import { Text } from "react-native";
 import { NotebookHeader } from "./notebook-header";
 
 describe("NotebookHeader", () => {
@@ -18,5 +19,18 @@ describe("NotebookHeader", () => {
 
     expect(screen.getByRole("header", { name: "Lección" })).toBeOnTheScreen();
     expect(screen.queryByRole("button", { name: /Volver/ })).not.toBeOnTheScreen();
+  });
+
+  it("shows the screen's header actions at the right", async () => {
+    await render(
+      <NotebookHeader
+        title="Lección"
+        showBack={false}
+        onBack={jest.fn()}
+        right={<Text>Sonido</Text>}
+      />,
+    );
+
+    expect(screen.getByText("Sonido")).toBeOnTheScreen();
   });
 });

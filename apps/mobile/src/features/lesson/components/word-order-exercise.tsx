@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useSoundPlayer } from "@/infrastructure/services/app-services";
 import { PaperStrip } from "@/shared/ui/paper-strip";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
@@ -10,7 +11,12 @@ import type { ExerciseProps } from "./types";
 /** Tap tokens to build the sentence; tap a built token to send it back. Tokens are tracked by index. */
 export function WordOrderExercise({ prepared, disabled, onSubmit }: ExerciseProps<"word_order">) {
   const styles = useStyles();
+  const sounds = useSoundPlayer();
   const { tokens } = prepared;
+  const place = (next: readonly number[]) => {
+    sounds.play("tap");
+    setBuilt(next);
+  };
   const [built, setBuilt] = useState<readonly number[]>([]);
   const pool = tokens.map((_, i) => i).filter((i) => !built.includes(i));
   const builtTokens = built.map((i) => tokens[i] ?? "");
@@ -32,7 +38,7 @@ export function WordOrderExercise({ prepared, disabled, onSubmit }: ExerciseProp
             label={`Quitar ${tokens[index] ?? ""}`}
             text={tokens[index] ?? ""}
             disabled={disabled}
-            onPress={() => setBuilt(built.filter((_, p) => p !== position))}
+            onPress={() => place(built.filter((_, p) => p !== position))}
           />
         ))}
       </View>
@@ -43,7 +49,7 @@ export function WordOrderExercise({ prepared, disabled, onSubmit }: ExerciseProp
             label={tokens[index] ?? ""}
             text={tokens[index] ?? ""}
             disabled={disabled}
-            onPress={() => setBuilt([...built, index])}
+            onPress={() => place([...built, index])}
           />
         ))}
       </View>

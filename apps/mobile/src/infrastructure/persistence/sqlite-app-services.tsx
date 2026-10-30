@@ -1,10 +1,15 @@
-import { createSqliteProgressRepository, migrate } from "@english-learn/storage-sqlite";
+import {
+  createSqliteProgressRepository,
+  createSqliteSettingsRepository,
+  migrate,
+} from "@english-learn/storage-sqlite";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { useMemo, useState, type ReactNode } from "react";
 import { Platform } from "react-native";
 import { createAppClock } from "../clock/app-clock";
 import { AppErrorBoundary } from "../errors/app-error-boundary";
 import { AppServicesProvider, type AppServices } from "../services/app-services";
+import { createExpoSoundPlayer } from "../sound/expo-sound-player";
 import { awaitPendingWrites } from "./await-pending-writes";
 import { DatabaseOpenError } from "./database-open-error";
 
@@ -14,14 +19,18 @@ function SqliteServices({ children }: { children: ReactNode }) {
   const db = useSQLiteContext();
   // Read once per page load (an e2e `?today=` override must survive in-app navigation).
   const [clock] = useState(createAppClock);
+  // Sounds are loaded once and kept for the app's lifetime.
+  const [sounds] = useState(createExpoSoundPlayer);
   const services = useMemo<AppServices>(
     () => ({
       // Reads wait for in-flight saves: leaving mid-save must not show stale progress.
       progressRepository: awaitPendingWrites(createSqliteProgressRepository(db)),
       clock,
       random: Math.random,
+      settingsRepository: createSqliteSettingsRepository(db),
+      sounds,
     }),
-    [db, clock],
+    [db, clock, sounds],
   );
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;
 }

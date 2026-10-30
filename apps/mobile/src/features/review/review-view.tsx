@@ -25,6 +25,8 @@ export type ReviewViewState =
       /** 1-based position of the current exercise. */
       readonly position: number;
       readonly total: number;
+      /** Topic of the lesson the current exercise comes from (named and colored above it). */
+      readonly topic: string | undefined;
       readonly prepared: PreparedExercise;
       /** Set once the learner answered the current exercise. */
       readonly feedback: ShownFeedback | null;
@@ -96,7 +98,9 @@ export function ReviewView({
     case "exercise":
       return (
         <ScreenContainer
-          top={<SessionProgress position={state.position} total={state.total} />}
+          top={
+            <SessionProgress position={state.position} total={state.total} topic={state.topic} />
+          }
           {...(state.feedback === null
             ? {}
             : {

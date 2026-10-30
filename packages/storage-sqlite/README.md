@@ -1,6 +1,6 @@
 # @english-learn/storage-sqlite
 
-SQLite implementation of the domain `ProgressRepository` port. Pure TypeScript: it depends only on
+SQLite implementation of the domain `ProgressRepository` and `SettingsRepository` ports. Pure TypeScript: it depends only on
 `@english-learn/domain` and on a minimal `SqlDatabase` interface (the subset of expo-sqlite's
 `SQLiteDatabase` it uses), so the app passes its expo-sqlite database directly.
 
@@ -14,6 +14,8 @@ SQLite implementation of the domain `ProgressRepository` port. Pure TypeScript: 
   `withTransactionAsync` caveat applies: unrelated queries issued concurrently on the same
   connection may land inside the transaction; the app issues none while saving.) Empty database →
   `[]`, `EMPTY_STREAK`, `0`, `null`.
+- `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
+  (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off.
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

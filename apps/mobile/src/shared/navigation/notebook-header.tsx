@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, type ReactNode } from "react";
 import { Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
 import { WIDE_BREAKPOINT } from "@/shared/ui/screen-container";
@@ -12,6 +12,8 @@ type NotebookHeaderProps = {
   backTitle?: string | undefined;
   showBack: boolean;
   onBack: () => void;
+  /** Header actions at the right of the title (e.g. the sound switch). */
+  right?: ReactNode;
 };
 
 /**
@@ -19,7 +21,7 @@ type NotebookHeaderProps = {
  * on wide screens, next to the notebook margin), so they line up with the content below.
  * Native platforms keep their native header.
  */
-export function NotebookHeader({ title, backTitle, showBack, onBack }: NotebookHeaderProps) {
+export function NotebookHeader({ title, backTitle, showBack, onBack, right }: NotebookHeaderProps) {
   const styles = useStyles();
   const insets = useContext(SafeAreaInsetsContext);
   const wide = useWindowDimensions().width >= WIDE_BREAKPOINT;
@@ -42,9 +44,16 @@ export function NotebookHeader({ title, backTitle, showBack, onBack }: NotebookH
             </View>
           </Pressable>
         )}
-        <Text accessibilityRole="header" variant="title" tone="ink" numberOfLines={1}>
+        <Text
+          accessibilityRole="header"
+          variant="title"
+          tone="ink"
+          numberOfLines={1}
+          style={styles.title}
+        >
           {title}
         </Text>
+        {right !== undefined && <View style={styles.right}>{right}</View>}
       </View>
     </View>
   );
@@ -85,6 +94,9 @@ const useStyles = themedStyles(({ colors }) =>
       borderRadius: TOUCH_TARGET / 2,
     },
     pressed: { backgroundColor: colors.rule },
+    title: { flexShrink: 1, flexGrow: 1 },
+    // The action's icon lines up with the column's right edge.
+    right: { marginRight: -spacing.sm - 4 },
     arrow: { width: 20, height: 16, justifyContent: "center" },
     shaft: { height: 2.5, borderRadius: 1, backgroundColor: colors.ink },
     head: {

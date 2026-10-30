@@ -28,7 +28,13 @@ describe("migrate", () => {
     await migrate(db);
 
     expect(await userVersion(db)).toBe(SCHEMA_VERSION);
-    expect(await tableNames(db)).toEqual(["placement_result", "review_state", "streak", "xp"]);
+    expect(await tableNames(db)).toEqual([
+      "placement_result",
+      "review_state",
+      "setting",
+      "streak",
+      "xp",
+    ]);
   });
 
   it("is idempotent and keeps existing data", async () => {
@@ -41,6 +47,27 @@ describe("migrate", () => {
     expect(await userVersion(db)).toBe(SCHEMA_VERSION);
     const row = await db.getFirstAsync<{ total: number }>("SELECT total FROM xp", []);
     expect(row?.total).toBe(42);
+  });
+
+  it("upgrades a version 1 database without touching its progress", async () => {
+    await db.execAsync(
+      "CREATE TABLE xp (id INTEGER PRIMARY KEY CHECK (id = 1), total INTEGER NOT NULL)",
+    );
+    await db.execAsync(`CREATE TABLE review_state (item_id TEXT PRIMARY KEY NOT NULL, ease REAL NOT NULL,
+      interval_days INTEGER NOT NULL, reps INTEGER NOT NULL, lapses INTEGER NOT NULL, due_date TEXT NOT NULL);
+      CREATE TABLE streak (id INTEGER PRIMARY KEY CHECK (id = 1), current INTEGER NOT NULL,
+      longest INTEGER NOT NULL, last_active_date TEXT);
+      CREATE TABLE placement_result (id INTEGER PRIMARY KEY CHECK (id = 1), level TEXT NOT NULL,
+      theta REAL NOT NULL);`);
+    await db.runAsync("INSERT INTO xp (id, total) VALUES (1, ?)", [7]);
+    await db.execAsync("PRAGMA user_version = 1");
+
+    await migrate(db);
+
+    expect(await userVersion(db)).toBe(SCHEMA_VERSION);
+    expect(await tableNames(db)).toContain("setting");
+    const row = await db.getFirstAsync<{ total: number }>("SELECT total FROM xp", []);
+    expect(row?.total).toBe(7);
   });
 
   it("refuses a database created by a newer app version", async () => {

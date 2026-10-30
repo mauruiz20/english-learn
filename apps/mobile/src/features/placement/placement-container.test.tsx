@@ -7,6 +7,8 @@ import {
   createFakeRepository,
   type FakeProgressRepository,
 } from "@/testing/fake-progress-repository";
+import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
+import { createFakeSoundPlayer, type FakeSoundPlayer } from "@/testing/fake-sound-player";
 import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { placementBank } from "./model/fixtures";
 import { PlacementContainer } from "./placement-container";
@@ -30,6 +32,8 @@ function renderPlacement(repository: FakeProgressRepository) {
         progressRepository: repository,
         clock: { today: () => TODAY, nowMs: () => 0 },
         random: () => 0.5,
+        settingsRepository: createFakeSettingsRepository(),
+        sounds,
       }}
     >
       <PlacementContainer content={content} />
@@ -49,7 +53,11 @@ async function answerAll(option: "ok" | "no"): Promise<number> {
   return asked;
 }
 
-beforeEach(() => jest.clearAllMocks());
+let sounds: FakeSoundPlayer;
+beforeEach(() => {
+  jest.clearAllMocks();
+  sounds = createFakeSoundPlayer();
+});
 
 describe("PlacementContainer", () => {
   it("runs the adaptive test, saves only the placement result and shows the level", async () => {
@@ -73,6 +81,16 @@ describe("PlacementContainer", () => {
     expect(saved.placement?.theta).toBeGreaterThanOrEqual(1.5);
     // Placement never touches SRS, XP or streak.
     expect(saved).toMatchObject(progress);
+  });
+
+  it("only taps during the test (no right or wrong sounds) and chimes at the result", async () => {
+    await renderPlacement(createFakeRepository());
+    await fireEvent.press(screen.getByRole("button", { name: "Empezar" }));
+
+    const asked = await answerAll("no");
+    await screen.findByText("Tu nivel estimado");
+
+    expect(sounds.played).toEqual([...Array<string>(asked).fill("tap"), "complete"]);
   });
 
   it("asks before leaving once a question was answered, and never after the result", async () => {

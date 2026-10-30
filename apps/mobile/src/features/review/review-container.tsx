@@ -12,6 +12,7 @@ import {
   type ExerciseSession,
   type SaveState,
 } from "@/features/lesson/use-exercise-session";
+import { topicByExerciseId, topicByItemId } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { pendingReviewItems, pickReviewExercises, restrictToItems } from "./model/review-plan";
@@ -148,6 +149,7 @@ function toViewState(
       toReview: itemsToReview(
         restrictToItems(session.summary, plan.itemIds).itemOutcomes,
         content.itemsById,
+        { topics: topicByItemId(content) },
       ),
     };
   }
@@ -157,6 +159,7 @@ function toViewState(
     status: "exercise",
     position: session.index + 1,
     total: session.exercises.length,
+    topic: topicByExerciseId(content).get(prepared.exercise.id),
     prepared,
     feedback:
       session.status === "feedback"

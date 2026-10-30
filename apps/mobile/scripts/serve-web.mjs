@@ -33,6 +33,7 @@ const MIME_TYPES = {
   ".jpg": "image/jpeg",
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
+  ".wav": "audio/wav",
   ".ttf": "font/ttf",
   ".woff": "font/woff",
   ".woff2": "font/woff2",

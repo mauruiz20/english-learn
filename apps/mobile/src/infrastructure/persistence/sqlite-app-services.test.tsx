@@ -35,6 +35,9 @@ jest.mock("expo-sqlite", () => ({
   },
   useSQLiteContext: () => ({}),
 }));
+jest.mock("../sound/expo-sound-player", () => ({
+  createExpoSoundPlayer: () => ({ play: () => {}, setEnabled: () => {} }),
+}));
 jest.mock("@english-learn/storage-sqlite", () => ({
   ...jest.requireActual("@english-learn/storage-sqlite"),
   createSqliteProgressRepository: () => ({}),

@@ -3,6 +3,7 @@ import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { topicByItemId } from "@/features/topics/topic-colors";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { completeSession } from "./application/complete-session";
 import { itemsToReview } from "./model/items-to-review";
@@ -81,7 +82,7 @@ function toViewState(
       total: verdicts.length,
       xpEarned: save.xpEarned,
       streakDays: save.streakDays,
-      toReview: itemsToReview(itemOutcomes, content.itemsById),
+      toReview: itemsToReview(itemOutcomes, content.itemsById, { topics: topicByItemId(content) }),
     };
   }
   const current = prepared[session.index];
@@ -89,6 +90,7 @@ function toViewState(
   return {
     status: "exercise",
     title: session.lesson.title,
+    topic: content.lessonsById.get(session.lesson.id)?.topic,
     position: session.index + 1,
     total: session.exercises.length,
     prepared: current,
