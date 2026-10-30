@@ -7,6 +7,7 @@ export function TranslationChoiceExercise({
   prepared,
   disabled,
   onSubmit,
+  submitLabel,
 }: ExerciseProps<"translation_choice">) {
   return (
     <SingleChoiceExercise
@@ -15,6 +16,7 @@ export function TranslationChoiceExercise({
       options={prepared.options}
       disabled={disabled}
       onSubmit={onSubmit}
+      submitLabel={submitLabel}
     >
       <Text style={exerciseText.sentence}>{prepared.exercise.sentence}</Text>
     </SingleChoiceExercise>

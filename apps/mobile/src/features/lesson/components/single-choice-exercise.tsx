@@ -11,6 +11,7 @@ type SingleChoiceExerciseProps = {
   options: readonly string[];
   disabled: boolean;
   onSubmit: (response: ExerciseResponse) => void;
+  submitLabel?: string | undefined;
 };
 
 /** Pick one option, then check. Shared by vocab, cloze and translation choice. */
@@ -21,12 +22,14 @@ export function SingleChoiceExercise({
   options,
   disabled,
   onSubmit,
+  submitLabel,
 }: SingleChoiceExerciseProps) {
   const [selected, setSelected] = useState<string | null>(null);
   return (
     <ExerciseLayout
       instruction={instruction}
       canSubmit={!disabled && selected !== null}
+      submitLabel={submitLabel}
       onSubmit={() => selected !== null && onSubmit({ kind: "choice", option: selected })}
     >
       {children}

@@ -3,7 +3,12 @@ import { exerciseText } from "./exercise-layout";
 import { SingleChoiceExercise } from "./single-choice-exercise";
 import type { ExerciseProps } from "./types";
 
-export function ClozeExercise({ prepared, disabled, onSubmit }: ExerciseProps<"cloze">) {
+export function ClozeExercise({
+  prepared,
+  disabled,
+  onSubmit,
+  submitLabel,
+}: ExerciseProps<"cloze">) {
   const { sentence, es } = prepared.exercise;
   return (
     <SingleChoiceExercise
@@ -12,6 +17,7 @@ export function ClozeExercise({ prepared, disabled, onSubmit }: ExerciseProps<"c
       options={prepared.options}
       disabled={disabled}
       onSubmit={onSubmit}
+      submitLabel={submitLabel}
     >
       <Text style={exerciseText.sentence}>{sentence}</Text>
       {es !== undefined && <Text style={exerciseText.hint}>{es}</Text>}
