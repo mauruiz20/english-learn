@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react-native";
 import { Text } from "./text";
-import { palettes, themeFor } from "./theme";
+import { HIGHLIGHTER_NAMES, palettes, themeFor } from "./theme";
 import { ThemeOverride, useTheme } from "./use-theme";
 
 function SchemeProbe() {
@@ -90,5 +90,29 @@ describe("text contrast (WCAG AA, 4.5:1)", () => {
     expect(
       contrast(palettes.light.onHighlighter, palettes.light.highlighter),
     ).toBeGreaterThanOrEqual(4.5);
+  });
+
+  const highlighterCases = (["light", "dark"] as const).flatMap((scheme) =>
+    HIGHLIGHTER_NAMES.map((name) => [scheme, name] as const),
+  );
+
+  it.each(highlighterCases)("%s: dark text on the %s highlighter", (scheme, name) => {
+    const colors = palettes[scheme];
+    expect(contrast(colors.onHighlighter, colors.highlighters[name])).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
+describe("highlighters", () => {
+  it("has six distinct highlighters per scheme, yellow being the correct-answer one", () => {
+    expect(HIGHLIGHTER_NAMES).toEqual(["yellow", "pink", "green", "orange", "sky", "lilac"]);
+    for (const scheme of ["light", "dark"] as const) {
+      const colors = palettes[scheme];
+      expect(new Set(Object.values(colors.highlighters)).size).toBe(6);
+      expect(colors.highlighters.yellow).toBe(colors.highlighter);
+    }
+  });
+
+  it("keeps dark text on highlighter fills in the dark scheme too", () => {
+    expect(palettes.dark.onHighlighter).toBe("#1B2333");
   });
 });
