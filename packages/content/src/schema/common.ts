@@ -19,10 +19,21 @@ export const PlacementIdSchema = z
   .string()
   .regex(PLACEMENT_ID_REGEX, "placement id must look like placement.<level>.<slug>");
 
+/**
+ * Every free-text field: non-empty and no leading/trailing whitespace, so
+ * `" "` or `"aunque "` never reach the learner or break text comparison.
+ */
+export const NonEmptyString = z
+  .string()
+  .refine(
+    (s) => s.length > 0 && s === s.trim(),
+    "must be non-empty and have no leading or trailing whitespace",
+  );
+
 export const TatoebaSourceSchema = z.strictObject({
   kind: z.literal("tatoeba"),
   sentenceId: z.number().int().positive(),
-  author: z.string().min(1),
+  author: NonEmptyString,
   license: z.literal("CC BY 2.0 FR"),
 });
 
@@ -32,7 +43,6 @@ export const SourceSchema = z.discriminatedUnion("kind", [
 ]);
 export type Source = z.infer<typeof SourceSchema>;
 
-export const NonEmptyString = z.string().min(1);
 export const TopicsSchema = z.array(NonEmptyString).min(1);
 /** 3 to 4 answer options. */
 export const OptionsSchema = z.array(NonEmptyString).min(3).max(4);

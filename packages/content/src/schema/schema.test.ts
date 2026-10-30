@@ -5,11 +5,64 @@ import {
   ItemSchema,
   LessonSchema,
   LevelSchema,
+  NonEmptyString,
   PassageSchema,
   PlacementQuestionSchema,
   SourceSchema,
 } from "./index";
 import * as fx from "../testing/fixtures";
+
+describe("NonEmptyString", () => {
+  it("accepts text with inner spaces", () => {
+    expect(NonEmptyString.safeParse("go to bed").success).toBe(true);
+  });
+  it("rejects empty, blank and padded strings with one readable issue", () => {
+    for (const s of ["", " ", "\t", " aunque", "aunque ", "aunque\n"]) {
+      const r = NonEmptyString.safeParse(s);
+      expect(r.success, JSON.stringify(s)).toBe(false);
+      expect(r.error?.issues.map((i) => i.message)).toEqual([
+        "must be non-empty and have no leading or trailing whitespace",
+      ]);
+    }
+  });
+  it("is applied to every free-text field", () => {
+    const pad = " x";
+    const tq = fx.translationChoice();
+    const cases: [string, unknown, { safeParse: (v: unknown) => { success: boolean } }][] = [
+      ["item.term", fx.item({ term: pad }), ItemSchema],
+      ["item.es", fx.item({ es: pad }), ItemSchema],
+      ["item.topics[]", fx.item({ topics: [pad] }), ItemSchema],
+      ["passage.title", fx.passage({ title: pad }), PassageSchema],
+      ["passage.text", fx.passage({ text: pad }), PassageSchema],
+      ["lesson.topic", fx.lesson({ topic: pad }), LessonSchema],
+      ["lesson.title", fx.lesson({ title: pad }), LessonSchema],
+      ["vocab.prompt", fx.vocab({ prompt: pad }), ExerciseSchema],
+      ["vocab.options[]", fx.vocab({ options: ["a", "b", pad] }), ExerciseSchema],
+      ["tchoice.sentence", { ...tq, sentence: pad }, ExerciseSchema],
+      ["cloze.sentence", fx.cloze({ sentence: "___ x " }), ExerciseSchema],
+      ["cloze.answers[]", fx.cloze({ answers: [pad] }), ExerciseSchema],
+      ["cloze.distractors[]", fx.cloze({ distractors: ["Unless", pad] }), ExerciseSchema],
+      ["cloze.es", fx.cloze({ es: pad }), ExerciseSchema],
+      ["word_order.tokens[]", fx.wordOrder({ tokens: ["a", "b", pad] }), ExerciseSchema],
+      ["word_order.accepted[]", fx.wordOrder({ accepted: [pad] }), ExerciseSchema],
+      ["translate_write.es", fx.translateWrite({ es: pad }), ExerciseSchema],
+      ["translate_write.accepted[]", fx.translateWrite({ accepted: [pad] }), ExerciseSchema],
+      [
+        "reading.questions[].prompt",
+        fx.reading({ questions: [{ prompt: pad, options: ["a", "b", "c"], answerIndex: 0 }] }),
+        ExerciseSchema,
+      ],
+      [
+        "tatoeba.author",
+        { kind: "tatoeba", sentenceId: 1, author: pad, license: "CC BY 2.0 FR" },
+        SourceSchema,
+      ],
+    ];
+    for (const [name, value, schema] of cases) {
+      expect(schema.safeParse(value).success, name).toBe(false);
+    }
+  });
+});
 
 describe("LevelSchema", () => {
   it("accepts CEFR levels A1-C1 and rejects others", () => {
