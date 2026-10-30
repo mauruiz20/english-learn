@@ -15,6 +15,8 @@ type SingleChoiceExerciseProps = {
   reveal?: boolean | undefined;
   onSubmit: (response: ExerciseResponse) => void;
   submitLabel?: string | undefined;
+  /** The options are English and their words can be looked up now. */
+  lookupOptions?: boolean | undefined;
 };
 
 /** Pick one option, then check. Shared by vocab, cloze and translation choice. */
@@ -28,6 +30,7 @@ export function SingleChoiceExercise({
   reveal = false,
   onSubmit,
   submitLabel,
+  lookupOptions,
 }: SingleChoiceExerciseProps) {
   const [selected, setSelected] = useState<string | null>(null);
   return (
@@ -46,6 +49,7 @@ export function SingleChoiceExercise({
         disabled={disabled}
         onSelect={setSelected}
         correctOptions={reveal ? correctOptions : undefined}
+        lookup={lookupOptions}
       />
     </ExerciseLayout>
   );

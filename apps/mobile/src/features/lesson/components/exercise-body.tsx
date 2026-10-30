@@ -1,5 +1,8 @@
 import type { Passage } from "@english-learn/content";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { LookupHint } from "@/features/glossary/lookup-hint";
+import { spacing } from "@/shared/ui/theme";
+import { hasLookups } from "../model/lookup-policy";
 import type { PreparedExercise } from "../model/prepare-exercise";
 import type { ExerciseResponse } from "../model/response";
 import { ClozeExercise } from "./cloze-exercise";
@@ -33,10 +36,11 @@ export function ExerciseBody({
   submitLabel,
   onSubmit,
 }: ExerciseBodyProps) {
-  const common = { disabled, onSubmit };
-  const choice = { ...common, reveal, submitLabel };
+  const common = { disabled, reveal, onSubmit };
+  const choice = { ...common, submitLabel };
   return (
-    <View testID={`exercise-${prepared.exercise.id}`}>
+    <View testID={`exercise-${prepared.exercise.id}`} style={styles.body}>
+      {hasLookups(prepared, reveal) && <LookupHint />}
       {(() => {
         switch (prepared.type) {
           case "vocab":
@@ -48,9 +52,7 @@ export function ExerciseBody({
           case "word_order":
             return <WordOrderExercise prepared={prepared} {...common} />;
           case "reading":
-            return (
-              <ReadingExercise prepared={prepared} passage={passage} reveal={reveal} {...common} />
-            );
+            return <ReadingExercise prepared={prepared} passage={passage} {...common} />;
           case "translate_write":
             return <TranslateWriteExercise prepared={prepared} {...common} />;
         }
@@ -58,3 +60,8 @@ export function ExerciseBody({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  // The first-time lookup hint sits above the exercise.
+  body: { gap: spacing.lg },
+});
