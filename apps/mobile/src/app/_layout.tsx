@@ -8,7 +8,9 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { Platform } from "react-native";
 import { SqliteAppServicesProvider } from "@/infrastructure/persistence/sqlite-app-services";
+import { NotebookHeader } from "@/shared/navigation/notebook-header";
 import { fonts } from "@/shared/ui/theme";
 import { useTheme } from "@/shared/ui/use-theme";
 import { useWebGlobalStyles } from "@/shared/ui/web-global-styles";
@@ -46,6 +48,17 @@ export default function RootLayout() {
           headerTitleStyle: { fontFamily: fonts.headingMedium, color: colors.ink },
           headerShadowVisible: false,
           contentStyle: { backgroundColor: colors.paper },
+          // On web the header lines up with the page's reading column; native keeps its own.
+          ...(Platform.OS === "web" && {
+            header: ({ back, options, route, navigation }) => (
+              <NotebookHeader
+                title={options.title ?? route.name}
+                backTitle={back?.title}
+                showBack={back !== undefined && options.headerBackVisible !== false}
+                onBack={navigation.goBack}
+              />
+            ),
+          }),
         }}
       >
         <Stack.Screen name="index" options={{ title: "Inicio", headerShown: false }} />

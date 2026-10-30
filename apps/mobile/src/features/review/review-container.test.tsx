@@ -1,4 +1,4 @@
-import { createCorpus, type Exercise } from "@english-learn/content";
+import { createCorpus, type Exercise, type Item } from "@english-learn/content";
 import { addDays, initialState, localDate, review, type ReviewState } from "@english-learn/domain";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import { cloze, vocab, wordOrder } from "@/features/lesson/model/fixtures";
@@ -32,8 +32,21 @@ const YESTERDAY = addDays(TODAY, -1);
 const learnedYesterday = (itemId: string): ReviewState =>
   review(initialState(itemId, YESTERDAY), 5, YESTERDAY);
 
+const item = (id: string, term: string, es: string): Item => ({
+  id,
+  level: "A2",
+  topics: ["routine"],
+  kind: "word",
+  term,
+  es,
+});
+const items = [
+  item("a2.routine.wake-up", "wake up", "despertarse"),
+  item("a2.routine.usually", "usually", "normalmente"),
+];
+
 function renderReview(repository: FakeProgressRepository, exercises: Exercise[] = [vocab, cloze]) {
-  const content = createCorpus([{ exercises }]);
+  const content = createCorpus([{ items, exercises }]);
   return render(
     <AppServicesProvider
       services={{
@@ -86,6 +99,23 @@ describe("ReviewContainer", () => {
     const saved = repository.snapshot();
     expect(saved.xp).toBe(120);
     expect(saved.states.every((s) => s.reps === 2 && s.intervalDays === 6)).toBe(true);
+  });
+
+  it("lists only the missed items that were due on the summary", async () => {
+    const notDue = review(initialState("a2.routine.wake-up", TODAY), 5, TODAY);
+    await renderReview(
+      createFakeRepository({ states: [learnedYesterday("a2.routine.usually"), notDue] }),
+      [wordOrder],
+    );
+
+    for (const token of ["wake", "up", "I", "usually", "Comprobar", "Continuar"]) {
+      await answer(token, "button");
+    }
+
+    expect(await screen.findByText("¡Repaso completado!")).toBeOnTheScreen();
+    expect(screen.getByText("usually")).toBeOnTheScreen();
+    expect(screen.getByText("normalmente")).toBeOnTheScreen();
+    expect(screen.queryByText("wake up")).not.toBeOnTheScreen();
   });
 
   it("leaves items that are not due untouched even if the exercise practices them", async () => {

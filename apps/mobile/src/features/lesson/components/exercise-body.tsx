@@ -14,6 +14,8 @@ type ExerciseBodyProps = {
   /** The passage of a reading exercise. */
   passage: Passage | undefined;
   disabled: boolean;
+  /** Feedback is shown: choice exercises mark the right answer and the learner's mistake. */
+  reveal?: boolean | undefined;
   /** Label of the submit button of choice exercises; defaults to "Comprobar". */
   submitLabel?: string | undefined;
   onSubmit: (response: ExerciseResponse) => void;
@@ -27,11 +29,12 @@ export function ExerciseBody({
   prepared,
   passage,
   disabled,
+  reveal = false,
   submitLabel,
   onSubmit,
 }: ExerciseBodyProps) {
   const common = { disabled, onSubmit };
-  const choice = { ...common, submitLabel };
+  const choice = { ...common, reveal, submitLabel };
   return (
     <View testID={`exercise-${prepared.exercise.id}`}>
       {(() => {
@@ -45,7 +48,9 @@ export function ExerciseBody({
           case "word_order":
             return <WordOrderExercise prepared={prepared} {...common} />;
           case "reading":
-            return <ReadingExercise prepared={prepared} passage={passage} {...common} />;
+            return (
+              <ReadingExercise prepared={prepared} passage={passage} reveal={reveal} {...common} />
+            );
           case "translate_write":
             return <TranslateWriteExercise prepared={prepared} {...common} />;
         }

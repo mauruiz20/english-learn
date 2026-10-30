@@ -9,6 +9,7 @@ import {
   SessionSummary,
 } from "./components/session-screens";
 import type { GradeResult } from "./model/grade-exercise";
+import type { ReviewNote } from "./model/items-to-review";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
 
@@ -37,6 +38,8 @@ export type LessonViewState =
       readonly total: number;
       readonly xpEarned: number;
       readonly streakDays: number;
+      /** Items missed in the session, to look at again. */
+      readonly toReview: readonly ReviewNote[];
     };
 
 type LessonViewProps = {
@@ -96,6 +99,7 @@ export function LessonView({
             prepared={state.prepared}
             passage={state.passage}
             disabled={state.feedback !== null}
+            reveal={state.feedback !== null}
             onSubmit={onSubmit}
           />
         </ScreenContainer>

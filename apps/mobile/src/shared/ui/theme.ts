@@ -43,7 +43,7 @@ export const palettes: Readonly<Record<ColorScheme, Palette>> = {
     highlighter: HIGHLIGHTER,
     onHighlighter: "#1B2333",
     redPen: "#D6293E",
-    success: "#1F8A5B",
+    success: "#1A7A50",
     scrim: "rgba(27, 35, 51, 0.45)",
   },
   dark: {

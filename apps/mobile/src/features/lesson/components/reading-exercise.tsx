@@ -8,10 +8,21 @@ import { ChoiceList } from "./choice-list";
 import { ExerciseLayout } from "./exercise-layout";
 import type { ExerciseProps } from "./types";
 
+type ReadingQuestion = ReadingExerciseProps["prepared"]["exercise"]["questions"][number];
+
+const correctOptionOf = (question: ReadingQuestion | undefined): readonly string[] =>
+  question === undefined ? [] : [question.options[question.answerIndex] ?? ""];
+
 type ReadingExerciseProps = ExerciseProps<"reading"> & { passage: Passage | undefined };
 
 /** Passage followed by all its questions; checked together once every question has an answer. */
-export function ReadingExercise({ prepared, passage, disabled, onSubmit }: ReadingExerciseProps) {
+export function ReadingExercise({
+  prepared,
+  passage,
+  disabled,
+  reveal = false,
+  onSubmit,
+}: ReadingExerciseProps) {
   const styles = useStyles();
   const [answers, setAnswers] = useState<readonly (string | null)[]>(() =>
     prepared.questions.map(() => null),
@@ -46,6 +57,7 @@ export function ReadingExercise({ prepared, passage, disabled, onSubmit }: Readi
             options={question.options}
             selected={answers[i] ?? null}
             disabled={disabled}
+            correctOptions={reveal ? correctOptionOf(prepared.exercise.questions[i]) : undefined}
             onSelect={(option) =>
               setAnswers((current) => current.map((a, j) => (j === i ? option : a)))
             }

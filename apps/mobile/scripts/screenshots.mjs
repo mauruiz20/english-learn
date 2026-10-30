@@ -219,12 +219,24 @@ async function capture(browserType, size, scheme) {
     await check();
     await next();
 
-    // reading.
-    await currentExercise(page);
-    await snap(`${step()}-lesson-reading`, { full: true });
-    await fillCorrectly(page);
-    await check();
-    await next();
+    // reading: the first question answered wrong, the others right (marked per question).
+    {
+      const { exercise, scope } = await currentExercise(page);
+      await snap(`${step()}-lesson-reading`, { full: true });
+      await fillCorrectly(page);
+      const [first] = exercise.questions;
+      await scope
+        .getByRole("radiogroup", { name: first.prompt, exact: true })
+        .getByRole("radio", {
+          name: first.options.find((_, i) => i !== first.answerIndex),
+          exact: true,
+        })
+        .click();
+      await check();
+      await page.getByRole("alert").first().waitFor();
+      await snap(`${step()}-feedback-reading`, { full: true });
+      await next();
+    }
 
     // translate-write with a typo: "almost".
     {
@@ -255,6 +267,18 @@ async function capture(browserType, size, scheme) {
     await page.getByRole("button", { name: "Repasar", exact: true }).click();
     await currentExercise(page);
     await snap(`${step()}-review`);
+
+    // Review answered right throughout: the summary with nothing to correct.
+    {
+      const done = button(page, "Volver al inicio");
+      for (let i = 0; i < 25 && !(await done.isVisible()); i++) {
+        await fillCorrectly(page);
+        await check();
+        await button(page, "Continuar").click();
+        await done.or(page.locator('[data-testid^="exercise-"]').first()).waitFor();
+      }
+      await snap(`${step()}-review-summary-perfect`);
+    }
 
     // About.
     await page.goto(`/about?today=${DAY_4}`);

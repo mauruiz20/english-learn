@@ -114,3 +114,29 @@ describe("ReadingExercise", () => {
     expect(screen.getByText("Texto no disponible.")).toBeOnTheScreen();
   });
 });
+
+describe("ReadingExercise marking", () => {
+  it("marks each question on its own once checked", async () => {
+    await render(
+      <ReadingExercise
+        prepared={prepared}
+        passage={passage}
+        disabled={false}
+        onSubmit={onSubmit}
+      />,
+    );
+    await fireEvent.press(screen.getByRole("radio", { name: "At six thirty" }));
+    await fireEvent.press(screen.getByRole("radio", { name: "On foot" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Comprobar" }));
+    await screen.rerender(
+      <ReadingExercise prepared={prepared} passage={passage} disabled reveal onSubmit={onSubmit} />,
+    );
+
+    expect(
+      screen.getByRole("radio", { name: "At six thirty, seleccionada, respuesta correcta" }),
+    ).toBeChecked();
+    expect(screen.getByRole("radio", { name: "On foot, seleccionada, incorrecta" })).toBeChecked();
+    expect(screen.getByRole("radio", { name: "By bus, respuesta correcta" })).toBeDisabled();
+    expect(screen.getAllByText("correcta")).toHaveLength(2);
+  });
+});
