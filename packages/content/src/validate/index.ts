@@ -8,4 +8,5 @@ export { validateWordOrders } from "./word-order";
 export { validateListDuplicates } from "./duplicates";
 export { validateLevels } from "./levels";
 export { validateLayout } from "./layout";
+export { validateTopics, validateExerciseTopics } from "./topics";
 export { validateCorpus } from "./corpus";

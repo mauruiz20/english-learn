@@ -5,12 +5,14 @@ import {
   validateAnswerIndexes,
   validateClozes,
   validateCorpus,
+  validateExerciseTopics,
   validateLayout,
   validateLevels,
   validateListDuplicates,
   validateOptionDuplicates,
   validateReferences,
   validateSchema,
+  validateTopics,
   validateUniqueIds,
   validateWordOrders,
   type LoadedFile,
@@ -381,6 +383,63 @@ describe("validateLevels", () => {
         message: 'exercise "b1.travel.vocab-001" is A2 but the lesson is B1',
       },
     ]);
+  });
+});
+
+describe("validateTopics", () => {
+  it("passes for a valid corpus", () => {
+    expect(validateTopics([file(fx.validFile())])).toEqual([]);
+  });
+  it("flags lesson, lesson exercise, item and passage topics that disagree with ids", () => {
+    const f = fx.validFile();
+    const exerciseIds = [...f.lessons![0]!.exerciseIds.slice(1), "b1.food.vocab-001"];
+    const errs = validateTopics([
+      file({
+        items: [fx.item({ topics: ["grammar"] })],
+        passages: [fx.passage({ topics: ["food"] })],
+        lessons: [fx.lesson({ topic: "food", id: "b1.travel.lesson-001" }), fx.lesson({ exerciseIds })],
+      }),
+    ]);
+    const at = (path: string, message: string) => ({ file: "b1/travel.json", path, message });
+    expect(errs).toEqual([
+      at("items[0].topics", 'topics must include "travel", the topic segment of its id'),
+      at("passages[0].topics", 'topics must include "travel", the topic segment of its id'),
+      at("lessons[0].topic", 'lesson topic "food" does not match the topic segment of its id "travel"'),
+      at("lessons[0].exerciseIds[0]", 'exercise "b1.travel.vocab-001" is not in lesson topic "food"'),
+      at("lessons[0].exerciseIds[1]", 'exercise "b1.travel.cloze-001" is not in lesson topic "food"'),
+      at("lessons[0].exerciseIds[2]", 'exercise "b1.travel.order-001" is not in lesson topic "food"'),
+      at("lessons[0].exerciseIds[3]", 'exercise "b1.travel.tchoice-001" is not in lesson topic "food"'),
+      at("lessons[0].exerciseIds[4]", 'exercise "b1.travel.write-001" is not in lesson topic "food"'),
+      at("lessons[1].exerciseIds[4]", 'exercise "b1.food.vocab-001" is not in lesson topic "travel"'),
+    ]);
+  });
+});
+
+describe("validateExerciseTopics", () => {
+  it("passes for a valid corpus", () => {
+    expect(validateExerciseTopics([file(fx.validFile())])).toEqual([]);
+  });
+  it("flags an exercise whose id topic is not a topic of any referenced item", () => {
+    const errs = validateExerciseTopics([
+      file({
+        items: [fx.item({ topics: ["travel"] }), fx.item({ id: "b1.food.soup", topics: ["food"] })],
+        exercises: [
+          fx.vocab({ id: "b1.work.vocab-001" }),
+          fx.vocab({ id: "b1.food.vocab-002", itemIds: ["b1.travel.although", "b1.food.soup"] }),
+        ],
+      }),
+    ]);
+    expect(errs).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].id",
+        message: 'exercise topic "work" is not a topic of any referenced item',
+      },
+    ]);
+  });
+  it("leaves unknown item ids to the reference rule", () => {
+    const errs = validateExerciseTopics([file({ exercises: [fx.vocab()] })]);
+    expect(errs).toEqual([]);
   });
 });
 
