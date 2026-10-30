@@ -164,9 +164,12 @@ The generated Gradle project signs `release` with the debug keystore, which is f
 but not for Google Play. For a store release, create an upload keystore and configure it (or let
 EAS manage credentials) instead of committing signing material.
 
-Permissions: `app.json` declares none. Libraries can still add permissions through their own
-manifests during the Gradle merge; check the merged manifest after `prebuild` and block any
-unneeded one with `android.blockedPermissions`.
+**Permissions.** The app needs none at runtime. The prebuild template adds `INTERNET`,
+`SYSTEM_ALERT_WINDOW`, `VIBRATE` and `READ`/`WRITE_EXTERNAL_STORAGE`; `android.blockedPermissions`
+removes all but `INTERNET` (kept for development builds talking to Metro). An empty
+`android.permissions` array does **not** remove template permissions: it only lists permissions to
+add. Check with `npx expo config --type introspect` (offline); libraries' own manifests merged
+later by Gradle are not shown there, so inspect the merged manifest of a real build too.
 
 ## Hosting the web build
 
