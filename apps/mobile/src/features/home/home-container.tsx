@@ -5,6 +5,7 @@ import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { isLessonDone, lessonsForLevel } from "@/features/lesson/model/lesson-catalog";
 import { pendingReviewItems } from "@/features/review/model/review-plan";
+import { useSoundPreference } from "@/features/sound/sound-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
@@ -33,6 +34,7 @@ export function HomeContainer({ content = corpus }: { content?: Corpus }) {
   const { progressRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
+  const sound = useSoundPreference();
 
   const load = useCallback(() => {
     let active = true;
@@ -73,6 +75,8 @@ export function HomeContainer({ content = corpus }: { content?: Corpus }) {
   return (
     <HomeView
       state={state}
+      soundEnabled={sound.enabled}
+      onToggleSound={sound.toggle}
       onOpenLesson={(lessonId) => router.push(`/lesson/${lessonId}`)}
       onStartPlacement={() => router.push("/placement")}
       onOpenReview={() => router.push("/review")}

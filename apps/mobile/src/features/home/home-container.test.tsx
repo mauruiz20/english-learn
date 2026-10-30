@@ -13,6 +13,7 @@ import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
+import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { HomeContainer } from "./home-container";
 
 const mockPush = jest.fn();
@@ -49,7 +50,9 @@ function renderContainer(repository: ProgressRepository) {
         sounds: createFakeSoundPlayer(),
       }}
     >
-      <HomeContainer content={content} />
+      <SoundPreferenceProvider>
+        <HomeContainer content={content} />
+      </SoundPreferenceProvider>
     </AppServicesProvider>,
   );
 }

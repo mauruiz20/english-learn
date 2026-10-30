@@ -3,6 +3,7 @@ import { ActivityIndicator, Pressable, StyleSheet, View } from "react-native";
 import { Button } from "@/shared/ui/button";
 import { formatDays } from "@/shared/ui/format";
 import { Highlight } from "@/shared/ui/highlight";
+import { SoundToggleButton } from "@/shared/ui/sound-toggle-button";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { StickyNote } from "@/shared/ui/sticky-note";
@@ -40,6 +41,9 @@ export type HomeViewState =
 
 type HomeViewProps = {
   state: HomeViewState;
+  /** Sounds are on (the switch at the top offers to mute them). */
+  soundEnabled: boolean;
+  onToggleSound: () => void;
   onOpenLesson: (lessonId: string) => void;
   onStartPlacement: () => void;
   onOpenReview: () => void;
@@ -187,7 +191,7 @@ function ReadyHome({
   onStartPlacement,
   onOpenReview,
   onOpenAbout,
-}: Omit<HomeViewProps, "state"> & { state: Ready }) {
+}: Omit<HomeViewProps, "state" | "soundEnabled" | "onToggleSound"> & { state: Ready }) {
   const styles = useStyles();
   return (
     <>
@@ -231,10 +235,14 @@ function ReadyHome({
   );
 }
 
-export function HomeView({ state, ...handlers }: HomeViewProps) {
+export function HomeView({ state, soundEnabled, onToggleSound, ...handlers }: HomeViewProps) {
   const { colors } = useTheme();
+  const styles = useStyles();
   return (
     <ScreenContainer insetTop>
+      <View style={styles.topBar}>
+        <SoundToggleButton enabled={soundEnabled} onToggle={onToggleSound} />
+      </View>
       {state.status === "loading" && (
         <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />
       )}
@@ -252,6 +260,15 @@ export function HomeView({ state, ...handlers }: HomeViewProps) {
 
 const useStyles = themedStyles(({ colors }) =>
   StyleSheet.create({
+    // The sound switch, at the top right of the page; it overlaps the hero's top padding.
+    topBar: {
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      marginTop: -spacing.md,
+      marginBottom: -spacing.lg,
+      marginRight: -spacing.sm - 4,
+      zIndex: 1,
+    },
     hero: { gap: spacing.xs },
     streak: { flexDirection: "row", alignItems: "flex-end", flexWrap: "wrap", gap: spacing.md },
     streakNumber: { fontSize: 64, lineHeight: 70 },
