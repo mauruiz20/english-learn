@@ -1,5 +1,4 @@
-import { Text } from "react-native";
-import { exerciseText } from "./exercise-layout";
+import { Prompt } from "./exercise-layout";
 import { SingleChoiceExercise } from "./single-choice-exercise";
 import type { ExerciseProps } from "./types";
 
@@ -18,7 +17,7 @@ export function TranslationChoiceExercise({
       onSubmit={onSubmit}
       submitLabel={submitLabel}
     >
-      <Text style={exerciseText.sentence}>{prepared.exercise.sentence}</Text>
+      <Prompt text={prepared.exercise.sentence} />
     </SingleChoiceExercise>
   );
 }

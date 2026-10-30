@@ -37,11 +37,11 @@ describe("VocabExercise", () => {
     expect(onSubmit).toHaveBeenCalledWith({ kind: "choice", option: "despertarse" });
   });
 
-  it("locks the options while feedback is shown", async () => {
+  it("locks the options and drops the check button while feedback is shown", async () => {
     await render(<VocabExercise prepared={prepared} disabled onSubmit={onSubmit} />);
 
     expect(screen.getByRole("radio", { name: "dormirse" })).toBeDisabled();
-    expect(screen.getByRole("button", { name: "Comprobar" })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: "Comprobar" })).not.toBeOnTheScreen();
   });
 });
 
@@ -50,7 +50,7 @@ describe("ClozeExercise", () => {
     const prepared = { type: "cloze", exercise: cloze, options: ["go", "have", "do"] } as const;
     await render(<ClozeExercise prepared={prepared} disabled={false} onSubmit={onSubmit} />);
 
-    expect(screen.getByText("I usually ___ breakfast at seven.")).toBeOnTheScreen();
+    expect(screen.getByLabelText("I usually ___ breakfast at seven.")).toBeOnTheScreen();
     expect(screen.getByText("Normalmente desayuno a las siete.")).toBeOnTheScreen();
 
     await fireEvent.press(screen.getByRole("radio", { name: "have" }));

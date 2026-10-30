@@ -46,11 +46,12 @@ describe("LessonView", () => {
   it("shows feedback below the locked exercise and continues", async () => {
     await renderView({
       ...exerciseState,
-      feedback: { verdict: "wrong", correctAnswer: "despertarse" },
+      feedback: { verdict: "wrong", correctAnswer: "despertarse", given: "dormirse" },
     });
 
-    expect(screen.getByRole("alert")).toHaveTextContent("Incorrecto");
-    expect(screen.getByText("Respuesta correcta: despertarse")).toBeOnTheScreen();
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Incorrecto. Respuesta correcta: despertarse",
+    );
     expect(screen.getByRole("radio", { name: "dormirse" })).toBeDisabled();
 
     await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));

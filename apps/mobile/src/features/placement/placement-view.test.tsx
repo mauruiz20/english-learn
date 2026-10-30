@@ -52,7 +52,7 @@ describe("PlacementView", () => {
       lessonLevels: ["A2", "B1"],
     });
 
-    expect(screen.getByText("Tu nivel estimado: B1")).toBeOnTheScreen();
+    expect(screen.getByLabelText("Tu nivel estimado: B1")).toBeOnTheScreen();
     expect(screen.getByText(/Intermedio/)).toBeOnTheScreen();
     expect(screen.getByText(/lecciones de nivel B1/)).toBeOnTheScreen();
     await fireEvent.press(screen.getByRole("button", { name: "Ir a mis lecciones" }));
@@ -67,7 +67,7 @@ describe("PlacementView", () => {
       lessonLevels: ["A2", "B1"],
     });
 
-    expect(screen.getByText("Tu nivel estimado: C1")).toBeOnTheScreen();
+    expect(screen.getByLabelText("Tu nivel estimado: C1")).toBeOnTheScreen();
     expect(
       screen.getByText(
         /Por ahora hay lecciones de nivel A2 y B1\. Te recomendamos las de nivel B1/,

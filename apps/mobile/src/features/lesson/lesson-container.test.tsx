@@ -123,8 +123,9 @@ describe("LessonContainer", () => {
     await press("dormirse", "radio");
     await check();
 
-    expect(screen.getByRole("alert")).toHaveTextContent("Incorrecto");
-    expect(screen.getByText("Respuesta correcta: despertarse")).toBeOnTheScreen();
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Incorrecto. Respuesta correcta: despertarse",
+    );
     await press("Continuar");
     expect(screen.getByText("Ejercicio 2 de 6")).toBeOnTheScreen();
   });

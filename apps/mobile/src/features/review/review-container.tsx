@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { completeSession } from "@/features/lesson/application/complete-session";
 import { startLesson, type LessonSessionState } from "@/features/lesson/model/lesson-session";
 import { prepareExercise } from "@/features/lesson/model/prepare-exercise";
+import { responseText } from "@/features/lesson/model/response";
 import {
   useExerciseSession,
   type ExerciseSession,
@@ -142,6 +143,9 @@ function toViewState(
     position: session.index + 1,
     total: session.exercises.length,
     prepared,
-    feedback: session.status === "feedback" ? session.feedback : null,
+    feedback:
+      session.status === "feedback"
+        ? { ...session.feedback, given: responseText(session.response) }
+        : null,
   };
 }

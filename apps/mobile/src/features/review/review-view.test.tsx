@@ -35,11 +35,13 @@ describe("ReviewView", () => {
       position: 2,
       total: 5,
       prepared: { type: "vocab", exercise: vocab, options: vocab.options },
-      feedback: { verdict: "wrong", correctAnswer: "despertarse" },
+      feedback: { verdict: "wrong", correctAnswer: "despertarse", given: "dormirse" },
     });
 
     expect(screen.getByText("Ejercicio 2 de 5")).toBeOnTheScreen();
-    expect(screen.getByRole("alert")).toHaveTextContent("Incorrecto");
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Incorrecto. Respuesta correcta: despertarse",
+    );
     await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));
     expect(handlers.onContinue).toHaveBeenCalledTimes(1);
   });
