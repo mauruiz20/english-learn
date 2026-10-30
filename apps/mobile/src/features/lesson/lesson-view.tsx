@@ -9,6 +9,7 @@ import {
   SessionSummary,
 } from "./components/session-screens";
 import type { GradeResult } from "./model/grade-exercise";
+import { answerIsEnglish } from "./model/lookup-policy";
 import type { ReviewNote } from "./model/items-to-review";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
@@ -96,6 +97,7 @@ export function LessonView({
                     verdict={state.feedback.verdict}
                     given={state.feedback.given}
                     correctAnswer={state.feedback.correctAnswer}
+                    lookupAnswer={answerIsEnglish(state.prepared)}
                     onContinue={onContinue}
                   />
                 ),
