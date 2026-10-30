@@ -315,6 +315,20 @@ describe("validateWordOrders", () => {
     });
     expect(paths(validateWordOrders([file({ exercises: [w] })]))).toEqual(["exercises[0].tokens"]);
   });
+  it("compares tokens and accepted words case-insensitively (the grader ignores case)", () => {
+    const w = fx.wordOrder({
+      tokens: ["wake", "at", "I", "six.", "usually", "up"],
+      accepted: ["I usually wake up at six.", "Usually I wake up at six."],
+    });
+    expect(validateWordOrders([file({ exercises: [w] })])).toEqual([]);
+  });
+  it("flags pre-solved tokens case-insensitively", () => {
+    const w = fx.wordOrder({
+      tokens: ["usually", "I", "wake", "up", "at", "six."],
+      accepted: ["I usually wake up at six.", "Usually I wake up at six."],
+    });
+    expect(paths(validateWordOrders([file({ exercises: [w] })]))).toEqual(["exercises[0].tokens"]);
+  });
   it("is whitespace-normalized on the accepted side", () => {
     const w = fx.wordOrder({ accepted: ["  we went  out although it rained. "] });
     expect(validateWordOrders([file({ exercises: [w] })])).toEqual([]);

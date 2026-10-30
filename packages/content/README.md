@@ -74,6 +74,8 @@ Tokens are written exactly as they appear in the sentence, punctuation attached 
 (`"rained."`). Splitting **every** accepted sentence on whitespace must give the same multiset of
 tokens, so the tokens joined by single spaces in the right order rebuild each accepted sentence
 exactly. Tokens must not already be in the order of any accepted sentence (pre-solved puzzle).
+Both comparisons ignore case, like the app's grader, so a lowercase `usually` token can build
+`Usually I wake up at six.`.
 
 ### Placement questions
 

@@ -120,7 +120,7 @@
       "source": { "kind": "original" },
       "type": "word_order",
       "tokens": ["wake", "at", "I", "six.", "usually", "up"],
-      "accepted": ["I usually wake up at six."],
+      "accepted": ["I usually wake up at six.", "Usually I wake up at six."],
       "es": "Normalmente me despierto a las seis."
     },
     {
