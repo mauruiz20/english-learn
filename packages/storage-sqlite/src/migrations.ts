@@ -30,6 +30,13 @@ const MIGRATIONS: readonly string[] = [
     theta REAL NOT NULL
   );
   `,
+  // 1 → 2: app preferences as key/value pairs (e.g. sound on/off).
+  `
+  CREATE TABLE setting (
+    key TEXT PRIMARY KEY NOT NULL,
+    value TEXT NOT NULL
+  );
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */

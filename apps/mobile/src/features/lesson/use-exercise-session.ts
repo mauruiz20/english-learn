@@ -8,6 +8,7 @@ import {
 } from "./model/lesson-session";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
+import { useSessionSounds } from "./use-session-sounds";
 
 export type SaveState =
   | { readonly status: "idle" | "saving" | "error" }
@@ -32,6 +33,7 @@ export function useExerciseSession({
   complete: (summary: LessonSummary) => Promise<CompleteSessionResult>;
 }) {
   const { clock } = useAppServices();
+  const sounds = useSessionSounds();
   const [session, setSession] = useState<LessonSessionState | null>(initial?.state ?? null);
   const [save, setSave] = useState<SaveState>({ status: "idle" });
   const [startedAt] = useState(() => clock.nowMs());
@@ -44,9 +46,10 @@ export function useExerciseSession({
     saving.current = true;
     setSave({ status: "saving" });
     complete(summary)
-      .then(({ xpEarned, streak }) =>
-        setSave({ status: "saved", xpEarned, streakDays: streak.current }),
-      )
+      .then(({ xpEarned, streak, streakIncreased }) => {
+        setSave({ status: "saved", xpEarned, streakDays: streak.current });
+        sounds.completed(streakIncreased);
+      })
       .catch((error: unknown) => {
         console.error("Failed to save session results", error);
         saving.current = false;
@@ -61,7 +64,9 @@ export function useExerciseSession({
   const onSubmit = (response: ExerciseResponse) => {
     if (session === null) return;
     const responseMs = Math.max(0, clock.nowMs() - shownAt.current);
-    setSession(lessonSessionReducer(session, { type: "answer", response, responseMs }));
+    const next = lessonSessionReducer(session, { type: "answer", response, responseMs });
+    setSession(next);
+    if (next.status === "feedback" && next !== session) sounds.verdict(next.feedback.verdict);
   };
 
   const onContinue = () => {

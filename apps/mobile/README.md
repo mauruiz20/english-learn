@@ -14,9 +14,10 @@ web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
 | `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                        |
 | `e2e/`                | Playwright tests against the exported web build                      |
 
-Features read `ProgressRepository`, `Clock` and `random` (an `Rng`) from `useAppServices()`. The
-root layout provides the SQLite-backed implementations (`@english-learn/storage-sqlite`, migrated
-in `onInit`), the system clock and `Math.random`; tests wrap components in
+Features read `ProgressRepository`, `SettingsRepository`, `Clock`, `random` (an `Rng`) and
+`sounds` (a `SoundPlayer`) from `useAppServices()`. The root layout provides the SQLite-backed
+repositories (`@english-learn/storage-sqlite`, migrated in `onInit`), the system clock,
+`Math.random` and the expo-audio sound player; tests wrap components in
 `<AppServicesProvider services={...}>` with in-memory fakes and a deterministic rng.
 
 ### When the database cannot open
@@ -108,7 +109,16 @@ highlighter and the teacher's red pen. Boldness is spent on the answer feedback;
 stays quiet.
 
 - **Tokens** (`theme.ts`): paper, sheet, rule, ink, text, muted text, highlighter, red pen and
-  success, for light and a "cuaderno nocturno" dark palette. `useTheme()` follows the system color
+  success, for light and a "cuaderno nocturno" dark palette.
+- **Colored highlighters** (`palette.highlighters`): yellow `#FFE135`, pink, green, orange, sky
+  and lilac (slightly softer in dark mode), always with dark text (≥ 4.5:1, tested). Yellow
+  means "correct" (answers, streak) and nothing else. The others carry meaning, never
+  decoration (`features/topics/topic-colors.ts`): each topic has a hand-picked color (neighbors
+  in a level's index never share one; unknown topics fall back to a stable hash), used for the
+  topic tabs on the home index, the progress line and label of lessons and reviews, and the small
+  tabs on the summary's "Para repasar"; each CEFR level has one (placement result); the review
+  sticky note changes paper daily among pink, green, orange and sky. Ink stays the structural
+  color (text, buttons, links); no gradients. `useTheme()` follows the system color
   scheme (`app.json` `userInterfaceStyle: automatic`); `ThemeOverride` forces one for a subtree
   (the sticky note is always yellow paper). Styles are built per scheme with `themedStyles`.
 - **Fonts** (bundled with `expo-font` + `@expo-google-fonts/*`, so they work offline and are
@@ -137,9 +147,22 @@ stays quiet.
 - **Summary** (lesson and review): the red Caveat grade, the stats, then "Para repasar": up to six
   missed items (wrong or almost) with their Spanish gloss (`model/items-to-review.ts`), or a
   short line when everything was right.
+- **Sounds** (`src/infrastructure/sound/`): six short sounds synthesized by
+  `scripts/generate-sounds.mjs` (deterministic, no dependencies; `pnpm generate:sounds`
+  rewrites `assets/sounds/*.wav`, 16-bit mono 44.1 kHz, -6 dBFS peak). `tap` when choosing an
+  option or a word, `correct` / `almost` / `wrong` when feedback appears, `complete` when a
+  lesson, review or placement result is saved, then `streak` when that session extended the
+  streak. Placement only taps (it gives no per-question feedback). Players are created once
+  (expo-audio), never block the UI and log instead of throwing. iOS respects the silent switch;
+  on web they play after the learner's tap, same-origin under COEP. Haptics (expo-haptics):
+  light impact / notifications on iOS, permission-free system haptics on Android, none on web;
+  muting does not affect them. The speaker button ("Silenciar sonidos" / "Activar sonidos") sits
+  at the top of home and in the header of lesson, review and placement; the choice is stored in
+  SQLite (`setting` table) and defaults to on.
 - **Accessibility floor**: touch targets ≥ 44 pt, an ink focus ring on web (`:focus-visible`,
   `web-global-styles.ts`), AA contrast for text (`theme.test.tsx` asserts ≥ 4.5:1 for text,
-  muted, ink, success and red pen on paper and sheet, in both schemes), reduced motion
+  muted, ink, success and red pen on paper and sheet, and dark text on every highlighter, in
+  both schemes), reduced motion
   respected, labels kept.
 
 ## Commands
@@ -151,7 +174,8 @@ pnpm start          # Expo dev server (press w for web, i/a for simulators)
 pnpm web            # dev server, web only
 pnpm lint           # ESLint (eslint-config-expo); also run by `pnpm lint` at the root
 pnpm typecheck      # tsc --noEmit
-pnpm test           # Jest (jest-expo + React Native Testing Library)
+pnpm test           # Jest (jest-expo + React Native Testing Library), then node --test scripts/
+pnpm generate:sounds # rewrite assets/sounds/*.wav
 
 pnpm export:web     # production static SPA export to dist/ (+ check it has no e2e hooks)
 pnpm serve:web      # serve dist/ on http://localhost:4173 with the required headers
@@ -218,7 +242,10 @@ EAS manage credentials) instead of committing signing material.
 
 **Permissions.** The app needs none at runtime. The prebuild template adds `INTERNET`,
 `SYSTEM_ALERT_WINDOW`, `VIBRATE` and `READ`/`WRITE_EXTERNAL_STORAGE`; `android.blockedPermissions`
-removes all but `INTERNET` (kept for development builds talking to Metro). An empty
+removes all but `INTERNET` (kept for development builds talking to Metro). expo-audio adds
+`MODIFY_AUDIO_SETTINGS` (a normal permission); its plugin is configured without microphone,
+`RECORD_AUDIO` or background playback. Haptics use `performAndroidHapticsAsync`, which needs no
+`VIBRATE`. An empty
 `android.permissions` array does **not** remove template permissions: it only lists permissions to
 add. Check with `npx expo config --type introspect` (offline); libraries' own manifests merged
 later by Gradle are not shown there, so inspect the merged manifest of a real build too.
@@ -250,6 +277,11 @@ The Playwright smoke test fails if the page is not cross-origin isolated, if SQL
 console errors, or if progress loaded from the database is not rendered.
 
 ## Known limitations
+
+- **Sounds are not verified on a device yet.** Unit tests cover the wiring with a fake player and
+  e2e checks the web build loads and plays them without errors in Chromium; Playwright's WebKit
+  cannot play any audio (`NotSupportedError`, swallowed by expo-audio), so Safari, iOS and
+  Android playback and haptics still need a manual check.
 
 - **Reading grades all its items with one verdict.** A reading exercise is correct only if every
   question is, and that single verdict (and its response time) is applied to every item the

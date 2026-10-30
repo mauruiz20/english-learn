@@ -10,8 +10,10 @@
     "@expo-google-fonts/bricolage-grotesque": "^0.4.1",
     "@expo-google-fonts/caveat": "^0.4.2",
     "expo": "~58.0.21",
+    "expo-audio": "~58.0.10",
     "expo-constants": "~58.0.14",
     "expo-font": "~58.0.11",
+    "expo-haptics": "~58.0.7",
     "expo-linking": "~58.0.15",
     "expo-router": "~58.0.28",
     "expo-splash-screen": "~58.0.12",
@@ -44,11 +46,12 @@
     "web": "expo start --web",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest && node --test scripts/*.test.mjs",
     "export:web": "expo export -p web && node scripts/check-prod-bundle.mjs",
     "export:web:e2e": "EXPO_PUBLIC_E2E=1 expo export -p web --output-dir dist-e2e",
     "serve:web": "node scripts/serve-web.mjs",
-    "e2e:web": "pnpm export:web:e2e && playwright test"
+    "e2e:web": "pnpm export:web:e2e && playwright test",
+    "generate:sounds": "node scripts/generate-sounds.mjs"
   },
   "private": true,
   "jest": {
@@ -59,7 +62,8 @@
       "/node_modules/",
       "/e2e/",
       "/dist/",
-      "/dist-e2e/"
+      "/dist-e2e/",
+      "/scripts/"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!(.pnpm|(jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg))"

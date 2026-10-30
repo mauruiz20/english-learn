@@ -30,6 +30,7 @@ describe("completeSession", () => {
       xp: 35,
       xpEarned: 20,
       streak: { current: 3, longest: 5, lastActiveDate: today },
+      streakIncreased: true,
     });
     const saved = repository.snapshot();
     expect(saved.xp).toBe(35);
@@ -39,6 +40,17 @@ describe("completeSession", () => {
       // New and missed: starts fresh tomorrow, not as a lapse.
       { ...initialState("b", today), intervalDays: 1, dueDate: localDate("2026-10-30") },
     ]);
+  });
+
+  it("reports that the streak did not grow on a second session the same day", async () => {
+    const repository = createFakeRepository({
+      streak: { current: 3, longest: 5, lastActiveDate: today },
+    });
+
+    const result = await completeSession({ repository, summary, today, bonus: "none" });
+
+    expect(result.streak.current).toBe(3);
+    expect(result.streakIncreased).toBe(false);
   });
 
   it("gives no completion bonus when replaying a lesson whose items were all learned", async () => {

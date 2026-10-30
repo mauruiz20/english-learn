@@ -18,7 +18,7 @@ const VARIANTS = {
   smallStrong: { fontFamily: fonts.bodyBold, ...typeScale.small },
 } as const satisfies Record<TextVariant, object>;
 
-const TONES: Readonly<Record<TextTone, keyof Palette>> = {
+const TONES: Readonly<Record<TextTone, Exclude<keyof Palette, "highlighters">>> = {
   text: "text",
   muted: "textMuted",
   ink: "ink",

@@ -1,12 +1,14 @@
 import { createCorpus, type Exercise, type Item } from "@english-learn/content";
 import { addDays, initialState, localDate, review, type ReviewState } from "@english-learn/domain";
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
 import { cloze, vocab, wordOrder } from "@/features/lesson/model/fixtures";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import {
   createFakeRepository,
   type FakeProgressRepository,
 } from "@/testing/fake-progress-repository";
+import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
+import { createFakeSoundPlayer, type FakeSoundPlayer } from "@/testing/fake-sound-player";
 import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { ReviewContainer } from "./review-container";
 
@@ -53,6 +55,8 @@ function renderReview(repository: FakeProgressRepository, exercises: Exercise[] 
         progressRepository: repository,
         clock: { today: () => TODAY, nowMs: () => 0 },
         random: () => 0,
+        settingsRepository: createFakeSettingsRepository(),
+        sounds,
       }}
     >
       <ReviewContainer content={content} />
@@ -64,7 +68,11 @@ async function answer(option: string, button: "radio" | "button" = "radio") {
   await fireEvent.press(screen.getByRole(button, { name: option }));
 }
 
-beforeEach(() => jest.clearAllMocks());
+let sounds: FakeSoundPlayer;
+beforeEach(() => {
+  jest.clearAllMocks();
+  sounds = createFakeSoundPlayer();
+});
 
 describe("ReviewContainer", () => {
   it("shows an empty state when nothing is due", async () => {
@@ -94,6 +102,8 @@ describe("ReviewContainer", () => {
     await answer("Continuar", "button");
 
     expect(await screen.findByText("¡Repaso completado!")).toBeOnTheScreen();
+    expect(sounds.played.slice(0, 5)).toEqual(["tap", "correct", "tap", "correct", "complete"]);
+    await waitFor(() => expect(sounds.played.slice(-1)).toEqual(["streak"]));
     expect(screen.getByText("XP ganada: 20")).toBeOnTheScreen();
     expect(screen.getByText("Racha: 2 días")).toBeOnTheScreen();
     const saved = repository.snapshot();

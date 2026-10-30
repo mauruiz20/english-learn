@@ -3,6 +3,14 @@
 
 export type ColorScheme = "light" | "dark";
 
+/**
+ * The highlighter set. Yellow is the "correct" signal (answers, streak) and is never used for
+ * anything else; the others mark meaning: topics, levels, the review sticky note.
+ */
+export const HIGHLIGHTER_NAMES = ["yellow", "pink", "green", "orange", "sky", "lilac"] as const;
+
+export type HighlighterName = (typeof HIGHLIGHTER_NAMES)[number];
+
 export type Palette = {
   /** App background: the page. */
   readonly paper: string;
@@ -20,8 +28,10 @@ export type Palette = {
   readonly textMuted: string;
   /** Accent: correct highlight, streak mark, sticky note. Same in both schemes. */
   readonly highlighter: string;
-  /** Text on the highlighter. */
+  /** Text on any highlighter (always dark: ≥ 4.5:1 on every fill, in both schemes). */
   readonly onHighlighter: string;
+  /** Every highlighter; `yellow` equals `highlighter`. */
+  readonly highlighters: Readonly<Record<HighlighterName, string>>;
   /** Errors and the teacher's corrections. */
   readonly redPen: string;
   readonly success: string;
@@ -30,6 +40,26 @@ export type Palette = {
 };
 
 const HIGHLIGHTER = "#FFE135";
+
+// The night notebook uses the same pens a touch softer, so they do not glow on deep ink paper.
+const HIGHLIGHTERS: Readonly<Record<ColorScheme, Readonly<Record<HighlighterName, string>>>> = {
+  light: {
+    yellow: HIGHLIGHTER,
+    pink: "#FF8FC7",
+    green: "#7CE3A1",
+    orange: "#FFB35C",
+    sky: "#7CC8FF",
+    lilac: "#C3A6FF",
+  },
+  dark: {
+    yellow: HIGHLIGHTER,
+    pink: "#F07FB6",
+    green: "#6FD394",
+    orange: "#F0A54E",
+    sky: "#6FBBF0",
+    lilac: "#B598F0",
+  },
+};
 
 export const palettes: Readonly<Record<ColorScheme, Palette>> = {
   light: {
@@ -42,6 +72,7 @@ export const palettes: Readonly<Record<ColorScheme, Palette>> = {
     textMuted: "#4A5873",
     highlighter: HIGHLIGHTER,
     onHighlighter: "#1B2333",
+    highlighters: HIGHLIGHTERS.light,
     redPen: "#D6293E",
     success: "#1A7A50",
     scrim: "rgba(27, 35, 51, 0.45)",
@@ -56,6 +87,7 @@ export const palettes: Readonly<Record<ColorScheme, Palette>> = {
     textMuted: "#A3B0C8",
     highlighter: HIGHLIGHTER,
     onHighlighter: "#1B2333",
+    highlighters: HIGHLIGHTERS.dark,
     redPen: "#FF7A8A",
     success: "#4FD39C",
     scrim: "rgba(4, 9, 20, 0.7)",

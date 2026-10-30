@@ -32,6 +32,7 @@ describe("ReviewView", () => {
   it("shows the progress, the exercise and its feedback", async () => {
     await renderView({
       status: "exercise",
+      topic: undefined,
       position: 2,
       total: 5,
       prepared: { type: "vocab", exercise: vocab, options: vocab.options },

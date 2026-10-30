@@ -1,6 +1,9 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { topicHighlighter } from "@/features/topics/topic-colors";
+import { topicLabel } from "@/features/topics/topic-labels";
 import { Button } from "@/shared/ui/button";
 import { formatDays } from "@/shared/ui/format";
+import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { ScreenContainer } from "@/shared/ui/screen-container";
@@ -11,27 +14,39 @@ import type { ReviewNote } from "../model/items-to-review";
 
 /**
  * A thin ink line with "Ejercicio 2 de 6" (and the lesson title) under it: where the learner is
- * in a lesson or review.
+ * in a lesson or review. With a `topic`, the line and the label are marked with its highlighter;
+ * the label is the title, or the topic's name when there is no title (review).
  */
 export function SessionProgress({
   position,
   total,
   title,
+  topic,
 }: {
   position: number;
   total: number;
   title?: string;
+  topic?: string | undefined;
 }) {
   const styles = useStyles();
+  const tint = topic === undefined ? undefined : topicHighlighter(topic);
+  const label = title ?? (topic === undefined ? undefined : topicLabel(topic));
   return (
     <View style={styles.progress}>
-      <ProgressLine value={position - 1} max={total} label="Progreso" />
+      <ProgressLine value={position - 1} max={total} label="Progreso" tint={tint} />
       <View style={styles.progressRow}>
-        {title !== undefined && (
-          <Text variant="smallStrong" tone="ink" style={styles.progressTitle}>
-            {title}
-          </Text>
-        )}
+        {label !== undefined &&
+          (tint === undefined ? (
+            <Text variant="smallStrong" tone="ink" style={styles.progressTitle}>
+              {label}
+            </Text>
+          ) : (
+            <View style={styles.progressTitle}>
+              <Highlight variant="smallStrong" color={tint}>
+                {label}
+              </Highlight>
+            </View>
+          ))}
         <Text variant="small" tone="muted">{`Ejercicio ${position} de ${total}`}</Text>
       </View>
     </View>
@@ -99,6 +114,7 @@ export function SessionSummary({
           <View>
             {toReview.map((note) => (
               <View key={note.id} style={[styles.line, styles.note]}>
+                {note.topic !== undefined && <TopicTab topic={note.topic} />}
                 <Text variant="bodyStrong">{note.term}</Text>
                 <Text tone="muted">{note.es}</Text>
               </View>
@@ -108,6 +124,20 @@ export function SessionSummary({
       </View>
       <Button label="Volver al inicio" onPress={onGoHome} />
     </ScreenContainer>
+  );
+}
+
+/** A small tab in the topic's highlighter, like a colored index sticker (decorative). */
+function TopicTab({ topic }: { topic: string }) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  return (
+    <View
+      aria-hidden
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      style={[styles.tab, { backgroundColor: colors.highlighters[topicHighlighter(topic)] }]}
+    />
   );
 }
 
@@ -155,6 +185,7 @@ const useStyles = themedStyles(({ colors }) =>
     progress: { gap: spacing.sm },
     progressRow: { flexDirection: "row", justifyContent: "space-between", gap: spacing.md },
     progressTitle: { flexShrink: 1 },
+    tab: { width: 6, height: 16, borderRadius: 2, alignSelf: "center" },
     grade: { marginRight: spacing.xs, transform: [{ translateY: -6 }] },
     line: {
       paddingVertical: spacing.sm + 2,

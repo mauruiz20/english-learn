@@ -6,18 +6,18 @@ It does not import `@english-learn/content`; the app layer maps content into the
 
 ## Modules
 
-| Folder            | Responsibility                                                      |
-| ----------------- | ------------------------------------------------------------------- |
-| `answer-matching` | Grades free-text answers: `correct` / `almost` / `wrong`            |
-| `srs`             | SM-2 scheduling, outcome → grade mapping, session selection         |
-| `scoring`         | XP per answer, lesson completion bonus, accuracy                    |
-| `streak`          | Daily streak (current / longest)                                    |
-| `progress`        | Per-level seen / mastered counts                                    |
-| `placement`       | Adaptive placement test (CAT) → CEFR level                          |
-| `shuffle`         | Fisher–Yates shuffle, option shuffling, word-order token scrambling |
-| `local-date`      | Branded `YYYY-MM-DD` date with pure calendar math (no timezones)    |
-| `cefr`            | `Level` (`A1`…`C1`)                                                 |
-| `ports`           | Side-effect interfaces: `Clock`, `ProgressRepository` (types only)  |
+| Folder            | Responsibility                                                                      |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `answer-matching` | Grades free-text answers: `correct` / `almost` / `wrong`                            |
+| `srs`             | SM-2 scheduling, outcome → grade mapping, session selection                         |
+| `scoring`         | XP per answer, lesson completion bonus, accuracy                                    |
+| `streak`          | Daily streak (current / longest)                                                    |
+| `progress`        | Per-level seen / mastered counts                                                    |
+| `placement`       | Adaptive placement test (CAT) → CEFR level                                          |
+| `shuffle`         | Fisher–Yates shuffle, option shuffling, word-order token scrambling                 |
+| `local-date`      | Branded `YYYY-MM-DD` date with pure calendar math (no timezones)                    |
+| `cefr`            | `Level` (`A1`…`C1`)                                                                 |
+| `ports`           | Side-effect interfaces: `Clock`, `ProgressRepository`, `SettingsRepository` (types) |
 
 Everything is re-exported from `src/index.ts`.
 

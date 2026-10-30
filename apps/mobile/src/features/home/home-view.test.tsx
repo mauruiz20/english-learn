@@ -6,6 +6,7 @@ const handlers = {
   onStartPlacement: jest.fn(),
   onOpenReview: jest.fn(),
   onOpenAbout: jest.fn(),
+  onToggleSound: jest.fn(),
 };
 
 const noLessons = { level: "A2", items: [] } as const;
@@ -13,19 +14,29 @@ const noLessons = { level: "A2", items: [] } as const;
 const ready = {
   status: "ready",
   pendingReviews: 0,
+  reviewNoteColor: "pink",
   streakDays: 0,
   xp: 0,
   level: "A2",
   lessons: noLessons,
 } as const satisfies HomeViewState;
 
-function renderView(state: HomeViewState) {
-  return render(<HomeView state={state} {...handlers} />);
+function renderView(state: HomeViewState, soundEnabled = true) {
+  return render(<HomeView state={state} soundEnabled={soundEnabled} {...handlers} />);
 }
 
 beforeEach(() => jest.clearAllMocks());
 
 describe("HomeView", () => {
+  it("has a sound switch that says what pressing it does", async () => {
+    await renderView(ready);
+    await fireEvent.press(screen.getByRole("button", { name: "Silenciar sonidos" }));
+    expect(handlers.onToggleSound).toHaveBeenCalledTimes(1);
+
+    await renderView(ready, false);
+    expect(screen.getByRole("button", { name: "Activar sonidos" })).toBeOnTheScreen();
+  });
+
   it("shows a loading indicator", async () => {
     await renderView({ status: "loading" });
 
