@@ -133,7 +133,7 @@ class TestRefresh:
 
     async def test_rejects_an_expired_refresh_token(self, api: Api) -> None:
         signed_in = await api.sign_in()
-        api.clock.advance(timedelta(days=30))
+        api.clock.advance(timedelta(days=14))
 
         response = await api.refresh(signed_in["refreshToken"])
 

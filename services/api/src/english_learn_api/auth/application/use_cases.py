@@ -22,14 +22,29 @@ type UnitOfWorkFactory = Callable[[], UnitOfWork]
 
 _INVALID_REFRESH = "Refresh token is invalid or expired; sign in again"
 DEFAULT_RETRY_GRACE = timedelta(seconds=45)
+DEFAULT_SESSION_MAX_LIFETIME = timedelta(days=60)
 
 
 class SessionIssuer:
-    """Creates a token pair: a short-lived access JWT and a stored, rotating refresh token."""
+    """Creates a token pair: a short-lived access JWT and a stored, rotating refresh token.
 
-    def __init__(self, *, access_tokens: AccessTokens, refresh_token_ttl: timedelta) -> None:
+    A session (refresh family) ends after `refresh_token_ttl` without a refresh (idle timeout,
+    slid forward by each rotation) or `max_lifetime` after the sign-in, whichever comes first.
+    """
+
+    def __init__(
+        self,
+        *,
+        access_tokens: AccessTokens,
+        refresh_token_ttl: timedelta,
+        max_lifetime: timedelta = DEFAULT_SESSION_MAX_LIFETIME,
+    ) -> None:
         self._access_tokens = access_tokens
         self._refresh_token_ttl = refresh_token_ttl
+        self._max_lifetime = max_lifetime
+
+    def ends_at(self, family: RefreshFamily) -> datetime:
+        return family.created_at + self._max_lifetime
 
     async def issue(
         self, uow: UnitOfWork, *, family: RefreshFamily, now: datetime
@@ -42,7 +57,7 @@ class SessionIssuer:
             family_id=family.id,
             token_hash=hash_refresh_secret(secret),
             created_at=now,
-            expires_at=now + self._refresh_token_ttl,
+            expires_at=min(now + self._refresh_token_ttl, self.ends_at(family)),
         )
         await uow.refresh_tokens.add(record)
         pair = TokenPair(
@@ -110,7 +125,7 @@ class RefreshSession:
                 raise InvalidRefreshTokenError(_INVALID_REFRESH)
             family, current = session
 
-            if family.is_revoked:
+            if family.is_revoked or now >= self._sessions.ends_at(family):
                 raise InvalidRefreshTokenError(_INVALID_REFRESH)
 
             if current.was_rotated:

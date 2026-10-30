@@ -37,7 +37,8 @@ class Settings(DatabaseSettings):
     google_client_id: str
     jwt_secret: SecretStr
     access_token_ttl: timedelta = timedelta(minutes=15)
-    refresh_token_ttl: timedelta = timedelta(days=30)
+    refresh_token_ttl: timedelta = timedelta(days=14)  # idle timeout, slid by every refresh
+    session_max_lifetime: timedelta = timedelta(days=60)  # absolute, from the sign-in
     refresh_retry_grace: timedelta = timedelta(seconds=45)
     cors_origins: Annotated[list[str], NoDecode] = list(DEFAULT_CORS_ORIGINS)
     max_request_body_bytes: int = 1024 * 1024
@@ -51,7 +52,13 @@ class Settings(DatabaseSettings):
             raise ValueError(msg)
         return value
 
-    @field_validator("access_token_ttl", "refresh_token_ttl", "refresh_retry_grace", mode="before")
+    @field_validator(
+        "access_token_ttl",
+        "refresh_token_ttl",
+        "session_max_lifetime",
+        "refresh_retry_grace",
+        mode="before",
+    )
     @classmethod
     def _plain_seconds(cls, value: object) -> object:
         # `ACCESS_TOKEN_TTL=900` means seconds; ISO 8601 durations (`P30D`) also work.
@@ -59,7 +66,7 @@ class Settings(DatabaseSettings):
             return int(value)
         return value
 
-    @field_validator("access_token_ttl", "refresh_token_ttl")
+    @field_validator("access_token_ttl", "refresh_token_ttl", "session_max_lifetime")
     @classmethod
     def _positive(cls, value: timedelta) -> timedelta:
         if value <= timedelta(0):

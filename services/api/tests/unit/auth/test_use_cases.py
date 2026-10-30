@@ -26,7 +26,8 @@ from tests.fakes import (
     InMemoryStore,
 )
 
-REFRESH_TTL = timedelta(days=30)
+REFRESH_TTL = timedelta(days=14)  # idle timeout: each refresh slides it
+MAX_LIFETIME = timedelta(days=60)  # absolute, from the sign-in
 GRACE = timedelta(seconds=45)
 
 
@@ -38,7 +39,11 @@ class Auth:
         self.clock = FakeClock()
         self.google = FakeGoogleVerifier()
         self.google.register("google-ana", sub="sub-ana", email="ana@example.com")
-        sessions = SessionIssuer(access_tokens=FakeAccessTokens(), refresh_token_ttl=REFRESH_TTL)
+        sessions = SessionIssuer(
+            access_tokens=FakeAccessTokens(),
+            refresh_token_ttl=REFRESH_TTL,
+            max_lifetime=MAX_LIFETIME,
+        )
         self.sign_in = SignInWithGoogle(
             verifier=self.google,
             sessions=sessions,
@@ -226,6 +231,58 @@ def stored(auth: Auth, secret: str) -> RefreshToken:
 
 def live_tokens(auth: Auth) -> list[RefreshToken]:
     return [t for t in auth.store.refresh_tokens.values() if t.revoked_at is None]
+
+
+class TestSessionLifetime:
+    async def test_a_session_slides_while_used_until_its_absolute_end(self, auth: Auth) -> None:
+        token = (await auth.sign_in.execute("google-ana")).tokens.refresh_token
+        for _ in range(4):  # days 13, 26, 39, 52
+            auth.clock.advance(REFRESH_TTL - timedelta(days=1))
+            token = (await auth.refresh.execute(token)).refresh_token
+
+        auth.clock.advance(timedelta(days=8))  # day 60
+
+        with pytest.raises(InvalidRefreshTokenError):
+            await auth.refresh.execute(token)
+
+    async def test_new_tokens_never_outlive_the_session(self, auth: Auth) -> None:
+        token = (await auth.sign_in.execute("google-ana")).tokens.refresh_token
+        for _ in range(4):  # days 13, 26, 39, 52
+            auth.clock.advance(REFRESH_TTL - timedelta(days=1))
+            token = (await auth.refresh.execute(token)).refresh_token
+        auth.clock.advance(timedelta(days=5))  # day 57: 57 + 14 would pass day 60
+
+        rotated = await auth.refresh.execute(token)
+
+        assert rotated.refresh_token_expires_at == T0 + MAX_LIFETIME
+        assert stored(auth, rotated.refresh_token).expires_at == T0 + MAX_LIFETIME
+
+    async def test_far_from_the_end_a_token_lasts_the_idle_timeout(self, auth: Auth) -> None:
+        token = (await auth.sign_in.execute("google-ana")).tokens.refresh_token
+        auth.clock.advance(timedelta(days=10))
+
+        rotated = await auth.refresh.execute(token)
+
+        assert rotated.refresh_token_expires_at == T0 + timedelta(days=10) + REFRESH_TTL
+
+    async def test_an_idle_session_ends(self, auth: Auth) -> None:
+        token = (await auth.sign_in.execute("google-ana")).tokens.refresh_token
+        auth.clock.advance(REFRESH_TTL)
+
+        with pytest.raises(InvalidRefreshTokenError):
+            await auth.refresh.execute(token)
+
+    async def test_a_retry_cannot_extend_an_ended_session(self, auth: Auth) -> None:
+        token = (await auth.sign_in.execute("google-ana")).tokens.refresh_token
+        for _ in range(4):
+            auth.clock.advance(REFRESH_TTL - timedelta(days=1))
+            token = (await auth.refresh.execute(token)).refresh_token
+        auth.clock.advance(timedelta(days=8) - timedelta(seconds=10))  # 10 s before the end
+        await auth.refresh.execute(token)
+        auth.clock.advance(timedelta(seconds=20))  # retry within the grace, after the end
+
+        with pytest.raises(InvalidRefreshTokenError):
+            await auth.refresh.execute(token)
 
 
 class TestRetryWithinTheGraceWindow:

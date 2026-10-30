@@ -51,7 +51,9 @@ def create_app(
         secret=settings.jwt_secret.get_secret_value(), ttl=settings.access_token_ttl
     )
     sessions = SessionIssuer(
-        access_tokens=access_tokens, refresh_token_ttl=settings.refresh_token_ttl
+        access_tokens=access_tokens,
+        refresh_token_ttl=settings.refresh_token_ttl,
+        max_lifetime=settings.session_max_lifetime,
     )
 
     @asynccontextmanager

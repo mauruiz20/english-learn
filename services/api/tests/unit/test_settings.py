@@ -23,7 +23,8 @@ def test_defaults() -> None:
     settings = make()
 
     assert settings.access_token_ttl == timedelta(minutes=15)
-    assert settings.refresh_token_ttl == timedelta(days=30)
+    assert settings.refresh_token_ttl == timedelta(days=14)
+    assert settings.session_max_lifetime == timedelta(days=60)
     assert settings.refresh_retry_grace == timedelta(seconds=45)
     assert settings.cors_origins == list(DEFAULT_CORS_ORIGINS)
     assert DEFAULT_CORS_ORIGINS == (
@@ -71,6 +72,7 @@ def test_reads_environment_variables(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("REFRESH_TOKEN_TTL", "P7D")
     monkeypatch.setenv("CORS_ORIGINS", "https://a.example, https://b.example")
     monkeypatch.setenv("REFRESH_RETRY_GRACE", "10")
+    monkeypatch.setenv("SESSION_MAX_LIFETIME", "P90D")
 
     settings = Settings(_env_file=None)
 
@@ -80,6 +82,7 @@ def test_reads_environment_variables(monkeypatch: pytest.MonkeyPatch) -> None:
     assert settings.refresh_token_ttl == timedelta(days=7)
     assert settings.cors_origins == ["https://a.example", "https://b.example"]
     assert settings.refresh_retry_grace == timedelta(seconds=10)
+    assert settings.session_max_lifetime == timedelta(days=90)
 
 
 def test_the_retry_grace_may_be_zero_but_not_negative() -> None:
@@ -88,7 +91,7 @@ def test_the_retry_grace_may_be_zero_but_not_negative() -> None:
         make(refresh_retry_grace=timedelta(seconds=-1))
 
 
-@pytest.mark.parametrize("field", ["access_token_ttl", "refresh_token_ttl"])
+@pytest.mark.parametrize("field", ["access_token_ttl", "refresh_token_ttl", "session_max_lifetime"])
 def test_token_ttls_must_be_positive(field: str) -> None:
     with pytest.raises(ValidationError, match="positive"):
         make(**{field: timedelta(0)})
