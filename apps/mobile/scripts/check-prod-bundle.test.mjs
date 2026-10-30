@@ -48,6 +48,14 @@ describe("check-prod-bundle", () => {
     ]);
   });
 
+  it("finds the e2e settings-writes hook", async () => {
+    await write("_expo/static/js/web/entry-3.js", "g.__e2e.settingsWritesSettled=()=>p");
+    await buildServiceWorker(dir);
+    assert.deepEqual(await findProblems(dir), [
+      `${join(dir, "_expo/static/js/web/entry-3.js")}: contains test-only code (settingsWritesSettled)`,
+    ]);
+  });
+
   it("requires the service worker", async () => {
     await rm(join(dir, "sw.js"));
     assert.deepEqual(await findProblems(dir), ["sw.js is missing"]);
