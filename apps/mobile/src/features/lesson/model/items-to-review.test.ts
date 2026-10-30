@@ -37,8 +37,8 @@ describe("itemsToReview", () => {
     ];
 
     expect(itemsToReview(outcomes, itemsById)).toEqual([
-      { id: "breakfast", term: "have breakfast", es: "desayunar" },
-      { id: "usually", term: "usually", es: "normalmente" },
+      { id: "breakfast", term: "have breakfast", es: "desayunar", topic: undefined },
+      { id: "usually", term: "usually", es: "normalmente", topic: undefined },
     ]);
   });
 
@@ -61,10 +61,20 @@ describe("itemsToReview", () => {
       outcome(id, "wrong"),
     );
 
-    expect(itemsToReview(outcomes, itemsById, 3).map((i) => i.id)).toEqual([
+    expect(itemsToReview(outcomes, itemsById, { limit: 3 }).map((i) => i.id)).toEqual([
       "wake-up",
       "breakfast",
       "usually",
+    ]);
+  });
+
+  it("tags each item with the topic of its lesson, when known", () => {
+    const topics = new Map([["breakfast", "food"]]);
+    const outcomes = [outcome("breakfast", "wrong"), outcome("usually", "wrong")];
+
+    expect(itemsToReview(outcomes, itemsById, { topics }).map((i) => i.topic)).toEqual([
+      "food",
+      undefined,
     ]);
   });
 

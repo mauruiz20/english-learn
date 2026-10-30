@@ -2,19 +2,26 @@ import type { Item } from "@english-learn/content";
 import type { ItemOutcome } from "./lesson-session";
 
 /** A word or phrase to look at again, as shown on the summary page. */
-export type ReviewNote = Pick<Item, "id" | "term" | "es">;
+export type ReviewNote = Pick<Item, "id" | "term" | "es"> & {
+  /** Topic of the lesson that teaches it (its color tab on the summary). */
+  readonly topic?: string | undefined;
+};
 
 /** How many items the summary lists at most. */
 export const REVIEW_NOTES_LIMIT = 6;
 
 /**
  * The items the learner missed (wrong or almost) in a session, once each, in the order they
- * came up, up to `limit`. Items missing from the corpus are skipped.
+ * came up, up to `limit`, tagged with their topic from `topics` (item id → topic). Items missing
+ * from the corpus are skipped.
  */
 export function itemsToReview(
   outcomes: readonly ItemOutcome[],
   itemsById: ReadonlyMap<string, Item>,
-  limit: number = REVIEW_NOTES_LIMIT,
+  {
+    limit = REVIEW_NOTES_LIMIT,
+    topics,
+  }: { limit?: number; topics?: ReadonlyMap<string, string> } = {},
 ): ReviewNote[] {
   const notes: ReviewNote[] = [];
   const seen = new Set<string>();
@@ -24,7 +31,7 @@ export function itemsToReview(
     const item = itemsById.get(itemId);
     if (item === undefined) continue;
     seen.add(itemId);
-    notes.push({ id: item.id, term: item.term, es: item.es });
+    notes.push({ id: item.id, term: item.term, es: item.es, topic: topics?.get(item.id) });
   }
   return notes;
 }
