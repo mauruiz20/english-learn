@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Serves the static web export (dist/) like a production host would: SPA fallback to
 // index.html plus the cross-origin isolation headers expo-sqlite needs (SharedArrayBuffer).
-// Usage: node scripts/serve-web.mjs [--port 4173] [--dir dist-e2e]   (or PORT=4173)
+// Usage: node scripts/serve-web.mjs [--port 4173] [--dir dist-e2e] [--e2e-hooks]   (or PORT=4173)
 import { createReadStream } from "node:fs";
-import { stat } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { createServer } from "node:http";
 import { extname, join, normalize, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -56,8 +56,18 @@ function isNavigation(req) {
   return (req.headers.accept ?? "").includes("text/html");
 }
 
+/**
+ * E2E hook (`--e2e-hooks`): a request for /sw.js with the cookie `e2e-sw-version=N` gets the
+ * worker plus a comment, i.e. different bytes, which the browser treats as a new deploy. A
+ * cookie is per browser profile, so one test can simulate an update without touching others.
+ */
+function e2eServiceWorkerVersion(req, pathname) {
+  if (pathname !== "/sw.js") return null;
+  return /(?:^|;\s*)e2e-sw-version=(\w+)/.exec(req.headers.cookie ?? "")?.[1] ?? null;
+}
+
 /** Creates (does not start) the server for the export in `dir`. */
-export function createStaticServer({ dir }) {
+export function createStaticServer({ dir, e2eHooks = false }) {
   const root = resolve(dir);
   return createServer(async (req, res) => {
     if (req.method !== "GET" && req.method !== "HEAD") {
@@ -86,6 +96,12 @@ export function createStaticServer({ dir }) {
       res.writeHead(200, headers).end();
       return;
     }
+    const swVersion = e2eHooks ? e2eServiceWorkerVersion(req, pathname) : null;
+    if (swVersion !== null) {
+      const source = await readFile(file, "utf8");
+      res.writeHead(200, headers).end(`${source}\n// e2e-sw-version ${swVersion}\n`);
+      return;
+    }
     // Headers go out only once the file is open, so an open error can still answer 500.
     const stream = createReadStream(file);
     stream.once("open", () => {
@@ -108,7 +124,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   );
   const portFlag = process.argv.indexOf("--port");
   const port = Number(portFlag === -1 ? (process.env.PORT ?? 4173) : process.argv[portFlag + 1]);
-  createStaticServer({ dir }).listen(port, () => {
+  const e2eHooks = process.argv.includes("--e2e-hooks");
+  createStaticServer({ dir, e2eHooks }).listen(port, () => {
     console.log(`Serving ${resolve(dir)} at http://localhost:${port}`);
   });
 }

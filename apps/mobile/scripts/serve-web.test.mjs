@@ -66,4 +66,21 @@ describe("serve-web", () => {
     assert.equal(sw.headers.get("cache-control"), "no-cache");
     assert.equal(sw.headers.get("cross-origin-embedder-policy"), "require-corp");
   });
+
+  it("simulates a new deploy of sw.js for one browser profile (e2e hook, opt-in)", async () => {
+    const hooked = createStaticServer({ dir, e2eHooks: true });
+    await new Promise((resolve) => hooked.listen(0, resolve));
+    try {
+      const url = `http://localhost:${hooked.address().port}/sw.js`;
+      const plain = await (await fetch(url)).text();
+      const bumped = await (await fetch(url, { headers: { Cookie: "e2e-sw-version=2" } })).text();
+      assert.equal(plain, "self.addEventListener('fetch', () => {});");
+      assert.equal(bumped, `${plain}\n// e2e-sw-version 2\n`);
+    } finally {
+      await new Promise((resolve) => hooked.close(resolve));
+    }
+    // Without the opt-in, the cookie changes nothing.
+    const response = await fetch(origin + "/sw.js", { headers: { Cookie: "e2e-sw-version=2" } });
+    assert.equal(await response.text(), "self.addEventListener('fetch', () => {});");
+  });
 });
