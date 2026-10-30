@@ -50,6 +50,7 @@
   "private": true,
   "jest": {
     "preset": "jest-expo",
+    "globalSetup": "./jest.global-setup.js",
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/e2e/",
