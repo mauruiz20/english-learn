@@ -37,6 +37,27 @@ const MIGRATIONS: readonly string[] = [
     value TEXT NOT NULL
   );
   `,
+  // 2 → 3: the append-only progress event log (the tables above become a cache of its fold) and
+  // sync bookkeeping (device id, server cursor). The baseline event for progress written before
+  // this version is added by `ensureBaseline`, which needs app knowledge (lessons).
+  `
+  CREATE TABLE event (
+    id TEXT PRIMARY KEY NOT NULL,
+    device_id TEXT NOT NULL,
+    occurred_at INTEGER NOT NULL,
+    local_date TEXT NOT NULL,
+    type TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    synced_at INTEGER,
+    server_seq INTEGER
+  );
+  CREATE INDEX event_by_order ON event (local_date, occurred_at, id);
+  CREATE INDEX event_by_synced ON event (synced_at, occurred_at, id);
+  CREATE TABLE sync_state (
+    key TEXT PRIMARY KEY NOT NULL,
+    value TEXT NOT NULL
+  );
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */
