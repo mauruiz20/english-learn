@@ -116,7 +116,6 @@ function ReviewNote({
 
 function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => void }) {
   const styles = useStyles();
-  const color = topicHighlighter(lesson.topic);
   return (
     <Pressable
       accessibilityRole="button"
@@ -127,10 +126,9 @@ function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => voi
       <Text style={styles.lessonTitle}>{lesson.title}</Text>
       <View style={styles.leader} />
       {lesson.done ? (
-        // Ticked off with the topic's highlighter.
-        <Highlight variant="smallStrong" color={color}>
+        <Text variant="smallStrong" tone="success">
           Completada
-        </Highlight>
+        </Text>
       ) : (
         <Text tone="muted" style={styles.pendingMark}>
           ○
