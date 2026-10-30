@@ -1,6 +1,6 @@
 # English Learn API
 
-Optional backend for English Learn: **Google sign-in** (web) and, from stage 5, **progress sync**.
+Optional backend for English Learn: **Google sign-in** (web) and **progress sync**.
 The app stays offline-first; the API only stores and returns the client's progress events. It
 never folds them: the fold lives in [`packages/domain`](../../packages/domain/README.md#progress-event-log).
 
@@ -37,18 +37,80 @@ Released migrations are never edited; every schema change is a new Alembic revis
 All errors share one shape: `{ "error": { "code": "...", "message": "..." } }`. Every 401 carries
 `WWW-Authenticate: Bearer` (`Bearer error="invalid_token"` for a bad or expired access token).
 
-| Method   | Path               | Body               | Success                                                                        | Errors                                                                                                     |
-| -------- | ------------------ | ------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| `POST`   | `/v1/auth/google`  | `{ idToken }`      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }` | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
-| `POST`   | `/v1/auth/refresh` | `{ refreshToken }` | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 429                                               |
-| `POST`   | `/v1/auth/logout`  | `{ refreshToken }` | 204 (also for unknown tokens)                                                  | 422, 429                                                                                                   |
-| `GET`    | `/v1/me`           | Bearer             | 200 `{ id, email }`                                                            | 401 `unauthorized`, `invalid_token`, `account_not_found`                                                   |
-| `DELETE` | `/v1/account`      | Bearer             | 204: user, devices, events and tokens are deleted                              | 401 `reauthentication_required`, `account_not_found`, 429                                                  |
-| `GET`    | `/healthz`         |                    | 200 `{ status: "ok" }` (pings the database)                                    | 503 `database_unavailable`                                                                                 |
+| Method   | Path               | Body                                    | Success                                                                                        | Errors                                                                                                     |
+| -------- | ------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `POST`   | `/v1/auth/google`  | `{ idToken }`                           | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }`                 | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
+| `POST`   | `/v1/auth/refresh` | `{ refreshToken }`                      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 429                                               |
+| `POST`   | `/v1/auth/logout`  | `{ refreshToken }`                      | 204 (also for unknown tokens)                                                                  | 422, 429                                                                                                   |
+| `GET`    | `/v1/me`           | Bearer                                  | 200 `{ id, email }`                                                                            | 401 `unauthorized`, `invalid_token`, `account_not_found`                                                   |
+| `DELETE` | `/v1/account`      | Bearer                                  | 204: user, devices, events and tokens are deleted                                              | 401 `reauthentication_required`, `account_not_found`, 429                                                  |
+| `GET`    | `/healthz`         |                                         | 200 `{ status: "ok" }` (pings the database)                                                    | 503 `database_unavailable`                                                                                 |
+| `POST`   | `/v1/sync`         | Bearer + `{ deviceId, cursor, events }` | 200 `{ events, cursor, hasMore, accepted, duplicates, conflicts }` ([details](#progress-sync)) | 401, 409 `device_conflict`, 413, 422 `validation_error`, 429                                               |
 
 Timestamps are ISO 8601 in UTC. Request bodies over `MAX_REQUEST_BODY_BYTES` (1 MiB) get 413.
 Every protected route checks that the account still exists: a deleted user's access token is
 answered with 401 `account_not_found` until it expires.
+
+## Progress sync
+
+`POST /v1/sync` uploads the device's events and downloads the account's events after `cursor`,
+in one transaction. The server keeps an opaque log: it validates the envelope, checks payloads
+for shape and size only, and never folds them.
+
+```jsonc
+// request
+{
+  "deviceId": "6f1c2a4e-0b1d-4c2e-9f3a-5b6c7d8e9f01",
+  "cursor": null, // or the previous response's cursor
+  "events": [
+    {
+      "id": "019a3456-7890-7abc-8def-0123456789ab",
+      "occurredAt": 1793361600000,
+      "localDate": "2026-10-30",
+      "type": "item_reviewed",
+      "payload": { "v": 1, "sessionId": "s1", "itemId": "i1", "grade": 3 },
+    },
+  ],
+}
+// response: events carry the deviceId that uploaded them first
+{ "events": [], "cursor": 1234, "hasMore": false, "accepted": 1, "duplicates": 0, "conflicts": [] }
+```
+
+- **Device.** The first sync registers `deviceId` for the caller; every sync sets its
+  `last_seen_at`. An id registered to another account answers 409 `device_conflict` and stores
+  nothing: the client generates a new device id and syncs again.
+- **Idempotent uploads.** Event ids are unique per user (`ON CONFLICT (user_id, id) DO NOTHING`).
+  An id already stored with the same content (`occurredAt`, `localDate`, `type`, `payload`; the
+  device may differ) counts in `duplicates`. With different content the first version is kept and
+  the id is listed once in `conflicts`. Neither fails the batch, and repeats inside one batch
+  follow the same rule against their first copy.
+- **Download.** `events` are the account's events with `seq > cursor` (`null` counts as 0) in
+  `seq` order, at most 500, including the ones just uploaded (clients dedupe by id). `cursor` is
+  the `seq` of the last returned event, or the request's cursor when none is returned; while
+  `hasMore` is true, sync again with it.
+- **Ordering guarantee.** `seq` is taken from a sequence when a row is inserted, but the row
+  becomes visible when its transaction commits. Two concurrent appends of one user could commit
+  out of order, and a reader between the two commits would move its cursor past the lower `seq`
+  for good. Every sync therefore locks the user row (`SELECT … FOR NO KEY UPDATE`) before touching
+  devices or events: one user's appends run one at a time and commit in `seq` order, so a cursor
+  never passes an event that is still to commit. Readers see only committed rows. Other users and
+  foreign-key checks are not blocked. An account deletion and a sync wait for each other (user row
+  first, as everywhere); a sync that waited for a deletion answers 401 `account_not_found`.
+  `tests/integration/test_sync_races.py` forces these interleavings.
+
+| Field / limit     | Rule                                                                               |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| Events per upload | ≤ 500                                                                              |
+| Events per page   | ≤ 500                                                                              |
+| `id`              | UUIDv7 in canonical lowercase `8-4-4-4-12` form (clients dedupe by the exact text) |
+| `deviceId`        | UUID (any version), canonical lowercase                                            |
+| `occurredAt`      | Integer epoch ms in [2000-01-01, 2100-01-01): static, so a wrong clock still syncs |
+| `localDate`       | A real `YYYY-MM-DD` date from 2000-01-01 to 2099-12-31                             |
+| `type`            | snake_case, 1–40 characters; unknown types are stored too (forward compatible)     |
+| `payload`         | JSON object, ≤ 8 KiB as compact UTF-8 JSON, no NaN/Infinity, no U+0000             |
+| Request body      | ≤ `MAX_REQUEST_BODY_BYTES` (1 MiB), so a batch of large payloads must be split     |
+
+Unknown or missing fields are refused with 422; `cursor` is required (`null` on a first sync).
 
 ## Tokens and sessions
 
@@ -137,6 +199,7 @@ domain for both; cookies are not implemented until it is decided.
 | `POST /v1/auth/refresh` | 30 / minute | client IP |
 | `POST /v1/auth/logout`  | 30 / minute | client IP |
 | `DELETE /v1/account`    | 5 / hour    | user      |
+| `POST /v1/sync`         | 60 / minute | user      |
 
 Token buckets: the whole limit is available as a burst and refills continuously. Over the limit
 the API answers 429 `rate_limited` with `Retry-After`. Limits live in code (`RateLimits` in
@@ -166,7 +229,8 @@ src/english_learn_api/
                      infrastructure (google-auth verifier, JWT, SQLAlchemy repos, unit of work) · api
   account/           GET /v1/me, DELETE /v1/account
   health/            GET /healthz
-  sync/              tables for devices and the opaque event store (endpoints in stage 5)
+  sync/              domain (envelope, limits) · application (ports, SyncProgress)
+                     infrastructure (devices, event log, unit of work, tables) · api (POST /v1/sync)
   shared/            clock, database, error model, middlewares, rate limiter, JSON logging
 migrations/          Alembic (async engine)
 ```
@@ -176,6 +240,7 @@ migrations/          Alembic (async engine)
 | `GoogleTokenVerifier` | google-auth `verify_oauth2_token`, behind a concurrency cap | `FakeGoogleVerifier`     |
 | `AccessTokens`        | `JwtAccessTokens` (PyJWT)                                   | `FakeAccessTokens`       |
 | `UnitOfWork` + repos  | SQLAlchemy Core on PostgreSQL                               | in-memory, with rollback |
+| `SyncUnitOfWork`      | `SqlAlchemySyncUnitOfWork` (devices, event log)             | `FakeSyncUnitOfWork`     |
 | `Clock`               | `SystemClock`                                               | `FakeClock`              |
 
 - **Google verification** rejects anything that is not three base64url segments, then checks the
@@ -237,6 +302,7 @@ is needed because tokens travel in the `Authorization` header.
 - **Integration** (`tests/integration`): PostgreSQL 18 through testcontainers, migrated with
   Alembic: migrations (up, down, drift against the SQLAlchemy tables, backfill, cascades),
   repositories, sync-table integrity, every endpoint through `httpx.AsyncClient`, rate limits,
+  concurrent syncs (an append waits for the user's in-flight one; a cursor follower never skips),
   and refresh races with forced interleavings (a transaction pauses with its locks held while the
   test waits for the competitor to block on a lock): reuse revocation against a concurrent
   rotation, and refresh against account deletion. Set `TEST_DATABASE_URL` to use an existing

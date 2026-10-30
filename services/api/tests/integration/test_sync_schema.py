@@ -1,4 +1,4 @@
-"""Integrity rules of the sync tables, enforced by PostgreSQL (endpoints arrive in stage 5)."""
+"""Integrity rules of the sync tables, enforced by PostgreSQL."""
 
 import pytest
 from sqlalchemy import text

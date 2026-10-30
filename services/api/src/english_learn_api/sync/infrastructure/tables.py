@@ -1,7 +1,7 @@
 """Tables for progress sync: devices and the opaque, append-only event store.
 
 The server never folds events (the fold lives in the client domain package); it stores the
-envelope fields it needs to page and filter, and keeps the payload as JSON. Used from stage 5.
+envelope fields it needs to page and filter, and keeps the payload as JSON. Used by `POST /v1/sync`.
 """
 
 from sqlalchemy import (
