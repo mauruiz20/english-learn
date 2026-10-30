@@ -23,6 +23,10 @@ import {
   shuffleChoices,
   xpForAnswer,
   EMPTY_STREAK,
+  EMPTY_PROGRESS,
+  applyReview,
+  foldEvents,
+  uuidv7,
   type Clock,
 } from "./index";
 
@@ -84,5 +88,11 @@ describe("public API (barrel)", () => {
       { id: "g.city", headword: "city", kind: "word", forms: ["city"], senses: [{ es: "ciudad" }] },
     ]);
     expect(annotateText("City!", index).map((s) => s.entryId)).toEqual(["g.city", null]);
+  });
+
+  it("exposes the progress event log", () => {
+    expect(foldEvents([])).toEqual(EMPTY_PROGRESS);
+    expect(uuidv7(0, (n) => new Uint8Array(n))).toBe("00000000-0000-7000-8000-000000000000");
+    expect(applyReview(undefined, "v1", 5, localDate("2026-10-29")).reps).toBe(1);
   });
 });

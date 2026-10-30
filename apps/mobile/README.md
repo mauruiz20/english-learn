@@ -243,10 +243,11 @@ pnpm lint           # ESLint (eslint-config-expo); also run by `pnpm lint` at th
 pnpm typecheck      # tsc --noEmit
 pnpm test           # Jest (jest-expo + React Native Testing Library), then node --test scripts/
 pnpm generate:sounds # rewrite assets/sounds/*.wav
+pnpm generate:pwa-icons # rewrite public/icons/*.png and public/apple-touch-icon.png from the app icon
 
-pnpm export:web     # production static SPA export to dist/ (+ check it has no e2e hooks)
+pnpm export:web     # production static SPA export to dist/, then sw.js, then checks (no e2e hooks; PWA)
 pnpm serve:web      # serve dist/ on http://localhost:4173 with the required headers
-pnpm export:web:e2e # e2e export to dist-e2e/ (EXPO_PUBLIC_E2E=1)
+pnpm export:web:e2e # e2e export to dist-e2e/ (EXPO_PUBLIC_E2E=1), with its sw.js
 pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
 ```
 
@@ -272,12 +273,22 @@ the real time). It only exists in builds exported with `EXPO_PUBLIC_E2E=1`
 production export the branch and its module are dropped. `scripts/check-prod-bundle.mjs` (run
 by `export:web`, hence in CI) fails if the override ever shows up in `dist/`.
 
+`e2e/offline.spec.ts` covers the PWA on Chromium and WebKit: after one online visit it goes
+offline (`context.setOffline`), reloads `/` and opens `/lesson/a2.daily-routine.lesson-001`; the
+app renders with its SQLite data, `crossOriginIsolated` is true, fonts and sounds come from the
+worker with no failed request, and a fetch of a non-precached URL fails (proof it is offline).
+The update test sets the cookie `e2e-sw-version=2`; the test server, started with `--e2e-hooks`
+(Playwright's `webServer` only), then appends a comment to `/sw.js` for that profile only, which
+the browser treats as a new deploy. Specs that write and reload at once call
+`waitForServiceWorker` first so the first visit's precaching does not slow the write down.
+
 First-time Playwright setup: `pnpm exec playwright install chromium webkit`. Every spec runs on
 Chromium and on WebKit (Safari / iOS web). Specs import `test` from `e2e/support/test.ts`, which
 runs each test in a fresh persistent browser profile: WebKit has no OPFS in Playwright's default
 ephemeral contexts (like Safari Private Browsing), so expo-sqlite could not open the database
 there. Playwright's WebKit also shares website data between profiles, so the webkit project runs
-on one worker and each test first empties OPFS.
+on one worker and each test first empties OPFS and removes service workers and their caches (from
+`/metadata.json`, a static file: every navigation without a file now gets the SPA).
 
 ## Android builds
 
@@ -342,6 +353,58 @@ later (fonts, images, analytics) must be served with `Cross-Origin-Resource-Poli
 - The fonts are bundled assets served from the same origin, so `require-corp` does not affect
   them.
 
+## Offline web app (PWA)
+
+The web build is an installable PWA that works fully offline after the first visit.
+
+- **Service worker** (`scripts/service-worker.mjs`, hand-written, no dependency):
+  `scripts/build-service-worker.mjs` runs after every export, hashes every file in the export
+  (SHA-256, 16 hex digits; `index.html` as `/`; not `_headers`, `metadata.json` or maps) and
+  writes `sw.js` with that manifest inlined. The version is a hash of the manifest, so `sw.js`'s
+  bytes change exactly when a file does, and an identical rebuild produces an identical worker.
+  Why not Workbox: the worker must rebuild responses with COOP/COEP, verify hashes, answer byte
+  ranges and never skip waiting on its own; that is ~150 testable lines, while `workbox-build`
+  would add a large dependency tree and still need custom plugins for it.
+
+  | Request                          | Strategy                                                               |
+  | -------------------------------- | ---------------------------------------------------------------------- |
+  | Navigation (`mode === navigate`) | Network first; cached shell when offline, on a 5xx or after 4 s        |
+  | Precached file (JS, fonts, WAV…) | Cache first (content-hashed); `Range` answered with 206 from the cache |
+  | Anything else                    | Not handled (browser default)                                          |
+
+  Navigations are recognized by `request.mode`, never by the path: lesson ids contain dots.
+  Install downloads with `cache: "reload"`, checks each file's hash (a deploy racing the install
+  fails it, and the browser retries later), and copies unchanged files from the previous
+  version's cache. Activate deletes other versions' caches and claims the open pages.
+
+- **Cross-origin isolation offline**: every response the worker returns gets
+  `Cross-Origin-Embedder-Policy: require-corp` and `Cross-Origin-Opener-Policy: same-origin`
+  (stored with the cached copy and set again if missing), so expo-sqlite keeps
+  `SharedArrayBuffer` offline. The e2e offline test asserts the shell response came from the
+  worker with both headers and that `crossOriginIsolated` is true.
+- **Registration** (`src/infrastructure/pwa/`): production web exports only (`__DEV__` false,
+  e2e export included), never the dev server or native; `/sw.js` with scope `/` and
+  `updateViaCache: "none"`, after `load`. It checks for a new version when the app comes back to
+  the foreground and hourly.
+- **Updates**: a new version installs in the background and waits. `UpdateBanner`
+  (`src/features/app-update/`) shows "Hay una versión nueva" with "Actualizar" above the page (in
+  the flow, so it never covers a lesson's buttons). Only that press sends `SKIP_WAITING` and
+  reloads once the new worker takes control; nothing reloads on its own, mid-lesson or not.
+- **Manifest and HTML**: `public/manifest.webmanifest` ("English Learn" / "English", `es`,
+  standalone, paper `#F7F9FC` theme and background, 192/512 icons and a maskable 512). With
+  `web.output: "single"` the HTML is customized in `public/index.html` (created with
+  `npx expo customize public/index.html`, per the SDK 58 PWA guide): manifest link, light/dark
+  `theme-color`, `apple-touch-icon` (180 px, opaque) and the `apple-mobile-web-app-*` tags.
+  `pnpm generate:pwa-icons` derives the icons from `assets/images/icon.png` with a tiny built-in
+  PNG codec (`scripts/png.mjs`); the icon is full-bleed with its glyph inside the maskable safe
+  zone, so the 512 px icon doubles as the maskable one.
+- **Headers** (`public/_headers`): `Cache-Control: no-cache` for `/`, `/index.html`, `/sw.js` and
+  the manifest (deploys propagate); a year, immutable, for the hashed `/_expo/static/*` and
+  `/assets/*`.
+- `scripts/check-prod-bundle.mjs` (run by `export:web`) also fails if `sw.js` is missing, stale
+  or does not precache the shell, the SQLite WASM and the manifest, or if the manifest is
+  invalid or not linked.
+
 The Playwright smoke test fails if the page is not cross-origin isolated, if SQLite/WASM logs
 console errors, or if progress loaded from the database is not rendered.
 
@@ -364,6 +427,15 @@ console errors, or if progress loaded from the database is not rendered.
   lowers all of them to grade 4. Fixing it needs per-question `itemIds` in the content schema;
   until then, reading items may come back for review sooner than strictly needed.
 - **One tab at a time on web.** expo-sqlite holds the database file exclusively; a second tab
-  shows "La app ya está abierta en otra pestaña." until the first one is closed.
+  shows "La app ya está abierta en otra pestaña." until the first one is closed. With the service
+  worker running, WebKit may release the closed tab's database a moment later, so the first
+  "Reintentar" right after closing it can still show the message; pressing it again works.
+- **iOS / Safari PWA.** Installing is manual (Share → "Añadir a pantalla de inicio"); there is no
+  install prompt. The home screen app has its own storage, separate from Safari's: progress made
+  in the Safari tab does not carry over to the installed app. Safari may evict the data of a site
+  not used for weeks (ITP); the installed app is exempt from that 7-day rule. Offline e2e runs in
+  Playwright's WebKit, not on an iPhone: check Add to Home Screen and airplane mode on a device.
+- **The first visit must be online and complete its precaching** (about 3.5 MB) before the app
+  works offline; an update downloads only the files that changed.
 - **No storage in private browsing on Safari / WebKit.** Without OPFS the database cannot open
   and the app shows "No pudimos abrir tus datos."
