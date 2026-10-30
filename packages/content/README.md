@@ -9,8 +9,11 @@ Zod schemas plus corpus-wide semantic rules. CI fails on malformed content (`pnp
 src/schema/    Zod schemas and inferred types (Level, Source, Item, Exercise, Passage, Lesson, PlacementQuestion, ContentFile)
 src/validate/  Pure semantic rules; each returns { file, path, message }[] and never throws
 scripts/       validate.ts CLI: main(dir) => errors
-data/          placement/, a2/, b1/ ... many small ContentFile JSON files (never one giant file)
+data/          a1/ a2/ b1/ b2/ c1/ placement/ — many small ContentFile JSON files (never one giant file)
 ```
+
+Every file lives under `data/<a1|a2|b1|b2|c1|placement>/` (subdirectories are fine). Files at the
+root of `data/` or in any other directory are errors.
 
 ## IDs are immutable
 
@@ -19,23 +22,56 @@ placement questions use `placement.<level>.<slug>`. **Once published, an id must
 reused**: learner progress references items and exercises by id. To retire content, remove it from
 lessons but keep the id reserved; to change meaning, add a new id.
 
+## Authoring conventions
+
+- **Data order carries no meaning.** The app shuffles answer options and word-order tokens at
+  render time (the shuffle lives in `@english-learn/domain`), and grades by content, not position.
+  Still, author `answerIndex` at varied positions and scramble `tokens`, so the data never leaks
+  the answer if a client forgets to shuffle.
+- **American English** spelling throughout (`traveled`, `canceled`, `color`, `center`).
+- **Text fields** are non-empty and have no leading or trailing whitespace.
+- **`accepted` lists** (translate_write) should cover natural variants a learner may type:
+  numerals vs words (`11` / `eleven`), synonyms (`Although` / `Even though` / `Though`), and common
+  rephrasings (`we arrived on time` / `we got there on time`).
+- JSON files must not repeat a key in the same object (`JSON.parse` would silently keep the last).
+
 ## Semantic rules
 
-1. Ids are unique per entity kind across the whole corpus.
-2. References resolve: `exercise.itemIds` -> items, `reading.passageId` -> passages, `lesson.exerciseIds` -> exercises.
-3. `answerIndex` is within `options` (vocab, translation_choice, reading questions, placement).
-4. Options have no duplicates (case-insensitive, trimmed).
-5. Cloze: exactly one `___`; no answer appears in `distractors`.
-6. Word order: see the convention below.
-7. Levels: an exercise has its lesson's level; files under `data/<level>/` contain only that level
-   (`data/placement` is exempt); an id's level prefix matches its `level`.
+Text comparisons use `normalize`: Unicode NFC, curly quotes to straight quotes, lower-case, trimmed,
+inner whitespace collapsed, trailing `.,!?;:` stripped. So `"aunque"` and `"aunque."` are duplicates.
+
+Reference-free rules (run on every file that parsed, even when other files fail):
+
+1. Layout: see above; `placement/` holds only `placement` entries and level directories never hold
+   them; every entity under `<level>/` has that level; an id's level prefix matches its `level`.
+2. `answerIndex` is within `options` (vocab, translation_choice, reading questions, placement).
+3. Options have no normalized duplicates.
+4. Cloze: the sentence has exactly one underscore run and it is exactly `___`; answers and
+   distractors contain no `_`; at least 2 distractors; no normalized duplicates among answers or
+   among distractors; no answer appears among the distractors.
+5. Word order: see the convention below.
+6. No duplicates inside one entity: `lesson.exerciseIds`, `exercise.itemIds` (exact), `topics`,
+   `accepted` (normalized).
+7. Topics: `item.topics` / `passage.topics` include the topic segment of their id; a lesson's id
+   topic segment equals `lesson.topic`; every exercise a lesson lists has that topic segment.
+
+Cross-file rules (run only when every file parsed and passed the schema):
+
+8. Ids are unique per entity kind across the whole corpus.
+9. References resolve: `exercise.itemIds` -> items, `reading.passageId` -> passages,
+   `lesson.exerciseIds` -> exercises.
+10. Exercise topic: the topic segment of an exercise id is a topic of at least one item it
+    references. (Chosen over "equals the lesson topic" because it holds for exercises outside any
+    lesson too; together with rule 7 it keeps lesson, exercise and item topics aligned.)
+11. Levels: an exercise has its lesson's level; a reading exercise has its passage's level; every
+    item an exercise references is at or below the exercise level (A1 < A2 < B1 < B2 < C1).
 
 ### Word-order convention
 
 Tokens are written exactly as they appear in the sentence, punctuation attached to its word
-(`"rained."`). Splitting an accepted sentence on whitespace must give the same multiset of tokens, so
-the tokens joined by single spaces in the right order rebuild the accepted sentence exactly. At least
-one accepted sentence must satisfy this; by convention it is the first (canonical) one.
+(`"rained."`). Splitting **every** accepted sentence on whitespace must give the same multiset of
+tokens, so the tokens joined by single spaces in the right order rebuild each accepted sentence
+exactly. Tokens must not already be in the order of any accepted sentence (pre-solved puzzle).
 
 ### Placement questions
 
