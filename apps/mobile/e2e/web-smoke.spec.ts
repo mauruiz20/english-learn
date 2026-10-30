@@ -22,11 +22,11 @@ test("home loads progress from SQLite in the static web build", async ({ page })
   expect(problems).toEqual([]);
 });
 
-test("deep links fall back to the SPA and render the placeholder", async ({ page }) => {
+test("deep links fall back to the SPA and explain an unknown lesson", async ({ page }) => {
   await page.goto("/lesson/a1-01");
 
-  await expect(page.getByText("Lección a1-01")).toBeVisible();
-  await expect(page.getByText("Próximamente")).toBeVisible();
+  await expect(page.getByText("No encontramos esta lección.")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Volver al inicio" })).toBeVisible();
 });
 
 test("about page shows the Tatoeba attribution", async ({ page }) => {

@@ -4,9 +4,12 @@ export const colors = {
   text: "#1B1F24",
   textMuted: "#5B6470",
   primary: "#1F6FEB",
+  primarySoft: "#E8F0FE",
   onPrimary: "#FFFFFF",
   border: "#D8DDE3",
   danger: "#B42318",
+  success: "#067647",
+  warning: "#B54708",
 } as const;
 
 export const spacing = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 } as const;
