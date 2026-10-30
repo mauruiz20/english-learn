@@ -39,6 +39,46 @@
       "kind": "phrase",
       "term": "go to bed",
       "es": "irse a la cama"
+    },
+    {
+      "id": "a2.daily-routine.get-up",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "phrase",
+      "term": "get up",
+      "es": "levantarse"
+    },
+    {
+      "id": "a2.daily-routine.take-a-shower",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "phrase",
+      "term": "take a shower",
+      "es": "ducharse"
+    },
+    {
+      "id": "a2.daily-routine.get-dressed",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "phrase",
+      "term": "get dressed",
+      "es": "vestirse"
+    },
+    {
+      "id": "a2.daily-routine.every-morning",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "phrase",
+      "term": "every morning",
+      "es": "todas las mañanas"
+    },
+    {
+      "id": "a2.daily-routine.present-simple-routines",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "grammar",
+      "term": "present simple for routines (she gets up)",
+      "es": "presente simple para rutinas (ella se levanta)"
     }
   ],
   "passages": [
@@ -132,6 +172,121 @@
         "Usually I go to bed at eleven.",
         "Normally I go to bed at eleven."
       ]
+    },
+    {
+      "id": "a2.daily-routine.vocab-002",
+      "itemIds": ["a2.daily-routine.get-dressed"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'get dressed' mean?",
+      "options": ["desvestirse", "ducharse", "peinarse", "vestirse"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.daily-routine.cloze-002",
+      "itemIds": [
+        "a2.daily-routine.get-up",
+        "a2.daily-routine.present-simple-routines",
+        "a2.daily-routine.every-morning"
+      ],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 317082,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "She ___ up early every morning.",
+      "answers": ["gets"],
+      "distractors": ["get", "getting", "to get"],
+      "es": "Ella se levanta temprano todas las mañanas."
+    },
+    {
+      "id": "a2.daily-routine.order-002",
+      "itemIds": ["a2.daily-routine.get-up", "a2.daily-routine.every-morning"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2254311,
+        "author": "_undertoad",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["I", "get", "every", "at", "seven", "morning.", "up"],
+      "accepted": ["I get up at seven every morning."],
+      "es": "Me levanto a las siete todas las mañanas."
+    },
+    {
+      "id": "a2.daily-routine.choice-002",
+      "itemIds": ["a2.daily-routine.take-a-shower", "a2.daily-routine.usually"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2538578,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I usually take a shower before breakfast.",
+      "options": [
+        "Normalmente me ducho antes del desayuno.",
+        "Normalmente me ducho después del desayuno.",
+        "Nunca me ducho antes del desayuno.",
+        "Normalmente desayuno antes de ducharme."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.daily-routine.vocab-003",
+      "itemIds": ["a2.daily-routine.take-a-shower"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'ducharse'.",
+      "options": ["take a break", "take a shower", "take a bus", "take a seat"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.daily-routine.choice-003",
+      "itemIds": ["a2.daily-routine.have-breakfast"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 69090,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "What do you do before breakfast?",
+      "options": [
+        "¿Qué haces después del desayuno?",
+        "¿Qué comes en el desayuno?",
+        "¿Qué haces antes del desayuno?",
+        "¿Qué hiciste antes del desayuno?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.daily-routine.write-002",
+      "itemIds": ["a2.daily-routine.every-morning", "a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 387502,
+        "author": "Mouseneb",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Él lee el periódico todas las mañanas.",
+      "accepted": [
+        "He reads the newspaper every morning.",
+        "He reads the paper every morning.",
+        "Every morning he reads the newspaper.",
+        "Every morning, he reads the newspaper.",
+        "He reads the newspaper each morning."
+      ]
     }
   ],
   "lessons": [
@@ -147,6 +302,21 @@
         "a2.daily-routine.choice-001",
         "a2.daily-routine.reading-001",
         "a2.daily-routine.write-001"
+      ]
+    },
+    {
+      "id": "a2.daily-routine.lesson-002",
+      "level": "A2",
+      "topic": "daily-routine",
+      "title": "Mañanas y noches",
+      "exerciseIds": [
+        "a2.daily-routine.vocab-002",
+        "a2.daily-routine.cloze-002",
+        "a2.daily-routine.order-002",
+        "a2.daily-routine.choice-002",
+        "a2.daily-routine.vocab-003",
+        "a2.daily-routine.choice-003",
+        "a2.daily-routine.write-002"
       ]
     }
   ]
