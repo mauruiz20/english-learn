@@ -22,11 +22,13 @@ test("review: items learned in a lesson come back days later and can be reviewed
 
   // Same day: everything was just learned, nothing is due.
   await expect(page.getByText("Nada para repasar hoy")).toBeVisible();
-  const xpAfterLesson = Number((await page.getByText(/^XP: \d+$/).textContent())?.slice(4));
+  const xpAfterLesson = Number(
+    (await page.getByText(/^\d+ XP$/).textContent())?.replace(" XP", ""),
+  );
   expect(xpAfterLesson).toBeGreaterThan(0);
 
   await page.goto(`/?today=${DAY_3}`);
-  const pending = page.getByText(/^Repaso: \d+ pendientes?$/);
+  const pending = page.getByText(/^\d+ pendientes?$/);
   await expect(pending).toBeVisible();
   const pendingCount = Number((await pending.textContent())?.match(/\d+/)?.[0]);
   expect(pendingCount).toBeGreaterThan(0);
@@ -39,9 +41,13 @@ test("review: items learned in a lesson come back days later and can be reviewed
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
 
   await expect(page.getByText("Nada para repasar hoy")).toBeVisible();
-  await expect(page.getByText(`XP: ${xpAfterLesson + reviewed * 10}`)).toBeVisible();
+  await expect(
+    page.getByText(`${xpAfterLesson + reviewed * 10} XP`, { exact: true }),
+  ).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText(`XP: ${xpAfterLesson + reviewed * 10}`)).toBeVisible();
+  await expect(
+    page.getByText(`${xpAfterLesson + reviewed * 10} XP`, { exact: true }),
+  ).toBeVisible();
   expect(problems).toEqual([]);
 });

@@ -24,6 +24,15 @@ const exerciseState = {
   feedback: null,
 } as const satisfies LessonViewState;
 
+const summaryState = {
+  status: "summary",
+  correct: 6,
+  total: 6,
+  xpEarned: 80,
+  streakDays: 1,
+  toReview: [],
+} as const satisfies LessonViewState;
+
 describe("LessonView", () => {
   it("shows the lesson title, progress and the current exercise", async () => {
     await renderView(exerciseState);
@@ -46,12 +55,14 @@ describe("LessonView", () => {
   it("shows feedback below the locked exercise and continues", async () => {
     await renderView({
       ...exerciseState,
-      feedback: { verdict: "wrong", correctAnswer: "despertarse" },
+      feedback: { verdict: "wrong", correctAnswer: "despertarse", given: "dormirse" },
     });
 
-    expect(screen.getByRole("alert")).toHaveTextContent("Incorrecto");
-    expect(screen.getByText("Respuesta correcta: despertarse")).toBeOnTheScreen();
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Incorrecto. Respuesta correcta: despertarse",
+    );
     expect(screen.getByRole("radio", { name: "dormirse" })).toBeDisabled();
+    expect(screen.getByRole("radio", { name: "despertarse, respuesta correcta" })).toBeDisabled();
 
     await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));
     expect(handlers.onContinue).toHaveBeenCalledTimes(1);
@@ -74,7 +85,7 @@ describe("LessonView", () => {
   });
 
   it("shows the summary and goes home", async () => {
-    await renderView({ status: "summary", correct: 5, total: 6, xpEarned: 70, streakDays: 1 });
+    await renderView({ ...summaryState, correct: 5, xpEarned: 70, streakDays: 1 });
 
     expect(screen.getByText("¡Lección completada!")).toBeOnTheScreen();
     expect(screen.getByText("Aciertos: 5 de 6")).toBeOnTheScreen();
@@ -86,9 +97,38 @@ describe("LessonView", () => {
   });
 
   it("uses the plural for longer streaks", async () => {
-    await renderView({ status: "summary", correct: 6, total: 6, xpEarned: 80, streakDays: 3 });
+    await renderView({ ...summaryState, streakDays: 3 });
 
     expect(screen.getByText("Racha: 3 días")).toBeOnTheScreen();
+  });
+
+  it("lists the words to review, each with its Spanish meaning", async () => {
+    await renderView({
+      ...summaryState,
+      correct: 4,
+      toReview: [
+        { id: "a2.routine.breakfast", term: "have breakfast", es: "desayunar" },
+        { id: "a2.routine.usually", term: "usually", es: "normalmente" },
+      ],
+    });
+
+    expect(screen.getByRole("header", { name: "Para repasar" })).toBeOnTheScreen();
+    expect(screen.getByText("have breakfast")).toBeOnTheScreen();
+    expect(screen.getByText("desayunar")).toBeOnTheScreen();
+    expect(screen.getByText("usually")).toBeOnTheScreen();
+    expect(screen.getByText("normalmente")).toBeOnTheScreen();
+    expect(screen.queryByText(/Todo correcto/)).not.toBeOnTheScreen();
+  });
+
+  it("says so when there is nothing to review", async () => {
+    await renderView(summaryState);
+
+    expect(screen.getByRole("header", { name: "Para repasar" })).toBeOnTheScreen();
+    expect(
+      screen.getByText(
+        "Nada que corregir: todo correcto a la primera. Estas palabras volverán en tus próximos repasos.",
+      ),
+    ).toBeOnTheScreen();
   });
 
   it.each([

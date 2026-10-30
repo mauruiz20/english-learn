@@ -1,0 +1,113 @@
+import { Pressable, StyleSheet, View } from "react-native";
+import { Highlight } from "./highlight";
+import { struckText } from "./struck";
+import { Text } from "./text";
+import { radius, spacing } from "./theme";
+import { themedStyles, useTheme } from "./use-theme";
+
+/**
+ * The teacher's marking of an option once the answer is checked: the right answer is
+ * highlighted, the learner's wrong pick is struck in red pen, the rest step back.
+ */
+export type ChoiceMark = "correct" | "wrong" | "dimmed";
+
+type ChoiceRowProps = {
+  label: string;
+  checked: boolean;
+  disabled: boolean;
+  onPress: () => void;
+  mark?: ChoiceMark | undefined;
+};
+
+/** What a screen reader hears: the option, plus how it was marked. */
+function spokenLabel(label: string, checked: boolean, mark: ChoiceMark | undefined): string {
+  if (mark === "correct") {
+    return checked ? `${label}, seleccionada, respuesta correcta` : `${label}, respuesta correcta`;
+  }
+  if (mark === "wrong") return `${label}, seleccionada, incorrecta`;
+  return label;
+}
+
+/**
+ * One option of a single-choice group (a radio): ink outline, filled with ink when chosen. Once
+ * marked it is a corrected answer instead (see `ChoiceMark`).
+ */
+export function ChoiceRow({ label, checked, disabled, onPress, mark }: ChoiceRowProps) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  const filled = checked && mark === undefined;
+  return (
+    <Pressable
+      accessibilityRole="radio"
+      accessibilityLabel={spokenLabel(label, checked, mark)}
+      accessibilityState={{ checked, disabled }}
+      disabled={disabled}
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.row,
+        filled && styles.checked,
+        pressed && !checked && styles.pressed,
+        mark === undefined && disabled && !checked && styles.locked,
+        mark === "wrong" && styles.wrong,
+        mark === "dimmed" && styles.dimmed,
+      ]}
+    >
+      {mark === "correct" ? (
+        <>
+          <View style={styles.label}>
+            <Highlight animate variant="bodyStrong">
+              {label}
+            </Highlight>
+          </View>
+          <View style={styles.tick}>
+            <View style={[styles.check, { borderColor: colors.ink }]} />
+            <Text variant="smallStrong" tone="ink">
+              correcta
+            </Text>
+          </View>
+        </>
+      ) : (
+        <Text
+          variant={checked ? "bodyStrong" : "body"}
+          tone={filled ? "onInk" : mark === "wrong" ? "muted" : "text"}
+          style={[styles.label, mark === "wrong" && struckText(colors)]}
+        >
+          {label}
+        </Text>
+      )}
+    </Pressable>
+  );
+}
+
+const useStyles = themedStyles(({ colors }) =>
+  StyleSheet.create({
+    row: {
+      minHeight: 52,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.md,
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.sm + 2,
+      borderRadius: radius.md,
+      borderWidth: 1.5,
+      borderColor: colors.ink,
+    },
+    label: { flexShrink: 1, flexGrow: 1 },
+    checked: { backgroundColor: colors.ink },
+    pressed: { backgroundColor: colors.rule },
+    locked: { opacity: 0.55 },
+    // The learner's pick, circled in red pen: an outline, never a fill.
+    wrong: { borderColor: colors.redPen, borderWidth: 2 },
+    dimmed: { borderColor: colors.rule, opacity: 0.6 },
+    tick: { flexDirection: "row", alignItems: "center", gap: spacing.xs + 2 },
+    // A ballpoint check mark: the short and long strokes of an L turned 45°.
+    check: {
+      width: 7,
+      height: 13,
+      marginTop: -3,
+      borderRightWidth: 2.5,
+      borderBottomWidth: 2.5,
+      transform: [{ rotate: "45deg" }],
+    },
+  }),
+);

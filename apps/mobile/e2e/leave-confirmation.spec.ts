@@ -9,7 +9,8 @@ async function startLessonAndAnswerOne(page: Page) {
   await expect(page.getByRole("alert")).toHaveText("Correcto");
 }
 
-const headerBack = (page: Page) => page.getByRole("link", { name: "Inicio, back" });
+const headerBack = (page: Page) =>
+  page.getByRole("button", { name: "Volver a Inicio", exact: true });
 
 const dialogTitle = (page: Page) => page.getByRole("heading", { name: "¿Salir de la lección?" });
 
@@ -26,7 +27,7 @@ test("leaving a lesson by the header back button asks first", async ({ page }) =
   await page.getByRole("button", { name: "Salir", exact: true }).click();
   await expect(page.getByText("Lecciones de nivel A2")).toBeVisible();
   // Nothing was saved.
-  await expect(page.getByText("XP: 0")).toBeVisible();
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
 });
 
 test("leaving a lesson with the browser back button asks first", async ({ page }) => {
@@ -41,7 +42,7 @@ test("leaving a lesson with the browser back button asks first", async ({ page }
   await page.goBack();
   await page.getByRole("button", { name: "Salir", exact: true }).click();
   await expect(page.getByText("Lecciones de nivel A2")).toBeVisible();
-  await expect(page.getByText("XP: 0")).toBeVisible();
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
 });
 
 test("leaving before answering does not ask", async ({ page }) => {

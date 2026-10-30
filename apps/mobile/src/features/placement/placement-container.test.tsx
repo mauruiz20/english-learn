@@ -66,7 +66,7 @@ describe("PlacementContainer", () => {
 
     expect(asked).toBeGreaterThanOrEqual(15);
     expect(asked).toBeLessThanOrEqual(20);
-    expect(await screen.findByText("Tu nivel estimado: C1")).toBeOnTheScreen();
+    expect(await screen.findByLabelText("Tu nivel estimado: C1")).toBeOnTheScreen();
     expect(screen.getByText(/Te recomendamos las de nivel B1/)).toBeOnTheScreen();
     const saved = repository.snapshot();
     expect(saved.placement?.level).toBe("C1");
@@ -94,7 +94,7 @@ describe("PlacementContainer", () => {
       await fireEvent.press(screen.getByRole("radio", { name: "ok" }));
       await fireEvent.press(screen.getByRole("button", { name: "Siguiente" }));
     }
-    await screen.findByText("Tu nivel estimado: C1");
+    await screen.findByLabelText("Tu nivel estimado: C1");
     expect(mockPreventRemove.active).toBe(false);
   });
 
@@ -105,7 +105,7 @@ describe("PlacementContainer", () => {
     await fireEvent.press(screen.getByRole("button", { name: "Empezar" }));
     await answerAll("no");
 
-    expect(await screen.findByText("Tu nivel estimado: A1")).toBeOnTheScreen();
+    expect(await screen.findByLabelText("Tu nivel estimado: A1")).toBeOnTheScreen();
     expect(screen.getByText(/Te recomendamos las de nivel A2/)).toBeOnTheScreen();
   });
 
@@ -116,7 +116,7 @@ describe("PlacementContainer", () => {
 
     await fireEvent.press(screen.getByRole("button", { name: "Empezar" }));
     await answerAll("ok");
-    await screen.findByText("Tu nivel estimado: C1");
+    await screen.findByLabelText("Tu nivel estimado: C1");
 
     expect(repository.snapshot().placement?.level).toBe("C1");
   });

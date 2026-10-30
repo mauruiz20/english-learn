@@ -1,4 +1,4 @@
-import { createCorpus } from "@english-learn/content";
+import { createCorpus, type Item } from "@english-learn/content";
 import {
   initialState,
   localDate,
@@ -32,7 +32,22 @@ jest.mock("expo-router", () => ({
 }));
 
 const TODAY = localDate("2026-10-29");
-const content = createCorpus([{ exercises: allExercises, passages: [passage], lessons: [lesson] }]);
+const item = (id: string, term: string, es: string): Item => ({
+  id,
+  level: "A2",
+  topics: ["routine"],
+  kind: "word",
+  term,
+  es,
+});
+const content = createCorpus([
+  {
+    items: [item("a2.routine.wake-up", "wake up", "despertarse")],
+    exercises: allExercises,
+    passages: [passage],
+    lessons: [lesson],
+  },
+]);
 
 function renderLesson(repository: FakeProgressRepository, lessonId = lesson.id, clock?: Clock) {
   const services = {
@@ -61,7 +76,11 @@ async function playCorrectly() {
   await check();
   expect(screen.getByRole("alert")).toHaveTextContent("Correcto");
   await press("Continuar");
+  await playAfterVocab();
+}
 
+/** Answers every fixture exercise after the first (vocab) one correctly. */
+async function playAfterVocab() {
   await press("have", "radio");
   await check();
   await press("Continuar");
@@ -123,10 +142,25 @@ describe("LessonContainer", () => {
     await press("dormirse", "radio");
     await check();
 
-    expect(screen.getByRole("alert")).toHaveTextContent("Incorrecto");
-    expect(screen.getByText("Respuesta correcta: despertarse")).toBeOnTheScreen();
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Incorrecto. Respuesta correcta: despertarse",
+    );
     await press("Continuar");
     expect(screen.getByText("Ejercicio 2 de 6")).toBeOnTheScreen();
+  });
+
+  it("lists what was missed on the summary, and only that", async () => {
+    await renderLesson(createFakeRepository());
+
+    await press("dormirse", "radio");
+    await check();
+    await press("Continuar");
+    await playAfterVocab();
+
+    expect(await screen.findByText("¡Lección completada!")).toBeOnTheScreen();
+    expect(screen.getByRole("header", { name: "Para repasar" })).toBeOnTheScreen();
+    expect(screen.getByText("wake up")).toBeOnTheScreen();
+    expect(screen.getByText("despertarse")).toBeOnTheScreen();
   });
 
   it("measures response time with the clock", async () => {

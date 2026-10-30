@@ -1,11 +1,16 @@
 import { LEVELS, type Level } from "@english-learn/domain";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { ExerciseBody } from "@/features/lesson/components/exercise-body";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
+import { SessionMessage } from "@/features/lesson/components/session-screens";
 import { Button } from "@/shared/ui/button";
-import { Screen } from "@/shared/ui/screen";
-import { colors, radius, spacing } from "@/shared/ui/theme";
+import { Highlight } from "@/shared/ui/highlight";
+import { ProgressLine } from "@/shared/ui/progress-line";
+import { ScreenContainer } from "@/shared/ui/screen-container";
+import { Text } from "@/shared/ui/text";
+import { spacing } from "@/shared/ui/theme";
+import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 
 export type PlacementViewState =
   | { readonly status: "intro" }
@@ -72,32 +77,45 @@ export function PlacementView({
   onRetrySave,
   onGoToLessons,
 }: PlacementViewProps) {
+  const styles = useStyles();
+  const { colors } = useTheme();
   switch (state.status) {
     case "intro":
+      // The first page of the notebook: what this is, how long it takes, and a way in.
       return (
-        <Screen title={TITLE}>
-          <View style={styles.card}>
-            <Text style={styles.body}>
-              Responde de 15 a 20 preguntas cortas para estimar tu nivel de inglés (de A1 a C1).
-            </Text>
-            <Text style={styles.body}>
+        <ScreenContainer title={TITLE}>
+          <Text variant="title">
+            Responde de 15 a 20 preguntas cortas para estimar tu nivel de inglés (de A1 a C1).
+          </Text>
+          <View style={styles.paragraphs}>
+            <Text>
               Te llevará unos 5 minutos. El test se adapta a tus respuestas: si aciertas, las
               preguntas se vuelven más difíciles.
             </Text>
-            <Text style={styles.body}>
+            <Text>
               No verás si aciertas cada pregunta. Si no sabes una respuesta, elige la que te parezca
               más probable.
             </Text>
           </View>
           <Button label="Empezar" onPress={onStart} />
-        </Screen>
+        </ScreenContainer>
       );
     case "question":
       return (
-        <Screen title={TITLE}>
-          <Text style={styles.progress}>
-            {`Pregunta ${state.number} de hasta ${state.maxQuestions}`}
-          </Text>
+        <ScreenContainer
+          top={
+            <View style={styles.progress}>
+              <ProgressLine
+                value={state.number - 1}
+                max={state.maxQuestions}
+                label="Progreso del test"
+              />
+              <Text variant="small" tone="muted">
+                {`Pregunta ${state.number} de hasta ${state.maxQuestions}`}
+              </Text>
+            </View>
+          }
+        >
           <ExerciseBody
             key={state.prepared.exercise.id}
             prepared={state.prepared}
@@ -106,53 +124,56 @@ export function PlacementView({
             submitLabel="Siguiente"
             onSubmit={onSubmit}
           />
-        </Screen>
+        </ScreenContainer>
       );
     case "saving":
       return (
-        <Screen title={TITLE}>
-          <ActivityIndicator accessibilityLabel="Guardando tu resultado" color={colors.primary} />
-        </Screen>
+        <ScreenContainer title={TITLE}>
+          <ActivityIndicator accessibilityLabel="Guardando tu resultado" color={colors.ink} />
+        </ScreenContainer>
       );
     case "save-error":
       return (
-        <Screen title={TITLE}>
-          <Text accessibilityRole="alert" style={styles.error}>
-            No pudimos guardar tu resultado.
-          </Text>
-          <Button label="Reintentar" onPress={onRetrySave} />
-        </Screen>
+        <SessionMessage
+          title={TITLE}
+          text="No pudimos guardar tu resultado."
+          onRetry={onRetrySave}
+        />
       );
     case "result":
       return (
-        <Screen title={TITLE}>
-          <View style={styles.card}>
-            <Text style={styles.level}>{`Tu nivel estimado: ${state.level}`}</Text>
-            <Text style={styles.body}>{LEVEL_DESCRIPTIONS[state.level]}</Text>
-            <Text style={styles.body}>{lessonsNote(state)}</Text>
-            <Text style={styles.note}>
-              Es una estimación orientativa, no un certificado. Puedes repetir el test cuando
-              quieras desde el inicio.
+        <ScreenContainer title={TITLE}>
+          <View
+            accessible
+            accessibilityLabel={`Tu nivel estimado: ${state.level}`}
+            style={styles.level}
+          >
+            <Text variant="title" tone="muted">
+              Tu nivel estimado
             </Text>
+            <Highlight variant="hero" shape="swipe" style={styles.levelValue}>
+              {state.level}
+            </Highlight>
           </View>
+          <View style={styles.paragraphs}>
+            <Text variant="bodyStrong">{LEVEL_DESCRIPTIONS[state.level]}</Text>
+            <Text>{lessonsNote(state)}</Text>
+          </View>
+          <Text variant="small" tone="muted">
+            Es una estimación orientativa, no un certificado. Puedes repetir el test cuando quieras
+            desde el inicio.
+          </Text>
           <Button label="Ir a mis lecciones" onPress={onGoToLessons} />
-        </Screen>
+        </ScreenContainer>
       );
   }
 }
 
-const styles = StyleSheet.create({
-  card: {
-    gap: spacing.sm,
-    padding: spacing.md,
-    borderRadius: radius.md,
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  progress: { fontSize: 15, color: colors.textMuted },
-  level: { fontSize: 22, fontWeight: "700", color: colors.text },
-  body: { fontSize: 16, lineHeight: 22, color: colors.text },
-  note: { fontSize: 14, lineHeight: 20, color: colors.textMuted },
-  error: { fontSize: 16, color: colors.danger },
-});
+const useStyles = themedStyles(() =>
+  StyleSheet.create({
+    paragraphs: { gap: spacing.md },
+    progress: { gap: spacing.sm },
+    level: { gap: spacing.xs },
+    levelValue: { fontSize: 72, lineHeight: 80 },
+  }),
+);

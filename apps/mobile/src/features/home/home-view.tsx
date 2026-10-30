@@ -1,11 +1,23 @@
 import type { Level } from "@english-learn/domain";
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, View } from "react-native";
 import { Button } from "@/shared/ui/button";
 import { formatDays } from "@/shared/ui/format";
-import { Screen } from "@/shared/ui/screen";
-import { colors, radius, spacing } from "@/shared/ui/theme";
+import { Highlight } from "@/shared/ui/highlight";
+import { ProgressLine } from "@/shared/ui/progress-line";
+import { ScreenContainer } from "@/shared/ui/screen-container";
+import { StickyNote } from "@/shared/ui/sticky-note";
+import { Text } from "@/shared/ui/text";
+import { spacing } from "@/shared/ui/theme";
+import { themedStyles, useTheme } from "@/shared/ui/use-theme";
+import { topicLabel } from "./topic-labels";
 
-export type HomeLesson = { readonly id: string; readonly title: string; readonly done: boolean };
+export type HomeLesson = {
+  readonly id: string;
+  readonly title: string;
+  /** Topic slug (e.g. "daily-routine"); the index groups lessons by it. */
+  readonly topic: string;
+  readonly done: boolean;
+};
 
 export type HomeLessons = { readonly level: Level; readonly items: readonly HomeLesson[] };
 
@@ -31,7 +43,64 @@ type HomeViewProps = {
   onOpenAbout: () => void;
 };
 
+type Ready = Extract<HomeViewState, { status: "ready" }>;
+
+/** Consecutive lessons of the same topic, in catalog order. */
+function groupByTopic(lessons: readonly HomeLesson[]) {
+  const groups: { topic: string; lessons: HomeLesson[] }[] = [];
+  for (const lesson of lessons) {
+    const last = groups[groups.length - 1];
+    if (last !== undefined && last.topic === lesson.topic) last.lessons.push(lesson);
+    else groups.push({ topic: lesson.topic, lessons: [lesson] });
+  }
+  return groups;
+}
+
+/** The streak written large, with a highlighter swipe behind the number. */
+function Streak({ days, xp }: { days: number; xp: number }) {
+  const styles = useStyles();
+  return (
+    <View style={styles.hero}>
+      <View accessible accessibilityLabel={`Racha: ${formatDays(days)}`} style={styles.streak}>
+        {days > 0 ? (
+          <Highlight variant="hero" shape="swipe" style={styles.streakNumber}>
+            {String(days)}
+          </Highlight>
+        ) : (
+          // No streak yet: nothing to celebrate, so no highlighter.
+          <Text variant="hero" tone="text" style={styles.streakNumber}>
+            0
+          </Text>
+        )}
+        <Text variant="title" tone="ink" style={styles.streakUnit}>
+          {`${days === 1 ? "día" : "días"} de racha`}
+        </Text>
+      </View>
+      <Text tone="muted">{`${xp} XP`}</Text>
+    </View>
+  );
+}
+
+function ReviewNote({ pending, onOpenReview }: { pending: number; onOpenReview: () => void }) {
+  const styles = useStyles();
+  if (pending === 0) {
+    return <Text tone="muted">Nada para repasar hoy</Text>;
+  }
+  return (
+    <View style={styles.sticky}>
+      <StickyNote>
+        <Text variant="title">Repaso</Text>
+        <Text>{`${pending} ${pending === 1 ? "pendiente" : "pendientes"}`}</Text>
+        <View style={styles.stickyAction}>
+          <Button label="Repasar" onPress={onOpenReview} />
+        </View>
+      </StickyNote>
+    </View>
+  );
+}
+
 function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => void }) {
+  const styles = useStyles();
   return (
     <Pressable
       accessibilityRole="button"
@@ -40,131 +109,173 @@ function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => voi
       style={({ pressed }) => [styles.lesson, pressed && styles.pressed]}
     >
       <Text style={styles.lessonTitle}>{lesson.title}</Text>
-      {lesson.done && <Text style={styles.done}>Completada</Text>}
+      <View style={styles.leader} />
+      {lesson.done ? (
+        <Text variant="smallStrong" tone="success">
+          Completada
+        </Text>
+      ) : (
+        <Text tone="muted" style={styles.pendingMark}>
+          ○
+        </Text>
+      )}
     </Pressable>
   );
 }
 
-export function HomeView({
+function LessonIndex({
+  lessons,
+  onOpenLesson,
+}: {
+  lessons: HomeLessons;
+  onOpenLesson: (id: string) => void;
+}) {
+  const styles = useStyles();
+  const done = lessons.items.filter((l) => l.done).length;
+  const total = lessons.items.length;
+  const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+  return (
+    <View style={styles.index}>
+      <View style={styles.indexHeader}>
+        <Text accessibilityRole="header" variant="heading">
+          {`Lecciones de nivel ${lessons.level}`}
+        </Text>
+        {total > 0 && (
+          <>
+            <ProgressLine value={done} max={total} label={`Progreso del nivel ${lessons.level}`} />
+            <Text variant="small" tone="muted">{`${percent} % completado`}</Text>
+          </>
+        )}
+      </View>
+      {total === 0 ? (
+        <Text tone="muted">Todavía no hay lecciones para este nivel.</Text>
+      ) : (
+        groupByTopic(lessons.items).map((group, i) => (
+          <View key={`${group.topic}-${i}`} style={styles.topic}>
+            <Text variant="smallStrong" tone="muted">
+              {topicLabel(group.topic)}
+            </Text>
+            {group.lessons.map((lesson) => (
+              <LessonRow key={lesson.id} lesson={lesson} onPress={() => onOpenLesson(lesson.id)} />
+            ))}
+          </View>
+        ))
+      )}
+    </View>
+  );
+}
+
+function ReadyHome({
   state,
   onOpenLesson,
   onStartPlacement,
   onOpenReview,
   onOpenAbout,
-}: HomeViewProps) {
+}: Omit<HomeViewProps, "state"> & { state: Ready }) {
+  const styles = useStyles();
   return (
-    <Screen title="Inicio">
+    <>
+      <Streak days={state.streakDays} xp={state.xp} />
+
+      <ReviewNote pending={state.pendingReviews} onOpenReview={onOpenReview} />
+
+      {state.level === null && (
+        <View style={styles.placement}>
+          <Text variant="title">Aún no conocemos tu nivel.</Text>
+          <Text tone="muted">Un test corto, de unos 5 minutos, para elegir tus lecciones.</Text>
+          <Button
+            label="Hacer test de nivel"
+            accessibilityHint="Abre un test corto para encontrar tu nivel de inglés"
+            onPress={onStartPlacement}
+          />
+        </View>
+      )}
+
+      <LessonIndex lessons={state.lessons} onOpenLesson={onOpenLesson} />
+
+      <View style={styles.footer}>
+        {state.level !== null && (
+          <View style={styles.level}>
+            <Text tone="muted">{`Tu nivel: ${state.level}`}</Text>
+            <Button
+              label="Repetir test de nivel"
+              variant="text"
+              accessibilityHint="Vuelve a hacer el test; el nuevo resultado reemplaza al anterior"
+              onPress={onStartPlacement}
+            />
+          </View>
+        )}
+        <Button label="Acerca de" variant="text" onPress={onOpenAbout} />
+      </View>
+    </>
+  );
+}
+
+export function HomeView({ state, ...handlers }: HomeViewProps) {
+  const { colors } = useTheme();
+  return (
+    <ScreenContainer insetTop>
       {state.status === "loading" && (
-        <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.primary} />
+        <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />
       )}
 
       {state.status === "error" && (
-        <Text accessibilityRole="alert" style={styles.error}>
+        <Text accessibilityRole="alert" tone="redPen">
           No pudimos cargar tu progreso.
         </Text>
       )}
 
-      {state.status === "ready" && (
-        <>
-          <View style={styles.stats}>
-            <View style={styles.card}>
-              <Text style={styles.stat}>{`Racha: ${formatDays(state.streakDays)}`}</Text>
-            </View>
-            <View style={styles.card}>
-              <Text style={styles.stat}>{`XP: ${state.xp}`}</Text>
-            </View>
-          </View>
-
-          <View style={styles.card}>
-            {state.level === null ? (
-              <>
-                <Text style={styles.body}>Aún no conocemos tu nivel.</Text>
-                <Button
-                  label="Hacer test de nivel"
-                  accessibilityHint="Abre un test corto para encontrar tu nivel de inglés"
-                  onPress={onStartPlacement}
-                />
-              </>
-            ) : (
-              <>
-                <Text style={styles.stat}>{`Tu nivel: ${state.level}`}</Text>
-                <Button
-                  label="Repetir test de nivel"
-                  variant="secondary"
-                  accessibilityHint="Vuelve a hacer el test; el nuevo resultado reemplaza al anterior"
-                  onPress={onStartPlacement}
-                />
-              </>
-            )}
-          </View>
-
-          <View style={styles.card}>
-            {state.pendingReviews > 0 ? (
-              <>
-                <Text style={styles.stat}>
-                  {`Repaso: ${state.pendingReviews} ${state.pendingReviews === 1 ? "pendiente" : "pendientes"}`}
-                </Text>
-                <Button label="Repasar" onPress={onOpenReview} />
-              </>
-            ) : (
-              <Text style={styles.body}>Nada para repasar hoy</Text>
-            )}
-          </View>
-
-          <View style={styles.section}>
-            <Text accessibilityRole="header" style={styles.heading}>
-              {`Lecciones de nivel ${state.lessons.level}`}
-            </Text>
-            {state.lessons.items.length === 0 ? (
-              <Text style={styles.body}>Todavía no hay lecciones para este nivel.</Text>
-            ) : (
-              state.lessons.items.map((lesson) => (
-                <LessonRow
-                  key={lesson.id}
-                  lesson={lesson}
-                  onPress={() => onOpenLesson(lesson.id)}
-                />
-              ))
-            )}
-          </View>
-
-          <Button label="Acerca de" variant="secondary" onPress={onOpenAbout} />
-        </>
-      )}
-    </Screen>
+      {state.status === "ready" && <ReadyHome state={state} {...handlers} />}
+    </ScreenContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  stats: { flexDirection: "row", gap: spacing.md },
-  card: {
-    flexGrow: 1,
-    gap: spacing.md,
-    padding: spacing.md,
-    borderRadius: radius.md,
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  stat: { fontSize: 18, fontWeight: "600", color: colors.text },
-  body: { fontSize: 16, color: colors.textMuted },
-  error: { fontSize: 16, color: colors.danger },
-  section: { gap: spacing.sm },
-  heading: { fontSize: 20, fontWeight: "700", color: colors.text },
-  lesson: {
-    minHeight: 56,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: spacing.md,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.md,
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  pressed: { opacity: 0.8 },
-  lessonTitle: { flexShrink: 1, fontSize: 17, fontWeight: "600", color: colors.text },
-  done: { fontSize: 15, fontWeight: "600", color: colors.success },
-});
+const useStyles = themedStyles(({ colors }) =>
+  StyleSheet.create({
+    hero: { gap: spacing.xs },
+    streak: { flexDirection: "row", alignItems: "flex-end", flexWrap: "wrap", gap: spacing.md },
+    streakNumber: { fontSize: 64, lineHeight: 70 },
+    // Sits on the number's baseline.
+    streakUnit: { flexShrink: 1, paddingBottom: 10 },
+    sticky: { paddingHorizontal: spacing.xs, alignItems: "flex-start" },
+    stickyAction: { marginTop: spacing.sm, alignSelf: "flex-start" },
+    placement: {
+      gap: spacing.sm,
+      paddingVertical: spacing.md,
+      borderTopWidth: 1,
+      borderBottomWidth: 1,
+      borderColor: colors.rule,
+    },
+    index: { gap: spacing.lg },
+    indexHeader: { gap: spacing.sm },
+    topic: { gap: 0 },
+    lesson: {
+      minHeight: 48,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.sm,
+      paddingVertical: spacing.xs,
+    },
+    pressed: { backgroundColor: colors.rule },
+    lessonTitle: { flexShrink: 1 },
+    // Dotted leader between the title and its status, as in a table of contents.
+    leader: {
+      flex: 1,
+      minWidth: spacing.md,
+      alignSelf: "center",
+      marginTop: 8,
+      borderBottomWidth: 2,
+      borderStyle: "dotted",
+      borderColor: colors.textMuted,
+      opacity: 0.5,
+    },
+    pendingMark: { width: 24, textAlign: "center" },
+    footer: {
+      marginTop: spacing.md,
+      paddingTop: spacing.sm,
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderTopColor: colors.rule,
+    },
+    level: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", columnGap: spacing.md },
+  }),
+);

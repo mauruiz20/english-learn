@@ -1,6 +1,8 @@
-import { Modal, StyleSheet, Text, View } from "react-native";
+import { Modal, StyleSheet, View } from "react-native";
 import { Button } from "./button";
-import { colors, radius, spacing } from "./theme";
+import { Text } from "./text";
+import { radius, spacing } from "./theme";
+import { themedStyles } from "./use-theme";
 
 type ConfirmDialogProps = {
   visible: boolean;
@@ -22,6 +24,7 @@ export function ConfirmDialog({
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
+  const styles = useStyles();
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
       <View style={styles.backdrop}>
@@ -31,34 +34,39 @@ export function ConfirmDialog({
           accessibilityViewIsModal
           style={styles.dialog}
         >
-          <Text accessibilityRole="header" style={styles.title}>
+          <Text accessibilityRole="header" variant="heading">
             {title}
           </Text>
-          <Text style={styles.message}>{message}</Text>
-          <Button label={cancelLabel} onPress={onCancel} />
-          <Button label={confirmLabel} variant="secondary" onPress={onConfirm} />
+          <Text>{message}</Text>
+          <View style={styles.actions}>
+            <Button label={cancelLabel} onPress={onCancel} />
+            <Button label={confirmLabel} variant="secondary" onPress={onConfirm} />
+          </View>
         </View>
       </View>
     </Modal>
   );
 }
 
-const styles = StyleSheet.create({
-  backdrop: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: spacing.md,
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
-  },
-  dialog: {
-    width: "100%",
-    maxWidth: 420,
-    gap: spacing.md,
-    padding: spacing.lg,
-    borderRadius: radius.md,
-    backgroundColor: colors.surface,
-  },
-  title: { fontSize: 20, fontWeight: "700", color: colors.text },
-  message: { fontSize: 16, color: colors.text },
-});
+const useStyles = themedStyles(({ colors }) =>
+  StyleSheet.create({
+    backdrop: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      padding: spacing.md,
+      backgroundColor: colors.scrim,
+    },
+    dialog: {
+      width: "100%",
+      maxWidth: 420,
+      gap: spacing.md,
+      padding: spacing.lg,
+      borderRadius: radius.md,
+      backgroundColor: colors.sheet,
+      borderWidth: 1,
+      borderColor: colors.rule,
+    },
+    actions: { gap: spacing.sm, marginTop: spacing.sm },
+  }),
+);

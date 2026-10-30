@@ -10,12 +10,12 @@ test("home loads progress from SQLite in the static web build", async ({ page })
   await page.goto("/");
 
   // Rendered from the repository: proves the database opened and migrations ran.
-  await expect(page.getByText("Racha: 0 días")).toBeVisible();
-  await expect(page.getByText("XP: 0")).toBeVisible();
+  await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Hacer test de nivel" })).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("Racha: 0 días")).toBeVisible();
+  await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
 
   expect(await page.evaluate(() => self.crossOriginIsolated)).toBe(true);
   expect(await page.evaluate(() => typeof SharedArrayBuffer)).toBe("function");

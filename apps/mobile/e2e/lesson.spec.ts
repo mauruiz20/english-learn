@@ -18,7 +18,7 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
   page.on("pageerror", (error) => problems.push(error.message));
 
   await page.goto("/");
-  await expect(page.getByText("Racha: 0 días")).toBeVisible();
+  await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
   await expect(page.getByText("Lecciones de nivel A2")).toBeVisible();
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
 
@@ -45,8 +45,9 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
   // A typo is "almost": still progresses, with the correct answer shown.
   await page.getByLabel("Tu traducción en inglés").fill("I usualy go to bed at eleven");
   await page.getByRole("button", { name: "Comprobar", exact: true }).click();
-  await expect(page.getByRole("alert")).toHaveText("¡Casi!");
-  await expect(page.getByText("Respuesta correcta: I usually go to bed at eleven.")).toBeVisible();
+  await expect(page.getByRole("alert")).toHaveText(
+    "Casi. Respuesta correcta: I usually go to bed at eleven.",
+  );
   await page.getByRole("button", { name: "Continuar", exact: true }).click();
 
   // 5 correct × 10 + 5 (almost) + 20 bonus (5/6 ≥ 80 %).
@@ -56,13 +57,13 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
   await expect(page.getByText("Racha: 1 día")).toBeVisible();
 
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
-  await expect(page.getByText("Racha: 1 día")).toBeVisible();
-  await expect(page.getByText("XP: 75")).toBeVisible();
+  await expect(page.getByLabel("Racha: 1 día")).toBeVisible();
+  await expect(page.getByText("75 XP", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("Racha: 1 día")).toBeVisible();
-  await expect(page.getByText("XP: 75")).toBeVisible();
+  await expect(page.getByLabel("Racha: 1 día")).toBeVisible();
+  await expect(page.getByText("75 XP", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
 
   expect(problems).toEqual([]);

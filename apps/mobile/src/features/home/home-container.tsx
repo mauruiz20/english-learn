@@ -21,6 +21,7 @@ function homeLessons(
     items: selection.lessons.map((lesson) => ({
       id: lesson.id,
       title: lesson.title,
+      topic: lesson.topic,
       done: isLessonDone(lesson, content.exercisesById, reviewed),
     })),
   };

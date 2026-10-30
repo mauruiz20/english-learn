@@ -1,14 +1,20 @@
 import type { Passage } from "@english-learn/content";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import { Button } from "@/shared/ui/button";
-import { formatDays } from "@/shared/ui/format";
-import { Screen } from "@/shared/ui/screen";
-import { colors, radius, spacing } from "@/shared/ui/theme";
+import { ScreenContainer } from "@/shared/ui/screen-container";
 import { AnswerFeedback } from "./components/answer-feedback";
 import { ExerciseBody } from "./components/exercise-body";
+import {
+  SavingScreen,
+  SessionMessage,
+  SessionProgress,
+  SessionSummary,
+} from "./components/session-screens";
 import type { GradeResult } from "./model/grade-exercise";
+import type { ReviewNote } from "./model/items-to-review";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
+
+/** Feedback on the current answer, with the learner's answer as text. */
+export type ShownFeedback = GradeResult & { readonly given: string };
 
 export type LessonViewState =
   | { readonly status: "not-found" }
@@ -22,7 +28,7 @@ export type LessonViewState =
       /** The passage of a reading exercise. */
       readonly passage: Passage | undefined;
       /** Set once the learner answered the current exercise. */
-      readonly feedback: GradeResult | null;
+      readonly feedback: ShownFeedback | null;
     }
   | { readonly status: "saving" }
   | { readonly status: "save-error" }
@@ -32,6 +38,8 @@ export type LessonViewState =
       readonly total: number;
       readonly xpEarned: number;
       readonly streakDays: number;
+      /** Items missed in the session, to look at again. */
+      readonly toReview: readonly ReviewNote[];
     };
 
 type LessonViewProps = {
@@ -41,30 +49,6 @@ type LessonViewProps = {
   onGoHome: () => void;
   onRetrySave: () => void;
 };
-
-function Message({
-  text,
-  onRetry,
-  onGoHome,
-}: {
-  text: string;
-  onRetry?: () => void;
-  onGoHome: () => void;
-}) {
-  return (
-    <>
-      <Text accessibilityRole="alert" style={styles.error}>
-        {text}
-      </Text>
-      {onRetry !== undefined && <Button label="Reintentar" onPress={onRetry} />}
-      <Button
-        label="Volver al inicio"
-        variant={onRetry === undefined ? "primary" : "secondary"}
-        onPress={onGoHome}
-      />
-    </>
-  );
-}
 
 export function LessonView({
   state,
@@ -76,70 +60,49 @@ export function LessonView({
   switch (state.status) {
     case "not-found":
       return (
-        <Screen title="Lección">
-          <Message text="No encontramos esta lección." onGoHome={onGoHome} />
-        </Screen>
+        <SessionMessage title="Lección" text="No encontramos esta lección." onGoHome={onGoHome} />
       );
     case "save-error":
       return (
-        <Screen title="Lección">
-          <Message
-            text="No pudimos guardar tu progreso."
-            onRetry={onRetrySave}
-            onGoHome={onGoHome}
-          />
-        </Screen>
+        <SessionMessage
+          title="Lección"
+          text="No pudimos guardar tu progreso."
+          onRetry={onRetrySave}
+          onGoHome={onGoHome}
+        />
       );
     case "saving":
-      return (
-        <Screen title="Lección">
-          <ActivityIndicator accessibilityLabel="Guardando tu progreso" color={colors.primary} />
-        </Screen>
-      );
+      return <SavingScreen title="Lección" label="Guardando tu progreso" />;
     case "summary":
-      return (
-        <Screen title="¡Lección completada!">
-          <View style={styles.card}>
-            <Text style={styles.stat}>{`Aciertos: ${state.correct} de ${state.total}`}</Text>
-            <Text style={styles.stat}>{`XP ganada: ${state.xpEarned}`}</Text>
-            <Text style={styles.stat}>{`Racha: ${formatDays(state.streakDays)}`}</Text>
-          </View>
-          <Button label="Volver al inicio" onPress={onGoHome} />
-        </Screen>
-      );
+      return <SessionSummary title="¡Lección completada!" {...state} onGoHome={onGoHome} />;
     case "exercise":
       return (
-        <Screen title={state.title}>
-          <Text style={styles.progress}>{`Ejercicio ${state.position} de ${state.total}`}</Text>
+        <ScreenContainer
+          top={
+            <SessionProgress position={state.position} total={state.total} title={state.title} />
+          }
+          {...(state.feedback === null
+            ? {}
+            : {
+                footer: (
+                  <AnswerFeedback
+                    verdict={state.feedback.verdict}
+                    given={state.feedback.given}
+                    correctAnswer={state.feedback.correctAnswer}
+                    onContinue={onContinue}
+                  />
+                ),
+              })}
+        >
           <ExerciseBody
             key={state.prepared.exercise.id}
             prepared={state.prepared}
             passage={state.passage}
             disabled={state.feedback !== null}
+            reveal={state.feedback !== null}
             onSubmit={onSubmit}
           />
-          {state.feedback !== null && (
-            <AnswerFeedback
-              verdict={state.feedback.verdict}
-              correctAnswer={state.feedback.correctAnswer}
-              onContinue={onContinue}
-            />
-          )}
-        </Screen>
+        </ScreenContainer>
       );
   }
 }
-
-const styles = StyleSheet.create({
-  progress: { fontSize: 15, color: colors.textMuted },
-  card: {
-    gap: spacing.sm,
-    padding: spacing.md,
-    borderRadius: radius.md,
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  stat: { fontSize: 18, fontWeight: "600", color: colors.text },
-  error: { fontSize: 16, color: colors.danger },
-});

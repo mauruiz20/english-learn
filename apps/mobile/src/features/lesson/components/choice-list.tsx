@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { colors, radius, spacing } from "@/shared/ui/theme";
+import { StyleSheet, View } from "react-native";
+import { ChoiceRow, type ChoiceMark } from "@/shared/ui/choice-row";
+import { spacing } from "@/shared/ui/theme";
 
 type ChoiceListProps = {
   /** Accessible name of the group (e.g. the question). */
@@ -8,50 +9,45 @@ type ChoiceListProps = {
   selected: string | null;
   disabled: boolean;
   onSelect: (option: string) => void;
+  /** Once the answer is checked: the options that were right. Marks every option. */
+  correctOptions?: readonly string[] | undefined;
 };
 
-/** Single-choice list of large radio buttons. */
-export function ChoiceList({ label, options, selected, disabled, onSelect }: ChoiceListProps) {
+function markOf(
+  option: string,
+  selected: string | null,
+  correctOptions: readonly string[] | undefined,
+): ChoiceMark | undefined {
+  if (correctOptions === undefined) return undefined;
+  if (correctOptions.includes(option)) return "correct";
+  return option === selected ? "wrong" : "dimmed";
+}
+
+/** Single-choice list of large radio rows; marked by the teacher once checked. */
+export function ChoiceList({
+  label,
+  options,
+  selected,
+  disabled,
+  onSelect,
+  correctOptions,
+}: ChoiceListProps) {
   return (
     <View accessibilityRole="radiogroup" accessibilityLabel={label} style={styles.list}>
-      {options.map((option) => {
-        const checked = option === selected;
-        return (
-          <Pressable
-            key={option}
-            accessibilityRole="radio"
-            accessibilityLabel={option}
-            accessibilityState={{ checked, disabled }}
-            disabled={disabled}
-            onPress={() => onSelect(option)}
-            style={({ pressed }) => [
-              styles.option,
-              checked && styles.checked,
-              pressed && styles.pressed,
-            ]}
-          >
-            <Text style={[styles.label, checked && styles.checkedLabel]}>{option}</Text>
-          </Pressable>
-        );
-      })}
+      {options.map((option) => (
+        <ChoiceRow
+          key={option}
+          label={option}
+          checked={option === selected}
+          disabled={disabled || correctOptions !== undefined}
+          mark={markOf(option, selected, correctOptions)}
+          onPress={() => onSelect(option)}
+        />
+      ))}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   list: { gap: spacing.sm },
-  option: {
-    minHeight: 52,
-    justifyContent: "center",
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.md,
-    borderWidth: 2,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-  },
-  checked: { borderColor: colors.primary, backgroundColor: colors.primarySoft },
-  pressed: { opacity: 0.8 },
-  label: { fontSize: 17, color: colors.text },
-  checkedLabel: { fontWeight: "600" },
 });
