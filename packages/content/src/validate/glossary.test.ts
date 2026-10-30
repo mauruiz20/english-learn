@@ -172,6 +172,13 @@ describe("glossaryTexts", () => {
     ]);
   });
 
+  it("skips the quoted Spanish term of a 'Choose the English for' prompt", () => {
+    const [prompt] = glossaryTexts([
+      file({ exercises: [fx.vocab({ prompt: "Choose the English for 'sala de estar'." })] }),
+    ]);
+    expect(prompt?.text).toBe("Choose the English for");
+  });
+
   it("joins word-order tokens with spaces", () => {
     const [tokens] = glossaryTexts([file({ exercises: [fx.wordOrder()] })]);
     expect(tokens?.text).toBe("although we rained. went it out");

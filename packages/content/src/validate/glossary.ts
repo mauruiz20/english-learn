@@ -134,13 +134,16 @@ export interface GlossaryText {
   readonly text: string;
 }
 
+/** `Choose the English for '<Spanish>'.`: only the English lead-in is checked. */
+const SPANISH_TERM_PROMPT = /^(Choose the English for) '.+'\.$/;
+
 function exerciseTexts(exercise: AnyExercise, at: string): [string, string][] {
   const list = (base: string, values: readonly string[]): [string, string][] =>
     values.map((v, i) => [`${at}.${base}[${i}]`, v]);
   switch (exercise.type) {
     case "vocab":
-      // Options are Spanish.
-      return [[`${at}.prompt`, exercise.prompt]];
+      // Options are Spanish, and so is the quoted term of a "Choose the English for" prompt.
+      return [[`${at}.prompt`, exercise.prompt.replace(SPANISH_TERM_PROMPT, "$1")]];
     case "cloze":
       return [
         [`${at}.sentence`, exercise.sentence],
