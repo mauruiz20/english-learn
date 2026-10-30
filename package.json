@@ -12,9 +12,11 @@
     "test": "pnpm -r test",
     "validate:content": "pnpm --filter @english-learn/content validate",
     "corpus:check": "pnpm --filter @english-learn/content corpus:check",
+    "api-client:generate": "pnpm --filter @english-learn/api-client generate",
+    "api-client:check": "pnpm --filter @english-learn/api-client generate:check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm validate:content && pnpm corpus:check"
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm validate:content && pnpm corpus:check && pnpm api-client:check"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

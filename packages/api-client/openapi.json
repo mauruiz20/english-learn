@@ -1,0 +1,534 @@
+{
+  "components": {
+    "schemas": {
+      "EventRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "UUIDv7, lowercase, unique per user",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "title": "Id",
+            "type": "string"
+          },
+          "localDate": {
+            "description": "YYYY-MM-DD",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "title": "Localdate",
+            "type": "string"
+          },
+          "occurredAt": {
+            "description": "Epoch ms",
+            "exclusiveMaximum": 4102444800000.0,
+            "minimum": 946684800000.0,
+            "title": "Occurredat",
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Opaque JSON object, at most 8 KiB",
+            "title": "Payload",
+            "type": "object"
+          },
+          "type": {
+            "description": "Unknown types are stored as well",
+            "maxLength": 40,
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": ["id", "occurredAt", "localDate", "type", "payload"],
+        "title": "EventRequest",
+        "type": "object"
+      },
+      "EventResponse": {
+        "properties": {
+          "deviceId": {
+            "description": "The device that uploaded it first",
+            "format": "uuid",
+            "title": "Deviceid",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "localDate": {
+            "format": "date",
+            "title": "Localdate",
+            "type": "string"
+          },
+          "occurredAt": {
+            "title": "Occurredat",
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "title": "Payload",
+            "type": "object"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": ["id", "deviceId", "occurredAt", "localDate", "type", "payload"],
+        "title": "EventResponse",
+        "type": "object"
+      },
+      "GoogleSignInRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "idToken": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "title": "Idtoken",
+            "type": "string"
+          }
+        },
+        "required": ["idToken"],
+        "title": "GoogleSignInRequest",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "RefreshTokenRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "refreshToken": {
+            "maxLength": 256,
+            "minLength": 1,
+            "title": "Refreshtoken",
+            "type": "string"
+          }
+        },
+        "required": ["refreshToken"],
+        "title": "RefreshTokenRequest",
+        "type": "object"
+      },
+      "SignInResponse": {
+        "properties": {
+          "accessToken": {
+            "title": "Accesstoken",
+            "type": "string"
+          },
+          "accessTokenExpiresAt": {
+            "format": "date-time",
+            "title": "Accesstokenexpiresat",
+            "type": "string"
+          },
+          "refreshToken": {
+            "title": "Refreshtoken",
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserResponse"
+          }
+        },
+        "required": ["accessToken", "accessTokenExpiresAt", "refreshToken", "user"],
+        "title": "SignInResponse",
+        "type": "object"
+      },
+      "SyncRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "cursor": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "`cursor` from the previous response; null on a first sync",
+            "title": "Cursor"
+          },
+          "deviceId": {
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "title": "Deviceid",
+            "type": "string"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EventRequest"
+            },
+            "maxItems": 500,
+            "title": "Events",
+            "type": "array"
+          }
+        },
+        "required": ["deviceId", "cursor", "events"],
+        "title": "SyncRequest",
+        "type": "object"
+      },
+      "SyncResponse": {
+        "properties": {
+          "accepted": {
+            "title": "Accepted",
+            "type": "integer"
+          },
+          "conflicts": {
+            "description": "Ids already stored with other content; first one kept",
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "title": "Conflicts",
+            "type": "array"
+          },
+          "cursor": {
+            "description": "Send back as `cursor` next time",
+            "title": "Cursor",
+            "type": "integer"
+          },
+          "duplicates": {
+            "title": "Duplicates",
+            "type": "integer"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EventResponse"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "hasMore": {
+            "description": "More events after `cursor`: sync again",
+            "title": "Hasmore",
+            "type": "boolean"
+          }
+        },
+        "required": ["events", "cursor", "hasMore", "accepted", "duplicates", "conflicts"],
+        "title": "SyncResponse",
+        "type": "object"
+      },
+      "TokensResponse": {
+        "properties": {
+          "accessToken": {
+            "title": "Accesstoken",
+            "type": "string"
+          },
+          "accessTokenExpiresAt": {
+            "format": "date-time",
+            "title": "Accesstokenexpiresat",
+            "type": "string"
+          },
+          "refreshToken": {
+            "title": "Refreshtoken",
+            "type": "string"
+          }
+        },
+        "required": ["accessToken", "accessTokenExpiresAt", "refreshToken"],
+        "title": "TokensResponse",
+        "type": "object"
+      },
+      "UserResponse": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": ["id", "email"],
+        "title": "UserResponse",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "description": "Access token from /v1/auth/*",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "title": "English Learn API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/healthz": {
+      "get": {
+        "operationId": "healthz_healthz_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Healthz Healthz Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Healthz",
+        "tags": ["health"]
+      }
+    },
+    "/v1/account": {
+      "delete": {
+        "description": "Permanently delete the account and all synced progress.\n\nNeeds an access token from a Google sign-in less than 5 minutes old (401\n`reauthentication_required` otherwise): the client signs in again first.",
+        "operationId": "delete_my_account_v1_account_delete",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Delete My Account",
+        "tags": ["account"]
+      }
+    },
+    "/v1/auth/google": {
+      "post": {
+        "description": "Exchange a Google ID token (from Google Identity Services) for API tokens.",
+        "operationId": "sign_in_with_google_v1_auth_google_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleSignInRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignInResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Sign In With Google",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "description": "Revoke the refresh token and every token rotated from the same sign-in.",
+        "operationId": "log_out_v1_auth_logout_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Log Out",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/auth/refresh": {
+      "post": {
+        "description": "Rotate the refresh token. Each refresh token works once.",
+        "operationId": "refresh_session_v1_auth_refresh_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokensResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Refresh Session",
+        "tags": ["auth"]
+      }
+    },
+    "/v1/me": {
+      "get": {
+        "operationId": "me_v1_me_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Me",
+        "tags": ["account"]
+      }
+    },
+    "/v1/sync": {
+      "post": {
+        "description": "Upload this device's events and download the account's events after `cursor`.\n\nUploads are idempotent by event id. Keep syncing with the returned `cursor` while\n`hasMore` is true. The returned events include the ones just uploaded.",
+        "operationId": "sync_progress_v1_sync_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyncRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyncResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "409": {
+            "description": "`device_conflict`: use a new device id"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Sync Progress",
+        "tags": ["sync"]
+      }
+    }
+  }
+}

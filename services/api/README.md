@@ -32,6 +32,10 @@ uv run uvicorn english_learn_api.main:app_from_env --factory --reload   # http:/
 
 Released migrations are never edited; every schema change is a new Alembic revision.
 
+The typed TypeScript client is generated from this API's schema into
+[`packages/api-client`](../../packages/api-client/README.md): after changing a route or a body,
+run `pnpm api-client:generate` from the repository root (CI fails while it is stale).
+
 ## Endpoints
 
 All errors share one shape: `{ "error": { "code": "...", "message": "..." } }`. Every 401 carries
