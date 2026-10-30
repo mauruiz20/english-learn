@@ -2,7 +2,7 @@
   "expo": {
     "name": "English Learn",
     "slug": "english-learn",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "englishlearn",
@@ -11,6 +11,14 @@
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.mruizdev.englishlearn",
+      "versionCode": 1,
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.VIBRATE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
