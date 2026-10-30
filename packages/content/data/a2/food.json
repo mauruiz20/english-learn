@@ -94,7 +94,7 @@
       "topics": ["food"],
       "kind": "grammar",
       "term": "some / any",
-      "es": "algo de, unos (afirmativas) / nada de, ningún (negativas y preguntas)"
+      "es": "algo de, unos (afirmativas) / nada de, ningún (negativas); algo de, alguno (preguntas)"
     }
   ],
   "passages": [
@@ -237,7 +237,7 @@
       "sentence": "There isn't ___ milk in the fridge.",
       "answers": ["any"],
       "distractors": ["some", "many", "a"],
-      "es": "No hay nada de leche en el refrigerador."
+      "es": "No hay leche en el refrigerador."
     },
     {
       "id": "a2.food.cloze-003",
