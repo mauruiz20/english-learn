@@ -1,0 +1,363 @@
+{
+  "items": [
+    {
+      "id": "b1.relationships.get-along",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "phrase",
+      "term": "get along (with)",
+      "es": "llevarse bien (con)"
+    },
+    {
+      "id": "b1.relationships.break-up",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "phrase",
+      "term": "break up (with)",
+      "es": "terminar (una relación con alguien)"
+    },
+    {
+      "id": "b1.relationships.falling-out",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "phrase",
+      "term": "have a falling-out (with)",
+      "es": "pelearse, distanciarse (con)"
+    },
+    {
+      "id": "b1.relationships.make-up",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "phrase",
+      "term": "make up",
+      "es": "reconciliarse, hacer las paces"
+    },
+    {
+      "id": "b1.relationships.trust",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "word",
+      "term": "trust",
+      "es": "confiar en / confianza"
+    },
+    {
+      "id": "b1.relationships.argue",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "word",
+      "term": "argue",
+      "es": "discutir, pelear (verbalmente)"
+    },
+    {
+      "id": "b1.relationships.fall-in-love",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "phrase",
+      "term": "fall in love (with)",
+      "es": "enamorarse (de)"
+    },
+    {
+      "id": "b1.relationships.get-married",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "phrase",
+      "term": "get married",
+      "es": "casarse"
+    },
+    {
+      "id": "b1.relationships.each-other",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "phrase",
+      "term": "each other",
+      "es": "el uno al otro, mutuamente"
+    },
+    {
+      "id": "b1.relationships.support",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "word",
+      "term": "support",
+      "es": "apoyar / apoyo"
+    },
+    {
+      "id": "b1.relationships.jealous",
+      "level": "B1",
+      "topics": ["relationships"],
+      "kind": "word",
+      "term": "jealous",
+      "es": "celoso, envidioso"
+    },
+    {
+      "id": "b1.relationships.if-i-were-you",
+      "level": "B1",
+      "topics": ["relationships", "grammar"],
+      "kind": "grammar",
+      "term": "If I were you, I would…",
+      "es": "Si yo fuera tú, … (segundo condicional para dar consejos)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.relationships.friends-again",
+      "level": "B1",
+      "topics": ["relationships"],
+      "title": "Best friends again",
+      "text": "Ana and Lucía have known each other since they were six. They used to do everything together, and everyone thought they would always be best friends. Then, in their last year of high school, they had a falling-out over a boy. Ana started dating him, and Lucía was jealous because she had liked him first. The two girls argued in front of the whole class, and after that they didn't speak for months. Ana broke up with the boy a few weeks later, but she was too proud to call Lucía. Finally, Ana's mother gave her some advice. \"If I were you, I would apologize,\" she said. \"Good friends are hard to find.\" Ana wrote Lucía a long letter. Lucía read it twice and called her that same night. They made up and talked for three hours. Today they still get along really well, and Lucía will be a bridesmaid when Ana gets married next spring.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.relationships.vocab-001",
+      "itemIds": ["b1.relationships.argue"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'argue' mean in 'My parents argue a lot'?",
+      "options": ["ponerse de acuerdo", "saludarse", "discutir", "abrazarse"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.relationships.cloze-001",
+      "itemIds": ["b1.relationships.get-along"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 69205,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "Do you get along ___ your boss?",
+      "answers": ["with"],
+      "distractors": ["to", "for", "at"],
+      "es": "¿Te llevas bien con tu jefe?"
+    },
+    {
+      "id": "b1.relationships.order-001",
+      "itemIds": ["b1.relationships.break-up"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2905872,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["evening.", "I", "up", "her", "broke", "yesterday", "with"],
+      "accepted": ["I broke up with her yesterday evening."],
+      "es": "Terminé con ella ayer en la noche."
+    },
+    {
+      "id": "b1.relationships.choice-001",
+      "itemIds": ["b1.relationships.fall-in-love"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 293837,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "He fell in love with her at first sight.",
+      "options": [
+        "Se enamoró de ella a primera vista.",
+        "Ella se enamoró de él a primera vista.",
+        "La conoció a primera vista.",
+        "Se enamoró de ella poco a poco."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.relationships.reading-001",
+      "itemIds": [
+        "b1.relationships.falling-out",
+        "b1.relationships.make-up",
+        "b1.relationships.jealous"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.relationships.friends-again",
+      "questions": [
+        {
+          "prompt": "Why did the two friends have a falling-out?",
+          "options": ["Because of a bad grade", "Because of a boy", "Because Ana moved away"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Who gave Ana advice?",
+          "options": ["Lucía", "A teacher", "Her mother"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What will Lucía be at Ana's wedding?",
+          "options": ["The bride", "A guest who arrives late", "A bridesmaid"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.relationships.write-001",
+      "itemIds": ["b1.relationships.if-i-were-you", "b1.relationships.trust"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 30827,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Si yo fuera tú, confiaría en ella.",
+      "accepted": [
+        "If I were you, I would trust her.",
+        "If I were you, I'd trust her.",
+        "If I was you, I would trust her.",
+        "If I was you, I'd trust her.",
+        "I would trust her if I were you.",
+        "I would trust her if I was you.",
+        "I'd trust her if I were you.",
+        "I'd trust her if I was you."
+      ]
+    },
+    {
+      "id": "b1.relationships.vocab-002",
+      "itemIds": ["b1.relationships.trust"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'confiar en'.",
+      "options": ["treat", "test", "threat", "trust"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.relationships.vocab-003",
+      "itemIds": ["b1.relationships.jealous"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'jealous' mean?",
+      "options": ["celoso", "generoso", "cariñoso", "orgulloso"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.relationships.cloze-002",
+      "itemIds": ["b1.relationships.make-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "After the argument, they made ___ and hugged each other.",
+      "answers": ["up"],
+      "distractors": ["down", "for", "with"],
+      "es": "Después de la discusión, se reconciliaron y se abrazaron."
+    },
+    {
+      "id": "b1.relationships.cloze-003",
+      "itemIds": ["b1.relationships.falling-out"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I had a falling-___ with my brother last year, and we still don't talk.",
+      "answers": ["out"],
+      "distractors": ["off", "down", "up"],
+      "es": "Me peleé con mi hermano el año pasado y todavía no nos hablamos."
+    },
+    {
+      "id": "b1.relationships.order-002",
+      "itemIds": ["b1.relationships.get-married"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 252988,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["don't", "to", "want", "early.", "get", "married", "too", "I"],
+      "accepted": ["I don't want to get married too early."],
+      "es": "No quiero casarme demasiado pronto."
+    },
+    {
+      "id": "b1.relationships.choice-002",
+      "itemIds": ["b1.relationships.each-other", "b1.relationships.support"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "They always support each other.",
+      "options": [
+        "Siempre se soportan el uno al otro.",
+        "Siempre se apoyan el uno al otro.",
+        "Nunca se ayudan.",
+        "Siempre discuten entre ellos."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.relationships.write-002",
+      "itemIds": ["b1.relationships.get-along"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Me llevo muy bien con mis vecinos.",
+      "accepted": [
+        "I get along very well with my neighbors.",
+        "I get along really well with my neighbors.",
+        "I get along great with my neighbors.",
+        "I get on very well with my neighbors.",
+        "I get on really well with my neighbors.",
+        "I get on great with my neighbors.",
+        "I get along with my neighbors very well.",
+        "I get along with my neighbors really well."
+      ]
+    },
+    {
+      "id": "b1.relationships.write-003",
+      "itemIds": ["b1.relationships.break-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ella terminó con su novio la semana pasada.",
+      "accepted": [
+        "She broke up with her boyfriend last week.",
+        "Last week, she broke up with her boyfriend.",
+        "Last week she broke up with her boyfriend.",
+        "She split up with her boyfriend last week.",
+        "Last week, she split up with her boyfriend.",
+        "She ended things with her boyfriend last week."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.relationships.lesson-001",
+      "level": "B1",
+      "topic": "relationships",
+      "title": "Amigos y pareja",
+      "exerciseIds": [
+        "b1.relationships.vocab-001",
+        "b1.relationships.cloze-001",
+        "b1.relationships.order-001",
+        "b1.relationships.choice-001",
+        "b1.relationships.reading-001",
+        "b1.relationships.write-001",
+        "b1.relationships.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.relationships.lesson-002",
+      "level": "B1",
+      "topic": "relationships",
+      "title": "Peleas y reconciliaciones",
+      "exerciseIds": [
+        "b1.relationships.vocab-003",
+        "b1.relationships.cloze-002",
+        "b1.relationships.cloze-003",
+        "b1.relationships.order-002",
+        "b1.relationships.choice-002",
+        "b1.relationships.write-002",
+        "b1.relationships.write-003"
+      ]
+    }
+  ]
+}

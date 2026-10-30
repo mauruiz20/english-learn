@@ -1,0 +1,367 @@
+{
+  "items": [
+    {
+      "id": "a2.weather.weather",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "weather",
+      "es": "tiempo (clima)"
+    },
+    {
+      "id": "a2.weather.rain",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "rain",
+      "es": "llover / lluvia"
+    },
+    {
+      "id": "a2.weather.snow",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "snow",
+      "es": "nevar / nieve"
+    },
+    {
+      "id": "a2.weather.sunny",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "sunny",
+      "es": "soleado"
+    },
+    {
+      "id": "a2.weather.cloudy",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "cloudy",
+      "es": "nublado"
+    },
+    {
+      "id": "a2.weather.windy",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "windy",
+      "es": "ventoso (hace viento)"
+    },
+    {
+      "id": "a2.weather.hot",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "hot",
+      "es": "caluroso (hace calor)"
+    },
+    {
+      "id": "a2.weather.cold",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "cold",
+      "es": "frío (hace frío)"
+    },
+    {
+      "id": "a2.weather.forecast",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "forecast",
+      "es": "pronóstico"
+    },
+    {
+      "id": "a2.weather.umbrella",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "word",
+      "term": "umbrella",
+      "es": "paraguas"
+    },
+    {
+      "id": "a2.weather.what-is-the-weather-like",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "phrase",
+      "term": "What's the weather like?",
+      "es": "¿Qué tiempo hace?"
+    },
+    {
+      "id": "a2.weather.going-to-predictions",
+      "level": "A2",
+      "topics": ["weather"],
+      "kind": "grammar",
+      "term": "going to (predictions)",
+      "es": "ir a + infinitivo (predicciones)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.weather.weather-in-my-town",
+      "level": "A2",
+      "topics": ["weather"],
+      "title": "The weather in my town",
+      "text": "In my town, summers are hot and sunny, and winters are cold and windy. It doesn't snow very often, but it rains a lot in the fall. Today it is cloudy, and the forecast says it is going to rain this afternoon, so I'm taking an umbrella. Tomorrow will be warmer than today.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.weather.vocab-001",
+      "itemIds": ["a2.weather.cloudy"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'cloudy' mean?",
+      "options": ["lluvioso", "soleado", "nublado", "ventoso"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.weather.cloze-001",
+      "itemIds": ["a2.weather.going-to-predictions", "a2.weather.rain"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 12911194,
+        "author": "araneo",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "It's going to ___ today.",
+      "answers": ["rain"],
+      "distractors": ["raining", "rains", "rained"],
+      "es": "Hoy va a llover."
+    },
+    {
+      "id": "a2.weather.order-001",
+      "itemIds": ["a2.weather.weather", "a2.weather.hot"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 72370,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["hot", "weather", "July.", "is", "in", "The", "usually"],
+      "accepted": ["The weather is usually hot in July."],
+      "es": "Normalmente hace calor en julio."
+    },
+    {
+      "id": "a2.weather.choice-001",
+      "itemIds": ["a2.weather.what-is-the-weather-like"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 5205265,
+        "author": "Palores",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "What is the weather like?",
+      "options": [
+        "¿Te gusta este tiempo?",
+        "¿Qué tiempo hizo ayer?",
+        "¿Qué tiempo hace?",
+        "¿Qué hora es?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.weather.reading-001",
+      "itemIds": ["a2.weather.forecast", "a2.weather.umbrella", "a2.weather.windy"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.weather.weather-in-my-town",
+      "questions": [
+        {
+          "prompt": "What are winters like in the writer's town?",
+          "options": ["Hot and sunny", "Cold and windy", "Warm and cloudy"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "When does it rain a lot?",
+          "options": ["In the summer", "In the fall", "In the winter"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What will the weather be like tomorrow?",
+          "options": ["Colder than today", "Warmer than today", "Rainy and windy"],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "a2.weather.write-001",
+      "itemIds": ["a2.weather.rain"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1103042,
+        "author": "mookeee",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Dicen que va a llover.",
+      "accepted": [
+        "They say it will rain.",
+        "They say it's going to rain.",
+        "They say that it will rain.",
+        "They say that it's going to rain.",
+        "People say it will rain.",
+        "People say it's going to rain."
+      ]
+    },
+    {
+      "id": "a2.weather.vocab-002",
+      "itemIds": ["a2.weather.umbrella"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'paraguas'.",
+      "options": ["umbrella", "raincoat", "boots", "scarf"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.weather.vocab-003",
+      "itemIds": ["a2.weather.forecast"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'forecast' mean?",
+      "options": ["temperatura", "tormenta", "pronóstico", "estación"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.weather.cloze-002",
+      "itemIds": ["a2.weather.hot"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2549293,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "It ___ a hot day.",
+      "answers": ["was"],
+      "distractors": ["were", "did", "had"],
+      "es": "Era un día caluroso."
+    },
+    {
+      "id": "a2.weather.cloze-003",
+      "itemIds": ["a2.weather.sunny"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "It's very ___ today. Take a hat and sunglasses.",
+      "answers": ["sunny"],
+      "distractors": ["rainy", "foggy", "cloudy"],
+      "es": "Hoy hace mucho sol. Lleva un sombrero y lentes de sol."
+    },
+    {
+      "id": "a2.weather.order-002",
+      "itemIds": ["a2.weather.rain"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 9788257,
+        "author": "helloroto",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["It'll", "this", "afternoon.", "rain", "again"],
+      "accepted": ["It'll rain again this afternoon."],
+      "es": "Esta tarde va a llover otra vez."
+    },
+    {
+      "id": "a2.weather.choice-002",
+      "itemIds": ["a2.weather.cold"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 488166,
+        "author": "saasmath",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "It is a little cold.",
+      "options": [
+        "Hace un poco de frío.",
+        "Hace mucho frío.",
+        "Hace un poco de calor.",
+        "Hacía un poco de frío."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.weather.choice-003",
+      "itemIds": ["a2.weather.rain"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 8273825,
+        "author": "lunchmeat317",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "It isn't raining at all.",
+      "options": [
+        "Está lloviendo mucho.",
+        "No llovió nada.",
+        "No está lloviendo para nada.",
+        "Va a llover un poco."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.weather.write-002",
+      "itemIds": ["a2.weather.cold"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Hoy hace más frío que ayer.",
+      "accepted": [
+        "It's colder today than yesterday.",
+        "Today it's colder than yesterday.",
+        "Today is colder than yesterday.",
+        "It's colder today than it was yesterday."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.weather.lesson-001",
+      "level": "A2",
+      "topic": "weather",
+      "title": "¿Qué tiempo hace?",
+      "exerciseIds": [
+        "a2.weather.vocab-001",
+        "a2.weather.cloze-001",
+        "a2.weather.order-001",
+        "a2.weather.choice-001",
+        "a2.weather.reading-001",
+        "a2.weather.write-001",
+        "a2.weather.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.weather.lesson-002",
+      "level": "A2",
+      "topic": "weather",
+      "title": "Las estaciones",
+      "exerciseIds": [
+        "a2.weather.vocab-003",
+        "a2.weather.cloze-002",
+        "a2.weather.cloze-003",
+        "a2.weather.order-002",
+        "a2.weather.choice-002",
+        "a2.weather.choice-003",
+        "a2.weather.write-002"
+      ]
+    }
+  ]
+}

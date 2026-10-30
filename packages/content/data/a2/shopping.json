@@ -1,0 +1,352 @@
+{
+  "items": [
+    {
+      "id": "a2.shopping.buy",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "buy",
+      "es": "comprar"
+    },
+    {
+      "id": "a2.shopping.pay",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "pay",
+      "es": "pagar"
+    },
+    {
+      "id": "a2.shopping.expensive",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "expensive",
+      "es": "caro"
+    },
+    {
+      "id": "a2.shopping.cheap",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "cheap",
+      "es": "barato"
+    },
+    {
+      "id": "a2.shopping.price",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "price",
+      "es": "precio"
+    },
+    {
+      "id": "a2.shopping.store",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "store",
+      "es": "tienda"
+    },
+    {
+      "id": "a2.shopping.market",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "market",
+      "es": "mercado"
+    },
+    {
+      "id": "a2.shopping.size",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "word",
+      "term": "size",
+      "es": "talla"
+    },
+    {
+      "id": "a2.shopping.try-on",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "phrase",
+      "term": "try on",
+      "es": "probarse (ropa)"
+    },
+    {
+      "id": "a2.shopping.pay-in-cash",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "phrase",
+      "term": "pay in cash",
+      "es": "pagar en efectivo"
+    },
+    {
+      "id": "a2.shopping.how-much-is",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "phrase",
+      "term": "How much is it?",
+      "es": "¿Cuánto cuesta?"
+    },
+    {
+      "id": "a2.shopping.too-adjective",
+      "level": "A2",
+      "topics": ["shopping"],
+      "kind": "grammar",
+      "term": "too + adjective (too expensive)",
+      "es": "demasiado + adjetivo (demasiado caro)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.shopping.new-jacket",
+      "level": "A2",
+      "topics": ["shopping"],
+      "title": "A new jacket",
+      "text": "Last Saturday I went to the market with my friend Sam. I wanted to buy a new jacket for the winter. The first jacket I tried on was very nice, but it was too expensive. In the next store, I found a cheaper one in my size. It cost forty dollars. I paid in cash, and then we went for coffee.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.shopping.vocab-001",
+      "itemIds": ["a2.shopping.cheap"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'cheap' mean?",
+      "options": ["caro", "gratis", "barato", "nuevo"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.shopping.cloze-001",
+      "itemIds": ["a2.shopping.too-adjective", "a2.shopping.expensive"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 599693,
+        "author": "fliegster",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "The book is ___ expensive.",
+      "answers": ["too"],
+      "distractors": ["to", "much", "very much"],
+      "es": "El libro es demasiado caro."
+    },
+    {
+      "id": "a2.shopping.order-001",
+      "itemIds": ["a2.shopping.buy", "a2.shopping.store"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 252955,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["didn't", "at", "anything", "store.", "that", "buy", "I"],
+      "accepted": ["I didn't buy anything at that store."],
+      "es": "No compré nada en esa tienda."
+    },
+    {
+      "id": "a2.shopping.choice-001",
+      "itemIds": ["a2.shopping.how-much-is"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1164077,
+        "author": "Chrikaru",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "How much is an apple?",
+      "options": [
+        "¿Cuánto cuesta una manzana?",
+        "¿Cuántas manzanas hay?",
+        "¿Dónde venden manzanas?",
+        "¿Cuánto pesa una manzana?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.shopping.reading-001",
+      "itemIds": ["a2.shopping.try-on", "a2.shopping.pay-in-cash", "a2.shopping.size"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.shopping.new-jacket",
+      "questions": [
+        {
+          "prompt": "Why didn't the writer buy the first jacket?",
+          "options": ["It was too small", "It was the wrong color", "It was too expensive"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "How much did the jacket cost?",
+          "options": ["Forty dollars", "Fourteen dollars", "Four dollars"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "How did the writer pay?",
+          "options": ["By card", "In cash", "By check"],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "a2.shopping.write-001",
+      "itemIds": ["a2.shopping.pay"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2912577,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "¿Cuánto pagaste?",
+      "accepted": ["How much did you pay?", "What did you pay?"]
+    },
+    {
+      "id": "a2.shopping.vocab-002",
+      "itemIds": ["a2.shopping.try-on"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'probarse (ropa)'.",
+      "options": ["try on", "put off", "take on", "try out"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.shopping.vocab-003",
+      "itemIds": ["a2.shopping.price"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'price' mean?",
+      "options": ["premio", "oferta", "precio", "recibo"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.shopping.cloze-002",
+      "itemIds": ["a2.shopping.how-much-is"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Excuse me, how much ___ these shoes?",
+      "answers": ["are"],
+      "distractors": ["is", "does", "cost"],
+      "es": "Disculpe, ¿cuánto cuestan estos zapatos?"
+    },
+    {
+      "id": "a2.shopping.cloze-003",
+      "itemIds": ["a2.shopping.pay"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 267608,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "May I ___ by check?",
+      "answers": ["pay"],
+      "distractors": ["spend", "cost", "sell"],
+      "es": "¿Puedo pagar con cheque?"
+    },
+    {
+      "id": "a2.shopping.order-002",
+      "itemIds": ["a2.shopping.too-adjective", "a2.shopping.size"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["me.", "shoes", "for", "are", "These", "small", "too"],
+      "accepted": ["These shoes are too small for me."],
+      "es": "Estos zapatos me quedan demasiado pequeños."
+    },
+    {
+      "id": "a2.shopping.choice-002",
+      "itemIds": ["a2.shopping.market"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1098058,
+        "author": "cntrational",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I went to the market.",
+      "options": ["Voy al mercado.", "Iré al mercado.", "Fui al mercado.", "Fui al supermercado."],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.shopping.choice-003",
+      "itemIds": ["a2.shopping.price", "a2.shopping.pay"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 9169476,
+        "author": "DJ_Saidez",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "You must pay the exact price.",
+      "options": [
+        "Debes pagar el precio exacto.",
+        "Puedes pagar menos del precio.",
+        "Debes preguntar el precio.",
+        "No tienes que pagar nada."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.shopping.write-002",
+      "itemIds": ["a2.shopping.try-on"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Me lo puedo probar?",
+      "accepted": [
+        "Can I try it on?",
+        "May I try it on?",
+        "Could I try it on?",
+        "Can I try this on?",
+        "May I try this on?",
+        "Could I try this on?"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.shopping.lesson-001",
+      "level": "A2",
+      "topic": "shopping",
+      "title": "De compras",
+      "exerciseIds": [
+        "a2.shopping.vocab-001",
+        "a2.shopping.cloze-001",
+        "a2.shopping.order-001",
+        "a2.shopping.choice-001",
+        "a2.shopping.reading-001",
+        "a2.shopping.write-001",
+        "a2.shopping.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.shopping.lesson-002",
+      "level": "A2",
+      "topic": "shopping",
+      "title": "En la tienda",
+      "exerciseIds": [
+        "a2.shopping.vocab-003",
+        "a2.shopping.cloze-002",
+        "a2.shopping.cloze-003",
+        "a2.shopping.order-002",
+        "a2.shopping.choice-002",
+        "a2.shopping.choice-003",
+        "a2.shopping.write-002"
+      ]
+    }
+  ]
+}

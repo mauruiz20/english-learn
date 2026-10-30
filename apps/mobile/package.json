@@ -1,0 +1,64 @@
+{
+  "name": "@english-learn/mobile",
+  "version": "0.1.0",
+  "main": "expo-router/entry",
+  "dependencies": {
+    "@english-learn/content": "workspace:*",
+    "@english-learn/domain": "workspace:*",
+    "@english-learn/storage-sqlite": "workspace:*",
+    "expo": "~58.0.21",
+    "expo-constants": "~58.0.14",
+    "expo-font": "~58.0.11",
+    "expo-linking": "~58.0.15",
+    "expo-router": "~58.0.28",
+    "expo-splash-screen": "~58.0.12",
+    "expo-sqlite": "~58.0.14",
+    "expo-status-bar": "~58.0.4",
+    "expo-system-ui": "~58.0.7",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-safe-area-context": "~5.10.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-web": "~0.21.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@testing-library/react-native": "^14.1.0",
+    "@types/jest": "30.0.0",
+    "@types/node": "^26.6.6",
+    "@types/react": "~19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "~58.0.4",
+    "jest": "~30.5.2",
+    "jest-expo": "~58.0.13",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "export:web": "expo export -p web && node scripts/check-prod-bundle.mjs",
+    "export:web:e2e": "EXPO_PUBLIC_E2E=1 expo export -p web --output-dir dist-e2e",
+    "serve:web": "node scripts/serve-web.mjs",
+    "e2e:web": "pnpm export:web:e2e && playwright test"
+  },
+  "private": true,
+  "jest": {
+    "preset": "jest-expo",
+    "globalSetup": "./jest.global-setup.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/e2e/",
+      "/dist/",
+      "/dist-e2e/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(.pnpm|(jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg))"
+    ]
+  }
+}

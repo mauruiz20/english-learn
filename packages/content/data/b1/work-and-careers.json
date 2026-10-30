@@ -1,0 +1,371 @@
+{
+  "items": [
+    {
+      "id": "b1.work-and-careers.apply-for",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "phrase",
+      "term": "apply for",
+      "es": "solicitar, postularse a (un trabajo, una beca)"
+    },
+    {
+      "id": "b1.work-and-careers.interview",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "word",
+      "term": "interview",
+      "es": "entrevista"
+    },
+    {
+      "id": "b1.work-and-careers.salary",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "word",
+      "term": "salary",
+      "es": "sueldo, salario"
+    },
+    {
+      "id": "b1.work-and-careers.colleague",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "word",
+      "term": "colleague",
+      "es": "colega, compañero de trabajo"
+    },
+    {
+      "id": "b1.work-and-careers.deadline",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "word",
+      "term": "deadline",
+      "es": "fecha límite, plazo"
+    },
+    {
+      "id": "b1.work-and-careers.get-promoted",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "phrase",
+      "term": "get promoted",
+      "es": "ser ascendido, recibir un ascenso"
+    },
+    {
+      "id": "b1.work-and-careers.quit",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "word",
+      "term": "quit",
+      "es": "renunciar, dejar (un trabajo o un hábito)"
+    },
+    {
+      "id": "b1.work-and-careers.experience",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "word",
+      "term": "experience",
+      "es": "experiencia"
+    },
+    {
+      "id": "b1.work-and-careers.turn-down",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "kind": "phrase",
+      "term": "turn down",
+      "es": "rechazar (una oferta, una solicitud)"
+    },
+    {
+      "id": "b1.work-and-careers.have-to-must",
+      "level": "B1",
+      "topics": ["work-and-careers", "grammar"],
+      "kind": "grammar",
+      "term": "have to / must",
+      "es": "tener que / deber (obligación)"
+    },
+    {
+      "id": "b1.work-and-careers.dont-have-to-mustnt",
+      "level": "B1",
+      "topics": ["work-and-careers", "grammar"],
+      "kind": "grammar",
+      "term": "don't have to vs mustn't",
+      "es": "no tener que (no es necesario) vs. no deber (está prohibido)"
+    },
+    {
+      "id": "b1.work-and-careers.for-since",
+      "level": "B1",
+      "topics": ["work-and-careers", "grammar"],
+      "kind": "grammar",
+      "term": "present perfect + for / since",
+      "es": "desde hace (for + período) / desde (since + momento)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.work-and-careers.first-real-job",
+      "level": "B1",
+      "topics": ["work-and-careers"],
+      "title": "My first real job",
+      "text": "Carlos has worked at a small design company in Monterrey for two years. Before that, he applied for more than twenty jobs, and most companies turned him down because he didn't have enough experience. Finally, a manager invited him to an interview and offered him a position the same week. The salary was not very high, but the work was interesting. At his company, everyone has to arrive by nine, but employees don't have to wear a suit. They must not use their phones during meetings, though. Carlos gets along well with his colleagues, and they often have lunch together. The hardest part of the job is the deadlines: sometimes he has to work late to finish a project on time. Last month he got promoted to team leader, so now he has more responsibility and a better salary. A bigger company has offered him a job, but he has decided to stay. \"I've learned so much here,\" he says. \"I'm not ready to quit.\"",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.work-and-careers.vocab-001",
+      "itemIds": ["b1.work-and-careers.salary"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'salary' mean?",
+      "options": ["ensalada", "jefe", "sueldo", "horario"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.work-and-careers.cloze-001",
+      "itemIds": ["b1.work-and-careers.for-since"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 6849321,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I've lived here ___ thirty years.",
+      "answers": ["for"],
+      "distractors": ["since", "during", "ago"],
+      "es": "Vivo aquí desde hace treinta años."
+    },
+    {
+      "id": "b1.work-and-careers.order-001",
+      "itemIds": ["b1.work-and-careers.apply-for", "b1.work-and-careers.interview"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 290827,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["job", "and", "applied", "the", "got", "He", "it.", "for"],
+      "accepted": ["He applied for the job and got it."],
+      "es": "Solicitó el trabajo y lo consiguió."
+    },
+    {
+      "id": "b1.work-and-careers.choice-001",
+      "itemIds": ["b1.work-and-careers.dont-have-to-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 69411,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "You don't have to work today.",
+      "options": [
+        "No tienes que trabajar hoy.",
+        "No debes trabajar hoy.",
+        "Tienes que trabajar hoy.",
+        "No quieres trabajar hoy."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.work-and-careers.reading-001",
+      "itemIds": [
+        "b1.work-and-careers.experience",
+        "b1.work-and-careers.salary",
+        "b1.work-and-careers.get-promoted"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.work-and-careers.first-real-job",
+      "questions": [
+        {
+          "prompt": "How long has Carlos worked at the design company?",
+          "options": ["For twenty years", "Since last month", "For two years"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What don't employees have to do?",
+          "options": ["Wear a suit", "Arrive by nine", "Finish projects on time"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What happened to Carlos last month?",
+          "options": ["He got promoted.", "He quit his job.", "He had an interview."],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.work-and-careers.write-001",
+      "itemIds": ["b1.work-and-careers.have-to-must"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 5859528,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Tuve que trabajar hasta tarde.",
+      "accepted": [
+        "I had to work late.",
+        "I had to work until late.",
+        "I had to stay late at work.",
+        "I had to stay at work late."
+      ]
+    },
+    {
+      "id": "b1.work-and-careers.vocab-002",
+      "itemIds": ["b1.work-and-careers.colleague"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'compañero de trabajo'.",
+      "options": ["college", "boss", "customer", "colleague"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.work-and-careers.vocab-003",
+      "itemIds": ["b1.work-and-careers.deadline"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'deadline' mean?",
+      "options": ["fecha límite", "línea de meta", "horario", "reunión"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.work-and-careers.cloze-002",
+      "itemIds": ["b1.work-and-careers.dont-have-to-mustnt"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "You ___ wear a tie, but you can if you want.",
+      "answers": ["don't have to"],
+      "distractors": ["mustn't", "have to", "must"],
+      "es": "No tienes que usar corbata, pero puedes hacerlo si quieres."
+    },
+    {
+      "id": "b1.work-and-careers.cloze-003",
+      "itemIds": ["b1.work-and-careers.for-since"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She has worked here ___ 2019.",
+      "answers": ["since"],
+      "distractors": ["for", "ago", "in"],
+      "es": "Trabaja aquí desde 2019."
+    },
+    {
+      "id": "b1.work-and-careers.order-002",
+      "itemIds": ["b1.work-and-careers.turn-down"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 268326,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["turned", "proposal.", "our", "boss", "down", "Our"],
+      "accepted": ["Our boss turned down our proposal."],
+      "es": "Nuestro jefe rechazó nuestra propuesta."
+    },
+    {
+      "id": "b1.work-and-careers.choice-002",
+      "itemIds": ["b1.work-and-careers.quit"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 242027,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I've decided to quit my job at the end of this month.",
+      "options": [
+        "He decidido cambiar de trabajo a fin de este mes.",
+        "He decidido dejar mi trabajo a fin de este mes.",
+        "Decidí empezar mi trabajo a fin de este mes.",
+        "Me van a despedir a fin de este mes."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.work-and-careers.choice-003",
+      "itemIds": ["b1.work-and-careers.get-promoted"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She got promoted after only a year.",
+      "options": [
+        "La despidieron después de solo un año.",
+        "Se jubiló después de solo un año.",
+        "La ascendieron después de solo un año.",
+        "La contrataron hace solo un año."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.work-and-careers.write-002",
+      "itemIds": ["b1.work-and-careers.for-since"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Trabajo en esta empresa desde 2020.",
+      "accepted": [
+        "I have worked at this company since 2020.",
+        "I have worked for this company since 2020.",
+        "I have been working at this company since 2020.",
+        "I have been working for this company since 2020.",
+        "I've worked at this company since 2020.",
+        "I've worked for this company since 2020.",
+        "I've been working at this company since 2020.",
+        "I've been working for this company since 2020.",
+        "I have worked at this firm since 2020.",
+        "I have worked for this firm since 2020.",
+        "I have been working at this firm since 2020.",
+        "I have been working for this firm since 2020.",
+        "I've worked at this firm since 2020.",
+        "I've worked for this firm since 2020.",
+        "I've been working at this firm since 2020.",
+        "I've been working for this firm since 2020."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.work-and-careers.lesson-001",
+      "level": "B1",
+      "topic": "work-and-careers",
+      "title": "Mi primer trabajo",
+      "exerciseIds": [
+        "b1.work-and-careers.vocab-001",
+        "b1.work-and-careers.cloze-001",
+        "b1.work-and-careers.order-001",
+        "b1.work-and-careers.choice-001",
+        "b1.work-and-careers.reading-001",
+        "b1.work-and-careers.write-001",
+        "b1.work-and-careers.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.work-and-careers.lesson-002",
+      "level": "B1",
+      "topic": "work-and-careers",
+      "title": "Obligaciones y cambios",
+      "exerciseIds": [
+        "b1.work-and-careers.vocab-003",
+        "b1.work-and-careers.cloze-002",
+        "b1.work-and-careers.cloze-003",
+        "b1.work-and-careers.order-002",
+        "b1.work-and-careers.choice-002",
+        "b1.work-and-careers.choice-003",
+        "b1.work-and-careers.write-002"
+      ]
+    }
+  ]
+}

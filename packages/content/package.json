@@ -1,0 +1,28 @@
+{
+  "name": "@english-learn/content",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./corpus": "./src/generated/corpus.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "validate": "tsx scripts/validate.ts",
+    "build:corpus": "tsx scripts/build-corpus.ts",
+    "corpus:check": "tsx scripts/build-corpus.ts --check"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "vitest": "^5.0.5"
+  }
+}

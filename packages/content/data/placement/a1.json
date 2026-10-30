@@ -1,0 +1,163 @@
+{
+  "placement": [
+    {
+      "id": "placement.a1.001",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'house' mean?",
+        "options": ["coche", "casa", "perro"],
+        "answerIndex": 1
+      }
+    },
+    {
+      "id": "placement.a1.002",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I ___ a student.",
+        "answers": ["am"],
+        "distractors": ["is", "are"],
+        "es": "Soy estudiante."
+      }
+    },
+    {
+      "id": "placement.a1.003",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "She ___ two brothers.",
+        "answers": ["has"],
+        "distractors": ["have", "is", "are"],
+        "es": "Ella tiene dos hermanos."
+      }
+    },
+    {
+      "id": "placement.a1.004",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'Thursday' mean?",
+        "options": ["jueves", "martes", "miércoles", "viernes"],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.a1.005",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "Where do you live?",
+        "options": ["¿Dónde trabajas?", "¿Cuándo vienes?", "¿Dónde vives?", "¿Dónde estás?"],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.a1.006",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "There ___ a cat in the yard.",
+        "answers": ["is"],
+        "distractors": ["are", "am", "be"],
+        "es": "Hay un gato en el patio."
+      }
+    },
+    {
+      "id": "placement.a1.007",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "Choose the English for 'rojo'.",
+        "options": ["green", "blue", "red", "yellow"],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.a1.008",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "___ you like coffee?",
+        "answers": ["Do"],
+        "distractors": ["Are", "Does", "Is"],
+        "es": "¿Te gusta el café?"
+      }
+    },
+    {
+      "id": "placement.a1.009",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "My brother is twelve years old.",
+        "options": [
+          "Mi hermano tiene dos años.",
+          "Mi hermano tiene doce años.",
+          "Mi hermano tenía doce años.",
+          "Mi hermana tiene doce años."
+        ],
+        "answerIndex": 1
+      }
+    },
+    {
+      "id": "placement.a1.010",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'kitchen' mean?",
+        "options": ["cocina", "pollo", "dormitorio", "escuela"],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.a1.011",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I don't ___ a car.",
+        "answers": ["have"],
+        "distractors": ["has", "am", "having"],
+        "es": "No tengo auto."
+      }
+    },
+    {
+      "id": "placement.a1.012",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "Can you help me, please?",
+        "options": [
+          "¿Puedes ayudarme, por favor?",
+          "¿Me ayudaste, por favor?",
+          "¿Quieres ayuda?",
+          "¿Puedo ayudarte?"
+        ],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.a1.013",
+      "level": "A1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "They ___ from Mexico.",
+        "answers": ["are"],
+        "distractors": ["is", "am", "be"],
+        "es": "Son de México."
+      }
+    }
+  ]
+}

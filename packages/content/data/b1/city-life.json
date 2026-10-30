@@ -1,0 +1,383 @@
+{
+  "items": [
+    {
+      "id": "b1.city-life.neighborhood",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "word",
+      "term": "neighborhood",
+      "es": "barrio, vecindario"
+    },
+    {
+      "id": "b1.city-life.crowded",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "word",
+      "term": "crowded",
+      "es": "lleno de gente, abarrotado"
+    },
+    {
+      "id": "b1.city-life.traffic-jam",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "phrase",
+      "term": "traffic jam",
+      "es": "embotellamiento, tráfico"
+    },
+    {
+      "id": "b1.city-life.rent",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "word",
+      "term": "rent",
+      "es": "alquiler, renta / alquilar, rentar"
+    },
+    {
+      "id": "b1.city-life.subway",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "word",
+      "term": "subway",
+      "es": "metro"
+    },
+    {
+      "id": "b1.city-life.noisy",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "word",
+      "term": "noisy",
+      "es": "ruidoso"
+    },
+    {
+      "id": "b1.city-life.downtown",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "word",
+      "term": "downtown",
+      "es": "el centro (de la ciudad) / en el centro"
+    },
+    {
+      "id": "b1.city-life.commute",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "word",
+      "term": "commute",
+      "es": "trayecto diario (al trabajo o a la escuela) / ir y venir del trabajo"
+    },
+    {
+      "id": "b1.city-life.move",
+      "level": "B1",
+      "topics": ["city-life"],
+      "kind": "phrase",
+      "term": "move (to)",
+      "es": "mudarse (a)"
+    },
+    {
+      "id": "b1.city-life.going-to",
+      "level": "B1",
+      "topics": ["city-life", "grammar"],
+      "kind": "grammar",
+      "term": "be going to",
+      "es": "ir a + infinitivo (planes y predicciones con evidencia)"
+    },
+    {
+      "id": "b1.city-life.will",
+      "level": "B1",
+      "topics": ["city-life", "grammar"],
+      "kind": "grammar",
+      "term": "will",
+      "es": "futuro con will (decisiones del momento, promesas, predicciones)"
+    },
+    {
+      "id": "b1.city-life.present-continuous-future",
+      "level": "B1",
+      "topics": ["city-life", "grammar"],
+      "kind": "grammar",
+      "term": "present continuous for future arrangements",
+      "es": "presente continuo para planes acordados (I'm meeting… = voy a ver a…)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.city-life.moving-to-city",
+      "level": "B1",
+      "topics": ["city-life"],
+      "title": "Moving to the city",
+      "text": "Next month my family is moving from a small town to the capital. My father got a new job downtown, and he starts on the first of June. We're going to rent an apartment in a quiet neighborhood near a subway station, so my parents won't need the car every day. I'm excited, but I'm also a little nervous. In my town, everything is close and people know each other. In the city, the streets are crowded and noisy, and the traffic jams can be terrible. My cousin, who lives there, says her commute to school takes almost an hour. However, she loves the parks, the museums and the free concerts on Sundays. She has promised that she will show me around during our first weekend. I think I'm going to miss my old friends, but we'll have a video call every week. Maybe city life won't be so bad after all.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.city-life.vocab-001",
+      "itemIds": ["b1.city-life.crowded"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'crowded' mean?",
+      "options": ["nublado", "lleno de gente", "ruidoso", "coronado"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.city-life.cloze-001",
+      "itemIds": ["b1.city-life.going-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "They're ___ to build a new subway line next year.",
+      "answers": ["going"],
+      "distractors": ["will", "go", "want"],
+      "es": "Van a construir una nueva línea de metro el próximo año."
+    },
+    {
+      "id": "b1.city-life.order-001",
+      "itemIds": ["b1.city-life.subway"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 62110,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["station?", "subway", "the", "is", "nearest", "Where"],
+      "accepted": ["Where is the nearest subway station?"],
+      "es": "¿Dónde está la estación de metro más cercana?"
+    },
+    {
+      "id": "b1.city-life.choice-001",
+      "itemIds": ["b1.city-life.crowded", "b1.city-life.subway"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 242257,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I wish the subway wasn't so crowded every morning.",
+      "options": [
+        "Ojalá el metro pasara más seguido todas las mañanas.",
+        "Ojalá el metro no estuviera tan lleno todas las mañanas.",
+        "El metro no estaba tan lleno esta mañana.",
+        "Ojalá el autobús no estuviera tan lleno todas las mañanas."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.city-life.reading-001",
+      "itemIds": ["b1.city-life.neighborhood", "b1.city-life.commute", "b1.city-life.move"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.city-life.moving-to-city",
+      "questions": [
+        {
+          "prompt": "Why is the family moving?",
+          "options": [
+            "The father got a new job.",
+            "Their town is too noisy.",
+            "The cousin needs help."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Why won't the parents need the car every day?",
+          "options": [
+            "They're going to sell it.",
+            "The father works at home.",
+            "They'll live near the subway."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "How long is the cousin's commute to school?",
+          "options": ["About ten minutes", "Two hours", "Almost an hour"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.city-life.write-001",
+      "itemIds": ["b1.city-life.traffic-jam"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 35303,
+        "author": "Eldad",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "El autobús llegó tarde por el embotellamiento.",
+      "accepted": [
+        "The bus was late because of the traffic jam.",
+        "The bus was late because of the traffic.",
+        "The bus was late due to the traffic jam.",
+        "The bus was late due to the traffic.",
+        "The bus arrived late because of the traffic jam.",
+        "The bus arrived late because of the traffic.",
+        "The bus arrived late due to the traffic jam.",
+        "The bus arrived late due to the traffic.",
+        "The bus came late because of the traffic jam.",
+        "The bus came late because of the traffic.",
+        "The bus came late due to the traffic jam.",
+        "The bus came late due to the traffic.",
+        "The bus was late because of a traffic jam.",
+        "The bus arrived late because of a traffic jam.",
+        "The bus was late because of traffic."
+      ]
+    },
+    {
+      "id": "b1.city-life.vocab-002",
+      "itemIds": ["b1.city-life.downtown"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'el centro de la ciudad'.",
+      "options": ["downtown", "downstairs", "suburbs", "countryside"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.city-life.vocab-003",
+      "itemIds": ["b1.city-life.rent"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'rent' mean in 'The rent is very high here'?",
+      "options": ["el edificio", "el impuesto", "el ruido", "el alquiler"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.city-life.cloze-002",
+      "itemIds": ["b1.city-life.will"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Don't worry, I ___ help you carry the boxes.",
+      "answers": ["will"],
+      "distractors": ["am", "going to", "have"],
+      "es": "No te preocupes, yo te ayudo a cargar las cajas."
+    },
+    {
+      "id": "b1.city-life.cloze-003",
+      "itemIds": ["b1.city-life.present-continuous-future", "b1.city-life.downtown"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I ___ meeting my friends downtown tonight.",
+      "answers": ["am"],
+      "distractors": ["will", "going", "have"],
+      "es": "Esta noche voy a ver a mis amigos en el centro."
+    },
+    {
+      "id": "b1.city-life.order-002",
+      "itemIds": ["b1.city-life.noisy"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["street", "night.", "noisy", "at", "Our", "too", "is"],
+      "accepted": ["Our street is too noisy at night."],
+      "es": "Nuestra calle es demasiado ruidosa de noche."
+    },
+    {
+      "id": "b1.city-life.choice-002",
+      "itemIds": ["b1.city-life.move", "b1.city-life.going-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We're going to move to a bigger apartment.",
+      "options": [
+        "Nos vamos a mudar a un apartamento más grande.",
+        "Nos mudamos a un apartamento más grande el año pasado.",
+        "Queremos comprar un apartamento más grande.",
+        "Nos vamos a mudar a una casa más pequeña."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.city-life.write-002",
+      "itemIds": ["b1.city-life.present-continuous-future", "b1.city-life.subway"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Mañana voy a tomar el metro para ir al trabajo.",
+      "accepted": [
+        "I'm going to take the subway to work tomorrow.",
+        "I am going to take the subway to work tomorrow.",
+        "I'll take the subway to work tomorrow.",
+        "I will take the subway to work tomorrow.",
+        "I'm taking the subway to work tomorrow.",
+        "I am taking the subway to work tomorrow.",
+        "Tomorrow, I'm going to take the subway to work.",
+        "Tomorrow, I am going to take the subway to work.",
+        "Tomorrow, I'll take the subway to work.",
+        "Tomorrow, I will take the subway to work.",
+        "Tomorrow, I'm taking the subway to work.",
+        "Tomorrow, I am taking the subway to work.",
+        "Tomorrow I'm going to take the subway to work.",
+        "Tomorrow I am going to take the subway to work.",
+        "Tomorrow I'll take the subway to work.",
+        "Tomorrow I will take the subway to work.",
+        "Tomorrow I'm taking the subway to work.",
+        "Tomorrow I am taking the subway to work.",
+        "I'm going to take the subway to go to work tomorrow.",
+        "Tomorrow I'm going to take the subway to go to work.",
+        "I'm going to ride the subway to work tomorrow."
+      ]
+    },
+    {
+      "id": "b1.city-life.write-003",
+      "itemIds": ["b1.city-life.commute"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Mi trayecto al trabajo dura cuarenta minutos.",
+      "accepted": [
+        "My commute to work takes forty minutes.",
+        "My commute to work takes 40 minutes.",
+        "My commute to work is forty minutes.",
+        "My commute to work is 40 minutes.",
+        "My commute takes forty minutes.",
+        "My commute takes 40 minutes.",
+        "My commute is forty minutes.",
+        "My commute is 40 minutes.",
+        "My commute to work lasts forty minutes.",
+        "My commute to work lasts 40 minutes.",
+        "My commute to work takes me forty minutes.",
+        "My commute to work takes me 40 minutes."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.city-life.lesson-001",
+      "level": "B1",
+      "topic": "city-life",
+      "title": "La vida en la ciudad",
+      "exerciseIds": [
+        "b1.city-life.vocab-001",
+        "b1.city-life.cloze-001",
+        "b1.city-life.order-001",
+        "b1.city-life.choice-001",
+        "b1.city-life.reading-001",
+        "b1.city-life.write-001",
+        "b1.city-life.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.city-life.lesson-002",
+      "level": "B1",
+      "topic": "city-life",
+      "title": "Planes para el futuro",
+      "exerciseIds": [
+        "b1.city-life.vocab-003",
+        "b1.city-life.cloze-002",
+        "b1.city-life.cloze-003",
+        "b1.city-life.order-002",
+        "b1.city-life.choice-002",
+        "b1.city-life.write-002",
+        "b1.city-life.write-003"
+      ]
+    }
+  ]
+}

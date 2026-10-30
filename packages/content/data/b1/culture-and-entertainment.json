@@ -1,0 +1,405 @@
+{
+  "items": [
+    {
+      "id": "b1.culture-and-entertainment.exhibition",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "word",
+      "term": "exhibition",
+      "es": "exposición (de arte, de museo)"
+    },
+    {
+      "id": "b1.culture-and-entertainment.performance",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "word",
+      "term": "performance",
+      "es": "función, actuación"
+    },
+    {
+      "id": "b1.culture-and-entertainment.audience",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "word",
+      "term": "audience",
+      "es": "público, espectadores"
+    },
+    {
+      "id": "b1.culture-and-entertainment.review",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "word",
+      "term": "review",
+      "es": "reseña, crítica"
+    },
+    {
+      "id": "b1.culture-and-entertainment.director",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "word",
+      "term": "director",
+      "es": "director (de cine o teatro)"
+    },
+    {
+      "id": "b1.culture-and-entertainment.play",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "word",
+      "term": "play",
+      "es": "obra de teatro"
+    },
+    {
+      "id": "b1.culture-and-entertainment.band",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "word",
+      "term": "band",
+      "es": "banda, grupo musical"
+    },
+    {
+      "id": "b1.culture-and-entertainment.sold-out",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "phrase",
+      "term": "sold out",
+      "es": "agotado (sin entradas)"
+    },
+    {
+      "id": "b1.culture-and-entertainment.look-forward",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "phrase",
+      "term": "look forward to + -ing",
+      "es": "tener muchas ganas de, esperar con ilusión"
+    },
+    {
+      "id": "b1.culture-and-entertainment.worth",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "kind": "phrase",
+      "term": "be worth + -ing",
+      "es": "valer la pena"
+    },
+    {
+      "id": "b1.culture-and-entertainment.must-cant-might",
+      "level": "B1",
+      "topics": ["culture-and-entertainment", "grammar"],
+      "kind": "grammar",
+      "term": "must / can't / might (deduction)",
+      "es": "deducción: debe de (seguro que sí) / no puede (seguro que no) / puede que"
+    },
+    {
+      "id": "b1.culture-and-entertainment.relative-who-where",
+      "level": "B1",
+      "topics": ["culture-and-entertainment", "grammar"],
+      "kind": "grammar",
+      "term": "relative clauses: who (people) / where (places)",
+      "es": "pronombres relativos: que, quien (personas) / donde (lugares)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.culture-and-entertainment.night-at-theater",
+      "level": "B1",
+      "topics": ["culture-and-entertainment"],
+      "title": "A night at the theater",
+      "text": "Last Saturday I went to see a play at the old theater downtown. My friend Pablo, who is studying drama, had been recommending it for weeks. The tickets were almost sold out, but we found two seats in the last row. The play is about a woman who goes back to the village where she grew up after thirty years away. At first I thought it might be boring, because the first scene was very slow. However, the main actress was amazing, and the audience was completely silent during her final speech. When the lights came on, some people were crying. \"She must be the best actress in the city,\" Pablo said. A review in the newspaper had said that the play was too long and too sad, but I think the writer was wrong. The director came on stage at the end and thanked everyone for coming. I'm already looking forward to seeing his next production. If you get the chance, it's definitely worth seeing.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.culture-and-entertainment.vocab-001",
+      "itemIds": ["b1.culture-and-entertainment.audience"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'audience' mean in a theater?",
+      "options": ["público", "audición", "escenario", "entrada"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.culture-and-entertainment.cloze-001",
+      "itemIds": ["b1.culture-and-entertainment.relative-who-where"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 62040,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "This is the place ___ my father was born.",
+      "answers": ["where"],
+      "distractors": ["who", "which", "what"],
+      "es": "Este es el lugar donde nació mi padre."
+    },
+    {
+      "id": "b1.culture-and-entertainment.order-001",
+      "itemIds": ["b1.culture-and-entertainment.exhibition"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["art.", "modern", "to", "exhibition", "went", "We", "an", "of"],
+      "accepted": ["We went to an exhibition of modern art."],
+      "es": "Fuimos a una exposición de arte moderno."
+    },
+    {
+      "id": "b1.culture-and-entertainment.choice-001",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 278095,
+        "author": "Eldad",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "She must be tired after a long walk.",
+      "options": [
+        "No puede estar cansada después de una larga caminata.",
+        "Estaba cansada después de una larga caminata.",
+        "Debe de estar cansada después de una larga caminata.",
+        "Debe descansar después de una larga caminata."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.culture-and-entertainment.reading-001",
+      "itemIds": [
+        "b1.culture-and-entertainment.play",
+        "b1.culture-and-entertainment.review",
+        "b1.culture-and-entertainment.performance"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.culture-and-entertainment.night-at-theater",
+      "questions": [
+        {
+          "prompt": "Why did the writer go to see the play?",
+          "options": [
+            "A friend recommended it.",
+            "A review said it was good.",
+            "The tickets were free."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What is the play about?",
+          "options": [
+            "An actress becoming famous",
+            "A woman returning home",
+            "A family moving abroad"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What did the newspaper review say?",
+          "options": [
+            "The actress was amazing.",
+            "The tickets were sold out.",
+            "The play was too long and sad."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.culture-and-entertainment.write-001",
+      "itemIds": ["b1.culture-and-entertainment.look-forward"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 32704,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Tengo muchas ganas de volver a verte.",
+      "accepted": [
+        "I look forward to seeing you again.",
+        "I'm looking forward to seeing you again.",
+        "I am looking forward to seeing you again.",
+        "I really look forward to seeing you again.",
+        "I'm really looking forward to seeing you again.",
+        "I can't wait to see you again."
+      ]
+    },
+    {
+      "id": "b1.culture-and-entertainment.vocab-002",
+      "itemIds": ["b1.culture-and-entertainment.band"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'grupo musical'.",
+      "options": ["bench", "band", "gang", "brand"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.culture-and-entertainment.vocab-003",
+      "itemIds": ["b1.culture-and-entertainment.sold-out"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "If the tickets are 'sold out', …",
+      "options": [
+        "están en oferta",
+        "son muy caras",
+        "no quedan entradas",
+        "se venden en la puerta"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.culture-and-entertainment.cloze-002",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Everyone is laughing. The movie ___ be really funny.",
+      "answers": ["must"],
+      "distractors": ["can't", "mustn't", "doesn't"],
+      "es": "Todos se están riendo. La película debe de ser muy graciosa."
+    },
+    {
+      "id": "b1.culture-and-entertainment.cloze-003",
+      "itemIds": ["b1.culture-and-entertainment.relative-who-where"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The actor ___ played the king is from Chile.",
+      "answers": ["who", "that"],
+      "distractors": ["where", "which", "whose"],
+      "es": "El actor que interpretó al rey es de Chile."
+    },
+    {
+      "id": "b1.culture-and-entertainment.order-002",
+      "itemIds": [
+        "b1.culture-and-entertainment.director",
+        "b1.culture-and-entertainment.relative-who-where"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["this", "is", "made", "The", "movie", "very", "young.", "who", "director"],
+      "accepted": ["The director who made this movie is very young."],
+      "es": "El director que hizo esta película es muy joven."
+    },
+    {
+      "id": "b1.culture-and-entertainment.choice-002",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 45203,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "The news can't be true.",
+      "options": [
+        "La noticia debe de ser cierta.",
+        "La noticia no era cierta.",
+        "Quizás la noticia sea cierta.",
+        "La noticia no puede ser cierta."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.culture-and-entertainment.write-002",
+      "itemIds": ["b1.culture-and-entertainment.worth"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Vale la pena ver esa película.",
+      "accepted": [
+        "That movie is worth seeing.",
+        "That movie is worth watching.",
+        "That film is worth seeing.",
+        "That film is worth watching.",
+        "It's worth seeing that movie.",
+        "It's worth seeing that film.",
+        "It's worth watching that movie.",
+        "It's worth watching that film.",
+        "It is worth seeing that movie.",
+        "It is worth seeing that film.",
+        "It is worth watching that movie.",
+        "It is worth watching that film.",
+        "It's worth it to see that movie."
+      ]
+    },
+    {
+      "id": "b1.culture-and-entertainment.write-003",
+      "itemIds": ["b1.culture-and-entertainment.performance"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "La función empieza a las ocho.",
+      "accepted": [
+        "The performance starts at eight.",
+        "The performance starts at 8.",
+        "The performance starts at eight o'clock.",
+        "The performance starts at 8:00.",
+        "The performance starts at 8 p.m.",
+        "The performance starts at 8 pm.",
+        "The performance begins at eight.",
+        "The performance begins at 8.",
+        "The performance begins at eight o'clock.",
+        "The performance begins at 8:00.",
+        "The performance begins at 8 p.m.",
+        "The performance begins at 8 pm.",
+        "The show starts at eight.",
+        "The show starts at 8.",
+        "The show starts at eight o'clock.",
+        "The show starts at 8:00.",
+        "The show starts at 8 p.m.",
+        "The show starts at 8 pm.",
+        "The show begins at eight.",
+        "The show begins at 8.",
+        "The show begins at eight o'clock.",
+        "The show begins at 8:00.",
+        "The show begins at 8 p.m.",
+        "The show begins at 8 pm.",
+        "The play starts at eight.",
+        "The play starts at 8.",
+        "The play begins at eight.",
+        "The play begins at 8.",
+        "The show starts at 8 o'clock.",
+        "The performance starts at 8 o'clock."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.culture-and-entertainment.lesson-001",
+      "level": "B1",
+      "topic": "culture-and-entertainment",
+      "title": "Una noche de cultura",
+      "exerciseIds": [
+        "b1.culture-and-entertainment.vocab-001",
+        "b1.culture-and-entertainment.cloze-001",
+        "b1.culture-and-entertainment.order-001",
+        "b1.culture-and-entertainment.choice-001",
+        "b1.culture-and-entertainment.reading-001",
+        "b1.culture-and-entertainment.write-001",
+        "b1.culture-and-entertainment.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.culture-and-entertainment.lesson-002",
+      "level": "B1",
+      "topic": "culture-and-entertainment",
+      "title": "Cine, teatro y música",
+      "exerciseIds": [
+        "b1.culture-and-entertainment.vocab-003",
+        "b1.culture-and-entertainment.cloze-002",
+        "b1.culture-and-entertainment.cloze-003",
+        "b1.culture-and-entertainment.order-002",
+        "b1.culture-and-entertainment.choice-002",
+        "b1.culture-and-entertainment.write-002",
+        "b1.culture-and-entertainment.write-003"
+      ]
+    }
+  ]
+}

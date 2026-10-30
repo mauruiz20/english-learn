@@ -1,0 +1,354 @@
+{
+  "items": [
+    {
+      "id": "b1.technology.device",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "word",
+      "term": "device",
+      "es": "dispositivo, aparato"
+    },
+    {
+      "id": "b1.technology.screen",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "word",
+      "term": "screen",
+      "es": "pantalla"
+    },
+    {
+      "id": "b1.technology.charger",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "word",
+      "term": "charger",
+      "es": "cargador"
+    },
+    {
+      "id": "b1.technology.password",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "word",
+      "term": "password",
+      "es": "contraseña"
+    },
+    {
+      "id": "b1.technology.download",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "word",
+      "term": "download",
+      "es": "descargar / descarga"
+    },
+    {
+      "id": "b1.technology.update",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "word",
+      "term": "update",
+      "es": "actualizar / actualización"
+    },
+    {
+      "id": "b1.technology.log-in",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "phrase",
+      "term": "log in (to)",
+      "es": "iniciar sesión (en)"
+    },
+    {
+      "id": "b1.technology.back-up",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "phrase",
+      "term": "back up",
+      "es": "hacer una copia de seguridad (de)"
+    },
+    {
+      "id": "b1.technology.invent",
+      "level": "B1",
+      "topics": ["technology"],
+      "kind": "word",
+      "term": "invent",
+      "es": "inventar"
+    },
+    {
+      "id": "b1.technology.passive-present",
+      "level": "B1",
+      "topics": ["technology", "grammar"],
+      "kind": "grammar",
+      "term": "passive (present): is/are + past participle",
+      "es": "voz pasiva en presente: se usa, es usado"
+    },
+    {
+      "id": "b1.technology.passive-past",
+      "level": "B1",
+      "topics": ["technology", "grammar"],
+      "kind": "grammar",
+      "term": "passive (past): was/were + past participle",
+      "es": "voz pasiva en pasado: fue inventado, se inventó"
+    },
+    {
+      "id": "b1.technology.relative-that-which",
+      "level": "B1",
+      "topics": ["technology", "grammar"],
+      "kind": "grammar",
+      "term": "relative clauses: that / which (things)",
+      "es": "pronombre relativo «que» para cosas"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.technology.lost-project",
+      "level": "B1",
+      "topics": ["technology"],
+      "title": "The project I almost lost",
+      "text": "Last week my laptop stopped working the night before an important school project was due. I had written most of it on the laptop, and I hadn't backed up my files. I was really worried. My older brother, who works in IT, told me not to panic. He explained that many apps that we use every day save our work automatically online. I logged in to my account on his computer, and there it was: a copy of the document had been saved two days earlier. I lost only one page. The next day my laptop was taken to a repair shop. The technician said the problem was caused by an update that never finished installing. Now I update my devices every week, I use a strong password, and I back up my files every Friday. I also keep a charger in my bag, because a phone with no battery is not very useful in an emergency.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.technology.vocab-001",
+      "itemIds": ["b1.technology.charger"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'charger' mean?",
+      "options": ["cargo", "batería", "enchufe", "cargador"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.technology.cloze-001",
+      "itemIds": ["b1.technology.passive-past", "b1.technology.invent"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 263350,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "Paper was ___ by the Chinese.",
+      "answers": ["invented"],
+      "distractors": ["invent", "inventing", "invents"],
+      "es": "El papel fue inventado por los chinos."
+    },
+    {
+      "id": "b1.technology.order-001",
+      "itemIds": ["b1.technology.password"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1198465,
+        "author": "Eldad",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["password.", "Please", "choose", "stronger", "a"],
+      "accepted": ["Please choose a stronger password."],
+      "es": "Por favor, elige una contraseña más segura."
+    },
+    {
+      "id": "b1.technology.choice-001",
+      "itemIds": ["b1.technology.download"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 5059252,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I haven't downloaded the file yet.",
+      "options": [
+        "Ya descargué el archivo.",
+        "Todavía no he subido el archivo.",
+        "No puedo descargar el archivo.",
+        "Todavía no he descargado el archivo."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.technology.reading-001",
+      "itemIds": ["b1.technology.back-up", "b1.technology.update", "b1.technology.log-in"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.technology.lost-project",
+      "questions": [
+        {
+          "prompt": "Who helped the writer?",
+          "options": ["A technician at school", "A teacher", "The writer's older brother"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "How much of the project was lost?",
+          "options": ["Nothing", "One page", "Most of it"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What caused the problem with the laptop?",
+          "options": [
+            "An update that didn't finish",
+            "A virus from a download",
+            "Water on the keyboard"
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.technology.write-001",
+      "itemIds": ["b1.technology.passive-present"],
+      "level": "B1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 26258,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "El inglés se usa en todas partes del mundo.",
+      "accepted": [
+        "English is used in every part of the world.",
+        "English is used in all parts of the world.",
+        "English is used all over the world.",
+        "English is used everywhere in the world.",
+        "English is used all around the world.",
+        "English is used throughout the world.",
+        "English is used around the world."
+      ]
+    },
+    {
+      "id": "b1.technology.vocab-002",
+      "itemIds": ["b1.technology.screen"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'pantalla'.",
+      "options": ["scream", "keyboard", "screen", "mouse"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.technology.vocab-003",
+      "itemIds": ["b1.technology.device"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'device' mean?",
+      "options": ["divisa", "dispositivo", "consejo", "deber"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.technology.cloze-002",
+      "itemIds": ["b1.technology.relative-that-which"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "This is the app ___ helps me learn new words.",
+      "answers": ["that", "which"],
+      "distractors": ["who", "where", "what"],
+      "es": "Esta es la aplicación que me ayuda a aprender palabras nuevas."
+    },
+    {
+      "id": "b1.technology.cloze-003",
+      "itemIds": ["b1.technology.passive-present"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "These phones ___ made in Korea.",
+      "answers": ["are"],
+      "distractors": ["is", "have", "do"],
+      "es": "Estos teléfonos se fabrican en Corea."
+    },
+    {
+      "id": "b1.technology.order-002",
+      "itemIds": ["b1.technology.log-in"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["in", "can't", "my", "I", "log", "account.", "to"],
+      "accepted": ["I can't log in to my account."],
+      "es": "No puedo iniciar sesión en mi cuenta."
+    },
+    {
+      "id": "b1.technology.choice-002",
+      "itemIds": ["b1.technology.update", "b1.technology.passive-present"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "The app is updated every month.",
+      "options": [
+        "La aplicación se actualizó el mes pasado.",
+        "Actualizo la aplicación cada mes.",
+        "La aplicación se actualiza cada mes.",
+        "La aplicación se descarga cada mes."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.technology.write-002",
+      "itemIds": ["b1.technology.back-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Siempre hago una copia de seguridad de mis archivos.",
+      "accepted": [
+        "I always back up my files.",
+        "I always back my files up.",
+        "I always make a backup of my files.",
+        "I always make a back-up of my files.",
+        "I always make a copy of my files.",
+        "I always make backups of my files.",
+        "I always make a backup copy of my files."
+      ]
+    },
+    {
+      "id": "b1.technology.write-003",
+      "itemIds": ["b1.technology.passive-past"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Este teléfono fue diseñado en California.",
+      "accepted": [
+        "This phone was designed in California.",
+        "This cell phone was designed in California.",
+        "This smartphone was designed in California.",
+        "This mobile phone was designed in California."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.technology.lesson-001",
+      "level": "B1",
+      "topic": "technology",
+      "title": "Problemas con la tecnología",
+      "exerciseIds": [
+        "b1.technology.vocab-001",
+        "b1.technology.cloze-001",
+        "b1.technology.order-001",
+        "b1.technology.choice-001",
+        "b1.technology.reading-001",
+        "b1.technology.write-001",
+        "b1.technology.vocab-002"
+      ]
+    },
+    {
+      "id": "b1.technology.lesson-002",
+      "level": "B1",
+      "topic": "technology",
+      "title": "Cómo se hace",
+      "exerciseIds": [
+        "b1.technology.vocab-003",
+        "b1.technology.cloze-002",
+        "b1.technology.cloze-003",
+        "b1.technology.order-002",
+        "b1.technology.choice-002",
+        "b1.technology.write-002",
+        "b1.technology.write-003"
+      ]
+    }
+  ]
+}

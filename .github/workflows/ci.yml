@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Format
+        run: pnpm format:check
+      - name: Lint
+        run: pnpm lint
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Test
+        run: pnpm test
+      - name: Validate content
+        run: pnpm validate:content
+      - name: Generated corpus is up to date
+        run: pnpm corpus:check
+
+  web-e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Chromium and WebKit
+        run: pnpm --filter @english-learn/mobile exec playwright install --with-deps chromium webkit
+      # Production export; fails if test-only hooks (e2e clock override) leak into it.
+      - name: Export web build
+        run: pnpm --filter @english-learn/mobile export:web
+      # Builds its own export with EXPO_PUBLIC_E2E=1 (dist-e2e/) and runs Playwright on it.
+      - name: Web e2e tests
+        run: pnpm --filter @english-learn/mobile e2e:web

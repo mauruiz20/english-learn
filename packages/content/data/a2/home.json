@@ -1,0 +1,345 @@
+{
+  "items": [
+    {
+      "id": "a2.home.kitchen",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "kitchen",
+      "es": "cocina"
+    },
+    {
+      "id": "a2.home.bedroom",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "bedroom",
+      "es": "dormitorio"
+    },
+    {
+      "id": "a2.home.bathroom",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "bathroom",
+      "es": "baño"
+    },
+    {
+      "id": "a2.home.living-room",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "phrase",
+      "term": "living room",
+      "es": "sala de estar"
+    },
+    {
+      "id": "a2.home.yard",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "yard",
+      "es": "patio, jardín"
+    },
+    {
+      "id": "a2.home.apartment",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "apartment",
+      "es": "apartamento"
+    },
+    {
+      "id": "a2.home.window",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "window",
+      "es": "ventana"
+    },
+    {
+      "id": "a2.home.door",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "door",
+      "es": "puerta"
+    },
+    {
+      "id": "a2.home.do-the-dishes",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "phrase",
+      "term": "do the dishes",
+      "es": "lavar los platos"
+    },
+    {
+      "id": "a2.home.next-to",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "phrase",
+      "term": "next to",
+      "es": "al lado de"
+    },
+    {
+      "id": "a2.home.there-is-are",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "grammar",
+      "term": "there is / there are",
+      "es": "hay (singular / plural)"
+    },
+    {
+      "id": "a2.home.house",
+      "level": "A2",
+      "topics": ["home"],
+      "kind": "word",
+      "term": "house",
+      "es": "casa"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.home.new-apartment",
+      "level": "A2",
+      "topics": ["home"],
+      "title": "Our new apartment",
+      "text": "We moved to a new apartment last month. It is bigger than our old one. There are two bedrooms, a small kitchen and a living room with a big window. There isn't a yard, but there is a balcony with lots of plants. My brother and I share a bedroom. On Saturdays we clean the apartment together, and I always do the dishes.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.home.vocab-001",
+      "itemIds": ["a2.home.bedroom"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'bedroom' mean?",
+      "options": ["dormitorio", "baño", "sala", "cocina"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.home.cloze-001",
+      "itemIds": ["a2.home.there-is-are", "a2.home.bathroom"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "There ___ two bathrooms in our house.",
+      "answers": ["are"],
+      "distractors": ["is", "have", "has"],
+      "es": "Hay dos baños en nuestra casa."
+    },
+    {
+      "id": "a2.home.order-001",
+      "itemIds": ["a2.home.yard", "a2.home.there-is-are"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["yard", "our", "There's", "behind", "big", "house.", "a"],
+      "accepted": ["There's a big yard behind our house."],
+      "es": "Hay un patio grande detrás de nuestra casa."
+    },
+    {
+      "id": "a2.home.choice-001",
+      "itemIds": ["a2.home.apartment"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 321476,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "My apartment is near here.",
+      "options": [
+        "Mi apartamento está lejos de aquí.",
+        "Mi apartamento está cerca de aquí.",
+        "Mi apartamento es muy pequeño.",
+        "Mi apartamento estaba cerca de aquí."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.home.reading-001",
+      "itemIds": ["a2.home.apartment", "a2.home.do-the-dishes", "a2.home.living-room"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.home.new-apartment",
+      "questions": [
+        {
+          "prompt": "When did the family move?",
+          "options": ["Last year", "Last week", "Last month"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What does the new apartment NOT have?",
+          "options": ["A kitchen", "A yard", "A balcony"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Who does the writer share a bedroom with?",
+          "options": ["Their sister", "Their parents", "Their brother"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.home.write-001",
+      "itemIds": ["a2.home.window"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 274195,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "¿Puedo abrir la ventana?",
+      "accepted": ["Can I open the window?", "May I open the window?", "Could I open the window?"]
+    },
+    {
+      "id": "a2.home.vocab-002",
+      "itemIds": ["a2.home.living-room"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'sala de estar'.",
+      "options": ["dining room", "bathroom", "living room", "bedroom"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.home.vocab-003",
+      "itemIds": ["a2.home.do-the-dishes"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'do the dishes' mean?",
+      "options": ["lavar los platos", "hacer la cama", "cocinar la cena", "poner la mesa"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.home.cloze-002",
+      "itemIds": ["a2.home.do-the-dishes", "a2.daily-routine.usually"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 244971,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I usually ___ the dishes.",
+      "answers": ["do"],
+      "distractors": ["make", "take", "play"],
+      "es": "Normalmente lavo los platos."
+    },
+    {
+      "id": "a2.home.cloze-003",
+      "itemIds": ["a2.home.next-to", "a2.home.bathroom"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The bathroom is ___ to my bedroom.",
+      "answers": ["next"],
+      "distractors": ["between", "behind", "under"],
+      "es": "El baño está al lado de mi dormitorio."
+    },
+    {
+      "id": "a2.home.order-002",
+      "itemIds": ["a2.work.have-to", "a2.home.kitchen"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["today.", "We", "have", "clean", "to", "kitchen", "the"],
+      "accepted": ["We have to clean the kitchen today."],
+      "es": "Hoy tenemos que limpiar la cocina."
+    },
+    {
+      "id": "a2.home.choice-002",
+      "itemIds": ["a2.home.door"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2276878,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "The front door won't open.",
+      "options": [
+        "La puerta principal está abierta.",
+        "La puerta de atrás no se abre.",
+        "No abras la puerta principal.",
+        "La puerta principal no se abre."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.home.choice-003",
+      "itemIds": ["a2.home.house"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 6488752,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "This house isn't very big.",
+      "options": [
+        "Esta casa es muy grande.",
+        "Esta casa no es muy grande.",
+        "Esta casa no es muy bonita.",
+        "Esa casa no era muy grande."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.home.write-002",
+      "itemIds": ["a2.home.apartment"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 3731877,
+        "author": "CM",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "¿Te gusta el apartamento?",
+      "accepted": ["Do you like the apartment?", "Do you like the flat?"]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.home.lesson-001",
+      "level": "A2",
+      "topic": "home",
+      "title": "Mi casa",
+      "exerciseIds": [
+        "a2.home.vocab-001",
+        "a2.home.cloze-001",
+        "a2.home.order-001",
+        "a2.home.choice-001",
+        "a2.home.reading-001",
+        "a2.home.write-001",
+        "a2.home.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.home.lesson-002",
+      "level": "A2",
+      "topic": "home",
+      "title": "Las tareas de la casa",
+      "exerciseIds": [
+        "a2.home.vocab-003",
+        "a2.home.cloze-002",
+        "a2.home.cloze-003",
+        "a2.home.order-002",
+        "a2.home.choice-002",
+        "a2.home.choice-003",
+        "a2.home.write-002"
+      ]
+    }
+  ]
+}

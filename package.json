@@ -1,0 +1,28 @@
+{
+  "name": "english-learn",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint": "eslint . && pnpm --filter \"./apps/**\" lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "validate:content": "pnpm --filter @english-learn/content validate",
+    "corpus:check": "pnpm --filter @english-learn/content corpus:check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm validate:content && pnpm corpus:check"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1"
+  }
+}

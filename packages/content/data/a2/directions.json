@@ -1,0 +1,374 @@
+{
+  "items": [
+    {
+      "id": "a2.directions.turn-left",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "phrase",
+      "term": "turn left",
+      "es": "girar a la izquierda"
+    },
+    {
+      "id": "a2.directions.turn-right",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "phrase",
+      "term": "turn right",
+      "es": "girar a la derecha"
+    },
+    {
+      "id": "a2.directions.go-straight",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "phrase",
+      "term": "go straight (ahead)",
+      "es": "seguir derecho"
+    },
+    {
+      "id": "a2.directions.corner",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "word",
+      "term": "corner",
+      "es": "esquina"
+    },
+    {
+      "id": "a2.directions.block",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "word",
+      "term": "block",
+      "es": "cuadra"
+    },
+    {
+      "id": "a2.directions.station",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "word",
+      "term": "station",
+      "es": "estación"
+    },
+    {
+      "id": "a2.directions.map",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "word",
+      "term": "map",
+      "es": "mapa"
+    },
+    {
+      "id": "a2.directions.far-from",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "phrase",
+      "term": "far from",
+      "es": "lejos de"
+    },
+    {
+      "id": "a2.directions.across-from",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "phrase",
+      "term": "across from",
+      "es": "enfrente de"
+    },
+    {
+      "id": "a2.directions.between",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "word",
+      "term": "between",
+      "es": "entre"
+    },
+    {
+      "id": "a2.directions.excuse-me",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "phrase",
+      "term": "Excuse me, where is...?",
+      "es": "Disculpe, ¿dónde está...?"
+    },
+    {
+      "id": "a2.directions.imperative",
+      "level": "A2",
+      "topics": ["directions"],
+      "kind": "grammar",
+      "term": "imperative for directions (Turn left.)",
+      "es": "imperativo para indicaciones (Gire a la izquierda.)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.directions.to-the-museum",
+      "level": "A2",
+      "topics": ["directions"],
+      "title": "How to get to the museum",
+      "text": "A tourist asks a woman, \"Excuse me, how do I get to the museum?\" She answers, \"It's not far from here. Go straight ahead for two blocks and turn left at the bank. Then walk past the park. The museum is on the corner, across from the train station. It takes about ten minutes on foot.\"",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.directions.vocab-001",
+      "itemIds": ["a2.directions.turn-right"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'turn right' mean?",
+      "options": ["girar a la izquierda", "girar a la derecha", "seguir derecho", "dar la vuelta"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.directions.cloze-001",
+      "itemIds": ["a2.directions.turn-right", "a2.directions.imperative"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 658059,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "Turn right ___ the next intersection.",
+      "answers": ["at"],
+      "distractors": ["in", "to", "for"],
+      "es": "Gire a la derecha en el siguiente cruce."
+    },
+    {
+      "id": "a2.directions.order-001",
+      "itemIds": ["a2.directions.block", "a2.directions.turn-left", "a2.directions.imperative"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 57789,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["left.", "two", "and", "Go", "turn", "blocks"],
+      "accepted": ["Go two blocks and turn left."],
+      "es": "Camine dos cuadras y gire a la izquierda."
+    },
+    {
+      "id": "a2.directions.choice-001",
+      "itemIds": ["a2.directions.station", "a2.directions.far-from"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 26049,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "The station is not far from here.",
+      "options": [
+        "La estación no está lejos de aquí.",
+        "La estación está muy lejos de aquí.",
+        "La estación no está abierta hoy.",
+        "¿La estación está lejos de aquí?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.directions.reading-001",
+      "itemIds": ["a2.directions.go-straight", "a2.directions.across-from", "a2.directions.corner"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.directions.to-the-museum",
+      "questions": [
+        {
+          "prompt": "Where do you turn left?",
+          "options": ["At the bank", "At the park", "At the station"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Where is the museum?",
+          "options": ["Across from the train station", "Next to the bank", "Inside the park"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "How long does it take to walk there?",
+          "options": ["About two minutes", "About an hour", "About ten minutes"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.directions.write-001",
+      "itemIds": ["a2.directions.excuse-me", "a2.directions.station"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 9679029,
+        "author": "DJ_Saidez",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Disculpe, ¿dónde está la estación de metro?",
+      "accepted": [
+        "Excuse me, where's the subway station?",
+        "Excuse me, where's the metro station?",
+        "Excuse me, where's the subway?",
+        "Pardon me, where's the subway station?",
+        "Sorry, where's the subway station?"
+      ]
+    },
+    {
+      "id": "a2.directions.vocab-002",
+      "itemIds": ["a2.directions.corner"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'esquina'.",
+      "options": ["block", "square", "crossing", "corner"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.directions.vocab-003",
+      "itemIds": ["a2.directions.across-from"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'across from' mean?",
+      "options": ["al lado de", "enfrente de", "detrás de", "lejos de"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.directions.cloze-002",
+      "itemIds": ["a2.directions.between"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The bank is ___ the bakery and the bookstore.",
+      "answers": ["between"],
+      "distractors": ["next", "in front", "opposite of"],
+      "es": "El banco está entre la panadería y la librería."
+    },
+    {
+      "id": "a2.directions.cloze-003",
+      "itemIds": ["a2.directions.far-from"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 11273984,
+        "author": "carlosalberto",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I live far ___ here.",
+      "answers": ["from"],
+      "distractors": ["of", "to", "for"],
+      "es": "Vivo lejos de aquí."
+    },
+    {
+      "id": "a2.directions.order-002",
+      "itemIds": ["a2.directions.station"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 243721,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["station?", "nearest", "is", "police", "the", "Where"],
+      "accepted": ["Where is the nearest police station?"],
+      "es": "¿Dónde está la estación de policía más cercana?"
+    },
+    {
+      "id": "a2.directions.choice-002",
+      "itemIds": ["a2.directions.corner"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 456235,
+        "author": "lukaszpp",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "It's on the next corner.",
+      "options": [
+        "Está en esta esquina.",
+        "Está a dos cuadras.",
+        "Está en la próxima esquina.",
+        "Está detrás de la esquina."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.directions.choice-003",
+      "itemIds": ["a2.directions.map"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 246186,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I'd like a city map.",
+      "options": [
+        "Quisiera un mapa de la ciudad.",
+        "Tengo un mapa de la ciudad.",
+        "Me gusta este mapa de la ciudad.",
+        "Necesitaba un mapa de la ciudad."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.directions.write-002",
+      "itemIds": [
+        "a2.directions.go-straight",
+        "a2.directions.turn-right",
+        "a2.directions.imperative"
+      ],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Siga derecho y gire a la derecha en el banco.",
+      "accepted": [
+        "Go straight and turn right at the bank.",
+        "Go straight ahead and turn right at the bank.",
+        "Go straight on and turn right at the bank.",
+        "Keep going straight and turn right at the bank.",
+        "Go straight and then turn right at the bank.",
+        "Go straight, then turn right at the bank.",
+        "Continue straight and turn right at the bank.",
+        "Keep going straight ahead and turn right at the bank."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.directions.lesson-001",
+      "level": "A2",
+      "topic": "directions",
+      "title": "¿Cómo llego?",
+      "exerciseIds": [
+        "a2.directions.vocab-001",
+        "a2.directions.cloze-001",
+        "a2.directions.order-001",
+        "a2.directions.choice-001",
+        "a2.directions.reading-001",
+        "a2.directions.write-001",
+        "a2.directions.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.directions.lesson-002",
+      "level": "A2",
+      "topic": "directions",
+      "title": "En la ciudad",
+      "exerciseIds": [
+        "a2.directions.vocab-003",
+        "a2.directions.cloze-002",
+        "a2.directions.cloze-003",
+        "a2.directions.order-002",
+        "a2.directions.choice-002",
+        "a2.directions.choice-003",
+        "a2.directions.write-002"
+      ]
+    }
+  ]
+}

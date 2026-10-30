@@ -1,0 +1,356 @@
+{
+  "items": [
+    {
+      "id": "a2.food.lunch",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "lunch",
+      "es": "almuerzo"
+    },
+    {
+      "id": "a2.food.dinner",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "dinner",
+      "es": "cena"
+    },
+    {
+      "id": "a2.food.hungry",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "hungry",
+      "es": "con hambre"
+    },
+    {
+      "id": "a2.food.vegetables",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "vegetables",
+      "es": "verduras"
+    },
+    {
+      "id": "a2.food.bread",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "bread",
+      "es": "pan"
+    },
+    {
+      "id": "a2.food.rice",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "rice",
+      "es": "arroz"
+    },
+    {
+      "id": "a2.food.chicken",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "chicken",
+      "es": "pollo"
+    },
+    {
+      "id": "a2.food.cook",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "cook",
+      "es": "cocinar"
+    },
+    {
+      "id": "a2.food.delicious",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "word",
+      "term": "delicious",
+      "es": "delicioso"
+    },
+    {
+      "id": "a2.food.would-like",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "phrase",
+      "term": "I would like",
+      "es": "quisiera / me gustaría"
+    },
+    {
+      "id": "a2.food.how-much-many",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "grammar",
+      "term": "how much / how many",
+      "es": "cuánto (incontables) / cuántos (contables)"
+    },
+    {
+      "id": "a2.food.some-any",
+      "level": "A2",
+      "topics": ["food"],
+      "kind": "grammar",
+      "term": "some / any",
+      "es": "algo de, unos (afirmativas) / nada de, ningún (negativas); algo de, alguno (preguntas)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.food.dinner-together",
+      "level": "A2",
+      "topics": ["food"],
+      "title": "Dinner together",
+      "text": "On Fridays, my family cooks dinner together. My father makes rice and chicken, and my sister and I prepare a salad with fresh vegetables. We don't eat much bread at dinner, but we always have some fruit after the meal. Last Friday my mother made a delicious soup, so we didn't need any chicken. Next week I'm going to cook for everyone!",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.food.vocab-001",
+      "itemIds": ["a2.food.hungry"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'hungry' mean?",
+      "options": ["con sed", "cansado", "lleno", "con hambre"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.food.cloze-001",
+      "itemIds": ["a2.food.dinner"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 262683,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "We ___ dinner at seven.",
+      "answers": ["have"],
+      "distractors": ["do", "go", "are"],
+      "es": "Cenamos a las siete."
+    },
+    {
+      "id": "a2.food.order-001",
+      "itemIds": ["a2.food.vegetables"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 5916243,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["eat", "I", "a", "of", "vegetables.", "lot"],
+      "accepted": ["I eat a lot of vegetables."],
+      "es": "Como muchas verduras."
+    },
+    {
+      "id": "a2.food.choice-001",
+      "itemIds": ["a2.food.rice", "a2.food.how-much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1830616,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "How much rice do you eat every day?",
+      "options": [
+        "¿Cuánto arroz comes todos los días?",
+        "¿Cuánto arroz comiste ayer?",
+        "¿Cuántas veces comes arroz al día?",
+        "¿Comes arroz todos los días?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.food.reading-001",
+      "itemIds": ["a2.food.cook", "a2.food.delicious"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.food.dinner-together",
+      "questions": [
+        {
+          "prompt": "Who makes rice and chicken?",
+          "options": ["The writer's mother", "The writer's sister", "The writer's father"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What did the mother make last Friday?",
+          "options": ["A soup", "A salad", "A cake"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What is the writer going to do next week?",
+          "options": ["Eat at a restaurant", "Cook for the family", "Buy some bread"],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "a2.food.write-001",
+      "itemIds": ["a2.food.hungry"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 475748,
+        "author": "darinmex",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Yo tenía hambre y sed.",
+      "accepted": ["I was hungry and thirsty.", "I was thirsty and hungry."]
+    },
+    {
+      "id": "a2.food.vocab-002",
+      "itemIds": ["a2.food.cook"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'cocinar'.",
+      "options": ["clean", "cook", "cut", "kitchen"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.food.vocab-003",
+      "itemIds": ["a2.food.delicious"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'delicious' mean?",
+      "options": ["picante", "salado", "dulce", "delicioso"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.food.cloze-002",
+      "itemIds": ["a2.food.some-any"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "There isn't ___ milk in the fridge.",
+      "answers": ["any"],
+      "distractors": ["some", "many", "a"],
+      "es": "No hay leche en el refrigerador."
+    },
+    {
+      "id": "a2.food.cloze-003",
+      "itemIds": ["a2.food.how-much-many"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "How ___ apples do you want?",
+      "answers": ["many"],
+      "distractors": ["much", "any", "lot"],
+      "es": "¿Cuántas manzanas quieres?"
+    },
+    {
+      "id": "a2.food.order-002",
+      "itemIds": ["a2.food.would-like", "a2.food.chicken"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["like", "a", "would", "I", "please.", "sandwich,", "chicken"],
+      "accepted": ["I would like a chicken sandwich, please."],
+      "es": "Quisiera un sándwich de pollo, por favor."
+    },
+    {
+      "id": "a2.food.choice-002",
+      "itemIds": ["a2.food.hungry"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1477316,
+        "author": "CM",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "If you're hungry, have something to eat.",
+      "options": [
+        "Si tienes sed, bebe algo.",
+        "Si tienes hambre, cocina algo.",
+        "Si tienes hambre, come algo.",
+        "Cuando tenía hambre, comía algo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.food.choice-003",
+      "itemIds": ["a2.food.lunch"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 11180936,
+        "author": "DJ_Saidez",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I eat lunch at one thirty.",
+      "options": [
+        "Almuerzo a la una y media.",
+        "Ceno a la una y media.",
+        "Almorcé a la una y media.",
+        "Almuerzo a las tres y media."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.food.write-002",
+      "itemIds": ["a2.food.rice", "a2.food.bread"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 255448,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Prefiero el arroz al pan.",
+      "accepted": [
+        "I prefer rice to bread.",
+        "I like rice better than bread.",
+        "I like rice more than bread.",
+        "I prefer rice over bread.",
+        "I'd rather have rice than bread."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.food.lesson-001",
+      "level": "A2",
+      "topic": "food",
+      "title": "En la mesa",
+      "exerciseIds": [
+        "a2.food.vocab-001",
+        "a2.food.cloze-001",
+        "a2.food.order-001",
+        "a2.food.choice-001",
+        "a2.food.reading-001",
+        "a2.food.write-001",
+        "a2.food.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.food.lesson-002",
+      "level": "A2",
+      "topic": "food",
+      "title": "Pedir y preparar comida",
+      "exerciseIds": [
+        "a2.food.vocab-003",
+        "a2.food.cloze-002",
+        "a2.food.cloze-003",
+        "a2.food.order-002",
+        "a2.food.choice-002",
+        "a2.food.choice-003",
+        "a2.food.write-002"
+      ]
+    }
+  ]
+}
