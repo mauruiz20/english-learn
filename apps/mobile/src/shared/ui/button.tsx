@@ -1,10 +1,13 @@
-import { Pressable, StyleSheet, Text } from "react-native";
-import { colors, radius, spacing } from "./theme";
+import { Pressable, StyleSheet } from "react-native";
+import { Text } from "./text";
+import { TOUCH_TARGET, fonts, radius, spacing, typeScale } from "./theme";
+import { themedStyles } from "./use-theme";
 
 type ButtonProps = {
   label: string;
   onPress: () => void;
-  variant?: "primary" | "secondary";
+  /** primary: ink fill; secondary: ink outline; text: a quiet link-like action. */
+  variant?: "primary" | "secondary" | "text";
   accessibilityHint?: string;
   disabled?: boolean;
 };
@@ -16,7 +19,7 @@ export function Button({
   accessibilityHint,
   disabled = false,
 }: ButtonProps) {
-  const primary = variant === "primary";
+  const styles = useStyles();
   return (
     <Pressable
       accessibilityRole="button"
@@ -27,32 +30,34 @@ export function Button({
       onPress={onPress}
       style={({ pressed }) => [
         styles.base,
-        primary ? styles.primary : styles.secondary,
+        styles[variant],
         pressed && styles.pressed,
         disabled && styles.disabled,
       ]}
     >
-      <Text style={[styles.label, primary ? styles.primaryLabel : styles.secondaryLabel]}>
-        {label}
-      </Text>
+      <Text style={[styles.label, styles[`${variant}Label`]]}>{label}</Text>
     </Pressable>
   );
 }
 
-const styles = StyleSheet.create({
-  base: {
-    minHeight: 48,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.md,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  primary: { backgroundColor: colors.primary },
-  secondary: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
-  pressed: { opacity: 0.8 },
-  disabled: { opacity: 0.5 },
-  label: { fontSize: 16, fontWeight: "600" },
-  primaryLabel: { color: colors.onPrimary },
-  secondaryLabel: { color: colors.primary },
-});
+const useStyles = themedStyles(({ colors }) =>
+  StyleSheet.create({
+    base: {
+      minHeight: TOUCH_TARGET,
+      paddingHorizontal: spacing.lg,
+      paddingVertical: spacing.sm,
+      borderRadius: radius.md,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    primary: { backgroundColor: colors.ink },
+    secondary: { borderWidth: 1.5, borderColor: colors.ink },
+    text: { alignSelf: "flex-start", paddingHorizontal: 0 },
+    pressed: { opacity: 0.75 },
+    disabled: { opacity: 0.4 },
+    label: { fontFamily: fonts.bodyBold, ...typeScale.body },
+    primaryLabel: { color: colors.onInk },
+    secondaryLabel: { color: colors.ink },
+    textLabel: { color: colors.ink, textDecorationLine: "underline" },
+  }),
+);
