@@ -1,6 +1,7 @@
 export * from "./answer-matching";
 export * from "./cefr";
 export * from "./local-date";
+export * from "./placement";
 export * from "./ports";
 export * from "./progress";
 export * from "./scoring";

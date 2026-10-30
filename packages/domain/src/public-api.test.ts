@@ -2,6 +2,11 @@ import { describe, expect, it } from "vitest";
 import {
   LEVELS,
   addDays,
+  answer,
+  createPlacementSession,
+  currentQuestion,
+  levelFromTheta,
+  placementResult,
   gradeFromOutcome,
   initialState,
   isStreakAlive,
@@ -55,6 +60,17 @@ describe("public API (barrel)", () => {
     expect(shuffleChoices({ options: ["a", "b"], answerIndex: 0 }, rng).answerIndex).toBe(1);
     expect(shuffle([1, 2], rng)).toEqual([2, 1]);
     expect(scrambleTokens(["x", "y"], rng)).toEqual(["y", "x"]);
+  });
+
+  it("exposes the placement engine", () => {
+    const rng = () => 0;
+    const session = createPlacementSession({
+      candidates: [{ id: "q1", level: "B1", optionCount: 4 }],
+      rng,
+    });
+    const done = answer(session, currentQuestion(session)?.id ?? "", true, rng);
+    expect(placementResult(done)).toMatchObject({ done: true, answered: 1 });
+    expect(levelFromTheta(0)).toBe("B1");
   });
 
   it("exposes the CEFR levels in ascending order", () => {

@@ -13,6 +13,7 @@ It does not import `@english-learn/content`; the app layer maps content into the
 | `scoring`         | XP per answer, lesson completion bonus, accuracy                    |
 | `streak`          | Daily streak (current / longest)                                    |
 | `progress`        | Per-level seen / mastered counts                                    |
+| `placement`       | Adaptive placement test (CAT) → CEFR level                          |
 | `shuffle`         | Fisher–Yates shuffle, option shuffling, word-order token scrambling |
 | `local-date`      | Branded `YYYY-MM-DD` date with pure calendar math (no timezones)    |
 | `cefr`            | `Level` (`A1`…`C1`)                                                 |
@@ -57,6 +58,24 @@ Both the input and every accepted answer go through the same pipeline:
   | correct, on time                   | 5     |
 
 - `selectSession`: due items (`dueDate ≤ today`) by dueDate asc, lapses desc, itemId; then unseen new items.
+
+## Placement (CAT)
+
+- **Model**: 3PL with discrimination fixed at 1 and fixed guessing
+  `P(correct | θ) = c + (1 − c) / (1 + e^{−(θ − b)})`, `c = 1 / optionCount`.
+- **Difficulty `b`** defaults from the item's CEFR level: A1 −2, A2 −1, B1 0, B2 1, C1 2.
+- **Estimation**: EAP over a θ grid [−4, 4] (step 0.05) with a N(0, 1) prior, in log space.
+  `se` is the posterior SD.
+- **Item selection**: the unused item with maximum Fisher information at the current θ;
+  near-ties (≤ 1e-6) are broken with the injected rng.
+- **Stopping**: 20 questions, or ≥ 15 with `se < 0.4`, or when the bank runs out.
+- **Level**: θ cutoffs −1.5 / −0.5 / 0.5 / 1.5 (a value on a cutoff goes to the upper level).
+- **API**: `createPlacementSession` → `currentQuestion` → `answer(session, id, correct, rng)` →
+  `placementResult`. Sessions are plain immutable data (serializable); the rng is passed per call.
+
+> **Caveat**: item difficulties are CEFR-derived _priors_, not calibrated parameters. Results are a
+> reasonable starting level, not a certified score. Calibration (fitting `b` per item from real
+> responses) is planned once the phase-2 backend collects data.
 
 ## Scripts
 
