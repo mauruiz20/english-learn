@@ -23,6 +23,7 @@ every check passes; progress is stored in your browser only).
 - [Architecture](#architecture)
 - [Key engineering decisions](#key-engineering-decisions)
 - [Testing](#testing)
+- [Optional backend](#optional-backend)
 - [Content and licensing](#content-and-licensing)
 - [Getting started](#getting-started)
 - [Roadmap](#roadmap)
@@ -74,6 +75,7 @@ graph TD
 | [`packages/storage-sqlite`](packages/storage-sqlite/README.md) | SQLite implementation of the domain's `ProgressRepository` port, with migrations.        |
 | [`apps/mobile`](apps/mobile/README.md)                         | Expo app (Android + web): routes, feature screens, infrastructure wiring.                |
 | [`tools/content-pipeline`](tools/content-pipeline/README.md)   | Authoring-time CLI: shortlists Tatoeba sentences and verifies attributions. Never ships. |
+| [`services/api`](services/api/README.md)                       | Optional Python API (FastAPI, PostgreSQL): Google sign-in now, progress sync next.       |
 
 **Hexagonal.** The domain owns the ports (`Clock`, `ProgressRepository`) and never touches I/O;
 time and randomness are always injected. `storage-sqlite` and the app's `infrastructure/` are the
@@ -121,6 +123,15 @@ Written test-first (TDD). Numbers from `pnpm test` and `playwright test --list` 
 CI (`.github/workflows/ci.yml`) runs on pushes and pull requests to `main` and `develop`:
 format, lint, typecheck, unit tests, content validation, corpus freshness, production web export
 (with the bundle check) and the Playwright suite.
+
+## Optional backend
+
+[`services/api`](services/api/README.md) is a FastAPI + PostgreSQL service (Python 3.14, uv,
+SQLAlchemy async, Alembic) with the same hexagonal and screaming layout. It adds optional Google
+sign-in for the web app: Google ID token in, a 15-minute JWT access token and a rotating refresh
+token (reuse detection revokes the whole family) out. Progress sync will exchange the domain's
+event log; the server stores events opaquely and never folds them. Its CI job runs Ruff, strict
+mypy and pytest against a real PostgreSQL 18 (testcontainers).
 
 ## Content and licensing
 
