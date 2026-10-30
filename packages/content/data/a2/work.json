@@ -1,0 +1,355 @@
+{
+  "items": [
+    {
+      "id": "a2.work.job",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "job",
+      "es": "trabajo / empleo"
+    },
+    {
+      "id": "a2.work.office",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "office",
+      "es": "oficina"
+    },
+    {
+      "id": "a2.work.boss",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "boss",
+      "es": "jefe / jefa"
+    },
+    {
+      "id": "a2.work.meeting",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "meeting",
+      "es": "reunión"
+    },
+    {
+      "id": "a2.work.colleague",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "colleague",
+      "es": "compañero de trabajo"
+    },
+    {
+      "id": "a2.work.salary",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "salary",
+      "es": "sueldo"
+    },
+    {
+      "id": "a2.work.part-time",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "part-time",
+      "es": "a tiempo parcial"
+    },
+    {
+      "id": "a2.work.work-from-home",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "phrase",
+      "term": "work from home",
+      "es": "trabajar desde casa"
+    },
+    {
+      "id": "a2.work.look-for",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "phrase",
+      "term": "look for",
+      "es": "buscar"
+    },
+    {
+      "id": "a2.work.finish",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "word",
+      "term": "finish",
+      "es": "terminar"
+    },
+    {
+      "id": "a2.work.have-to",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "grammar",
+      "term": "have to / don't have to",
+      "es": "tener que / no tener que"
+    },
+    {
+      "id": "a2.work.on-monday",
+      "level": "A2",
+      "topics": ["work"],
+      "kind": "grammar",
+      "term": "on + day (on Monday)",
+      "es": "el + día (el lunes)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.work.new-job",
+      "level": "A2",
+      "topics": ["work"],
+      "title": "A new job",
+      "text": "Carlos started a new job in March. He works in an office in the city center. He has to start at nine, but he often arrives at half past eight. His boss is friendly and his colleagues help him a lot. On Fridays he works from home. Next year he is going to look for a bigger apartment near the office.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.work.vocab-001",
+      "itemIds": ["a2.work.boss"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'boss' mean?",
+      "options": ["cliente", "jefe", "compañero", "empleado"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.work.cloze-001",
+      "itemIds": ["a2.work.finish", "a2.work.job"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1415665,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I ___ the job yesterday.",
+      "answers": ["finished"],
+      "distractors": ["finish", "finishing", "will finish"],
+      "es": "Ayer terminé el trabajo."
+    },
+    {
+      "id": "a2.work.order-001",
+      "itemIds": ["a2.work.office"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2546127,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["I", "in", "building.", "this", "work"],
+      "accepted": ["I work in this building."],
+      "es": "Trabajo en este edificio."
+    },
+    {
+      "id": "a2.work.choice-001",
+      "itemIds": ["a2.work.meeting"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 3636173,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "The meeting hasn't started yet.",
+      "options": [
+        "La reunión ya terminó.",
+        "La reunión no va a empezar.",
+        "La reunión todavía no ha empezado.",
+        "La reunión empezó tarde."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.work.reading-001",
+      "itemIds": ["a2.work.work-from-home", "a2.work.colleague", "a2.work.office"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.work.new-job",
+      "questions": [
+        {
+          "prompt": "When did Carlos start his new job?",
+          "options": ["In May", "Last week", "In March"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What does Carlos do on Fridays?",
+          "options": ["He works from home", "He has a meeting with his boss", "He goes to the gym"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What is Carlos going to do next year?",
+          "options": ["Look for a new job", "Look for a bigger apartment", "Buy a car"],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "a2.work.write-001",
+      "itemIds": ["a2.work.look-for", "a2.work.job"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1959341,
+        "author": "Flargus",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "¿Estás buscando trabajo?",
+      "accepted": ["Are you looking for work?", "Are you looking for a job?"]
+    },
+    {
+      "id": "a2.work.vocab-002",
+      "itemIds": ["a2.work.colleague"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'compañero de trabajo'.",
+      "options": ["classmate", "neighbor", "roommate", "colleague"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.work.vocab-003",
+      "itemIds": ["a2.work.salary"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'salary' mean?",
+      "options": ["horario", "sueldo", "ahorro", "impuesto"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.work.cloze-002",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She ___ to work on Saturdays. It's her day off.",
+      "answers": ["doesn't have"],
+      "distractors": ["don't have", "hasn't", "isn't"],
+      "es": "Ella no tiene que trabajar los sábados. Es su día libre."
+    },
+    {
+      "id": "a2.work.cloze-003",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 3822329,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "Do you work ___ Monday?",
+      "answers": ["on"],
+      "distractors": ["in", "at", "the"],
+      "es": "¿Trabajas el lunes?"
+    },
+    {
+      "id": "a2.work.order-002",
+      "itemIds": ["a2.work.meeting", "a2.work.boss"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["a", "meeting", "with", "ten.", "at", "boss", "have", "I", "my"],
+      "accepted": ["I have a meeting with my boss at ten."],
+      "es": "Tengo una reunión con mi jefe a las diez."
+    },
+    {
+      "id": "a2.work.choice-002",
+      "itemIds": ["a2.work.job"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2901461,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "Did you find a job?",
+      "options": [
+        "¿Encontraste trabajo?",
+        "¿Buscaste trabajo?",
+        "¿Te gusta tu trabajo?",
+        "¿Vas a buscar trabajo?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.work.choice-003",
+      "itemIds": ["a2.work.part-time"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I work part-time in a restaurant.",
+      "options": [
+        "Trabajo a tiempo completo en un restaurante.",
+        "Trabajé en un restaurante el año pasado.",
+        "Trabajo a tiempo parcial en un restaurante.",
+        "Quiero trabajar en un restaurante."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.work.write-002",
+      "itemIds": ["a2.work.job"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 264714,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Me encanta mi trabajo.",
+      "accepted": [
+        "I really love my work.",
+        "I love my work.",
+        "I really love my job.",
+        "I love my job."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.work.lesson-001",
+      "level": "A2",
+      "topic": "work",
+      "title": "En el trabajo",
+      "exerciseIds": [
+        "a2.work.vocab-001",
+        "a2.work.cloze-001",
+        "a2.work.order-001",
+        "a2.work.choice-001",
+        "a2.work.reading-001",
+        "a2.work.write-001",
+        "a2.work.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.work.lesson-002",
+      "level": "A2",
+      "topic": "work",
+      "title": "Horarios y obligaciones",
+      "exerciseIds": [
+        "a2.work.vocab-003",
+        "a2.work.cloze-002",
+        "a2.work.cloze-003",
+        "a2.work.order-002",
+        "a2.work.choice-002",
+        "a2.work.choice-003",
+        "a2.work.write-002"
+      ]
+    }
+  ]
+}

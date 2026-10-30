@@ -108,3 +108,16 @@ pnpm validate:content                              # validate data/ (exit 1 on e
 pnpm --filter @english-learn/content build:corpus  # regenerate src/generated/corpus.ts
 pnpm corpus:check                                  # fail if the generated corpus is stale
 ```
+
+## Authoring
+
+- One file per topic and level (`data/a2/food.json`); placement questions live in one file per
+  level (`data/placement/a1.json` … `c1.json`).
+- Each topic file has 8–15 items, at least one passage, and lessons of 6–8 exercises that together
+  cover all six exercise types. Lesson titles are in Spanish; Spanish text is neutral (no voseo).
+- Example sentences can come from Tatoeba via `tools/content-pipeline` (see its README): run
+  `download`, then `candidates --level A2`, pick sentences from `.cache/candidates-a2.json`, and
+  run `verify` to check that every Tatoeba attribution quotes the English sentence exactly. Spanish
+  options and prompts are our own translations; only the English sentence carries the attribution.
+- Clozes must have a single correct fit among the shown choices: avoid distractors that are also
+  grammatical (e.g. `got` next to `gets` in a habitual sentence).

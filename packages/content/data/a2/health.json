@@ -1,0 +1,353 @@
+{
+  "items": [
+    {
+      "id": "a2.health.headache",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "headache",
+      "es": "dolor de cabeza"
+    },
+    {
+      "id": "a2.health.stomachache",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "stomachache",
+      "es": "dolor de estómago"
+    },
+    {
+      "id": "a2.health.fever",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "fever",
+      "es": "fiebre"
+    },
+    {
+      "id": "a2.health.have-a-cold",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "phrase",
+      "term": "have a cold",
+      "es": "estar resfriado"
+    },
+    {
+      "id": "a2.health.sick",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "sick",
+      "es": "enfermo"
+    },
+    {
+      "id": "a2.health.doctor",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "doctor",
+      "es": "médico"
+    },
+    {
+      "id": "a2.health.medicine",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "medicine",
+      "es": "medicina / medicamento"
+    },
+    {
+      "id": "a2.health.tired",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "tired",
+      "es": "cansado"
+    },
+    {
+      "id": "a2.health.hurt",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "hurt",
+      "es": "doler"
+    },
+    {
+      "id": "a2.health.rest",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "word",
+      "term": "rest",
+      "es": "descansar"
+    },
+    {
+      "id": "a2.health.feel-better",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "phrase",
+      "term": "feel better",
+      "es": "sentirse mejor"
+    },
+    {
+      "id": "a2.health.should",
+      "level": "A2",
+      "topics": ["health"],
+      "kind": "grammar",
+      "term": "should (advice)",
+      "es": "debería (consejo)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.health.bad-week",
+      "level": "A2",
+      "topics": ["health"],
+      "title": "A bad week",
+      "text": "Last Monday Elena woke up with a headache and a sore throat. She felt very tired, so she stayed in bed. On Tuesday she had a fever and went to the doctor. The doctor said she had a bad cold. He gave her some medicine and told her to rest and drink a lot of water. By Friday she felt much better and went back to work.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.health.vocab-001",
+      "itemIds": ["a2.health.headache"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'headache' mean?",
+      "options": ["dolor de muelas", "dolor de espalda", "dolor de estómago", "dolor de cabeza"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.health.cloze-001",
+      "itemIds": ["a2.health.fever"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 387437,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I have a high ___.",
+      "answers": ["fever"],
+      "distractors": ["cold", "headache", "cough"],
+      "es": "Tengo fiebre alta."
+    },
+    {
+      "id": "a2.health.order-001",
+      "itemIds": ["a2.health.fever", "a2.health.headache"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 10736376,
+        "author": "carlosalberto",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["a", "and", "fever", "He", "has", "headache.", "a"],
+      "accepted": ["He has a fever and a headache."],
+      "es": "Tiene fiebre y dolor de cabeza."
+    },
+    {
+      "id": "a2.health.choice-001",
+      "itemIds": ["a2.health.doctor"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 28040,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "Did you see a doctor?",
+      "options": [
+        "¿Eres médico?",
+        "¿Vas a ir al médico?",
+        "¿Fuiste al médico?",
+        "¿Llamaste al médico?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.health.reading-001",
+      "itemIds": ["a2.health.have-a-cold", "a2.health.rest", "a2.health.feel-better"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.health.bad-week",
+      "questions": [
+        {
+          "prompt": "How did Elena feel on Monday?",
+          "options": [
+            "She had a stomachache",
+            "She had a headache and a sore throat",
+            "She felt very well"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "When did Elena go to the doctor?",
+          "options": ["On Monday", "On Friday", "On Tuesday"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What did the doctor tell her to do?",
+          "options": ["Go back to work", "Eat more fruit", "Rest and drink a lot of water"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.health.write-001",
+      "itemIds": ["a2.health.have-a-cold"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 257622,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Me he resfriado.",
+      "accepted": ["I have caught a cold.", "I caught a cold.", "I have a cold."]
+    },
+    {
+      "id": "a2.health.vocab-002",
+      "itemIds": ["a2.health.tired"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'cansado'.",
+      "options": ["bored", "tired", "sick", "sad"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.health.vocab-003",
+      "itemIds": ["a2.health.feel-better"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'feel better' mean?",
+      "options": ["sentirse peor", "sentirse solo", "sentirse cansado", "sentirse mejor"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.health.cloze-002",
+      "itemIds": ["a2.health.should", "a2.health.tired"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "You ___ go to bed early. You look very tired.",
+      "answers": ["should"],
+      "distractors": ["shouldn't", "are", "have"],
+      "es": "Deberías acostarte temprano. Te ves muy cansado."
+    },
+    {
+      "id": "a2.health.cloze-003",
+      "itemIds": ["a2.health.hurt"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My back ___. I can't sit down.",
+      "answers": ["hurts"],
+      "distractors": ["hurting", "hurted", "is hurts"],
+      "es": "Me duele la espalda. No puedo sentarme."
+    },
+    {
+      "id": "a2.health.order-002",
+      "itemIds": ["a2.health.tired"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2545439,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["today.", "tired", "a", "I'm", "little"],
+      "accepted": ["I'm a little tired today."],
+      "es": "Hoy estoy un poco cansado."
+    },
+    {
+      "id": "a2.health.choice-002",
+      "itemIds": ["a2.health.medicine"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2674732,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I don't take any medicine.",
+      "options": [
+        "No tomo ningún medicamento.",
+        "No tengo ningún medicamento.",
+        "Tomo muchos medicamentos.",
+        "No tomé el medicamento."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.health.choice-003",
+      "itemIds": ["a2.health.doctor"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 569297,
+        "author": "FeuDRenais",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I'm going to the doctor.",
+      "options": ["Fui al médico.", "Soy médico.", "Voy al médico.", "Vengo del médico."],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.health.write-002",
+      "itemIds": ["a2.health.should", "a2.health.rest"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Deberías descansar y beber mucha agua.",
+      "accepted": [
+        "You should rest and drink a lot of water.",
+        "You should rest and drink lots of water.",
+        "You should rest and drink plenty of water."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.health.lesson-001",
+      "level": "A2",
+      "topic": "health",
+      "title": "En el médico",
+      "exerciseIds": [
+        "a2.health.vocab-001",
+        "a2.health.cloze-001",
+        "a2.health.order-001",
+        "a2.health.choice-001",
+        "a2.health.reading-001",
+        "a2.health.write-001",
+        "a2.health.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.health.lesson-002",
+      "level": "A2",
+      "topic": "health",
+      "title": "¿Cómo te sientes?",
+      "exerciseIds": [
+        "a2.health.vocab-003",
+        "a2.health.cloze-002",
+        "a2.health.cloze-003",
+        "a2.health.order-002",
+        "a2.health.choice-002",
+        "a2.health.choice-003",
+        "a2.health.write-002"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "placement": [
+    {
+      "id": "placement.c1.001",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "Choose the best meaning of 'ubiquitous'.",
+        "options": ["omnipresente", "escaso", "ambiguo"],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.c1.002",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "Had I known, I would have acted differently.",
+        "options": [
+          "Si lo sé, actuaré de otra manera.",
+          "Lo sabía, pero actué igual.",
+          "De haberlo sabido, habría actuado de otra manera."
+        ],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.c1.003",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "Not only ___ late, but he also forgot the tickets.",
+        "answers": ["was he"],
+        "distractors": ["he was", "did he", "he did"],
+        "es": "No solo llegó tarde, sino que además olvidó las entradas."
+      }
+    },
+    {
+      "id": "placement.c1.004",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'thorough' mean?",
+        "options": ["a través de", "sediento", "duro", "minucioso"],
+        "answerIndex": 3
+      }
+    },
+    {
+      "id": "placement.c1.005",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "Little ___ that his life was about to change.",
+        "answers": ["did he know"],
+        "distractors": ["he knew", "knew he", "he did know"],
+        "es": "Poco se imaginaba que su vida estaba a punto de cambiar."
+      }
+    },
+    {
+      "id": "placement.c1.006",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "She is bound to find out sooner or later.",
+        "options": [
+          "Está obligada a averiguarlo cuanto antes.",
+          "Quizás se entere algún día.",
+          "Está decidida a averiguarlo tarde o temprano.",
+          "Seguro que se entera tarde o temprano."
+        ],
+        "answerIndex": 3
+      }
+    },
+    {
+      "id": "placement.c1.007",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "The proposal was rejected on the ___ that it was too expensive.",
+        "answers": ["grounds"],
+        "distractors": ["reason", "cause", "base"],
+        "es": "La propuesta fue rechazada por considerarse demasiado cara."
+      }
+    },
+    {
+      "id": "placement.c1.008",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'undermine' mean?",
+        "options": ["socavar", "subestimar", "subrayar", "entender"],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.c1.009",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "Had it not ___ for your help, we would have failed.",
+        "answers": ["been"],
+        "distractors": ["was", "be", "being"],
+        "es": "De no haber sido por tu ayuda, habríamos fracasado."
+      }
+    },
+    {
+      "id": "placement.c1.010",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "I can't help feeling that something is wrong.",
+        "options": [
+          "No puedo ayudar a sentir que algo está mal.",
+          "No siento que algo esté mal.",
+          "No puedo ayudarte si algo va mal.",
+          "No puedo evitar sentir que algo va mal."
+        ],
+        "answerIndex": 3
+      }
+    },
+    {
+      "id": "placement.c1.011",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "Choose the best meaning of 'to shed light on'.",
+        "options": ["apagar la luz", "esclarecer", "deshacerse de", "echar la culpa a"],
+        "answerIndex": 1
+      }
+    },
+    {
+      "id": "placement.c1.012",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "The new policy is likely to ___ widespread criticism.",
+        "answers": ["attract", "draw", "provoke", "spark"],
+        "distractors": ["make", "rise", "do"],
+        "es": "Es probable que la nueva política suscite muchas críticas."
+      }
+    },
+    {
+      "id": "placement.c1.013",
+      "level": "C1",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "He was taken aback by her reaction.",
+        "options": [
+          "Él retrocedió ante su reacción.",
+          "Su reacción lo dejó desconcertado.",
+          "Su reacción lo hizo volver atrás.",
+          "Él se llevó una alegría con su reacción."
+        ],
+        "answerIndex": 1
+      }
+    }
+  ]
+}

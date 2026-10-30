@@ -1,0 +1,333 @@
+{
+  "items": [
+    {
+      "id": "a2.family.parents",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "word",
+      "term": "parents",
+      "es": "padres"
+    },
+    {
+      "id": "a2.family.grandmother",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "word",
+      "term": "grandmother",
+      "es": "abuela"
+    },
+    {
+      "id": "a2.family.aunt",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "word",
+      "term": "aunt",
+      "es": "tía"
+    },
+    {
+      "id": "a2.family.uncle",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "word",
+      "term": "uncle",
+      "es": "tío"
+    },
+    {
+      "id": "a2.family.cousin",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "word",
+      "term": "cousin",
+      "es": "primo / prima"
+    },
+    {
+      "id": "a2.family.only-child",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "phrase",
+      "term": "only child",
+      "es": "hijo único / hija única"
+    },
+    {
+      "id": "a2.family.look-like",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "phrase",
+      "term": "look like",
+      "es": "parecerse a"
+    },
+    {
+      "id": "a2.family.get-married",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "phrase",
+      "term": "get married",
+      "es": "casarse"
+    },
+    {
+      "id": "a2.family.older-than",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "grammar",
+      "term": "older than",
+      "es": "mayor que"
+    },
+    {
+      "id": "a2.family.possessive-s",
+      "level": "A2",
+      "topics": ["family"],
+      "kind": "grammar",
+      "term": "'s (my father's car)",
+      "es": "de (el auto de mi padre)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.family.my-family",
+      "level": "A2",
+      "topics": ["family"],
+      "title": "My family",
+      "text": "I live with my parents and my grandmother in a small house. My mother is a nurse and my father works in a bank. I don't have any brothers or sisters, so I'm an only child, but I have six cousins! My cousin Lucía is my best friend. She is two years older than me and she looks like her mother. Last year my uncle got married, and the whole family had a big party.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.family.vocab-001",
+      "itemIds": ["a2.family.aunt"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'aunt' mean?",
+      "options": ["tía", "abuela", "prima", "sobrina"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.family.cloze-001",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 6823808,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "My mother is ___ than my father.",
+      "answers": ["older"],
+      "distractors": ["old", "oldest", "more old"],
+      "es": "Mi madre es mayor que mi padre."
+    },
+    {
+      "id": "a2.family.order-001",
+      "itemIds": ["a2.family.grandmother"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 687620,
+        "author": "lukaszpp",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["Where", "does", "grandmother", "live?", "your"],
+      "accepted": ["Where does your grandmother live?"],
+      "es": "¿Dónde vive tu abuela?"
+    },
+    {
+      "id": "a2.family.choice-001",
+      "itemIds": ["a2.family.uncle"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 320580,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "My mother has four brothers.",
+      "options": [
+        "Mi madre tiene cuatro hermanas.",
+        "Mi hermano tiene cuatro hijos.",
+        "Mi madre tiene cuatro hermanos.",
+        "Mi madre tiene cuatro primos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.family.reading-001",
+      "itemIds": ["a2.family.parents", "a2.family.only-child", "a2.family.cousin"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.family.my-family",
+      "questions": [
+        {
+          "prompt": "Who does the writer live with?",
+          "options": ["Their parents and grandmother", "Their cousins", "Their uncle and aunt"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "How many brothers and sisters does the writer have?",
+          "options": ["Two", "None", "Six"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What happened last year?",
+          "options": [
+            "Lucía got married",
+            "The writer's uncle got married",
+            "The family moved to a new house"
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "a2.family.write-001",
+      "itemIds": ["a2.family.parents"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2175769,
+        "author": "Hybrid",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Él vive con su madre.",
+      "accepted": ["He lives with his mother.", "He lives with his mom."]
+    },
+    {
+      "id": "a2.family.vocab-002",
+      "itemIds": ["a2.family.cousin"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'primo'.",
+      "options": ["nephew", "uncle", "cousin", "grandson"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.family.vocab-003",
+      "itemIds": ["a2.family.look-like"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'look like' mean?",
+      "options": ["parecerse a", "mirar a", "cuidar a", "buscar a"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.family.cloze-002",
+      "itemIds": ["a2.family.look-like"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My sister ___ like our mother. They have the same eyes.",
+      "answers": ["looks"],
+      "distractors": ["look", "sees", "watches"],
+      "es": "Mi hermana se parece a nuestra madre. Tienen los mismos ojos."
+    },
+    {
+      "id": "a2.family.cloze-003",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "This is ___ car. He bought it last year.",
+      "answers": ["my father's"],
+      "distractors": ["my father", "father's my", "of my father"],
+      "es": "Este es el auto de mi padre. Lo compró el año pasado."
+    },
+    {
+      "id": "a2.family.order-002",
+      "itemIds": ["a2.family.aunt"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2797979,
+        "author": "obsama1",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["aunt", "yesterday.", "He", "his", "visited"],
+      "accepted": ["He visited his aunt yesterday."],
+      "es": "Él visitó a su tía ayer."
+    },
+    {
+      "id": "a2.family.choice-002",
+      "itemIds": ["a2.family.parents"],
+      "level": "A2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 63957,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "Is your mother at home?",
+      "options": [
+        "¿Tu madre está en casa?",
+        "¿Tu madre estaba en casa?",
+        "¿Tu hermana está en casa?",
+        "¿Tu madre va a casa?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.family.choice-003",
+      "itemIds": ["a2.family.get-married", "a2.family.uncle"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "My uncle got married last summer.",
+      "options": [
+        "Mi tío se va a casar el próximo verano.",
+        "Mi primo se casó el verano pasado.",
+        "Mi tío se casó el verano pasado.",
+        "Mi tío se mudó el verano pasado."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.family.write-002",
+      "itemIds": ["a2.family.only-child"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Soy hija única.",
+      "accepted": ["I'm an only child.", "I am an only child."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.family.lesson-001",
+      "level": "A2",
+      "topic": "family",
+      "title": "Mi familia",
+      "exerciseIds": [
+        "a2.family.vocab-001",
+        "a2.family.cloze-001",
+        "a2.family.order-001",
+        "a2.family.choice-001",
+        "a2.family.reading-001",
+        "a2.family.write-001",
+        "a2.family.vocab-002"
+      ]
+    },
+    {
+      "id": "a2.family.lesson-002",
+      "level": "A2",
+      "topic": "family",
+      "title": "Parecidos y diferencias",
+      "exerciseIds": [
+        "a2.family.vocab-003",
+        "a2.family.cloze-002",
+        "a2.family.cloze-003",
+        "a2.family.order-002",
+        "a2.family.choice-002",
+        "a2.family.choice-003",
+        "a2.family.write-002"
+      ]
+    }
+  ]
+}

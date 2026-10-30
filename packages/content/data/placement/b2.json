@@ -1,0 +1,168 @@
+{
+  "placement": [
+    {
+      "id": "placement.b2.001",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I wish I ___ more time to travel.",
+        "answers": ["had"],
+        "distractors": ["have", "would have"],
+        "es": "Ojalá tuviera más tiempo para viajar."
+      }
+    },
+    {
+      "id": "placement.b2.002",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "Choose the best meaning of 'reluctant'.",
+        "options": ["entusiasta", "agradecido", "reacio"],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.b2.003",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "By the time we arrived, the movie ___.",
+        "answers": ["had started", "had already started"],
+        "distractors": ["has started", "starts", "will start"],
+        "es": "Cuando llegamos, la película ya había empezado."
+      }
+    },
+    {
+      "id": "placement.b2.004",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'reliable' mean?",
+        "options": ["relevante", "reciclable", "confiable", "agradable"],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.b2.005",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "If I had studied harder, I ___ the exam.",
+        "answers": ["would have passed"],
+        "distractors": ["will pass", "had passed", "would passed"],
+        "es": "Si hubiera estudiado más, habría aprobado el examen."
+      }
+    },
+    {
+      "id": "placement.b2.006",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "She's used to working late.",
+        "options": [
+          "Solía trabajar hasta tarde.",
+          "Usa su tiempo para trabajar hasta tarde.",
+          "Está acostumbrada a trabajar hasta tarde.",
+          "Le gustaría trabajar hasta tarde."
+        ],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.b2.007",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "It's high time we ___ home.",
+        "answers": ["went"],
+        "distractors": ["go", "will go", "have gone"],
+        "es": "Ya es hora de que nos vayamos a casa."
+      }
+    },
+    {
+      "id": "placement.b2.008",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'sensible' mean?",
+        "options": ["sensible", "sensato", "sensual", "sentimental"],
+        "answerIndex": 1
+      }
+    },
+    {
+      "id": "placement.b2.009",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "He denied ___ the window.",
+        "answers": ["breaking", "having broken"],
+        "distractors": ["to break", "break", "to have broken"],
+        "es": "Negó haber roto la ventana."
+      }
+    },
+    {
+      "id": "placement.b2.010",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "Despite the rain, the match went ahead.",
+        "options": [
+          "Por culpa de la lluvia, se suspendió el partido.",
+          "Aunque llovió, el partido se adelantó.",
+          "A pesar de la lluvia, el partido se jugó.",
+          "Antes de que lloviera, el partido terminó."
+        ],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.b2.011",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "Choose the English for 'aprovechar (una oportunidad)'.",
+        "options": ["take advantage of", "take part in", "take care of", "take over"],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.b2.012",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I'd rather you ___ smoke in here.",
+        "answers": ["didn't"],
+        "distractors": ["not", "won't", "haven't"],
+        "es": "Preferiría que no fumaras aquí."
+      }
+    },
+    {
+      "id": "placement.b2.013",
+      "level": "B2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "The meeting has been put off until next week.",
+        "options": [
+          "La reunión se ha aplazado hasta la semana que viene.",
+          "La reunión se ha cancelado definitivamente.",
+          "La reunión se ha adelantado a esta semana.",
+          "La reunión terminó la semana pasada."
+        ],
+        "answerIndex": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "placement": [
+    {
+      "id": "placement.a2.001",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "We are going to visit my aunt tomorrow.",
+        "options": [
+          "Visitamos a mi tía ayer.",
+          "Mi tía nos visita hoy.",
+          "Vamos a visitar a mi tía mañana."
+        ],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.a2.002",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'usually' mean?",
+        "options": ["nunca", "normalmente", "ayer"],
+        "answerIndex": 1
+      }
+    },
+    {
+      "id": "placement.a2.003",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I ___ to the movies last night.",
+        "answers": ["went"],
+        "distractors": ["go", "goes", "have gone"],
+        "es": "Fui al cine anoche."
+      }
+    },
+    {
+      "id": "placement.a2.004",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "My house is ___ than yours.",
+        "answers": ["bigger"],
+        "distractors": ["big", "more big", "biggest"],
+        "es": "Mi casa es más grande que la tuya."
+      }
+    },
+    {
+      "id": "placement.a2.005",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'borrow' mean?",
+        "options": ["prestar", "devolver", "pedir prestado", "pagar"],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.a2.006",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "She was cooking when I arrived.",
+        "options": [
+          "Ella estaba cocinando cuando llegué.",
+          "Ella cocinó cuando llegué.",
+          "Ella va a cocinar cuando llegue.",
+          "Ella cocina cuando llego."
+        ],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.a2.007",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "How ___ sugar do you want?",
+        "answers": ["much"],
+        "distractors": ["many", "lot", "few"],
+        "es": "¿Cuánta azúcar quieres?"
+      }
+    },
+    {
+      "id": "placement.a2.008",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'nephew' mean?",
+        "options": ["nieto", "primo", "tío", "sobrino"],
+        "answerIndex": 3
+      }
+    },
+    {
+      "id": "placement.a2.009",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "You ___ wear a uniform at my school. It's a rule.",
+        "answers": ["have to"],
+        "distractors": ["don't have to", "doesn't have to", "has to"],
+        "es": "En mi escuela tienes que llevar uniforme. Es una regla."
+      }
+    },
+    {
+      "id": "placement.a2.010",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "We didn't go out because it was raining.",
+        "options": [
+          "No salimos porque estaba lloviendo.",
+          "No saldremos si llueve.",
+          "Salimos aunque estaba lloviendo.",
+          "No salimos porque iba a llover."
+        ],
+        "answerIndex": 0
+      }
+    },
+    {
+      "id": "placement.a2.011",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "vocab",
+        "prompt": "What does 'early' mean?",
+        "options": ["tarde", "rápido", "temprano", "a tiempo"],
+        "answerIndex": 2
+      }
+    },
+    {
+      "id": "placement.a2.012",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "cloze",
+        "sentence": "I'm ___ to visit my grandparents next weekend.",
+        "answers": ["going"],
+        "distractors": ["go", "will", "went"],
+        "es": "Voy a visitar a mis abuelos el próximo fin de semana."
+      }
+    },
+    {
+      "id": "placement.a2.013",
+      "level": "A2",
+      "exercise": {
+        "source": { "kind": "original" },
+        "type": "translation_choice",
+        "sentence": "Could you tell me the way to the station?",
+        "options": [
+          "¿Me podría decir a qué hora sale el tren?",
+          "¿Me puede llevar a la estación?",
+          "¿Me podría decir cómo llegar a la estación?",
+          "¿Sabe dónde está la estación de autobuses?"
+        ],
+        "answerIndex": 2
+      }
+    }
+  ]
+}
