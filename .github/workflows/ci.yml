@@ -34,6 +34,8 @@ jobs:
         run: pnpm test
       - name: Validate content
         run: pnpm validate:content
+      - name: Generated corpus is up to date
+        run: pnpm corpus:check
 
   web-e2e:
     runs-on: ubuntu-latest
