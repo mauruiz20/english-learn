@@ -5,3 +5,5 @@ pnpm-lock.yaml
 .atl
 .claude
 .expo
+test-results
+playwright-report
