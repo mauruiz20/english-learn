@@ -31,7 +31,8 @@ lessons but keep the id reserved; to change meaning, add a new id.
   Still, author `answerIndex` at varied positions and scramble `tokens`, so the data never leaks
   the answer if a client forgets to shuffle.
 - **American English** spelling throughout (`traveled`, `canceled`, `color`, `center`).
-- **Text fields** are non-empty and have no leading or trailing whitespace.
+- **Text fields** are non-empty and have no leading or trailing whitespace, and never double the
+  final period (`8 p.m.`, not `8 p.m..`). A three-dot ellipsis (`where is...?`) is fine.
 - **`accepted` lists** (translate_write) should cover natural variants a learner may type:
   numerals vs words (`11` / `eleven`), synonyms (`Although` / `Even though` / `Though`), and common
   rephrasings (`we arrived on time` / `we got there on time`).
@@ -56,16 +57,18 @@ Reference-free rules (run on every file that parsed, even when other files fail)
    `accepted` (normalized).
 7. Topics: `item.topics` / `passage.topics` include the topic segment of their id; a lesson's id
    topic segment equals `lesson.topic`; every exercise a lesson lists has that topic segment.
+8. Punctuation: no text field contains exactly two dots in a row (`..`, e.g. `p.m..`) or four or
+   more; a three-dot ellipsis `...` and `…` are allowed.
 
 Cross-file rules (run only when every file parsed and passed the schema):
 
-8. Ids are unique per entity kind across the whole corpus.
-9. References resolve: `exercise.itemIds` -> items, `reading.passageId` -> passages,
-   `lesson.exerciseIds` -> exercises.
-10. Exercise topic: the topic segment of an exercise id is a topic of at least one item it
+9. Ids are unique per entity kind across the whole corpus.
+10. References resolve: `exercise.itemIds` -> items, `reading.passageId` -> passages,
+    `lesson.exerciseIds` -> exercises.
+11. Exercise topic: the topic segment of an exercise id is a topic of at least one item it
     references. (Chosen over "equals the lesson topic" because it holds for exercises outside any
     lesson too; together with rule 7 it keeps lesson, exercise and item topics aligned.)
-11. Levels: an exercise has its lesson's level; a reading exercise has its passage's level; every
+12. Levels: an exercise has its lesson's level; a reading exercise has its passage's level; every
     item an exercise references is at or below the exercise level (A1 < A2 < B1 < B2 < C1).
 
 ### Word-order convention

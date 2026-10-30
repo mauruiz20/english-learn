@@ -14,6 +14,7 @@ import {
   validateSchema,
   validateTopics,
   validateUniqueIds,
+  validateTextPunctuation,
   validateWordOrders,
   type LoadedFile,
 } from "./index";
@@ -332,6 +333,34 @@ describe("validateWordOrders", () => {
   it("is whitespace-normalized on the accepted side", () => {
     const w = fx.wordOrder({ accepted: ["  we went  out although it rained. "] });
     expect(validateWordOrders([file({ exercises: [w] })])).toEqual([]);
+  });
+});
+
+describe("validateTextPunctuation", () => {
+  const message =
+    'doubled terminal punctuation (".." as in "p.m..", or four or more dots); use one "." or a three-dot ellipsis';
+  it("passes for a valid corpus", () => {
+    expect(validateTextPunctuation([file(fx.validFile())])).toEqual([]);
+  });
+  it("flags a doubled period after an abbreviation in any text field", () => {
+    const w = fx.translateWrite({
+      accepted: ["The show starts at 8 p.m.", "The show starts at 8 p.m.."],
+    });
+    expect(validateTextPunctuation([file({ exercises: [w] })])).toEqual([
+      { file: "b1/travel.json", path: "exercises[0].accepted[1]", message },
+    ]);
+  });
+  it("flags doubled periods mid-text and runs of four or more", () => {
+    const errs = validateTextPunctuation([
+      file({ items: [fx.item({ term: "wait.. what", es: "espera...." })] }),
+    ]);
+    expect(paths(errs)).toEqual(["items[0].term", "items[0].es"]);
+  });
+  it("allows a three-dot ellipsis and the ellipsis character", () => {
+    const errs = validateTextPunctuation([
+      file({ items: [fx.item({ term: "Excuse me, where is...?", es: "¿Dónde está…?" })] }),
+    ]);
+    expect(errs).toEqual([]);
   });
 });
 

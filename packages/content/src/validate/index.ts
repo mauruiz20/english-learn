@@ -5,6 +5,7 @@ export { validateReferences } from "./references";
 export { validateAnswerIndexes, validateOptionDuplicates } from "./options";
 export { validateClozes, CLOZE_BLANK } from "./cloze";
 export { validateWordOrders } from "./word-order";
+export { validateTextPunctuation } from "./punctuation";
 export { validateListDuplicates } from "./duplicates";
 export { validateLevels } from "./levels";
 export { validateLayout } from "./layout";
