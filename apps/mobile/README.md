@@ -118,6 +118,16 @@ pnpm export:web:e2e # e2e export to dist-e2e/ (EXPO_PUBLIC_E2E=1)
 pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
 ```
 
+### Screenshots (dev tool)
+
+`node scripts/screenshots.mjs <out-dir> [--skip-build] [--port 4174]` builds `dist-e2e/` (skip
+with `--skip-build` if it is fresh), serves it and walks the app with Playwright Chromium:
+home (fresh and with progress plus pending reviews via `?today=`), placement intro and question,
+one screen per exercise type, correct / almost / wrong feedback, the leave dialog, the lesson
+summary, review, about and the "open in another tab" error screen. Every screen is captured at
+390×844 and 1280×800, in light and dark color schemes (`mobile-dark-09-feedback-wrong.png`, …);
+long screens also get a `-full.png`. It is for design review, not part of the test suite.
+
 ### E2E-only clock override
 
 E2E tests simulate days passing with `?today=YYYY-MM-DD` on the page URL (e.g.
