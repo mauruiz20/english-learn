@@ -91,7 +91,7 @@ export function SessionSummary({
           Para repasar
         </Text>
         {toReview.length === 0 ? (
-          <Text tone="muted" style={styles.line}>
+          <Text tone="muted" style={styles.allRight}>
             Nada que corregir: todo correcto a la primera. Estas palabras volverán en tus próximos
             repasos.
           </Text>
@@ -162,6 +162,7 @@ const useStyles = themedStyles(({ colors }) =>
       borderBottomColor: colors.rule,
     },
     review: { gap: spacing.xs },
+    allRight: { paddingTop: spacing.xs },
     // "have breakfast   desayunar": the word and its meaning on one ruled line (wraps if long).
     note: {
       flexDirection: "row",
