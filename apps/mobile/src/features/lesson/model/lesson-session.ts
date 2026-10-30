@@ -10,7 +10,7 @@ export type ItemOutcome = {
   readonly responseMs: number;
   /**
    * The learner looked the item's word up in the glossary before answering this exercise. Its
-   * review grade is capped at "almost" (see `applyLessonResults`); the verdict shown and the XP
+   * review grade is capped at "almost" (see `finalGrades`); the verdict shown and the XP
    * are unchanged.
    */
   readonly lookedUp?: boolean;
@@ -23,8 +23,8 @@ export type LessonSummary = {
   /** Share of fully correct exercises (0..1). */
   readonly accuracy: number;
   /**
-   * Sum of `xpForAnswer`. Any completion bonus is decided when the results are saved, because
-   * it depends on stored progress (a replayed lesson gets none).
+   * Sum of `xpForAnswer`. Any completion bonus is decided by the fold of the event log when the
+   * results are saved (only a lesson's first completion gets it).
    */
   readonly answerXp: number;
   /** One outcome per item of every exercise (an item may appear several times). */

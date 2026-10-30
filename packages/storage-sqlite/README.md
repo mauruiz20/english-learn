@@ -6,14 +6,27 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
 
 - `migrate(db)`: versioned migrations tracked in `PRAGMA user_version`; idempotent, one
   transaction per migration. Refuses databases created by a newer schema.
-- `createSqliteProgressRepository(db)`: review states (batch upsert in a transaction), streak,
-  XP (`addXp` is atomic and resolves to the new total) and placement result.
-  `saveSessionResults(itemIds, compute)` completes a lesson or review in ONE transaction: it
-  reads the items' states and the streak, calls the pure `compute`, then writes the returned
-  states, XP delta and streak. All or nothing, so a failed save can be retried. (expo-sqlite's
-  `withTransactionAsync` caveat applies: unrelated queries issued concurrently on the same
-  connection may land inside the transaction; the app issues none while saving.) Empty database →
-  `[]`, `EMPTY_STREAK`, `0`, `null`.
+- `createSqliteProgressRepository(db, { now? })`: progress as an **append-only event log**
+  (migration 3: `event` table, see `@english-learn/domain` "Progress event log"). The
+  `review_state`, `xp`, `streak` and `placement_result` tables are a cache of `foldEvents` over
+  the whole log, so reads stay fast; every write refolds in the same transaction and writes only
+  the review states that changed (≈25 ms for a 5k-event log on `node:sqlite`).
+  - `appendEvents(events)`: inserts local events (malformed ones are refused) and refreshes the
+    cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak), so the caller
+    shows exactly what the fold paid. All or nothing, so a failed save can be retried.
+    (expo-sqlite's `withTransactionAsync` caveat applies: unrelated queries issued concurrently on
+    the same connection may land inside the transaction; the app issues none while saving.)
+  - `rebuildFromEvents()`: recomputes the cache from the log.
+  - `ensureDeviceId(generate)` / `getDeviceId()`: a stable per-install id in `sync_state`.
+  - `ensureBaseline(build)`: upgrade path. When the log is empty and the cache tables hold
+    progress (written before the event log), stores the ONE `baseline_imported` event `build`
+    returns for it; the app adds the envelope and `completedLessonIds`, which storage cannot know.
+    Atomic and idempotent.
+  - Sync store: `getUnsyncedEvents(limit)` (oldest first), `markSynced(ids, serverSeqs)`,
+    `getSyncCursor()` / `setSyncCursor(n)` (last pulled server sequence, 0 at first), and
+    `insertRemoteEvents(events)` (idempotent by id, stored as synced, then the cache is rebuilt;
+    events this version cannot read are kept for the fold to skip, unorderable ones are dropped).
+    Empty database → `[]`, `EMPTY_STREAK`, `0`, `null`.
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
   `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).

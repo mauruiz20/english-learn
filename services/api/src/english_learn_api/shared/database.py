@@ -26,6 +26,9 @@ def create_engine(database_url: str) -> AsyncEngine:
     return create_async_engine(
         database_url,
         pool_pre_ping=True,
+        # Error messages (and anything that logs them) never include bound values: emails,
+        # token hashes and progress payloads.
+        hide_parameters=True,
         connect_args={"timeout": CONNECT_TIMEOUT_SECONDS},
     )
 

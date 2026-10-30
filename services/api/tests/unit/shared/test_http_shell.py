@@ -1,6 +1,8 @@
 """The HTTP shell every endpoint shares: error model, body limit, CORS, no leaked internals."""
 
+import json
 from collections.abc import AsyncIterator
+from pathlib import Path
 from typing import Any, ClassVar
 
 import httpx
@@ -8,6 +10,7 @@ import pytest
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from english_learn_api import export_openapi
 from english_learn_api.main import create_app
 from english_learn_api.shared.errors import DomainError
 from tests.support import make_settings
@@ -108,6 +111,33 @@ async def test_unhandled_errors_hide_internals() -> None:
         "error": {"code": "internal_error", "message": "Internal server error"}
     }
     assert "hunter2" not in response.text
+
+
+class TestApiDocs:
+    @pytest.mark.parametrize("path", ["/docs", "/redoc", "/openapi.json"])
+    async def test_are_served_outside_production(self, path: str) -> None:
+        transport = httpx.ASGITransport(app=create_app(make_settings()))
+        async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+            assert (await client.get(path)).status_code == 200
+
+    @pytest.mark.parametrize("path", ["/docs", "/redoc", "/openapi.json"])
+    async def test_are_hidden_in_production(self, path: str) -> None:
+        settings = make_settings(env="production", cors_origins=["https://app.example"])
+        transport = httpx.ASGITransport(app=create_app(settings))
+        async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.get(path)
+
+        assert response.status_code == 404
+        assert response.json()["error"]["code"] == "not_found"
+
+
+def test_the_openapi_schema_can_be_exported(tmp_path: Path) -> None:
+    target = tmp_path / "openapi.json"
+
+    export_openapi.main([str(target)])
+
+    schema = json.loads(target.read_text())
+    assert {"/v1/auth/google", "/v1/auth/refresh", "/v1/me", "/v1/account"} <= set(schema["paths"])
 
 
 class TestCors:

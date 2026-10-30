@@ -23,6 +23,12 @@ class GoogleUnavailableError(DomainError):
     code: ClassVar[str] = "google_unavailable"
 
 
+class GoogleBusyError(DomainError):
+    """Too many Google verifications in flight; the client may retry shortly."""
+
+    code: ClassVar[str] = "google_busy"
+
+
 class InvalidRefreshTokenError(AuthenticationError):
     """Unknown, revoked or expired. Deliberately one code: the client signs in again."""
 
@@ -37,3 +43,15 @@ class RefreshTokenReuseError(AuthenticationError):
 
 class InvalidAccessTokenError(AuthenticationError):
     code: ClassVar[str] = "invalid_token"
+
+
+class AccountNotFoundError(AuthenticationError):
+    """A valid access token whose account was deleted in the meantime."""
+
+    code: ClassVar[str] = "account_not_found"
+
+
+class ReauthenticationRequiredError(AuthenticationError):
+    """The operation needs a recent Google sign-in, not just a refreshed session."""
+
+    code: ClassVar[str] = "reauthentication_required"

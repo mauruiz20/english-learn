@@ -1,49 +1,61 @@
-import { EMPTY_STREAK, localDate, type ProgressRepository } from "@english-learn/domain";
+import { localDate, type ProgressEvent, type ProgressRepository } from "@english-learn/domain";
 import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { awaitPendingWrites } from "./await-pending-writes";
 
 const TODAY = localDate("2026-10-29");
 
-/** Makes `saveSessionResults` wait until `commit()` is called. */
-function withSlowSave(repository: ProgressRepository) {
-  const save = repository.saveSessionResults.bind(repository);
+const reviewSession: ProgressEvent = {
+  id: "0190a000-0000-7000-8000-000000000001",
+  deviceId: "test-device",
+  occurredAt: 1,
+  localDate: TODAY,
+  type: "session_completed",
+  payload: { v: 1, sessionId: "s1", kind: "review", answerXp: 10, accuracy: 1 },
+};
+
+const placement: ProgressEvent = {
+  id: "0190a000-0000-7000-8000-000000000002",
+  deviceId: "test-device",
+  occurredAt: 1,
+  localDate: TODAY,
+  type: "placement_completed",
+  payload: { v: 1, level: "B1", theta: 0.5 },
+};
+
+/** Makes `appendEvents` wait until `commit()` is called. */
+function withSlowAppend(repository: ProgressRepository) {
+  const append = repository.appendEvents.bind(repository);
   let commit: () => void = () => {};
-  repository.saveSessionResults = (itemIds, compute) =>
+  repository.appendEvents = (events) =>
     new Promise((resolve, reject) => {
-      commit = () => save(itemIds, compute).then(resolve, reject);
+      commit = () => append(events).then(resolve, reject);
     });
   return { commit: () => commit() };
 }
 
-const addTenXp: Parameters<ProgressRepository["saveSessionResults"]>[1] = () => ({
-  states: [],
-  xpDelta: 10,
-  streak: { ...EMPTY_STREAK, current: 1, longest: 1, lastActiveDate: TODAY },
-});
-
 describe("awaitPendingWrites", () => {
   it("makes reads started during a save wait for it to commit", async () => {
     const fake = createFakeRepository();
-    const slow = withSlowSave(fake);
+    const slow = withSlowAppend(fake);
     const repository = awaitPendingWrites(fake);
 
-    const saved = repository.saveSessionResults([], addTenXp);
+    const saved = repository.appendEvents([reviewSession]);
     // e.g. the learner pressed browser back mid-save and home loads its data.
     const xp = repository.getXp();
     const streak = repository.getStreak();
     slow.commit();
 
-    await expect(saved).resolves.toMatchObject({ xp: 10 });
+    await expect(saved).resolves.toMatchObject({ after: { xp: 10 } });
     await expect(xp).resolves.toBe(10);
     await expect(streak).resolves.toMatchObject({ current: 1 });
   });
 
   it("still lets reads run after a failed save", async () => {
     const fake = createFakeRepository({ xp: 5 });
-    fake.saveSessionResults = () => Promise.reject(new Error("disk I/O error"));
+    fake.appendEvents = () => Promise.reject(new Error("disk I/O error"));
     const repository = awaitPendingWrites(fake);
 
-    const saved = repository.saveSessionResults([], addTenXp);
+    const saved = repository.appendEvents([reviewSession]);
     const xp = repository.getXp();
 
     await expect(saved).rejects.toThrow("disk I/O error");
@@ -56,23 +68,32 @@ describe("awaitPendingWrites", () => {
     await expect(repository.getXp()).resolves.toBe(7);
     await expect(repository.getPlacementResult()).resolves.toBeNull();
     await expect(repository.getReviewStates()).resolves.toEqual([]);
+    await expect(repository.getDeviceId()).resolves.toBe("test-device");
   });
 
   it("waits for every kind of write", async () => {
     const fake = createFakeRepository();
-    const placement = fake.savePlacementResult.bind(fake);
     let commit: () => void = () => {};
-    fake.savePlacementResult = (level, theta) =>
+    const rebuild = jest.fn(async () => {});
+    fake.rebuildFromEvents = () =>
       new Promise((resolve) => {
-        commit = () => resolve(placement(level, theta));
+        commit = () => resolve(rebuild());
       });
     const repository = awaitPendingWrites(fake);
+    await repository.appendEvents([placement]);
 
-    const saved = repository.savePlacementResult("B1", 0.5);
-    const read = repository.getPlacementResult();
+    const rebuilt = repository.rebuildFromEvents();
+    let read = false;
+    const placementRead = repository.getPlacementResult().then((value) => {
+      read = true;
+      return value;
+    });
+    await Promise.resolve();
+    expect(read).toBe(false);
     commit();
 
-    await saved;
-    await expect(read).resolves.toEqual({ level: "B1", theta: 0.5 });
+    await rebuilt;
+    await expect(placementRead).resolves.toEqual({ level: "B1", theta: 0.5 });
+    expect(rebuild).toHaveBeenCalledTimes(1);
   });
 });

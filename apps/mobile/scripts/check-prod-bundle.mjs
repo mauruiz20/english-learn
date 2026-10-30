@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the production web export (dist/):
-// - it contains no test-only code: the e2e `?today=` clock override and played-sounds log must
-//   only exist in builds exported with EXPO_PUBLIC_E2E=1 (dist-e2e/);
+// - it contains no test-only code: the e2e `?today=` clock override, played-sounds log and
+//   settings-writes hook must only exist in builds exported with EXPO_PUBLIC_E2E=1 (dist-e2e/);
 // - it is an installable, offline-capable PWA: sw.js is there, up to date with the export and
 //   precaches the app shell, the SQLite WASM and the manifest; the manifest is valid and linked.
 import { readdir, readFile } from "node:fs/promises";
@@ -9,7 +9,13 @@ import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { precacheEntries, renderServiceWorker, versionOf } from "./build-service-worker.mjs";
 
-const FORBIDDEN = ['get("today")', "EXPO_PUBLIC_E2E", "playedSounds"];
+const FORBIDDEN = [
+  'get("today")',
+  'get("rebuildProgress")',
+  "EXPO_PUBLIC_E2E",
+  "playedSounds",
+  "settingsWritesSettled",
+];
 
 async function* jsFiles(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {

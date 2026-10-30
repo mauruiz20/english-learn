@@ -14,7 +14,7 @@ def make_settings(
 ) -> Settings:
     values: dict[str, Any] = {
         "database_url": database_url,
-        "google_client_id": TEST_GOOGLE_CLIENT_ID,
+        "google_client_ids": [TEST_GOOGLE_CLIENT_ID],
         "jwt_secret": TEST_JWT_SECRET,
         **overrides,
     }

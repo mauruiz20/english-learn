@@ -28,6 +28,37 @@ class AccessToken:
 
 
 @dataclass(frozen=True, slots=True)
+class AccessClaims:
+    """What a valid access token proves.
+
+    `issued_at` changes on every refresh; `authenticated_at` is when the user last signed in with
+    Google (the start of the refresh family), which is what sensitive operations check.
+    """
+
+    user_id: UUID
+    issued_at: datetime
+    authenticated_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
+class RefreshFamily:
+    """One sign-in: every refresh token rotated from it belongs to this family.
+
+    The family row is the lock that serializes refresh, logout and reuse revocation, and
+    `revoked_at` is authoritative: once set, no token of the family is accepted.
+    """
+
+    id: UUID
+    user_id: UUID
+    created_at: datetime
+    revoked_at: datetime | None = None
+
+    @property
+    def is_revoked(self) -> bool:
+        return self.revoked_at is not None
+
+
+@dataclass(frozen=True, slots=True)
 class RefreshToken:
     """A stored refresh token. Only the SHA-256 hash of the secret is ever persisted.
 
@@ -55,7 +86,16 @@ class RefreshToken:
         return now >= self.expires_at
 
     def rotated(self, replaced_by: UUID, now: datetime) -> RefreshToken:
+        """Exchanged for `replaced_by`; `revoked_at` records the rotation time."""
         return replace(self, revoked_at=now, replaced_by=replaced_by)
+
+    def rerouted(self, replaced_by: UUID) -> RefreshToken:
+        """A retried rotation: point at the new successor, keep the original rotation time."""
+        return replace(self, replaced_by=replaced_by)
+
+    def superseded(self, now: datetime) -> RefreshToken:
+        """An unused successor replaced by a retry: revoked, never rotated."""
+        return replace(self, revoked_at=now)
 
 
 @dataclass(frozen=True, slots=True)

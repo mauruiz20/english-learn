@@ -14,12 +14,24 @@ users = Table(
     Column("deleted_at", DateTime(timezone=True), nullable=True),
 )
 
+refresh_families = Table(
+    "refresh_families",
+    metadata,
+    Column("id", Uuid, primary_key=True),
+    Column("user_id", Uuid, ForeignKey("users.id", ondelete="CASCADE"), nullable=False),
+    Column("created_at", DateTime(timezone=True), nullable=False, server_default=func.now()),
+    Column("revoked_at", DateTime(timezone=True), nullable=True),
+    Index(None, "user_id"),
+)
+
 refresh_tokens = Table(
     "refresh_tokens",
     metadata,
     Column("id", Uuid, primary_key=True),
     Column("user_id", Uuid, ForeignKey("users.id", ondelete="CASCADE"), nullable=False),
-    Column("family_id", Uuid, nullable=False),
+    Column(
+        "family_id", Uuid, ForeignKey("refresh_families.id", ondelete="CASCADE"), nullable=False
+    ),
     Column("token_hash", Text, nullable=False, unique=True),
     Column("expires_at", DateTime(timezone=True), nullable=False),
     Column("revoked_at", DateTime(timezone=True), nullable=True),

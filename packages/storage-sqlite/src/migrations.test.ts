@@ -29,10 +29,12 @@ describe("migrate", () => {
 
     expect(await userVersion(db)).toBe(SCHEMA_VERSION);
     expect(await tableNames(db)).toEqual([
+      "event",
       "placement_result",
       "review_state",
       "setting",
       "streak",
+      "sync_state",
       "xp",
     ]);
   });
@@ -68,6 +70,30 @@ describe("migrate", () => {
     expect(await tableNames(db)).toContain("setting");
     const row = await db.getFirstAsync<{ total: number }>("SELECT total FROM xp", []);
     expect(row?.total).toBe(7);
+  });
+
+  it("adds the event log with its indexes at version 3", async () => {
+    await migrate(db);
+
+    const columns = await db.getAllAsync<{ name: string; type: string; notnull: number }>(
+      "SELECT name, type, \"notnull\" FROM pragma_table_info('event') ORDER BY cid",
+      [],
+    );
+    expect(columns).toEqual([
+      { name: "id", type: "TEXT", notnull: 1 },
+      { name: "device_id", type: "TEXT", notnull: 1 },
+      { name: "occurred_at", type: "INTEGER", notnull: 1 },
+      { name: "local_date", type: "TEXT", notnull: 1 },
+      { name: "type", type: "TEXT", notnull: 1 },
+      { name: "payload", type: "TEXT", notnull: 1 },
+      { name: "synced_at", type: "INTEGER", notnull: 0 },
+      { name: "server_seq", type: "INTEGER", notnull: 0 },
+    ]);
+    const indexes = await db.getAllAsync<{ name: string }>(
+      "SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'event' AND sql IS NOT NULL ORDER BY name",
+      [],
+    );
+    expect(indexes.map((i) => i.name)).toEqual(["event_by_order", "event_by_synced"]);
   });
 
   it("refuses a database created by a newer app version", async () => {
