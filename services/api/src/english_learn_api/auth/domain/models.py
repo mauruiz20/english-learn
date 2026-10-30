@@ -73,7 +73,16 @@ class RefreshToken:
         return now >= self.expires_at
 
     def rotated(self, replaced_by: UUID, now: datetime) -> RefreshToken:
+        """Exchanged for `replaced_by`; `revoked_at` records the rotation time."""
         return replace(self, revoked_at=now, replaced_by=replaced_by)
+
+    def rerouted(self, replaced_by: UUID) -> RefreshToken:
+        """A retried rotation: point at the new successor, keep the original rotation time."""
+        return replace(self, replaced_by=replaced_by)
+
+    def superseded(self, now: datetime) -> RefreshToken:
+        """An unused successor replaced by a retry: revoked, never rotated."""
+        return replace(self, revoked_at=now)
 
 
 @dataclass(frozen=True, slots=True)

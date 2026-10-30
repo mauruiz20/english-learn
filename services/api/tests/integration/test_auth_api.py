@@ -102,6 +102,7 @@ class TestRefresh:
     async def test_reuse_revokes_the_family(self, api: Api, engine: AsyncEngine) -> None:
         signed_in = await api.sign_in()
         legit = (await api.refresh(signed_in["refreshToken"])).json()
+        api.clock.advance(timedelta(seconds=45))
 
         reused = await api.refresh(signed_in["refreshToken"])
 
@@ -115,6 +116,20 @@ class TestRefresh:
         after = await api.refresh(legit["refreshToken"])
         assert after.status_code == 401
         assert after.json()["error"]["code"] == "invalid_refresh_token"
+
+    async def test_a_retry_within_the_grace_window_succeeds(
+        self, api: Api, engine: AsyncEngine
+    ) -> None:
+        signed_in = await api.sign_in()
+        await api.refresh(signed_in["refreshToken"])  # the response is lost
+        api.clock.advance(timedelta(seconds=44))
+
+        retried = await api.refresh(signed_in["refreshToken"])
+
+        assert retried.status_code == 200
+        live = await count(engine, "SELECT count(*) FROM refresh_tokens WHERE revoked_at IS NULL")
+        assert live == 1
+        assert (await api.refresh(retried.json()["refreshToken"])).status_code == 200
 
     async def test_rejects_an_expired_refresh_token(self, api: Api) -> None:
         signed_in = await api.sign_in()

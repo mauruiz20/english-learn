@@ -27,6 +27,7 @@ from tests.fakes import (
 )
 
 REFRESH_TTL = timedelta(days=30)
+GRACE = timedelta(seconds=45)
 
 
 class Auth:
@@ -45,7 +46,7 @@ class Auth:
             clock=self.clock,
         )
         self.refresh = RefreshSession(
-            sessions=sessions, unit_of_work=self.unit_of_work, clock=self.clock
+            sessions=sessions, unit_of_work=self.unit_of_work, clock=self.clock, retry_grace=GRACE
         )
         self.logout = Logout(unit_of_work=self.unit_of_work, clock=self.clock)
 
@@ -145,6 +146,7 @@ class TestRefreshSession:
         signed_in = await auth.sign_in.execute("google-ana")
         stolen = signed_in.tokens.refresh_token
         legit = await auth.refresh.execute(stolen)
+        auth.clock.advance(GRACE)
 
         with pytest.raises(RefreshTokenReuseError):
             await auth.refresh.execute(stolen)
@@ -158,6 +160,7 @@ class TestRefreshSession:
         phone = await auth.sign_in.execute("google-ana")
         laptop = await auth.sign_in.execute("google-ana")
         await auth.refresh.execute(phone.tokens.refresh_token)
+        auth.clock.advance(GRACE)
 
         with pytest.raises(RefreshTokenReuseError):
             await auth.refresh.execute(phone.tokens.refresh_token)
@@ -213,8 +216,96 @@ class TestRefreshSession:
 
     @staticmethod
     def _stored(auth: Auth, secret: str) -> RefreshToken:
-        token_hash = hash_refresh_secret(secret)
-        return next(t for t in auth.store.refresh_tokens.values() if t.token_hash == token_hash)
+        return stored(auth, secret)
+
+
+def stored(auth: Auth, secret: str) -> RefreshToken:
+    token_hash = hash_refresh_secret(secret)
+    return next(t for t in auth.store.refresh_tokens.values() if t.token_hash == token_hash)
+
+
+def live_tokens(auth: Auth) -> list[RefreshToken]:
+    return [t for t in auth.store.refresh_tokens.values() if t.revoked_at is None]
+
+
+class TestRetryWithinTheGraceWindow:
+    """A client that lost the response retries with the token it still holds."""
+
+    async def test_succeeds_and_leaves_exactly_one_live_token(self, auth: Auth) -> None:
+        signed_in = await auth.sign_in.execute("google-ana")
+        presented = signed_in.tokens.refresh_token
+        lost = await auth.refresh.execute(presented)
+        auth.clock.advance(GRACE - timedelta(seconds=1))
+
+        retried = await auth.refresh.execute(presented)
+
+        assert retried.refresh_token not in {presented, lost.refresh_token}
+        (live,) = live_tokens(auth)
+        assert live == stored(auth, retried.refresh_token)
+        assert live.family_id == stored(auth, presented).family_id
+        (family,) = auth.store.refresh_families.values()
+        assert family.revoked_at is None
+        assert await auth.refresh.execute(retried.refresh_token)
+
+    async def test_can_be_repeated_within_the_window(self, auth: Auth) -> None:
+        signed_in = await auth.sign_in.execute("google-ana")
+        presented = signed_in.tokens.refresh_token
+        await auth.refresh.execute(presented)
+        await auth.refresh.execute(presented)
+        auth.clock.advance(timedelta(seconds=30))
+
+        retried = await auth.refresh.execute(presented)
+
+        assert [t.id for t in live_tokens(auth)] == [stored(auth, retried.refresh_token).id]
+
+    async def test_the_window_is_measured_from_the_first_rotation(self, auth: Auth) -> None:
+        signed_in = await auth.sign_in.execute("google-ana")
+        presented = signed_in.tokens.refresh_token
+        await auth.refresh.execute(presented)
+        auth.clock.advance(timedelta(seconds=30))
+        await auth.refresh.execute(presented)
+        auth.clock.advance(timedelta(seconds=30))
+
+        with pytest.raises(RefreshTokenReuseError):
+            await auth.refresh.execute(presented)
+
+    async def test_a_retry_after_the_window_revokes_the_family(self, auth: Auth) -> None:
+        signed_in = await auth.sign_in.execute("google-ana")
+        presented = signed_in.tokens.refresh_token
+        await auth.refresh.execute(presented)
+        auth.clock.advance(GRACE)
+
+        with pytest.raises(RefreshTokenReuseError):
+            await auth.refresh.execute(presented)
+
+        assert live_tokens(auth) == []
+        assert all(f.is_revoked for f in auth.store.refresh_families.values())
+
+    async def test_a_retry_after_the_successor_was_used_revokes_the_family(
+        self, auth: Auth
+    ) -> None:
+        signed_in = await auth.sign_in.execute("google-ana")
+        presented = signed_in.tokens.refresh_token
+        successor = await auth.refresh.execute(presented)
+        await auth.refresh.execute(successor.refresh_token)
+
+        with pytest.raises(RefreshTokenReuseError):
+            await auth.refresh.execute(presented)
+
+        assert live_tokens(auth) == []
+        assert all(f.is_revoked for f in auth.store.refresh_families.values())
+
+    async def test_presenting_the_superseded_successor_revokes_the_family(self, auth: Auth) -> None:
+        """Whoever holds the token the retry replaced is not the retrying client."""
+        signed_in = await auth.sign_in.execute("google-ana")
+        presented = signed_in.tokens.refresh_token
+        superseded = await auth.refresh.execute(presented)
+        await auth.refresh.execute(presented)
+
+        with pytest.raises(RefreshTokenReuseError):
+            await auth.refresh.execute(superseded.refresh_token)
+
+        assert live_tokens(auth) == []
 
 
 class TestLogout:

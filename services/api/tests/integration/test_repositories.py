@@ -3,11 +3,12 @@ import uuid
 from datetime import timedelta
 
 import pytest
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncEngine
 
 from english_learn_api.auth.application.use_cases import RefreshSession, SessionIssuer
-from english_learn_api.auth.domain.errors import RefreshTokenReuseError
 from english_learn_api.auth.domain.models import GoogleIdentity, RefreshFamily, RefreshToken, User
+from english_learn_api.auth.domain.refresh_secrets import hash_refresh_secret
 from english_learn_api.auth.infrastructure.sqlalchemy_unit_of_work import SqlAlchemyUnitOfWork
 from english_learn_api.shared.database import create_session_factory
 from tests.fakes import T0, FakeAccessTokens, FakeClock
@@ -208,8 +209,11 @@ class TestUnitOfWork:
             assert await uow.users.get(new_id) is None
 
 
-async def test_concurrent_refreshes_rotate_a_token_only_once(engine: AsyncEngine) -> None:
-    """The row lock serializes them: one rotates, the other sees a reused token."""
+async def test_concurrent_refreshes_both_succeed_and_leave_one_live_token(
+    engine: AsyncEngine,
+) -> None:
+    """The family lock serializes them: the first rotates, the second is a retry within the grace
+    window. Both callers get tokens, only the last one issued stays live, and the family lives."""
     user = await create_user(engine)
     sessions = SessionIssuer(access_tokens=FakeAccessTokens(), refresh_token_ttl=timedelta(days=1))
     family = RefreshFamily(id=uuid.uuid7(), user_id=user.id, created_at=T0)
@@ -224,8 +228,21 @@ async def test_concurrent_refreshes_rotate_a_token_only_once(engine: AsyncEngine
     results = await asyncio.gather(
         refresh.execute(tokens.refresh_token),
         refresh.execute(tokens.refresh_token),
-        return_exceptions=True,
     )
 
-    assert sum(isinstance(r, RefreshTokenReuseError) for r in results) == 1
-    assert sum(not isinstance(r, BaseException) for r in results) == 1
+    async with engine.connect() as connection:
+        live = (
+            (
+                await connection.execute(
+                    text("SELECT token_hash FROM refresh_tokens WHERE revoked_at IS NULL")
+                )
+            )
+            .scalars()
+            .all()
+        )
+        family_revoked_at = await connection.scalar(text("SELECT revoked_at FROM refresh_families"))
+    issued = {hash_refresh_secret(r.refresh_token) for r in results}
+    assert len(issued) == 2
+    assert len(live) == 1
+    assert live[0] in issued
+    assert family_revoked_at is None

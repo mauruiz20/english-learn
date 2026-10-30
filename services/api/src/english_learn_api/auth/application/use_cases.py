@@ -4,6 +4,7 @@ import logging
 import uuid
 from collections.abc import Callable
 from datetime import datetime, timedelta
+from typing import NoReturn
 
 from english_learn_api.auth.application.ports import (
     AccessTokens,
@@ -20,6 +21,7 @@ logger = logging.getLogger(__name__)
 type UnitOfWorkFactory = Callable[[], UnitOfWork]
 
 _INVALID_REFRESH = "Refresh token is invalid or expired; sign in again"
+DEFAULT_RETRY_GRACE = timedelta(seconds=45)
 
 
 class SessionIssuer:
@@ -79,12 +81,26 @@ class SignInWithGoogle:
 
 
 class RefreshSession:
+    """Rotate a refresh token; revoke the family when a used token comes back.
+
+    One exception keeps flaky networks from logging people out: a token rotated less than
+    `retry_grace` ago whose successor was never used is a retry (the response was lost, or two
+    requests raced). The unused successor is revoked and a new one issued in the same family, so
+    exactly one token stays live. The window is measured from the presented token's rotation.
+    """
+
     def __init__(
-        self, *, sessions: SessionIssuer, unit_of_work: UnitOfWorkFactory, clock: Clock
+        self,
+        *,
+        sessions: SessionIssuer,
+        unit_of_work: UnitOfWorkFactory,
+        clock: Clock,
+        retry_grace: timedelta = DEFAULT_RETRY_GRACE,
     ) -> None:
         self._sessions = sessions
         self._unit_of_work = unit_of_work
         self._clock = clock
+        self._retry_grace = retry_grace
 
     async def execute(self, refresh_token: str) -> TokenPair:
         now = self._clock.now()
@@ -98,24 +114,57 @@ class RefreshSession:
                 raise InvalidRefreshTokenError(_INVALID_REFRESH)
 
             if current.was_rotated:
-                # Someone presented a token that was already exchanged: either the client or an
-                # attacker holds a copy. We cannot tell which, so the whole family dies.
-                await revoke_family(uow, family, now)
-                await uow.commit()
-                logger.warning(
-                    "refresh token reuse detected; family revoked",
-                    extra={"user_id": str(current.user_id), "family_id": str(current.family_id)},
-                )
-                msg = "Refresh token was already used; all sessions from that sign-in are revoked"
-                raise RefreshTokenReuseError(msg)
+                retried = await self._retry(uow, family, current, now)
+                if retried is not None:
+                    await uow.commit()
+                    return retried
+                await self._revoke_for_reuse(uow, family, current, now)
 
-            if current.is_revoked or current.is_expired(now):
+            if current.is_revoked:
+                # Revoked without being rotated while its family lives: a retry superseded it,
+                # so whoever presents it is not the client that retried.
+                await self._revoke_for_reuse(uow, family, current, now)
+
+            if current.is_expired(now):
                 raise InvalidRefreshTokenError(_INVALID_REFRESH)
 
             tokens, successor = await self._sessions.issue(uow, family=family, now=now)
             await uow.refresh_tokens.save(current.rotated(successor.id, now))
             await uow.commit()
         return tokens
+
+    async def _retry(
+        self, uow: UnitOfWork, family: RefreshFamily, current: RefreshToken, now: datetime
+    ) -> TokenPair | None:
+        rotated_at, successor_id = current.revoked_at, current.replaced_by
+        if rotated_at is None or successor_id is None or now - rotated_at >= self._retry_grace:
+            return None
+        successor = await uow.refresh_tokens.get(successor_id)
+        if successor is None or successor.is_revoked:  # used (rotated) or revoked
+            return None
+        await uow.refresh_tokens.save(successor.superseded(now))
+        tokens, replacement = await self._sessions.issue(uow, family=family, now=now)
+        await uow.refresh_tokens.save(current.rerouted(replacement.id))
+        logger.info(
+            "refresh retried within the grace window",
+            extra={"user_id": str(current.user_id), "family_id": str(family.id)},
+        )
+        return tokens
+
+    @staticmethod
+    async def _revoke_for_reuse(
+        uow: UnitOfWork, family: RefreshFamily, current: RefreshToken, now: datetime
+    ) -> NoReturn:
+        # Someone presented a token that was already exchanged: either the client or an
+        # attacker holds a copy. We cannot tell which, so the whole family dies.
+        await revoke_family(uow, family, now)
+        await uow.commit()
+        logger.warning(
+            "refresh token reuse detected; family revoked",
+            extra={"user_id": str(current.user_id), "family_id": str(family.id)},
+        )
+        msg = "Refresh token was already used; all sessions from that sign-in are revoked"
+        raise RefreshTokenReuseError(msg)
 
 
 class Logout:

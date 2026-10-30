@@ -71,7 +71,12 @@ def create_app(
                 unit_of_work=unit_of_work,
                 clock=clock,
             ),
-            refresh=RefreshSession(sessions=sessions, unit_of_work=unit_of_work, clock=clock),
+            refresh=RefreshSession(
+                sessions=sessions,
+                unit_of_work=unit_of_work,
+                clock=clock,
+                retry_grace=settings.refresh_retry_grace,
+            ),
             logout=Logout(unit_of_work=unit_of_work, clock=clock),
         )
     )

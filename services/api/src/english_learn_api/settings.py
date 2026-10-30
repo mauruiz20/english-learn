@@ -38,6 +38,7 @@ class Settings(DatabaseSettings):
     jwt_secret: SecretStr
     access_token_ttl: timedelta = timedelta(minutes=15)
     refresh_token_ttl: timedelta = timedelta(days=30)
+    refresh_retry_grace: timedelta = timedelta(seconds=45)
     cors_origins: Annotated[list[str], NoDecode] = list(DEFAULT_CORS_ORIGINS)
     max_request_body_bytes: int = 1024 * 1024
     log_level: str = "INFO"
@@ -50,7 +51,7 @@ class Settings(DatabaseSettings):
             raise ValueError(msg)
         return value
 
-    @field_validator("access_token_ttl", "refresh_token_ttl", mode="before")
+    @field_validator("access_token_ttl", "refresh_token_ttl", "refresh_retry_grace", mode="before")
     @classmethod
     def _plain_seconds(cls, value: object) -> object:
         # `ACCESS_TOKEN_TTL=900` means seconds; ISO 8601 durations (`P30D`) also work.
@@ -63,6 +64,14 @@ class Settings(DatabaseSettings):
     def _positive(cls, value: timedelta) -> timedelta:
         if value <= timedelta(0):
             msg = "token lifetimes must be positive"
+            raise ValueError(msg)
+        return value
+
+    @field_validator("refresh_retry_grace")
+    @classmethod
+    def _not_negative(cls, value: timedelta) -> timedelta:
+        if value < timedelta(0):
+            msg = "REFRESH_RETRY_GRACE must not be negative"
             raise ValueError(msg)
         return value
 
