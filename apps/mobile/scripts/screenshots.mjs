@@ -242,6 +242,11 @@ async function capture(browserType, size, scheme) {
     await page.getByRole("button", { name: "Volver al inicio", exact: true }).waitFor();
     await snap(`${step()}-lesson-summary`);
 
+    // Home right after the lesson: a one-day streak, nothing to review yet.
+    await button(page, "Volver al inicio").click();
+    await page.getByRole("button", { name: "Acerca de", exact: true }).waitFor();
+    await snap(`${step()}-home-after-lesson`);
+
     // Home with progress, days later: reviews are pending.
     await goHome(page, DAY_4);
     await snap(`${step()}-home-progress`, { full: true });
@@ -255,6 +260,21 @@ async function capture(browserType, size, scheme) {
     await page.goto(`/about?today=${DAY_4}`);
     await page.getByRole("link", { name: "tatoeba.org" }).waitFor();
     await snap(`${step()}-about`);
+
+    // Placement result: answer every question correctly (last: it changes the home lessons).
+    await goHome(page, DAY_4);
+    await page
+      .getByRole("button", { name: "Repetir test de nivel" })
+      .or(page.getByRole("button", { name: "Hacer test de nivel" }))
+      .click();
+    await button(page, "Empezar").click();
+    const result = page.getByRole("button", { name: "Ir a mis lecciones", exact: true });
+    for (let i = 0; i < 25 && !(await result.isVisible()); i++) {
+      const scope = await fillCorrectly(page);
+      await button(scope, "Siguiente").click();
+      await result.or(page.locator('[data-testid^="exercise-"]').first()).waitFor();
+    }
+    await snap(`${step()}-placement-result`);
   } finally {
     await context.close();
     rmSync(profile, { recursive: true, force: true });
