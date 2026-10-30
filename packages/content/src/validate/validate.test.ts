@@ -45,7 +45,7 @@ describe("normalize", () => {
     expect(normalize("Hello, world;:")).toBe("hello, world");
   });
   it("maps curly quotes to straight quotes", () => {
-    expect(normalize("“It’s”")).toBe("\"it's\"");
+    expect(normalize("“It’s”")).toBe('"it\'s"');
   });
 });
 
@@ -209,7 +209,8 @@ describe("validateClozes", () => {
       {
         file: "b1/travel.json",
         path: "exercises[0].sentence",
-        message: 'cloze sentence must contain exactly one blank written as "___" (found "___", "_")',
+        message:
+          'cloze sentence must contain exactly one blank written as "___" (found "___", "_")',
       },
     ]);
   });
@@ -336,7 +337,10 @@ describe("validateListDuplicates", () => {
             accepted: ["we went out although it rained.", "We went out although it rained"],
           }),
           fx.translateWrite({
-            accepted: ["Although he was tired, he kept walking.", "although he was tired, he kept walking!"],
+            accepted: [
+              "Although he was tired, he kept walking.",
+              "although he was tired, he kept walking!",
+            ],
           }),
         ],
         lessons: [
@@ -430,20 +434,44 @@ describe("validateTopics", () => {
       file({
         items: [fx.item({ topics: ["grammar"] })],
         passages: [fx.passage({ topics: ["food"] })],
-        lessons: [fx.lesson({ topic: "food", id: "b1.travel.lesson-001" }), fx.lesson({ exerciseIds })],
+        lessons: [
+          fx.lesson({ topic: "food", id: "b1.travel.lesson-001" }),
+          fx.lesson({ exerciseIds }),
+        ],
       }),
     ]);
     const at = (path: string, message: string) => ({ file: "b1/travel.json", path, message });
     expect(errs).toEqual([
       at("items[0].topics", 'topics must include "travel", the topic segment of its id'),
       at("passages[0].topics", 'topics must include "travel", the topic segment of its id'),
-      at("lessons[0].topic", 'lesson topic "food" does not match the topic segment of its id "travel"'),
-      at("lessons[0].exerciseIds[0]", 'exercise "b1.travel.vocab-001" is not in lesson topic "food"'),
-      at("lessons[0].exerciseIds[1]", 'exercise "b1.travel.cloze-001" is not in lesson topic "food"'),
-      at("lessons[0].exerciseIds[2]", 'exercise "b1.travel.order-001" is not in lesson topic "food"'),
-      at("lessons[0].exerciseIds[3]", 'exercise "b1.travel.tchoice-001" is not in lesson topic "food"'),
-      at("lessons[0].exerciseIds[4]", 'exercise "b1.travel.write-001" is not in lesson topic "food"'),
-      at("lessons[1].exerciseIds[4]", 'exercise "b1.food.vocab-001" is not in lesson topic "travel"'),
+      at(
+        "lessons[0].topic",
+        'lesson topic "food" does not match the topic segment of its id "travel"',
+      ),
+      at(
+        "lessons[0].exerciseIds[0]",
+        'exercise "b1.travel.vocab-001" is not in lesson topic "food"',
+      ),
+      at(
+        "lessons[0].exerciseIds[1]",
+        'exercise "b1.travel.cloze-001" is not in lesson topic "food"',
+      ),
+      at(
+        "lessons[0].exerciseIds[2]",
+        'exercise "b1.travel.order-001" is not in lesson topic "food"',
+      ),
+      at(
+        "lessons[0].exerciseIds[3]",
+        'exercise "b1.travel.tchoice-001" is not in lesson topic "food"',
+      ),
+      at(
+        "lessons[0].exerciseIds[4]",
+        'exercise "b1.travel.write-001" is not in lesson topic "food"',
+      ),
+      at(
+        "lessons[1].exerciseIds[4]",
+        'exercise "b1.food.vocab-001" is not in lesson topic "travel"',
+      ),
     ]);
   });
 });

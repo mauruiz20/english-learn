@@ -26,6 +26,8 @@ describe("findDuplicateKeys", () => {
     expect(findDuplicateKeys('{"\\u0061":1,"a":2}')).toEqual([{ path: "a", key: "a" }]);
   });
   it("handles whitespace and newlines between tokens", () => {
-    expect(findDuplicateKeys('{\n  "a" : 1 ,\n  "a"\t:\n 2\n}\n')).toEqual([{ path: "a", key: "a" }]);
+    expect(findDuplicateKeys('{\n  "a" : 1 ,\n  "a"\t:\n 2\n}\n')).toEqual([
+      { path: "a", key: "a" },
+    ]);
   });
 });
