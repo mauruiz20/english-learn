@@ -42,6 +42,12 @@
         }
       ],
       "expo-sqlite"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "73e63d51-4361-44c4-aa2b-e8825437891c"
+      }
+    },
+    "owner": "mauruiz"
   }
 }
