@@ -6,7 +6,7 @@
       "topics": ["education"],
       "kind": "word",
       "term": "degree",
-      "es": "título universitario, carrera"
+      "es": "título universitario"
     },
     {
       "id": "b1.education.graduate",
@@ -103,7 +103,7 @@
       "level": "B1",
       "topics": ["education"],
       "title": "A difficult semester",
-      "text": "Last semester was hard for Sofía. She was studying engineering at a public university, and she was also working at a café three evenings a week. One night in November, while she was taking notes in the library, her phone rang. It was her manager. He said that he needed her at work immediately. Sofía told him that she had an important exam the next day, and he finally agreed to let her stay. Unfortunately, she failed that exam anyway, because she was too tired to concentrate. A few days later, her math teacher asked her if everything was OK. Sofía explained her situation, and the teacher told her about a scholarship for students who work. She applied, and two months later she got it. Now she doesn't have to work in the evenings. She hands in her homework on time, and she passed all her subjects in the spring. \"I was trying to do everything alone,\" she says. \"Asking for help was the best decision I made.\"",
+      "text": "Last semester was hard for Sofía. She was studying engineering at a public university, and she was also working at a café three evenings a week. One night in November, while she was taking notes in the library, her phone rang. It was her manager. He said that he needed her at work immediately. Sofía told him that she had an important exam the next day, and he finally agreed to let her stay. Unfortunately, she failed that exam anyway, because she was too tired to concentrate. A few days later, her math professor asked her if everything was OK. Sofía explained her situation, and the professor told her about a scholarship for students who work. She applied, and two months later she got it. Now she doesn't have to work in the evenings. She hands in her homework on time, and she passed all her subjects in the spring. \"I was trying to do everything alone,\" she says. \"Asking for help was the best decision I made.\"",
       "source": { "kind": "original" }
     }
   ],
@@ -191,7 +191,7 @@
           "answerIndex": 0
         },
         {
-          "prompt": "What did her math teacher tell her about?",
+          "prompt": "What did her math professor tell her about?",
           "options": ["A job at a café", "An easier exam", "A scholarship"],
           "answerIndex": 2
         },
@@ -314,7 +314,11 @@
         "My teacher told me that I should study more.",
         "My teacher told me that I should study harder.",
         "My teacher told me I should study more.",
-        "My teacher told me I should study harder."
+        "My teacher told me I should study harder.",
+        "My professor told me to study more.",
+        "My professor told me to study harder.",
+        "My professor said I should study more.",
+        "My professor said I should study harder."
       ]
     },
     {

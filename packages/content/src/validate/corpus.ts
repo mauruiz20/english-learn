@@ -3,6 +3,7 @@ import { validateListDuplicates } from "./duplicates";
 import { validateLayout } from "./layout";
 import { validateLevels } from "./levels";
 import { validateAnswerIndexes, validateOptionDuplicates } from "./options";
+import { validateTextPunctuation } from "./punctuation";
 import { validateReferences } from "./references";
 import { validateExerciseTopics, validateTopics } from "./topics";
 import type { LoadedFile, Rule, ValidationError } from "./types";
@@ -18,6 +19,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateWordOrders,
   validateListDuplicates,
   validateTopics,
+  validateTextPunctuation,
 ];
 
 /** Rules that need the whole corpus (ids, references, levels across files). */

@@ -103,7 +103,7 @@
       "level": "B1",
       "topics": ["money-and-shopping"],
       "title": "Saving for a guitar",
-      "text": "When Marco turned sixteen, he decided he wanted a guitar. The one he liked cost four hundred dollars, and he couldn't afford it. His parents said they would lend him the money as long as he paid them back within six months. Marco didn't like the idea of owing money, so he chose to save up instead. He got a weekend job at a supermarket and stopped buying snacks and video games. Every Friday he put half of his pay in a jar. After five months, he had almost enough. Then something lucky happened: the music store had a sale, and the guitar had a twenty percent discount. Marco bought it the same day and kept the receipt in case there was a problem. \"If I had to do it again, I would do exactly the same,\" he says. \"When you really want something, you find a way to pay for it.\"",
+      "text": "When Marco turned sixteen, he decided he wanted a guitar. The one he liked cost four hundred dollars, and he couldn't afford it. His parents said they would lend him the money as long as he paid them back within six months. Marco didn't like the idea of owing money, so he chose to save up instead. He got a weekend job at a supermarket and stopped buying snacks and video games. Every Friday he put half of his pay in a jar. After five months, he had almost enough. Then something lucky happened: the music store had a sale, and the guitar had a twenty percent discount. Marco bought it the same day and kept the receipt in case there was a problem. \"If I had to do it again, I would do the exact same thing,\" he says. \"When you really want something, you find a way to pay for it.\"",
       "source": { "kind": "original" }
     }
   ],
@@ -227,7 +227,9 @@
         "I can lend you my bike as long as you are careful with it.",
         "I can lend you my bicycle as long as you take care of it.",
         "I can lend you my bicycle as long as you look after it.",
-        "I can lend you my bicycle as long as you are careful with it."
+        "I can lend you my bicycle as long as you are careful with it.",
+        "You can borrow my bike as long as you take care of it.",
+        "You can borrow my bicycle as long as you take care of it."
       ]
     },
     {

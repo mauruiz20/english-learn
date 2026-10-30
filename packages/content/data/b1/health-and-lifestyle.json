@@ -187,7 +187,7 @@
           "answerIndex": 0
         },
         {
-          "prompt": "According to Daniel, what changed the most?",
+          "prompt": "According to the text, what was the biggest change for Daniel?",
           "options": ["His mood", "His weight", "His job"],
           "answerIndex": 0
         }
