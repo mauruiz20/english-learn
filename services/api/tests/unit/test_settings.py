@@ -31,11 +31,12 @@ def test_defaults() -> None:
     assert settings.refresh_retry_grace == timedelta(seconds=45)
     assert settings.cors_origins == list(DEFAULT_CORS_ORIGINS)
     assert settings.google_client_ids == list(DEFAULT_GOOGLE_CLIENT_IDS)
+    assert settings.refresh_cookie_secure is True
     assert DEFAULT_GOOGLE_CLIENT_IDS == (
         "78200832989-odkefhj0s4vla7h5p83gevs2440mctev.apps.googleusercontent.com",
     )
     assert DEFAULT_CORS_ORIGINS == (
-        "https://english-learn-iwl.pages.dev",
+        "https://english.maumar.com.ar",
         "http://localhost:8081",
     )
 
@@ -172,18 +173,42 @@ class TestProduction:
         with pytest.raises(ValidationError, match="CORS_ORIGINS"):
             Settings(_env_file=None)
 
-        monkeypatch.setenv("CORS_ORIGINS", "https://english-learn-iwl.pages.dev")
-        assert Settings(_env_file=None).cors_origins == ["https://english-learn-iwl.pages.dev"]
+        monkeypatch.setenv("CORS_ORIGINS", "https://english.maumar.com.ar")
+        assert Settings(_env_file=None).cors_origins == ["https://english.maumar.com.ar"]
 
     @pytest.mark.parametrize("origin", ["http://localhost:8081", "http://127.0.0.1:3000", "*"])
     def test_rejects_local_or_wildcard_origins(self, origin: str) -> None:
         with pytest.raises(ValidationError, match="CORS_ORIGINS"):
-            make(env="production", cors_origins=["https://english-learn-iwl.pages.dev", origin])
+            make(env="production", cors_origins=["https://english.maumar.com.ar", origin])
 
     def test_accepts_explicit_https_origins(self) -> None:
-        settings = make(env="production", cors_origins=["https://english-learn-iwl.pages.dev"])
+        settings = make(env="production", cors_origins=["https://english.maumar.com.ar"])
 
         assert settings.is_production
+
+    def test_requires_secure_refresh_cookies(self) -> None:
+        with pytest.raises(ValidationError, match="REFRESH_COOKIE_SECURE"):
+            make(
+                env="production",
+                cors_origins=["https://english.maumar.com.ar"],
+                refresh_cookie_secure=False,
+            )
+
+
+def test_insecure_refresh_cookies_are_allowed_outside_production(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+    monkeypatch.setenv("JWT_SECRET", SECRET)
+    monkeypatch.setenv("REFRESH_COOKIE_SECURE", "false")
+
+    assert Settings(_env_file=None).refresh_cookie_secure is False
+
+
+def test_wildcard_cors_origins_are_refused_in_every_environment() -> None:
+    # Credentialed CORS with "*" would reflect any origin; origins must be listed exactly.
+    with pytest.raises(ValidationError, match="CORS_ORIGINS"):
+        make(cors_origins=["http://localhost:8081", "*"])
 
 
 def test_env_accepts_only_known_values() -> None:
