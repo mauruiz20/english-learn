@@ -1,4 +1,6 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { GlossaryText } from "@/features/glossary/glossary-text";
+import { lookupEnabled } from "@/features/lesson/model/lookup-policy";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 import { Button } from "@/shared/ui/button";
@@ -115,7 +117,11 @@ export function SessionSummary({
             {toReview.map((note) => (
               <View key={note.id} style={[styles.line, styles.note]}>
                 {note.topic !== undefined && <TopicTab topic={note.topic} />}
-                <Text variant="bodyStrong">{note.term}</Text>
+                <GlossaryText
+                  variant="bodyStrong"
+                  text={note.term}
+                  enabled={lookupEnabled("summary.terms", true)}
+                />
                 <Text tone="muted">{note.es}</Text>
               </View>
             ))}

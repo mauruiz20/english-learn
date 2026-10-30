@@ -391,4 +391,62 @@ describe("LessonContainer", () => {
 
     expect(mockRouter.replace).toHaveBeenCalledWith("/");
   });
+
+  it("caps the review of an item whose word was looked up before an exercise practicing it", async () => {
+    const withGlossary = createCorpus([
+      {
+        items: [
+          item("a2.routine.wake-up", "wake up", "despertarse"),
+          item("a2.routine.usually", "usually", "normalmente"),
+        ],
+        exercises: allExercises,
+        passages: [passage],
+        lessons: [lesson],
+        glossary: [
+          {
+            id: "glossary.wake-up",
+            headword: "wake up",
+            kind: "phrase",
+            forms: ["wake up"],
+            senses: [{ es: "despertarse", pos: "phrasal verb" }],
+          },
+        ],
+      },
+    ]);
+    const repository = createFakeRepository();
+    await render(
+      <AppServicesProvider
+        services={{
+          progressRepository: repository,
+          clock: { today: () => TODAY, nowMs: () => 0 },
+          random: sequenceRng([0.3, 0.8, 0.1, 0.6]),
+          settingsRepository: createFakeSettingsRepository(),
+          sounds,
+        }}
+      >
+        <LessonContainer lessonId={lesson.id} content={withGlossary} />
+      </AppServicesProvider>,
+    );
+
+    // The evaluated term is locked until the answer is checked.
+    expect(screen.queryByRole("button", { name: "wake up, ver traducción" })).toBeNull();
+    await press("despertarse", "radio");
+    await check();
+    // Unlocked in the feedback: looking it up now counts for the exercises still to come.
+    await press("wake up, ver traducción");
+    expect(screen.getByText("phrasal verb")).toBeOnTheScreen();
+    await press("Cerrar");
+    await press("Continuar");
+    await playAfterVocab();
+
+    await screen.findByText("¡Lección completada!");
+    const states = new Map(repository.snapshot().states.map((s) => [s.itemId, s]));
+    // Word order (after the lookup) practiced wake up: capped at 3 although every answer was right.
+    expect(states.get("a2.routine.wake-up")).toEqual(
+      review(initialState("a2.routine.wake-up", TODAY), 3, TODAY),
+    );
+    expect(states.get("a2.routine.usually")).toEqual(
+      review(initialState("a2.routine.usually", TODAY), 5, TODAY),
+    );
+  });
 });

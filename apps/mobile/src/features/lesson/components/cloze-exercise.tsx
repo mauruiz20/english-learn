@@ -1,6 +1,8 @@
 import { StyleSheet, View } from "react-native";
+import { GlossaryRuns } from "@/features/glossary/glossary-text";
 import { Text } from "@/shared/ui/text";
 import { useTheme } from "@/shared/ui/use-theme";
+import { lookupEnabled } from "../model/lookup-policy";
 import { Prompt, exerciseText } from "./exercise-layout";
 import { SingleChoiceExercise } from "./single-choice-exercise";
 import type { ExerciseProps } from "./types";
@@ -10,7 +12,7 @@ const BLANK = /_{2,}/;
 export function ClozeExercise({
   prepared,
   disabled,
-  reveal,
+  reveal = false,
   onSubmit,
   submitLabel,
 }: ExerciseProps<"cloze">) {
@@ -27,13 +29,14 @@ export function ClozeExercise({
       reveal={reveal}
       onSubmit={onSubmit}
       submitLabel={submitLabel}
+      lookupOptions={lookupEnabled("cloze.options", reveal)}
     >
       <Prompt hint={es}>
         {/* The blank is drawn as an empty, underlined space; screen readers get the sentence. */}
         <Text accessibilityLabel={sentence} style={exerciseText.sentence}>
           {parts.map((part, i) => (
             <Text key={i} style={exerciseText.sentence}>
-              {part}
+              <GlossaryRuns text={part} enabled={lookupEnabled("cloze.sentence", reveal)} />
               {i < parts.length - 1 && (
                 <View style={[styles.blank, { backgroundColor: colors.ink }]} />
               )}

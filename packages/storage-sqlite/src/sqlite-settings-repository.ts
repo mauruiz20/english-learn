@@ -2,6 +2,7 @@ import type { SettingsRepository } from "@english-learn/domain";
 import type { SqlDatabase } from "./sql-database";
 
 const SOUND_ENABLED = "sound_enabled";
+const LOOKUP_HINT_DISMISSED = "lookup_hint_dismissed";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -25,5 +26,7 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     // Anything but an explicit "off" keeps the default (on).
     getSoundEnabled: async () => (await read(SOUND_ENABLED)) !== "0",
     setSoundEnabled: (enabled) => write(SOUND_ENABLED, enabled ? "1" : "0"),
+    getLookupHintDismissed: async () => (await read(LOOKUP_HINT_DISMISSED)) === "1",
+    setLookupHintDismissed: () => write(LOOKUP_HINT_DISMISSED, "1"),
   };
 }

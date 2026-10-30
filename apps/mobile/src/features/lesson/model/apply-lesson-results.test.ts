@@ -161,4 +161,65 @@ describe("applyLessonResults", () => {
       "word_order",
     ]);
   });
+
+  describe("words looked up before answering", () => {
+    it("caps a correct answer at grade 3 (almost)", () => {
+      const states = applyLessonResults({
+        summary: summary([
+          {
+            itemId: "new",
+            exerciseType: "vocab",
+            verdict: "correct",
+            responseMs: 1000,
+            lookedUp: true,
+          },
+        ]),
+        states: [],
+        today,
+      });
+
+      expect(states).toEqual([review(initialState("new", today), 3, today)]);
+    });
+
+    it("never upgrades a wrong answer", () => {
+      const existing: ReviewState = { ...initialState("known", today), reps: 2, intervalDays: 6 };
+      const states = applyLessonResults({
+        summary: summary([
+          {
+            itemId: "known",
+            exerciseType: "cloze",
+            verdict: "wrong",
+            responseMs: 1000,
+            lookedUp: true,
+          },
+        ]),
+        states: [existing],
+        today,
+      });
+
+      expect(states).toEqual([review(existing, 1, today)]);
+    });
+
+    it("leaves items that were not looked up alone", () => {
+      const states = applyLessonResults({
+        summary: summary([
+          {
+            itemId: "a",
+            exerciseType: "vocab",
+            verdict: "correct",
+            responseMs: 1000,
+            lookedUp: true,
+          },
+          { itemId: "b", exerciseType: "vocab", verdict: "correct", responseMs: 1000 },
+        ]),
+        states: [],
+        today,
+      });
+
+      expect(states).toEqual([
+        review(initialState("a", today), 3, today),
+        review(initialState("b", today), 5, today),
+      ]);
+    });
+  });
 });

@@ -3,6 +3,7 @@ import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { SessionGlossary } from "@/features/glossary/session-glossary";
 import { topicByItemId } from "@/features/topics/topic-colors";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { completeSession } from "./application/complete-session";
@@ -35,7 +36,7 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
       prepared: exercises.map((e) => prepareExercise(e, random)),
     };
   });
-  const { session, save, onSubmit, onContinue, retrySave, canLeave, hasUnsavedAnswers } =
+  const { session, save, onSubmit, onContinue, onLookup, retrySave, canLeave, hasUnsavedAnswers } =
     useExerciseSession({
       initial,
       complete: (summary) =>
@@ -53,13 +54,19 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
   return (
     <>
       <Stack.Screen options={{ gestureEnabled: canLeave, headerBackVisible: canLeave }} />
-      <LessonView
-        state={toViewState(session, initial?.prepared ?? [], save, content)}
-        onSubmit={onSubmit}
-        onContinue={onContinue}
-        onGoHome={goHome}
-        onRetrySave={retrySave}
-      />
+      <SessionGlossary
+        content={content}
+        topic={content.lessonsById.get(lessonId)?.topic}
+        onLookupItems={onLookup}
+      >
+        <LessonView
+          state={toViewState(session, initial?.prepared ?? [], save, content)}
+          onSubmit={onSubmit}
+          onContinue={onContinue}
+          onGoHome={goHome}
+          onRetrySave={retrySave}
+        />
+      </SessionGlossary>
       {dialog}
     </>
   );

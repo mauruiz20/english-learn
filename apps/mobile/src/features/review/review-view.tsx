@@ -9,6 +9,7 @@ import {
 } from "@/features/lesson/components/session-screens";
 import type { ShownFeedback } from "@/features/lesson/lesson-view";
 import type { ReviewNote } from "@/features/lesson/model/items-to-review";
+import { answerIsEnglish } from "@/features/lesson/model/lookup-policy";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { Button } from "@/shared/ui/button";
@@ -109,6 +110,7 @@ export function ReviewView({
                     verdict={state.feedback.verdict}
                     given={state.feedback.given}
                     correctAnswer={state.feedback.correctAnswer}
+                    lookupAnswer={answerIsEnglish(state.prepared)}
                     onContinue={onContinue}
                   />
                 ),

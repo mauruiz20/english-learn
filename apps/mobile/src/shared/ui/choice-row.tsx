@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { Highlight } from "./highlight";
 import { struckText } from "./struck";
@@ -13,6 +14,8 @@ export type ChoiceMark = "correct" | "wrong" | "dimmed";
 
 type ChoiceRowProps = {
   label: string;
+  /** What the row shows instead of the plain `label` (same text, e.g. with lookup targets). */
+  content?: ReactNode;
   checked: boolean;
   disabled: boolean;
   onPress: () => void;
@@ -32,7 +35,7 @@ function spokenLabel(label: string, checked: boolean, mark: ChoiceMark | undefin
  * One option of a single-choice group (a radio): ink outline, filled with ink when chosen. Once
  * marked it is a corrected answer instead (see `ChoiceMark`).
  */
-export function ChoiceRow({ label, checked, disabled, onPress, mark }: ChoiceRowProps) {
+export function ChoiceRow({ label, content, checked, disabled, onPress, mark }: ChoiceRowProps) {
   const styles = useStyles();
   const { colors } = useTheme();
   const filled = checked && mark === undefined;
@@ -55,7 +58,7 @@ export function ChoiceRow({ label, checked, disabled, onPress, mark }: ChoiceRow
       {mark === "correct" ? (
         <>
           <View style={styles.label}>
-            <Highlight animate variant="bodyStrong">
+            <Highlight animate variant="bodyStrong" content={content}>
               {label}
             </Highlight>
           </View>
@@ -72,7 +75,7 @@ export function ChoiceRow({ label, checked, disabled, onPress, mark }: ChoiceRow
           tone={filled ? "onInk" : mark === "wrong" ? "muted" : "text"}
           style={[styles.label, mark === "wrong" && struckText(colors)]}
         >
-          {label}
+          {content ?? label}
         </Text>
       )}
     </Pressable>

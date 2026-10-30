@@ -1,4 +1,5 @@
-import { Pressable, StyleSheet } from "react-native";
+import type { ReactNode } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
 import { Text } from "./text";
 import { TOUCH_TARGET, spacing } from "./theme";
 import { themedStyles } from "./use-theme";
@@ -9,11 +10,25 @@ type PaperStripProps = {
   text: string;
   disabled: boolean;
   onPress: () => void;
+  /**
+   * Content shown instead of `text` while `disabled` (e.g. words to look up once the answer is
+   * checked). The strip is then plain paper, not a button, so its content can be interactive.
+   */
+  lockedContent?: ReactNode;
 };
 
 /** A word cut out of paper: moves between the word bank and the answer line when tapped. */
-export function PaperStrip({ label, text, disabled, onPress }: PaperStripProps) {
+export function PaperStrip({ label, text, disabled, onPress, lockedContent }: PaperStripProps) {
   const styles = useStyles();
+  if (disabled && lockedContent !== undefined) {
+    return (
+      <View style={styles.strip}>
+        <Text variant="body" style={styles.text}>
+          {lockedContent}
+        </Text>
+      </View>
+    );
+  }
   return (
     <Pressable
       accessibilityRole="button"

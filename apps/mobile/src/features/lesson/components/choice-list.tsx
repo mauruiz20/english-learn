@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+import { GlossaryRuns } from "@/features/glossary/glossary-text";
 import { useSoundPlayer } from "@/infrastructure/services/app-services";
 import { ChoiceRow, type ChoiceMark } from "@/shared/ui/choice-row";
 import { spacing } from "@/shared/ui/theme";
@@ -12,6 +13,8 @@ type ChoiceListProps = {
   onSelect: (option: string) => void;
   /** Once the answer is checked: the options that were right. Marks every option. */
   correctOptions?: readonly string[] | undefined;
+  /** The options are English and their words can be looked up now. */
+  lookup?: boolean | undefined;
 };
 
 function markOf(
@@ -32,6 +35,7 @@ export function ChoiceList({
   disabled,
   onSelect,
   correctOptions,
+  lookup = false,
 }: ChoiceListProps) {
   const sounds = useSoundPlayer();
   return (
@@ -40,6 +44,7 @@ export function ChoiceList({
         <ChoiceRow
           key={option}
           label={option}
+          content={lookup ? <GlossaryRuns text={option} /> : undefined}
           checked={option === selected}
           disabled={disabled || correctOptions !== undefined}
           mark={markOf(option, selected, correctOptions)}

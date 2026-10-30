@@ -1,9 +1,11 @@
 import type { Passage } from "@english-learn/content";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { GlossaryRuns, GlossaryText } from "@/features/glossary/glossary-text";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
 import { themedStyles } from "@/shared/ui/use-theme";
+import { lookupEnabled } from "../model/lookup-policy";
 import { ChoiceList } from "./choice-list";
 import { ExerciseLayout } from "./exercise-layout";
 import type { ExerciseProps } from "./types";
@@ -41,23 +43,37 @@ export function ReadingExercise({
           <Text tone="muted">Texto no disponible.</Text>
         ) : (
           <>
-            <Text accessibilityRole="header" variant="title">
-              {passage.title}
-            </Text>
-            <Text style={styles.text}>{passage.text}</Text>
+            <GlossaryText
+              accessibilityRole="header"
+              variant="title"
+              text={passage.title}
+              enabled={lookupEnabled("reading.passage", reveal)}
+            />
+            <GlossaryText
+              style={styles.text}
+              text={passage.text}
+              enabled={lookupEnabled("reading.passage", reveal)}
+            />
           </>
         )}
       </View>
       {prepared.questions.map((question, i) => (
         // Prompts may repeat; the question list is fixed for the exercise, so the index is stable.
         <View key={i} style={styles.question}>
-          <Text variant="bodyStrong">{`${i + 1}. ${question.prompt}`}</Text>
+          <Text variant="bodyStrong">
+            {`${i + 1}. `}
+            <GlossaryRuns
+              text={question.prompt}
+              enabled={lookupEnabled("reading.questions", reveal)}
+            />
+          </Text>
           <ChoiceList
             label={question.prompt}
             options={question.options}
             selected={answers[i] ?? null}
             disabled={disabled}
             correctOptions={reveal ? correctOptionOf(prepared.exercise.questions[i]) : undefined}
+            lookup={lookupEnabled("reading.options", reveal)}
             onSelect={(option) =>
               setAnswers((current) => current.map((a, j) => (j === i ? option : a)))
             }

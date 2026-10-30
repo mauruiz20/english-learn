@@ -33,4 +33,15 @@ describe("createSqliteSettingsRepository", () => {
 
     expect(await settings.getSoundEnabled()).toBe(true);
   });
+
+  it("has not dismissed the word lookup hint by default", async () => {
+    expect(await settings.getLookupHintDismissed()).toBe(false);
+  });
+
+  it("remembers that the word lookup hint was dismissed", async () => {
+    await settings.setLookupHintDismissed();
+
+    expect(await settings.getLookupHintDismissed()).toBe(true);
+    expect(await createSqliteSettingsRepository(db).getLookupHintDismissed()).toBe(true);
+  });
 });
