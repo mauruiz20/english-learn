@@ -193,8 +193,12 @@
         },
         {
           "prompt": "What did the doctor tell her to do?",
-          "options": ["Go back to work", "Eat more fruit", "Rest and drink a lot of water"],
-          "answerIndex": 2
+          "options": [
+            "Stay in bed and rest",
+            "Rest and drink a lot of water",
+            "Take medicine and go back to work"
+          ],
+          "answerIndex": 1
         }
       ]
     },
@@ -209,8 +213,14 @@
         "license": "CC BY 2.0 FR"
       },
       "type": "translate_write",
-      "es": "Me he resfriado.",
-      "accepted": ["I have caught a cold.", "I caught a cold.", "I have a cold."]
+      "es": "Me resfrié.",
+      "accepted": [
+        "I have caught a cold.",
+        "I caught a cold.",
+        "I have a cold.",
+        "I've got a cold.",
+        "I got a cold."
+      ]
     },
     {
       "id": "a2.health.vocab-002",
@@ -314,7 +324,9 @@
       "accepted": [
         "You should rest and drink a lot of water.",
         "You should rest and drink lots of water.",
-        "You should rest and drink plenty of water."
+        "You should rest and drink plenty of water.",
+        "You should get some rest and drink a lot of water.",
+        "You should get some rest and drink lots of water."
       ]
     }
   ],

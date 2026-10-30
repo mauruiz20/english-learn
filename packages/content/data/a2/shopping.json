@@ -103,7 +103,7 @@
       "level": "A2",
       "topics": ["shopping"],
       "title": "A new jacket",
-      "text": "Last Saturday I went to the market with my friend Sam. I wanted to buy a new jacket for the winter. The first jacket I tried on was very nice, but it was too expensive. In the next store, I found a cheaper one in my size. It cost forty dollars. I paid in cash, and then we went for a coffee.",
+      "text": "Last Saturday I went to the market with my friend Sam. I wanted to buy a new jacket for the winter. The first jacket I tried on was very nice, but it was too expensive. In the next store, I found a cheaper one in my size. It cost forty dollars. I paid in cash, and then we went for coffee.",
       "source": { "kind": "original" }
     }
   ],
@@ -307,7 +307,14 @@
       "source": { "kind": "original" },
       "type": "translate_write",
       "es": "¿Me lo puedo probar?",
-      "accepted": ["Can I try it on?", "May I try it on?", "Could I try it on?"]
+      "accepted": [
+        "Can I try it on?",
+        "May I try it on?",
+        "Could I try it on?",
+        "Can I try this on?",
+        "May I try this on?",
+        "Could I try this on?"
+      ]
     }
   ],
   "lessons": [
