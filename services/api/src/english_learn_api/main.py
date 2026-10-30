@@ -93,7 +93,17 @@ def create_app(
         yield
         await engine.dispose()
 
-    app = FastAPI(title="English Learn API", version="0.1.0", lifespan=lifespan)
+    # Production does not publish its schema; `python -m english_learn_api.export_openapi`
+    # writes it for client generation instead.
+    public_docs = not settings.is_production
+    app = FastAPI(
+        title="English Learn API",
+        version="0.1.0",
+        lifespan=lifespan,
+        openapi_url="/openapi.json" if public_docs else None,
+        docs_url="/docs" if public_docs else None,
+        redoc_url="/redoc" if public_docs else None,
+    )
     install_error_handlers(app, status_by_error=STATUS_BY_ERROR)
 
     app.include_router(build_health_router(engine))

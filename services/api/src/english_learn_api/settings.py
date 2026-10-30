@@ -1,7 +1,8 @@
 """Runtime configuration, read from environment variables (and a local `.env` in development)."""
 
 from datetime import timedelta
-from typing import Annotated, Self
+from typing import Annotated, Literal, Self
+from urllib.parse import urlsplit
 
 from pydantic import SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
@@ -40,6 +41,10 @@ class DatabaseSettings(BaseSettings):
 
 
 class Settings(DatabaseSettings):
+    # development: local defaults (CORS includes localhost, /docs served). test: same, for the
+    # suite. production: CORS_ORIGINS must be set explicitly (https, no localhost or "*"), and
+    # /docs, /redoc and /openapi.json are not served.
+    env: Literal["development", "test", "production"] = "development"
     google_client_ids: Annotated[list[str], NoDecode] = list(DEFAULT_GOOGLE_CLIENT_IDS)
     # Either one JWT_SECRET (signed with kid "default"), or JWT_KEYS (JSON {kid: secret}) with
     # JWT_ACTIVE_KID naming the signing key; every listed key still verifies.
@@ -79,6 +84,23 @@ class Settings(DatabaseSettings):
             msg = "JWT_ACTIVE_KID must name one of the JWT_KEYS"
             raise ValueError(msg)
         return self
+
+    @model_validator(mode="after")
+    def _production_cors(self) -> Self:
+        if not self.is_production:
+            return self
+        if "cors_origins" not in self.model_fields_set or not self.cors_origins:
+            msg = "ENV=production requires CORS_ORIGINS to be set explicitly"
+            raise ValueError(msg)
+        unsafe = [origin for origin in self.cors_origins if not _is_public_https(origin)]
+        if unsafe:
+            msg = f"CORS_ORIGINS in production must be public https origins, not {unsafe}"
+            raise ValueError(msg)
+        return self
+
+    @property
+    def is_production(self) -> bool:
+        return self.env == "production"
 
     def jwt_signing_keys(self) -> tuple[dict[str, str], str]:
         """Every verification key by kid, and the kid that signs new tokens."""
@@ -146,3 +168,8 @@ def _check_secret(name: str, secret: SecretStr) -> None:
     if len(set(raw)) < MIN_JWT_SECRET_DISTINCT_BYTES:
         msg = f"{name} must have at least {MIN_JWT_SECRET_DISTINCT_BYTES} distinct bytes"
         raise ValueError(msg)
+
+
+def _is_public_https(origin: str) -> bool:
+    parts = urlsplit(origin)
+    return parts.scheme == "https" and parts.hostname not in {None, "localhost", "127.0.0.1", "::1"}

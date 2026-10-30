@@ -26,6 +26,8 @@ def test_defaults() -> None:
     assert settings.access_token_ttl == timedelta(minutes=15)
     assert settings.refresh_token_ttl == timedelta(days=14)
     assert settings.session_max_lifetime == timedelta(days=60)
+    assert settings.reauthentication_window == timedelta(minutes=5)
+    assert settings.env == "development"
     assert settings.refresh_retry_grace == timedelta(seconds=45)
     assert settings.cors_origins == list(DEFAULT_CORS_ORIGINS)
     assert settings.google_client_ids == list(DEFAULT_GOOGLE_CLIENT_IDS)
@@ -153,3 +155,37 @@ def test_token_ttls_must_be_positive(field: str) -> None:
 def test_google_client_ids_must_not_be_empty() -> None:
     with pytest.raises(ValidationError, match="GOOGLE_CLIENT_IDS"):
         make(google_client_ids=" , ")
+
+
+class TestProduction:
+    def test_requires_explicit_cors_origins(self) -> None:
+        with pytest.raises(ValidationError, match="CORS_ORIGINS"):
+            make(env="production")
+
+    def test_requires_explicit_cors_origins_from_the_environment(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        monkeypatch.setenv("JWT_SECRET", SECRET)
+        monkeypatch.setenv("ENV", "production")
+
+        with pytest.raises(ValidationError, match="CORS_ORIGINS"):
+            Settings(_env_file=None)
+
+        monkeypatch.setenv("CORS_ORIGINS", "https://english-learn-iwl.pages.dev")
+        assert Settings(_env_file=None).cors_origins == ["https://english-learn-iwl.pages.dev"]
+
+    @pytest.mark.parametrize("origin", ["http://localhost:8081", "http://127.0.0.1:3000", "*"])
+    def test_rejects_local_or_wildcard_origins(self, origin: str) -> None:
+        with pytest.raises(ValidationError, match="CORS_ORIGINS"):
+            make(env="production", cors_origins=["https://english-learn-iwl.pages.dev", origin])
+
+    def test_accepts_explicit_https_origins(self) -> None:
+        settings = make(env="production", cors_origins=["https://english-learn-iwl.pages.dev"])
+
+        assert settings.is_production
+
+
+def test_env_accepts_only_known_values() -> None:
+    with pytest.raises(ValidationError):
+        make(env="staging")
