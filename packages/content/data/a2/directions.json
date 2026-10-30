@@ -208,7 +208,10 @@
       "es": "Disculpe, ¿dónde está la estación de metro?",
       "accepted": [
         "Excuse me, where's the subway station?",
-        "Excuse me, where's the metro station?"
+        "Excuse me, where's the metro station?",
+        "Excuse me, where's the subway?",
+        "Pardon me, where's the subway station?",
+        "Sorry, where's the subway station?"
       ]
     },
     {
@@ -328,7 +331,11 @@
         "Go straight and turn right at the bank.",
         "Go straight ahead and turn right at the bank.",
         "Go straight on and turn right at the bank.",
-        "Keep going straight and turn right at the bank."
+        "Keep going straight and turn right at the bank.",
+        "Go straight and then turn right at the bank.",
+        "Go straight, then turn right at the bank.",
+        "Continue straight and turn right at the bank.",
+        "Keep going straight ahead and turn right at the bank."
       ]
     }
   ],

@@ -170,7 +170,11 @@
         "I usually go to bed at 11.",
         "I normally go to bed at 11.",
         "Usually I go to bed at eleven.",
-        "Normally I go to bed at eleven."
+        "Normally I go to bed at eleven.",
+        "Usually I go to bed at 11.",
+        "Normally I go to bed at 11.",
+        "I usually go to bed at eleven o'clock.",
+        "I normally go to bed at eleven o'clock."
       ]
     },
     {
@@ -285,7 +289,10 @@
         "He reads the paper every morning.",
         "Every morning he reads the newspaper.",
         "Every morning, he reads the newspaper.",
-        "He reads the newspaper each morning."
+        "He reads the newspaper each morning.",
+        "He reads the paper each morning.",
+        "Every morning he reads the paper.",
+        "Every morning, he reads the paper."
       ]
     }
   ],

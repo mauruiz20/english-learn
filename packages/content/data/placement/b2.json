@@ -115,7 +115,7 @@
       "exercise": {
         "source": { "kind": "original" },
         "type": "translation_choice",
-        "sentence": "Despite the rain, the match went ahead.",
+        "sentence": "Despite the rain, the game went ahead.",
         "options": [
           "Por culpa de la lluvia, se suspendió el partido.",
           "Aunque llovió, el partido se adelantó.",
@@ -144,7 +144,7 @@
         "type": "cloze",
         "sentence": "I'd rather you ___ smoke in here.",
         "answers": ["didn't"],
-        "distractors": ["not", "won't", "haven't"],
+        "distractors": ["won't", "haven't", "aren't"],
         "es": "Preferiría que no fumaras aquí."
       }
     },
