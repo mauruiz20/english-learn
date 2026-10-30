@@ -1,0 +1,22 @@
+import { validateClozes } from "./cloze";
+import { validateLevels } from "./levels";
+import { validateAnswerIndexes, validateOptionDuplicates } from "./options";
+import { validateReferences } from "./references";
+import type { LoadedFile, ValidationError } from "./types";
+import { validateUniqueIds } from "./unique-ids";
+import { validateWordOrders } from "./word-order";
+
+const RULES = [
+  validateUniqueIds,
+  validateReferences,
+  validateAnswerIndexes,
+  validateOptionDuplicates,
+  validateClozes,
+  validateWordOrders,
+  validateLevels,
+];
+
+/** Runs every semantic rule over the whole corpus. Pure; never throws. */
+export function validateCorpus(files: readonly LoadedFile[]): ValidationError[] {
+  return RULES.flatMap((rule) => rule(files));
+}

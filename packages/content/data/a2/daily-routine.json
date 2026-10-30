@@ -1,0 +1,146 @@
+{
+  "items": [
+    {
+      "id": "a2.daily-routine.wake-up",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "phrase",
+      "term": "wake up",
+      "es": "despertarse"
+    },
+    {
+      "id": "a2.daily-routine.usually",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "word",
+      "term": "usually",
+      "es": "normalmente"
+    },
+    {
+      "id": "a2.daily-routine.have-breakfast",
+      "level": "A2",
+      "topics": ["daily-routine", "food"],
+      "kind": "phrase",
+      "term": "have breakfast",
+      "es": "desayunar"
+    },
+    {
+      "id": "a2.daily-routine.commute",
+      "level": "A2",
+      "topics": ["daily-routine", "work"],
+      "kind": "word",
+      "term": "commute",
+      "es": "trayecto al trabajo"
+    },
+    {
+      "id": "a2.daily-routine.go-to-bed",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "kind": "phrase",
+      "term": "go to bed",
+      "es": "irse a la cama"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.daily-routine.my-morning",
+      "level": "A2",
+      "topics": ["daily-routine"],
+      "title": "My day",
+      "text": "My name is Ana. I wake up at six thirty every day. I have breakfast with my brother, and then I go to work by bus. My commute takes forty minutes. In the evening I usually go to bed at eleven.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.daily-routine.vocab-001",
+      "itemIds": ["a2.daily-routine.wake-up"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'wake up' mean?",
+      "options": ["despertarse", "dormirse", "acostarse", "levantar algo"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.daily-routine.cloze-001",
+      "itemIds": ["a2.daily-routine.have-breakfast"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I usually ___ breakfast at seven.",
+      "answers": ["have"],
+      "distractors": ["do", "go"],
+      "es": "Normalmente desayuno a las siete."
+    },
+    {
+      "id": "a2.daily-routine.order-001",
+      "itemIds": ["a2.daily-routine.usually", "a2.daily-routine.wake-up"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["I", "usually", "wake", "up", "at", "six."],
+      "accepted": ["I usually wake up at six."],
+      "es": "Normalmente me despierto a las seis."
+    },
+    {
+      "id": "a2.daily-routine.choice-001",
+      "itemIds": ["a2.daily-routine.go-to-bed"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She goes to bed at eleven.",
+      "options": [
+        "Ella se acuesta a las once.",
+        "Ella se levanta a las once.",
+        "Ella llega a casa a las once."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.daily-routine.reading-001",
+      "itemIds": ["a2.daily-routine.commute", "a2.daily-routine.have-breakfast"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.daily-routine.my-morning",
+      "questions": [
+        {
+          "prompt": "What time does Ana wake up?",
+          "options": ["At six thirty", "At seven", "At eleven"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "How does Ana go to work?",
+          "options": ["By bus", "By car", "On foot"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "a2.daily-routine.write-001",
+      "itemIds": ["a2.daily-routine.usually", "a2.daily-routine.go-to-bed"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Normalmente me voy a la cama a las once.",
+      "accepted": ["I usually go to bed at eleven.", "I normally go to bed at eleven."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.daily-routine.lesson-001",
+      "level": "A2",
+      "topic": "daily-routine",
+      "title": "Mi rutina diaria",
+      "exerciseIds": [
+        "a2.daily-routine.vocab-001",
+        "a2.daily-routine.cloze-001",
+        "a2.daily-routine.order-001",
+        "a2.daily-routine.choice-001",
+        "a2.daily-routine.reading-001",
+        "a2.daily-routine.write-001"
+      ]
+    }
+  ]
+}
