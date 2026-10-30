@@ -9,7 +9,7 @@ import { StickyNote } from "@/shared/ui/sticky-note";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
-import { topicLabel } from "./topic-labels";
+import { topicLabel } from "@/features/topics/topic-labels";
 
 export type HomeLesson = {
   readonly id: string;
