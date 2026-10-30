@@ -134,6 +134,40 @@ ephemeral contexts (like Safari Private Browsing), so expo-sqlite could not open
 there. Playwright's WebKit also shares website data between profiles, so the webkit project runs
 on one worker and each test first empties OPFS.
 
+## Android builds
+
+App identity lives in `app.json`: version `0.1.0`, `android.versionCode` `1` (increment it for
+every Play Store upload), portrait only. The package name `com.mruizdev.englishlearn` is a
+placeholder and can still change before the first Play Store release; after that it is permanent.
+`eas.json` reads versions from `app.json` (`appVersionSource: "local"`).
+
+| Profile      | Output                        | Use                                      |
+| ------------ | ----------------------------- | ---------------------------------------- |
+| `preview`    | `.apk`, internal distribution | Install directly on a device or emulator |
+| `production` | `.aab` (app bundle)           | Upload to Google Play                    |
+
+**With an Expo account** (cloud build, EAS handles signing):
+
+```sh
+npx eas-cli@latest build -p android --profile preview
+```
+
+**Without an account** (local build; needs a JDK and the Android SDK):
+
+```sh
+npx expo prebuild -p android   # generates android/ (Continuous Native Generation; do not commit it)
+cd android && ./gradlew assembleRelease
+# APK: android/app/build/outputs/apk/release/app-release.apk
+```
+
+The generated Gradle project signs `release` with the debug keystore, which is fine for sideloading
+but not for Google Play. For a store release, create an upload keystore and configure it (or let
+EAS manage credentials) instead of committing signing material.
+
+Permissions: `app.json` declares none. Libraries can still add permissions through their own
+manifests during the Gradle merge; check the merged manifest after `prebuild` and block any
+unneeded one with `android.blockedPermissions`.
+
 ## Hosting the web build
 
 `expo-sqlite` on web runs SQLite as WebAssembly and needs `SharedArrayBuffer`, which browsers only
