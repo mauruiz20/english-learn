@@ -131,7 +131,7 @@ const useStyles = themedStyles(({ colors }) =>
     progress: { gap: spacing.sm },
     progressRow: { flexDirection: "row", justifyContent: "space-between", gap: spacing.md },
     progressTitle: { flexShrink: 1 },
-    grade: { transform: [{ translateY: -6 }] },
+    grade: { marginRight: spacing.xs, transform: [{ translateY: -6 }] },
     line: {
       paddingVertical: spacing.sm + 2,
       borderBottomWidth: 1,
