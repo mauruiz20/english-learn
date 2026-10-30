@@ -40,6 +40,14 @@ describe("check-prod-bundle", () => {
     ]);
   });
 
+  it("finds the e2e played-sounds log", async () => {
+    await write("_expo/static/js/web/entry-2.js", "g.__e2e.playedSounds.push(n)");
+    await buildServiceWorker(dir);
+    assert.deepEqual(await findProblems(dir), [
+      `${join(dir, "_expo/static/js/web/entry-2.js")}: contains test-only code (playedSounds)`,
+    ]);
+  });
+
   it("requires the service worker", async () => {
     await rm(join(dir, "sw.js"));
     assert.deepEqual(await findProblems(dir), ["sw.js is missing"]);
