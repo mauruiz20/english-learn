@@ -43,11 +43,11 @@
   ],
   "passages": [
     {
-      "id": "a2.daily-routine.my-morning",
+      "id": "a2.daily-routine.my-day",
       "level": "A2",
       "topics": ["daily-routine"],
       "title": "My day",
-      "text": "My name is Ana. I wake up at six thirty every day. I have breakfast with my brother, and then I go to work by bus. My commute takes forty minutes. In the evening I usually go to bed at eleven.",
+      "text": "My name is Ana. I wake up at six thirty every day. I have breakfast with my brother, and then I go to work by bus. My commute takes forty minutes. At night I usually go to bed at eleven.",
       "source": { "kind": "original" }
     }
   ],
@@ -59,8 +59,8 @@
       "source": { "kind": "original" },
       "type": "vocab",
       "prompt": "What does 'wake up' mean?",
-      "options": ["despertarse", "dormirse", "acostarse", "levantar algo"],
-      "answerIndex": 0
+      "options": ["dormirse", "acostarse", "levantar algo", "despertarse"],
+      "answerIndex": 3
     },
     {
       "id": "a2.daily-routine.cloze-001",
@@ -91,11 +91,11 @@
       "type": "translation_choice",
       "sentence": "She goes to bed at eleven.",
       "options": [
-        "Ella se acuesta a las once.",
         "Ella se levanta a las once.",
+        "Ella se acuesta a las once.",
         "Ella llega a casa a las once."
       ],
-      "answerIndex": 0
+      "answerIndex": 1
     },
     {
       "id": "a2.daily-routine.reading-001",
@@ -103,17 +103,17 @@
       "level": "A2",
       "source": { "kind": "original" },
       "type": "reading",
-      "passageId": "a2.daily-routine.my-morning",
+      "passageId": "a2.daily-routine.my-day",
       "questions": [
         {
           "prompt": "What time does Ana wake up?",
-          "options": ["At six thirty", "At seven", "At eleven"],
-          "answerIndex": 0
+          "options": ["At seven", "At eleven", "At six thirty"],
+          "answerIndex": 2
         },
         {
           "prompt": "How does Ana go to work?",
-          "options": ["By bus", "By car", "On foot"],
-          "answerIndex": 0
+          "options": ["By car", "By bus", "On foot"],
+          "answerIndex": 1
         }
       ]
     },
@@ -124,7 +124,14 @@
       "source": { "kind": "original" },
       "type": "translate_write",
       "es": "Normalmente me voy a la cama a las once.",
-      "accepted": ["I usually go to bed at eleven.", "I normally go to bed at eleven."]
+      "accepted": [
+        "I usually go to bed at eleven.",
+        "I normally go to bed at eleven.",
+        "I usually go to bed at 11.",
+        "I normally go to bed at 11.",
+        "Usually I go to bed at eleven.",
+        "Normally I go to bed at eleven."
+      ]
     }
   ],
   "lessons": [

@@ -7,8 +7,8 @@
         "source": { "kind": "original" },
         "type": "vocab",
         "prompt": "What does 'house' mean?",
-        "options": ["casa", "coche", "perro"],
-        "answerIndex": 0
+        "options": ["coche", "casa", "perro"],
+        "answerIndex": 1
       }
     },
     {
@@ -31,11 +31,11 @@
         "type": "translation_choice",
         "sentence": "We are going to visit my aunt tomorrow.",
         "options": [
-          "Vamos a visitar a mi tía mañana.",
           "Visitamos a mi tía ayer.",
-          "Mi tía nos visita hoy."
+          "Mi tía nos visita hoy.",
+          "Vamos a visitar a mi tía mañana."
         ],
-        "answerIndex": 0
+        "answerIndex": 2
       }
     },
     {
@@ -45,8 +45,8 @@
         "source": { "kind": "original" },
         "type": "vocab",
         "prompt": "What does 'usually' mean?",
-        "options": ["normalmente", "nunca", "ayer"],
-        "answerIndex": 0
+        "options": ["nunca", "normalmente", "ayer"],
+        "answerIndex": 1
       }
     },
     {
@@ -69,11 +69,11 @@
         "type": "translation_choice",
         "sentence": "She has been working here since 2019.",
         "options": [
-          "Ella trabaja aquí desde 2019.",
           "Ella trabajó aquí en 2019.",
+          "Ella trabaja aquí desde 2019.",
           "Ella trabajará aquí en 2019."
         ],
-        "answerIndex": 0
+        "answerIndex": 1
       }
     },
     {
@@ -95,8 +95,8 @@
         "source": { "kind": "original" },
         "type": "vocab",
         "prompt": "Choose the best meaning of 'reluctant'.",
-        "options": ["reacio", "entusiasta", "agradecido"],
-        "answerIndex": 0
+        "options": ["entusiasta", "agradecido", "reacio"],
+        "answerIndex": 2
       }
     },
     {
@@ -118,11 +118,11 @@
         "type": "translation_choice",
         "sentence": "Had I known, I would have acted differently.",
         "options": [
-          "De haberlo sabido, habría actuado de otra manera.",
           "Si lo sé, actuaré de otra manera.",
-          "Lo sabía, pero actué igual."
+          "Lo sabía, pero actué igual.",
+          "De haberlo sabido, habría actuado de otra manera."
         ],
-        "answerIndex": 0
+        "answerIndex": 2
       }
     }
   ]
