@@ -48,7 +48,7 @@ describe("gradeExercise", () => {
 
       expect(all).toEqual({
         verdict: "correct",
-        correctAnswer: "1. At six thirty · 2. By bus",
+        correctAnswer: "1. At six thirty; 2. By bus",
         questionVerdicts: ["correct", "correct"],
       });
       expect(one.verdict).toBe("wrong");

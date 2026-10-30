@@ -14,6 +14,11 @@ function mismatch(exercise: Exercise, response: ExerciseResponse): never {
   throw new TypeError(`A "${response.kind}" response cannot answer a ${exercise.type} exercise`);
 }
 
+/** "1. At six; 2. By bus": one answer per reading question. */
+export function numbered(answers: readonly string[]): string {
+  return answers.map((answer, i) => `${i + 1}. ${answer}`).join("; ");
+}
+
 const verdictOf = (ok: boolean): Verdict => (ok ? "correct" : "wrong");
 
 /**
@@ -49,7 +54,7 @@ export function gradeExercise(exercise: Exercise, response: ExerciseResponse): G
       );
       return {
         verdict: verdictOf(questionVerdicts.every((v) => v === "correct")),
-        correctAnswer: answers.map((answer, i) => `${i + 1}. ${answer}`).join(" · "),
+        correctAnswer: numbered(answers),
         questionVerdicts,
       };
     }

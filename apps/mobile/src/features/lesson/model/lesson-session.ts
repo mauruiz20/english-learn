@@ -39,7 +39,12 @@ type InProgress = {
 
 export type LessonSessionState =
   | ({ readonly status: "answering" } & InProgress)
-  | ({ readonly status: "feedback"; readonly feedback: GradeResult } & InProgress)
+  | ({
+      readonly status: "feedback";
+      readonly feedback: GradeResult;
+      /** What the learner answered, shown back with the feedback. */
+      readonly response: ExerciseResponse;
+    } & InProgress)
   | { readonly status: "finished"; readonly summary: LessonSummary };
 
 export type LessonSessionAction =
@@ -89,6 +94,7 @@ export function lessonSessionReducer(
       ...state,
       status: "feedback",
       feedback,
+      response: action.response,
       answered: [...state.answered, { verdict: feedback.verdict, responseMs: action.responseMs }],
     };
   }
