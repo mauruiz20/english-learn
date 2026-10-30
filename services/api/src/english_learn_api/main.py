@@ -49,8 +49,9 @@ def create_app(
     def unit_of_work() -> SqlAlchemyUnitOfWork:
         return SqlAlchemyUnitOfWork(session_factory)
 
+    jwt_keys, active_kid = settings.jwt_signing_keys()
     access_tokens = JwtAccessTokens(
-        secret=settings.jwt_secret.get_secret_value(), ttl=settings.access_token_ttl
+        keys=jwt_keys, active_kid=active_kid, ttl=settings.access_token_ttl
     )
     sessions = SessionIssuer(
         access_tokens=access_tokens,

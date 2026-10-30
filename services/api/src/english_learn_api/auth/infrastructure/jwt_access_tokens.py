@@ -1,9 +1,12 @@
-"""Access tokens as HS256 JWTs.
+"""Access tokens as HS256 JWTs, with a `kid` header for key rotation.
 
-Time checks use the injected `now` instead of PyJWT's wall clock, so they are testable and use the
-same clock as the rest of the app.
+Tokens are signed with the active key and verified with whichever listed key their `kid` names,
+so a new key can be introduced while tokens signed with the previous one expire. Time checks use
+the injected `now` instead of PyJWT's wall clock, so they are testable and use the same clock as
+the rest of the app.
 """
 
+from collections.abc import Mapping
 from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
@@ -20,8 +23,12 @@ _REQUIRED_CLAIMS = ["sub", "iat", "exp", "iss", "aud"]
 
 
 class JwtAccessTokens:
-    def __init__(self, *, secret: str, ttl: timedelta) -> None:
-        self._secret = secret
+    def __init__(self, *, keys: Mapping[str, str], active_kid: str, ttl: timedelta) -> None:
+        if active_kid not in keys:
+            msg = "the active key id must be one of the keys"
+            raise ValueError(msg)
+        self._keys = dict(keys)
+        self._active_kid = active_kid
         self._ttl = ttl
 
     def issue(self, user_id: UUID, now: datetime) -> AccessToken:
@@ -35,15 +42,24 @@ class JwtAccessTokens:
             "aud": AUDIENCE,
         }
         return AccessToken(
-            value=jwt.encode(claims, self._secret, algorithm=ALGORITHM),
+            value=jwt.encode(
+                claims,
+                self._keys[self._active_kid],
+                algorithm=ALGORITHM,
+                headers={"kid": self._active_kid},
+            ),
             expires_at=expires_at,
         )
 
     def verify(self, token: str, now: datetime) -> UUID:
         try:
+            kid = jwt.get_unverified_header(token).get("kid")
+            secret = self._keys.get(kid) if isinstance(kid, str) else None
+            if secret is None:
+                raise _invalid()
             claims = jwt.decode(
                 token,
-                self._secret,
+                secret,
                 algorithms=[ALGORITHM],
                 audience=AUDIENCE,
                 issuer=ISSUER,

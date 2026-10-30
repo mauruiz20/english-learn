@@ -1,3 +1,4 @@
+import json
 from datetime import timedelta
 from typing import Any
 
@@ -6,7 +7,8 @@ from pydantic import ValidationError
 
 from english_learn_api.settings import DEFAULT_CORS_ORIGINS, DEFAULT_GOOGLE_CLIENT_IDS, Settings
 
-SECRET = "x" * 32
+SECRET = "R7q-v2Lw9_xZpT4mKc8NdYb3HsJf6GaE"
+OTHER_SECRET = "Qm2-Xc7_vL9pWz4KtR8bNd3YhS6jFgAe"
 
 
 def make(**overrides: Any) -> Settings:
@@ -38,12 +40,55 @@ def test_defaults() -> None:
 
 def test_jwt_secret_must_have_at_least_32_bytes() -> None:
     with pytest.raises(ValidationError, match="at least 32 bytes"):
-        make(jwt_secret="x" * 31)
+        make(jwt_secret=SECRET[:31])
 
 
 def test_jwt_secret_counts_bytes_not_characters() -> None:
-    # 16 two-byte characters = 32 bytes.
-    assert make(jwt_secret="ñ" * 16).jwt_secret.get_secret_value() == "ñ" * 16
+    # 16 two-byte characters = 32 bytes (17 distinct byte values).
+    secret = "ñáéíóúüçàèìòùâêî"
+    assert make(jwt_secret=secret).jwt_signing_keys() == ({"default": secret}, "default")
+
+
+@pytest.mark.parametrize(
+    "secret",
+    ["x" * 32, "ab" * 32, "0123456789abcde" * 4, "ñ" * 16],
+    ids=["one byte", "two bytes", "15 distinct", "one character"],
+)
+def test_jwt_secret_rejects_low_entropy(secret: str) -> None:
+    with pytest.raises(ValidationError, match="16 distinct bytes"):
+        make(jwt_secret=secret)
+
+
+class TestJwtKeys:
+    def test_simple_mode_signs_with_the_default_kid(self) -> None:
+        assert make().jwt_signing_keys() == ({"default": SECRET}, "default")
+
+    def test_rotation_mode(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        monkeypatch.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        monkeypatch.setenv("JWT_KEYS", json.dumps({"2026-09": OTHER_SECRET, "2026-10": SECRET}))
+        monkeypatch.setenv("JWT_ACTIVE_KID", "2026-10")
+
+        settings = Settings(_env_file=None)
+
+        assert settings.jwt_signing_keys() == (
+            {"2026-09": OTHER_SECRET, "2026-10": SECRET},
+            "2026-10",
+        )
+        assert SECRET not in repr(settings)
+
+    def test_the_active_kid_must_be_listed(self) -> None:
+        with pytest.raises(ValidationError, match="JWT_ACTIVE_KID"):
+            make(jwt_secret=None, jwt_keys={"a": SECRET}, jwt_active_kid="b")
+
+    def test_every_key_is_checked(self) -> None:
+        with pytest.raises(ValidationError, match="16 distinct bytes"):
+            make(jwt_secret=None, jwt_keys={"a": SECRET, "b": "x" * 32}, jwt_active_kid="a")
+
+    def test_needs_exactly_one_mode(self) -> None:
+        with pytest.raises(ValidationError, match="either JWT_SECRET or JWT_KEYS"):
+            make(jwt_keys={"a": SECRET}, jwt_active_kid="a")
+        with pytest.raises(ValidationError, match="either JWT_SECRET or JWT_KEYS"):
+            make(jwt_secret=None)
 
 
 def test_jwt_secret_is_masked_in_repr() -> None:
