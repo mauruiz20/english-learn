@@ -15,6 +15,10 @@ beforeEach(() => {
 });
 afterEach(() => rmSync(root, { recursive: true, force: true }));
 
+function writeGlossary(): void {
+  for (const { file, data } of fx.glossaryFiles()) write(file, data);
+}
+
 function write(rel: string, value: unknown): void {
   const p = join(dataDir, rel);
   mkdirSync(dirname(p), { recursive: true });
@@ -52,6 +56,7 @@ describe("renderCorpusModule", () => {
 describe("buildCorpus", () => {
   it("writes the module, then reports it as up to date", async () => {
     write("b1/travel.json", fx.validFile());
+    writeGlossary();
 
     expect(await buildCorpus({ dataDir, outFile, mode: "write" })).toEqual({ status: "written" });
     expect(readFileSync(outFile, "utf8")).toContain('"../../data/b1/travel.json"');
@@ -62,6 +67,7 @@ describe("buildCorpus", () => {
 
   it("detects a stale module when a data file is added", async () => {
     write("b1/travel.json", fx.validFile());
+    writeGlossary();
     await buildCorpus({ dataDir, outFile, mode: "write" });
 
     write("b1/empty.json", {});
@@ -71,6 +77,7 @@ describe("buildCorpus", () => {
 
   it("detects a hand-edited or missing module", async () => {
     write("b1/travel.json", fx.validFile());
+    writeGlossary();
     expect(await buildCorpus({ dataDir, outFile, mode: "check" })).toEqual({ status: "stale" });
 
     await buildCorpus({ dataDir, outFile, mode: "write" });

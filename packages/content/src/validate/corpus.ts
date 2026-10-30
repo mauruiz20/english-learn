@@ -1,4 +1,9 @@
 import { validateClozes } from "./cloze";
+import {
+  validateGlossaryCoverage,
+  validateGlossaryEntries,
+  validateGlossaryForms,
+} from "./glossary";
 import { validateListDuplicates } from "./duplicates";
 import { validateLayout } from "./layout";
 import { validateLevels } from "./levels";
@@ -20,6 +25,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateListDuplicates,
   validateTopics,
   validateTextPunctuation,
+  validateGlossaryEntries,
 ];
 
 /** Rules that need the whole corpus (ids, references, levels across files). */
@@ -28,6 +34,8 @@ const CROSS_FILE_RULES: readonly Rule[] = [
   validateReferences,
   validateExerciseTopics,
   validateLevels,
+  validateGlossaryForms,
+  validateGlossaryCoverage,
 ];
 
 /**

@@ -1,7 +1,9 @@
 /**
  * Runtime view of the whole content corpus. Type-only imports keep Zod out of
  * any bundle that only needs the data (the app imports `@english-learn/content/corpus`).
+ * The glossary index comes from `@english-learn/domain`, which has no dependencies.
  */
+import { buildGlossaryIndex, type GlossaryEntry, type GlossaryIndex } from "@english-learn/domain";
 import type { ContentFile } from "../schema/content-file";
 import type { Item, Lesson, Passage } from "../schema/entities";
 import type { Exercise } from "../schema/exercise";
@@ -17,6 +19,10 @@ export type Corpus = {
   readonly exercisesById: ReadonlyMap<string, Exercise>;
   readonly passagesById: ReadonlyMap<string, Passage>;
   readonly lessonsById: ReadonlyMap<string, Lesson>;
+  readonly glossary: readonly GlossaryEntry[];
+  readonly glossaryById: ReadonlyMap<string, GlossaryEntry>;
+  /** Ready-made lookup for `annotateText` (hover / tap translations). */
+  readonly glossaryIndex: GlossaryIndex;
 };
 
 function byId<T extends { readonly id: string }>(entities: readonly T[]): ReadonlyMap<string, T> {
@@ -30,6 +36,7 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
   const passages = files.flatMap((f) => f.passages ?? []);
   const lessons = files.flatMap((f) => f.lessons ?? []);
   const placement = files.flatMap((f) => f.placement ?? []);
+  const glossary: readonly GlossaryEntry[] = files.flatMap((f) => f.glossary ?? []);
   return {
     items,
     exercises,
@@ -40,5 +47,8 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
     exercisesById: byId(exercises),
     passagesById: byId(passages),
     lessonsById: byId(lessons),
+    glossary,
+    glossaryById: byId(glossary),
+    glossaryIndex: buildGlossaryIndex(glossary),
   };
 }

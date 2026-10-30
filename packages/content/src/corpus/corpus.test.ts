@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import * as fx from "../testing/fixtures";
+import { annotateText } from "@english-learn/domain";
 import { createCorpus } from "./corpus";
 
 describe("createCorpus", () => {
@@ -43,6 +44,28 @@ describe("createCorpus", () => {
   });
 });
 
+describe("createCorpus glossary", () => {
+  it("merges glossary entries, indexes them by id and builds the lookup index", () => {
+    const files = fx.glossaryFiles().map((f) => f.data);
+    const corpus = createCorpus([fx.validFile(), ...files]);
+
+    expect(corpus.glossary.map((e) => e.id)).toEqual(
+      files.flatMap((f) => (f.glossary ?? []).map((e) => e.id)),
+    );
+    expect(corpus.glossaryById.get("glossary.go-out")?.forms).toEqual(["go out", "went out"]);
+    const linked = annotateText("We went out.", corpus.glossaryIndex)
+      .filter((s) => s.entryId !== null)
+      .map((s) => s.entryId);
+    expect(linked).toEqual(["glossary.we", "glossary.go-out"]);
+  });
+
+  it("has an empty glossary and index for no files", () => {
+    const corpus = createCorpus([]);
+    expect(corpus.glossary).toEqual([]);
+    expect(corpus.glossaryIndex.words.size).toBe(0);
+  });
+});
+
 describe("generated corpus", () => {
   it("is exported from the package entry with the seed content", async () => {
     const { corpus } = await import("../index");
@@ -51,5 +74,6 @@ describe("generated corpus", () => {
     expect(lesson?.title).toBe("Mi rutina diaria");
     expect(lesson?.exerciseIds.every((id) => corpus.exercisesById.has(id))).toBe(true);
     expect(corpus.placement.length).toBeGreaterThan(0);
+    expect(corpus.glossary.length).toBeGreaterThan(0);
   });
 });

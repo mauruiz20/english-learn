@@ -12,6 +12,10 @@ beforeEach(() => {
 });
 afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
+function writeGlossary(): void {
+  for (const { file, data } of fx.glossaryFiles()) write(file, data);
+}
+
 function write(rel: string, value: unknown): void {
   const p = join(dir, rel);
   mkdirSync(dirname(p), { recursive: true });
@@ -21,6 +25,7 @@ function write(rel: string, value: unknown): void {
 describe("main(dir)", () => {
   it("returns no errors for a valid corpus", () => {
     write("b1/travel.json", fx.validFile());
+    writeGlossary();
     expect(main(dir)).toEqual([]);
   });
 
@@ -88,13 +93,14 @@ describe("main(dir)", () => {
 
   it("rejects a content file at the data root", () => {
     write("b1/travel.json", fx.validFile());
+    writeGlossary();
     write("x.json", { items: [fx.item({ id: "a2.travel.x", level: "A2" })] });
     expect(main(dir)).toEqual([
       {
         file: "x.json",
         path: "(root)",
         message:
-          'content files must live in data/<a1|a2|b1|b2|c1|placement>/; "x.json" is at the root',
+          'content files must live in data/<a1|a2|b1|b2|c1|placement|glossary>/; "x.json" is at the root',
       },
     ]);
   });
@@ -108,6 +114,7 @@ describe("main(dir)", () => {
     const f = fx.validFile();
     write("b1/items.json", { items: f.items });
     write("b1/rest.json", { ...f, items: undefined });
+    writeGlossary();
     expect(main(dir)).toEqual([]);
   });
 });
@@ -115,11 +122,23 @@ describe("main(dir)", () => {
 describe("run(dir) / formatErrors", () => {
   it("exits 0 for a valid corpus and 1 for a broken one", () => {
     write("b1/travel.json", fx.validFile());
+    writeGlossary();
     expect(run(dir, () => {}).code).toBe(0);
     write("b1/travel.json", { ...fx.validFile(), exercises: [fx.vocab({ answerIndex: 9 })] });
     const lines: string[] = [];
     expect(run(dir, (l) => lines.push(l)).code).toBe(1);
     expect(lines.join("\n")).toContain("b1/travel.json");
+  });
+
+  it("logs glossary stats and a warning count of unused forms when the corpus is valid", () => {
+    write("b1/travel.json", fx.validFile());
+    writeGlossary();
+    const lines: string[] = [];
+    expect(run(dir, (l) => lines.push(l)).code).toBe(0);
+    expect(lines).toEqual([
+      "glossary: 32 entries (1 phrases), 40 forms; warning: 6 unused forms",
+      "content: OK",
+    ]);
   });
 
   it("formats one readable line per error", () => {

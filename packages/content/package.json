@@ -14,9 +14,11 @@
     "test": "vitest run",
     "validate": "tsx scripts/validate.ts",
     "build:corpus": "tsx scripts/build-corpus.ts",
-    "corpus:check": "tsx scripts/build-corpus.ts --check"
+    "corpus:check": "tsx scripts/build-corpus.ts --check",
+    "glossary:gaps": "tsx scripts/glossary-gaps.ts"
   },
   "dependencies": {
+    "@english-learn/domain": "workspace:*",
     "zod": "^4.6.7"
   },
   "devDependencies": {
