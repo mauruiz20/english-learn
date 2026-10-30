@@ -52,7 +52,7 @@ export const validateOptionDuplicates: Rule = (files: readonly LoadedFile[]) => 
         errors.push({
           file: s.file,
           path: `${s.path}.options[${i}]`,
-          message: `duplicate option "${opt}" (case-insensitive, trimmed)`,
+          message: `duplicate option "${opt}" (normalized)`,
         });
       }
       seen.add(key);

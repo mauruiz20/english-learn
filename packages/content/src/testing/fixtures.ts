@@ -55,7 +55,7 @@ export function cloze(o: Partial<ClozeExercise> = {}): ClozeExercise {
     sentence: "___ it was raining, we went out.",
     answers: ["Although"],
     distractors: ["Because", "Unless"],
-    es: "Aunque llovia, salimos.",
+    es: "Aunque llovía, salimos.",
     ...o,
   };
 }
@@ -67,7 +67,7 @@ export function wordOrder(o: Partial<WordOrderExercise> = {}): WordOrderExercise
     level: "B1",
     source: original,
     type: "word_order",
-    tokens: ["we", "went", "out", "although", "it", "rained."],
+    tokens: ["although", "we", "rained.", "went", "it", "out"],
     accepted: ["we went out although it rained."],
     ...o,
   };
@@ -111,7 +111,7 @@ export function translateWrite(o: Partial<TranslateWriteExercise> = {}): Transla
     level: "B1",
     source: original,
     type: "translate_write",
-    es: "Aunque estaba cansado, siguio caminando.",
+    es: "Aunque estaba cansado, siguió caminando.",
     accepted: ["Although he was tired, he kept walking."],
     ...o,
   };

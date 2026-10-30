@@ -47,7 +47,7 @@
       "level": "B1",
       "topics": ["travel"],
       "title": "A trip to Lisbon",
-      "text": "Last summer, my friends and I travelled to Lisbon. Although our flight was delayed for two hours, we arrived in time for dinner. We had booked a small room near the river. On the second day we got lost in the old town, but a friendly local showed us the way back. When I was a child, I used to think Portugal was very far away, but now it feels like a second home.",
+      "text": "Last summer, my friends and I traveled to Lisbon. Although our flight was delayed for two hours, we arrived in time for dinner. We had booked a small room near the river. On the second day we got lost in the old town, but a friendly local showed us the way back. When I was a child, I used to think Portugal was very far away, but now it feels like a second home.",
       "source": { "kind": "original" }
     }
   ],
@@ -59,8 +59,8 @@
       "source": { "kind": "original" },
       "type": "vocab",
       "prompt": "Choose the best meaning of 'delayed'.",
-      "options": ["retrasado", "cancelado", "completo"],
-      "answerIndex": 0
+      "options": ["cancelado", "retrasado", "completo"],
+      "answerIndex": 1
     },
     {
       "id": "b1.travel.cloze-001",
@@ -79,7 +79,7 @@
       "level": "B1",
       "source": { "kind": "original" },
       "type": "word_order",
-      "tokens": ["We", "booked", "a", "room", "online."],
+      "tokens": ["a", "online.", "We", "room", "booked"],
       "accepted": ["We booked a room online."],
       "es": "Reservamos una habitación por internet."
     },
@@ -91,15 +91,15 @@
       "type": "translation_choice",
       "sentence": "We got lost in the old town.",
       "options": [
-        "Nos perdimos en el casco antiguo.",
         "Nos quedamos en el casco antiguo.",
-        "Compramos algo en el casco antiguo."
+        "Compramos algo en el casco antiguo.",
+        "Nos perdimos en el casco antiguo."
       ],
-      "answerIndex": 0
+      "answerIndex": 2
     },
     {
       "id": "b1.travel.reading-001",
-      "itemIds": ["b1.travel.delayed", "b1.travel.get-lost", "b1.travel.used-to"],
+      "itemIds": ["b1.travel.delayed", "b1.travel.get-lost"],
       "level": "B1",
       "source": { "kind": "original" },
       "type": "reading",
@@ -107,15 +107,15 @@
       "questions": [
         {
           "prompt": "How long was the flight delayed?",
-          "options": ["Two hours", "Ten minutes", "All day"],
-          "answerIndex": 0
+          "options": ["Ten minutes", "All day", "Two hours"],
+          "answerIndex": 2
         },
         {
           "prompt": "What happened on the second day?",
           "options": [
             "They got lost in the old town.",
             "They missed their flight.",
-            "They cancelled the room."
+            "They canceled the room."
           ],
           "answerIndex": 0
         }
@@ -130,7 +130,11 @@
       "es": "Aunque el vuelo se retrasó, llegamos a tiempo.",
       "accepted": [
         "Although the flight was delayed, we arrived on time.",
-        "Even though the flight was delayed, we arrived on time."
+        "Even though the flight was delayed, we arrived on time.",
+        "Though the flight was delayed, we arrived on time.",
+        "Although the flight was delayed, we got there on time.",
+        "Even though the flight was delayed, we got there on time.",
+        "Though the flight was delayed, we got there on time."
       ]
     }
   ],

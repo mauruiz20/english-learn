@@ -2,14 +2,17 @@
  * Content validation CLI (`pnpm validate:content`).
  *
  * `main(dir)` loads every `*.json` under `dir`, validates each file against the
- * zod schema, then runs the semantic rules over the whole corpus. It returns a
- * list of errors and never throws.
+ * zod schema (and for duplicate JSON keys), then runs the semantic rules over
+ * the whole corpus. If any file failed, only the reference-free rules run (on
+ * the files that parsed). It returns a list of errors and never throws.
  */
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
+  findDuplicateKeys,
   validateCorpus,
+  validateLocal,
   validateSchema,
   type LoadedFile,
   type ValidationError,
@@ -36,9 +39,10 @@ export function main(dir: string = DEFAULT_DATA_DIR): ValidationError[] {
   const errors: ValidationError[] = [];
   const loaded: LoadedFile[] = [];
   for (const file of files) {
+    const text = readFileSync(join(dir, file), "utf8");
     let json: unknown;
     try {
-      json = JSON.parse(readFileSync(join(dir, file), "utf8"));
+      json = JSON.parse(text);
     } catch (e) {
       errors.push({
         file,
@@ -47,12 +51,20 @@ export function main(dir: string = DEFAULT_DATA_DIR): ValidationError[] {
       });
       continue;
     }
+    for (const { path, key } of findDuplicateKeys(text)) {
+      errors.push({
+        file,
+        path,
+        message: `duplicate key "${key}" (JSON.parse keeps only the last value)`,
+      });
+    }
     const result = validateSchema(file, json);
     errors.push(...result.errors);
     if (result.data) loaded.push({ file, data: result.data });
   }
-  // Semantic rules only make sense on a structurally valid corpus.
-  if (errors.length === 0) errors.push(...validateCorpus(loaded));
+  // Cross-file rules need a complete corpus; reference-free rules still run on
+  // every file that parsed, so one broken file does not hide other mistakes.
+  errors.push(...(errors.length === 0 ? validateCorpus(loaded) : validateLocal(loaded)));
   return errors;
 }
 
