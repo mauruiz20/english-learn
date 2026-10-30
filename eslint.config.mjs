@@ -10,6 +10,7 @@ export default tseslint.config(
       "**/dist/**",
       "**/coverage/**",
       "**/.expo/**",
+      ".claude/**",
       "apps/mobile/**",
     ],
   },
