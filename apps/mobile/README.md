@@ -17,8 +17,8 @@ web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
 Features read `ProgressRepository`, `SettingsRepository`, `Clock`, `random` (an `Rng`) and
 `sounds` (a `SoundPlayer`) from `useAppServices()`. The root layout provides the SQLite-backed
 repositories (`@english-learn/storage-sqlite`, migrated in `onInit`), the system clock,
-`Math.random` and the expo-audio sound player; tests wrap components in
-`<AppServicesProvider services={...}>` with in-memory fakes and a deterministic rng.
+`Math.random` and the sound player (expo-audio on native, Web Audio on web); tests wrap
+components in `<AppServicesProvider services={...}>` with in-memory fakes and a deterministic rng.
 
 ### When the database cannot open
 
@@ -218,9 +218,18 @@ stays quiet.
   rewrites `assets/sounds/*.wav`, 16-bit mono 44.1 kHz, -6 dBFS peak). `tap` when choosing an
   option or a word, `correct` / `almost` / `wrong` when feedback appears, `complete` when a
   lesson, review or placement result is saved, then `streak` when that session extended the
-  streak. Placement only taps (it gives no per-question feedback). Players are created once
-  (expo-audio), never block the UI and log instead of throwing. iOS respects the silent switch;
-  on web they play after the learner's tap, same-origin under COEP. Haptics (expo-haptics):
+  streak. Placement only taps (it gives no per-question feedback). Sounds are loaded once, never
+  block the UI and log instead of throwing. Native: expo-audio players (`expo-sound-player.ts`);
+  iOS respects the silent switch. Web (`expo-sound-player.web.ts` over
+  `web-audio-sound-player.ts`): each WAV is downloaded once with `fetch` (so the service worker
+  serves it offline), decoded and played from memory with Web Audio; the `AudioContext` is
+  created and resumed in the learner's first tap (autoplay policy). No `<audio>` element loads
+  anything: WebKit loads media through its own media pipeline, outside the page's fetch path
+  (on Linux WebKit, Playwright saw each expo-audio `<audio>` load twice: a `status 0` response
+  not from the worker, then the worker's 200), so `fetch` is the one loading path that is
+  guaranteed to go through the service worker.
+  e2e builds (`EXPO_PUBLIC_E2E=1`) log each started sound in `window.__e2e.playedSounds`;
+  `check-prod-bundle` fails if that log reaches `dist/`. Haptics (expo-haptics):
   light impact / notifications on iOS, permission-free system haptics on Android, none on web;
   muting does not affect them. The speaker button ("Silenciar sonidos" / "Activar sonidos") sits
   at the top of home and in the header of lesson, review and placement; the choice is stored in
@@ -276,7 +285,8 @@ by `export:web`, hence in CI) fails if the override ever shows up in `dist/`.
 `e2e/offline.spec.ts` covers the PWA on Chromium and WebKit: after one online visit it goes
 offline (`context.setOffline`), reloads `/` and opens `/lesson/a2.daily-routine.lesson-001`; the
 app renders with its SQLite data, `crossOriginIsolated` is true, fonts and sounds come from the
-worker with no failed request, and a fetch of a non-precached URL fails (proof it is offline).
+worker with no failed request, the tap and feedback sounds really play (`__e2e.playedSounds`)
+and a fetch of a non-precached URL fails (proof it is offline).
 The update test sets the cookie `e2e-sw-version=2`; the test server, started with `--e2e-hooks`
 (Playwright's `webServer` only), then appends a comment to `/sw.js` for that profile only, which
 the browser treats as a new deploy. Specs that write and reload at once call
@@ -415,10 +425,11 @@ console errors, or if progress loaded from the database is not rendered.
   color (no dotted style or decoration color there). Inside a revealed choice row (a radio) or
   the feedback, a screen reader reads the row's label rather than each lookup button.
 
-- **Sounds are not verified on a device yet.** Unit tests cover the wiring with a fake player and
-  e2e checks the web build loads and plays them without errors in Chromium; Playwright's WebKit
-  cannot play any audio (`NotSupportedError`, swallowed by expo-audio), so Safari, iOS and
-  Android playback and haptics still need a manual check.
+- **Sounds are not verified on a device yet.** Unit tests cover both players with fakes, and e2e
+  checks on Chromium and WebKit (macOS and Linux) that the web build plays them through Web Audio,
+  offline included. Real iOS / Safari still needs a manual check: Web Audio on iOS follows the
+  silent switch (like the native app), and the first sound plays only after the first tap. Android
+  playback and haptics also need a device.
 
 - **Reading grades all its items with one verdict.** A reading exercise is correct only if every
   question is, and that single verdict (and its response time) is applied to every item the

@@ -21,7 +21,7 @@ export type HapticsPort = {
 };
 
 /** Clip volume per sound: the tap is a whisper, the rest sit just under full volume. */
-const VOLUMES: Readonly<Record<SoundName, number>> = {
+export const VOLUMES: Readonly<Record<SoundName, number>> = {
   tap: 0.35,
   correct: 0.8,
   almost: 0.8,
