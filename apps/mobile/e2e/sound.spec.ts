@@ -1,4 +1,4 @@
-import { expect, test, type ConsoleMessage } from "./support/test";
+import { expect, test, waitForServiceWorker, type ConsoleMessage } from "./support/test";
 
 test("muting sounds is remembered after a reload and shows in the lesson header", async ({
   page,
@@ -11,6 +11,9 @@ test("muting sounds is remembered after a reload and shows in the lesson header"
 
   await page.goto("/");
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
+  // The switch saves in the background and the test reloads right away: let the first visit's
+  // precaching finish first so it does not slow the write down.
+  await waitForServiceWorker(page);
   await page.getByRole("button", { name: "Silenciar sonidos", exact: true }).click();
   await expect(page.getByRole("button", { name: "Activar sonidos", exact: true })).toBeVisible();
 

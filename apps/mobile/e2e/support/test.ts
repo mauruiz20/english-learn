@@ -6,8 +6,9 @@
 // like a regular browser profile, so both Chromium and WebKit run the app as real users see it.
 // The ephemeral case is covered on purpose by `storage-unavailable.spec.ts`.
 //
-// Playwright's WebKit keeps website data (OPFS included) in ONE place shared by every persistent
-// profile, so the webkit project runs with one worker and each test starts by emptying OPFS.
+// Playwright's WebKit keeps website data (OPFS, service workers and caches included) in ONE
+// place shared by every persistent profile, so the webkit project runs with one worker and each
+// test starts by emptying OPFS and removing service workers and their caches.
 import { test as base, type Page } from "@playwright/test";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -49,18 +50,24 @@ export const test = base.extend({
   // A persistent context opens with one blank page: reuse it instead of opening a second one.
   page: async ({ context }, provide) => {
     const page = context.pages()[0] ?? (await context.newPage());
-    await clearOriginPrivateFileSystem(page);
+    await clearOriginData(page);
     await provide(page);
   },
 });
 
 /**
- * Empties OPFS for the app's origin from a same-origin page that is not the app (a static JSON
- * file the export always contains), so no database is open while its files are removed.
+ * Empties OPFS and removes service workers and their caches for the app's origin, from a
+ * same-origin page that is not the app (a static JSON file the export always contains), so no
+ * database is open while its files are removed. (Service workers and caches live in the same
+ * shared WebKit website data as OPFS.)
  */
-async function clearOriginPrivateFileSystem(page: Page) {
+async function clearOriginData(page: Page) {
   await page.goto("/metadata.json");
   await page.evaluate(async () => {
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations.map((registration) => registration.unregister()));
+    const cacheNames = await caches.keys();
+    await Promise.all(cacheNames.map((name) => caches.delete(name)));
     const root = await navigator.storage.getDirectory();
     const names: string[] = [];
     // `keys()` is missing from the DOM lib typings used here.
@@ -68,6 +75,21 @@ async function clearOriginPrivateFileSystem(page: Page) {
       names.push(name);
     }
     await Promise.all(names.map((name) => root.removeEntry(name, { recursive: true })));
+  });
+}
+
+/**
+ * Waits until the service worker finished installing (precaching the whole export) and controls
+ * the page. Specs that write and immediately reload wait for it first, so the first visit's
+ * precaching does not compete with the write.
+ */
+export async function waitForServiceWorker(page: Page) {
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+    if (navigator.serviceWorker.controller) return;
+    await new Promise((resolve) =>
+      navigator.serviceWorker.addEventListener("controllerchange", resolve, { once: true }),
+    );
   });
 }
 
