@@ -120,14 +120,27 @@ stays quiet.
   footer), `RuledArea` (ruled lines behind exercise prompts only), `Highlight` (highlighter mark,
   optional one-off swipe that respects reduced motion), `MarginNote` (red-pen handwriting),
   `StickyNote` (the only rotated element), `PaperStrip` (word-order tokens), `ProgressLine`,
-  `ChoiceRow` (radio rows).
+  `ChoiceRow` (radio rows), `struckText` (red-pen strike; on Android the struck text itself is
+  red pen, since the line follows the text color there).
+- **Header**: on web the stack header is `NotebookHeader` (`shared/navigation/`), laid out in the
+  same ≤ 560 px column as the page and continuing its margin rule; native platforms keep the
+  native header.
 - **Feedback** (`features/lesson/components/answer-feedback.tsx`): correct → the learner's answer
   is swiped with the highlighter and a green "Correcto"; wrong → struck through in red pen with a
   margin note "Era: …"; almost → only the words that are off are struck (`model/answer-diff.ts`)
   with "Casi. Fíjate: …". The marking is hidden from screen readers, which get a plain alert
-  ("Incorrecto. Respuesta correcta: …").
+  ("Incorrecto. Respuesta correcta: …"). Choice exercises (vocab, cloze, translation choice,
+  reading) also mark their options once checked: the learner's wrong pick gets a red-pen outline
+  and is struck through, the right option is highlighted with an ink check and the word
+  "correcta", the rest dim; options are announced as "…, seleccionada, incorrecta" / "…,
+  respuesta correcta". Placement has no feedback, so it never marks.
+- **Summary** (lesson and review): the red Caveat grade, the stats, then "Para repasar": up to six
+  missed items (wrong or almost) with their Spanish gloss (`model/items-to-review.ts`), or a
+  short line when everything was right.
 - **Accessibility floor**: touch targets ≥ 44 pt, an ink focus ring on web (`:focus-visible`,
-  `web-global-styles.ts`), AA contrast for text, reduced motion respected, labels kept.
+  `web-global-styles.ts`), AA contrast for text (`theme.test.tsx` asserts ≥ 4.5:1 for text,
+  muted, ink, success and red pen on paper and sheet, in both schemes), reduced motion
+  respected, labels kept.
 
 ## Commands
 
@@ -151,8 +164,9 @@ pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
 `node scripts/screenshots.mjs <out-dir> [--skip-build] [--port 4174]` builds `dist-e2e/` (skip
 with `--skip-build` if it is fresh), serves it and walks the app with Playwright Chromium:
 home (fresh and with progress plus pending reviews via `?today=`), placement intro and question,
-one screen per exercise type, correct / almost / wrong feedback, the leave dialog, the lesson
-summary, review, about and the "open in another tab" error screen. Every screen is captured at
+one screen per exercise type, correct / almost / wrong feedback (choice options marked), reading
+feedback, the leave dialog, the lesson summary with words to review, review and a perfect review
+summary, about and the "open in another tab" error screen. Every screen is captured at
 390×844 and 1280×800, in light and dark color schemes (`mobile-dark-09-feedback-wrong.png`, …);
 long screens also get a `-full.png`. It is for design review, not part of the test suite.
 
