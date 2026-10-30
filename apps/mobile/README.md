@@ -14,11 +14,32 @@ web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
 | `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                        |
 | `e2e/`                | Playwright tests against the exported web build                      |
 
-Features read `ProgressRepository`, `SettingsRepository`, `Clock`, `random` (an `Rng`) and
-`sounds` (a `SoundPlayer`) from `useAppServices()`. The root layout provides the SQLite-backed
-repositories (`@english-learn/storage-sqlite`, migrated in `onInit`), the system clock,
-`Math.random` and the sound player (expo-audio on native, Web Audio on web); tests wrap
-components in `<AppServicesProvider services={...}>` with in-memory fakes and a deterministic rng.
+Features read `ProgressRepository`, `SettingsRepository`, `Clock`, `random` (an `Rng`),
+`randomBytes` (for event ids) and `sounds` (a `SoundPlayer`) from `useAppServices()`. The root
+layout provides the SQLite-backed repositories (`@english-learn/storage-sqlite`, prepared in
+`onInit` by `initProgressStore`), the system clock, `Math.random`, expo-crypto's
+`getRandomValues` and the sound player (expo-audio on native, Web Audio on web); tests wrap
+components in `<AppServicesProvider services={...}>` with in-memory fakes and deterministic
+random sources.
+
+### Progress is an event log
+
+Progress is stored as the domain's append-only event log (`@english-learn/domain`, "Progress
+event log"); the progress tables are a cache of its fold that every write refreshes, and reads
+come from that cache. The app only builds events (`src/features/progress/progress-events.ts`,
+UUIDv7 ids from `clock.nowMs()` and `randomBytes`, stamped with the install's device id):
+
+- a finished lesson or review → one `item_reviewed` per item with its final grade and one
+  `session_completed`, sharing a session id and the save's `today`;
+- a finished placement test → `placement_completed`.
+
+`initProgressStore` (`src/infrastructure/persistence/`) runs on every start: migrations, the
+device id (generated once), and for learners upgrading from before the event log ONE
+`baseline_imported` event with their states, XP, streak and placement, plus
+`completedLessonIds` = the lessons whose items all have a review state (shown as done on home),
+so replaying them earns no bonus again. Their progress is unchanged by the upgrade.
+E2E-only: `?rebuildProgress=1` (builds with `EXPO_PUBLIC_E2E=1`) recomputes the cache from the
+log at start.
 
 ### When the database cannot open
 
@@ -46,24 +67,23 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   reading is correct only if every question is; word order → `matchAnswer` on the tokens joined by
   single spaces, only "correct" counts; translate-write → correct/almost/wrong); the
   `lessonSession` reducer (answering → feedback → next → finished summary with verdicts, accuracy,
-  XP and per-item outcomes); `applyLessonResults` turns the summary into SM-2 review states
+  XP and per-item outcomes); `finalGrades` turns the summary into one FINAL grade per item
   (worst grade per item; `EXPECTED_MS` per type: vocab 8 s, cloze 10 s, translation choice 12 s,
   word order 20 s, translate-write 30 s, reading 60 s — slower correct answers get grade 4).
-  An item that is **not due yet** (`dueDate > today`, e.g. a lesson replayed the same day) is
-  only practiced: a passing grade leaves its state unchanged; a wrong answer still applies the
-  SM-2 lapse (forgetting is real evidence). A **new** item (no state yet) answered wrong is not a
-  lapse (nothing was learned yet to forget): it starts fresh with the default ease, 0 reps and
-  0 lapses, due tomorrow.
+  How a grade moves the item through SM-2 is the domain's `applyReview`, applied by the fold: an
+  item **not due yet** (e.g. a lesson replayed the same day) is only practiced (a passing grade
+  leaves it unchanged, a wrong answer still lapses), and a **new** item answered wrong starts
+  fresh, due tomorrow.
   **Word lookups cap the grade**: the reducer's `lookup` action records the items whose glossary
   entry the learner opened (see "Word lookup" below), at any point of the session; an exercise
-  answered after that marks those of its items `lookedUp`, and `applyLessonResults` caps their
+  answered after that marks those of its items `lookedUp`, and `finalGrades` caps their
   grade at 3 ("almost") — a wrong answer stays wrong. Verdicts, accuracy and XP are unchanged.
   Lessons and reviews share it.
-- `application/complete-session.ts`: saves a finished lesson or review through
-  `ProgressRepository.saveSessionResults`, which reads the current states and streak and writes
-  states + XP + streak in ONE transaction (all or nothing). XP = sum of `xpForAnswer`, plus the
-  lesson completion bonus only the first time a lesson is completed (some item had no state);
-  replays and reviews earn answer XP only.
+- `application/complete-session.ts`: saves a finished lesson or review as events with
+  `ProgressRepository.appendEvents` (ONE transaction, all or nothing). XP = sum of `xpForAnswer`,
+  plus the lesson completion bonus the first time a `lessonId` is completed (decided by the fold;
+  before the event log it was "some item had no state yet"); replays and reviews earn answer XP
+  only. The summary shows the XP and streak the fold produced (totals after minus before).
 - `use-exercise-session.ts`: hook shared by lesson and review (answer → feedback → next →
   save). Saving is guarded against double submission; a failed save shows "Reintentar"; the
   header back button and swipe gesture are disabled while saving. The browser back button is
@@ -154,9 +174,9 @@ Learners look up the Spanish of English words and phrases from the static glossa
 `PlacementCandidate`s (`optionCount` = options, or `answers[0]` + distractors for cloze) and
 rendered as regular exercises (`prepareExercise`, `ExerciseBody`, `gradeExercise`) with a
 "Siguiente" button and no per-question feedback. The result screen shows the estimated level, a
-short CEFR description and which lessons the learner gets. Only `savePlacementResult` is written
-(never review states, XP or streak); "Repetir test de nivel" on home retakes it and overwrites
-the result.
+short CEFR description and which lessons the learner gets. Only a `placement_completed` event is
+written (never review states, XP or streak); "Repetir test de nivel" on home retakes it and the
+latest result wins.
 
 ## Daily review (`src/features/review/`)
 

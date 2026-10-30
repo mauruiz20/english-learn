@@ -11,6 +11,7 @@ import { createFakeSettingsRepository } from "@/testing/fake-settings-repository
 import { createFakeSoundPlayer, type FakeSoundPlayer } from "@/testing/fake-sound-player";
 import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { ReviewContainer } from "./review-container";
+import { testRandomBytes } from "@/testing/random-bytes";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
 const mockScreenOptions = jest.fn();
@@ -55,6 +56,8 @@ function renderReview(repository: FakeProgressRepository, exercises: Exercise[] 
         progressRepository: repository,
         clock: { today: () => TODAY, nowMs: () => 0 },
         random: () => 0,
+        randomBytes: testRandomBytes,
+        deviceId: "test-device",
         settingsRepository: createFakeSettingsRepository(),
         sounds,
       }}

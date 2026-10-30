@@ -17,6 +17,7 @@ import { prepareExercise, type PreparedExercise } from "@/features/lesson/model/
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { useAppServices, useSoundPlayer } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
+import { savePlacement } from "./application/save-placement";
 import { placementExercise, toPlacementCandidate } from "./model/placement-bank";
 import { PlacementView, type PlacementViewState } from "./placement-view";
 
@@ -34,10 +35,10 @@ type Phase =
 
 /**
  * Runs the adaptive placement test: no per-question feedback, then saves the estimated level.
- * It only writes the placement result (never review states, XP or streak); retaking overwrites it.
+ * It only appends a `placement_completed` event (never reviews, XP or streak); the latest wins.
  */
 export function PlacementContainer({ content = corpus }: { content?: Corpus }) {
-  const { progressRepository, random } = useAppServices();
+  const { progressRepository, clock, random, randomBytes, deviceId } = useAppServices();
   const sounds = useSoundPlayer();
   const router = useRouter();
   const [phase, setPhase] = useState<Phase>({ status: "intro" });
@@ -65,8 +66,14 @@ export function PlacementContainer({ content = corpus }: { content?: Corpus }) {
     if (saving.current) return;
     saving.current = true;
     setPhase({ status: "saving", outcome });
-    progressRepository
-      .savePlacementResult(outcome.level, outcome.theta)
+    savePlacement({
+      repository: progressRepository,
+      outcome,
+      today: clock.today(),
+      nowMs: clock.nowMs(),
+      randomBytes,
+      deviceId,
+    })
       .then(() => {
         setPhase({ status: "saved", outcome });
         sounds.play("complete");

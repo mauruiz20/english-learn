@@ -1,32 +1,35 @@
+import type { LocalDate, ProgressRepository, Streak } from "@english-learn/domain";
 import {
-  recordActivity,
-  xpForLessonCompletion,
-  type LocalDate,
-  type ProgressRepository,
-  type Streak,
-} from "@english-learn/domain";
-import { applyLessonResults } from "../model/apply-lesson-results";
+  itemReviewedEvent,
+  newEventId,
+  sessionCompletedEvent,
+  type RandomBytes,
+} from "@/features/progress/progress-events";
+import { finalGrades } from "../model/final-grades";
 import type { LessonSummary } from "../model/lesson-session";
-
-/**
- * - "lesson": the completion bonus (`xpForLessonCompletion`) is added the first time the
- *   lesson is completed, i.e. when at least one of its items had no review state yet.
- *   A replay earns answer XP only.
- * - "none": answer XP only (daily review).
- */
-export type CompletionBonus = "lesson" | "none";
 
 export type CompleteSessionInput = {
   readonly repository: ProgressRepository;
   readonly summary: LessonSummary;
+  /** The day the session is saved; every event of the save carries it. */
   readonly today: LocalDate;
-  readonly bonus: CompletionBonus;
+  /** Wall clock (epoch ms) of the save. */
+  readonly nowMs: number;
+  readonly randomBytes: RandomBytes;
+  /** This install's id (known before the save starts, so the save is ONE repository write). */
+  readonly deviceId: string;
+  /**
+   * - "lesson": `summary.lessonId` is written, and the fold pays the completion bonus the FIRST
+   *   time that lesson is completed (on any device).
+   * - "review": answer XP only (daily review).
+   */
+  readonly kind: "lesson" | "review";
 };
 
 export type CompleteSessionResult = {
   /** XP total after the session. */
   readonly xp: number;
-  /** XP this session added. */
+  /** XP this session added, as the fold decided it (answer XP plus any bonus). */
   readonly xpEarned: number;
   readonly streak: Streak;
   /** This session extended the streak (the first session of a day; celebrated with a sound). */
@@ -34,33 +37,37 @@ export type CompleteSessionResult = {
 };
 
 /**
- * Persists a finished lesson or review in one transaction: SRS review states, earned XP and
- * today's streak activity, all computed from the progress read inside that transaction.
+ * Persists a finished lesson or review as events, in one transaction: one `item_reviewed` per
+ * practiced item with its final grade (worst grade wins, looked-up cap) and one
+ * `session_completed`, all sharing a new session id and `today`. Review states, XP, bonus and
+ * streak are what the fold of the whole log makes of them.
  */
 export async function completeSession({
   repository,
   summary,
   today,
-  bonus,
+  nowMs,
+  randomBytes,
+  deviceId,
+  kind,
 }: CompleteSessionInput): Promise<CompleteSessionResult> {
-  const itemIds = [...new Set(summary.itemOutcomes.map((o) => o.itemId))];
-  let streakBefore = 0;
-  const { xp, results } = await repository.saveSessionResults(itemIds, (current) => {
-    streakBefore = current.streak.current;
-    const known = new Set(current.states.map((s) => s.itemId));
-    const firstCompletion = itemIds.some((id) => !known.has(id));
-    const bonusXp =
-      bonus === "lesson" && firstCompletion ? xpForLessonCompletion(summary.accuracy) : 0;
-    return {
-      states: applyLessonResults({ summary, states: current.states, today }),
-      xpDelta: summary.answerXp + bonusXp,
-      streak: recordActivity(current.streak, today),
-    };
+  const stamp = { deviceId, occurredAt: nowMs, localDate: today, randomBytes };
+  const sessionId = newEventId(stamp);
+  const reviews = [...finalGrades(summary)].map(([itemId, grade]) =>
+    itemReviewedEvent(stamp, sessionId, itemId, grade),
+  );
+  const session = sessionCompletedEvent(stamp, {
+    sessionId,
+    kind,
+    ...(kind === "lesson" ? { lessonId: summary.lessonId } : {}),
+    answerXp: summary.answerXp,
+    accuracy: summary.accuracy,
   });
+  const { before, after } = await repository.appendEvents([...reviews, session]);
   return {
-    xp,
-    xpEarned: results.xpDelta,
-    streak: results.streak,
-    streakIncreased: results.streak.current > streakBefore,
+    xp: after.xp,
+    xpEarned: after.xp - before.xp,
+    streak: after.streak,
+    streakIncreased: after.streak.current > before.streak.current,
   };
 }

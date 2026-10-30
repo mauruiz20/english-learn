@@ -12,6 +12,7 @@ import { createFakeSoundPlayer, type FakeSoundPlayer } from "@/testing/fake-soun
 import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { placementBank } from "./model/fixtures";
 import { PlacementContainer } from "./placement-container";
+import { testRandomBytes } from "@/testing/random-bytes";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
 const mockPreventRemove = createPreventRemoveMock();
@@ -32,6 +33,8 @@ function renderPlacement(repository: FakeProgressRepository) {
         progressRepository: repository,
         clock: { today: () => TODAY, nowMs: () => 0 },
         random: () => 0.5,
+        randomBytes: testRandomBytes,
+        deviceId: "test-device",
         settingsRepository: createFakeSettingsRepository(),
         sounds,
       }}
@@ -141,9 +144,9 @@ describe("PlacementContainer", () => {
 
   it("retries a failed save and then goes to the lessons", async () => {
     const repository = createFakeRepository();
-    const save = repository.savePlacementResult;
-    repository.savePlacementResult = jest
-      .fn<Promise<void>, Parameters<typeof save>>()
+    const save = repository.appendEvents;
+    repository.appendEvents = jest
+      .fn<ReturnType<typeof save>, Parameters<typeof save>>()
       .mockRejectedValueOnce(new Error("disk I/O error"))
       .mockImplementation(save);
     jest.spyOn(console, "error").mockImplementation(() => {});
@@ -180,6 +183,8 @@ describe("PlacementContainer", () => {
           progressRepository: createFakeRepository(),
           clock: { today: () => TODAY, nowMs: () => 0 },
           random: () => 0.5,
+          randomBytes: testRandomBytes,
+          deviceId: "test-device",
           settingsRepository: createFakeSettingsRepository(),
           sounds,
         }}

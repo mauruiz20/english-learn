@@ -100,7 +100,7 @@ function ReviewSession({
   content: Corpus;
   onGoHome: () => void;
 }) {
-  const { progressRepository, clock } = useAppServices();
+  const { progressRepository, clock, randomBytes, deviceId } = useAppServices();
   const { session, save, onSubmit, onContinue, onLookup, retrySave, canLeave, hasUnsavedAnswers } =
     useExerciseSession({
       initial: plan.session,
@@ -109,7 +109,10 @@ function ReviewSession({
           repository: progressRepository,
           summary: restrictToItems(summary, plan.itemIds),
           today: clock.today(),
-          bonus: "none",
+          nowMs: clock.nowMs(),
+          randomBytes,
+          deviceId,
+          kind: "review",
         }),
     });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir del repaso?");

@@ -4,7 +4,7 @@ import {
   localDate,
   review,
   type Clock,
-  type SavedSession,
+  type AppendedEvents,
 } from "@english-learn/domain";
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react-native";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
@@ -18,6 +18,7 @@ import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { LessonContainer } from "./lesson-container";
 import { STREAK_SOUND_DELAY_MS } from "./use-session-sounds";
 import { allExercises, lesson, passage, sequenceRng } from "./model/fixtures";
+import { testRandomBytes } from "@/testing/random-bytes";
 
 const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
 const mockScreenOptions = jest.fn();
@@ -57,6 +58,8 @@ function renderLesson(repository: FakeProgressRepository, lessonId = lesson.id, 
     progressRepository: repository,
     clock: clock ?? { today: () => TODAY, nowMs: () => 0 },
     random: sequenceRng([0.3, 0.8, 0.1, 0.6]),
+    randomBytes: testRandomBytes,
+    deviceId: "test-device",
     settingsRepository: createFakeSettingsRepository(),
     sounds,
   };
@@ -278,9 +281,9 @@ describe("LessonContainer", () => {
 
   it("explains a failed save and saves on retry without duplicating anything", async () => {
     const repository = createFakeRepository();
-    const save = repository.saveSessionResults;
-    repository.saveSessionResults = jest
-      .fn<Promise<SavedSession>, Parameters<typeof save>>()
+    const save = repository.appendEvents;
+    repository.appendEvents = jest
+      .fn<Promise<AppendedEvents>, Parameters<typeof save>>()
       .mockRejectedValueOnce(new Error("disk I/O error"))
       .mockImplementation(save);
     jest.spyOn(console, "error").mockImplementation(() => {});
@@ -296,29 +299,34 @@ describe("LessonContainer", () => {
     expect(await screen.findByText("¡Lección completada!")).toBeOnTheScreen();
     expect(screen.getByText("XP ganada: 80")).toBeOnTheScreen();
     expect(repository.snapshot().xp).toBe(80);
-    expect(repository.saveSessionResults).toHaveBeenCalledTimes(2);
+    expect(repository.appendEvents).toHaveBeenCalledTimes(2);
+    // The failed attempt wrote nothing: one session in the log.
+    expect(repository.events().filter((e) => e.type === "session_completed")).toHaveLength(1);
   });
 
-  it("gives answer XP but no completion bonus when replaying a done lesson", async () => {
+  it("gives answer XP but no completion bonus when replaying a completed lesson", async () => {
     const itemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
     const learned = itemIds.map((id) => review(initialState(id, TODAY), 5, TODAY));
-    const repository = createFakeRepository({ states: learned });
+    // Completed before the event log: the upgrade baseline lists it.
+    const repository = createFakeRepository({ states: learned, completedLessonIds: [lesson.id] });
     await renderLesson(repository);
 
     await playCorrectly();
 
     expect(await screen.findByText("XP ganada: 60")).toBeOnTheScreen();
     // Not due yet: practice keeps every interval.
-    expect(repository.snapshot().states).toEqual(learned);
+    expect(repository.snapshot().states).toEqual(
+      [...learned].sort((a, b) => a.itemId.localeCompare(b.itemId)),
+    );
   });
 
   it("blocks going back while the results are being saved", async () => {
     const repository = createFakeRepository();
-    const save = repository.saveSessionResults;
+    const save = repository.appendEvents;
     let finish: () => void = () => {};
-    repository.saveSessionResults = (ids, compute) =>
+    repository.appendEvents = (events) =>
       new Promise((resolve) => {
-        finish = () => resolve(save(ids, compute));
+        finish = () => resolve(save(events));
       });
     await renderLesson(repository);
 
@@ -420,6 +428,8 @@ describe("LessonContainer", () => {
           progressRepository: repository,
           clock: { today: () => TODAY, nowMs: () => 0 },
           random: sequenceRng([0.3, 0.8, 0.1, 0.6]),
+          randomBytes: testRandomBytes,
+          deviceId: "test-device",
           settingsRepository: createFakeSettingsRepository(),
           sounds,
         }}

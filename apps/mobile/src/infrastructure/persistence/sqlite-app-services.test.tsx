@@ -3,25 +3,30 @@ import type { ReactNode, useEffect, useState } from "react";
 import { Text } from "react-native";
 import { SqliteAppServicesProvider } from "./sqlite-app-services";
 
-// Stand-in for expo-sqlite's SQLiteProvider with the same error contract: it opens the database
-// in an effect and, on failure, calls `onError` while rendering (rethrows without `onError`).
+// Stand-in for expo-sqlite's SQLiteProvider with the same contract: it opens the database and
+// awaits `onInit` in an effect and, on failure, calls `onError` while rendering (rethrows without
+// `onError`).
 const mockOpen = jest.fn<Promise<void>, []>();
 jest.mock("expo-sqlite", () => ({
   SQLiteProvider: ({
     children,
     onError,
+    onInit,
   }: {
     children: ReactNode;
     onError?: (error: Error) => void;
+    onInit?: (db: unknown) => Promise<void>;
   }) => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const react = require("react") as { useEffect: typeof useEffect; useState: typeof useState };
     const [state, setState] = react.useState<"loading" | "open" | Error>("loading");
     react.useEffect(() => {
-      mockOpen().then(
-        () => setState("open"),
-        (error: Error) => setState(error),
-      );
+      mockOpen()
+        .then(() => onInit?.({}))
+        .then(
+          () => setState("open"),
+          (error: Error) => setState(error),
+        );
     }, []);
     if (state instanceof Error) {
       (
@@ -38,9 +43,12 @@ jest.mock("expo-sqlite", () => ({
 jest.mock("../sound/expo-sound-player", () => ({
   createExpoSoundPlayer: () => ({ play: () => {}, setEnabled: () => {} }),
 }));
+jest.mock("./init-progress-store", () => ({
+  initProgressStore: async () => ({}),
+}));
 jest.mock("@english-learn/storage-sqlite", () => ({
   ...jest.requireActual("@english-learn/storage-sqlite"),
-  createSqliteProgressRepository: () => ({}),
+  createSqliteProgressRepository: () => ({ getDeviceId: async () => "device-1" }),
 }));
 
 beforeEach(() => {

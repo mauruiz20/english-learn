@@ -17,6 +17,7 @@ import {
 import { prepareExercise, type PreparedExercise } from "../model/prepare-exercise";
 import { AnswerFeedback } from "./answer-feedback";
 import { ExerciseBody } from "./exercise-body";
+import { testRandomBytes } from "@/testing/random-bytes";
 
 /** One entry per English word of the fixtures (Spanish gloss = `es:<word>`). */
 const WORDS = [
@@ -68,6 +69,8 @@ const services = () => ({
   progressRepository: createFakeRepository(),
   clock: { today: () => "2026-10-30" as never, nowMs: () => 0 },
   random: () => 0.5,
+  randomBytes: testRandomBytes,
+  deviceId: "test-device",
   settingsRepository: createFakeSettingsRepository({ lookupHintDismissed: true }),
   sounds: createFakeSoundPlayer(),
 });

@@ -23,7 +23,7 @@ type LessonContainerProps = {
 
 /** Runs one lesson: session reducer + exercise components, then persists the results. */
 export function LessonContainer({ lessonId, content = corpus }: LessonContainerProps) {
-  const { progressRepository, clock, random } = useAppServices();
+  const { progressRepository, clock, random, randomBytes, deviceId } = useAppServices();
   const router = useRouter();
 
   // Prepared once per mount, so options are not reshuffled on re-render.
@@ -44,7 +44,10 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
           repository: progressRepository,
           summary,
           today: clock.today(),
-          bonus: "lesson",
+          nowMs: clock.nowMs(),
+          randomBytes,
+          deviceId,
+          kind: "lesson",
         }),
     });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir de la lección?");
