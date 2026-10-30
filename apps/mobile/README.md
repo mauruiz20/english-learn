@@ -19,6 +19,23 @@ root layout provides the SQLite-backed implementations (`@english-learn/storage-
 in `onInit`), the system clock and `Math.random`; tests wrap components in
 `<AppServicesProvider services={...}>` with in-memory fakes and a deterministic rng.
 
+### When the database cannot open
+
+`SqliteAppServicesProvider` wraps the app in `AppErrorBoundary`
+(`src/infrastructure/errors/`). If the database fails to open or migrate, `SQLiteProvider`'s
+`onError` throws a `DatabaseOpenError` and the boundary shows a message with "Reintentar"
+instead of a blank screen; any other render error shows "Algo salió mal.". "Reintentar"
+reloads the page on web (expo-sqlite's worker cannot reopen after a failed open) and remounts
+the app on native. Messages by cause (`database-open-error.ts`):
+
+- **Another tab has the app open** (web): expo-sqlite keeps OPFS sync access handles for the
+  whole session and only one tab can hold them. Recognized by the messages browsers actually
+  report (Chromium: "Access Handles cannot be created if there is another open Access Handle…";
+  WebKit: "The object is in an invalid state."): "La app ya está abierta en otra pestaña."
+- **Database from a newer app version** (`SchemaTooNewError` from `migrate`): asks to update.
+- **Anything else** (corrupt file, storage disabled, e.g. WebKit without OPFS in private
+  browsing): "No pudimos abrir tus datos."
+
 Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod at runtime).
 
 ## Lessons (`src/features/lesson/`)
