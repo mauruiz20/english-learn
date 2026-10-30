@@ -16,6 +16,7 @@ async function renderView(state: LessonViewState) {
 
 const exerciseState = {
   status: "exercise",
+  topic: undefined,
   title: "Mi rutina",
   position: 1,
   total: 6,

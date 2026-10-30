@@ -13,6 +13,7 @@ const noLessons = { level: "A2", items: [] } as const;
 const ready = {
   status: "ready",
   pendingReviews: 0,
+  reviewNoteColor: "pink",
   streakDays: 0,
   xp: 0,
   level: "A2",

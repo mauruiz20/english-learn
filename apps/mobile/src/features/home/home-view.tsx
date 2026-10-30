@@ -7,8 +7,9 @@ import { ProgressLine } from "@/shared/ui/progress-line";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { StickyNote } from "@/shared/ui/sticky-note";
 import { Text } from "@/shared/ui/text";
-import { spacing } from "@/shared/ui/theme";
+import { spacing, type HighlighterName } from "@/shared/ui/theme";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
+import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 
 export type HomeLesson = {
@@ -28,6 +29,8 @@ export type HomeViewState =
       readonly status: "ready";
       /** Items the daily review would practice today. */
       readonly pendingReviews: number;
+      /** Paper of today's review sticky note. */
+      readonly reviewNoteColor: HighlighterName;
       readonly streakDays: number;
       readonly xp: number;
       readonly level: Level | null;
@@ -81,14 +84,22 @@ function Streak({ days, xp }: { days: number; xp: number }) {
   );
 }
 
-function ReviewNote({ pending, onOpenReview }: { pending: number; onOpenReview: () => void }) {
+function ReviewNote({
+  pending,
+  color,
+  onOpenReview,
+}: {
+  pending: number;
+  color: HighlighterName;
+  onOpenReview: () => void;
+}) {
   const styles = useStyles();
   if (pending === 0) {
     return <Text tone="muted">Nada para repasar hoy</Text>;
   }
   return (
     <View style={styles.sticky}>
-      <StickyNote>
+      <StickyNote color={color}>
         <Text variant="title">Repaso</Text>
         <Text>{`${pending} ${pending === 1 ? "pendiente" : "pendientes"}`}</Text>
         <View style={styles.stickyAction}>
@@ -101,6 +112,7 @@ function ReviewNote({ pending, onOpenReview }: { pending: number; onOpenReview: 
 
 function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => void }) {
   const styles = useStyles();
+  const color = topicHighlighter(lesson.topic);
   return (
     <Pressable
       accessibilityRole="button"
@@ -111,9 +123,10 @@ function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => voi
       <Text style={styles.lessonTitle}>{lesson.title}</Text>
       <View style={styles.leader} />
       {lesson.done ? (
-        <Text variant="smallStrong" tone="success">
+        // Ticked off with the topic's highlighter.
+        <Highlight variant="smallStrong" color={color}>
           Completada
-        </Text>
+        </Highlight>
       ) : (
         <Text tone="muted" style={styles.pendingMark}>
           ○
@@ -152,9 +165,12 @@ function LessonIndex({
       ) : (
         groupByTopic(lessons.items).map((group, i) => (
           <View key={`${group.topic}-${i}`} style={styles.topic}>
-            <Text variant="smallStrong" tone="muted">
-              {topicLabel(group.topic)}
-            </Text>
+            {/* The topic's colored index tab. */}
+            <View style={styles.topicTab}>
+              <Highlight variant="smallStrong" color={topicHighlighter(group.topic)}>
+                {topicLabel(group.topic)}
+              </Highlight>
+            </View>
             {group.lessons.map((lesson) => (
               <LessonRow key={lesson.id} lesson={lesson} onPress={() => onOpenLesson(lesson.id)} />
             ))}
@@ -177,7 +193,11 @@ function ReadyHome({
     <>
       <Streak days={state.streakDays} xp={state.xp} />
 
-      <ReviewNote pending={state.pendingReviews} onOpenReview={onOpenReview} />
+      <ReviewNote
+        pending={state.pendingReviews}
+        color={state.reviewNoteColor}
+        onOpenReview={onOpenReview}
+      />
 
       {state.level === null && (
         <View style={styles.placement}>
@@ -249,6 +269,7 @@ const useStyles = themedStyles(({ colors }) =>
     index: { gap: spacing.lg },
     indexHeader: { gap: spacing.sm },
     topic: { gap: 0 },
+    topicTab: { marginBottom: spacing.xs },
     lesson: {
       minHeight: 48,
       flexDirection: "row",

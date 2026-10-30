@@ -21,6 +21,8 @@ export type LessonViewState =
   | {
       readonly status: "exercise";
       readonly title: string;
+      /** The lesson's topic slug (its highlighter tints the progress line and the title). */
+      readonly topic: string | undefined;
       /** 1-based position of the current exercise. */
       readonly position: number;
       readonly total: number;
@@ -79,7 +81,12 @@ export function LessonView({
       return (
         <ScreenContainer
           top={
-            <SessionProgress position={state.position} total={state.total} title={state.title} />
+            <SessionProgress
+              position={state.position}
+              total={state.total}
+              title={state.title}
+              topic={state.topic}
+            />
           }
           {...(state.feedback === null
             ? {}

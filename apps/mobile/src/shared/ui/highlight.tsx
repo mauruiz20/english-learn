@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Animated, Easing, StyleSheet, View, type TextProps } from "react-native";
 import { Text, type TextVariant } from "./text";
+import type { HighlighterName } from "./theme";
 import { useReducedMotion } from "./use-reduced-motion";
 import { useTheme } from "./use-theme";
 
@@ -14,13 +15,15 @@ type HighlightProps = Omit<TextProps, "children"> & {
    * behind a single line (big numbers).
    */
   shape?: "lines" | "swipe";
+  /** Which highlighter; yellow (the default) is reserved for "correct" and the streak. */
+  color?: HighlighterName;
 };
 
 const SWIPE_MS = 250;
 const SWIPE_OVERHANG = 6;
 
 /**
- * Text marked with the yellow highlighter, line by line. The marker is a clipped copy of the
+ * Text marked with a highlighter (yellow unless `color` says otherwise), line by line. The marker is a clipped copy of the
  * text with a highlighted background behind the real text, so it follows line wraps; it is
  * hidden from assistive technology. Respects reduced motion.
  */
@@ -29,10 +32,12 @@ export function Highlight({
   variant,
   animate = false,
   shape = "lines",
+  color = "yellow",
   style,
   ...props
 }: HighlightProps) {
   const { colors } = useTheme();
+  const fill = colors.highlighters[color];
   const reducedMotion = useReducedMotion();
   const [width, setWidth] = useState(0);
   const [progress] = useState(() => new Animated.Value(animate ? 0 : 1));
@@ -77,7 +82,7 @@ export function Highlight({
           ]}
         >
           {shape === "swipe" ? (
-            <View style={[styles.swipe, { backgroundColor: colors.highlighter }]} />
+            <View style={[styles.swipe, { backgroundColor: fill }]} />
           ) : (
             <Text
               variant={textVariant}
@@ -85,7 +90,7 @@ export function Highlight({
             >
               <Text
                 variant={textVariant}
-                style={[style, { backgroundColor: colors.highlighter, color: "transparent" }]}
+                style={[style, { backgroundColor: fill, color: "transparent" }]}
               >
                 {children}
               </Text>

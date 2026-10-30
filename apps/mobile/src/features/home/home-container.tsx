@@ -5,6 +5,7 @@ import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { isLessonDone, lessonsForLevel } from "@/features/lesson/model/lesson-catalog";
 import { pendingReviewItems } from "@/features/review/model/review-plan";
+import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
 
@@ -49,6 +50,7 @@ export function HomeContainer({ content = corpus }: { content?: Corpus }) {
           status: "ready",
           pendingReviews: pendingReviewItems({ states, today, exercises: content.exercises })
             .length,
+          reviewNoteColor: stickyNoteHighlighter(today),
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
           level,

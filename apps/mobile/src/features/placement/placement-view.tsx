@@ -4,6 +4,7 @@ import { ExerciseBody } from "@/features/lesson/components/exercise-body";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { SessionMessage } from "@/features/lesson/components/session-screens";
+import { levelHighlighter } from "@/features/topics/topic-colors";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { ProgressLine } from "@/shared/ui/progress-line";
@@ -151,7 +152,12 @@ export function PlacementView({
             <Text variant="title" tone="muted">
               Tu nivel estimado
             </Text>
-            <Highlight variant="hero" shape="swipe" style={styles.levelValue}>
+            <Highlight
+              variant="hero"
+              shape="swipe"
+              color={levelHighlighter(state.level)}
+              style={styles.levelValue}
+            >
               {state.level}
             </Highlight>
           </View>
