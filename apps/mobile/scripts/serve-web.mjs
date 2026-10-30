@@ -74,16 +74,27 @@ const server = createServer(async (req, res) => {
     res.writeHead(404, ISOLATION_HEADERS).end("Not found");
     return;
   }
-  res.writeHead(200, {
+  const headers = {
     ...ISOLATION_HEADERS,
     "Content-Type": MIME_TYPES[extname(file)] ?? "application/octet-stream",
     "Cache-Control": "no-cache",
-  });
+  };
   if (req.method === "HEAD") {
-    res.end();
+    res.writeHead(200, headers).end();
     return;
   }
-  createReadStream(file).pipe(res);
+  // Headers go out only once the file is open, so an open error can still answer 500.
+  const stream = createReadStream(file);
+  stream.once("open", () => {
+    res.writeHead(200, headers);
+    stream.pipe(res);
+  });
+  // A read error (file removed or unreadable after `stat`) must not crash the server.
+  stream.on("error", (error) => {
+    console.error(`Failed to read ${file}`, error);
+    if (res.headersSent) res.destroy(error);
+    else res.writeHead(500, ISOLATION_HEADERS).end("Internal server error");
+  });
 });
 
 server.listen(PORT, () => {
