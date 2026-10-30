@@ -1,5 +1,1 @@
-import { PlaceholderScreen } from "@/features/placeholder/placeholder-screen";
-
-export default function ReviewRoute() {
-  return <PlaceholderScreen title="Repaso" />;
-}
+export { ReviewContainer as default } from "@/features/review/review-container";
