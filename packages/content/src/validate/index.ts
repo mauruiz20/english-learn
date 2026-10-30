@@ -9,4 +9,5 @@ export { validateListDuplicates } from "./duplicates";
 export { validateLevels } from "./levels";
 export { validateLayout } from "./layout";
 export { validateTopics, validateExerciseTopics } from "./topics";
-export { validateCorpus } from "./corpus";
+export { validateCorpus, validateLocal } from "./corpus";
+export { findDuplicateKeys, type DuplicateKey } from "./json-keys";
