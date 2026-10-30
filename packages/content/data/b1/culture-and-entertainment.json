@@ -103,7 +103,7 @@
       "level": "B1",
       "topics": ["culture-and-entertainment"],
       "title": "A night at the theater",
-      "text": "Last Saturday I went to see a play at the old theater downtown. My friend Pablo, who is studying drama, had recommended it for weeks. The tickets were almost sold out, but we found two seats in the last row. The play is about a woman who goes back to the village where she grew up after thirty years away. At first I thought it might be boring, because the first scene was very slow. However, the main actress was amazing, and the audience was completely silent during her final speech. When the lights came on, some people were crying. \"She must be the best actress in the city,\" Pablo said. A review in the newspaper had said that the play was too long and too sad, but I think the writer was wrong. The director came on stage at the end and thanked everyone for coming. I'm already looking forward to seeing his next production. If you get the chance, it's definitely worth seeing.",
+      "text": "Last Saturday I went to see a play at the old theater downtown. My friend Pablo, who is studying drama, had been recommending it for weeks. The tickets were almost sold out, but we found two seats in the last row. The play is about a woman who goes back to the village where she grew up after thirty years away. At first I thought it might be boring, because the first scene was very slow. However, the main actress was amazing, and the audience was completely silent during her final speech. When the lights came on, some people were crying. \"She must be the best actress in the city,\" Pablo said. A review in the newspaper had said that the play was too long and too sad, but I think the writer was wrong. The director came on stage at the end and thanked everyone for coming. I'm already looking forward to seeing his next production. If you get the chance, it's definitely worth seeing.",
       "source": { "kind": "original" }
     }
   ],
@@ -233,7 +233,7 @@
       "source": { "kind": "original" },
       "type": "vocab",
       "prompt": "Choose the English for 'grupo musical'.",
-      "options": ["bench", "band", "gang", "choir"],
+      "options": ["bench", "band", "gang", "brand"],
       "answerIndex": 1
     },
     {
@@ -325,7 +325,8 @@
         "It is worth seeing that movie.",
         "It is worth seeing that film.",
         "It is worth watching that movie.",
-        "It is worth watching that film."
+        "It is worth watching that film.",
+        "It's worth it to see that movie."
       ]
     },
     {
@@ -359,7 +360,13 @@
         "The show begins at eight o'clock.",
         "The show begins at 8:00.",
         "The show begins at 8 p.m.",
-        "The show begins at 8 pm."
+        "The show begins at 8 pm.",
+        "The play starts at eight.",
+        "The play starts at 8.",
+        "The play begins at eight.",
+        "The play begins at 8.",
+        "The show starts at 8 o'clock.",
+        "The performance starts at 8 o'clock."
       ]
     }
   ],
