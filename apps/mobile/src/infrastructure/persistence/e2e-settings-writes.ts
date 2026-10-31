@@ -33,5 +33,11 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
     setSoundEnabled: (enabled) => track(repository.setSoundEnabled(enabled)),
     getLookupHintDismissed: () => repository.getLookupHintDismissed(),
     setLookupHintDismissed: () => track(repository.setLookupHintDismissed()),
+    getAccount: () => repository.getAccount(),
+    setAccount: (account) => track(repository.setAccount(account)),
+    clearAccount: () => track(repository.clearAccount()),
+    getSaveProgressSuggestionDismissed: () => repository.getSaveProgressSuggestionDismissed(),
+    setSaveProgressSuggestionDismissed: () =>
+      track(repository.setSaveProgressSuggestionDismissed()),
   };
 }

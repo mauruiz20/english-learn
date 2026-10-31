@@ -18,6 +18,8 @@ import { DatabaseOpenError } from "./database-open-error";
 import type * as E2eProgress from "./e2e-progress";
 import type * as E2eSettingsWrites from "./e2e-settings-writes";
 import { initProgressStore } from "./init-progress-store";
+import { notifyAppends } from "../sync/notify-appends";
+import { createChangeSignal } from "../sync/sync-triggers";
 
 export const DATABASE_NAME = "english-learn.db";
 
@@ -56,6 +58,8 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
   const [sounds] = useState(createExpoSoundPlayer);
   const [progressRepository] = useState(() => createSqliteProgressRepository(db));
   const [settingsRepository] = useState(() => createSettingsRepository(db));
+  // "Progress was saved here": the account's sync uploads it (see AccountProvider).
+  const [localChanges] = useState(createChangeSignal);
   // Stored by `initDatabase`; read once so every save stamps it without an extra async step.
   const [deviceId, setDeviceId] = useState<string | null>(null);
   const [failure, setFailure] = useState<Error | null>(null);
@@ -70,15 +74,19 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
         ? null
         : {
             // Reads wait for in-flight saves: leaving mid-save must not show stale progress.
-            progressRepository: awaitPendingWrites(progressRepository),
+            progressRepository: notifyAppends(
+              awaitPendingWrites(progressRepository),
+              localChanges.emit,
+            ),
             clock,
             random: Math.random,
             randomBytes: cryptoRandomBytes,
             deviceId,
             settingsRepository,
             sounds,
+            account: { syncStore: progressRepository, localChanges },
           },
-    [progressRepository, settingsRepository, clock, deviceId, sounds],
+    [progressRepository, settingsRepository, clock, deviceId, sounds, localChanges],
   );
   if (services === null) return null;
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;

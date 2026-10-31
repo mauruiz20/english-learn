@@ -15,6 +15,8 @@ const FORBIDDEN = [
   "EXPO_PUBLIC_E2E",
   "playedSounds",
   "settingsWritesSettled",
+  // The fake API / Google endpoints an account spec stores (see e2e-endpoints.ts).
+  "english-learn.e2e.",
 ];
 
 async function* jsFiles(dir) {

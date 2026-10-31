@@ -15,6 +15,7 @@ import { createFakeSettingsRepository } from "@/testing/fake-settings-repository
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { HomeContainer } from "./home-container";
+import { AccountContext, type AccountContextValue } from "@/features/account/account-context";
 import { createCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import { withMotion } from "@/testing/motion";
 import { StyleSheet } from "react-native";
@@ -192,5 +193,67 @@ describe("HomeContainer", () => {
     await fireEvent.press(await screen.findByRole("button", { name: "Mi rutina" }));
 
     expect(mockPush).toHaveBeenCalledWith("/lesson/a2.routine.lesson-001");
+  });
+
+  it("opens the account page", async () => {
+    await renderContainer(createFakeRepository());
+
+    await fireEvent.press(await screen.findByRole("link", { name: "Cuenta" }));
+
+    expect(mockPush).toHaveBeenCalledWith("/cuenta");
+  });
+
+  it("reloads progress after a sync brought progress from another device", async () => {
+    const repository = createFakeRepository();
+    const account = (progressVersion: number): AccountContextValue => ({
+      availability: "available",
+      session: { status: "signed-in", account: { userId: "u1", email: "ana@example.com" } },
+      syncStatus: { kind: "idle" },
+      progressVersion,
+      actions: null,
+    });
+    const tree = (version: number) => (
+      <AccountContext value={account(version)}>
+        <AppServicesProvider
+          services={{
+            progressRepository: repository,
+            clock: fixedClock,
+            random: () => 0,
+            randomBytes: testRandomBytes,
+            deviceId: "test-device",
+            settingsRepository: createFakeSettingsRepository(),
+            sounds: createFakeSoundPlayer(),
+          }}
+        >
+          <SoundPreferenceProvider>
+            <HomeContainer content={content} />
+          </SoundPreferenceProvider>
+        </AppServicesProvider>
+      </AccountContext>
+    );
+    const view = await render(tree(0));
+    expect(await screen.findByText("0 XP")).toBeOnTheScreen();
+
+    // Another device's events arrived through sync.
+    await repository.appendEvents([
+      {
+        id: "0190000a-0000-7000-8000-000000000001",
+        deviceId: "other-device",
+        occurredAt: 1,
+        localDate: TODAY,
+        type: "session_completed",
+        payload: {
+          v: 1,
+          sessionId: "s1",
+          kind: "lesson",
+          lessonId: lesson.id,
+          answerXp: 40,
+          accuracy: 1,
+        },
+      },
+    ]);
+    await view.rerender(tree(1));
+
+    expect(await screen.findByText(/^[1-9]\d* XP$/)).toBeOnTheScreen();
   });
 });

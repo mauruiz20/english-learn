@@ -59,10 +59,10 @@ function client(fetch: FetchLike, accessToken: string | null = "access-1") {
 }
 
 describe("createApiClient", () => {
-  it("signs in with a Google ID token, without a bearer token", async () => {
+  it("signs in with a Google ID token and its nonce, without a bearer token", async () => {
     const { fetch, calls } = fakeFetch({ status: 200, body: { ...COOKIE_TOKENS, user: USER } });
 
-    const signedIn = await client(fetch).signInWithGoogle("google-id-token");
+    const signedIn = await client(fetch).signInWithGoogle("google-id-token", "nonce-1");
 
     expect(signedIn).toEqual({ ...COOKIE_TOKENS, user: USER });
     expect(calls).toEqual([
@@ -75,7 +75,7 @@ describe("createApiClient", () => {
           "Content-Type": "application/json",
           ...COOKIE_HEADERS,
         },
-        body: JSON.stringify({ idToken: "google-id-token" }),
+        body: JSON.stringify({ idToken: "google-id-token", nonce: "nonce-1" }),
       },
     ]);
   });
@@ -166,10 +166,17 @@ describe("createApiClient", () => {
 
     expectTypeOf(cookie.refresh).parameters.toEqualTypeOf<[]>();
     expectTypeOf(cookie.refresh).returns.resolves.toEqualTypeOf<CookieTokensResponse>();
+    // The API requires the OpenID Connect nonce in cookie mode (the web redirect flow).
+    expectTypeOf(cookie.signInWithGoogle).parameters.toEqualTypeOf<
+      [idToken: string, nonce: string]
+    >();
     expectTypeOf(cookie.signInWithGoogle).returns.resolves.toEqualTypeOf<CookieSignInResponse>();
     expectTypeOf(body.refresh).parameters.toEqualTypeOf<[refreshToken: string]>();
     expectTypeOf(body.refresh).returns.resolves.toEqualTypeOf<TokensResponse>();
     expectTypeOf(body.logout).parameters.toEqualTypeOf<[refreshToken: string]>();
+    expectTypeOf(body.signInWithGoogle).parameters.toEqualTypeOf<
+      [idToken: string, nonce?: string]
+    >();
     expectTypeOf(body.signInWithGoogle).returns.resolves.toEqualTypeOf<SignInResponse>();
   });
 

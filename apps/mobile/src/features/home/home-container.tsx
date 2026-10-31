@@ -7,6 +7,7 @@ import { isLessonDone, lessonsForLevel } from "@/features/lesson/model/lesson-ca
 import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
+import { useProgressVersion } from "@/features/account/account-context";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
@@ -53,6 +54,7 @@ export function HomeContainer({
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
   const sound = useSoundPreference();
+  const progressVersion = useProgressVersion();
 
   const load = useCallback(() => {
     let active = true;
@@ -86,7 +88,10 @@ export function HomeContainer({
     return () => {
       active = false;
     };
-  }, [progressRepository, clock, content, completionMemory]);
+    // `progressVersion` is not read, only depended on: a new version (a sync brought progress
+    // from another device) makes a new `load`, which `useFocusEffect` runs again.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [progressRepository, clock, content, completionMemory, progressVersion]);
 
   useFocusEffect(load);
 
@@ -99,6 +104,7 @@ export function HomeContainer({
       onStartPlacement={() => router.push("/placement")}
       onOpenReview={() => router.push("/review")}
       onOpenAbout={() => router.push("/about")}
+      onOpenAccount={() => router.push("/cuenta")}
     />
   );
 }

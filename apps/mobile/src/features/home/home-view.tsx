@@ -6,6 +6,7 @@ import { Doodle } from "@/shared/ui/doodle";
 import { HandCheck } from "@/shared/ui/hand-check";
 import { Highlight } from "@/shared/ui/highlight";
 import { SoundToggleButton } from "@/shared/ui/sound-toggle-button";
+import { AccountLink } from "@/features/account/account-link";
 import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { ScreenContainer } from "@/shared/ui/screen-container";
@@ -53,6 +54,8 @@ type HomeViewProps = {
   onStartPlacement: () => void;
   onOpenReview: () => void;
   onOpenAbout: () => void;
+  /** Shows the "Cuenta" link next to the sound switch. */
+  onOpenAccount?: () => void;
 };
 
 type Ready = Extract<HomeViewState, { status: "ready" }>;
@@ -246,12 +249,19 @@ function ReadyHome({
   );
 }
 
-export function HomeView({ state, soundEnabled, onToggleSound, ...handlers }: HomeViewProps) {
+export function HomeView({
+  state,
+  soundEnabled,
+  onToggleSound,
+  onOpenAccount,
+  ...handlers
+}: HomeViewProps) {
   const { colors } = useTheme();
   const styles = useStyles();
   return (
     <ScreenContainer insetTop>
       <View style={styles.topBar}>
+        {onOpenAccount !== undefined && <AccountLink onPress={onOpenAccount} />}
         <SoundToggleButton enabled={soundEnabled} onToggle={onToggleSound} />
       </View>
       {state.status === "loading" && (
@@ -275,6 +285,8 @@ const useStyles = themedStyles(({ colors }) =>
     topBar: {
       flexDirection: "row",
       justifyContent: "flex-end",
+      alignItems: "center",
+      gap: spacing.sm,
       marginTop: -spacing.md,
       marginBottom: -spacing.lg,
       marginRight: -spacing.sm - 4,

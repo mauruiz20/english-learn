@@ -123,6 +123,20 @@
             "minLength": 1,
             "title": "Idtoken",
             "type": "string"
+          },
+          "nonce": {
+            "anyOf": [
+              {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The nonce the client put in the Google authorization request; the ID token's `nonce` claim must equal it. Required with `X-Token-Transport: cookie` (web).",
+            "title": "Nonce"
           }
         },
         "required": ["idToken"],
@@ -391,7 +405,7 @@
     },
     "/v1/auth/google": {
       "post": {
-        "description": "Exchange a Google ID token (from Google Identity Services) for API tokens.",
+        "description": "Exchange a Google ID token for API tokens.\n\n`nonce` is checked against the token's `nonce` claim when sent; cookie mode (the web\napp's OpenID Connect redirect flow) requires it.",
         "operationId": "sign_in_with_google_v1_auth_google_post",
         "parameters": [
           {

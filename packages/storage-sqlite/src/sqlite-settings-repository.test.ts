@@ -44,4 +44,36 @@ describe("createSqliteSettingsRepository", () => {
     expect(await settings.getLookupHintDismissed()).toBe(true);
     expect(await createSqliteSettingsRepository(db).getLookupHintDismissed()).toBe(true);
   });
+
+  it("has no signed-in account by default", async () => {
+    expect(await settings.getAccount()).toBeNull();
+  });
+
+  it("remembers the signed-in account (id and email only) until it is cleared", async () => {
+    await settings.setAccount({ userId: "user-1", email: "ana@example.com" });
+
+    expect(await createSqliteSettingsRepository(db).getAccount()).toEqual({
+      userId: "user-1",
+      email: "ana@example.com",
+    });
+
+    await settings.clearAccount();
+    expect(await settings.getAccount()).toBeNull();
+  });
+
+  it("treats an unreadable stored account as signed out", async () => {
+    await db.runAsync("INSERT INTO setting (key, value) VALUES ('account', '{oops')", []);
+
+    expect(await settings.getAccount()).toBeNull();
+  });
+
+  it("remembers that the save-progress suggestion was dismissed", async () => {
+    expect(await settings.getSaveProgressSuggestionDismissed()).toBe(false);
+
+    await settings.setSaveProgressSuggestionDismissed();
+
+    expect(await createSqliteSettingsRepository(db).getSaveProgressSuggestionDismissed()).toBe(
+      true,
+    );
+  });
 });

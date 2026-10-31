@@ -17,6 +17,7 @@ import { prepareExercise, type PreparedExercise } from "@/features/lesson/model/
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { useAppServices, useSoundPlayer } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
+import { SaveProgressSuggestion } from "@/features/account/save-progress-suggestion";
 import { savePlacement } from "./application/save-placement";
 import { placementExercise, toPlacementCandidate } from "./model/placement-bank";
 import { PlacementView, type PlacementViewState } from "./placement-view";
@@ -119,6 +120,7 @@ export function PlacementContainer({ content = corpus }: { content?: Corpus }) {
         onSubmit={onSubmit}
         onRetrySave={onRetrySave}
         onGoToLessons={onGoToLessons}
+        resultNote={<SaveProgressSuggestion />}
       />
       {dialog}
     </>

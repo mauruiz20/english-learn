@@ -61,7 +61,7 @@ export const test = base.extend({
  * database is open while its files are removed. (Service workers and caches live in the same
  * shared WebKit website data as OPFS.)
  */
-async function clearOriginData(page: Page) {
+export async function clearOriginData(page: Page) {
   await page.goto("/metadata.json");
   await page.evaluate(async () => {
     const registrations = await navigator.serviceWorker.getRegistrations();

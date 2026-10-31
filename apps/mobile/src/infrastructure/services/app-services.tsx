@@ -2,6 +2,8 @@ import type { Clock, ProgressRepository, Rng, SettingsRepository } from "@englis
 import { createContext, use, type ReactNode } from "react";
 import type { RandomBytes } from "@/features/progress/progress-events";
 import { silentSoundPlayer, type SoundPlayer } from "../sound/sound-player";
+import type { SyncStore } from "../sync/sync-engine";
+import type { ChangeSignal } from "../sync/sync-triggers";
 
 /** Side-effect services features depend on. Injected so tests can pass in-memory fakes. */
 export type AppServices = {
@@ -17,6 +19,17 @@ export type AppServices = {
   readonly settingsRepository: SettingsRepository;
   /** Interaction sounds and haptics. */
   readonly sounds: SoundPlayer;
+  /** The event log as the optional account's sync needs it; absent in tests that do not sync. */
+  readonly account?: AccountStorage;
+};
+
+export type AccountStorage = {
+  readonly syncStore: SyncStore & {
+    resetSyncState(): Promise<void>;
+    clearProgress(): Promise<void>;
+  };
+  /** Emits after progress was saved on this device. */
+  readonly localChanges: ChangeSignal;
 };
 
 const AppServicesContext = createContext<AppServices | null>(null);

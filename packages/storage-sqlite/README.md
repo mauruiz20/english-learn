@@ -26,10 +26,18 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
     `getSyncCursor()` / `setSyncCursor(n)` (last pulled server sequence, 0 at first), and
     `insertRemoteEvents(events)` (idempotent by id, stored as synced, then the cache is rebuilt;
     events this version cannot read are kept for the fold to skip, unorderable ones are dropped).
-    Empty database → `[]`, `EMPTY_STREAK`, `0`, `null`.
+    Empty database → `[]`, `EMPTY_STREAK`, `0`, `null`. `markSynced` takes `null` for a sequence
+    the server did not report.
+  - Account lifecycle: `replaceDeviceId(id)` (the server said the id belongs to another account),
+    `resetSyncState()` (every event unsynced again, cursor 0: the next account receives the whole
+    log; progress unchanged) and `clearProgress()` (deletes every event and the cache, keeps the
+    device id).
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
   `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).
+  `getAccount()` / `setAccount({ userId, email })` / `clearAccount()` remember who is signed in
+  (never a token; an unreadable value reads as signed out), and
+  `getSaveProgressSuggestionDismissed()` the one-time "save your progress" card.
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

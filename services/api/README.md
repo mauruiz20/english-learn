@@ -41,18 +41,25 @@ run `pnpm api-client:generate` from the repository root (CI fails while it is st
 All errors share one shape: `{ "error": { "code": "...", "message": "..." } }`. Every 401 carries
 `WWW-Authenticate: Bearer` (`Bearer error="invalid_token"` for a bad or expired access token).
 
-| Method | Path               | Body               | Success                                                                        | Errors                                                                                                     |
-| ------ | ------------------ | ------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| `POST` | `/v1/auth/google`  | `{ idToken }`      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }` | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
-| `POST` | `/v1/auth/refresh` | `{ refreshToken }` | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 403 `csrf_rejected`, 429                          |
-| `POST` | `/v1/auth/logout`  | `{ refreshToken }` | 204 (also for unknown tokens)                                                  | 403 `csrf_rejected`, 422, 429                                                                              |
+| Method   | Path               | Body                                    | Success                                                                                        | Errors                                                                                                     |
+| -------- | ------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `POST`   | `/v1/auth/google`  | `{ idToken, nonce? }`                   | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }`                 | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
+| `POST`   | `/v1/auth/refresh` | `{ refreshToken }`                      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 403 `csrf_rejected`, 429                          |
+| `POST`   | `/v1/auth/logout`  | `{ refreshToken }`                      | 204 (also for unknown tokens)                                                                  | 403 `csrf_rejected`, 422, 429                                                                              |
+| `GET`    | `/v1/me`           | Bearer                                  | 200 `{ id, email }`                                                                            | 401 `unauthorized`, `invalid_token`, `account_not_found`                                                   |
+| `DELETE` | `/v1/account`      | Bearer                                  | 204: user, devices, events and tokens are deleted                                              | 401 `reauthentication_required`, `account_not_found`, 429                                                  |
+| `GET`    | `/healthz`         |                                         | 200 `{ status: "ok" }` (pings the database)                                                    | 503 `database_unavailable`                                                                                 |
+| `POST`   | `/v1/sync`         | Bearer + `{ deviceId, cursor, events }` | 200 `{ events, cursor, hasMore, accepted, duplicates, conflicts }` ([details](#progress-sync)) | 401, 409 `device_conflict`, 413, 422 `validation_error`, 429                                               |
+
+**Nonce.** `nonce` is the value the client put in its Google authorization request (OpenID
+Connect). When it is sent, the ID token's `nonce` claim must equal it (constant-time comparison),
+else 401 `invalid_google_token`: a token captured from another sign-in cannot be replayed. In
+cookie mode it is **required** (422 `validation_error` without it): the web app signs in with the
+OpenID Connect implicit redirect flow (`response_type=id_token`, random `state` and `nonce` kept
+in `sessionStorage`) and always sends it. Body mode keeps it optional for native clients.
 
 The three `/v1/auth` rows show the default **body** transport. With `X-Token-Transport: cookie`
 the refresh token moves to an HttpOnly cookie instead: see [Token transport](#token-transport).
-| `GET` | `/v1/me` | Bearer | 200 `{ id, email }` | 401 `unauthorized`, `invalid_token`, `account_not_found` |
-| `DELETE` | `/v1/account` | Bearer | 204: user, devices, events and tokens are deleted | 401 `reauthentication_required`, `account_not_found`, 429 |
-| `GET` | `/healthz` | | 200 `{ status: "ok" }` (pings the database) | 503 `database_unavailable` |
-| `POST` | `/v1/sync` | Bearer + `{ deviceId, cursor, events }` | 200 `{ events, cursor, hasMore, accepted, duplicates, conflicts }` ([details](#progress-sync)) | 401, 409 `device_conflict`, 413, 422 `validation_error`, 429 |
 
 Timestamps are ISO 8601 in UTC. Request bodies over `MAX_REQUEST_BODY_BYTES` (1 MiB) get 413.
 Every protected route checks that the account still exists: a deleted user's access token is

@@ -80,6 +80,37 @@ class TestSignIn:
         assert "refreshToken" in response.json()
         assert set_cookie_headers(response) == []
 
+    async def test_requires_a_nonce_in_cookie_mode(self, api: Api) -> None:
+        response = await api.client.post(
+            "/v1/auth/google", json={"idToken": "google-ana"}, headers=COOKIE_HEADERS
+        )
+
+        assert response.status_code == 422
+        assert response.json()["error"]["code"] == "validation_error"
+        assert set_cookie_headers(response) == []
+
+    async def test_rejects_a_nonce_that_does_not_match_the_token(self, api: Api) -> None:
+        response = await api.client.post(
+            "/v1/auth/google",
+            json={"idToken": "google-ana", "nonce": "not-the-nonce"},
+            headers=COOKIE_HEADERS,
+        )
+
+        assert response.status_code == 401
+        assert response.json()["error"]["code"] == "invalid_google_token"
+        assert set_cookie_headers(response) == []
+
+    async def test_body_mode_checks_a_nonce_when_one_is_sent(self, api: Api) -> None:
+        wrong = await api.client.post(
+            "/v1/auth/google", json={"idToken": "google-ana", "nonce": "not-the-nonce"}
+        )
+        right = await api.client.post(
+            "/v1/auth/google", json={"idToken": "google-ana", "nonce": "nonce-google-ana"}
+        )
+
+        assert wrong.status_code == 401
+        assert right.status_code == 200, right.text
+
     async def test_rejects_an_unknown_transport(self, api: Api) -> None:
         response = await api.client.post(
             "/v1/auth/google", json={"idToken": "google-ana"}, headers={"X-Token-Transport": "jar"}
