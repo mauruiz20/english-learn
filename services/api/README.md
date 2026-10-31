@@ -41,15 +41,18 @@ run `pnpm api-client:generate` from the repository root (CI fails while it is st
 All errors share one shape: `{ "error": { "code": "...", "message": "..." } }`. Every 401 carries
 `WWW-Authenticate: Bearer` (`Bearer error="invalid_token"` for a bad or expired access token).
 
-| Method   | Path               | Body                                    | Success                                                                                        | Errors                                                                                                     |
-| -------- | ------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `POST`   | `/v1/auth/google`  | `{ idToken }`                           | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }`                 | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
-| `POST`   | `/v1/auth/refresh` | `{ refreshToken }`                      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 429                                               |
-| `POST`   | `/v1/auth/logout`  | `{ refreshToken }`                      | 204 (also for unknown tokens)                                                                  | 422, 429                                                                                                   |
-| `GET`    | `/v1/me`           | Bearer                                  | 200 `{ id, email }`                                                                            | 401 `unauthorized`, `invalid_token`, `account_not_found`                                                   |
-| `DELETE` | `/v1/account`      | Bearer                                  | 204: user, devices, events and tokens are deleted                                              | 401 `reauthentication_required`, `account_not_found`, 429                                                  |
-| `GET`    | `/healthz`         |                                         | 200 `{ status: "ok" }` (pings the database)                                                    | 503 `database_unavailable`                                                                                 |
-| `POST`   | `/v1/sync`         | Bearer + `{ deviceId, cursor, events }` | 200 `{ events, cursor, hasMore, accepted, duplicates, conflicts }` ([details](#progress-sync)) | 401, 409 `device_conflict`, 413, 422 `validation_error`, 429                                               |
+| Method | Path               | Body               | Success                                                                        | Errors                                                                                                     |
+| ------ | ------------------ | ------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `POST` | `/v1/auth/google`  | `{ idToken }`      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }` | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
+| `POST` | `/v1/auth/refresh` | `{ refreshToken }` | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 403 `csrf_rejected`, 429                          |
+| `POST` | `/v1/auth/logout`  | `{ refreshToken }` | 204 (also for unknown tokens)                                                  | 403 `csrf_rejected`, 422, 429                                                                              |
+
+The three `/v1/auth` rows show the default **body** transport. With `X-Token-Transport: cookie`
+the refresh token moves to an HttpOnly cookie instead: see [Token transport](#token-transport).
+| `GET` | `/v1/me` | Bearer | 200 `{ id, email }` | 401 `unauthorized`, `invalid_token`, `account_not_found` |
+| `DELETE` | `/v1/account` | Bearer | 204: user, devices, events and tokens are deleted | 401 `reauthentication_required`, `account_not_found`, 429 |
+| `GET` | `/healthz` | | 200 `{ status: "ok" }` (pings the database) | 503 `database_unavailable` |
+| `POST` | `/v1/sync` | Bearer + `{ deviceId, cursor, events }` | 200 `{ events, cursor, hasMore, accepted, duplicates, conflicts }` ([details](#progress-sync)) | 401, 409 `device_conflict`, 413, 422 `validation_error`, 429 |
 
 Timestamps are ISO 8601 in UTC. Request bodies over `MAX_REQUEST_BODY_BYTES` (1 MiB) get 413.
 Every protected route checks that the account still exists: a deleted user's access token is
@@ -152,23 +155,60 @@ it belongs to the family, and the family row is what refresh, logout and reuse r
   client signs in with Google again and retries. `iat` is not used for this because every refresh
   renews it, which would let a stolen refresh token delete the account.
 
+### Token transport
+
+The client chooses per request how the refresh token travels, with the `X-Token-Transport`
+header on `/v1/auth/google`, `/v1/auth/refresh` and `/v1/auth/logout`. Any other value is a 422.
+
+| Mode             | Who                     | Refresh token                                | Response JSON                                             |
+| ---------------- | ----------------------- | -------------------------------------------- | --------------------------------------------------------- |
+| `body` (default) | native clients (future) | `refreshToken` in the request and response   | `TokensResponse` / `SignInResponse` (with `refreshToken`) |
+| `cookie`         | the web app, always     | HttpOnly cookie `el_rt`, never in JavaScript | `CookieTokensResponse` / `CookieSignInResponse` (without) |
+
+`body` is the default when the header is absent, so the original JSON contract keeps working. The
+OpenAPI schema declares both response shapes (`anyOf`); the access token is the same in both and
+the web client keeps it in memory only.
+
+**Cookie mode.**
+
+- `POST /v1/auth/google` and a successful `POST /v1/auth/refresh` answer with
+  `Set-Cookie: el_rt=<token>; HttpOnly; Secure; SameSite=Strict; Path=/v1/auth; Max-Age=<n>`, where
+  `n` is the seconds until that token's `expires_at` (idle timeout or absolute session end,
+  whichever is first). No `Domain` attribute: the cookie is host-only, sent back to the API host
+  only, and only on `/v1/auth/*`.
+- `POST /v1/auth/refresh` and `POST /v1/auth/logout` read the token from the cookie; no body is
+  needed and a body is ignored. Logout always clears the cookie (same attributes, `Max-Age=0`).
+  A refresh that ends the session (401 `invalid_refresh_token`, including a missing cookie, or
+  `refresh_token_reused`) also clears it.
+- **Retry grace with cookies.** If a refresh response with `Set-Cookie` is lost, the browser still
+  holds the old cookie and sends it again; within `REFRESH_RETRY_GRACE` that is a retry like in
+  body mode and the response sets the new cookie.
+- **CSRF.** `SameSite=Strict` is the first layer: the browser never attaches the cookie to a
+  request started from another site. As defense in depth, refresh and logout in cookie mode
+  also require `X-Requested-With: english-learn` (a non-safelisted header, so a cross-origin
+  request needs a CORS preflight that only allowed origins pass) and an `Origin` header that is
+  exactly one of `CORS_ORIGINS`. Otherwise 403 `csrf_rejected`, and nothing is read or cleared.
+- **Same site.** The web app (`https://english.maumar.com.ar`) and the API
+  (`https://english-api.maumar.com.ar`) share the registrable domain `maumar.com.ar`, so the cookie
+  is first-party: Safari's ITP and third-party cookie blocking do not apply. Serving the web app
+  from another site (for example `*.pages.dev`) would break cookie mode there.
+
 ### Client requirements
 
-- **Serialize refreshes** across tabs with the Web Locks API, and re-read the stored token inside
-  the lock (another tab may have refreshed already):
+- **Serialize refreshes** across tabs with the Web Locks API. In cookie mode the browser holds
+  the token, so the lock only keeps two tabs from rotating the same cookie at once:
 
   ```ts
-  await navigator.locks.request("refresh", async () => {
-    const current = await storage.getRefreshToken();
-    const tokens = await api.refresh(current);
-    await storage.setRefreshToken(tokens.refreshToken); // persist before using it
-    return tokens;
-  });
+  await navigator.locks.request("refresh", () => api.refresh()); // cookie mode: no argument
   ```
 
-- **Persist the new refresh token before using** the new access token. If the app dies after the
-  server rotated but before the new token was saved, the next start presents the old one; within
-  the grace window that is a retry, after it the session is revoked.
+  In body mode, re-read the stored token inside the lock (another tab may have refreshed already)
+  and **persist the new refresh token before using** the new access token. If the app dies after
+  the server rotated but before the new token was saved, the next start presents the old one;
+  within the grace window that is a retry, after it the session is revoked.
+
+- In cookie mode send `credentials: "include"`, `X-Token-Transport: cookie` and
+  `X-Requested-With: english-learn` on the auth calls (`@english-learn/api-client` does).
 - On 401 `reauthentication_required`, run Google sign-in again and repeat the request.
 - On 429, wait `Retry-After` seconds. On 503 `google_busy` or `google_unavailable`, retry later.
 
@@ -181,19 +221,14 @@ remove the old key once its tokens expired (15 min). Moving from simple mode, ke
 under `"default"`. Every secret needs at least 32 bytes and 16 distinct byte values; the app
 refuses to start otherwise.
 
-### Why JSON and not cookies (open decision)
+### Why an HttpOnly cookie on the web
 
-The web app (`*.pages.dev`) and the API (`*.onrender.com`) are on different sites. An `HttpOnly`
-refresh cookie would be a third-party cookie, which Safari blocks (and Chrome is restricting), so
-sign-in would break on iOS. Tokens are returned in JSON and sent as `Authorization: Bearer`. The
-tradeoff: tokens are reachable by JavaScript, so XSS on the web app could steal them; short access
-tokens, rotation, reuse detection, the session lifetimes and recent-auth for deletion limit the
-damage.
-
-**Pending owner decision:** serving the web app and the API from one registrable domain (for
-example `app.example.com` and `api.example.com`) would make the refresh cookie first-party, so it
-could be `HttpOnly; Secure; SameSite=Lax` and out of JavaScript's reach. That needs a custom
-domain for both; cookies are not implemented until it is decided.
+Decided after a security review: XSS on the web app must not be able to read the refresh token.
+In cookie mode it lives in an `HttpOnly` cookie, and the access token (15 min) lives in memory
+only, so an XSS can act while the page is open but cannot take a long-lived credential away.
+Short access tokens, rotation, reuse detection, the session lifetimes and recent-auth for
+deletion still limit the damage. This works because both hosts are on one registrable domain
+(see [Token transport](#token-transport)); native clients keep the body transport.
 
 ## Abuse protection
 
@@ -212,10 +247,18 @@ the API answers 429 `rate_limited` with `Retry-After`. Limits live in code (`Rat
 - **Single instance.** Buckets are kept in this process's memory (bounded to 10 000 keys per
   endpoint). With several instances each one keeps its own buckets, so the effective limit
   multiplies; running more than one instance needs a shared store (for example Redis).
-- **Client IP** is `request.client`, which uvicorn rewrites from `X-Forwarded-For` only when the
-  connecting peer is listed in `FORWARDED_ALLOW_IPS`, taking the rightmost address that is not a
-  trusted proxy. The limiter and the server therefore agree on the client's address; a client
-  cannot pick its own by sending the header.
+- **Client IP** comes from one resolver (`shared/client_ip.py`), chosen by `CLIENT_IP_SOURCE`:
+  - `socket` (default): `request.client`, which uvicorn rewrites from `X-Forwarded-For` only when
+    the connecting peer is listed in `FORWARDED_ALLOW_IPS`, taking the rightmost address that is
+    not a trusted proxy. The limiter and the server therefore agree on the client's address; a
+    client cannot pick its own by sending the header.
+  - `cf-connecting-ip` (behind a Cloudflare Tunnel): `CF-Connecting-IP` is used only when the TCP
+    peer is inside `TRUSTED_PROXY_CIDRS` and the header holds exactly one valid IPv4 or IPv6
+    address (normalized, so `2001:DB8::0:1` and `2001:db8::1` share a bucket). From any other
+    peer, or with a missing, repeated or malformed header, the peer's address is used. A client
+    that reaches uvicorn directly therefore cannot choose its bucket. Keep `FORWARDED_ALLOW_IPS`
+    at its default in this mode: if uvicorn trusted `cloudflared`, it would replace the peer with
+    the `X-Forwarded-For` address before the resolver could check it.
 - **Google verification** runs at most 8 at a time (each one holds a worker thread). A sign-in
   waits up to 2 s for a slot, then gets 503 `google_busy`. A whole verification is bounded to 8 s.
 
@@ -266,37 +309,70 @@ migrations/          Alembic (async engine)
   event can only point at a device of its own user (deleting the device or the user cascades).
 - **No secrets in logs.** Log lines identify users by id only; the engine runs with
   `hide_parameters=True`, so a failing statement never logs its bound values (emails, hashes).
+  The request log never records headers, so `Cookie` and `Set-Cookie` values stay out of it.
 
 ## Configuration
 
-| Variable                  | Default                                                     | Notes                                                                 |
-| ------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------- |
-| `ENV`                     | `development`                                               | `development` · `test` · `production` (see below)                     |
-| `DATABASE_URL`            | required                                                    | `postgres://` URLs are converted to asyncpg                           |
-| `GOOGLE_CLIENT_IDS`       | the web client id                                           | Comma-separated; checked against `aud` and `azp`. Public values       |
-| `JWT_SECRET`              | required unless `JWT_KEYS`                                  | Secret, ≥ 32 bytes and ≥ 16 distinct bytes, only via the environment  |
-| `JWT_KEYS`                | unset                                                       | JSON `{ kid: secret }` for key rotation, instead of `JWT_SECRET`      |
-| `JWT_ACTIVE_KID`          | unset                                                       | Required with `JWT_KEYS`: the key that signs                          |
-| `ACCESS_TOKEN_TTL`        | `900`                                                       | Durations: seconds or ISO 8601 (`PT15M`)                              |
-| `REFRESH_TOKEN_TTL`       | `P14D`                                                      | Idle timeout, slid by every refresh                                   |
-| `SESSION_MAX_LIFETIME`    | `P60D`                                                      | Absolute, from the sign-in                                            |
-| `REFRESH_RETRY_GRACE`     | `45`                                                        | Retry window after a rotation; `0` disables it                        |
-| `REAUTHENTICATION_WINDOW` | `300`                                                       | Max age of the sign-in for `DELETE /v1/account`                       |
-| `CORS_ORIGINS`            | `https://english-learn-iwl.pages.dev,http://localhost:8081` | Comma-separated. Required (https, no localhost, no `*`) in production |
-| `MAX_REQUEST_BODY_BYTES`  | `1048576`                                                   |                                                                       |
-| `LOG_LEVEL`               | `INFO`                                                      | JSON lines; no tokens or emails are logged                            |
-| `FORWARDED_ALLOW_IPS`     | `127.0.0.1` (image)                                         | Read by uvicorn: proxies whose `X-Forwarded-*` headers are trusted    |
+| Variable                  | Default                                               | Notes                                                                                                                             |
+| ------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `ENV`                     | `development`                                         | `development` · `test` · `production` (see below)                                                                                 |
+| `DATABASE_URL`            | required                                              | `postgres://` URLs are converted to asyncpg; or `DATABASE_URL_FILE` (below)                                                       |
+| `GOOGLE_CLIENT_IDS`       | the web client id                                     | Comma-separated; checked against `aud` and `azp`. Public values                                                                   |
+| `JWT_SECRET`              | required unless `JWT_KEYS`                            | Secret, ≥ 32 bytes and ≥ 16 distinct bytes; or `JWT_SECRET_FILE` (below)                                                          |
+| `JWT_KEYS`                | unset                                                 | JSON `{ kid: secret }` for key rotation, instead of `JWT_SECRET`; or `JWT_KEYS_FILE`                                              |
+| `JWT_ACTIVE_KID`          | unset                                                 | Required with `JWT_KEYS`: the key that signs                                                                                      |
+| `ACCESS_TOKEN_TTL`        | `900`                                                 | Durations: seconds or ISO 8601 (`PT15M`)                                                                                          |
+| `REFRESH_TOKEN_TTL`       | `P14D`                                                | Idle timeout, slid by every refresh                                                                                               |
+| `SESSION_MAX_LIFETIME`    | `P60D`                                                | Absolute, from the sign-in                                                                                                        |
+| `REFRESH_RETRY_GRACE`     | `45`                                                  | Retry window after a rotation; `0` disables it                                                                                    |
+| `REAUTHENTICATION_WINDOW` | `300`                                                 | Max age of the sign-in for `DELETE /v1/account`                                                                                   |
+| `CORS_ORIGINS`            | `https://english.maumar.com.ar,http://localhost:8081` | Exact origins, comma-separated, never `*`. Production: set explicitly (`https://english.maumar.com.ar`), https only, no localhost |
+| `REFRESH_COOKIE_SECURE`   | `true`                                                | `Secure` on the refresh cookie. Must stay `true` in production                                                                    |
+| `MAX_REQUEST_BODY_BYTES`  | `1048576`                                             |                                                                                                                                   |
+| `LOG_LEVEL`               | `INFO`                                                | JSON lines; no tokens or emails are logged                                                                                        |
+| `FORWARDED_ALLOW_IPS`     | `127.0.0.1` (image)                                   | Read by uvicorn: proxies whose `X-Forwarded-*` headers are trusted                                                                |
+| `CLIENT_IP_SOURCE`        | `socket`                                              | `socket` (TCP peer) · `cf-connecting-ip` (Cloudflare's header from a trusted peer); see [Abuse protection](#abuse-protection)     |
+| `TRUSTED_PROXY_CIDRS`     | empty                                                 | Comma-separated CIDRs (or single IPs) of the proxy, e.g. the compose network subnet. Required with `cf-connecting-ip`             |
+
+**Secrets from files.** `DATABASE_URL`, `JWT_SECRET` and `JWT_KEYS` can also be read from a
+file named by `<NAME>_FILE` (Docker secrets), for the app and for `alembic`. The file's content,
+without trailing newlines, is the value (`JWT_KEYS_FILE` holds the JSON object). Setting both
+`<NAME>` and `<NAME>_FILE`, or pointing at a missing, unreadable, non-UTF-8 or empty file, stops
+the startup with a message that names the variable and the path but never the content; settings
+validation errors never echo the value either.
+
+```yaml
+services:
+  api:
+    image: english-learn-api
+    environment:
+      ENV: production
+      CORS_ORIGINS: https://english.maumar.com.ar
+      DATABASE_URL_FILE: /run/secrets/database_url
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+    secrets: [database_url, jwt_secret]
+secrets:
+  database_url:
+    file: ./secrets/database_url # postgresql://user:password@db:5432/app
+  jwt_secret:
+    file: ./secrets/jwt_secret # e.g. `openssl rand -base64 48`
+```
 
 **`ENV=production`** refuses to start without an explicit `CORS_ORIGINS`, accepts only public
-`https` origins there, and does not serve `/docs`, `/redoc` or `/openapi.json` (use
+`https` origins there, refuses `REFRESH_COOKIE_SECURE=false`, and does not serve `/docs`, `/redoc` or `/openapi.json` (use
 `python -m english_learn_api.export_openapi` to get the schema). `development` and `test` keep the
 localhost CORS default and the interactive docs.
 
 **CORS and cross-origin isolation.** The web app is served with `COOP: same-origin` and
 `COEP: require-corp` (expo-sqlite needs `SharedArrayBuffer`). COEP governs _embedded resources_;
 a `fetch` to another origin in CORS mode is allowed as long as the API answers with
-`Access-Control-Allow-Origin` for that origin, which `CORS_ORIGINS` controls. No credentials mode
-is needed because tokens travel in the `Authorization` header.
+`Access-Control-Allow-Origin` for that origin, which `CORS_ORIGINS` controls. COEP does not
+block a credentialed CORS `fetch` either. Because the refresh cookie needs `credentials:
+"include"`, CORS runs with `Access-Control-Allow-Credentials: true`, so the allowed origins are an
+exact list (`*` is refused in every environment) and the response names the requesting origin.
+Allowed request headers: `Authorization`, `Content-Type`, `X-Token-Transport`,
+`X-Requested-With`; no response header is exposed; preflights are cached for 600 s. A preflight
+from an origin not in the list gets 400 without `Access-Control-Allow-Origin`.
 
 ## Testing
 
@@ -314,7 +390,22 @@ is needed because tokens travel in the `Authorization` header.
 - CI runs the same suite on GitHub's Ubuntu runners, whose Docker daemon testcontainers uses
   directly (no `services:` container to keep in sync).
 
-## Deploying (Render, later)
+## Deploying
+
+**Planned target.** The API will be served as `https://english-api.maumar.com.ar` (a single-level
+subdomain, covered by Cloudflare Universal SSL) from the owner's Raspberry Pi behind a Cloudflare
+Tunnel. Set `ENV=production`, `CORS_ORIGINS=https://english.maumar.com.ar` and keep
+`REFRESH_COOKIE_SECURE=true`. Behind the tunnel every request reaches uvicorn from the local
+`cloudflared` process, and the real client address arrives in Cloudflare's `CF-Connecting-IP`
+header. Set `CLIENT_IP_SOURCE=cf-connecting-ip` and `TRUSTED_PROXY_CIDRS` to the Docker network
+that `cloudflared` connects from (give the compose network a fixed `subnet` so the value is
+stable); without them every client shares one rate-limit bucket per endpoint. Leave
+`FORWARDED_ALLOW_IPS` at its default.
+
+The notes below describe the earlier Render plan; the image and the forwarded-header rules apply
+to any reverse proxy.
+
+### Render
 
 Build from `services/api/Dockerfile` (slim, non-root, listens on `$PORT`, base images pinned by
 digest; the file says how to bump them). Run `alembic upgrade head` as the pre-deploy command and

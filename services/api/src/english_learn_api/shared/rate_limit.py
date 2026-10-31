@@ -4,9 +4,8 @@ State lives in this process's memory, which is right for the single instance we 
 than one instance each keeps its own buckets (the effective limit multiplies by the instance
 count); a shared store such as Redis would be needed then.
 
-Client IPs come from `request.client`, which uvicorn rewrites from `X-Forwarded-For` only when
-the connecting peer is in `FORWARDED_ALLOW_IPS`, taking the rightmost address that is not a
-trusted proxy. The limiter therefore sees exactly the address the server trusts.
+Per-IP limits key on the address from the app's single `ClientIpResolver` (see `client_ip`):
+the TCP peer, or Cloudflare's `CF-Connecting-IP` from a trusted proxy.
 """
 
 import math
@@ -18,6 +17,7 @@ from datetime import timedelta
 
 from fastapi import Request
 
+from english_learn_api.shared.client_ip import ClientIpResolver
 from english_learn_api.shared.errors import ApiError
 
 DEFAULT_MAX_KEYS = 10_000
@@ -107,11 +107,9 @@ def enforce(limiter: TokenBucketLimiter, key: str) -> None:
         )
 
 
-def client_ip(request: Request) -> str:
-    return request.client.host if request.client else "unknown"
-
-
-def limit_by_client_ip(limiter: TokenBucketLimiter) -> Callable[[Request], Awaitable[None]]:
+def limit_by_client_ip(
+    limiter: TokenBucketLimiter, client_ip: ClientIpResolver
+) -> Callable[[Request], Awaitable[None]]:
     async def dependency(request: Request) -> None:
         enforce(limiter, client_ip(request))
 
