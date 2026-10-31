@@ -105,12 +105,10 @@ const useStyles = themedStyles(({ colors }) =>
   StyleSheet.create({
     intro: { flexDirection: "row", alignItems: "center", gap: spacing.md },
     introText: { flexShrink: 1, gap: 2 },
-    grid: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
+    grid: { flexDirection: "row", flexWrap: "wrap", columnGap: "3%", rowGap: spacing.sm },
     slot: {
-      // Three per row on a phone, more on wider columns.
-      flexBasis: "31%",
-      flexGrow: 1,
-      maxWidth: 180,
+      // Three per row, in the reading column.
+      width: "31.33%",
       minHeight: 150,
       alignItems: "center",
       gap: spacing.xs,
