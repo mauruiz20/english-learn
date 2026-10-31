@@ -17,7 +17,7 @@ import type { RandomBytes } from "@/features/progress/progress-events";
 export const GOOGLE_CLIENT_ID =
   "78200832989-odkefhj0s4vla7h5p83gevs2440mctev.apps.googleusercontent.com";
 
-const AUTHORIZATION_ENDPOINT = "https://accounts.google.com/o/oauth2/v2/auth";
+export const GOOGLE_AUTHORIZATION_ENDPOINT = "https://accounts.google.com/o/oauth2/v2/auth";
 export const CALLBACK_PATH = "/auth/callback";
 
 /** What happens after Google sends the learner back. */
@@ -40,6 +40,8 @@ export function googleAuthorizationUrl(request: {
   redirectUri: string;
   state: string;
   nonce: string;
+  /** Defaults to Google's; e2e builds pass a fake one. */
+  endpoint?: string;
 }): string {
   const params = new URLSearchParams({
     client_id: request.clientId,
@@ -50,7 +52,7 @@ export function googleAuthorizationUrl(request: {
     state: request.state,
     prompt: "select_account",
   });
-  return `${AUTHORIZATION_ENDPOINT}?${params.toString()}`;
+  return `${request.endpoint ?? GOOGLE_AUTHORIZATION_ENDPOINT}?${params.toString()}`;
 }
 
 const BASE64URL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";

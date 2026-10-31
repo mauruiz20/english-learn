@@ -52,6 +52,7 @@ export function createAccountController({
   now = Date.now,
   redirect,
   onProgressChanged,
+  authorizationEndpoint,
 }: {
   /** This page's origin; Google sends the learner back to `<origin>/auth/callback`. */
   origin: string;
@@ -66,6 +67,8 @@ export function createAccountController({
   /** Full-page navigation (to Google). */
   redirect: (url: string) => void;
   onProgressChanged: () => void;
+  /** Google's authorization endpoint by default; a fake one in e2e builds. */
+  authorizationEndpoint?: string;
 }) {
   function startSignIn(returnTo: string, intent: AuthIntent = "sign-in"): void {
     const state = randomToken(randomBytes);
@@ -86,6 +89,7 @@ export function createAccountController({
         redirectUri: `${origin}${CALLBACK_PATH}`,
         state,
         nonce,
+        ...(authorizationEndpoint === undefined ? {} : { endpoint: authorizationEndpoint }),
       }),
     );
   }

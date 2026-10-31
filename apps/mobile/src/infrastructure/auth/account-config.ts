@@ -3,6 +3,9 @@
  * so sign-in only works from a page on the same site as the API (`maumar.com.ar`). Other hosts of
  * the web app (the old `*.pages.dev` address) show a note instead of a sign-in button.
  */
+import type * as E2eEndpoints from "./e2e-endpoints";
+import { GOOGLE_AUTHORIZATION_ENDPOINT } from "./oidc";
+
 export const APP_WEB_ORIGIN = "https://english.maumar.com.ar";
 export const PRODUCTION_API_BASE_URL = "https://english-api.maumar.com.ar";
 export const DEVELOPMENT_API_BASE_URL = "http://localhost:8000";
@@ -34,7 +37,20 @@ export function resolveApiBaseUrl(configured: string | undefined, development: b
   return development ? DEVELOPMENT_API_BASE_URL : PRODUCTION_API_BASE_URL;
 }
 
-/** The API this build talks to (`EXPO_PUBLIC_*` is inlined at build time). */
-export function apiBaseUrl(): string {
-  return resolveApiBaseUrl(process.env.EXPO_PUBLIC_API_BASE_URL, __DEV__);
+/**
+ * The API this build talks to (`EXPO_PUBLIC_*` is inlined at build time) and Google's
+ * authorization endpoint. E2E builds let a spec substitute fakes for both; production builds drop
+ * that branch and its module.
+ */
+export function accountEndpoints(): { apiBaseUrl: string; googleAuthUrl: string } {
+  const endpoints = {
+    apiBaseUrl: resolveApiBaseUrl(process.env.EXPO_PUBLIC_API_BASE_URL, __DEV__),
+    googleAuthUrl: GOOGLE_AUTHORIZATION_ENDPOINT,
+  };
+  if (process.env.EXPO_PUBLIC_E2E === "1") {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { e2eEndpoints } = require("./e2e-endpoints") as typeof E2eEndpoints;
+    return { ...endpoints, ...e2eEndpoints() };
+  }
+  return endpoints;
 }

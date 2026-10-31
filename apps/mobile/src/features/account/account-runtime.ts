@@ -1,7 +1,7 @@
 import { createApiClient } from "@english-learn/api-client";
 import { uuidv7, type Clock, type SettingsRepository } from "@english-learn/domain";
 import type { RandomBytes } from "@/features/progress/progress-events";
-import { apiBaseUrl } from "@/infrastructure/auth/account-config";
+import { accountEndpoints } from "@/infrastructure/auth/account-config";
 import { createAuthSession } from "@/infrastructure/auth/auth-session";
 import { CALLBACK_PATH, createPendingSignInStore } from "@/infrastructure/auth/oidc";
 import type { AccountStorage } from "@/infrastructure/services/app-services";
@@ -28,8 +28,9 @@ export function createAccountRuntime({
   clock: Clock;
 }) {
   const progressChanged = createChangeSignal();
+  const endpoints = accountEndpoints();
   const api = createApiClient({
-    baseUrl: apiBaseUrl(),
+    baseUrl: endpoints.apiBaseUrl,
     getAccessToken: () => session.accessToken(),
   });
   const session = createAuthSession({ api, settings });
@@ -57,6 +58,7 @@ export function createAccountRuntime({
     randomBytes,
     redirect: (url) => window.location.assign(url),
     onProgressChanged: progressChanged.emit,
+    authorizationEndpoint: endpoints.googleAuthUrl,
   });
 
   /** Restores the session and runs the sync triggers while signed in. Returns a stop function. */
