@@ -133,6 +133,9 @@ token (reuse detection revokes the whole family) out. Progress sync will exchang
 event log; the server stores events opaquely and never folds them. Its CI job runs Ruff, strict
 mypy and pytest against a real PostgreSQL 18 (testcontainers).
 
+It is deployed with Docker Compose to a Raspberry Pi 5 behind a Cloudflare Tunnel, with nightly
+backups and a monthly restore drill: see [docs/deploy.md](docs/deploy.md).
+
 ## Content and licensing
 
 - **Original content** is written for this project. No copyrighted word lists or textbook
