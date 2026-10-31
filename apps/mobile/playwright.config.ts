@@ -22,7 +22,7 @@ export default defineConfig({
     { name: "webkit", use: { ...devices["Desktop Safari"] }, workers: 1 },
   ],
   webServer: {
-    command: `node scripts/serve-web.mjs --port ${PORT} --dir dist-e2e --e2e-hooks`,
+    command: `node scripts/serve-web.mjs --port ${PORT} --dir dist-e2e`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
   },

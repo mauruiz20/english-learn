@@ -67,19 +67,24 @@ describe("serve-web", () => {
     assert.equal(sw.headers.get("cross-origin-embedder-policy"), "require-corp");
   });
 
-  it("simulates a new deploy of sw.js for one browser profile (e2e hook, opt-in)", async () => {
-    const hooked = createStaticServer({ dir, e2eHooks: true });
+  it("simulates a new deploy of sw.js for every request when the test bumps the version", async () => {
+    // Every request, cookies or not: WebKit's soft update after a navigation sends none.
+    let version = null;
+    const hooked = createStaticServer({ dir, serviceWorkerVersion: () => version });
     await new Promise((resolve) => hooked.listen(0, resolve));
     try {
       const url = `http://localhost:${hooked.address().port}/sw.js`;
       const plain = await (await fetch(url)).text();
-      const bumped = await (await fetch(url, { headers: { Cookie: "e2e-sw-version=2" } })).text();
+      version = "2";
+      const bumped = await (await fetch(url)).text();
       assert.equal(plain, "self.addEventListener('fetch', () => {});");
       assert.equal(bumped, `${plain}\n// e2e-sw-version 2\n`);
     } finally {
       await new Promise((resolve) => hooked.close(resolve));
     }
-    // Without the opt-in, the cookie changes nothing.
+  });
+
+  it("serves sw.js unchanged by default, whatever the request carries", async () => {
     const response = await fetch(origin + "/sw.js", { headers: { Cookie: "e2e-sw-version=2" } });
     assert.equal(await response.text(), "self.addEventListener('fetch', () => {});");
   });
