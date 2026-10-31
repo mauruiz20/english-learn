@@ -13,6 +13,7 @@ import { answerIsEnglish } from "@/features/lesson/model/lookup-policy";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { Button } from "@/shared/ui/button";
+import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { useTheme } from "@/shared/ui/use-theme";
@@ -118,14 +119,16 @@ export function ReviewView({
                 ),
               })}
         >
-          <ExerciseBody
-            key={state.prepared.exercise.id}
-            prepared={state.prepared}
-            passage={undefined}
-            disabled={state.feedback !== null}
-            reveal={state.feedback !== null}
-            onSubmit={onSubmit}
-          />
+          <PageTurn pageKey={state.prepared.exercise.id}>
+            <ExerciseBody
+              key={state.prepared.exercise.id}
+              prepared={state.prepared}
+              passage={undefined}
+              disabled={state.feedback !== null}
+              reveal={state.feedback !== null}
+              onSubmit={onSubmit}
+            />
+          </PageTurn>
         </ScreenContainer>
       );
   }

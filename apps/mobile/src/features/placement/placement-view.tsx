@@ -8,6 +8,7 @@ import { levelHighlighter } from "@/features/topics/topic-colors";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { ProgressLine } from "@/shared/ui/progress-line";
+import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
@@ -117,14 +118,16 @@ export function PlacementView({
             </View>
           }
         >
-          <ExerciseBody
-            key={state.prepared.exercise.id}
-            prepared={state.prepared}
-            passage={undefined}
-            disabled={false}
-            submitLabel="Siguiente"
-            onSubmit={onSubmit}
-          />
+          <PageTurn pageKey={state.prepared.exercise.id}>
+            <ExerciseBody
+              key={state.prepared.exercise.id}
+              prepared={state.prepared}
+              passage={undefined}
+              disabled={false}
+              submitLabel="Siguiente"
+              onSubmit={onSubmit}
+            />
+          </PageTurn>
         </ScreenContainer>
       );
     case "saving":

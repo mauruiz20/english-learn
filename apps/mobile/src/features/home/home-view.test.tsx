@@ -175,7 +175,8 @@ describe("HomeView completion check", () => {
   async function drawnWidth(id: string) {
     const check = screen.getByTestId(`check-${id}`, { includeHiddenElements: true });
     await fireEvent(check, "layout", { nativeEvent: { layout: { width: 22, height: 18 } } });
-    const clip = screen.getByTestId(`check-${id}`, { includeHiddenElements: true }).children[0] as unknown;
+    const clip = screen.getByTestId(`check-${id}`, { includeHiddenElements: true })
+      .children[0] as unknown;
     return StyleSheet.flatten((clip as { props: { style: unknown } }).props.style as never)?.width;
   }
 
