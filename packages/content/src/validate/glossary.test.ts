@@ -221,6 +221,20 @@ describe("validateGlossaryCoverage", () => {
     ]);
   });
 
+  it("reports an uncovered word once per answer pattern, not once per expansion", () => {
+    const exercise = fx.translateWrite({
+      accepted: ["{Although|Though} he was tired, he saw it."],
+    });
+    const errs = validateGlossaryCoverage([file({ exercises: [exercise] }), ...fx.glossaryFiles()]);
+    expect(errs.filter((e) => e.message === 'word "saw" has no glossary entry')).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "exercises[0].accepted[0]",
+        message: 'word "saw" has no glossary entry',
+      },
+    ]);
+  });
+
   it("counts words inside a matched phrase as covered", () => {
     const glossary = [
       ...fx.glossaryFiles(),

@@ -208,11 +208,12 @@ export interface UncoveredWord extends GlossaryText {
 export function findUncoveredWords(files: readonly LoadedFile[]): UncoveredWord[] {
   const index = glossaryIndex(files);
   const out: UncoveredWord[] = [];
+  // Once per word and place: the sentences of one answer pattern share their path.
+  const seen = new Set<string>();
   for (const text of glossaryTexts(files)) {
-    const seen = new Set<string>();
     for (const segment of annotateText(text.text, index)) {
       if (segment.kind !== "word" || segment.entryId !== null) continue;
-      const key = glossaryKey(segment.text);
+      const key = `${text.file}\u0000${text.path}\u0000${glossaryKey(segment.text)}`;
       if (seen.has(key)) continue;
       seen.add(key);
       out.push({ ...text, word: segment.text });
