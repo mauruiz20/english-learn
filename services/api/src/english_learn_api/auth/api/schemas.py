@@ -26,6 +26,17 @@ class CamelResponse(BaseModel):
 
 class GoogleSignInRequest(CamelRequest):
     id_token: Annotated[str, Field(alias="idToken", min_length=1, max_length=4096)]
+    nonce: Annotated[
+        str | None,
+        Field(
+            min_length=1,
+            max_length=256,
+            description=(
+                "The nonce the client put in the Google authorization request; the ID token's "
+                "`nonce` claim must equal it. Required with `X-Token-Transport: cookie` (web)."
+            ),
+        ),
+    ] = None
 
 
 class RefreshTokenRequest(CamelRequest):

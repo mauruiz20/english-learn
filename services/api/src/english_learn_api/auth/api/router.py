@@ -96,8 +96,18 @@ def build_auth_router(
         response: Response,
         transport: TokenTransportHeader = TokenTransport.BODY,
     ) -> SignInResponse | CookieSignInResponse:
-        """Exchange a Google ID token (from Google Identity Services) for API tokens."""
-        signed_in = await sign_in.execute(body.id_token)
+        """Exchange a Google ID token for API tokens.
+
+        `nonce` is checked against the token's `nonce` claim when sent; cookie mode (the web
+        app's OpenID Connect redirect flow) requires it.
+        """
+        if transport is TokenTransport.COOKIE and body.nonce is None:
+            raise ApiError(
+                status.HTTP_422_UNPROCESSABLE_CONTENT,
+                "validation_error",
+                "body.nonce: Field required with X-Token-Transport: cookie",
+            )
+        signed_in = await sign_in.execute(body.id_token, nonce=body.nonce)
         if transport is TokenTransport.BODY:
             return SignInResponse.of_sign_in(signed_in)
         set_refresh_cookie(response, signed_in.tokens)

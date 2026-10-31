@@ -40,7 +40,9 @@ class Api:
 
     async def cookie_sign_in(self, id_token: str = "google-ana") -> httpx.Response:
         response = await self.client.post(
-            "/v1/auth/google", json={"idToken": id_token}, headers=COOKIE_HEADERS
+            "/v1/auth/google",
+            json={"idToken": id_token, "nonce": f"nonce-{id_token}"},
+            headers=COOKIE_HEADERS,
         )
         assert response.status_code == 200, response.text
         return response
@@ -77,7 +79,7 @@ def bearer(access_token: str) -> dict[str, str]:
 async def running_api(database_url: str) -> AsyncIterator[Api]:
     clock = FakeClock()
     google = FakeGoogleVerifier()
-    google.register("google-ana", sub="sub-ana", email="ana@example.com")
+    google.register("google-ana", sub="sub-ana", email="ana@example.com", nonce="nonce-google-ana")
     app = create_app(make_settings(database_url=database_url), google_verifier=google, clock=clock)
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url=API_BASE_URL) as client:

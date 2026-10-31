@@ -45,8 +45,8 @@ class FakeGoogleVerifier:
         self.identities: dict[str, GoogleIdentity] = {}
         self.unverified: set[str] = set()
 
-    def register(self, id_token: str, sub: str, email: str) -> None:
-        self.identities[id_token] = GoogleIdentity(sub=sub, email=email)
+    def register(self, id_token: str, sub: str, email: str, nonce: str | None = None) -> None:
+        self.identities[id_token] = GoogleIdentity(sub=sub, email=email, nonce=nonce)
 
     async def verify(self, id_token: str) -> GoogleIdentity:
         if id_token in self.unverified:
