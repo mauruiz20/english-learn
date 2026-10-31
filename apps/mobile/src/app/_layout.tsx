@@ -8,7 +8,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { Platform, View } from "react-native";
+import { Platform } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { UpdateBanner } from "@/features/app-update/update-banner";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { SoundToggle } from "@/features/sound/sound-toggle";
@@ -48,7 +49,8 @@ export default function RootLayout() {
   if (!ready) return null;
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.paper }}>
+    // Gesture Handler needs its root view above every gesture (word-order drag and drop).
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.paper }}>
       {/* A new web version waits for the learner's "Actualizar"; it never reloads on its own. */}
       <UpdateBanner />
       <SqliteAppServicesProvider>
@@ -87,6 +89,6 @@ export default function RootLayout() {
           </Stack>
         </SoundPreferenceProvider>
       </SqliteAppServicesProvider>
-    </View>
+    </GestureHandlerRootView>
   );
 }
