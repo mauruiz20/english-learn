@@ -188,6 +188,51 @@ reviews all of them. Only the due items are saved (an exercise may also practice
 not due; those are untouched). XP is answer XP only, no completion bonus. Home shows a sticky note
 "Repaso, N pendientes" (same plan) with a "Repasar" button, or "Nada para repasar hoy".
 
+## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)
+
+Optional, **web only, on `https://english.maumar.com.ar`** (and `http://localhost` for
+development): the API's refresh cookie is `SameSite=Strict` on `english-api.maumar.com.ar`, so it
+only works from the same site. On another host (the old `*.pages.dev`) `/cuenta` explains where
+accounts are; in the Android app it says "Disponible próximamente en la app". Neither makes a
+network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/about`).
+
+- **Sign-in: OpenID Connect implicit redirect** (`oidc.ts`). The page is cross-origin isolated
+  (COOP/COEP for expo-sqlite), so Google Identity Services' iframe and popups cannot work. "Continuar
+  con Google" stores a random `state` and `nonce` (and where to return) in `sessionStorage` and
+  navigates to Google with `response_type=id_token`. Google redirects to
+  `<origin>/auth/callback#id_token=…&state=…`; the callback removes the fragment from history
+  first, checks `state` (once, ≤ 10 min old), sends `{ idToken, nonce }` to `POST /v1/auth/google`
+  in cookie mode (the API checks the token's `nonce` claim) and goes back.
+- **Session** (`auth-session.ts`). Access token in memory only; the device remembers only
+  `{ userId, email }` (`SettingsRepository.setAccount`). On start, with that marker, one refresh
+  (cookie) restores the session; a 401 signs out, a network failure keeps the learner signed in.
+  Refreshes are single-flight and serialized across tabs with `navigator.locks`
+  (`english-learn-refresh`).
+- **Sync** (`sync-engine.ts`, `sync-coordinator.ts`, `sync-triggers.ts`). Each `POST /v1/sync`
+  uploads up to 500 unsynced events (and < 900 KB) and pulls the account's events after the
+  cursor; it loops while events remain or `hasMore`, applies pulled events with
+  `insertRemoteEvents` (refold), marks uploads synced and stores the cursor after each page.
+  Network errors and 5xx back off exponentially with jitter (5 attempts), 429 waits
+  `Retry-After`, 401 refreshes once, 409 `device_conflict` takes a new device id once, conflicts
+  are logged. Triggers: sign-in (the first sync uploads the whole history, baseline included), app
+  start, every saved session or placement, the `online` event, and every 5 minutes while visible.
+  One sync at a time; a request during a sync runs once more afterwards. Status: `idle`,
+  `syncing`, `synced(at)`, `offline`, `error`. A sync that brought progress bumps
+  `progressVersion`, which reloads home.
+- **Sign-out** revokes the session and either keeps this device's progress (default; it becomes
+  unsynced, so the next account receives it) or deletes it. **Delete account** needs a Google
+  sign-in < 5 min old: on `reauthentication_required` the app goes through Google again and deletes
+  on return (only if the same account was picked).
+- `EXPO_PUBLIC_API_BASE_URL` overrides the API (default `https://english-api.maumar.com.ar` in
+  production builds, `http://localhost:8000` in development).
+- **Google Cloud** (OAuth client `78200832989-odkefhj0s4vla7h5p83gevs2440mctev`): authorized
+  JavaScript origins `https://english.maumar.com.ar` (and `http://localhost:8081` for dev);
+  authorized redirect URIs `https://english.maumar.com.ar/auth/callback` (and
+  `http://localhost:8081/auth/callback`).
+- E2E (`e2e/account.spec.ts`) fakes Google and the API with a local server per test; the e2e build
+  reads its URLs from `localStorage` (`english-learn.e2e.*`, dropped from production builds).
+  `E2E_PORT` serves the export on another port when 4173 is taken.
+
 ## Design: "el cuaderno de inglés" (`src/shared/ui/`)
 
 The UI borrows from a school English notebook: ruled paper, blue ballpoint ink, yellow

@@ -53,7 +53,10 @@ export interface paths {
     put?: never;
     /**
      * Sign In With Google
-     * @description Exchange a Google ID token (from Google Identity Services) for API tokens.
+     * @description Exchange a Google ID token for API tokens.
+     *
+     *     `nonce` is checked against the token's `nonce` claim when sent; cookie mode (the web
+     *     app's OpenID Connect redirect flow) requires it.
      */
     post: operations["sign_in_with_google_v1_auth_google_post"];
     delete?: never;
@@ -240,6 +243,11 @@ export interface components {
     GoogleSignInRequest: {
       /** Idtoken */
       idToken: string;
+      /**
+       * Nonce
+       * @description The nonce the client put in the Google authorization request; the ID token's `nonce` claim must equal it. Required with `X-Token-Transport: cookie` (web).
+       */
+      nonce?: string | null;
     };
     /** HTTPValidationError */
     HTTPValidationError: {

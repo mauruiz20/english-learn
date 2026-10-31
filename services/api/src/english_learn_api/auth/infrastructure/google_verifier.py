@@ -215,7 +215,8 @@ class GoogleIdTokenVerifier:
         if claims.get("email_verified") is not True:
             msg = "Google account email is not verified"
             raise GoogleEmailNotVerifiedError(msg)
-        return GoogleIdentity(sub=sub, email=email)
+        nonce = claims.get("nonce")
+        return GoogleIdentity(sub=sub, email=email, nonce=nonce if isinstance(nonce, str) else None)
 
 
 def _invalid() -> InvalidGoogleTokenError:

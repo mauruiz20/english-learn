@@ -13,7 +13,7 @@ const api = createApiClient({
   // fetch: optional, defaults to the global fetch
 });
 
-await api.signInWithGoogle(idToken); // sets the HttpOnly refresh cookie
+await api.signInWithGoogle(idToken, nonce); // sets the HttpOnly refresh cookie
 const { accessToken } = await api.refresh(); // the browser sends the cookie
 const page = await api.sync({ deviceId, cursor, events });
 ```
@@ -24,8 +24,9 @@ const page = await api.sync({ deviceId, cursor, events });
 
 - **`"cookie"` (default, the web app).** The API keeps the refresh token in an HttpOnly cookie that
   JavaScript cannot read. The auth calls send `credentials: "include"`, `X-Token-Transport: cookie`
-  and `X-Requested-With: english-learn`; `refresh()` and `logout()` take no argument, and the
-  responses have no `refreshToken`. Keep the access token in memory only.
+  and `X-Requested-With: english-learn`; `signInWithGoogle` needs the OpenID Connect `nonce` of the
+  Google authorization request (the API requires it here and checks it against the ID token),
+  `refresh()` and `logout()` take no argument, and the responses have no `refreshToken`. Keep the access token in memory only.
 - **`"body"` (clients that store the token, such as a future native app).** The auth calls send
   `X-Token-Transport: body`; `refresh(refreshToken)` and `logout(refreshToken)` send it in the body
   and the responses include `refreshToken`.
@@ -35,7 +36,7 @@ The types follow the option: `createApiClient({ ..., tokenTransport: "body" })` 
 
 | Method                                | Request                       | Returns (cookie · body)                                                  |
 | ------------------------------------- | ----------------------------- | ------------------------------------------------------------------------ |
-| `signInWithGoogle(idToken)`           | `POST /v1/auth/google`        | `{ accessToken, accessTokenExpiresAt, user }` · same with `refreshToken` |
+| `signInWithGoogle(idToken, nonce)`    | `POST /v1/auth/google`        | `{ accessToken, accessTokenExpiresAt, user }` · same with `refreshToken` |
 | `refresh()` · `refresh(refreshToken)` | `POST /v1/auth/refresh`       | `{ accessToken, accessTokenExpiresAt }` · same with `refreshToken`       |
 | `logout()` · `logout(refreshToken)`   | `POST /v1/auth/logout`        | `void`                                                                   |
 | `me()`                                | `GET /v1/me` (Bearer)         | `{ id, email }`                                                          |

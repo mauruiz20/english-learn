@@ -120,6 +120,44 @@ class TestSignInWithGoogle:
 
         assert auth.store.users == {}
 
+    async def test_accepts_a_nonce_that_matches_the_token(self, auth: Auth) -> None:
+        auth.google.register(
+            "google-ana-nonce", sub="sub-ana", email="ana@example.com", nonce="n-1"
+        )
+
+        signed_in = await auth.sign_in.execute("google-ana-nonce", nonce="n-1")
+
+        assert signed_in.user.email == "ana@example.com"
+
+    @pytest.mark.parametrize(
+        ("token", "nonce"),
+        [
+            pytest.param("google-ana-nonce", "n-2", id="another nonce"),
+            pytest.param("google-ana-nonce", "n-1x", id="a longer nonce"),
+            pytest.param("google-ana", "n-1", id="a token without nonce"),
+        ],
+    )
+    async def test_rejects_a_nonce_that_does_not_match(
+        self, auth: Auth, token: str, nonce: str
+    ) -> None:
+        auth.google.register(
+            "google-ana-nonce", sub="sub-ana", email="ana@example.com", nonce="n-1"
+        )
+
+        with pytest.raises(InvalidGoogleTokenError):
+            await auth.sign_in.execute(token, nonce=nonce)
+
+        assert auth.store.users == {}
+
+    async def test_without_an_expected_nonce_the_token_nonce_is_not_checked(
+        self, auth: Auth
+    ) -> None:
+        auth.google.register(
+            "google-ana-nonce", sub="sub-ana", email="ana@example.com", nonce="n-1"
+        )
+
+        assert await auth.sign_in.execute("google-ana-nonce")
+
 
 class TestRefreshSession:
     async def test_rotates_the_refresh_token_within_its_family(self, auth: Auth) -> None:

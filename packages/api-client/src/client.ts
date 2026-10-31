@@ -70,8 +70,12 @@ export class ApiError extends Error {
 
 /** The web client: the browser sends and stores the refresh cookie. */
 export type CookieAuth = {
-  /** Sets the refresh cookie; the JSON has the access token and the user. */
-  signInWithGoogle(idToken: string): Promise<CookieSignInResponse>;
+  /**
+   * Sets the refresh cookie; the JSON has the access token and the user. `nonce` is the one the
+   * app put in the Google authorization request: the API requires it in cookie mode and checks it
+   * against the ID token's `nonce` claim.
+   */
+  signInWithGoogle(idToken: string, nonce: string): Promise<CookieSignInResponse>;
   /** Rotates the refresh cookie. Serialize calls across tabs (see services/api/README.md). */
   refresh(): Promise<CookieTokensResponse>;
   /** Revokes the session and clears the refresh cookie. */
@@ -80,7 +84,8 @@ export type CookieAuth = {
 
 /** Clients that store the refresh token themselves. */
 export type BodyAuth = {
-  signInWithGoogle(idToken: string): Promise<SignInResponse>;
+  /** `nonce`, when given, must equal the ID token's `nonce` claim. */
+  signInWithGoogle(idToken: string, nonce?: string): Promise<SignInResponse>;
   /** Rotates the refresh token. Serialize calls (see services/api/README.md). */
   refresh(refreshToken: string): Promise<TokensResponse>;
   logout(refreshToken: string): Promise<void>;
@@ -98,7 +103,7 @@ export type ApiClient<Transport extends TokenTransport = "cookie"> = (Transport 
 
 /** What the implementation builds; the overloads narrow it to one transport's methods. */
 type AnyApiClient = Omit<ApiClient, keyof CookieAuth> & {
-  signInWithGoogle(idToken: string): Promise<SignInResponse | CookieSignInResponse>;
+  signInWithGoogle(idToken: string, nonce?: string): Promise<SignInResponse | CookieSignInResponse>;
   refresh(refreshToken?: string): Promise<TokensResponse | CookieTokensResponse>;
   logout(refreshToken?: string): Promise<void>;
 };
@@ -162,8 +167,13 @@ export function createApiClient(options: ApiClientOptions): AnyApiClient {
   });
 
   return {
-    signInWithGoogle: (idToken) =>
-      json({ method: "POST", path: "/v1/auth/google", body: { idToken }, session: true }),
+    signInWithGoogle: (idToken, nonce) =>
+      json({
+        method: "POST",
+        path: "/v1/auth/google",
+        body: nonce === undefined ? { idToken } : { idToken, nonce },
+        session: true,
+      }),
     refresh: (refreshToken) => json(session("/v1/auth/refresh", refreshToken)),
     logout: (refreshToken) => empty(session("/v1/auth/logout", refreshToken)),
     me: () => json({ method: "GET", path: "/v1/me", auth: true }),

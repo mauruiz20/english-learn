@@ -7,10 +7,14 @@ from uuid import UUID
 
 @dataclass(frozen=True, slots=True)
 class GoogleIdentity:
-    """What a verified Google ID token proves: a stable subject and a verified email."""
+    """What a verified Google ID token proves: a stable subject and a verified email.
+
+    `nonce` is the token's `nonce` claim (OpenID Connect replay protection), when it has one.
+    """
 
     sub: str
     email: str
+    nonce: str | None = None
 
 
 @dataclass(frozen=True, slots=True)

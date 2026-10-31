@@ -122,6 +122,18 @@ async def test_returns_the_identity_of_a_valid_token() -> None:
     assert identity == GoogleIdentity(sub="1234567890", email="ana@example.com")
 
 
+async def test_returns_the_nonce_claim_when_present() -> None:
+    identity = await verifier().verify(id_token(nonce="abc-123"))
+
+    assert identity.nonce == "abc-123"
+
+
+async def test_ignores_a_nonce_claim_that_is_not_a_string() -> None:
+    identity = await verifier().verify(id_token(nonce=42))
+
+    assert identity.nonce is None
+
+
 class TestClientIdAllowlist:
     async def test_accepts_any_allowed_audience(self) -> None:
         assert await verifier().verify(id_token(aud=ANDROID_CLIENT_ID))

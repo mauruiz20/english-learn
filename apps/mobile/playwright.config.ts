@@ -1,6 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 4173;
+// `E2E_PORT` picks another port when 4173 is taken (e.g. by another checkout's server, which
+// `reuseExistingServer` would otherwise test instead of this build).
+const PORT = Number(process.env.E2E_PORT ?? 4173);
 
 // E2E tests against the static web export built with EXPO_PUBLIC_E2E=1 (dist-e2e/), which
 // enables the test-only `?today=YYYY-MM-DD` clock override. `pnpm e2e:web` builds it first.

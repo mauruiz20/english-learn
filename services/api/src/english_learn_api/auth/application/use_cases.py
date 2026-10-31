@@ -1,5 +1,6 @@
 """Sign in with Google, refresh a session (rotation + reuse detection) and log out."""
 
+import hmac
 import logging
 import uuid
 from collections.abc import Callable
@@ -11,8 +12,18 @@ from english_learn_api.auth.application.ports import (
     GoogleTokenVerifier,
     UnitOfWork,
 )
-from english_learn_api.auth.domain.errors import InvalidRefreshTokenError, RefreshTokenReuseError
-from english_learn_api.auth.domain.models import RefreshFamily, RefreshToken, SignedIn, TokenPair
+from english_learn_api.auth.domain.errors import (
+    InvalidGoogleTokenError,
+    InvalidRefreshTokenError,
+    RefreshTokenReuseError,
+)
+from english_learn_api.auth.domain.models import (
+    GoogleIdentity,
+    RefreshFamily,
+    RefreshToken,
+    SignedIn,
+    TokenPair,
+)
 from english_learn_api.auth.domain.refresh_secrets import hash_refresh_secret, new_refresh_secret
 from english_learn_api.shared.clock import Clock
 
@@ -84,8 +95,17 @@ class SignInWithGoogle:
         self._unit_of_work = unit_of_work
         self._clock = clock
 
-    async def execute(self, id_token: str) -> SignedIn:
+    async def execute(self, id_token: str, *, nonce: str | None = None) -> SignedIn:
+        """Sign in with a verified Google ID token.
+
+        `nonce`: the value the client generated for this sign-in (OpenID Connect redirect flow).
+        When given, the token's `nonce` claim must equal it, so a token captured from another
+        sign-in cannot be replayed.
+        """
         identity = await self._verifier.verify(id_token)
+        if nonce is not None and not _same_nonce(identity, nonce):
+            msg = "Google ID token is invalid"
+            raise InvalidGoogleTokenError(msg)
         now = self._clock.now()
         async with self._unit_of_work() as uow:
             user, created = await uow.users.upsert_by_google_sub(identity, uuid.uuid7(), now)
@@ -95,6 +115,12 @@ class SignInWithGoogle:
             await uow.commit()
         logger.info("signed in", extra={"user_id": str(user.id), "new_user": created})
         return SignedIn(user=user, tokens=tokens, is_new_user=created)
+
+
+def _same_nonce(identity: GoogleIdentity, expected: str) -> bool:
+    if identity.nonce is None:
+        return False
+    return hmac.compare_digest(identity.nonce.encode(), expected.encode())
 
 
 class RefreshSession:
