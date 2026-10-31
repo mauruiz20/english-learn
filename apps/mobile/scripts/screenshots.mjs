@@ -4,6 +4,9 @@
 //
 // Usage: node scripts/screenshots.mjs <out-dir> [--skip-build] [--port 4174]
 //
+// Motion is on (`reducedMotion: "no-preference"`): screens are captured once their animations
+// settle, plus two moments mid-motion (the red pen mid-strike, a word strip mid-drag).
+//
 // Builds `dist-e2e/` (`pnpm export:web:e2e`, needed for the `?today=` clock override) unless
 // --skip-build, serves it with scripts/serve-web.mjs and drives the app with Playwright Chromium
 // in a fresh PERSISTENT profile per size and scheme (OPFS needs one; see e2e/support/test.ts).
@@ -195,20 +198,35 @@ async function capture(browserType, size, scheme) {
       await radio(scope, exercise.distractors[0]).click();
       await check();
       await page.getByRole("alert").first().waitFor();
+      // The red pen halfway through its stroke (≈ 250 ms), before the teacher's note appears.
+      await page.waitForTimeout(110);
+      await page.screenshot({
+        path: join(OUT_DIR, `${size.name}-${scheme}-${step()}-feedback-wrong-mid-draw.png`),
+      });
       await snap(`${step()}-feedback-wrong`);
       await next();
     }
 
-    // word order: two tokens placed.
+    // word order: two tokens placed, then the third dragged onto the line.
     {
       const { exercise, scope } = await currentExercise(page);
-      for (const token of exercise.accepted[0].split(" ").slice(0, 2)) {
-        await bankToken(scope, token).click();
-      }
+      const words = exercise.accepted[0].split(" ");
+      for (const token of words.slice(0, 2)) await bankToken(scope, token).click();
       await snap(`${step()}-lesson-word-order`);
-      for (const token of exercise.accepted[0].split(" ").slice(2)) {
-        await bankToken(scope, token).click();
-      }
+      const strip = await bankToken(scope, words[2]).boundingBox();
+      const line = await scope.getByLabel("Tu frase").boundingBox();
+      await page.mouse.move(strip.x + strip.width / 2, strip.y + strip.height / 2);
+      await page.mouse.down();
+      await page.mouse.move(strip.x + strip.width / 2 + 4, strip.y + strip.height / 2 + 4, {
+        steps: 2,
+      });
+      await page.mouse.move(line.x + line.width - 40, line.y + line.height / 2 + 10, {
+        steps: 10,
+      });
+      await snap(`${step()}-lesson-word-order-dragging`);
+      await page.mouse.up();
+      await scope.getByRole("button", { name: `Quitar ${words[2]}`, exact: true }).waitFor();
+      for (const token of words.slice(3)) await bankToken(scope, token).click();
       await check();
       await next();
     }
@@ -266,8 +284,9 @@ async function capture(browserType, size, scheme) {
       await next();
     }
 
-    // Summary.
+    // Summary (after the XP count and the streak roll).
     await page.getByRole("button", { name: "Volver al inicio", exact: true }).waitFor();
+    await page.waitForTimeout(900);
     await snap(`${step()}-lesson-summary`);
 
     // Home right after the lesson: a one-day streak, nothing to review yet.
@@ -293,6 +312,8 @@ async function capture(browserType, size, scheme) {
         await button(page, "Continuar").click();
         await done.or(page.locator('[data-testid^="exercise-"]').first()).waitFor();
       }
+      // The "¡Excelente!" stamp lands, the XP counts up.
+      await page.waitForTimeout(900);
       await snap(`${step()}-review-summary-perfect`);
     }
 
