@@ -41,6 +41,8 @@ export type LessonViewState =
       readonly total: number;
       readonly xpEarned: number;
       readonly streakDays: number;
+      /** This session extended the streak (the summary rolls the number). */
+      readonly streakIncreased?: boolean;
       /** Items missed in the session, to look at again. */
       readonly toReview: readonly ReviewNote[];
     };

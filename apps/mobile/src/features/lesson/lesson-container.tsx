@@ -92,6 +92,7 @@ function toViewState(
       total: verdicts.length,
       xpEarned: save.xpEarned,
       streakDays: save.streakDays,
+      streakIncreased: save.streakIncreased,
       toReview: itemsToReview(itemOutcomes, content.itemsById, { topics: topicByItemId(content) }),
     };
   }
