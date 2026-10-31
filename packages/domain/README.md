@@ -114,6 +114,7 @@ ids from different milliseconds sort by time). Every payload carries `v: 1`.
 | `session_completed`   | `sessionId, kind: "lesson" \| "review", lessonId?, answerXp, accuracy` | when a session is saved                   |
 | `placement_completed` | `level, theta`                                                         | when the placement test ends              |
 | `baseline_imported`   | `states, xp, streak, placement, completedLessonIds?`                   | once per device, migrating pre-event data |
+| `answer_disputed`     | `exerciseId, itemIds, answer (trimmed, ≤ 200 chars), accepted: false`  | with a session, per self-regraded answer  |
 
 The app applies worst-grade-wins and the looked-up cap (grade ≤ 3) **before** writing
 `item_reviewed`. The fold decides everything else, including the lesson bonus. All events of one
@@ -140,6 +141,7 @@ session carry the same `localDate` (the day it was completed), as the app used o
 | Streak           | `recordActivity` replayed over the sorted unique `localDate`s of `session_completed`, starting from the merged baseline streak                                    |
 | `activeDates`    | Sorted unique `localDate`s of `session_completed`                                                                                                                 |
 | Placement        | The last `placement_completed` or non-null baseline placement in fold order                                                                                       |
+| Disputed answers | `answer_disputed` is a known no-op: no state, no anomaly (content feedback for the owner; the session's own events carry the regrade)                             |
 | Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                               |
 | Baseline streaks | `longest` = max; `current` and `lastActiveDate` from the most recent `lastActiveDate` (larger `current` on a tie)                                                 |
 | Baseline lessons | `completedLessonIds` are unioned (no bonus for them later)                                                                                                        |

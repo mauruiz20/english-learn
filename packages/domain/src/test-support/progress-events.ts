@@ -1,5 +1,6 @@
 import type { LocalDate } from "../local-date";
 import type {
+  AnswerDisputedEvent,
   BaselineImportedEvent,
   ItemReviewedEvent,
   PlacementCompletedEvent,
@@ -77,4 +78,17 @@ export function baselineImported(
   payload: Omit<BaselineImportedEvent["payload"], "v">,
 ): BaselineImportedEvent {
   return { ...envelope(meta), type: "baseline_imported", payload: { v: 1, ...payload } };
+}
+
+export function answerDisputed(
+  meta: Meta,
+  exerciseId: string,
+  itemIds: readonly string[],
+  overrides: Partial<Pick<AnswerDisputedEvent["payload"], "answer">> & Record<string, unknown> = {},
+): AnswerDisputedEvent {
+  return {
+    ...envelope(meta),
+    type: "answer_disputed",
+    payload: { v: 1, exerciseId, itemIds, answer: "my answer", accepted: false, ...overrides },
+  } as AnswerDisputedEvent;
 }

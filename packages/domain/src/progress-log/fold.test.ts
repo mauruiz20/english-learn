@@ -3,6 +3,7 @@ import { localDate } from "../local-date";
 import { applyReview, initialState, review, type ReviewState } from "../srs";
 import { EMPTY_STREAK, recordActivity } from "../streak";
 import {
+  answerDisputed,
   baselineImported,
   itemReviewed,
   lessonCompleted,
@@ -223,6 +224,34 @@ describe("foldEvents", () => {
       expect(reviewed.dueDate).toBe(d2);
       // baseline (due d3) replaces the d1 review; the d3 review then reviews the baseline state.
       expect(result.states).toEqual([review(known, 5, d3)]);
+    });
+  });
+
+  describe("answer_disputed", () => {
+    const disputed = (id: string, payload: Record<string, unknown> = {}): StoredEvent =>
+      answerDisputed({ id, localDate: d1 }, "b1.travel.write-001", ["b1.travel.although"], {
+        answer: "We still made it in time.",
+        ...payload,
+      });
+
+    it("is a known event that changes no progress and reports nothing", () => {
+      const session = [
+        itemReviewed({ id: "r1", localDate: d1 }, "s1", "b1.travel.although", 4),
+        reviewCompleted({ id: "c1", localDate: d1 }, "s1", 10, 1),
+      ];
+      expect(foldEvents([...session, disputed("x1")])).toEqual(foldEvents(session));
+      expect(foldEvents([disputed("x1")])).toEqual(EMPTY_PROGRESS);
+    });
+
+    it("reports a malformed dispute as invalid", () => {
+      const tooLong = disputed("x2", { answer: "a".repeat(201) });
+      const accepted = disputed("x3", { accepted: true });
+      const noItems = disputed("x4", { itemIds: [] });
+      expect(foldEvents([tooLong, accepted, noItems]).anomalies).toEqual([
+        { kind: "invalid_event", eventId: "x2", detail: "answer_disputed payload" },
+        { kind: "invalid_event", eventId: "x3", detail: "answer_disputed payload" },
+        { kind: "invalid_event", eventId: "x4", detail: "answer_disputed payload" },
+      ]);
     });
   });
 

@@ -3,7 +3,12 @@ import { isValidLocalDate } from "../local-date";
 import type { PlacementResult } from "../ports";
 import type { ReviewState } from "../srs";
 import type { Streak } from "../streak";
-import { EVENT_PAYLOAD_VERSION, type ProgressEvent, type StoredEvent } from "./events";
+import {
+  EVENT_PAYLOAD_VERSION,
+  MAX_DISPUTED_ANSWER_LENGTH,
+  type ProgressEvent,
+  type StoredEvent,
+} from "./events";
 
 /** Result of reading a stored event: a typed event, or why it must be skipped. */
 export type Parsed =
@@ -82,6 +87,14 @@ const VALIDATORS: Readonly<Record<ProgressEvent["type"], (p: Obj) => boolean>> =
     (p.placement === null || isPlacement(p.placement)) &&
     (p.completedLessonIds === undefined ||
       (Array.isArray(p.completedLessonIds) && p.completedLessonIds.every(isText))),
+  answer_disputed: (p) =>
+    isText(p.exerciseId) &&
+    Array.isArray(p.itemIds) &&
+    p.itemIds.length > 0 &&
+    p.itemIds.every(isText) &&
+    typeof p.answer === "string" &&
+    p.answer.length <= MAX_DISPUTED_ANSWER_LENGTH &&
+    p.accepted === false,
 };
 
 const isKnownType = (t: string): t is ProgressEvent["type"] => Object.hasOwn(VALIDATORS, t);
