@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "expo-router/entry",
   "dependencies": {
+    "@english-learn/api-client": "workspace:*",
     "@english-learn/content": "workspace:*",
     "@english-learn/domain": "workspace:*",
     "@english-learn/storage-sqlite": "workspace:*",

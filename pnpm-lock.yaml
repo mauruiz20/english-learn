@@ -190,6 +190,9 @@ importers:
 
   apps/mobile:
     dependencies:
+      '@english-learn/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
       '@english-learn/content':
         specifier: workspace:*
         version: link:../../packages/content
