@@ -1,0 +1,3 @@
+# Secret files never enter git; only the README does.
+secrets/*
+!secrets/README.md
