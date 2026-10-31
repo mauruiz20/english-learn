@@ -12,7 +12,13 @@ import { useSessionSounds } from "./use-session-sounds";
 
 export type SaveState =
   | { readonly status: "idle" | "saving" | "error" }
-  | { readonly status: "saved"; readonly xpEarned: number; readonly streakDays: number };
+  | {
+      readonly status: "saved";
+      readonly xpEarned: number;
+      readonly streakDays: number;
+      /** This session extended the streak. */
+      readonly streakIncreased: boolean;
+    };
 
 export type ExerciseSession = {
   readonly state: LessonSessionState;
@@ -47,7 +53,7 @@ export function useExerciseSession({
     setSave({ status: "saving" });
     complete(summary)
       .then(({ xpEarned, streak, streakIncreased }) => {
-        setSave({ status: "saved", xpEarned, streakDays: streak.current });
+        setSave({ status: "saved", xpEarned, streakDays: streak.current, streakIncreased });
         sounds.completed(streakIncreased);
       })
       .catch((error: unknown) => {

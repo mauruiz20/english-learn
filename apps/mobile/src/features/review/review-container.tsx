@@ -156,6 +156,7 @@ function toViewState(
       total: verdicts.length,
       xpEarned: save.xpEarned,
       streakDays: save.streakDays,
+      streakIncreased: save.streakIncreased,
       // Only the due items, like the saved results.
       toReview: itemsToReview(
         restrictToItems(session.summary, plan.itemIds).itemOutcomes,

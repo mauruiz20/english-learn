@@ -68,4 +68,47 @@ describe("WordOrderExercise", () => {
 
     expect(screen.getByRole("button", { name: "wake" })).toBeDisabled();
   });
+
+  describe("screen-reader actions on the answer line", () => {
+    async function build(tokens: readonly string[]) {
+      for (const token of tokens) {
+        await fireEvent.press(screen.getByRole("button", { name: token }));
+      }
+    }
+    const actionsOf = (name: string) =>
+      (screen.getByRole("button", { name }).props.accessibilityActions ?? []).map(
+        (a: { label: string }) => a.label,
+      );
+
+    it("offers to move a placed word left or right, where it can go", async () => {
+      await renderExercise();
+      await build(["I", "wake", "usually"]);
+
+      expect(actionsOf("Quitar I")).toEqual(["Mover a la derecha"]);
+      expect(actionsOf("Quitar wake")).toEqual(["Mover a la izquierda", "Mover a la derecha"]);
+      expect(actionsOf("Quitar usually")).toEqual(["Mover a la izquierda"]);
+    });
+
+    it("reorders the sentence with those actions", async () => {
+      await renderExercise();
+      await build(["I", "wake", "usually", "up"]);
+
+      await fireEvent(
+        screen.getByRole("button", { name: "Quitar usually" }),
+        "accessibilityAction",
+        {
+          nativeEvent: { actionName: "moveLeft" },
+        },
+      );
+      await fireEvent(screen.getByRole("button", { name: "Quitar I" }), "accessibilityAction", {
+        nativeEvent: { actionName: "moveRight" },
+      });
+      await fireEvent.press(screen.getByRole("button", { name: "Comprobar" }));
+
+      expect(onSubmit).toHaveBeenCalledWith({
+        kind: "tokens",
+        tokens: ["usually", "I", "wake", "up"],
+      });
+    });
+  });
 });
