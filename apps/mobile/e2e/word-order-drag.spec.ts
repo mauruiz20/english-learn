@@ -38,7 +38,8 @@ const bank = (page: Page) => page.getByLabel("Palabras disponibles");
 
 /** Drags a word from the bank to the end of the answer line. */
 async function dragToLineEnd(page: Page, word: string) {
-  const box = await line(page).boundingBox();
+  // Measured once still: the page slides in when it turns to the exercise.
+  const box = await settledBox(line(page));
   if (box === null) throw new Error("The answer line is not on screen");
   await drag(page, bank(page).getByRole("button", { name: word, exact: true }), {
     x: box.x + box.width - 8,
@@ -101,6 +102,7 @@ test("a strip dragged off the answer line goes back to the bank", async ({ page 
   await dragToLineEnd(page, "wake");
   const bankBox = await bank(page).boundingBox();
   if (bankBox === null) throw new Error("The bank is not on screen");
+  // Released below the bank, over the (disabled) "Comprobar" button.
   await drag(page, line(page).getByRole("button", { name: "Quitar wake" }), {
     x: bankBox.x + bankBox.width / 2,
     y: bankBox.y + bankBox.height + 40,

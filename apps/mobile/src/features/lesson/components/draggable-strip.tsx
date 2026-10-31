@@ -1,21 +1,15 @@
-import { useCallback, useRef, useState, type ComponentRef, type ReactNode } from "react";
-import { StyleSheet, type LayoutChangeEvent, type View } from "react-native";
-import { GestureDetector, usePanGesture } from "react-native-gesture-handler";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from "react-native-reanimated";
-import { scheduleOnRN } from "react-native-worklets";
+import { useCallback, useRef, useState, type ReactNode } from "react";
+import { StyleSheet, type LayoutChangeEvent } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { SETTLE_SPRING } from "@/shared/ui/motion";
 import { PaperStrip } from "@/shared/ui/paper-strip";
 import { useReducedMotion } from "@/shared/ui/use-reduced-motion";
 import { useTheme } from "@/shared/ui/use-theme";
 import type { Point } from "../model/word-order-line";
+import { DragArea } from "./drag-area";
+import type { ViewRef } from "./view-ref";
 
-/** A mounted view, as refs hand it over (it can be measured). */
-export type ViewRef = ComponentRef<typeof View>;
+export type { ViewRef } from "./view-ref";
 
 type DraggableStripProps = {
   token: number;
@@ -67,9 +61,10 @@ export function DraggableStrip({
   const x = useSharedValue(0);
   const y = useSharedValue(0);
   const lift = useSharedValue(0);
-  // Where the strip was when grabbed (it may still be springing into place).
-  const baseX = useSharedValue(0);
-  const baseY = useSharedValue(0);
+  // The drag in progress, on top of `x`/`y` (where the strip was when grabbed: at rest, or
+  // still springing into place).
+  const dragX = useSharedValue(0);
+  const dragY = useSharedValue(0);
   // A strip that was just dropped stays invisible until it knows where it is, then flies in from
   // the drop point.
   const [settling, setSettling] = useState(landing !== undefined);
@@ -82,34 +77,23 @@ export function DraggableStrip({
     [register, token],
   );
 
+  const start = () => {
+    // Freeze any settling spring where it is: the strip stays under the pointer.
+    x.set(x.value);
+    y.set(y.value);
+    onDragStart(token);
+  };
   const release = (dx: number, dy: number) => {
+    // Measured boxes include the offset the strip had when grabbed: only the drag moved it.
     if (onDrop(token, dx, dy)) return;
+    // Not moved: spring back from where it was let go.
+    x.set(x.value + dx);
+    y.set(y.value + dy);
+    dragX.set(0);
+    dragY.set(0);
     x.set(reduced ? 0 : withSpring(0, SETTLE_SPRING));
     y.set(reduced ? 0 : withSpring(0, SETTLE_SPRING));
   };
-
-  const pan = usePanGesture({
-    enabled: !disabled,
-    minDistance: 6,
-    onActivate: () => {
-      "worklet";
-      baseX.set(x.value);
-      baseY.set(y.value);
-      lift.set(withTiming(1, { duration: 120 }));
-      scheduleOnRN(onDragStart, token);
-    },
-    onUpdate: (event) => {
-      "worklet";
-      x.set(baseX.value + event.translationX);
-      y.set(baseY.value + event.translationY);
-    },
-    onDeactivate: (event) => {
-      "worklet";
-      lift.set(withTiming(0, { duration: 160 }));
-      // Measured boxes include the offset it had when grabbed: only the drag itself moved it.
-      scheduleOnRN(release, event.translationX, event.translationY);
-    },
-  });
 
   const onLayout = (_event: LayoutChangeEvent) => {
     if (!settling || landing === undefined || view.current === null) return;
@@ -127,39 +111,47 @@ export function DraggableStrip({
   const moved = useAnimatedStyle(() => ({
     zIndex: lift.value > 0 ? 10 : 0,
     transform: [
-      { translateX: x.value },
-      { translateY: y.value },
+      { translateX: x.value + dragX.value },
+      { translateY: y.value + dragY.value },
       { scale: reduced ? 1 : 1 + (LIFT_SCALE - 1) * lift.value },
     ],
   }));
   const shadow = useAnimatedStyle(() => ({ opacity: reduced ? 0 : lift.value }));
 
   return (
-    <GestureDetector gesture={pan}>
-      <Animated.View ref={setView} onLayout={onLayout} style={[moved, settling && styles.hidden]}>
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            styles.shadow,
-            { backgroundColor: scheme === "dark" ? "#020611" : "rgba(27, 35, 51, 0.22)" },
-            shadow,
-          ]}
-        />
-        <PaperStrip
-          label={label}
-          text={text}
-          disabled={disabled}
-          lockedContent={lockedContent}
-          onPress={onPress}
-          accessibilityActions={accessibilityActions}
-          onAccessibilityAction={
-            onAccessibilityAction === undefined
-              ? undefined
-              : (event) => onAccessibilityAction(event.nativeEvent.actionName)
-          }
-        />
-      </Animated.View>
-    </GestureDetector>
+    <DragArea
+      enabled={!disabled}
+      dragX={dragX}
+      dragY={dragY}
+      lift={lift}
+      onStart={start}
+      onRelease={release}
+      viewRef={setView}
+      onLayout={onLayout}
+      style={[moved, settling && styles.hidden]}
+    >
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          styles.shadow,
+          { backgroundColor: scheme === "dark" ? "#020611" : "rgba(27, 35, 51, 0.22)" },
+          shadow,
+        ]}
+      />
+      <PaperStrip
+        label={label}
+        text={text}
+        disabled={disabled}
+        lockedContent={lockedContent}
+        onPress={onPress}
+        accessibilityActions={accessibilityActions}
+        onAccessibilityAction={
+          onAccessibilityAction === undefined
+            ? undefined
+            : (event) => onAccessibilityAction(event.nativeEvent.actionName)
+        }
+      />
+    </DragArea>
   );
 }
 
