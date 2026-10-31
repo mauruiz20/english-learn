@@ -8,6 +8,7 @@ import pytest
 from english_learn_api.main import create_app
 from english_learn_api.shared.logging import JsonFormatter
 from tests.fakes import FakeGoogleVerifier
+from tests.integration.api_harness import running_api, set_cookie_headers
 from tests.support import make_settings
 
 
@@ -28,3 +29,24 @@ async def test_a_database_error_log_line_does_not_contain_the_email(
     lines = [JsonFormatter().format(record) for record in caplog.records]
     assert any("unhandled error" in line for line in lines)
     assert not [line for line in lines if "leak-check" in line]
+
+
+async def test_cookie_mode_never_logs_the_refresh_token(
+    database_url: str, caplog: pytest.LogCaptureFixture
+) -> None:
+    caplog.set_level(logging.DEBUG)
+
+    async with running_api(database_url) as api:
+        signed_in = await api.cookie_sign_in()
+        refreshed = await api.cookie_refresh()
+        await api.cookie_logout()
+
+    secrets = [
+        header.split(";", 1)[0].split("=", 1)[1]
+        for response in (signed_in, refreshed)
+        for header in set_cookie_headers(response)
+    ]
+    assert len(secrets) == 2
+    lines = [JsonFormatter().format(record) for record in caplog.records]
+    assert any('"request"' in line for line in lines)
+    assert not [line for line in lines for secret in secrets if secret in line]
