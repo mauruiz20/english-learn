@@ -1,8 +1,10 @@
-import type { SettingsRepository } from "@english-learn/domain";
+import type { AccountMarker, SettingsRepository } from "@english-learn/domain";
 import type { SqlDatabase } from "./sql-database";
 
 const SOUND_ENABLED = "sound_enabled";
 const LOOKUP_HINT_DISMISSED = "lookup_hint_dismissed";
+const ACCOUNT = "account";
+const SAVE_PROGRESS_SUGGESTION_DISMISSED = "save_progress_suggestion_dismissed";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -28,5 +30,27 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     setSoundEnabled: (enabled) => write(SOUND_ENABLED, enabled ? "1" : "0"),
     getLookupHintDismissed: async () => (await read(LOOKUP_HINT_DISMISSED)) === "1",
     setLookupHintDismissed: () => write(LOOKUP_HINT_DISMISSED, "1"),
+    getAccount: async () => parseAccount(await read(ACCOUNT)),
+    // Only who is signed in: tokens never reach the device's storage.
+    setAccount: ({ userId, email }) => write(ACCOUNT, JSON.stringify({ userId, email })),
+    clearAccount: async () => {
+      await db.runAsync("DELETE FROM setting WHERE key = ?", [ACCOUNT]);
+    },
+    getSaveProgressSuggestionDismissed: async () =>
+      (await read(SAVE_PROGRESS_SUGGESTION_DISMISSED)) === "1",
+    setSaveProgressSuggestionDismissed: () => write(SAVE_PROGRESS_SUGGESTION_DISMISSED, "1"),
   };
+}
+
+/** An unreadable value counts as signed out: the learner signs in again. */
+function parseAccount(value: string | null): AccountMarker | null {
+  if (value === null) return null;
+  try {
+    const parsed: unknown = JSON.parse(value);
+    if (typeof parsed !== "object" || parsed === null) return null;
+    const { userId, email } = parsed as Record<string, unknown>;
+    return typeof userId === "string" && typeof email === "string" ? { userId, email } : null;
+  } catch {
+    return null;
+  }
 }

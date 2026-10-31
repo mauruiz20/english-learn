@@ -449,6 +449,59 @@ describe("createSqliteProgressRepository", () => {
       expect((await repo.getUnsyncedEvents(10)).map((e) => e.id)).toEqual(local.map((e) => e.id));
     });
 
+    it("marks events synced without a server sequence when it is unknown", async () => {
+      const events = lesson(DAY, "l1", { a: 5 }, 10);
+      await repo.appendEvents(events);
+
+      await repo.markSynced(
+        events.map((e) => e.id),
+        events.map(() => null),
+      );
+
+      expect(await repo.getUnsyncedEvents(10)).toEqual([]);
+    });
+
+    it("replaces the device id (a server conflict) and keeps it", async () => {
+      await repo.ensureDeviceId(() => "device-1");
+
+      await repo.replaceDeviceId("device-2");
+
+      expect(await createSqliteProgressRepository(db).getDeviceId()).toBe("device-2");
+    });
+
+    it("resets the sync state: every event unsynced again and the cursor back to 0", async () => {
+      const local = lesson(DAY, "l1", { a: 5 }, 10);
+      await repo.appendEvents(local);
+      await repo.markSynced(
+        local.map((e) => e.id),
+        [1, 2],
+      );
+      await repo.insertRemoteEvents(
+        lesson(NEXT_DAY, "l2", { b: 5 }, 10).map((e) => ({ ...e, deviceId: "device-b" })),
+      );
+      await repo.setSyncCursor(9);
+      const before = await cacheOf(repo);
+
+      await repo.resetSyncState();
+
+      expect(await repo.getSyncCursor()).toBe(0);
+      expect(await repo.getUnsyncedEvents(10)).toHaveLength(4);
+      expect(await cacheOf(repo)).toEqual(before);
+    });
+
+    it("clears the whole progress of this device, keeping its id", async () => {
+      await repo.ensureDeviceId(() => "device-1");
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 10));
+      await repo.setSyncCursor(9);
+
+      await repo.clearProgress();
+
+      expect(await eventCount(db)).toBe(0);
+      expect(await cacheOf(repo)).toEqual(foldedCache([]));
+      expect(await repo.getSyncCursor()).toBe(0);
+      expect(await repo.getDeviceId()).toBe("device-1");
+    });
+
     it("stores remote events this version cannot read, and skips unorderable ones", async () => {
       const future = { ...envelope(DAY), type: "goal_set", payload: { v: 1, goal: 3 } };
       const broken = { ...envelope(DAY), occurredAt: Number.NaN, type: "x", payload: {} };

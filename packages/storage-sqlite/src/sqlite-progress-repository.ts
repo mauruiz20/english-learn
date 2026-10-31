@@ -60,6 +60,15 @@ export type SqliteProgressRepository = ProgressRepository &
      * know). Atomic and idempotent: resolves to whether a baseline was written.
      */
     ensureBaseline(build: (cache: ProgressCache) => BaselineImportedEvent): Promise<boolean>;
+    /** Stores a new device id (the server answered that the old one belongs to another account). */
+    replaceDeviceId(id: string): Promise<void>;
+    /**
+     * Forgets what the server has: every event becomes unsynced and the cursor goes back to 0, so
+     * the next account this device signs in to receives the whole log. Progress is unchanged.
+     */
+    resetSyncState(): Promise<void>;
+    /** Deletes every event and the cached progress (keeps the device id), in one transaction. */
+    clearProgress(): Promise<void>;
   };
 
 export type SqliteProgressRepositoryOptions = {
@@ -434,6 +443,25 @@ export function createSqliteProgressRepository(
             id,
           ]);
         }
+      });
+    },
+
+    async replaceDeviceId(id) {
+      await writeSyncState(DEVICE_ID, id);
+    },
+
+    async resetSyncState() {
+      await transaction(async () => {
+        await db.runAsync("UPDATE event SET synced_at = NULL, server_seq = NULL", []);
+        await db.runAsync("DELETE FROM sync_state WHERE key = ?", [SERVER_CURSOR]);
+      });
+    },
+
+    async clearProgress() {
+      await transaction(async () => {
+        await db.runAsync("DELETE FROM event", []);
+        await db.runAsync("DELETE FROM sync_state WHERE key = ?", [SERVER_CURSOR]);
+        await refold();
       });
     },
 

@@ -54,8 +54,11 @@ export type RemoteEvent = StoredEvent & { readonly serverSeq?: number };
 export interface ProgressSyncStore {
   /** Events written on this device that the server has not acknowledged, oldest first. */
   getUnsyncedEvents(limit: number): Promise<readonly StoredEvent[]>;
-  /** Marks events as acknowledged; `serverSeqs[i]` is the server sequence of `ids[i]`. */
-  markSynced(ids: readonly string[], serverSeqs: readonly number[]): Promise<void>;
+  /**
+   * Marks events as acknowledged; `serverSeqs[i]` is the server sequence of `ids[i]`, or null
+   * when the server did not say.
+   */
+  markSynced(ids: readonly string[], serverSeqs: readonly (number | null)[]): Promise<void>;
   /** The last server sequence pulled (0 before the first pull). */
   getSyncCursor(): Promise<number>;
   setSyncCursor(cursor: number): Promise<void>;
