@@ -1,4 +1,5 @@
 import type { Passage } from "@english-learn/content";
+import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { AnswerFeedback } from "./components/answer-feedback";
 import { ExerciseBody } from "./components/exercise-body";
@@ -41,6 +42,8 @@ export type LessonViewState =
       readonly total: number;
       readonly xpEarned: number;
       readonly streakDays: number;
+      /** This session extended the streak (the summary rolls the number). */
+      readonly streakIncreased?: boolean;
       /** Items missed in the session, to look at again. */
       readonly toReview: readonly ReviewNote[];
     };
@@ -103,14 +106,16 @@ export function LessonView({
                 ),
               })}
         >
-          <ExerciseBody
-            key={state.prepared.exercise.id}
-            prepared={state.prepared}
-            passage={state.passage}
-            disabled={state.feedback !== null}
-            reveal={state.feedback !== null}
-            onSubmit={onSubmit}
-          />
+          <PageTurn pageKey={state.prepared.exercise.id}>
+            <ExerciseBody
+              key={state.prepared.exercise.id}
+              prepared={state.prepared}
+              passage={state.passage}
+              disabled={state.feedback !== null}
+              reveal={state.feedback !== null}
+              onSubmit={onSubmit}
+            />
+          </PageTurn>
         </ScreenContainer>
       );
   }

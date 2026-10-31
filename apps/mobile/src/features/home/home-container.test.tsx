@@ -15,6 +15,9 @@ import { createFakeSettingsRepository } from "@/testing/fake-settings-repository
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { HomeContainer } from "./home-container";
+import { createCompletionMemory, type CompletionMemory } from "./model/completion-memory";
+import { withMotion } from "@/testing/motion";
+import { StyleSheet } from "react-native";
 import { testRandomBytes } from "@/testing/random-bytes";
 
 const mockPush = jest.fn();
@@ -40,7 +43,10 @@ const content = createCorpus([
   { exercises: allExercises, passages: [passage], lessons: [lesson, b1Lesson] },
 ]);
 
-function renderContainer(repository: ProgressRepository) {
+function renderContainer(
+  repository: ProgressRepository,
+  completionMemory: CompletionMemory = createCompletionMemory(),
+) {
   return render(
     <AppServicesProvider
       services={{
@@ -54,7 +60,7 @@ function renderContainer(repository: ProgressRepository) {
       }}
     >
       <SoundPreferenceProvider>
-        <HomeContainer content={content} />
+        <HomeContainer content={content} completionMemory={completionMemory} />
       </SoundPreferenceProvider>
     </AppServicesProvider>,
   );
@@ -141,6 +147,23 @@ describe("HomeContainer", () => {
     );
 
     expect(await screen.findByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
+  });
+
+  it("draws the check of a lesson completed since home was last seen", async () => {
+    withMotion();
+    const memory = createCompletionMemory();
+    memory.take([]); // Home was seen earlier in the session, with nothing done.
+    const itemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
+    await renderContainer(
+      createFakeRepository({ states: itemIds.map((id) => initialState(id, TODAY)) }),
+      memory,
+    );
+
+    const check = await screen.findByTestId(`check-${lesson.id}`, { includeHiddenElements: true });
+    const clip = check.children[0] as unknown as { props: { style: unknown } };
+    // Not drawn yet: it is about to be drawn, once.
+    expect(StyleSheet.flatten(clip.props.style as never)?.width).toBe(0);
+    expect([...memory.take([lesson.id])]).toEqual([]);
   });
 
   it("counts the items due for review", async () => {

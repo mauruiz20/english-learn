@@ -7,11 +7,16 @@ import { Button } from "@/shared/ui/button";
 import { formatDays } from "@/shared/ui/format";
 import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
+import { PerfectStamp } from "@/shared/ui/perfect-stamp";
+import { RollingNumber } from "@/shared/ui/rolling-number";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
+import { useCountUp } from "@/shared/ui/use-count-up";
+import { useReducedMotion } from "@/shared/ui/use-reduced-motion";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
+import { STREAK_SOUND_DELAY_MS } from "../use-session-sounds";
 import type { ReviewNote } from "../model/items-to-review";
 
 /**
@@ -61,22 +66,31 @@ type SummaryProps = {
   total: number;
   xpEarned: number;
   streakDays: number;
+  /** This session extended the streak (the number rolls to its new value, with the sound). */
+  streakIncreased?: boolean;
   /** Items missed in the session (wrong or almost), at most a handful. */
   toReview: readonly ReviewNote[];
   onGoHome: () => void;
 };
 
-/** The graded page: the teacher's score in red pen in the corner, then the results on lines. */
+/**
+ * The graded page: the teacher's score in red pen in the corner, then the results on lines. Its
+ * one moment of motion rewards the session: a perfect page gets the "¡Excelente!" stamp, the XP
+ * counts up and a grown streak rolls to its new number as the streak sound plays.
+ */
 export function SessionSummary({
   title,
   correct,
   total,
   xpEarned,
   streakDays,
+  streakIncreased = false,
   toReview,
   onGoHome,
 }: SummaryProps) {
   const styles = useStyles();
+  const perfect = total > 0 && correct === total;
+  const xp = useCountUp(xpEarned);
   return (
     <ScreenContainer
       title={title}
@@ -93,15 +107,16 @@ export function SessionSummary({
       }
     >
       <View>
-        {[
-          `Aciertos: ${correct} de ${total}`,
-          `XP ganada: ${xpEarned}`,
-          `Racha: ${formatDays(streakDays)}`,
-        ].map((line) => (
-          <Text key={line} variant="title" style={styles.line}>
-            {line}
-          </Text>
-        ))}
+        <Text variant="title" style={styles.line}>{`Aciertos: ${correct} de ${total}`}</Text>
+        <Text variant="title" accessibilityLabel={`XP ganada: ${xpEarned}`} style={styles.line}>
+          {`XP ganada: ${xp}`}
+        </Text>
+        <StreakLine days={streakDays} increased={streakIncreased} />
+        {perfect && (
+          <View style={styles.stamp}>
+            <PerfectStamp />
+          </View>
+        )}
       </View>
       <View style={styles.review}>
         <Text accessibilityRole="header" variant="title" tone="ink">
@@ -130,6 +145,27 @@ export function SessionSummary({
       </View>
       <Button label="Volver al inicio" onPress={onGoHome} />
     </ScreenContainer>
+  );
+}
+
+/** "Racha: 3 días"; when the session grew it, the number rolls up from the old value. */
+function StreakLine({ days, increased }: { days: number; increased: boolean }) {
+  const styles = useStyles();
+  const reduced = useReducedMotion();
+  const label = `Racha: ${formatDays(days)}`;
+  if (!increased || reduced || days < 1) {
+    return (
+      <Text variant="title" style={styles.line}>
+        {label}
+      </Text>
+    );
+  }
+  return (
+    <View accessible accessibilityLabel={label} style={[styles.line, styles.streak]}>
+      <Text variant="title">{"Racha:\u00A0"}</Text>
+      <RollingNumber from={days - 1} to={days} delayMs={STREAK_SOUND_DELAY_MS} />
+      <Text variant="title">{`\u00A0${days === 1 ? "día" : "días"}`}</Text>
+    </View>
   );
 }
 
@@ -199,6 +235,9 @@ const useStyles = themedStyles(({ colors }) =>
       borderBottomColor: colors.rule,
     },
     review: { gap: spacing.xs },
+    streak: { flexDirection: "row", alignItems: "center" },
+    // Pressed onto the results, at the right of the column.
+    stamp: { position: "absolute", right: spacing.xs, top: spacing.lg },
     allRight: { paddingTop: spacing.xs },
     // "have breakfast   desayunar": the word and its meaning on one ruled line (wraps if long).
     note: {

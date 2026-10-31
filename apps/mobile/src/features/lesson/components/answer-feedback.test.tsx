@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
+import { StyleSheet } from "react-native";
 import { AnswerFeedback } from "./answer-feedback";
 
 const onContinue = jest.fn();
@@ -76,5 +77,57 @@ describe("AnswerFeedback", () => {
     await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));
 
     expect(onContinue).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("AnswerFeedback marking (reduced motion: shown at once)", () => {
+  // The strike is drawn over the answer once its width is known.
+  const struckWords = async () => {
+    await fireEvent(
+      screen.getByTestId("struck-answer", { includeHiddenElements: true }),
+      "layout",
+      {
+        nativeEvent: { layout: { x: 0, y: 0, width: 300, height: 31 } },
+      },
+    );
+    return screen
+      .getAllByText(/.+/, { includeHiddenElements: true })
+      .filter((node) => StyleSheet.flatten(node.props.style)?.textDecorationLine === "line-through")
+      .map((node) => node.props.children as string);
+  };
+
+  it("strikes the whole wrong answer through in red pen", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="wrong"
+        given="I go to park"
+        correctAnswer="I went to the park."
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(await struckWords()).toEqual(["I go to park"]);
+  });
+
+  it("strikes only the words that are off when the answer is almost right", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="almost"
+        given="I usualy go to bed"
+        correctAnswer="I usually go to bed."
+        onContinue={onContinue}
+      />,
+    );
+
+    expect((await struckWords()).map((w) => w.trim())).toEqual(["usualy"]);
+  });
+
+  it("shows the margin note fully drawn, not waiting for an animation", async () => {
+    await render(
+      <AnswerFeedback verdict="wrong" given="do" correctAnswer="have" onContinue={onContinue} />,
+    );
+
+    const note = screen.getByTestId("margin-note");
+    expect(StyleSheet.flatten(note.props.style)).toMatchObject({ opacity: 1 });
   });
 });

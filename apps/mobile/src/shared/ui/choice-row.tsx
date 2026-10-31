@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Highlight } from "./highlight";
+import { PressableScale } from "./pressable-scale";
 import { struckText } from "./struck";
 import { Text } from "./text";
 import { radius, spacing } from "./theme";
@@ -40,7 +41,7 @@ export function ChoiceRow({ label, content, checked, disabled, onPress, mark }: 
   const { colors } = useTheme();
   const filled = checked && mark === undefined;
   return (
-    <Pressable
+    <PressableScale
       accessibilityRole="radio"
       accessibilityLabel={spokenLabel(label, checked, mark)}
       accessibilityState={{ checked, disabled }}
@@ -78,7 +79,7 @@ export function ChoiceRow({ label, content, checked, disabled, onPress, mark }: 
           {content ?? label}
         </Text>
       )}
-    </Pressable>
+    </PressableScale>
   );
 }
 

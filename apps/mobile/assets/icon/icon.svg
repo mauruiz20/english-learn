@@ -1,0 +1,30 @@
+<!--
+  English Learn app icon: "el cuaderno de inglés". A lowercase "e" written in blue ballpoint ink
+  on notebook paper, over a stroke of yellow highlighter, with a faint ruled line.
+  Original art. Layers have ids so scripts/generate-icons.mjs can derive every variant
+  (full icon, Android adaptive foreground / background / monochrome, splash, favicon).
+  The glyph and the highlighter stay inside the central 61 % (Android adaptive safe zone), so
+  the full icon is also maskable (PWA safe zone: central 80 % circle).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <g id="paper">
+    <rect width="1024" height="1024" fill="#F7F9FC"/>
+    <!-- Ruled lines: faint, like the notebook's. -->
+    <g id="rules" stroke="#DCE6F2" stroke-width="10">
+      <line x1="0" y1="262" x2="1024" y2="262"/>
+      <line x1="0" y1="782" x2="1024" y2="782"/>
+    </g>
+  </g>
+  <g id="mark" transform="translate(512 545) scale(1.12) translate(-512 -545)">
+    <!-- The highlighter stroke: slanted, ends uneven, under the lower half of the letter. -->
+    <path id="swipe" fill="#FFE135"
+      d="M300 560 C 420 548, 600 545, 742 552 C 752 552, 760 560, 757 572 L 728 716
+         C 726 726, 718 732, 706 732 C 560 727, 420 728, 286 738 C 274 739, 266 732, 268 720
+         L 284 574 C 286 564, 292 561, 300 560 Z"/>
+    <!-- The "e", one ballpoint stroke: the bar first, then around and out to the tail. -->
+    <path id="glyph" fill="none" stroke="#1E3A8A" stroke-width="74" stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M352 552 C 440 558, 560 555, 668 540 C 676 432, 604 352, 508 356
+         C 400 360, 330 446, 334 556 C 338 664, 414 734, 516 734 C 590 734, 640 704, 676 660"/>
+  </g>
+</svg>

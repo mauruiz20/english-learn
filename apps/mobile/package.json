@@ -26,9 +26,13 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-native": "0.88.1",
+    "react-native-gesture-handler": "~3.3.0",
+    "react-native-reanimated": "4.7.1",
     "react-native-safe-area-context": "~5.10.1",
     "react-native-screens": "~4.30.0",
-    "react-native-web": "~0.21.4"
+    "react-native-svg": "15.16.0",
+    "react-native-web": "~0.21.4",
+    "react-native-worklets": "0.13.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
@@ -55,7 +59,8 @@
     "serve:web": "node scripts/serve-web.mjs",
     "e2e:web": "pnpm export:web:e2e && playwright test",
     "generate:sounds": "node scripts/generate-sounds.mjs",
-    "generate:pwa-icons": "node scripts/generate-pwa-icons.mjs"
+    "generate:pwa-icons": "node scripts/generate-pwa-icons.mjs",
+    "generate:icons": "node scripts/generate-icons.mjs"
   },
   "private": true,
   "jest": {
@@ -71,6 +76,12 @@
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!(.pnpm|(jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg))"
+    ],
+    "setupFiles": [
+      "./jest.setup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "./jest.after-env.js"
     ]
   }
 }

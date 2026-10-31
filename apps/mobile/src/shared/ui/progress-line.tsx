@@ -1,5 +1,9 @@
+import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
+import { SETTLE_SPRING } from "./motion";
 import type { HighlighterName } from "./theme";
+import { useReducedMotion } from "./use-reduced-motion";
 import { themedStyles, useTheme } from "./use-theme";
 
 type ProgressLineProps = {
@@ -14,13 +18,19 @@ type ProgressLineProps = {
 
 /**
  * A thin ink line drawn over a ruled line: how far along something is. Tinted, the done part is
- * also swiped with a highlighter, the ink line still marking it on top.
+ * also swiped with a highlighter, the ink line still marking it on top. When the value changes
+ * the line springs to its new length (instantly with reduced motion).
  */
 export function ProgressLine({ value, max, label, tint }: ProgressLineProps) {
   const styles = useStyles();
   const { colors } = useTheme();
   const ratio = max <= 0 ? 0 : Math.min(1, Math.max(0, value / max));
-  const width = `${ratio * 100}%` as const;
+  const reduced = useReducedMotion();
+  const shown = useSharedValue(ratio);
+  useEffect(() => {
+    shown.set(reduced ? ratio : withSpring(ratio, SETTLE_SPRING));
+  }, [ratio, reduced, shown]);
+  const width = useAnimatedStyle(() => ({ width: `${shown.value * 100}%` }));
   return (
     <View
       accessible
@@ -32,10 +42,12 @@ export function ProgressLine({ value, max, label, tint }: ProgressLineProps) {
       {tint !== undefined && (
         <>
           <View style={styles.rule} />
-          <View style={[styles.band, { width, backgroundColor: colors.highlighters[tint] }]} />
+          <Animated.View
+            style={[styles.band, { backgroundColor: colors.highlighters[tint] }, width]}
+          />
         </>
       )}
-      <View style={[styles.fill, { width }]} />
+      <Animated.View style={[styles.fill, width]} />
     </View>
   );
 }

@@ -1,4 +1,5 @@
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { PressableScale } from "./pressable-scale";
 import { Text } from "./text";
 import { TOUCH_TARGET, fonts, radius, spacing, typeScale } from "./theme";
 import { themedStyles } from "./use-theme";
@@ -21,7 +22,8 @@ export function Button({
 }: ButtonProps) {
   const styles = useStyles();
   return (
-    <Pressable
+    <PressableScale
+      wrapperStyle={variant === "text" && styles.textWrapper}
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityState={{ disabled }}
@@ -36,7 +38,7 @@ export function Button({
       ]}
     >
       <Text style={[styles.label, styles[`${variant}Label`]]}>{label}</Text>
-    </Pressable>
+    </PressableScale>
   );
 }
 
@@ -53,7 +55,9 @@ const useStyles = themedStyles(({ colors }) =>
     primary: { backgroundColor: colors.ink },
     secondary: { borderWidth: 1.5, borderColor: colors.ink },
     text: { alignSelf: "flex-start", paddingHorizontal: 0 },
-    pressed: { opacity: 0.75 },
+    // The press itself shows as a slight shrink (PressableScale); the ink only dims a little.
+    pressed: { opacity: 0.85 },
+    textWrapper: { alignSelf: "flex-start" },
     disabled: { opacity: 0.4 },
     label: { fontFamily: fonts.bodyBold, ...typeScale.body },
     primaryLabel: { color: colors.onInk },
