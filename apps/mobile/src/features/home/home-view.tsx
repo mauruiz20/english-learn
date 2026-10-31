@@ -187,9 +187,11 @@ function ReviewNote({
   return (
     <View style={styles.sticky}>
       <StickyNote color={color}>
-        <Text variant="title">Repaso</Text>
-        <Text>{`${pending} ${pending === 1 ? "pendiente" : "pendientes"}`}</Text>
-        <View style={styles.stickyAction}>
+        <View style={styles.stickyRow}>
+          <View style={styles.stickyText}>
+            <Text variant="title">Repaso</Text>
+            <Text>{`${pending} ${pending === 1 ? "pendiente" : "pendientes"}`}</Text>
+          </View>
           <Button label="Repasar" onPress={onOpenReview} />
         </View>
       </StickyNote>
@@ -523,8 +525,10 @@ const useStyles = themedStyles(({ colors }) =>
     albumSecond: { marginLeft: -14 },
     albumText: { flex: 1 },
     emptyReview: { flexDirection: "row", alignItems: "center", gap: spacing.md },
-    sticky: { paddingHorizontal: spacing.xs, alignItems: "flex-start" },
-    stickyAction: { marginTop: spacing.sm, alignSelf: "flex-start" },
+    // A strip of sticky note across the page: what is due, and the button to review it.
+    sticky: { paddingHorizontal: spacing.xs },
+    stickyRow: { flexDirection: "row", alignItems: "center", gap: spacing.md, flexWrap: "wrap" },
+    stickyText: { flex: 1, minWidth: 140 },
     placement: {
       gap: spacing.sm,
       paddingVertical: spacing.md,
