@@ -1,4 +1,4 @@
-import type { Verdict } from "@english-learn/domain";
+import { xpForAnswer, type Verdict } from "@english-learn/domain";
 import { useEffect, useState, type ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, {
@@ -7,15 +7,17 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
+import Svg, { Path } from "react-native-svg";
 import { GlossaryRuns } from "@/features/glossary/glossary-text";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
 import { MOTION } from "@/shared/ui/motion";
+import { PopBadge } from "@/shared/ui/pop-badge";
 import { StrokeClip, usePenStroke } from "@/shared/ui/pen-stroke";
 import { struckText } from "@/shared/ui/struck";
 import { Text } from "@/shared/ui/text";
-import { spacing } from "@/shared/ui/theme";
+import { radius, spacing } from "@/shared/ui/theme";
 import { useReducedMotion } from "@/shared/ui/use-reduced-motion";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { diffWords, type AnswerSegment } from "../model/answer-diff";
@@ -31,8 +33,19 @@ type AnswerFeedbackProps = {
   disputed?: boolean | undefined;
   /** Offers "Mi respuesta también es correcta" (translate_write answers graded wrong or almost). */
   onDispute?: (() => void) | undefined;
+  /** Right answers in a row so far, this one included (cheered from three). */
+  inARow?: number | undefined;
   onContinue: () => void;
 };
+
+/** From how many right answers in a row the band cheers them. */
+const CHEER_FROM = 3;
+
+/** The band's headline: what the teacher says first. */
+function headline(verdict: Verdict, disputed: boolean): string {
+  if (disputed) return DISPUTED_LABEL;
+  return verdict === "correct" ? "¡Correcto!" : verdict === "almost" ? "¡Casi!" : "Incorrecto";
+}
 
 const DISPUTED_LABEL = "Marcada como correcta";
 
@@ -63,8 +76,10 @@ function struckSegments(verdict: Verdict, given: string, correctAnswer: string):
 }
 
 /**
- * The teacher's marking of an answer. Correct: the answer is swiped with the yellow highlighter
- * and a short green "Correcto". Wrong: the answer is struck through in red pen with a margin
+ * The teacher's marking of an answer, on a band tinted by the verdict, under a headline with a
+ * round mark ("¡Correcto!", "¡Casi!", "Incorrecto"), the points it earned popping off as a
+ * sticker and, from three right answers in a row, a cheer. Correct: the answer is swiped with the
+ * yellow highlighter. Wrong: the answer is struck through in red pen with a margin
  * note giving the right one. Almost: only the words that are off are struck through (or the
  * whole answer if nothing lines up), with "Casi. Fíjate: …". Screen readers get a plain
  * sentence instead (`feedbackAnnouncement`). A translate_write answer graded wrong or almost
@@ -78,9 +93,13 @@ export function AnswerFeedback({
   lookupAnswer = false,
   disputed = false,
   onDispute,
+  inARow = 0,
   onContinue,
 }: AnswerFeedbackProps) {
   const styles = useStyles();
+  const { colors } = useTheme();
+  const band = colors.feedback[verdict];
+  const points = xpForAnswer(verdict);
   const shown = given.length > 0 ? given : "(sin respuesta)";
   // The marking is visual only (screen readers get the alert). A note whose words can be looked
   // up stays reachable, though, so its lookup buttons are not hidden.
@@ -90,15 +109,26 @@ export function AnswerFeedback({
       <Text accessibilityRole="alert" accessibilityLiveRegion="polite" style={styles.announcement}>
         {feedbackAnnouncement(verdict, correctAnswer, disputed)}
       </Text>
+      <View {...hidden} style={styles.headline}>
+        <VerdictMark verdict={verdict} />
+        <Text variant="heading" style={[styles.headlineText, { color: band.ink }]}>
+          {headline(verdict, disputed)}
+        </Text>
+        {verdict === "correct" && inARow >= CHEER_FROM && (
+          <View style={[styles.cheer, { borderColor: band.ink }]}>
+            <Text variant="smallStrong" style={{ color: band.ink }}>
+              {`¡${inARow} seguidas!`}
+            </Text>
+          </View>
+        )}
+        {points > 0 && <PopBadge label={`+${points}`} style={styles.badge} />}
+      </View>
       <View style={styles.marking}>
         {verdict === "correct" ? (
           <View {...hidden} style={styles.marking}>
             <Highlight animate variant="title" style={styles.answer}>
               {shown}
             </Highlight>
-            <Text variant="title" tone="success">
-              {disputed ? DISPUTED_LABEL : "Correcto"}
-            </Text>
           </View>
         ) : (
           <>
@@ -119,6 +149,48 @@ export function AnswerFeedback({
     </View>
   );
 }
+
+/** A round mark at the start of the band: a check, a tilde or a cross (decorative). */
+function VerdictMark({ verdict }: { verdict: Verdict }) {
+  const { colors } = useTheme();
+  const band = colors.feedback[verdict];
+  const fill =
+    verdict === "correct"
+      ? colors.highlighters.green
+      : verdict === "almost"
+        ? colors.highlighters.yellow
+        : colors.highlighters.orange;
+  const path =
+    verdict === "correct"
+      ? "M5 12.5 10 17 19 7"
+      : verdict === "almost"
+        ? "M5 13 C 8 8, 11 16, 14 11 S 18 9, 19 11"
+        : "M7 7 17 17 M17 7 7 17";
+  return (
+    <View style={[markStyles.mark, { backgroundColor: fill, borderColor: band.tint }]}>
+      <Svg width={20} height={20} viewBox="0 0 24 24">
+        <Path
+          d={path}
+          fill="none"
+          stroke={colors.onHighlighter}
+          strokeWidth={3}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+}
+
+const markStyles = StyleSheet.create({
+  mark: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 /**
  * The learner's answer with the off words struck through in red pen. The strike is drawn left to
@@ -193,6 +265,16 @@ const hidden = {
 const useStyles = themedStyles(({ colors }) =>
   StyleSheet.create({
     panel: { gap: spacing.md },
+    headline: { flexDirection: "row", alignItems: "center", gap: spacing.sm, flexWrap: "wrap" },
+    headlineText: { flexShrink: 1 },
+    cheer: {
+      borderWidth: 2,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing.sm,
+      paddingVertical: 1,
+    },
+    // The points sticker sits at the band's top right corner.
+    badge: { position: "absolute", right: 0, top: -spacing.xs },
     // Read by screen readers, invisible on screen.
     announcement: {
       position: "absolute",

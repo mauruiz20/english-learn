@@ -28,6 +28,7 @@ export const VOLUMES: Readonly<Record<SoundName, number>> = {
   wrong: 0.7,
   complete: 0.85,
   streak: 0.8,
+  achievement: 0.8,
 };
 
 const IOS_HAPTICS: Readonly<Record<SoundName, "light" | HapticNotification | null>> = {
@@ -37,6 +38,7 @@ const IOS_HAPTICS: Readonly<Record<SoundName, "light" | HapticNotification | nul
   wrong: "error",
   complete: "success",
   streak: null,
+  achievement: "success",
 };
 
 const ANDROID_HAPTICS: Readonly<Record<SoundName, AndroidHaptic | null>> = {
@@ -46,6 +48,7 @@ const ANDROID_HAPTICS: Readonly<Record<SoundName, AndroidHaptic | null>> = {
   wrong: "reject",
   complete: "confirm",
   streak: null,
+  achievement: "confirm",
 };
 
 /**

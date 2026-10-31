@@ -53,6 +53,7 @@ export function ChoiceRow({ label, content, checked, disabled, onPress, mark }: 
         pressed && !checked && styles.pressed,
         mark === undefined && disabled && !checked && styles.locked,
         mark === "wrong" && styles.wrong,
+        mark === "correct" && styles.correct,
         mark === "dimmed" && styles.dimmed,
       ]}
     >
@@ -92,17 +93,27 @@ const useStyles = themedStyles(({ colors }) =>
       gap: spacing.md,
       paddingHorizontal: spacing.md,
       paddingVertical: spacing.sm + 2,
-      borderRadius: radius.md,
-      borderWidth: 1.5,
-      borderColor: colors.ink,
+      borderRadius: radius.lg,
+      borderWidth: 2,
+      borderColor: colors.rule,
+      backgroundColor: colors.sheet,
+      boxShadow: `0 3px 0 ${colors.rule}`,
     },
     label: { flexShrink: 1, flexGrow: 1 },
-    checked: { backgroundColor: colors.ink },
-    pressed: { backgroundColor: colors.rule },
+    checked: {
+      backgroundColor: colors.ink,
+      borderColor: colors.ink,
+      boxShadow: `0 3px 0 ${colors.inkEdge}`,
+    },
+    pressed: { backgroundColor: colors.rule, transform: [{ translateY: 2 }], boxShadow: "none" },
     locked: { opacity: 0.55 },
     // The learner's pick, circled in red pen: an outline, never a fill.
-    wrong: { borderColor: colors.redPen, borderWidth: 2 },
-    dimmed: { borderColor: colors.rule, opacity: 0.6 },
+    wrong: { borderColor: colors.redPen, borderWidth: 2, boxShadow: "none" },
+    correct: {
+      borderColor: colors.feedback.correct.ink,
+      boxShadow: `0 3px 0 ${colors.feedback.correct.ink}`,
+    },
+    dimmed: { borderColor: colors.rule, opacity: 0.6, boxShadow: "none" },
     tick: { flexDirection: "row", alignItems: "center", gap: spacing.xs + 2 },
     // A ballpoint check mark: the short and long strokes of an L turned 45°.
     check: {

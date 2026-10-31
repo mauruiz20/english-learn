@@ -184,3 +184,59 @@ describe("AnswerFeedback: 'Mi respuesta también es correcta'", () => {
     expect(screen.getByRole("button", { name: "Continuar" })).toBeOnTheScreen();
   });
 });
+
+describe("AnswerFeedback rewards", () => {
+  it("pops the XP a right answer earned, as a decorative sticker", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="correct"
+        given="have"
+        correctAnswer="have"
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(screen.getByText("+10", { includeHiddenElements: true })).toBeTruthy();
+    expect(screen.queryByText("+10")).toBeNull();
+  });
+
+  it("gives half for an almost-right answer, and nothing for a wrong one", async () => {
+    await render(
+      <AnswerFeedback verdict="almost" given="hav" correctAnswer="have" onContinue={onContinue} />,
+    );
+    expect(screen.getByText("+5", { includeHiddenElements: true })).toBeTruthy();
+
+    await render(
+      <AnswerFeedback verdict="wrong" given="do" correctAnswer="have" onContinue={onContinue} />,
+    );
+    expect(screen.queryByText(/^\+\d+$/, { includeHiddenElements: true })).toBeNull();
+  });
+
+  it("cheers three or more right answers in a row", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="correct"
+        given="have"
+        correctAnswer="have"
+        inARow={3}
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(screen.getByText("¡3 seguidas!", { includeHiddenElements: true })).toBeTruthy();
+  });
+
+  it("does not cheer fewer than three", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="correct"
+        given="have"
+        correctAnswer="have"
+        inARow={2}
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(screen.queryByText(/seguidas/, { includeHiddenElements: true })).toBeNull();
+  });
+});

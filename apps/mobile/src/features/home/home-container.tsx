@@ -11,6 +11,11 @@ import { useProgressVersion } from "@/features/account/account-context";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
+import {
+  ACHIEVEMENTS,
+  achievementFacts,
+  unlockedAchievements,
+} from "@/features/achievements/model/achievements";
 
 /** Lessons for the learner's level (A2 by default), each marked done when all its items were reviewed. */
 function homeLessons(
@@ -77,6 +82,12 @@ export function HomeContainer({
           xp,
           level,
           lessons: markJustCompleted(homeLessons(content, level, states), completionMemory),
+          album: {
+            unlocked: unlockedAchievements(
+              achievementFacts(content, { states, xp, streak, placement }),
+            ).length,
+            total: ACHIEVEMENTS.length,
+          },
         });
       },
       (error: unknown) => {
@@ -105,6 +116,7 @@ export function HomeContainer({
       onOpenReview={() => router.push("/review")}
       onOpenAbout={() => router.push("/about")}
       onOpenAccount={() => router.push("/cuenta")}
+      onOpenAlbum={() => router.push("/album")}
     />
   );
 }

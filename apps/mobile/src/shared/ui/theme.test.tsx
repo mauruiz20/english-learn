@@ -32,7 +32,7 @@ describe("themeFor", () => {
   );
 
   it("keeps the highlighter yellow, with dark text on it, in both schemes", () => {
-    expect(palettes.dark.highlighter).toBe("#FFE135");
+    expect(palettes.dark.highlighter).toBe("#FFD23F");
     expect(palettes.dark.onHighlighter).toBe(palettes.light.onHighlighter);
   });
 });
@@ -55,7 +55,7 @@ describe("useTheme", () => {
       </ThemeOverride>,
     );
 
-    expect(screen.getByText("light #F7F9FC")).toBeOnTheScreen();
+    expect(screen.getByText("light #F5F7FF")).toBeOnTheScreen();
   });
 });
 
@@ -100,6 +100,31 @@ describe("text contrast (WCAG AA, 4.5:1)", () => {
     const colors = palettes[scheme];
     expect(contrast(colors.onHighlighter, colors.highlighters[name])).toBeGreaterThanOrEqual(4.5);
   });
+});
+
+describe("feedback bands", () => {
+  const verdicts = ["correct", "almost", "wrong"] as const;
+  const cases = (["light", "dark"] as const).flatMap((scheme) =>
+    verdicts.map((verdict) => [scheme, verdict] as const),
+  );
+
+  it.each(cases)("%s %s: its ink and the body text read on its tint", (scheme, verdict) => {
+    const colors = palettes[scheme];
+    const band = colors.feedback[verdict];
+    expect(contrast(band.ink, band.tint)).toBeGreaterThanOrEqual(4.5);
+    expect(contrast(colors.text, band.tint)).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
+describe("buttons", () => {
+  it.each(["light", "dark"] as const)(
+    "%s: text on ink reads, and the ink edge is darker",
+    (scheme) => {
+      const colors = palettes[scheme];
+      expect(contrast(colors.onInk, colors.ink)).toBeGreaterThanOrEqual(4.5);
+      expect(luminance(colors.inkEdge)).toBeLessThan(luminance(colors.ink));
+    },
+  );
 });
 
 describe("highlighters", () => {

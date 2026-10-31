@@ -322,9 +322,9 @@ async function capture(browserType, size, scheme) {
       await next();
     }
 
-    // Summary (after the XP count and the streak roll).
+    // Summary (after the sticker, Avi, the confetti, the XP count and the streak roll).
     await page.getByRole("button", { name: "Volver al inicio", exact: true }).waitFor();
-    await page.waitForTimeout(900);
+    await page.waitForTimeout(1800);
     await snap(`${step()}-lesson-summary`);
 
     // Home right after the lesson: a one-day streak, nothing to review yet.
@@ -350,10 +350,15 @@ async function capture(browserType, size, scheme) {
         await button(page, "Continuar").click();
         await done.or(page.locator('[data-testid^="exercise-"]').first()).waitFor();
       }
-      // The "¡Excelente!" stamp lands, the XP counts up.
-      await page.waitForTimeout(900);
+      // The sticker and the "¡Excelente!" stamp land, the XP counts up.
+      await page.waitForTimeout(1800);
       await snap(`${step()}-review-summary-perfect`);
     }
+
+    // The album, with the stickers won so far.
+    await page.goto(`/album?today=${DAY_4}`);
+    await page.getByRole("button", { name: "Seguir aprendiendo", exact: true }).waitFor();
+    await snap(`${step()}-album`, { full: true });
 
     // About.
     await page.goto(`/about?today=${DAY_4}`);

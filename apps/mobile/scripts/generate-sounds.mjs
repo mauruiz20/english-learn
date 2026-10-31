@@ -100,6 +100,20 @@ export const SOUNDS = {
       },
     ],
   },
+  // A sticker for the album: a rising major sixth chord rolled like a glockenspiel
+  // (G5 B5 D6 → G6 E7 shimmer), brighter than "complete" and over sooner.
+  achievement: {
+    duration: 0.8,
+    notes: [79, 83, 86, 91, 100].map((n, i) => ({
+      at: i * 0.07,
+      freq: midi(n),
+      length: 0.8 - i * 0.07,
+      decay: i === 4 ? 0.2 : 0.12,
+      gain: i === 4 ? 0.55 : 0.85,
+      harmonics: [0.08],
+      partials: [[2.76, i >= 3 ? 0.14 : 0.06]],
+    })),
+  },
 };
 
 /** Renders one note into `out` (float samples), mixing. */

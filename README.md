@@ -37,7 +37,9 @@ every check passes; installable and usable offline; progress is stored in your b
   reading comprehension and free-text translation. Free text is graded with typo and
   contraction tolerance (`correct` / `almost` / `wrong`).
 - **Spaced repetition (SM-2)**: a daily review of due items, scheduled per item.
-- **Progress**: XP, daily streak, placement level and completed lessons on the home screen.
+- **Progress as a game**: XP in sheets of stickers, a daily streak as a paperclip chain, the
+  level's lessons as a path of stickers, and an album of sixteen achievements, all derived from
+  the stored progress.
 - **Fully offline**: progress lives in SQLite on the device (WebAssembly + OPFS on web).
 - **Content**: A2 and B1 courses, plus a placement bank covering A1 to C1.
 
