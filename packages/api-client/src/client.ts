@@ -8,8 +8,12 @@ type Ok<Path extends keyof paths, Method extends keyof paths[Path]> = paths[Path
   ? JsonBody<Response>
   : never;
 
-export type SignInResponse = Ok<"/v1/auth/google", "post">;
-export type TokensResponse = Ok<"/v1/auth/refresh", "post">;
+/** Body transport: the refresh token is in the JSON. */
+export type SignInResponse = Schemas["SignInResponse"];
+export type TokensResponse = Schemas["TokensResponse"];
+/** Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie. */
+export type CookieSignInResponse = Schemas["CookieSignInResponse"];
+export type CookieTokensResponse = Schemas["CookieTokensResponse"];
 export type UserResponse = Ok<"/v1/me", "get">;
 export type SyncRequest = Schemas["SyncRequest"];
 export type SyncEvent = Schemas["EventRequest"];
@@ -19,7 +23,12 @@ export type SyncedEvent = Schemas["EventResponse"];
 /** The subset of `fetch` the client uses, so any implementation (or a fake) fits. */
 export type FetchLike = (
   url: string,
-  init: { method: string; headers: Record<string, string>; body?: string },
+  init: {
+    method: string;
+    headers: Record<string, string>;
+    body?: string;
+    credentials?: "include";
+  },
 ) => Promise<{
   status: number;
   ok: boolean;
@@ -27,11 +36,19 @@ export type FetchLike = (
   text(): Promise<string>;
 }>;
 
-export type ApiClientOptions = {
+/**
+ * How the refresh token travels (`X-Token-Transport`). `cookie` (web): an HttpOnly cookie the
+ * browser keeps, out of JavaScript's reach. `body`: in the JSON, for clients that store it.
+ */
+export type TokenTransport = "cookie" | "body";
+
+export type ApiClientOptions<Transport extends TokenTransport = TokenTransport> = {
   /** For example `https://english-learn-api.onrender.com`. */
   readonly baseUrl: string;
   /** The current access token, or null when signed out (protected calls then get a 401). */
   readonly getAccessToken: () => string | null | Promise<string | null>;
+  /** Defaults to `"cookie"`, the web app's transport. */
+  readonly tokenTransport?: Transport;
   /** Defaults to the global `fetch`. */
   readonly fetch?: FetchLike;
 };
@@ -51,11 +68,27 @@ export class ApiError extends Error {
   }
 }
 
-export type ApiClient = {
+/** The web client: the browser sends and stores the refresh cookie. */
+export type CookieAuth = {
+  /** Sets the refresh cookie; the JSON has the access token and the user. */
+  signInWithGoogle(idToken: string): Promise<CookieSignInResponse>;
+  /** Rotates the refresh cookie. Serialize calls across tabs (see services/api/README.md). */
+  refresh(): Promise<CookieTokensResponse>;
+  /** Revokes the session and clears the refresh cookie. */
+  logout(): Promise<void>;
+};
+
+/** Clients that store the refresh token themselves. */
+export type BodyAuth = {
   signInWithGoogle(idToken: string): Promise<SignInResponse>;
-  /** Rotates the refresh token. Serialize calls across tabs (see services/api/README.md). */
+  /** Rotates the refresh token. Serialize calls (see services/api/README.md). */
   refresh(refreshToken: string): Promise<TokensResponse>;
   logout(refreshToken: string): Promise<void>;
+};
+
+export type ApiClient<Transport extends TokenTransport = "cookie"> = (Transport extends "body"
+  ? BodyAuth
+  : CookieAuth) & {
   me(): Promise<UserResponse>;
   /** Needs a Google sign-in less than 5 minutes old, else 401 `reauthentication_required`. */
   deleteAccount(): Promise<void>;
@@ -63,9 +96,29 @@ export type ApiClient = {
   sync(request: SyncRequest): Promise<SyncResponse>;
 };
 
-type Call = { method: "GET" | "POST" | "DELETE"; path: keyof paths; body?: unknown; auth: boolean };
+/** What the implementation builds; the overloads narrow it to one transport's methods. */
+type AnyApiClient = Omit<ApiClient, keyof CookieAuth> & {
+  signInWithGoogle(idToken: string): Promise<SignInResponse | CookieSignInResponse>;
+  refresh(refreshToken?: string): Promise<TokensResponse | CookieTokensResponse>;
+  logout(refreshToken?: string): Promise<void>;
+};
 
-export function createApiClient(options: ApiClientOptions): ApiClient {
+type Call = {
+  method: "GET" | "POST" | "DELETE";
+  path: keyof paths;
+  body?: unknown;
+  /** Sends the bearer access token. */
+  auth?: boolean;
+  /** An auth endpoint: sends the token transport (and, in cookie mode, credentials). */
+  session?: boolean;
+};
+
+export function createApiClient(options: ApiClientOptions<"cookie">): ApiClient<"cookie">;
+export function createApiClient(
+  options: ApiClientOptions<"body"> & { readonly tokenTransport: "body" },
+): ApiClient<"body">;
+export function createApiClient(options: ApiClientOptions): AnyApiClient {
+  const transport = options.tokenTransport ?? "cookie";
   const baseUrl = options.baseUrl.replace(/\/+$/, "");
   // Called through a wrapper: browsers reject `fetch` invoked with another `this`.
   const fetch: FetchLike = options.fetch ?? ((url, init) => globalThis.fetch(url, init));
@@ -77,9 +130,14 @@ export function createApiClient(options: ApiClientOptions): ApiClient {
       const token = await options.getAccessToken();
       if (token) headers.Authorization = `Bearer ${token}`;
     }
+    const cookie = request.session === true && transport === "cookie";
+    if (request.session) headers["X-Token-Transport"] = transport;
+    // CSRF defense for cookie-authenticated calls; the API checks it with the Origin.
+    if (cookie) headers["X-Requested-With"] = "english-learn";
     const response = await fetch(`${baseUrl}${request.path}`, {
       method: request.method,
       headers,
+      ...(cookie ? { credentials: "include" as const } : {}),
       ...(request.body === undefined ? {} : { body: JSON.stringify(request.body) }),
     });
     const text = await response.text();
@@ -95,13 +153,19 @@ export function createApiClient(options: ApiClientOptions): ApiClient {
     await send(request);
   }
 
+  // In cookie mode `refreshToken` is undefined, so no body is sent: the browser sends the cookie.
+  const session = (path: keyof paths, refreshToken?: string): Call => ({
+    method: "POST",
+    path,
+    session: true,
+    ...(refreshToken === undefined ? {} : { body: { refreshToken } }),
+  });
+
   return {
     signInWithGoogle: (idToken) =>
-      json({ method: "POST", path: "/v1/auth/google", body: { idToken }, auth: false }),
-    refresh: (refreshToken) =>
-      json({ method: "POST", path: "/v1/auth/refresh", body: { refreshToken }, auth: false }),
-    logout: (refreshToken) =>
-      empty({ method: "POST", path: "/v1/auth/logout", body: { refreshToken }, auth: false }),
+      json({ method: "POST", path: "/v1/auth/google", body: { idToken }, session: true }),
+    refresh: (refreshToken) => json(session("/v1/auth/refresh", refreshToken)),
+    logout: (refreshToken) => empty(session("/v1/auth/logout", refreshToken)),
     me: () => json({ method: "GET", path: "/v1/me", auth: true }),
     deleteAccount: () => empty({ method: "DELETE", path: "/v1/account", auth: true }),
     sync: (request) => json({ method: "POST", path: "/v1/sync", body: request, auth: true }),
