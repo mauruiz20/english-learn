@@ -64,6 +64,12 @@ test.describe("account and sync", () => {
     expect(first.events.every((e) => !("deviceId" in e))).toBe(true);
     expect(account.storedTypes()).toContain("session_completed");
 
+    // The redirect replaced the history entry, so /cuenta has nothing to go back to: the header
+    // still offers the way home.
+    await page.getByRole("button", { name: "Volver a Inicio", exact: true }).click();
+    await expect(page.getByLabel(/^Racha: /)).toBeVisible();
+    expect(new URL(page.url()).pathname).toBe("/");
+
     // A second device: a fresh install, signed out, with no progress.
     await clearOriginData(page);
     await goHome(page);
