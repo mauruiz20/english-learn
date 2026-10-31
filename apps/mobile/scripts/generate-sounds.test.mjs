@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { SAMPLE_RATE, SOUNDS, renderWav } from "./generate-sounds.mjs";
 
-const NAMES = ["tap", "correct", "almost", "wrong", "complete", "streak"];
+const NAMES = ["tap", "correct", "almost", "wrong", "complete", "streak", "achievement"];
 
 /** Parses a canonical 44-byte-header PCM WAV. */
 function parseWav(buffer) {
@@ -26,7 +26,7 @@ function parseWav(buffer) {
 }
 
 describe("generate-sounds", () => {
-  it("defines exactly the app's six sounds", () => {
+  it("defines exactly the app's seven sounds", () => {
     assert.deepEqual(Object.keys(SOUNDS).sort(), [...NAMES].sort());
   });
 
@@ -52,7 +52,7 @@ describe("generate-sounds", () => {
 
       it("is short", () => {
         const ms = (wav.samples.length / SAMPLE_RATE) * 1000;
-        const max = name === "complete" ? 900 : 400;
+        const max = name === "complete" || name === "achievement" ? 900 : 400;
         assert.ok(ms > 30 && ms <= max, `${name} lasts ${ms} ms (max ${max})`);
       });
 

@@ -4,6 +4,7 @@ import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withSequence,
   withSpring,
   withTiming,
@@ -124,7 +125,17 @@ type SummaryProps = {
   toReview: readonly ReviewNote[];
   /** The lesson's topic: its color is the sticker's (a review gets a sky sticker). */
   topic?: string | undefined;
+  /** Album stickers this session earned. */
+  achievements?: readonly EarnedSticker[] | undefined;
   onGoHome: () => void;
+};
+
+/** An album sticker as the summary announces it. */
+export type EarnedSticker = {
+  readonly id: string;
+  readonly title: string;
+  readonly color: HighlighterName;
+  readonly rare?: boolean | undefined;
 };
 
 /** The teacher's word for the session, from how many answers were right. */
@@ -155,6 +166,7 @@ export function SessionSummary({
   streakIncreased = false,
   toReview,
   topic,
+  achievements = [],
   onGoHome,
 }: SummaryProps) {
   const styles = useStyles();
@@ -230,6 +242,9 @@ export function SessionSummary({
           </View>
         )}
       </View>
+      {achievements.map((a, i) => (
+        <EarnedCard key={a.id} sticker={a} index={i} />
+      ))}
       <View style={styles.review}>
         <Text accessibilityRole="header" variant="title" tone="ink">
           Para repasar
@@ -258,6 +273,56 @@ export function SessionSummary({
       <Button label="Volver al inicio" onPress={onGoHome} />
       <Confetti delayMs={250} />
     </ScreenContainer>
+  );
+}
+
+/**
+ * "Nueva insignia para tu álbum": a dark card that rises in after the results (staggered when
+ * there are several), with the sticker slapped on it.
+ */
+function EarnedCard({ sticker, index }: { sticker: EarnedSticker; index: number }) {
+  const styles = useStyles();
+  const reduced = useReducedMotion();
+  const shown = useSharedValue(reduced ? 1 : 0);
+  const delay = 900 + index * 250;
+  useEffect(() => {
+    shown.set(reduced ? 1 : withDelay(delay, withSpring(1, SLAP_SPRING)));
+  }, [reduced, shown, delay]);
+  const rise = useAnimatedStyle(() => ({
+    opacity: Math.min(1, shown.value * 2),
+    transform: [{ translateY: 24 * (1 - shown.value) }],
+  }));
+  return (
+    <Animated.View
+      accessible
+      accessibilityRole="text"
+      accessibilityLabel={`Nueva insignia para tu álbum: ${sticker.title}`}
+      style={[styles.earned, rise]}
+    >
+      <Sticker
+        color={sticker.color}
+        size={52}
+        tilt={-8}
+        slap
+        delayMs={delay + 120}
+        style={sticker.rare === true ? styles.rare : undefined}
+      >
+        <Svg width={22} height={22} viewBox="0 0 24 24">
+          <Path
+            d="M12 3 14.6 9 21 9.6 16.2 13.8 17.6 20.2 12 16.9 6.4 20.2 7.8 13.8 3 9.6 9.4 9Z"
+            fill="#1B2333"
+          />
+        </Svg>
+      </Sticker>
+      <View style={styles.earnedText}>
+        <Text variant="small" style={styles.earnedLabel}>
+          Nueva insignia para tu álbum
+        </Text>
+        <Text variant="bodyStrong" style={styles.earnedTitle}>
+          {sticker.title}
+        </Text>
+      </View>
+    </Animated.View>
   );
 }
 
@@ -414,6 +479,21 @@ const useStyles = themedStyles(({ colors }) =>
     resultDivider: { borderBottomWidth: 1, borderBottomColor: colors.rule },
     resultMark: { width: 44, alignItems: "center" },
     resultText: { flexShrink: 1 },
+    // Always a dark card, in both schemes: the album's "new sticker" moment.
+    earned: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.md,
+      backgroundColor: "#1B2333",
+      borderRadius: radius.lg,
+      padding: spacing.md,
+      borderWidth: 1,
+      borderColor: colors.rule,
+    },
+    earnedText: { flexShrink: 1, gap: 2 },
+    earnedLabel: { color: "#C9D3EA" },
+    earnedTitle: { color: "#FFFFFF" },
+    rare: { boxShadow: "0 0 0 3px #FF8FC7, 0 0 0 6px #5CC8FF" },
     chain: { transform: [{ scale: 0.9 }] },
     line: {
       paddingVertical: spacing.sm + 2,

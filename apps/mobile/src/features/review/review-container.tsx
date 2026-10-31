@@ -23,6 +23,7 @@ import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { pendingReviewItems, pickReviewExercises, restrictToItems } from "./model/review-plan";
 import { ReviewView, type ReviewViewState } from "./review-view";
 import { sessionResults } from "@/features/lesson/model/session-results";
+import { useNewAchievements } from "@/features/achievements/use-new-achievements";
 
 type Plan = { readonly session: ExerciseSession; readonly itemIds: readonly string[] };
 
@@ -130,7 +131,13 @@ function ReviewSession({
       }),
   });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir del repaso?");
-  const state = toViewState(session, plan, save, content);
+  const achievements = useNewAchievements(save.status === "saved", content);
+  const viewState = toViewState(session, plan, save, content);
+  // The summary also announces the album stickers the review earned.
+  const state =
+    viewState.status === "summary" && achievements.length > 0
+      ? { ...viewState, achievements }
+      : viewState;
 
   return (
     <>

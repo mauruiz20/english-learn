@@ -16,6 +16,7 @@ const SOURCES: Readonly<Record<SoundName, number>> = {
   wrong: require("../../../assets/sounds/wrong.wav"),
   complete: require("../../../assets/sounds/complete.wav"),
   streak: require("../../../assets/sounds/streak.wav"),
+  achievement: require("../../../assets/sounds/achievement.wav"),
 };
 
 const ANDROID_HAPTICS: Readonly<Record<AndroidHaptic, Haptics.AndroidHaptics>> = {

@@ -20,6 +20,7 @@ import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { useTheme } from "@/shared/ui/use-theme";
 import { correctInARow } from "@/features/lesson/model/session-results";
+import type { EarnedSticker } from "@/features/lesson/components/session-screens";
 
 export type ReviewViewState =
   | { readonly status: "loading" }
@@ -50,6 +51,8 @@ export type ReviewViewState =
       readonly streakIncreased?: boolean;
       /** Items missed in the session, to look at again. */
       readonly toReview: readonly ReviewNote[];
+      /** Album stickers the session earned. */
+      readonly achievements?: readonly EarnedSticker[];
     };
 
 type ReviewViewProps = {

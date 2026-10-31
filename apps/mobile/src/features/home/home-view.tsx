@@ -48,6 +48,8 @@ export type HomeViewState =
       readonly level: Level | null;
       /** Lessons of the learner's level (or the default level). */
       readonly lessons: HomeLessons;
+      /** Album stickers won, out of the whole album. */
+      readonly album?: { readonly unlocked: number; readonly total: number };
     };
 
 type HomeViewProps = {
@@ -61,6 +63,7 @@ type HomeViewProps = {
   onOpenAbout: () => void;
   /** Shows the "Cuenta" link next to the sound switch. */
   onOpenAccount?: () => void;
+  onOpenAlbum?: () => void;
 };
 
 type Ready = Extract<HomeViewState, { status: "ready" }>;
@@ -85,10 +88,14 @@ function ProgressCard({
   days,
   xp,
   controls,
+  album,
+  onOpenAlbum,
 }: {
   days: number;
   xp: number | null;
   controls: ReactNode;
+  album?: { readonly unlocked: number; readonly total: number } | undefined;
+  onOpenAlbum?: (() => void) | undefined;
 }) {
   const styles = useStyles();
   return (
@@ -108,7 +115,54 @@ function ProgressCard({
         <View style={styles.controls}>{controls}</View>
       </View>
       {xp !== null && <XpBar xp={xp} />}
+      {album !== undefined && onOpenAlbum !== undefined && (
+        <AlbumLink album={album} onPress={onOpenAlbum} />
+      )}
     </View>
+  );
+}
+
+/** "Mi álbum · 3 de 16 insignias", under the XP: the way to the album. */
+function AlbumLink({
+  album,
+  onPress,
+}: {
+  album: { readonly unlocked: number; readonly total: number };
+  onPress: () => void;
+}) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  const count = `${album.unlocked} de ${album.total} insignias`;
+  return (
+    <PressableScale
+      accessibilityRole="button"
+      accessibilityLabel={`Mi álbum: ${count}`}
+      onPress={onPress}
+      style={({ pressed }) => [styles.albumLink, pressed && styles.stopPressed]}
+    >
+      <View style={styles.albumStickers}>
+        <Sticker color="pink" size={30} tilt={-8} />
+        <Sticker color="sky" size={30} tilt={6} style={styles.albumSecond} />
+      </View>
+      <View style={styles.albumText}>
+        <Text variant="bodyStrong" tone="ink">
+          Mi álbum
+        </Text>
+        <Text variant="small" tone="muted">
+          {count}
+        </Text>
+      </View>
+      <Svg width={20} height={20} viewBox="0 0 24 24" aria-hidden>
+        <Path
+          d="M9 5l7 7-7 7"
+          fill="none"
+          stroke={colors.ink}
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </PressableScale>
   );
 }
 
@@ -406,6 +460,7 @@ export function HomeView({
   soundEnabled,
   onToggleSound,
   onOpenAccount,
+  onOpenAlbum,
   ...handlers
 }: HomeViewProps) {
   const { colors } = useTheme();
@@ -421,6 +476,8 @@ export function HomeView({
         days={state.status === "ready" ? state.streakDays : 0}
         xp={state.status === "ready" ? state.xp : null}
         controls={controls}
+        album={state.status === "ready" ? state.album : undefined}
+        onOpenAlbum={onOpenAlbum}
       />
       {state.status === "loading" && (
         <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />
@@ -450,6 +507,21 @@ const useStyles = themedStyles(({ colors }) =>
     streak: { flexDirection: "row", alignItems: "center", gap: spacing.md, flexShrink: 1 },
     streakNumber: { lineHeight: 36 },
     controls: { flexDirection: "row", alignItems: "center", marginRight: -spacing.sm },
+    albumLink: {
+      minHeight: 52,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.md,
+      paddingVertical: spacing.xs,
+      paddingRight: spacing.xs,
+      borderTopWidth: 1,
+      borderTopColor: colors.rule,
+      marginTop: -spacing.xs,
+      paddingTop: spacing.sm,
+    },
+    albumStickers: { flexDirection: "row", width: 52 },
+    albumSecond: { marginLeft: -14 },
+    albumText: { flex: 1 },
     emptyReview: { flexDirection: "row", alignItems: "center", gap: spacing.md },
     sticky: { paddingHorizontal: spacing.xs, alignItems: "flex-start" },
     stickyAction: { marginTop: spacing.sm, alignSelf: "flex-start" },

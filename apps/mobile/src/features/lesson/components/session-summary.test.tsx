@@ -117,4 +117,25 @@ describe("SessionSummary", () => {
       expect(screen.getAllByTestId("clip", { includeHiddenElements: true })).toHaveLength(3);
     });
   });
+
+  describe("new stickers for the album", () => {
+    const earned = [
+      { id: "first-lesson", title: "Primer sticker", color: "green" },
+      { id: "xp-100", title: "100 XP", color: "orange" },
+    ] as const;
+
+    it("announces each sticker the session earned", async () => {
+      await render(<SessionSummary {...base} achievements={earned} />);
+
+      expect(screen.getByText("Primer sticker")).toBeOnTheScreen();
+      expect(screen.getByText("100 XP")).toBeOnTheScreen();
+      expect(screen.getAllByText("Nueva insignia para tu álbum")).toHaveLength(2);
+    });
+
+    it("says nothing about the album when nothing was earned", async () => {
+      await render(<SessionSummary {...base} />);
+
+      expect(screen.queryByText("Nueva insignia para tu álbum")).not.toBeOnTheScreen();
+    });
+  });
 });

@@ -266,6 +266,24 @@ describe("HomeView sticker path", () => {
   });
 });
 
+describe("HomeView album", () => {
+  it("opens the album, saying how many stickers are won", async () => {
+    const onOpenAlbum = jest.fn();
+    await render(
+      <HomeView
+        state={{ ...ready, album: { unlocked: 3, total: 16 } }}
+        soundEnabled
+        {...handlers}
+        onOpenAlbum={onOpenAlbum}
+      />,
+    );
+
+    expect(screen.getByText("3 de 16 insignias")).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Mi álbum: 3 de 16 insignias" }));
+    expect(onOpenAlbum).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe("HomeView nothing to review", () => {
   it("shows Avi napping, invisible to screen readers, only when there is nothing to review", async () => {
     await renderView(ready);

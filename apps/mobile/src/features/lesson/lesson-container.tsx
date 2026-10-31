@@ -15,6 +15,8 @@ import { responseText } from "./model/response";
 import { LessonView, type LessonViewState } from "./lesson-view";
 import { useExerciseSession, type ExerciseSession, type SaveState } from "./use-exercise-session";
 import { sessionResults } from "./model/session-results";
+import { useNewAchievements } from "@/features/achievements/use-new-achievements";
+import type { EarnedSticker } from "./components/session-screens";
 
 type LessonContainerProps = {
   lessonId: string;
@@ -61,6 +63,7 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
       }),
   });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir de la lección?");
+  const achievements = useNewAchievements(save.status === "saved", content);
 
   const goHome = () => (router.canDismiss() ? router.dismissAll() : router.replace("/"));
 
@@ -73,7 +76,10 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
         onLookupItems={onLookup}
       >
         <LessonView
-          state={toViewState(session, initial?.prepared ?? [], save, content)}
+          state={withAchievements(
+            toViewState(session, initial?.prepared ?? [], save, content),
+            achievements,
+          )}
           onSubmit={onSubmit}
           onContinue={onContinue}
           onDispute={onDispute}
@@ -84,6 +90,14 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
       {dialog}
     </>
   );
+}
+
+/** The summary also announces the album stickers the lesson earned. */
+function withAchievements(
+  state: LessonViewState,
+  achievements: readonly EarnedSticker[],
+): LessonViewState {
+  return state.status === "summary" && achievements.length > 0 ? { ...state, achievements } : state;
 }
 
 function toViewState(

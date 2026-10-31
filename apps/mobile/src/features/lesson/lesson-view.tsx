@@ -16,6 +16,7 @@ import type { ReviewNote } from "./model/items-to-review";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
 import { correctInARow } from "./model/session-results";
+import type { EarnedSticker } from "./components/session-screens";
 
 /** Feedback on the current answer, with the learner's answer as text. */
 export type ShownFeedback = GradeResult & {
@@ -54,6 +55,8 @@ export type LessonViewState =
       readonly streakIncreased?: boolean;
       /** Items missed in the session, to look at again. */
       readonly toReview: readonly ReviewNote[];
+      /** Album stickers the session earned. */
+      readonly achievements?: readonly EarnedSticker[];
       /** The lesson's topic (the color of the sticker it earns). */
       readonly topic?: string | undefined;
     };
