@@ -1,12 +1,18 @@
 import json
 from datetime import timedelta
 from ipaddress import ip_network
+from pathlib import Path
 from typing import Any
 
 import pytest
 from pydantic import ValidationError
 
-from english_learn_api.settings import DEFAULT_CORS_ORIGINS, DEFAULT_GOOGLE_CLIENT_IDS, Settings
+from english_learn_api.settings import (
+    DEFAULT_CORS_ORIGINS,
+    DEFAULT_GOOGLE_CLIENT_IDS,
+    DatabaseSettings,
+    Settings,
+)
 
 SECRET = "R7q-v2Lw9_xZpT4mKc8NdYb3HsJf6GaE"
 OTHER_SECRET = "Qm2-Xc7_vL9pWz4KtR8bNd3YhS6jFgAe"
@@ -253,3 +259,122 @@ class TestClientIpSource:
     def test_rejects_unknown_sources(self) -> None:
         with pytest.raises(ValidationError):
             make(client_ip_source="x-forwarded-for")
+
+
+class TestSecretFiles:
+    """Docker secrets: `<NAME>_FILE` points at a file whose content is the value."""
+
+    @pytest.fixture
+    def env(self, monkeypatch: pytest.MonkeyPatch) -> pytest.MonkeyPatch:
+        for name in ("DATABASE_URL", "JWT_SECRET", "JWT_KEYS", "JWT_ACTIVE_KID"):
+            for suffix in ("", "_FILE"):
+                monkeypatch.delenv(name + suffix, raising=False)
+        return monkeypatch
+
+    @staticmethod
+    def secret_file(tmp_path: Path, name: str, content: str | bytes) -> str:
+        path = tmp_path / name
+        if isinstance(content, bytes):
+            path.write_bytes(content)
+        else:
+            path.write_text(content)
+        return str(path)
+
+    def test_reads_values_from_files(self, env: pytest.MonkeyPatch, tmp_path: Path) -> None:
+        url = "postgres://app:pw@db:5432/app"
+        env.setenv("DATABASE_URL_FILE", self.secret_file(tmp_path, "db", url + "\n"))
+        env.setenv("JWT_SECRET_FILE", self.secret_file(tmp_path, "jwt", SECRET + "\r\n"))
+
+        settings = Settings(_env_file=None)
+
+        assert settings.database_url == "postgresql+asyncpg://app:pw@db:5432/app"
+        assert settings.jwt_signing_keys() == ({"default": SECRET}, "default")
+
+    def test_reads_jwt_keys_from_a_file(self, env: pytest.MonkeyPatch, tmp_path: Path) -> None:
+        keys = json.dumps({"2026-09": OTHER_SECRET, "2026-10": SECRET})
+        env.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        env.setenv("JWT_KEYS_FILE", self.secret_file(tmp_path, "keys", keys + "\n"))
+        env.setenv("JWT_ACTIVE_KID", "2026-10")
+
+        settings = Settings(_env_file=None)
+
+        assert settings.jwt_signing_keys() == (
+            {"2026-09": OTHER_SECRET, "2026-10": SECRET},
+            "2026-10",
+        )
+
+    def test_migrations_read_the_database_url_from_a_file(
+        self, env: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        env.setenv("DATABASE_URL_FILE", self.secret_file(tmp_path, "db", "postgres://u:p@h/d\n"))
+
+        assert DatabaseSettings(_env_file=None).database_url == "postgresql+asyncpg://u:p@h/d"
+
+    def test_refuses_both_the_variable_and_its_file(
+        self, env: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        env.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        env.setenv("JWT_SECRET", SECRET)
+        env.setenv("JWT_SECRET_FILE", self.secret_file(tmp_path, "jwt", OTHER_SECRET))
+
+        with pytest.raises(ValueError, match="JWT_SECRET or JWT_SECRET_FILE, not both") as error:
+            Settings(_env_file=None)
+        assert SECRET not in str(error.value)
+        assert OTHER_SECRET not in str(error.value)
+
+    def test_refuses_a_missing_file(self, env: pytest.MonkeyPatch, tmp_path: Path) -> None:
+        env.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        env.setenv("JWT_SECRET_FILE", str(tmp_path / "absent"))
+
+        with pytest.raises(ValueError, match="JWT_SECRET_FILE: cannot read"):
+            Settings(_env_file=None)
+
+    @pytest.mark.parametrize("content", ["", "\n", "\r\n\n"])
+    def test_refuses_an_empty_file(
+        self, env: pytest.MonkeyPatch, tmp_path: Path, content: str
+    ) -> None:
+        env.setenv("DATABASE_URL_FILE", self.secret_file(tmp_path, "db", content))
+        env.setenv("JWT_SECRET", SECRET)
+
+        with pytest.raises(ValueError, match=r"DATABASE_URL_FILE: .* is empty"):
+            Settings(_env_file=None)
+
+    def test_refuses_a_file_that_is_not_text(self, env: pytest.MonkeyPatch, tmp_path: Path) -> None:
+        env.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        env.setenv("JWT_SECRET_FILE", self.secret_file(tmp_path, "jwt", b"\xff\xfe" + b"a" * 40))
+
+        with pytest.raises(ValueError, match=r"JWT_SECRET_FILE: .* not UTF-8"):
+            Settings(_env_file=None)
+
+    def test_invalid_json_keys_never_echo_the_file(
+        self, env: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        env.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        env.setenv("JWT_KEYS_FILE", self.secret_file(tmp_path, "keys", f"{{'a': '{SECRET}'}}"))
+        env.setenv("JWT_ACTIVE_KID", "a")
+
+        with pytest.raises(ValueError, match=r"JWT_KEYS_FILE: .* not valid JSON") as error:
+            Settings(_env_file=None)
+        assert SECRET not in str(error.value)
+
+    def test_a_weak_secret_from_a_file_is_refused_without_echoing_it(
+        self, env: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        weak = "x" * 40
+        env.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        env.setenv("JWT_SECRET_FILE", self.secret_file(tmp_path, "jwt", weak))
+
+        with pytest.raises(ValidationError, match="16 distinct bytes") as error:
+            Settings(_env_file=None)
+        assert weak not in str(error.value)
+
+    def test_an_invalid_database_url_is_refused_without_echoing_it(
+        self, env: pytest.MonkeyPatch, tmp_path: Path
+    ) -> None:
+        url = "mysql://app:hunter2-password@db/app"
+        env.setenv("DATABASE_URL_FILE", self.secret_file(tmp_path, "db", url))
+        env.setenv("JWT_SECRET", SECRET)
+
+        with pytest.raises(ValidationError, match="PostgreSQL") as error:
+            Settings(_env_file=None)
+        assert "hunter2" not in str(error.value)

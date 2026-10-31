@@ -316,10 +316,10 @@ migrations/          Alembic (async engine)
 | Variable                  | Default                                               | Notes                                                                                                                             |
 | ------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `ENV`                     | `development`                                         | `development` · `test` · `production` (see below)                                                                                 |
-| `DATABASE_URL`            | required                                              | `postgres://` URLs are converted to asyncpg                                                                                       |
+| `DATABASE_URL`            | required                                              | `postgres://` URLs are converted to asyncpg; or `DATABASE_URL_FILE` (below)                                                       |
 | `GOOGLE_CLIENT_IDS`       | the web client id                                     | Comma-separated; checked against `aud` and `azp`. Public values                                                                   |
-| `JWT_SECRET`              | required unless `JWT_KEYS`                            | Secret, ≥ 32 bytes and ≥ 16 distinct bytes, only via the environment                                                              |
-| `JWT_KEYS`                | unset                                                 | JSON `{ kid: secret }` for key rotation, instead of `JWT_SECRET`                                                                  |
+| `JWT_SECRET`              | required unless `JWT_KEYS`                            | Secret, ≥ 32 bytes and ≥ 16 distinct bytes; or `JWT_SECRET_FILE` (below)                                                          |
+| `JWT_KEYS`                | unset                                                 | JSON `{ kid: secret }` for key rotation, instead of `JWT_SECRET`; or `JWT_KEYS_FILE`                                              |
 | `JWT_ACTIVE_KID`          | unset                                                 | Required with `JWT_KEYS`: the key that signs                                                                                      |
 | `ACCESS_TOKEN_TTL`        | `900`                                                 | Durations: seconds or ISO 8601 (`PT15M`)                                                                                          |
 | `REFRESH_TOKEN_TTL`       | `P14D`                                                | Idle timeout, slid by every refresh                                                                                               |
@@ -333,6 +333,30 @@ migrations/          Alembic (async engine)
 | `FORWARDED_ALLOW_IPS`     | `127.0.0.1` (image)                                   | Read by uvicorn: proxies whose `X-Forwarded-*` headers are trusted                                                                |
 | `CLIENT_IP_SOURCE`        | `socket`                                              | `socket` (TCP peer) · `cf-connecting-ip` (Cloudflare's header from a trusted peer); see [Abuse protection](#abuse-protection)     |
 | `TRUSTED_PROXY_CIDRS`     | empty                                                 | Comma-separated CIDRs (or single IPs) of the proxy, e.g. the compose network subnet. Required with `cf-connecting-ip`             |
+
+**Secrets from files.** `DATABASE_URL`, `JWT_SECRET` and `JWT_KEYS` can also be read from a
+file named by `<NAME>_FILE` (Docker secrets), for the app and for `alembic`. The file's content,
+without trailing newlines, is the value (`JWT_KEYS_FILE` holds the JSON object). Setting both
+`<NAME>` and `<NAME>_FILE`, or pointing at a missing, unreadable, non-UTF-8 or empty file, stops
+the startup with a message that names the variable and the path but never the content; settings
+validation errors never echo the value either.
+
+```yaml
+services:
+  api:
+    image: english-learn-api
+    environment:
+      ENV: production
+      CORS_ORIGINS: https://english.maumar.com.ar
+      DATABASE_URL_FILE: /run/secrets/database_url
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+    secrets: [database_url, jwt_secret]
+secrets:
+  database_url:
+    file: ./secrets/database_url # postgresql://user:password@db:5432/app
+  jwt_secret:
+    file: ./secrets/jwt_secret # e.g. `openssl rand -base64 48`
+```
 
 **`ENV=production`** refuses to start without an explicit `CORS_ORIGINS`, accepts only public
 `https` origins there, refuses `REFRESH_COOKIE_SECURE=false`, and does not serve `/docs`, `/redoc` or `/openapi.json` (use

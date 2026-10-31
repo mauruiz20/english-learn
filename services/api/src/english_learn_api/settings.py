@@ -1,12 +1,22 @@
 """Runtime configuration, read from environment variables (and a local `.env` in development)."""
 
+import json
+import os
 from datetime import timedelta
 from ipaddress import IPv4Network, IPv6Network, ip_network
-from typing import Annotated, Literal, Self
+from pathlib import Path
+from typing import Annotated, Any, Literal, Self
 from urllib.parse import urlsplit
 
 from pydantic import SecretStr, field_validator, model_validator
-from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
+from pydantic.fields import FieldInfo
+from pydantic_settings import (
+    BaseSettings,
+    NoDecode,
+    PydanticBaseSettingsSource,
+    SettingsConfigDict,
+    SettingsError,
+)
 
 DEFAULT_CORS_ORIGINS = (
     "https://english.maumar.com.ar",
@@ -21,14 +31,97 @@ MIN_JWT_SECRET_DISTINCT_BYTES = 16  # rejects "xxxx…" and other patterned secr
 SIMPLE_MODE_KID = "default"
 _ASYNC_DRIVER = "postgresql+asyncpg://"
 _POSTGRES_SCHEMES = ("postgres://", "postgresql://", _ASYNC_DRIVER)
+# Secrets that may also come from a file named by `<NAME>_FILE` (Docker secrets).
+FILE_BACKED_FIELDS = ("database_url", "jwt_secret", "jwt_keys")
+_JSON_FIELDS = frozenset({"jwt_keys"})
+
+
+class SecretFilesSource(PydanticBaseSettingsSource):
+    """Reads `<NAME>_FILE` from the process environment for the file-backed fields.
+
+    The file's content, without trailing newlines, is the value. Setting both `<NAME>` (in the
+    environment or `.env`) and `<NAME>_FILE` is an error, and so is an unreadable or empty file.
+    Messages name the variable and the path, never the content.
+    """
+
+    def __init__(
+        self,
+        settings_cls: type[BaseSettings],
+        competing: tuple[PydanticBaseSettingsSource, ...],
+    ) -> None:
+        super().__init__(settings_cls)
+        self._competing = competing
+
+    def get_field_value(self, field: FieldInfo, field_name: str) -> tuple[Any, str, bool]:
+        return None, field_name, False  # unused: __call__ reads every field at once
+
+    def __call__(self) -> dict[str, Any]:
+        environ = {name.upper(): value for name, value in os.environ.items()}
+        requested = {
+            field: environ[f"{field.upper()}_FILE"]
+            for field in FILE_BACKED_FIELDS
+            if field in self.settings_cls.model_fields and f"{field.upper()}_FILE" in environ
+        }
+        if not requested:
+            return {}
+        supplied = {name for source in self._competing for name in source()}
+        values: dict[str, Any] = {}
+        for field, path in requested.items():
+            name = field.upper()
+            if field in supplied:
+                msg = f"set {name} or {name}_FILE, not both"
+                raise SettingsError(msg)
+            content = _read_secret_file(f"{name}_FILE", path)
+            values[field] = (
+                _decode_json(f"{name}_FILE", path, content) if (field in _JSON_FIELDS) else content
+            )
+        return values
+
+
+def _read_secret_file(variable: str, path: str) -> str:
+    try:
+        content = Path(path).read_bytes().decode()
+    except OSError as error:
+        msg = f"{variable}: cannot read {path} ({error.strerror or type(error).__name__})"
+        raise SettingsError(msg) from None
+    except UnicodeDecodeError:
+        msg = f"{variable}: {path} is not UTF-8 text"
+        raise SettingsError(msg) from None
+    content = content.rstrip("\r\n")
+    if not content:
+        msg = f"{variable}: {path} is empty"
+        raise SettingsError(msg)
+    return content
+
+
+def _decode_json(variable: str, path: str, content: str) -> object:
+    try:
+        return json.loads(content)
+    except ValueError:
+        msg = f"{variable}: {path} is not valid JSON"
+        raise SettingsError(msg) from None
 
 
 class DatabaseSettings(BaseSettings):
     """The only setting migrations need, so `alembic` runs without the auth secrets."""
 
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    # Validation errors never echo the input: it may be a secret (JWT_SECRET, DATABASE_URL).
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore", hide_input_in_errors=True)
 
     database_url: str
+
+    @classmethod
+    def settings_customise_sources(
+        cls,
+        settings_cls: type[BaseSettings],
+        init_settings: PydanticBaseSettingsSource,
+        env_settings: PydanticBaseSettingsSource,
+        dotenv_settings: PydanticBaseSettingsSource,
+        file_secret_settings: PydanticBaseSettingsSource,
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
+        # Explicit arguments, then `<NAME>_FILE`, then the environment, then `.env`.
+        secret_files = SecretFilesSource(settings_cls, competing=(env_settings, dotenv_settings))
+        return init_settings, secret_files, env_settings, dotenv_settings, file_secret_settings
 
     @field_validator("database_url")
     @classmethod
