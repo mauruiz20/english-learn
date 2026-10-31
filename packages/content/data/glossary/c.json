@@ -809,6 +809,22 @@
       ]
     },
     {
+      "id": "glossary.concern",
+      "headword": "concern",
+      "kind": "word",
+      "forms": ["concern", "concerns", "concerning"],
+      "senses": [
+        {
+          "es": "preocupar",
+          "pos": "verb"
+        },
+        {
+          "es": "preocupación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.concerned",
       "headword": "concerned",
       "kind": "word",

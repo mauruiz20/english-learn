@@ -1,5 +1,10 @@
 import type { Exercise } from "@english-learn/content";
-import { matchAnswer, type Verdict } from "@english-learn/domain";
+import {
+  expandAccepted,
+  matchAnswer,
+  matchPatternAnswer,
+  type Verdict,
+} from "@english-learn/domain";
 import type { ExerciseResponse } from "./response";
 
 export type GradeResult = {
@@ -8,6 +13,8 @@ export type GradeResult = {
   readonly correctAnswer: string;
   /** reading only: one verdict per question. */
   readonly questionVerdicts?: readonly Verdict[];
+  /** The learner marked their answer as correct ("Mi respuesta también es correcta"). */
+  readonly disputed?: boolean;
 };
 
 function mismatch(exercise: Exercise, response: ExerciseResponse): never {
@@ -29,7 +36,8 @@ const verdictOf = (ok: boolean): Verdict => (ok ? "correct" : "wrong");
  * - reading: each question is graded; the exercise is correct only if all are.
  * - word_order: tokens joined by single spaces, matched with `matchAnswer`; only "correct"
  *   counts (a near miss is a wrong order, not a typo).
- * - translate_write: `matchAnswer` verdict (correct / almost / wrong).
+ * - translate_write: `matchPatternAnswer` verdict (correct / almost / wrong) against every
+ *   sentence the accepted patterns stand for; a wrong answer shows the first one.
  */
 export function gradeExercise(exercise: Exercise, response: ExerciseResponse): GradeResult {
   switch (exercise.type) {
@@ -68,10 +76,10 @@ export function gradeExercise(exercise: Exercise, response: ExerciseResponse): G
     }
     case "translate_write": {
       if (response.kind !== "text") return mismatch(exercise, response);
-      const { verdict, closest } = matchAnswer(response.text, exercise.accepted);
+      const { verdict, closest } = matchPatternAnswer(response.text, exercise.accepted);
       return {
         verdict,
-        correctAnswer: verdict === "wrong" ? (exercise.accepted[0] ?? "") : closest,
+        correctAnswer: verdict === "wrong" ? (expandAccepted(exercise.accepted)[0] ?? "") : closest,
       };
     }
   }

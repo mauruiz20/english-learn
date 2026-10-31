@@ -1,6 +1,16 @@
-import { localDate, type ProgressEvent, type ProgressRepository } from "@english-learn/domain";
+import {
+  localDate,
+  type ProgressEvent,
+  type ProgressRepository,
+  type ProgressSyncStore,
+} from "@english-learn/domain";
 import { createFakeRepository } from "@/testing/fake-progress-repository";
-import { awaitPendingWrites } from "./await-pending-writes";
+import {
+  DatabaseReleasedError,
+  awaitPendingWrites,
+  createWriteTracker,
+  trackWrites,
+} from "./await-pending-writes";
 
 const TODAY = localDate("2026-10-29");
 
@@ -95,5 +105,62 @@ describe("awaitPendingWrites", () => {
     await rebuilt;
     await expect(placementRead).resolves.toEqual({ level: "B1", theta: 0.5 });
     expect(rebuild).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("createWriteTracker: handing the database to another tab", () => {
+  it("drain waits for the save in flight, then refuses new writes", async () => {
+    const fake = createFakeRepository();
+    const slow = withSlowAppend(fake);
+    const tracker = createWriteTracker();
+    const repository = awaitPendingWrites(fake, tracker);
+
+    const saved = repository.appendEvents([reviewSession]);
+    let drained = false;
+    const drain = tracker.drain().then(() => {
+      drained = true;
+    });
+    await Promise.resolve();
+    expect(drained).toBe(false);
+    slow.commit();
+    await drain;
+
+    await expect(saved).resolves.toMatchObject({ after: { xp: 10 } });
+    await expect(repository.appendEvents([placement])).rejects.toThrow(DatabaseReleasedError);
+    await expect(repository.getXp()).resolves.toBe(10);
+  });
+
+  it("tracks the sync's writes too", async () => {
+    let finish: () => void = () => {};
+    const store: ProgressSyncStore = {
+      getUnsyncedEvents: async () => [],
+      markSynced: () =>
+        new Promise<void>((resolve) => {
+          finish = resolve;
+        }),
+      getSyncCursor: async () => 0,
+      setSyncCursor: async () => {},
+      insertRemoteEvents: async () => 0,
+    };
+    const tracker = createWriteTracker();
+    const tracked = trackWrites(store, tracker, [
+      "markSynced",
+      "setSyncCursor",
+      "insertRemoteEvents",
+    ]);
+
+    const marking = tracked.markSynced(["a"], [1]);
+    let drained = false;
+    const drain = tracker.drain().then(() => {
+      drained = true;
+    });
+    await Promise.resolve();
+    expect(drained).toBe(false);
+    finish();
+    await Promise.all([marking, drain]);
+
+    await expect(tracked.setSyncCursor(3)).rejects.toThrow(DatabaseReleasedError);
+    await expect(tracked.insertRemoteEvents([])).rejects.toThrow(DatabaseReleasedError);
+    await expect(tracked.getSyncCursor()).resolves.toBe(0);
   });
 });

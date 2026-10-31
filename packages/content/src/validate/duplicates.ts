@@ -4,7 +4,8 @@ import type { LoadedFile, Rule, ValidationError } from "./types";
 /**
  * No repeated entries inside one entity's list: ids compare exactly, text
  * compares normalized. (Cloze answers/distractors are covered by the cloze
- * rule; options by the options rule.)
+ * rule; options by the options rule; translate_write accepted patterns by the
+ * answer-pattern rule, which compares their expansions.)
  */
 export const validateListDuplicates: Rule = (files: readonly LoadedFile[]) => {
   const errors: ValidationError[] = [];
@@ -18,7 +19,7 @@ export const validateListDuplicates: Rule = (files: readonly LoadedFile[]) => {
     (data.exercises ?? []).forEach((ex, i) => {
       const base = `exercises[${i}]`;
       errors.push(...duplicateErrors(ex.itemIds, "exact", "item id", file, `${base}.itemIds`));
-      if (ex.type === "word_order" || ex.type === "translate_write") {
+      if (ex.type === "word_order") {
         errors.push(
           ...duplicateErrors(ex.accepted, "text", "accepted sentence", file, `${base}.accepted`),
         );

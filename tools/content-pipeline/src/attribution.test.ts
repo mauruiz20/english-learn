@@ -23,6 +23,14 @@ describe("englishCandidates", () => {
     expect(
       englishCandidates({ type: "translate_write", source: src, accepted: ["a", "b"] }),
     ).toEqual(["a", "b"]);
+    // translate_write accepted entries are answer patterns: any sentence they stand for.
+    expect(
+      englishCandidates({
+        type: "translate_write",
+        source: src,
+        accepted: ["I {like|love} it[ a lot].", "Me too."],
+      }),
+    ).toEqual(["I like it.", "I like it a lot.", "I love it.", "I love it a lot.", "Me too."]);
     expect(englishCandidates({ type: "translation_choice", source: src, sentence: "x" })).toEqual([
       "x",
     ]);

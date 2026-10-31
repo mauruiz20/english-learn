@@ -238,6 +238,57 @@ describe("LessonContainer", () => {
     expect(screen.getByText("Ejercicio 2 de 6")).toBeOnTheScreen();
   });
 
+  it("lets the learner mark a wrong translation as correct, and saves it as disputed", async () => {
+    const repository = createFakeRepository();
+    await renderLesson(repository);
+    await press("despertarse", "radio");
+    await check();
+    await press("Continuar");
+    await press("have", "radio");
+    await check();
+    await press("Continuar");
+    for (const token of ["I", "usually", "wake", "up"]) await press(token);
+    await check();
+    await press("Continuar");
+    await press("Ella se acuesta a las once.", "radio");
+    await check();
+    await press("Continuar");
+    await press("At six thirty", "radio");
+    await press("By bus", "radio");
+    await check();
+    await press("Continuar");
+    await fireEvent.changeText(
+      screen.getByLabelText("Tu traducción en inglés"),
+      "I go to sleep at eleven",
+    );
+    await check();
+    expect(screen.getByRole("alert")).toHaveTextContent(/^Incorrecto/);
+
+    await press("Mi respuesta también es correcta");
+
+    expect(screen.getByRole("alert")).toHaveTextContent("Marcada como correcta");
+    expect(
+      screen.queryByRole("button", { name: "Mi respuesta también es correcta" }),
+    ).not.toBeOnTheScreen();
+    await press("Continuar");
+    expect(await screen.findByText("Aciertos: 6 de 6")).toBeOnTheScreen();
+
+    const events = repository.events();
+    expect(events.filter((e) => e.type === "answer_disputed").map((e) => e.payload)).toEqual([
+      {
+        v: 1,
+        exerciseId: "a2.routine.write-001",
+        itemIds: ["a2.routine.usually", "a2.routine.go-to-bed"],
+        answer: "I go to sleep at eleven",
+        accepted: false,
+      },
+    ]);
+    const goToBed = events.find(
+      (e) => e.type === "item_reviewed" && e.payload.itemId === "a2.routine.go-to-bed",
+    );
+    expect(goToBed?.payload).toMatchObject({ grade: 4 });
+  });
+
   it("lists what was missed on the summary, and only that", async () => {
     await renderLesson(createFakeRepository());
 

@@ -185,3 +185,45 @@ describe("completeSession", () => {
     await expect(completeSession(input(repository))).rejects.toThrow("disk full");
   });
 });
+
+describe("completeSession: disputed answers", () => {
+  it("appends one answer_disputed per disputed answer with the session's events", async () => {
+    const repository = createFakeRepository();
+    const long = `  ${"x".repeat(250)}  `;
+
+    await completeSession(
+      input(repository, {
+        summary: {
+          ...summary,
+          disputes: [
+            { exerciseId: "a2.routine.write-001", itemIds: ["a", "b"], answer: "  I sleep at 11 " },
+            { exerciseId: "a2.routine.write-002", itemIds: ["c"], answer: long },
+          ],
+        },
+      }),
+    );
+
+    const disputes = repository.events().filter((e) => e.type === "answer_disputed");
+    expect(disputes.map((e) => e.payload)).toEqual([
+      {
+        v: 1,
+        exerciseId: "a2.routine.write-001",
+        itemIds: ["a", "b"],
+        answer: "I sleep at 11",
+        accepted: false,
+      },
+      {
+        v: 1,
+        exerciseId: "a2.routine.write-002",
+        itemIds: ["c"],
+        answer: "x".repeat(200),
+        accepted: false,
+      },
+    ]);
+    for (const event of disputes) {
+      expect(event).toMatchObject({ deviceId: "test-device", occurredAt: NOW, localDate: today });
+    }
+    // The fold ignores them: same progress as the session without disputes.
+    expect(foldEvents(repository.events()).anomalies).toEqual([]);
+  });
+});

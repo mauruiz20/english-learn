@@ -104,7 +104,9 @@
       "topics": ["environment"],
       "title": "A greener school",
       "text": "Two years ago, students at Lincoln High School noticed a problem: the trash cans were always full of plastic bottles. A group of students decided to do something about it. First, they talked to the principal. They told her that if the school installed water fountains, students would stop buying bottled water. She agreed to try it. Then the students started a recycling program. Every classroom now has three bins: one for paper, one for plastic and one for food waste. Nobody is allowed to throw anything away without checking the bins first. The results have been impressive. The school has reduced its waste by half, and it has saved money on energy too, because students turn off the lights when nobody is in the classroom. \"Unless young people take action, nothing will change,\" says Mia, one of the students. \"If every school does a little, we will slow down global warming.\" Next year, the group wants to plant trees around the soccer field.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "b1.environment.vocab-001",
       "itemIds": ["b1.environment.waste"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'waste' mean in 'food waste'?",
       "options": ["desperdicio", "cintura", "espera", "sabor"],
@@ -122,7 +126,9 @@
       "id": "b1.environment.cloze-001",
       "itemIds": ["b1.environment.first-conditional", "b1.environment.recycle"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "If we don't recycle, there ___ be more trash.",
       "answers": ["will"],
@@ -168,7 +174,9 @@
       "id": "b1.environment.reading-001",
       "itemIds": ["b1.environment.plastic", "b1.environment.reduce", "b1.environment.waste"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "b1.environment.greener-school",
       "questions": [
@@ -206,17 +214,18 @@
       "type": "translate_write",
       "es": "¿Te preocupa el calentamiento global?",
       "accepted": [
-        "Are you worried about global warming?",
+        "Are you {worried|concerned} about global warming?",
         "Do you worry about global warming?",
-        "Are you concerned about global warming?",
-        "Does global warming worry you?"
+        "Does global warming {worry|concern} you?"
       ]
     },
     {
       "id": "b1.environment.vocab-002",
       "itemIds": ["b1.environment.protect"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'proteger'.",
       "options": ["protest", "protect", "prevent", "provide"],
@@ -226,7 +235,9 @@
       "id": "b1.environment.vocab-003",
       "itemIds": ["b1.environment.throw-away"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'throw away' mean?",
       "options": ["lanzar lejos", "guardar", "tirar a la basura", "regalar"],
@@ -236,7 +247,9 @@
       "id": "b1.environment.cloze-002",
       "itemIds": ["b1.environment.unless"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "We will lose these forests ___ we protect them.",
       "answers": ["unless"],
@@ -247,7 +260,9 @@
       "id": "b1.environment.cloze-003",
       "itemIds": ["b1.environment.first-conditional", "b1.environment.energy"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "If you ___ off the lights, you will save energy.",
       "answers": ["turn"],
@@ -258,7 +273,9 @@
       "id": "b1.environment.order-002",
       "itemIds": ["b1.environment.plastic", "b1.environment.reduce"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["use", "plastic.", "less", "should", "We"],
       "accepted": ["We should use less plastic."],
@@ -268,7 +285,9 @@
       "id": "b1.environment.choice-002",
       "itemIds": ["b1.environment.first-conditional", "b1.environment.climate"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translation_choice",
       "sentence": "If the climate gets warmer, many animals will lose their homes.",
       "options": [
@@ -283,47 +302,28 @@
       "id": "b1.environment.write-002",
       "itemIds": ["b1.environment.unless", "b1.environment.recycle"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Si no reciclamos, habrá más basura.",
       "accepted": [
-        "If we don't recycle, there will be more trash.",
-        "If we don't recycle, there will be more garbage.",
-        "If we don't recycle, there will be more waste.",
-        "If we don't recycle, there'll be more trash.",
-        "If we don't recycle, there'll be more garbage.",
-        "If we don't recycle, there'll be more waste.",
-        "If we do not recycle, there will be more trash.",
-        "If we do not recycle, there will be more garbage.",
-        "If we do not recycle, there will be more waste.",
-        "If we do not recycle, there'll be more trash.",
-        "If we do not recycle, there'll be more garbage.",
-        "If we do not recycle, there'll be more waste.",
-        "Unless we recycle, there will be more trash.",
-        "Unless we recycle, there will be more garbage.",
-        "Unless we recycle, there will be more waste.",
-        "Unless we recycle, there'll be more trash.",
-        "Unless we recycle, there'll be more garbage.",
-        "Unless we recycle, there'll be more waste.",
-        "There will be more trash if we don't recycle.",
-        "There will be more garbage if we don't recycle.",
-        "There will be more waste if we don't recycle."
+        "If we don't recycle, there will be more {trash|garbage|waste}.",
+        "Unless we recycle, there will be more {trash|garbage|waste}.",
+        "There will be more {trash|garbage|waste} {if we don't|unless we} recycle.",
+        "If we don't recycle, we'll have more {trash|garbage|waste}."
       ]
     },
     {
       "id": "b1.environment.write-003",
       "itemIds": ["b1.environment.energy"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Necesitamos ahorrar energía.",
-      "accepted": [
-        "We need to save energy.",
-        "We have to save energy.",
-        "We must save energy.",
-        "We've got to save energy.",
-        "We need to conserve energy."
-      ]
+      "accepted": ["{We need to|We have to|We must|We've got to} {save|conserve} energy."]
     }
   ],
   "lessons": [

@@ -1,5 +1,6 @@
 import type { LocalDate, ProgressRepository, Streak } from "@english-learn/domain";
 import {
+  answerDisputedEvent,
   itemReviewedEvent,
   newEventId,
   sessionCompletedEvent,
@@ -39,7 +40,8 @@ export type CompleteSessionResult = {
 /**
  * Persists a finished lesson or review as events, in one transaction: one `item_reviewed` per
  * practiced item with its final grade (worst grade wins, looked-up cap) and one
- * `session_completed`, all sharing a new session id and `today`. Review states, XP, bonus and
+ * `session_completed`, all sharing a new session id and `today`, plus one `answer_disputed` per
+ * answer the learner marked as correct. Review states, XP, bonus and
  * streak are what the fold of the whole log makes of them.
  */
 export async function completeSession({
@@ -63,7 +65,9 @@ export async function completeSession({
     answerXp: summary.answerXp,
     accuracy: summary.accuracy,
   });
-  const { before, after } = await repository.appendEvents([...reviews, session]);
+  // Content feedback for the owner; the fold ignores them (the grades above already count them).
+  const disputes = (summary.disputes ?? []).map((dispute) => answerDisputedEvent(stamp, dispute));
+  const { before, after } = await repository.appendEvents([...reviews, session, ...disputes]);
   return {
     xp: after.xp,
     xpEarned: after.xp - before.xp,

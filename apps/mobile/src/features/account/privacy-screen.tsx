@@ -4,7 +4,7 @@ import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { TOUCH_TARGET, spacing } from "@/shared/ui/theme";
 
-export const PRIVACY_LAST_UPDATED = "30 de octubre de 2026";
+export const PRIVACY_LAST_UPDATED = "31 de octubre de 2026";
 const CONTACT_EMAIL = "mauricio@southernmadelabs.com";
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
@@ -34,6 +34,10 @@ export function PrivacyScreen() {
           • Tus eventos de aprendizaje: lecciones y repasos completados, respuestas calificadas,
           resultado del test de nivel, con su fecha, y un identificador de cada dispositivo.
         </Text>
+        <Text>
+          • Las respuestas que marques como correctas con «Mi respuesta también es correcta»: el
+          texto que escribiste y el ejercicio.
+        </Text>
         <Text>No guardamos tu contraseña de Google ni tu nombre o foto.</Text>
       </Section>
 
@@ -46,8 +50,10 @@ export function PrivacyScreen() {
 
       <Section title="Para qué">
         <Text>
-          Solo para sincronizar tu progreso entre tus dispositivos. No hay publicidad ni rastreo, y
-          no compartimos tus datos con terceros.
+          Para sincronizar tu progreso entre tus dispositivos y, con las respuestas que marcaste
+          como correctas, mejorar los ejercicios (por ejemplo, aceptar otras formas correctas de
+          escribir una oración). No hay publicidad ni rastreo, y no compartimos tus datos con
+          terceros.
         </Text>
       </Section>
 

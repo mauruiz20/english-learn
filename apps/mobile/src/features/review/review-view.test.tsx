@@ -7,6 +7,7 @@ const handlers = {
   onContinue: jest.fn(),
   onGoHome: jest.fn(),
   onRetrySave: jest.fn(),
+  onDispute: jest.fn(),
 };
 beforeEach(() => jest.clearAllMocks());
 
@@ -36,7 +37,12 @@ describe("ReviewView", () => {
       position: 2,
       total: 5,
       prepared: { type: "vocab", exercise: vocab, options: vocab.options },
-      feedback: { verdict: "wrong", correctAnswer: "despertarse", given: "dormirse" },
+      feedback: {
+        verdict: "wrong",
+        correctAnswer: "despertarse",
+        given: "dormirse",
+        disputable: false,
+      },
     });
 
     expect(screen.getByText("Ejercicio 2 de 5")).toBeOnTheScreen();

@@ -136,6 +136,9 @@ class Folder {
         return;
       case "baseline_imported":
         return this.applyBaseline(event.payload);
+      case "answer_disputed":
+        // Content feedback only: the session's own events already carry the regraded answer.
+        return;
     }
   }
 

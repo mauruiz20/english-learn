@@ -96,7 +96,9 @@
       "topics": ["free-time"],
       "title": "My weekends",
       "text": "I work hard during the week, so I love my free time. On Saturday mornings I go swimming with my sister. In the afternoon I usually read or play the guitar. I can't sing very well, but I really like playing music. On Saturday nights my friends and I go out. Last weekend we watched a movie and then went dancing.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -104,7 +106,9 @@
       "id": "a2.free-time.vocab-001",
       "itemIds": ["a2.free-time.free-time"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'free time' mean?",
       "options": ["tiempo extra", "horario laboral", "día festivo", "tiempo libre"],
@@ -165,7 +169,9 @@
       "id": "a2.free-time.reading-001",
       "itemIds": ["a2.free-time.go-swimming", "a2.free-time.go-out", "a2.free-time.watch-a-movie"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.free-time.my-weekends",
       "questions": [
@@ -208,7 +214,9 @@
       "id": "a2.free-time.vocab-002",
       "itemIds": ["a2.free-time.go-out"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'salir (a divertirse)'.",
       "options": ["go away", "go out", "come in", "go off"],
@@ -218,7 +226,9 @@
       "id": "a2.free-time.vocab-003",
       "itemIds": ["a2.free-time.hobby"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'hobby' mean?",
       "options": ["trabajo", "deporte", "costumbre", "pasatiempo"],
@@ -228,7 +238,9 @@
       "id": "a2.free-time.cloze-002",
       "itemIds": ["a2.free-time.like-ing"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "My brother likes ___ video games.",
       "answers": ["playing", "to play"],
@@ -239,7 +251,9 @@
       "id": "a2.free-time.cloze-003",
       "itemIds": ["a2.free-time.go-swimming"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "We ___ swimming every Sunday.",
       "answers": ["go"],
@@ -313,7 +327,7 @@
       },
       "type": "translate_write",
       "es": "Sé nadar.",
-      "accepted": ["I know how to swim.", "I can swim."]
+      "accepted": ["I {know how to|can|am able to} swim."]
     }
   ],
   "lessons": [

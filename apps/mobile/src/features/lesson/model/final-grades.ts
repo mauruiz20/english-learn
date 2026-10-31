@@ -25,6 +25,9 @@ export const EXPECTED_MS: Readonly<Record<Exercise["type"], number>> = {
 /** Best review grade for an item looked up before answering: "almost". */
 export const LOOKED_UP_MAX_GRADE: Grade = 3;
 
+/** Review grade of an answer the learner marked as correct: correct, but never "perfect" (5). */
+export const DISPUTED_GRADE: Grade = 4;
+
 /**
  * The FINAL grade of every item the session practiced, in order of first appearance: what the
  * app writes as one `item_reviewed` event per item. How that grade moves the item through SM-2
@@ -32,6 +35,8 @@ export const LOOKED_UP_MAX_GRADE: Grade = 3;
  * `applyReview` when the event log is folded.
  *
  * - An item practiced by several exercises gets its WORST grade.
+ * - An answer the learner MARKED AS CORRECT (`outcome.disputed`) counts as grade 4, replacing the
+ *   wrong/almost grade it had (and taking part in worst-grade-wins like any other grade).
  * - An item the learner LOOKED UP in the glossary before answering (`outcome.lookedUp`) is capped
  *   at grade 3 ("almost"): they needed help, so it should come back sooner. The cap never
  *   upgrades a wrong answer (grade 1 stays 1).
@@ -39,11 +44,14 @@ export const LOOKED_UP_MAX_GRADE: Grade = 3;
 export function finalGrades(summary: LessonSummary): Map<string, Grade> {
   const worst = new Map<string, Grade>();
   for (const outcome of summary.itemOutcomes) {
-    const earned = gradeFromOutcome({
-      verdict: outcome.verdict,
-      responseMs: outcome.responseMs,
-      expectedMs: EXPECTED_MS[outcome.exerciseType],
-    });
+    const earned =
+      outcome.disputed === true
+        ? DISPUTED_GRADE
+        : gradeFromOutcome({
+            verdict: outcome.verdict,
+            responseMs: outcome.responseMs,
+            expectedMs: EXPECTED_MS[outcome.exerciseType],
+          });
     const grade =
       outcome.lookedUp === true ? (Math.min(earned, LOOKED_UP_MAX_GRADE) as Grade) : earned;
     const previous = worst.get(outcome.itemId);

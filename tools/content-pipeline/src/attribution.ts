@@ -7,8 +7,9 @@
  * - translation_choice: `sentence`
  * - cloze: `sentence` with `___` replaced by the first answer
  * - word_order: the first `accepted` sentence
- * - translate_write: one of the `accepted` sentences
+ * - translate_write: one of the sentences its `accepted` answer patterns stand for
  */
+import { expandAccepted } from "@english-learn/domain";
 import type { Sentence } from "./tatoeba";
 
 /** Loose view of `Source`: only `kind: "tatoeba"` sources carry the other fields. */
@@ -43,7 +44,7 @@ export function englishCandidates(ex: ExerciseLike): string[] {
     case "word_order":
       return ex.accepted?.slice(0, 1) ?? [];
     case "translate_write":
-      return ex.accepted ?? [];
+      return [...expandAccepted(ex.accepted ?? [])];
     default:
       return [];
   }

@@ -1,10 +1,11 @@
 import { useContext, type ReactNode } from "react";
-import { Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
 import { WIDE_BREAKPOINT } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
-import { MAX_TEXT_WIDTH, TOUCH_TARGET, spacing } from "@/shared/ui/theme";
+import { MAX_TEXT_WIDTH, spacing } from "@/shared/ui/theme";
 import { themedStyles } from "@/shared/ui/use-theme";
+import { BackArrowButton } from "./back-arrow-button";
 
 type NotebookHeaderProps = {
   title: string;
@@ -30,19 +31,10 @@ export function NotebookHeader({ title, backTitle, showBack, onBack, right }: No
       <View style={styles.column}>
         {wide && <View style={styles.margin} />}
         {showBack && (
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={backTitle === undefined ? "Volver" : `Volver a ${backTitle}`}
+          <BackArrowButton
+            label={backTitle === undefined ? "Volver" : `Volver a ${backTitle}`}
             onPress={onBack}
-            hitSlop={4}
-            style={({ pressed }) => [styles.back, pressed && styles.pressed]}
-          >
-            {/* A pen-drawn arrow: a shaft and an open head. */}
-            <View style={styles.arrow}>
-              <View style={styles.shaft} />
-              <View style={styles.head} />
-            </View>
-          </Pressable>
+          />
         )}
         <Text
           accessibilityRole="header"
@@ -84,30 +76,8 @@ const useStyles = themedStyles(({ colors }) =>
       width: 1,
       backgroundColor: colors.rule,
     },
-    back: {
-      width: TOUCH_TARGET,
-      height: TOUCH_TARGET,
-      // The arrow sits on the column edge, like the content below.
-      marginLeft: -spacing.sm - 4,
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: TOUCH_TARGET / 2,
-    },
-    pressed: { backgroundColor: colors.rule },
     title: { flexShrink: 1, flexGrow: 1 },
     // The action's icon lines up with the column's right edge.
     right: { marginRight: -spacing.sm - 4 },
-    arrow: { width: 20, height: 16, justifyContent: "center" },
-    shaft: { height: 2.5, borderRadius: 1, backgroundColor: colors.ink },
-    head: {
-      position: "absolute",
-      left: 1,
-      width: 11,
-      height: 11,
-      borderLeftWidth: 2.5,
-      borderBottomWidth: 2.5,
-      borderColor: colors.ink,
-      transform: [{ rotate: "45deg" }],
-    },
   }),
 );

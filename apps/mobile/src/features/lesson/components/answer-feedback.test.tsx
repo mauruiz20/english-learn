@@ -131,3 +131,56 @@ describe("AnswerFeedback marking (reduced motion: shown at once)", () => {
     expect(StyleSheet.flatten(note.props.style)).toMatchObject({ opacity: 1 });
   });
 });
+
+describe("AnswerFeedback: 'Mi respuesta también es correcta'", () => {
+  it("offers a quiet button to mark a wrong answer as correct", async () => {
+    const onDispute = jest.fn();
+    await render(
+      <AnswerFeedback
+        verdict="wrong"
+        given="I go to sleep at eleven"
+        correctAnswer="I usually go to bed at eleven."
+        onContinue={onContinue}
+        onDispute={onDispute}
+      />,
+    );
+
+    await fireEvent.press(screen.getByRole("button", { name: "Mi respuesta también es correcta" }));
+    expect(onDispute).toHaveBeenCalledTimes(1);
+    expect(onContinue).not.toHaveBeenCalled();
+  });
+
+  it("does not offer it without a handler (correct answers, other exercises)", async () => {
+    await render(
+      <AnswerFeedback verdict="wrong" given="x" correctAnswer="y" onContinue={onContinue} />,
+    );
+    expect(
+      screen.queryByRole("button", { name: "Mi respuesta también es correcta" }),
+    ).not.toBeOnTheScreen();
+  });
+
+  it("shows a disputed answer highlighted as 'Marcada como correcta'", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="correct"
+        disputed
+        given="I go to sleep at eleven"
+        correctAnswer="I usually go to bed at eleven."
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(screen.getByRole("alert")).toHaveTextContent("Marcada como correcta", { exact: true });
+    // Announced, and written next to the highlighted answer.
+    expect(
+      screen.getAllByText("Marcada como correcta", { includeHiddenElements: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getByText("I go to sleep at eleven", { includeHiddenElements: true }),
+    ).toBeTruthy();
+    expect(
+      screen.queryByRole("button", { name: "Mi respuesta también es correcta" }),
+    ).not.toBeOnTheScreen();
+    expect(screen.getByRole("button", { name: "Continuar" })).toBeOnTheScreen();
+  });
+});

@@ -48,22 +48,39 @@ type BestPair = { accepted: string; input: string; target: string; distance: num
  *   and the difference is a typo inside a single word (`isSingleWordTypo`).
  * - wrong: everything else.
  */
+type Target = { readonly answer: string; readonly canonical: readonly string[] };
+
+const targetCache = new WeakMap<readonly string[], readonly Target[]>();
+
+/** Canonical readings of every accepted answer, computed once per accepted array. */
+function targetsOf(accepted: readonly string[]): readonly Target[] {
+  const cached = targetCache.get(accepted);
+  if (cached !== undefined) return cached;
+  const targets = accepted.map((answer) => ({ answer, canonical: canonicalCandidates(answer) }));
+  targetCache.set(accepted, targets);
+  return targets;
+}
+
 export function matchAnswer(input: string, accepted: readonly string[]): MatchResult {
   const inputCandidates = canonicalCandidates(input);
   let best: BestPair | null = null;
 
-  for (const answer of accepted) {
-    for (const target of canonicalCandidates(answer)) {
+  for (const { answer, canonical } of targetsOf(accepted)) {
+    for (const target of canonical) {
       for (const candidate of inputCandidates) {
         const distance = levenshtein(candidate, target);
         if (best === null || distance < best.distance) {
           best = { accepted: answer, input: candidate, target, distance };
+          if (distance === 0) return finish(best);
         }
       }
     }
   }
 
-  if (best === null) return { verdict: "wrong", closest: "" };
+  return best === null ? { verdict: "wrong", closest: "" } : finish(best);
+}
+
+function finish(best: BestPair): MatchResult {
   const closest = best.accepted;
   if (best.input === "") return { verdict: "wrong", closest };
   if (best.distance === 0) return { verdict: "correct", closest };

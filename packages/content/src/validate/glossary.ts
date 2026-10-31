@@ -1,6 +1,7 @@
 import {
   annotateText,
   buildGlossaryIndex,
+  expandPattern,
   glossaryKey,
   type GlossaryIndex,
 } from "@english-learn/domain";
@@ -161,8 +162,13 @@ function exerciseTexts(exercise: AnyExercise, at: string): [string, string][] {
         ...q.options.map((o, j): [string, string] => [`${at}.questions[${i}].options[${j}]`, o]),
       ]);
     case "translate_write":
-      // The Spanish prompt is skipped; accepted answers are shown as corrections.
-      return list("accepted", exercise.accepted);
+      // The Spanish prompt is skipped; accepted answers are shown as corrections, so every
+      // sentence a pattern stands for is checked (once).
+      return exercise.accepted.flatMap((entry, i): [string, string][] => {
+        const result = expandPattern(entry);
+        const sentences = result.ok ? result.expansions : [entry];
+        return sentences.map((sentence) => [`${at}.accepted[${i}]`, sentence]);
+      });
   }
 }
 
@@ -202,11 +208,12 @@ export interface UncoveredWord extends GlossaryText {
 export function findUncoveredWords(files: readonly LoadedFile[]): UncoveredWord[] {
   const index = glossaryIndex(files);
   const out: UncoveredWord[] = [];
+  // Once per word and place: the sentences of one answer pattern share their path.
+  const seen = new Set<string>();
   for (const text of glossaryTexts(files)) {
-    const seen = new Set<string>();
     for (const segment of annotateText(text.text, index)) {
       if (segment.kind !== "word" || segment.entryId !== null) continue;
-      const key = glossaryKey(segment.text);
+      const key = `${text.file}\u0000${text.path}\u0000${glossaryKey(segment.text)}`;
       if (seen.has(key)) continue;
       seen.add(key);
       out.push({ ...text, word: segment.text });

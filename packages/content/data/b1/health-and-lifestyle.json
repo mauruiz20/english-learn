@@ -104,7 +104,9 @@
       "topics": ["health-and-lifestyle"],
       "title": "Small changes, big results",
       "text": "Daniel used to eat fast food almost every day, and he didn't use to do any exercise. He also smoked, and he often stayed up until two in the morning. Last year his doctor told him that he should change his habits. At first Daniel didn't want to listen, but after a few weeks he decided to try. He started by giving up smoking. It wasn't easy, and he almost gave up twice. Then he stopped buying fast food and learned to cook simple meals. Now he enjoys cooking for his friends on weekends. To keep fit, he walks to work instead of driving, and he goes swimming twice a week. He has lost twenty pounds, but the biggest change is in his mood. He gets enough sleep, so he feels less stress at work. \"I don't follow a strict diet,\" he says. \"I just try to make one healthy choice at a time.\"",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "b1.health-and-lifestyle.vocab-001",
       "itemIds": ["b1.health-and-lifestyle.habit"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'habit' mean?",
       "options": ["habitación", "hábito", "habilidad", "hábitat"],
@@ -122,7 +126,9 @@
       "id": "b1.health-and-lifestyle.cloze-001",
       "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "I've decided ___ more vegetables.",
       "answers": ["to eat"],
@@ -172,7 +178,9 @@
         "b1.health-and-lifestyle.get-enough-sleep"
       ],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "b1.health-and-lifestyle.small-changes",
       "questions": [
@@ -205,17 +213,15 @@
       },
       "type": "translate_write",
       "es": "¿Duermes lo suficiente?",
-      "accepted": [
-        "Do you get enough sleep?",
-        "Do you sleep enough?",
-        "Are you getting enough sleep?"
-      ]
+      "accepted": ["Do you {get enough sleep|sleep enough}?", "Are you getting enough sleep?"]
     },
     {
       "id": "b1.health-and-lifestyle.vocab-002",
       "itemIds": ["b1.health-and-lifestyle.stress"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'estrés'.",
       "options": ["stress", "strength", "rest", "illness"],
@@ -225,7 +231,9 @@
       "id": "b1.health-and-lifestyle.vocab-003",
       "itemIds": ["b1.health-and-lifestyle.healthy"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'healthy' mean?",
       "options": ["pesado", "cansado", "enfermo", "saludable"],
@@ -235,7 +243,9 @@
       "id": "b1.health-and-lifestyle.cloze-002",
       "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "My father quit ___ last year.",
       "answers": ["smoking"],
@@ -246,7 +256,9 @@
       "id": "b1.health-and-lifestyle.cloze-003",
       "itemIds": ["b1.health-and-lifestyle.should"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "You look tired. You ___ go to bed earlier.",
       "answers": ["should"],
@@ -257,7 +269,9 @@
       "id": "b1.health-and-lifestyle.order-002",
       "itemIds": ["b1.health-and-lifestyle.used-to"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["a", "I", "used", "to", "of", "drink", "soda.", "lot"],
       "accepted": ["I used to drink a lot of soda."],
@@ -267,7 +281,9 @@
       "id": "b1.health-and-lifestyle.choice-002",
       "itemIds": ["b1.health-and-lifestyle.stop-doing", "b1.health-and-lifestyle.diet"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translation_choice",
       "sentence": "She stopped eating sugar.",
       "options": [
@@ -282,52 +298,26 @@
       "id": "b1.health-and-lifestyle.write-002",
       "itemIds": ["b1.health-and-lifestyle.should", "b1.health-and-lifestyle.keep-fit"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Deberías hacer ejercicio para mantenerte en forma.",
       "accepted": [
-        "You should exercise to keep fit.",
-        "You should exercise to stay fit.",
-        "You should exercise to stay in shape.",
-        "You should exercise to keep in shape.",
-        "You should do exercise to keep fit.",
-        "You should do exercise to stay fit.",
-        "You should do exercise to stay in shape.",
-        "You should do exercise to keep in shape.",
-        "You should work out to keep fit.",
-        "You should work out to stay fit.",
-        "You should work out to stay in shape.",
-        "You should work out to keep in shape.",
-        "You should get some exercise to keep fit.",
-        "You should get some exercise to stay fit.",
-        "You should get some exercise to stay in shape.",
-        "You should get some exercise to keep in shape.",
-        "You should get exercise to keep fit.",
-        "You should get exercise to stay fit.",
-        "You should get exercise to stay in shape.",
-        "You should get exercise to keep in shape."
+        "You should {exercise|do exercise|work out|get some exercise|get exercise} [in order ]to {keep fit|stay fit|stay in shape|keep in shape}."
       ]
     },
     {
       "id": "b1.health-and-lifestyle.write-003",
       "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Me encanta nadar.",
       "accepted": [
-        "I love swimming.",
-        "I love to swim.",
-        "I love going swimming.",
-        "I love to go swimming.",
-        "I really love swimming.",
-        "I really love to swim.",
-        "I really love going swimming.",
-        "I really love to go swimming.",
-        "I really like swimming.",
-        "I really like to swim.",
-        "I really like going swimming.",
-        "I really like to go swimming."
+        "I {love|really love|really like} {swimming|to swim|going swimming|to go swimming}."
       ]
     }
   ],

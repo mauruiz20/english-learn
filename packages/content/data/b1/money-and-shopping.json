@@ -104,7 +104,9 @@
       "topics": ["money-and-shopping"],
       "title": "Saving for a guitar",
       "text": "When Marco turned sixteen, he decided he wanted a guitar. The one he liked cost four hundred dollars, and he couldn't afford it. His parents said they would lend him the money as long as he paid them back within six months. Marco didn't like the idea of owing money, so he chose to save up instead. He got a weekend job at a supermarket and stopped buying snacks and video games. Every Friday he put half of his pay in a jar. After five months, he had almost enough. Then something lucky happened: the music store had a sale, and the guitar had a twenty percent discount. Marco bought it the same day and kept the receipt in case there was a problem. \"If I had to do it again, I would do the exact same thing,\" he says. \"When you really want something, you find a way to pay for it.\"",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "b1.money-and-shopping.vocab-001",
       "itemIds": ["b1.money-and-shopping.receipt"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'receipt' mean?",
       "options": ["receta", "recepción", "recibo", "regalo"],
@@ -177,7 +181,9 @@
         "b1.money-and-shopping.afford"
       ],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "b1.money-and-shopping.saving-for-guitar",
       "questions": [
@@ -206,37 +212,23 @@
       "id": "b1.money-and-shopping.write-001",
       "itemIds": ["b1.money-and-shopping.as-long-as", "b1.money-and-shopping.lend"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Te presto mi bicicleta siempre que la cuides.",
       "accepted": [
-        "I'll lend you my bike as long as you take care of it.",
-        "I'll lend you my bike as long as you look after it.",
-        "I'll lend you my bike as long as you are careful with it.",
-        "I'll lend you my bicycle as long as you take care of it.",
-        "I'll lend you my bicycle as long as you look after it.",
-        "I'll lend you my bicycle as long as you are careful with it.",
-        "I will lend you my bike as long as you take care of it.",
-        "I will lend you my bike as long as you look after it.",
-        "I will lend you my bike as long as you are careful with it.",
-        "I will lend you my bicycle as long as you take care of it.",
-        "I will lend you my bicycle as long as you look after it.",
-        "I will lend you my bicycle as long as you are careful with it.",
-        "I can lend you my bike as long as you take care of it.",
-        "I can lend you my bike as long as you look after it.",
-        "I can lend you my bike as long as you are careful with it.",
-        "I can lend you my bicycle as long as you take care of it.",
-        "I can lend you my bicycle as long as you look after it.",
-        "I can lend you my bicycle as long as you are careful with it.",
-        "You can borrow my bike as long as you take care of it.",
-        "You can borrow my bicycle as long as you take care of it."
+        "{I'll|I can} lend you my {bike|bicycle} {as long as|provided that|if} you {take care of it|look after it|are careful with it}.",
+        "You can borrow my {bike|bicycle} {as long as|provided that|if} you {take care of it|look after it|are careful with it}."
       ]
     },
     {
       "id": "b1.money-and-shopping.vocab-002",
       "itemIds": ["b1.money-and-shopping.borrow"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'Can I borrow your umbrella?' mean?",
       "options": [
@@ -251,7 +243,9 @@
       "id": "b1.money-and-shopping.vocab-003",
       "itemIds": ["b1.money-and-shopping.bargain"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'bargain' mean in 'This jacket was a bargain'?",
       "options": ["una ganga", "un error", "un regalo", "una devolución"],
@@ -261,7 +255,9 @@
       "id": "b1.money-and-shopping.cloze-002",
       "itemIds": ["b1.money-and-shopping.second-conditional"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "If I ___ more money, I would travel around the world.",
       "answers": ["had"],
@@ -272,7 +268,9 @@
       "id": "b1.money-and-shopping.cloze-003",
       "itemIds": ["b1.money-and-shopping.lend", "b1.money-and-shopping.borrow"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "Could you ___ me ten dollars until Friday?",
       "answers": ["lend"],
@@ -318,46 +316,26 @@
       "id": "b1.money-and-shopping.write-002",
       "itemIds": ["b1.money-and-shopping.save-up"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Estoy ahorrando para un teléfono nuevo.",
-      "accepted": [
-        "I'm saving up for a new phone.",
-        "I'm saving up for a new cell phone.",
-        "I'm saving up for a new smartphone.",
-        "I'm saving for a new phone.",
-        "I'm saving for a new cell phone.",
-        "I'm saving for a new smartphone.",
-        "I am saving up for a new phone.",
-        "I am saving up for a new cell phone.",
-        "I am saving up for a new smartphone.",
-        "I am saving for a new phone.",
-        "I am saving for a new cell phone.",
-        "I am saving for a new smartphone."
-      ]
+      "accepted": ["I'm saving[ up| money] for a new {phone|cell phone|smartphone|mobile phone}."]
     },
     {
       "id": "b1.money-and-shopping.write-003",
       "itemIds": ["b1.money-and-shopping.refund"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Me gustaría un reembolso, por favor.",
       "accepted": [
-        "I would like a refund, please.",
-        "I would like my money back, please.",
-        "I'd like a refund, please.",
-        "I'd like my money back, please.",
-        "I want a refund, please.",
-        "I want my money back, please.",
-        "Can I have a refund, please?",
-        "Can I have my money back, please?",
-        "Can I get a refund, please?",
-        "Can I get my money back, please?",
-        "Could I have a refund, please?",
-        "Could I have my money back, please?",
-        "Could I get a refund, please?",
-        "Could I get my money back, please?"
+        "{I'd like|I want} {a refund|my money back}, please.",
+        "{Can|Could} I {have|get} {a refund|my money back}, please?",
+        "I'd like to {get|have} {a refund|my money back}, please."
       ]
     }
   ],

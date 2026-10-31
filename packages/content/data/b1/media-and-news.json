@@ -104,7 +104,9 @@
       "topics": ["media-and-news"],
       "title": "Can you trust that headline?",
       "text": "Yesterday a surprising headline appeared on my phone: \"Chocolate is now healthier than fruit, scientists say.\" It was shared thousands of times in just a few hours. However, when I read the article carefully, I found out that the study was very small and that it was paid for by a chocolate company. The journalist didn't mention this until the last paragraph. Our media teacher told us that this happens a lot. She said that many people only read headlines and never check the source. According to a recent survey, more than half of teenagers get their news from social media, not from newspapers or TV. That's not always bad, but it means we have to be careful. Before I share a story now, I ask three questions: Who wrote it? When was it published? Do other news sites say the same thing? If the answer to the last question is no, it might be fake news.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "b1.media-and-news.vocab-001",
       "itemIds": ["b1.media-and-news.headline"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'headline' mean?",
       "options": ["dolor de cabeza", "titular", "fecha límite", "portada"],
@@ -122,7 +126,9 @@
       "id": "b1.media-and-news.cloze-001",
       "itemIds": ["b1.media-and-news.say-tell"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "She ___ me that the story wasn't true.",
       "answers": ["told"],
@@ -172,7 +178,9 @@
         "b1.media-and-news.fake-news"
       ],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "b1.media-and-news.trust-headline",
       "questions": [
@@ -197,21 +205,24 @@
       "id": "b1.media-and-news.write-001",
       "itemIds": ["b1.media-and-news.however"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "El artículo era interesante. Sin embargo, era demasiado largo.",
       "accepted": [
-        "The article was interesting. However, it was too long.",
+        "The article was interesting. {However|Nevertheless}, it was too long.",
         "The article was interesting; however, it was too long.",
-        "The article was interesting, but it was too long.",
-        "The article was interesting. Nevertheless, it was too long."
+        "The article was interesting, but it was too long."
       ]
     },
     {
       "id": "b1.media-and-news.vocab-002",
       "itemIds": ["b1.media-and-news.journalist"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'periodista'.",
       "options": ["journalist", "journal", "newsstand", "actor"],
@@ -221,7 +232,9 @@
       "id": "b1.media-and-news.vocab-003",
       "itemIds": ["b1.media-and-news.announce"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'announce' mean?",
       "options": ["renunciar", "denunciar", "pronunciar", "anunciar"],
@@ -231,7 +244,9 @@
       "id": "b1.media-and-news.cloze-002",
       "itemIds": ["b1.media-and-news.passive-past"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "The winner ___ announced on the evening news.",
       "answers": ["was"],
@@ -258,7 +273,9 @@
       "id": "b1.media-and-news.order-002",
       "itemIds": ["b1.media-and-news.according-to"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["news,", "the", "closed.", "the", "bridge", "to", "was", "According"],
       "accepted": ["According to the news, the bridge was closed."],
@@ -288,35 +305,27 @@
       "id": "b1.media-and-news.write-002",
       "itemIds": ["b1.media-and-news.passive-past", "b1.media-and-news.journalist"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "La noticia fue publicada por un periodista joven.",
       "accepted": [
-        "The news was published by a young journalist.",
-        "The story was published by a young journalist.",
-        "The news story was published by a young journalist.",
-        "A young journalist published the news.",
-        "A young journalist published the story.",
-        "A young journalist published the news story.",
-        "The article was published by a young journalist.",
-        "The news item was published by a young journalist.",
-        "A young journalist published the article."
+        "The {news|story|news story|article|news item} was published by a young {journalist|reporter}.",
+        "A young {journalist|reporter} published the {news|story|news story|article|news item}."
       ]
     },
     {
       "id": "b1.media-and-news.write-003",
       "itemIds": ["b1.media-and-news.fake-news"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Muchas personas comparten noticias falsas sin leerlas.",
       "accepted": [
-        "Many people share fake news without reading it.",
-        "A lot of people share fake news without reading it.",
-        "Lots of people share fake news without reading it.",
-        "Many people share fake news stories without reading them.",
-        "A lot of people share fake news stories without reading them.",
-        "Lots of people share fake news stories without reading them."
+        "{Many|A lot of|Lots of} people share {fake news without reading it|fake news stories without reading them}[ first]."
       ]
     }
   ],

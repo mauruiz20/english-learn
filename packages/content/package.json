@@ -15,7 +15,8 @@
     "validate": "tsx scripts/validate.ts",
     "build:corpus": "tsx scripts/build-corpus.ts",
     "corpus:check": "tsx scripts/build-corpus.ts --check",
-    "glossary:gaps": "tsx scripts/glossary-gaps.ts"
+    "glossary:gaps": "tsx scripts/glossary-gaps.ts",
+    "disputed-answers": "tsx scripts/disputed-answers.ts"
   },
   "dependencies": {
     "@english-learn/domain": "workspace:*",

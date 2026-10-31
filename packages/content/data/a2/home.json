@@ -104,7 +104,9 @@
       "topics": ["home"],
       "title": "Our new apartment",
       "text": "We moved to a new apartment last month. It is bigger than our old one. There are two bedrooms, a small kitchen and a living room with a big window. There isn't a yard, but there is a balcony with lots of plants. My brother and I share a bedroom. On Saturdays we clean the apartment together, and I always do the dishes.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "a2.home.vocab-001",
       "itemIds": ["a2.home.bedroom"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'bedroom' mean?",
       "options": ["dormitorio", "baño", "sala", "cocina"],
@@ -122,7 +126,9 @@
       "id": "a2.home.cloze-001",
       "itemIds": ["a2.home.there-is-are", "a2.home.bathroom"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "There ___ two bathrooms in our house.",
       "answers": ["are"],
@@ -133,7 +139,9 @@
       "id": "a2.home.order-001",
       "itemIds": ["a2.home.yard", "a2.home.there-is-are"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["yard", "our", "There's", "behind", "big", "house.", "a"],
       "accepted": ["There's a big yard behind our house."],
@@ -163,7 +171,9 @@
       "id": "a2.home.reading-001",
       "itemIds": ["a2.home.apartment", "a2.home.do-the-dishes", "a2.home.living-room"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.home.new-apartment",
       "questions": [
@@ -196,13 +206,19 @@
       },
       "type": "translate_write",
       "es": "¿Puedo abrir la ventana?",
-      "accepted": ["Can I open the window?", "May I open the window?", "Could I open the window?"]
+      "accepted": [
+        "{Can|May|Could} I open the window?",
+        "Is it {OK|okay|all right} if I open the window?",
+        "Do you mind if I open the window?"
+      ]
     },
     {
       "id": "a2.home.vocab-002",
       "itemIds": ["a2.home.living-room"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'sala de estar'.",
       "options": ["dining room", "bathroom", "living room", "bedroom"],
@@ -212,7 +228,9 @@
       "id": "a2.home.vocab-003",
       "itemIds": ["a2.home.do-the-dishes"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'do the dishes' mean?",
       "options": ["lavar los platos", "hacer la cama", "cocinar la cena", "poner la mesa"],
@@ -238,7 +256,9 @@
       "id": "a2.home.cloze-003",
       "itemIds": ["a2.home.next-to", "a2.home.bathroom"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "The bathroom is ___ to my bedroom.",
       "answers": ["next"],
@@ -249,7 +269,9 @@
       "id": "a2.home.order-002",
       "itemIds": ["a2.work.have-to", "a2.home.kitchen"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["today.", "We", "have", "clean", "to", "kitchen", "the"],
       "accepted": ["We have to clean the kitchen today."],
@@ -307,7 +329,7 @@
       },
       "type": "translate_write",
       "es": "¿Te gusta el apartamento?",
-      "accepted": ["Do you like the apartment?", "Do you like the flat?"]
+      "accepted": ["Do you like the {apartment|flat}?"]
     }
   ],
   "lessons": [
