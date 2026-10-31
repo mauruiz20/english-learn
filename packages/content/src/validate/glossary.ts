@@ -1,6 +1,7 @@
 import {
   annotateText,
   buildGlossaryIndex,
+  expandPattern,
   glossaryKey,
   type GlossaryIndex,
 } from "@english-learn/domain";
@@ -161,8 +162,13 @@ function exerciseTexts(exercise: AnyExercise, at: string): [string, string][] {
         ...q.options.map((o, j): [string, string] => [`${at}.questions[${i}].options[${j}]`, o]),
       ]);
     case "translate_write":
-      // The Spanish prompt is skipped; accepted answers are shown as corrections.
-      return list("accepted", exercise.accepted);
+      // The Spanish prompt is skipped; accepted answers are shown as corrections, so every
+      // sentence a pattern stands for is checked (once).
+      return exercise.accepted.flatMap((entry, i): [string, string][] => {
+        const result = expandPattern(entry);
+        const sentences = result.ok ? result.expansions : [entry];
+        return sentences.map((sentence) => [`${at}.accepted[${i}]`, sentence]);
+      });
   }
 }
 

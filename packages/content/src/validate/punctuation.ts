@@ -5,7 +5,7 @@ import type { LoadedFile, Rule, ValidationError } from "./types";
  * or a run of four or more. A three-dot ellipsis (`"where is...?"`) and the
  * ellipsis character are intentional and allowed.
  */
-const DOUBLED_DOTS = /(?<!\.)\.\.(?!\.)|\.{4,}/;
+export const DOUBLED_DOTS = /(?<!\.)\.\.(?!\.)|\.{4,}/;
 
 const MESSAGE =
   'doubled terminal punctuation (".." as in "p.m..", or four or more dots); use one "." or a three-dot ellipsis';

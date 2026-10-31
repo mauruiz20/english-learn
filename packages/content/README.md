@@ -33,9 +33,27 @@ lessons but keep the id reserved; to change meaning, add a new id.
 - **American English** spelling throughout (`traveled`, `canceled`, `color`, `center`).
 - **Text fields** are non-empty and have no leading or trailing whitespace, and never double the
   final period (`8 p.m.`, not `8 p.m..`). A three-dot ellipsis (`where is...?`) is fine.
-- **`accepted` lists** (translate_write) should cover natural variants a learner may type:
-  numerals vs words (`11` / `eleven`), synonyms (`Although` / `Even though` / `Though`), and common
-  rephrasings (`we arrived on time` / `we got there on time`).
+- **`accepted` lists** (translate_write) are **answer patterns** that should cover every natural
+  way a learner may write the sentence: numerals vs words (`{11|eleven}`), synonyms at level
+  (`{Although|Even though|Though}`), word order of adverbs and time phrases, optional politeness
+  and fillers (`[please]`), will / going to where both are natural, and common rephrasings
+  (`we {arrived|got there} on time`). Contractions (`I'm` / `I am`), case and final punctuation are
+  handled by the matcher, so do not spell them out. Every expansion must be correct English and a
+  correct translation. The first sentence of the first entry is the reference answer shown after
+  a wrong answer, so make it the most natural one.
+
+  | Syntax      | Meaning                                                 |
+  | ----------- | ------------------------------------------------------- |
+  | `{a\|b\|c}` | exactly one alternative; one may be empty (`{very \|}`) |
+  | `[x]`       | optional; `[a\|b]` = nothing or one of them             |
+  | nesting     | `I get up {early\|at six[ o'clock]}.`                   |
+  | `\{` `\[` … | a literal `{ } [ ] \| \`                                |
+
+  Spaces are normalized in every expansion (no double spaces, none before `.,!?;:`), so write
+  `I [really ]like it.` or `I like it [very much] .`. An exercise may stand for at most 2,000
+  sentences. Patterns stay compact in the generated corpus; the app expands them once per
+  exercise when grading.
+
 - JSON files must not repeat a key in the same object (`JSON.parse` would silently keep the last).
 
 ## Semantic rules
@@ -55,26 +73,30 @@ Reference-free rules (run on every file that parsed, even when other files fail)
    among distractors; no answer appears among the distractors.
 5. Word order: see the convention below.
 6. No duplicates inside one entity: `lesson.exerciseIds`, `exercise.itemIds` (exact), `topics`,
-   `accepted` (normalized).
+   word-order `accepted` (normalized).
 7. Topics: `item.topics` / `passage.topics` include the topic segment of their id; a lesson's id
    topic segment equals `lesson.topic`; every exercise a lesson lists has that topic segment.
 8. Punctuation: no text field contains exactly two dots in a row (`..`, e.g. `p.m..`) or four or
    more; a three-dot ellipsis `...` and `…` are allowed.
 9. Glossary entries (see [Glossary](#glossary)): file name, order, form shape, headword among the
    forms, word vs phrase forms.
+10. Answer patterns (translate_write `accepted`): every entry parses; each entry and the whole
+    exercise stand for at most 2,000 sentences; no sentence (normalized) comes from two entries;
+    every sentence is non-empty and has no doubled terminal punctuation. Glossary coverage
+    (rule 16) checks every sentence a pattern stands for.
 
 Cross-file rules (run only when every file parsed and passed the schema):
 
-10. Ids are unique per entity kind across the whole corpus.
-11. References resolve: `exercise.itemIds` -> items, `reading.passageId` -> passages,
+11. Ids are unique per entity kind across the whole corpus.
+12. References resolve: `exercise.itemIds` -> items, `reading.passageId` -> passages,
     `lesson.exerciseIds` -> exercises.
-12. Exercise topic: the topic segment of an exercise id is a topic of at least one item it
+13. Exercise topic: the topic segment of an exercise id is a topic of at least one item it
     references. (Chosen over "equals the lesson topic" because it holds for exercises outside any
     lesson too; together with rule 7 it keeps lesson, exercise and item topics aligned.)
-13. Levels: an exercise has its lesson's level; a reading exercise has its passage's level; every
+14. Levels: an exercise has its lesson's level; a reading exercise has its passage's level; every
     item an exercise references is at or below the exercise level (A1 < A2 < B1 < B2 < C1).
-14. Glossary ids are unique, and a form belongs to at most one entry across the whole glossary.
-15. Glossary coverage: every word of learner-visible English text resolves to a glossary entry.
+15. Glossary ids are unique, and a form belongs to at most one entry across the whole glossary.
+16. Glossary coverage: every word of learner-visible English text resolves to a glossary entry.
 
 ### Word-order convention
 
@@ -116,11 +138,12 @@ Static English → Spanish lookup for hover (web) / tap (mobile). Tokenizing and
 - **Senses**: 1–3, the sense the content uses most first; short, natural, neutral Latin American
   Spanish. `pos` is optional (`noun`, `verb`, `adjective`, `phrasal verb`, `expression`, …).
   Proper names get an entry too (`June` → _junio_, `Carlos` → _(nombre propio)_).
-- **Coverage** (rule 15): checked texts are item terms; vocab prompts (the quoted Spanish term of a
+- **Coverage** (rule 16): checked texts are item terms; vocab prompts (the quoted Spanish term of a
   `Choose the English for '…'.` prompt is skipped; options are Spanish); cloze sentences, answers
   and distractors; word-order tokens and accepted sentences; translation_choice sentences; reading
   question prompts and options; translate_write accepted answers (shown as corrections); passage
-  titles and texts; placement exercises. A possessive (`Ana's`) resolves to its base form when it
+  titles and texts; placement exercises; translate_write accepted answers are checked as every sentence their patterns
+  stand for. A possessive (`Ana's`) resolves to its base form when it
   is not itself a form. Forms no text uses are allowed; `validate` prints their count as a warning.
 - **Authoring**: `pnpm --filter @english-learn/content glossary:gaps [--limit N]` lists uncovered
   words, most frequent first, with one example text each.
