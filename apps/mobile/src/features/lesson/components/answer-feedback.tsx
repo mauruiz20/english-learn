@@ -27,11 +27,22 @@ type AnswerFeedbackProps = {
   correctAnswer: string;
   /** The correct answer is English: its words can be looked up in the margin note. */
   lookupAnswer?: boolean | undefined;
+  /** The learner marked this answer as correct (`verdict` is then "correct"). */
+  disputed?: boolean | undefined;
+  /** Offers "Mi respuesta también es correcta" (translate_write answers graded wrong or almost). */
+  onDispute?: (() => void) | undefined;
   onContinue: () => void;
 };
 
+const DISPUTED_LABEL = "Marcada como correcta";
+
 /** What a screen reader announces: plain words, since the strike-through is visual only. */
-export function feedbackAnnouncement(verdict: Verdict, correctAnswer: string): string {
+export function feedbackAnnouncement(
+  verdict: Verdict,
+  correctAnswer: string,
+  disputed = false,
+): string {
+  if (disputed) return DISPUTED_LABEL;
   switch (verdict) {
     case "correct":
       return "Correcto";
@@ -56,13 +67,17 @@ function struckSegments(verdict: Verdict, given: string, correctAnswer: string):
  * and a short green "Correcto". Wrong: the answer is struck through in red pen with a margin
  * note giving the right one. Almost: only the words that are off are struck through (or the
  * whole answer if nothing lines up), with "Casi. Fíjate: …". Screen readers get a plain
- * sentence instead (`feedbackAnnouncement`).
+ * sentence instead (`feedbackAnnouncement`). A translate_write answer graded wrong or almost
+ * can be marked as correct by the learner (`onDispute`): it is then highlighted with
+ * "Marcada como correcta".
  */
 export function AnswerFeedback({
   verdict,
   given,
   correctAnswer,
   lookupAnswer = false,
+  disputed = false,
+  onDispute,
   onContinue,
 }: AnswerFeedbackProps) {
   const styles = useStyles();
@@ -73,7 +88,7 @@ export function AnswerFeedback({
   return (
     <View style={styles.panel}>
       <Text accessibilityRole="alert" accessibilityLiveRegion="polite" style={styles.announcement}>
-        {feedbackAnnouncement(verdict, correctAnswer)}
+        {feedbackAnnouncement(verdict, correctAnswer, disputed)}
       </Text>
       <View style={styles.marking}>
         {verdict === "correct" ? (
@@ -82,7 +97,7 @@ export function AnswerFeedback({
               {shown}
             </Highlight>
             <Text variant="title" tone="success">
-              Correcto
+              {disputed ? DISPUTED_LABEL : "Correcto"}
             </Text>
           </View>
         ) : (
@@ -98,6 +113,9 @@ export function AnswerFeedback({
         )}
       </View>
       <Button label="Continuar" onPress={onContinue} />
+      {onDispute !== undefined && verdict !== "correct" && (
+        <Button label="Mi respuesta también es correcta" variant="text" onPress={onDispute} />
+      )}
     </View>
   );
 }

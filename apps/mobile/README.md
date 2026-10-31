@@ -90,7 +90,8 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
 - `model/` (pure, unit-tested): `prepareExercise` shuffles options / scrambles tokens with the
   injected rng; `gradeExercise` grades a response (option types and reading → correct/wrong;
   reading is correct only if every question is; word order → `matchAnswer` on the tokens joined by
-  single spaces, only "correct" counts; translate-write → correct/almost/wrong); the
+  single spaces, only "correct" counts; translate-write → `matchPatternAnswer` against every
+  sentence its answer patterns stand for, correct/almost/wrong); the
   `lessonSession` reducer (answering → feedback → next → finished summary with verdicts, accuracy,
   XP and per-item outcomes); `finalGrades` turns the summary into one FINAL grade per item
   (worst grade per item; `EXPECTED_MS` per type: vocab 8 s, cloze 10 s, translation choice 12 s,
@@ -104,6 +105,15 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   answered after that marks those of its items `lookedUp`, and `finalGrades` caps their
   grade at 3 ("almost") — a wrong answer stays wrong. Verdicts, accuracy and XP are unchanged.
   Lessons and reviews share it.
+  **"Mi respuesta también es correcta"**: after a wrong or almost translate-write answer the
+  feedback offers this quiet text button (`canDispute`). The reducer's `dispute` action regrades
+  that attempt as correct (verdict, accuracy and XP of a correct answer; the feedback shows the
+  answer highlighted with "Marcada como correcta"), and `finalGrades` gives its items grade 4
+  (never 5), which replaces the wrong/almost grade in worst-grade-wins (the looked-up cap still
+  applies). The save appends one `answer_disputed` event per disputed answer
+  (`exerciseId, itemIds, answer` trimmed to 200 characters, `accepted: false`) with the session's
+  events; the fold ignores it and the sync uploads it like any event, so the owner can review it
+  (`pnpm --filter @english-learn/content disputed-answers`).
 - `application/complete-session.ts`: saves a finished lesson or review as events with
   `ProgressRepository.appendEvents` (ONE transaction, all or nothing). XP = sum of `xpForAnswer`,
   plus the lesson completion bonus the first time a `lessonId` is completed (decided by the fold;

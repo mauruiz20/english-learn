@@ -52,6 +52,7 @@ type ReviewViewProps = {
   state: ReviewViewState;
   onSubmit: (response: ExerciseResponse) => void;
   onContinue: () => void;
+  onDispute: () => void;
   onGoHome: () => void;
   onRetrySave: () => void;
 };
@@ -62,6 +63,7 @@ export function ReviewView({
   state,
   onSubmit,
   onContinue,
+  onDispute,
   onGoHome,
   onRetrySave,
 }: ReviewViewProps) {
@@ -115,6 +117,8 @@ export function ReviewView({
                     verdict={state.feedback.verdict}
                     given={state.feedback.given}
                     correctAnswer={state.feedback.correctAnswer}
+                    disputed={state.feedback.disputed}
+                    onDispute={state.feedback.disputable ? onDispute : undefined}
                     lookupAnswer={answerIsEnglish(state.prepared)}
                     onContinue={onContinue}
                   />

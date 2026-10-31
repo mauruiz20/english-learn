@@ -117,3 +117,63 @@ describe("finalGrades", () => {
     });
   });
 });
+
+describe("finalGrades: answers the learner marked as correct", () => {
+  it("grades a disputed answer 4 (correct, not perfect), however fast it was", () => {
+    const grades = finalGrades(
+      summary([
+        {
+          itemId: "a",
+          exerciseType: "translate_write",
+          verdict: "correct",
+          responseMs: 1000,
+          disputed: true,
+        },
+      ]),
+    );
+    expect(grades.get("a")).toBe(4);
+  });
+
+  it("the regraded answer takes part in worst-grade-wins", () => {
+    const grades = finalGrades(
+      summary([
+        { itemId: "a", exerciseType: "vocab", verdict: "correct", responseMs: 1000 },
+        {
+          itemId: "a",
+          exerciseType: "translate_write",
+          verdict: "correct",
+          responseMs: 1000,
+          disputed: true,
+        },
+        { itemId: "b", exerciseType: "vocab", verdict: "wrong", responseMs: 1000 },
+        {
+          itemId: "b",
+          exerciseType: "translate_write",
+          verdict: "correct",
+          responseMs: 1000,
+          disputed: true,
+        },
+      ]),
+    );
+    expect([...grades]).toEqual([
+      ["a", 4],
+      ["b", 1],
+    ]);
+  });
+
+  it("still applies the looked-up cap", () => {
+    const grades = finalGrades(
+      summary([
+        {
+          itemId: "a",
+          exerciseType: "translate_write",
+          verdict: "correct",
+          responseMs: 1000,
+          disputed: true,
+          lookedUp: true,
+        },
+      ]),
+    );
+    expect(grades.get("a")).toBe(3);
+  });
+});

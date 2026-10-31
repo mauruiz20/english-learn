@@ -13,6 +13,8 @@ export type GradeResult = {
   readonly correctAnswer: string;
   /** reading only: one verdict per question. */
   readonly questionVerdicts?: readonly Verdict[];
+  /** The learner marked their answer as correct ("Mi respuesta también es correcta"). */
+  readonly disputed?: boolean;
 };
 
 function mismatch(exercise: Exercise, response: ExerciseResponse): never {

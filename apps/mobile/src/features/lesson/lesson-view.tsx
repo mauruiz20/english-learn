@@ -16,7 +16,11 @@ import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
 
 /** Feedback on the current answer, with the learner's answer as text. */
-export type ShownFeedback = GradeResult & { readonly given: string };
+export type ShownFeedback = GradeResult & {
+  readonly given: string;
+  /** The learner may mark the answer as correct (see `canDispute`). */
+  readonly disputable: boolean;
+};
 
 export type LessonViewState =
   | { readonly status: "not-found" }
@@ -52,6 +56,7 @@ type LessonViewProps = {
   state: LessonViewState;
   onSubmit: (response: ExerciseResponse) => void;
   onContinue: () => void;
+  onDispute: () => void;
   onGoHome: () => void;
   onRetrySave: () => void;
 };
@@ -60,6 +65,7 @@ export function LessonView({
   state,
   onSubmit,
   onContinue,
+  onDispute,
   onGoHome,
   onRetrySave,
 }: LessonViewProps) {
@@ -101,6 +107,8 @@ export function LessonView({
                     given={state.feedback.given}
                     correctAnswer={state.feedback.correctAnswer}
                     lookupAnswer={answerIsEnglish(state.prepared)}
+                    disputed={state.feedback.disputed}
+                    onDispute={state.feedback.disputable ? onDispute : undefined}
                     onContinue={onContinue}
                   />
                 ),

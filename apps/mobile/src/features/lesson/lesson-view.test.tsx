@@ -7,6 +7,7 @@ const handlers = {
   onContinue: jest.fn(),
   onGoHome: jest.fn(),
   onRetrySave: jest.fn(),
+  onDispute: jest.fn(),
 };
 beforeEach(() => jest.clearAllMocks());
 
@@ -56,7 +57,12 @@ describe("LessonView", () => {
   it("shows feedback below the locked exercise and continues", async () => {
     await renderView({
       ...exerciseState,
-      feedback: { verdict: "wrong", correctAnswer: "despertarse", given: "dormirse" },
+      feedback: {
+        verdict: "wrong",
+        correctAnswer: "despertarse",
+        given: "dormirse",
+        disputable: false,
+      },
     });
 
     expect(screen.getByRole("alert")).toHaveTextContent(

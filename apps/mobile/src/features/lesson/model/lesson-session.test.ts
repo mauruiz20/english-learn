@@ -1,6 +1,8 @@
 import { allExercises, lesson, translateWrite, vocab, wordOrder } from "./fixtures";
 import type { ExerciseResponse } from "./response";
+import { xpForAnswer } from "@english-learn/domain";
 import {
+  canDispute,
   currentExercise,
   lessonSessionReducer,
   startLesson,
@@ -223,5 +225,79 @@ describe("lessonSession", () => {
       const finished = play(start, correctResponses);
       expect(lookup(finished, ["a2.routine.wake-up"])).toBe(finished);
     });
+  });
+});
+
+describe("disputing a translate_write answer ('Mi respuesta también es correcta')", () => {
+  const writeOnly = () => startLesson(lesson, [vocab, translateWrite]);
+  const answerWrite = (text: string) => {
+    const afterVocab = play(writeOnly(), [{ kind: "choice", option: "despertarse" }]);
+    return lessonSessionReducer(afterVocab, {
+      type: "answer",
+      response: { kind: "text", text },
+      responseMs: 1000,
+    });
+  };
+
+  it("regrades a wrong answer as correct for this attempt", () => {
+    const wrong = answerWrite("  I go to sleep at eleven ");
+    expect(canDispute(wrong)).toBe(true);
+
+    const disputed = lessonSessionReducer(wrong, { type: "dispute" });
+
+    expect(disputed.status === "feedback" && disputed.feedback).toMatchObject({
+      verdict: "correct",
+      disputed: true,
+    });
+    expect(canDispute(disputed)).toBe(false);
+    const finished = lessonSessionReducer(disputed, { type: "next" });
+    if (finished.status !== "finished") throw new Error("expected the lesson to finish");
+    expect(finished.summary.verdicts).toEqual(["correct", "correct"]);
+    expect(finished.summary.answerXp).toBe(2 * xpForAnswer("correct"));
+    expect(finished.summary.itemOutcomes.slice(1)).toEqual(
+      translateWrite.itemIds.map((itemId) => ({
+        itemId,
+        exerciseType: "translate_write",
+        verdict: "correct",
+        responseMs: 1000,
+        disputed: true,
+      })),
+    );
+    expect(finished.summary.disputes).toEqual([
+      {
+        exerciseId: translateWrite.id,
+        itemIds: translateWrite.itemIds,
+        answer: "I go to sleep at eleven",
+      },
+    ]);
+  });
+
+  it("can dispute an 'almost' too", () => {
+    expect(canDispute(answerWrite("I usualy go to bed at eleven"))).toBe(true);
+  });
+
+  it("is not offered for correct answers, other exercise types or twice", () => {
+    const correct = answerWrite("I usually go to bed at eleven");
+    expect(canDispute(correct)).toBe(false);
+    expect(lessonSessionReducer(correct, { type: "dispute" })).toBe(correct);
+
+    const wrongVocab = lessonSessionReducer(writeOnly(), {
+      type: "answer",
+      response: { kind: "choice", option: "dormirse" },
+      responseMs: 1000,
+    });
+    expect(canDispute(wrongVocab)).toBe(false);
+    expect(lessonSessionReducer(wrongVocab, { type: "dispute" })).toBe(wrongVocab);
+
+    const once = lessonSessionReducer(answerWrite("I sleep"), { type: "dispute" });
+    expect(lessonSessionReducer(once, { type: "dispute" })).toBe(once);
+  });
+
+  it("lists no disputes when there were none", () => {
+    const finished = play(writeOnly(), [
+      { kind: "choice", option: "despertarse" },
+      { kind: "text", text: "I sleep" },
+    ]);
+    expect(finished.status === "finished" && finished.summary.disputes).toEqual([]);
   });
 });

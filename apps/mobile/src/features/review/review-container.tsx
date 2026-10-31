@@ -4,7 +4,11 @@ import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { completeSession } from "@/features/lesson/application/complete-session";
 import { itemsToReview } from "@/features/lesson/model/items-to-review";
-import { startLesson, type LessonSessionState } from "@/features/lesson/model/lesson-session";
+import {
+  canDispute,
+  startLesson,
+  type LessonSessionState,
+} from "@/features/lesson/model/lesson-session";
 import { prepareExercise } from "@/features/lesson/model/prepare-exercise";
 import { responseText } from "@/features/lesson/model/response";
 import {
@@ -85,7 +89,7 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
 }
 
 const noop = () => {};
-const noSession = { onSubmit: noop, onContinue: noop, onRetrySave: noop };
+const noSession = { onSubmit: noop, onContinue: noop, onDispute: noop, onRetrySave: noop };
 
 /**
  * Runs the planned review with the lesson session flow and feedback, then saves it like a lesson
@@ -101,20 +105,29 @@ function ReviewSession({
   onGoHome: () => void;
 }) {
   const { progressRepository, clock, randomBytes, deviceId } = useAppServices();
-  const { session, save, onSubmit, onContinue, onLookup, retrySave, canLeave, hasUnsavedAnswers } =
-    useExerciseSession({
-      initial: plan.session,
-      complete: (summary) =>
-        completeSession({
-          repository: progressRepository,
-          summary: restrictToItems(summary, plan.itemIds),
-          today: clock.today(),
-          nowMs: clock.nowMs(),
-          randomBytes,
-          deviceId,
-          kind: "review",
-        }),
-    });
+  const {
+    session,
+    save,
+    onSubmit,
+    onContinue,
+    onDispute,
+    onLookup,
+    retrySave,
+    canLeave,
+    hasUnsavedAnswers,
+  } = useExerciseSession({
+    initial: plan.session,
+    complete: (summary) =>
+      completeSession({
+        repository: progressRepository,
+        summary: restrictToItems(summary, plan.itemIds),
+        today: clock.today(),
+        nowMs: clock.nowMs(),
+        randomBytes,
+        deviceId,
+        kind: "review",
+      }),
+  });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir del repaso?");
   const state = toViewState(session, plan, save, content);
 
@@ -130,6 +143,7 @@ function ReviewSession({
           state={state}
           onSubmit={onSubmit}
           onContinue={onContinue}
+          onDispute={onDispute}
           onGoHome={onGoHome}
           onRetrySave={retrySave}
         />
@@ -175,7 +189,11 @@ function toViewState(
     prepared,
     feedback:
       session.status === "feedback"
-        ? { ...session.feedback, given: responseText(session.response) }
+        ? {
+            ...session.feedback,
+            given: responseText(session.response),
+            disputable: canDispute(session),
+          }
         : null,
   };
 }

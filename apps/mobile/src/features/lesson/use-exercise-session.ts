@@ -83,6 +83,13 @@ export function useExerciseSession({
     );
   };
 
+  /** "Mi respuesta también es correcta" on the shown translate_write answer. */
+  const onDispute = () => {
+    setSession((current) =>
+      current === null ? current : lessonSessionReducer(current, { type: "dispute" }),
+    );
+  };
+
   const onContinue = () => {
     if (session === null) return;
     const next = lessonSessionReducer(session, { type: "next" });
@@ -97,6 +104,7 @@ export function useExerciseSession({
     save,
     onSubmit,
     onContinue,
+    onDispute,
     onLookup,
     retrySave,
     // Leaving mid-save would show a stale home; the save is quick, so block back until it ends.
