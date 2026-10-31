@@ -2,6 +2,7 @@ import type { Level } from "@english-learn/domain";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Button } from "@/shared/ui/button";
 import { formatDays } from "@/shared/ui/format";
+import { Doodle } from "@/shared/ui/doodle";
 import { HandCheck } from "@/shared/ui/hand-check";
 import { Highlight } from "@/shared/ui/highlight";
 import { SoundToggleButton } from "@/shared/ui/sound-toggle-button";
@@ -103,7 +104,12 @@ function ReviewNote({
 }) {
   const styles = useStyles();
   if (pending === 0) {
-    return <Text tone="muted">Nada para repasar hoy</Text>;
+    return (
+      <View style={styles.emptyReview}>
+        <Doodle name="rest" size={0.75} />
+        <Text tone="muted">Nada para repasar hoy</Text>
+      </View>
+    );
   }
   return (
     <View style={styles.sticky}>
@@ -279,6 +285,7 @@ const useStyles = themedStyles(({ colors }) =>
     streakNumber: { fontSize: 64, lineHeight: 70 },
     // Sits on the number's baseline.
     streakUnit: { flexShrink: 1, paddingBottom: 10 },
+    emptyReview: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
     sticky: { paddingHorizontal: spacing.xs, alignItems: "flex-start" },
     stickyAction: { marginTop: spacing.sm, alignSelf: "flex-start" },
     placement: {

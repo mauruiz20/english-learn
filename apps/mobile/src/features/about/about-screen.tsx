@@ -1,4 +1,5 @@
 import { Linking, StyleSheet, View } from "react-native";
+import { Doodle } from "@/shared/ui/doodle";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { TOUCH_TARGET, spacing } from "@/shared/ui/theme";
@@ -23,6 +24,7 @@ function ExternalLink({ url, label }: { url: string; label: string }) {
 export function AboutScreen() {
   return (
     <ScreenContainer title="Acerca de">
+      <Doodle name="pencil" />
       <Text>Aplicación para practicar inglés sin conexión, pensada para hispanohablantes.</Text>
 
       <View style={styles.section}>

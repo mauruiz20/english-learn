@@ -13,6 +13,7 @@ import { answerIsEnglish } from "@/features/lesson/model/lookup-policy";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { Button } from "@/shared/ui/button";
+import { Doodle } from "@/shared/ui/doodle";
 import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
@@ -79,6 +80,7 @@ export function ReviewView({
     case "empty":
       return (
         <ScreenContainer title={TITLE}>
+          <Doodle name="rest" />
           <Text variant="title">Nada para repasar hoy</Text>
           <Text tone="muted">
             Las palabras que aprendes en las lecciones vuelven aquí cuando toca repasarlas.

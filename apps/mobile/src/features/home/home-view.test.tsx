@@ -202,3 +202,17 @@ describe("HomeView completion check", () => {
     expect(await drawnWidth("b")).toBeGreaterThan(0);
   });
 });
+
+describe("HomeView doodle", () => {
+  it("doodles a coffee cup, invisible to screen readers, only when there is nothing to review", async () => {
+    await renderView(ready);
+
+    expect(screen.queryByTestId("doodle-rest")).not.toBeOnTheScreen();
+    expect(screen.getByTestId("doodle-rest", { includeHiddenElements: true })).toBeTruthy();
+
+    await renderView({ ...ready, pendingReviews: 3 });
+    expect(
+      screen.queryByTestId("doodle-rest", { includeHiddenElements: true }),
+    ).not.toBeOnTheScreen();
+  });
+});

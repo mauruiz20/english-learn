@@ -8,6 +8,7 @@ import { levelHighlighter } from "@/features/topics/topic-colors";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { ProgressLine } from "@/shared/ui/progress-line";
+import { Doodle } from "@/shared/ui/doodle";
 import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
@@ -86,6 +87,7 @@ export function PlacementView({
       // The first page of the notebook: what this is, how long it takes, and a way in.
       return (
         <ScreenContainer title={TITLE}>
+          <Doodle name="plane" />
           <Text variant="title">
             Responde de 15 a 20 preguntas cortas para estimar tu nivel de inglés (de A1 a C1).
           </Text>
