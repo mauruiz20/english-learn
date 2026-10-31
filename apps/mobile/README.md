@@ -343,7 +343,8 @@ paper, the prompt and the teacher's marking.
   (`model/session-results.ts`). The marking below is unchanged.
 - **Summary** (lesson and review): the session's sticker (the lesson topic's color, sky for a
   review) slapped on the page with Avi cheering and confetti, the teacher's cheer by accuracy
-  ("¡Perfecto!", "¡Muy bien!", "¡Bien hecho!", "¡A seguir practicando!") and her red Caveat grade,
+  ("¡Muy bien!", "¡Bien hecho!", "¡A seguir practicando!"; a perfect page gets her "¡Excelente!"
+  stamp instead) and her red Caveat grade,
   a results card (aciertos, XP, streak with its clip chain), the stickers earned for the album,
   then "Para repasar": up to six missed items (wrong or almost) with their Spanish gloss
   (`model/items-to-review.ts`), or a short line when everything was right.

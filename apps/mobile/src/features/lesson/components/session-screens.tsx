@@ -153,9 +153,10 @@ const BIG_CHECK = "M6 25 C 10 28, 14 32, 18 38 C 24 26, 32 16, 44 8";
 /**
  * The graded page, as a celebration: the session's sticker is slapped onto the page with Avi
  * cheering and hole-punch confetti falling (none with reduced motion), the teacher's word for it
- * in red pen and her score in the corner; then the results card (the XP counts up, a grown streak
- * rolls to its new number and hooks a new clip onto the chain, with the streak sound), the
- * "¡Excelente!" stamp on a perfect page, and the words to look at again.
+ * in red pen (on a perfect page, her "¡Excelente!" stamp instead) and her score in the corner;
+ * then the results card (the XP counts up, a grown streak rolls to its new number and hooks a new
+ * clip onto the chain, with the streak sound), the stickers earned for the album, and the words
+ * to look at again.
  */
 export function SessionSummary({
   title,
@@ -210,7 +211,11 @@ export function SessionSummary({
         </Sticker>
         <View style={styles.heroSide}>
           <Avi testID="avi-cheer" mood="cheer" fly delayMs={450} size={64} />
-          <MarginNote style={styles.cheer}>{summaryCheer(correct, total)}</MarginNote>
+          {perfect ? (
+            <PerfectStamp />
+          ) : (
+            <MarginNote style={styles.cheer}>{summaryCheer(correct, total)}</MarginNote>
+          )}
         </View>
       </View>
       <View style={styles.results}>
@@ -236,11 +241,6 @@ export function SessionSummary({
         >
           <StreakLine days={streakDays} increased={streakIncreased} />
         </ResultRow>
-        {perfect && (
-          <View style={styles.stamp}>
-            <PerfectStamp />
-          </View>
-        )}
       </View>
       {achievements.map((a, i) => (
         <EarnedCard key={a.id} sticker={a} index={i} />
@@ -502,8 +502,6 @@ const useStyles = themedStyles(({ colors }) =>
     },
     review: { gap: spacing.xs },
     streak: { flexDirection: "row", alignItems: "center" },
-    // Pressed onto the results card, at its right.
-    stamp: { position: "absolute", right: spacing.xs, top: spacing.sm },
     allRight: { paddingTop: spacing.xs },
     // "have breakfast   desayunar": the word and its meaning on one ruled line (wraps if long).
     note: {

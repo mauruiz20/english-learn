@@ -100,8 +100,14 @@ describe("SessionSummary", () => {
       expect(screen.getByTestId("confetti", { includeHiddenElements: true })).toBeTruthy();
     });
 
+    it("lets the stamp speak on a perfect page, beside Avi", async () => {
+      await render(<SessionSummary {...base} />);
+
+      expect(stamp()).toBeOnTheScreen();
+      expect(screen.queryByText("¡Perfecto!")).not.toBeOnTheScreen();
+    });
+
     it.each([
-      [6, 6, "¡Perfecto!"],
       [5, 6, "¡Muy bien!"],
       [3, 6, "¡Bien hecho!"],
       [1, 6, "¡A seguir practicando!"],
