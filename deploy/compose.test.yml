@@ -1,0 +1,44 @@
+# Local smoke test of the production stack: layered on top of compose.yml,
+# with the images built from the local Dockerfiles. Driven by
+# deploy/test/smoke.sh, which generates throwaway secrets and an env file:
+#
+#   deploy/test/smoke.sh
+#
+# Differences from compose.yml alone: images are built locally, the database
+# and backups live in tmpfs (nothing on the host disk), the secrets come from
+# SECRETS_DIR, and cloudflared is never started (it needs a real tunnel).
+# Everything else (networks, hardening, the secret-env entrypoint, migrate
+# before api, limits) is the production definition.
+
+services:
+  postgres:
+    volumes: !reset []
+    tmpfs:
+      - /var/lib/postgresql
+
+  migrate:
+    image: english-learn-api:test
+    build: ../services/api
+
+  api:
+    image: english-learn-api:test
+    build: ../services/api
+
+  backup:
+    image: english-learn-backup:test
+    build: ./backup
+    volumes: !reset []
+    tmpfs: !override
+      - /tmp:uid=10001,gid=10001,mode=0700
+      - /scratch:size=256m,uid=10001,gid=10001,mode=0700
+      - /backups:uid=10001,gid=10001,mode=0700
+
+secrets:
+  postgres_password:
+    file: ${SECRETS_DIR:?run via deploy/test/smoke.sh}/postgres_password
+  database_url:
+    file: ${SECRETS_DIR:?run via deploy/test/smoke.sh}/database_url
+  jwt_secret:
+    file: ${SECRETS_DIR:?run via deploy/test/smoke.sh}/jwt_secret
+  tunnel_token:
+    file: ${SECRETS_DIR:?run via deploy/test/smoke.sh}/tunnel_token

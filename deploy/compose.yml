@@ -1,0 +1,223 @@
+# Production stack for the Raspberry Pi 5 (linux/arm64). See docs/deploy.md.
+#
+#   cp .env.example .env   # then edit
+#   docker compose pull && docker compose up -d
+#
+# Network layout:
+#   backend (internal, no route out): postgres, migrate, api, backup, cloudflared
+#   egress  (outbound allowed):       api (Google's ID token signing keys)
+#   tunnel  (outbound allowed):       cloudflared (Cloudflare's edge)
+# No service publishes a port; the only way in is the Cloudflare Tunnel.
+# api and cloudflared share only `backend`, whose subnet is pinned, so the
+# tunnel always reaches the api from BACKEND_SUBNET: the one range the api
+# trusts for X-Forwarded-For (FORWARDED_ALLOW_IPS).
+#
+# The Pi also runs finance-tracker and monogestor: limits keep this stack
+# under ~1.5 GB even at its worst (migrate and the backup drill running);
+# idle it uses ~200 MB.
+name: english-learn
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-hardening: &hardening
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+
+# The api reads DATABASE_URL and JWT_SECRET from the environment only (no
+# *_FILE support yet, see docs/deploy.md#follow-ups). This entrypoint loads
+# the Docker secret files named by the *_FILE variables into the environment
+# of the process it then execs, so the values never appear in compose.yml,
+# .env or `docker inspect`. Delete it once the api reads *_FILE itself.
+x-secret-env: &secret-env
+  entrypoint:
+    - /bin/sh
+    - -c
+    - |
+      set -eu
+      load() {
+        [ -n "$$2" ] || return 0
+        value=$$(cat "$$2")
+        [ -n "$$value" ] || { echo "secret-env: $$2 is empty" >&2; exit 1; }
+        export "$$1=$$value"
+      }
+      load DATABASE_URL "$${DATABASE_URL_FILE:-}"
+      load JWT_SECRET "$${JWT_SECRET_FILE:-}"
+      unset value
+      exec "$$@"
+    - secret-env
+
+services:
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-english_learn}
+      POSTGRES_DB: ${POSTGRES_DB:-english_learn}
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets: [postgres_password]
+    volumes:
+      # On the NVMe. Postgres 18 images keep data in a versioned subdirectory
+      # of /var/lib/postgresql (18/docker), which eases future pg_upgrade.
+      - ${DATA_DIR:-/mnt/nvme/english-learn}/postgres:/var/lib/postgresql
+    shm_size: 128m
+    healthcheck:
+      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks: [backend]
+    deploy:
+      resources:
+        limits: { cpus: "1", memory: 512m }
+    logging: *logging
+
+  # One-shot: `alembic upgrade head`, then exits. The api starts only after it
+  # exits 0, so a failed migration keeps the previous api container running
+  # (on `up -d` after a pull) instead of starting new code on an old schema.
+  migrate:
+    image: ghcr.io/${GHCR_OWNER:?set GHCR_OWNER in .env}/english-learn-api:${IMAGE_TAG:-latest}
+    <<: [*hardening, *secret-env]
+    command: ["alembic", "upgrade", "head"]
+    restart: "no"
+    environment:
+      DATABASE_URL_FILE: /run/secrets/database_url
+    secrets: [database_url]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [backend]
+    deploy:
+      resources:
+        limits: { cpus: "1", memory: 256m }
+    logging: *logging
+
+  api:
+    image: ghcr.io/${GHCR_OWNER:?set GHCR_OWNER in .env}/english-learn-api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    <<: [*hardening, *secret-env]
+    # The image's CMD, spelled out: overriding the entrypoint clears it.
+    command:
+      - uvicorn
+      - english_learn_api.main:app_from_env
+      - --factory
+      - --host=0.0.0.0
+      - --port=8000
+      - --proxy-headers
+      - --no-access-log
+    tmpfs:
+      - /tmp
+    environment:
+      PORT: "8000"
+      # production: no /docs, and CORS_ORIGINS must be explicit https origins.
+      ENV: production
+      # The full DSN (with the password) and the JWT signing key live in
+      # secret files, loaded by the secret-env entrypoint above.
+      DATABASE_URL_FILE: /run/secrets/database_url
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+      CORS_ORIGINS: ${CORS_ORIGINS:?set CORS_ORIGINS in .env}
+      # Public OAuth client ids (not secrets) accepted as the ID token audience.
+      GOOGLE_CLIENT_IDS: ${GOOGLE_CLIENT_IDS:?set GOOGLE_CLIENT_IDS in .env}
+      # Read by uvicorn: X-Forwarded-For is trusted only from cloudflared,
+      # which always connects from the backend subnet (see the header).
+      FORWARDED_ALLOW_IPS: ${BACKEND_SUBNET:-10.217.0.0/24}
+    secrets: [database_url, jwt_secret]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    # /healthz pings the database; it is not part of the public contract.
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=4)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    networks: [backend, egress]
+    deploy:
+      resources:
+        # ~80 MB idle (one uvicorn worker); headroom for request bursts.
+        limits: { cpus: "1", memory: 256m }
+    logging: *logging
+
+  cloudflared:
+    image: cloudflare/cloudflared:2026.10.7
+    restart: unless-stopped
+    <<: *hardening
+    command: ["tunnel", "--no-autoupdate", "run"]
+    environment:
+      TUNNEL_TOKEN_FILE: /run/secrets/tunnel_token
+    secrets: [tunnel_token]
+    depends_on:
+      api:
+        condition: service_healthy
+    networks: [backend, tunnel]
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 128m }
+    logging: *logging
+
+  # Nightly pg_dump to ${DATA_DIR}/backups (02:45 ART, newest BACKUP_KEEP
+  # kept) and a monthly restore drill into a throwaway Postgres (04:45 on the
+  # 2nd). See docs/deploy.md#backups.
+  backup:
+    image: ghcr.io/${GHCR_OWNER:?set GHCR_OWNER in .env}/english-learn-backup:${IMAGE_TAG:-latest}
+    build: ./backup
+    restart: unless-stopped
+    <<: *hardening
+    tmpfs:
+      - /tmp:uid=10001,gid=10001,mode=0700
+      # The restore drill's throwaway cluster lives here, in RAM: restored
+      # data never touches the disk. Size it above the restored database.
+      - /scratch:size=${BACKUP_SCRATCH_SIZE:-256m},uid=10001,gid=10001,mode=0700
+    volumes:
+      # Owned by uid 10001, mode 0700 (docs/deploy.md, "Data directory").
+      - ${DATA_DIR:-/mnt/nvme/english-learn}/backups:/backups
+    environment:
+      TZ: America/Argentina/Buenos_Aires
+      PGHOST: postgres
+      PGUSER: ${POSTGRES_USER:-english_learn}
+      PGDATABASE: ${POSTGRES_DB:-english_learn}
+      PGPASSWORD_FILE: /run/secrets/postgres_password
+      BACKUP_KEEP: ${BACKUP_KEEP:-14}
+    secrets: [postgres_password]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [backend]
+    deploy:
+      resources:
+        # Includes the /scratch tmpfs (RAM) used by the restore drill.
+        limits: { cpus: "1", memory: 384m }
+    logging: *logging
+
+networks:
+  backend:
+    internal: true
+    ipam:
+      config:
+        # Must not overlap another Docker network or the LAN; see .env.example.
+        - subnet: ${BACKEND_SUBNET:-10.217.0.0/24}
+  egress: {}
+  tunnel: {}
+
+# File-based secrets, mounted at /run/secrets/<name>. See secrets/README.md.
+secrets:
+  postgres_password:
+    file: ./secrets/postgres_password
+  database_url:
+    file: ./secrets/database_url
+  jwt_secret:
+    file: ./secrets/jwt_secret
+  tunnel_token:
+    file: ./secrets/tunnel_token
