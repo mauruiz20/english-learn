@@ -1,3 +1,5 @@
+import type { AddressInfo } from "node:net";
+import { join } from "node:path";
 import { expect, test, waitForServiceWorker } from "./support/test";
 
 // The installable web app (PWA): after one online visit, the service worker serves the whole
@@ -109,39 +111,56 @@ test.describe("offline web app", () => {
 
   test("offers a new version and reloads only when the learner presses Actualizar", async ({
     page,
-    context,
-    baseURL,
   }) => {
-    await page.goto("/");
-    await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
-    await waitForServiceWorker(page);
-    await expect(page.getByText("Hay una versión nueva")).toBeHidden();
-
-    // A new deploy: sw.js changes (the test server's e2e hook appends a comment).
-    await context.addCookies([{ name: "e2e-sw-version", value: "2", url: baseURL! }]);
-    await page.evaluate(async () => {
-      const registration = await navigator.serviceWorker.getRegistration();
-      await registration?.update();
+    // Its own server, on its own origin: a new deploy there holds for every request (WebKit's
+    // soft update after each navigation sends no cookies) and never reaches the other tests.
+    const { createStaticServer } = await import("../scripts/serve-web.mjs");
+    let version: string | null = null;
+    const server = createStaticServer({
+      dir: join(__dirname, "..", "dist-e2e"),
+      serviceWorkerVersion: () => version,
     });
+    await new Promise<void>((resolve) => server.listen(0, resolve));
+    const origin = `http://localhost:${(server.address() as AddressInfo).port}`;
+    try {
+      await page.goto(`${origin}/`);
+      await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
+      await waitForServiceWorker(page);
+      await expect(page.getByText("Hay una versión nueva")).toBeHidden();
 
-    await expect(page.getByText("Hay una versión nueva")).toBeVisible();
-    // It waits for the learner: no reload, the page keeps its state.
-    await page.evaluate(() => ((window as unknown as { marker: number }).marker = 1));
-    await page.waitForTimeout(500);
-    expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(1);
+      // A new deploy: sw.js changes (the server appends a comment).
+      version = "2";
+      await page.evaluate(async () => {
+        const registration = await navigator.serviceWorker.getRegistration();
+        await registration?.update();
+      });
 
-    const reloaded = page.waitForEvent("load");
-    await page.getByRole("button", { name: "Actualizar", exact: true }).click();
-    await reloaded;
+      await expect(page.getByText("Hay una versión nueva")).toBeVisible();
+      // It waits for the learner: no reload, the page keeps its state.
+      await page.evaluate(() => ((window as unknown as { marker: number }).marker = 1));
+      await page.waitForTimeout(500);
+      expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(1);
 
-    await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
-    expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(
-      undefined,
-    );
-    await expect(page.getByText("Hay una versión nueva")).toBeHidden();
-    const scriptUrl = await page.evaluate(
-      () => navigator.serviceWorker.controller?.scriptURL ?? null,
-    );
-    expect(scriptUrl).toBe(`${baseURL}/sw.js`);
+      const reloaded = page.waitForEvent("load");
+      await page.getByRole("button", { name: "Actualizar", exact: true }).click();
+      await reloaded;
+
+      await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
+      expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(
+        undefined,
+      );
+      await expect(page.getByText("Hay una versión nueva")).toBeHidden();
+      const scriptUrl = await page.evaluate(
+        () => navigator.serviceWorker.controller?.scriptURL ?? null,
+      );
+      expect(scriptUrl).toBe(`${origin}/sw.js`);
+      // The browser checks sw.js again after each navigation (WebKit about 1 s later): the same
+      // deploy is not offered twice.
+      await page.waitForTimeout(2000);
+      await expect(page.getByText("Hay una versión nueva")).toBeHidden();
+    } finally {
+      server.closeAllConnections();
+      await new Promise((resolve) => server.close(resolve));
+    }
   });
 });
