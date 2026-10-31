@@ -44,6 +44,34 @@ Both the input and every accepted answer go through the same pipeline:
 
 `closest` is the original text of the accepted answer with the smallest distance.
 
+### Answer patterns (`translate_write`)
+
+One `accepted` entry can stand for many sentences (`pattern.ts`):
+
+| Syntax        | Meaning                                              | Example                               |
+| ------------- | ---------------------------------------------------- | ------------------------------------- |
+| `{a\|b\|c}`   | exactly one alternative; an alternative may be empty | `It is {very \|}cold.`                |
+| `[x]`         | optional (the reading without it comes first)        | `I [really ]like it.`                 |
+| `[a\|b]`      | nothing, or one of the alternatives                  | `Thanks[ a lot\| so much].`           |
+| nesting       | groups nest freely                                   | `I get up {early\|at six[ o'clock]}.` |
+| `\` + char    | literal `{ } [ ] \| \`                               | `\{not a group\}`                     |
+| anything else | literal text                                         |                                       |
+
+Whitespace of each expansion is normalized (runs collapse, ends trimmed, no space before
+`.,!?;:`), so spaces may sit inside or outside the brackets. Expansions keep the alternatives'
+order without duplicates; the first expansion of the first entry is the reference answer shown
+after a wrong answer.
+
+- `expandPattern(pattern, limit = MAX_PATTERN_EXPANSIONS)`: `{ ok: true, expansions }` or
+  `{ ok: false, error }` (syntax error, or more than `limit` (2,000) sentences, detected by
+  counting before expanding).
+- `expandAccepted(accepted)`: every entry expanded, concatenated, deduplicated; memoized per array
+  (corpus arrays are stable), so an exercise expands once. An invalid entry counts as literal text
+  (the content validator forbids it).
+- `matchPatternAnswer(input, accepted)`: `matchAnswer` against `expandAccepted(accepted)`; `closest`
+  is the matching (or nearest) expansion. `matchAnswer` caches the canonical readings of an accepted
+  array (by identity) and stops at the first exact match.
+
 ## SRS (SM-2)
 
 - `review(state, grade, today)`: grade < 3 is a lapse (reps = 0, interval = 1 day, lapses + 1);
