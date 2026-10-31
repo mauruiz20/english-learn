@@ -36,11 +36,11 @@ describe("png", () => {
     assert.equal(icon.width, 1024);
     assert.equal(icon.height, 1024);
     assert.equal(icon.data.length, 1024 * 1024 * 4);
-    // Center pixel: the icon's blue, fully opaque.
-    assert.deepEqual(
-      [...icon.data.subarray((512 * 1024 + 512) * 4, (512 * 1024 + 512) * 4 + 4)],
-      [68, 151, 231, 255],
-    );
+    const pixel = (x, y) => [...icon.data.subarray((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4)];
+    // The bar of the "e" in ink, the paper inside its loop, the highlighter under it.
+    assert.deepEqual(pixel(512, 556), [30, 58, 138, 255]);
+    assert.deepEqual(pixel(512, 512), [247, 249, 252, 255]);
+    assert.deepEqual(pixel(512, 700), [255, 225, 53, 255]);
   });
 
   it("downscales by averaging the covered source area", () => {
