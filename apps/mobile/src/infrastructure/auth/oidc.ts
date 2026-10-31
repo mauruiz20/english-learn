@@ -31,6 +31,8 @@ export type PendingSignIn = {
   readonly intent: AuthIntent;
   /** Epoch ms. */
   readonly createdAt: number;
+  /** For a re-authentication: the account that asked (the learner must pick the same one). */
+  readonly accountId?: string;
 };
 
 export function googleAuthorizationUrl(request: {
@@ -120,6 +122,7 @@ function parsePending(value: string | null): PendingSignIn | null {
       createdAt: parsed.createdAt,
       intent: parsed.intent,
       returnTo: safeReturnPath(parsed.returnTo),
+      ...(typeof parsed.accountId === "string" ? { accountId: parsed.accountId } : {}),
     };
   } catch {
     return null;
