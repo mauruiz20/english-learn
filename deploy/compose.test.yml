@@ -7,8 +7,8 @@
 # Differences from compose.yml alone: images are built locally, the database
 # and backups live in tmpfs (nothing on the host disk), the secrets come from
 # SECRETS_DIR, and cloudflared is never started (it needs a real tunnel).
-# Everything else (networks, hardening, the secret-env entrypoint, migrate
-# before api, limits) is the production definition.
+# Everything else (networks, hardening, *_FILE secrets, migrate before api,
+# limits) is the production definition.
 
 services:
   postgres:
