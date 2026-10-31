@@ -81,6 +81,18 @@
       ]
     },
     {
+      "id": "glossary.able",
+      "headword": "able",
+      "kind": "word",
+      "forms": ["able"],
+      "senses": [
+        {
+          "es": "capaz (be able to: poder)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.about",
       "headword": "about",
       "kind": "word",

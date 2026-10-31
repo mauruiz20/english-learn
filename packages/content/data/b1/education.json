@@ -104,7 +104,9 @@
       "topics": ["education"],
       "title": "A difficult semester",
       "text": "Last semester was hard for Sofía. She was studying engineering at a public university, and she was also working at a café three evenings a week. One night in November, while she was taking notes in the library, her phone rang. It was her manager. He said that he needed her at work immediately. Sofía told him that she had an important exam the next day, and he finally agreed to let her stay. Unfortunately, she failed that exam anyway, because she was too tired to concentrate. A few days later, her math professor asked her if everything was OK. Sofía explained her situation, and the professor told her about a scholarship for students who work. She applied, and two months later she got it. Now she doesn't have to work in the evenings. She hands in her homework on time, and she passed all her subjects in the spring. \"I was trying to do everything alone,\" she says. \"Asking for help was the best decision I made.\"",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "b1.education.vocab-001",
       "itemIds": ["b1.education.scholarship"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'scholarship' mean?",
       "options": ["escolaridad", "colegio", "matrícula", "beca"],
@@ -177,7 +181,9 @@
         "b1.education.take-notes"
       ],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "b1.education.difficult-semester",
       "questions": [
@@ -210,21 +216,20 @@
       "id": "b1.education.write-001",
       "itemIds": ["b1.education.pass-an-exam"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Aprobé todos mis exámenes.",
-      "accepted": [
-        "I passed all my exams.",
-        "I passed all my tests.",
-        "I passed all of my exams.",
-        "I passed all of my tests."
-      ]
+      "accepted": ["I passed all[ of] my {exams|tests}.", "I passed every {exam|test}."]
     },
     {
       "id": "b1.education.vocab-002",
       "itemIds": ["b1.education.fail"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "If you 'fail' an exam, you…",
       "options": ["lo apruebas", "lo copias", "lo repruebas", "lo cancelas"],
@@ -234,7 +239,9 @@
       "id": "b1.education.vocab-003",
       "itemIds": ["b1.education.subject"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'asignatura'.",
       "options": ["signature", "subject", "grade", "desk"],
@@ -244,7 +251,9 @@
       "id": "b1.education.cloze-002",
       "itemIds": ["b1.education.reported-speech"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "She said that she ___ tired.",
       "answers": ["was"],
@@ -271,7 +280,9 @@
       "id": "b1.education.order-002",
       "itemIds": ["b1.education.hand-in", "b1.education.homework"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["hand", "your", "essay", "by", "to", "Friday.", "You", "have", "in"],
       "accepted": [
@@ -284,7 +295,9 @@
       "id": "b1.education.choice-002",
       "itemIds": ["b1.education.take-notes", "b1.education.past-continuous"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translation_choice",
       "sentence": "I was taking notes when the lights went out.",
       "options": [
@@ -299,43 +312,26 @@
       "id": "b1.education.write-002",
       "itemIds": ["b1.education.reported-speech"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Mi profesora me dijo que estudiara más.",
       "accepted": [
-        "My teacher told me to study more.",
-        "My teacher told me to study harder.",
-        "My teacher asked me to study more.",
-        "My teacher asked me to study harder.",
-        "My teacher said that I should study more.",
-        "My teacher said that I should study harder.",
-        "My teacher said I should study more.",
-        "My teacher said I should study harder.",
-        "My teacher told me that I should study more.",
-        "My teacher told me that I should study harder.",
-        "My teacher told me I should study more.",
-        "My teacher told me I should study harder.",
-        "My professor told me to study more.",
-        "My professor told me to study harder.",
-        "My professor said I should study more.",
-        "My professor said I should study harder."
+        "My {teacher|professor} {told|asked} me to study {more|harder}.",
+        "My {teacher|professor} {said|told me}[ that] I should study {more|harder}."
       ]
     },
     {
       "id": "b1.education.write-003",
       "itemIds": ["b1.education.degree"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Mi hermano tiene un título en economía.",
-      "accepted": [
-        "My brother has a degree in economics.",
-        "My brother has an economics degree.",
-        "My brother has got a degree in economics.",
-        "My brother has got an economics degree.",
-        "My brother's got a degree in economics.",
-        "My brother's got an economics degree."
-      ]
+      "accepted": ["My brother {has|has got|holds} {a degree in economics|an economics degree}."]
     }
   ],
   "lessons": [

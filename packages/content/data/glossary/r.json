@@ -233,6 +233,18 @@
       ]
     },
     {
+      "id": "glossary.relationship",
+      "headword": "relationship",
+      "kind": "word",
+      "forms": ["relationship", "relationships"],
+      "senses": [
+        {
+          "es": "relación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.relative",
       "headword": "relative",
       "kind": "word",
@@ -329,6 +341,18 @@
         {
           "es": "(reported speech) estilo indirecto",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reporter",
+      "headword": "reporter",
+      "kind": "word",
+      "forms": ["reporter", "reporters"],
+      "senses": [
+        {
+          "es": "periodista, reportero",
+          "pos": "noun"
         }
       ]
     },

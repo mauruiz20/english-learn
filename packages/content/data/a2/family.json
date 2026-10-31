@@ -88,7 +88,9 @@
       "topics": ["family"],
       "title": "My family",
       "text": "I live with my parents and my grandmother in a small house. My mother is a nurse and my father works in a bank. I don't have any brothers or sisters, so I'm an only child, but I have six cousins! My cousin Lucía is my best friend. She is two years older than me and she looks like her mother. Last year my uncle got married, and the whole family had a big party.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -96,7 +98,9 @@
       "id": "a2.family.vocab-001",
       "itemIds": ["a2.family.aunt"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'aunt' mean?",
       "options": ["tía", "abuela", "prima", "sobrina"],
@@ -157,7 +161,9 @@
       "id": "a2.family.reading-001",
       "itemIds": ["a2.family.parents", "a2.family.only-child", "a2.family.cousin"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.family.my-family",
       "questions": [
@@ -194,13 +200,15 @@
       },
       "type": "translate_write",
       "es": "Él vive con su madre.",
-      "accepted": ["He lives with his mother.", "He lives with his mom."]
+      "accepted": ["He lives with his {mother|mom}."]
     },
     {
       "id": "a2.family.vocab-002",
       "itemIds": ["a2.family.cousin"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'primo'.",
       "options": ["nephew", "uncle", "cousin", "grandson"],
@@ -210,7 +218,9 @@
       "id": "a2.family.vocab-003",
       "itemIds": ["a2.family.look-like"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'look like' mean?",
       "options": ["parecerse a", "mirar a", "cuidar a", "buscar a"],
@@ -220,7 +230,9 @@
       "id": "a2.family.cloze-002",
       "itemIds": ["a2.family.look-like"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "My sister ___ like our mother. They have the same eyes.",
       "answers": ["looks"],
@@ -231,7 +243,9 @@
       "id": "a2.family.cloze-003",
       "itemIds": ["a2.family.possessive-s"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "This is ___ car. He bought it last year.",
       "answers": ["my father's"],
@@ -277,7 +291,9 @@
       "id": "a2.family.choice-003",
       "itemIds": ["a2.family.get-married", "a2.family.uncle"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translation_choice",
       "sentence": "My uncle got married last summer.",
       "options": [
@@ -292,10 +308,12 @@
       "id": "a2.family.write-002",
       "itemIds": ["a2.family.only-child"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Soy hija única.",
-      "accepted": ["I'm an only child.", "I am an only child."]
+      "accepted": ["I'm an only child.", "I'm the only child[ in my family]."]
     }
   ],
   "lessons": [

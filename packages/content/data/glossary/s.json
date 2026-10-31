@@ -245,6 +245,22 @@
       ]
     },
     {
+      "id": "glossary.search",
+      "headword": "search",
+      "kind": "word",
+      "forms": ["search", "searches", "searched", "searching"],
+      "senses": [
+        {
+          "es": "buscar",
+          "pos": "verb"
+        },
+        {
+          "es": "búsqueda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.seat",
       "headword": "seat",
       "kind": "word",

@@ -461,6 +461,18 @@
       ]
     },
     {
+      "id": "glossary.hold",
+      "headword": "hold",
+      "kind": "word",
+      "forms": ["hold", "holds", "held", "holding"],
+      "senses": [
+        {
+          "es": "sostener, tener",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.home",
       "headword": "home",
       "kind": "word",

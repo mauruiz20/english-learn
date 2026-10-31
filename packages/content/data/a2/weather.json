@@ -104,7 +104,9 @@
       "topics": ["weather"],
       "title": "The weather in my town",
       "text": "In my town, summers are hot and sunny, and winters are cold and windy. It doesn't snow very often, but it rains a lot in the fall. Today it is cloudy, and the forecast says it is going to rain this afternoon, so I'm taking an umbrella. Tomorrow will be warmer than today.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "a2.weather.vocab-001",
       "itemIds": ["a2.weather.cloudy"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'cloudy' mean?",
       "options": ["lluvioso", "soleado", "nublado", "ventoso"],
@@ -173,7 +177,9 @@
       "id": "a2.weather.reading-001",
       "itemIds": ["a2.weather.forecast", "a2.weather.umbrella", "a2.weather.windy"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.weather.weather-in-my-town",
       "questions": [
@@ -206,20 +212,15 @@
       },
       "type": "translate_write",
       "es": "Dicen que va a llover.",
-      "accepted": [
-        "They say it will rain.",
-        "They say it's going to rain.",
-        "They say that it will rain.",
-        "They say that it's going to rain.",
-        "People say it will rain.",
-        "People say it's going to rain."
-      ]
+      "accepted": ["{They|People} say [that ]it{ will|'s going to} rain."]
     },
     {
       "id": "a2.weather.vocab-002",
       "itemIds": ["a2.weather.umbrella"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'paraguas'.",
       "options": ["umbrella", "raincoat", "boots", "scarf"],
@@ -229,7 +230,9 @@
       "id": "a2.weather.vocab-003",
       "itemIds": ["a2.weather.forecast"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'forecast' mean?",
       "options": ["temperatura", "tormenta", "pronóstico", "estación"],
@@ -255,7 +258,9 @@
       "id": "a2.weather.cloze-003",
       "itemIds": ["a2.weather.sunny"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "It's very ___ today. Take a hat and sunglasses.",
       "answers": ["sunny"],
@@ -321,14 +326,15 @@
       "id": "a2.weather.write-002",
       "itemIds": ["a2.weather.cold"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Hoy hace más frío que ayer.",
       "accepted": [
-        "It's colder today than yesterday.",
-        "Today it's colder than yesterday.",
-        "Today is colder than yesterday.",
-        "It's colder today than it was yesterday."
+        "It's colder today than[ it was] yesterday.",
+        "Today[,] it's colder than[ it was] yesterday.",
+        "Today is colder than yesterday."
       ]
     }
   ],
