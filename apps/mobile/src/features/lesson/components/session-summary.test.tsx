@@ -78,4 +78,70 @@ describe("SessionSummary", () => {
       expect(screen.getByText("Racha: 2 días")).toBeOnTheScreen();
     });
   });
+
+  describe("the celebration", () => {
+    it("sticks the lesson's sticker on the page, with Avi cheering", async () => {
+      await render(<SessionSummary {...base} topic="daily-routine" />);
+
+      expect(screen.getByTestId("summary-sticker", { includeHiddenElements: true })).toBeTruthy();
+      expect(screen.getByTestId("avi-cheer", { includeHiddenElements: true })).toBeTruthy();
+    });
+
+    it("throws no confetti with reduced motion", async () => {
+      await render(<SessionSummary {...base} />);
+
+      expect(screen.queryByTestId("confetti", { includeHiddenElements: true })).toBeNull();
+    });
+
+    it("throws confetti over a finished session otherwise", async () => {
+      withMotion();
+      await render(<SessionSummary {...base} />);
+
+      expect(screen.getByTestId("confetti", { includeHiddenElements: true })).toBeTruthy();
+    });
+
+    it("lets the stamp speak on a perfect page, beside Avi", async () => {
+      await render(<SessionSummary {...base} />);
+
+      expect(stamp()).toBeOnTheScreen();
+      expect(screen.queryByText("¡Perfecto!")).not.toBeOnTheScreen();
+    });
+
+    it.each([
+      [5, 6, "¡Muy bien!"],
+      [3, 6, "¡Bien hecho!"],
+      [1, 6, "¡A seguir practicando!"],
+    ])("cheers %i of %i right with %p", async (correct, total, cheer) => {
+      await render(<SessionSummary {...base} correct={correct} total={total} />);
+
+      expect(screen.getByText(cheer)).toBeOnTheScreen();
+    });
+
+    it("hooks a new clip onto the streak chain", async () => {
+      await render(<SessionSummary {...base} streakDays={3} />);
+
+      expect(screen.getAllByTestId("clip", { includeHiddenElements: true })).toHaveLength(3);
+    });
+  });
+
+  describe("new stickers for the album", () => {
+    const earned = [
+      { id: "first-lesson", title: "Primer sticker", color: "green" },
+      { id: "xp-100", title: "100 XP", color: "orange" },
+    ] as const;
+
+    it("announces each sticker the session earned", async () => {
+      await render(<SessionSummary {...base} achievements={earned} />);
+
+      expect(screen.getByText("Primer sticker")).toBeOnTheScreen();
+      expect(screen.getByText("100 XP")).toBeOnTheScreen();
+      expect(screen.getAllByText("Nueva insignia para tu álbum")).toHaveLength(2);
+    });
+
+    it("says nothing about the album when nothing was earned", async () => {
+      await render(<SessionSummary {...base} />);
+
+      expect(screen.queryByText("Nueva insignia para tu álbum")).not.toBeOnTheScreen();
+    });
+  });
 });

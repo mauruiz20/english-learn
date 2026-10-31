@@ -12,13 +12,24 @@ const CHECK = "M2.5 10.5 C 4.5 11.5, 6.5 13.5, 8.5 16 C 11 10.5, 15 5.5, 20 2";
 const DRAW_DELAY_MS = 300;
 
 /**
- * A hand-drawn check mark in the success ink. With `animate` it is drawn once, left to right
+ * A hand-drawn check mark in the success ink (or `color`). With `animate` it is drawn once, left to right
  * like a pen stroke (≈ 250 ms, after the page settles); otherwise, or with reduced motion, it is
  * already there. Decorative (the row's label says "completada").
  */
-export function HandCheck({ animate = false, testID }: { animate?: boolean; testID?: string }) {
+export function HandCheck({
+  animate = false,
+  testID,
+  color,
+  delayMs = DRAW_DELAY_MS,
+}: {
+  animate?: boolean;
+  testID?: string;
+  /** Ink of the stroke (the success ink unless said otherwise, e.g. dark ink on a sticker). */
+  color?: string;
+  delayMs?: number;
+}) {
   const { colors } = useTheme();
-  const progress = usePenStroke(animate, DRAW_DELAY_MS);
+  const progress = usePenStroke(animate, delayMs);
   return (
     <View
       testID={testID}
@@ -32,7 +43,7 @@ export function HandCheck({ animate = false, testID }: { animate?: boolean; test
           <Path
             d={CHECK}
             fill="none"
-            stroke={colors.success}
+            stroke={color ?? colors.success}
             strokeWidth={2.6}
             strokeLinecap="round"
             strokeLinejoin="round"

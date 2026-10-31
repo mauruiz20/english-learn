@@ -1,5 +1,13 @@
 /** The app's interaction sounds (assets/sounds/*.wav, made by scripts/generate-sounds.mjs). */
-export const SOUND_NAMES = ["tap", "correct", "almost", "wrong", "complete", "streak"] as const;
+export const SOUND_NAMES = [
+  "tap",
+  "correct",
+  "almost",
+  "wrong",
+  "complete",
+  "streak",
+  "achievement",
+] as const;
 
 export type SoundName = (typeof SOUND_NAMES)[number];
 

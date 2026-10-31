@@ -268,29 +268,53 @@ network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/a
   reads its URLs from `localStorage` (`english-learn.e2e.*`, dropped from production builds).
   `E2E_PORT` serves the export on another port when 4173 is taken.
 
-## Design: "el cuaderno de inglés" (`src/shared/ui/`)
+## Design: "el cuaderno de stickers" (`src/shared/ui/`)
 
-The UI borrows from a school English notebook: ruled paper, blue ballpoint ink, yellow
-highlighter and the teacher's red pen. Boldness is spent on the answer feedback; everything else
-stays quiet.
+The UI borrows from a school English notebook: ruled paper, blue ballpoint ink, highlighters and
+the teacher's red pen. It is also a game: every lesson is a sticker to win and stick on the
+page, the streak is a chain of paperclips, XP fills sheets of stickers and achievements fill an
+album. The play lives on home, the summary and the album; during an exercise there is only the
+paper, the prompt and the teacher's marking.
 
-- **Tokens** (`theme.ts`): paper, sheet, rule, ink, text, muted text, highlighter, red pen and
-  success, for light and a "cuaderno nocturno" dark palette.
-- **Colored highlighters** (`palette.highlighters`): yellow `#FFE135`, pink, green, orange, sky
-  and lilac (slightly softer in dark mode), always with dark text (≥ 4.5:1, tested). Yellow
-  means "correct" (answers, streak) and nothing else. The others carry meaning, never
-  decoration (`features/topics/topic-colors.ts`): each topic has a hand-picked color (neighbors
-  in a level's index never share one; unknown topics fall back to a stable hash), used for the
-  topic tabs on the home index, the progress line and label of lessons and reviews, and the small
-  tabs on the summary's "Para repasar"; each CEFR level has one (placement result); the review
-  sticky note changes paper daily among pink, green, orange and sky. Ink stays the structural
-  color (text, buttons, links); no gradients. `useTheme()` follows the system color
-  scheme (`app.json` `userInterfaceStyle: automatic`); `ThemeOverride` forces one for a subtree
-  (the sticky note is always yellow paper). Styles are built per scheme with `themedStyles`.
+- **Tokens** (`theme.ts`): paper, sheet, rule, ink (with `inkEdge`, the darker lip under ink
+  keys), text, muted text, highlighter, red pen, success, `stickerEdge` (the white die-cut border)
+  and `feedback` bands (`tint` + `ink` per verdict), for light and a "cuaderno nocturno" dark
+  palette.
+- **Colored highlighters = sticker colors** (`palette.highlighters`): sun `#FFD23F` (yellow),
+  bubblegum, mint, coral (orange), sky and grape (lilac), slightly darker in dark mode, always with
+  dark text (≥ 4.5:1, tested). Yellow means "correct" (answers, streak, the lesson to do next) and
+  nothing else. The others carry meaning, never decoration (`features/topics/topic-colors.ts`):
+  each topic has a hand-picked color (neighbors in a level's index never share one; unknown
+  topics fall back to a stable hash), used for the topic labels and won stickers on the home
+  path, the lesson's progress label and summary sticker, and the small tabs on the summary's
+  "Para repasar"; each CEFR level has one (placement result); the review sticky note changes paper
+  daily among pink, green, orange and sky. Ink stays the structural color (text, buttons, links);
+  no gradients. `useTheme()` follows the system color scheme (`app.json`
+  `userInterfaceStyle: automatic`); `ThemeOverride` forces one for a subtree (the sticky note is
+  always light paper). Styles are built per scheme with `themedStyles`.
 - **Fonts** (bundled with `expo-font` + `@expo-google-fonts/*`, so they work offline and are
   same-origin on web): Bricolage Grotesque for headings and big numbers, Atkinson Hyperlegible
-  for body and UI text, Caveat only for the teacher's notes and the summary grade. The root layout
-  keeps the splash screen up until they load.
+  for body and UI text, Caveat only for the teacher's notes, the summary grade and its cheer. The
+  root layout keeps the splash screen up until they load.
+- **Game pieces** (original art, SVG drawn in code, all decorative and hidden from screen
+  readers): `Sticker` (round, die-cut, tilted; `done` / `current` / `pending` dashed slot; can be
+  slapped on once), `Avi` (`mascot.tsx`, the paper-plane mascot: happy, cheer, sleepy; can glide
+  in once; never on an exercise), `ClipChainMark` (the streak, one clip per day up to five, new
+  colors at 7, 30 and 100 days; `model/clip-chain.ts`), `XpBar` (every 250 XP fills a sheet of
+  stickers; `model/xp-sheet.ts`), `Confetti` (hole-punch dots, deterministic, not rendered at all
+  with reduced motion) and `PopBadge` (the "+10" sticker of a right answer).
+- **Home** (`features/home/`): a progress card (clip chain and days, sound and account, the XP
+  sheet, the link to the album with its count), the review sticky note (Avi naps when there is
+  nothing to review), the placement invitation, then the level's lessons as a path drawn in
+  pencil, grouped by topic: won lessons are tilted stickers with a check, the first lesson not done
+  is a big yellow sticker where Avi lands ("Siguiente", hint "Tu siguiente lección"), the rest are
+  numbered dashed slots. Nothing is locked.
+- **Album** (`features/achievements/`, route `/album`): sixteen achievements derived from the
+  stored progress only (lessons, whole topics, whole levels, the longest streak, XP, placement,
+  words practiced; `model/achievements.ts`), so they need no storage and follow sync. Won ones are
+  stickers (rare ones get a holographic rim), the others dashed slots that say how to win them.
+  `useNewAchievements` compares what the progress unlocks when a lesson or review starts and once
+  it is saved; the summary announces the difference.
 - **Primitives**: `Text` (variants and tones), `Button` (primary ink, secondary outline, text),
   `ScreenContainer` (one ≤ 560 px column; on wide screens a notebook margin rule; optional pinned
   footer), `RuledArea` (ruled lines behind exercise prompts only), `Highlight` (highlighter mark,
@@ -310,15 +334,26 @@ stays quiet.
   and is struck through, the right option is highlighted with an ink check and the word
   "correcta", the rest dim; options are announced as "…, seleccionada, incorrecta" / "…,
   respuesta correcta". Placement has no feedback, so it never marks.
-- **Summary** (lesson and review): the red Caveat grade, the stats, then "Para repasar": up to six
-  missed items (wrong or almost) with their Spanish gloss (`model/items-to-review.ts`), or a
-  short line when everything was right.
-- **Sounds** (`src/infrastructure/sound/`): six short sounds synthesized by
+- **Exercise progress**: one step per exercise, each answered step colored by its verdict (mint,
+  yellow, coral) and the current one outlined in ink, with "Ejercicio 2 de 6" under it. The
+  prompt sits on a ruled card.
+- **Feedback band**: the pinned footer is tinted by the verdict (`ScreenContainer footerTone`),
+  with a round mark and "¡Correcto!" / "¡Casi!" / "Incorrecto", the points as a `PopBadge`
+  ("+10", "+5"), and "¡3 seguidas!" from three right answers in a row
+  (`model/session-results.ts`). The marking below is unchanged.
+- **Summary** (lesson and review): the session's sticker (the lesson topic's color, sky for a
+  review) slapped on the page with Avi cheering and confetti, the teacher's cheer by accuracy
+  ("¡Muy bien!", "¡Bien hecho!", "¡A seguir practicando!"; a perfect page gets her "¡Excelente!"
+  stamp instead) and her red Caveat grade,
+  a results card (aciertos, XP, streak with its clip chain), the stickers earned for the album,
+  then "Para repasar": up to six missed items (wrong or almost) with their Spanish gloss
+  (`model/items-to-review.ts`), or a short line when everything was right.
+- **Sounds** (`src/infrastructure/sound/`): seven short sounds synthesized by
   `scripts/generate-sounds.mjs` (deterministic, no dependencies; `pnpm generate:sounds`
   rewrites `assets/sounds/*.wav`, 16-bit mono 44.1 kHz, -6 dBFS peak). `tap` when choosing an
   option or a word, `correct` / `almost` / `wrong` when feedback appears, `complete` when a
   lesson, review or placement result is saved, then `streak` when that session extended the
-  streak. Placement only taps (it gives no per-question feedback). Sounds are loaded once, never
+  streak, then `achievement` when it earned album stickers. Placement only taps (it gives no per-question feedback). Sounds are loaded once, never
   block the UI and log instead of throwing. Native: expo-audio players (`expo-sound-player.ts`);
   iOS respects the silent switch. Web (`expo-sound-player.web.ts` over
   `web-audio-sound-player.ts`): each WAV is downloaded once with `fetch` (so the service worker
@@ -335,20 +370,22 @@ stays quiet.
   at the top of home and in the header of lesson, review and placement; the choice is stored in
   SQLite (`setting` table) and defaults to on.
 - **Motion** (`motion.ts`, react-native-reanimated): motion explains what changed or rewards
-  the learner, never decorates; at most one orchestrated moment per screen, 150–350 ms, springs
-  for physical things. `useReducedMotion` knows the system setting on the first render
+  the learner, never decorates, and nothing moves on its own while an exercise waits for an answer;
+  at most one orchestrated moment per screen, 150–350 ms (celebrations up to ≈ 1.4 s), only
+  transforms and opacity, springs for physical things. `useReducedMotion` knows the system setting on the first render
   (Reanimated reads it at startup, `AccessibilityInfo` keeps it current); with it on, every
   animation below shows its end state at once.
 
-  | Where                            | What                                                                                                                                                    | Duration             |
-  | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-  | Feedback, correct                | highlighter swipe over the answer (`Highlight animate`)                                                                                                 | 250 ms               |
-  | Feedback, wrong / almost         | red-pen strike drawn left → right over the off words, then the margin note fades/settles in                                                             | 250 ms + 150 ms      |
-  | Choice rows, buttons, index rows | press-in scale to 0.97 (`PressableScale`), no hover                                                                                                     | 90 ms                |
-  | Next exercise                    | page turn: the new page comes in from the right (`PageTurn`); progress line springs                                                                     | 220 ms               |
-  | Word order                       | strips dragged from the bank to the line, reordered, or off it back to the bank; lift while dragging, spring settle, `tap` sound + light haptic on drop | spring               |
-  | Summary                          | perfect page only: "¡Excelente!" stamp lands with an overshoot; XP counts up from 0; a grown streak rolls to its new number with the `streak` sound     | ≈ 300 / 650 / 300 ms |
-  | Home index                       | a lesson completed since home was last seen gets its check drawn once (`model/completion-memory.ts`, in memory per app session)                         | 250 ms               |
+  | Where                            | What                                                                                                                                                                                                          | Duration        |
+  | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+  | Feedback, correct                | highlighter swipe over the answer (`Highlight animate`)                                                                                                                                                       | 250 ms          |
+  | Feedback, wrong / almost         | red-pen strike drawn left → right over the off words, then the margin note fades/settles in                                                                                                                   | 250 ms + 150 ms |
+  | Choice rows, buttons, index rows | press-in scale to 0.97 (`PressableScale`), no hover                                                                                                                                                           | 90 ms           |
+  | Next exercise                    | page turn: the new page comes in from the right (`PageTurn`)                                                                                                                                                  | 220 ms          |
+  | Word order                       | strips dragged from the bank to the line, reordered, or off it back to the bank; lift while dragging, spring settle, `tap` sound + light haptic on drop                                                       | spring          |
+  | Feedback, points                 | the "+10" / "+5" sticker pops in with a bounce and settles a little higher; the answered progress step pops once                                                                                              | ≈ 650 / 250 ms  |
+  | Summary                          | the sticker is slapped on, Avi glides in, confetti falls; perfect page: the stamp lands; XP counts up; a grown streak rolls and hooks a new clip; earned album stickers rise in, with the `achievement` sound | ≈ 1.4 s in all  |
+  | Home path                        | a lesson completed since home was last seen gets its sticker slapped on and its check drawn once (`model/completion-memory.ts`); Avi glides to the next lesson                                                | ≈ 900 / 700 ms  |
 
   Pen strokes (highlighter, strike, check) share one hand: `usePenStroke` + `StrokeClip`, a
   clipped copy revealed left to right. Word order stays fully usable by tap, and placed words
@@ -356,8 +393,8 @@ stays quiet.
   motion on by default (`jest.setup.js`; `withMotion()` opts out); Reanimated, Worklets and
   Gesture Handler use their Jest mocks, and drag and drop is covered end to end on web.
 
-- **Doodles** (`doodle.tsx`): three pencil doodles (coffee cup, paper plane, pencil) for empty
-  states only: nothing to review, the placement intro, about. Original art, low contrast.
+- **Doodles** (`doodle.tsx`): pencil doodles for the placement intro and about. Original art, low
+  contrast.
 - **Word lookup**: see "Word lookup" above.
 - **Accessibility floor**: touch targets ≥ 44 pt, an ink focus ring on web (`:focus-visible`,
   `web-global-styles.ts`), AA contrast for text (`theme.test.tsx` asserts ≥ 4.5:1 for text,
@@ -394,7 +431,7 @@ one screen per exercise type, correct / almost / wrong feedback (choice options 
 lookups on the reading passage (hover tooltip on desktop, the open card mid-passage and at its
 end), reading
 feedback, the leave dialog, the lesson summary with words to review, review and a perfect review
-summary, about and the "open in another tab" error screen. Every screen is captured at
+summary, the album, about and the "open in another tab" error screen. Every screen is captured at
 390×844 and 1280×800, in light and dark color schemes (`mobile-dark-09-feedback-wrong.png`, …);
 long screens also get a `-full.png`. It is for design review, not part of the test suite.
 

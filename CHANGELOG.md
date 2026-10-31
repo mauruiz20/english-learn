@@ -7,6 +7,20 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- **Game redesign, "el cuaderno de stickers"**: home shows the streak as a chain of paperclips,
+  XP as sheets of stickers and the level's lessons as a path of stickers with Avi, the
+  paper-plane mascot, at the next one; exercises show one colored step per answer and a feedback
+  band with the points earned and a cheer for three right answers in a row; the summary
+  celebrates with the lesson's sticker, confetti and the teacher's cheer. Brighter sticker
+  colors and ink, with AA contrast kept and every animation respecting reduced motion.
+
+### Added
+
+- **Sticker album** (`/album`): sixteen achievements derived from the stored progress, announced
+  on the summary with a new synthesized sound.
+
 ## [0.1.0] - 2026-10-29
 
 First MVP release: an offline-first English course for Spanish speakers, for web and Android from

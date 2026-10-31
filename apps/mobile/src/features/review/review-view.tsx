@@ -1,3 +1,4 @@
+import type { Verdict } from "@english-learn/domain";
 import { ActivityIndicator } from "react-native";
 import { AnswerFeedback } from "@/features/lesson/components/answer-feedback";
 import { ExerciseBody } from "@/features/lesson/components/exercise-body";
@@ -18,6 +19,8 @@ import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { useTheme } from "@/shared/ui/use-theme";
+import { correctInARow } from "@/features/lesson/model/session-results";
+import type { EarnedSticker } from "@/features/lesson/components/session-screens";
 
 export type ReviewViewState =
   | { readonly status: "loading" }
@@ -33,6 +36,8 @@ export type ReviewViewState =
       readonly prepared: PreparedExercise;
       /** Set once the learner answered the current exercise. */
       readonly feedback: ShownFeedback | null;
+      /** Verdicts of the exercises answered so far, in order (the shown answer included). */
+      readonly results?: readonly Verdict[];
     }
   | { readonly status: "saving" }
   | { readonly status: "save-error" }
@@ -46,6 +51,8 @@ export type ReviewViewState =
       readonly streakIncreased?: boolean;
       /** Items missed in the session, to look at again. */
       readonly toReview: readonly ReviewNote[];
+      /** Album stickers the session earned. */
+      readonly achievements?: readonly EarnedSticker[];
     };
 
 type ReviewViewProps = {
@@ -107,11 +114,17 @@ export function ReviewView({
       return (
         <ScreenContainer
           top={
-            <SessionProgress position={state.position} total={state.total} topic={state.topic} />
+            <SessionProgress
+              position={state.position}
+              total={state.total}
+              topic={state.topic}
+              results={state.results}
+            />
           }
           {...(state.feedback === null
             ? {}
             : {
+                footerTone: state.feedback.verdict,
                 footer: (
                   <AnswerFeedback
                     verdict={state.feedback.verdict}
@@ -120,6 +133,7 @@ export function ReviewView({
                     disputed={state.feedback.disputed}
                     onDispute={state.feedback.disputable ? onDispute : undefined}
                     lookupAnswer={answerIsEnglish(state.prepared)}
+                    inARow={correctInARow(state.results ?? [])}
                     onContinue={onContinue}
                   />
                 ),

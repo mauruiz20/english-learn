@@ -5,7 +5,12 @@ import { BackArrowButton } from "./back-arrow-button";
  * Screens that must always offer a way home. They are often opened without stack history: a
  * shared link, a reload, or the return from the Google sign-in redirect (`router.replace`).
  */
-export const HOME_FALLBACK_ROUTES: ReadonlySet<string> = new Set(["cuenta", "privacidad", "about"]);
+export const HOME_FALLBACK_ROUTES: ReadonlySet<string> = new Set([
+  "cuenta",
+  "privacidad",
+  "about",
+  "album",
+]);
 
 export type HeaderBack = {
   show: boolean;

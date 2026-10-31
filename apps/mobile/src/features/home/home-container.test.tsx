@@ -167,6 +167,15 @@ describe("HomeContainer", () => {
     expect([...memory.take([lesson.id])]).toEqual([]);
   });
 
+  it("counts the album stickers won and opens the album", async () => {
+    await renderContainer(createFakeRepository({ xp: 150 }));
+
+    await fireEvent.press(
+      await screen.findByRole("button", { name: /^Mi álbum: 1 de \d+ insignias$/ }),
+    );
+    expect(mockPush).toHaveBeenCalledWith("/album");
+  });
+
   it("counts the items due for review", async () => {
     const yesterday = localDate("2026-10-28");
     const learned = (id: string) => review(initialState(id, yesterday), 5, yesterday);

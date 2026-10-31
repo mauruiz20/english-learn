@@ -41,7 +41,7 @@ describe("headerBack (web header)", () => {
     });
   });
 
-  it.each(["cuenta", "privacidad", "about"])(
+  it.each(["cuenta", "privacidad", "about", "album"])(
     "offers a way home on /%s even without history",
     (route) => {
       expect(headerBack(route, undefined)).toEqual({ show: true, title: "Inicio", target: "home" });

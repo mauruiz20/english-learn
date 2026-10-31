@@ -1,15 +1,20 @@
-// "El cuaderno de inglés": ruled paper, blue ballpoint ink, yellow highlighter and the teacher's
-// red pen. Light is daytime paper; dark is "cuaderno nocturno" (deep ink paper, chalk text).
+// "El cuaderno de stickers": the English notebook, ruled paper, blue ballpoint ink and the teacher's
+// red pen, where the highlighters are also sticker paper: lessons become stickers to win and
+// stick on the page. Light is daytime paper; dark is "cuaderno nocturno" (deep ink paper, chalk
+// text).
 
 export type ColorScheme = "light" | "dark";
 
 /**
- * The highlighter set. Yellow is the "correct" signal (answers, streak) and is never used for
- * anything else; the others mark meaning: topics, levels, the review sticky note.
+ * The highlighter set, also the sticker colors. Yellow is the "correct" signal (answers, streak,
+ * the lesson to do next) and is never used for anything else; the others mark meaning: topics,
+ * levels, the review sticky note.
  */
 export const HIGHLIGHTER_NAMES = ["yellow", "pink", "green", "orange", "sky", "lilac"] as const;
 
 export type HighlighterName = (typeof HIGHLIGHTER_NAMES)[number];
+
+export type FeedbackBand = { readonly tint: string; readonly ink: string };
 
 export type Palette = {
   /** App background: the page. */
@@ -34,39 +39,49 @@ export type Palette = {
   readonly highlighters: Readonly<Record<HighlighterName, string>>;
   /** Errors and the teacher's corrections. */
   readonly redPen: string;
+  /** The darker lip under an ink button (it reads as a key that can be pressed). */
+  readonly inkEdge: string;
+  /** The white die-cut border around a sticker. */
+  readonly stickerEdge: string;
+  /**
+   * The band under an answer once it is checked: `tint` behind it, `ink` for its headline
+   * (≥ 4.5:1 on the tint, like body text).
+   */
+  readonly feedback: Readonly<Record<"correct" | "almost" | "wrong", FeedbackBand>>;
   readonly success: string;
   /** Dialog backdrop. */
   readonly scrim: string;
 };
 
-const HIGHLIGHTER = "#FFE135";
+const HIGHLIGHTER = "#FFD23F";
 
-// The night notebook uses the same pens a touch softer, so they do not glow on deep ink paper.
+// Saturated sticker colors (sun, bubblegum, mint, coral, sky, grape). The night notebook uses
+// them a touch darker, so they do not glow on deep ink paper; yellow stays the same.
 const HIGHLIGHTERS: Readonly<Record<ColorScheme, Readonly<Record<HighlighterName, string>>>> = {
   light: {
     yellow: HIGHLIGHTER,
     pink: "#FF8FC7",
-    green: "#7CE3A1",
-    orange: "#FFB35C",
-    sky: "#7CC8FF",
-    lilac: "#C3A6FF",
+    green: "#3DDC97",
+    orange: "#FF7A59",
+    sky: "#5CC8FF",
+    lilac: "#A78BFA",
   },
   dark: {
     yellow: HIGHLIGHTER,
-    pink: "#F07FB6",
-    green: "#6FD394",
-    orange: "#F0A54E",
-    sky: "#6FBBF0",
-    lilac: "#B598F0",
+    pink: "#EB83B7",
+    green: "#38CA8B",
+    orange: "#EB7052",
+    sky: "#55B8EB",
+    lilac: "#9A80E6",
   },
 };
 
 export const palettes: Readonly<Record<ColorScheme, Palette>> = {
   light: {
-    paper: "#F7F9FC",
+    paper: "#F5F7FF",
     sheet: "#FFFFFF",
-    rule: "#DCE6F2",
-    ink: "#1E3A8A",
+    rule: "#DCE4F7",
+    ink: "#2142C9",
     onInk: "#FFFFFF",
     text: "#1B2333",
     textMuted: "#4A5873",
@@ -75,6 +90,13 @@ export const palettes: Readonly<Record<ColorScheme, Palette>> = {
     highlighters: HIGHLIGHTERS.light,
     redPen: "#D6293E",
     success: "#1A7A50",
+    inkEdge: "#16308F",
+    stickerEdge: "#FFFFFF",
+    feedback: {
+      correct: { tint: "#DDF6E9", ink: "#146B45" },
+      almost: { tint: "#FFF3C4", ink: "#7A4F00" },
+      wrong: { tint: "#FFE9E6", ink: "#B42335" },
+    },
     scrim: "rgba(27, 35, 51, 0.45)",
   },
   dark: {
@@ -90,6 +112,13 @@ export const palettes: Readonly<Record<ColorScheme, Palette>> = {
     highlighters: HIGHLIGHTERS.dark,
     redPen: "#FF7A8A",
     success: "#4FD39C",
+    inkEdge: "#6F89D6",
+    stickerEdge: "#E9EDF5",
+    feedback: {
+      correct: { tint: "#12352F", ink: "#4FD39C" },
+      almost: { tint: "#3A3317", ink: "#FFD23F" },
+      wrong: { tint: "#3A1B2A", ink: "#FF7A8A" },
+    },
     scrim: "rgba(4, 9, 20, 0.7)",
   },
 };
@@ -118,7 +147,7 @@ export const typeScale = {
 
 export const spacing = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32, xxl: 48 } as const;
 
-export const radius = { sm: 4, md: 10 } as const;
+export const radius = { sm: 4, md: 10, lg: 16, pill: 999 } as const;
 
 /** Minimum touch target (pt). */
 export const TOUCH_TARGET = 48;

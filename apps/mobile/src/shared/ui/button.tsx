@@ -7,7 +7,10 @@ import { themedStyles } from "./use-theme";
 type ButtonProps = {
   label: string;
   onPress: () => void;
-  /** primary: ink fill; secondary: ink outline; text: a quiet link-like action. */
+  /**
+   * primary: an ink key with a darker lip that goes down when pressed; secondary: a paper key
+   * with an ink outline; text: a quiet link-like action.
+   */
   variant?: "primary" | "secondary" | "text";
   accessibilityHint?: string;
   disabled?: boolean;
@@ -34,6 +37,7 @@ export function Button({
         styles.base,
         styles[variant],
         pressed && styles.pressed,
+        pressed && variant !== "text" && styles.pushed,
         disabled && styles.disabled,
       ]}
     >
@@ -48,15 +52,22 @@ const useStyles = themedStyles(({ colors }) =>
       minHeight: TOUCH_TARGET,
       paddingHorizontal: spacing.lg,
       paddingVertical: spacing.sm,
-      borderRadius: radius.md,
+      borderRadius: radius.lg,
       alignItems: "center",
       justifyContent: "center",
     },
-    primary: { backgroundColor: colors.ink },
-    secondary: { borderWidth: 1.5, borderColor: colors.ink },
+    primary: { backgroundColor: colors.ink, boxShadow: `0 4px 0 ${colors.inkEdge}` },
+    secondary: {
+      borderWidth: 2,
+      borderColor: colors.ink,
+      backgroundColor: colors.sheet,
+      boxShadow: `0 4px 0 ${colors.ink}`,
+    },
     text: { alignSelf: "flex-start", paddingHorizontal: 0 },
     // The press itself shows as a slight shrink (PressableScale); the ink only dims a little.
-    pressed: { opacity: 0.85 },
+    pressed: { opacity: 0.9 },
+    // A key going down: the lip shrinks as the key moves onto it (no layout shift).
+    pushed: { transform: [{ translateY: 3 }], boxShadow: "none" },
     textWrapper: { alignSelf: "flex-start" },
     disabled: { opacity: 0.4 },
     label: { fontFamily: fonts.bodyBold, ...typeScale.body },

@@ -12,6 +12,7 @@ const SOURCES: Readonly<Record<SoundName, number>> = {
   wrong: require("../../../assets/sounds/wrong.wav"),
   complete: require("../../../assets/sounds/complete.wav"),
   streak: require("../../../assets/sounds/streak.wav"),
+  achievement: require("../../../assets/sounds/achievement.wav"),
 };
 
 /** Where each sound is served from, resolved once. */
