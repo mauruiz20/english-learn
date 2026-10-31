@@ -74,6 +74,8 @@ export interface paths {
     /**
      * Log Out
      * @description Revoke the refresh token and every token rotated from the same sign-in.
+     *
+     *     Cookie mode reads the `el_rt` cookie (same CSRF rules as refresh) and always clears it.
      */
     post: operations["log_out_v1_auth_logout_post"];
     delete?: never;
@@ -94,6 +96,10 @@ export interface paths {
     /**
      * Refresh Session
      * @description Rotate the refresh token. Each refresh token works once.
+     *
+     *     Body mode reads `refreshToken` from the body. Cookie mode reads the `el_rt` cookie (the
+     *     body is ignored), needs `X-Requested-With: english-learn` and an allowed `Origin`, and
+     *     clears the cookie when the session cannot continue (401).
      */
     post: operations["refresh_session_v1_auth_refresh_post"];
     delete?: never;
@@ -146,6 +152,33 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    /**
+     * CookieSignInResponse
+     * @description Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie.
+     */
+    CookieSignInResponse: {
+      /** Accesstoken */
+      accessToken: string;
+      /**
+       * Accesstokenexpiresat
+       * Format: date-time
+       */
+      accessTokenExpiresAt: string;
+      user: components["schemas"]["UserResponse"];
+    };
+    /**
+     * CookieTokensResponse
+     * @description Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie.
+     */
+    CookieTokensResponse: {
+      /** Accesstoken */
+      accessToken: string;
+      /**
+       * Accesstokenexpiresat
+       * Format: date-time
+       */
+      accessTokenExpiresAt: string;
+    };
     /** EventRequest */
     EventRequest: {
       /**
@@ -218,7 +251,10 @@ export interface components {
       /** Refreshtoken */
       refreshToken: string;
     };
-    /** SignInResponse */
+    /**
+     * SignInResponse
+     * @description Body transport (default): the refresh token is in the JSON.
+     */
     SignInResponse: {
       /** Accesstoken */
       accessToken: string;
@@ -267,7 +303,15 @@ export interface components {
        */
       hasMore: boolean;
     };
-    /** TokensResponse */
+    /**
+     * TokenTransport
+     * @enum {string}
+     */
+    TokenTransport: "body" | "cookie";
+    /**
+     * TokensResponse
+     * @description Body transport (default): the refresh token is in the JSON.
+     */
     TokensResponse: {
       /** Accesstoken */
       accessToken: string;
@@ -354,7 +398,10 @@ export interface operations {
   sign_in_with_google_v1_auth_google_post: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description `cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body. */
+        "X-Token-Transport"?: components["schemas"]["TokenTransport"];
+      };
       path?: never;
       cookie?: never;
     };
@@ -367,10 +414,13 @@ export interface operations {
       /** @description Successful Response */
       200: {
         headers: {
+          /** @description Cookie mode: `Set-Cookie: el_rt=<refresh token>; HttpOnly; Secure; SameSite=Strict; Path=/v1/auth; Max-Age=<seconds until the token expires>` */
+          "Set-Cookie"?: string;
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["SignInResponse"];
+          "application/json":
+            components["schemas"]["SignInResponse"] | components["schemas"]["CookieSignInResponse"];
         };
       };
       /** @description Validation Error */
@@ -387,19 +437,29 @@ export interface operations {
   log_out_v1_auth_logout_post: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description `cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body. */
+        "X-Token-Transport"?: components["schemas"]["TokenTransport"];
+        /** @description Cookie mode only: must be `english-learn` (CSRF defense). */
+        "X-Requested-With"?: string | null;
+      };
       path?: never;
-      cookie?: never;
+      cookie?: {
+        /** @description Cookie mode: the refresh token (HttpOnly, set by sign-in and refresh). */
+        el_rt?: string | null;
+      };
     };
-    requestBody: {
+    requestBody?: {
       content: {
-        "application/json": components["schemas"]["RefreshTokenRequest"];
+        "application/json": components["schemas"]["RefreshTokenRequest"] | null;
       };
     };
     responses: {
       /** @description Successful Response */
       204: {
         headers: {
+          /** @description Cookie mode: clears `el_rt` (`Max-Age=0`) */
+          "Set-Cookie"?: string;
           [name: string]: unknown;
         };
         content?: never;
@@ -418,23 +478,34 @@ export interface operations {
   refresh_session_v1_auth_refresh_post: {
     parameters: {
       query?: never;
-      header?: never;
+      header?: {
+        /** @description `cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body. */
+        "X-Token-Transport"?: components["schemas"]["TokenTransport"];
+        /** @description Cookie mode only: must be `english-learn` (CSRF defense). */
+        "X-Requested-With"?: string | null;
+      };
       path?: never;
-      cookie?: never;
+      cookie?: {
+        /** @description Cookie mode: the refresh token (HttpOnly, set by sign-in and refresh). */
+        el_rt?: string | null;
+      };
     };
-    requestBody: {
+    requestBody?: {
       content: {
-        "application/json": components["schemas"]["RefreshTokenRequest"];
+        "application/json": components["schemas"]["RefreshTokenRequest"] | null;
       };
     };
     responses: {
       /** @description Successful Response */
       200: {
         headers: {
+          /** @description Cookie mode: `Set-Cookie: el_rt=<refresh token>; HttpOnly; Secure; SameSite=Strict; Path=/v1/auth; Max-Age=<seconds until the token expires>` */
+          "Set-Cookie"?: string;
           [name: string]: unknown;
         };
         content: {
-          "application/json": components["schemas"]["TokensResponse"];
+          "application/json":
+            components["schemas"]["TokensResponse"] | components["schemas"]["CookieTokensResponse"];
         };
       };
       /** @description Validation Error */

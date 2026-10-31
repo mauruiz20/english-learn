@@ -16,6 +16,7 @@ from english_learn_api.account.application import DeleteAccount, GetProfile
 from english_learn_api.auth.api.bearer import build_current_claims
 from english_learn_api.auth.api.router import STATUS_BY_ERROR as AUTH_STATUS_BY_ERROR
 from english_learn_api.auth.api.router import build_auth_router
+from english_learn_api.auth.api.token_transport import RefreshCookies
 from english_learn_api.auth.application.ports import GoogleTokenVerifier
 from english_learn_api.auth.application.use_cases import (
     Logout,
@@ -135,6 +136,9 @@ def create_app(
             sign_in_limit=limit_by_client_ip(TokenBucketLimiter(limits.sign_in)),
             refresh_limit=limit_by_client_ip(TokenBucketLimiter(limits.refresh)),
             logout_limit=limit_by_client_ip(TokenBucketLimiter(limits.logout)),
+            clock=clock,
+            cookies=RefreshCookies(secure=settings.refresh_cookie_secure),
+            allowed_origins=frozenset(settings.cors_origins),
         )
     )
     current_claims = build_current_claims(access_tokens, unit_of_work, clock)
@@ -165,8 +169,10 @@ def create_app(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
         allow_methods=["GET", "POST", "DELETE"],
-        allow_headers=["Authorization", "Content-Type"],
-        allow_credentials=False,  # tokens travel in the Authorization header, never cookies
+        allow_headers=["Authorization", "Content-Type", "X-Token-Transport", "X-Requested-With"],
+        # The web app's refresh cookie (cookie token transport) needs credentialed CORS; the
+        # origins are an exact list (settings refuse "*"), and no response header is exposed.
+        allow_credentials=True,
         max_age=600,
     )
     return app

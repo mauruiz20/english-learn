@@ -141,7 +141,7 @@ def test_the_openapi_schema_can_be_exported(tmp_path: Path) -> None:
 
 
 class TestCors:
-    ALLOWED: ClassVar[str] = "https://english-learn-iwl.pages.dev"
+    ALLOWED: ClassVar[str] = "https://english.maumar.com.ar"
 
     async def test_preflight_from_an_allowed_origin(self, client: httpx.AsyncClient) -> None:
         response = await client.options(
@@ -149,13 +149,34 @@ class TestCors:
             headers={
                 "origin": self.ALLOWED,
                 "access-control-request-method": "POST",
-                "access-control-request-headers": "authorization, content-type",
+                "access-control-request-headers": (
+                    "authorization, content-type, x-token-transport, x-requested-with"
+                ),
             },
         )
 
         assert response.status_code == 200
         assert response.headers["access-control-allow-origin"] == self.ALLOWED
-        assert "access-control-allow-credentials" not in response.headers
+        assert response.headers["access-control-allow-credentials"] == "true"
+        assert response.headers["access-control-max-age"] == "600"
+        allowed = {
+            header.strip().lower()
+            for header in response.headers["access-control-allow-headers"].split(",")
+        }
+        assert {"authorization", "content-type", "x-token-transport", "x-requested-with"} <= allowed
+        assert "access-control-expose-headers" not in response.headers
+
+    async def test_preflight_rejects_other_headers(self, client: httpx.AsyncClient) -> None:
+        response = await client.options(
+            "/test/echo",
+            headers={
+                "origin": self.ALLOWED,
+                "access-control-request-method": "POST",
+                "access-control-request-headers": "x-custom",
+            },
+        )
+
+        assert response.status_code == 400
 
     async def test_other_origins_are_not_allowed(self, client: httpx.AsyncClient) -> None:
         response = await client.post(

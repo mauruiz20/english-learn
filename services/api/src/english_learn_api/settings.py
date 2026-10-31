@@ -8,8 +8,8 @@ from pydantic import SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 DEFAULT_CORS_ORIGINS = (
-    "https://english-learn-iwl.pages.dev",
-    "http://localhost:8081",
+    "https://english.maumar.com.ar",
+    "http://localhost:8081",  # Expo web dev server; production refuses localhost
 )
 # Public OAuth client ids allowed as `aud` (and `azp`) of Google ID tokens: the web client today.
 DEFAULT_GOOGLE_CLIENT_IDS = (
@@ -42,8 +42,8 @@ class DatabaseSettings(BaseSettings):
 
 class Settings(DatabaseSettings):
     # development: local defaults (CORS includes localhost, /docs served). test: same, for the
-    # suite. production: CORS_ORIGINS must be set explicitly (https, no localhost or "*"), and
-    # /docs, /redoc and /openapi.json are not served.
+    # suite. production: CORS_ORIGINS must be set explicitly (https, no localhost or "*"), the
+    # refresh cookie must be Secure, and /docs, /redoc and /openapi.json are not served.
     env: Literal["development", "test", "production"] = "development"
     google_client_ids: Annotated[list[str], NoDecode] = list(DEFAULT_GOOGLE_CLIENT_IDS)
     # Either one JWT_SECRET (signed with kid "default"), or JWT_KEYS (JSON {kid: secret}) with
@@ -58,6 +58,8 @@ class Settings(DatabaseSettings):
     # How recent the Google sign-in must be for DELETE /v1/account.
     reauthentication_window: timedelta = timedelta(minutes=5)
     cors_origins: Annotated[list[str], NoDecode] = list(DEFAULT_CORS_ORIGINS)
+    # The refresh cookie (cookie token transport) carries `Secure`; production refuses false.
+    refresh_cookie_secure: bool = True
     max_request_body_bytes: int = 1024 * 1024
     log_level: str = "INFO"
 
@@ -86,9 +88,20 @@ class Settings(DatabaseSettings):
         return self
 
     @model_validator(mode="after")
-    def _production_cors(self) -> Self:
+    def _exact_cors_origins(self) -> Self:
+        # CORS allows credentials (the refresh cookie), so every origin is listed exactly.
+        if "*" in self.cors_origins:
+            msg = 'CORS_ORIGINS must list exact origins, not "*"'
+            raise ValueError(msg)
+        return self
+
+    @model_validator(mode="after")
+    def _production_rules(self) -> Self:
         if not self.is_production:
             return self
+        if not self.refresh_cookie_secure:
+            msg = "ENV=production requires REFRESH_COOKIE_SECURE=true"
+            raise ValueError(msg)
         if "cors_origins" not in self.model_fields_set or not self.cors_origins:
             msg = "ENV=production requires CORS_ORIGINS to be set explicitly"
             raise ValueError(msg)

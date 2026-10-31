@@ -1,7 +1,22 @@
-import { describe, expect, it } from "vitest";
-import { ApiError, createApiClient, type FetchLike, type SyncRequest } from "./index";
+import { describe, expect, expectTypeOf, it } from "vitest";
+import {
+  ApiError,
+  createApiClient,
+  type CookieSignInResponse,
+  type CookieTokensResponse,
+  type FetchLike,
+  type SignInResponse,
+  type SyncRequest,
+  type TokensResponse,
+} from "./index";
 
-type Call = { url: string; method: string; headers: Record<string, string>; body?: string };
+type Call = {
+  url: string;
+  method: string;
+  headers: Record<string, string>;
+  body?: string;
+  credentials?: "include";
+};
 
 /** Records every request and answers with the queued responses, in order. */
 function fakeFetch(
@@ -31,6 +46,8 @@ const TOKENS = {
   accessTokenExpiresAt: "2026-10-30T12:15:00Z",
   refreshToken: "refresh-2",
 };
+const COOKIE_TOKENS = { accessToken: "access", accessTokenExpiresAt: "2026-10-30T12:15:00Z" };
+const COOKIE_HEADERS = { "X-Token-Transport": "cookie", "X-Requested-With": "english-learn" };
 const USER = { id: "019a3456-7890-7abc-8def-0123456789ab", email: "ana@example.com" };
 
 function client(fetch: FetchLike, accessToken: string | null = "access-1") {
@@ -43,38 +60,117 @@ function client(fetch: FetchLike, accessToken: string | null = "access-1") {
 
 describe("createApiClient", () => {
   it("signs in with a Google ID token, without a bearer token", async () => {
-    const { fetch, calls } = fakeFetch({ status: 200, body: { ...TOKENS, user: USER } });
+    const { fetch, calls } = fakeFetch({ status: 200, body: { ...COOKIE_TOKENS, user: USER } });
 
     const signedIn = await client(fetch).signInWithGoogle("google-id-token");
 
-    expect(signedIn.user).toEqual(USER);
+    expect(signedIn).toEqual({ ...COOKIE_TOKENS, user: USER });
     expect(calls).toEqual([
       {
         url: "https://api.example.com/v1/auth/google",
         method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          ...COOKIE_HEADERS,
+        },
         body: JSON.stringify({ idToken: "google-id-token" }),
       },
     ]);
   });
 
-  it("refreshes and logs out with the refresh token in the body", async () => {
-    const { fetch, calls } = fakeFetch({ status: 200, body: TOKENS }, { status: 204 });
+  it("uses the cookie transport by default: refresh and logout send no token", async () => {
+    const { fetch, calls } = fakeFetch({ status: 200, body: COOKIE_TOKENS }, { status: 204 });
+    const api = client(fetch);
 
-    const tokens = await client(fetch).refresh("refresh-1");
-    const loggedOut = await client(fetch).logout("refresh-2");
+    const tokens = await api.refresh();
+    const loggedOut = await api.logout();
 
+    expect(tokens).toEqual(COOKIE_TOKENS);
+    expect(loggedOut).toBeUndefined();
+    expect(calls).toEqual([
+      {
+        url: "https://api.example.com/v1/auth/refresh",
+        method: "POST",
+        credentials: "include",
+        headers: { Accept: "application/json", ...COOKIE_HEADERS },
+      },
+      {
+        url: "https://api.example.com/v1/auth/logout",
+        method: "POST",
+        credentials: "include",
+        headers: { Accept: "application/json", ...COOKIE_HEADERS },
+      },
+    ]);
+  });
+
+  it("keeps credentials and the transport headers off the other routes", async () => {
+    const { fetch, calls } = fakeFetch({ status: 200, body: USER });
+
+    await client(fetch).me();
+
+    expect(calls[0]).not.toHaveProperty("credentials");
+    expect(calls[0]?.headers).not.toHaveProperty("X-Token-Transport");
+    expect(calls[0]?.headers).not.toHaveProperty("X-Requested-With");
+  });
+
+  it("body transport: refreshes and logs out with the refresh token in the body", async () => {
+    const { fetch, calls } = fakeFetch(
+      { status: 200, body: { ...TOKENS, user: USER } },
+      { status: 200, body: TOKENS },
+      { status: 204 },
+    );
+    const api = createApiClient({
+      baseUrl: "https://api.example.com/",
+      getAccessToken: () => null,
+      tokenTransport: "body",
+      fetch,
+    });
+
+    const signedIn = await api.signInWithGoogle("google-id-token");
+    const tokens = await api.refresh("refresh-1");
+    const loggedOut = await api.logout("refresh-2");
+
+    expect(signedIn.refreshToken).toBe("refresh-2");
     expect(tokens).toEqual(TOKENS);
     expect(loggedOut).toBeUndefined();
-    expect(calls.map((c) => [c.method, c.url, c.body, c.headers.Authorization])).toEqual([
-      [
-        "POST",
-        "https://api.example.com/v1/auth/refresh",
-        '{"refreshToken":"refresh-1"}',
-        undefined,
-      ],
-      ["POST", "https://api.example.com/v1/auth/logout", '{"refreshToken":"refresh-2"}', undefined],
-    ]);
+    const bodies = [
+      '{"idToken":"google-id-token"}',
+      '{"refreshToken":"refresh-1"}',
+      '{"refreshToken":"refresh-2"}',
+    ];
+    expect(calls).toEqual(
+      ["google", "refresh", "logout"].map((path, i) => ({
+        url: `https://api.example.com/v1/auth/${path}`,
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "X-Token-Transport": "body",
+        },
+        body: bodies[i],
+      })),
+    );
+  });
+
+  it("types each transport's methods", () => {
+    const { fetch } = fakeFetch();
+    const cookie = client(fetch);
+    const body = createApiClient({
+      baseUrl: "https://api.example.com",
+      getAccessToken: () => null,
+      tokenTransport: "body",
+      fetch,
+    });
+
+    expectTypeOf(cookie.refresh).parameters.toEqualTypeOf<[]>();
+    expectTypeOf(cookie.refresh).returns.resolves.toEqualTypeOf<CookieTokensResponse>();
+    expectTypeOf(cookie.signInWithGoogle).returns.resolves.toEqualTypeOf<CookieSignInResponse>();
+    expectTypeOf(body.refresh).parameters.toEqualTypeOf<[refreshToken: string]>();
+    expectTypeOf(body.refresh).returns.resolves.toEqualTypeOf<TokensResponse>();
+    expectTypeOf(body.logout).parameters.toEqualTypeOf<[refreshToken: string]>();
+    expectTypeOf(body.signInWithGoogle).returns.resolves.toEqualTypeOf<SignInResponse>();
   });
 
   it("sends the current access token to protected routes", async () => {
@@ -178,7 +274,7 @@ describe("createApiClient", () => {
       body: { error: { code: "rate_limited", message: "Too many requests" } },
     });
 
-    await expect(client(fetch).refresh("r")).rejects.toMatchObject({
+    await expect(client(fetch).refresh()).rejects.toMatchObject({
       status: 429,
       code: "rate_limited",
       retryAfterSeconds: 12,
