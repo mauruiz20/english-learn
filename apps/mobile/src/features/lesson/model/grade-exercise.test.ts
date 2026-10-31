@@ -98,6 +98,20 @@ describe("gradeExercise", () => {
         correctAnswer: "I usually go to bed at eleven.",
       });
     });
+
+    it("accepts every sentence an answer pattern stands for", () => {
+      const patterned = {
+        ...translateWrite,
+        accepted: ["I {usually|normally} go to bed at {eleven|11}[ at night]."],
+      };
+      expect(
+        gradeExercise(patterned, { kind: "text", text: "I normally go to bed at 11 at night" }),
+      ).toEqual({ verdict: "correct", correctAnswer: "I normally go to bed at 11 at night." });
+      expect(gradeExercise(patterned, { kind: "text", text: "I sleep" })).toEqual({
+        verdict: "wrong",
+        correctAnswer: "I usually go to bed at eleven.",
+      });
+    });
   });
 
   it("rejects a response that does not fit the exercise type", () => {

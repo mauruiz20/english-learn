@@ -40,6 +40,41 @@ const SCHEMES = ["light", "dark"];
 const DAY_1 = "2030-01-01";
 const DAY_4 = "2030-01-04";
 
+/**
+ * The reference sentence of a translate_write answer pattern (`{a|b}` → a, `[x]` → nothing; see
+ * `expandPattern` in @english-learn/domain).
+ */
+function firstReading(pattern) {
+  let i = 0;
+  const read = (closer) => {
+    let text = "";
+    let skipping = false;
+    while (i < pattern.length) {
+      const char = pattern[i++];
+      if (char === "\\") {
+        if (!skipping) text += pattern[i];
+        i++;
+      } else if (char === "{") {
+        const inner = read("}");
+        if (!skipping) text += inner;
+      } else if (char === "[") {
+        read("]");
+      } else if (char === "|") {
+        skipping = true;
+      } else if (char === closer) {
+        return text;
+      } else if (!skipping) {
+        text += char;
+      }
+    }
+    return text;
+  };
+  return read(null)
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/ ([.,!?;:])/g, "$1");
+}
+
 /** Every exercise and placement question by id, straight from the content data. */
 function loadExercises() {
   const files = (dir) =>
@@ -51,7 +86,10 @@ function loadExercises() {
   const byId = new Map();
   for (const path of files(DATA_DIR)) {
     const file = JSON.parse(readFileSync(path, "utf8"));
-    for (const e of file.exercises ?? []) byId.set(e.id, e);
+    for (const e of file.exercises ?? []) {
+      const accepted = e.type === "translate_write" ? [firstReading(e.accepted[0])] : e.accepted;
+      byId.set(e.id, accepted === undefined ? e : { ...e, accepted });
+    }
     for (const q of file.placement ?? []) byId.set(q.id, q.exercise);
   }
   return byId;
