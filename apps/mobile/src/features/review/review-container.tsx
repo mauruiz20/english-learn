@@ -22,6 +22,7 @@ import { useAppServices } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { pendingReviewItems, pickReviewExercises, restrictToItems } from "./model/review-plan";
 import { ReviewView, type ReviewViewState } from "./review-view";
+import { sessionResults } from "@/features/lesson/model/session-results";
 
 type Plan = { readonly session: ExerciseSession; readonly itemIds: readonly string[] };
 
@@ -195,5 +196,6 @@ function toViewState(
             disputable: canDispute(session),
           }
         : null,
+    results: sessionResults(session),
   };
 }

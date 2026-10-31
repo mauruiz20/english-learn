@@ -15,26 +15,25 @@ import { useTheme } from "./use-theme";
 
 /**
  * A small yellow sticker with the points a right answer earned ("+10"): it pops in with a
- * bounce, then floats up and fades (≈ 650 ms). Decorative (the answer is announced in words);
- * with reduced motion it simply stays.
+ * bounce and floats up a little to rest (≈ 650 ms). Decorative (the answer is announced in
+ * words); with reduced motion it is simply there.
  */
 export function PopBadge({ label, style }: { label: string; style?: StyleProp<ViewStyle> }) {
   const { colors } = useTheme();
   const reduced = useReducedMotion();
   const scale = useSharedValue(reduced ? 1 : 0);
-  const rise = useSharedValue(0);
+  const rise = useSharedValue(reduced ? 1 : 0);
   useEffect(() => {
     if (reduced) {
       scale.set(1);
-      rise.set(0);
+      rise.set(1);
       return;
     }
     scale.set(withSpring(1, SLAP_SPRING));
     rise.set(withDelay(MOTION.pop * 0.45, withTiming(1, { duration: MOTION.pop * 0.55 })));
   }, [reduced, scale, rise]);
   const motion = useAnimatedStyle(() => ({
-    opacity: 1 - rise.value,
-    transform: [{ translateY: -28 * rise.value }, { scale: scale.value }, { rotate: "12deg" }],
+    transform: [{ translateY: -8 * rise.value }, { scale: scale.value }, { rotate: "12deg" }],
   }));
   return (
     <Animated.View

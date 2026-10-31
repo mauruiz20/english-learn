@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View, useWindowDimensions } from "react-native"
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
 import { Text } from "./text";
 import { MAX_TEXT_WIDTH, spacing } from "./theme";
-import { themedStyles } from "./use-theme";
+import { themedStyles, useTheme } from "./use-theme";
 
 /** From this window width the page is laid out as a centered notebook page with a margin. */
 export const WIDE_BREAKPOINT = 768;
@@ -18,6 +18,8 @@ type ScreenContainerProps = {
   children?: ReactNode;
   /** Pinned below the scrolling page (e.g. answer feedback with "Continuar"). */
   footer?: ReactNode;
+  /** Tints the footer as the band of a checked answer. */
+  footerTone?: "correct" | "almost" | "wrong" | undefined;
   /** The screen has no navigation header: keep clear of the status bar / notch. */
   insetTop?: boolean;
 };
@@ -32,9 +34,12 @@ export function ScreenContainer({
   top,
   children,
   footer,
+  footerTone,
   insetTop = false,
 }: ScreenContainerProps) {
   const styles = useStyles();
+  const { colors } = useTheme();
+  const band = footerTone === undefined ? undefined : colors.feedback[footerTone];
   // Null outside a SafeAreaProvider (unit tests render views on their own).
   const insets = useContext(SafeAreaInsetsContext);
   const wide = useWindowDimensions().width >= WIDE_BREAKPOINT;
@@ -70,7 +75,18 @@ export function ScreenContainer({
         </View>
       </ScrollView>
       {footer !== undefined && (
-        <View style={[styles.footer, { paddingBottom: (insets?.bottom ?? 0) + spacing.md }]}>
+        <View
+          testID="screen-footer"
+          style={[
+            styles.footer,
+            { paddingBottom: (insets?.bottom ?? 0) + spacing.md },
+            band !== undefined && {
+              backgroundColor: band.tint,
+              borderTopColor: band.ink,
+              borderTopWidth: 3,
+            },
+          ]}
+        >
           <View style={styles.footerColumn}>{footer}</View>
         </View>
       )}

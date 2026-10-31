@@ -1,18 +1,32 @@
+import { LESSON_BONUS_THRESHOLD, type Verdict } from "@english-learn/domain";
+import { useEffect, type ReactNode } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+import Svg, { Path } from "react-native-svg";
 import { GlossaryText } from "@/features/glossary/glossary-text";
 import { lookupEnabled } from "@/features/lesson/model/lookup-policy";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 import { Button } from "@/shared/ui/button";
+import { ClipChainMark } from "@/shared/ui/clip-chain";
+import { Confetti } from "@/shared/ui/confetti";
 import { formatDays } from "@/shared/ui/format";
 import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
+import { Avi } from "@/shared/ui/mascot";
 import { PerfectStamp } from "@/shared/ui/perfect-stamp";
 import { RollingNumber } from "@/shared/ui/rolling-number";
-import { ProgressLine } from "@/shared/ui/progress-line";
 import { ScreenContainer } from "@/shared/ui/screen-container";
+import { Sticker } from "@/shared/ui/sticker";
 import { Text } from "@/shared/ui/text";
-import { spacing } from "@/shared/ui/theme";
+import { SLAP_SPRING } from "@/shared/ui/motion";
+import { radius, spacing, type HighlighterName } from "@/shared/ui/theme";
 import { useCountUp } from "@/shared/ui/use-count-up";
 import { useReducedMotion } from "@/shared/ui/use-reduced-motion";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
@@ -20,27 +34,42 @@ import { STREAK_SOUND_DELAY_MS } from "../use-session-sounds";
 import type { ReviewNote } from "../model/items-to-review";
 
 /**
- * A thin ink line with "Ejercicio 2 de 6" (and the lesson title) under it: where the learner is
- * in a lesson or review. With a `topic`, the line and the label are marked with its highlighter;
- * the label is the title, or the topic's name when there is no title (review).
+ * Where the learner is in a lesson or review: one step per exercise, each answered step colored
+ * by how it went (mint right, yellow almost, coral wrong), the current one outlined in ink, with
+ * "Ejercicio 2 de 6" (and the lesson title) under it. With a `topic`, the label is marked with its
+ * highlighter; the label is the title, or the topic's name when there is no title (review). A
+ * step pops once when its answer is checked (not with reduced motion).
  */
 export function SessionProgress({
   position,
   total,
   title,
   topic,
+  results = [],
 }: {
   position: number;
   total: number;
   title?: string;
   topic?: string | undefined;
+  /** Verdicts of the exercises answered so far, in order (the shown answer included). */
+  results?: readonly Verdict[] | undefined;
 }) {
   const styles = useStyles();
   const tint = topic === undefined ? undefined : topicHighlighter(topic);
   const label = title ?? (topic === undefined ? undefined : topicLabel(topic));
   return (
     <View style={styles.progress}>
-      <ProgressLine value={position - 1} max={total} label="Progreso" tint={tint} />
+      <View
+        accessible
+        accessibilityRole="progressbar"
+        accessibilityLabel="Progreso"
+        accessibilityValue={{ min: 0, max: total, now: position - 1 }}
+        style={styles.steps}
+      >
+        {Array.from({ length: total }, (_, i) => (
+          <ProgressStep key={i} kind={results[i] ?? (i === position - 1 ? "current" : "todo")} />
+        ))}
+      </View>
       <View style={styles.progressRow}>
         {label !== undefined &&
           (tint === undefined ? (
@@ -60,6 +89,29 @@ export function SessionProgress({
   );
 }
 
+type StepKind = Verdict | "current" | "todo";
+
+function ProgressStep({ kind }: { kind: StepKind }) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  const reduced = useReducedMotion();
+  const scale = useSharedValue(1);
+  const answered = kind !== "current" && kind !== "todo";
+  useEffect(() => {
+    if (!answered || reduced) return;
+    scale.set(withSequence(withTiming(1.35, { duration: 110 }), withSpring(1, SLAP_SPRING)));
+  }, [answered, reduced, scale]);
+  const pop = useAnimatedStyle(() => ({ transform: [{ scaleY: scale.value }] }));
+  const fill: Record<StepKind, object> = {
+    correct: { backgroundColor: colors.highlighters.green },
+    almost: { backgroundColor: colors.highlighters.yellow },
+    wrong: { backgroundColor: colors.highlighters.orange },
+    current: { backgroundColor: colors.sheet, borderWidth: 2, borderColor: colors.ink },
+    todo: { backgroundColor: colors.rule },
+  };
+  return <Animated.View testID={`step-${kind}`} style={[styles.step, fill[kind], pop]} />;
+}
+
 type SummaryProps = {
   title: string;
   correct: number;
@@ -70,13 +122,29 @@ type SummaryProps = {
   streakIncreased?: boolean;
   /** Items missed in the session (wrong or almost), at most a handful. */
   toReview: readonly ReviewNote[];
+  /** The lesson's topic: its color is the sticker's (a review gets a sky sticker). */
+  topic?: string | undefined;
   onGoHome: () => void;
 };
 
+/** The teacher's word for the session, from how many answers were right. */
+export function summaryCheer(correct: number, total: number): string {
+  const ratio = total === 0 ? 0 : correct / total;
+  if (ratio === 1) return "¡Perfecto!";
+  if (ratio >= LESSON_BONUS_THRESHOLD) return "¡Muy bien!";
+  if (ratio >= 0.5) return "¡Bien hecho!";
+  return "¡A seguir practicando!";
+}
+
+// A broad marker check for the big sticker.
+const BIG_CHECK = "M6 25 C 10 28, 14 32, 18 38 C 24 26, 32 16, 44 8";
+
 /**
- * The graded page: the teacher's score in red pen in the corner, then the results on lines. Its
- * one moment of motion rewards the session: a perfect page gets the "¡Excelente!" stamp, the XP
- * counts up and a grown streak rolls to its new number as the streak sound plays.
+ * The graded page, as a celebration: the session's sticker is slapped onto the page with Avi
+ * cheering and hole-punch confetti falling (none with reduced motion), the teacher's word for it
+ * in red pen and her score in the corner; then the results card (the XP counts up, a grown streak
+ * rolls to its new number and hooks a new clip onto the chain, with the streak sound), the
+ * "¡Excelente!" stamp on a perfect page, and the words to look at again.
  */
 export function SessionSummary({
   title,
@@ -86,9 +154,11 @@ export function SessionSummary({
   streakDays,
   streakIncreased = false,
   toReview,
+  topic,
   onGoHome,
 }: SummaryProps) {
   const styles = useStyles();
+  const { colors } = useTheme();
   const perfect = total > 0 && correct === total;
   const xp = useCountUp(xpEarned);
   return (
@@ -106,12 +176,54 @@ export function SessionSummary({
         </MarginNote>
       }
     >
-      <View>
-        <Text variant="title" style={styles.line}>{`Aciertos: ${correct} de ${total}`}</Text>
-        <Text variant="title" accessibilityLabel={`XP ganada: ${xpEarned}`} style={styles.line}>
-          {`XP ganada: ${xp}`}
-        </Text>
-        <StreakLine days={streakDays} increased={streakIncreased} />
+      <View style={styles.hero}>
+        <Sticker
+          testID="summary-sticker"
+          color={topic === undefined ? "sky" : topicHighlighter(topic)}
+          size={116}
+          tilt={-7}
+          slap
+          delayMs={150}
+        >
+          <Svg width={50} height={44} viewBox="0 0 50 44">
+            <Path
+              d={BIG_CHECK}
+              fill="none"
+              stroke={colors.onHighlighter}
+              strokeWidth={6}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </Svg>
+        </Sticker>
+        <View style={styles.heroSide}>
+          <Avi testID="avi-cheer" mood="cheer" fly delayMs={450} size={64} />
+          <MarginNote style={styles.cheer}>{summaryCheer(correct, total)}</MarginNote>
+        </View>
+      </View>
+      <View style={styles.results}>
+        <ResultRow mark={<MiniSticker color="green" glyph="check" />}>
+          <Text variant="title">{`Aciertos: ${correct} de ${total}`}</Text>
+        </ResultRow>
+        <ResultRow mark={<MiniSticker color="yellow" glyph="star" />}>
+          <Text variant="title" accessibilityLabel={`XP ganada: ${xpEarned}`}>
+            {`XP ganada: ${xp}`}
+          </Text>
+        </ResultRow>
+        <ResultRow
+          last
+          mark={
+            <View style={styles.chain}>
+              <ClipChainMark
+                days={streakDays}
+                grow={streakIncreased}
+                delayMs={STREAK_SOUND_DELAY_MS}
+              />
+            </View>
+          }
+        >
+          <StreakLine days={streakDays} increased={streakIncreased} />
+        </ResultRow>
         {perfect && (
           <View style={styles.stamp}>
             <PerfectStamp />
@@ -144,7 +256,57 @@ export function SessionSummary({
         )}
       </View>
       <Button label="Volver al inicio" onPress={onGoHome} />
+      <Confetti delayMs={250} />
     </ScreenContainer>
+  );
+}
+
+/** One result on the card: a small mark at the left, the result in words. */
+function ResultRow({
+  mark,
+  last = false,
+  children,
+}: {
+  mark: ReactNode;
+  last?: boolean;
+  children: ReactNode;
+}) {
+  const styles = useStyles();
+  return (
+    <View style={[styles.resultRow, !last && styles.resultDivider]}>
+      <View
+        aria-hidden
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+        style={styles.resultMark}
+      >
+        {mark}
+      </View>
+      <View style={styles.resultText}>{children}</View>
+    </View>
+  );
+}
+
+/** A small round sticker with a check or a star, beside a result. */
+function MiniSticker({ color, glyph }: { color: HighlighterName; glyph: "check" | "star" }) {
+  const { colors } = useTheme();
+  return (
+    <Sticker color={color} size={34} tilt={glyph === "star" ? 8 : -5}>
+      <Svg width={16} height={16} viewBox="0 0 24 24">
+        <Path
+          d={
+            glyph === "check"
+              ? "M5 12.5 10 17 19 7"
+              : "M12 3 14.6 9 21 9.6 16.2 13.8 17.6 20.2 12 16.9 6.4 20.2 7.8 13.8 3 9.6 9.4 9Z"
+          }
+          fill={glyph === "star" ? colors.onHighlighter : "none"}
+          stroke={colors.onHighlighter}
+          strokeWidth={glyph === "star" ? 1.5 : 3.2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </Sticker>
   );
 }
 
@@ -154,14 +316,10 @@ function StreakLine({ days, increased }: { days: number; increased: boolean }) {
   const reduced = useReducedMotion();
   const label = `Racha: ${formatDays(days)}`;
   if (!increased || reduced || days < 1) {
-    return (
-      <Text variant="title" style={styles.line}>
-        {label}
-      </Text>
-    );
+    return <Text variant="title">{label}</Text>;
   }
   return (
-    <View accessible accessibilityLabel={label} style={[styles.line, styles.streak]}>
+    <View accessible accessibilityLabel={label} style={styles.streak}>
       <Text variant="title">{"Racha:\u00A0"}</Text>
       <RollingNumber from={days - 1} to={days} delayMs={STREAK_SOUND_DELAY_MS} />
       <Text variant="title">{`\u00A0${days === 1 ? "día" : "días"}`}</Text>
@@ -225,10 +383,38 @@ export function SessionMessage({
 const useStyles = themedStyles(({ colors }) =>
   StyleSheet.create({
     progress: { gap: spacing.sm },
+    steps: { flexDirection: "row", gap: 4, height: 12, alignItems: "stretch" },
+    step: { flex: 1, borderRadius: radius.pill },
     progressRow: { flexDirection: "row", justifyContent: "space-between", gap: spacing.md },
     progressTitle: { flexShrink: 1 },
     tab: { width: 6, height: 16, borderRadius: 2, alignSelf: "center" },
     grade: { marginRight: spacing.xs, transform: [{ translateY: -6 }] },
+    hero: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.lg,
+      paddingVertical: spacing.sm,
+      paddingLeft: spacing.sm,
+    },
+    heroSide: { flexShrink: 1, gap: spacing.xs, alignItems: "flex-start" },
+    cheer: { fontSize: 32, lineHeight: 36, transform: [{ rotate: "-3deg" }] },
+    results: {
+      backgroundColor: colors.sheet,
+      borderRadius: radius.lg,
+      paddingHorizontal: spacing.md,
+      boxShadow: `0 3px 0 ${colors.rule}`,
+    },
+    resultRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.md,
+      minHeight: 56,
+      paddingVertical: spacing.sm,
+    },
+    resultDivider: { borderBottomWidth: 1, borderBottomColor: colors.rule },
+    resultMark: { width: 44, alignItems: "center" },
+    resultText: { flexShrink: 1 },
+    chain: { transform: [{ scale: 0.9 }] },
     line: {
       paddingVertical: spacing.sm + 2,
       borderBottomWidth: 1,
@@ -236,8 +422,8 @@ const useStyles = themedStyles(({ colors }) =>
     },
     review: { gap: spacing.xs },
     streak: { flexDirection: "row", alignItems: "center" },
-    // Pressed onto the results, at the right of the column.
-    stamp: { position: "absolute", right: spacing.xs, top: spacing.lg },
+    // Pressed onto the results card, at its right.
+    stamp: { position: "absolute", right: spacing.xs, top: spacing.sm },
     allRight: { paddingTop: spacing.xs },
     // "have breakfast   desayunar": the word and its meaning on one ruled line (wraps if long).
     note: {

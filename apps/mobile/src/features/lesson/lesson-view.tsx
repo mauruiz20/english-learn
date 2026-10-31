@@ -1,3 +1,4 @@
+import type { Verdict } from "@english-learn/domain";
 import type { Passage } from "@english-learn/content";
 import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
@@ -14,6 +15,7 @@ import { answerIsEnglish } from "./model/lookup-policy";
 import type { ReviewNote } from "./model/items-to-review";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
+import { correctInARow } from "./model/session-results";
 
 /** Feedback on the current answer, with the learner's answer as text. */
 export type ShownFeedback = GradeResult & {
@@ -37,6 +39,8 @@ export type LessonViewState =
       readonly passage: Passage | undefined;
       /** Set once the learner answered the current exercise. */
       readonly feedback: ShownFeedback | null;
+      /** Verdicts of the exercises answered so far, in order (the shown answer included). */
+      readonly results?: readonly Verdict[];
     }
   | { readonly status: "saving" }
   | { readonly status: "save-error" }
@@ -50,6 +54,8 @@ export type LessonViewState =
       readonly streakIncreased?: boolean;
       /** Items missed in the session, to look at again. */
       readonly toReview: readonly ReviewNote[];
+      /** The lesson's topic (the color of the sticker it earns). */
+      readonly topic?: string | undefined;
     };
 
 type LessonViewProps = {
@@ -96,11 +102,13 @@ export function LessonView({
               total={state.total}
               title={state.title}
               topic={state.topic}
+              results={state.results}
             />
           }
           {...(state.feedback === null
             ? {}
             : {
+                footerTone: state.feedback.verdict,
                 footer: (
                   <AnswerFeedback
                     verdict={state.feedback.verdict}
@@ -109,6 +117,7 @@ export function LessonView({
                     lookupAnswer={answerIsEnglish(state.prepared)}
                     disputed={state.feedback.disputed}
                     onDispute={state.feedback.disputable ? onDispute : undefined}
+                    inARow={correctInARow(state.results ?? [])}
                     onContinue={onContinue}
                   />
                 ),

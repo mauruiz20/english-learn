@@ -5,7 +5,8 @@ import type { LookupLocks } from "@/features/glossary/model/lookup-runs";
 import { Button } from "@/shared/ui/button";
 import { RuledArea, ruledText } from "@/shared/ui/ruled-area";
 import { Text } from "@/shared/ui/text";
-import { fonts, spacing } from "@/shared/ui/theme";
+import { fonts, radius, spacing } from "@/shared/ui/theme";
+import { themedStyles } from "@/shared/ui/use-theme";
 
 type ExerciseLayoutProps = {
   /** Spanish instruction, e.g. "Elige el significado". */
@@ -38,6 +39,19 @@ export function ExerciseLayout({
   );
 }
 
+/** The prompt's card: a sheet of ruled paper lying on the page. */
+const useCardStyle = themedStyles(({ colors }) =>
+  StyleSheet.create({
+    card: {
+      backgroundColor: colors.sheet,
+      borderRadius: radius.lg,
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.sm,
+      boxShadow: `0 3px 0 ${colors.rule}`,
+    },
+  }),
+);
+
 /** The sentence to work on, written on ruled lines (the only ruled paper in the app). */
 export function Prompt({
   text,
@@ -55,27 +69,30 @@ export function Prompt({
   /** Custom prompt content instead of `text` (e.g. a cloze with its blank). */
   children?: ReactNode;
 }) {
+  const cardStyle = useCardStyle();
   return (
     <View style={styles.prompt}>
-      <RuledArea>
-        {children ??
-          (lookup !== undefined && text !== undefined ? (
-            <GlossaryText
-              text={text}
-              enabled={lookup.enabled}
-              lockedRanges={lookup.lockedRanges}
-              lockedEntryIds={lookup.lockedEntryIds}
-              style={exerciseText.sentence}
-            />
-          ) : (
-            <Text
-              style={exerciseText.sentence}
-              {...(accessibilityLabel === undefined ? {} : { accessibilityLabel })}
-            >
-              {text}
-            </Text>
-          ))}
-      </RuledArea>
+      <View style={cardStyle.card}>
+        <RuledArea>
+          {children ??
+            (lookup !== undefined && text !== undefined ? (
+              <GlossaryText
+                text={text}
+                enabled={lookup.enabled}
+                lockedRanges={lookup.lockedRanges}
+                lockedEntryIds={lookup.lockedEntryIds}
+                style={exerciseText.sentence}
+              />
+            ) : (
+              <Text
+                style={exerciseText.sentence}
+                {...(accessibilityLabel === undefined ? {} : { accessibilityLabel })}
+              >
+                {text}
+              </Text>
+            ))}
+        </RuledArea>
+      </View>
       {hint !== undefined && (
         <Text tone="muted" style={exerciseText.hint}>
           {hint}
