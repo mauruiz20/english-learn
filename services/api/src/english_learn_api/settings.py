@@ -1,6 +1,7 @@
 """Runtime configuration, read from environment variables (and a local `.env` in development)."""
 
 from datetime import timedelta
+from ipaddress import IPv4Network, IPv6Network, ip_network
 from typing import Annotated, Literal, Self
 from urllib.parse import urlsplit
 
@@ -62,6 +63,10 @@ class Settings(DatabaseSettings):
     refresh_cookie_secure: bool = True
     max_request_body_bytes: int = 1024 * 1024
     log_level: str = "INFO"
+    # Where the client address (rate-limit key) comes from: the TCP peer (`socket`), or, behind a
+    # Cloudflare Tunnel, `CF-Connecting-IP` when the peer is in TRUSTED_PROXY_CIDRS.
+    client_ip_source: Literal["socket", "cf-connecting-ip"] = "socket"
+    trusted_proxy_cidrs: Annotated[list[IPv4Network | IPv6Network], NoDecode] = []
 
     @field_validator("jwt_secret")
     @classmethod
@@ -92,6 +97,30 @@ class Settings(DatabaseSettings):
         # CORS allows credentials (the refresh cookie), so every origin is listed exactly.
         if "*" in self.cors_origins:
             msg = 'CORS_ORIGINS must list exact origins, not "*"'
+            raise ValueError(msg)
+        return self
+
+    @field_validator("trusted_proxy_cidrs", mode="before")
+    @classmethod
+    def _parse_cidrs(cls, value: object) -> object:
+        # `TRUSTED_PROXY_CIDRS=172.18.0.0/16,fd00::/8`; a bare address means that one host.
+        if not isinstance(value, str):
+            return value
+        networks: list[IPv4Network | IPv6Network] = []
+        for item in (part.strip() for part in value.split(",")):
+            if not item:
+                continue
+            try:
+                networks.append(ip_network(item))
+            except ValueError:
+                msg = f"TRUSTED_PROXY_CIDRS has an invalid network: {item!r}"
+                raise ValueError(msg) from None
+        return networks
+
+    @model_validator(mode="after")
+    def _trusted_proxies_for_cloudflare(self) -> Self:
+        if self.client_ip_source == "cf-connecting-ip" and not self.trusted_proxy_cidrs:
+            msg = "CLIENT_IP_SOURCE=cf-connecting-ip requires TRUSTED_PROXY_CIDRS"
             raise ValueError(msg)
         return self
 

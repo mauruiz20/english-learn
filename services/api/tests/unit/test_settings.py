@@ -1,5 +1,6 @@
 import json
 from datetime import timedelta
+from ipaddress import ip_network
 from typing import Any
 
 import pytest
@@ -214,3 +215,41 @@ def test_wildcard_cors_origins_are_refused_in_every_environment() -> None:
 def test_env_accepts_only_known_values() -> None:
     with pytest.raises(ValidationError):
         make(env="staging")
+
+
+class TestClientIpSource:
+    def test_defaults_to_the_socket_peer(self) -> None:
+        settings = make()
+
+        assert settings.client_ip_source == "socket"
+        assert settings.trusted_proxy_cidrs == []
+
+    def test_cloudflare_mode_from_the_environment(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        monkeypatch.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        monkeypatch.setenv("JWT_SECRET", SECRET)
+        monkeypatch.setenv("CLIENT_IP_SOURCE", "cf-connecting-ip")
+        monkeypatch.setenv("TRUSTED_PROXY_CIDRS", "172.18.0.0/16, fd00::/8,10.0.0.7")
+
+        settings = Settings(_env_file=None)
+
+        assert settings.client_ip_source == "cf-connecting-ip"
+        assert settings.trusted_proxy_cidrs == [
+            ip_network("172.18.0.0/16"),
+            ip_network("fd00::/8"),
+            ip_network("10.0.0.7/32"),
+        ]
+
+    def test_cloudflare_mode_requires_trusted_proxies(self) -> None:
+        with pytest.raises(ValidationError, match="TRUSTED_PROXY_CIDRS"):
+            make(client_ip_source="cf-connecting-ip")
+        with pytest.raises(ValidationError, match="TRUSTED_PROXY_CIDRS"):
+            make(client_ip_source="cf-connecting-ip", trusted_proxy_cidrs=" , ")
+
+    @pytest.mark.parametrize("cidrs", ["nope", "172.18.0.1/16", "10.0.0.0/33"])
+    def test_rejects_invalid_cidrs(self, cidrs: str) -> None:
+        with pytest.raises(ValidationError, match="TRUSTED_PROXY_CIDRS"):
+            make(client_ip_source="cf-connecting-ip", trusted_proxy_cidrs=cidrs)
+
+    def test_rejects_unknown_sources(self) -> None:
+        with pytest.raises(ValidationError):
+            make(client_ip_source="x-forwarded-for")
