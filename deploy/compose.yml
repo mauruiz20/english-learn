@@ -121,6 +121,8 @@ services:
       DATABASE_URL_FILE: /run/secrets/database_url
       JWT_SECRET_FILE: /run/secrets/jwt_secret
       CORS_ORIGINS: ${CORS_ORIGINS:?set CORS_ORIGINS in .env}
+      # The refresh cookie (el_rt) is Secure; production refuses false.
+      REFRESH_COOKIE_SECURE: "true"
       # Public OAuth client ids (not secrets) accepted as the ID token audience.
       GOOGLE_CLIENT_IDS: ${GOOGLE_CLIENT_IDS:?set GOOGLE_CLIENT_IDS in .env}
       # Read by uvicorn: X-Forwarded-For is trusted only from cloudflared,

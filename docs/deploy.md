@@ -100,7 +100,7 @@ cp .env.example .env    # review every value; keep DATA_DIR on the NVMe
 | `GHCR_OWNER`          | `mauruiz20`                                | Image namespace (lowercase).                                                                                                          |
 | `IMAGE_TAG`           | `sha-1a2b3c4`                              | Build to run ([Updates](#updates-and-rollback)).                                                                                      |
 | `DATA_DIR`            | `/mnt/nvme/english-learn`                  | Postgres data and backups, on the NVMe.                                                                                               |
-| `PUBLIC_API_HOSTNAME` | `english-api.maumar.com.ar`                | The tunnel hostname (configured in Cloudflare, used by the checks below). Pending confirmation.                                       |
+| `PUBLIC_API_HOSTNAME` | `english-api.maumar.com.ar`                | The tunnel hostname (configured in Cloudflare, used by the checks below).                                                             |
 | `CORS_ORIGINS`        | `https://english.maumar.com.ar`            | Browser origins allowed to call the api. With `ENV=production` the api refuses to start without it, and accepts only `https` origins. |
 | `GOOGLE_CLIENT_IDS`   | `78200832989-….apps.googleusercontent.com` | Accepted `aud` of Google ID tokens. Public values.                                                                                    |
 | `BACKEND_SUBNET`      | `10.217.0.0/24`                            | Subnet of the internal network; the api trusts forwarded headers only from it.                                                        |
@@ -189,7 +189,12 @@ Advanced Certificate Manager.
 No Cloudflare Access in front of this hostname: the web app calls it
 cross-origin from the browser, and the api authenticates every request
 itself (Google sign-in, then its own JWTs). CORS limits browsers to
-`CORS_ORIGINS`.
+`CORS_ORIGINS`, listed exactly because it allows credentials: the web app
+keeps its refresh token in the `el_rt` cookie (`HttpOnly`, `Secure`,
+`Path=/v1/auth`). `english.maumar.com.ar` and `english-api.maumar.com.ar`
+are the same site (`maumar.com.ar`), so the browser sends that cookie on the
+cross-origin calls. The tunnel passes cookies and the `X-Token-Transport` /
+`X-Requested-With` headers through unchanged.
 
 ### Client IPs behind the tunnel
 
@@ -356,6 +361,5 @@ Required in the api (`services/api`), not done here:
 
 Operations:
 
-- [ ] Confirm `PUBLIC_API_HOSTNAME` (`english-api.maumar.com.ar` assumed) and
-      point the web app's API base URL at it.
+- [ ] Point the web app's API base URL at `https://english-api.maumar.com.ar`.
 - [ ] Off-site copies of the dumps (restic to R2, as finance-tracker does).
