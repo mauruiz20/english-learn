@@ -67,6 +67,7 @@ export function createAccountRuntime({
     const follow = () => {
       const signedIn = session.getState().status === "signed-in";
       if (signedIn && stopTriggers === null) {
+        coordinator.resume();
         stopTriggers = startSyncTriggers({
           request: coordinator.request,
           target: window,
@@ -76,7 +77,7 @@ export function createAccountRuntime({
       } else if (!signedIn && stopTriggers !== null) {
         stopTriggers();
         stopTriggers = null;
-        coordinator.reset();
+        void coordinator.stop();
       }
     };
     const unsubscribe = session.subscribe(follow);
