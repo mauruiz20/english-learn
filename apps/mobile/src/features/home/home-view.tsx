@@ -1,9 +1,11 @@
 import type { Level } from "@english-learn/domain";
-import { ActivityIndicator, Pressable, StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Button } from "@/shared/ui/button";
 import { formatDays } from "@/shared/ui/format";
+import { HandCheck } from "@/shared/ui/hand-check";
 import { Highlight } from "@/shared/ui/highlight";
 import { SoundToggleButton } from "@/shared/ui/sound-toggle-button";
+import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { StickyNote } from "@/shared/ui/sticky-note";
@@ -19,6 +21,8 @@ export type HomeLesson = {
   /** Topic slug (e.g. "daily-routine"); the index groups lessons by it. */
   readonly topic: string;
   readonly done: boolean;
+  /** Completed since the index was last seen: its check is drawn now, once. */
+  readonly justCompleted?: boolean;
 };
 
 export type HomeLessons = { readonly level: Level; readonly items: readonly HomeLesson[] };
@@ -117,7 +121,7 @@ function ReviewNote({
 function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => void }) {
   const styles = useStyles();
   return (
-    <Pressable
+    <PressableScale
       accessibilityRole="button"
       accessibilityLabel={lesson.done ? `${lesson.title}, completada` : lesson.title}
       onPress={onPress}
@@ -126,15 +130,18 @@ function LessonRow({ lesson, onPress }: { lesson: HomeLesson; onPress: () => voi
       <Text style={styles.lessonTitle}>{lesson.title}</Text>
       <View style={styles.leader} />
       {lesson.done ? (
-        <Text variant="smallStrong" tone="success">
-          Completada
-        </Text>
+        <View style={styles.doneMark}>
+          <HandCheck testID={`check-${lesson.id}`} animate={lesson.justCompleted === true} />
+          <Text variant="smallStrong" tone="success">
+            Completada
+          </Text>
+        </View>
       ) : (
         <Text tone="muted" style={styles.pendingMark}>
           ○
         </Text>
       )}
-    </Pressable>
+    </PressableScale>
   );
 }
 
@@ -306,6 +313,7 @@ const useStyles = themedStyles(({ colors }) =>
       opacity: 0.5,
     },
     pendingMark: { width: 24, textAlign: "center" },
+    doneMark: { flexDirection: "row", alignItems: "center", gap: spacing.xs },
     footer: {
       marginTop: spacing.md,
       paddingTop: spacing.sm,

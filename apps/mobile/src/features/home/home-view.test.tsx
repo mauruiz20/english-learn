@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
+import { StyleSheet } from "react-native";
+import { withMotion } from "@/testing/motion";
 import { HomeView, type HomeViewState } from "./home-view";
 
 const handlers = {
@@ -156,5 +158,46 @@ describe("HomeView", () => {
     await renderView(ready);
 
     expect(screen.getByText("Todavía no hay lecciones para este nivel.")).toBeOnTheScreen();
+  });
+});
+
+describe("HomeView completion check", () => {
+  const lessons = {
+    level: "A2",
+    items: [
+      { id: "a", title: "Saludos", topic: "greetings", done: true },
+      { id: "b", title: "Mi rutina", topic: "daily-routine", done: true, justCompleted: true },
+      { id: "c", title: "La ciudad", topic: "city", done: false },
+    ],
+  } as const;
+
+  // The check is drawn by revealing it left to right; its clip's width is how much is drawn.
+  async function drawnWidth(id: string) {
+    const check = screen.getByTestId(`check-${id}`, { includeHiddenElements: true });
+    await fireEvent(check, "layout", { nativeEvent: { layout: { width: 22, height: 18 } } });
+    const clip = screen.getByTestId(`check-${id}`, { includeHiddenElements: true }).children[0] as unknown;
+    return StyleSheet.flatten((clip as { props: { style: unknown } }).props.style as never)?.width;
+  }
+
+  it("marks done lessons with a hand-drawn check, pending ones without", async () => {
+    await renderView({ ...ready, lessons });
+
+    expect(screen.getByTestId("check-a", { includeHiddenElements: true })).toBeOnTheScreen();
+    expect(screen.queryByTestId("check-c", { includeHiddenElements: true })).not.toBeOnTheScreen();
+    expect(screen.getByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
+  });
+
+  it("draws the check of a lesson just completed, and shows older ones already drawn", async () => {
+    withMotion();
+    await renderView({ ...ready, lessons });
+
+    expect(await drawnWidth("a")).toBeGreaterThan(0);
+    expect(await drawnWidth("b")).toBe(0);
+  });
+
+  it("shows every check already drawn with reduced motion", async () => {
+    await renderView({ ...ready, lessons });
+
+    expect(await drawnWidth("b")).toBeGreaterThan(0);
   });
 });
