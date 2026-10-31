@@ -9,6 +9,7 @@ import { useSoundPreference } from "@/features/sound/sound-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
+import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 
 /** Lessons for the learner's level (A2 by default), each marked done when all its items were reviewed. */
 function homeLessons(
@@ -29,8 +30,25 @@ function homeLessons(
   };
 }
 
+/** Marks the lessons done since the index was last seen, so their check is drawn once. */
+function markJustCompleted(lessons: HomeLessons, memory: CompletionMemory): HomeLessons {
+  const fresh = memory.take(lessons.items.filter((l) => l.done).map((l) => l.id));
+  if (fresh.size === 0) return lessons;
+  return {
+    ...lessons,
+    items: lessons.items.map((l) => (fresh.has(l.id) ? { ...l, justCompleted: true } : l)),
+  };
+}
+
 /** Loads the learner's progress from the repository every time the screen gains focus. */
-export function HomeContainer({ content = corpus }: { content?: Corpus }) {
+export function HomeContainer({
+  content = corpus,
+  completionMemory = sessionCompletionMemory,
+}: {
+  content?: Corpus;
+  /** What the index last showed as done (the app session's, by default). */
+  completionMemory?: CompletionMemory;
+}) {
   const { progressRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
@@ -56,7 +74,7 @@ export function HomeContainer({ content = corpus }: { content?: Corpus }) {
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
           level,
-          lessons: homeLessons(content, level, states),
+          lessons: markJustCompleted(homeLessons(content, level, states), completionMemory),
         });
       },
       (error: unknown) => {
@@ -68,7 +86,7 @@ export function HomeContainer({ content = corpus }: { content?: Corpus }) {
     return () => {
       active = false;
     };
-  }, [progressRepository, clock, content]);
+  }, [progressRepository, clock, content, completionMemory]);
 
   useFocusEffect(load);
 

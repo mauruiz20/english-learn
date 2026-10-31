@@ -1,13 +1,23 @@
 import type { Verdict } from "@english-learn/domain";
+import { useEffect, useState, type ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from "react-native-reanimated";
 import { GlossaryRuns } from "@/features/glossary/glossary-text";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
+import { MOTION } from "@/shared/ui/motion";
+import { StrokeClip, usePenStroke } from "@/shared/ui/pen-stroke";
 import { struckText } from "@/shared/ui/struck";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
-import { themedStyles } from "@/shared/ui/use-theme";
+import { useReducedMotion } from "@/shared/ui/use-reduced-motion";
+import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { diffWords, type AnswerSegment } from "../model/answer-diff";
 
 type AnswerFeedbackProps = {
@@ -77,22 +87,13 @@ export function AnswerFeedback({
           </View>
         ) : (
           <>
-            <Text {...hidden} variant="title" style={styles.answer}>
-              {struckSegments(verdict, shown, correctAnswer).map((segment, i) => (
-                <Text
-                  key={i}
-                  variant="title"
-                  tone={segment.differs ? "muted" : "text"}
-                  style={[styles.answer, segment.differs && styles.struck]}
-                >
-                  {i === 0 ? segment.text : ` ${segment.text}`}
-                </Text>
-              ))}
-            </Text>
-            <MarginNote {...(hideNote ? hidden : {})} style={styles.note}>
-              {verdict === "almost" ? "Casi. Fíjate: " : "Era: "}
-              <GlossaryRuns text={correctAnswer} enabled={lookupAnswer} />
-            </MarginNote>
+            <StruckAnswer segments={struckSegments(verdict, shown, correctAnswer)} />
+            <TeacherNote>
+              <MarginNote {...(hideNote ? hidden : {})} style={styles.note}>
+                {verdict === "almost" ? "Casi. Fíjate: " : "Era: "}
+                <GlossaryRuns text={correctAnswer} enabled={lookupAnswer} />
+              </MarginNote>
+            </TeacherNote>
           </>
         )}
       </View>
@@ -100,6 +101,70 @@ export function AnswerFeedback({
     </View>
   );
 }
+
+/**
+ * The learner's answer with the off words struck through in red pen. The strike is drawn left to
+ * right over the answer (a pen stroke, ≈ 250 ms): a clipped copy of the text that carries only the
+ * strike, revealed over the plain text, so it follows line wraps like the highlighter does.
+ */
+function StruckAnswer({ segments }: { segments: readonly AnswerSegment[] }) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  const [width, setWidth] = useState(0);
+  const progress = usePenStroke(true);
+  const words = (struck: boolean) =>
+    segments.map((segment, i) => (
+      <Text
+        key={i}
+        variant="title"
+        tone={segment.differs ? "muted" : "text"}
+        style={[styles.answer, struck && styles.ink, struck && segment.differs && styles.struck]}
+      >
+        {i === 0 ? segment.text : ` ${segment.text}`}
+      </Text>
+    ));
+  // A pixel of slack so the copy never wraps earlier than the text it marks.
+  const copyWidth = width + 2;
+  return (
+    <View
+      {...hidden}
+      testID="struck-answer"
+      style={styles.struckWrap}
+      onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
+    >
+      <Text variant="title" style={styles.answer}>
+        {words(false)}
+      </Text>
+      {width > 0 && (
+        <StrokeClip progress={progress} width={copyWidth}>
+          <Text variant="title" style={[styles.answer, { width: copyWidth, color: colors.redPen }]}>
+            {words(true)}
+          </Text>
+        </StrokeClip>
+      )}
+    </View>
+  );
+}
+
+/** The teacher's note comes once the strike is drawn: a quick fade and settle (≈ 150 ms). */
+function TeacherNote({ children }: { children: ReactNode }) {
+  const reduced = useReducedMotion();
+  const shown = useSharedValue(reduced ? 1 : 0);
+  useEffect(() => {
+    shown.value = reduced ? 1 : withDelay(MOTION.stroke, withTiming(1, { duration: MOTION.note }));
+  }, [reduced, shown]);
+  const style = useAnimatedStyle(() => ({
+    opacity: shown.value,
+    transform: [{ scale: 0.94 + 0.06 * shown.value }],
+  }));
+  return (
+    <Animated.View testID="margin-note" style={[noteOrigin, style]}>
+      {children}
+    </Animated.View>
+  );
+}
+
+const noteOrigin = { transformOrigin: "left center" } as const;
 
 const hidden = {
   "aria-hidden": true,
@@ -121,6 +186,10 @@ const useStyles = themedStyles(({ colors }) =>
     marking: { gap: spacing.xs },
     answer: { fontSize: 23, lineHeight: 31 },
     struck: struckText(colors),
+    // The copy carries only the strike: its letters are transparent (Android, where the line
+    // follows the text color, keeps the struck words in red pen, as before).
+    ink: { color: "transparent" },
+    struckWrap: { alignSelf: "flex-start", maxWidth: "100%" },
     note: { fontSize: 29, lineHeight: 34 },
   }),
 );

@@ -13,6 +13,8 @@ import { answerIsEnglish } from "@/features/lesson/model/lookup-policy";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { Button } from "@/shared/ui/button";
+import { Doodle } from "@/shared/ui/doodle";
+import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { useTheme } from "@/shared/ui/use-theme";
@@ -40,6 +42,8 @@ export type ReviewViewState =
       readonly total: number;
       readonly xpEarned: number;
       readonly streakDays: number;
+      /** This session extended the streak (the summary rolls the number). */
+      readonly streakIncreased?: boolean;
       /** Items missed in the session, to look at again. */
       readonly toReview: readonly ReviewNote[];
     };
@@ -76,6 +80,7 @@ export function ReviewView({
     case "empty":
       return (
         <ScreenContainer title={TITLE}>
+          <Doodle name="rest" />
           <Text variant="title">Nada para repasar hoy</Text>
           <Text tone="muted">
             Las palabras que aprendes en las lecciones vuelven aquí cuando toca repasarlas.
@@ -116,14 +121,16 @@ export function ReviewView({
                 ),
               })}
         >
-          <ExerciseBody
-            key={state.prepared.exercise.id}
-            prepared={state.prepared}
-            passage={undefined}
-            disabled={state.feedback !== null}
-            reveal={state.feedback !== null}
-            onSubmit={onSubmit}
-          />
+          <PageTurn pageKey={state.prepared.exercise.id}>
+            <ExerciseBody
+              key={state.prepared.exercise.id}
+              prepared={state.prepared}
+              passage={undefined}
+              disabled={state.feedback !== null}
+              reveal={state.feedback !== null}
+              onSubmit={onSubmit}
+            />
+          </PageTurn>
         </ScreenContainer>
       );
   }

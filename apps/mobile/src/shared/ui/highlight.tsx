@@ -1,8 +1,8 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { Animated, Easing, StyleSheet, View, type TextProps } from "react-native";
+import { useState, type ReactNode } from "react";
+import { StyleSheet, View, type TextProps } from "react-native";
+import { StrokeClip, usePenStroke } from "./pen-stroke";
 import { Text, type TextVariant } from "./text";
 import type { HighlighterName } from "./theme";
-import { useReducedMotion } from "./use-reduced-motion";
 import { useTheme } from "./use-theme";
 
 type HighlightProps = Omit<TextProps, "children"> & {
@@ -10,7 +10,10 @@ type HighlightProps = Omit<TextProps, "children"> & {
   /** What the visible text renders instead of `children` (e.g. with lookup targets); same text. */
   content?: ReactNode;
   variant?: TextVariant;
-  /** Swipe the highlighter left to right once (≈ 250 ms) instead of showing it at once. */
+  /**
+   * Swipe the highlighter left to right once (a pen stroke, ≈ 250 ms, the same hand as the red
+   * pen's strike) instead of showing it at once.
+   */
   animate?: boolean;
   /**
    * lines: follows the text line by line (sentences that may wrap). swipe: one broad stroke
@@ -21,7 +24,6 @@ type HighlightProps = Omit<TextProps, "children"> & {
   color?: HighlighterName;
 };
 
-const SWIPE_MS = 250;
 const SWIPE_OVERHANG = 6;
 
 /**
@@ -41,23 +43,8 @@ export function Highlight({
 }: HighlightProps) {
   const { colors } = useTheme();
   const fill = colors.highlighters[color];
-  const reducedMotion = useReducedMotion();
   const [width, setWidth] = useState(0);
-  const [progress] = useState(() => new Animated.Value(animate ? 0 : 1));
-
-  useEffect(() => {
-    if (!animate || reducedMotion === null || width === 0) return;
-    if (reducedMotion) {
-      progress.setValue(1);
-      return;
-    }
-    Animated.timing(progress, {
-      toValue: 1,
-      duration: SWIPE_MS,
-      easing: Easing.out(Easing.quad),
-      useNativeDriver: false,
-    }).start();
-  }, [animate, reducedMotion, width, progress]);
+  const progress = usePenStroke(animate);
 
   const textVariant = variant ?? "body";
   // A pixel of slack so the copy never wraps earlier than the text it marks.
@@ -68,24 +55,15 @@ export function Highlight({
       onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
     >
       {width > 0 && (
-        <Animated.View
-          aria-hidden
-          accessibilityElementsHidden
-          importantForAccessibility="no-hide-descendants"
-          pointerEvents="none"
-          style={[
-            styles.marker,
-            shape === "swipe" && styles.swipeMarker,
-            {
-              width: progress.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, shape === "swipe" ? width + SWIPE_OVERHANG * 2 : markerWidth],
-              }),
-            },
-          ]}
+        <StrokeClip
+          progress={progress}
+          width={shape === "swipe" ? width + SWIPE_OVERHANG * 2 : markerWidth}
+          style={shape === "swipe" && styles.swipeMarker}
         >
           {shape === "swipe" ? (
-            <View style={[styles.swipe, { backgroundColor: fill }]} />
+            <View
+              style={[styles.swipe, { width: width + SWIPE_OVERHANG * 2, backgroundColor: fill }]}
+            />
           ) : (
             <Text
               variant={textVariant}
@@ -99,7 +77,7 @@ export function Highlight({
               </Text>
             </Text>
           )}
-        </Animated.View>
+        </StrokeClip>
       )}
       <Text variant={textVariant} {...props} style={[style, { color: colors.onHighlighter }]}>
         {content ?? children}
@@ -110,7 +88,6 @@ export function Highlight({
 
 const styles = StyleSheet.create({
   wrap: { alignSelf: "flex-start", maxWidth: "100%" },
-  marker: { position: "absolute", top: 0, bottom: 0, left: 0, overflow: "hidden" },
   // The broad stroke sits on the lower part of the line, past both ends of the number.
   swipeMarker: { left: -SWIPE_OVERHANG, top: "16%", bottom: "8%" },
   // Slanted like a highlighter stroke, with uneven ends.

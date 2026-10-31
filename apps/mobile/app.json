@@ -8,7 +8,7 @@
     "scheme": "englishlearn",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/icon.png"
     },
     "android": {
       "package": "com.mruizdev.englishlearn",
@@ -20,7 +20,7 @@
         "android.permission.WRITE_EXTERNAL_STORAGE"
       ],
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#F7F9FC",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
@@ -36,9 +36,13 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#F7F9FC",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 200,
+          "dark": {
+            "backgroundColor": "#0F1A33",
+            "image": "./assets/images/splash-icon-dark.png"
+          }
         }
       ],
       "expo-sqlite",
