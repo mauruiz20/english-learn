@@ -52,7 +52,9 @@ lessons but keep the id reserved; to change meaning, add a new id.
   Spaces are normalized in every expansion (no double spaces, none before `.,!?;:`), so write
   `I [really ]like it.` or `I like it [very much] .`. An exercise may stand for at most 2,000
   sentences. Patterns stay compact in the generated corpus; the app expands them once per
-  exercise when grading.
+  exercise when grading. Learners can mark an answer as "also correct" (`answer_disputed`
+  events); `disputed-answers` lists them by exercise from a JSON export of events (an array, or
+  `{ "events": [...] }`), marking those the current patterns already accept, to grow the patterns.
 
 - JSON files must not repeat a key in the same object (`JSON.parse` would silently keep the last).
 
@@ -178,6 +180,7 @@ pnpm validate:content                              # validate data/ (exit 1 on e
 pnpm --filter @english-learn/content build:corpus  # regenerate src/generated/corpus.ts
 pnpm corpus:check                                  # fail if the generated corpus is stale
 pnpm --filter @english-learn/content glossary:gaps # words with no glossary entry
+pnpm --filter @english-learn/content disputed-answers [events.json]  # disputed answers by exercise (file or stdin)
 ```
 
 ## Authoring
