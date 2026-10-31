@@ -58,7 +58,8 @@
     "serve:web": "node scripts/serve-web.mjs",
     "e2e:web": "pnpm export:web:e2e && playwright test",
     "generate:sounds": "node scripts/generate-sounds.mjs",
-    "generate:pwa-icons": "node scripts/generate-pwa-icons.mjs"
+    "generate:pwa-icons": "node scripts/generate-pwa-icons.mjs",
+    "generate:icons": "node scripts/generate-icons.mjs"
   },
   "private": true,
   "jest": {
