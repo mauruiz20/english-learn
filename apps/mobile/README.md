@@ -254,6 +254,30 @@ stays quiet.
   muting does not affect them. The speaker button ("Silenciar sonidos" / "Activar sonidos") sits
   at the top of home and in the header of lesson, review and placement; the choice is stored in
   SQLite (`setting` table) and defaults to on.
+- **Motion** (`motion.ts`, react-native-reanimated): motion explains what changed or rewards
+  the learner, never decorates; at most one orchestrated moment per screen, 150–350 ms, springs
+  for physical things. `useReducedMotion` knows the system setting on the first render
+  (Reanimated reads it at startup, `AccessibilityInfo` keeps it current); with it on, every
+  animation below shows its end state at once.
+
+  | Where                            | What                                                                                                                                                    | Duration             |
+  | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+  | Feedback, correct                | highlighter swipe over the answer (`Highlight animate`)                                                                                                 | 250 ms               |
+  | Feedback, wrong / almost         | red-pen strike drawn left → right over the off words, then the margin note fades/settles in                                                             | 250 ms + 150 ms      |
+  | Choice rows, buttons, index rows | press-in scale to 0.97 (`PressableScale`), no hover                                                                                                     | 90 ms                |
+  | Next exercise                    | page turn: the new page comes in from the right (`PageTurn`); progress line springs                                                                     | 220 ms               |
+  | Word order                       | strips dragged from the bank to the line, reordered, or off it back to the bank; lift while dragging, spring settle, `tap` sound + light haptic on drop | spring               |
+  | Summary                          | perfect page only: "¡Excelente!" stamp lands with an overshoot; XP counts up from 0; a grown streak rolls to its new number with the `streak` sound     | ≈ 300 / 650 / 300 ms |
+  | Home index                       | a lesson completed since home was last seen gets its check drawn once (`model/completion-memory.ts`, in memory per app session)                         | 250 ms               |
+
+  Pen strokes (highlighter, strike, check) share one hand: `usePenStroke` + `StrokeClip`, a
+  clipped copy revealed left to right. Word order stays fully usable by tap, and placed words
+  have screen-reader actions "Mover a la izquierda / derecha". Unit tests run with reduced
+  motion on by default (`jest.setup.js`; `withMotion()` opts out); Reanimated, Worklets and
+  Gesture Handler use their Jest mocks, and drag and drop is covered end to end on web.
+
+- **Doodles** (`doodle.tsx`): three pencil doodles (coffee cup, paper plane, pencil) for empty
+  states only: nothing to review, the placement intro, about. Original art, low contrast.
 - **Word lookup**: see "Word lookup" above.
 - **Accessibility floor**: touch targets ≥ 44 pt, an ink focus ring on web (`:focus-visible`,
   `web-global-styles.ts`), AA contrast for text (`theme.test.tsx` asserts ≥ 4.5:1 for text,
@@ -272,6 +296,7 @@ pnpm lint           # ESLint (eslint-config-expo); also run by `pnpm lint` at th
 pnpm typecheck      # tsc --noEmit
 pnpm test           # Jest (jest-expo + React Native Testing Library), then node --test scripts/
 pnpm generate:sounds # rewrite assets/sounds/*.wav
+pnpm generate:icons  # rasterize assets/icon/icon.svg (Playwright Chromium) into assets/images/*.png
 pnpm generate:pwa-icons # rewrite public/icons/*.png and public/apple-touch-icon.png from the app icon
 
 pnpm export:web     # production static SPA export to dist/, then sw.js, then checks (no e2e hooks; PWA)
