@@ -122,6 +122,64 @@ async def test_the_sync_limit_is_per_user_not_per_address(
     assert ben_allowed.status_code == 200
 
 
+class TestBehindCloudflareTunnel:
+    PROXY = "172.18.0.5"  # cloudflared, the only peer uvicorn sees
+
+    @pytest.fixture
+    def app(self, database_url: str, google: FakeGoogleVerifier, clock: FakeClock) -> object:
+        settings = make_settings(
+            database_url=database_url,
+            client_ip_source="cf-connecting-ip",
+            trusted_proxy_cidrs="172.18.0.0/16",
+        )
+        return create_app(settings, google_verifier=google, clock=clock)
+
+    @staticmethod
+    async def sign_ins(client: httpx.AsyncClient, cf_ip: str, count: int) -> list[int]:
+        headers = {"CF-Connecting-IP": cf_ip}
+        return [
+            (
+                await client.post("/v1/auth/google", json={"idToken": "x"}, headers=headers)
+            ).status_code
+            for _ in range(count)
+        ]
+
+    async def test_clients_behind_the_same_proxy_get_separate_buckets(self, app: object) -> None:
+        async with client_from(app, ip=self.PROXY) as tunnel:
+            first = await self.sign_ins(tunnel, "198.51.100.7", 11)
+            second = await self.sign_ins(tunnel, "2001:db8::7", 10)
+
+        assert first == [401] * 10 + [429]
+        assert second == [401] * 10
+
+    async def test_an_untrusted_peer_cannot_pick_its_bucket(self, app: object) -> None:
+        async with client_from(app, ip="203.0.113.9") as direct:
+            statuses = [
+                (await self.sign_ins(direct, f"198.51.100.{n}", 1))[0] for n in range(1, 12)
+            ]
+
+        assert statuses == [401] * 10 + [429]
+
+    @pytest.mark.parametrize("path", ["/v1/auth/refresh", "/v1/auth/logout"])
+    async def test_refresh_and_logout_use_the_same_client_address(
+        self, app: object, path: str
+    ) -> None:
+        async with client_from(app, ip=self.PROXY) as tunnel:
+            for _ in range(30):
+                await tunnel.post(
+                    path, json={"refreshToken": "unknown"}, headers={"CF-Connecting-IP": "1.2.3.4"}
+                )
+            limited = await tunnel.post(
+                path, json={"refreshToken": "unknown"}, headers={"CF-Connecting-IP": "1.2.3.4"}
+            )
+            other = await tunnel.post(
+                path, json={"refreshToken": "unknown"}, headers={"CF-Connecting-IP": "5.6.7.8"}
+            )
+
+        assert_rate_limited(limited)
+        assert other.status_code != 429
+
+
 async def test_google_verification_is_capped_and_busy_beyond_a_short_wait(
     database_url: str,
 ) -> None:

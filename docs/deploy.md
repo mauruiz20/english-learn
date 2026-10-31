@@ -40,7 +40,7 @@ run here, next to the finance-tracker and monogestor stacks.
   share only `backend`.
 - `backend` has a pinned subnet (`BACKEND_SUBNET`). cloudflared therefore
   always reaches the api from that range, and the api trusts
-  `X-Forwarded-For` only from it (`FORWARDED_ALLOW_IPS`). See
+  `CF-Connecting-IP` only from it (`TRUSTED_PROXY_CIDRS`). See
   [Client IPs](#client-ips-behind-the-tunnel).
 - Every service has `restart: unless-stopped` (migrate: `no`), log rotation
   (3 x 10 MB per container), and CPU/memory limits sized to leave room for
@@ -158,13 +158,13 @@ chmod 444 secrets/postgres_password secrets/database_url secrets/jwt_secret secr
 - Store a copy of each in your password manager. Changing `jwt_secret`
   invalidates every access token signed with the old one.
 
-**How the api gets them.** The api reads `DATABASE_URL` and `JWT_SECRET` from
-its environment and has no `*_FILE` support yet. `compose.yml` gives api and
-migrate a small `secret-env` entrypoint that reads the files named by
-`DATABASE_URL_FILE` / `JWT_SECRET_FILE` and exports their contents into the
-environment of the process it then starts. The values never appear in
-`compose.yml`, `.env` or `docker inspect` (the smoke test checks this). It
-goes away once the api reads `*_FILE` itself ([Follow-ups](#follow-ups)).
+**How the api gets them.** api and migrate read the files named by
+`DATABASE_URL_FILE` / `JWT_SECRET_FILE` themselves (trailing newline
+trimmed; see the api README, "Secrets from files"). The values never appear
+in `compose.yml`, `.env` or `docker inspect` (the smoke test checks this).
+Setting both `DATABASE_URL` and `DATABASE_URL_FILE` (or the `JWT_SECRET`
+pair), or an empty or unreadable file, stops the container with a settings
+error that names the variable and path, never the value.
 
 ## 4. Cloudflare Tunnel
 
@@ -204,15 +204,15 @@ header:
 
 - Cloudflare's edge sets `CF-Connecting-IP` to the client address and
   appends it to `X-Forwarded-For`. cloudflared passes both through.
-- uvicorn (`--proxy-headers`) honors `X-Forwarded-For` only from peers in
-  `FORWARDED_ALLOW_IPS` (here the backend subnet, which only our containers
-  join) and takes the rightmost untrusted address: the one Cloudflare
-  appended. A client cannot pick its own address by sending a fake
-  `X-Forwarded-For`, because Cloudflare's entry is always last.
-- `CF-Connecting-IP` is the header Cloudflare documents as the client
-  address, and it is a single value. Reading it would remove the dependence
-  on `X-Forwarded-For` ordering; that is an api change, listed in
-  [Follow-ups](#follow-ups).
+- The api runs with `CLIENT_IP_SOURCE=cf-connecting-ip` and
+  `TRUSTED_PROXY_CIDRS=${BACKEND_SUBNET}`: it uses `CF-Connecting-IP` only
+  when the TCP peer is in the backend subnet (which only our containers
+  join) and the header is exactly one valid IP address. From any other peer,
+  or with a missing or malformed header, it falls back to the peer, so a
+  client cannot pick its own bucket.
+- `FORWARDED_ALLOW_IPS` stays at the image default (`127.0.0.1`), so uvicorn
+  does not rewrite the peer from `X-Forwarded-For` before the api checks it.
+  `X-Forwarded-For` ordering plays no part.
 
 ## 5. Check it
 
@@ -332,32 +332,19 @@ explicitly with `docker build --platform linux/arm64 services/api`.
 
 ## Troubleshooting
 
-| Symptom                                                                             | Likely cause and fix                                                                                                                       |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `docker compose up` fails with `Pool overlaps with other one on this address space` | `BACKEND_SUBNET` collides with another network. Pick a free one ([section 2](#2-get-the-deploy-files)).                                    |
-| api never starts; `migrate` shows `Exited (1)`                                      | `docker compose logs migrate`. Usually a wrong `database_url` or a failing migration.                                                      |
-| api restarts with a settings error                                                  | `docker compose logs api`. `ENV=production requires CORS_ORIGINS…`, `JWT_SECRET must have at least 32 bytes`, or `secret-env: … is empty`. |
-| `password authentication failed`                                                    | `postgres_password` and `database_url` disagree, or the password changed after the first start (see [section 3](#3-create-the-secrets)).   |
-| Tunnel shows _Inactive_ in the dashboard                                            | `docker compose logs cloudflared`: bad token, or the api is not healthy yet (cloudflared waits for it).                                    |
-| Browser shows a TLS error for the hostname                                          | Two-level subdomain; use a single-level one ([section 4](#4-cloudflare-tunnel)).                                                           |
-| Browser calls fail with a CORS error                                                | The web origin is missing from `CORS_ORIGINS`; edit `.env`, then `docker compose up -d`.                                                   |
-| Every client shares one rate-limit bucket                                           | Forwarded headers are not trusted: the peer is outside `BACKEND_SUBNET`. Check `docker network inspect english-learn_backend`.             |
-| Backup log: `BACKUP_DIR is not a writable directory`                                | `${DATA_DIR}/backups` is not owned by uid 10001 ([section 1](#1-prepare-the-pi)).                                                          |
+| Symptom                                                                             | Likely cause and fix                                                                                                                                   |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `docker compose up` fails with `Pool overlaps with other one on this address space` | `BACKEND_SUBNET` collides with another network. Pick a free one ([section 2](#2-get-the-deploy-files)).                                                |
+| api never starts; `migrate` shows `Exited (1)`                                      | `docker compose logs migrate`. Usually a wrong `database_url` or a failing migration.                                                                  |
+| api restarts with a settings error                                                  | `docker compose logs api`. `ENV=production requires CORS_ORIGINS…`, `JWT_SECRET must have at least 32 bytes`, or `JWT_SECRET_FILE: … is empty`.        |
+| `password authentication failed`                                                    | `postgres_password` and `database_url` disagree, or the password changed after the first start (see [section 3](#3-create-the-secrets)).               |
+| Tunnel shows _Inactive_ in the dashboard                                            | `docker compose logs cloudflared`: bad token, or the api is not healthy yet (cloudflared waits for it).                                                |
+| Browser shows a TLS error for the hostname                                          | Two-level subdomain; use a single-level one ([section 4](#4-cloudflare-tunnel)).                                                                       |
+| Browser calls fail with a CORS error                                                | The web origin is missing from `CORS_ORIGINS`; edit `.env`, then `docker compose up -d`.                                                               |
+| Every client shares one rate-limit bucket                                           | `CF-Connecting-IP` is not trusted: the peer is outside `TRUSTED_PROXY_CIDRS` (`BACKEND_SUBNET`). Check `docker network inspect english-learn_backend`. |
+| Backup log: `BACKUP_DIR is not a writable directory`                                | `${DATA_DIR}/backups` is not owned by uid 10001 ([section 1](#1-prepare-the-pi)).                                                                      |
 
 ## Follow-ups
-
-Required in the api (`services/api`), not done here:
-
-- [ ] **`*_FILE` secrets.** Read `DATABASE_URL_FILE` and `JWT_SECRET_FILE`
-      (trailing newline trimmed) before falling back to the plain variables,
-      for `DatabaseSettings` and `Settings` alike (alembic uses the former).
-      pydantic-settings' `secrets_dir="/run/secrets"` is an alternative with
-      no parsing code, but ties file names to field names. Then delete the
-      `secret-env` entrypoint from `compose.yml` (keep the `*_FILE` variables).
-- [ ] **Client IP from `CF-Connecting-IP`.** Behind Cloudflare, take the
-      client address from `CF-Connecting-IP` when the peer is a trusted proxy,
-      instead of relying on the order of `X-Forwarded-For`
-      ([Client IPs](#client-ips-behind-the-tunnel)).
 
 Operations:
 

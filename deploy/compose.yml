@@ -9,8 +9,8 @@
 #   tunnel  (outbound allowed):       cloudflared (Cloudflare's edge)
 # No service publishes a port; the only way in is the Cloudflare Tunnel.
 # api and cloudflared share only `backend`, whose subnet is pinned, so the
-# tunnel always reaches the api from BACKEND_SUBNET: the one range the api
-# trusts for X-Forwarded-For (FORWARDED_ALLOW_IPS).
+# tunnel always reaches the api from BACKEND_SUBNET: the one range whose
+# CF-Connecting-IP header the api trusts (TRUSTED_PROXY_CIDRS).
 #
 # The Pi also runs finance-tracker and monogestor: limits keep this stack
 # under ~1.5 GB even at its worst (migrate and the backup drill running);
@@ -27,29 +27,6 @@ x-hardening: &hardening
   read_only: true
   cap_drop: [ALL]
   security_opt: ["no-new-privileges:true"]
-
-# The api reads DATABASE_URL and JWT_SECRET from the environment only (no
-# *_FILE support yet, see docs/deploy.md#follow-ups). This entrypoint loads
-# the Docker secret files named by the *_FILE variables into the environment
-# of the process it then execs, so the values never appear in compose.yml,
-# .env or `docker inspect`. Delete it once the api reads *_FILE itself.
-x-secret-env: &secret-env
-  entrypoint:
-    - /bin/sh
-    - -c
-    - |
-      set -eu
-      load() {
-        [ -n "$$2" ] || return 0
-        value=$$(cat "$$2")
-        [ -n "$$value" ] || { echo "secret-env: $$2 is empty" >&2; exit 1; }
-        export "$$1=$$value"
-      }
-      load DATABASE_URL "$${DATABASE_URL_FILE:-}"
-      load JWT_SECRET "$${JWT_SECRET_FILE:-}"
-      unset value
-      exec "$$@"
-    - secret-env
 
 services:
   postgres:
@@ -82,7 +59,7 @@ services:
   # (on `up -d` after a pull) instead of starting new code on an old schema.
   migrate:
     image: ghcr.io/${GHCR_OWNER:?set GHCR_OWNER in .env}/english-learn-api:${IMAGE_TAG:-latest}
-    <<: [*hardening, *secret-env]
+    <<: *hardening
     command: ["alembic", "upgrade", "head"]
     restart: "no"
     environment:
@@ -100,16 +77,7 @@ services:
   api:
     image: ghcr.io/${GHCR_OWNER:?set GHCR_OWNER in .env}/english-learn-api:${IMAGE_TAG:-latest}
     restart: unless-stopped
-    <<: [*hardening, *secret-env]
-    # The image's CMD, spelled out: overriding the entrypoint clears it.
-    command:
-      - uvicorn
-      - english_learn_api.main:app_from_env
-      - --factory
-      - --host=0.0.0.0
-      - --port=8000
-      - --proxy-headers
-      - --no-access-log
+    <<: *hardening
     tmpfs:
       - /tmp
     environment:
@@ -117,7 +85,7 @@ services:
       # production: no /docs, and CORS_ORIGINS must be explicit https origins.
       ENV: production
       # The full DSN (with the password) and the JWT signing key live in
-      # secret files, loaded by the secret-env entrypoint above.
+      # secret files; the api reads the files named by *_FILE itself.
       DATABASE_URL_FILE: /run/secrets/database_url
       JWT_SECRET_FILE: /run/secrets/jwt_secret
       CORS_ORIGINS: ${CORS_ORIGINS:?set CORS_ORIGINS in .env}
@@ -125,9 +93,12 @@ services:
       REFRESH_COOKIE_SECURE: "true"
       # Public OAuth client ids (not secrets) accepted as the ID token audience.
       GOOGLE_CLIENT_IDS: ${GOOGLE_CLIENT_IDS:?set GOOGLE_CLIENT_IDS in .env}
-      # Read by uvicorn: X-Forwarded-For is trusted only from cloudflared,
-      # which always connects from the backend subnet (see the header).
-      FORWARDED_ALLOW_IPS: ${BACKEND_SUBNET:-10.217.0.0/24}
+      # Client IP for the per-IP rate limits: CF-Connecting-IP, trusted only
+      # from cloudflared, which always connects from the backend subnet (see
+      # the header). FORWARDED_ALLOW_IPS keeps the image default (127.0.0.1):
+      # uvicorn must not replace the TCP peer before the api checks it.
+      CLIENT_IP_SOURCE: cf-connecting-ip
+      TRUSTED_PROXY_CIDRS: ${BACKEND_SUBNET:-10.217.0.0/24}
     secrets: [database_url, jwt_secret]
     depends_on:
       postgres:

@@ -34,6 +34,11 @@ from english_learn_api.auth.infrastructure.jwt_access_tokens import JwtAccessTok
 from english_learn_api.auth.infrastructure.sqlalchemy_unit_of_work import SqlAlchemyUnitOfWork
 from english_learn_api.health.api import build_health_router
 from english_learn_api.settings import Settings
+from english_learn_api.shared.client_ip import (
+    ClientIpResolver,
+    cf_connecting_ip,
+    socket_client_ip,
+)
 from english_learn_api.shared.clock import Clock, SystemClock
 from english_learn_api.shared.database import create_engine, create_session_factory
 from english_learn_api.shared.errors import install_error_handlers
@@ -89,6 +94,7 @@ def create_app(
     def sync_unit_of_work() -> SqlAlchemySyncUnitOfWork:
         return SqlAlchemySyncUnitOfWork(session_factory)
 
+    client_ip = client_ip_resolver(settings)
     jwt_keys, active_kid = settings.jwt_signing_keys()
     access_tokens = JwtAccessTokens(
         keys=jwt_keys, active_kid=active_kid, ttl=settings.access_token_ttl
@@ -133,9 +139,9 @@ def create_app(
                 retry_grace=settings.refresh_retry_grace,
             ),
             logout=Logout(unit_of_work=unit_of_work, clock=clock),
-            sign_in_limit=limit_by_client_ip(TokenBucketLimiter(limits.sign_in)),
-            refresh_limit=limit_by_client_ip(TokenBucketLimiter(limits.refresh)),
-            logout_limit=limit_by_client_ip(TokenBucketLimiter(limits.logout)),
+            sign_in_limit=limit_by_client_ip(TokenBucketLimiter(limits.sign_in), client_ip),
+            refresh_limit=limit_by_client_ip(TokenBucketLimiter(limits.refresh), client_ip),
+            logout_limit=limit_by_client_ip(TokenBucketLimiter(limits.logout), client_ip),
             clock=clock,
             cookies=RefreshCookies(secure=settings.refresh_cookie_secure),
             allowed_origins=frozenset(settings.cors_origins),
@@ -176,6 +182,13 @@ def create_app(
         max_age=600,
     )
     return app
+
+
+def client_ip_resolver(settings: Settings) -> ClientIpResolver:
+    """The single source of client addresses: every per-IP limit (and any IP logging) uses it."""
+    if settings.client_ip_source == "cf-connecting-ip":
+        return cf_connecting_ip(settings.trusted_proxy_cidrs)
+    return socket_client_ip
 
 
 def app_from_env() -> FastAPI:
