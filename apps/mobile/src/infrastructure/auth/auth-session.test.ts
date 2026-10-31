@@ -197,6 +197,28 @@ describe("createAuthSession", () => {
     expect(settings.account()).toBeNull();
   });
 
+  it("reports signed out only once this device forgot the account", async () => {
+    // Otherwise a reload right after "signed out" could restore the session from the marker.
+    const { session, settings } = setup();
+    await session.signIn("id-token", "nonce-1");
+    let release!: () => void;
+    const clearAccount = settings.clearAccount;
+    settings.clearAccount = () =>
+      new Promise<void>((resolve) => {
+        release = () => void clearAccount().then(resolve);
+      });
+
+    const signingOut = session.signOut();
+    while (release === undefined) await Promise.resolve();
+    expect(session.getState().status).toBe("signed-in");
+    expect(session.accessToken()).toBeNull();
+    release();
+    await signingOut;
+
+    expect(session.getState()).toEqual({ status: "signed-out" });
+    expect(settings.account()).toBeNull();
+  });
+
   it("signs out locally even when the server cannot be reached", async () => {
     const api = fakeApi({
       logout: jest.fn(async () => {

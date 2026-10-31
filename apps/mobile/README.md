@@ -449,9 +449,11 @@ offline (`context.setOffline`), reloads `/` and opens `/lesson/a2.daily-routine.
 app renders with its SQLite data, `crossOriginIsolated` is true, fonts and sounds come from the
 worker with no failed request, the tap and feedback sounds really play (`__e2e.playedSounds`)
 and a fetch of a non-precached URL fails (proof it is offline).
-The update test sets the cookie `e2e-sw-version=2`; the test server, started with `--e2e-hooks`
-(Playwright's `webServer` only), then appends a comment to `/sw.js` for that profile only, which
-the browser treats as a new deploy. Specs that write and reload at once call
+The update test starts its own server (`createStaticServer` with `serviceWorkerVersion`) on its
+own origin, then bumps the version so `/sw.js` gets a comment appended for every request, which
+the browser treats as a new deploy. It cannot key the deploy on a cookie: WebKit checks `sw.js`
+again about a second after each navigation without sending cookies, so a cookie-keyed deploy
+looked rolled back and was offered again after "Actualizar". Specs that write and reload at once call
 `waitForServiceWorker` first so the first visit's precaching does not slow the write down.
 
 First-time Playwright setup: `pnpm exec playwright install chromium webkit`. Every spec runs on

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Serves the static web export (dist/) like a production host would: SPA fallback to
 // index.html plus the cross-origin isolation headers expo-sqlite needs (SharedArrayBuffer).
-// Usage: node scripts/serve-web.mjs [--port 4173] [--dir dist-e2e] [--e2e-hooks]   (or PORT=4173)
+// Usage: node scripts/serve-web.mjs [--port 4173] [--dir dist-e2e]   (or PORT=4173)
 import { createReadStream } from "node:fs";
 import { readFile, stat } from "node:fs/promises";
 import { createServer } from "node:http";
@@ -57,17 +57,16 @@ function isNavigation(req) {
 }
 
 /**
- * E2E hook (`--e2e-hooks`): a request for /sw.js with the cookie `e2e-sw-version=N` gets the
- * worker plus a comment, i.e. different bytes, which the browser treats as a new deploy. A
- * cookie is per browser profile, so one test can simulate an update without touching others.
+ * Creates (does not start) the server for the export in `dir`.
+ *
+ * E2E hook: while `serviceWorkerVersion()` returns a version, /sw.js gets a comment appended,
+ * i.e. different bytes, which the browser treats as a new deploy. It holds for every request
+ * (WebKit's soft update after a navigation carries no cookies), so an update test runs its own
+ * server, on its own origin, without touching the other tests.
+ *
+ * @param {{ dir: string, serviceWorkerVersion?: () => string | null }} options
  */
-function e2eServiceWorkerVersion(req, pathname) {
-  if (pathname !== "/sw.js") return null;
-  return /(?:^|;\s*)e2e-sw-version=(\w+)/.exec(req.headers.cookie ?? "")?.[1] ?? null;
-}
-
-/** Creates (does not start) the server for the export in `dir`. */
-export function createStaticServer({ dir, e2eHooks = false }) {
+export function createStaticServer({ dir, serviceWorkerVersion = () => null }) {
   const root = resolve(dir);
   return createServer(async (req, res) => {
     if (req.method !== "GET" && req.method !== "HEAD") {
@@ -96,7 +95,7 @@ export function createStaticServer({ dir, e2eHooks = false }) {
       res.writeHead(200, headers).end();
       return;
     }
-    const swVersion = e2eHooks ? e2eServiceWorkerVersion(req, pathname) : null;
+    const swVersion = pathname === "/sw.js" ? serviceWorkerVersion() : null;
     if (swVersion !== null) {
       const source = await readFile(file, "utf8");
       res.writeHead(200, headers).end(`${source}\n// e2e-sw-version ${swVersion}\n`);
@@ -124,8 +123,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   );
   const portFlag = process.argv.indexOf("--port");
   const port = Number(portFlag === -1 ? (process.env.PORT ?? 4173) : process.argv[portFlag + 1]);
-  const e2eHooks = process.argv.includes("--e2e-hooks");
-  createStaticServer({ dir, e2eHooks }).listen(port, () => {
+  createStaticServer({ dir }).listen(port, () => {
     console.log(`Serving ${resolve(dir)} at http://localhost:${port}`);
   });
 }

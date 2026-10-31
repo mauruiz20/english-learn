@@ -57,7 +57,7 @@ export function createAccountController({
   /** This page's origin; Google sends the learner back to `<origin>/auth/callback`. */
   origin: string;
   session: Pick<AuthSession, "signIn" | "signOut" | "forget" | "authorized" | "getState">;
-  coordinator: Pick<SyncCoordinator, "request" | "reset">;
+  coordinator: Pick<SyncCoordinator, "request" | "stop" | "resume">;
   store: { resetSyncState(): Promise<void>; clearProgress(): Promise<void> };
   /** `DELETE /v1/account` with the current access token. */
   deleteAccount: () => Promise<void>;
@@ -96,8 +96,9 @@ export function createAccountController({
 
   /** After deletion the server has nothing: forget the session, keep the progress unsynced. */
   async function afterDeletion(): Promise<void> {
+    // A sync in flight must not mark the log synced again after the reset.
+    await coordinator.stop();
     session.forget();
-    coordinator.reset();
     await store.resetSyncState();
   }
 
@@ -147,15 +148,23 @@ export function createAccountController({
       return signIn.returnTo;
     },
 
+    /**
+     * Stops the sync (a sync in flight would bring deleted progress back, or mark the kept one
+     * synced again), resets or deletes this device's progress, and only then ends the session:
+     * the screen shows "signed out" once the device is done, so a reload right away cannot cut
+     * the deletion short. When the store fails, the learner stays signed in and syncing.
+     */
     async signOut({ keepLocalProgress }: { keepLocalProgress: boolean }): Promise<void> {
-      await session.signOut();
-      coordinator.reset();
-      if (keepLocalProgress) {
-        await store.resetSyncState();
-      } else {
-        await store.clearProgress();
-        onProgressChanged();
+      await coordinator.stop();
+      try {
+        if (keepLocalProgress) await store.resetSyncState();
+        else await store.clearProgress();
+      } catch (error) {
+        coordinator.resume();
+        throw error;
       }
+      await session.signOut();
+      if (!keepLocalProgress) onProgressChanged();
     },
 
     /** "redirecting": the API wants a recent sign-in; deletion resumes after Google. */

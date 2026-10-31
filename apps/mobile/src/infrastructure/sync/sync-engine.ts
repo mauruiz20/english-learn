@@ -35,6 +35,8 @@ export type SyncOutcome =
     }
   | { readonly kind: "offline" }
   | { readonly kind: "signed-out" }
+  /** Stopped through the abort signal (signing out): nothing was written after that. */
+  | { readonly kind: "cancelled" }
   | { readonly kind: "error"; readonly message: string };
 
 /** The API's limits: 500 events per upload and a 1 MiB body; we stay well under the latter. */
@@ -78,6 +80,10 @@ class SyncStop extends Error {
 
 const isNetworkError = (error: unknown) => !(error instanceof ApiError);
 
+function stopIfCancelled(signal: AbortSignal | undefined): void {
+  if (signal?.aborted) throw new SyncStop({ kind: "cancelled" });
+}
+
 function describe(error: unknown): string {
   if (error instanceof ApiError) return `${error.code}: ${error.message}`;
   return error instanceof Error ? error.message : String(error);
@@ -93,15 +99,22 @@ function describe(error: unknown): string {
  * Failures: network errors and 5xx back off exponentially with jitter (5 attempts), 429 waits
  * `Retry-After`, 401 refreshes the session once, 409 `device_conflict` takes a new device id once,
  * and conflicting event ids are only logged (the server keeps the first version).
+ *
+ * `run(signal)`: once `signal` aborts (signing out), no request is sent and nothing is written,
+ * not even from an answer already on its way; a backoff stops waiting. The run ends `cancelled`.
  */
 export function createSyncEngine(deps: SyncEngineDeps) {
   const { api, store } = deps;
 
-  async function send(request: Omit<SyncRequest, "deviceId">): Promise<SyncResponse> {
+  async function send(
+    request: Omit<SyncRequest, "deviceId">,
+    signal: AbortSignal | undefined,
+  ): Promise<SyncResponse> {
     let refreshed = false;
     let replacedDevice = false;
     let attempt = 0;
     for (;;) {
+      stopIfCancelled(signal);
       if (!deps.isOnline()) throw new SyncStop({ kind: "offline" });
       attempt += 1;
       try {
@@ -133,7 +146,7 @@ export function createSyncEngine(deps: SyncEngineDeps) {
               : { kind: "error", message: describe(error) },
           );
         }
-        await deps.sleep(delayFor(error, attempt));
+        await sleepUnlessCancelled(delayFor(error, attempt), signal);
       }
     }
   }
@@ -151,7 +164,22 @@ export function createSyncEngine(deps: SyncEngineDeps) {
     return Math.round(exponential * (0.5 + deps.random() * 0.5));
   }
 
-  async function run(): Promise<SyncOutcome> {
+  /** Waits `ms`, or less when cancelled meanwhile. */
+  function sleepUnlessCancelled(ms: number, signal: AbortSignal | undefined): Promise<void> {
+    if (signal === undefined) return deps.sleep(ms);
+    return new Promise<void>((resolve) => {
+      const done = () => {
+        signal.removeEventListener("abort", done);
+        resolve();
+      };
+      signal.addEventListener("abort", done);
+      if (signal.aborted) done();
+      void deps.sleep(ms).then(done, done);
+    });
+  }
+
+  async function run(signal?: AbortSignal): Promise<SyncOutcome> {
+    if (signal?.aborted) return { kind: "cancelled" };
     if (!deps.isOnline()) return { kind: "offline" };
     let uploaded = 0;
     let downloaded = 0;
@@ -159,13 +187,16 @@ export function createSyncEngine(deps: SyncEngineDeps) {
       for (let round = 0; round < MAX_ROUNDS; round += 1) {
         const batch = takeBatch(await store.getUnsyncedEvents(MAX_BATCH_EVENTS));
         const cursor = await store.getSyncCursor();
-        const response = await send({
-          cursor: cursor > 0 ? cursor : null,
-          events: batch.map(toWire),
-        });
+        const response = await send(
+          { cursor: cursor > 0 ? cursor : null, events: batch.map(toWire) },
+          signal,
+        );
+        // Signed out while waiting: the answer must not refill or re-mark the log.
+        stopIfCancelled(signal);
 
         if (response.events.length > 0) {
           downloaded += await store.insertRemoteEvents(response.events);
+          stopIfCancelled(signal);
         }
         if (batch.length > 0) {
           await store.markSynced(
@@ -173,6 +204,7 @@ export function createSyncEngine(deps: SyncEngineDeps) {
             batch.map(() => null),
           );
           uploaded += batch.length;
+          stopIfCancelled(signal);
         }
         await store.setSyncCursor(response.cursor);
         if (response.conflicts.length > 0) {

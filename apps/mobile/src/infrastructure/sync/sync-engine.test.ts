@@ -26,7 +26,14 @@ const page = (overrides: Partial<SyncResponse> = {}): SyncResponse => ({
 
 type Answer = SyncResponse | Error | ((request: SyncRequest) => SyncResponse);
 
-function setup(options: { local?: StoredEvent[]; answers?: Answer[]; online?: boolean } = {}) {
+function setup(
+  options: {
+    local?: StoredEvent[];
+    answers?: Answer[];
+    online?: boolean;
+    sleep?: SyncEngineDeps["sleep"];
+  } = {},
+) {
   const store = createFakeSyncStore({ local: options.local ?? [], deviceId: "device-a" });
   const requests: SyncRequest[] = [];
   const answers = [...(options.answers ?? [])];
@@ -43,9 +50,11 @@ function setup(options: { local?: StoredEvent[]; answers?: Answer[]; online?: bo
     store,
     refreshSession: jest.fn(async () => true),
     newDeviceId: () => "device-new",
-    sleep: async (ms) => {
-      sleeps.push(ms);
-    },
+    sleep:
+      options.sleep ??
+      (async (ms) => {
+        sleeps.push(ms);
+      }),
     random: () => 0.5,
     isOnline: () => options.online ?? true,
   };
@@ -238,5 +247,49 @@ describe("createSyncEngine", () => {
     const engine = createSyncEngine({ ...deps, isOnline: () => online });
 
     expect(await engine.run()).toEqual({ kind: "offline" });
+  });
+
+  describe("when cancelled (signed out)", () => {
+    it("does not call the API", async () => {
+      const { engine, requests } = setup({ local: [event(1)] });
+      const controller = new AbortController();
+      controller.abort();
+
+      expect(await engine.run(controller.signal)).toEqual({ kind: "cancelled" });
+      expect(requests).toEqual([]);
+    });
+
+    it("writes nothing from an answer that arrives after", async () => {
+      const controller = new AbortController();
+      const { engine, store } = setup({
+        local: [event(1)],
+        answers: [
+          () => {
+            controller.abort();
+            return page({ events: [remote(2)], cursor: 7, accepted: 1 });
+          },
+        ],
+      });
+
+      expect(await engine.run(controller.signal)).toEqual({ kind: "cancelled" });
+      expect(store.remoteIds()).toEqual([]);
+      expect(store.unsynced()).toEqual([event(1).id]);
+      expect(await store.getSyncCursor()).toBe(0);
+    });
+
+    it("stops waiting out a backoff and does not retry", async () => {
+      const controller = new AbortController();
+      const { engine, requests } = setup({
+        answers: [new TypeError("Failed to fetch")],
+        // Signed out during a backoff that would never end by itself.
+        sleep: () => {
+          controller.abort();
+          return new Promise(() => {});
+        },
+      });
+
+      expect(await engine.run(controller.signal)).toEqual({ kind: "cancelled" });
+      expect(requests).toHaveLength(1);
+    });
   });
 });

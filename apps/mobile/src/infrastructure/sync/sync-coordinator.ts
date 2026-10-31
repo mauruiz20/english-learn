@@ -12,7 +12,8 @@ export type SyncStatus =
 /**
  * Runs the sync engine one sync at a time and keeps its status. A request that arrives while a
  * sync runs is not lost: the sync runs once more afterwards (a session completed mid-sync gets
- * uploaded), and every caller waits for that.
+ * uploaded), and every caller waits for that. `stop()` (signing out) cancels the sync in flight
+ * and ignores requests until `resume()` (signing in).
  */
 export function createSyncCoordinator({
   engine,
@@ -20,7 +21,7 @@ export function createSyncCoordinator({
   onProgressChanged,
   onSignedOut,
 }: {
-  engine: { run(): Promise<SyncOutcome> };
+  engine: { run(signal?: AbortSignal): Promise<SyncOutcome> };
   now?: () => number;
   /** Events from another device arrived: screens reload their progress. */
   onProgressChanged: () => void;
@@ -30,6 +31,8 @@ export function createSyncCoordinator({
   let status: SyncStatus = { kind: "idle" };
   let running: Promise<void> | null = null;
   let again = false;
+  let stopped = false;
+  let cancel = new AbortController();
   const listeners = new Set<() => void>();
 
   const setStatus = (next: SyncStatus) => {
@@ -41,8 +44,12 @@ export function createSyncCoordinator({
     do {
       again = false;
       setStatus({ kind: "syncing" });
-      const outcome = await engine.run();
+      const outcome = await engine.run(cancel.signal);
       switch (outcome.kind) {
+        case "cancelled":
+          // `stop()` cleared `again`: only a request after `resume()` runs once more.
+          setStatus({ kind: "idle" });
+          break;
         case "synced":
           setStatus({ kind: "synced", at: now() });
           if (outcome.changed) onProgressChanged();
@@ -70,6 +77,7 @@ export function createSyncCoordinator({
     },
     /** Syncs now, or once more right after the sync in progress. */
     request(): Promise<void> {
+      if (stopped) return Promise.resolve();
       if (running !== null) {
         again = true;
         return running;
@@ -79,10 +87,22 @@ export function createSyncCoordinator({
       });
       return running;
     },
-    /** Back to idle (after signing out). */
-    reset(): void {
+    /**
+     * Signing out: cancels the sync in flight and resolves once it has ended, so nothing it
+     * receives afterwards reaches the store. Requests are ignored until `resume()`.
+     */
+    async stop(): Promise<void> {
+      stopped = true;
       again = false;
-      setStatus({ kind: "idle" });
+      cancel.abort();
+      await running;
+      if (status.kind !== "idle") setStatus({ kind: "idle" });
+    },
+    /** Signed in (again): requests sync again. */
+    resume(): void {
+      if (!stopped) return;
+      stopped = false;
+      cancel = new AbortController();
     },
   };
 }
