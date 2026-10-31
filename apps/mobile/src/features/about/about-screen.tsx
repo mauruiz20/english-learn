@@ -1,8 +1,10 @@
+import { Link } from "expo-router";
 import { Linking, StyleSheet, View } from "react-native";
 import { Doodle } from "@/shared/ui/doodle";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
-import { TOUCH_TARGET, spacing } from "@/shared/ui/theme";
+import { TOUCH_TARGET, fonts, spacing } from "@/shared/ui/theme";
+import { useTheme } from "@/shared/ui/use-theme";
 
 const TATOEBA_URL = "https://tatoeba.org";
 const LICENSE_URL = "https://creativecommons.org/licenses/by/2.0/fr/";
@@ -22,6 +24,7 @@ function ExternalLink({ url, label }: { url: string; label: string }) {
 }
 
 export function AboutScreen() {
+  const { colors } = useTheme();
   return (
     <ScreenContainer title="Acerca de">
       <Doodle name="pencil" />
@@ -40,6 +43,10 @@ export function AboutScreen() {
           <ExternalLink url={LICENSE_URL} label="Licencia CC BY 2.0 FR" />
         </View>
       </View>
+
+      <Link href="/privacidad" style={[styles.link, { color: colors.ink, fontFamily: fonts.body }]}>
+        Política de privacidad
+      </Link>
     </ScreenContainer>
   );
 }

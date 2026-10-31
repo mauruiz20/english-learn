@@ -230,13 +230,13 @@ describe("createSyncEngine", () => {
 
   it("reports offline when the connection drops mid-sync", async () => {
     let online = true;
-    const { engine, deps } = setup({ answers: [new TypeError("Failed to fetch")] });
-    deps.isOnline = () => online;
+    const { deps } = setup();
     jest.mocked(deps.api.sync).mockImplementationOnce(async () => {
       online = false;
       throw new TypeError("Failed to fetch");
     });
+    const engine = createSyncEngine({ ...deps, isOnline: () => online });
 
-    expect(await createSyncEngine(deps).run()).toEqual({ kind: "offline" });
+    expect(await engine.run()).toEqual({ kind: "offline" });
   });
 });

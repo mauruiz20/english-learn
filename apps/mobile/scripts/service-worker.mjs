@@ -11,7 +11,10 @@
 // - activate: delete other versions' caches, then claim the open pages.
 // - navigations: network first (fresh deploys reach online learners), falling back to the
 //   cached app shell when offline, on a 5xx or after a timeout. Decided by `request.mode`, never
-//   by the path: lesson ids contain dots (`/lesson/a2.food.lesson-001`).
+//   by the path: lesson ids contain dots (`/lesson/a2.food.lesson-001`). Navigation responses
+//   are never stored, so `/auth/callback` (Google's sign-in redirect, whose ID token travels in
+//   the fragment that never reaches the worker or a server) always gets the app shell.
+// - other origins (the API) and non-GET requests: never touched, never cached.
 // - precached files: cache first (they are content-hashed), with byte-range support for media.
 // - everything else: left to the browser.
 // Every response it returns carries COOP/COEP, so the page stays cross-origin isolated

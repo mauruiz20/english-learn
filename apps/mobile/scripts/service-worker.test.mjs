@@ -235,6 +235,33 @@ describe("service worker", () => {
       }
     });
 
+    it("serves the Google sign-in callback as the app shell and never caches it", async () => {
+      // Google's redirect: the ID token is in the fragment, which never reaches the worker.
+      const request = navigation("/auth/callback#id_token=secret&state=s1");
+      assert.equal(new URL(request.url).hash, "#id_token=secret&state=s1");
+      const response = await scope.dispatch("fetch", { request });
+      assert.equal(await response.text(), SHELL_HTML);
+      assert.deepEqual(scope.fetched, ["/auth/callback"]);
+
+      scope.online = false;
+      const offline = await scope.dispatch("fetch", { request: navigation("/auth/callback") });
+      assert.equal(await offline.text(), SHELL_HTML);
+
+      const cache = await scope.caches.open("english-learn-precache-v1");
+      assert.equal(await cache.match("/auth/callback"), undefined);
+    });
+
+    it("leaves API calls (another origin, POST) to the browser", async () => {
+      const api = new Request("https://english-api.maumar.com.ar/v1/sync", {
+        method: "POST",
+        body: "{}",
+      });
+      assert.equal(await scope.dispatch("fetch", { request: api }), undefined);
+      const refresh = new Request("https://english-api.maumar.com.ar/v1/auth/refresh");
+      assert.equal(await scope.dispatch("fetch", { request: refresh }), undefined);
+      assert.deepEqual(scope.fetched, []);
+    });
+
     it("falls back to the app shell when the host fails (5xx)", async () => {
       scope.fetch = async () => new Response("Bad gateway", { status: 502 });
       const response = await scope.dispatch("fetch", { request: navigation("/") });

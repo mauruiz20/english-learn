@@ -10,6 +10,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AccountProvider } from "@/features/account/account-provider";
 import { UpdateBanner } from "@/features/app-update/update-banner";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { SoundToggle } from "@/features/sound/sound-toggle";
@@ -56,37 +57,46 @@ export default function RootLayout() {
       <SqliteAppServicesProvider>
         <SoundPreferenceProvider>
           <StatusBar style="auto" />
-          <Stack
-            screenOptions={{
-              headerStyle: { backgroundColor: colors.paper },
-              headerTintColor: colors.ink,
-              headerTitleStyle: { fontFamily: fonts.headingMedium, color: colors.ink },
-              headerShadowVisible: false,
-              contentStyle: { backgroundColor: colors.paper },
-              // On web the header lines up with the page's reading column; native keeps its own.
-              ...(Platform.OS === "web" && {
-                header: ({ back, options, route, navigation }) => (
-                  <NotebookHeader
-                    title={options.title ?? route.name}
-                    backTitle={back?.title}
-                    showBack={back !== undefined && options.headerBackVisible !== false}
-                    onBack={navigation.goBack}
-                    right={options.headerRight?.({
-                      tintColor: colors.ink,
-                      canGoBack: back !== undefined,
-                    })}
-                  />
-                ),
-              }),
-            }}
-          >
-            <Stack.Screen name="index" options={{ title: "Inicio", headerShown: false }} />
-            {/* Exercise screens keep the sound switch at hand, in the header. */}
-            <Stack.Screen name="placement" options={{ title: "Test de nivel", headerRight }} />
-            <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
-            <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
-            <Stack.Screen name="about" options={{ title: "Acerca de" }} />
-          </Stack>
+          {/* Optional Google account and progress sync (web, on the app's own site). */}
+          <AccountProvider>
+            <Stack
+              screenOptions={{
+                headerStyle: { backgroundColor: colors.paper },
+                headerTintColor: colors.ink,
+                headerTitleStyle: { fontFamily: fonts.headingMedium, color: colors.ink },
+                headerShadowVisible: false,
+                contentStyle: { backgroundColor: colors.paper },
+                // On web the header lines up with the page's reading column; native keeps its own.
+                ...(Platform.OS === "web" && {
+                  header: ({ back, options, route, navigation }) => (
+                    <NotebookHeader
+                      title={options.title ?? route.name}
+                      backTitle={back?.title}
+                      showBack={back !== undefined && options.headerBackVisible !== false}
+                      onBack={navigation.goBack}
+                      right={options.headerRight?.({
+                        tintColor: colors.ink,
+                        canGoBack: back !== undefined,
+                      })}
+                    />
+                  ),
+                }),
+              }}
+            >
+              <Stack.Screen name="index" options={{ title: "Inicio", headerShown: false }} />
+              {/* Exercise screens keep the sound switch at hand, in the header. */}
+              <Stack.Screen name="placement" options={{ title: "Test de nivel", headerRight }} />
+              <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
+              <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
+              <Stack.Screen name="about" options={{ title: "Acerca de" }} />
+              <Stack.Screen name="cuenta" options={{ title: "Cuenta" }} />
+              <Stack.Screen name="privacidad" options={{ title: "Privacidad" }} />
+              <Stack.Screen
+                name="auth/callback"
+                options={{ title: "Cuenta", headerBackVisible: false }}
+              />
+            </Stack>
+          </AccountProvider>
         </SoundPreferenceProvider>
       </SqliteAppServicesProvider>
     </GestureHandlerRootView>

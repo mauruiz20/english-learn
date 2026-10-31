@@ -1,4 +1,5 @@
 import { LEVELS, type Level } from "@english-learn/domain";
+import type { ReactNode } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { ExerciseBody } from "@/features/lesson/components/exercise-body";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
@@ -42,6 +43,8 @@ type PlacementViewProps = {
   onSubmit: (response: ExerciseResponse) => void;
   onRetrySave: () => void;
   onGoToLessons: () => void;
+  /** Shown at the end of the result page (e.g. the one-time "save your progress" note). */
+  resultNote?: ReactNode;
 };
 
 const TITLE = "Test de nivel";
@@ -79,6 +82,7 @@ export function PlacementView({
   onSubmit,
   onRetrySave,
   onGoToLessons,
+  resultNote,
 }: PlacementViewProps) {
   const styles = useStyles();
   const { colors } = useTheme();
@@ -175,6 +179,7 @@ export function PlacementView({
             desde el inicio.
           </Text>
           <Button label="Ir a mis lecciones" onPress={onGoToLessons} />
+          {resultNote}
         </ScreenContainer>
       );
   }

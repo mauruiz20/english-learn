@@ -24,7 +24,9 @@ function setup() {
       status: "signed-in" as const,
       account: { userId: "u1", email: "ana@example.com" },
     }),
-    authorized: jest.fn(<T>(call: (token: string | null) => Promise<T>) => call("access")),
+    authorized: jest.fn(async (call: (token: string | null) => Promise<unknown>) =>
+      call("access"),
+    ) as unknown as <T>(call: (token: string | null) => Promise<T>) => Promise<T>,
   };
   const coordinator = { request: jest.fn(async () => {}), reset: jest.fn() };
   const store = { resetSyncState: jest.fn(async () => {}), clearProgress: jest.fn(async () => {}) };

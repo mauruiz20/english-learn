@@ -16,7 +16,7 @@ const synced = (changed = false): SyncOutcome => ({
   downloaded: 0,
 });
 
-function setup(outcomes: Array<SyncOutcome | Promise<SyncOutcome>>) {
+function setup(outcomes: (SyncOutcome | Promise<SyncOutcome>)[]) {
   const run = jest.fn(async () => (await outcomes.shift()) ?? synced());
   const onProgressChanged = jest.fn();
   const onSignedOut = jest.fn();
