@@ -103,8 +103,16 @@ test.describe("account and sync", () => {
     await page.getByRole("radio", { name: /Borrarlo de este dispositivo/ }).click();
     await page.getByRole("button", { name: "Cerrar sesión ahora", exact: true }).click();
     await expect(page.getByRole("button", { name: "Continuar con Google" })).toBeVisible();
+    const syncsAtSignOut = account.syncs.length;
+    // A page load right away: "signed out" shows only once the deletion is committed (a load
+    // used to cut it short and the progress stayed). It reads the database: gone, not hidden.
     await goHome(page);
     await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
+    await page.reload();
+    await expect(page.getByLabel(/^Racha: /)).toBeVisible();
+    await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
+    // Nothing synced after signing out (that would bring the account's progress back).
+    expect(account.syncs).toHaveLength(syncsAtSignOut);
 
     // Still signed out after a reload: the session was revoked.
     await page.reload();

@@ -149,13 +149,21 @@ export function createAuthSession({
       }
     },
 
-    /** Revokes the session on the server (best effort) and forgets it on this device. */
+    /**
+     * Revokes the session on the server (best effort) and forgets it on this device; reports
+     * signed out once the account marker is gone, so a reload right after does not restore it.
+     */
     async signOut(): Promise<void> {
       try {
         await api.logout();
       } catch (error) {
         console.warn("Could not revoke the session on the server", error);
       }
+      generation += 1;
+      token = null;
+      await settings.clearAccount().catch((error: unknown) => {
+        console.error("Failed to forget the account", error);
+      });
       forget();
     },
 
