@@ -813,6 +813,18 @@
       ]
     },
     {
+      "id": "glossary.provided-that",
+      "headword": "provided that",
+      "kind": "phrase",
+      "forms": ["provided that"],
+      "senses": [
+        {
+          "es": "siempre que, con tal de que",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
       "id": "glossary.provoke",
       "headword": "provoke",
       "kind": "word",

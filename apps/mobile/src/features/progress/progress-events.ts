@@ -1,5 +1,7 @@
 import {
+  MAX_DISPUTED_ANSWER_LENGTH,
   uuidv7,
+  type AnswerDisputedEvent,
   type BaselineImportedEvent,
   type EventId,
   type Grade,
@@ -76,4 +78,26 @@ export function baselineImportedEvent(
   payload: Omit<BaselineImportedEvent["payload"], "v">,
 ): BaselineImportedEvent {
   return { ...envelope(stamp), type: "baseline_imported", payload: { v: 1, ...payload } };
+}
+
+/** A translate_write answer the learner marked as correct; `answer` is trimmed and capped. */
+export function answerDisputedEvent(
+  stamp: EventStamp,
+  dispute: {
+    readonly exerciseId: string;
+    readonly itemIds: readonly string[];
+    readonly answer: string;
+  },
+): AnswerDisputedEvent {
+  return {
+    ...envelope(stamp),
+    type: "answer_disputed",
+    payload: {
+      v: 1,
+      exerciseId: dispute.exerciseId,
+      itemIds: [...dispute.itemIds],
+      answer: dispute.answer.trim().slice(0, MAX_DISPUTED_ANSWER_LENGTH),
+      accepted: false,
+    },
+  };
 }

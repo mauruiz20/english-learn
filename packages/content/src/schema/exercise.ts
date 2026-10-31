@@ -73,7 +73,11 @@ export const TranslateWriteExerciseSchema = z.strictObject({
   type: z.literal("translate_write"),
   /** Spanish sentence to translate. */
   es: NonEmptyString,
-  /** Accepted English translations. */
+  /**
+   * Accepted English translations as answer patterns (`{a|b}` alternatives, `[x]` optional
+   * parts; see `expandPattern` in `@english-learn/domain`). The first sentence of the first
+   * entry is the reference answer. Checked by the answer-pattern rule.
+   */
   accepted: z.array(NonEmptyString).min(1),
 });
 

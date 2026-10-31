@@ -88,7 +88,9 @@
       "topics": ["daily-routine"],
       "title": "My day",
       "text": "My name is Ana. I wake up at six thirty every day. I have breakfast with my brother, and then I go to work by bus. My commute takes forty minutes. At night I usually go to bed at eleven.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -96,7 +98,9 @@
       "id": "a2.daily-routine.vocab-001",
       "itemIds": ["a2.daily-routine.wake-up"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'wake up' mean?",
       "options": ["dormirse", "acostarse", "levantar algo", "despertarse"],
@@ -106,7 +110,9 @@
       "id": "a2.daily-routine.cloze-001",
       "itemIds": ["a2.daily-routine.have-breakfast"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "I usually ___ breakfast at seven.",
       "answers": ["have"],
@@ -117,7 +123,9 @@
       "id": "a2.daily-routine.order-001",
       "itemIds": ["a2.daily-routine.usually", "a2.daily-routine.wake-up"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["wake", "at", "I", "six.", "usually", "up"],
       "accepted": ["I usually wake up at six.", "Usually I wake up at six."],
@@ -127,7 +135,9 @@
       "id": "a2.daily-routine.choice-001",
       "itemIds": ["a2.daily-routine.go-to-bed"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translation_choice",
       "sentence": "She goes to bed at eleven.",
       "options": [
@@ -141,7 +151,9 @@
       "id": "a2.daily-routine.reading-001",
       "itemIds": ["a2.daily-routine.commute", "a2.daily-routine.have-breakfast"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.daily-routine.my-day",
       "questions": [
@@ -161,27 +173,23 @@
       "id": "a2.daily-routine.write-001",
       "itemIds": ["a2.daily-routine.usually", "a2.daily-routine.go-to-bed"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Normalmente me voy a la cama a las once.",
       "accepted": [
-        "I usually go to bed at eleven.",
-        "I normally go to bed at eleven.",
-        "I usually go to bed at 11.",
-        "I normally go to bed at 11.",
-        "Usually I go to bed at eleven.",
-        "Normally I go to bed at eleven.",
-        "Usually I go to bed at 11.",
-        "Normally I go to bed at 11.",
-        "I usually go to bed at eleven o'clock.",
-        "I normally go to bed at eleven o'clock."
+        "I {usually|normally|generally} go to bed at {eleven|11}[ o'clock][ at night].",
+        "{Usually|Normally|Generally}[,] I go to bed at {eleven|11}[ o'clock][ at night]."
       ]
     },
     {
       "id": "a2.daily-routine.vocab-002",
       "itemIds": ["a2.daily-routine.get-dressed"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'get dressed' mean?",
       "options": ["desvestirse", "ducharse", "peinarse", "vestirse"],
@@ -246,7 +254,9 @@
       "id": "a2.daily-routine.vocab-003",
       "itemIds": ["a2.daily-routine.take-a-shower"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'ducharse'.",
       "options": ["take a break", "take a shower", "take a bus", "take a seat"],
@@ -285,14 +295,8 @@
       "type": "translate_write",
       "es": "Él lee el periódico todas las mañanas.",
       "accepted": [
-        "He reads the newspaper every morning.",
-        "He reads the paper every morning.",
-        "Every morning he reads the newspaper.",
-        "Every morning, he reads the newspaper.",
-        "He reads the newspaper each morning.",
-        "He reads the paper each morning.",
-        "Every morning he reads the paper.",
-        "Every morning, he reads the paper."
+        "He reads the {newspaper|paper} {every|each} morning.",
+        "{Every|Each} morning[,] he reads the {newspaper|paper}."
       ]
     }
   ],

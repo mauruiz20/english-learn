@@ -201,6 +201,18 @@
       ]
     },
     {
+      "id": "glossary.in-order-to",
+      "headword": "in order to",
+      "kind": "phrase",
+      "forms": ["in order to"],
+      "senses": [
+        {
+          "es": "para, con el fin de",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.in-time",
       "headword": "in time",
       "kind": "phrase",

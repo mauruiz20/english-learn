@@ -14,6 +14,19 @@ export type ItemOutcome = {
    * are unchanged.
    */
   readonly lookedUp?: boolean;
+  /**
+   * The learner marked this translate_write answer as correct after it was graded wrong or
+   * almost: `verdict` is "correct" and its review grade is 4 (see `finalGrades`).
+   */
+  readonly disputed?: boolean;
+};
+
+/** A translate_write answer the learner marked as correct (written as `answer_disputed`). */
+export type DisputedAnswer = {
+  readonly exerciseId: string;
+  readonly itemIds: readonly string[];
+  /** The answer as typed, trimmed. */
+  readonly answer: string;
 };
 
 export type LessonSummary = {
@@ -29,6 +42,8 @@ export type LessonSummary = {
   readonly answerXp: number;
   /** One outcome per item of every exercise (an item may appear several times). */
   readonly itemOutcomes: readonly ItemOutcome[];
+  /** Answers the learner marked as correct, in lesson order (absent: none). */
+  readonly disputes?: readonly DisputedAnswer[];
 };
 
 type Answered = {
@@ -36,6 +51,8 @@ type Answered = {
   readonly responseMs: number;
   /** Items of the exercise the learner had looked up before answering it. */
   readonly lookedUp: readonly string[];
+  /** Set when the learner marked the answer as correct: what they typed, trimmed. */
+  readonly disputedAnswer?: string;
 };
 
 /** What the session runs: a lesson, or e.g. a review with a synthetic id and title. */
@@ -63,6 +80,8 @@ export type LessonSessionState =
 export type LessonSessionAction =
   | { readonly type: "answer"; readonly response: ExerciseResponse; readonly responseMs: number }
   | { readonly type: "next" }
+  /** "Mi respuesta también es correcta": regrade the shown translate_write answer as correct. */
+  | { readonly type: "dispute" }
   /** The learner looked up a word that matches these items (any time before the session ends). */
   | { readonly type: "lookup"; readonly itemIds: readonly string[] };
 
@@ -84,7 +103,7 @@ function summarize({ lesson, exercises, answered }: Omit<InProgress, "lookedUp">
   const ratio = accuracy(verdicts);
   const answerXp = verdicts.reduce((sum, v) => sum + xpForAnswer(v), 0);
   const itemOutcomes = exercises.flatMap((exercise, i) => {
-    const { verdict, responseMs, lookedUp } = answered[i] ?? {
+    const { verdict, responseMs, lookedUp, disputedAnswer } = answered[i] ?? {
       verdict: "wrong",
       responseMs: 0,
       lookedUp: [],
@@ -95,9 +114,30 @@ function summarize({ lesson, exercises, answered }: Omit<InProgress, "lookedUp">
       verdict,
       responseMs,
       ...(lookedUp.includes(itemId) ? { lookedUp: true } : {}),
+      ...(disputedAnswer === undefined ? {} : { disputed: true }),
     }));
   });
-  return { lessonId: lesson.id, verdicts, accuracy: ratio, answerXp, itemOutcomes };
+  const disputes = exercises.flatMap((exercise, i) => {
+    const answer = answered[i]?.disputedAnswer;
+    return answer === undefined
+      ? []
+      : [{ exerciseId: exercise.id, itemIds: exercise.itemIds, answer }];
+  });
+  return { lessonId: lesson.id, verdicts, accuracy: ratio, answerXp, itemOutcomes, disputes };
+}
+
+/**
+ * The shown answer can be marked as correct: a translate_write answer graded wrong or almost,
+ * not already marked.
+ */
+export function canDispute(state: LessonSessionState): boolean {
+  return (
+    state.status === "feedback" &&
+    state.exercises[state.index]?.type === "translate_write" &&
+    state.response.kind === "text" &&
+    state.feedback.verdict !== "correct" &&
+    state.feedback.disputed !== true
+  );
 }
 
 /** Pure lesson flow: answering → feedback → (next exercise | finished). Invalid actions are ignored. */
@@ -127,6 +167,21 @@ export function lessonSessionReducer(
           responseMs: action.responseMs,
           lookedUp: exercise.itemIds.filter((id) => state.lookedUp.includes(id)),
         },
+      ],
+    };
+  }
+  if (action.type === "dispute") {
+    if (!canDispute(state) || state.status !== "feedback" || state.response.kind !== "text") {
+      return state;
+    }
+    const last = state.answered[state.answered.length - 1];
+    if (last === undefined) return state;
+    return {
+      ...state,
+      feedback: { ...state.feedback, verdict: "correct", disputed: true },
+      answered: [
+        ...state.answered.slice(0, -1),
+        { ...last, verdict: "correct", disputedAnswer: state.response.text.trim() },
       ],
     };
   }

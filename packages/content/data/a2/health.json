@@ -104,7 +104,9 @@
       "topics": ["health"],
       "title": "A bad week",
       "text": "Last Monday Elena woke up with a headache and a sore throat. She felt very tired, so she stayed in bed. On Tuesday she had a fever and went to the doctor. The doctor said she had a bad cold. He gave her some medicine and told her to rest and drink a lot of water. By Friday she felt much better and went back to work.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "a2.health.vocab-001",
       "itemIds": ["a2.health.headache"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'headache' mean?",
       "options": ["dolor de muelas", "dolor de espalda", "dolor de estómago", "dolor de cabeza"],
@@ -173,7 +177,9 @@
       "id": "a2.health.reading-001",
       "itemIds": ["a2.health.have-a-cold", "a2.health.rest", "a2.health.feel-better"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.health.bad-week",
       "questions": [
@@ -214,19 +220,15 @@
       },
       "type": "translate_write",
       "es": "Me resfrié.",
-      "accepted": [
-        "I have caught a cold.",
-        "I caught a cold.",
-        "I have a cold.",
-        "I've got a cold.",
-        "I got a cold."
-      ]
+      "accepted": ["I {have caught|caught|got} a cold.", "{I have|I've got} a cold."]
     },
     {
       "id": "a2.health.vocab-002",
       "itemIds": ["a2.health.tired"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'cansado'.",
       "options": ["bored", "tired", "sick", "sad"],
@@ -236,7 +238,9 @@
       "id": "a2.health.vocab-003",
       "itemIds": ["a2.health.feel-better"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'feel better' mean?",
       "options": ["sentirse peor", "sentirse solo", "sentirse cansado", "sentirse mejor"],
@@ -246,7 +250,9 @@
       "id": "a2.health.cloze-002",
       "itemIds": ["a2.health.should", "a2.health.tired"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "You ___ go to bed early. You look very tired.",
       "answers": ["should"],
@@ -257,7 +263,9 @@
       "id": "a2.health.cloze-003",
       "itemIds": ["a2.health.hurt"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "My back ___. I can't sit down.",
       "answers": ["hurts"],
@@ -318,15 +326,13 @@
       "id": "a2.health.write-002",
       "itemIds": ["a2.health.should", "a2.health.rest"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Deberías descansar y beber mucha agua.",
       "accepted": [
-        "You should rest and drink a lot of water.",
-        "You should rest and drink lots of water.",
-        "You should rest and drink plenty of water.",
-        "You should get some rest and drink a lot of water.",
-        "You should get some rest and drink lots of water."
+        "You {should|ought to} {rest|get some rest} and drink {a lot of|lots of|plenty of} water."
       ]
     }
   ],

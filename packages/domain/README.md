@@ -44,6 +44,34 @@ Both the input and every accepted answer go through the same pipeline:
 
 `closest` is the original text of the accepted answer with the smallest distance.
 
+### Answer patterns (`translate_write`)
+
+One `accepted` entry can stand for many sentences (`pattern.ts`):
+
+| Syntax        | Meaning                                              | Example                               |
+| ------------- | ---------------------------------------------------- | ------------------------------------- |
+| `{a\|b\|c}`   | exactly one alternative; an alternative may be empty | `It is {very \|}cold.`                |
+| `[x]`         | optional (the reading without it comes first)        | `I [really ]like it.`                 |
+| `[a\|b]`      | nothing, or one of the alternatives                  | `Thanks[ a lot\| so much].`           |
+| nesting       | groups nest freely                                   | `I get up {early\|at six[ o'clock]}.` |
+| `\` + char    | literal `{ } [ ] \| \`                               | `\{not a group\}`                     |
+| anything else | literal text                                         |                                       |
+
+Whitespace of each expansion is normalized (runs collapse, ends trimmed, no space before
+`.,!?;:`), so spaces may sit inside or outside the brackets. Expansions keep the alternatives'
+order without duplicates; the first expansion of the first entry is the reference answer shown
+after a wrong answer.
+
+- `expandPattern(pattern, limit = MAX_PATTERN_EXPANSIONS)`: `{ ok: true, expansions }` or
+  `{ ok: false, error }` (syntax error, or more than `limit` (2,000) sentences, detected by
+  counting before expanding).
+- `expandAccepted(accepted)`: every entry expanded, concatenated, deduplicated; memoized per array
+  (corpus arrays are stable), so an exercise expands once. An invalid entry counts as literal text
+  (the content validator forbids it).
+- `matchPatternAnswer(input, accepted)`: `matchAnswer` against `expandAccepted(accepted)`; `closest`
+  is the matching (or nearest) expansion. `matchAnswer` caches the canonical readings of an accepted
+  array (by identity) and stops at the first exact match.
+
 ## SRS (SM-2)
 
 - `review(state, grade, today)`: grade < 3 is a lapse (reps = 0, interval = 1 day, lapses + 1);
@@ -86,6 +114,7 @@ ids from different milliseconds sort by time). Every payload carries `v: 1`.
 | `session_completed`   | `sessionId, kind: "lesson" \| "review", lessonId?, answerXp, accuracy` | when a session is saved                   |
 | `placement_completed` | `level, theta`                                                         | when the placement test ends              |
 | `baseline_imported`   | `states, xp, streak, placement, completedLessonIds?`                   | once per device, migrating pre-event data |
+| `answer_disputed`     | `exerciseId, itemIds, answer (trimmed, ≤ 200 chars), accepted: false`  | with a session, per self-regraded answer  |
 
 The app applies worst-grade-wins and the looked-up cap (grade ≤ 3) **before** writing
 `item_reviewed`. The fold decides everything else, including the lesson bonus. All events of one
@@ -112,6 +141,7 @@ session carry the same `localDate` (the day it was completed), as the app used o
 | Streak           | `recordActivity` replayed over the sorted unique `localDate`s of `session_completed`, starting from the merged baseline streak                                    |
 | `activeDates`    | Sorted unique `localDate`s of `session_completed`                                                                                                                 |
 | Placement        | The last `placement_completed` or non-null baseline placement in fold order                                                                                       |
+| Disputed answers | `answer_disputed` is a known no-op: no state, no anomaly (content feedback for the owner; the session's own events carry the regrade)                             |
 | Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                               |
 | Baseline streaks | `longest` = max; `current` and `lastActiveDate` from the most recent `lastActiveDate` (larger `current` on a tie)                                                 |
 | Baseline lessons | `completedLessonIds` are unioned (no bonus for them later)                                                                                                        |

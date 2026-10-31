@@ -6,22 +6,44 @@ import {
   type SqlDatabase,
 } from "@english-learn/storage-sqlite";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  use,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import { Platform } from "react-native";
 import { createAppClock } from "../clock/app-clock";
 import { cryptoRandomBytes } from "../ids/crypto-random-bytes";
 import { AppErrorBoundary } from "../errors/app-error-boundary";
 import { AppServicesProvider, type AppServices } from "../services/app-services";
 import { createExpoSoundPlayer } from "../sound/expo-sound-player";
-import { awaitPendingWrites } from "./await-pending-writes";
+import { awaitPendingWrites, createWriteTracker, trackWrites } from "./await-pending-writes";
 import { DatabaseOpenError } from "./database-open-error";
 import type * as E2eProgress from "./e2e-progress";
 import type * as E2eSettingsWrites from "./e2e-settings-writes";
 import { initProgressStore } from "./init-progress-store";
+import type { ClaimResult, DatabaseOwnership } from "./ownership/database-ownership";
+import { OpenElsewhereScreen, ReleasedScreen } from "./ownership/ownership-screens";
+import { createPlatformOwnership } from "./ownership/platform-ownership";
 import { notifyAppends } from "../sync/notify-appends";
 import { createChangeSignal } from "../sync/sync-triggers";
 
 export const DATABASE_NAME = "english-learn.db";
+
+const SYNC_WRITES = [
+  "markSynced",
+  "setSyncCursor",
+  "insertRemoteEvents",
+  "replaceDeviceId",
+  "resetSyncState",
+  "clearProgress",
+] as const;
 
 /**
  * Runs on every open: migrations, the device id and, for progress from before the event log, its
@@ -52,8 +74,21 @@ function createSettingsRepository(db: SqlDatabase): SettingsRepository {
   return repository;
 }
 
+/** Where the open database registers how to finish its writes before another tab takes it. */
+const DrainContext = createContext<RefObject<(() => Promise<void>) | null> | null>(null);
+
 function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode }) {
   const db = useSQLiteContext();
+  const drainRef = use(DrainContext);
+  // Every write (saves and the sync's), so handing the database over never cuts one halfway.
+  const [writes] = useState(createWriteTracker);
+  useEffect(() => {
+    if (drainRef === null) return;
+    drainRef.current = writes.drain;
+    return () => {
+      drainRef.current = null;
+    };
+  }, [drainRef, writes]);
   // Sounds are loaded once and kept for the app's lifetime.
   const [sounds] = useState(createExpoSoundPlayer);
   const [progressRepository] = useState(() => createSqliteProgressRepository(db));
@@ -75,7 +110,7 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
         : {
             // Reads wait for in-flight saves: leaving mid-save must not show stale progress.
             progressRepository: notifyAppends(
-              awaitPendingWrites(progressRepository),
+              awaitPendingWrites(progressRepository, writes),
               localChanges.emit,
             ),
             clock,
@@ -84,9 +119,12 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
             deviceId,
             settingsRepository,
             sounds,
-            account: { syncStore: progressRepository, localChanges },
+            account: {
+              syncStore: trackWrites(progressRepository, writes, SYNC_WRITES),
+              localChanges,
+            },
           },
-    [progressRepository, settingsRepository, clock, deviceId, sounds, localChanges],
+    [progressRepository, settingsRepository, clock, deviceId, sounds, localChanges, writes],
   );
   if (services === null) return null;
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;
@@ -98,14 +136,77 @@ function throwDatabaseOpenError(error: Error): never {
   throw new DatabaseOpenError(error);
 }
 
+type GateState = "checking" | ClaimResult | "released" | "handing-over";
+
+/**
+ * Web: opens the database only once this page owns it (see `createDatabaseOwnership`). Shows
+ * the loading state (nothing) while a reloaded page waits for the previous one to let go, and
+ * "Usar aquí" screens when another tab has it or this tab just handed it over. When another tab
+ * asks for it, this tab finishes its writes and unmounts the app (stopping sync and timers)
+ * before handing it over. Native: always owned.
+ */
+function DatabaseOwnershipGate({
+  ownership,
+  children,
+}: {
+  ownership: DatabaseOwnership;
+  children: ReactNode;
+}) {
+  const [state, setState] = useState<GateState>("checking");
+  const drainRef = useRef<(() => Promise<void>) | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    void ownership.start().then((result) => {
+      if (active) setState(result);
+    });
+    return () => {
+      active = false;
+    };
+  }, [ownership]);
+
+  useEffect(() => {
+    if (state !== "owned") return;
+    return ownership.serve(async () => {
+      await drainRef.current?.();
+      setState("handing-over");
+    });
+  }, [ownership, state]);
+
+  const useHere = () => {
+    setState("checking");
+    void ownership.takeOver().then(setState);
+  };
+
+  switch (state) {
+    case "owned":
+      return <DrainContext value={drainRef}>{children}</DrainContext>;
+    case "open-elsewhere":
+      return <OpenElsewhereScreen onUseHere={useHere} />;
+    case "released":
+      return <ReleasedScreen onUseHere={useHere} />;
+    case "checking":
+    case "handing-over":
+      return null;
+  }
+}
+
 /**
  * Opens the on-device database, runs migrations, and provides the app services. Any failure
- * (database open in another tab, newer schema, corrupt file) or later render error shows
- * `AppErrorBoundary`'s message. "Reintentar" reloads the page on web (expo-sqlite's worker
- * cannot reopen after a failed open) and remounts the app with a fresh open elsewhere.
+ * (newer schema, corrupt file, storage unavailable, database still held elsewhere) or later
+ * render error shows `AppErrorBoundary`'s message. "Reintentar" reloads the page on web
+ * (expo-sqlite's worker cannot reopen after a failed open) and remounts the app with a fresh
+ * open elsewhere. On web the database opens only once this page owns it (`ownership`).
  */
-export function SqliteAppServicesProvider({ children }: { children: ReactNode }) {
+export function SqliteAppServicesProvider({
+  children,
+  ownership: givenOwnership,
+}: {
+  children: ReactNode;
+  ownership?: DatabaseOwnership;
+}) {
   const [attempt, setAttempt] = useState(0);
+  const [ownership] = useState(() => givenOwnership ?? createPlatformOwnership());
   // Read once per page load (an e2e `?today=` override must survive in-app navigation).
   const [clock] = useState(createAppClock);
   // Stable: SQLiteProvider reopens the database whenever `onInit` changes.
@@ -116,9 +217,15 @@ export function SqliteAppServicesProvider({ children }: { children: ReactNode })
   };
   return (
     <AppErrorBoundary key={attempt} onRetry={retry}>
-      <SQLiteProvider databaseName={DATABASE_NAME} onInit={onInit} onError={throwDatabaseOpenError}>
-        <SqliteServices clock={clock}>{children}</SqliteServices>
-      </SQLiteProvider>
+      <DatabaseOwnershipGate ownership={ownership}>
+        <SQLiteProvider
+          databaseName={DATABASE_NAME}
+          onInit={onInit}
+          onError={throwDatabaseOpenError}
+        >
+          <SqliteServices clock={clock}>{children}</SqliteServices>
+        </SQLiteProvider>
+      </DatabaseOwnershipGate>
     </AppErrorBoundary>
   );
 }

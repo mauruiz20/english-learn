@@ -112,7 +112,9 @@
       "topics": ["travel"],
       "title": "A trip to Lisbon",
       "text": "Last summer, my friends and I traveled to Lisbon. Although our flight was delayed for two hours, we arrived in time for dinner. We had booked a small room near the river. On the second day we got lost in the old town, but a friendly local showed us the way back. When I was a child, I used to think Portugal was very far away, but now it feels like a second home.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     },
     {
       "id": "b1.travel.backpacking-year",
@@ -120,7 +122,9 @@
       "topics": ["travel"],
       "title": "A year with one backpack",
       "text": "My cousin Elena has traveled more than anyone I know. She has been to eleven countries, and she has never booked an expensive hotel. Last year she decided to go abroad for twelve months with only one backpack. She set off from Madrid in March. In the first week she missed a train in France because she was sleeping at the station, so she had to wait until the next morning. In Italy, the airline lost her luggage for three days. Although it was annoying, she bought a few cheap clothes and kept going. She spent most of her money on sightseeing, not on souvenirs. She checked in at small hostels, where she met other travelers and practiced her English every day. When she came home in February, she told us that the trip had changed her. Now she is planning her next adventure in South America. Have you ever traveled alone? Elena says everyone should try it at least once.",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -128,7 +132,9 @@
       "id": "b1.travel.vocab-001",
       "itemIds": ["b1.travel.delayed"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the best meaning of 'delayed'.",
       "options": ["cancelado", "retrasado", "completo"],
@@ -138,7 +144,9 @@
       "id": "b1.travel.cloze-001",
       "itemIds": ["b1.travel.although"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "___ the hotel was expensive, we decided to stay.",
       "answers": ["Although"],
@@ -149,7 +157,9 @@
       "id": "b1.travel.order-001",
       "itemIds": ["b1.travel.book"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["a", "online.", "We", "room", "booked"],
       "accepted": ["We booked a room online."],
@@ -159,7 +169,9 @@
       "id": "b1.travel.choice-001",
       "itemIds": ["b1.travel.get-lost"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translation_choice",
       "sentence": "We got lost in the old town.",
       "options": [
@@ -173,7 +185,9 @@
       "id": "b1.travel.reading-001",
       "itemIds": ["b1.travel.delayed", "b1.travel.get-lost"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "b1.travel.lisbon-trip",
       "questions": [
@@ -197,28 +211,23 @@
       "id": "b1.travel.write-001",
       "itemIds": ["b1.travel.although", "b1.travel.delayed"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Aunque el vuelo se retrasó, llegamos a tiempo.",
       "accepted": [
-        "Although the flight was delayed, we arrived on time.",
-        "Even though the flight was delayed, we arrived on time.",
-        "Though the flight was delayed, we arrived on time.",
-        "Although the flight was delayed, we got there on time.",
-        "Even though the flight was delayed, we got there on time.",
-        "Though the flight was delayed, we got there on time.",
-        "Although the flight was delayed, we still arrived on time.",
-        "Even though the flight was delayed, we still arrived on time.",
-        "Although the flight was late, we arrived on time.",
-        "Even though the flight was late, we arrived on time.",
-        "Although the flight was delayed, we made it on time."
+        "{Although|Even though|Though} the flight was {delayed|late}, we[ still] {arrived|got there|made it} on time.",
+        "We[ still] {arrived|got there|made it} on time{,|} {although|even though|though} the flight was {delayed|late}."
       ]
     },
     {
       "id": "b1.travel.vocab-002",
       "itemIds": ["b1.travel.luggage"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'luggage' mean?",
       "options": ["equipaje", "aduana", "boleto", "andén"],
@@ -244,7 +253,9 @@
       "id": "b1.travel.cloze-003",
       "itemIds": ["b1.travel.present-perfect-past-simple"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "We ___ to Rome last summer.",
       "answers": ["went"],
@@ -290,7 +301,9 @@
       "id": "b1.travel.reading-002",
       "itemIds": ["b1.travel.sightseeing", "b1.travel.luggage", "b1.travel.set-off"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "b1.travel.backpacking-year",
       "questions": [
@@ -319,59 +332,31 @@
       "id": "b1.travel.write-002",
       "itemIds": ["b1.travel.set-off"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Ayer salimos muy temprano por la mañana.",
       "accepted": [
-        "Yesterday, we set off very early in the morning.",
-        "Yesterday, we set off really early in the morning.",
-        "Yesterday, we set out very early in the morning.",
-        "Yesterday, we set out really early in the morning.",
-        "Yesterday, we left very early in the morning.",
-        "Yesterday, we left really early in the morning.",
-        "Yesterday we set off very early in the morning.",
-        "Yesterday we set off really early in the morning.",
-        "Yesterday we set out very early in the morning.",
-        "Yesterday we set out really early in the morning.",
-        "Yesterday we left very early in the morning.",
-        "Yesterday we left really early in the morning.",
-        "We set off very early in the morning yesterday.",
-        "We set off really early in the morning yesterday.",
-        "We set out very early in the morning yesterday.",
-        "We set out really early in the morning yesterday.",
-        "We left very early in the morning yesterday.",
-        "We left really early in the morning yesterday.",
-        "We set off yesterday very early in the morning.",
-        "We set off yesterday really early in the morning.",
-        "We set out yesterday very early in the morning.",
-        "We set out yesterday really early in the morning.",
-        "We left yesterday very early in the morning.",
-        "We left yesterday really early in the morning.",
-        "We left very early yesterday morning.",
-        "We left really early yesterday morning.",
-        "We set off very early yesterday morning.",
-        "We set out very early yesterday morning.",
-        "Yesterday morning, we left very early."
+        "Yesterday{,|} we {set off|left|set out} {very|really} early in the morning.",
+        "We {set off|left|set out} {very|really} early in the morning yesterday.",
+        "We {set off|left|set out} yesterday {very|really} early in the morning.",
+        "We {set off|left|set out} {very|really} early yesterday morning.",
+        "Yesterday morning[,] we {set off|left|set out} {very|really} early."
       ]
     },
     {
       "id": "b1.travel.write-003",
       "itemIds": ["b1.travel.check-in"],
       "level": "B1",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Nos registramos en el hotel a las tres.",
       "accepted": [
-        "We checked in at the hotel at three.",
-        "We checked in at the hotel at 3.",
-        "We checked in at the hotel at three o'clock.",
-        "We checked in at the hotel at 3:00.",
-        "We checked into the hotel at three.",
-        "We checked into the hotel at 3.",
-        "We checked into the hotel at three o'clock.",
-        "We checked into the hotel at 3:00.",
-        "We checked in at the hotel at 3 p.m.",
-        "We checked into the hotel at 3 p.m."
+        "We checked {in at|into} the hotel at {three[ o'clock]|3[ o'clock|:00| pm]}.",
+        "We checked {in at|into} the hotel at 3 p.m."
       ]
     }
   ],

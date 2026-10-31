@@ -405,6 +405,22 @@
       ]
     },
     {
+      "id": "glossary.mind",
+      "headword": "mind",
+      "kind": "word",
+      "forms": ["mind", "minds", "minded", "minding"],
+      "senses": [
+        {
+          "es": "importar, molestar (Do you mind…?)",
+          "pos": "verb"
+        },
+        {
+          "es": "mente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.minute",
       "headword": "minute",
       "kind": "word",

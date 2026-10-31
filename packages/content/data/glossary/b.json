@@ -537,6 +537,18 @@
       ]
     },
     {
+      "id": "glossary.both",
+      "headword": "both",
+      "kind": "word",
+      "forms": ["both"],
+      "senses": [
+        {
+          "es": "ambos, los dos",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
       "id": "glossary.bottle",
       "headword": "bottle",
       "kind": "word",

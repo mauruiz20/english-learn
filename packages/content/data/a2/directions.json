@@ -104,7 +104,9 @@
       "topics": ["directions"],
       "title": "How to get to the museum",
       "text": "A tourist asks a woman, \"Excuse me, how do I get to the museum?\" She answers, \"It's not far from here. Go straight ahead for two blocks and turn left at the bank. Then walk past the park. The museum is on the corner, across from the train station. It takes about ten minutes on foot.\"",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "a2.directions.vocab-001",
       "itemIds": ["a2.directions.turn-right"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'turn right' mean?",
       "options": ["girar a la izquierda", "girar a la derecha", "seguir derecho", "dar la vuelta"],
@@ -173,7 +177,9 @@
       "id": "a2.directions.reading-001",
       "itemIds": ["a2.directions.go-straight", "a2.directions.across-from", "a2.directions.corner"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.directions.to-the-museum",
       "questions": [
@@ -207,18 +213,17 @@
       "type": "translate_write",
       "es": "Disculpe, ¿dónde está la estación de metro?",
       "accepted": [
-        "Excuse me, where's the subway station?",
-        "Excuse me, where's the metro station?",
-        "Excuse me, where's the subway?",
-        "Pardon me, where's the subway station?",
-        "Sorry, where's the subway station?"
+        "{Excuse me|Pardon me|Sorry}, where's the {subway|metro}{ station|}?",
+        "{Excuse me|Pardon me|Sorry}, {can|could} you tell me where the {subway|metro}{ station|} is?"
       ]
     },
     {
       "id": "a2.directions.vocab-002",
       "itemIds": ["a2.directions.corner"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'esquina'.",
       "options": ["block", "square", "crossing", "corner"],
@@ -228,7 +233,9 @@
       "id": "a2.directions.vocab-003",
       "itemIds": ["a2.directions.across-from"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'across from' mean?",
       "options": ["al lado de", "enfrente de", "detrás de", "lejos de"],
@@ -238,7 +245,9 @@
       "id": "a2.directions.cloze-002",
       "itemIds": ["a2.directions.between"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "The bank is ___ the bakery and the bookstore.",
       "answers": ["between"],
@@ -324,18 +333,14 @@
         "a2.directions.imperative"
       ],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "translate_write",
       "es": "Siga derecho y gire a la derecha en el banco.",
       "accepted": [
-        "Go straight and turn right at the bank.",
-        "Go straight ahead and turn right at the bank.",
-        "Go straight on and turn right at the bank.",
-        "Keep going straight and turn right at the bank.",
-        "Go straight and then turn right at the bank.",
-        "Go straight, then turn right at the bank.",
-        "Continue straight and turn right at the bank.",
-        "Keep going straight ahead and turn right at the bank."
+        "{Go|Keep going|Continue|Walk} straight[ ahead| on] and[ then] turn right at the bank.",
+        "{Go|Keep going|Continue|Walk} straight[ ahead| on], then turn right at the bank."
       ]
     }
   ],

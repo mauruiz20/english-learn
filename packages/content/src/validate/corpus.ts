@@ -1,3 +1,4 @@
+import { validateAnswerPatterns } from "./answer-patterns";
 import { validateClozes } from "./cloze";
 import {
   validateGlossaryCoverage,
@@ -23,6 +24,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateClozes,
   validateWordOrders,
   validateListDuplicates,
+  validateAnswerPatterns,
   validateTopics,
   validateTextPunctuation,
   validateGlossaryEntries,

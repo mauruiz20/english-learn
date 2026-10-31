@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.generally",
+      "headword": "generally",
+      "kind": "word",
+      "forms": ["generally"],
+      "senses": [
+        {
+          "es": "generalmente, por lo general",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.gerund",
       "headword": "gerund",
       "kind": "word",

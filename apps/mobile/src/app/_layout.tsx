@@ -4,7 +4,7 @@ import { BricolageGrotesque_600SemiBold } from "@expo-google-fonts/bricolage-gro
 import { BricolageGrotesque_700Bold } from "@expo-google-fonts/bricolage-grotesque/700Bold";
 import { Caveat_600SemiBold } from "@expo-google-fonts/caveat/600SemiBold";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -16,6 +16,7 @@ import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { SoundToggle } from "@/features/sound/sound-toggle";
 import { SqliteAppServicesProvider } from "@/infrastructure/persistence/sqlite-app-services";
 import { startServiceWorker } from "@/infrastructure/pwa/app-service-worker";
+import { BackOrHomeButton, headerBack } from "@/shared/navigation/back-or-home";
 import { NotebookHeader } from "@/shared/navigation/notebook-header";
 import { fonts } from "@/shared/ui/theme";
 import { useTheme } from "@/shared/ui/use-theme";
@@ -25,6 +26,8 @@ import { useWebGlobalStyles } from "@/shared/ui/web-global-styles";
 void SplashScreen.preventAutoHideAsync();
 
 const headerRight = () => <SoundToggle />;
+// Native headers: a back button even without history (web gets it from `headerBack`).
+const homeFallback = Platform.OS === "web" ? {} : { headerLeft: () => <BackOrHomeButton /> };
 
 export default function RootLayout() {
   const { colors } = useTheme();
@@ -68,18 +71,25 @@ export default function RootLayout() {
                 contentStyle: { backgroundColor: colors.paper },
                 // On web the header lines up with the page's reading column; native keeps its own.
                 ...(Platform.OS === "web" && {
-                  header: ({ back, options, route, navigation }) => (
-                    <NotebookHeader
-                      title={options.title ?? route.name}
-                      backTitle={back?.title}
-                      showBack={back !== undefined && options.headerBackVisible !== false}
-                      onBack={navigation.goBack}
-                      right={options.headerRight?.({
-                        tintColor: colors.ink,
-                        canGoBack: back !== undefined,
-                      })}
-                    />
-                  ),
+                  header: ({ back, options, route, navigation }) => {
+                    const backAction = headerBack(route.name, back);
+                    return (
+                      <NotebookHeader
+                        title={options.title ?? route.name}
+                        backTitle={backAction.title}
+                        showBack={backAction.show && options.headerBackVisible !== false}
+                        onBack={
+                          backAction.target === "home"
+                            ? () => router.replace("/")
+                            : navigation.goBack
+                        }
+                        right={options.headerRight?.({
+                          tintColor: colors.ink,
+                          canGoBack: back !== undefined,
+                        })}
+                      />
+                    );
+                  },
                 }),
               }}
             >
@@ -88,9 +98,9 @@ export default function RootLayout() {
               <Stack.Screen name="placement" options={{ title: "Test de nivel", headerRight }} />
               <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
               <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
-              <Stack.Screen name="about" options={{ title: "Acerca de" }} />
-              <Stack.Screen name="cuenta" options={{ title: "Cuenta" }} />
-              <Stack.Screen name="privacidad" options={{ title: "Privacidad" }} />
+              <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
+              <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
+              <Stack.Screen name="privacidad" options={{ title: "Privacidad", ...homeFallback }} />
               <Stack.Screen
                 name="auth/callback"
                 options={{ title: "Cuenta", headerBackVisible: false }}

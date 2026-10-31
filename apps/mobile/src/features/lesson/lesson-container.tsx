@@ -9,7 +9,7 @@ import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { completeSession } from "./application/complete-session";
 import { itemsToReview } from "./model/items-to-review";
 import { lessonExercises } from "./model/lesson-catalog";
-import { startLesson, type LessonSessionState } from "./model/lesson-session";
+import { canDispute, startLesson, type LessonSessionState } from "./model/lesson-session";
 import { prepareExercise, type PreparedExercise } from "./model/prepare-exercise";
 import { responseText } from "./model/response";
 import { LessonView, type LessonViewState } from "./lesson-view";
@@ -36,20 +36,29 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
       prepared: exercises.map((e) => prepareExercise(e, random)),
     };
   });
-  const { session, save, onSubmit, onContinue, onLookup, retrySave, canLeave, hasUnsavedAnswers } =
-    useExerciseSession({
-      initial,
-      complete: (summary) =>
-        completeSession({
-          repository: progressRepository,
-          summary,
-          today: clock.today(),
-          nowMs: clock.nowMs(),
-          randomBytes,
-          deviceId,
-          kind: "lesson",
-        }),
-    });
+  const {
+    session,
+    save,
+    onSubmit,
+    onContinue,
+    onDispute,
+    onLookup,
+    retrySave,
+    canLeave,
+    hasUnsavedAnswers,
+  } = useExerciseSession({
+    initial,
+    complete: (summary) =>
+      completeSession({
+        repository: progressRepository,
+        summary,
+        today: clock.today(),
+        nowMs: clock.nowMs(),
+        randomBytes,
+        deviceId,
+        kind: "lesson",
+      }),
+  });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir de la lección?");
 
   const goHome = () => (router.canDismiss() ? router.dismissAll() : router.replace("/"));
@@ -66,6 +75,7 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
           state={toViewState(session, initial?.prepared ?? [], save, content)}
           onSubmit={onSubmit}
           onContinue={onContinue}
+          onDispute={onDispute}
           onGoHome={goHome}
           onRetrySave={retrySave}
         />
@@ -109,7 +119,11 @@ function toViewState(
       current.type === "reading" ? content.passagesById.get(current.exercise.passageId) : undefined,
     feedback:
       session.status === "feedback"
-        ? { ...session.feedback, given: responseText(session.response) }
+        ? {
+            ...session.feedback,
+            given: responseText(session.response),
+            disputable: canDispute(session),
+          }
         : null,
   };
 }

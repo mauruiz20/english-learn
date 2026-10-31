@@ -78,8 +78,32 @@ export type BaselineImportedEvent = EventEnvelope<
   }
 >;
 
+/**
+ * The learner said their translate_write answer is also correct ("Mi respuesta también es
+ * correcta") and the app regraded it for that attempt (already reflected in the session's
+ * `item_reviewed` grades and XP). Kept so the owner can review content; it changes no progress.
+ * `answer` is trimmed and at most `MAX_DISPUTED_ANSWER_LENGTH` characters; `accepted` is always
+ * false (the content was not changed).
+ */
+export type AnswerDisputedEvent = EventEnvelope<
+  "answer_disputed",
+  {
+    readonly v: 1;
+    readonly exerciseId: string;
+    readonly itemIds: readonly string[];
+    readonly answer: string;
+    readonly accepted: false;
+  }
+>;
+
+export const MAX_DISPUTED_ANSWER_LENGTH = 200;
+
 export type ProgressEvent =
-  ItemReviewedEvent | SessionCompletedEvent | PlacementCompletedEvent | BaselineImportedEvent;
+  | ItemReviewedEvent
+  | SessionCompletedEvent
+  | PlacementCompletedEvent
+  | BaselineImportedEvent
+  | AnswerDisputedEvent;
 
 export type ProgressEventType = ProgressEvent["type"];
 

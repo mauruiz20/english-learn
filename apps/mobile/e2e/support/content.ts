@@ -3,6 +3,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { expect, type Page } from "@playwright/test";
+import { expandAccepted } from "../../../../packages/domain/src/answer-matching/pattern";
 
 type Choice = { options: string[]; answerIndex: number };
 type ExerciseData =
@@ -75,7 +76,10 @@ export async function answerCorrectly(page: Page, submit: string): Promise<strin
       }
       break;
     case "translate_write":
-      await scope.getByLabel("Tu traducción en inglés").fill(exercise.accepted[0] ?? "");
+      // `accepted` holds answer patterns: type the reference sentence they stand for.
+      await scope
+        .getByLabel("Tu traducción en inglés")
+        .fill(expandAccepted(exercise.accepted)[0] ?? "");
       break;
     case "reading":
       for (const question of exercise.questions) {

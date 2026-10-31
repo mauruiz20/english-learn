@@ -379,12 +379,6 @@ describe("validateListDuplicates", () => {
           fx.wordOrder({
             accepted: ["we went out although it rained.", "We went out although it rained"],
           }),
-          fx.translateWrite({
-            accepted: [
-              "Although he was tired, he kept walking.",
-              "although he was tired, he kept walking!",
-            ],
-          }),
         ],
         lessons: [
           fx.lesson({ exerciseIds: [...f.lessons![0]!.exerciseIds, "b1.travel.vocab-001"] }),
@@ -399,10 +393,6 @@ describe("validateListDuplicates", () => {
       at(
         "exercises[1].accepted[1]",
         'duplicate accepted sentence "We went out although it rained" (normalized)',
-      ),
-      at(
-        "exercises[2].accepted[1]",
-        'duplicate accepted sentence "although he was tired, he kept walking!" (normalized)',
       ),
       at("lessons[0].exerciseIds[5]", 'duplicate exercise id "b1.travel.vocab-001"'),
     ]);

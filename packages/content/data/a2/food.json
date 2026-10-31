@@ -104,7 +104,9 @@
       "topics": ["food"],
       "title": "Dinner together",
       "text": "On Fridays, my family cooks dinner together. My father makes rice and chicken, and my sister and I prepare a salad with fresh vegetables. We don't eat much bread at dinner, but we always have some fruit after the meal. Last Friday my mother made a delicious soup, so we didn't need any chicken. Next week I'm going to cook for everyone!",
-      "source": { "kind": "original" }
+      "source": {
+        "kind": "original"
+      }
     }
   ],
   "exercises": [
@@ -112,7 +114,9 @@
       "id": "a2.food.vocab-001",
       "itemIds": ["a2.food.hungry"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'hungry' mean?",
       "options": ["con sed", "cansado", "lleno", "con hambre"],
@@ -173,7 +177,9 @@
       "id": "a2.food.reading-001",
       "itemIds": ["a2.food.cook", "a2.food.delicious"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "reading",
       "passageId": "a2.food.dinner-together",
       "questions": [
@@ -206,13 +212,15 @@
       },
       "type": "translate_write",
       "es": "Yo tenía hambre y sed.",
-      "accepted": ["I was hungry and thirsty.", "I was thirsty and hungry."]
+      "accepted": ["I {was|felt} [both ]{hungry and thirsty|thirsty and hungry}."]
     },
     {
       "id": "a2.food.vocab-002",
       "itemIds": ["a2.food.cook"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "Choose the English for 'cocinar'.",
       "options": ["clean", "cook", "cut", "kitchen"],
@@ -222,7 +230,9 @@
       "id": "a2.food.vocab-003",
       "itemIds": ["a2.food.delicious"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "vocab",
       "prompt": "What does 'delicious' mean?",
       "options": ["picante", "salado", "dulce", "delicioso"],
@@ -232,7 +242,9 @@
       "id": "a2.food.cloze-002",
       "itemIds": ["a2.food.some-any"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "There isn't ___ milk in the fridge.",
       "answers": ["any"],
@@ -243,7 +255,9 @@
       "id": "a2.food.cloze-003",
       "itemIds": ["a2.food.how-much-many"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "cloze",
       "sentence": "How ___ apples do you want?",
       "answers": ["many"],
@@ -254,7 +268,9 @@
       "id": "a2.food.order-002",
       "itemIds": ["a2.food.would-like", "a2.food.chicken"],
       "level": "A2",
-      "source": { "kind": "original" },
+      "source": {
+        "kind": "original"
+      },
       "type": "word_order",
       "tokens": ["like", "a", "would", "I", "please.", "sandwich,", "chicken"],
       "accepted": ["I would like a chicken sandwich, please."],
@@ -313,11 +329,9 @@
       "type": "translate_write",
       "es": "Prefiero el arroz al pan.",
       "accepted": [
-        "I prefer rice to bread.",
-        "I like rice better than bread.",
-        "I like rice more than bread.",
-        "I prefer rice over bread.",
-        "I'd rather have rice than bread."
+        "I prefer rice {to|over} bread.",
+        "I like rice {better|more} than bread.",
+        "I'd rather {have|eat} rice than bread."
       ]
     }
   ],
