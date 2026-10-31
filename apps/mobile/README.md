@@ -50,13 +50,38 @@ instead of a blank screen; any other render error shows "Algo salió mal.". "Rei
 reloads the page on web (expo-sqlite's worker cannot reopen after a failed open) and remounts
 the app on native. Messages by cause (`database-open-error.ts`):
 
-- **Another tab has the app open** (web): expo-sqlite keeps OPFS sync access handles for the
-  whole session and only one tab can hold them. Recognized by the messages browsers actually
-  report (Chromium: "Access Handles cannot be created if there is another open Access Handle…";
-  WebKit: "The object is in an invalid state."): "La app ya está abierta en otra pestaña."
+- **Another tab has the app open** (web), when the ownership check below could not prevent it:
+  recognized by the messages browsers actually report (Chromium: "Access Handles cannot be
+  created if there is another open Access Handle…"; WebKit: "The object is in an invalid
+  state."): "La app ya está abierta en otra pestaña."
 - **Database from a newer app version** (`SchemaTooNewError` from `migrate`): asks to update.
 - **Anything else** (corrupt file, storage disabled, e.g. WebKit without OPFS in private
   browsing): "No pudimos abrir tus datos."
+
+### One tab at a time (web)
+
+expo-sqlite keeps OPFS sync access handles for the whole page session and a file accepts only one,
+so only one page can hold the database. Closing the database does not release them, and after a
+failed open expo-sqlite's worker cannot open again until the page reloads. So the database opens
+only once this page owns it (`src/infrastructure/persistence/ownership/`):
+
+1. **Lock**: the page takes the Web Lock `english-learn-db-owner` (held until it unloads).
+2. **Ask**: if the lock is taken, it posts `want-db` on the BroadcastChannel `english-learn-db`;
+   the owner answers `owned` within 400 ms → "La app está abierta en otra pestaña o ventana"
+   with "Usar aquí". No answer means the owner is unloading (reload, Google redirect return, update):
+   wait up to 6 s for the lock.
+3. **Probe**: a throwaway worker opens and closes a sync access handle on each of expo-sqlite's
+   files; while they are busy (the previous page's worker lets go a moment after its lock) it
+   retries after 100, 200, 400, 800, 1600 and 2400 ms, with the normal loading state. Still busy
+   → the "open in another tab" screen. Any other probe failure goes on to the normal open, which
+   reports genuine errors (private mode, corrupt file, newer schema).
+4. **"Usar aquí"** posts `release`. The owner refuses new writes and waits for the ones in flight
+   (saves and the sync's, `createWriteTracker().drain()`), unmounts the app (stopping sync and its
+   timers), replies `released` and reloads with a one-shot `sessionStorage` flag, so it shows
+   "La app se abrió en otra pestaña" with its own "Usar aquí" (which takes the database back the
+   same way). The new page then takes the lock and probes as above.
+
+Without Web Locks the channel and the probe still apply. Native apps skip all of this.
 
 Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod at runtime).
 
@@ -527,10 +552,11 @@ console errors, or if progress loaded from the database is not rendered.
   tests, so one wrong answer counts as a miss for all of the passage's items, and a slow read
   lowers all of them to grade 4. Fixing it needs per-question `itemIds` in the content schema;
   until then, reading items may come back for review sooner than strictly needed.
-- **One tab at a time on web.** expo-sqlite holds the database file exclusively; a second tab
-  shows "La app ya está abierta en otra pestaña." until the first one is closed. With the service
-  worker running, WebKit may release the closed tab's database a moment later, so the first
-  "Reintentar" right after closing it can still show the message; pressing it again works.
+- **One tab at a time on web.** Only one page can hold the database (see
+  [One tab at a time](#one-tab-at-a-time-web)): a second tab or the installed app next to a tab
+  offers "Usar aquí", which hands the database over and pauses the other page; answers of an
+  unfinished session in the page that lets go are lost. Pages of an app version from before this
+  check do not take part in it and still show "La app ya está abierta en otra pestaña.".
 - **iOS / Safari PWA.** Installing is manual (Share → "Añadir a pantalla de inicio"); there is no
   install prompt. The home screen app has its own storage, separate from Safari's: progress made
   in the Safari tab does not carry over to the installed app. Safari may evict the data of a site

@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { act, fireEvent, render, screen } from "@testing-library/react-native";
 import type { ReactNode, useEffect, useState } from "react";
 import { Text } from "react-native";
+import type { ClaimResult, DatabaseOwnership } from "./ownership/database-ownership";
 import { SqliteAppServicesProvider } from "./sqlite-app-services";
 
 // Stand-in for expo-sqlite's SQLiteProvider with the same contract: it opens the database and
@@ -107,5 +108,72 @@ describe("SqliteAppServicesProvider", () => {
 
     expect(await screen.findByText("Inicio")).toBeOnTheScreen();
     expect(mockOpen).toHaveBeenCalledTimes(2);
+  });
+});
+
+function fakeOwnership(start: ClaimResult | "released", takeOver: ClaimResult = "owned") {
+  let release: (() => Promise<void>) | null = null;
+  const ownership: DatabaseOwnership = {
+    start: jest.fn(async () => start),
+    takeOver: jest.fn(async () => takeOver),
+    serve: jest.fn((onRelease: () => Promise<void>) => {
+      release = onRelease;
+      return () => {
+        release = null;
+      };
+    }),
+  };
+  return { ownership, requestRelease: () => release?.() };
+}
+
+describe("SqliteAppServicesProvider: one tab at a time (web)", () => {
+  beforeEach(() => mockOpen.mockResolvedValue());
+
+  it("offers 'Usar aquí' when another tab owns the database, then opens it here", async () => {
+    const { ownership } = fakeOwnership("open-elsewhere");
+    await render(
+      <SqliteAppServicesProvider ownership={ownership}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+
+    expect(await screen.findByRole("header")).toHaveTextContent(
+      "La app está abierta en otra pestaña o ventana",
+    );
+    expect(mockOpen).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByRole("button", { name: "Usar aquí" }));
+
+    expect(await screen.findByText("Inicio")).toBeOnTheScreen();
+    expect(ownership.takeOver).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows the released screen after handing the app to another tab, and takes it back", async () => {
+    const { ownership } = fakeOwnership("released");
+    await render(
+      <SqliteAppServicesProvider ownership={ownership}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+
+    expect(await screen.findByRole("header")).toHaveTextContent("La app se abrió en otra pestaña");
+    await fireEvent.press(screen.getByRole("button", { name: "Usar aquí" }));
+
+    expect(await screen.findByText("Inicio")).toBeOnTheScreen();
+  });
+
+  it("when another tab asks for the database, closes the app here (its sync and timers stop)", async () => {
+    const { ownership, requestRelease } = fakeOwnership("owned");
+    await render(
+      <SqliteAppServicesProvider ownership={ownership}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+    await screen.findByText("Inicio");
+
+    await act(async () => {
+      await requestRelease();
+    });
+
+    expect(screen.queryByText("Inicio")).toBeNull();
   });
 });

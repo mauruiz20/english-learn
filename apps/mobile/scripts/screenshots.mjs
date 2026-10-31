@@ -152,10 +152,10 @@ async function capture(browserType, size, scheme) {
     await goHome(page, DAY_1);
     await snap("01-home-fresh", { full: true });
 
-    // A second tab cannot open the database: the error boundary screen.
+    // A second tab finds the database owned by the first one: "Usar aquí".
     const second = await context.newPage();
     await second.goto(`/?today=${DAY_1}`);
-    await second.getByRole("button", { name: "Reintentar", exact: true }).waitFor();
+    await second.getByRole("button", { name: "Usar aquí", exact: true }).waitFor();
     await shot(second, size, scheme, "02-db-error-open-elsewhere");
     await second.close();
 
