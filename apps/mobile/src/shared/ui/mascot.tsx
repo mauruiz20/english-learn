@@ -22,6 +22,7 @@ type AviProps = {
   fly?: boolean;
   delayMs?: number;
   style?: StyleProp<ViewStyle>;
+  testID?: string;
 };
 
 // A folded paper plane seen from the side: the body, the fold line down to the keel.
@@ -32,7 +33,14 @@ const FOLD = "M61 5 L31 28 L27 39 L31 28";
  * Avi, the notebook's paper plane: the learner's companion on the home path, on the summary and
  * in empty states; never during an exercise. Original art drawn here. Decorative.
  */
-export function Avi({ mood = "happy", size = 64, fly = false, delayMs = 0, style }: AviProps) {
+export function Avi({
+  mood = "happy",
+  size = 64,
+  fly = false,
+  delayMs = 0,
+  style,
+  testID = "avi",
+}: AviProps) {
   const { colors } = useTheme();
   const reduced = useReducedMotion();
   const animate = fly && !reduced;
@@ -62,7 +70,7 @@ export function Avi({ mood = "happy", size = 64, fly = false, delayMs = 0, style
   const eye = "#1B2333";
   return (
     <Animated.View
-      testID="avi"
+      testID={testID}
       aria-hidden
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"

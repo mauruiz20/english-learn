@@ -203,16 +203,77 @@ describe("HomeView completion check", () => {
   });
 });
 
-describe("HomeView doodle", () => {
-  it("doodles a coffee cup, invisible to screen readers, only when there is nothing to review", async () => {
+describe("HomeView sticker path", () => {
+  const lessons = {
+    level: "A2",
+    items: [
+      { id: "a", title: "Saludos", topic: "greetings", done: true },
+      { id: "b", title: "Mi rutina", topic: "daily-routine", done: true },
+      { id: "c", title: "La ciudad", topic: "city", done: false },
+      { id: "d", title: "El clima", topic: "city", done: false },
+    ],
+  } as const;
+
+  it("shows the streak as a chain of paperclips, one per day", async () => {
+    await renderView({ ...ready, streakDays: 3 });
+
+    expect(screen.getAllByTestId("clip", { includeHiddenElements: true })).toHaveLength(3);
+    expect(screen.getByLabelText("Racha: 3 días")).toBeOnTheScreen();
+  });
+
+  it("shows the XP as sheets of stickers", async () => {
+    await renderView({ ...ready, xp: 1090 });
+
+    expect(screen.getByText("1090 XP")).toBeOnTheScreen();
+    expect(screen.getByRole("progressbar", { name: "Hoja 5 de stickers" })).toBeOnTheScreen();
+    expect(screen.getByText("160 XP para la próxima hoja")).toBeOnTheScreen();
+  });
+
+  it("marks the first lesson not done yet as the next one, where Avi waits", async () => {
+    await renderView({ ...ready, lessons });
+
+    expect(screen.getByRole("button", { name: "La ciudad" })).toHaveProp(
+      "accessibilityHint",
+      "Tu siguiente lección",
+    );
+    expect(screen.getByRole("button", { name: "El clima" })).not.toHaveProp(
+      "accessibilityHint",
+      "Tu siguiente lección",
+    );
+    expect(screen.getByText("Siguiente")).toBeOnTheScreen();
+    expect(screen.getByTestId("avi-guide", { includeHiddenElements: true })).toBeTruthy();
+  });
+
+  it("has no next lesson, and no Avi on the path, once the level is done", async () => {
+    await renderView({
+      ...ready,
+      lessons: { level: "A2", items: lessons.items.map((l) => ({ ...l, done: true })) },
+    });
+
+    expect(screen.queryByText("Siguiente")).not.toBeOnTheScreen();
+    expect(
+      screen.queryByTestId("avi-guide", { includeHiddenElements: true }),
+    ).not.toBeOnTheScreen();
+  });
+
+  it("gives every lesson a touch target of at least 48 points", async () => {
+    await renderView({ ...ready, lessons });
+
+    for (const name of ["Saludos, completada", "La ciudad", "El clima"]) {
+      const style = StyleSheet.flatten(screen.getByRole("button", { name }).props.style);
+      expect(style.minHeight).toBeGreaterThanOrEqual(48);
+    }
+  });
+});
+
+describe("HomeView nothing to review", () => {
+  it("shows Avi napping, invisible to screen readers, only when there is nothing to review", async () => {
     await renderView(ready);
 
-    expect(screen.queryByTestId("doodle-rest")).not.toBeOnTheScreen();
-    expect(screen.getByTestId("doodle-rest", { includeHiddenElements: true })).toBeTruthy();
+    expect(screen.queryByTestId("avi-nap")).not.toBeOnTheScreen();
+    expect(screen.getByTestId("avi-nap", { includeHiddenElements: true })).toBeTruthy();
 
     await renderView({ ...ready, pendingReviews: 3 });
-    expect(
-      screen.queryByTestId("doodle-rest", { includeHiddenElements: true }),
-    ).not.toBeOnTheScreen();
+    expect(screen.queryByTestId("avi-nap", { includeHiddenElements: true })).not.toBeOnTheScreen();
   });
 });
