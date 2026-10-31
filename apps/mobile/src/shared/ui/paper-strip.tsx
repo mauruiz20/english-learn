@@ -1,5 +1,11 @@
 import type { ReactNode } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  View,
+  type AccessibilityActionEvent,
+  type AccessibilityActionInfo,
+} from "react-native";
 import { Text } from "./text";
 import { TOUCH_TARGET, spacing } from "./theme";
 import { themedStyles } from "./use-theme";
@@ -15,10 +21,24 @@ type PaperStripProps = {
    * checked). The strip is then plain paper, not a button, so its content can be interactive.
    */
   lockedContent?: ReactNode;
+  /** Extra screen-reader actions (e.g. moving a placed word left or right). */
+  accessibilityActions?: readonly AccessibilityActionInfo[] | undefined;
+  onAccessibilityAction?: ((event: AccessibilityActionEvent) => void) | undefined;
 };
 
-/** A word cut out of paper: moves between the word bank and the answer line when tapped. */
-export function PaperStrip({ label, text, disabled, onPress, lockedContent }: PaperStripProps) {
+/**
+ * A word cut out of paper: moves between the word bank and the answer line when tapped (the
+ * accessible path), or when dragged (see `DraggableStrip`).
+ */
+export function PaperStrip({
+  label,
+  text,
+  disabled,
+  onPress,
+  lockedContent,
+  accessibilityActions,
+  onAccessibilityAction,
+}: PaperStripProps) {
   const styles = useStyles();
   if (disabled && lockedContent !== undefined) {
     return (
@@ -34,6 +54,9 @@ export function PaperStrip({ label, text, disabled, onPress, lockedContent }: Pa
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityState={{ disabled }}
+      {...(accessibilityActions === undefined
+        ? {}
+        : { accessibilityActions, onAccessibilityAction })}
       disabled={disabled}
       onPress={onPress}
       style={({ pressed }) => [styles.strip, pressed && styles.pressed]}

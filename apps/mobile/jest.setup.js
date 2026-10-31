@@ -17,3 +17,10 @@ jest.mock("react-native-reanimated", () => ({
   useReducedMotion: () => globalThis.__TEST_REDUCED_MOTION__,
 }));
 require("react-native-gesture-handler/jestSetup");
+// Views are rendered on their own in tests, without the app's root layout and its
+// GestureHandlerRootView, and no test drives a gesture (drag and drop is covered end to end on
+// web): a gesture detector just renders its child.
+jest.mock("react-native-gesture-handler", () => ({
+  ...jest.requireActual("react-native-gesture-handler"),
+  GestureDetector: ({ children }) => children,
+}));
