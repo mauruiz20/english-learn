@@ -6,8 +6,8 @@ bundled with the app.
 
 [![CI](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml)
 
-**Live demo:** <https://english-learn-iwl.pages.dev> (deployed from `main` to Cloudflare Pages after
-every check passes; progress is stored in your browser only).
+**Live demo:** <https://english.maumar.com.ar> (deployed from `main` to Cloudflare Pages after
+every check passes; installable and usable offline; progress is stored in your browser only).
 
 | At a glance  |                                                                                   |
 | ------------ | --------------------------------------------------------------------------------- |
@@ -132,6 +132,9 @@ sign-in for the web app: Google ID token in, a 15-minute JWT access token and a 
 token (reuse detection revokes the whole family) out. Progress sync will exchange the domain's
 event log; the server stores events opaquely and never folds them. Its CI job runs Ruff, strict
 mypy and pytest against a real PostgreSQL 18 (testcontainers).
+
+It is deployed with Docker Compose to a Raspberry Pi 5 behind a Cloudflare Tunnel, with nightly
+backups and a monthly restore drill: see [docs/deploy.md](docs/deploy.md).
 
 ## Content and licensing
 

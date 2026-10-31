@@ -42,6 +42,8 @@ class UserResponse(CamelResponse):
 
 
 class TokensResponse(CamelResponse):
+    """Body transport (default): the refresh token is in the JSON."""
+
     access_token: str
     access_token_expires_at: datetime
     refresh_token: str
@@ -55,7 +57,23 @@ class TokensResponse(CamelResponse):
         )
 
 
+class CookieTokensResponse(CamelResponse):
+    """Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie."""
+
+    access_token: str
+    access_token_expires_at: datetime
+
+    @classmethod
+    def of(cls, tokens: TokenPair) -> CookieTokensResponse:
+        return cls(
+            access_token=tokens.access_token.value,
+            access_token_expires_at=tokens.access_token.expires_at,
+        )
+
+
 class SignInResponse(TokensResponse):
+    """Body transport (default): the refresh token is in the JSON."""
+
     user: UserResponse
 
     @classmethod
@@ -65,5 +83,20 @@ class SignInResponse(TokensResponse):
             access_token=tokens.access_token.value,
             access_token_expires_at=tokens.access_token.expires_at,
             refresh_token=tokens.refresh_token,
+            user=UserResponse.of(signed_in.user),
+        )
+
+
+class CookieSignInResponse(CookieTokensResponse):
+    """Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie."""
+
+    user: UserResponse
+
+    @classmethod
+    def of_sign_in(cls, signed_in: SignedIn) -> CookieSignInResponse:
+        tokens = signed_in.tokens
+        return cls(
+            access_token=tokens.access_token.value,
+            access_token_expires_at=tokens.access_token.expires_at,
             user=UserResponse.of(signed_in.user),
         )

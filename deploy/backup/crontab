@@ -1,0 +1,8 @@
+# Backup schedule, run by supercronic. Times are in the container's TZ
+# (America/Argentina/Buenos_Aires, set in deploy/compose.yml). Staggered from
+# the other stacks on the Pi (finance-tracker backs up at 03:30).
+#
+# Nightly dump at 02:45, retention included.
+45 2 * * * /usr/local/bin/entrypoint.sh backup
+# Restore drill at 04:45 on the 2nd of every month.
+45 4 2 * * /usr/local/bin/entrypoint.sh restore-drill

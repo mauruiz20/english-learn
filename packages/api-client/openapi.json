@@ -1,6 +1,43 @@
 {
   "components": {
     "schemas": {
+      "CookieSignInResponse": {
+        "description": "Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie.",
+        "properties": {
+          "accessToken": {
+            "title": "Accesstoken",
+            "type": "string"
+          },
+          "accessTokenExpiresAt": {
+            "format": "date-time",
+            "title": "Accesstokenexpiresat",
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserResponse"
+          }
+        },
+        "required": ["accessToken", "accessTokenExpiresAt", "user"],
+        "title": "CookieSignInResponse",
+        "type": "object"
+      },
+      "CookieTokensResponse": {
+        "description": "Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie.",
+        "properties": {
+          "accessToken": {
+            "title": "Accesstoken",
+            "type": "string"
+          },
+          "accessTokenExpiresAt": {
+            "format": "date-time",
+            "title": "Accesstokenexpiresat",
+            "type": "string"
+          }
+        },
+        "required": ["accessToken", "accessTokenExpiresAt"],
+        "title": "CookieTokensResponse",
+        "type": "object"
+      },
       "EventRequest": {
         "additionalProperties": false,
         "properties": {
@@ -120,6 +157,7 @@
         "type": "object"
       },
       "SignInResponse": {
+        "description": "Body transport (default): the refresh token is in the JSON.",
         "properties": {
           "accessToken": {
             "title": "Accesstoken",
@@ -217,7 +255,13 @@
         "title": "SyncResponse",
         "type": "object"
       },
+      "TokenTransport": {
+        "enum": ["body", "cookie"],
+        "title": "TokenTransport",
+        "type": "string"
+      },
       "TokensResponse": {
+        "description": "Body transport (default): the refresh token is in the JSON.",
         "properties": {
           "accessToken": {
             "title": "Accesstoken",
@@ -349,6 +393,19 @@
       "post": {
         "description": "Exchange a Google ID token (from Google Identity Services) for API tokens.",
         "operationId": "sign_in_with_google_v1_auth_google_post",
+        "parameters": [
+          {
+            "description": "`cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body.",
+            "in": "header",
+            "name": "X-Token-Transport",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/TokenTransport",
+              "default": "body",
+              "description": "`cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body."
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -364,11 +421,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SignInResponse"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/SignInResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CookieSignInResponse"
+                    }
+                  ],
+                  "title": "Response Sign In With Google V1 Auth Google Post"
                 }
               }
             },
-            "description": "Successful Response"
+            "description": "Successful Response",
+            "headers": {
+              "Set-Cookie": {
+                "description": "Cookie mode: `Set-Cookie: el_rt=<refresh token>; HttpOnly; Secure; SameSite=Strict; Path=/v1/auth; Max-Age=<seconds until the token expires>`",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "422": {
             "content": {
@@ -387,21 +460,85 @@
     },
     "/v1/auth/logout": {
       "post": {
-        "description": "Revoke the refresh token and every token rotated from the same sign-in.",
+        "description": "Revoke the refresh token and every token rotated from the same sign-in.\n\nCookie mode reads the `el_rt` cookie (same CSRF rules as refresh) and always clears it.",
         "operationId": "log_out_v1_auth_logout_post",
+        "parameters": [
+          {
+            "description": "`cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body.",
+            "in": "header",
+            "name": "X-Token-Transport",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/TokenTransport",
+              "default": "body",
+              "description": "`cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body."
+            }
+          },
+          {
+            "description": "Cookie mode only: must be `english-learn` (CSRF defense).",
+            "in": "header",
+            "name": "X-Requested-With",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Cookie mode only: must be `english-learn` (CSRF defense).",
+              "title": "X-Requested-With"
+            }
+          },
+          {
+            "description": "Cookie mode: the refresh token (HttpOnly, set by sign-in and refresh).",
+            "in": "cookie",
+            "name": "el_rt",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Cookie mode: the refresh token (HttpOnly, set by sign-in and refresh).",
+              "title": "El Rt"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenRequest"
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/RefreshTokenRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "204": {
-            "description": "Successful Response"
+            "description": "Successful Response",
+            "headers": {
+              "Set-Cookie": {
+                "description": "Cookie mode: clears `el_rt` (`Max-Age=0`)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "422": {
             "content": {
@@ -420,28 +557,100 @@
     },
     "/v1/auth/refresh": {
       "post": {
-        "description": "Rotate the refresh token. Each refresh token works once.",
+        "description": "Rotate the refresh token. Each refresh token works once.\n\nBody mode reads `refreshToken` from the body. Cookie mode reads the `el_rt` cookie (the\nbody is ignored), needs `X-Requested-With: english-learn` and an allowed `Origin`, and\nclears the cookie when the session cannot continue (401).",
         "operationId": "refresh_session_v1_auth_refresh_post",
+        "parameters": [
+          {
+            "description": "`cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body.",
+            "in": "header",
+            "name": "X-Token-Transport",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/TokenTransport",
+              "default": "body",
+              "description": "`cookie` (web): the refresh token travels in the HttpOnly `el_rt` cookie and is left out of the JSON. `body` (default): it travels in the JSON body."
+            }
+          },
+          {
+            "description": "Cookie mode only: must be `english-learn` (CSRF defense).",
+            "in": "header",
+            "name": "X-Requested-With",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Cookie mode only: must be `english-learn` (CSRF defense).",
+              "title": "X-Requested-With"
+            }
+          },
+          {
+            "description": "Cookie mode: the refresh token (HttpOnly, set by sign-in and refresh).",
+            "in": "cookie",
+            "name": "el_rt",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Cookie mode: the refresh token (HttpOnly, set by sign-in and refresh).",
+              "title": "El Rt"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenRequest"
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/RefreshTokenRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TokensResponse"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/TokensResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CookieTokensResponse"
+                    }
+                  ],
+                  "title": "Response Refresh Session V1 Auth Refresh Post"
                 }
               }
             },
-            "description": "Successful Response"
+            "description": "Successful Response",
+            "headers": {
+              "Set-Cookie": {
+                "description": "Cookie mode: `Set-Cookie: el_rt=<refresh token>; HttpOnly; Secure; SameSite=Strict; Path=/v1/auth; Max-Age=<seconds until the token expires>`",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "422": {
             "content": {
