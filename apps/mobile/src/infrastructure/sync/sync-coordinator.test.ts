@@ -17,7 +17,7 @@ const synced = (changed = false): SyncOutcome => ({
 });
 
 function setup(outcomes: (SyncOutcome | Promise<SyncOutcome>)[]) {
-  const run = jest.fn(async () => (await outcomes.shift()) ?? synced());
+  const run = jest.fn(async (_signal?: AbortSignal) => (await outcomes.shift()) ?? synced());
   const onProgressChanged = jest.fn();
   const onSignedOut = jest.fn();
   const coordinator = createSyncCoordinator({
@@ -85,14 +85,49 @@ describe("createSyncCoordinator", () => {
     expect(onSignedOut).toHaveBeenCalled();
   });
 
-  it("notifies subscribers and can be reset", async () => {
+  it("notifies subscribers", async () => {
     const { coordinator } = setup([synced()]);
     const seen: string[] = [];
     coordinator.subscribe(() => seen.push(coordinator.getStatus().kind));
 
     await coordinator.request();
-    coordinator.reset();
 
-    expect(seen).toEqual(["syncing", "synced", "idle"]);
+    expect(seen).toEqual(["syncing", "synced"]);
+  });
+
+  it("stops: cancels the sync in flight, waits for it and goes idle", async () => {
+    const pending = deferred<SyncOutcome>();
+    const { coordinator, run, onProgressChanged } = setup([pending.promise]);
+    const syncing = coordinator.request();
+    coordinator.request(); // would run once more afterwards
+    const signal = (run.mock.calls[0] as unknown as [AbortSignal])[0];
+    expect(signal.aborted).toBe(false);
+
+    let stopped = false;
+    const stopping = coordinator.stop().then(() => {
+      stopped = true;
+    });
+    expect(signal.aborted).toBe(true);
+    await Promise.resolve();
+    expect(stopped).toBe(false);
+    pending.resolve({ kind: "cancelled" });
+    await Promise.all([stopping, syncing]);
+
+    expect(run).toHaveBeenCalledTimes(1);
+    expect(coordinator.getStatus()).toEqual({ kind: "idle" });
+    expect(onProgressChanged).not.toHaveBeenCalled();
+  });
+
+  it("ignores requests once stopped, until resumed", async () => {
+    const { coordinator, run } = setup([synced(), synced()]);
+
+    await coordinator.stop();
+    await coordinator.request();
+    expect(run).not.toHaveBeenCalled();
+    expect(coordinator.getStatus()).toEqual({ kind: "idle" });
+
+    coordinator.resume();
+    await coordinator.request();
+    expect(run).toHaveBeenCalledTimes(1);
   });
 });
