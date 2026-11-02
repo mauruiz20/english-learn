@@ -46,7 +46,7 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
   await page.getByLabel("Tu traducción en inglés").fill("I usualy go to bed at eleven");
   await page.getByRole("button", { name: "Comprobar", exact: true }).click();
   await expect(page.getByRole("alert")).toHaveText(
-    "Casi. Respuesta correcta: I usually go to bed at eleven.",
+    "Casi. En lugar de 'usualy', va 'usually'. Respuesta correcta: I usually go to bed at eleven.",
   );
   await page.getByRole("button", { name: "Continuar", exact: true }).click();
 

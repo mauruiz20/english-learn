@@ -132,14 +132,14 @@ describe("matchPatternAnswer", () => {
 
   it("accepts any expansion, with the usual normalization and contractions", () => {
     expect(matchPatternAnswer("i often wake up at 6", accepted).verdict).toBe("correct");
-    expect(matchPatternAnswer("I usually get up at six o'clock!", accepted)).toEqual({
+    expect(matchPatternAnswer("I usually get up at six o'clock!", accepted)).toMatchObject({
       verdict: "correct",
       closest: "I usually get up at six o'clock.",
     });
   });
 
   it("is 'almost' with a typo, and reports the closest expansion", () => {
-    expect(matchPatternAnswer("I usualy get up at six.", accepted)).toEqual({
+    expect(matchPatternAnswer("I usualy get up at six.", accepted)).toMatchObject({
       verdict: "almost",
       closest: "I usually get up at six.",
     });

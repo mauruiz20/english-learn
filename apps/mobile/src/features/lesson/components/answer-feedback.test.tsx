@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import { StyleSheet } from "react-native";
+import { diffAnswer } from "@english-learn/domain";
 import { AnswerFeedback } from "./answer-feedback";
 
 const onContinue = jest.fn();
@@ -115,11 +116,99 @@ describe("AnswerFeedback marking (reduced motion: shown at once)", () => {
         verdict="almost"
         given="I usualy go to bed"
         correctAnswer="I usually go to bed."
+        diff={diffAnswer("I usualy go to bed", "I usually go to bed.")}
         onContinue={onContinue}
       />,
     );
 
     expect((await struckWords()).map((w) => w.trim())).toEqual(["usualy"]);
+    // The right word is written next to it, in the teacher's hand.
+    expect(screen.getAllByText("usually", { includeHiddenElements: true }).length).toBeGreaterThan(
+      0,
+    );
+  });
+
+  it("strikes only the extra word, with the hint, in the owner's case", async () => {
+    const given = "My commute to the work takes forty minutes";
+    const correctAnswer = "My commute to work takes forty minutes.";
+    await render(
+      <AnswerFeedback
+        verdict="almost"
+        given={given}
+        correctAnswer={correctAnswer}
+        diff={diffAnswer(given, correctAnswer)}
+        hint="En inglés se dice 'to work', sin 'the'."
+        onContinue={onContinue}
+      />,
+    );
+
+    expect((await struckWords()).map((w) => w.trim())).toEqual(["the"]);
+    expect(screen.getByText("En inglés se dice 'to work', sin 'the'.")).toBeOnTheScreen();
+    expect(
+      screen.getByText("Casi. Fíjate: My commute to work takes forty minutes.", {
+        includeHiddenElements: true,
+      }),
+    ).toBeTruthy();
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Casi. Sobra la palabra 'the'. Respuesta correcta: My commute to work takes forty minutes.",
+      { exact: true },
+    );
+  });
+
+  it("marks a missing word with a caret and the word in the teacher's hand", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="almost"
+        given="I listen music"
+        correctAnswer="I listen to music."
+        diff={diffAnswer("I listen music", "I listen to music.")}
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(await struckWords()).toEqual([]);
+    expect(screen.getAllByText("^to", { includeHiddenElements: true }).length).toBeGreaterThan(0);
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Casi. Falta la palabra 'to'. Respuesta correcta: I listen to music.",
+      { exact: true },
+    );
+  });
+
+  it("names a changed word for screen readers", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="wrong"
+        given="I live on Madrid"
+        correctAnswer="I live in Madrid."
+        diff={diffAnswer("I live on Madrid", "I live in Madrid.")}
+        onContinue={onContinue}
+      />,
+    );
+
+    expect((await struckWords()).map((w) => w.trim())).toEqual(["on"]);
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Incorrecto. En lugar de 'on', va 'in'. Respuesta correcta: I live in Madrid.",
+      { exact: true },
+    );
+  });
+
+  it("strikes the whole answer when too little of it lines up", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="wrong"
+        given="I sleep"
+        correctAnswer="I usually go to bed at eleven."
+        diff={diffAnswer("I sleep", "I usually go to bed at eleven.")}
+        hint={undefined}
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(await struckWords()).toEqual(["I sleep"]);
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Incorrecto. Respuesta correcta: I usually go to bed at eleven.",
+      { exact: true },
+    );
   });
 
   it("shows the margin note fully drawn, not waiting for an animation", async () => {
@@ -148,6 +237,37 @@ describe("AnswerFeedback: 'Mi respuesta también es correcta'", () => {
     await fireEvent.press(screen.getByRole("button", { name: "Mi respuesta también es correcta" }));
     expect(onDispute).toHaveBeenCalledTimes(1);
     expect(onContinue).not.toHaveBeenCalled();
+  });
+
+  it("offers it for an almost-right answer too", async () => {
+    const onDispute = jest.fn();
+    await render(
+      <AnswerFeedback
+        verdict="almost"
+        given="My commute to the work takes forty minutes"
+        correctAnswer="My commute to work takes forty minutes."
+        onContinue={onContinue}
+        onDispute={onDispute}
+      />,
+    );
+
+    await fireEvent.press(screen.getByRole("button", { name: "Mi respuesta también es correcta" }));
+    expect(onDispute).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not show the hint once the answer is marked as correct", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="correct"
+        disputed
+        given="My commute to the work takes forty minutes"
+        correctAnswer="My commute to work takes forty minutes."
+        hint="En inglés se dice 'to work', sin 'the'."
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(screen.queryByText(/se dice/, { includeHiddenElements: true })).toBeNull();
   });
 
   it("does not offer it without a handler (correct answers, other exercises)", async () => {

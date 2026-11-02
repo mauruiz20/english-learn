@@ -1,4 +1,4 @@
-import { xpForAnswer, type Verdict } from "@english-learn/domain";
+import { xpForAnswer, type Verdict, type WordDiffOp } from "@english-learn/domain";
 import { useEffect, useState, type ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, {
@@ -17,16 +17,19 @@ import { PopBadge } from "@/shared/ui/pop-badge";
 import { StrokeClip, usePenStroke } from "@/shared/ui/pen-stroke";
 import { struckText } from "@/shared/ui/struck";
 import { Text } from "@/shared/ui/text";
-import { radius, spacing } from "@/shared/ui/theme";
+import { fonts, radius, spacing } from "@/shared/ui/theme";
 import { useReducedMotion } from "@/shared/ui/use-reduced-motion";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
-import { diffWords, type AnswerSegment } from "../model/answer-diff";
 
 type AnswerFeedbackProps = {
   verdict: Verdict;
   /** What the learner answered, as text. */
   given: string;
   correctAnswer: string;
+  /** translate_write: word-level comparison of `given` with `correctAnswer`. */
+  diff?: readonly WordDiffOp[] | undefined;
+  /** translate_write: a common calque the answer shows, explained in Spanish. */
+  hint?: string | undefined;
   /** The correct answer is English: its words can be looked up in the margin note. */
   lookupAnswer?: boolean | undefined;
   /** The learner marked this answer as correct (`verdict` is then "correct"). */
@@ -49,47 +52,76 @@ function headline(verdict: Verdict, disputed: boolean): string {
 
 const DISPUTED_LABEL = "Marcada como correcta";
 
-/** What a screen reader announces: plain words, since the strike-through is visual only. */
+/** From how many differences the screen reader gets only the correct answer. */
+const MAX_DESCRIBED = 3;
+
+const bare = (text: string) => text.replace(/^[^\p{L}\p{N}']+|[^\p{L}\p{N}']+$/gu, "");
+
+/** One difference in plain words: "Sobra la palabra 'the'." */
+function describeDifference(op: WordDiffOp): string {
+  switch (op.kind) {
+    case "same":
+      return "";
+    case "extra":
+      return `Sobra la palabra '${bare(op.text)}'.`;
+    case "missing":
+      return op.expected.includes(" ")
+        ? `Faltan las palabras '${op.expected}'.`
+        : `Falta la palabra '${op.expected}'.`;
+    case "changed":
+      return `En lugar de '${bare(op.text)}', va '${op.expected}'.`;
+  }
+}
+
+/** What a screen reader announces: plain words, since the marking is visual only. */
 export function feedbackAnnouncement(
   verdict: Verdict,
   correctAnswer: string,
   disputed = false,
+  diff?: readonly WordDiffOp[],
 ): string {
   if (disputed) return DISPUTED_LABEL;
-  switch (verdict) {
-    case "correct":
-      return "Correcto";
-    case "almost":
-      return `Casi. Respuesta correcta: ${correctAnswer}`;
-    case "wrong":
-      return `Incorrecto. Respuesta correcta: ${correctAnswer}`;
-  }
+  if (verdict === "correct") return "Correcto";
+  const differences = diff !== undefined && linesUp(diff) ? diff.filter(isDifference) : [];
+  const described =
+    differences.length > 0 && differences.length <= MAX_DESCRIBED
+      ? ` ${differences.map(describeDifference).join(" ")}`
+      : "";
+  return `${verdict === "almost" ? "Casi." : "Incorrecto."}${described} Respuesta correcta: ${correctAnswer}`;
 }
 
-/** Which parts of the learner's answer the teacher strikes through. */
-function struckSegments(verdict: Verdict, given: string, correctAnswer: string): AnswerSegment[] {
-  if (verdict === "almost") {
-    const segments = diffWords(given, correctAnswer);
-    if (segments.some((s) => !s.differs)) return segments;
-  }
-  return [{ text: given, differs: true }];
+const isDifference = (op: WordDiffOp) => op.kind !== "same";
+
+/** Enough of the answer is right for marking only what is off to read well. */
+function linesUp(diff: readonly WordDiffOp[]): boolean {
+  const right = diff.filter((op) => op.kind === "same" && bare(op.text) !== "").length;
+  return right > diff.filter(isDifference).length;
+}
+
+/** How the teacher marks the learner's answer: only the off words, or all of it struck. */
+function markings(given: string, diff: readonly WordDiffOp[] | undefined): readonly WordDiffOp[] {
+  return diff !== undefined && linesUp(diff) ? diff : [{ kind: "extra", text: given }];
 }
 
 /**
  * The teacher's marking of an answer, on a band tinted by the verdict, under a headline with a
  * round mark ("¡Correcto!", "¡Casi!", "Incorrecto"), the points it earned popping off as a
  * sticker and, from three right answers in a row, a cheer. Correct: the answer is swiped with the
- * yellow highlighter. Wrong: the answer is struck through in red pen with a margin
- * note giving the right one. Almost: only the words that are off are struck through (or the
- * whole answer if nothing lines up), with "Casi. Fíjate: …". Screen readers get a plain
- * sentence instead (`feedbackAnnouncement`). A translate_write answer graded wrong or almost
- * can be marked as correct by the learner (`onDispute`): it is then highlighted with
- * "Marcada como correcta".
+ * yellow highlighter. Wrong or almost: with a word diff (translate_write) where enough lines up,
+ * only what is off is marked in red pen (extra words struck; changed words struck with the right
+ * one written next to them and missing words as a caret with the word, in the teacher's hand);
+ * otherwise the whole answer is struck. Below, a margin note gives the right answer ("Era: …",
+ * "Casi. Fíjate: …") and, when the answer shows a common calque, a hint explains it. Screen
+ * readers get a plain sentence instead, naming up to three differences (`feedbackAnnouncement`).
+ * A translate_write answer graded wrong or almost can be marked as correct by the learner
+ * (`onDispute`): it is then highlighted with "Marcada como correcta".
  */
 export function AnswerFeedback({
   verdict,
   given,
   correctAnswer,
+  diff,
+  hint,
   lookupAnswer = false,
   disputed = false,
   onDispute,
@@ -107,7 +139,7 @@ export function AnswerFeedback({
   return (
     <View style={styles.panel}>
       <Text accessibilityRole="alert" accessibilityLiveRegion="polite" style={styles.announcement}>
-        {feedbackAnnouncement(verdict, correctAnswer, disputed)}
+        {feedbackAnnouncement(verdict, correctAnswer, disputed, diff)}
       </Text>
       <View {...hidden} style={styles.headline}>
         <VerdictMark verdict={verdict} />
@@ -132,12 +164,17 @@ export function AnswerFeedback({
           </View>
         ) : (
           <>
-            <StruckAnswer segments={struckSegments(verdict, shown, correctAnswer)} />
+            <StruckAnswer marks={markings(shown, diff)} />
             <TeacherNote>
               <MarginNote {...(hideNote ? hidden : {})} style={styles.note}>
                 {verdict === "almost" ? "Casi. Fíjate: " : "Era: "}
                 <GlossaryRuns text={correctAnswer} enabled={lookupAnswer} />
               </MarginNote>
+              {hint !== undefined && (
+                <Text testID="feedback-hint" style={styles.hint}>
+                  {hint}
+                </Text>
+              )}
             </TeacherNote>
           </>
         )}
@@ -193,26 +230,47 @@ const markStyles = StyleSheet.create({
 });
 
 /**
- * The learner's answer with the off words struck through in red pen. The strike is drawn left to
- * right over the answer (a pen stroke, ≈ 250 ms): a clipped copy of the text that carries only the
- * strike, revealed over the plain text, so it follows line wraps like the highlighter does.
+ * The learner's answer, marked in red pen: extra and changed words struck through, the right word
+ * written after a changed one, and a caret with each missing word, in the teacher's hand. The
+ * strike is drawn left to right over the answer (a pen stroke, ≈ 250 ms): a clipped copy of the
+ * text that carries only the strike, revealed over the plain text, so it follows line wraps like
+ * the highlighter does. Only the marked words carry a strike, so only they get drawn.
  */
-function StruckAnswer({ segments }: { segments: readonly AnswerSegment[] }) {
+function StruckAnswer({ marks }: { marks: readonly WordDiffOp[] }) {
   const styles = useStyles();
   const { colors } = useTheme();
   const [width, setWidth] = useState(0);
   const progress = usePenStroke(true);
   const words = (struck: boolean) =>
-    segments.map((segment, i) => (
-      <Text
-        key={i}
-        variant="title"
-        tone={segment.differs ? "muted" : "text"}
-        style={[styles.answer, struck && styles.ink, struck && segment.differs && styles.struck]}
-      >
-        {i === 0 ? segment.text : ` ${segment.text}`}
-      </Text>
-    ));
+    marks.flatMap((mark, i) => {
+      const space = i === 0 ? "" : " ";
+      const handwriting = [styles.hand, struck ? styles.ink : { color: colors.redPen }];
+      if (mark.kind === "missing") {
+        return [
+          <Text key={i} variant="title" style={[styles.answer, ...handwriting]}>
+            {`${space}^${mark.expected}`}
+          </Text>,
+        ];
+      }
+      const off = mark.kind !== "same";
+      const word = (
+        <Text
+          key={i}
+          variant="title"
+          tone={off ? "muted" : "text"}
+          style={[styles.answer, struck && styles.ink, struck && off && styles.struck]}
+        >
+          {`${space}${mark.text}`}
+        </Text>
+      );
+      if (mark.kind !== "changed") return [word];
+      return [
+        word,
+        <Text key={`${i}-fix`} variant="title" style={[styles.answer, ...handwriting]}>
+          {` ${mark.expected}`}
+        </Text>,
+      ];
+    });
   // A pixel of slack so the copy never wraps earlier than the text it marks.
   const copyWidth = width + 2;
   return (
@@ -291,5 +349,8 @@ const useStyles = themedStyles(({ colors }) =>
     ink: { color: "transparent" },
     struckWrap: { alignSelf: "flex-start", maxWidth: "100%" },
     note: { fontSize: 29, lineHeight: 34 },
+    // The teacher's corrections inside the answer: Caveat, a little larger to match its x-height.
+    hand: { fontFamily: fonts.hand, fontSize: 27 },
+    hint: { marginTop: spacing.xs, color: colors.text },
   }),
 );
