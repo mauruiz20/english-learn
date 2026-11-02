@@ -56,6 +56,19 @@ describe("AppErrorBoundary", () => {
     expect(screen.getByText("Motivo: open-failed:AccessHandleBusy")).toBeOnTheScreen();
   });
 
+  it("adds the database page's own lines to the technical details", async () => {
+    const error = new DatabaseOpenError(new Error("The object is in an invalid state."));
+    await render(
+      <AppErrorBoundary onRetry={jest.fn()} details={() => ["Workers de la base de datos: 1"]}>
+        <Throws error={error} />
+      </AppErrorBoundary>,
+    );
+
+    await fireEvent.press(screen.getByRole("button", { name: "Detalles técnicos" }));
+    expect(screen.getByText("Motivo: open-failed:InvalidStateError")).toBeOnTheScreen();
+    expect(screen.getByText("Workers de la base de datos: 1")).toBeOnTheScreen();
+  });
+
   it("explains a database saved by a newer app version", async () => {
     await render(
       <AppErrorBoundary onRetry={jest.fn()}>

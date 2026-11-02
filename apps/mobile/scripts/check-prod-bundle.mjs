@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the production web export (dist/):
-// - it contains no test-only code: the e2e `?today=` clock override, played-sounds log and
-//   settings-writes hook must only exist in builds exported with EXPO_PUBLIC_E2E=1 (dist-e2e/);
+// - it contains no test-only code: the e2e `?today=` clock override, played-sounds log,
+//   settings-writes hook and database-workers count must only exist in builds exported with EXPO_PUBLIC_E2E=1 (dist-e2e/);
 // - it is an installable, offline-capable PWA: sw.js is there, up to date with the export and
 //   precaches the app shell, the SQLite WASM and the manifest; the manifest is valid and linked.
 import { readdir, readFile } from "node:fs/promises";
@@ -15,6 +15,7 @@ const FORBIDDEN = [
   "EXPO_PUBLIC_E2E",
   "playedSounds",
   "settingsWritesSettled",
+  "dbWorkers",
   // The fake API / Google endpoints an account spec stores (see e2e-endpoints.ts).
   "english-learn.e2e.",
 ];
