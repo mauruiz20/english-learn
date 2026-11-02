@@ -44,6 +44,8 @@ from english_learn_api.shared.database import create_engine, create_session_fact
 from english_learn_api.shared.errors import install_error_handlers
 from english_learn_api.shared.logging import configure_logging
 from english_learn_api.shared.middleware import (
+    Admission,
+    AdmissionMiddleware,
     BodySizeLimitMiddleware,
     PathCorsMiddleware,
     RequestLogMiddleware,
@@ -53,6 +55,13 @@ from english_learn_api.sync.api.router import STATUS_BY_ERROR as SYNC_STATUS_BY_
 from english_learn_api.sync.api.router import build_sync_router
 from english_learn_api.sync.application.use_cases import SyncProgress
 from english_learn_api.sync.infrastructure.sqlalchemy_unit_of_work import SqlAlchemySyncUnitOfWork
+from english_learn_api.transfers.api.admission import (
+    DEFAULT_CREATE_WAIT_SECONDS,
+    DEFAULT_MAX_CONCURRENT_CREATES,
+    ConcurrencySlots,
+    claim_admission,
+    create_admission,
+)
 from english_learn_api.transfers.api.router import CLAIM_PATH, CREATE_PATH, build_transfers_router
 from english_learn_api.transfers.api.router import STATUS_BY_ERROR as TRANSFER_STATUS_BY_ERROR
 from english_learn_api.transfers.application.use_cases import ClaimTransfer, CreateTransfer
@@ -67,12 +76,14 @@ LOGOUT_RATE = Rate(30, timedelta(minutes=1))
 DELETE_ACCOUNT_RATE = Rate(5, timedelta(hours=1))
 SYNC_RATE = Rate(60, timedelta(minutes=1))
 CREATE_TRANSFER_RATE = Rate(5, timedelta(hours=1))
+CREATE_TRANSFER_GLOBAL_RATE = Rate(100, timedelta(hours=1))
 CLAIM_TRANSFER_RATE = Rate(20, timedelta(hours=1))
 
 
 @dataclass(frozen=True, slots=True)
 class RateLimits:
-    """Per client IP for the auth and transfer endpoints, per user for account deletion and sync."""
+    """Per client IP for the auth and transfer endpoints, per user for account deletion and sync;
+    `create_transfer_global` counts every client's creates together."""
 
     sign_in: Rate = SIGN_IN_RATE
     refresh: Rate = REFRESH_RATE
@@ -80,6 +91,7 @@ class RateLimits:
     delete_account: Rate = DELETE_ACCOUNT_RATE
     sync: Rate = SYNC_RATE
     create_transfer: Rate = CREATE_TRANSFER_RATE
+    create_transfer_global: Rate = CREATE_TRANSFER_GLOBAL_RATE
     claim_transfer: Rate = CLAIM_TRANSFER_RATE
 
 
@@ -90,6 +102,10 @@ def create_app(
     clock: Clock | None = None,
     rate_limits: RateLimits | None = None,
     google_concurrency: tuple[int, float] = (DEFAULT_MAX_CONCURRENT, DEFAULT_WAIT_SECONDS),
+    transfer_concurrency: tuple[int, float] = (
+        DEFAULT_MAX_CONCURRENT_CREATES,
+        DEFAULT_CREATE_WAIT_SECONDS,
+    ),
 ) -> FastAPI:
     """Build the app. Tests swap the Google verifier and the clock; everything else is real."""
     clock = clock or SystemClock()
@@ -193,20 +209,39 @@ def create_app(
         build_transfers_router(
             create=CreateTransfer(unit_of_work=transfer_unit_of_work, clock=clock),
             claim=ClaimTransfer(unit_of_work=transfer_unit_of_work, clock=clock),
-            create_limit=limit_by_client_ip(TokenBucketLimiter(limits.create_transfer), client_ip),
-            claim_limit=limit_by_client_ip(TokenBucketLimiter(limits.claim_transfer), client_ip),
         )
     )
 
-    # Added last = outermost: CORS headers also land on 413 responses.
+    # Added last = outermost: CORS headers also land on 413, 429 and 503 responses.
     app.add_middleware(
         BodySizeLimitMiddleware,
         max_bytes=settings.max_request_body_bytes,
         max_bytes_by_path={CREATE_PATH: MAX_TRANSFER_BODY_BYTES},
     )
+    app.add_middleware(
+        AdmissionMiddleware, by_path=transfer_admissions(limits, client_ip, transfer_concurrency)
+    )
     app.add_middleware(RequestLogMiddleware)
     app.add_middleware(PathCorsMiddleware, **cors_policies(settings))
     return app
+
+
+def transfer_admissions(
+    limits: RateLimits, client_ip: ClientIpResolver, concurrency: tuple[int, float]
+) -> dict[str, Admission]:
+    """The transfer routes' limits, taken before their bodies are read."""
+    max_concurrent, wait_seconds = concurrency
+    return {
+        CREATE_PATH: create_admission(
+            per_client=TokenBucketLimiter(limits.create_transfer),
+            everyone=TokenBucketLimiter(limits.create_transfer_global),
+            slots=ConcurrencySlots(max_concurrent, wait_seconds),
+            client_ip=client_ip,
+        ),
+        CLAIM_PATH: claim_admission(
+            per_client=TokenBucketLimiter(limits.claim_transfer), client_ip=client_ip
+        ),
+    }
 
 
 def cors_policies(settings: Settings) -> dict[str, Any]:

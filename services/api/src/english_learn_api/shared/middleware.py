@@ -2,13 +2,15 @@
 
 import logging
 import time
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
+from contextlib import AbstractAsyncContextManager, AsyncExitStack
 from typing import Any
 
 from starlette.middleware.cors import CORSMiddleware
+from starlette.requests import Request
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
-from english_learn_api.shared.errors import error_response
+from english_learn_api.shared.errors import ApiError, error_response
 
 logger = logging.getLogger("english_learn_api.request")
 
@@ -79,6 +81,37 @@ class BodySizeLimitMiddleware:
             {"Connection": "close"},
         )
         await response(scope, receive, send)
+
+
+type Admission = Callable[[Request], AbstractAsyncContextManager[None]]
+"""Decides from the request line and headers alone whether a request may proceed. It raises
+`ApiError` to refuse, and stays entered (holding, say, a concurrency slot) while the app runs."""
+
+
+class AdmissionMiddleware:
+    """Runs an exact path's admission before the app sees the request, so a refused client never
+    gets its body read or parsed (FastAPI parses bodies before route dependencies run).
+    """
+
+    def __init__(self, app: ASGIApp, by_path: Mapping[str, Admission]) -> None:
+        self.app = app
+        self.by_path = dict(by_path)
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        admission = self.by_path.get(scope["path"]) if scope["type"] == "http" else None
+        if admission is None:
+            await self.app(scope, receive, send)
+            return
+        async with AsyncExitStack() as stack:
+            try:
+                await stack.enter_async_context(admission(Request(scope)))
+            except ApiError as error:
+                response = error_response(
+                    error.status_code, error.code, error.message, error.headers
+                )
+                await response(scope, receive, send)
+                return
+            await self.app(scope, receive, send)
 
 
 class PathCorsMiddleware:
