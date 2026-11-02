@@ -3,6 +3,7 @@ import { FakeTransfers } from "./support/fake-transfers";
 import {
   clearOriginData,
   expect,
+  expectOneDatabaseWorker,
   test as base,
   waitForServiceWorker,
   type Page,
@@ -72,6 +73,8 @@ test.describe("progress transfer to the new web address", () => {
     await page.getByRole("button", { name: "Importar", exact: true }).click();
     await expect(page.getByText("¡Tu progreso llegó!")).toBeVisible();
     await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
+    // The import wrote through the page's one SQLite worker.
+    await expectOneDatabaseWorker(page);
 
     await page.getByRole("button", { name: "Ir al inicio", exact: true }).click();
     await page.waitForURL(`${NEW}/`);

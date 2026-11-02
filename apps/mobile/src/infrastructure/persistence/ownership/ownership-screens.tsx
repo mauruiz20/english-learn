@@ -23,7 +23,6 @@ export function diagnosticsLines(diagnostics: OwnershipDiagnostics): string[] {
     `Motivo: ${diagnostics.reason}`,
     ...environmentLines(diagnostics.environment),
     `Bloqueos activos: ${diagnostics.lockHolders ?? "desconocido"}`,
-    ...(diagnostics.probeError === null ? [] : [`Error de la prueba: ${diagnostics.probeError}`]),
     `Intentos: ${diagnostics.takeOverAttempts}`,
     `Inicio: ${new Date(diagnostics.startedAt).toISOString()}`,
     `Decisión: ${new Date(diagnostics.decidedAt).toISOString()}`,

@@ -35,7 +35,12 @@ function messageFor(error: unknown): Message {
   return { title: "Algo salió mal.", detail: "Vuelve a intentarlo." };
 }
 
-type AppErrorBoundaryProps = { children: ReactNode; onRetry: () => void };
+type AppErrorBoundaryProps = {
+  children: ReactNode;
+  onRetry: () => void;
+  /** Extra "Detalles técnicos" lines for a database open that failed (workers, retries). */
+  details?: () => readonly string[];
+};
 
 /**
  * Catches render errors anywhere below it (including a database that fails to open, see
@@ -67,6 +72,7 @@ export class AppErrorBoundary extends Component<AppErrorBoundaryProps, { error: 
             lines={[
               `Motivo: ${openFailureCode(error.cause)}`,
               ...environmentLines(browserEnvironment()),
+              ...(this.props.details?.() ?? []),
               `Hora: ${new Date().toISOString()}`,
             ]}
           />

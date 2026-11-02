@@ -1,6 +1,6 @@
 import type { AddressInfo } from "node:net";
 import { join } from "node:path";
-import { expect, test, waitForServiceWorker } from "./support/test";
+import { expect, expectOneDatabaseWorker, test, waitForServiceWorker } from "./support/test";
 
 // The installable web app (PWA): after one online visit, the service worker serves the whole
 // app from its cache, still cross-origin isolated (expo-sqlite needs SharedArrayBuffer).
@@ -149,6 +149,7 @@ test.describe("offline web app", () => {
       expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(
         undefined,
       );
+      await expectOneDatabaseWorker(page);
       await expect(page.getByText("Hay una versión nueva")).toBeHidden();
       const scriptUrl = await page.evaluate(
         () => navigator.serviceWorker.controller?.scriptURL ?? null,

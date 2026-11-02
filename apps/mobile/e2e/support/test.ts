@@ -9,7 +9,7 @@
 // Playwright's WebKit keeps website data (OPFS, service workers and caches included) in ONE
 // place shared by every persistent profile, so the webkit project runs with one worker and each
 // test starts by emptying OPFS and removing service workers and their caches.
-import { test as base, type Page } from "@playwright/test";
+import { expect, test as base, type Page } from "@playwright/test";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -92,6 +92,20 @@ export async function waitForServiceWorker(page: Page) {
       navigator.serviceWorker.addEventListener("controllerchange", resolve, { once: true }),
     );
   });
+}
+
+/**
+ * Waits until the page's worker count (test-only `window.__e2e.dbWorkers`) settles, then checks
+ * the page runs exactly ONE worker: expo-sqlite's. A second SQLite worker would collide with the
+ * first on the same OPFS files (WebKit `InvalidStateError`, the iOS "No pudimos abrir tus datos").
+ */
+export async function expectOneDatabaseWorker(page: Page) {
+  const count = () =>
+    page.evaluate(() => (window as unknown as { __e2e?: { dbWorkers?: number } }).__e2e?.dbWorkers);
+  await expect.poll(count).toBe(1);
+  // Nothing starts a second one a moment later either.
+  await page.waitForTimeout(300);
+  expect(await count()).toBe(1);
 }
 
 export { expect } from "@playwright/test";

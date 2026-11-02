@@ -1,4 +1,3 @@
-import { databaseOpenErrorKind } from "../database-open-error";
 import {
   createDatabaseOwnership,
   type DatabaseOwnership,
@@ -8,17 +7,11 @@ import {
   type OwnershipMessage,
 } from "./database-ownership";
 import { browserEnvironment } from "./ownership-environment";
-import type { ProbeOutcome } from "./retry-while-busy";
 
 const CHANNEL_NAME = "english-learn-db";
 const LOCK_NAME = "english-learn-db-owner";
 const RELEASED_KEY = "english-learn-db-released";
 const ATTEMPTS_KEY = "english-learn-db-takeover-attempts";
-/** Set once the probe said "busy" and the database then opened fine: the probe lies here. */
-const PROBE_DISTRUSTED_KEY = "english-learn-db-probe-distrusted";
-/** expo-sqlite's OPFS directory (its AccessHandlePoolVFS name). */
-const OPFS_DIRECTORY = "expo-sqlite";
-const PROBE_TIMEOUT_MS = 3000;
 
 type KeyValueStorage = {
   getItem(key: string): string | null;
@@ -39,18 +32,9 @@ type LockManager = {
     callback: (lock: object | null) => Promise<unknown> | undefined,
   ): Promise<unknown>;
 };
-type BrowserWorker = {
-  onmessage: ((event: { data: unknown }) => void) | null;
-  onerror: (() => void) | null;
-  postMessage(message: unknown): void;
-  terminate(): void;
-};
 type BrowserGlobals = {
   BroadcastChannel?: new (name: string) => BrowserChannel;
   navigator?: { locks?: LockManager };
-  Worker?: new (url: string) => BrowserWorker;
-  Blob?: new (parts: string[], options: { type: string }) => object;
-  URL: { createObjectURL(blob: object): string; revokeObjectURL(url: string): void };
   sessionStorage?: KeyValueStorage;
   localStorage?: KeyValueStorage;
   location?: { reload(): void };
@@ -133,80 +117,8 @@ function webLocks(): OwnershipLocks | null {
   };
 }
 
-// Runs in a throwaway worker (OPFS sync access handles exist only in workers): opens a handle
-// on each of expo-sqlite's files and closes them all again. A file another page's worker holds
-// fails to open. It must not use expo-sqlite's own worker: after a failed open that worker
-// cannot open the database again until the page reloads.
-const PROBE_SOURCE = `
-self.onmessage = async (event) => {
-  const handles = [];
-  let result = { ok: true };
-  try {
-    const root = await navigator.storage.getDirectory();
-    let directory = null;
-    try {
-      directory = await root.getDirectoryHandle(event.data);
-    } catch (error) {
-      if (!error || error.name !== "NotFoundError") throw error;
-    }
-    if (directory) {
-      for await (const [, handle] of directory) {
-        if (handle.kind === "file") handles.push(await handle.createSyncAccessHandle());
-      }
-    }
-  } catch (error) {
-    result = { ok: false, name: String(error && error.name), message: String(error && error.message) };
-  }
-  for (const handle of handles) {
-    try { handle.close(); } catch {}
-  }
-  self.postMessage(result);
-};
-`;
-
-function classifyProbe(data: unknown): ProbeOutcome {
-  const result = data as { ok?: boolean; name?: string; message?: string } | null;
-  if (result?.ok === true) return { result: "free" };
-  const error = new Error(result?.message ?? "");
-  error.name = result?.name ?? "Error";
-  return {
-    result: databaseOpenErrorKind(error) === "open-elsewhere" ? "busy" : "error",
-    error: error.name,
-  };
-}
-
-function probeDatabaseFiles(): Promise<ProbeOutcome> {
-  return new Promise((resolve) => {
-    let worker: BrowserWorker | null = null;
-    let url: string | null = null;
-    const finish = (outcome: ProbeOutcome) => {
-      clearTimeout(timer);
-      worker?.terminate();
-      if (url !== null) browser.URL.revokeObjectURL(url);
-      resolve(outcome);
-    };
-    // No answer (no Worker, blocked blob URL, …): let the normal open decide.
-    const timer = setTimeout(
-      () => finish({ result: "error", error: "ProbeTimeout" }),
-      PROBE_TIMEOUT_MS,
-    );
-    try {
-      if (browser.Worker === undefined || browser.Blob === undefined) throw new Error("no Worker");
-      url = browser.URL.createObjectURL(
-        new browser.Blob([PROBE_SOURCE], { type: "text/javascript" }),
-      );
-      worker = new browser.Worker(url);
-      worker.onmessage = ({ data }) => finish(classifyProbe(data));
-      worker.onerror = () => finish({ result: "error", error: "ProbeWorkerError" });
-      worker.postMessage(OPFS_DIRECTORY);
-    } catch {
-      finish({ result: "error", error: "ProbeUnavailable" });
-    }
-  });
-}
-
 /** Storage access that never throws (Safari private mode, blocked site data). */
-function storageOf(name: "sessionStorage" | "localStorage") {
+function storageOf(name: "sessionStorage") {
   return {
     get(key: string): string | null {
       try {
@@ -233,17 +145,11 @@ function storageOf(name: "sessionStorage" | "localStorage") {
 }
 
 const session = storageOf("sessionStorage");
-const local = storageOf("localStorage");
 
 const takeOverAttempts = {
   count: () => Number(session.get(ATTEMPTS_KEY) ?? 0) || 0,
   increment: () => session.set(ATTEMPTS_KEY, String(takeOverAttempts.count() + 1)),
   clear: () => session.remove(ATTEMPTS_KEY),
-};
-
-const probeTrust = {
-  trusted: () => local.get(PROBE_DISTRUSTED_KEY) !== "1",
-  distrust: () => local.set(PROBE_DISTRUSTED_KEY, "1"),
 };
 
 const releasedFlag = {
@@ -264,11 +170,8 @@ export function createBrowserOwnership(): DatabaseOwnership {
     pageId: browser.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
     channel: broadcastChannel(),
     locks: webLocks(),
-    probe: probeDatabaseFiles,
-    sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
     releasedFlag,
     takeOverAttempts,
-    probeTrust,
     now: Date.now,
     environment: browserEnvironment,
     reload: () => browser.location?.reload(),

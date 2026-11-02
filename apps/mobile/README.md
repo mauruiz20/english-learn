@@ -44,18 +44,42 @@ log at start.
 ### When the database cannot open
 
 `SqliteAppServicesProvider` wraps the app in `AppErrorBoundary`
-(`src/infrastructure/errors/`). If the database fails to open or migrate, `SQLiteProvider`'s
-`onError` throws a `DatabaseOpenError` and the boundary shows a message with "Reintentar"
-instead of a blank screen; any other render error shows "Algo salió mal.". "Reintentar"
-reloads the page on web (expo-sqlite's worker cannot reopen after a failed open) and remounts
-the app on native. Messages by cause (`database-open-error.ts`):
+(`src/infrastructure/errors/`). If the database fails to open or migrate, the provider throws a
+`DatabaseOpenError` while rendering and the boundary shows a message with "Reintentar" instead of
+a blank screen; any other render error shows "Algo salió mal.". "Reintentar" reloads the page on
+web (expo-sqlite's worker cannot reopen after a failed open) and opens again and remounts the
+app on native.
+
+**One database open per page (web).** expo-sqlite runs every database in one worker per page,
+created on the first open; its OPFS VFS takes a sync access handle on each of its files, and a
+file accepts only one. A second acquisition in the same page (a second open racing the first, a
+second worker, the file probe older builds ran) fails, on WebKit with `InvalidStateError`. After
+a failed open that worker never opens again (its VFS stays uninitialized). So the open runs once
+per page at module level (`page-database.ts`): remounts, re-renders and boundary retries reuse it
+and never start another worker, and only a reload opens again. `worker-count.ts` counts the
+page's workers (exactly one, expo-sqlite's; `window.__e2e.dbWorkers` in e2e builds).
+
+**Busy files retry by reloading (web, `open-retry.ts`).** A busy open (the previous page's worker
+still letting go after a reload, a redirect return or an update) reloads the page after 400,
+1200 and 2500 ms (count in `sessionStorage` `english-learn-db-open-retries`, cleared once the
+database opens or on "Reintentar"), with the loading state meanwhile. Never with two workers in
+the page (that collision is the page's own: retrying would hide it) and never without a working
+`sessionStorage` (it could loop). Then the message below.
+
+**No in-memory fallback.** expo-sqlite's worker sets up the OPFS VFS and the in-memory one in the
+same step: when OPFS acquisition fails, every later open in that page fails too, `:memory:`
+included, and after a reload the same OPFS acquisition runs (and fails) first again. A "use
+without saving" mode would need a patched expo-sqlite.
+
+Messages by cause (`database-open-error.ts`):
 
 - **The files are held** (web), when the ownership check below let the open go ahead: recognized
   by the messages browsers actually report (Chromium: "Access Handles cannot be created if there
   is another open Access Handle…"; WebKit: "The object is in an invalid state."). It does NOT
   claim another tab (on iOS this happens with no other tab at all): "No pudimos abrir tus datos
   en esta ventana." with steps to free them (close the app from the app switcher, close Safari
-  tabs of the site) and "Detalles técnicos" (`open-failed:<code>`).
+  tabs of the site) and "Detalles técnicos" (`open-failed:<code>`, the environment, the page's
+  database workers, `Sondeo de archivos: no` and the automatic retries).
 - **Database from a newer app version** (`SchemaTooNewError` from `migrate`): asks to update.
 - **Anything else** (corrupt file, storage disabled, e.g. WebKit without OPFS in private
   browsing): "No pudimos abrir tus datos."
@@ -73,32 +97,32 @@ only once this page owns it (`src/infrastructure/persistence/ownership/`):
    with "Usar aquí". No answer means the owner is unloading (reload, Google redirect return, update):
    wait up to 6 s for the lock. Still taken and `navigator.locks.query()` shows a holder (or the
    query is missing) → the same screen (`lock-held`).
-3. **Probe**: a throwaway worker opens and closes a sync access handle on each of expo-sqlite's
-   files; while they are busy (the previous page's worker lets go a moment after its lock) it
-   retries after 100, 200, 400, 800, 1600 and 2400 ms, with the normal loading state.
+3. **Never the files**: the check does not touch the database files. Older builds probed them
+   from a throwaway worker (open and close a sync access handle on each) right before SQLite
+   opened them; on iOS the handles are released late, and SQLite's open then failed with
+   `InvalidStateError` in the page itself (the iPhone's "No pudimos abrir tus datos en esta
+   ventana.", reproduced in `e2e/database-errors.spec.ts` by delaying the release). Waiting for
+   the previous page's worker to let go is the busy-open retry above.
 4. **Only positive evidence claims another page**: an `owned` answer, or a lock another client
-   holds. A probe still "busy", a failing probe, a Web Locks request that rejects, or a lock that
-   is never granted although nobody holds it all go on to the normal open, which reports the
-   real error. (On iOS Home Screen apps the probe and Web Locks reported "busy" with no other
-   page alive, even after force-quitting, and "Usar aquí" looped forever.) When the probe said
-   "busy" and the database then opened fine, the device stops trusting the probe
-   (`localStorage` `english-learn-db-probe-distrusted`) so later launches do not wait ~5 s.
+   holds. A Web Locks request that rejects, or a lock that is never granted although nobody holds
+   it, go on to the normal open, which reports the real error. (On iOS Home Screen apps "busy"
+   showed up with no other page alive, and "Usar aquí" looped forever.)
 5. **"Usar aquí"** posts `release`. The owner refuses new writes and waits for the ones in flight
    (saves and the sync's, `createWriteTracker().drain()`), unmounts the app (stopping sync and its
    timers), replies `released` and reloads with a one-shot `sessionStorage` flag, so it shows
    "La app se abrió en otra pestaña" with its own "Usar aquí" (which takes the database back the
-   same way). The new page then takes the lock and probes as above.
+   same way). The new page then takes the lock as above.
 6. **Never a silent loop**: presses are counted in `sessionStorage`
    (`english-learn-db-takeover-attempts`, cleared once the database opens). If the lock is still
    taken after "Usar aquí" (the holder never answered: frozen, suspended), or after a reload that
    follows a failed "Usar aquí", the page shows "No pudimos abrir tus datos en esta ventana." with
    iOS steps and "Reintentar", which asks again and waits up to 15 s for the lock.
 7. **"Detalles técnicos"** (collapsed) on these screens: reason code (`owner-answered`,
-   `lock-held`, `no-owner-answer`, `probe-busy`, `probe-error:<name>`, `lock-error:<name>`, …),
+   `lock-held`, `no-owner-answer`, `lock-acquired`, `no-locks`, `lock-error:<name>`, …),
    whether Web Locks / BroadcastChannel / OPFS exist, display mode (`standalone` / `browser`),
    lock holders, attempts and ISO timestamps. No personal data: meant for a screenshot.
 
-Without Web Locks the channel and the probe still apply. Native apps skip all of this.
+Without Web Locks the channel still applies (`no-locks`). Native apps skip all of this.
 
 Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod at runtime).
 
