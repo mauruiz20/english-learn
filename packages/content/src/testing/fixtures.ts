@@ -5,6 +5,7 @@
  */
 import type { LoadedFile } from "../validate/types";
 import type {
+  Card,
   ClozeExercise,
   ContentFile,
   GlossaryEntry,
@@ -244,4 +245,106 @@ export function glossaryFiles(): LoadedFile[] {
     file: `glossary/${letter}.json`,
     data: { glossary },
   }));
+}
+
+const CARD_ITEM_IDS = ["b1.grammar.although"];
+
+/** A valid B1 grammar card about "although", practiced by the exercises of `cardFile()`. */
+export function card(o: Partial<Card> = {}): Card {
+  return {
+    id: "b1.grammar.although",
+    level: "B1",
+    topic: "grammar",
+    kind: "grammar",
+    title: "Although",
+    summary: "Une dos ideas que contrastan.",
+    form: "although + oración",
+    uses: ["Contrastar dos ideas."],
+    pitfalls: [
+      {
+        wrong: "Although was late, we kept walking.",
+        right: "Although it was late, we kept walking.",
+        why: "En inglés la oración necesita sujeto: it was late.",
+      },
+    ],
+    examples: [
+      { en: "Although it was late, we kept walking.", es: "Aunque era tarde, seguimos caminando." },
+      {
+        en: "Although he was tired, he kept walking.",
+        es: "Aunque estaba cansado, siguió caminando.",
+      },
+      { en: "We went out although it rained.", es: "Salimos aunque llovió." },
+      { en: "Although it was raining, we went out.", es: "Aunque llovía, salimos." },
+    ],
+    itemIds: [...CARD_ITEM_IDS],
+    exerciseIds: [
+      "b1.grammar.although-vocab-1",
+      "b1.grammar.although-cloze-1",
+      "b1.grammar.although-cloze-2",
+      "b1.grammar.although-order-1",
+      "b1.grammar.although-choice-1",
+      "b1.grammar.although-write-1",
+    ],
+    ...o,
+  } as Card;
+}
+
+/** A valid B1 phrasal-verb card (three entries); not wired to items or exercises. */
+export function phrasalVerbCard(o: Partial<Card> = {}): Card {
+  const entry = (verb: string, es: string, separable: boolean) => ({
+    verb,
+    es,
+    separable,
+    example: { en: "We went out.", es: "Salimos." },
+  });
+  return {
+    ...card(),
+    id: "b1.phrasal-verbs.going-out",
+    topic: "phrasal-verbs",
+    kind: "phrasal_verbs",
+    entries: [
+      entry("go out", "salir", false),
+      entry("keep walking", "seguir caminando", false),
+      entry("rain out", "suspender por lluvia", true),
+    ],
+    ...o,
+  } as Card;
+}
+
+/** A valid B1 vocabulary card with collocations and a false friend; not wired to items. */
+export function vocabularyCard(o: Partial<Card> = {}): Card {
+  return {
+    ...card(),
+    id: "b1.vocabulary.late",
+    topic: "vocabulary",
+    kind: "vocabulary",
+    collocations: [{ en: "late summer", es: "fines del verano" }],
+    falseFriend: { en: "late", looksLike: "lato", actually: "tarde" },
+    ...o,
+  } as Card;
+}
+
+/** A complete, valid `b1/grammar.json` holding a card, its item and its six exercises. */
+export function cardFile(c: Card = card()): LoadedFile {
+  const itemIds = [...CARD_ITEM_IDS];
+  return {
+    file: "b1/grammar.json",
+    data: {
+      items: [item({ id: "b1.grammar.although", topics: ["grammar"], kind: "grammar" })],
+      exercises: [
+        vocab({ id: "b1.grammar.although-vocab-1", itemIds }),
+        cloze({ id: "b1.grammar.although-cloze-1", itemIds }),
+        cloze({
+          id: "b1.grammar.although-cloze-2",
+          itemIds,
+          sentence: "___ he was tired, he kept walking.",
+          es: "Aunque estaba cansado, siguió caminando.",
+        }),
+        wordOrder({ id: "b1.grammar.although-order-1", itemIds }),
+        translationChoice({ id: "b1.grammar.although-choice-1", itemIds }),
+        translateWrite({ id: "b1.grammar.although-write-1", itemIds }),
+      ],
+      cards: [c],
+    },
+  };
 }
