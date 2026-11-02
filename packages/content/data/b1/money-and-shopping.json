@@ -372,7 +372,8 @@
         "b1.money-and-shopping.save-up",
         "b1.money-and-shopping.lend",
         "b1.money-and-shopping.borrow"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.second-conditional", "b1.vocabulary.borrow-lend"]
     },
     {
       "id": "b1.money-and-shopping.lesson-002",
@@ -392,7 +393,8 @@
         "b1.money-and-shopping.bargain",
         "b1.money-and-shopping.credit-card",
         "b1.money-and-shopping.refund"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.second-conditional", "b1.vocabulary.borrow-lend"]
     }
   ]
 }

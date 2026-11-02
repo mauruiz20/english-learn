@@ -418,7 +418,8 @@
         "b1.travel.present-perfect-past-simple",
         "b1.travel.set-off",
         "b1.travel.check-in"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.present-perfect-past-simple", "b1.phrasal-verbs.travel"]
     }
   ]
 }

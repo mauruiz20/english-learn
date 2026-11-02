@@ -358,7 +358,8 @@
         "b1.media-and-news.news",
         "b1.media-and-news.according-to",
         "b1.media-and-news.fake-news"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.say-tell"]
     },
     {
       "id": "b1.media-and-news.lesson-002",
@@ -378,7 +379,8 @@
         "b1.media-and-news.announce",
         "b1.media-and-news.passive-past",
         "b1.media-and-news.find-out"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.say-tell"]
     }
   ]
 }

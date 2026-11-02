@@ -356,7 +356,8 @@
         "a2.food.vegetables",
         "a2.food.rice",
         "a2.food.how-much-many"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.much-many"]
     },
     {
       "id": "a2.food.lesson-002",
@@ -378,7 +379,8 @@
         "a2.food.chicken",
         "a2.food.lunch",
         "a2.food.bread"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.much-many"]
     }
   ]
 }

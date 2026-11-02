@@ -369,7 +369,8 @@
         "b1.city-life.commute",
         "b1.city-life.move",
         "b1.city-life.traffic-jam"
-      ]
+      ],
+      "deepenCardIds": ["b1.vocabulary.commute"]
     },
     {
       "id": "b1.city-life.lesson-002",
