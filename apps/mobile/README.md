@@ -177,6 +177,16 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   component by type; tagged `testID="exercise-<id>"`) and `AnswerFeedback`.
 - `lesson-container.tsx` / `lesson-view.tsx`: the `/lesson/[id]` screen, summary and unknown-id
   message.
+- **"Lo nuevo de hoy"** (`model/lesson-recap.ts`): the lesson summary ends with the 3–5 items the
+  lesson introduces (the content's `newItemIds`; without them, the lesson's items no earlier
+  lesson practices). Each shows its term (with word lookup) and Spanish, then "Ver ficha:
+  <título>" when a study card teaches it (opens `/fichas/[id]` on top of the summary), or else an
+  example: the item's own `example`, or a sentence of an exercise that practices it, with its
+  Spanish and linking the item's glossary entry (the lesson's exercises first). Card practice and
+  the daily review have no recap.
+- **"Repetir lección"** on the lesson summary (a secondary button with mistakes, a text button on
+  a perfect page) runs the lesson again from the start as a new session (`LessonContainer`
+  remounts the session with a new key): answer XP again, never a second completion bonus.
 
 Home lists the lessons of the level nearest to the placement level that has lessons (ties go to
 the lower level; with MVP content A1 → A2 and B2/C1 → B1), or A2 without a placement. A lesson

@@ -11,6 +11,7 @@ import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { completeSession } from "./application/complete-session";
 import { itemsToReview } from "./model/items-to-review";
 import { lessonExercises } from "./model/lesson-catalog";
+import { lessonRecap, type RecapItem } from "./model/lesson-recap";
 import {
   canDispute,
   startLesson,
@@ -31,9 +32,15 @@ type LessonContainerProps = {
   content?: Corpus;
 };
 
-/** Runs one lesson: session reducer + exercise components, then persists the results. */
+/**
+ * Runs one lesson: session reducer + exercise components, then persists the results. Its summary
+ * recaps the lesson's new items and offers "Repetir lección", which runs it again from the start
+ * (a new session: answer XP again, never a second completion bonus).
+ */
 export function LessonContainer({ lessonId, content = corpus }: LessonContainerProps) {
   const router = useRouter();
+  // Each attempt is a fresh session (new shuffles, new session id when saved).
+  const [attempt, setAttempt] = useState(0);
   const lesson = content.lessonsById.get(lessonId);
   const unit =
     lesson === undefined
@@ -42,15 +49,19 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
           info: lesson,
           topic: lesson.topic,
           exercises: lessonExercises(lesson, content.exercisesById),
+          recap: lessonRecap(lesson, content),
         };
   return (
     <PracticeSession
+      key={attempt}
       unit={unit}
       content={content}
       copy={LESSON_COPY}
       leaveTitle="¿Salir de la lección?"
       onDone={() => (router.canDismiss() ? router.dismissAll() : router.replace("/"))}
       onOpenCard={(cardId) => router.push(cardPath(cardId, { fromSession: true }))}
+      onOpenRecapCard={(cardId) => router.push(cardPath(cardId))}
+      onRedo={() => setAttempt((n) => n + 1)}
     />
   );
 }
@@ -61,6 +72,8 @@ export type PracticeUnit = {
   /** Topic slug: tints the progress label, the lookup card and the summary sticker. */
   readonly topic: string | undefined;
   readonly exercises: readonly Exercise[];
+  /** "Lo nuevo de hoy" on the summary (lessons only). */
+  readonly recap?: readonly RecapItem[] | undefined;
 };
 
 /**
@@ -75,6 +88,8 @@ export function PracticeSession({
   leaveTitle,
   onDone,
   onOpenCard,
+  onOpenRecapCard,
+  onRedo,
 }: {
   unit: PracticeUnit | null;
   content: Corpus;
@@ -82,6 +97,10 @@ export function PracticeSession({
   leaveTitle: string;
   onDone: () => void;
   onOpenCard?: ((cardId: string) => void) | undefined;
+  /** Opens a recap item's study card from the summary. */
+  onOpenRecapCard?: ((cardId: string) => void) | undefined;
+  /** "Repetir lección" on the summary. */
+  onRedo?: (() => void) | undefined;
 }) {
   const { progressRepository, clock, random, randomBytes, deviceId } = useAppServices();
 
@@ -126,7 +145,7 @@ export function PracticeSession({
       <SessionGlossary content={content} topic={topic} onLookupItems={onLookup}>
         <LessonView
           state={withAchievements(
-            toViewState(session, initial?.prepared ?? [], save, content, topic),
+            toViewState(session, initial?.prepared ?? [], save, content, topic, unit?.recap),
             achievements,
           )}
           copy={copy}
@@ -136,6 +155,8 @@ export function PracticeSession({
           onGoHome={onDone}
           onRetrySave={retrySave}
           onOpenCard={onOpenCard}
+          onOpenRecapCard={onOpenRecapCard}
+          onRedo={onRedo}
         />
       </SessionGlossary>
       {dialog}
@@ -157,6 +178,7 @@ function toViewState(
   save: SaveState,
   content: Corpus,
   topic: string | undefined,
+  recap: readonly RecapItem[] | undefined,
 ): LessonViewState {
   if (session === null) return { status: "not-found" };
   if (session.status === "finished") {
@@ -172,6 +194,7 @@ function toViewState(
       streakIncreased: save.streakIncreased,
       toReview: itemsToReview(itemOutcomes, content.itemsById, { topics: topicByItemId(content) }),
       topic,
+      recap,
     };
   }
   const current = prepared[session.index];

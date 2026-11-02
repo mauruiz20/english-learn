@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react-native";
+import { act, fireEvent, render, screen, within } from "@testing-library/react-native";
 import { withMotion } from "@/testing/motion";
 import { STREAK_SOUND_DELAY_MS } from "../use-session-sounds";
 import { SessionSummary } from "./session-screens";
@@ -16,7 +16,78 @@ const base = {
 
 const stamp = () => screen.queryByRole("image", { name: "Sello: ¡Excelente!" });
 
+const recap = [
+  {
+    id: "a2.daily-routine.wake-up",
+    term: "wake up",
+    es: "despertarse",
+    card: { id: "a2.phrasal-verbs.daily-routine", title: "Phrasal verbs de la rutina" },
+  },
+  {
+    id: "a2.daily-routine.usually",
+    term: "usually",
+    es: "normalmente",
+    example: { en: "I usually wake up at six.", es: "Normalmente me despierto a las seis." },
+  },
+];
+
 describe("SessionSummary", () => {
+  describe("Lo nuevo de hoy", () => {
+    it("lists the lesson's new items: a card link, or the meaning and an example", async () => {
+      const onOpenCard = jest.fn();
+      await render(<SessionSummary {...base} recap={recap} onOpenCard={onOpenCard} />);
+
+      const section = screen.getByTestId("summary-recap");
+      expect(within(section).getByRole("header", { name: "Lo nuevo de hoy" })).toBeOnTheScreen();
+      expect(within(section).getByText("despertarse")).toBeOnTheScreen();
+      expect(within(section).getByText("normalmente")).toBeOnTheScreen();
+      expect(within(section).getByText("I usually wake up at six.")).toBeOnTheScreen();
+      expect(within(section).getByText("Normalmente me despierto a las seis.")).toBeOnTheScreen();
+
+      fireEvent.press(
+        within(section).getByRole("button", { name: "Ver ficha: Phrasal verbs de la rutina" }),
+      );
+      expect(onOpenCard).toHaveBeenCalledWith("a2.phrasal-verbs.daily-routine");
+    });
+
+    it("shows the meaning but no card link when cards cannot be opened", async () => {
+      await render(<SessionSummary {...base} recap={recap} />);
+
+      expect(screen.getByText("despertarse")).toBeOnTheScreen();
+      expect(screen.queryByRole("button", { name: /^Ver ficha/ })).not.toBeOnTheScreen();
+    });
+
+    it("is absent without new items (a review, a card practice)", async () => {
+      await render(<SessionSummary {...base} />);
+
+      expect(screen.queryByTestId("summary-recap")).not.toBeOnTheScreen();
+    });
+  });
+
+  describe("redo", () => {
+    it("offers to repeat a lesson with mistakes, aiming for all correct", async () => {
+      const onRedo = jest.fn();
+      await render(<SessionSummary {...base} correct={4} onRedo={onRedo} />);
+
+      const redo = screen.getByRole("button", { name: "Repetir lección" });
+      expect(redo.props.accessibilityHint).toBe("Vuelve a hacer la lección para sacar todo bien");
+      fireEvent.press(redo);
+      expect(onRedo).toHaveBeenCalledTimes(1);
+    });
+
+    it("still lets the learner repeat a perfect lesson, as a quieter option", async () => {
+      await render(<SessionSummary {...base} onRedo={jest.fn()} />);
+
+      expect(screen.getByRole("button", { name: "Repetir lección" })).toBeOnTheScreen();
+    });
+
+    it("is not offered without onRedo", async () => {
+      await render(<SessionSummary {...base} correct={4} />);
+
+      expect(screen.queryByRole("button", { name: "Repetir lección" })).not.toBeOnTheScreen();
+    });
+  });
+
   describe("the perfect-page stamp", () => {
     it("stamps a page with every answer right", async () => {
       await render(<SessionSummary {...base} />);
