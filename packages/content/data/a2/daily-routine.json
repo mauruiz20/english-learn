@@ -30,7 +30,11 @@
       "topics": ["daily-routine", "work"],
       "kind": "word",
       "term": "commute",
-      "es": "trayecto al trabajo"
+      "es": "trayecto al trabajo",
+      "example": {
+        "en": "My commute to work takes thirty minutes.",
+        "es": "Mi trayecto al trabajo dura treinta minutos."
+      }
     },
     {
       "id": "a2.daily-routine.go-to-bed",
@@ -62,7 +66,8 @@
       "topics": ["daily-routine"],
       "kind": "phrase",
       "term": "get dressed",
-      "es": "vestirse"
+      "es": "vestirse",
+      "example": { "en": "I get dressed after breakfast.", "es": "Me visto después del desayuno." }
     },
     {
       "id": "a2.daily-routine.every-morning",

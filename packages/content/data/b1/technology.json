@@ -6,7 +6,11 @@
       "topics": ["technology"],
       "kind": "word",
       "term": "device",
-      "es": "dispositivo, aparato"
+      "es": "dispositivo, aparato",
+      "example": {
+        "en": "You can use the app on any device.",
+        "es": "Puedes usar la aplicación en cualquier dispositivo."
+      }
     },
     {
       "id": "b1.technology.screen",
@@ -22,7 +26,11 @@
       "topics": ["technology"],
       "kind": "word",
       "term": "charger",
-      "es": "cargador"
+      "es": "cargador",
+      "example": {
+        "en": "I forgot my phone charger at home.",
+        "es": "Olvidé el cargador del teléfono en casa."
+      }
     },
     {
       "id": "b1.technology.password",

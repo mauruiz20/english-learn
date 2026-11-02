@@ -30,7 +30,11 @@
       "topics": ["city-life"],
       "kind": "word",
       "term": "rent",
-      "es": "alquiler, renta / alquilar, rentar"
+      "es": "alquiler, renta / alquilar, rentar",
+      "example": {
+        "en": "The rent is very high in this neighborhood.",
+        "es": "El alquiler es muy alto en este barrio."
+      }
     },
     {
       "id": "b1.city-life.subway",

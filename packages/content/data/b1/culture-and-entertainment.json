@@ -22,7 +22,11 @@
       "topics": ["culture-and-entertainment"],
       "kind": "word",
       "term": "audience",
-      "es": "público, espectadores"
+      "es": "público, espectadores",
+      "example": {
+        "en": "The audience loved the concert.",
+        "es": "Al público le encantó el concierto."
+      }
     },
     {
       "id": "b1.culture-and-entertainment.review",
@@ -62,7 +66,11 @@
       "topics": ["culture-and-entertainment"],
       "kind": "phrase",
       "term": "sold out",
-      "es": "agotado (sin entradas)"
+      "es": "agotado (sin entradas)",
+      "example": {
+        "en": "The tickets for the concert are sold out.",
+        "es": "Las entradas para el concierto están agotadas."
+      }
     },
     {
       "id": "b1.culture-and-entertainment.look-forward",

@@ -14,7 +14,11 @@
       "topics": ["work-and-careers"],
       "kind": "word",
       "term": "interview",
-      "es": "entrevista"
+      "es": "entrevista",
+      "example": {
+        "en": "I have a job interview tomorrow morning.",
+        "es": "Mañana por la mañana tengo una entrevista de trabajo."
+      }
     },
     {
       "id": "b1.work-and-careers.salary",
@@ -38,7 +42,11 @@
       "topics": ["work-and-careers"],
       "kind": "word",
       "term": "deadline",
-      "es": "fecha límite, plazo"
+      "es": "fecha límite, plazo",
+      "example": {
+        "en": "The deadline for the report is Friday.",
+        "es": "La fecha límite del informe es el viernes."
+      }
     },
     {
       "id": "b1.work-and-careers.get-promoted",

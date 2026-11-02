@@ -30,7 +30,11 @@
       "topics": ["money-and-shopping"],
       "kind": "phrase",
       "term": "pay back",
-      "es": "devolver (dinero prestado)"
+      "es": "devolver (dinero prestado)",
+      "example": {
+        "en": "I'll pay you back next week.",
+        "es": "Te devuelvo el dinero la semana que viene."
+      }
     },
     {
       "id": "b1.money-and-shopping.save-up",
@@ -38,7 +42,11 @@
       "topics": ["money-and-shopping"],
       "kind": "phrase",
       "term": "save up (for)",
-      "es": "ahorrar (para)"
+      "es": "ahorrar (para)",
+      "example": {
+        "en": "I'm saving up for a new bike.",
+        "es": "Estoy ahorrando para una bicicleta nueva."
+      }
     },
     {
       "id": "b1.money-and-shopping.discount",
@@ -62,7 +70,11 @@
       "topics": ["money-and-shopping"],
       "kind": "word",
       "term": "bargain",
-      "es": "ganga, buena compra"
+      "es": "ganga, buena compra",
+      "example": {
+        "en": "These shoes were a real bargain.",
+        "es": "Estos zapatos fueron una verdadera ganga."
+      }
     },
     {
       "id": "b1.money-and-shopping.refund",

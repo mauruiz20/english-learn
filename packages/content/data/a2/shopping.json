@@ -30,7 +30,11 @@
       "topics": ["shopping"],
       "kind": "word",
       "term": "cheap",
-      "es": "barato"
+      "es": "barato",
+      "example": {
+        "en": "This jacket is cheap. It's only ten dollars.",
+        "es": "Esta chaqueta es barata. Cuesta solo diez dólares."
+      }
     },
     {
       "id": "a2.shopping.price",
@@ -70,7 +74,8 @@
       "topics": ["shopping"],
       "kind": "phrase",
       "term": "try on",
-      "es": "probarse (ropa)"
+      "es": "probarse (ropa)",
+      "example": { "en": "Can I try on these shoes?", "es": "¿Puedo probarme estos zapatos?" }
     },
     {
       "id": "a2.shopping.pay-in-cash",
@@ -78,7 +83,8 @@
       "topics": ["shopping"],
       "kind": "phrase",
       "term": "pay in cash",
-      "es": "pagar en efectivo"
+      "es": "pagar en efectivo",
+      "example": { "en": "Can I pay in cash?", "es": "¿Puedo pagar en efectivo?" }
     },
     {
       "id": "a2.shopping.how-much-is",

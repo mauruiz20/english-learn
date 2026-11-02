@@ -30,7 +30,11 @@
       "topics": ["health"],
       "kind": "phrase",
       "term": "have a cold",
-      "es": "estar resfriado"
+      "es": "estar resfriado",
+      "example": {
+        "en": "I have a cold and I feel tired.",
+        "es": "Estoy resfriado y me siento cansado."
+      }
     },
     {
       "id": "a2.health.sick",
@@ -86,7 +90,11 @@
       "topics": ["health"],
       "kind": "phrase",
       "term": "feel better",
-      "es": "sentirse mejor"
+      "es": "sentirse mejor",
+      "example": {
+        "en": "Rest and drink some water. You will feel better.",
+        "es": "Descansa y toma un poco de agua. Te vas a sentir mejor."
+      }
     },
     {
       "id": "a2.health.should",

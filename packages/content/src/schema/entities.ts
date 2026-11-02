@@ -9,6 +9,11 @@ export const ItemSchema = z.strictObject({
   term: NonEmptyString,
   /** Spanish gloss. */
   es: NonEmptyString,
+  /**
+   * An English sentence that uses the item, with its Spanish translation. Optional: the app's
+   * end-of-lesson recap shows it, or else takes a sentence from an exercise that practices it.
+   */
+  example: z.strictObject({ en: NonEmptyString, es: NonEmptyString }).optional(),
 });
 export type Item = z.infer<typeof ItemSchema>;
 

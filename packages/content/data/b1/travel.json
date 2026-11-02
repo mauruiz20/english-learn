@@ -54,7 +54,11 @@
       "topics": ["travel"],
       "kind": "word",
       "term": "luggage",
-      "es": "equipaje"
+      "es": "equipaje",
+      "example": {
+        "en": "We can leave our luggage at the hotel.",
+        "es": "Podemos dejar el equipaje en el hotel."
+      }
     },
     {
       "id": "b1.travel.check-in",

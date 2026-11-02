@@ -70,7 +70,11 @@
       "topics": ["directions"],
       "kind": "phrase",
       "term": "across from",
-      "es": "enfrente de"
+      "es": "enfrente de",
+      "example": {
+        "en": "The bank is across from the park.",
+        "es": "El banco está enfrente del parque."
+      }
     },
     {
       "id": "a2.directions.between",

@@ -6,7 +6,11 @@
       "topics": ["health-and-lifestyle"],
       "kind": "word",
       "term": "healthy",
-      "es": "saludable, sano"
+      "es": "saludable, sano",
+      "example": {
+        "en": "Fruit and vegetables are healthy.",
+        "es": "Las frutas y las verduras son saludables."
+      }
     },
     {
       "id": "b1.health-and-lifestyle.habit",
@@ -22,7 +26,11 @@
       "topics": ["health-and-lifestyle"],
       "kind": "word",
       "term": "diet",
-      "es": "alimentación, dieta"
+      "es": "alimentación, dieta",
+      "example": {
+        "en": "She eats a healthy diet with a lot of fruit.",
+        "es": "Ella lleva una alimentación saludable con mucha fruta."
+      }
     },
     {
       "id": "b1.health-and-lifestyle.lose-weight",

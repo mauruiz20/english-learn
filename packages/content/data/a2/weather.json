@@ -38,7 +38,11 @@
       "topics": ["weather"],
       "kind": "word",
       "term": "cloudy",
-      "es": "nublado"
+      "es": "nublado",
+      "example": {
+        "en": "It's cloudy today, but it isn't cold.",
+        "es": "Hoy está nublado, pero no hace frío."
+      }
     },
     {
       "id": "a2.weather.windy",
@@ -70,7 +74,11 @@
       "topics": ["weather"],
       "kind": "word",
       "term": "forecast",
-      "es": "pronóstico"
+      "es": "pronóstico",
+      "example": {
+        "en": "The forecast says it will be sunny tomorrow.",
+        "es": "El pronóstico dice que mañana va a hacer sol."
+      }
     },
     {
       "id": "a2.weather.umbrella",
@@ -78,7 +86,11 @@
       "topics": ["weather"],
       "kind": "word",
       "term": "umbrella",
-      "es": "paraguas"
+      "es": "paraguas",
+      "example": {
+        "en": "Take an umbrella. It's going to rain.",
+        "es": "Lleva un paraguas. Va a llover."
+      }
     },
     {
       "id": "a2.weather.what-is-the-weather-like",

@@ -6,7 +6,11 @@
       "topics": ["environment"],
       "kind": "word",
       "term": "pollution",
-      "es": "contaminación"
+      "es": "contaminación",
+      "example": {
+        "en": "Pollution is a big problem in many cities.",
+        "es": "La contaminación es un gran problema en muchas ciudades."
+      }
     },
     {
       "id": "b1.environment.recycle",
@@ -22,7 +26,11 @@
       "topics": ["environment"],
       "kind": "word",
       "term": "waste",
-      "es": "residuos, desperdicio / desperdiciar"
+      "es": "residuos, desperdicio / desperdiciar",
+      "example": {
+        "en": "We should reduce food waste at home.",
+        "es": "Deberíamos reducir el desperdicio de comida en casa."
+      }
     },
     {
       "id": "b1.environment.plastic",
@@ -62,7 +70,11 @@
       "topics": ["environment"],
       "kind": "phrase",
       "term": "throw away",
-      "es": "tirar (a la basura), desechar"
+      "es": "tirar (a la basura), desechar",
+      "example": {
+        "en": "Don't throw away these bottles. We can recycle them.",
+        "es": "No tires estas botellas. Podemos reciclarlas."
+      }
     },
     {
       "id": "b1.environment.reduce",

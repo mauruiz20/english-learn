@@ -38,7 +38,11 @@
       "topics": ["education"],
       "kind": "word",
       "term": "scholarship",
-      "es": "beca"
+      "es": "beca",
+      "example": {
+        "en": "She got a scholarship to study abroad.",
+        "es": "Ella consiguió una beca para estudiar en el extranjero."
+      }
     },
     {
       "id": "b1.education.subject",
@@ -46,7 +50,11 @@
       "topics": ["education"],
       "kind": "word",
       "term": "subject",
-      "es": "materia, asignatura"
+      "es": "materia, asignatura",
+      "example": {
+        "en": "English is my best subject.",
+        "es": "El inglés es mi mejor materia."
+      }
     },
     {
       "id": "b1.education.take-notes",
@@ -94,7 +102,8 @@
       "topics": ["education"],
       "kind": "word",
       "term": "homework",
-      "es": "tarea (para la casa)"
+      "es": "tarea (para la casa)",
+      "example": { "en": "I do my homework after dinner.", "es": "Hago la tarea después de cenar." }
     }
   ],
   "passages": [

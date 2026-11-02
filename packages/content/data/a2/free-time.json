@@ -6,7 +6,11 @@
       "topics": ["free-time"],
       "kind": "phrase",
       "term": "free time",
-      "es": "tiempo libre"
+      "es": "tiempo libre",
+      "example": {
+        "en": "What do you do in your free time?",
+        "es": "¿Qué haces en tu tiempo libre?"
+      }
     },
     {
       "id": "a2.free-time.weekend",

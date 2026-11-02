@@ -46,7 +46,8 @@
       "topics": ["work"],
       "kind": "word",
       "term": "salary",
-      "es": "sueldo"
+      "es": "sueldo",
+      "example": { "en": "She has a good salary.", "es": "Ella tiene un buen sueldo." }
     },
     {
       "id": "a2.work.part-time",
@@ -62,7 +63,8 @@
       "topics": ["work"],
       "kind": "phrase",
       "term": "work from home",
-      "es": "trabajar desde casa"
+      "es": "trabajar desde casa",
+      "example": { "en": "I work from home on Fridays.", "es": "Trabajo desde casa los viernes." }
     },
     {
       "id": "a2.work.look-for",

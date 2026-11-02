@@ -6,7 +6,11 @@
       "topics": ["media-and-news"],
       "kind": "word",
       "term": "headline",
-      "es": "titular"
+      "es": "titular",
+      "example": {
+        "en": "I only read the headline, not the whole article.",
+        "es": "Solo leí el titular, no todo el artículo."
+      }
     },
     {
       "id": "b1.media-and-news.article",
@@ -46,7 +50,11 @@
       "topics": ["media-and-news"],
       "kind": "word",
       "term": "announce",
-      "es": "anunciar"
+      "es": "anunciar",
+      "example": {
+        "en": "The company announced a new phone yesterday.",
+        "es": "Ayer la empresa anunció un teléfono nuevo."
+      }
     },
     {
       "id": "b1.media-and-news.fake-news",

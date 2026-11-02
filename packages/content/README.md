@@ -222,6 +222,11 @@ A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds? }`.
   Every bundled lesson lists them; without the field the app derives them (the lesson's items
   that no earlier lesson practices, at most five).
 
+- Item `example` (optional, `{ en, es }`): an English sentence that uses the item and its
+  Spanish. The recap shows it; without it, it takes a sentence (with its Spanish) from an
+  exercise that practices the item and links the item's glossary entry. Recap items with no such
+  exercise sentence carry one; its `en` counts for glossary coverage.
+
 ## Attribution
 
 Original content uses `source: { "kind": "original" }`. Sentences from
