@@ -1,4 +1,5 @@
 import type { Exercise } from "@english-learn/content";
+import { corpus } from "@english-learn/content/corpus";
 import { addDays, initialState, localDate, type ReviewState } from "@english-learn/domain";
 import {
   allExercises,
@@ -123,5 +124,20 @@ describe("restrictToItems", () => {
     };
 
     expect(restrictToItems(summary, ["due"]).itemOutcomes.map((o) => o.itemId)).toEqual(["due"]);
+  });
+});
+
+describe("study card items", () => {
+  // Card exercises are in no lesson, but they are in the corpus like every exercise.
+  it("are planned and reviewed with the card's own practice exercises", () => {
+    const card = corpus.cardsById.get("b1.grammar.look-forward-to")!;
+    const states = card.itemIds.map((id) => due(id, 1));
+
+    const itemIds = pendingReviewItems({ states, today, exercises: corpus.exercises });
+    const picked = pickReviewExercises({ itemIds, exercises: corpus.exercises, rng: () => 0 });
+
+    expect(itemIds).toEqual(card.itemIds);
+    expect(picked.length).toBeGreaterThan(0);
+    expect(picked.every((e) => card.exerciseIds.includes(e.id))).toBe(true);
   });
 });
