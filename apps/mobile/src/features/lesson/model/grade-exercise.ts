@@ -1,9 +1,12 @@
 import type { Exercise } from "@english-learn/content";
 import {
+  calqueHint,
+  diffAnswer,
   expandAccepted,
   matchAnswer,
   matchPatternAnswer,
   type Verdict,
+  type WordDiffOp,
 } from "@english-learn/domain";
 import type { ExerciseResponse } from "./response";
 
@@ -15,6 +18,10 @@ export type GradeResult = {
   readonly questionVerdicts?: readonly Verdict[];
   /** The learner marked their answer as correct ("Mi respuesta también es correcta"). */
   readonly disputed?: boolean;
+  /** translate_write: word-level comparison of the answer with `correctAnswer`. */
+  readonly diff?: readonly WordDiffOp[];
+  /** translate_write: a common calque the answer shows, explained in Spanish. */
+  readonly hint?: string;
 };
 
 function mismatch(exercise: Exercise, response: ExerciseResponse): never {
@@ -37,7 +44,8 @@ const verdictOf = (ok: boolean): Verdict => (ok ? "correct" : "wrong");
  * - word_order: tokens joined by single spaces, matched with `matchAnswer`; only "correct"
  *   counts (a near miss is a wrong order, not a typo).
  * - translate_write: `matchPatternAnswer` verdict (correct / almost / wrong) against every
- *   sentence the accepted patterns stand for; a wrong answer shows the first one.
+ *   sentence the accepted patterns stand for; a wrong answer shows the first one. The word diff
+ *   against the shown answer and a calque hint (when one applies) come along.
  */
 export function gradeExercise(exercise: Exercise, response: ExerciseResponse): GradeResult {
   switch (exercise.type) {
@@ -76,11 +84,16 @@ export function gradeExercise(exercise: Exercise, response: ExerciseResponse): G
     }
     case "translate_write": {
       if (response.kind !== "text") return mismatch(exercise, response);
-      const { verdict, closest } = matchPatternAnswer(response.text, exercise.accepted);
-      return {
-        verdict,
-        correctAnswer: verdict === "wrong" ? (expandAccepted(exercise.accepted)[0] ?? "") : closest,
-      };
+      const match = matchPatternAnswer(response.text, exercise.accepted);
+      const { verdict, closest } = match;
+      const correctAnswer =
+        verdict === "wrong" ? (expandAccepted(exercise.accepted)[0] ?? "") : closest;
+      const diff =
+        correctAnswer === closest ? match.diff : diffAnswer(response.text, correctAnswer);
+      const hint = correctAnswer === closest ? match.hint : calqueHint(diff);
+      return hint === undefined
+        ? { verdict, correctAnswer, diff }
+        : { verdict, correctAnswer, diff, hint };
     }
   }
 }

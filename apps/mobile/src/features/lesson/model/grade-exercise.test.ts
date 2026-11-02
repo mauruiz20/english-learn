@@ -83,20 +83,56 @@ describe("gradeExercise", () => {
     it("accepts any accepted variant, ignoring case and final punctuation", () => {
       expect(
         gradeExercise(translateWrite, { kind: "text", text: "i usually go to bed at 11" }),
-      ).toEqual({ verdict: "correct", correctAnswer: "I usually go to bed at 11." });
+      ).toMatchObject({ verdict: "correct", correctAnswer: "I usually go to bed at 11." });
     });
 
     it("grades a single-word typo as almost and shows the closest answer", () => {
       expect(
         gradeExercise(translateWrite, { kind: "text", text: "I usualy go to bed at eleven" }),
-      ).toEqual({ verdict: "almost", correctAnswer: "I usually go to bed at eleven." });
+      ).toMatchObject({ verdict: "almost", correctAnswer: "I usually go to bed at eleven." });
     });
 
     it("shows the first accepted answer when wrong", () => {
-      expect(gradeExercise(translateWrite, { kind: "text", text: "I sleep" })).toEqual({
+      expect(gradeExercise(translateWrite, { kind: "text", text: "I sleep" })).toMatchObject({
         verdict: "wrong",
         correctAnswer: "I usually go to bed at eleven.",
       });
+    });
+
+    it("grades one extra article as almost, with the word diff and a calque hint", () => {
+      const commute = {
+        ...translateWrite,
+        es: "Mi trayecto al trabajo dura cuarenta minutos.",
+        accepted: ["My commute to work takes forty minutes."],
+      };
+      const result = gradeExercise(commute, {
+        kind: "text",
+        text: "My commute to the work takes forty minutes",
+      });
+      expect(result).toMatchObject({
+        verdict: "almost",
+        correctAnswer: "My commute to work takes forty minutes.",
+        hint: "En inglés se dice 'to work', sin 'the'.",
+      });
+      expect(result.diff?.filter((op) => op.kind !== "same")).toEqual([
+        { kind: "extra", text: "the" },
+      ]);
+    });
+
+    it("diffs a wrong answer against the answer it shows", () => {
+      const result = gradeExercise(translateWrite, {
+        kind: "text",
+        text: "I usually go to the bed at ten",
+      });
+      expect(result).toMatchObject({
+        verdict: "wrong",
+        correctAnswer: "I usually go to bed at eleven.",
+        hint: "En inglés se dice 'to bed', sin 'the'.",
+      });
+      expect(result.diff?.filter((op) => op.kind !== "same")).toEqual([
+        { kind: "extra", text: "the" },
+        { kind: "changed", text: "ten", expected: "eleven" },
+      ]);
     });
 
     it("accepts every sentence an answer pattern stands for", () => {
@@ -106,8 +142,11 @@ describe("gradeExercise", () => {
       };
       expect(
         gradeExercise(patterned, { kind: "text", text: "I normally go to bed at 11 at night" }),
-      ).toEqual({ verdict: "correct", correctAnswer: "I normally go to bed at 11 at night." });
-      expect(gradeExercise(patterned, { kind: "text", text: "I sleep" })).toEqual({
+      ).toMatchObject({
+        verdict: "correct",
+        correctAnswer: "I normally go to bed at 11 at night.",
+      });
+      expect(gradeExercise(patterned, { kind: "text", text: "I sleep" })).toMatchObject({
         verdict: "wrong",
         correctAnswer: "I usually go to bed at eleven.",
       });
