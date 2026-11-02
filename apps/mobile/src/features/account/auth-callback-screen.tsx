@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-import { CALLBACK_PATH } from "@/infrastructure/auth/oidc";
+import { createCallbackStash } from "@/infrastructure/auth/callback-relay";
 import { Button } from "@/shared/ui/button";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
@@ -12,27 +12,25 @@ import { CallbackError, type CallbackFailureReason } from "./application/account
 
 const MESSAGES: Readonly<Record<CallbackFailureReason, string>> = {
   state:
-    "No pudimos verificar este ingreso (puede haber vencido o venir de otra pestaña). Volvé a intentarlo desde Cuenta.",
-  cancelled: "No se completó el ingreso con Google. Podés intentarlo de nuevo cuando quieras.",
-  api: "No pudimos conectar con el servidor para entrar. Revisá tu conexión e intentá de nuevo.",
+    "No pudimos verificar este ingreso (puede haber vencido o venir de otra pestaña). Vuelve a intentarlo desde Cuenta.",
+  cancelled: "No se completó el ingreso con Google. Puedes intentarlo de nuevo cuando quieras.",
+  api: "No pudimos conectar con el servidor para entrar. Revisa tu conexión e inténtalo de nuevo.",
   "wrong-account":
-    "Entraste con otra cuenta de Google, así que no eliminamos nada. Para eliminar tu cuenta, elegí la misma cuenta con la que la creaste.",
+    "Entraste con otra cuenta de Google, así que no eliminamos nada. Para eliminar tu cuenta, elige la misma cuenta con la que la creaste.",
 };
 
-const browserFragment = () => (typeof window === "undefined" ? "" : window.location.hash);
-/** Drops `#id_token=…` from the address bar and the history entry. */
-const clearBrowserFragment = () => {
-  if (typeof window !== "undefined") window.history.replaceState(null, "", CALLBACK_PATH);
-};
+/** The fragment `/auth/callback` stashed for this app (read once). */
+const stashedFragment = () =>
+  typeof window === "undefined" ? "" : (createCallbackStash(window.localStorage).take() ?? "");
 
 /**
- * `/auth/callback`: where Google sends the learner back with the ID token in the URL fragment
- * (the fragment never reaches a server or the service worker). It removes the fragment from
- * history before anything else, completes the sign-in and returns to where the learner was.
+ * `/auth/completar`: completes the Google sign-in with the fragment `/auth/callback` stashed
+ * (that page never opens the database; see `callback-relay.ts`) and returns to where the
+ * learner was. Only the tab that started the sign-in can complete it (its pending `state`).
  */
 export function AuthCallbackScreen({
-  readFragment = browserFragment,
-  clearFragment = clearBrowserFragment,
+  readFragment = stashedFragment,
+  clearFragment = () => {},
 }: {
   readFragment?: () => string;
   clearFragment?: () => void;

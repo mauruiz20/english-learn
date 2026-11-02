@@ -4,10 +4,10 @@ import { BricolageGrotesque_600SemiBold } from "@expo-google-fonts/bricolage-gro
 import { BricolageGrotesque_700Bold } from "@expo-google-fonts/bricolage-grotesque/700Bold";
 import { Caveat_600SemiBold } from "@expo-google-fonts/caveat/600SemiBold";
 import { useFonts } from "expo-font";
-import { Stack, router } from "expo-router";
+import { Slot, Stack, router } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AccountProvider } from "@/features/account/account-provider";
@@ -16,6 +16,7 @@ import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { SoundToggle } from "@/features/sound/sound-toggle";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
 import { OriginMoveGate } from "@/features/transfer/origin-move-gate";
+import { isDatabaseFreePath } from "@/infrastructure/auth/callback-relay";
 import { SqliteAppServicesProvider } from "@/infrastructure/persistence/sqlite-app-services";
 import { startServiceWorker } from "@/infrastructure/pwa/app-service-worker";
 import { BackOrHomeButton, headerBack } from "@/shared/navigation/back-or-home";
@@ -44,6 +45,14 @@ export default function RootLayout() {
     [fonts.hand]: Caveat_600SemiBold,
   });
   const ready = loaded || error !== null;
+  // Web: Google's `/auth/callback` must never open the database (see callback-relay.ts). Read
+  // once: the app only reaches that path through a full page load.
+  const [databaseFree] = useState(
+    () =>
+      Platform.OS === "web" &&
+      typeof window !== "undefined" &&
+      isDatabaseFreePath(window.location.pathname),
+  );
 
   // Web production builds: offline app shell and update checks (no-op on native and in dev).
   useEffect(() => startServiceWorker(), []);
@@ -55,6 +64,14 @@ export default function RootLayout() {
 
   // A font that fails to load falls back to the system font rather than blocking the app.
   if (!ready) return null;
+
+  if (databaseFree) {
+    return (
+      <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.paper }}>
+        <Slot />
+      </GestureHandlerRootView>
+    );
+  }
 
   return (
     // Gesture Handler needs its root view above every gesture (word-order drag and drop).
@@ -130,7 +147,7 @@ export default function RootLayout() {
                     options={{ title: "Privacidad", ...homeFallback }}
                   />
                   <Stack.Screen
-                    name="auth/callback"
+                    name="auth/completar"
                     options={{ title: "Cuenta", headerBackVisible: false }}
                   />
                   <Stack.Screen
