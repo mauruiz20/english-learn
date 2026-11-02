@@ -10,6 +10,12 @@ describe("topicLabel", () => {
     }
   });
 
+  it("names the study cards' topics", () => {
+    expect(topicLabel("grammar")).toBe("Gramática");
+    expect(topicLabel("phrasal-verbs")).toBe("Phrasal verbs");
+    expect(topicLabel("vocabulary")).toBe("Vocabulario");
+  });
+
   it("falls back to the slug as words", () => {
     expect(topicLabel("space-travel")).toBe("Space travel");
   });

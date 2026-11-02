@@ -1,4 +1,7 @@
-/** Spanish names of the content topics (the `topic` slug of a lesson), for the lesson index. */
+/**
+ * Spanish names of the content topics (the `topic` slug of a lesson or a study card), for the
+ * lesson index and the "Fichas".
+ */
 const TOPIC_LABELS: Readonly<Record<string, string>> = {
   "city-life": "Vida en la ciudad",
   "culture-and-entertainment": "Cultura y ocio",
@@ -9,15 +12,18 @@ const TOPIC_LABELS: Readonly<Record<string, string>> = {
   family: "Familia",
   food: "Comida",
   "free-time": "Tiempo libre",
+  grammar: "Gramática",
   health: "Salud",
   "health-and-lifestyle": "Salud y estilo de vida",
   home: "La casa",
   "media-and-news": "Medios y noticias",
+  "phrasal-verbs": "Phrasal verbs",
   "money-and-shopping": "Dinero y compras",
   relationships: "Relaciones",
   shopping: "Compras",
   technology: "Tecnología",
   travel: "Viajes",
+  vocabulary: "Vocabulario",
   weather: "El tiempo",
   work: "Trabajo",
   "work-and-careers": "Trabajo y carrera",

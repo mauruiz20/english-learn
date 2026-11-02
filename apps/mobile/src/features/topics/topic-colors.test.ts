@@ -19,8 +19,9 @@ const topicsInIndexOrder = (level: (typeof LEVELS)[number]) => {
 };
 
 describe("topicHighlighter", () => {
-  it("gives every corpus topic an explicit color", () => {
-    const missing = [...new Set(corpus.lessons.map((l) => l.topic))].filter(
+  it("gives every corpus topic an explicit color, the study cards' topics too", () => {
+    const topics = [...corpus.lessons, ...corpus.cards].map((entity) => entity.topic);
+    const missing = [...new Set(topics)].filter(
       (topic) => !(topic in TOPIC_HIGHLIGHTERS),
     );
     expect(missing).toEqual([]);
@@ -52,6 +53,22 @@ describe("topic lookups", () => {
 
     expect(topicByExerciseId(corpus).get(exerciseId)).toBe(lesson.topic);
     expect(topicByItemId(corpus).get(itemId)).toBe(lesson.topic);
+  });
+
+  it("finds the topic of the study card an exercise outside any lesson belongs to", () => {
+    const card = corpus.cardsById.get("b1.grammar.look-forward-to")!;
+    const exerciseId = card.exerciseIds[0]!;
+
+    expect(topicByExerciseId(corpus).get(exerciseId)).toBe("grammar");
+    expect(topicByItemId(corpus).get(card.itemIds[0]!)).toBe("grammar");
+  });
+
+  it("keeps the lesson's topic for an item a lesson and a card share", () => {
+    // The daily-routine phrasal verbs are practiced in the "Mi rutina diaria" lesson too.
+    const card = corpus.cardsById.get("a2.phrasal-verbs.daily-routine")!;
+    const lessonTopics = card.itemIds.map((id) => topicByItemId(corpus).get(id));
+
+    expect(lessonTopics).toContain("daily-routine");
   });
 });
 
