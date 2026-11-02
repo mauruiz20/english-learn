@@ -251,6 +251,22 @@ describe("service worker", () => {
       assert.equal(await cache.match("/auth/callback"), undefined);
     });
 
+    it("serves the progress import page as the app shell and never caches it", async () => {
+      // The old web address sends the transfer token in the fragment: never seen by the worker.
+      const request = navigation("/importar#t=secret-transfer-token");
+      const response = await scope.dispatch("fetch", { request });
+      assert.equal(await response.text(), SHELL_HTML);
+      assert.deepEqual(scope.fetched, ["/importar"]);
+      assert.ok(isolated(response));
+
+      scope.online = false;
+      const offline = await scope.dispatch("fetch", { request: navigation("/importar") });
+      assert.equal(await offline.text(), SHELL_HTML);
+
+      const cache = await scope.caches.open("english-learn-precache-v1");
+      assert.equal(await cache.match("/importar"), undefined);
+    });
+
     it("leaves API calls (another origin, POST) to the browser", async () => {
       const api = new Request("https://english-api.maumar.com.ar/v1/sync", {
         method: "POST",

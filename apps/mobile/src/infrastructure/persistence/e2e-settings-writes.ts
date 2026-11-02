@@ -41,5 +41,7 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
       track(repository.setSaveProgressSuggestionDismissed()),
     getThemePreference: () => repository.getThemePreference(),
     setThemePreference: (preference) => track(repository.setThemePreference(preference)),
+    getMigratedTo: () => repository.getMigratedTo(),
+    setMigratedTo: (origin) => track(repository.setMigratedTo(origin)),
   };
 }

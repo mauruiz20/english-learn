@@ -4,11 +4,12 @@ from sqlalchemy import Connection, inspect, text
 from sqlalchemy.ext.asyncio import AsyncEngine
 
 import english_learn_api.auth.infrastructure.tables
-import english_learn_api.sync.infrastructure.tables  # noqa: F401 - registers tables
+import english_learn_api.sync.infrastructure.tables
+import english_learn_api.transfers.infrastructure.tables  # noqa: F401 - registers tables
 from english_learn_api.shared.database import metadata
 from tests.integration.conftest import downgrade, upgrade
 
-TABLES = {"users", "devices", "events", "refresh_families", "refresh_tokens"}
+TABLES = {"users", "devices", "events", "refresh_families", "refresh_tokens", "transfers"}
 
 
 def table_names(connection: Connection) -> set[str]:

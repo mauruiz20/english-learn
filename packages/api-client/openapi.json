@@ -1,6 +1,34 @@
 {
   "components": {
     "schemas": {
+      "ClaimTransferRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "token": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": ["token"],
+        "title": "ClaimTransferRequest",
+        "type": "object"
+      },
+      "ClaimTransferResponse": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/TransferredEvent"
+            },
+            "title": "Events",
+            "type": "array"
+          }
+        },
+        "required": ["events"],
+        "title": "ClaimTransferResponse",
+        "type": "object"
+      },
       "CookieSignInResponse": {
         "description": "Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie.",
         "properties": {
@@ -36,6 +64,41 @@
         },
         "required": ["accessToken", "accessTokenExpiresAt"],
         "title": "CookieTokensResponse",
+        "type": "object"
+      },
+      "CreateTransferRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "description": "Every event of the device's log, as `POST /v1/sync` uploads them",
+            "items": {
+              "$ref": "#/components/schemas/EventRequest"
+            },
+            "maxItems": 20000,
+            "minItems": 1,
+            "title": "Events",
+            "type": "array"
+          }
+        },
+        "required": ["events"],
+        "title": "CreateTransferRequest",
+        "type": "object"
+      },
+      "CreateTransferResponse": {
+        "properties": {
+          "expiresAt": {
+            "format": "date-time",
+            "title": "Expiresat",
+            "type": "string"
+          },
+          "token": {
+            "description": "Secret, single use: pass it to the new site in the URL fragment",
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": ["token", "expiresAt"],
+        "title": "CreateTransferResponse",
         "type": "object"
       },
       "EventRequest": {
@@ -293,6 +356,35 @@
         },
         "required": ["accessToken", "accessTokenExpiresAt", "refreshToken"],
         "title": "TokensResponse",
+        "type": "object"
+      },
+      "TransferredEvent": {
+        "description": "An event as it was uploaded (no device: the claiming device adopts it).",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "localDate": {
+            "title": "Localdate",
+            "type": "string"
+          },
+          "occurredAt": {
+            "title": "Occurredat",
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "title": "Payload",
+            "type": "object"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": ["id", "occurredAt", "localDate", "type", "payload"],
+        "title": "TransferredEvent",
         "type": "object"
       },
       "UserResponse": {
@@ -751,6 +843,92 @@
         ],
         "summary": "Sync Progress",
         "tags": ["sync"]
+      }
+    },
+    "/v1/transfers": {
+      "post": {
+        "description": "Store a device's events for 15 minutes and return a single-use token.\n\nAnonymous and without credentials: the old web site calls it before sending the learner\nto the new one with the token in the URL fragment.",
+        "operationId": "create_transfer_v1_transfers_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTransferRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTransferResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "413": {
+            "description": "Body over 2 MiB"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Transfer",
+        "tags": ["transfers"]
+      }
+    },
+    "/v1/transfers/claim": {
+      "post": {
+        "description": "Return a transfer's events, exactly once; the transfer is deleted.",
+        "operationId": "claim_transfer_v1_transfers_claim_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClaimTransferRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimTransferResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "description": "`transfer_not_found`: unknown, expired or already claimed"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Claim Transfer",
+        "tags": ["transfers"]
       }
     }
   }

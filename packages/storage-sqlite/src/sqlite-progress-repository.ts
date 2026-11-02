@@ -69,6 +69,16 @@ export type SqliteProgressRepository = ProgressRepository &
     resetSyncState(): Promise<void>;
     /** Deletes every event and the cached progress (keeps the device id), in one transaction. */
     clearProgress(): Promise<void>;
+    /** Every event of the log (synced or not), oldest first: what a transfer carries away. */
+    getAllEvents(): Promise<StoredEvent[]>;
+    /**
+     * Adds events brought from another web origin of the app as LOCAL events: ids already stored
+     * are ignored (idempotent), new ones are stored unsynced (the next sync uploads them; they are
+     * never marked synced here), then the cache is rebuilt, in one transaction. Events this
+     * version cannot read are kept for the fold to skip; unorderable ones are dropped. Resolves
+     * to the number of events added.
+     */
+    importEvents(events: readonly StoredEvent[]): Promise<number>;
   };
 
 export type SqliteProgressRepositoryOptions = {
@@ -272,9 +282,9 @@ export function createSqliteProgressRepository(
     return Number(result?.changes ?? 1) > 0;
   }
 
-  async function readEvents(): Promise<StoredEvent[]> {
+  async function readEvents(order = ""): Promise<StoredEvent[]> {
     const rows = await db.getAllAsync<EventRow>(
-      "SELECT id, device_id, occurred_at, local_date, type, payload FROM event",
+      `SELECT id, device_id, occurred_at, local_date, type, payload FROM event ${order}`,
       [],
     );
     return rows.map(toStoredEvent);
@@ -474,6 +484,27 @@ export function createSqliteProgressRepository(
         throw new RangeError(`Sync cursor must be a non-negative integer, got ${cursor}`);
       }
       await writeSyncState(SERVER_CURSOR, String(cursor));
+    },
+
+    async getAllEvents() {
+      return readEvents("ORDER BY occurred_at, id");
+    },
+
+    async importEvents(events) {
+      return transaction(async () => {
+        let inserted = 0;
+        for (const event of events) {
+          if (!isStorable(event)) continue;
+          const added = await insertEvent(event, {
+            ignoreExisting: true,
+            syncedAt: null,
+            serverSeq: null,
+          });
+          if (added) inserted += 1;
+        }
+        if (inserted > 0) await refold();
+        return inserted;
+      });
     },
 
     async insertRemoteEvents(events) {

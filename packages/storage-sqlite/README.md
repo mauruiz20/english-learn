@@ -32,12 +32,18 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
     `resetSyncState()` (every event unsynced again, cursor 0: the next account receives the whole
     log; progress unchanged) and `clearProgress()` (deletes every event and the cache, keeps the
     device id).
+  - Transfer to another web origin: `getAllEvents()` (the whole log, oldest first, synced or not)
+    and `importEvents(events)` (idempotent by id; new events are stored as **unsynced local**
+    events, so the next sync uploads them, never marked synced; then the cache is rebuilt, in one
+    transaction; resolves to the number added).
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
   `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).
   `getAccount()` / `setAccount({ userId, email })` / `clearAccount()` remember who is signed in
   (never a token; an unreadable value reads as signed out), and
   `getSaveProgressSuggestionDismissed()` the one-time "save your progress" card.
+  `getMigratedTo()` / `setMigratedTo(origin)` remember where this device's progress was
+  transferred (the old web address then sends the learner there).
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

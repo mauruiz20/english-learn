@@ -158,6 +158,22 @@ the only difference the oracle finds, and it never removes a bonus the app paid.
 `completedLessonIds` (lessons whose items all have a state at migration) keeps replays of lessons
 finished before the migration from earning the bonus again.
 
+### Moving a log to another origin
+
+The web app moved address, and each origin keeps its own on-device log. A transfer copies the old
+origin's events into the new one (`importEvents`, see `@english-learn/storage-sqlite`): a set
+union by id, like a sync, so the fold of the result does not depend on what the new origin
+already had.
+
+- The old origin's log may hold its own `baseline_imported` (pre-event progress). A new origin
+  that started empty never writes one (`ensureBaseline` writes nothing for empty progress), so the
+  merged log has exactly that one baseline and its XP is counted once.
+- Baselines are summed by design (each one is a different device's pre-event progress). Two
+  baselines describing the SAME progress would double its XP; no flow writes that.
+- Lessons finished on both origins earn the lesson bonus once (first `session_completed` in fold
+  order); lessons in the baseline's `completedLessonIds` earn none. Every session's `answerXp`
+  counts, since each session is distinct practice.
+
 ### Limitations
 
 - `localDate` comes from the device calendar and is the primary ordering key; device clock skew

@@ -7,9 +7,9 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from datetime import timedelta
+from typing import Any
 
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
 from english_learn_api.account.api import build_account_router
 from english_learn_api.account.application import DeleteAccount, GetProfile
@@ -43,29 +43,44 @@ from english_learn_api.shared.clock import Clock, SystemClock
 from english_learn_api.shared.database import create_engine, create_session_factory
 from english_learn_api.shared.errors import install_error_handlers
 from english_learn_api.shared.logging import configure_logging
-from english_learn_api.shared.middleware import BodySizeLimitMiddleware, RequestLogMiddleware
+from english_learn_api.shared.middleware import (
+    BodySizeLimitMiddleware,
+    PathCorsMiddleware,
+    RequestLogMiddleware,
+)
 from english_learn_api.shared.rate_limit import Rate, TokenBucketLimiter, limit_by_client_ip
 from english_learn_api.sync.api.router import STATUS_BY_ERROR as SYNC_STATUS_BY_ERROR
 from english_learn_api.sync.api.router import build_sync_router
 from english_learn_api.sync.application.use_cases import SyncProgress
 from english_learn_api.sync.infrastructure.sqlalchemy_unit_of_work import SqlAlchemySyncUnitOfWork
+from english_learn_api.transfers.api.router import CLAIM_PATH, CREATE_PATH, build_transfers_router
+from english_learn_api.transfers.api.router import STATUS_BY_ERROR as TRANSFER_STATUS_BY_ERROR
+from english_learn_api.transfers.application.use_cases import ClaimTransfer, CreateTransfer
+from english_learn_api.transfers.domain.limits import MAX_TRANSFER_BODY_BYTES
+from english_learn_api.transfers.infrastructure.sqlalchemy_unit_of_work import (
+    SqlAlchemyTransferUnitOfWork,
+)
 
 SIGN_IN_RATE = Rate(10, timedelta(minutes=1))
 REFRESH_RATE = Rate(30, timedelta(minutes=1))
 LOGOUT_RATE = Rate(30, timedelta(minutes=1))
 DELETE_ACCOUNT_RATE = Rate(5, timedelta(hours=1))
 SYNC_RATE = Rate(60, timedelta(minutes=1))
+CREATE_TRANSFER_RATE = Rate(5, timedelta(hours=1))
+CLAIM_TRANSFER_RATE = Rate(20, timedelta(hours=1))
 
 
 @dataclass(frozen=True, slots=True)
 class RateLimits:
-    """Per client IP for the auth endpoints, per user for account deletion and sync."""
+    """Per client IP for the auth and transfer endpoints, per user for account deletion and sync."""
 
     sign_in: Rate = SIGN_IN_RATE
     refresh: Rate = REFRESH_RATE
     logout: Rate = LOGOUT_RATE
     delete_account: Rate = DELETE_ACCOUNT_RATE
     sync: Rate = SYNC_RATE
+    create_transfer: Rate = CREATE_TRANSFER_RATE
+    claim_transfer: Rate = CLAIM_TRANSFER_RATE
 
 
 def create_app(
@@ -94,6 +109,9 @@ def create_app(
     def sync_unit_of_work() -> SqlAlchemySyncUnitOfWork:
         return SqlAlchemySyncUnitOfWork(session_factory)
 
+    def transfer_unit_of_work() -> SqlAlchemyTransferUnitOfWork:
+        return SqlAlchemyTransferUnitOfWork(session_factory)
+
     client_ip = client_ip_resolver(settings)
     jwt_keys, active_kid = settings.jwt_signing_keys()
     access_tokens = JwtAccessTokens(
@@ -121,7 +139,10 @@ def create_app(
         docs_url="/docs" if public_docs else None,
         redoc_url="/redoc" if public_docs else None,
     )
-    install_error_handlers(app, status_by_error=AUTH_STATUS_BY_ERROR | SYNC_STATUS_BY_ERROR)
+    install_error_handlers(
+        app,
+        status_by_error=AUTH_STATUS_BY_ERROR | SYNC_STATUS_BY_ERROR | TRANSFER_STATUS_BY_ERROR,
+    )
 
     app.include_router(build_health_router(engine))
     app.include_router(
@@ -168,20 +189,61 @@ def create_app(
         )
     )
 
-    # Added last = outermost: CORS headers also land on 413 responses.
-    app.add_middleware(BodySizeLimitMiddleware, max_bytes=settings.max_request_body_bytes)
-    app.add_middleware(RequestLogMiddleware)
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=settings.cors_origins,
-        allow_methods=["GET", "POST", "DELETE"],
-        allow_headers=["Authorization", "Content-Type", "X-Token-Transport", "X-Requested-With"],
-        # The web app's refresh cookie (cookie token transport) needs credentialed CORS; the
-        # origins are an exact list (settings refuse "*"), and no response header is exposed.
-        allow_credentials=True,
-        max_age=600,
+    app.include_router(
+        build_transfers_router(
+            create=CreateTransfer(unit_of_work=transfer_unit_of_work, clock=clock),
+            claim=ClaimTransfer(unit_of_work=transfer_unit_of_work, clock=clock),
+            create_limit=limit_by_client_ip(TokenBucketLimiter(limits.create_transfer), client_ip),
+            claim_limit=limit_by_client_ip(TokenBucketLimiter(limits.claim_transfer), client_ip),
+        )
     )
+
+    # Added last = outermost: CORS headers also land on 413 responses.
+    app.add_middleware(
+        BodySizeLimitMiddleware,
+        max_bytes=settings.max_request_body_bytes,
+        max_bytes_by_path={CREATE_PATH: MAX_TRANSFER_BODY_BYTES},
+    )
+    app.add_middleware(RequestLogMiddleware)
+    app.add_middleware(PathCorsMiddleware, **cors_policies(settings))
     return app
+
+
+def cors_policies(settings: Settings) -> dict[str, Any]:
+    """Credentialed CORS for the app's own origins; anonymous CORS for the transfer routes."""
+
+    def anonymous(origins: list[str]) -> dict[str, Any]:
+        # No cookie, no bearer: nothing but JSON crosses, so no credentials are allowed.
+        return {
+            "allow_origins": list(dict.fromkeys(origins)),
+            "allow_methods": ["POST"],
+            "allow_headers": ["Content-Type"],
+            "allow_credentials": False,
+            "max_age": 600,
+        }
+
+    return {
+        "default": {
+            "allow_origins": settings.cors_origins,
+            "allow_methods": ["GET", "POST", "DELETE"],
+            "allow_headers": [
+                "Authorization",
+                "Content-Type",
+                "X-Token-Transport",
+                "X-Requested-With",
+            ],
+            # The web app's refresh cookie (cookie token transport) needs credentialed CORS; the
+            # origins are an exact list (settings refuse "*"), and no response header is exposed.
+            "allow_credentials": True,
+            "max_age": 600,
+        },
+        "by_path": {
+            # The old site hands its progress over; the app itself may create one too.
+            CREATE_PATH: anonymous([*settings.transfer_source_origins, *settings.cors_origins]),
+            # Only the app's own site takes a transfer in.
+            CLAIM_PATH: anonymous(settings.cors_origins),
+        },
+    }
 
 
 def client_ip_resolver(settings: Settings) -> ClientIpResolver:

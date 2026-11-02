@@ -14,7 +14,8 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
 
 import english_learn_api.auth.infrastructure.tables
-import english_learn_api.sync.infrastructure.tables  # noqa: F401 - registers tables on metadata
+import english_learn_api.sync.infrastructure.tables
+import english_learn_api.transfers.infrastructure.tables  # noqa: F401 - registers tables on metadata
 from english_learn_api.settings import DatabaseSettings
 from english_learn_api.shared.database import metadata
 
