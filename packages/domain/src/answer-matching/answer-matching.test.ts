@@ -179,6 +179,22 @@ describe("matchAnswer: almost (one extra or missing function word)", () => {
     ).toMatchObject({ verdict: "almost", closest: "My commute to work lasts forty minutes." });
   });
 
+  it("is 'almost' for the owner's answer against the real corpus patterns", () => {
+    const accepted = [
+      "My commute{ to work|} {takes|takes me|is|lasts} {forty|40} minutes.",
+      "It takes me {forty|40} minutes to {get|go} to work.",
+    ];
+    const result = matchPatternAnswer("My commute to the work takes forty minutes", accepted);
+    expect(result).toMatchObject({
+      verdict: "almost",
+      closest: "My commute to work takes forty minutes.",
+      hint: "En inglés se dice 'to work', sin 'the'.",
+    });
+    expect(result.diff.filter((op) => op.kind !== "same")).toEqual([
+      { kind: "extra", text: "the" },
+    ]);
+  });
+
   it.each([
     ["missing negation 'not'", "I do like it", ["I do not like it"]],
     ["missing negation as a contraction", "I do like it", ["I don't like it"]],
