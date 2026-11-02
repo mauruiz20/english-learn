@@ -337,7 +337,10 @@ paper, the prompt and the teacher's marking.
   nothing to review), the placement invitation, then the level's lessons as a path drawn in
   pencil, grouped by topic: won lessons are tilted stickers with a check, the first lesson not done
   is a big yellow sticker where Avi lands ("Siguiente", hint "Tu siguiente lección"), the rest are
-  numbered dashed slots. Nothing is locked.
+  numbered dashed slots. Nothing is locked. Avi points along the pencil line that comes down to
+  the next sticker (`model/guide-heading.ts`): from a stop on the left it faces right, nose
+  tilted down, on the sticker's top left; from a stop on the right it is mirrored onto its top
+  right (`Avi` `tilt` / `facing`; it glides in from the side it faces).
 - **Album** (`features/achievements/`, route `/album`): sixteen achievements derived from the
   stored progress only (lessons, whole topics, whole levels, the longest streak, XP, placement,
   words practiced; `model/achievements.ts`), so they need no storage and follow sync. Won ones are

@@ -14,6 +14,7 @@ import { AccountLink } from "@/features/account/account-link";
 import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { Avi } from "@/shared/ui/mascot";
+import { guideHeading } from "./model/guide-heading";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Sticker } from "@/shared/ui/sticker";
 import { StickyNote } from "@/shared/ui/sticky-note";
@@ -228,6 +229,7 @@ function PathStop({
   topic,
   kind,
   offset,
+  previousOffset,
   onPress,
 }: {
   lesson: HomeLesson;
@@ -235,6 +237,8 @@ function PathStop({
   topic: string;
   kind: StopKind;
   offset: number;
+  /** Where the stop before it on the same topic sits, if any: Avi points along that line. */
+  previousOffset: number | undefined;
   onPress: () => void;
 }) {
   const styles = useStyles();
@@ -273,7 +277,7 @@ function PathStop({
                 {String(number)}
               </Text>
             </Sticker>
-            <Avi testID="avi-guide" fly delayMs={200} size={40} style={styles.guide} />
+            <Guide previousOffset={previousOffset} offset={offset} />
           </>
         )}
         {kind === "pending" && (
@@ -300,6 +304,23 @@ function PathStop({
         )}
       </View>
     </PressableScale>
+  );
+}
+
+/** Avi on the next sticker, pointing down along the pencil line that comes to it. */
+function Guide({ previousOffset, offset }: { previousOffset: number | undefined; offset: number }) {
+  const styles = useStyles();
+  const heading = guideHeading(previousOffset, offset);
+  return (
+    <Avi
+      testID="avi-guide"
+      fly
+      delayMs={200}
+      size={40}
+      tilt={heading.tilt}
+      facing={heading.facing}
+      style={heading.corner === "left" ? styles.guideLeft : styles.guideRight}
+    />
   );
 }
 
@@ -387,12 +408,16 @@ function LessonIndex({
               {group.lessons.map(({ lesson, number }, i) => {
                 const offset = STOP_OFFSETS[(number - 1) % STOP_OFFSETS.length] ?? 0;
                 const previous = group.lessons[i - 1];
+                const previousOffset =
+                  previous === undefined
+                    ? undefined
+                    : (STOP_OFFSETS[(previous.number - 1) % STOP_OFFSETS.length] ?? 0);
                 return (
                   <View key={lesson.id}>
                     {previous !== undefined && (
                       <Connector
                         width={width}
-                        from={STOP_OFFSETS[(previous.number - 1) % STOP_OFFSETS.length] ?? 0}
+                        from={previousOffset ?? 0}
                         to={offset}
                         drawn={previous.lesson.done && lesson.done}
                       />
@@ -403,6 +428,7 @@ function LessonIndex({
                       topic={group.topic}
                       kind={stopKind(lesson, nextId)}
                       offset={offset}
+                      previousOffset={previousOffset}
                       onPress={() => onOpenLesson(lesson.id)}
                     />
                   </View>
@@ -571,8 +597,9 @@ const useStyles = themedStyles(({ colors }) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    // Avi perches at the top left of the next sticker.
-    guide: { position: "absolute", left: -2, top: -12 },
+    // Avi perches at the top corner of the next sticker the pencil line comes from.
+    guideLeft: { position: "absolute", left: -2, top: -12 },
+    guideRight: { position: "absolute", right: -2, top: -12 },
     stopText: { flexShrink: 1, gap: 2, alignItems: "flex-start" },
     nextChip: {
       backgroundColor: colors.highlighters.yellow,

@@ -91,6 +91,43 @@ describe("Avi, the paper plane", () => {
 
     expect(screen.getByTestId("avi")).toHaveProp("accessibilityElementsHidden", true);
   });
+
+  function aviTransform() {
+    return StyleSheet.flatten(screen.getByTestId("avi").props.style).transform as object[];
+  }
+
+  it("rests at its usual -14° and faces right by default", async () => {
+    await render(<Avi fly />);
+
+    expect(aviTransform()).toContainEqual({ rotate: "-14deg" });
+    expect(aviTransform()).not.toContainEqual({ scaleX: -1 });
+  });
+
+  it("lands in its final pose at once with reduced motion: the given tilt, mirrored when facing left", async () => {
+    await render(<Avi fly tilt={38} facing="left" />);
+
+    const transform = aviTransform();
+    expect(transform).toContainEqual({ rotate: "38deg" });
+    expect(transform).toContainEqual({ scaleX: -1 });
+    const x = transform.find((t) => "translateX" in t) as { translateX: number };
+    expect(Math.abs(x.translateX)).toBe(0);
+    // Mirrored before it turns, so a positive tilt still points the nose down (to the left).
+    expect(transform.findIndex((t) => "scaleX" in t)).toBeLessThan(
+      transform.findIndex((t) => "rotate" in t),
+    );
+  });
+
+  it("glides in from the side it faces", async () => {
+    withMotion();
+    await render(<Avi fly delayMs={10_000} facing="left" />);
+    const fromRight = aviTransform().find((t) => "translateX" in t) as { translateX: number };
+
+    await render(<Avi fly delayMs={10_000} facing="right" />);
+    const fromLeft = aviTransform().find((t) => "translateX" in t) as { translateX: number };
+
+    expect(fromRight.translateX).toBeGreaterThan(0);
+    expect(fromLeft.translateX).toBeLessThan(0);
+  });
 });
 
 describe("Confetti", () => {
