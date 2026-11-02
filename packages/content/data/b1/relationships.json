@@ -354,7 +354,8 @@
         "b1.relationships.fall-in-love",
         "b1.relationships.make-up",
         "b1.relationships.if-i-were-you"
-      ]
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.relationships", "b1.grammar.second-conditional"]
     },
     {
       "id": "b1.relationships.lesson-002",
@@ -374,7 +375,8 @@
         "b1.relationships.get-married",
         "b1.relationships.each-other",
         "b1.relationships.support"
-      ]
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.relationships"]
     }
   ]
 }

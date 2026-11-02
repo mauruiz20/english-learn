@@ -3,6 +3,7 @@ import { LessonSchema, type ContentFile } from "../schema";
 import * as fx from "../testing/fixtures";
 import {
   validateCorpus,
+  validateLessonDeepenCards,
   validateLessonNewItems,
   validateReviewableLessonItems,
   type LoadedFile,
@@ -119,5 +120,93 @@ describe("validateReviewableLessonItems", () => {
     };
     const errs = validateCorpus([file(data), ...fx.glossaryFiles()]);
     expect(errs.map((e) => e.path)).toContain("lessons[0].newItemIds[1]");
+  });
+});
+
+describe("LessonSchema deepenCardIds", () => {
+  it("is optional and takes 1 to 3 card ids", () => {
+    const ids = ["b1.grammar.a", "b1.grammar.b", "b1.grammar.c", "b1.grammar.d"];
+    expect(LessonSchema.safeParse(fx.lesson({ deepenCardIds: ids.slice(0, 1) })).success).toBe(
+      true,
+    );
+    expect(LessonSchema.safeParse(fx.lesson({ deepenCardIds: ids.slice(0, 3) })).success).toBe(
+      true,
+    );
+    expect(LessonSchema.safeParse(fx.lesson({ deepenCardIds: [] })).success).toBe(false);
+    expect(LessonSchema.safeParse(fx.lesson({ deepenCardIds: ids })).success).toBe(false);
+    expect(LessonSchema.safeParse(fx.lesson({ deepenCardIds: ["Grammar"] })).success).toBe(false);
+  });
+});
+
+describe("validateLessonDeepenCards", () => {
+  const lessonFile = (lessonPatch: Partial<ReturnType<typeof fx.lesson>>, level = "B1") => {
+    const f = fx.validFile();
+    return file(
+      { ...f, lessons: [fx.lesson({ ...lessonPatch })] },
+      `${level.toLowerCase()}/travel.json`,
+    );
+  };
+
+  it("passes when every linked card exists at or below the lesson level", () => {
+    const a2Card = fx.card({ id: "a2.grammar.although", level: "A2" });
+    const files = [
+      lessonFile({ deepenCardIds: ["b1.grammar.although", "a2.grammar.although"] }),
+      fx.cardFile(),
+      { file: "a2/grammar.json", data: { cards: [a2Card] } },
+    ];
+    expect(validateLessonDeepenCards(files)).toEqual([]);
+  });
+
+  it("passes for lessons without linked cards", () => {
+    expect(validateLessonDeepenCards([file(fx.validFile()), fx.cardFile()])).toEqual([]);
+  });
+
+  it("reports an unknown card", () => {
+    const files = [lessonFile({ deepenCardIds: ["b1.grammar.missing"] }), fx.cardFile()];
+    expect(validateLessonDeepenCards(files)).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "lessons[0].deepenCardIds[0]",
+        message: 'card "b1.grammar.missing" does not exist',
+      },
+    ]);
+  });
+
+  it("reports a card above the lesson level", () => {
+    const c1Card = fx.card({ id: "c1.grammar.although", level: "C1" });
+    const files = [
+      lessonFile({ deepenCardIds: ["c1.grammar.although"] }),
+      { file: "c1/grammar.json", data: { cards: [c1Card] } },
+    ];
+    expect(validateLessonDeepenCards(files)).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "lessons[0].deepenCardIds[0]",
+        message: 'card "c1.grammar.although" is C1, above the lesson level B1',
+      },
+    ]);
+  });
+
+  it("reports duplicates", () => {
+    const files = [
+      lessonFile({ deepenCardIds: ["b1.grammar.although", "b1.grammar.although"] }),
+      fx.cardFile(),
+    ];
+    expect(validateLessonDeepenCards(files)).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "lessons[0].deepenCardIds[1]",
+        message: 'duplicate linked card "b1.grammar.although"',
+      },
+    ]);
+  });
+
+  it("is part of validateCorpus", () => {
+    const files = [
+      lessonFile({ deepenCardIds: ["b1.grammar.missing"] }),
+      fx.cardFile(),
+      ...fx.glossaryFiles(),
+    ];
+    expect(validateCorpus(files).map((e) => e.path)).toContain("lessons[0].deepenCardIds[0]");
   });
 });

@@ -365,7 +365,8 @@
         "a2.shopping.how-much-is",
         "a2.shopping.try-on",
         "a2.shopping.pay-in-cash"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.too-enough"]
     },
     {
       "id": "a2.shopping.lesson-002",
@@ -381,7 +382,8 @@
         "a2.shopping.choice-003",
         "a2.shopping.write-002"
       ],
-      "newItemIds": ["a2.shopping.price", "a2.shopping.too-adjective", "a2.shopping.market"]
+      "newItemIds": ["a2.shopping.price", "a2.shopping.too-adjective", "a2.shopping.market"],
+      "deepenCardIds": ["a2.grammar.too-enough"]
     }
   ]
 }

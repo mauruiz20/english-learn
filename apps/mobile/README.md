@@ -196,8 +196,11 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   lesson practices). Each shows its term (with word lookup) and Spanish, then "Ver ficha:
   <título>" when a study card teaches it (opens `/fichas/[id]` on top of the summary), or else an
   example: the item's own `example`, or a sentence of an exercise that practices it, with its
-  Spanish and linking the item's glossary entry (the lesson's exercises first). Card practice and
-  the daily review have no recap.
+  Spanish and linking the item's glossary entry (the lesson's exercises first). The card is the
+  lesson's linked card (`deepenCardIds`) first: one that lists the item, or teaches its term or
+  headword even under another item id ("look forward to + -ing" in "Una noche de cultura" opens
+  "Look forward to + -ing"); else a card that lists the item. Terms are never matched against
+  cards the lesson does not link. Card practice and the daily review have no recap.
 - **"Repetir lección"** on the lesson summary (a secondary button with mistakes, a text button on
   a perfect page) runs the lesson again from the start as a new session (`LessonContainer`
   remounts the session with a new key): answer XP again, never a second completion bonus.
@@ -216,6 +219,16 @@ correctas" with the hint "Repítela para sacar todo bien" (texts in `model/lesso
 in `components/perfect-badge.tsx`, shared with study cards). The best attempt counts, so a perfect
 redo makes it perfect for good. Lessons done before the event log (or only through other
 lessons' items) have no result and keep "Completada". Tapping a done lesson redoes it.
+
+**"Profundiza" under done lessons.** A done lesson with linked cards (`deepenCardIds`) shows one
+small row per card under its stop: a loose index card with a dashed edge, "Profundiza", the card
+title and its best result with the same marker as the path ("Perfecta · 6/6" with the star, or
+"Completada · 5/7"; `cardScores`), or "Nueva" when the card was never practiced. It opens
+`/fichas/[id]`; labelled "Profundiza: <título>, ficha nueva" or "Profundiza: <título>, completada
+sin errores: 6 de 6 correctas", with the hint "Abre la ficha". Rows are 48 pt tall, smaller than
+a stop (84), and the pencil line runs on beside them (solid or dotted, like the line between
+stops) when another stop follows. Only the shared press feedback moves, and not with reduced
+motion. Lessons not done yet show nothing.
 
 ## Word lookup (`src/features/glossary/`)
 

@@ -40,5 +40,11 @@ export const LessonSchema = z.strictObject({
    * app derives them when absent.
    */
   newItemIds: z.array(IdSchema).min(3).max(5).optional(),
+  /**
+   * The 1 to 3 study cards that go deeper into what the lesson teaches, at or below its level.
+   * The app shows them under the completed lesson on the path ("Profundiza") and links the
+   * recap items they teach to them. Optional.
+   */
+  deepenCardIds: z.array(IdSchema).min(1).max(3).optional(),
 });
 export type Lesson = z.infer<typeof LessonSchema>;

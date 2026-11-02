@@ -405,7 +405,8 @@
         "b1.culture-and-entertainment.exhibition",
         "b1.culture-and-entertainment.must-cant-might",
         "b1.culture-and-entertainment.look-forward"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.look-forward-to"]
     },
     {
       "id": "b1.culture-and-entertainment.lesson-002",

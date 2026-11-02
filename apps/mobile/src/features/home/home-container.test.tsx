@@ -269,6 +269,96 @@ describe("HomeContainer", () => {
     expect(mockPush).toHaveBeenCalledWith("/fichas");
   });
 
+  describe("deepen steps", () => {
+    const linkedContent = createCorpus([
+      {
+        exercises: allExercises,
+        passages: [passage],
+        lessons: [{ ...lesson, deepenCardIds: [card.id] }],
+        cards: [card],
+      },
+    ]);
+    const lessonItemIds = [
+      ...new Set(
+        lesson.exerciseIds.flatMap((id) => linkedContent.exercisesById.get(id)?.itemIds ?? []),
+      ),
+    ];
+
+    function renderLinked(repository: ProgressRepository) {
+      return render(
+        <AppServicesProvider
+          services={{
+            progressRepository: repository,
+            clock: fixedClock,
+            random: () => 0,
+            randomBytes: testRandomBytes,
+            deviceId: "test-device",
+            settingsRepository: createFakeSettingsRepository(),
+            sounds: createFakeSoundPlayer(),
+          }}
+        >
+          <SoundPreferenceProvider>
+            <ThemePreferenceProvider>
+              <HomeContainer content={linkedContent} completionMemory={createCompletionMemory()} />
+            </ThemePreferenceProvider>
+          </SoundPreferenceProvider>
+        </AppServicesProvider>,
+      );
+    }
+
+    it("shows no step under a lesson not done yet", async () => {
+      await renderLinked(createFakeRepository());
+
+      expect(await screen.findByRole("button", { name: "Mi rutina" })).toBeOnTheScreen();
+      expect(screen.queryByRole("button", { name: /^Profundiza: / })).not.toBeOnTheScreen();
+    });
+
+    it("offers the linked card under the done lesson, new until practiced, and opens it", async () => {
+      await renderLinked(
+        createFakeRepository({ states: lessonItemIds.map((id) => initialState(id, TODAY)) }),
+      );
+
+      const step = await screen.findByRole("button", {
+        name: `Profundiza: ${card.title}, ficha nueva`,
+      });
+      await fireEvent.press(step);
+      expect(mockPush).toHaveBeenCalledWith(`/fichas/${encodeURIComponent(card.id)}`);
+    });
+
+    it("shows the card's best practice result", async () => {
+      const repository = createFakeRepository({
+        states: lessonItemIds.map((id) => initialState(id, TODAY)),
+      });
+      await completeSession({
+        repository,
+        today: TODAY,
+        nowMs: 0,
+        randomBytes: testRandomBytes,
+        deviceId: "test-device",
+        kind: "lesson",
+        summary: {
+          lessonId: card.id,
+          verdicts: [],
+          accuracy: 1,
+          answerXp: 0,
+          itemOutcomes: card.itemIds.map((itemId) => ({
+            itemId,
+            exerciseType: "vocab",
+            verdict: "correct",
+            responseMs: 1000,
+          })),
+        },
+      });
+      await renderLinked(repository);
+
+      expect(
+        await screen.findByRole("button", {
+          name: `Profundiza: ${card.title}, completada sin errores: 2 de 2 correctas`,
+        }),
+      ).toBeOnTheScreen();
+    });
+  });
+
   it("counts the items due for review", async () => {
     const yesterday = localDate("2026-10-28");
     const learned = (id: string) => review(initialState(id, yesterday), 5, yesterday);

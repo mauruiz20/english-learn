@@ -376,7 +376,8 @@
         "b1.work-and-careers.interview",
         "b1.work-and-careers.dont-have-to-mustnt",
         "b1.work-and-careers.get-promoted"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.for-since"]
     },
     {
       "id": "b1.work-and-careers.lesson-002",

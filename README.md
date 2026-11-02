@@ -40,7 +40,8 @@ every check passes; installable and usable offline; progress is stored in your b
   items are due the next day and come first in that review.
 - **"Lo nuevo de hoy"**: every lesson ends with the 3–5 items it introduces, linked to their study
   card or explained with their meaning and an example; the path shows each lesson's best result
-  (perfect or "5/6"), and any lesson can be redone to get everything right.
+  (perfect or "5/6"), and any lesson can be redone to get everything right. A done lesson also
+  offers the study cards that go deeper into it ("Profundiza"), with their best result.
 - **Progress as a game**: XP in sheets of stickers, a daily streak as a paperclip chain, the
   level's lessons as a path of stickers, and an album of sixteen achievements, all derived from
   the stored progress.

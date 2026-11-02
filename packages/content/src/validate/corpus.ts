@@ -8,7 +8,11 @@ import {
 } from "./glossary";
 import { validateListDuplicates } from "./duplicates";
 import { validateLayout } from "./layout";
-import { validateLessonNewItems, validateReviewableLessonItems } from "./lessons";
+import {
+  validateLessonDeepenCards,
+  validateLessonNewItems,
+  validateReviewableLessonItems,
+} from "./lessons";
 import { validateLevels } from "./levels";
 import { validateAnswerIndexes, validateOptionDuplicates } from "./options";
 import { validateTextPunctuation } from "./punctuation";
@@ -41,6 +45,7 @@ const CROSS_FILE_RULES: readonly Rule[] = [
   validateLevels,
   validateCardReferences,
   validateLessonNewItems,
+  validateLessonDeepenCards,
   validateReviewableLessonItems,
   validateGlossaryForms,
   validateGlossaryCoverage,

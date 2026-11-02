@@ -1,6 +1,14 @@
 import { createCorpus, type Lesson } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
-import { allExercises, cloze, lesson, passage, translationChoice, wordOrder } from "./fixtures";
+import {
+  allExercises,
+  card,
+  cloze,
+  lesson,
+  passage,
+  translationChoice,
+  wordOrder,
+} from "./fixtures";
 import { annotateText } from "@english-learn/domain";
 import { itemEntryIds } from "@/features/glossary/model/item-entries";
 import { lessonItemIds } from "./lesson-catalog";
@@ -86,6 +94,121 @@ describe("lessonRecap", () => {
 
   it("skips ids the corpus does not know", () => {
     expect(lessonRecap({ ...lesson, newItemIds: ["a2.routine.nope"] }, content)).toEqual([]);
+  });
+
+  describe("with the lesson's linked cards (deepenCardIds)", () => {
+    /** A card that teaches "go to bed" with its own item (another id than the lesson's). */
+    const evening = {
+      ...card,
+      id: "a2.phrasal-verbs.evening",
+      title: "Phrasal verbs: la noche",
+      itemIds: ["a2.phrasal-verbs.go-to-bed"],
+    };
+    const cardItem = {
+      id: "a2.phrasal-verbs.go-to-bed",
+      level: "A2" as const,
+      topics: ["phrasal-verbs"],
+      kind: "phrase" as const,
+      term: "go to bed",
+      es: "acostarse",
+    };
+    const goToBed = {
+      id: "glossary.go-to-bed",
+      headword: "go to bed",
+      kind: "phrase" as const,
+      forms: ["go to bed", "goes to bed", "went to bed"],
+      senses: [{ es: "acostarse" }],
+    };
+    const linked = (patch: Partial<Lesson> = {}): Lesson => ({
+      ...lesson,
+      newItemIds: ["a2.routine.go-to-bed", "a2.routine.wake-up"],
+      deepenCardIds: [evening.id],
+      ...patch,
+    });
+    const build = (lessonItems = items, glossary = [goToBed]) =>
+      createCorpus([
+        {
+          items: [...lessonItems, cardItem],
+          exercises: allExercises,
+          passages: [passage],
+          lessons: [lesson],
+          cards: [card, evening],
+        },
+        { glossary },
+      ]);
+
+    it("links an item to a linked card that teaches the same term, even with another id", () => {
+      const [bed] = lessonRecap(linked(), build());
+      expect(bed).toEqual({
+        id: "a2.routine.go-to-bed",
+        term: "go to bed",
+        es: "acostarse",
+        card: { id: evening.id, title: evening.title },
+      });
+    });
+
+    it("links an item whose headword is the one a linked card teaches", () => {
+      const early = items.map((i) =>
+        i.id === "a2.routine.go-to-bed" ? { ...i, term: "go to bed (early)" } : i,
+      );
+      const [bed] = lessonRecap(linked(), build(early));
+      expect(bed?.card).toEqual({ id: evening.id, title: evening.title });
+    });
+
+    it("matches a term written with an optional part in parentheses", () => {
+      const withPart = items.map((i) =>
+        i.id === "a2.routine.go-to-bed" ? { ...i, term: "go to (bed)" } : i,
+      );
+      // No glossary: only the terms can match.
+      const [bed] = lessonRecap(linked(), build(withPart, []));
+      expect(bed?.card).toEqual({ id: evening.id, title: evening.title });
+    });
+
+    it("prefers the linked card over another card that lists the item", () => {
+      const both = { ...evening, itemIds: ["a2.phrasal-verbs.go-to-bed"] };
+      const wakeCard = { ...card, title: "Otra ficha" };
+      const content2 = createCorpus([
+        {
+          items: [
+            ...items,
+            cardItem,
+            { ...cardItem, id: "a2.phrasal-verbs.wake", term: "wake up" },
+          ],
+          exercises: allExercises,
+          passages: [passage],
+          lessons: [lesson],
+          cards: [wakeCard, { ...both, itemIds: [...both.itemIds, "a2.phrasal-verbs.wake"] }],
+        },
+      ]);
+      const recap = lessonRecap(linked(), content2);
+      expect(recap.find((i) => i.id === "a2.routine.wake-up")?.card).toEqual({
+        id: evening.id,
+        title: evening.title,
+      });
+    });
+
+    it("leaves items no linked card teaches as they were", () => {
+      const recap = lessonRecap(linked({ newItemIds: ["a2.routine.breakfast"] }), build());
+      expect(recap[0]?.card).toBeUndefined();
+      expect(recap[0]?.example?.en).toBe("I usually have breakfast at seven.");
+    });
+
+    it("never matches by term without the link", () => {
+      const { deepenCardIds: _linkedCards, ...unlinked } = linked();
+      const [bed] = lessonRecap(unlinked, build());
+      expect(bed?.card).toBeUndefined();
+    });
+  });
+
+  it("links 'look forward to' in 'Una noche de cultura' to its study card", () => {
+    const real = corpus.lessonsById.get("b1.culture-and-entertainment.lesson-001")!;
+    const item = lessonRecap(real, corpus).find(
+      (i) => i.id === "b1.culture-and-entertainment.look-forward",
+    );
+    expect(item?.card).toEqual({
+      id: "b1.grammar.look-forward-to",
+      title: "Look forward to + -ing",
+    });
   });
 
   describe("with the bundled content", () => {
