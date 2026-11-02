@@ -5,6 +5,9 @@ export {
   type ApiClientOptions,
   type FetchLike,
   type BodyAuth,
+  type ClaimTransferResponse,
+  type CreateTransferRequest,
+  type CreateTransferResponse,
   type CookieAuth,
   type CookieSignInResponse,
   type CookieTokensResponse,
@@ -15,6 +18,8 @@ export {
   type SyncedEvent,
   type TokenTransport,
   type TokensResponse,
+  type TransferEvent,
+  type TransferredEvent,
   type UserResponse,
 } from "./client";
 export type { components, paths } from "./generated/schema";

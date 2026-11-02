@@ -19,6 +19,14 @@ export type SyncRequest = Schemas["SyncRequest"];
 export type SyncEvent = Schemas["EventRequest"];
 export type SyncResponse = Ok<"/v1/sync", "post">;
 export type SyncedEvent = Schemas["EventResponse"];
+/** Progress transfers between two web origins: anonymous, single use, 15 minutes. */
+export type CreateTransferRequest = Schemas["CreateTransferRequest"];
+export type CreateTransferResponse = Schemas["CreateTransferResponse"];
+export type ClaimTransferResponse = Schemas["ClaimTransferResponse"];
+/** An event as `createTransfer` takes it (the sync envelope, without a device id). */
+export type TransferEvent = Schemas["EventRequest"];
+/** An event as `claimTransfer` returns it. */
+export type TransferredEvent = Schemas["TransferredEvent"];
 
 /** The subset of `fetch` the client uses, so any implementation (or a fake) fits. */
 export type FetchLike = (
@@ -99,6 +107,16 @@ export type ApiClient<Transport extends TokenTransport = "cookie"> = (Transport 
   deleteAccount(): Promise<void>;
   /** Uploads events and downloads the account's events after `cursor`; repeat while `hasMore`. */
   sync(request: SyncRequest): Promise<SyncResponse>;
+  /**
+   * Stores a device's whole event log for 15 minutes and returns a single-use token. Anonymous:
+   * no bearer token and no credentials, so the old web address can call it.
+   */
+  createTransfer(request: CreateTransferRequest): Promise<CreateTransferResponse>;
+  /**
+   * The transfer's events, exactly once. An unknown, expired or already claimed token throws
+   * `ApiError` 404 `transfer_not_found`. Anonymous, like `createTransfer`.
+   */
+  claimTransfer(token: string): Promise<ClaimTransferResponse>;
 };
 
 /** What the implementation builds; the overloads narrow it to one transport's methods. */
@@ -179,6 +197,9 @@ export function createApiClient(options: ApiClientOptions): AnyApiClient {
     me: () => json({ method: "GET", path: "/v1/me", auth: true }),
     deleteAccount: () => empty({ method: "DELETE", path: "/v1/account", auth: true }),
     sync: (request) => json({ method: "POST", path: "/v1/sync", body: request, auth: true }),
+    createTransfer: (request) => json({ method: "POST", path: "/v1/transfers", body: request }),
+    claimTransfer: (token) =>
+      json({ method: "POST", path: "/v1/transfers/claim", body: { token } }),
   };
 }
 
