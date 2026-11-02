@@ -1,6 +1,12 @@
 import { playSessionCorrectly } from "./support/content";
 import { FakeAccount } from "./support/fake-account";
-import { clearOriginData, expect, test as base, type Page } from "./support/test";
+import {
+  clearOriginData,
+  expect,
+  expectOneDatabaseWorker,
+  test as base,
+  type Page,
+} from "./support/test";
 
 /** Each test gets its own fake Google + API server, wired into the browser context. */
 const test = base.extend<{ account: FakeAccount }>({
@@ -54,6 +60,8 @@ test.describe("account and sync", () => {
     // The token never stays in the address bar or the history entry.
     expect(page.url()).not.toContain("id_token");
     expect(new URL(page.url()).pathname).toBe("/cuenta");
+    // Back from Google (/auth/callback, then /auth/completar): one SQLite worker on this page.
+    await expectOneDatabaseWorker(page);
 
     // The first sync uploads the whole local history.
     const first = account.syncs[0]!;

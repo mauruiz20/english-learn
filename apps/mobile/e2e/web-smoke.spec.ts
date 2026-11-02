@@ -1,4 +1,4 @@
-import { expect, test, type ConsoleMessage } from "./support/test";
+import { expect, expectOneDatabaseWorker, test, type ConsoleMessage } from "./support/test";
 
 test("home loads progress from SQLite in the static web build", async ({ page }) => {
   const problems: string[] = [];
@@ -13,9 +13,12 @@ test("home loads progress from SQLite in the static web build", async ({ page })
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
   await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Hacer test de nivel" })).toBeVisible();
+  // Cold start: the page runs exactly one SQLite worker (the old file probe was a second one).
+  await expectOneDatabaseWorker(page);
 
   await page.reload();
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
+  await expectOneDatabaseWorker(page);
 
   expect(await page.evaluate(() => self.crossOriginIsolated)).toBe(true);
   expect(await page.evaluate(() => typeof SharedArrayBuffer)).toBe("function");

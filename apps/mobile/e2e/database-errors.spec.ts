@@ -1,5 +1,5 @@
 import { test as ephemeral } from "@playwright/test";
-import { expect, test } from "./support/test";
+import { expect, expectOneDatabaseWorker, test, type Page } from "./support/test";
 
 const OPEN_ELSEWHERE = "La app está abierta en otra pestaña o ventana";
 const RELEASED = "La app se abrió en otra pestaña";
@@ -49,6 +49,14 @@ ephemeral(
 
     await expect(page.getByRole("heading")).toHaveText("No pudimos abrir tus datos.");
     await expect(page.getByRole("button", { name: "Reintentar", exact: true })).toBeVisible();
+
+    // "Reintentar" reloads the page (a failed SQLite worker never opens again): one worker on
+    // the fresh page, never a second one next to the failed one.
+    const reloaded = page.waitForEvent("load");
+    await page.getByRole("button", { name: "Reintentar", exact: true }).click();
+    await reloaded;
+    await expect(page.getByRole("heading")).toHaveText("No pudimos abrir tus datos.");
+    await expectOneDatabaseWorker(page);
   },
 );
 
@@ -117,42 +125,128 @@ test("files held by something that is not a tab never claim 'open in another tab
   const holder = await context.newPage();
   await holder.goto("/metadata.json");
   await page.close();
-  await holder.evaluate(async () => {
-    const source = `
-      self.onmessage = async () => {
-        const handles = [];
-        for (let attempt = 0; attempt < 50; attempt++) {
-          try {
-            const root = await navigator.storage.getDirectory();
-            const directory = await root.getDirectoryHandle("expo-sqlite");
-            for await (const [, handle] of directory) {
-              if (handle.kind === "file") handles.push(await handle.createSyncAccessHandle());
-            }
-            self.__handles = handles;
-            self.postMessage("held");
-            return;
-          } catch (error) {
-            for (const handle of handles.splice(0)) handle.close();
-            await new Promise((resolve) => setTimeout(resolve, 100));
-          }
-        }
-        self.postMessage("failed");
-      };`;
-    const worker = new Worker(URL.createObjectURL(new Blob([source], { type: "text/javascript" })));
-    (window as unknown as { __holder: Worker }).__holder = worker;
-    const result = await new Promise((resolve) => {
-      worker.onmessage = ({ data }) => resolve(data);
-      worker.postMessage("hold");
-    });
-    if (result !== "held") throw new Error("could not hold the database files");
-  });
-
+  await holdDatabaseFiles(holder);
   const app = await context.newPage();
   await app.goto("/");
   await expect(app.getByRole("heading")).toHaveText(STUCK, { timeout: 30_000 });
   await expect(app.getByText(OPEN_ELSEWHERE)).toHaveCount(0);
   await app.getByRole("button", { name: "Detalles técnicos", exact: true }).click();
   await expect(app.getByText(/^Motivo: open-failed:/)).toBeVisible();
+  // It retried by reloading (backoff) before giving up, with one SQLite worker per page.
+  await expect(app.getByText("Reintentos automáticos: 3")).toBeVisible();
+  await expect(app.getByText("Workers de la base de datos: 1")).toBeVisible();
+  await expect(app.getByText("Sondeo de archivos: no")).toBeVisible();
+});
+
+test("files held for a moment (a page that was just closed): the open retries and the app opens", async ({
+  page,
+  context,
+}) => {
+  test.setTimeout(60_000);
+  await page.goto("/");
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
+  const holder = await context.newPage();
+  await holder.goto("/metadata.json");
+  await page.close();
+  await holdDatabaseFiles(holder);
+
+  const app = await context.newPage();
+  await app.goto("/");
+  // The first open failed and a retry is scheduled: the holder goes away meanwhile.
+  await expect
+    .poll(() => app.evaluate(() => sessionStorage.getItem("english-learn-db-open-retries")), {
+      timeout: 15_000,
+    })
+    .toBe("1");
+  await holder.evaluate(() => (window as unknown as { __holder: Worker }).__holder.terminate());
+
+  await expect(app.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 15_000 });
+  await expect(app.getByText(STUCK)).toHaveCount(0);
+  await expectOneDatabaseWorker(app);
+  // Opened: the next failure starts a fresh round of retries.
+  expect(await app.evaluate(() => sessionStorage.getItem("english-learn-db-open-retries"))).toBe(
+    null,
+  );
+});
+
+// iOS releases a closed or terminated worker's file handles later than desktop browsers. Older
+// builds ran a file probe (its own worker taking a handle on every database file) moments before
+// SQLite opened the same files: with a late release, the open failed with `InvalidStateError`
+// (the iPhone's "No pudimos abrir tus datos en esta ventana."). Simulated here by delaying both.
+test("file handles released late (as on iOS) never collide with the page's SQLite worker", async ({
+  page,
+}) => {
+  await page.context().addInitScript(() => {
+    const LATE_MS = 1500;
+    const terminate = Worker.prototype.terminate;
+    Worker.prototype.terminate = function (this: Worker) {
+      setTimeout(() => terminate.call(this), LATE_MS);
+    };
+    const OriginalBlob = Blob;
+    window.Blob = class extends OriginalBlob {
+      constructor(parts?: BlobPart[], options?: BlobPropertyBag) {
+        const source = parts?.map(String).join("") ?? "";
+        const late = `{
+          const close = FileSystemSyncAccessHandle.prototype.close;
+          FileSystemSyncAccessHandle.prototype.close = function () {
+            setTimeout(() => close.call(this), ${LATE_MS});
+          };
+        }\n`;
+        super(
+          source.includes("createSyncAccessHandle") ? [late, ...(parts ?? [])] : parts,
+          options,
+        );
+      }
+    } as typeof Blob;
+  });
+
+  // The first visit creates the database files; the next start is what the iPhone ran into.
+  await page.goto("/");
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 15_000 });
+  const relaunched = await page.context().newPage();
+  await page.close();
+  await relaunched.goto("/");
+
+  await expect(relaunched.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 15_000 });
+  await expect(relaunched.getByText(STUCK)).toHaveCount(0);
+  await expectOneDatabaseWorker(relaunched);
+});
+
+// Why the page must run ONE SQLite worker: OPFS gives a file a single sync access handle, so a
+// second acquisition in the same page (a second SQLite worker, or the file probe older builds
+// ran next to it) fails, on WebKit with exactly the iPhone's `InvalidStateError`.
+test("a second acquisition of the database files in the same page collides with the first", async ({
+  page,
+  browserName,
+}) => {
+  await page.goto("/");
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
+  await expectOneDatabaseWorker(page);
+
+  const result = await page.evaluate(() => {
+    const source = `
+      self.onmessage = async () => {
+        try {
+          const root = await navigator.storage.getDirectory();
+          const directory = await root.getDirectoryHandle("expo-sqlite");
+          for await (const [, handle] of directory) {
+            if (handle.kind === "file") (await handle.createSyncAccessHandle()).close();
+          }
+          self.postMessage("opened");
+        } catch (error) {
+          self.postMessage(error.name);
+        }
+      };`;
+    const worker = new Worker(URL.createObjectURL(new Blob([source], { type: "text/javascript" })));
+    return new Promise<string>((resolve) => {
+      worker.onmessage = ({ data }) => resolve(String(data));
+      worker.postMessage("go");
+    });
+  });
+
+  expect(result).toBe(
+    browserName === "webkit" ? "InvalidStateError" : "NoModificationAllowedError",
+  );
 });
 
 test("Google's /auth/callback completes the sign-in flow without opening the database", async ({
@@ -189,3 +283,36 @@ test("Google's /auth/callback completes the sign-in flow without opening the dat
   // The token is gone from storage too (read once by /auth/completar).
   expect(await page.evaluate(() => localStorage.getItem("english-learn.auth-callback"))).toBeNull();
 });
+
+/** Grabs expo-sqlite's files from a worker of `holder` (a non-app page of the origin). */
+async function holdDatabaseFiles(holder: Page) {
+  await holder.evaluate(async () => {
+    const source = `
+      self.onmessage = async () => {
+        const handles = [];
+        for (let attempt = 0; attempt < 50; attempt++) {
+          try {
+            const root = await navigator.storage.getDirectory();
+            const directory = await root.getDirectoryHandle("expo-sqlite");
+            for await (const [, handle] of directory) {
+              if (handle.kind === "file") handles.push(await handle.createSyncAccessHandle());
+            }
+            self.__handles = handles;
+            self.postMessage("held");
+            return;
+          } catch (error) {
+            for (const handle of handles.splice(0)) handle.close();
+            await new Promise((resolve) => setTimeout(resolve, 100));
+          }
+        }
+        self.postMessage("failed");
+      };`;
+    const worker = new Worker(URL.createObjectURL(new Blob([source], { type: "text/javascript" })));
+    (window as unknown as { __holder: Worker }).__holder = worker;
+    const result = await new Promise((resolve) => {
+      worker.onmessage = ({ data }) => resolve(data);
+      worker.postMessage("hold");
+    });
+    if (result !== "held") throw new Error("could not hold the database files");
+  });
+}
