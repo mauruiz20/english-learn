@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import { Platform } from "react-native";
-import { palettes } from "./theme";
+import { palettes, type ColorScheme } from "./theme";
 
 const STYLE_ID = "notebook-global-styles";
 
-/** Visible keyboard focus ring in ink, and the paper color behind the app (no white flash). */
+/**
+ * Visible keyboard focus ring in ink, and the paper color behind the app (no white flash). The
+ * scheme comes from `<html data-theme>`, which index.html's boot script sets before the first
+ * paint and `useWebDocumentTheme` keeps up to date; the system scheme only applies before then.
+ */
 export const WEB_GLOBAL_CSS = `
-:root { --paper: ${palettes.light.paper}; --focus: ${palettes.light.ink}; color-scheme: light dark; }
+:root { --paper: ${palettes.light.paper}; --focus: ${palettes.light.ink}; color-scheme: light; }
+:root[data-theme="dark"] { --paper: ${palettes.dark.paper}; --focus: ${palettes.dark.ink}; color-scheme: dark; }
 @media (prefers-color-scheme: dark) {
-  :root { --paper: ${palettes.dark.paper}; --focus: ${palettes.dark.ink}; }
+  :root:not([data-theme]) { --paper: ${palettes.dark.paper}; --focus: ${palettes.dark.ink}; color-scheme: dark; }
 }
 html, body { background-color: var(--paper); }
 :focus { outline: none; }
@@ -25,4 +30,20 @@ export function useWebGlobalStyles() {
     style.textContent = WEB_GLOBAL_CSS;
     document.head.appendChild(style);
   }, []);
+}
+
+/** Marks the page with the scheme it shows and colors the browser chrome with its paper. */
+export function applyDocumentTheme(doc: Document, scheme: ColorScheme): void {
+  doc.documentElement.setAttribute("data-theme", scheme);
+  doc.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+    meta.setAttribute("content", palettes[scheme].paper);
+  });
+}
+
+/** Web: keeps `<html data-theme>` and the theme-color in step with the scheme the app shows. */
+export function useWebDocumentTheme(scheme: ColorScheme) {
+  useEffect(() => {
+    if (Platform.OS !== "web" || typeof document === "undefined") return;
+    applyDocumentTheme(document, scheme);
+  }, [scheme]);
 }

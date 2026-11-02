@@ -14,6 +14,32 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="English" />
+    <!--
+      Applies the learner's theme before the first paint, so a chosen scheme never flashes the
+      other one: the preference the app caches in localStorage ("english-learn.theme", see
+      src/shared/ui/theme-preference.ts), or the system's. The app keeps `data-theme` updated.
+    -->
+    <script id="theme-boot">
+      (function () {
+        var preference = null;
+        try {
+          preference = window.localStorage.getItem("english-learn.theme");
+        } catch (error) {}
+        var scheme =
+          preference === "light" || preference === "dark"
+            ? preference
+            : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.setAttribute("data-theme", scheme);
+        if (scheme === preference) {
+          var paper = scheme === "dark" ? "#0F1A33" : "#F5F7FF";
+          document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+            meta.setAttribute("content", paper);
+          });
+        }
+      })();
+    </script>
     <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
     <style id="expo-reset">
       /* These styles make the body full-height */
@@ -21,13 +47,20 @@
       body {
         height: 100%;
       }
-      /* Paper color before the app paints (standalone launch, slow devices). */
+      /* Paper color before the app paints (standalone launch, slow devices): the boot script's
+         data-theme, or the system scheme when it could not run. */
       html {
         background-color: #f7f9fc;
+        color-scheme: light;
+      }
+      html[data-theme="dark"] {
+        background-color: #0f1a33;
+        color-scheme: dark;
       }
       @media (prefers-color-scheme: dark) {
-        html {
+        html:not([data-theme]) {
           background-color: #0f1a33;
+          color-scheme: dark;
         }
       }
       /* These styles disable body scrolling if you are using <ScrollView> */
