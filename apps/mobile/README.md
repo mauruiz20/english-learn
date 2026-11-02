@@ -212,7 +212,8 @@ shows as done once every item it practices has a review state.
 exercises, rounded; anything below 1 is never shown as all right). Every answer right: "Perfecta
 · 6/6" and a small yellow star sticker on its corner, labelled "<título>, completada sin errores:
 6 de 6 correctas"; otherwise "Completada · 5/6", labelled "… completada con errores: 5 de 6
-correctas" with the hint "Repítela para sacar todo bien". The best attempt counts, so a perfect
+correctas" with the hint "Repítela para sacar todo bien" (texts in `model/lesson-score.ts`, the star
+in `components/perfect-badge.tsx`, shared with study cards). The best attempt counts, so a perfect
 redo makes it perfect for good. Lessons done before the event log (or only through other
 lessons' items) have no result and keep "Completada". Tapping a done lesson redoes it.
 
@@ -316,13 +317,20 @@ explanation with the items it teaches and 6–8 practice exercises that are in n
 - **`/fichas`**: the cards grouped by kind (Gramática, Phrasal verbs, Vocabulario: the topic
   labels and colors of `grammar`, `phrasal-verbs`, `vocabulary`), then by level. A card is
   **studied** once every item it lists has a review state, and **mastered** once all reached the
-  mastery interval (`levelProgress`, 21 days); `model/card-catalog.ts`.
+  mastery interval (`levelProgress`, 21 days); `model/card-catalog.ts`. A practiced card also
+  shows its **best result**, the same marker as a done lesson on the path ("Perfecta · 6/6" with
+  the star sticker, or "Completada · 5/6", and "…, completada sin errores: 6 de 6 correctas" in
+  its label): `cardScores` reads the fold's `lessonResults` under the card's id (practice is saved
+  as that lesson, so nothing new is stored) and counts over the card's exercises with
+  `lessonScore`. Cards never practiced show nothing new.
 - **`/fichas/[id]`**: kind, level and status; the summary; the form on a ruled card like a
   formula; "Cuándo se usa"; "Errores comunes" (the mistake struck in red pen and never a lookup,
   then the correction and why); phrasal verbs with a "separable" chip and the "turn it off" note;
   collocations and the false friend ("Parece: … / Significa: …"); examples with their Spanish.
   English words of corrections, examples, verbs and collocations can be looked up (no SRS signal:
-  nothing is graded there). "Practicar" opens `/fichas/[id]/practicar`.
+  nothing is graded there). "Practicar" opens `/fichas/[id]/practicar`. Once practiced, the
+  footer shows "Tu mejor resultado" (the same marker) and the button reads "Practicar de nuevo":
+  a redo pays answer XP only, since the fold pays the completion bonus once per card id.
 - **Practice** reuses the lesson session (`PracticeSession` in `lesson-container.tsx`: exercises,
   feedback, lookups and their grade cap, sounds, leave confirmation, summary "¡Práctica
   completada!" / "Volver a la ficha"). It is **saved as a lesson whose `lessonId` is the card id**

@@ -6,9 +6,12 @@ import { useProgressVersion } from "@/features/account/account-context";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { cardPath } from "./card-routes";
 import { CardsView, type CardsViewState } from "./cards-view";
-import { cardGroups, cardsSummary } from "./model/card-catalog";
+import { cardGroups, cardScores, cardsSummary } from "./model/card-catalog";
 
-/** `/fichas`: the study cards with what the learner studied, reloaded every time it gains focus. */
+/**
+ * `/fichas`: the study cards with what the learner studied and each one's best practice result,
+ * reloaded every time it gains focus.
+ */
 export function CardsContainer({ content = corpus }: { content?: Corpus }) {
   const { progressRepository } = useAppServices();
   const router = useRouter();
@@ -17,12 +20,12 @@ export function CardsContainer({ content = corpus }: { content?: Corpus }) {
 
   const load = useCallback(() => {
     let active = true;
-    progressRepository.getReviewStates().then(
-      (states) =>
+    Promise.all([progressRepository.getReviewStates(), progressRepository.getLessonResults()]).then(
+      ([states, results]) =>
         active &&
         setState({
           status: "ready",
-          groups: cardGroups(content.cards, states),
+          groups: cardGroups(content.cards, states, cardScores(content, results)),
           ...cardsSummary(content.cards, states),
         }),
       (error: unknown) => {

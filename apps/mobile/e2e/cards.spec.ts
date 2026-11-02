@@ -5,7 +5,7 @@ import { playSessionCorrectly } from "./support/content";
 const DAY_1 = "2030-01-01";
 const CARD = "Look forward to + -ing";
 
-test("study cards: open one from home, read it, practice it and see it studied", async ({
+test("study cards: open one from home, read it, practice it, see it studied with its best result", async ({
   page,
 }) => {
   const problems: string[] = [];
@@ -38,16 +38,36 @@ test("study cards: open one from home, read it, practice it and see it studied",
   await expect(page.getByRole("dialog", { name: "Traducción de weekend" })).toBeVisible();
   await page.keyboard.press("Escape");
 
+  // Never practiced: no result yet.
+  await expect(page.getByLabel(/^Tu mejor resultado/)).toHaveCount(0);
   await page.getByRole("button", { name: "Practicar", exact: true }).click();
   const answered = await playSessionCorrectly(page, "¡Práctica completada!");
   expect(answered).toBeGreaterThanOrEqual(6);
+  // Answer XP plus the first-completion bonus (read from the label: the number counts up).
+  const firstXp = Number(
+    (await page.getByLabel(/^XP ganada: \d+$/).getAttribute("aria-label"))?.replace(/\D/g, ""),
+  );
+  expect(firstXp).toBeGreaterThan(answered * 10);
   await page.getByRole("button", { name: "Volver a la ficha", exact: true }).click();
 
   await expect(page.getByText("Estudiada", { exact: true })).toBeVisible();
+  // The best result, like a perfect lesson's on the path, and practicing again.
+  const perfect = `completada sin errores: ${answered} de ${answered} correctas`;
+  await expect(page.getByLabel(`Tu mejor resultado: ${perfect}`, { exact: true })).toBeVisible();
+  await expect(page.getByText(`Perfecta · ${answered}/${answered}`)).toBeVisible();
+  await page.getByRole("button", { name: "Practicar de nuevo", exact: true }).click();
+  await playSessionCorrectly(page, "¡Práctica completada!");
+  // The redo pays its answers only: the bonus was paid once.
+  await expect(page.getByText(`XP ganada: ${answered * 10}`, { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Volver a la ficha", exact: true }).click();
+  await expect(page.getByLabel(`Tu mejor resultado: ${perfect}`, { exact: true })).toBeVisible();
+
   await page.goBack();
-  await expect(
-    page.getByRole("button", { name: `${CARD}, B1, estudiada`, exact: true }),
-  ).toBeVisible();
+  const row = page.getByRole("button", { name: `${CARD}, B1, estudiada, ${perfect}`, exact: true });
+  await expect(row).toBeVisible();
+  await expect(row.getByText(`Perfecta · ${answered}/${answered}`)).toBeVisible();
+  // Cards never practiced show nothing new.
+  await expect(page.getByText(/^(Perfecta|Completada) · /)).toHaveCount(1);
 
   // Home counts it too, after a reload (it lives in the event log).
   await page.goto(`/?today=${DAY_1}`);

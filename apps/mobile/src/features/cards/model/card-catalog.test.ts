@@ -4,6 +4,7 @@ import {
   cardByExerciseId,
   cardExercises,
   cardGroups,
+  cardScores,
   cardStatus,
   cardsSummary,
 } from "./card-catalog";
@@ -68,6 +69,44 @@ describe("cardGroups", () => {
     const rows = groups.flatMap((g) => g.levels.flatMap((l) => l.cards));
 
     expect(rows.filter((r) => r.status !== "new").map((r) => r.id)).toEqual([card.id]);
+  });
+});
+
+describe("cardScores", () => {
+  it("turns each practiced card's best result into right answers out of its exercises", () => {
+    const other = corpus.cardsById.get("b2.grammar.be-worth")!;
+    const scores = cardScores(corpus, [
+      { lessonId: card.id, bestAccuracy: 1, completions: 2 },
+      { lessonId: other.id, bestAccuracy: 0.5, completions: 1 },
+      // A lesson's result is not a card's.
+      { lessonId: corpus.lessons[0]!.id, bestAccuracy: 1, completions: 1 },
+    ]);
+
+    const total = card.exerciseIds.length;
+    expect(scores.get(card.id)).toEqual({ correct: total, total, perfect: true });
+    const otherTotal = other.exerciseIds.length;
+    expect(scores.get(other.id)).toEqual({
+      correct: Math.round(otherTotal / 2),
+      total: otherTotal,
+      perfect: false,
+    });
+    expect(scores.size).toBe(2);
+  });
+
+  it("is empty for cards never practiced", () => {
+    expect(cardScores(corpus, []).size).toBe(0);
+  });
+});
+
+describe("cardGroups with results", () => {
+  it("gives a practiced card's row its best result, and none to the others", () => {
+    const score = { correct: 5, total: 6, perfect: false };
+    const rows = cardGroups(corpus.cards, [], new Map([[card.id, score]])).flatMap((g) =>
+      g.levels.flatMap((l) => l.cards),
+    );
+
+    expect(rows.find((r) => r.id === card.id)?.score).toEqual(score);
+    expect(rows.filter((r) => r.score !== undefined)).toHaveLength(1);
   });
 });
 

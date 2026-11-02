@@ -1,4 +1,4 @@
-import { lessonScore } from "./lesson-score";
+import { lessonScore, scoreDescription, scoreText } from "./lesson-score";
 
 describe("lessonScore", () => {
   it("turns the best accuracy into right answers out of the lesson's exercises", () => {
@@ -35,5 +35,28 @@ describe("lessonScore", () => {
   it("stays within 0 and the exercise count for out-of-range accuracies", () => {
     expect(lessonScore({ lessonId: "l", bestAccuracy: 1.5, completions: 1 }, 6)?.correct).toBe(6);
     expect(lessonScore({ lessonId: "l", bestAccuracy: -1, completions: 1 }, 6)?.correct).toBe(0);
+  });
+});
+
+describe("scoreText", () => {
+  it("says 'Perfecta' with every answer right, 'Completada' otherwise, with the count", () => {
+    expect(scoreText({ correct: 6, total: 6, perfect: true })).toBe("Perfecta · 6/6");
+    expect(scoreText({ correct: 5, total: 6, perfect: false })).toBe("Completada · 5/6");
+  });
+
+  it("is just 'Completada' without a recorded result", () => {
+    expect(scoreText(undefined)).toBe("Completada");
+  });
+});
+
+describe("scoreDescription", () => {
+  it("reads the result for screen readers", () => {
+    expect(scoreDescription({ correct: 6, total: 6, perfect: true })).toBe(
+      "completada sin errores: 6 de 6 correctas",
+    );
+    expect(scoreDescription({ correct: 5, total: 6, perfect: false })).toBe(
+      "completada con errores: 5 de 6 correctas",
+    );
+    expect(scoreDescription(undefined)).toBe("completada");
   });
 });
