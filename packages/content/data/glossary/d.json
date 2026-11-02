@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.dad",
+      "headword": "dad",
+      "kind": "word",
+      "forms": ["dad", "dads"],
+      "senses": [
+        {
+          "es": "papá",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dance",
       "headword": "dance",
       "kind": "word",
@@ -25,6 +37,18 @@
         {
           "es": "Daniel (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dark",
+      "headword": "dark",
+      "kind": "word",
+      "forms": ["dark"],
+      "senses": [
+        {
+          "es": "oscuro",
+          "pos": "adjective"
         }
       ]
     },
@@ -177,6 +201,18 @@
       ]
     },
     {
+      "id": "glossary.dentist",
+      "headword": "dentist",
+      "kind": "word",
+      "forms": ["dentist", "dentists"],
+      "senses": [
+        {
+          "es": "dentista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.deny",
       "headword": "deny",
       "kind": "word",
@@ -229,6 +265,18 @@
       ]
     },
     {
+      "id": "glossary.dictionary",
+      "headword": "dictionary",
+      "kind": "word",
+      "forms": ["dictionary", "dictionaries"],
+      "senses": [
+        {
+          "es": "diccionario",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.didn-t",
       "headword": "didn't",
       "kind": "word",
@@ -237,6 +285,22 @@
         {
           "es": "no (pasado: I didn't = yo no …)",
           "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.die",
+      "headword": "die",
+      "kind": "word",
+      "forms": ["die", "dies", "died", "dying"],
+      "senses": [
+        {
+          "es": "morir",
+          "pos": "verb"
+        },
+        {
+          "es": "(una máquina) dejar de funcionar",
+          "pos": "verb"
         }
       ]
     },
@@ -421,6 +485,18 @@
       ]
     },
     {
+      "id": "glossary.dog",
+      "headword": "dog",
+      "kind": "word",
+      "forms": ["dog", "dogs"],
+      "senses": [
+        {
+          "es": "perro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dollar",
       "headword": "dollar",
       "kind": "word",
@@ -529,6 +605,22 @@
       ]
     },
     {
+      "id": "glossary.dream",
+      "headword": "dream",
+      "kind": "word",
+      "forms": ["dream", "dreams", "dreamed", "dreaming"],
+      "senses": [
+        {
+          "es": "sueño",
+          "pos": "noun"
+        },
+        {
+          "es": "soñar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.dressed",
       "headword": "dressed",
       "kind": "word",
@@ -565,6 +657,18 @@
         {
           "es": "manejar, conducir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.driver",
+      "headword": "driver",
+      "kind": "word",
+      "forms": ["driver", "drivers"],
+      "senses": [
+        {
+          "es": "conductor",
+          "pos": "noun"
         }
       ]
     },

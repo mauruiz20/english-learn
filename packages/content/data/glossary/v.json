@@ -1,6 +1,30 @@
 {
   "glossary": [
     {
+      "id": "glossary.vacation",
+      "headword": "vacation",
+      "kind": "word",
+      "forms": ["vacation", "vacations"],
+      "senses": [
+        {
+          "es": "vacaciones",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.value",
+      "headword": "value",
+      "kind": "word",
+      "forms": ["value", "values"],
+      "senses": [
+        {
+          "es": "valor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.vegetable",
       "headword": "vegetable",
       "kind": "word",

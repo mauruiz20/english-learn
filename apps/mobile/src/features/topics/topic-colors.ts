@@ -42,6 +42,10 @@ export const TOPIC_HIGHLIGHTERS: Readonly<Record<string, TopicHighlighter>> = {
   technology: "sky",
   travel: "orange",
   "work-and-careers": "lilac",
+  // Study cards ("Fichas"), in the order of their list.
+  grammar: "lilac",
+  "phrasal-verbs": "orange",
+  vocabulary: "green",
 };
 
 /** djb2: a small stable string hash. */
@@ -79,16 +83,19 @@ export function stickyNoteHighlighter(day: LocalDate | string): TopicHighlighter
   return STICKY_NOTE_PALETTE[index] ?? "pink";
 }
 
-/** Exercise id → topic of the (first) lesson that contains it. */
+/**
+ * Exercise id → topic of the (first) lesson that contains it, or of the study card that
+ * practices it (card exercises are in no lesson).
+ */
 export function topicByExerciseId(content: Corpus): ReadonlyMap<string, string> {
   const topics = new Map<string, string>();
-  for (const lesson of content.lessons) {
-    for (const id of lesson.exerciseIds) if (!topics.has(id)) topics.set(id, lesson.topic);
+  for (const unit of [...content.lessons, ...content.cards]) {
+    for (const id of unit.exerciseIds) if (!topics.has(id)) topics.set(id, unit.topic);
   }
   return topics;
 }
 
-/** Item id → topic of the (first) lesson that practices it. */
+/** Item id → topic of the (first) lesson that practices it, else of its study card. */
 export function topicByItemId(content: Corpus): ReadonlyMap<string, string> {
   const topics = new Map<string, string>();
   for (const [exerciseId, topic] of topicByExerciseId(content)) {

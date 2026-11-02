@@ -5,7 +5,7 @@ import {
   glossaryKey,
   type GlossaryIndex,
 } from "@english-learn/domain";
-import type { GlossaryEntry } from "../schema";
+import type { Card, GlossaryEntry } from "../schema";
 import type { AnyExercise } from "./helpers";
 import type { LoadedFile, Rule, ValidationError } from "./types";
 
@@ -190,6 +190,28 @@ export function glossaryTexts(files: readonly LoadedFile[]): GlossaryText[] {
     (data.placement ?? []).forEach((q, i) =>
       exerciseTexts(q.exercise, `placement[${i}].exercise`).forEach(add),
     );
+    (data.cards ?? []).forEach((card, i) => cardTexts(card, `cards[${i}]`).forEach(add));
+  }
+  return out;
+}
+
+/** English text of a card: pitfall corrections, examples, phrasal verbs, collocations, the false friend. */
+function cardTexts(card: Card, at: string): [string, string][] {
+  const out: [string, string][] = [];
+  // `wrong` holds deliberate mistakes ("lended", "rised") that must not become glossary forms.
+  card.pitfalls.forEach((p, i) => out.push([`${at}.pitfalls[${i}].right`, p.right]));
+  card.examples.forEach((e, i) => out.push([`${at}.examples[${i}].en`, e.en]));
+  if (card.kind === "phrasal_verbs") {
+    card.entries.forEach((e, i) => {
+      out.push(
+        [`${at}.entries[${i}].verb`, e.verb],
+        [`${at}.entries[${i}].example.en`, e.example.en],
+      );
+    });
+  }
+  if (card.kind === "vocabulary") {
+    card.collocations?.forEach((c, i) => out.push([`${at}.collocations[${i}].en`, c.en]));
+    if (card.falseFriend) out.push([`${at}.falseFriend.en`, card.falseFriend.en]);
   }
   return out;
 }

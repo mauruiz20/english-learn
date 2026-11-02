@@ -277,6 +277,57 @@ describe("HomeView sticker path", () => {
     ).not.toBeOnTheScreen();
   });
 
+  function guide() {
+    const avi = screen.getByTestId("avi-guide", { includeHiddenElements: true });
+    return StyleSheet.flatten(avi.props.style) as {
+      left?: number;
+      right?: number;
+      transform: object[];
+    };
+  }
+
+  it("points Avi down toward the next sticker when the path comes from the left", async () => {
+    // Stop 2 sits right of stop 1: the line comes down from the left.
+    await renderView({
+      ...ready,
+      lessons: {
+        level: "A2",
+        items: [
+          { id: "a", title: "Saludos", topic: "city", done: true },
+          { id: "b", title: "Mi rutina", topic: "city", done: false },
+        ],
+      },
+    });
+
+    const style = guide();
+    expect(style.transform).toContainEqual({ rotate: "38deg" });
+    expect(style.transform).not.toContainEqual({ scaleX: -1 });
+    expect(style.left).toBeDefined();
+    expect(style.right).toBeUndefined();
+  });
+
+  it("mirrors Avi onto the sticker's top right when the path comes from the right", async () => {
+    // Stop 4 sits left of stop 3: the line comes down from the right.
+    await renderView({
+      ...ready,
+      lessons: {
+        level: "A2",
+        items: [
+          { id: "a", title: "Saludos", topic: "city", done: true },
+          { id: "b", title: "Mi rutina", topic: "city", done: true },
+          { id: "c", title: "La ciudad", topic: "city", done: true },
+          { id: "d", title: "El clima", topic: "city", done: false },
+        ],
+      },
+    });
+
+    const style = guide();
+    expect(style.transform).toContainEqual({ rotate: "38deg" });
+    expect(style.transform).toContainEqual({ scaleX: -1 });
+    expect(style.right).toBeDefined();
+    expect(style.left).toBeUndefined();
+  });
+
   it("gives every lesson a touch target of at least 48 points", async () => {
     await renderView({ ...ready, lessons });
 
@@ -303,6 +354,25 @@ describe("HomeView album", () => {
     expect(screen.getByText("3 de 16 insignias")).toBeOnTheScreen();
     await fireEvent.press(screen.getByRole("button", { name: "Mi álbum: 3 de 16 insignias" }));
     expect(onOpenAlbum).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("HomeView study cards", () => {
+  it("opens the cards, saying how many there are and how many were studied", async () => {
+    const onOpenCards = jest.fn();
+    await render(
+      <HomeView
+        state={{ ...ready, cards: { total: 28, studied: 3 } }}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenCards={onOpenCards}
+      />,
+    );
+
+    expect(screen.getByText("28 fichas · 3 estudiadas")).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Fichas: 28 fichas, 3 estudiadas" }));
+    expect(onOpenCards).toHaveBeenCalledTimes(1);
   });
 });
 

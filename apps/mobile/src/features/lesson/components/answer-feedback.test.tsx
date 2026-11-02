@@ -360,3 +360,43 @@ describe("AnswerFeedback rewards", () => {
     expect(screen.queryByText(/seguidas/, { includeHiddenElements: true })).toBeNull();
   });
 });
+
+describe("AnswerFeedback: 'Ver ficha'", () => {
+  const onOpenCard = jest.fn();
+  const card = { title: "Look forward to + -ing", onOpen: onOpenCard };
+
+  it.each(["wrong", "almost"] as const)(
+    "offers the study card of the exercise after a %s answer",
+    async (verdict) => {
+      await render(
+        <AnswerFeedback
+          verdict={verdict}
+          given="I look forward to see you"
+          correctAnswer="I look forward to seeing you."
+          card={card}
+          onContinue={onContinue}
+        />,
+      );
+
+      await fireEvent.press(
+        screen.getByRole("button", { name: "Ver ficha: Look forward to + -ing" }),
+      );
+      expect(onOpenCard).toHaveBeenCalledTimes(1);
+      expect(onContinue).not.toHaveBeenCalled();
+    },
+  );
+
+  it("does not offer it after a right answer", async () => {
+    await render(
+      <AnswerFeedback
+        verdict="correct"
+        given="seeing"
+        correctAnswer="seeing"
+        card={card}
+        onContinue={onContinue}
+      />,
+    );
+
+    expect(screen.queryByRole("button", { name: /^Ver ficha/ })).not.toBeOnTheScreen();
+  });
+});

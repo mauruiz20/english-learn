@@ -59,6 +59,16 @@ describe("createCorpus glossary", () => {
     expect(linked).toEqual(["glossary.we", "glossary.go-out"]);
   });
 
+  it("merges cards and indexes them by id", () => {
+    const { data } = fx.cardFile();
+    const vocabulary = fx.vocabularyCard();
+    const corpus = createCorpus([data, { cards: [vocabulary] }]);
+
+    expect(corpus.cards.map((c) => c.id)).toEqual(["b1.grammar.although", "b1.vocabulary.late"]);
+    expect(corpus.cardsById.get("b1.vocabulary.late")).toBe(vocabulary);
+    expect(createCorpus([]).cards).toEqual([]);
+  });
+
   it("has an empty glossary and index for no files", () => {
     const corpus = createCorpus([]);
     expect(corpus.glossary).toEqual([]);
@@ -80,7 +90,7 @@ describe("generated corpus", () => {
   it("annotates every learner-visible text: exact rebuild, contiguous offsets, every word linked", async () => {
     const { corpus } = await import("../index");
     const { glossaryTexts } = await import("../validate");
-    const { items, exercises, passages, placement } = corpus;
+    const { items, exercises, passages, placement, cards } = corpus;
     const texts = glossaryTexts([
       {
         file: "corpus",
@@ -89,6 +99,7 @@ describe("generated corpus", () => {
           exercises: [...exercises],
           passages: [...passages],
           placement: [...placement],
+          cards: [...cards],
         },
       },
     ]);

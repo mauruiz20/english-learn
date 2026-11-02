@@ -14,6 +14,7 @@ import { AccountLink } from "@/features/account/account-link";
 import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { Avi } from "@/shared/ui/mascot";
+import { guideHeading } from "./model/guide-heading";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Sticker } from "@/shared/ui/sticker";
 import { StickyNote } from "@/shared/ui/sticky-note";
@@ -23,6 +24,7 @@ import { XpBar } from "@/shared/ui/xp-bar";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
+import { cardsCount } from "@/features/cards/cards-view";
 
 export type HomeLesson = {
   readonly id: string;
@@ -52,6 +54,8 @@ export type HomeViewState =
       readonly lessons: HomeLessons;
       /** Album stickers won, out of the whole album. */
       readonly album?: { readonly unlocked: number; readonly total: number };
+      /** Study cards ("Fichas"), and how many the learner studied. */
+      readonly cards?: { readonly total: number; readonly studied: number };
     };
 
 type HomeViewProps = {
@@ -69,6 +73,7 @@ type HomeViewProps = {
   /** Shows the "Cuenta" link next to the sound switch. */
   onOpenAccount?: () => void;
   onOpenAlbum?: () => void;
+  onOpenCards?: () => void;
   /** News above everything else (the old web address's move banner). */
   notice?: ReactNode;
 };
@@ -97,12 +102,16 @@ function ProgressCard({
   controls,
   album,
   onOpenAlbum,
+  cards,
+  onOpenCards,
 }: {
   days: number;
   xp: number | null;
   controls: ReactNode;
   album?: { readonly unlocked: number; readonly total: number } | undefined;
   onOpenAlbum?: (() => void) | undefined;
+  cards?: { readonly total: number; readonly studied: number } | undefined;
+  onOpenCards?: (() => void) | undefined;
 }) {
   const styles = useStyles();
   return (
@@ -125,7 +134,74 @@ function ProgressCard({
       {album !== undefined && onOpenAlbum !== undefined && (
         <AlbumLink album={album} onPress={onOpenAlbum} />
       )}
+      {cards !== undefined && cards.total > 0 && onOpenCards !== undefined && (
+        <CardsLink cards={cards} onPress={onOpenCards} />
+      )}
     </View>
+  );
+}
+
+/** "Fichas · 28 fichas · 3 estudiadas", under the album: the way to the study cards. */
+function CardsLink({
+  cards,
+  onPress,
+}: {
+  cards: { readonly total: number; readonly studied: number };
+  onPress: () => void;
+}) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  const count = cardsCount(cards.total, cards.studied);
+  return (
+    <PressableScale
+      accessibilityRole="button"
+      accessibilityLabel={`Fichas: ${count.replace(" · ", ", ")}`}
+      onPress={onPress}
+      style={({ pressed }) => [styles.albumLink, pressed && styles.stopPressed]}
+    >
+      {/* A small ruled index card with a highlighter tab (decorative). */}
+      <View style={styles.albumStickers}>
+        <Svg width={44} height={34} viewBox="0 0 44 34" aria-hidden>
+          <Path
+            d="M5 6 h32 a3 3 0 0 1 3 3 v19 a3 3 0 0 1 -3 3 h-32 a3 3 0 0 1 -3 -3 v-19 a3 3 0 0 1 3 -3 z"
+            fill={colors.sheet}
+            stroke={colors.ink}
+            strokeWidth={2}
+            transform="rotate(-5 22 17)"
+          />
+          <Path
+            d="M9 15 h24 M9 21 h24 M9 27 h16"
+            stroke={colors.rule}
+            strokeWidth={2}
+            strokeLinecap="round"
+            transform="rotate(-5 22 17)"
+          />
+          <Path
+            d="M28 2 h10 v8 h-10 z"
+            fill={colors.highlighters.lilac}
+            transform="rotate(-5 22 17)"
+          />
+        </Svg>
+      </View>
+      <View style={styles.albumText}>
+        <Text variant="bodyStrong" tone="ink">
+          Fichas
+        </Text>
+        <Text variant="small" tone="muted">
+          {count}
+        </Text>
+      </View>
+      <Svg width={20} height={20} viewBox="0 0 24 24" aria-hidden>
+        <Path
+          d="M9 5l7 7-7 7"
+          fill="none"
+          stroke={colors.ink}
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </PressableScale>
   );
 }
 
@@ -228,6 +304,7 @@ function PathStop({
   topic,
   kind,
   offset,
+  previousOffset,
   onPress,
 }: {
   lesson: HomeLesson;
@@ -235,6 +312,8 @@ function PathStop({
   topic: string;
   kind: StopKind;
   offset: number;
+  /** Where the stop before it on the same topic sits, if any: Avi points along that line. */
+  previousOffset: number | undefined;
   onPress: () => void;
 }) {
   const styles = useStyles();
@@ -273,7 +352,7 @@ function PathStop({
                 {String(number)}
               </Text>
             </Sticker>
-            <Avi testID="avi-guide" fly delayMs={200} size={40} style={styles.guide} />
+            <Guide previousOffset={previousOffset} offset={offset} />
           </>
         )}
         {kind === "pending" && (
@@ -300,6 +379,23 @@ function PathStop({
         )}
       </View>
     </PressableScale>
+  );
+}
+
+/** Avi on the next sticker, pointing down along the pencil line that comes to it. */
+function Guide({ previousOffset, offset }: { previousOffset: number | undefined; offset: number }) {
+  const styles = useStyles();
+  const heading = guideHeading(previousOffset, offset);
+  return (
+    <Avi
+      testID="avi-guide"
+      fly
+      delayMs={200}
+      size={40}
+      tilt={heading.tilt}
+      facing={heading.facing}
+      style={heading.corner === "left" ? styles.guideLeft : styles.guideRight}
+    />
   );
 }
 
@@ -387,12 +483,16 @@ function LessonIndex({
               {group.lessons.map(({ lesson, number }, i) => {
                 const offset = STOP_OFFSETS[(number - 1) % STOP_OFFSETS.length] ?? 0;
                 const previous = group.lessons[i - 1];
+                const previousOffset =
+                  previous === undefined
+                    ? undefined
+                    : (STOP_OFFSETS[(previous.number - 1) % STOP_OFFSETS.length] ?? 0);
                 return (
                   <View key={lesson.id}>
                     {previous !== undefined && (
                       <Connector
                         width={width}
-                        from={STOP_OFFSETS[(previous.number - 1) % STOP_OFFSETS.length] ?? 0}
+                        from={previousOffset ?? 0}
                         to={offset}
                         drawn={previous.lesson.done && lesson.done}
                       />
@@ -403,6 +503,7 @@ function LessonIndex({
                       topic={group.topic}
                       kind={stopKind(lesson, nextId)}
                       offset={offset}
+                      previousOffset={previousOffset}
                       onPress={() => onOpenLesson(lesson.id)}
                     />
                   </View>
@@ -475,6 +576,7 @@ export function HomeView({
   onCycleTheme,
   onOpenAccount,
   onOpenAlbum,
+  onOpenCards,
   notice,
   ...handlers
 }: HomeViewProps) {
@@ -495,6 +597,8 @@ export function HomeView({
         controls={controls}
         album={state.status === "ready" ? state.album : undefined}
         onOpenAlbum={onOpenAlbum}
+        cards={state.status === "ready" ? state.cards : undefined}
+        onOpenCards={onOpenCards}
       />
       {state.status === "loading" && (
         <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />
@@ -571,8 +675,9 @@ const useStyles = themedStyles(({ colors }) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    // Avi perches at the top left of the next sticker.
-    guide: { position: "absolute", left: -2, top: -12 },
+    // Avi perches at the top corner of the next sticker the pencil line comes from.
+    guideLeft: { position: "absolute", left: -2, top: -12 },
+    guideRight: { position: "absolute", right: -2, top: -12 },
     stopText: { flexShrink: 1, gap: 2, alignItems: "flex-start" },
     nextChip: {
       backgroundColor: colors.highlighters.yellow,

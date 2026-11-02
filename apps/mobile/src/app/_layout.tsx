@@ -111,6 +111,18 @@ export default function RootLayout() {
                   <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
                   <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
                   <Stack.Screen name="album" options={{ title: "Álbum", ...homeFallback }} />
+                  <Stack.Screen
+                    name="fichas/index"
+                    options={{ title: "Fichas", ...homeFallback }}
+                  />
+                  <Stack.Screen
+                    name="fichas/[id]/index"
+                    options={{ title: "Ficha", ...homeFallback }}
+                  />
+                  <Stack.Screen
+                    name="fichas/[id]/practicar"
+                    options={{ title: "Práctica", headerRight }}
+                  />
                   <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
                   <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
                   <Stack.Screen

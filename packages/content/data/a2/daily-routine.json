@@ -3,7 +3,7 @@
     {
       "id": "a2.daily-routine.wake-up",
       "level": "A2",
-      "topics": ["daily-routine"],
+      "topics": ["daily-routine", "phrasal-verbs"],
       "kind": "phrase",
       "term": "wake up",
       "es": "despertarse"
@@ -43,7 +43,7 @@
     {
       "id": "a2.daily-routine.get-up",
       "level": "A2",
-      "topics": ["daily-routine"],
+      "topics": ["daily-routine", "phrasal-verbs"],
       "kind": "phrase",
       "term": "get up",
       "es": "levantarse"

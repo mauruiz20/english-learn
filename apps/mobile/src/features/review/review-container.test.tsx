@@ -1,7 +1,7 @@
 import { createCorpus, type Exercise, type Item } from "@english-learn/content";
 import { addDays, initialState, localDate, review, type ReviewState } from "@english-learn/domain";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
-import { cloze, vocab, wordOrder } from "@/features/lesson/model/fixtures";
+import { card, cloze, vocab, wordOrder } from "@/features/lesson/model/fixtures";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import {
   createFakeRepository,
@@ -13,7 +13,12 @@ import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { ReviewContainer } from "./review-container";
 import { testRandomBytes } from "@/testing/random-bytes";
 
-const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
+const mockRouter = {
+  canDismiss: jest.fn(() => true),
+  dismissAll: jest.fn(),
+  replace: jest.fn(),
+  push: jest.fn(),
+};
 const mockScreenOptions = jest.fn();
 const mockPreventRemove = createPreventRemoveMock();
 jest.mock("expo-router", () => ({
@@ -49,7 +54,7 @@ const items = [
 ];
 
 function renderReview(repository: FakeProgressRepository, exercises: Exercise[] = [vocab, cloze]) {
-  const content = createCorpus([{ items, exercises }]);
+  const content = createCorpus([{ items, exercises, cards: [card] }]);
   return render(
     <AppServicesProvider
       services={{
@@ -112,6 +117,17 @@ describe("ReviewContainer", () => {
     const saved = repository.snapshot();
     expect(saved.xp).toBe(120);
     expect(saved.states.every((s) => s.reps === 2 && s.intervalDays === 6)).toBe(true);
+  });
+
+  it("offers the study card of a missed exercise, opened on top of the review", async () => {
+    await renderReview(createFakeRepository({ states: [learnedYesterday("a2.routine.wake-up")] }));
+
+    await answer("dormirse");
+    await answer("Comprobar", "button");
+    await answer("Ver ficha: Phrasal verbs: la rutina", "button");
+
+    expect(mockRouter.push).toHaveBeenCalledWith("/fichas/a2.phrasal-verbs.routine?volver=1");
+    expect(screen.getByRole("alert")).toHaveTextContent(/^Incorrecto/);
   });
 
   it("lists only the missed items that were due on the summary", async () => {

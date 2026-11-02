@@ -18,6 +18,8 @@ const none: AchievementFacts = {
   levelsDone: [],
   placed: false,
   wordsPracticed: 0,
+  cardsStudied: 0,
+  grammarLevelsDone: [],
 };
 
 /** One review state per item the lessons practice (as after doing them). */
@@ -59,6 +61,11 @@ describe("unlockedAchievements", () => {
     expect(unlockedAchievements({ ...none, wordsPracticed: 50 })).toEqual(["words-50"]);
   });
 
+  it("unlocks by study cards: the first one, and every grammar card of a level", () => {
+    expect(unlockedAchievements({ ...none, cardsStudied: 1 })).toEqual(["first-card"]);
+    expect(unlockedAchievements({ ...none, grammarLevelsDone: ["B2"] })).toEqual(["grammar-level"]);
+  });
+
   it("lists them in album order", () => {
     const all = unlockedAchievements({
       xp: 5000,
@@ -68,6 +75,8 @@ describe("unlockedAchievements", () => {
       levelsDone: ["A2", "B1"],
       placed: true,
       wordsPracticed: 999,
+      cardsStudied: 28,
+      grammarLevelsDone: ["A2"],
     });
     expect(all).toEqual(ACHIEVEMENTS.map((a) => a.id));
   });
@@ -105,6 +114,34 @@ describe("achievementFacts", () => {
 
     expect(facts.levelsDone).toEqual(["A2"]);
     expect(facts.placed).toBe(true);
+  });
+});
+
+describe("achievementFacts: study cards", () => {
+  const grammarB2 = corpus.cards.filter((c) => c.kind === "grammar" && c.level === "B2");
+
+  it("counts the cards whose items all have a review state, and the levels with all grammar studied", () => {
+    const facts = achievementFacts(corpus, {
+      states: grammarB2.flatMap((c) => c.itemIds.map((id) => initialState(id, TODAY))),
+      xp: 0,
+      streak: EMPTY_STREAK,
+      placement: null,
+    });
+
+    expect(facts.cardsStudied).toBe(grammarB2.length);
+    expect(facts.grammarLevelsDone).toEqual(["B2"]);
+  });
+
+  it("needs every grammar card of the level", () => {
+    const facts = achievementFacts(corpus, {
+      states: grammarB2[0]!.itemIds.map((id) => initialState(id, TODAY)),
+      xp: 0,
+      streak: EMPTY_STREAK,
+      placement: null,
+    });
+
+    expect(facts.cardsStudied).toBe(1);
+    expect(facts.grammarLevelsDone).toEqual([]);
   });
 });
 

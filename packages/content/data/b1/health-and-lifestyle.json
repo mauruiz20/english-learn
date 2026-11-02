@@ -43,7 +43,7 @@
     {
       "id": "b1.health-and-lifestyle.give-up",
       "level": "B1",
-      "topics": ["health-and-lifestyle"],
+      "topics": ["health-and-lifestyle", "phrasal-verbs"],
       "kind": "phrase",
       "term": "give up",
       "es": "dejar (un hábito); rendirse"

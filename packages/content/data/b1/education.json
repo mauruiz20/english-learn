@@ -59,7 +59,7 @@
     {
       "id": "b1.education.hand-in",
       "level": "B1",
-      "topics": ["education"],
+      "topics": ["education", "phrasal-verbs"],
       "kind": "phrase",
       "term": "hand in",
       "es": "entregar (una tarea, un trabajo)"

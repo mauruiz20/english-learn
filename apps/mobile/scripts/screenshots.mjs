@@ -379,6 +379,49 @@ async function capture(browserType, size, scheme) {
       await result.or(page.locator('[data-testid^="exercise-"]').first()).waitFor();
     }
     await snap(`${step()}-placement-result`);
+
+    // Study cards ("Fichas"): the list, one card of each kind, the practice and "Ver ficha".
+    // Leaving a session midway shows the browser's "leave site?" prompt: accept it.
+    page.on("dialog", (dialog) => dialog.accept());
+    await page.goto(`/fichas?today=${DAY_4}`);
+    await page.getByRole("button", { name: /^Look forward to \+ -ing, B1/ }).waitFor();
+    await snap(`${step()}-cards-list`, { full: true });
+    const openCard = async (id, name) => {
+      await page.goto(`/fichas/${id}?today=${DAY_4}`);
+      await page.getByRole("button", { name: "Practicar", exact: true }).waitFor();
+      await snap(`${step()}-card-${name}`, { full: true });
+    };
+    await openCard("b1.grammar.look-forward-to", "grammar");
+    await openCard("b1.phrasal-verbs.plans", "phrasal-verbs");
+    await openCard("b1.vocabulary.actually", "vocabulary-false-friend");
+    // Practice: the card's first exercise answered wrong.
+    await openCard("b2.grammar.be-worth", "grammar-b2");
+    await button(page, "Practicar").click();
+    {
+      const { exercise, scope } = await currentExercise(page);
+      if (exercise.type === "cloze") await radio(scope, exercise.distractors[0]).click();
+      else if (exercise.type === "vocab" || exercise.type === "translation_choice") {
+        await radio(
+          scope,
+          exercise.options.find((_, i) => i !== exercise.answerIndex),
+        ).click();
+      } else await fillCorrectly(page);
+      await check();
+      await page.getByRole("alert").first().waitFor();
+      await snap(`${step()}-card-practice-feedback`);
+    }
+    // A lesson exercise missed: "Ver ficha" opens the card that explains it, on top.
+    await page.goto(`/lesson/a2.daily-routine.lesson-001?today=${DAY_4}`);
+    {
+      const { scope } = await currentExercise(page);
+      await radio(scope, "dormirse").click();
+      await check();
+      await page.getByRole("button", { name: /^Ver ficha:/ }).waitFor();
+      await snap(`${step()}-feedback-ver-ficha`);
+      await page.getByRole("button", { name: /^Ver ficha:/ }).click();
+      await page.getByRole("button", { name: "Volver al ejercicio", exact: true }).waitFor();
+      await snap(`${step()}-card-from-lesson`);
+    }
   } finally {
     await context.close();
     rmSync(profile, { recursive: true, force: true });

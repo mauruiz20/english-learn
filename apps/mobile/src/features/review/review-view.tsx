@@ -8,7 +8,7 @@ import {
   SessionProgress,
   SessionSummary,
 } from "@/features/lesson/components/session-screens";
-import type { ShownFeedback } from "@/features/lesson/lesson-view";
+import { cardLink, type ExerciseCard, type ShownFeedback } from "@/features/lesson/lesson-view";
 import type { ReviewNote } from "@/features/lesson/model/items-to-review";
 import { answerIsEnglish } from "@/features/lesson/model/lookup-policy";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
@@ -38,6 +38,8 @@ export type ReviewViewState =
       readonly feedback: ShownFeedback | null;
       /** Verdicts of the exercises answered so far, in order (the shown answer included). */
       readonly results?: readonly Verdict[];
+      /** The study card that explains this exercise, if any. */
+      readonly card?: ExerciseCard | undefined;
     }
   | { readonly status: "saving" }
   | { readonly status: "save-error" }
@@ -62,6 +64,8 @@ type ReviewViewProps = {
   onDispute: () => void;
   onGoHome: () => void;
   onRetrySave: () => void;
+  /** Opens a study card on top of the review ("Ver ficha"). */
+  onOpenCard?: ((cardId: string) => void) | undefined;
 };
 
 const TITLE = "Repaso";
@@ -73,6 +77,7 @@ export function ReviewView({
   onDispute,
   onGoHome,
   onRetrySave,
+  onOpenCard,
 }: ReviewViewProps) {
   const { colors } = useTheme();
   switch (state.status) {
@@ -136,6 +141,7 @@ export function ReviewView({
                     onDispute={state.feedback.disputable ? onDispute : undefined}
                     lookupAnswer={answerIsEnglish(state.prepared)}
                     inARow={correctInARow(state.results ?? [])}
+                    card={cardLink(state.card, onOpenCard)}
                     onContinue={onContinue}
                   />
                 ),

@@ -325,6 +325,18 @@
       ]
     },
     {
+      "id": "glossary.send",
+      "headword": "send",
+      "kind": "word",
+      "forms": ["send", "sends", "sent", "sending"],
+      "senses": [
+        {
+          "es": "enviar, mandar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.sensible",
       "headword": "sensible",
       "kind": "word",
@@ -400,6 +412,18 @@
       "senses": [
         {
           "es": "salir, ponerse en camino",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.set-up",
+      "headword": "set up",
+      "kind": "phrase",
+      "forms": ["set up", "sets up", "setting up"],
+      "senses": [
+        {
+          "es": "organizar, preparar",
           "pos": "phrasal verb"
         }
       ]
@@ -577,6 +601,18 @@
       ]
     },
     {
+      "id": "glossary.show-up",
+      "headword": "show up",
+      "kind": "phrase",
+      "forms": ["show up", "shows up", "showed up", "shown up", "showing up"],
+      "senses": [
+        {
+          "es": "llegar, aparecer",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.shower",
       "headword": "shower",
       "kind": "word",
@@ -589,6 +625,18 @@
         {
           "es": "(take a shower) bañarse",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shy",
+      "headword": "shy",
+      "kind": "word",
+      "forms": ["shy"],
+      "senses": [
+        {
+          "es": "tímido",
+          "pos": "adjective"
         }
       ]
     },
@@ -628,6 +676,22 @@
       "senses": [
         {
           "es": "turismo, visitas a lugares turísticos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sign",
+      "headword": "sign",
+      "kind": "word",
+      "forms": ["sign", "signs", "signed", "signing"],
+      "senses": [
+        {
+          "es": "firmar",
+          "pos": "verb"
+        },
+        {
+          "es": "letrero, señal",
           "pos": "noun"
         }
       ]
@@ -1017,6 +1081,18 @@
       ]
     },
     {
+      "id": "glossary.solution",
+      "headword": "solution",
+      "kind": "word",
+      "forms": ["solution", "solutions"],
+      "senses": [
+        {
+          "es": "solución",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.some",
       "headword": "some",
       "kind": "word",
@@ -1029,6 +1105,18 @@
         {
           "es": "algo de, un poco de",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.someone",
+      "headword": "someone",
+      "kind": "word",
+      "forms": ["someone"],
+      "senses": [
+        {
+          "es": "alguien",
+          "pos": "pronoun"
         }
       ]
     },
@@ -1053,6 +1141,18 @@
         {
           "es": "a veces",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.song",
+      "headword": "song",
+      "kind": "word",
+      "forms": ["song", "songs"],
+      "senses": [
+        {
+          "es": "canción",
+          "pos": "noun"
         }
       ]
     },
@@ -1256,6 +1356,18 @@
       "senses": [
         {
           "es": "primavera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.staff",
+      "headword": "staff",
+      "kind": "word",
+      "forms": ["staff"],
+      "senses": [
+        {
+          "es": "personal (de una empresa)",
           "pos": "noun"
         }
       ]
@@ -1736,6 +1848,30 @@
       "senses": [
         {
           "es": "encuesta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sushi",
+      "headword": "sushi",
+      "kind": "word",
+      "forms": ["sushi"],
+      "senses": [
+        {
+          "es": "sushi",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sweater",
+      "headword": "sweater",
+      "kind": "word",
+      "forms": ["sweater", "sweaters"],
+      "senses": [
+        {
+          "es": "suéter",
           "pos": "noun"
         }
       ]

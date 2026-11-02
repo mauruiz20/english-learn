@@ -17,10 +17,15 @@ import { createFakeSoundPlayer, type FakeSoundPlayer } from "@/testing/fake-soun
 import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { LessonContainer } from "./lesson-container";
 import { STREAK_SOUND_DELAY_MS } from "./use-session-sounds";
-import { allExercises, lesson, passage, sequenceRng } from "./model/fixtures";
+import { allExercises, card, lesson, passage, sequenceRng } from "./model/fixtures";
 import { testRandomBytes } from "@/testing/random-bytes";
 
-const mockRouter = { canDismiss: jest.fn(() => true), dismissAll: jest.fn(), replace: jest.fn() };
+const mockRouter = {
+  canDismiss: jest.fn(() => true),
+  dismissAll: jest.fn(),
+  replace: jest.fn(),
+  push: jest.fn(),
+};
 const mockScreenOptions = jest.fn();
 const mockPreventRemove = createPreventRemoveMock();
 jest.mock("expo-router", () => ({
@@ -50,6 +55,7 @@ const content = createCorpus([
     exercises: allExercises,
     passages: [passage],
     lessons: [lesson],
+    cards: [card],
   },
 ]);
 
@@ -223,6 +229,35 @@ describe("LessonContainer", () => {
     await act(() => new Promise((resolve) => setTimeout(resolve, STREAK_SOUND_DELAY_MS + 100)));
     expect(sounds.played.slice(-1)).toEqual(["complete"]);
     expect(sounds.played).not.toContain("streak");
+  });
+
+  it("offers the study card that explains a missed exercise, keeping the lesson where it was", async () => {
+    await renderLesson(createFakeRepository());
+
+    await press("dormirse", "radio");
+    await check();
+    await press("Ver ficha: Phrasal verbs: la rutina");
+
+    expect(mockRouter.push).toHaveBeenCalledWith("/fichas/a2.phrasal-verbs.routine?volver=1");
+    // The card opens on top: the lesson is untouched underneath.
+    expect(screen.getByRole("alert")).toHaveTextContent(/^Incorrecto/);
+    await press("Continuar");
+    expect(screen.getByText("Ejercicio 2 de 6")).toBeOnTheScreen();
+  });
+
+  it("does not offer a card after a right answer, nor for an exercise no card explains", async () => {
+    await renderLesson(createFakeRepository());
+
+    await press("despertarse", "radio");
+    await check();
+    expect(screen.queryByRole("button", { name: /^Ver ficha/ })).not.toBeOnTheScreen();
+    await press("Continuar");
+
+    // The cloze practices "usually", which no card teaches.
+    await press("do", "radio");
+    await check();
+    expect(screen.getByRole("alert")).toHaveTextContent(/^Incorrecto/);
+    expect(screen.queryByRole("button", { name: /^Ver ficha/ })).not.toBeOnTheScreen();
   });
 
   it("shows the correct answer after a mistake", async () => {

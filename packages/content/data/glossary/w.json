@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.washing-machine",
+      "headword": "washing machine",
+      "kind": "phrase",
+      "forms": ["washing machine", "washing machines"],
+      "senses": [
+        {
+          "es": "lavadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.wasn-t",
       "headword": "wasn't",
       "kind": "word",
@@ -749,6 +761,10 @@
         {
           "es": "resolver",
           "pos": "phrasal verb"
+        },
+        {
+          "es": "salir bien",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -796,6 +812,18 @@
       "senses": [
         {
           "es": "(be worth + -ing) valer la pena",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.worthy",
+      "headword": "worthy",
+      "kind": "word",
+      "forms": ["worthy"],
+      "senses": [
+        {
+          "es": "digno, que merece",
           "pos": "adjective"
         }
       ]

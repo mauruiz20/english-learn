@@ -3,4 +3,5 @@ export * from "./entities";
 export * from "./exercise";
 export * from "./placement";
 export * from "./glossary";
+export * from "./card";
 export * from "./content-file";

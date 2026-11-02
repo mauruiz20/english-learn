@@ -1,0 +1,685 @@
+{
+  "items": [
+    {
+      "id": "a2.grammar.for-since",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "for / since",
+      "es": "for + período (desde hace) / since + momento (desde)"
+    },
+    {
+      "id": "a2.grammar.say-tell",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "say / tell",
+      "es": "decir: say (algo) / tell (a alguien algo)"
+    },
+    {
+      "id": "a2.grammar.too-enough",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "too + adjective / adjective + enough",
+      "es": "demasiado / suficiente"
+    },
+    {
+      "id": "a2.grammar.much-many",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "much / many / a lot of",
+      "es": "mucho, mucha, muchos, muchas"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.grammar.for-since-cloze-1",
+      "itemIds": ["a2.grammar.for-since"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I have lived here ___ 2015.",
+      "answers": ["since"],
+      "distractors": ["for", "during"],
+      "es": "Vivo aquí desde 2015."
+    },
+    {
+      "id": "a2.grammar.for-since-cloze-2",
+      "itemIds": ["a2.grammar.for-since"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We have been friends ___ ten years.",
+      "answers": ["for"],
+      "distractors": ["since", "from"],
+      "es": "Somos amigos desde hace diez años."
+    },
+    {
+      "id": "a2.grammar.for-since-cloze-3",
+      "itemIds": ["a2.grammar.for-since"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She hasn't called me ___ Monday.",
+      "answers": ["since"],
+      "distractors": ["for", "ago"],
+      "es": "No me ha llamado desde el lunes."
+    },
+    {
+      "id": "a2.grammar.for-since-vocab-1",
+      "itemIds": ["a2.grammar.for-since"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'desde hace tres años'.",
+      "options": ["for three years", "since three years", "during three years", "from three years"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.grammar.for-since-choice-1",
+      "itemIds": ["a2.grammar.for-since"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I have worked here for two years.",
+      "options": [
+        "Trabajé aquí hace dos años.",
+        "Trabajo aquí desde hace dos años.",
+        "Voy a trabajar aquí dos años."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.for-since-order-1",
+      "itemIds": ["a2.grammar.for-since"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["since", "children.", "we", "I", "her", "were", "known", "have"],
+      "accepted": ["I have known her since we were children."],
+      "es": "La conozco desde que éramos niños."
+    },
+    {
+      "id": "a2.grammar.for-since-write-1",
+      "itemIds": ["a2.grammar.for-since"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Vivo en esta ciudad desde hace cinco años.",
+      "accepted": [
+        "I have lived in this city for {five|5} years.",
+        "I have been living in this city for {five|5} years."
+      ]
+    },
+    {
+      "id": "a2.grammar.say-tell-cloze-1",
+      "itemIds": ["a2.grammar.say-tell"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ me that she was tired.",
+      "answers": ["told"],
+      "distractors": ["said", "says"],
+      "es": "Me dijo que estaba cansada."
+    },
+    {
+      "id": "a2.grammar.say-tell-cloze-2",
+      "itemIds": ["a2.grammar.say-tell"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "What did you ___? I didn't hear you.",
+      "answers": ["say"],
+      "distractors": ["tell", "told"],
+      "es": "¿Qué dijiste? No te oí."
+    },
+    {
+      "id": "a2.grammar.say-tell-cloze-3",
+      "itemIds": ["a2.grammar.say-tell"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Please ___ me the truth.",
+      "answers": ["tell"],
+      "distractors": ["say", "said"],
+      "es": "Por favor, dime la verdad."
+    },
+    {
+      "id": "a2.grammar.say-tell-cloze-4",
+      "itemIds": ["a2.grammar.say-tell"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He ___ that he was busy.",
+      "answers": ["said"],
+      "distractors": ["told", "tell"],
+      "es": "Dijo que estaba ocupado."
+    },
+    {
+      "id": "a2.grammar.say-tell-choice-1",
+      "itemIds": ["a2.grammar.say-tell"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Can you tell me the time?",
+      "options": [
+        "¿Tienes tiempo?",
+        "¿Me puedes contar una historia?",
+        "¿Me puedes decir la hora?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.say-tell-order-1",
+      "itemIds": ["a2.grammar.say-tell"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["tells", "stories.", "grandfather", "My", "great"],
+      "accepted": ["My grandfather tells great stories."],
+      "es": "Mi abuelo cuenta historias geniales."
+    },
+    {
+      "id": "a2.grammar.say-tell-write-1",
+      "itemIds": ["a2.grammar.say-tell"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ella me dijo su nombre.",
+      "accepted": ["She told me {her|his|their|your} name."]
+    },
+    {
+      "id": "a2.grammar.too-enough-cloze-1",
+      "itemIds": ["a2.grammar.too-enough"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This soup is ___ hot. I can't eat it.",
+      "answers": ["too"],
+      "distractors": ["enough", "very much"],
+      "es": "Esta sopa está demasiado caliente. No puedo comerla."
+    },
+    {
+      "id": "a2.grammar.too-enough-cloze-2",
+      "itemIds": ["a2.grammar.too-enough"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He isn't old ___ to drive.",
+      "answers": ["enough"],
+      "distractors": ["too", "very"],
+      "es": "No tiene edad suficiente para manejar."
+    },
+    {
+      "id": "a2.grammar.too-enough-cloze-3",
+      "itemIds": ["a2.grammar.too-enough"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We don't have ___ chairs for everyone.",
+      "answers": ["enough"],
+      "distractors": ["too", "very"],
+      "es": "No tenemos suficientes sillas para todos."
+    },
+    {
+      "id": "a2.grammar.too-enough-vocab-1",
+      "itemIds": ["a2.grammar.too-enough"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'demasiado tarde'.",
+      "options": ["enough late", "late enough", "too much late", "too late"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.grammar.too-enough-choice-1",
+      "itemIds": ["a2.grammar.too-enough"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The jacket isn't big enough.",
+      "options": [
+        "La chaqueta es demasiado grande.",
+        "La chaqueta no es lo bastante grande.",
+        "La chaqueta es muy grande."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.too-enough-order-1",
+      "itemIds": ["a2.grammar.too-enough"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["cold", "It's", "too", "today.", "swim", "to"],
+      "accepted": ["It's too cold to swim today."],
+      "es": "Hace demasiado frío para nadar hoy."
+    },
+    {
+      "id": "a2.grammar.too-enough-write-1",
+      "itemIds": ["a2.grammar.too-enough"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No tengo suficiente dinero.",
+      "accepted": ["I don't have enough money."]
+    },
+    {
+      "id": "a2.grammar.much-many-cloze-1",
+      "itemIds": ["a2.grammar.much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I don't have ___ money.",
+      "answers": ["much"],
+      "distractors": ["many", "a few"],
+      "es": "No tengo mucho dinero."
+    },
+    {
+      "id": "a2.grammar.much-many-cloze-2",
+      "itemIds": ["a2.grammar.much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "How ___ brothers do you have?",
+      "answers": ["many"],
+      "distractors": ["much", "lot"],
+      "es": "¿Cuántos hermanos tienes?"
+    },
+    {
+      "id": "a2.grammar.much-many-cloze-3",
+      "itemIds": ["a2.grammar.much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There are ___ people at the park.",
+      "answers": ["a lot of"],
+      "distractors": ["much", "a lot"],
+      "es": "Hay mucha gente en el parque."
+    },
+    {
+      "id": "a2.grammar.much-many-cloze-4",
+      "itemIds": ["a2.grammar.much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "How ___ water do you drink every day?",
+      "answers": ["much"],
+      "distractors": ["many", "lot of"],
+      "es": "¿Cuánta agua tomas todos los días?"
+    },
+    {
+      "id": "a2.grammar.much-many-choice-1",
+      "itemIds": ["a2.grammar.much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We don't have much time.",
+      "options": ["No tenemos muchas veces.", "Tenemos mucho tiempo.", "No tenemos mucho tiempo."],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.much-many-order-1",
+      "itemIds": ["a2.grammar.much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["lot", "a", "of", "friends", "at", "school.", "has", "She"],
+      "accepted": ["She has a lot of friends at school."],
+      "es": "Tiene muchos amigos en la escuela."
+    },
+    {
+      "id": "a2.grammar.much-many-write-1",
+      "itemIds": ["a2.grammar.much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Hay muchos libros en mi casa.",
+      "accepted": [
+        "There are {a lot of|lots of|many} books in my {house|home}.",
+        "My {house|home} has {a lot of|lots of|many} books."
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "a2.grammar.for-since",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "For o since",
+      "summary": "Con el presente perfecto, for indica cuánto tiempo dura algo y since indica cuándo empezó.",
+      "form": "for + período (for two years) · since + momento de inicio (since 2020)",
+      "uses": [
+        "For: un período de tiempo (for three days, for a long time).",
+        "Since: el momento en que empezó (since May, since I was a child).",
+        "Los dos se usan sobre todo con el presente perfecto: I have lived here for… / since…"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I live here since 2019.",
+          "right": "I have lived here since 2019.",
+          "why": "Para algo que empezó en el pasado y sigue ahora se usa el presente perfecto, no el presente."
+        },
+        {
+          "wrong": "I have worked here since three years.",
+          "right": "I have worked here for three years.",
+          "why": "Con un período (three years) se usa for; since va con el momento de inicio."
+        },
+        {
+          "wrong": "She has been sick during two days.",
+          "right": "She has been sick for two days.",
+          "why": "Para decir cuánto dura algo se usa for, no during."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I have lived in this city for ten years.",
+          "es": "Vivo en esta ciudad desde hace diez años."
+        },
+        {
+          "en": "We have known each other since high school.",
+          "es": "Nos conocemos desde la secundaria."
+        },
+        {
+          "en": "She has worked at the hospital since 2018.",
+          "es": "Trabaja en el hospital desde 2018."
+        },
+        {
+          "en": "They have been married for a long time.",
+          "es": "Están casados desde hace mucho tiempo."
+        },
+        {
+          "en": "I haven't seen him since Monday.",
+          "es": "No lo veo desde el lunes."
+        },
+        {
+          "en": "He has had that car for six months.",
+          "es": "Tiene ese auto desde hace seis meses."
+        }
+      ],
+      "itemIds": ["a2.grammar.for-since"],
+      "exerciseIds": [
+        "a2.grammar.for-since-cloze-1",
+        "a2.grammar.for-since-cloze-2",
+        "a2.grammar.for-since-cloze-3",
+        "a2.grammar.for-since-vocab-1",
+        "a2.grammar.for-since-choice-1",
+        "a2.grammar.for-since-order-1",
+        "a2.grammar.for-since-write-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.say-tell",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Say o tell",
+      "summary": "Las dos significan «decir». Tell casi siempre lleva a quién se lo dices (tell me); say no lo necesita.",
+      "form": "say + algo (+ to + persona) · tell + persona + algo",
+      "uses": [
+        "Say: repetir palabras o decir algo sin nombrar a la persona (She said hello).",
+        "Tell + persona: He told me the truth.",
+        "Expresiones fijas con tell: tell the truth, tell a lie, tell a story, tell a joke."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "She said me that she was tired.",
+          "right": "She told me that she was tired.",
+          "why": "Si la persona va justo después del verbo, se usa tell, no say."
+        },
+        {
+          "wrong": "He told that he was busy.",
+          "right": "He said that he was busy.",
+          "why": "Tell necesita a quién (told me, told us). Sin persona, usa say."
+        },
+        {
+          "wrong": "Can you say me the time?",
+          "right": "Can you tell me the time?",
+          "why": "«Decirme» algo a mí es tell me."
+        },
+        {
+          "wrong": "Don't say lies.",
+          "right": "Don't tell lies.",
+          "why": "En inglés se dice tell a lie y tell the truth."
+        }
+      ],
+      "examples": [
+        {
+          "en": "She said that she was tired.",
+          "es": "Dijo que estaba cansada."
+        },
+        {
+          "en": "He told me the truth.",
+          "es": "Me dijo la verdad."
+        },
+        {
+          "en": "What did you say?",
+          "es": "¿Qué dijiste?"
+        },
+        {
+          "en": "Can you tell me where the station is?",
+          "es": "¿Me puedes decir dónde está la estación?"
+        },
+        {
+          "en": "My grandfather tells great stories.",
+          "es": "Mi abuelo cuenta historias geniales."
+        },
+        {
+          "en": "Say hello to your mom for me.",
+          "es": "Saluda a tu mamá de mi parte."
+        }
+      ],
+      "itemIds": ["a2.grammar.say-tell"],
+      "exerciseIds": [
+        "a2.grammar.say-tell-cloze-1",
+        "a2.grammar.say-tell-cloze-2",
+        "a2.grammar.say-tell-cloze-3",
+        "a2.grammar.say-tell-cloze-4",
+        "a2.grammar.say-tell-choice-1",
+        "a2.grammar.say-tell-order-1",
+        "a2.grammar.say-tell-write-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.too-enough",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Too y enough",
+      "summary": "Too significa «demasiado» y va antes del adjetivo. Enough significa «suficiente»: va después del adjetivo y antes del sustantivo.",
+      "form": "too + adjetivo · adjetivo + enough · enough + sustantivo",
+      "uses": [
+        "Too: más de lo necesario (too expensive, too late).",
+        "Adjetivo + enough: lo necesario (old enough, warm enough).",
+        "Enough + sustantivo: enough money, enough time.",
+        "Not … enough: falta algo (not big enough)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "This coffee is enough hot.",
+          "right": "This coffee is hot enough.",
+          "why": "Con adjetivos, enough va después: hot enough."
+        },
+        {
+          "wrong": "I don't have money enough.",
+          "right": "I don't have enough money.",
+          "why": "Con sustantivos, enough va antes: enough money."
+        },
+        {
+          "wrong": "The movie was too much long.",
+          "right": "The movie was too long.",
+          "why": "Antes de un adjetivo se usa solo too, sin much."
+        },
+        {
+          "wrong": "It's very cold to swim.",
+          "right": "It's too cold to swim.",
+          "why": "Para decir que algo impide hacer otra cosa se usa too, no very."
+        }
+      ],
+      "examples": [
+        {
+          "en": "This bag is too heavy for me.",
+          "es": "Esta bolsa es demasiado pesada para mí."
+        },
+        {
+          "en": "He isn't old enough to drive.",
+          "es": "No tiene edad suficiente para manejar."
+        },
+        {
+          "en": "We don't have enough time.",
+          "es": "No tenemos suficiente tiempo."
+        },
+        {
+          "en": "It's too late to call her now.",
+          "es": "Es demasiado tarde para llamarla ahora."
+        },
+        {
+          "en": "Is the room big enough for four people?",
+          "es": "¿La habitación es lo bastante grande para cuatro personas?"
+        }
+      ],
+      "itemIds": ["a2.grammar.too-enough"],
+      "exerciseIds": [
+        "a2.grammar.too-enough-cloze-1",
+        "a2.grammar.too-enough-cloze-2",
+        "a2.grammar.too-enough-cloze-3",
+        "a2.grammar.too-enough-vocab-1",
+        "a2.grammar.too-enough-choice-1",
+        "a2.grammar.too-enough-order-1",
+        "a2.grammar.too-enough-write-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.much-many",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Much, many y a lot of",
+      "summary": "Las tres expresan cantidad. Many va con sustantivos contables, much con incontables y a lot of con los dos.",
+      "form": "many + plural · much + incontable · a lot of + los dos",
+      "uses": [
+        "Many: cosas que se cuentan (many friends, many books).",
+        "Much: cosas que no se cuentan (much time, much money), sobre todo en negativas y preguntas.",
+        "A lot of: con los dos, sobre todo en oraciones afirmativas (a lot of people, a lot of water).",
+        "How many / how much para preguntar cantidades."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I don't have many money.",
+          "right": "I don't have much money.",
+          "why": "Money es incontable: se usa much."
+        },
+        {
+          "wrong": "There are much people here.",
+          "right": "There are a lot of people here.",
+          "why": "People es plural: many o a lot of, nunca much."
+        },
+        {
+          "wrong": "How much brothers do you have?",
+          "right": "How many brothers do you have?",
+          "why": "Para cosas que se cuentan se pregunta how many."
+        },
+        {
+          "wrong": "I have a lot of works.",
+          "right": "I have a lot of work.",
+          "why": "Work (trabajo) es incontable: no lleva -s."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I don't have much time today.",
+          "es": "Hoy no tengo mucho tiempo."
+        },
+        {
+          "en": "She has many friends at school.",
+          "es": "Tiene muchos amigos en la escuela."
+        },
+        {
+          "en": "There are a lot of people at the park.",
+          "es": "Hay mucha gente en el parque."
+        },
+        {
+          "en": "How much water do you drink?",
+          "es": "¿Cuánta agua tomas?"
+        },
+        {
+          "en": "How many brothers do you have?",
+          "es": "¿Cuántos hermanos tienes?"
+        },
+        {
+          "en": "We have a lot of work this week.",
+          "es": "Tenemos mucho trabajo esta semana."
+        }
+      ],
+      "itemIds": ["a2.grammar.much-many"],
+      "exerciseIds": [
+        "a2.grammar.much-many-cloze-1",
+        "a2.grammar.much-many-cloze-2",
+        "a2.grammar.much-many-cloze-3",
+        "a2.grammar.much-many-cloze-4",
+        "a2.grammar.much-many-choice-1",
+        "a2.grammar.much-many-order-1",
+        "a2.grammar.much-many-write-1"
+      ]
+    }
+  ]
+}

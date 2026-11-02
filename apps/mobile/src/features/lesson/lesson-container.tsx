@@ -1,18 +1,25 @@
-import type { Corpus } from "@english-learn/content";
+import type { Corpus, Exercise } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { cardPath } from "@/features/cards/card-routes";
+import { cardByExerciseId } from "@/features/cards/model/card-catalog";
 import { SessionGlossary } from "@/features/glossary/session-glossary";
 import { topicByItemId } from "@/features/topics/topic-colors";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import { completeSession } from "./application/complete-session";
 import { itemsToReview } from "./model/items-to-review";
 import { lessonExercises } from "./model/lesson-catalog";
-import { canDispute, startLesson, type LessonSessionState } from "./model/lesson-session";
+import {
+  canDispute,
+  startLesson,
+  type LessonSessionState,
+  type SessionInfo,
+} from "./model/lesson-session";
 import { prepareExercise, type PreparedExercise } from "./model/prepare-exercise";
 import { responseText } from "./model/response";
-import { LessonView, type LessonViewState } from "./lesson-view";
+import { LESSON_COPY, LessonView, type LessonViewState, type SessionCopy } from "./lesson-view";
 import { useExerciseSession, type ExerciseSession, type SaveState } from "./use-exercise-session";
 import { sessionResults } from "./model/session-results";
 import { useNewAchievements } from "@/features/achievements/use-new-achievements";
@@ -26,17 +33,64 @@ type LessonContainerProps = {
 
 /** Runs one lesson: session reducer + exercise components, then persists the results. */
 export function LessonContainer({ lessonId, content = corpus }: LessonContainerProps) {
-  const { progressRepository, clock, random, randomBytes, deviceId } = useAppServices();
   const router = useRouter();
+  const lesson = content.lessonsById.get(lessonId);
+  const unit =
+    lesson === undefined
+      ? null
+      : {
+          info: lesson,
+          topic: lesson.topic,
+          exercises: lessonExercises(lesson, content.exercisesById),
+        };
+  return (
+    <PracticeSession
+      unit={unit}
+      content={content}
+      copy={LESSON_COPY}
+      leaveTitle="¿Salir de la lección?"
+      onDone={() => (router.canDismiss() ? router.dismissAll() : router.replace("/"))}
+      onOpenCard={(cardId) => router.push(cardPath(cardId, { fromSession: true }))}
+    />
+  );
+}
+
+/** What a practice session runs: a lesson, or the exercises of a study card. */
+export type PracticeUnit = {
+  readonly info: SessionInfo;
+  /** Topic slug: tints the progress label, the lookup card and the summary sticker. */
+  readonly topic: string | undefined;
+  readonly exercises: readonly Exercise[];
+};
+
+/**
+ * Runs a lesson-like session over `unit` (the lesson flow: exercises, feedback, sounds, word
+ * lookups, summary) and saves it as a lesson with `unit.info.id` as its lessonId. With
+ * `onOpenCard`, wrong or almost feedback offers the study card that explains the exercise.
+ */
+export function PracticeSession({
+  unit,
+  content,
+  copy,
+  leaveTitle,
+  onDone,
+  onOpenCard,
+}: {
+  unit: PracticeUnit | null;
+  content: Corpus;
+  copy: SessionCopy;
+  leaveTitle: string;
+  onDone: () => void;
+  onOpenCard?: ((cardId: string) => void) | undefined;
+}) {
+  const { progressRepository, clock, random, randomBytes, deviceId } = useAppServices();
 
   // Prepared once per mount, so options are not reshuffled on re-render.
   const [initial] = useState<ExerciseSession | null>(() => {
-    const lesson = content.lessonsById.get(lessonId);
-    const exercises = lesson === undefined ? [] : lessonExercises(lesson, content.exercisesById);
-    if (lesson === undefined || exercises.length === 0) return null;
+    if (unit === null || unit.exercises.length === 0) return null;
     return {
-      state: startLesson(lesson, exercises),
-      prepared: exercises.map((e) => prepareExercise(e, random)),
+      state: startLesson(unit.info, unit.exercises),
+      prepared: unit.exercises.map((e) => prepareExercise(e, random)),
     };
   });
   const {
@@ -62,29 +116,26 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
         kind: "lesson",
       }),
   });
-  const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir de la lección?");
+  const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, leaveTitle);
   const achievements = useNewAchievements(save.status === "saved", content);
-
-  const goHome = () => (router.canDismiss() ? router.dismissAll() : router.replace("/"));
+  const topic = unit?.topic;
 
   return (
     <>
       <Stack.Screen options={{ gestureEnabled: canLeave, headerBackVisible: canLeave }} />
-      <SessionGlossary
-        content={content}
-        topic={content.lessonsById.get(lessonId)?.topic}
-        onLookupItems={onLookup}
-      >
+      <SessionGlossary content={content} topic={topic} onLookupItems={onLookup}>
         <LessonView
           state={withAchievements(
-            toViewState(session, initial?.prepared ?? [], save, content),
+            toViewState(session, initial?.prepared ?? [], save, content, topic),
             achievements,
           )}
+          copy={copy}
           onSubmit={onSubmit}
           onContinue={onContinue}
           onDispute={onDispute}
-          onGoHome={goHome}
+          onGoHome={onDone}
           onRetrySave={retrySave}
+          onOpenCard={onOpenCard}
         />
       </SessionGlossary>
       {dialog}
@@ -105,6 +156,7 @@ function toViewState(
   prepared: readonly PreparedExercise[],
   save: SaveState,
   content: Corpus,
+  topic: string | undefined,
 ): LessonViewState {
   if (session === null) return { status: "not-found" };
   if (session.status === "finished") {
@@ -119,7 +171,7 @@ function toViewState(
       streakDays: save.streakDays,
       streakIncreased: save.streakIncreased,
       toReview: itemsToReview(itemOutcomes, content.itemsById, { topics: topicByItemId(content) }),
-      topic: content.lessonsById.get(session.summary.lessonId)?.topic,
+      topic,
     };
   }
   const current = prepared[session.index];
@@ -127,7 +179,7 @@ function toViewState(
   return {
     status: "exercise",
     title: session.lesson.title,
-    topic: content.lessonsById.get(session.lesson.id)?.topic,
+    topic,
     position: session.index + 1,
     total: session.exercises.length,
     prepared: current,
@@ -142,5 +194,6 @@ function toViewState(
           }
         : null,
     results: sessionResults(session),
+    card: cardByExerciseId(content).get(current.exercise.id),
   };
 }

@@ -5,14 +5,14 @@ web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
 
 ## Structure
 
-| Path                  | Responsibility                                                       |
-| --------------------- | -------------------------------------------------------------------- |
-| `src/app/`            | Routes only (`/`, `/placement`, `/lesson/[id]`, `/review`, `/about`) |
-| `src/features/*`      | Feature screens; containers load data, views are pure (props only)   |
-| `src/infrastructure/` | Adapters: `SystemClock`, SQLite wiring, `AppServicesProvider` (DI)   |
-| `src/shared/ui/`      | Notebook design system: theme tokens, `useTheme`, UI primitives      |
-| `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                        |
-| `e2e/`                | Playwright tests against the exported web build                      |
+| Path                  | Responsibility                                                                     |
+| --------------------- | ---------------------------------------------------------------------------------- |
+| `src/app/`            | Routes only (`/`, `/placement`, `/lesson/[id]`, `/review`, `/fichas`, `/about`, …) |
+| `src/features/*`      | Feature screens; containers load data, views are pure (props only)                 |
+| `src/infrastructure/` | Adapters: `SystemClock`, SQLite wiring, `AppServicesProvider` (DI)                 |
+| `src/shared/ui/`      | Notebook design system: theme tokens, `useTheme`, UI primitives                    |
+| `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                                      |
+| `e2e/`                | Playwright tests against the exported web build                                    |
 
 Features read `ProgressRepository`, `SettingsRepository`, `Clock`, `random` (an `Rng`),
 `randomBytes` (for event ids) and `sounds` (a `SoundPlayer`) from `useAppServices()`. The root
@@ -166,7 +166,8 @@ Learners look up the Spanish of English words and phrases from the static glossa
   `<button>`, which does not wrap or select). Targets are labelled "<word>, ver traducción"
   with a hint. Linked words get a dotted underline in the muted ink at ~55 % opacity.
 - **Where** (`features/lesson/model/lookup-policy.ts`, the locking matrix): only English text
-  inside exercises, their feedback and the summary; never Spanish text or UI copy. What the
+  inside exercises, their feedback and the summary, and on a study card (see "Study cards"; never
+  a pitfall's mistake); never Spanish text or UI copy. What the
   exercise evaluates is locked until the answer is checked; then everything unlocks. Locked
   words render as plain text (no underline, no interaction, no "locked" affordance).
 
@@ -222,6 +223,39 @@ than the previous pick, chosen with the injected rng; an exercise covering sever
 reviews all of them. Only the due items are saved (an exercise may also practice items that are
 not due; those are untouched). XP is answer XP only, no completion bonus. Home shows a sticky note
 "Repaso, N pendientes" (same plan) with a "Repasar" button, or "Nada para repasar hoy".
+
+## Study cards, "Fichas" (`src/features/cards/`)
+
+The cards of `@english-learn/content` (`corpus.cards`; see its README, "Study cards"), each a short
+explanation with the items it teaches and 6–8 practice exercises that are in no lesson.
+
+- **Home**: "Fichas · 28 fichas · 3 estudiadas" under "Mi álbum" opens `/fichas`.
+- **`/fichas`**: the cards grouped by kind (Gramática, Phrasal verbs, Vocabulario: the topic
+  labels and colors of `grammar`, `phrasal-verbs`, `vocabulary`), then by level. A card is
+  **studied** once every item it lists has a review state, and **mastered** once all reached the
+  mastery interval (`levelProgress`, 21 days); `model/card-catalog.ts`.
+- **`/fichas/[id]`**: kind, level and status; the summary; the form on a ruled card like a
+  formula; "Cuándo se usa"; "Errores comunes" (the mistake struck in red pen and never a lookup,
+  then the correction and why); phrasal verbs with a "separable" chip and the "turn it off" note;
+  collocations and the false friend ("Parece: … / Significa: …"); examples with their Spanish.
+  English words of corrections, examples, verbs and collocations can be looked up (no SRS signal:
+  nothing is graded there). "Practicar" opens `/fichas/[id]/practicar`.
+- **Practice** reuses the lesson session (`PracticeSession` in `lesson-container.tsx`: exercises,
+  feedback, lookups and their grade cap, sounds, leave confirmation, summary "¡Práctica
+  completada!" / "Volver a la ficha"). It is **saved as a lesson whose `lessonId` is the card id**
+  (`session_completed` kind `lesson`): answer XP, the first-time completion bonus like any lesson,
+  items into SRS like lesson items, and it folds the same on devices with older app versions (a
+  new kind would be skipped there as invalid). This is safe because home, the album and the
+  transfer preview count lessons from the content's lessons, never from `completedLessonIds`, and
+  a test checks that no card id equals a lesson id.
+- **Daily review** already plans over every corpus exercise, so due card items are reviewed with
+  their card's exercises (tested with the real corpus).
+- **"Ver ficha"**: after a wrong or almost answer in a lesson or review, when the exercise
+  practices an item a card teaches (`cardByExerciseId`), the feedback offers a quiet "Ver ficha:
+  <título>". It pushes `/fichas/[id]?volver=1` on top of the session (nothing is lost); that card
+  offers "Volver al ejercicio" instead of "Practicar". Not offered while practicing the card.
+- **Album**: "Primera ficha" (a card studied) and "Gramática al día" (every grammar card of a
+  level studied), derived like the other stickers.
 
 ## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)
 
@@ -337,10 +371,13 @@ paper, the prompt and the teacher's marking.
   nothing to review), the placement invitation, then the level's lessons as a path drawn in
   pencil, grouped by topic: won lessons are tilted stickers with a check, the first lesson not done
   is a big yellow sticker where Avi lands ("Siguiente", hint "Tu siguiente lección"), the rest are
-  numbered dashed slots. Nothing is locked.
-- **Album** (`features/achievements/`, route `/album`): sixteen achievements derived from the
+  numbered dashed slots. Nothing is locked. Avi points along the pencil line that comes down to
+  the next sticker (`model/guide-heading.ts`): from a stop on the left it faces right, nose
+  tilted down, on the sticker's top left; from a stop on the right it is mirrored onto its top
+  right (`Avi` `tilt` / `facing`; it glides in from the side it faces).
+- **Album** (`features/achievements/`, route `/album`): eighteen achievements derived from the
   stored progress only (lessons, whole topics, whole levels, the longest streak, XP, placement,
-  words practiced; `model/achievements.ts`), so they need no storage and follow sync. Won ones are
+  words practiced, study cards; `model/achievements.ts`), so they need no storage and follow sync. Won ones are
   stickers (rare ones get a holographic rim), the others dashed slots that say how to win them.
   `useNewAchievements` compares what the progress unlocks when a lesson or review starts and once
   it is saved; the summary announces the difference.
@@ -460,7 +497,9 @@ one screen per exercise type, correct / almost / wrong feedback (choice options 
 lookups on the reading passage (hover tooltip on desktop, the open card mid-passage and at its
 end), reading
 feedback, the leave dialog, the lesson summary with words to review, review and a perfect review
-summary, the album, about and the "open in another tab" error screen. Every screen is captured at
+summary, the album, about, the "open in another tab" error screen, the Fichas list, a grammar,
+a phrasal-verbs and a vocabulary (false friend) card, a card practice's feedback and a lesson's
+wrong feedback with "Ver ficha" and the card it opens. Every screen is captured at
 390×844 and 1280×800, in light and dark color schemes (`mobile-dark-09-feedback-wrong.png`, …);
 long screens also get a `-full.png`. It is for design review, not part of the test suite.
 

@@ -21,6 +21,42 @@
       ]
     },
     {
+      "id": "glossary.take-a-break",
+      "headword": "take a break",
+      "kind": "phrase",
+      "forms": ["take a break", "takes a break", "took a break", "taking a break"],
+      "senses": [
+        {
+          "es": "hacer una pausa, descansar un rato",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-a-nap",
+      "headword": "take a nap",
+      "kind": "phrase",
+      "forms": ["take a nap", "takes a nap", "took a nap", "taking a nap"],
+      "senses": [
+        {
+          "es": "dormir la siesta",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-a-seat",
+      "headword": "take a seat",
+      "kind": "phrase",
+      "forms": ["take a seat", "takes a seat", "took a seat", "taking a seat"],
+      "senses": [
+        {
+          "es": "tomar asiento, sentarse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.take-a-shower",
       "headword": "take a shower",
       "kind": "phrase",
@@ -69,6 +105,22 @@
       ]
     },
     {
+      "id": "glossary.take-off",
+      "headword": "take off",
+      "kind": "phrase",
+      "forms": ["take off", "takes off", "took off", "taking off"],
+      "senses": [
+        {
+          "es": "quitarse (ropa)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "despegar (un avión)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.taken-aback",
       "headword": "taken aback",
       "kind": "phrase",
@@ -89,6 +141,18 @@
         {
           "es": "hablar, conversar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.taxi",
+      "headword": "taxi",
+      "kind": "word",
+      "forms": ["taxi", "taxis"],
+      "senses": [
+        {
+          "es": "taxi",
+          "pos": "noun"
         }
       ]
     },
@@ -165,6 +229,18 @@
         {
           "es": "contar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.temperature",
+      "headword": "temperature",
+      "kind": "word",
+      "forms": ["temperature", "temperatures"],
+      "senses": [
+        {
+          "es": "temperatura",
+          "pos": "noun"
         }
       ]
     },
@@ -457,6 +533,18 @@
         {
           "es": "creer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.third",
+      "headword": "third",
+      "kind": "word",
+      "forms": ["third"],
+      "senses": [
+        {
+          "es": "tercero",
+          "pos": "number"
         }
       ]
     },
@@ -908,6 +996,18 @@
         },
         {
           "es": "confianza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.truth",
+      "headword": "truth",
+      "kind": "word",
+      "forms": ["truth"],
+      "senses": [
+        {
+          "es": "verdad",
           "pos": "noun"
         }
       ]

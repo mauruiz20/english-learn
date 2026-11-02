@@ -11,7 +11,7 @@
     {
       "id": "b1.money-and-shopping.borrow",
       "level": "B1",
-      "topics": ["money-and-shopping"],
+      "topics": ["money-and-shopping", "vocabulary"],
       "kind": "word",
       "term": "borrow",
       "es": "pedir prestado"
@@ -19,7 +19,7 @@
     {
       "id": "b1.money-and-shopping.lend",
       "level": "B1",
-      "topics": ["money-and-shopping"],
+      "topics": ["money-and-shopping", "vocabulary"],
       "kind": "word",
       "term": "lend",
       "es": "prestar"

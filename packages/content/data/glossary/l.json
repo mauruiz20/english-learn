@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.language",
+      "headword": "language",
+      "kind": "word",
+      "forms": ["language", "languages"],
+      "senses": [
+        {
+          "es": "idioma, lengua",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.laptop",
       "headword": "laptop",
       "kind": "word",
@@ -205,6 +217,22 @@
       ]
     },
     {
+      "id": "glossary.lie",
+      "headword": "lie",
+      "kind": "word",
+      "forms": ["lie", "lies", "lied", "lying"],
+      "senses": [
+        {
+          "es": "mentira",
+          "pos": "noun"
+        },
+        {
+          "es": "mentir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.life",
       "headword": "life",
       "kind": "word",
@@ -257,6 +285,18 @@
         {
           "es": "probable (be likely to = es probable que)",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lima",
+      "headword": "Lima",
+      "kind": "word",
+      "forms": ["lima"],
+      "senses": [
+        {
+          "es": "Lima",
+          "pos": "proper noun"
         }
       ]
     },
@@ -389,6 +429,22 @@
       ]
     },
     {
+      "id": "glossary.lock",
+      "headword": "lock",
+      "kind": "word",
+      "forms": ["lock", "locks", "locked", "locking"],
+      "senses": [
+        {
+          "es": "cerrar con llave",
+          "pos": "verb"
+        },
+        {
+          "es": "cerradura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.log",
       "headword": "log",
       "kind": "word",
@@ -501,6 +557,18 @@
       ]
     },
     {
+      "id": "glossary.look-up",
+      "headword": "look up",
+      "kind": "phrase",
+      "forms": ["look up", "looks up", "looked up", "looking up"],
+      "senses": [
+        {
+          "es": "buscar (en un diccionario o en internet)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.lose",
       "headword": "lose",
       "kind": "word",
@@ -549,6 +617,18 @@
         {
           "es": "lotería",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.loud",
+      "headword": "loud",
+      "kind": "word",
+      "forms": ["loud"],
+      "senses": [
+        {
+          "es": "fuerte (sonido), ruidoso",
+          "pos": "adjective"
         }
       ]
     },
