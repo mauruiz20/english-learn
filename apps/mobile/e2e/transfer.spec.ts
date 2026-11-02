@@ -56,16 +56,22 @@ test.describe("progress transfer to the new web address", () => {
     await expect(page.getByText(/^La app se mudó a localhost:\d+$/)).toBeVisible();
     await page.getByRole("button", { name: "Llevar mi progreso", exact: true }).click();
 
-    // On the new address, the token left the address bar before anything else.
-    await expect(page.getByText("¡Tu progreso llegó!")).toBeVisible();
+    // On the new address, the token left the address bar before anything else, and the claimed
+    // progress waits for the learner's confirmation.
+    await expect(page.getByText("Progreso del sitio anterior")).toBeVisible();
     expect(page.url()).toBe(`${NEW}/importar`);
     expect(await page.evaluate(() => history.length > 0 && location.hash)).toBe("");
     await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
     await expect(page.getByText(/^Lecciones completadas: [1-9]\d*$/)).toBeVisible();
+    await expect(page.getByText("¿Importarlo a este dispositivo?")).toBeVisible();
     expect(transfers.created).toHaveLength(1);
     expect(transfers.created[0]!.map((e) => e.type)).toContain("session_completed");
     expect(transfers.claims).toEqual([{ token: expect.any(String), ok: true }]);
     expect(transfers.origins).toEqual([OLD, NEW]);
+
+    await page.getByRole("button", { name: "Importar", exact: true }).click();
+    await expect(page.getByText("¡Tu progreso llegó!")).toBeVisible();
+    await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
 
     await page.getByRole("button", { name: "Ir al inicio", exact: true }).click();
     await page.waitForURL(`${NEW}/`);
@@ -92,6 +98,38 @@ test.describe("progress transfer to the new web address", () => {
 
     await page.waitForURL(`${NEW}/about`);
     expect(transfers.created).toEqual([]);
+  });
+
+  test("a declined import saves nothing on the new address", async ({ page, transfers }) => {
+    await page.goto(`${OLD}/`);
+    await waitForServiceWorker(page);
+    await playFirstLesson(page);
+    await announceTheMove(page);
+    await page.reload();
+    await page.getByRole("button", { name: "Llevar mi progreso", exact: true }).click();
+
+    await page.getByRole("button", { name: "Cancelar", exact: true }).click();
+
+    await expect(page.getByText(/No importamos nada/)).toBeVisible();
+    expect(transfers.claims).toEqual([{ token: expect.any(String), ok: true }]);
+    await page.getByRole("button", { name: "Ir al inicio", exact: true }).click();
+    await page.waitForURL(`${NEW}/`);
+    await expect(page.getByRole("button", { name: "Mi rutina diaria", exact: true })).toBeVisible();
+    await expect(page.getByText("80 XP", { exact: true })).toHaveCount(0);
+  });
+
+  test("the old address never bounces a transfer token to the new one", async ({
+    page,
+    transfers,
+  }) => {
+    await page.goto(`${OLD}/metadata.json`);
+    await announceTheMove(page);
+
+    await page.goto(`${OLD}/importar#t=attacker-token`);
+
+    await page.waitForURL(`${NEW}/importar`);
+    await expect(page.getByRole("alert")).toContainText("no trae progreso");
+    expect(transfers.claims).toEqual([]);
   });
 
   test("a used link explains itself and points back to the old address", async ({

@@ -1,11 +1,6 @@
 import { ApiError } from "@english-learn/api-client";
 import type { StoredEvent } from "@english-learn/domain";
-import {
-  TransferError,
-  createProgressReceiver,
-  sendProgress,
-  transferFailure,
-} from "./transfer-progress";
+import { TransferError, claimProgress, sendProgress, transferFailure } from "./transfer-progress";
 
 const NEW_ORIGIN = "https://english.maumar.com.ar";
 
@@ -99,49 +94,29 @@ describe("sendProgress", () => {
   });
 });
 
-describe("createProgressReceiver", () => {
-  it("claims the transfer and imports its events as this device's", async () => {
-    const importEvents = jest.fn(async (events: readonly StoredEvent[]) => events.length);
-    const receive = createProgressReceiver({
-      api: { claimTransfer: async () => ({ events: [wire(stored("e1"))] }) },
-      store: { importEvents },
-      deviceId: "new-device",
-    });
+describe("claimProgress", () => {
+  it("claims the transfer and hands its events back as this device's, without saving them", async () => {
+    const claimTransfer = jest.fn(async () => ({ events: [wire(stored("e1"))] }));
 
-    expect(await receive("tok")).toBe(1);
-    expect(importEvents).toHaveBeenCalledWith([stored("e1", "new-device")]);
+    expect(
+      await claimProgress({ api: { claimTransfer }, token: "tok", deviceId: "new-device" }),
+    ).toEqual([stored("e1", "new-device")]);
+    expect(claimTransfer).toHaveBeenCalledWith("tok");
   });
 
   it("reports an expired or used link", async () => {
-    const receive = createProgressReceiver({
+    const claiming = claimProgress({
       api: {
         claimTransfer: async () => {
           throw new ApiError(404, "transfer_not_found", "gone");
         },
       },
-      store: { importEvents: async () => 0 },
+      token: "tok",
       deviceId: "new-device",
     });
 
-    await expect(receive("tok")).rejects.toEqual(
+    await expect(claiming).rejects.toEqual(
       new TransferError({ reason: "not-found", retryAfterSeconds: null }),
     );
-  });
-
-  it("keeps claimed events when saving fails, so a retry does not claim again", async () => {
-    const claimTransfer = jest.fn(async () => ({ events: [wire(stored("e1"))] }));
-    const importEvents = jest
-      .fn<Promise<number>, [readonly StoredEvent[]]>()
-      .mockRejectedValueOnce(new Error("disk full"))
-      .mockResolvedValueOnce(1);
-    const receive = createProgressReceiver({
-      api: { claimTransfer },
-      store: { importEvents },
-      deviceId: "new-device",
-    });
-
-    await expect(receive("tok")).rejects.toThrow("disk full");
-    expect(await receive("tok")).toBe(1);
-    expect(claimTransfer).toHaveBeenCalledTimes(1);
   });
 });

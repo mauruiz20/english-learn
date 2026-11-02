@@ -79,30 +79,24 @@ export async function sendProgress({
 }
 
 /**
- * New address: claims a transfer (once: the API forgets it) and imports its events as unsynced
- * events of this device. The claimed events are kept in memory, so when saving them fails a
- * retry saves them again instead of claiming a used token. Resolves to the events added.
+ * New address: claims a transfer (once: the API forgets it) and hands its events back as this
+ * device's, without saving anything: the learner sees a preview and decides. The caller keeps
+ * the events in memory, so a failed save is retried without claiming a used token.
  */
-export function createProgressReceiver({
+export async function claimProgress({
   api,
-  store,
+  token,
   deviceId,
 }: {
   api: Pick<ApiClient, "claimTransfer">;
-  store: { importEvents(events: readonly StoredEvent[]): Promise<number> };
+  token: string;
   deviceId: string;
-}): (token: string) => Promise<number> {
-  const claimed = new Map<string, readonly TransferredEvent[]>();
-  return async (token) => {
-    let events = claimed.get(token);
-    if (events === undefined) {
-      try {
-        ({ events } = await api.claimTransfer(token));
-      } catch (error) {
-        throw new TransferError(transferFailure(error));
-      }
-      claimed.set(token, events);
-    }
-    return store.importEvents(events.map((event) => ({ ...event, deviceId })));
-  };
+}): Promise<StoredEvent[]> {
+  let events: readonly TransferredEvent[];
+  try {
+    ({ events } = await api.claimTransfer(token));
+  } catch (error) {
+    throw new TransferError(transferFailure(error));
+  }
+  return events.map((event) => ({ ...event, deviceId }));
 }

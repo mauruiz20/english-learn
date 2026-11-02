@@ -75,12 +75,19 @@ function createLog() {
   };
 }
 
+const SIGNED_IN = {
+  status: "signed-in",
+  account: { userId: "u1", email: "ana@example.com" },
+} as const;
+
 function renderImport({
   fragment = "#t=tok-1",
   claimTransfer = async () => ({ events: oldLog() }),
+  signedIn = false,
 }: {
   fragment?: string;
   claimTransfer?: (token: string) => Promise<{ events: ReturnType<typeof oldLog> }>;
+  signedIn?: boolean;
 } = {}) {
   const order: string[] = [];
   const { log, transfer, progressRepository } = createLog();
@@ -93,7 +100,7 @@ function renderImport({
   });
   const account: AccountContextValue = {
     availability: "available",
-    session: { status: "signed-out" },
+    session: signedIn ? SIGNED_IN : { status: "signed-out" },
     syncStatus: { kind: "idle" },
     progressVersion: 0,
     actions: null,
@@ -130,14 +137,34 @@ function renderImport({
 beforeEach(() => jest.clearAllMocks());
 
 describe("ImportScreen", () => {
-  it("removes the token from the address first, imports, and shows what arrived", async () => {
-    const { view, order, log, changes } = renderImport();
+  it("removes the token from the address, claims, and previews without importing anything", async () => {
+    const { view, order, transfer, changes } = renderImport();
     await view;
 
-    expect(await screen.findByText("¡Tu progreso llegó!")).toBeOnTheScreen();
+    expect(await screen.findByText("Progreso del sitio anterior")).toBeOnTheScreen();
     expect(order).toEqual(["cleared", "claim:tok-1"]);
     // Out of the router's state too, or it would put the fragment back in the address bar.
     expect(mockSetParams).toHaveBeenCalledWith({ "#": "" });
+    expect(screen.getByText("80 XP")).toBeOnTheScreen();
+    expect(screen.getByText("Lecciones completadas: 1")).toBeOnTheScreen();
+    expect(screen.getByText("Racha: 1 día")).toBeOnTheScreen();
+    expect(screen.getByText("Actividad: el 30/10/2026")).toBeOnTheScreen();
+    expect(screen.getByText(`Registros: ${oldLog().length}`)).toBeOnTheScreen();
+    expect(screen.getByText("¿Importarlo a este dispositivo?")).toBeOnTheScreen();
+    expect(screen.queryByText(/tu cuenta/)).toBeNull();
+    expect(transfer.importEvents).not.toHaveBeenCalled();
+    expect(changes).not.toHaveBeenCalled();
+  });
+
+  it("imports only once the learner confirms, then shows what arrived and syncs", async () => {
+    const { view, log, transfer, changes } = renderImport();
+    await view;
+
+    await fireEvent.press(await screen.findByRole("button", { name: "Importar" }));
+
+    expect(await screen.findByText("¡Tu progreso llegó!")).toBeOnTheScreen();
+    expect(transfer.importEvents).toHaveBeenCalledTimes(1);
+    expect(log).toHaveLength(oldLog().length);
     expect(log.every((e) => e.deviceId === "new-device")).toBe(true);
     expect(screen.getByText("80 XP")).toBeOnTheScreen();
     expect(screen.getByText("Racha: 1 día")).toBeOnTheScreen();
@@ -147,6 +174,34 @@ describe("ImportScreen", () => {
 
     await fireEvent.press(screen.getByRole("button", { name: "Ir al inicio" }));
     expect(mockReplace).toHaveBeenCalledWith("/");
+  });
+
+  it("imports nothing when the learner cancels, and says the link is spent", async () => {
+    const { view, order, log, transfer, changes } = renderImport();
+    await view;
+
+    await fireEvent.press(await screen.findByRole("button", { name: "Cancelar" }));
+
+    expect(await screen.findByText(/No importamos nada/)).toBeOnTheScreen();
+    expect(screen.getByText(/enlace ya se usó/)).toBeOnTheScreen();
+    expect(transfer.importEvents).not.toHaveBeenCalled();
+    expect(log).toEqual([]);
+    expect(changes).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByRole("button", { name: "Volver al sitio anterior" }));
+    expect(order).toContain("assign:https://english-learn-iwl.pages.dev/?transferir=1");
+    await fireEvent.press(screen.getByRole("button", { name: "Ir al inicio" }));
+    expect(mockReplace).toHaveBeenCalledWith("/");
+  });
+
+  it("tells a signed-in learner the progress will be added to their account", async () => {
+    const { view } = renderImport({ signedIn: true });
+    await view;
+
+    expect(
+      await screen.findByText(
+        "Como iniciaste sesión, este progreso también se sumará a tu cuenta.",
+      ),
+    ).toBeOnTheScreen();
   });
 
   it("explains an expired or used link and offers to repeat from the old address", async () => {
@@ -162,9 +217,9 @@ describe("ImportScreen", () => {
     expect(order).toContain("assign:https://english-learn-iwl.pages.dev/?transferir=1");
   });
 
-  it("lets the learner retry after a network failure, with the token kept in memory", async () => {
+  it("lets the learner retry the claim after a network failure, with the token kept in memory", async () => {
     let attempts = 0;
-    const { view, claim } = renderImport({
+    const { view, claim, transfer } = renderImport({
       claimTransfer: async () => {
         attempts += 1;
         if (attempts === 1) throw new TypeError("Failed to fetch");
@@ -176,8 +231,23 @@ describe("ImportScreen", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(/No hay conexión/);
     await fireEvent.press(screen.getByRole("button", { name: "Reintentar" }));
 
-    expect(await screen.findByText("¡Tu progreso llegó!")).toBeOnTheScreen();
+    expect(await screen.findByText("¿Importarlo a este dispositivo?")).toBeOnTheScreen();
     expect(claim).toHaveBeenNthCalledWith(2, "tok-1");
+    expect(transfer.importEvents).not.toHaveBeenCalled();
+  });
+
+  it("keeps the claimed events when saving fails, so a retry saves them without claiming again", async () => {
+    const { view, claim, transfer } = renderImport();
+    transfer.importEvents.mockRejectedValueOnce(new Error("disk full"));
+    await view;
+
+    await fireEvent.press(await screen.findByRole("button", { name: "Importar" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(/No pudimos guardar/);
+    await fireEvent.press(screen.getByRole("button", { name: "Reintentar" }));
+
+    expect(await screen.findByText("¡Tu progreso llegó!")).toBeOnTheScreen();
+    expect(claim).toHaveBeenCalledTimes(1);
+    expect(transfer.importEvents).toHaveBeenCalledTimes(2);
   });
 
   it("says when the link carries no transfer", async () => {
