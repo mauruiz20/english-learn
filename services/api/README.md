@@ -1,6 +1,7 @@
 # English Learn API
 
-Optional backend for English Learn: **Google sign-in** (web) and **progress sync**.
+Optional backend for English Learn: **Google sign-in** (web), **progress sync** and one-time
+**progress transfers** from the app's old web address to the new one.
 The app stays offline-first; the API only stores and returns the client's progress events. It
 never folds them: the fold lives in [`packages/domain`](../../packages/domain/README.md#progress-event-log).
 
@@ -41,15 +42,17 @@ run `pnpm api-client:generate` from the repository root (CI fails while it is st
 All errors share one shape: `{ "error": { "code": "...", "message": "..." } }`. Every 401 carries
 `WWW-Authenticate: Bearer` (`Bearer error="invalid_token"` for a bad or expired access token).
 
-| Method   | Path               | Body                                    | Success                                                                                        | Errors                                                                                                     |
-| -------- | ------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `POST`   | `/v1/auth/google`  | `{ idToken, nonce? }`                   | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }`                 | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
-| `POST`   | `/v1/auth/refresh` | `{ refreshToken }`                      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 403 `csrf_rejected`, 429                          |
-| `POST`   | `/v1/auth/logout`  | `{ refreshToken }`                      | 204 (also for unknown tokens)                                                                  | 403 `csrf_rejected`, 422, 429                                                                              |
-| `GET`    | `/v1/me`           | Bearer                                  | 200 `{ id, email }`                                                                            | 401 `unauthorized`, `invalid_token`, `account_not_found`                                                   |
-| `DELETE` | `/v1/account`      | Bearer                                  | 204: user, devices, events and tokens are deleted                                              | 401 `reauthentication_required`, `account_not_found`, 429                                                  |
-| `GET`    | `/healthz`         |                                         | 200 `{ status: "ok" }` (pings the database)                                                    | 503 `database_unavailable`                                                                                 |
-| `POST`   | `/v1/sync`         | Bearer + `{ deviceId, cursor, events }` | 200 `{ events, cursor, hasMore, accepted, duplicates, conflicts }` ([details](#progress-sync)) | 401, 409 `device_conflict`, 413, 422 `validation_error`, 429                                               |
+| Method   | Path                  | Body                                    | Success                                                                                        | Errors                                                                                                     |
+| -------- | --------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `POST`   | `/v1/auth/google`     | `{ idToken, nonce? }`                   | 200 `{ accessToken, accessTokenExpiresAt, refreshToken, user: { id, email } }`                 | 401 `invalid_google_token`, 403 `google_email_not_verified`, 503 `google_unavailable` / `google_busy`, 429 |
+| `POST`   | `/v1/auth/refresh`    | `{ refreshToken }`                      | 200 `{ accessToken, accessTokenExpiresAt, refreshToken }`                                      | 401 `invalid_refresh_token`, 401 `refresh_token_reused`, 403 `csrf_rejected`, 429                          |
+| `POST`   | `/v1/auth/logout`     | `{ refreshToken }`                      | 204 (also for unknown tokens)                                                                  | 403 `csrf_rejected`, 422, 429                                                                              |
+| `GET`    | `/v1/me`              | Bearer                                  | 200 `{ id, email }`                                                                            | 401 `unauthorized`, `invalid_token`, `account_not_found`                                                   |
+| `DELETE` | `/v1/account`         | Bearer                                  | 204: user, devices, events and tokens are deleted                                              | 401 `reauthentication_required`, `account_not_found`, 429                                                  |
+| `GET`    | `/healthz`            |                                         | 200 `{ status: "ok" }` (pings the database)                                                    | 503 `database_unavailable`                                                                                 |
+| `POST`   | `/v1/sync`            | Bearer + `{ deviceId, cursor, events }` | 200 `{ events, cursor, hasMore, accepted, duplicates, conflicts }` ([details](#progress-sync)) | 401, 409 `device_conflict`, 413, 422 `validation_error`, 429                                               |
+| `POST`   | `/v1/transfers`       | `{ events }` (no credentials)           | 201 `{ token, expiresAt }` ([details](#progress-transfers))                                    | 413 (over 2 MiB), 422 `validation_error`, 429                                                              |
+| `POST`   | `/v1/transfers/claim` | `{ token }` (no credentials)            | 200 `{ events }`, once                                                                         | 404 `transfer_not_found`, 422, 429                                                                         |
 
 **Nonce.** `nonce` is the value the client put in its Google authorization request (OpenID
 Connect). When it is sent, the ID token's `nonce` claim must equal it (constant-time comparison),
@@ -125,6 +128,36 @@ for shape and size only, and never folds them.
 | Request body      | ≤ `MAX_REQUEST_BODY_BYTES` (1 MiB), so a batch of large payloads must be split     |
 
 Unknown or missing fields are refused with 422; `cursor` is required (`null` on a first sync).
+
+## Progress transfers
+
+The web app moved from `https://english-learn-iwl.pages.dev` to `https://english.maumar.com.ar`.
+Progress lives on the device, per origin, and the two sites cannot message each other (both are
+cross-origin isolated: `COOP: same-origin`, `COEP: require-corp`), so the API relays it once:
+
+1. The old site posts its whole event log to `POST /v1/transfers` and gets
+   `{ token, expiresAt }`.
+2. It navigates to `https://english.maumar.com.ar/importar#t=<token>`. The fragment never reaches
+   a server or the service worker; the page removes it from history at once.
+3. The new site posts the token to `POST /v1/transfers/claim` and gets `{ events }`, which it
+   imports as local, unsynced events.
+
+- **Anonymous and single use.** No account, no cookie, no bearer: holding the token is the only
+  proof. The token is 32 random bytes (base64url, 43 characters); only its SHA-256 is stored,
+  behind a unique index. A transfer expires 15 minutes after it is created.
+- **Exactly once.** The claim is one statement: it locks the unclaimed, unexpired row, marks it
+  claimed and drops its events, returning them. A concurrent claim waits for the lock, finds the
+  row claimed (or deleted) and gets 404; `tests/integration/test_transfers_api.py` forces it.
+- **No oracle.** Unknown, expired and already claimed tokens all answer the same 404
+  `transfer_not_found`.
+- **Events.** Same envelope rules as [sync](#progress-sync) (UUIDv7 ids, `occurredAt`,
+  `localDate`, `type`, payload ≤ 8 KiB), 1 to 20 000 events, request body ≤ 2 MiB (the only route
+  above `MAX_REQUEST_BODY_BYTES`). There is no `deviceId`: the claiming device adopts the events.
+  They are kept as zlib-compressed JSON and never read by the server.
+- **Cleanup.** Each create and claim deletes up to 100 expired or claimed rows
+  (`FOR UPDATE SKIP LOCKED`); a claim usually deletes its own row in the same transaction. No
+  background job.
+- **Logs** carry event counts only, never the token, its hash or the events.
 
 ## Tokens and sessions
 
@@ -239,13 +272,15 @@ deletion still limit the damage. This works because both hosts are on one regist
 
 ## Abuse protection
 
-| Endpoint                | Limit       | Key       |
-| ----------------------- | ----------- | --------- |
-| `POST /v1/auth/google`  | 10 / minute | client IP |
-| `POST /v1/auth/refresh` | 30 / minute | client IP |
-| `POST /v1/auth/logout`  | 30 / minute | client IP |
-| `DELETE /v1/account`    | 5 / hour    | user      |
-| `POST /v1/sync`         | 60 / minute | user      |
+| Endpoint                   | Limit       | Key       |
+| -------------------------- | ----------- | --------- |
+| `POST /v1/auth/google`     | 10 / minute | client IP |
+| `POST /v1/auth/refresh`    | 30 / minute | client IP |
+| `POST /v1/auth/logout`     | 30 / minute | client IP |
+| `DELETE /v1/account`       | 5 / hour    | user      |
+| `POST /v1/sync`            | 60 / minute | user      |
+| `POST /v1/transfers`       | 5 / hour    | client IP |
+| `POST /v1/transfers/claim` | 20 / hour   | client IP |
 
 Token buckets: the whole limit is available as a burst and refills continuously. Over the limit
 the API answers 429 `rate_limited` with `Retry-After`. Limits live in code (`RateLimits` in
@@ -285,6 +320,8 @@ src/english_learn_api/
   health/            GET /healthz
   sync/              domain (envelope, limits) · application (ports, SyncProgress)
                      infrastructure (devices, event log, unit of work, tables) · api (POST /v1/sync)
+  transfers/         domain (token, limits) · application (CreateTransfer, ClaimTransfer)
+                     infrastructure (transfer store, unit of work, table) · api (POST /v1/transfers)
   shared/            clock, database, error model, middlewares, rate limiter, JSON logging
 migrations/          Alembic (async engine)
 ```
@@ -295,6 +332,7 @@ migrations/          Alembic (async engine)
 | `AccessTokens`        | `JwtAccessTokens` (PyJWT)                                   | `FakeAccessTokens`       |
 | `UnitOfWork` + repos  | SQLAlchemy Core on PostgreSQL                               | in-memory, with rollback |
 | `SyncUnitOfWork`      | `SqlAlchemySyncUnitOfWork` (devices, event log)             | `FakeSyncUnitOfWork`     |
+| `TransferUnitOfWork`  | `SqlAlchemyTransferUnitOfWork` (transfer store)             | `FakeTransferUnitOfWork` |
 | `Clock`               | `SystemClock`                                               | `FakeClock`              |
 
 - **Google verification** rejects anything that is not three base64url segments, then checks the
@@ -340,6 +378,7 @@ migrations/          Alembic (async engine)
 | `FORWARDED_ALLOW_IPS`     | `127.0.0.1` (image)                                   | Read by uvicorn: proxies whose `X-Forwarded-*` headers are trusted                                                                |
 | `CLIENT_IP_SOURCE`        | `socket`                                              | `socket` (TCP peer) · `cf-connecting-ip` (Cloudflare's header from a trusted peer); see [Abuse protection](#abuse-protection)     |
 | `TRUSTED_PROXY_CIDRS`     | empty                                                 | Comma-separated CIDRs (or single IPs) of the proxy, e.g. the compose network subnet. Required with `cf-connecting-ip`             |
+| `TRANSFER_SOURCE_ORIGINS` | `https://english-learn-iwl.pages.dev`                 | Extra origins that may call `POST /v1/transfers` (no credentials). Never `*`; production: public https only                       |
 
 **Secrets from files.** `DATABASE_URL`, `JWT_SECRET` and `JWT_KEYS` can also be read from a
 file named by `<NAME>_FILE` (Docker secrets), for the app and for `alembic`. The file's content,
@@ -366,7 +405,7 @@ secrets:
 ```
 
 **`ENV=production`** refuses to start without an explicit `CORS_ORIGINS`, accepts only public
-`https` origins there, refuses `REFRESH_COOKIE_SECURE=false`, and does not serve `/docs`, `/redoc` or `/openapi.json` (use
+`https` origins there and in `TRANSFER_SOURCE_ORIGINS`, refuses `REFRESH_COOKIE_SECURE=false`, and does not serve `/docs`, `/redoc` or `/openapi.json` (use
 `python -m english_learn_api.export_openapi` to get the schema). `development` and `test` keep the
 localhost CORS default and the interactive docs.
 
@@ -380,6 +419,10 @@ exact list (`*` is refused in every environment) and the response names the requ
 Allowed request headers: `Authorization`, `Content-Type`, `X-Token-Transport`,
 `X-Requested-With`; no response header is exposed; preflights are cached for 600 s. A preflight
 from an origin not in the list gets 400 without `Access-Control-Allow-Origin`.
+
+The two transfer routes have their own policy, without credentials: `POST /v1/transfers` allows
+`TRANSFER_SOURCE_ORIGINS` plus `CORS_ORIGINS`, `POST /v1/transfers/claim` only `CORS_ORIGINS`;
+method `POST`, header `Content-Type`. The credentialed policy above never lists the old site.
 
 ## Testing
 

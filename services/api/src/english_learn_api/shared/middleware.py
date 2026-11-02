@@ -2,7 +2,10 @@
 
 import logging
 import time
+from collections.abc import Mapping
+from typing import Any
 
+from starlette.middleware.cors import CORSMiddleware
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 from english_learn_api.shared.errors import error_response
@@ -15,20 +18,27 @@ class _BodyTooLargeError(Exception):
 
 
 class BodySizeLimitMiddleware:
-    """Rejects request bodies over `max_bytes` with 413, by header or while streaming."""
+    """Rejects request bodies over `max_bytes` with 413, by header or while streaming.
 
-    def __init__(self, app: ASGIApp, max_bytes: int) -> None:
+    `max_bytes_by_path` sets another limit for exact paths (a route that takes a bigger body).
+    """
+
+    def __init__(
+        self, app: ASGIApp, max_bytes: int, max_bytes_by_path: Mapping[str, int] | None = None
+    ) -> None:
         self.app = app
         self.max_bytes = max_bytes
+        self.max_bytes_by_path = dict(max_bytes_by_path or {})
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if scope["type"] != "http":
             await self.app(scope, receive, send)
             return
 
+        max_bytes = self.max_bytes_by_path.get(scope["path"], self.max_bytes)
         declared = dict(scope["headers"]).get(b"content-length")
-        if declared is not None and declared.isdigit() and int(declared) > self.max_bytes:
-            await self._reject(scope, receive, send)
+        if declared is not None and declared.isdigit() and int(declared) > max_bytes:
+            await self._reject(scope, receive, send, max_bytes)
             return
 
         received = 0
@@ -40,7 +50,7 @@ class BodySizeLimitMiddleware:
             message = await receive()
             if message["type"] == "http.request":
                 received += len(message.get("body", b""))
-                if received > self.max_bytes:
+                if received > max_bytes:
                     too_large = True
                     raise _BodyTooLargeError
             return message
@@ -53,22 +63,45 @@ class BodySizeLimitMiddleware:
                 await send(message)
             elif not replaced:
                 replaced = True
-                await self._reject(scope, receive, send)
+                await self._reject(scope, receive, send, max_bytes)
 
         try:
             await self.app(scope, limited_receive, guarded_send)
         except _BodyTooLargeError:
             if not replaced:
-                await self._reject(scope, receive, send)
+                await self._reject(scope, receive, send, max_bytes)
 
-    async def _reject(self, scope: Scope, receive: Receive, send: Send) -> None:
+    async def _reject(self, scope: Scope, receive: Receive, send: Send, max_bytes: int) -> None:
         response = error_response(
             413,
             "payload_too_large",
-            f"Request body exceeds {self.max_bytes} bytes",
+            f"Request body exceeds {max_bytes} bytes",
             {"Connection": "close"},
         )
         await response(scope, receive, send)
+
+
+class PathCorsMiddleware:
+    """CORS with a policy per exact path; every other path uses `default`.
+
+    Each policy is a set of `CORSMiddleware` options, so preflights and responses of one path are
+    answered by exactly that policy (origins, methods, headers, credentials).
+    """
+
+    def __init__(
+        self,
+        app: ASGIApp,
+        default: Mapping[str, Any],
+        by_path: Mapping[str, Mapping[str, Any]],
+    ) -> None:
+        self._default = CORSMiddleware(app, **default)
+        self._by_path = {path: CORSMiddleware(app, **options) for path, options in by_path.items()}
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        policy = (
+            self._by_path.get(scope["path"], self._default) if scope["type"] == "http" else None
+        )
+        await (policy or self._default)(scope, receive, send)
 
 
 class RequestLogMiddleware:
