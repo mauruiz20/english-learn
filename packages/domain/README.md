@@ -140,6 +140,7 @@ session carry the same `localDate` (the day it was completed), as the app used o
 | Lesson bonus     | The FIRST `session_completed` for a `lessonId` in fold order gets `xpForLessonCompletion(accuracy)`; later ones (any device) and baseline-completed lessons get 0 |
 | Streak           | `recordActivity` replayed over the sorted unique `localDate`s of `session_completed`, starting from the merged baseline streak                                    |
 | `activeDates`    | Sorted unique `localDate`s of `session_completed`                                                                                                                 |
+| Lesson results   | Per `lessonId` of a lesson `session_completed`: `bestAccuracy` = max `accuracy`, `completions` = distinct sessions; baseline lessons have none                    |
 | Placement        | The last `placement_completed` or non-null baseline placement in fold order                                                                                       |
 | Disputed answers | `answer_disputed` is a known no-op: no state, no anomaly (content feedback for the owner; the session's own events carry the regrade)                             |
 | Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                               |

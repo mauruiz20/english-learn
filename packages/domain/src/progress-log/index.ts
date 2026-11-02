@@ -11,6 +11,6 @@ export type {
   StoredEvent,
 } from "./events";
 export { EMPTY_PROGRESS, foldEvents } from "./fold";
-export type { FoldAnomaly, FoldAnomalyKind, ProgressState } from "./fold";
+export type { FoldAnomaly, FoldAnomalyKind, LessonResult, ProgressState } from "./fold";
 export { uuidv7 } from "./uuidv7";
 export type { EventId } from "./uuidv7";
