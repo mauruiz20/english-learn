@@ -1,4 +1,4 @@
-import type { Exercise } from "../schema";
+import { LEVELS, type Exercise, type Level } from "../schema";
 import { duplicateErrors } from "./helpers";
 import type { LoadedFile, Rule, ValidationError } from "./types";
 
@@ -58,6 +58,39 @@ export const validateReviewableLessonItems: Rule = (files) => {
           message: `item "${id}" is only practiced by reading exercises, so the daily review can never bring it back; add a non-reading exercise for it`,
         });
       }
+    });
+  }
+  return errors;
+};
+
+/**
+ * `lesson.deepenCardIds` (the "Profundiza" step on the path): no duplicates, every id is a card,
+ * and every card is at or below the lesson level (A1 < A2 < B1 < B2 < C1).
+ */
+export const validateLessonDeepenCards: Rule = (files) => {
+  const cardLevel = new Map<string, Level>(
+    files.flatMap((f) => (f.data.cards ?? []).map((c) => [c.id, c.level] as const)),
+  );
+  const rank = (l: Level) => LEVELS.indexOf(l);
+  const errors: ValidationError[] = [];
+  for (const { file, data } of files) {
+    (data.lessons ?? []).forEach((lesson, i) => {
+      const ids = lesson.deepenCardIds ?? [];
+      const base = `lessons[${i}].deepenCardIds`;
+      errors.push(...duplicateErrors(ids, "exact", "linked card", file, base));
+      ids.forEach((id, j) => {
+        const level = cardLevel.get(id);
+        const path = `${base}[${j}]`;
+        if (level === undefined) {
+          errors.push({ file, path, message: `card "${id}" does not exist` });
+        } else if (rank(level) > rank(lesson.level)) {
+          errors.push({
+            file,
+            path,
+            message: `card "${id}" is ${level}, above the lesson level ${lesson.level}`,
+          });
+        }
+      });
     });
   }
   return errors;
