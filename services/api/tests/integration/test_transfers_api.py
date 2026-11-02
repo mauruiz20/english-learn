@@ -5,6 +5,7 @@ import hashlib
 import json
 import logging
 import uuid
+import zlib
 from collections.abc import AsyncIterator
 from datetime import timedelta
 from typing import Any
@@ -367,3 +368,32 @@ async def _eventually_hashes(engine: AsyncEngine, expected: set[str]) -> bool:
                 return True
         await asyncio.sleep(0.01)
     return False
+
+
+async def test_a_payload_that_inflates_too_far_fails_safely_and_is_dropped(
+    app: object, engine: AsyncEngine, caplog: pytest.LogCaptureFixture
+) -> None:
+    caplog.set_level(logging.DEBUG)
+    token = "bomb-token"
+    bomb = zlib.compress(b'[{"secret": "' + b"s" * (9 * 1024 * 1024) + b'"}]')
+    async with engine.begin() as connection:
+        await connection.execute(
+            text(
+                "INSERT INTO transfers (token_hash, payload, created_at, expires_at) "
+                "VALUES (:hash, :payload, '2026-10-30T11:55Z', '2026-10-30T12:10Z')"
+            ),
+            {"hash": hashlib.sha256(token.encode()).hexdigest(), "payload": bomb},
+        )
+
+    # Starlette re-raises after answering 500; the transport must not turn that into a test error.
+    transport = httpx.ASGITransport(app=app, raise_app_exceptions=False)  # type: ignore[arg-type]
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        first = await claim(client, token)
+        again = await claim(client, token)
+
+    assert first.status_code == 500
+    assert first.json() == {"error": {"code": "internal_error", "message": "Internal server error"}}
+    assert again.status_code == 404  # the corrupt transfer was consumed, not left to retry
+    lines = [JsonFormatter().format(record) for record in caplog.records]
+    assert any("transfer corrupt" in line for line in lines)
+    assert not [line for line in lines if "secret" in line or "sss" in line]

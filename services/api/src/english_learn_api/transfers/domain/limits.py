@@ -8,6 +8,9 @@ MAX_EVENTS_PER_TRANSFER = 20_000
 MAX_TRANSFER_BODY_BYTES = 2 * 1024 * 1024
 """Request body of `POST /v1/transfers`; every other route keeps `MAX_REQUEST_BODY_BYTES`."""
 
+MAX_DECOMPRESSED_TRANSFER_BYTES = 8 * 1024 * 1024
+"""A stored payload inflating past this is treated as corrupt (a 2 MiB body re-encodes smaller)."""
+
 TRANSFER_TTL = timedelta(minutes=15)
 """A transfer not claimed within this time is gone."""
 

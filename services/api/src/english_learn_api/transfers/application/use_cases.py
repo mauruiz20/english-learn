@@ -11,7 +11,11 @@ from collections.abc import Callable, Sequence
 from english_learn_api.shared.clock import Clock
 from english_learn_api.sync.domain.models import NewEvent
 from english_learn_api.transfers.application.ports import TransferUnitOfWorkFactory
-from english_learn_api.transfers.domain.errors import TransferCapacityError, TransferNotFoundError
+from english_learn_api.transfers.domain.errors import (
+    CorruptTransferError,
+    TransferCapacityError,
+    TransferNotFoundError,
+)
 from english_learn_api.transfers.domain.limits import (
     MAX_LIVE_TRANSFER_BYTES,
     MAX_LIVE_TRANSFERS,
@@ -87,7 +91,12 @@ class ClaimTransfer:
     async def execute(self, token: str) -> list[NewEvent]:
         now = self._clock.now()
         async with self._unit_of_work() as uow:
-            events = await uow.transfers.claim(hash_transfer_token(token), now)
+            try:
+                events = await uow.transfers.claim(hash_transfer_token(token), now)
+            except CorruptTransferError:
+                await uow.commit()  # consumed all the same: a retry would only fail again
+                logger.error("transfer corrupt")
+                raise
             # The just-claimed row is stale too, so it usually goes in this same transaction.
             purged = await uow.transfers.purge(now, self._purge_batch)
             await uow.commit()

@@ -10,6 +10,8 @@ from sqlalchemy import delete, func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from english_learn_api.sync.domain.models import NewEvent
+from english_learn_api.transfers.domain.errors import CorruptTransferError
+from english_learn_api.transfers.domain.limits import MAX_DECOMPRESSED_TRANSFER_BYTES
 from english_learn_api.transfers.domain.models import LiveUsage, NewTransfer
 from english_learn_api.transfers.infrastructure.tables import transfers
 
@@ -29,17 +31,28 @@ def encode_events(events: list[NewEvent]) -> bytes:
 
 
 def decode_events(payload: bytes) -> list[NewEvent]:
-    wire: list[dict[str, Any]] = json.loads(zlib.decompress(payload))
-    return [
-        NewEvent(
-            id=UUID(item["id"]),
-            occurred_at=item["occurredAt"],
-            local_date=date.fromisoformat(item["localDate"]),
-            type=item["type"],
-            payload=item["payload"],
-        )
-        for item in wire
-    ]
+    """Inflates at most `MAX_DECOMPRESSED_TRANSFER_BYTES`; beyond that, or anything undecodable,
+    raises `CorruptTransferError` (naming only the error type, never payload bytes)."""
+    inflater = zlib.decompressobj()
+    try:
+        raw = inflater.decompress(payload, MAX_DECOMPRESSED_TRANSFER_BYTES)
+        if inflater.unconsumed_tail or not inflater.eof:
+            msg = "stored transfer is truncated or inflates past its bound"
+            raise CorruptTransferError(msg)
+        wire: list[dict[str, Any]] = json.loads(raw)
+        return [
+            NewEvent(
+                id=UUID(item["id"]),
+                occurred_at=item["occurredAt"],
+                local_date=date.fromisoformat(item["localDate"]),
+                type=item["type"],
+                payload=item["payload"],
+            )
+            for item in wire
+        ]
+    except (zlib.error, ValueError, KeyError, TypeError) as error:
+        msg = f"stored transfer cannot be decoded ({type(error).__name__})"
+        raise CorruptTransferError(msg) from None
 
 
 class SqlAlchemyTransferStore:
