@@ -12,6 +12,10 @@ import {
   wordOrder,
 } from "@/features/lesson/model/fixtures";
 import type { LessonSummary } from "@/features/lesson/model/lesson-session";
+import { completeSession } from "@/features/lesson/application/complete-session";
+import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
+import { createFakeRepository } from "@/testing/fake-progress-repository";
+import { testRandomBytes } from "@/testing/random-bytes";
 import {
   REVIEW_MAX_ITEMS,
   pendingReviewItems,
@@ -59,6 +63,96 @@ describe("pendingReviewItems", () => {
     const states = exercises.map((e) => due(e.itemIds[0] ?? ""));
 
     expect(pendingReviewItems({ states, today, exercises })).toHaveLength(REVIEW_MAX_ITEMS);
+  });
+});
+
+describe("pendingReviewItems: items in their first steps first", () => {
+  const mature = (n: number): ReviewState => ({
+    ...initialState(`a2.routine.old-${String(n).padStart(2, "0")}`, addDays(today, -40)),
+    reps: 4,
+    intervalDays: 15,
+    dueDate: addDays(today, -10),
+  });
+  const oldItems = Array.from({ length: 25 }, (_, n) => mature(n));
+  const exercises: Exercise[] = [
+    ...oldItems.map((s, n) => ({ ...vocab, id: `a2.routine.vocab-old-${n}`, itemIds: [s.itemId] })),
+    vocab,
+    cloze,
+    translationChoice,
+  ];
+
+  it("plans yesterday's new items (interval ≤ 1 day) before an older backlog that fills the cap", () => {
+    const fresh = [
+      due("a2.routine.wake-up"),
+      due("a2.routine.breakfast"),
+      due("a2.routine.go-to-bed"),
+    ];
+    const plan = pendingReviewItems({ states: [...oldItems, ...fresh], today, exercises });
+
+    expect(plan).toHaveLength(REVIEW_MAX_ITEMS);
+    expect(plan.slice(0, 3)).toEqual([
+      "a2.routine.breakfast",
+      "a2.routine.go-to-bed",
+      "a2.routine.wake-up",
+    ]);
+    expect(plan.slice(3)).toEqual(oldItems.slice(0, REVIEW_MAX_ITEMS - 3).map((s) => s.itemId));
+  });
+
+  it("counts a lapsed item (back to 1 day) as in its first steps too", () => {
+    const lapsed = { ...mature(99), itemId: "a2.routine.usually", intervalDays: 1, lapses: 1 };
+    const plan = pendingReviewItems({
+      states: [...oldItems, { ...lapsed, dueDate: today }],
+      today,
+      exercises: [...exercises, wordOrder],
+    });
+    expect(plan[0]).toBe("a2.routine.usually");
+  });
+});
+
+describe("a completed lesson's items, with the bundled content", () => {
+  it("are all due for review the next day, reading-only ones included", async () => {
+    const day1 = localDate("2030-01-01");
+    const repository = createFakeRepository();
+    const lesson = corpus.lessonsById.get("a2.weather.lesson-001")!;
+    const itemIds = lessonItemIds(lesson, corpus.exercisesById);
+    expect(itemIds).toContain("a2.weather.windy"); // only its reading practiced it before
+
+    await completeSession({
+      repository,
+      today: day1,
+      nowMs: 0,
+      randomBytes: testRandomBytes,
+      deviceId: "test-device",
+      kind: "lesson",
+      summary: {
+        lessonId: lesson.id,
+        verdicts: [],
+        accuracy: 1,
+        answerXp: 0,
+        itemOutcomes: itemIds.map((itemId) => ({
+          itemId,
+          exerciseType: "vocab",
+          verdict: "correct",
+          responseMs: 1000,
+        })),
+      },
+    });
+    const states = await repository.getReviewStates();
+
+    expect(pendingReviewItems({ states, today: day1, exercises: corpus.exercises })).toEqual([]);
+    const nextDay = pendingReviewItems({
+      states,
+      today: addDays(day1, 1),
+      exercises: corpus.exercises,
+    });
+    expect([...nextDay].sort()).toEqual([...itemIds].sort());
+    expect(lesson.newItemIds?.every((id) => nextDay.includes(id))).toBe(true);
+    const picked = pickReviewExercises({
+      itemIds: nextDay,
+      exercises: corpus.exercises,
+      rng: () => 0,
+    });
+    for (const id of itemIds) expect(picked.some((e) => e.itemIds.includes(id))).toBe(true);
   });
 });
 

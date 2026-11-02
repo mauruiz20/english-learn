@@ -278,7 +278,15 @@ latest result wins.
 ## Daily review (`src/features/review/`)
 
 `/review` plans the session with `selectSession({ maxReviews: 20, maxNew: 0 })` over the due
-states that some non-reading exercise covers (new items come from lessons only). For each due
+states that some non-reading exercise covers (new items come from lessons only), items in their
+first steps (interval ≤ 1 day: a lesson's new items the day after, and lapses) first, so a
+backlog of older reviews never pushes them out of the 20.
+
+**How lesson items enter review.** Nothing extra is written: a finished lesson's `item_reviewed`
+events give each new item a state due the next day (`applyReview`: passed → SM-2 interval 1;
+missed → fresh, due tomorrow), and the reviews then grow it (1 → 6 → interval × ease). Every
+lesson item has a non-reading exercise (content rule 20), so none waits unreviewed; nine items
+only a reading practiced got a review-only `vocab` exercise. For each due
 item, in priority order, it picks one exercise that practices it, preferring a different type
 than the previous pick, chosen with the injected rng; an exercise covering several due items
 reviews all of them. Only the due items are saved (an exercise may also practice items that are
