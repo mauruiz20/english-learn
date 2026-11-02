@@ -11,8 +11,13 @@ from collections.abc import Callable, Sequence
 from english_learn_api.shared.clock import Clock
 from english_learn_api.sync.domain.models import NewEvent
 from english_learn_api.transfers.application.ports import TransferUnitOfWorkFactory
-from english_learn_api.transfers.domain.errors import TransferNotFoundError
-from english_learn_api.transfers.domain.limits import PURGE_BATCH, TRANSFER_TTL
+from english_learn_api.transfers.domain.errors import TransferCapacityError, TransferNotFoundError
+from english_learn_api.transfers.domain.limits import (
+    MAX_LIVE_TRANSFER_BYTES,
+    MAX_LIVE_TRANSFERS,
+    PURGE_BATCH,
+    TRANSFER_TTL,
+)
 from english_learn_api.transfers.domain.models import (
     IssuedTransfer,
     NewTransfer,
@@ -30,11 +35,15 @@ class CreateTransfer:
         unit_of_work: TransferUnitOfWorkFactory,
         clock: Clock,
         purge_batch: int = PURGE_BATCH,
+        max_live: int = MAX_LIVE_TRANSFERS,
+        max_live_bytes: int = MAX_LIVE_TRANSFER_BYTES,
         new_token: Callable[[], str] = new_transfer_token,
     ) -> None:
         self._unit_of_work = unit_of_work
         self._clock = clock
         self._purge_batch = purge_batch
+        self._max_live = max_live
+        self._max_live_bytes = max_live_bytes
         self._new_token = new_token
 
     async def execute(self, events: Sequence[NewEvent]) -> IssuedTransfer:
@@ -48,8 +57,17 @@ class CreateTransfer:
         )
         async with self._unit_of_work() as uow:
             purged = await uow.transfers.purge(now, self._purge_batch)
-            await uow.transfers.add(transfer)
-            await uow.commit()
+            usage = await uow.transfers.live_usage(now)
+            full = usage.count >= self._max_live or usage.payload_bytes >= self._max_live_bytes
+            if not full:
+                await uow.transfers.add(transfer)
+            await uow.commit()  # the purge stands either way
+        if full:
+            # Concurrent creates may each pass the check: the overshoot is bounded by the
+            # concurrency cap (two at a time), a few MiB at most.
+            logger.warning("transfer capacity reached", extra={"live": usage.count})
+            msg = "Too many transfers are waiting to be claimed; try again later"
+            raise TransferCapacityError(msg)
         logger.info("transfer created", extra={"events": len(events), "purged": purged})
         return IssuedTransfer(token=token, expires_at=transfer.expires_at)
 

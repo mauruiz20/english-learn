@@ -291,3 +291,45 @@ async def test_logs_never_contain_the_token_or_the_events(
 
 def _new_event() -> NewEvent:
     return CreateTransferRequest.model_validate({"events": [event()]}).to_events()[0]
+
+
+class TestCapacity:
+    async def test_create_answers_503_while_two_hundred_transfers_are_live(
+        self, client: httpx.AsyncClient, engine: AsyncEngine
+    ) -> None:
+        async with engine.begin() as connection:
+            await connection.execute(
+                text(
+                    "INSERT INTO transfers (token_hash, payload, created_at, expires_at) "
+                    "SELECT 'live-' || n, 'x', '2026-10-30T11:55Z', '2026-10-30T12:10Z' "
+                    "FROM generate_series(1, 200) AS n"
+                )
+            )
+
+        refused = await create(client, [event()])
+
+        assert refused.status_code == 503
+        assert refused.json()["error"]["code"] == "transfer_capacity"
+        assert refused.headers["access-control-allow-origin"] == OLD_SITE
+
+    async def test_live_usage_counts_unclaimed_unexpired_rows_and_their_bytes(
+        self, engine: AsyncEngine, clock: FakeClock
+    ) -> None:
+        async with engine.begin() as connection:
+            await connection.execute(
+                text(
+                    """
+                    INSERT INTO transfers (token_hash, payload, created_at, expires_at, claimed_at)
+                    VALUES ('a', 'xxxx', '2026-10-30T11:55Z', '2026-10-30T12:10Z', NULL),
+                           ('b', 'xxxxxx', '2026-10-30T11:55Z', '2026-10-30T12:10Z', NULL),
+                           ('expired', 'xx', '2026-10-30T11:00Z', '2026-10-30T11:15Z', NULL),
+                           ('claimed', NULL, '2026-10-30T11:55Z', '2026-10-30T12:10Z',
+                            '2026-10-30T11:56Z')
+                    """
+                )
+            )
+
+        async with SqlAlchemyTransferUnitOfWork(create_session_factory(engine)) as uow:
+            usage = await uow.transfers.live_usage(clock.now())
+
+        assert (usage.count, usage.payload_bytes) == (2, 10)

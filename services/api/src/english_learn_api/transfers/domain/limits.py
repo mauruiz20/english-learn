@@ -13,3 +13,9 @@ TRANSFER_TTL = timedelta(minutes=15)
 
 PURGE_BATCH = 100
 """Expired or claimed transfers deleted at most per create or claim (no background job)."""
+
+MAX_LIVE_TRANSFERS = 200
+"""Unclaimed, unexpired transfers kept at once; creates beyond it get 503 `transfer_capacity`."""
+
+MAX_LIVE_TRANSFER_BYTES = 200 * 1024 * 1024
+"""Compressed payload bytes of those transfers together; same refusal beyond it."""

@@ -6,7 +6,7 @@ from types import TracebackType
 from typing import Protocol, Self
 
 from english_learn_api.sync.domain.models import NewEvent
-from english_learn_api.transfers.domain.models import NewTransfer
+from english_learn_api.transfers.domain.models import LiveUsage, NewTransfer
 
 
 class TransferStore(Protocol):
@@ -17,6 +17,10 @@ class TransferStore(Protocol):
         marked claimed (its events dropped) in the same statement, so at most one caller ever
         gets them. None otherwise.
         """
+        ...
+
+    async def live_usage(self, now: datetime) -> LiveUsage:
+        """Unclaimed transfers that have not expired at `now`, and their payload bytes."""
         ...
 
     async def purge(self, now: datetime, limit: int) -> int:

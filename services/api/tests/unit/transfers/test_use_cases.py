@@ -9,7 +9,7 @@ import pytest
 from english_learn_api.shared.logging import JsonFormatter
 from english_learn_api.sync.domain.models import NewEvent
 from english_learn_api.transfers.application.use_cases import ClaimTransfer, CreateTransfer
-from english_learn_api.transfers.domain.errors import TransferNotFoundError
+from english_learn_api.transfers.domain.errors import TransferCapacityError, TransferNotFoundError
 from english_learn_api.transfers.domain.limits import TRANSFER_TTL
 from tests.fakes import T0, FakeClock
 from tests.transfer_fakes import FakeTransferUnitOfWork, StoredTransfer, TransferStore
@@ -35,9 +35,19 @@ def clock() -> FakeClock:
     return FakeClock()
 
 
-def create(store: TransferStore, clock: FakeClock, purge_batch: int = 100) -> CreateTransfer:
+def create(
+    store: TransferStore,
+    clock: FakeClock,
+    purge_batch: int = 100,
+    max_live: int = 200,
+    max_live_bytes: int = 200 * 1024 * 1024,
+) -> CreateTransfer:
     return CreateTransfer(
-        unit_of_work=lambda: FakeTransferUnitOfWork(store), clock=clock, purge_batch=purge_batch
+        unit_of_work=lambda: FakeTransferUnitOfWork(store),
+        clock=clock,
+        purge_batch=purge_batch,
+        max_live=max_live,
+        max_live_bytes=max_live_bytes,
     )
 
 
@@ -132,3 +142,40 @@ async def test_logs_carry_counts_but_no_token_or_payload(
     hashed = hashlib.sha256(issued.token.encode()).hexdigest()
     for secret in (issued.token, hashed, "secret-item"):
         assert not [line for line in lines if secret in line], secret
+
+
+class TestCapacity:
+    async def test_create_is_refused_while_too_many_transfers_are_live(
+        self, store: TransferStore, clock: FakeClock
+    ) -> None:
+        await create(store, clock, max_live=2).execute([event()])
+        await create(store, clock, max_live=2).execute([event()])
+
+        with pytest.raises(TransferCapacityError) as raised:
+            await create(store, clock, max_live=2).execute([event()])
+
+        assert raised.value.code == "transfer_capacity"
+        assert len(store.rows) == 2
+
+    async def test_claimed_and_expired_transfers_free_capacity(
+        self, store: TransferStore, clock: FakeClock
+    ) -> None:
+        first = await create(store, clock, max_live=2).execute([event()])
+        await create(store, clock, max_live=2).execute([event()])
+        await claim(store, clock).execute(first.token)
+        await create(store, clock, max_live=2).execute([event()])
+
+        clock.advance(TRANSFER_TTL)
+
+        await create(store, clock, max_live=2).execute([event()])
+        await create(store, clock, max_live=2).execute([event()])
+        assert len(store.rows) == 2
+
+    async def test_create_is_refused_while_live_payloads_are_too_big(
+        self, store: TransferStore, clock: FakeClock
+    ) -> None:
+        store.rows = [StoredTransfer("big", (event(),), T0, T0 + TRANSFER_TTL, payload_bytes=900)]
+
+        with pytest.raises(TransferCapacityError):
+            await create(store, clock, max_live_bytes=900).execute([event()])
+        await create(store, clock, max_live_bytes=901).execute([event()])

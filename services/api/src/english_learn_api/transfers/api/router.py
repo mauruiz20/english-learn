@@ -8,10 +8,11 @@ from english_learn_api.transfers.api.schemas import (
     CreateTransferResponse,
 )
 from english_learn_api.transfers.application.use_cases import ClaimTransfer, CreateTransfer
-from english_learn_api.transfers.domain.errors import TransferNotFoundError
+from english_learn_api.transfers.domain.errors import TransferCapacityError, TransferNotFoundError
 
 STATUS_BY_ERROR: dict[type[DomainError], int] = {
     TransferNotFoundError: status.HTTP_404_NOT_FOUND,
+    TransferCapacityError: status.HTTP_503_SERVICE_UNAVAILABLE,
 }
 
 CREATE_PATH = "/v1/transfers"

@@ -6,11 +6,11 @@ from datetime import date, datetime
 from typing import Any
 from uuid import UUID
 
-from sqlalchemy import delete, select, update
+from sqlalchemy import delete, func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from english_learn_api.sync.domain.models import NewEvent
-from english_learn_api.transfers.domain.models import NewTransfer
+from english_learn_api.transfers.domain.models import LiveUsage, NewTransfer
 from english_learn_api.transfers.infrastructure.tables import transfers
 
 
@@ -77,6 +77,13 @@ class SqlAlchemyTransferStore:
         )
         payload = (await self._session.execute(statement)).scalar_one_or_none()
         return None if payload is None else decode_events(payload)
+
+    async def live_usage(self, now: datetime) -> LiveUsage:
+        statement = select(
+            func.count(), func.coalesce(func.sum(func.octet_length(transfers.c.payload)), 0)
+        ).where(transfers.c.claimed_at.is_(None), transfers.c.expires_at > now)
+        count, payload_bytes = (await self._session.execute(statement)).one()
+        return LiveUsage(count=count, payload_bytes=payload_bytes)
 
     async def purge(self, now: datetime, limit: int) -> int:
         stale = (
