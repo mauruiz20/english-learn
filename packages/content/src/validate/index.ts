@@ -11,6 +11,7 @@ export { validateAnswerPatterns } from "./answer-patterns";
 export { validateLevels } from "./levels";
 export { validateLayout } from "./layout";
 export { validateTopics, validateExerciseTopics } from "./topics";
+export { validateCards, validateCardReferences } from "./cards";
 export {
   findUncoveredWords,
   glossaryIndex,

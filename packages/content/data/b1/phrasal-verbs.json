@@ -1,0 +1,1314 @@
+{
+  "items": [
+    {
+      "id": "b1.phrasal-verbs.get-along-with",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "get along with",
+      "es": "llevarse bien con"
+    },
+    {
+      "id": "b1.phrasal-verbs.break-up-with",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "break up with",
+      "es": "terminar (una relación) con"
+    },
+    {
+      "id": "b1.phrasal-verbs.look-after",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "look after",
+      "es": "cuidar"
+    },
+    {
+      "id": "b1.phrasal-verbs.ask-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "ask out",
+      "es": "invitar a salir"
+    },
+    {
+      "id": "b1.phrasal-verbs.look-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "look up",
+      "es": "buscar (en un diccionario o en internet)"
+    },
+    {
+      "id": "b1.phrasal-verbs.figure-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "figure out",
+      "es": "entender, resolver"
+    },
+    {
+      "id": "b1.phrasal-verbs.catch-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "catch up",
+      "es": "ponerse al día"
+    },
+    {
+      "id": "b1.phrasal-verbs.fill-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "fill out",
+      "es": "llenar (un formulario)"
+    },
+    {
+      "id": "b1.phrasal-verbs.put-off",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "put off",
+      "es": "posponer, aplazar"
+    },
+    {
+      "id": "b1.phrasal-verbs.call-off",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "call off",
+      "es": "cancelar"
+    },
+    {
+      "id": "b1.phrasal-verbs.set-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "set up",
+      "es": "organizar, preparar"
+    },
+    {
+      "id": "b1.phrasal-verbs.come-up-with",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "come up with",
+      "es": "idear, ocurrírsele (una idea, un plan)"
+    },
+    {
+      "id": "b1.phrasal-verbs.show-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "show up",
+      "es": "llegar, aparecer"
+    },
+    {
+      "id": "b1.phrasal-verbs.run-out-of",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "run out of",
+      "es": "quedarse sin"
+    },
+    {
+      "id": "b1.phrasal-verbs.break-down",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "break down",
+      "es": "descomponerse, dejar de funcionar (una máquina, un auto)"
+    },
+    {
+      "id": "b1.phrasal-verbs.work-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "work out",
+      "es": "resolver; salir bien"
+    },
+    {
+      "id": "b1.phrasal-verbs.put-up-with",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "put up with",
+      "es": "aguantar, soportar"
+    },
+    {
+      "id": "b1.phrasal-verbs.check-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "check out",
+      "es": "dejar el hotel (pagar y salir; sin objeto)"
+    },
+    {
+      "id": "b1.phrasal-verbs.get-on",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "get on",
+      "es": "subirse (a un autobús, tren o avión)"
+    },
+    {
+      "id": "b1.phrasal-verbs.get-off",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "get off",
+      "es": "bajarse (de un autobús, tren o avión)"
+    },
+    {
+      "id": "b1.phrasal-verbs.pick-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "pick up",
+      "es": "recoger (a alguien)"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.phrasal-verbs.relationships-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.get-along-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I get along ___ my neighbors.",
+      "answers": ["with"],
+      "distractors": ["to", "for"],
+      "es": "Me llevo bien con mis vecinos."
+    },
+    {
+      "id": "b1.phrasal-verbs.relationships-cloze-2",
+      "itemIds": ["b1.relationships.make-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "They had a big fight, but they made ___ the next day.",
+      "answers": ["up"],
+      "distractors": ["on", "in"],
+      "es": "Tuvieron una gran pelea, pero se reconciliaron al día siguiente."
+    },
+    {
+      "id": "b1.phrasal-verbs.relationships-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.break-up-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ up with her boyfriend last month.",
+      "answers": ["broke"],
+      "distractors": ["got", "looked"],
+      "es": "Terminó con su novio el mes pasado."
+    },
+    {
+      "id": "b1.phrasal-verbs.relationships-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.look-after"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Who will look ___ the baby while we are at work?",
+      "answers": ["after"],
+      "distractors": ["out", "up"],
+      "es": "¿Quién va a cuidar al bebé mientras estamos en el trabajo?"
+    },
+    {
+      "id": "b1.phrasal-verbs.relationships-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.ask-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'ask someone out'.",
+      "options": [
+        "pedirle a alguien que se vaya",
+        "invitar a alguien a salir",
+        "preguntarle algo a alguien",
+        "echar a alguien"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.relationships-choice-1",
+      "itemIds": ["b1.phrasal-verbs.ask-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He was too shy to ask her out.",
+      "options": [
+        "Era tan tímido que no le preguntó nada.",
+        "Era demasiado tímido para invitarla a salir.",
+        "Ella lo invitó a salir porque él era tímido."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.relationships-order-1",
+      "itemIds": ["b1.phrasal-verbs.get-along-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["coworkers.", "well", "with", "my", "along", "get", "I"],
+      "accepted": ["I get along well with my coworkers."],
+      "es": "Me llevo bien con mis compañeros de trabajo."
+    },
+    {
+      "id": "b1.phrasal-verbs.relationships-write-1",
+      "itemIds": ["b1.phrasal-verbs.break-up-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ella terminó con su novio.",
+      "accepted": ["She broke up with her boyfriend.", "She split up with her boyfriend."]
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.look-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If you don't know a word, look it ___ in the dictionary.",
+      "answers": ["up"],
+      "distractors": ["for", "out"],
+      "es": "Si no conoces una palabra, búscala en el diccionario."
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-cloze-2",
+      "itemIds": ["b1.education.hand-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We have to hand ___ the project on Monday.",
+      "answers": ["in"],
+      "distractors": ["at", "up"],
+      "es": "Tenemos que entregar el proyecto el lunes."
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.fill-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Please fill ___ this form and sign it.",
+      "answers": ["out"],
+      "distractors": ["off", "on"],
+      "es": "Por favor, llena este formulario y fírmalo."
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.catch-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I missed three classes, so I need to catch ___.",
+      "answers": ["up"],
+      "distractors": ["in", "off"],
+      "es": "Falté a tres clases, así que tengo que ponerme al día."
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.figure-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'figure out'.",
+      "options": ["dibujar", "calcular mal", "imaginar", "entender, resolver"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-choice-1",
+      "itemIds": ["b1.phrasal-verbs.figure-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I can't figure out how this machine works.",
+      "options": [
+        "No logro entender cómo funciona esta máquina.",
+        "No sé quién arregló esta máquina.",
+        "Esta máquina no funciona bien."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-order-1",
+      "itemIds": ["b1.education.hand-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["in", "Did", "hand", "your", "homework?", "you"],
+      "accepted": ["Did you hand in your homework?"],
+      "es": "¿Entregaste tu tarea?"
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study-write-1",
+      "itemIds": ["b1.phrasal-verbs.look-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Busqué la palabra en el diccionario.",
+      "accepted": [
+        "I looked up the word in the dictionary.",
+        "I looked the word up in the dictionary."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.put-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Don't put ___ until tomorrow what you can do today.",
+      "answers": ["off"],
+      "distractors": ["out", "up"],
+      "es": "No dejes para mañana lo que puedes hacer hoy."
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.call-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "They called ___ the game because of the rain.",
+      "answers": ["off"],
+      "distractors": ["on", "in"],
+      "es": "Suspendieron el partido por la lluvia."
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.come-up-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She came up ___ a great idea for the party.",
+      "answers": ["with"],
+      "distractors": ["to", "for"],
+      "es": "Se le ocurrió una gran idea para la fiesta."
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.show-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He ___ up an hour late to the meeting.",
+      "answers": ["showed"],
+      "distractors": ["set", "put"],
+      "es": "Llegó una hora tarde a la reunión."
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.set-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'set up a meeting'.",
+      "options": [
+        "cancelar una reunión",
+        "organizar una reunión",
+        "llegar tarde a una reunión",
+        "posponer una reunión"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-choice-1",
+      "itemIds": ["b1.phrasal-verbs.put-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We had to put off our vacation.",
+      "options": [
+        "Tuvimos que cancelar nuestras vacaciones.",
+        "Nos fuimos de vacaciones.",
+        "Tuvimos que posponer nuestras vacaciones."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-order-1",
+      "itemIds": ["b1.phrasal-verbs.set-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["a", "for", "call", "set", "up", "tomorrow.", "I", "video"],
+      "accepted": ["I set up a video call for tomorrow."],
+      "es": "Organicé una videollamada para mañana."
+    },
+    {
+      "id": "b1.phrasal-verbs.plans-write-1",
+      "itemIds": ["b1.phrasal-verbs.call-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Cancelaron la fiesta.",
+      "accepted": [
+        "They called off the party.",
+        "They called the party off.",
+        "They canceled the party.",
+        "The party was {called off|canceled}."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.run-out-of"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We ran out ___ milk, so I went to the store.",
+      "answers": ["of"],
+      "distractors": ["from", "with"],
+      "es": "Nos quedamos sin leche, así que fui a la tienda."
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.break-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My car broke ___ on the highway.",
+      "answers": ["down"],
+      "distractors": ["up", "out"],
+      "es": "Mi auto se descompuso en la carretera."
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-cloze-3",
+      "itemIds": ["b1.health-and-lifestyle.give-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The test is hard, but don't give ___!",
+      "answers": ["up"],
+      "distractors": ["out", "off"],
+      "es": "El examen es difícil, ¡pero no te rindas!"
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.put-up-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I can't put up ___ my neighbor's loud music anymore.",
+      "answers": ["with"],
+      "distractors": ["to", "for"],
+      "es": "Ya no aguanto la música fuerte de mi vecino."
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.work-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'work out' in 'It will all work out.'",
+      "options": ["hacer ejercicio", "trabajar afuera", "dejar de funcionar", "salir bien"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-choice-1",
+      "itemIds": ["b1.phrasal-verbs.work-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We need to work out a solution.",
+      "options": [
+        "Tenemos que trabajar afuera.",
+        "Tenemos que encontrar una solución.",
+        "Necesitamos hacer ejercicio."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-order-1",
+      "itemIds": ["b1.phrasal-verbs.run-out-of"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["out", "the", "way", "gas", "home.", "on", "ran", "of", "We"],
+      "accepted": ["We ran out of gas on the way home."],
+      "es": "Nos quedamos sin gasolina camino a casa."
+    },
+    {
+      "id": "b1.phrasal-verbs.problems-write-1",
+      "itemIds": ["b1.phrasal-verbs.break-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi computadora se descompuso.",
+      "accepted": [
+        "My computer broke down.",
+        "My computer stopped working.",
+        "My computer broke.",
+        "My computer died."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.check-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We have to check ___ of the hotel by eleven.",
+      "answers": ["out"],
+      "distractors": ["in", "off"],
+      "es": "Tenemos que dejar el hotel antes de las once."
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.get-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Hurry! Get ___ the bus before it leaves.",
+      "answers": ["on"],
+      "distractors": ["up", "out"],
+      "es": "¡Apúrate! Súbete al autobús antes de que se vaya."
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.get-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Get ___ the train at the third station.",
+      "answers": ["off"],
+      "distractors": ["out", "down"],
+      "es": "Bájate del tren en la tercera estación."
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.pick-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Can you pick me ___ at the airport?",
+      "answers": ["up"],
+      "distractors": ["on", "off"],
+      "es": "¿Me puedes recoger en el aeropuerto?"
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-order-1",
+      "itemIds": ["b1.phrasal-verbs.get-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["minute.", "We", "at", "on", "the", "got", "the", "last", "bus"],
+      "accepted": ["We got on the bus at the last minute."],
+      "es": "Nos subimos al autobús en el último minuto."
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.get-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'bajarse del autobús'.",
+      "options": ["get on the bus", "get off the bus", "get down the bus", "go down the bus"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-choice-1",
+      "itemIds": ["b1.phrasal-verbs.pick-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My sister picked me up at the station.",
+      "options": [
+        "Mi hermana me recogió en la estación.",
+        "Mi hermana me dejó en la estación.",
+        "Mi hermana me esperó en la estación."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.travel-write-1",
+      "itemIds": ["b1.travel.check-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Nos registramos en el aeropuerto dos horas antes del vuelo.",
+      "accepted": ["We checked in at the airport {two|2} hours before {the|our} flight."]
+    }
+  ],
+  "cards": [
+    {
+      "id": "b1.phrasal-verbs.relationships",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: las relaciones",
+      "summary": "Cinco phrasal verbs para hablar de amigos, pareja y familia.",
+      "form": "verbo + partícula (+ preposición): get along with, break up with",
+      "uses": [
+        "Describir relaciones: I get along with my coworkers.",
+        "Historias de pareja: ask out, break up, make up.",
+        "Cuidar a alguien: look after (también take care of).",
+        "Con un pronombre, ask out se separa: ask her out."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I get along my brother.",
+          "right": "I get along with my brother.",
+          "why": "Para decir con quién, get along necesita with."
+        },
+        {
+          "wrong": "He asked out her.",
+          "right": "He asked her out.",
+          "why": "Con un pronombre, este va entre ask y out."
+        },
+        {
+          "wrong": "She cut with her boyfriend.",
+          "right": "She broke up with her boyfriend.",
+          "why": "Terminar o cortar con alguien es break up with; cut no se usa así."
+        },
+        {
+          "wrong": "Can you care my dog this weekend?",
+          "right": "Can you look after my dog this weekend?",
+          "why": "Cuidar es look after o take care of; care solo no lleva objeto directo."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I get along well with my coworkers.",
+          "es": "Me llevo bien con mis compañeros de trabajo."
+        },
+        {
+          "en": "They broke up after five years together.",
+          "es": "Terminaron después de cinco años juntos."
+        },
+        {
+          "en": "We had a fight, but we made up.",
+          "es": "Nos peleamos, pero hicimos las paces."
+        },
+        {
+          "en": "Who looks after your kids when you work?",
+          "es": "¿Quién cuida a tus hijos cuando trabajas?"
+        },
+        {
+          "en": "He was too shy to ask her out.",
+          "es": "Era demasiado tímido para invitarla a salir."
+        }
+      ],
+      "entries": [
+        {
+          "verb": "get along with",
+          "es": "llevarse bien con",
+          "separable": false,
+          "example": {
+            "en": "I get along with my sister.",
+            "es": "Me llevo bien con mi hermana."
+          }
+        },
+        {
+          "verb": "make up",
+          "es": "reconciliarse, hacer las paces (sin objeto)",
+          "separable": false,
+          "example": {
+            "en": "They had a fight, but they made up the next day.",
+            "es": "Se pelearon, pero se reconciliaron al día siguiente."
+          }
+        },
+        {
+          "verb": "break up with",
+          "es": "terminar (una relación) con",
+          "separable": false,
+          "example": {
+            "en": "She broke up with her boyfriend.",
+            "es": "Terminó con su novio."
+          }
+        },
+        {
+          "verb": "look after",
+          "es": "cuidar",
+          "separable": false,
+          "example": {
+            "en": "My grandmother looks after my little brother.",
+            "es": "Mi abuela cuida a mi hermanito."
+          }
+        },
+        {
+          "verb": "ask out",
+          "es": "invitar a salir",
+          "separable": true,
+          "example": {
+            "en": "He finally asked her out.",
+            "es": "Por fin la invitó a salir."
+          }
+        }
+      ],
+      "itemIds": [
+        "b1.phrasal-verbs.get-along-with",
+        "b1.relationships.make-up",
+        "b1.phrasal-verbs.break-up-with",
+        "b1.phrasal-verbs.look-after",
+        "b1.phrasal-verbs.ask-out"
+      ],
+      "exerciseIds": [
+        "b1.phrasal-verbs.relationships-cloze-1",
+        "b1.phrasal-verbs.relationships-cloze-2",
+        "b1.phrasal-verbs.relationships-cloze-3",
+        "b1.phrasal-verbs.relationships-cloze-4",
+        "b1.phrasal-verbs.relationships-vocab-1",
+        "b1.phrasal-verbs.relationships-choice-1",
+        "b1.phrasal-verbs.relationships-order-1",
+        "b1.phrasal-verbs.relationships-write-1"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.work-and-study",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: trabajo y estudio",
+      "summary": "Cinco phrasal verbs muy comunes en la oficina y en clase.",
+      "form": "verbo + partícula; con un pronombre, este va en el medio: hand it in, look it up",
+      "uses": [
+        "Tareas y trámites: hand in a report, fill out a form.",
+        "Buscar información: look up a word.",
+        "Resolver o entender: figure out how something works.",
+        "Recuperar el tiempo perdido: catch up."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I need to fill this form.",
+          "right": "I need to fill out this form.",
+          "why": "En inglés americano, llenar un formulario es fill out."
+        },
+        {
+          "wrong": "I have to deliver my homework.",
+          "right": "I have to hand in my homework.",
+          "why": "Entregar una tarea es hand in; deliver es repartir o llevar algo a un lugar."
+        },
+        {
+          "wrong": "Please hand in it tomorrow.",
+          "right": "Please hand it in tomorrow.",
+          "why": "Con un pronombre, este va entre hand e in."
+        },
+        {
+          "wrong": "I can't figure it.",
+          "right": "I can't figure it out.",
+          "why": "Para decir entender o resolver, figure necesita out."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I looked up the address online.",
+          "es": "Busqué la dirección en internet."
+        },
+        {
+          "en": "We finally figured out the answer.",
+          "es": "Por fin descubrimos la respuesta."
+        },
+        {
+          "en": "Did you hand in the report?",
+          "es": "¿Entregaste el informe?"
+        },
+        {
+          "en": "I was sick last week, so I have to catch up.",
+          "es": "Estuve enfermo la semana pasada, así que tengo que ponerme al día."
+        },
+        {
+          "en": "You need to fill out this form first.",
+          "es": "Primero tienes que llenar este formulario."
+        }
+      ],
+      "entries": [
+        {
+          "verb": "look up",
+          "es": "buscar (en un diccionario o en internet)",
+          "separable": true,
+          "example": {
+            "en": "Look up the word in the dictionary.",
+            "es": "Busca la palabra en el diccionario."
+          }
+        },
+        {
+          "verb": "figure out",
+          "es": "entender, resolver",
+          "separable": true,
+          "example": {
+            "en": "I can't figure out this problem.",
+            "es": "No logro resolver este problema."
+          }
+        },
+        {
+          "verb": "hand in",
+          "es": "entregar (una tarea, un informe)",
+          "separable": true,
+          "example": {
+            "en": "Please hand in your homework on Friday.",
+            "es": "Por favor, entreguen la tarea el viernes."
+          }
+        },
+        {
+          "verb": "catch up",
+          "es": "ponerse al día",
+          "separable": false,
+          "example": {
+            "en": "I need to catch up on my emails.",
+            "es": "Tengo que ponerme al día con los correos."
+          }
+        },
+        {
+          "verb": "fill out",
+          "es": "llenar (un formulario)",
+          "separable": true,
+          "example": {
+            "en": "Fill out this form, please.",
+            "es": "Llena este formulario, por favor."
+          }
+        }
+      ],
+      "itemIds": [
+        "b1.phrasal-verbs.look-up",
+        "b1.phrasal-verbs.figure-out",
+        "b1.education.hand-in",
+        "b1.phrasal-verbs.catch-up",
+        "b1.phrasal-verbs.fill-out"
+      ],
+      "exerciseIds": [
+        "b1.phrasal-verbs.work-and-study-cloze-1",
+        "b1.phrasal-verbs.work-and-study-cloze-2",
+        "b1.phrasal-verbs.work-and-study-cloze-3",
+        "b1.phrasal-verbs.work-and-study-cloze-4",
+        "b1.phrasal-verbs.work-and-study-vocab-1",
+        "b1.phrasal-verbs.work-and-study-choice-1",
+        "b1.phrasal-verbs.work-and-study-order-1",
+        "b1.phrasal-verbs.work-and-study-write-1"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.plans",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: planes",
+      "summary": "Cinco phrasal verbs para organizar, cambiar o cancelar planes.",
+      "form": "put off / call off / set up + objeto (separables) · come up with + objeto · show up (sin objeto)",
+      "uses": [
+        "Cambiar la fecha: put off (posponer).",
+        "Cancelar: call off.",
+        "Organizar: set up a meeting.",
+        "Proponer ideas: come up with a plan; llegar o aparecer: show up."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Let's put off it until tomorrow.",
+          "right": "Let's put it off until tomorrow.",
+          "why": "Con un pronombre, este va entre put y off."
+        },
+        {
+          "wrong": "She came up a good idea.",
+          "right": "She came up with a good idea.",
+          "why": "Come up with lleva with antes de la idea."
+        },
+        {
+          "wrong": "He didn't present to the meeting.",
+          "right": "He didn't show up to the meeting.",
+          "why": "Llegar o aparecer en un lugar es show up; present significa presentar algo."
+        }
+      ],
+      "examples": [
+        {
+          "en": "We had to put off our vacation.",
+          "es": "Tuvimos que posponer nuestras vacaciones."
+        },
+        {
+          "en": "The concert was called off at the last minute.",
+          "es": "Cancelaron el concierto en el último momento."
+        },
+        {
+          "en": "I set up a video call for tomorrow.",
+          "es": "Organicé una videollamada para mañana."
+        },
+        {
+          "en": "We need to come up with a new plan.",
+          "es": "Tenemos que idear un nuevo plan."
+        },
+        {
+          "en": "Only five people showed up.",
+          "es": "Solo vinieron cinco personas."
+        }
+      ],
+      "entries": [
+        {
+          "verb": "put off",
+          "es": "posponer, aplazar",
+          "separable": true,
+          "example": {
+            "en": "We put off the meeting until Friday.",
+            "es": "Pospusimos la reunión hasta el viernes."
+          }
+        },
+        {
+          "verb": "call off",
+          "es": "cancelar",
+          "separable": true,
+          "example": {
+            "en": "They called off the game because of the rain.",
+            "es": "Suspendieron el partido por la lluvia."
+          }
+        },
+        {
+          "verb": "set up",
+          "es": "organizar, preparar",
+          "separable": true,
+          "example": {
+            "en": "Can you set up a meeting with the client?",
+            "es": "¿Puedes organizar una reunión con el cliente?"
+          }
+        },
+        {
+          "verb": "come up with",
+          "es": "idear, ocurrírsele (una idea, un plan)",
+          "separable": false,
+          "example": {
+            "en": "She came up with a great idea.",
+            "es": "Se le ocurrió una gran idea."
+          }
+        },
+        {
+          "verb": "show up",
+          "es": "llegar, aparecer",
+          "separable": false,
+          "example": {
+            "en": "He showed up an hour late.",
+            "es": "Llegó una hora tarde."
+          }
+        }
+      ],
+      "itemIds": [
+        "b1.phrasal-verbs.put-off",
+        "b1.phrasal-verbs.call-off",
+        "b1.phrasal-verbs.set-up",
+        "b1.phrasal-verbs.come-up-with",
+        "b1.phrasal-verbs.show-up"
+      ],
+      "exerciseIds": [
+        "b1.phrasal-verbs.plans-cloze-1",
+        "b1.phrasal-verbs.plans-cloze-2",
+        "b1.phrasal-verbs.plans-cloze-3",
+        "b1.phrasal-verbs.plans-cloze-4",
+        "b1.phrasal-verbs.plans-vocab-1",
+        "b1.phrasal-verbs.plans-choice-1",
+        "b1.phrasal-verbs.plans-order-1",
+        "b1.phrasal-verbs.plans-write-1"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.problems",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: problemas y soluciones",
+      "summary": "Cinco phrasal verbs para hablar de problemas, de cómo aguantarlos y de cómo resolverlos.",
+      "form": "run out of / put up with + sustantivo · break down (sin objeto) · give up / work out (separables)",
+      "uses": [
+        "Quedarse sin algo: run out of gas, run out of time.",
+        "Averías: The car broke down.",
+        "Rendirse o dejar un hábito: give up.",
+        "Resolver o salir bien: work out; aguantar algo molesto: put up with."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "We stayed without milk.",
+          "right": "We ran out of milk.",
+          "why": "«Quedarse sin» algo es run out of; stay without es una traducción literal."
+        },
+        {
+          "wrong": "My car broke on the highway.",
+          "right": "My car broke down on the highway.",
+          "why": "Cuando un auto o una máquina deja de funcionar se usa break down."
+        },
+        {
+          "wrong": "I can't support this noise.",
+          "right": "I can't put up with this noise.",
+          "why": "Support es apoyar; soportar algo molesto es put up with."
+        }
+      ],
+      "examples": [
+        {
+          "en": "We ran out of gas on the way home.",
+          "es": "Nos quedamos sin gasolina camino a casa."
+        },
+        {
+          "en": "The washing machine broke down again.",
+          "es": "La lavadora se descompuso otra vez."
+        },
+        {
+          "en": "He gave up smoking last year.",
+          "es": "Dejó de fumar el año pasado."
+        },
+        {
+          "en": "Don't worry. It will all work out.",
+          "es": "No te preocupes. Todo va a salir bien."
+        },
+        {
+          "en": "How do you put up with all that noise?",
+          "es": "¿Cómo aguantas todo ese ruido?"
+        }
+      ],
+      "entries": [
+        {
+          "verb": "run out of",
+          "es": "quedarse sin",
+          "separable": false,
+          "example": {
+            "en": "We ran out of milk.",
+            "es": "Nos quedamos sin leche."
+          }
+        },
+        {
+          "verb": "break down",
+          "es": "descomponerse, dejar de funcionar (una máquina, un auto)",
+          "separable": false,
+          "example": {
+            "en": "My car broke down on the highway.",
+            "es": "Mi auto se descompuso en la carretera."
+          }
+        },
+        {
+          "verb": "give up",
+          "es": "rendirse; dejar (un hábito)",
+          "separable": true,
+          "example": {
+            "en": "Don't give up. You're almost there.",
+            "es": "No te rindas. Ya casi llegas."
+          }
+        },
+        {
+          "verb": "work out",
+          "es": "resolver; salir bien",
+          "separable": true,
+          "example": {
+            "en": "Don't worry. We'll work it out together.",
+            "es": "No te preocupes. Lo vamos a resolver juntos."
+          }
+        },
+        {
+          "verb": "put up with",
+          "es": "aguantar, soportar",
+          "separable": false,
+          "example": {
+            "en": "I can't put up with this noise anymore.",
+            "es": "Ya no aguanto este ruido."
+          }
+        }
+      ],
+      "itemIds": [
+        "b1.phrasal-verbs.run-out-of",
+        "b1.phrasal-verbs.break-down",
+        "b1.health-and-lifestyle.give-up",
+        "b1.phrasal-verbs.work-out",
+        "b1.phrasal-verbs.put-up-with"
+      ],
+      "exerciseIds": [
+        "b1.phrasal-verbs.problems-cloze-1",
+        "b1.phrasal-verbs.problems-cloze-2",
+        "b1.phrasal-verbs.problems-cloze-3",
+        "b1.phrasal-verbs.problems-cloze-4",
+        "b1.phrasal-verbs.problems-vocab-1",
+        "b1.phrasal-verbs.problems-choice-1",
+        "b1.phrasal-verbs.problems-order-1",
+        "b1.phrasal-verbs.problems-write-1"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.travel",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: de viaje",
+      "summary": "Cinco phrasal verbs para moverte en un viaje: hoteles, aeropuertos y transporte.",
+      "form": "check in / check out (sin objeto) · get on / get off + transporte · pick up + persona (separable)",
+      "uses": [
+        "Hoteles y aeropuertos: check in al llegar, check out al irte.",
+        "Transporte: get on (subirse) y get off (bajarse) del autobús, el tren o el avión.",
+        "Ir a buscar a alguien: pick someone up.",
+        "Para autos y taxis se dice get in y get out of."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I'll pick up you at the airport.",
+          "right": "I'll pick you up at the airport.",
+          "why": "Con un pronombre, este va entre pick y up."
+        },
+        {
+          "wrong": "We went down from the bus at the last stop.",
+          "right": "We got off the bus at the last stop.",
+          "why": "Bajarse de un transporte es get off, no go down."
+        },
+        {
+          "wrong": "Get on the taxi.",
+          "right": "Get in the taxi.",
+          "why": "Para autos y taxis se usa get in; get on es para autobuses, trenes y aviones."
+        }
+      ],
+      "examples": [
+        {
+          "en": "We checked in at the hotel at three.",
+          "es": "Nos registramos en el hotel a las tres."
+        },
+        {
+          "en": "What time do we have to check out?",
+          "es": "¿A qué hora tenemos que dejar el hotel?"
+        },
+        {
+          "en": "We got on the bus at the last minute.",
+          "es": "Nos subimos al autobús en el último minuto."
+        },
+        {
+          "en": "Get off at the third stop.",
+          "es": "Bájate en la tercera parada."
+        },
+        {
+          "en": "My brother picked me up at the airport.",
+          "es": "Mi hermano me recogió en el aeropuerto."
+        }
+      ],
+      "entries": [
+        {
+          "verb": "check in",
+          "es": "registrarse (en un hotel o aeropuerto; sin objeto)",
+          "separable": false,
+          "example": {
+            "en": "You can check in online the day before.",
+            "es": "Puedes registrarte en línea el día anterior."
+          }
+        },
+        {
+          "verb": "check out",
+          "es": "dejar el hotel (pagar y salir; sin objeto)",
+          "separable": false,
+          "example": {
+            "en": "We have to check out by noon.",
+            "es": "Tenemos que dejar el hotel antes del mediodía."
+          }
+        },
+        {
+          "verb": "get on",
+          "es": "subirse (a un autobús, tren o avión)",
+          "separable": false,
+          "example": {
+            "en": "Hurry, get on the bus!",
+            "es": "¡Apúrate, súbete al autobús!"
+          }
+        },
+        {
+          "verb": "get off",
+          "es": "bajarse (de un autobús, tren o avión)",
+          "separable": false,
+          "example": {
+            "en": "We got off the train at the next station.",
+            "es": "Nos bajamos del tren en la siguiente estación."
+          }
+        },
+        {
+          "verb": "pick up",
+          "es": "recoger (a alguien)",
+          "separable": true,
+          "example": {
+            "en": "I'll pick you up at the airport.",
+            "es": "Te recojo en el aeropuerto."
+          }
+        }
+      ],
+      "itemIds": [
+        "b1.travel.check-in",
+        "b1.phrasal-verbs.check-out",
+        "b1.phrasal-verbs.get-on",
+        "b1.phrasal-verbs.get-off",
+        "b1.phrasal-verbs.pick-up"
+      ],
+      "exerciseIds": [
+        "b1.phrasal-verbs.travel-cloze-1",
+        "b1.phrasal-verbs.travel-cloze-2",
+        "b1.phrasal-verbs.travel-cloze-3",
+        "b1.phrasal-verbs.travel-cloze-4",
+        "b1.phrasal-verbs.travel-order-1",
+        "b1.phrasal-verbs.travel-vocab-1",
+        "b1.phrasal-verbs.travel-choice-1",
+        "b1.phrasal-verbs.travel-write-1"
+      ]
+    }
+  ]
+}

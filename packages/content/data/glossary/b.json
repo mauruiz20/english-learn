@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.baby",
+      "headword": "baby",
+      "kind": "word",
+      "forms": ["baby", "babies"],
+      "senses": [
+        {
+          "es": "bebé",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.back",
       "headword": "back",
       "kind": "word",
@@ -205,6 +217,18 @@
         {
           "es": "(what's … like?) ¿cómo es…?",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.beach",
+      "headword": "beach",
+      "kind": "word",
+      "forms": ["beach", "beaches"],
+      "senses": [
+        {
+          "es": "playa",
+          "pos": "noun"
         }
       ]
     },
@@ -621,6 +645,18 @@
       ]
     },
     {
+      "id": "glossary.brake",
+      "headword": "brake",
+      "kind": "word",
+      "forms": ["brake", "brakes"],
+      "senses": [
+        {
+          "es": "freno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.bread",
       "headword": "bread",
       "kind": "word",
@@ -645,6 +681,18 @@
         {
           "es": "descanso, pausa",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.break-down",
+      "headword": "break down",
+      "kind": "phrase",
+      "forms": ["break down", "breaks down", "broke down", "broken down", "breaking down"],
+      "senses": [
+        {
+          "es": "descomponerse (una máquina, un auto)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -757,6 +805,18 @@
         {
           "es": "autobús",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.busy",
+      "headword": "busy",
+      "kind": "word",
+      "forms": ["busy"],
+      "senses": [
+        {
+          "es": "ocupado",
+          "pos": "adjective"
         }
       ]
     },

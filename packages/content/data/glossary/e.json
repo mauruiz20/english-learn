@@ -41,6 +41,18 @@
       ]
     },
     {
+      "id": "glossary.east",
+      "headword": "east",
+      "kind": "word",
+      "forms": ["east"],
+      "senses": [
+        {
+          "es": "este (punto cardinal)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.easy",
       "headword": "easy",
       "kind": "word",
@@ -109,6 +121,42 @@
         {
           "es": "once",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.email",
+      "headword": "email",
+      "kind": "word",
+      "forms": ["email", "emails"],
+      "senses": [
+        {
+          "es": "correo electrónico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.embarrassed",
+      "headword": "embarrassed",
+      "kind": "word",
+      "forms": ["embarrassed"],
+      "senses": [
+        {
+          "es": "avergonzado (no «embarazada»)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.embarrassing",
+      "headword": "embarrassing",
+      "kind": "word",
+      "forms": ["embarrassing"],
+      "senses": [
+        {
+          "es": "vergonzoso, que da vergüenza",
+          "pos": "adjective"
         }
       ]
     },

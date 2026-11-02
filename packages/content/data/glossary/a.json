@@ -265,6 +265,18 @@
       ]
     },
     {
+      "id": "glossary.actual",
+      "headword": "actual",
+      "kind": "word",
+      "forms": ["actual"],
+      "senses": [
+        {
+          "es": "real, verdadero (no «actual»)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.actually",
       "headword": "actually",
       "kind": "word",
@@ -273,6 +285,18 @@
         {
           "es": "en realidad, de hecho",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.address",
+      "headword": "address",
+      "kind": "word",
+      "forms": ["address", "addresses"],
+      "senses": [
+        {
+          "es": "dirección",
+          "pos": "noun"
         }
       ]
     },
@@ -424,6 +448,18 @@
       "senses": [
         {
           "es": "aerolínea",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.airport",
+      "headword": "airport",
+      "kind": "word",
+      "forms": ["airport", "airports"],
+      "senses": [
+        {
+          "es": "aeropuerto",
           "pos": "noun"
         }
       ]
@@ -617,6 +653,18 @@
       ]
     },
     {
+      "id": "glossary.angry",
+      "headword": "angry",
+      "kind": "word",
+      "forms": ["angry"],
+      "senses": [
+        {
+          "es": "enojado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.animal",
       "headword": "animal",
       "kind": "word",
@@ -653,6 +701,18 @@
       ]
     },
     {
+      "id": "glossary.another",
+      "headword": "another",
+      "kind": "word",
+      "forms": ["another"],
+      "senses": [
+        {
+          "es": "otro, otra",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
       "id": "glossary.answer",
       "headword": "answer",
       "kind": "word",
@@ -681,6 +741,18 @@
         {
           "es": "ningún (en negativas)",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.anymore",
+      "headword": "anymore",
+      "kind": "word",
+      "forms": ["anymore"],
+      "senses": [
+        {
+          "es": "ya no (en oraciones negativas)",
+          "pos": "adverb"
         }
       ]
     },
@@ -989,6 +1061,18 @@
       ]
     },
     {
+      "id": "glossary.ask-out",
+      "headword": "ask out",
+      "kind": "phrase",
+      "forms": ["ask out", "asks out", "asked out", "asking out"],
+      "senses": [
+        {
+          "es": "invitar a salir",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.asleep",
       "headword": "asleep",
       "kind": "word",
@@ -997,6 +1081,30 @@
         {
           "es": "dormido",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.assist",
+      "headword": "assist",
+      "kind": "word",
+      "forms": ["assist", "assists", "assisted", "assisting"],
+      "senses": [
+        {
+          "es": "ayudar (no «asistir a»)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.assistant",
+      "headword": "assistant",
+      "kind": "word",
+      "forms": ["assistant", "assistants"],
+      "senses": [
+        {
+          "es": "asistente",
+          "pos": "noun"
         }
       ]
     },
@@ -1089,6 +1197,18 @@
       ]
     },
     {
+      "id": "glossary.attend",
+      "headword": "attend",
+      "kind": "word",
+      "forms": ["attend", "attends", "attended", "attending"],
+      "senses": [
+        {
+          "es": "asistir a (una clase, una reunión)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.attract",
       "headword": "attract",
       "kind": "word",
@@ -1133,6 +1253,18 @@
         {
           "es": "automáticamente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.avoid",
+      "headword": "avoid",
+      "kind": "word",
+      "forms": ["avoid", "avoids", "avoided", "avoiding"],
+      "senses": [
+        {
+          "es": "evitar",
+          "pos": "verb"
         }
       ]
     },

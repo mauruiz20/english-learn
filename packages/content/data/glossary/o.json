@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.ocean",
+      "headword": "ocean",
+      "kind": "word",
+      "forms": ["ocean", "oceans"],
+      "senses": [
+        {
+          "es": "océano, mar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.of",
       "headword": "of",
       "kind": "word",
@@ -261,6 +273,18 @@
       ]
     },
     {
+      "id": "glossary.operation",
+      "headword": "operation",
+      "kind": "word",
+      "forms": ["operation", "operations"],
+      "senses": [
+        {
+          "es": "operación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.opposite",
       "headword": "opposite",
       "kind": "word",
@@ -340,6 +364,18 @@
         },
         {
           "es": "(go out) salir",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.outside",
+      "headword": "outside",
+      "kind": "word",
+      "forms": ["outside"],
+      "senses": [
+        {
+          "es": "afuera",
           "pos": "adverb"
         }
       ]

@@ -5,6 +5,7 @@
  */
 import { buildGlossaryIndex, type GlossaryEntry, type GlossaryIndex } from "@english-learn/domain";
 import type { ContentFile } from "../schema/content-file";
+import type { Card } from "../schema/card";
 import type { Item, Lesson, Passage } from "../schema/entities";
 import type { Exercise } from "../schema/exercise";
 import type { PlacementQuestion } from "../schema/placement";
@@ -19,6 +20,9 @@ export type Corpus = {
   readonly exercisesById: ReadonlyMap<string, Exercise>;
   readonly passagesById: ReadonlyMap<string, Passage>;
   readonly lessonsById: ReadonlyMap<string, Lesson>;
+  /** Study cards ("Fichas"), in file order. */
+  readonly cards: readonly Card[];
+  readonly cardsById: ReadonlyMap<string, Card>;
   readonly glossary: readonly GlossaryEntry[];
   readonly glossaryById: ReadonlyMap<string, GlossaryEntry>;
   /** Ready-made lookup for `annotateText` (hover / tap translations). */
@@ -36,6 +40,7 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
   const passages = files.flatMap((f) => f.passages ?? []);
   const lessons = files.flatMap((f) => f.lessons ?? []);
   const placement = files.flatMap((f) => f.placement ?? []);
+  const cards = files.flatMap((f) => f.cards ?? []);
   const glossary: readonly GlossaryEntry[] = files.flatMap((f) => f.glossary ?? []);
   return {
     items,
@@ -47,6 +52,8 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
     exercisesById: byId(exercises),
     passagesById: byId(passages),
     lessonsById: byId(lessons),
+    cards,
+    cardsById: byId(cards),
     glossary,
     glossaryById: byId(glossary),
     glossaryIndex: buildGlossaryIndex(glossary),

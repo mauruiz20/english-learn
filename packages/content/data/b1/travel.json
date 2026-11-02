@@ -59,7 +59,7 @@
     {
       "id": "b1.travel.check-in",
       "level": "B1",
-      "topics": ["travel"],
+      "topics": ["travel", "phrasal-verbs"],
       "kind": "phrase",
       "term": "check in",
       "es": "registrarse (en un hotel o aeropuerto)"

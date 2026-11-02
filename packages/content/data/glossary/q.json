@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.quickly",
+      "headword": "quickly",
+      "kind": "word",
+      "forms": ["quickly"],
+      "senses": [
+        {
+          "es": "rápidamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.quiet",
       "headword": "quiet",
       "kind": "word",

@@ -297,6 +297,18 @@
       ]
     },
     {
+      "id": "glossary.pencil",
+      "headword": "pencil",
+      "kind": "word",
+      "forms": ["pencil", "pencils"],
+      "senses": [
+        {
+          "es": "lápiz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.people",
       "headword": "people",
       "kind": "word",
@@ -353,6 +365,46 @@
       ]
     },
     {
+      "id": "glossary.permit",
+      "headword": "permit",
+      "kind": "word",
+      "forms": ["permit", "permits", "permitted"],
+      "senses": [
+        {
+          "es": "permitir",
+          "pos": "verb"
+        },
+        {
+          "es": "permiso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.peru",
+      "headword": "Peru",
+      "kind": "word",
+      "forms": ["peru"],
+      "senses": [
+        {
+          "es": "Perú",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.peruvian",
+      "headword": "Peruvian",
+      "kind": "word",
+      "forms": ["peruvian"],
+      "senses": [
+        {
+          "es": "peruano",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.phone",
       "headword": "phone",
       "kind": "word",
@@ -372,6 +424,46 @@
       "senses": [
         {
           "es": "piano",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pick",
+      "headword": "pick",
+      "kind": "word",
+      "forms": ["pick", "picks", "picked", "picking"],
+      "senses": [
+        {
+          "es": "(pick up) recoger",
+          "pos": "verb"
+        },
+        {
+          "es": "elegir, escoger",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pick-up",
+      "headword": "pick up",
+      "kind": "phrase",
+      "forms": ["pick up", "picks up", "picked up", "picking up"],
+      "senses": [
+        {
+          "es": "recoger (a alguien o algo)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.picture",
+      "headword": "picture",
+      "kind": "word",
+      "forms": ["picture", "pictures"],
+      "senses": [
+        {
+          "es": "foto, imagen",
           "pos": "noun"
         }
       ]
@@ -633,6 +725,18 @@
       ]
     },
     {
+      "id": "glossary.pregnant",
+      "headword": "pregnant",
+      "kind": "word",
+      "forms": ["pregnant"],
+      "senses": [
+        {
+          "es": "embarazada",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.prepare",
       "headword": "prepare",
       "kind": "word",
@@ -657,6 +761,34 @@
         {
           "es": "regalo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.president",
+      "headword": "president",
+      "kind": "word",
+      "forms": ["president", "presidents"],
+      "senses": [
+        {
+          "es": "presidente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pretty",
+      "headword": "pretty",
+      "kind": "word",
+      "forms": ["pretty"],
+      "senses": [
+        {
+          "es": "bastante",
+          "pos": "adverb"
+        },
+        {
+          "es": "bonito",
+          "pos": "adjective"
         }
       ]
     },
@@ -880,10 +1012,34 @@
       "id": "glossary.put-off",
       "headword": "put off",
       "kind": "phrase",
-      "forms": ["put off", "puts off"],
+      "forms": ["put off", "puts off", "putting off"],
       "senses": [
         {
           "es": "posponer, aplazar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.put-on",
+      "headword": "put on",
+      "kind": "phrase",
+      "forms": ["put on", "puts on", "putting on"],
+      "senses": [
+        {
+          "es": "ponerse (ropa)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.put-up-with",
+      "headword": "put up with",
+      "kind": "phrase",
+      "forms": ["put up with", "puts up with", "putting up with"],
+      "senses": [
+        {
+          "es": "aguantar, soportar",
           "pos": "phrasal verb"
         }
       ]

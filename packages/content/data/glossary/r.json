@@ -29,6 +29,26 @@
       ]
     },
     {
+      "id": "glossary.raise",
+      "headword": "raise",
+      "kind": "word",
+      "forms": ["raise", "raises", "raised", "raising"],
+      "senses": [
+        {
+          "es": "levantar, subir (algo)",
+          "pos": "verb"
+        },
+        {
+          "es": "criar",
+          "pos": "verb"
+        },
+        {
+          "es": "aumento (de sueldo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rang",
       "headword": "rang",
       "kind": "word",
@@ -281,6 +301,30 @@
         {
           "es": "reacio, poco dispuesto",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.remember",
+      "headword": "remember",
+      "kind": "word",
+      "forms": ["remember", "remembers", "remembered", "remembering"],
+      "senses": [
+        {
+          "es": "acordarse de, recordar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.remind",
+      "headword": "remind",
+      "kind": "word",
+      "forms": ["remind", "reminds", "reminded", "reminding"],
+      "senses": [
+        {
+          "es": "recordarle (algo a alguien)",
+          "pos": "verb"
         }
       ]
     },
@@ -597,6 +641,46 @@
         {
           "es": "funcionar, operar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.run-out-of",
+      "headword": "run out of",
+      "kind": "phrase",
+      "forms": ["run out of", "runs out of", "ran out of", "running out of"],
+      "senses": [
+        {
+          "es": "quedarse sin",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rush",
+      "headword": "rush",
+      "kind": "word",
+      "forms": ["rush", "rushes", "rushed", "rushing"],
+      "senses": [
+        {
+          "es": "apurarse",
+          "pos": "verb"
+        },
+        {
+          "es": "prisa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rush-hour",
+      "headword": "rush hour",
+      "kind": "phrase",
+      "forms": ["rush hour"],
+      "senses": [
+        {
+          "es": "hora pico",
+          "pos": "noun"
         }
       ]
     }

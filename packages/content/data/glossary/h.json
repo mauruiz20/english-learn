@@ -45,6 +45,18 @@
       ]
     },
     {
+      "id": "glossary.hair",
+      "headword": "hair",
+      "kind": "word",
+      "forms": ["hair"],
+      "senses": [
+        {
+          "es": "pelo, cabello",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.half",
       "headword": "half",
       "kind": "word",
@@ -97,6 +109,22 @@
         {
           "es": "pasar, suceder",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.happy",
+      "headword": "happy",
+      "kind": "word",
+      "forms": ["happy", "happier", "happiest"],
+      "senses": [
+        {
+          "es": "feliz, contento",
+          "pos": "adjective"
+        },
+        {
+          "es": "(be happy to) con gusto",
+          "pos": "expression"
         }
       ]
     },
@@ -337,6 +365,46 @@
       ]
     },
     {
+      "id": "glossary.hear",
+      "headword": "hear",
+      "kind": "word",
+      "forms": ["hear", "hears", "heard", "hearing"],
+      "senses": [
+        {
+          "es": "oír, escuchar",
+          "pos": "verb"
+        },
+        {
+          "es": "(hear from someone) tener noticias de alguien",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.heavy",
+      "headword": "heavy",
+      "kind": "word",
+      "forms": ["heavy"],
+      "senses": [
+        {
+          "es": "pesado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hello",
+      "headword": "hello",
+      "kind": "word",
+      "forms": ["hello"],
+      "senses": [
+        {
+          "es": "hola",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.help",
       "headword": "help",
       "kind": "word",
@@ -421,6 +489,18 @@
       ]
     },
     {
+      "id": "glossary.highway",
+      "headword": "highway",
+      "kind": "word",
+      "forms": ["highway", "highways"],
+      "senses": [
+        {
+          "es": "carretera, autopista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.him",
       "headword": "him",
       "kind": "word",
@@ -496,6 +576,34 @@
       "senses": [
         {
           "es": "tarea (escolar)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hope",
+      "headword": "hope",
+      "kind": "word",
+      "forms": ["hope", "hopes", "hoped", "hoping"],
+      "senses": [
+        {
+          "es": "esperar (que)",
+          "pos": "verb"
+        },
+        {
+          "es": "esperanza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hospital",
+      "headword": "hospital",
+      "kind": "word",
+      "forms": ["hospital", "hospitals"],
+      "senses": [
+        {
+          "es": "hospital",
           "pos": "noun"
         }
       ]
@@ -673,6 +781,22 @@
         {
           "es": "con hambre (be hungry = tener hambre)",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hurry",
+      "headword": "hurry",
+      "kind": "word",
+      "forms": ["hurry", "hurries", "hurried", "hurrying"],
+      "senses": [
+        {
+          "es": "apurarse",
+          "pos": "verb"
+        },
+        {
+          "es": "prisa",
+          "pos": "noun"
         }
       ]
     },

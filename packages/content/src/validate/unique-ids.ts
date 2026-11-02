@@ -1,7 +1,7 @@
 import type { LoadedFile, Rule, ValidationError } from "./types";
 
-type Kind = "items" | "exercises" | "passages" | "lessons" | "placement";
-const KINDS: readonly Kind[] = ["items", "exercises", "passages", "lessons", "placement"];
+type Kind = "items" | "exercises" | "passages" | "lessons" | "placement" | "cards";
+const KINDS: readonly Kind[] = ["items", "exercises", "passages", "lessons", "placement", "cards"];
 
 /** Ids must be unique among entities of the same kind, across the whole corpus. */
 export const validateUniqueIds: Rule = (files: readonly LoadedFile[]) => {

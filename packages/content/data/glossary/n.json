@@ -13,6 +13,22 @@
       ]
     },
     {
+      "id": "glossary.nap",
+      "headword": "nap",
+      "kind": "word",
+      "forms": ["nap", "naps", "napped", "napping"],
+      "senses": [
+        {
+          "es": "siesta",
+          "pos": "noun"
+        },
+        {
+          "es": "dormir la siesta",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.near",
       "headword": "near",
       "kind": "word",
@@ -245,6 +261,18 @@
       ]
     },
     {
+      "id": "glossary.noise",
+      "headword": "noise",
+      "kind": "word",
+      "forms": ["noise", "noises"],
+      "senses": [
+        {
+          "es": "ruido",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.noisy",
       "headword": "noisy",
       "kind": "word",
@@ -265,6 +293,18 @@
         {
           "es": "ninguno, nada",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.noon",
+      "headword": "noon",
+      "kind": "word",
+      "forms": ["noon"],
+      "senses": [
+        {
+          "es": "mediodía",
+          "pos": "noun"
         }
       ]
     },
@@ -377,6 +417,30 @@
         {
           "es": "ahora",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nowadays",
+      "headword": "nowadays",
+      "kind": "word",
+      "forms": ["nowadays"],
+      "senses": [
+        {
+          "es": "hoy en día",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.number",
+      "headword": "number",
+      "kind": "word",
+      "forms": ["number", "numbers"],
+      "senses": [
+        {
+          "es": "número",
+          "pos": "noun"
         }
       ]
     },
