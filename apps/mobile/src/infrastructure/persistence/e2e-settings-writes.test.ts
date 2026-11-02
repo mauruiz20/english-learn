@@ -51,11 +51,35 @@ describe("exposeSettingsWrites", () => {
     await expect(host.__e2e!.settingsWritesSettled!()).resolves.toBeUndefined();
   });
 
+  it("tracks the theme preference writes too", async () => {
+    const fake = createFakeSettingsRepository();
+    let commit: () => void = () => {};
+    fake.setThemePreference = () =>
+      new Promise<void>((resolve) => {
+        commit = resolve;
+      });
+    const settings = exposeSettingsWrites(fake);
+
+    const write = settings.setThemePreference("dark");
+    let settled = false;
+    const waiting = host.__e2e!.settingsWritesSettled!().then(() => {
+      settled = true;
+    });
+    await Promise.resolve();
+    expect(settled).toBe(false);
+
+    commit();
+    await write;
+    await waiting;
+    expect(settled).toBe(true);
+  });
+
   it("passes reads through unchanged", async () => {
     const fake = createFakeSettingsRepository();
     await fake.setSoundEnabled(false);
     const settings = exposeSettingsWrites(fake);
     expect(await settings.getSoundEnabled()).toBe(false);
     expect(await settings.getLookupHintDismissed()).toBe(false);
+    expect(await settings.getThemePreference()).toBe("system");
   });
 });

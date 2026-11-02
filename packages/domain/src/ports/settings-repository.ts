@@ -7,6 +7,9 @@ export type AccountMarker = {
   readonly email: string;
 };
 
+/** The app's look: follow the device's light/dark setting, or always one of them. */
+export type ThemePreference = "system" | "light" | "dark";
+
 /** The learner's app preferences, kept on the device. Implemented by the app layer. */
 export interface SettingsRepository {
   /** Whether interaction sounds play; on until the learner turns them off. */
@@ -22,4 +25,7 @@ export interface SettingsRepository {
   /** Whether the learner dismissed the one-time "save your progress" suggestion. */
   getSaveProgressSuggestionDismissed(): Promise<boolean>;
   setSaveProgressSuggestionDismissed(): Promise<void>;
+  /** Light, dark or the device's setting; follows the system until the learner picks one. */
+  getThemePreference(): Promise<ThemePreference>;
+  setThemePreference(preference: ThemePreference): Promise<void>;
 }

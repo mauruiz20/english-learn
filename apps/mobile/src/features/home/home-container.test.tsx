@@ -14,6 +14,7 @@ import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
+import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
 import { HomeContainer } from "./home-container";
 import { AccountContext, type AccountContextValue } from "@/features/account/account-context";
 import { createCompletionMemory, type CompletionMemory } from "./model/completion-memory";
@@ -61,7 +62,9 @@ function renderContainer(
       }}
     >
       <SoundPreferenceProvider>
-        <HomeContainer content={content} completionMemory={completionMemory} />
+        <ThemePreferenceProvider>
+          <HomeContainer content={content} completionMemory={completionMemory} />
+        </ThemePreferenceProvider>
       </SoundPreferenceProvider>
     </AppServicesProvider>,
   );
@@ -235,7 +238,9 @@ describe("HomeContainer", () => {
           }}
         >
           <SoundPreferenceProvider>
-            <HomeContainer content={content} />
+            <ThemePreferenceProvider>
+              <HomeContainer content={content} />
+            </ThemePreferenceProvider>
           </SoundPreferenceProvider>
         </AppServicesProvider>
       </AccountContext>

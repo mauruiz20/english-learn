@@ -76,4 +76,23 @@ describe("createSqliteSettingsRepository", () => {
       true,
     );
   });
+
+  it("follows the system theme by default", async () => {
+    expect(await settings.getThemePreference()).toBe("system");
+  });
+
+  it.each(["light", "dark", "system"] as const)(
+    "remembers the %s theme preference",
+    async (preference) => {
+      await settings.setThemePreference(preference);
+
+      expect(await createSqliteSettingsRepository(db).getThemePreference()).toBe(preference);
+    },
+  );
+
+  it("treats an unreadable stored theme as following the system", async () => {
+    await db.runAsync("INSERT INTO setting (key, value) VALUES ('theme_preference', 'sepia')", []);
+
+    expect(await settings.getThemePreference()).toBe("system");
+  });
 });
