@@ -1,10 +1,11 @@
-import type { AccountMarker, SettingsRepository } from "@english-learn/domain";
+import type { AccountMarker, SettingsRepository, ThemePreference } from "@english-learn/domain";
 import type { SqlDatabase } from "./sql-database";
 
 const SOUND_ENABLED = "sound_enabled";
 const LOOKUP_HINT_DISMISSED = "lookup_hint_dismissed";
 const ACCOUNT = "account";
 const SAVE_PROGRESS_SUGGESTION_DISMISSED = "save_progress_suggestion_dismissed";
+const THEME_PREFERENCE = "theme_preference";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -39,7 +40,14 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     getSaveProgressSuggestionDismissed: async () =>
       (await read(SAVE_PROGRESS_SUGGESTION_DISMISSED)) === "1",
     setSaveProgressSuggestionDismissed: () => write(SAVE_PROGRESS_SUGGESTION_DISMISSED, "1"),
+    getThemePreference: async () => parseThemePreference(await read(THEME_PREFERENCE)),
+    setThemePreference: (preference) => write(THEME_PREFERENCE, preference),
   };
+}
+
+/** Anything but an explicit light or dark follows the system (the default). */
+function parseThemePreference(value: string | null): ThemePreference {
+  return value === "light" || value === "dark" ? value : "system";
 }
 
 /** An unreadable value counts as signed out: the learner signs in again. */

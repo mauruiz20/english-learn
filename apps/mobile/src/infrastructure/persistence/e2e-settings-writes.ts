@@ -39,5 +39,7 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
     getSaveProgressSuggestionDismissed: () => repository.getSaveProgressSuggestionDismissed(),
     setSaveProgressSuggestionDismissed: () =>
       track(repository.setSaveProgressSuggestionDismissed()),
+    getThemePreference: () => repository.getThemePreference(),
+    setThemePreference: (preference) => track(repository.setThemePreference(preference)),
   };
 }
