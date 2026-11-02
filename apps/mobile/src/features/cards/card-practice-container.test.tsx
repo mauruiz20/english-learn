@@ -107,6 +107,36 @@ describe("CardPracticeContainer", () => {
     ).toEqual(["a2.routine.usually", "a2.routine.wake-up"]);
   });
 
+  it("keeps the card's best result, and a redo pays answer XP but no second bonus", async () => {
+    const repository = createFakeRepository();
+    const first = await renderPractice(repository);
+    await press("dormirse", "radio");
+    await press("Comprobar");
+    await press("Continuar");
+    for (const token of ["I", "usually", "wake", "up"]) await press(token);
+    await press("Comprobar");
+    await press("Continuar");
+    // The first practice, with a mistake, already completed the card.
+    await screen.findByText("¡Práctica completada!");
+    const firstXp = repository.snapshot().xp;
+    await first.unmount();
+
+    await renderPractice(repository);
+    await press("despertarse", "radio");
+    await press("Comprobar");
+    await press("Continuar");
+    for (const token of ["I", "usually", "wake", "up"]) await press(token);
+    await press("Comprobar");
+    await press("Continuar");
+
+    // The redo pays its answers only (2 × 10), never the completion bonus again.
+    expect(await screen.findByText("XP ganada: 20")).toBeOnTheScreen();
+    expect(repository.snapshot().xp).toBe(firstXp + 20);
+    expect(await repository.getLessonResults()).toEqual([
+      { lessonId: card.id, bestAccuracy: 1, completions: 2 },
+    ]);
+  });
+
   it("goes back to the card after the summary", async () => {
     await renderPractice(createFakeRepository());
     await press("despertarse", "radio");
