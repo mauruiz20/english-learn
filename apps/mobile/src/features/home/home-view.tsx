@@ -25,7 +25,12 @@ import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 import { cardsCount } from "@/features/cards/cards-view";
-import type { LessonScore } from "@/features/lesson/model/lesson-score";
+import { PerfectBadge } from "@/features/lesson/components/perfect-badge";
+import {
+  scoreDescription,
+  scoreText,
+  type LessonScore,
+} from "@/features/lesson/model/lesson-score";
 
 export type HomeLesson = {
   readonly id: string;
@@ -297,11 +302,7 @@ type StopKind = "done" | "next" | "pending";
 
 /** "Mi rutina, completada con errores: 5 de 6 correctas", or just the title when not done. */
 function stopLabel(lesson: HomeLesson): string {
-  if (!lesson.done) return lesson.title;
-  const { score } = lesson;
-  if (score === undefined) return `${lesson.title}, completada`;
-  const how = score.perfect ? "sin errores" : "con errores";
-  return `${lesson.title}, completada ${how}: ${score.correct} de ${score.total} correctas`;
+  return lesson.done ? `${lesson.title}, ${scoreDescription(lesson.score)}` : lesson.title;
 }
 
 /** The hint of a stop: the next lesson, or a done one worth redoing for a perfect page. */
@@ -311,12 +312,6 @@ function stopHint(lesson: HomeLesson, kind: StopKind): string | undefined {
     return "Repítela para sacar todo bien";
   }
   return undefined;
-}
-
-/** "Perfecta · 6/6", "Completada · 5/6", or "Completada" without a recorded result. */
-function doneText(score: LessonScore | undefined): string {
-  if (score === undefined) return "Completada";
-  return `${score.perfect ? "Perfecta" : "Completada"} · ${score.correct}/${score.total}`;
 }
 
 function stopKind(lesson: HomeLesson, nextId: string | undefined): StopKind {
@@ -373,7 +368,9 @@ function PathStop({
             />
           </Sticker>
         )}
-        {kind === "done" && lesson.score?.perfect === true && <PerfectBadge id={lesson.id} />}
+        {kind === "done" && lesson.score?.perfect === true && (
+          <PerfectBadge testID={`perfect-${lesson.id}`} style={styles.perfectBadge} />
+        )}
         {kind === "next" && (
           <>
             <Sticker color="yellow" state="current" size={76}>
@@ -396,7 +393,7 @@ function PathStop({
         <Text variant={kind === "next" ? "bodyStrong" : "body"}>{lesson.title}</Text>
         {kind === "done" && (
           <Text variant="smallStrong" tone="success">
-            {doneText(lesson.score)}
+            {scoreText(lesson.score)}
           </Text>
         )}
         {kind === "next" && (
@@ -408,33 +405,6 @@ function PathStop({
         )}
       </View>
     </PressableScale>
-  );
-}
-
-/**
- * A small yellow star sticker on the corner of a lesson won with every answer right (yellow means
- * "correct"). Decorative: the stop's label says it.
- */
-function PerfectBadge({ id }: { id: string }) {
-  const styles = useStyles();
-  const { colors } = useTheme();
-  return (
-    <View
-      testID={`perfect-${id}`}
-      aria-hidden
-      accessibilityElementsHidden
-      importantForAccessibility="no-hide-descendants"
-      style={styles.perfectBadge}
-    >
-      <Sticker color="yellow" size={30} tilt={10}>
-        <Svg width={16} height={16} viewBox="0 0 24 24">
-          <Path
-            d="M12 3 14.6 9 21 9.6 16.2 13.8 17.6 20.2 12 16.9 6.4 20.2 7.8 13.8 3 9.6 9.4 9Z"
-            fill={colors.onHighlighter}
-          />
-        </Svg>
-      </Sticker>
-    </View>
   );
 }
 
