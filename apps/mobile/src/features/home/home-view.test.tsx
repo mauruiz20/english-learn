@@ -9,6 +9,7 @@ const handlers = {
   onOpenReview: jest.fn(),
   onOpenAbout: jest.fn(),
   onToggleSound: jest.fn(),
+  onCycleTheme: jest.fn(),
 };
 
 const noLessons = { level: "A2", items: [] } as const;
@@ -23,8 +24,19 @@ const ready = {
   lessons: noLessons,
 } as const satisfies HomeViewState;
 
-function renderView(state: HomeViewState, soundEnabled = true) {
-  return render(<HomeView state={state} soundEnabled={soundEnabled} {...handlers} />);
+function renderView(
+  state: HomeViewState,
+  soundEnabled = true,
+  themePreference: "system" | "light" | "dark" = "system",
+) {
+  return render(
+    <HomeView
+      state={state}
+      soundEnabled={soundEnabled}
+      themePreference={themePreference}
+      {...handlers}
+    />,
+  );
 }
 
 beforeEach(() => jest.clearAllMocks());
@@ -37,6 +49,15 @@ describe("HomeView", () => {
 
     await renderView(ready, false);
     expect(screen.getByRole("button", { name: "Activar sonidos" })).toBeOnTheScreen();
+  });
+
+  it("has a theme switch next to the sound one, naming the current theme", async () => {
+    await renderView(ready);
+    await fireEvent.press(screen.getByRole("button", { name: "Tema: Sistema. Cambiar tema" }));
+    expect(handlers.onCycleTheme).toHaveBeenCalledTimes(1);
+
+    await renderView(ready, true, "dark");
+    expect(screen.getByRole("button", { name: "Tema: Oscuro. Cambiar tema" })).toBeOnTheScreen();
   });
 
   it("shows a loading indicator", async () => {
@@ -273,6 +294,7 @@ describe("HomeView album", () => {
       <HomeView
         state={{ ...ready, album: { unlocked: 3, total: 16 } }}
         soundEnabled
+        themePreference="system"
         {...handlers}
         onOpenAlbum={onOpenAlbum}
       />,

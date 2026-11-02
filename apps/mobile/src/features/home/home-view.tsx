@@ -8,6 +8,8 @@ import { ClipChainMark } from "@/shared/ui/clip-chain";
 import { HandCheck } from "@/shared/ui/hand-check";
 import { Highlight } from "@/shared/ui/highlight";
 import { SoundToggleButton } from "@/shared/ui/sound-toggle-button";
+import { ThemeToggleButton } from "@/shared/ui/theme-toggle-button";
+import type { ThemePreference } from "@/shared/ui/theme-preference";
 import { AccountLink } from "@/features/account/account-link";
 import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
@@ -57,6 +59,9 @@ type HomeViewProps = {
   /** Sounds are on (the switch at the top offers to mute them). */
   soundEnabled: boolean;
   onToggleSound: () => void;
+  /** The theme switch beside it (home only: exercise headers keep just the sound one). */
+  themePreference: ThemePreference;
+  onCycleTheme: () => void;
   onOpenLesson: (lessonId: string) => void;
   onStartPlacement: () => void;
   onOpenReview: () => void;
@@ -415,7 +420,10 @@ function ReadyHome({
   onStartPlacement,
   onOpenReview,
   onOpenAbout,
-}: Omit<HomeViewProps, "state" | "soundEnabled" | "onToggleSound"> & { state: Ready }) {
+}: Omit<
+  HomeViewProps,
+  "state" | "soundEnabled" | "onToggleSound" | "themePreference" | "onCycleTheme"
+> & { state: Ready }) {
   const styles = useStyles();
   return (
     <>
@@ -461,6 +469,8 @@ export function HomeView({
   state,
   soundEnabled,
   onToggleSound,
+  themePreference,
+  onCycleTheme,
   onOpenAccount,
   onOpenAlbum,
   ...handlers
@@ -469,6 +479,7 @@ export function HomeView({
   const controls = (
     <>
       {onOpenAccount !== undefined && <AccountLink onPress={onOpenAccount} />}
+      <ThemeToggleButton preference={themePreference} onCycle={onCycleTheme} />
       <SoundToggleButton enabled={soundEnabled} onToggle={onToggleSound} />
     </>
   );

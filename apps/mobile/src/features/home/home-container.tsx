@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 import { isLessonDone, lessonsForLevel } from "@/features/lesson/model/lesson-catalog";
 import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
+import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
 import { useProgressVersion } from "@/features/account/account-context";
 import { useAppServices } from "@/infrastructure/services/app-services";
@@ -59,6 +60,7 @@ export function HomeContainer({
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
   const sound = useSoundPreference();
+  const theme = useThemePreference();
   const progressVersion = useProgressVersion();
 
   const load = useCallback(() => {
@@ -111,6 +113,8 @@ export function HomeContainer({
       state={state}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}
+      themePreference={theme.preference}
+      onCycleTheme={theme.cycle}
       onOpenLesson={(lessonId) => router.push(`/lesson/${lessonId}`)}
       onStartPlacement={() => router.push("/placement")}
       onOpenReview={() => router.push("/review")}
