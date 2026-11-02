@@ -1,5 +1,15 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
-import { DatabaseOpenError } from "@/infrastructure/persistence/database-open-error";
+import {
+  DatabaseOpenError,
+  openFailureCode,
+} from "@/infrastructure/persistence/database-open-error";
+import { browserEnvironment } from "@/infrastructure/persistence/ownership/ownership-environment";
+import {
+  STUCK_TITLE,
+  StuckHelp,
+  TechnicalDetails,
+  environmentLines,
+} from "@/infrastructure/persistence/ownership/ownership-screens";
 import { Button } from "@/shared/ui/button";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
@@ -9,11 +19,6 @@ type Message = { readonly title: string; readonly detail: string };
 function messageFor(error: unknown): Message {
   if (error instanceof DatabaseOpenError) {
     switch (error.kind) {
-      case "open-elsewhere":
-        return {
-          title: "La app ya está abierta en otra pestaña.",
-          detail: "Ciérrala y pulsa Reintentar.",
-        };
       case "too-new":
         return {
           title: "Tus datos se guardaron con una versión más nueva de la app.",
@@ -50,7 +55,25 @@ export class AppErrorBoundary extends Component<AppErrorBoundaryProps, { error: 
 
   override render() {
     if (this.state.error === null) return this.props.children;
-    const { title, detail } = messageFor(this.state.error);
+    const { error } = this.state;
+    // The files are held by something that never let go (on iOS, often with no other tab
+    // at all): the same help as the ownership gate's, with the code for a screenshot.
+    if (error instanceof DatabaseOpenError && error.kind === "open-elsewhere") {
+      return (
+        <ScreenContainer title={STUCK_TITLE} insetTop>
+          <StuckHelp />
+          <Button label="Reintentar" onPress={this.props.onRetry} />
+          <TechnicalDetails
+            lines={[
+              `Motivo: ${openFailureCode(error.cause)}`,
+              ...environmentLines(browserEnvironment()),
+              `Hora: ${new Date().toISOString()}`,
+            ]}
+          />
+        </ScreenContainer>
+      );
+    }
+    const { title, detail } = messageFor(error);
     return (
       <ScreenContainer title={title} insetTop>
         <Text>{detail}</Text>

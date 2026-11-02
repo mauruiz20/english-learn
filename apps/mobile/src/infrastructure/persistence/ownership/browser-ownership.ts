@@ -2,19 +2,29 @@ import { databaseOpenErrorKind } from "../database-open-error";
 import {
   createDatabaseOwnership,
   type DatabaseOwnership,
+  type LockAttempt,
   type OwnershipChannel,
   type OwnershipLocks,
   type OwnershipMessage,
 } from "./database-ownership";
-import type { ProbeResult } from "./retry-while-busy";
+import { browserEnvironment } from "./ownership-environment";
+import type { ProbeOutcome } from "./retry-while-busy";
 
 const CHANNEL_NAME = "english-learn-db";
 const LOCK_NAME = "english-learn-db-owner";
 const RELEASED_KEY = "english-learn-db-released";
+const ATTEMPTS_KEY = "english-learn-db-takeover-attempts";
+/** Set once the probe said "busy" and the database then opened fine: the probe lies here. */
+const PROBE_DISTRUSTED_KEY = "english-learn-db-probe-distrusted";
 /** expo-sqlite's OPFS directory (its AccessHandlePoolVFS name). */
 const OPFS_DIRECTORY = "expo-sqlite";
 const PROBE_TIMEOUT_MS = 3000;
 
+type KeyValueStorage = {
+  getItem(key: string): string | null;
+  setItem(key: string, value: string): void;
+  removeItem(key: string): void;
+};
 // The browser APIs used here, typed locally (the app's TypeScript lib has no DOM types).
 type BrowserChannel = {
   postMessage(message: unknown): void;
@@ -22,6 +32,7 @@ type BrowserChannel = {
 };
 type LockRequestOptions = { ifAvailable?: boolean; signal?: AbortSignal };
 type LockManager = {
+  query?: () => Promise<{ held?: { name?: string }[] }>;
   request(
     name: string,
     options: LockRequestOptions,
@@ -40,11 +51,8 @@ type BrowserGlobals = {
   Worker?: new (url: string) => BrowserWorker;
   Blob?: new (parts: string[], options: { type: string }) => object;
   URL: { createObjectURL(blob: object): string; revokeObjectURL(url: string): void };
-  sessionStorage?: {
-    getItem(key: string): string | null;
-    setItem(key: string, value: string): void;
-    removeItem(key: string): void;
-  };
+  sessionStorage?: KeyValueStorage;
+  localStorage?: KeyValueStorage;
   location?: { reload(): void };
   crypto?: { randomUUID?: () => string };
 };
@@ -76,25 +84,51 @@ function broadcastChannel(): OwnershipChannel | null {
   };
 }
 
+const errorName = (error: unknown) =>
+  typeof error === "object" && error !== null && "name" in error
+    ? String((error as { name: unknown }).name)
+    : "Error";
+
 /** The owner lock: once granted, held until the page unloads (its callback never settles). */
 function webLocks(): OwnershipLocks | null {
   const locks = browser.navigator?.locks;
   if (locks === undefined) return null;
-  const hold = (options: LockRequestOptions) =>
-    new Promise<boolean>((resolve) => {
-      locks
-        .request(LOCK_NAME, options, (lock) => {
-          resolve(lock !== null);
-          return lock === null ? undefined : new Promise(() => {});
-        })
-        .catch(() => resolve(false));
+  const hold = (options: LockRequestOptions, timedOut: () => boolean) =>
+    new Promise<LockAttempt>((resolve) => {
+      try {
+        locks
+          .request(LOCK_NAME, options, (lock) => {
+            resolve(lock === null ? "unavailable" : "acquired");
+            return lock === null ? undefined : new Promise(() => {});
+          })
+          // Our own timeout aborts the request: the lock stayed taken. Anything else is a broken
+          // request, which says nothing about another page.
+          .catch((error: unknown) =>
+            resolve(timedOut() ? "unavailable" : { error: errorName(error) }),
+          );
+      } catch (error) {
+        resolve({ error: errorName(error) });
+      }
     });
   return {
-    tryAcquire: () => hold({ ifAvailable: true }),
+    tryAcquire: () => hold({ ifAvailable: true }, () => false),
     acquire(timeoutMs) {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      return hold({ signal: controller.signal }).finally(() => clearTimeout(timer));
+      let expired = false;
+      const timer = setTimeout(() => {
+        expired = true;
+        controller.abort();
+      }, timeoutMs);
+      return hold({ signal: controller.signal }, () => expired).finally(() => clearTimeout(timer));
+    },
+    async holders() {
+      if (typeof locks.query !== "function") return null;
+      try {
+        const snapshot = await locks.query();
+        return (snapshot.held ?? []).filter((lock) => lock.name === LOCK_NAME).length;
+      } catch {
+        return null;
+      }
     },
   };
 }
@@ -130,26 +164,32 @@ self.onmessage = async (event) => {
 };
 `;
 
-function classifyProbe(data: unknown): ProbeResult {
+function classifyProbe(data: unknown): ProbeOutcome {
   const result = data as { ok?: boolean; name?: string; message?: string } | null;
-  if (result?.ok === true) return "free";
+  if (result?.ok === true) return { result: "free" };
   const error = new Error(result?.message ?? "");
   error.name = result?.name ?? "Error";
-  return databaseOpenErrorKind(error) === "open-elsewhere" ? "busy" : "error";
+  return {
+    result: databaseOpenErrorKind(error) === "open-elsewhere" ? "busy" : "error",
+    error: error.name,
+  };
 }
 
-function probeDatabaseFiles(): Promise<ProbeResult> {
+function probeDatabaseFiles(): Promise<ProbeOutcome> {
   return new Promise((resolve) => {
     let worker: BrowserWorker | null = null;
     let url: string | null = null;
-    const finish = (result: ProbeResult) => {
+    const finish = (outcome: ProbeOutcome) => {
       clearTimeout(timer);
       worker?.terminate();
       if (url !== null) browser.URL.revokeObjectURL(url);
-      resolve(result);
+      resolve(outcome);
     };
     // No answer (no Worker, blocked blob URL, …): let the normal open decide.
-    const timer = setTimeout(() => finish("error"), PROBE_TIMEOUT_MS);
+    const timer = setTimeout(
+      () => finish({ result: "error", error: "ProbeTimeout" }),
+      PROBE_TIMEOUT_MS,
+    );
     try {
       if (browser.Worker === undefined || browser.Blob === undefined) throw new Error("no Worker");
       url = browser.URL.createObjectURL(
@@ -157,31 +197,62 @@ function probeDatabaseFiles(): Promise<ProbeResult> {
       );
       worker = new browser.Worker(url);
       worker.onmessage = ({ data }) => finish(classifyProbe(data));
-      worker.onerror = () => finish("error");
+      worker.onerror = () => finish({ result: "error", error: "ProbeWorkerError" });
       worker.postMessage(OPFS_DIRECTORY);
     } catch {
-      finish("error");
+      finish({ result: "error", error: "ProbeUnavailable" });
     }
   });
 }
 
+/** Storage access that never throws (Safari private mode, blocked site data). */
+function storageOf(name: "sessionStorage" | "localStorage") {
+  return {
+    get(key: string): string | null {
+      try {
+        return browser[name]?.getItem(key) ?? null;
+      } catch {
+        return null;
+      }
+    },
+    set(key: string, value: string) {
+      try {
+        browser[name]?.setItem(key, value);
+      } catch {
+        // Without storage the page simply behaves as on its first start.
+      }
+    },
+    remove(key: string) {
+      try {
+        browser[name]?.removeItem(key);
+      } catch {
+        // Same as above.
+      }
+    },
+  };
+}
+
+const session = storageOf("sessionStorage");
+const local = storageOf("localStorage");
+
+const takeOverAttempts = {
+  count: () => Number(session.get(ATTEMPTS_KEY) ?? 0) || 0,
+  increment: () => session.set(ATTEMPTS_KEY, String(takeOverAttempts.count() + 1)),
+  clear: () => session.remove(ATTEMPTS_KEY),
+};
+
+const probeTrust = {
+  trusted: () => local.get(PROBE_DISTRUSTED_KEY) !== "1",
+  distrust: () => local.set(PROBE_DISTRUSTED_KEY, "1"),
+};
+
 const releasedFlag = {
   consume() {
-    try {
-      const released = browser.sessionStorage?.getItem(RELEASED_KEY) === "1";
-      browser.sessionStorage?.removeItem(RELEASED_KEY);
-      return released;
-    } catch {
-      return false;
-    }
+    const released = session.get(RELEASED_KEY) === "1";
+    session.remove(RELEASED_KEY);
+    return released;
   },
-  set() {
-    try {
-      browser.sessionStorage?.setItem(RELEASED_KEY, "1");
-    } catch {
-      // Without storage the reloaded page simply claims the database again.
-    }
-  },
+  set: () => session.set(RELEASED_KEY, "1"),
 };
 
 /**
@@ -196,6 +267,10 @@ export function createBrowserOwnership(): DatabaseOwnership {
     probe: probeDatabaseFiles,
     sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
     releasedFlag,
+    takeOverAttempts,
+    probeTrust,
+    now: Date.now,
+    environment: browserEnvironment,
     reload: () => browser.location?.reload(),
   });
 }

@@ -1,7 +1,11 @@
 import { act, fireEvent, render, screen } from "@testing-library/react-native";
 import type { ReactNode, useEffect, useState } from "react";
 import { Text } from "react-native";
-import type { ClaimResult, DatabaseOwnership } from "./ownership/database-ownership";
+import type {
+  DatabaseOwnership,
+  OwnershipDiagnostics,
+  OwnershipState,
+} from "./ownership/database-ownership";
 import { SqliteAppServicesProvider } from "./sqlite-app-services";
 
 // Stand-in for expo-sqlite's SQLiteProvider with the same contract: it opens the database and
@@ -82,7 +86,7 @@ describe("SqliteAppServicesProvider", () => {
     expect(screen.queryByText("Inicio")).toBeNull();
   });
 
-  it("tells the learner when another tab already has the app open", async () => {
+  it("when the files are held, explains how to free them (never claims another tab)", async () => {
     mockOpen.mockRejectedValue(new Error("The object is in an invalid state."));
     await render(
       <SqliteAppServicesProvider>
@@ -91,8 +95,9 @@ describe("SqliteAppServicesProvider", () => {
     );
 
     expect(await screen.findByRole("header")).toHaveTextContent(
-      "La app ya está abierta en otra pestaña.",
+      "No pudimos abrir tus datos en esta ventana.",
     );
+    expect(screen.getByRole("button", { name: "Detalles técnicos" })).toBeOnTheScreen();
   });
 
   it("opens the database again on retry", async () => {
@@ -111,11 +116,31 @@ describe("SqliteAppServicesProvider", () => {
   });
 });
 
-function fakeOwnership(start: ClaimResult | "released", takeOver: ClaimResult = "owned") {
+const DIAGNOSTICS: OwnershipDiagnostics = {
+  reason: "probe-free",
+  startedAt: 0,
+  decidedAt: 0,
+  lockHolders: null,
+  probeError: null,
+  takeOverAttempts: 0,
+  environment: { webLocks: true, broadcastChannel: true, opfs: true, displayMode: "browser" },
+};
+const state = (
+  kind: OwnershipState["kind"],
+  reason: OwnershipDiagnostics["reason"] = "probe-free",
+): OwnershipState => ({ kind, diagnostics: { ...DIAGNOSTICS, reason } });
+
+function fakeOwnership(
+  start: OwnershipState,
+  takeOver: OwnershipState = state("owned"),
+  retry: OwnershipState = state("owned"),
+) {
   let release: (() => Promise<void>) | null = null;
   const ownership: DatabaseOwnership = {
     start: jest.fn(async () => start),
     takeOver: jest.fn(async () => takeOver),
+    retry: jest.fn(async () => retry),
+    confirmOpened: jest.fn(),
     serve: jest.fn((onRelease: () => Promise<void>) => {
       release = onRelease;
       return () => {
@@ -130,7 +155,7 @@ describe("SqliteAppServicesProvider: one tab at a time (web)", () => {
   beforeEach(() => mockOpen.mockResolvedValue());
 
   it("offers 'Usar aquí' when another tab owns the database, then opens it here", async () => {
-    const { ownership } = fakeOwnership("open-elsewhere");
+    const { ownership } = fakeOwnership(state("open-elsewhere", "owner-answered"));
     await render(
       <SqliteAppServicesProvider ownership={ownership}>
         <Text>Inicio</Text>
@@ -148,7 +173,7 @@ describe("SqliteAppServicesProvider: one tab at a time (web)", () => {
   });
 
   it("shows the released screen after handing the app to another tab, and takes it back", async () => {
-    const { ownership } = fakeOwnership("released");
+    const { ownership } = fakeOwnership(state("released", "released"));
     await render(
       <SqliteAppServicesProvider ownership={ownership}>
         <Text>Inicio</Text>
@@ -162,7 +187,7 @@ describe("SqliteAppServicesProvider: one tab at a time (web)", () => {
   });
 
   it("when another tab asks for the database, closes the app here (its sync and timers stop)", async () => {
-    const { ownership, requestRelease } = fakeOwnership("owned");
+    const { ownership, requestRelease } = fakeOwnership(state("owned"));
     await render(
       <SqliteAppServicesProvider ownership={ownership}>
         <Text>Inicio</Text>
@@ -175,5 +200,43 @@ describe("SqliteAppServicesProvider: one tab at a time (web)", () => {
     });
 
     expect(screen.queryByText("Inicio")).toBeNull();
+  });
+
+  it("tells the ownership once the database really opened (probe false positives)", async () => {
+    const { ownership } = fakeOwnership(state("owned", "probe-busy"));
+    await render(
+      <SqliteAppServicesProvider ownership={ownership}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+    await screen.findByText("Inicio");
+
+    expect(ownership.confirmOpened).toHaveBeenCalledTimes(1);
+  });
+
+  it("'Usar aquí' that gets no answer shows the help screen, and 'Reintentar' waits longer", async () => {
+    const { ownership } = fakeOwnership(
+      state("open-elsewhere", "lock-held"),
+      state("stuck", "no-owner-answer"),
+      state("owned"),
+    );
+    await render(
+      <SqliteAppServicesProvider ownership={ownership}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+    await screen.findByRole("header");
+    await fireEvent.press(screen.getByRole("button", { name: "Usar aquí" }));
+
+    expect(await screen.findByRole("header")).toHaveTextContent(
+      "No pudimos abrir tus datos en esta ventana.",
+    );
+    expect(screen.queryByRole("button", { name: "Usar aquí" })).toBeNull();
+    expect(mockOpen).not.toHaveBeenCalled();
+
+    await fireEvent.press(screen.getByRole("button", { name: "Reintentar" }));
+
+    expect(await screen.findByText("Inicio")).toBeOnTheScreen();
+    expect(ownership.retry).toHaveBeenCalledTimes(1);
   });
 });

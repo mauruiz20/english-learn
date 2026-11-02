@@ -1,4 +1,9 @@
-import { RETRY_DELAYS_MS, retryWhileBusy, type ProbeResult } from "./retry-while-busy";
+import {
+  RETRY_DELAYS_MS,
+  retryWhileBusy,
+  type ProbeOutcome,
+  type ProbeResult,
+} from "./retry-while-busy";
 
 function scripted(results: ProbeResult[]) {
   const calls: number[] = [];
@@ -6,9 +11,9 @@ function scripted(results: ProbeResult[]) {
   const sleep = async (ms: number) => {
     elapsed += ms;
   };
-  const probe = async () => {
+  const probe = async (): Promise<ProbeOutcome> => {
     calls.push(elapsed);
-    return results.shift() ?? "busy";
+    return { result: results.shift() ?? "busy" };
   };
   return { probe, sleep, calls };
 }
@@ -21,25 +26,25 @@ describe("retryWhileBusy", () => {
 
   it("returns at once when the database is free", async () => {
     const { probe, sleep, calls } = scripted(["free"]);
-    await expect(retryWhileBusy(probe, sleep)).resolves.toBe("free");
+    await expect(retryWhileBusy(probe, sleep)).resolves.toEqual({ result: "free" });
     expect(calls).toEqual([0]);
   });
 
   it("retries while the previous page still holds the database, with growing delays", async () => {
     const { probe, sleep, calls } = scripted(["busy", "busy", "busy", "free"]);
-    await expect(retryWhileBusy(probe, sleep)).resolves.toBe("free");
+    await expect(retryWhileBusy(probe, sleep)).resolves.toEqual({ result: "free" });
     expect(calls).toEqual([0, 100, 300, 700]);
   });
 
   it("gives up as busy once every delay was spent", async () => {
     const { probe, sleep, calls } = scripted([]);
-    await expect(retryWhileBusy(probe, sleep)).resolves.toBe("busy");
+    await expect(retryWhileBusy(probe, sleep)).resolves.toEqual({ result: "busy" });
     expect(calls).toEqual([0, 100, 300, 700, 1500, 3100, 5500]);
   });
 
   it("does not retry genuine failures (they surface through the normal open)", async () => {
     const { probe, sleep, calls } = scripted(["busy", "error"]);
-    await expect(retryWhileBusy(probe, sleep)).resolves.toBe("error");
+    await expect(retryWhileBusy(probe, sleep)).resolves.toEqual({ result: "error" });
     expect(calls).toHaveLength(2);
   });
 });
