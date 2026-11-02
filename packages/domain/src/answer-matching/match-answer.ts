@@ -1,5 +1,7 @@
+import { calqueHint } from "./calque-hints";
 import { levenshtein } from "./levenshtein";
 import { canonicalCandidates } from "./normalize";
+import { diffAnswer, type WordDiffOp } from "./word-diff";
 
 export type Verdict = "correct" | "almost" | "wrong";
 
@@ -7,6 +9,10 @@ export type MatchResult = {
   readonly verdict: Verdict;
   /** The accepted answer (original text) closest to the input; "" if none were given. */
   readonly closest: string;
+  /** Word-level comparison of the input with `closest` (see `diffAnswer`). */
+  readonly diff: readonly WordDiffOp[];
+  /** A common Spanish-speaker calque the diff shows, explained in Spanish (see `calqueHint`). */
+  readonly hint?: string;
 };
 
 /** Maximum character edits allowed for "almost", by canonical length of the accepted answer. */
@@ -17,10 +23,61 @@ export function typoBudget(length: number): number {
 }
 
 /**
+ * Short grammar words whose omission or addition alone keeps an answer "almost": the meaning
+ * survives ("to the work", "I listen music"). Negations (not, no, never, n't, nothing, nobody,
+ * none, neither, nor) and content words are deliberately absent: they change the meaning.
+ */
+export const FUNCTION_WORDS: ReadonlySet<string> = new Set([
+  // articles
+  "a",
+  "an",
+  "the",
+  // prepositions
+  "to",
+  "at",
+  "in",
+  "on",
+  "of",
+  "for",
+  "with",
+  "from",
+  "by",
+  "about",
+  // auxiliaries
+  "do",
+  "does",
+  "did",
+  "is",
+  "are",
+  "am",
+  "was",
+  "were",
+  "have",
+  "has",
+  "had",
+  "will",
+  "would",
+  // possessives
+  "my",
+  "your",
+  "his",
+  "her",
+  "its",
+  "our",
+  "their",
+  // pronoun, conjunctions
+  "it",
+  "and",
+  "that",
+]);
+
+/** Character distance beyond which two readings cannot be one function word apart. */
+const MAX_GAP_DISTANCE = Math.max(...[...FUNCTION_WORDS].map((w) => w.length)) + 3;
+
+/**
  * "Almost" requires a pure in-word typo: same number of words, exactly one word
  * differs, and that word is less than half rewritten. This rejects swapping a
- * short word for another real one ("in" → "on", "a" → "an") and missing/extra words,
- * which are grammar mistakes rather than typos.
+ * short word for another real one ("in" → "on", "a" → "an").
  */
 function isSingleWordTypo(input: string, target: string): boolean {
   const inputWords = input.split(" ");
@@ -37,17 +94,30 @@ function isSingleWordTypo(input: string, target: string): boolean {
   return levenshtein(inputWord, targetWord) * 2 < targetWord.length;
 }
 
-type BestPair = { accepted: string; input: string; target: string; distance: number };
+const wordsOf = (canonical: string) =>
+  canonical
+    .split(" ")
+    .map((word) => word.replace(/[^\p{L}\p{N}']/gu, ""))
+    .filter(Boolean);
 
 /**
- * Compares a learner's answer against the accepted answers.
- *
- * - correct: some canonical reading of the input equals some canonical reading of an
- *   accepted answer (normalization + contraction expansion, see `canonicalCandidates`).
- * - almost: not correct, input non-empty, the closest pair is within `typoBudget`
- *   and the difference is a typo inside a single word (`isSingleWordTypo`).
- * - wrong: everything else.
+ * The two readings differ by exactly one extra or missing word from `FUNCTION_WORDS`, everything
+ * else equal (punctuation aside). The shorter one must keep at least two words, so a bare
+ * one-word answer ("apple" for "an apple") is not let through.
  */
+function isSingleFunctionWordGap(input: string, target: string): boolean {
+  const a = wordsOf(input);
+  const b = wordsOf(target);
+  const [longer, shorter] = a.length > b.length ? [a, b] : [b, a];
+  if (longer.length !== shorter.length + 1 || shorter.length < 2) return false;
+  let i = 0;
+  while (i < shorter.length && longer[i] === shorter[i]) i++;
+  if (!FUNCTION_WORDS.has(longer[i] ?? "")) return false;
+  return shorter.slice(i).every((word, k) => word === longer[i + 1 + k]);
+}
+
+type Pair = { accepted: string; input: string; target: string; distance: number };
+
 type Target = { readonly answer: string; readonly canonical: readonly string[] };
 
 const targetCache = new WeakMap<readonly string[], readonly Target[]>();
@@ -61,31 +131,57 @@ function targetsOf(accepted: readonly string[]): readonly Target[] {
   return targets;
 }
 
+/**
+ * Compares a learner's answer against the accepted answers.
+ *
+ * - correct: some canonical reading of the input equals some canonical reading of an
+ *   accepted answer (normalization + contraction expansion, see `canonicalCandidates`).
+ * - almost: not correct, input non-empty, and either the closest pair is within `typoBudget`
+ *   and the difference is a typo inside a single word (`isSingleWordTypo`), or some pair differs
+ *   only by one extra or missing function word (`isSingleFunctionWordGap`).
+ * - wrong: everything else.
+ *
+ * The result carries the word diff against `closest` and, when it shows one, a calque hint.
+ */
 export function matchAnswer(input: string, accepted: readonly string[]): MatchResult {
   const inputCandidates = canonicalCandidates(input);
-  let best: BestPair | null = null;
+  let best: Pair | null = null;
+  let gap: Pair | null = null;
 
   for (const { answer, canonical } of targetsOf(accepted)) {
     for (const target of canonical) {
       for (const candidate of inputCandidates) {
         const distance = levenshtein(candidate, target);
+        const pair = { accepted: answer, input: candidate, target, distance };
         if (best === null || distance < best.distance) {
-          best = { accepted: answer, input: candidate, target, distance };
-          if (distance === 0) return finish(best);
+          best = pair;
+          if (distance === 0) return result(input, "correct", answer);
+        }
+        if (
+          distance <= MAX_GAP_DISTANCE &&
+          (gap === null || distance < gap.distance) &&
+          isSingleFunctionWordGap(candidate, target)
+        ) {
+          gap = pair;
         }
       }
     }
   }
 
-  return best === null ? { verdict: "wrong", closest: "" } : finish(best);
+  if (best === null) return result(input, "wrong", "");
+  if (best.input === "") return result(input, "wrong", best.accepted);
+  if (
+    best.distance <= typoBudget(best.target.length) &&
+    isSingleWordTypo(best.input, best.target)
+  ) {
+    return result(input, "almost", best.accepted);
+  }
+  if (gap !== null) return result(input, "almost", gap.accepted);
+  return result(input, "wrong", best.accepted);
 }
 
-function finish(best: BestPair): MatchResult {
-  const closest = best.accepted;
-  if (best.input === "") return { verdict: "wrong", closest };
-  if (best.distance === 0) return { verdict: "correct", closest };
-
-  const almost =
-    best.distance <= typoBudget(best.target.length) && isSingleWordTypo(best.input, best.target);
-  return { verdict: almost ? "almost" : "wrong", closest };
+function result(input: string, verdict: Verdict, closest: string): MatchResult {
+  const diff = diffAnswer(input, closest);
+  const hint = verdict === "correct" ? undefined : calqueHint(diff);
+  return hint === undefined ? { verdict, closest, diff } : { verdict, closest, diff, hint };
 }
