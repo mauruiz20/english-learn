@@ -60,11 +60,24 @@ and never start another worker, and only a reload opens again. `worker-count.ts`
 page's workers (exactly one, expo-sqlite's; `window.__e2e.dbWorkers` in e2e builds).
 
 **Busy files retry by reloading (web, `open-retry.ts`).** A busy open (the previous page's worker
-still letting go after a reload, a redirect return or an update) reloads the page after 400,
-1200 and 2500 ms (count in `sessionStorage` `english-learn-db-open-retries`, cleared once the
-database opens or on "Reintentar"), with the loading state meanwhile. Never with two workers in
-the page (that collision is the page's own: retrying would hide it) and never without a working
-`sessionStorage` (it could loop). Then the message below.
+still letting go after a reload, a redirect return or an update; on iOS, stale handles in the
+storage process, even right after a restart) reloads the page after 400, 800, 1600, 3000, 5000
+and 5000 ms (15.8 s of delays, about 17–20 s with the reloads), showing "Abriendo tus datos…"
+(static, no spinner) meanwhile, also on each reloaded page while it opens again. The count lives
+in `sessionStorage` `english-learn-db-open-retries` and the round's start in
+`english-learn-db-open-retries-since`, both cleared once the database opens or on "Reintentar".
+Never with two workers in the page (that collision is the page's own: retrying would hide it) and
+never without a working `sessionStorage` (it could loop). Then the message below, which keeps
+trying on its own (`background-retry.ts`): every 15 s while visible and at once on
+`visibilitychange` to visible, `pageshow` (bfcache restores too) and `focus`, one reload each,
+without a fresh window; the app opens as soon as the files are free.
+
+Why a reload and not a retry in place: expo-sqlite's worker (`web/worker.ts`,
+`maybeInitAsync`) sets `_sqlite3` before `AccessHandlePoolVFS.create`; when that throws, later
+opens skip the init and fail with "Invalid VFS state", and the handles the VFS did acquire before
+the failing one (`Promise.all` in `#acquireAccessHandles`) stay open in that worker. The worker
+is a private singleton of `SQLiteModule.ts` with no way to end it, so only a new page gets a
+clean one. `location.reload()` adds no history entry (checked in `e2e/database-errors.spec.ts`).
 
 **No in-memory fallback.** expo-sqlite's worker sets up the OPFS VFS and the in-memory one in the
 same step: when OPFS acquisition fails, every later open in that page fails too, `:memory:`
@@ -77,9 +90,10 @@ Messages by cause (`database-open-error.ts`):
   by the messages browsers actually report (Chromium: "Access Handles cannot be created if there
   is another open Access Handle…"; WebKit: "The object is in an invalid state."). It does NOT
   claim another tab (on iOS this happens with no other tab at all): "No pudimos abrir tus datos
-  en esta ventana." with steps to free them (close the app from the app switcher, close Safari
-  tabs of the site) and "Detalles técnicos" (`open-failed:<code>`, the environment, the page's
-  database workers, `Sondeo de archivos: no` and the automatic retries).
+  en esta ventana." saying it keeps trying and will open by itself, steps to free them (close
+  the app from the app switcher, close Safari tabs of the site, restart the iPhone if it
+  persists: the proven fix) and "Detalles técnicos" (`open-failed:<code>`, the environment, the
+  page's database workers, `Sondeo de archivos: no`, the automatic retries and `Espera total`).
 - **Database from a newer app version** (`SchemaTooNewError` from `migrate`): asks to update.
 - **Anything else** (corrupt file, storage disabled, e.g. WebKit without OPFS in private
   browsing): "No pudimos abrir tus datos."

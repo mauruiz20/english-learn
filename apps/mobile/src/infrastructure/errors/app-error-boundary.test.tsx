@@ -1,6 +1,7 @@
 import { SchemaTooNewError } from "@english-learn/storage-sqlite";
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { act, fireEvent, render, screen } from "@testing-library/react-native";
 import { Text } from "react-native";
+import { BACKGROUND_RETRY_INTERVAL_MS } from "@/infrastructure/persistence/background-retry";
 import { DatabaseOpenError } from "@/infrastructure/persistence/database-open-error";
 import { AppErrorBoundary } from "./app-error-boundary";
 
@@ -67,6 +68,51 @@ describe("AppErrorBoundary", () => {
     await fireEvent.press(screen.getByRole("button", { name: "Detalles técnicos" }));
     expect(screen.getByText("Motivo: open-failed:InvalidStateError")).toBeOnTheScreen();
     expect(screen.getByText("Workers de la base de datos: 1")).toBeOnTheScreen();
+  });
+
+  it("for held files, suggests restarting the iPhone if the problem persists", async () => {
+    const error = new DatabaseOpenError(new Error("The object is in an invalid state."));
+    await render(
+      <AppErrorBoundary onRetry={jest.fn()}>
+        <Throws error={error} />
+      </AppErrorBoundary>,
+    );
+
+    expect(screen.getByText(/reinicia el iPhone/)).toBeOnTheScreen();
+    expect(screen.getByRole("button", { name: "Reintentar" })).toBeOnTheScreen();
+  });
+
+  describe("files still busy after the wait (web)", () => {
+    beforeEach(() => jest.useFakeTimers());
+    afterEach(() => jest.useRealTimers());
+
+    it("keeps trying on its own and says so, so the app opens without the learner", async () => {
+      const retryInBackground = jest.fn();
+      const error = new DatabaseOpenError(new Error("The object is in an invalid state."));
+      await render(
+        <AppErrorBoundary onRetry={jest.fn()} backgroundRetry={() => retryInBackground}>
+          <Throws error={error} />
+        </AppErrorBoundary>,
+      );
+
+      expect(screen.getByText(/se abrirá sola/)).toBeOnTheScreen();
+      expect(retryInBackground).not.toHaveBeenCalled();
+      await act(async () => {
+        jest.advanceTimersByTime(BACKGROUND_RETRY_INTERVAL_MS);
+      });
+      expect(retryInBackground).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not promise to open on its own when it will not retry", async () => {
+      const error = new DatabaseOpenError(new Error("The object is in an invalid state."));
+      await render(
+        <AppErrorBoundary onRetry={jest.fn()} backgroundRetry={() => undefined}>
+          <Throws error={error} />
+        </AppErrorBoundary>,
+      );
+
+      expect(screen.queryByText(/se abrirá sola/)).toBeNull();
+    });
   });
 
   it("explains a database saved by a newer app version", async () => {

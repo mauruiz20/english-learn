@@ -112,13 +112,15 @@ test("a holder that never answers: 'Usar aquí' once, then the help screen inste
   await expect(second.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 30_000 });
 });
 
-// Files held without the owner lock or any answer (what iOS showed): never "otra pestaña". The
-// app opens normally and, when the open really fails, explains how to free the data.
-test("files held by something that is not a tab never claim 'open in another tab'", async ({
+// Files held without the owner lock or any answer (what iOS showed, stale handles in its storage
+// process): never "otra pestaña". The open waits calmly through the whole retry window, then
+// explains how to free the data, keeps trying on its own and opens once the files are free,
+// without the learner doing anything and without adding history entries.
+test("files held longer than the wait: the help screen, then the app opens by itself", async ({
   page,
   context,
 }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
   await page.goto("/");
   await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
   // A non-app page of the origin grabs expo-sqlite's files from a worker, then the app closes.
@@ -128,21 +130,71 @@ test("files held by something that is not a tab never claim 'open in another tab
   await holdDatabaseFiles(holder);
   const app = await context.newPage();
   await app.goto("/");
-  await expect(app.getByRole("heading")).toHaveText(STUCK, { timeout: 30_000 });
+  const historyAtStart = await app.evaluate(() => history.length);
+
+  // The wait shows a calm loading state, not the error.
+  await expect(app.getByText("Abriendo tus datos…")).toBeVisible({ timeout: 15_000 });
+  await expect(app.getByRole("heading")).toHaveText(STUCK, { timeout: 45_000 });
   await expect(app.getByText(OPEN_ELSEWHERE)).toHaveCount(0);
+  await expect(app.getByText(/reinicia el iPhone/)).toBeVisible();
+  await expect(app.getByText(/se abrirá sola/)).toBeVisible();
   await app.getByRole("button", { name: "Detalles técnicos", exact: true }).click();
   await expect(app.getByText(/^Motivo: open-failed:/)).toBeVisible();
   // It retried by reloading (backoff) before giving up, with one SQLite worker per page.
-  await expect(app.getByText("Reintentos automáticos: 3")).toBeVisible();
+  await expect(app.getByText("Reintentos automáticos: 6")).toBeVisible();
   await expect(app.getByText("Workers de la base de datos: 1")).toBeVisible();
   await expect(app.getByText("Sondeo de archivos: no")).toBeVisible();
+  const waited = await app.getByText(/^Espera total: /).textContent();
+  expect(Number(waited?.match(/([\d,]+) s/)?.[1]?.replace(",", "."))).toBeGreaterThanOrEqual(15);
+
+  // The files are released: the error screen's own retry opens the app, no press needed.
+  await holder.evaluate(() => (window as unknown as { __holder: Worker }).__holder.terminate());
+  await expect(app.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 40_000 });
+  await expectOneDatabaseWorker(app);
+  expect(await app.evaluate(() => history.length)).toBe(historyAtStart);
+  // Opened: the next failure starts a fresh round of retries and a fresh wait.
+  expect(
+    await app.evaluate(() => [
+      sessionStorage.getItem("english-learn-db-open-retries"),
+      sessionStorage.getItem("english-learn-db-open-retries-since"),
+    ]),
+  ).toEqual([null, null]);
 });
 
-test("files held for a moment (a page that was just closed): the open retries and the app opens", async ({
+test("the help screen retries at once when the app comes back to the foreground", async ({
   page,
   context,
 }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
+  await page.goto("/");
+  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
+  const holder = await context.newPage();
+  await holder.goto("/metadata.json");
+  await page.close();
+  await holdDatabaseFiles(holder);
+  const app = await context.newPage();
+  await app.goto("/");
+  await expect(app.getByRole("heading")).toHaveText(STUCK, { timeout: 45_000 });
+
+  await holder.evaluate(() => (window as unknown as { __holder: Worker }).__holder.terminate());
+  // What iOS sends when the Home Screen app returns (and a bfcache restore's `pageshow`).
+  const reloaded = app.waitForEvent("load", { timeout: 5_000 });
+  await app.evaluate(() => window.dispatchEvent(new PageTransitionEvent("pageshow")));
+  await reloaded;
+  await expect(app.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 15_000 });
+});
+
+test("files held for about 8 s (late release): the app opens with no error screen", async ({
+  page,
+  context,
+}) => {
+  test.setTimeout(90_000);
+  // Records, across the retry reloads, whether the error screen ever showed.
+  await context.addInitScript((stuck) => {
+    setInterval(() => {
+      if (document.body?.innerText.includes(stuck)) sessionStorage.setItem("e2e.saw-stuck", "1");
+    }, 50);
+  }, STUCK);
   await page.goto("/");
   await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
   const holder = await context.newPage();
@@ -152,17 +204,16 @@ test("files held for a moment (a page that was just closed): the open retries an
 
   const app = await context.newPage();
   await app.goto("/");
-  // The first open failed and a retry is scheduled: the holder goes away meanwhile.
-  await expect
-    .poll(() => app.evaluate(() => sessionStorage.getItem("english-learn-db-open-retries")), {
-      timeout: 15_000,
-    })
-    .toBe("1");
+  const historyAtStart = await app.evaluate(() => history.length);
+  await expect(app.getByText("Abriendo tus datos…")).toBeVisible({ timeout: 15_000 });
+  await app.waitForTimeout(8_000);
   await holder.evaluate(() => (window as unknown as { __holder: Worker }).__holder.terminate());
 
-  await expect(app.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 15_000 });
-  await expect(app.getByText(STUCK)).toHaveCount(0);
+  await expect(app.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 30_000 });
+  expect(await app.evaluate(() => sessionStorage.getItem("e2e.saw-stuck"))).toBeNull();
   await expectOneDatabaseWorker(app);
+  // Retries reload in place: no history entries to go "back" through.
+  expect(await app.evaluate(() => history.length)).toBe(historyAtStart);
   // Opened: the next failure starts a fresh round of retries.
   expect(await app.evaluate(() => sessionStorage.getItem("english-learn-db-open-retries"))).toBe(
     null,
