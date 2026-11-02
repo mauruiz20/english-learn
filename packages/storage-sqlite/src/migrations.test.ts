@@ -30,6 +30,7 @@ describe("migrate", () => {
     expect(await userVersion(db)).toBe(SCHEMA_VERSION);
     expect(await tableNames(db)).toEqual([
       "event",
+      "lesson_result",
       "placement_result",
       "review_state",
       "setting",
@@ -94,6 +95,24 @@ describe("migrate", () => {
       [],
     );
     expect(indexes.map((i) => i.name)).toEqual(["event_by_order", "event_by_synced"]);
+  });
+
+  it("resolves to the version it found, so the caller knows the schema was upgraded", async () => {
+    expect(await migrate(db)).toBe(0);
+    expect(await migrate(db)).toBe(SCHEMA_VERSION);
+  });
+
+  it("adds the lesson result cache at version 4", async () => {
+    await migrate(db);
+    const columns = await db.getAllAsync<{ name: string; type: string; notnull: number }>(
+      "SELECT name, type, \"notnull\" FROM pragma_table_info('lesson_result') ORDER BY cid",
+      [],
+    );
+    expect(columns).toEqual([
+      { name: "lesson_id", type: "TEXT", notnull: 1 },
+      { name: "best_accuracy", type: "REAL", notnull: 1 },
+      { name: "completions", type: "INTEGER", notnull: 1 },
+    ]);
   });
 
   it("refuses a database created by a newer app version", async () => {

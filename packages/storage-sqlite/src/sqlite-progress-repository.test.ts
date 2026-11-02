@@ -101,6 +101,7 @@ async function cacheOf(repo: SqliteProgressRepository) {
     xp: await repo.getXp(),
     streak: await repo.getStreak(),
     placement: await repo.getPlacementResult(),
+    lessonResults: await repo.getLessonResults(),
   };
 }
 
@@ -124,8 +125,8 @@ async function storedEvents(db: Db): Promise<StoredEvent[]> {
 }
 
 function foldedCache(events: readonly StoredEvent[]) {
-  const { states, xp, streak, placement } = foldEvents(events);
-  return { states, xp, streak, placement };
+  const { states, xp, streak, placement, lessonResults } = foldEvents(events);
+  return { states, xp, streak, placement, lessonResults };
 }
 
 /** Creates the version 2 schema (before the event log) the way older app versions left it. */
@@ -170,6 +171,7 @@ describe("createSqliteProgressRepository", () => {
       xp: 0,
       streak: EMPTY_STREAK,
       placement: null,
+      lessonResults: [],
     });
   });
 
@@ -269,6 +271,42 @@ describe("createSqliteProgressRepository", () => {
     });
   });
 
+  describe("lesson results", () => {
+    it("caches each lesson's best result and refreshes it on every write", async () => {
+      await repo.appendEvents([lessonDone(DAY, "s1", "L1", 40, 0.5)]);
+      expect(await repo.getLessonResults()).toEqual([
+        { lessonId: "L1", bestAccuracy: 0.5, completions: 1 },
+      ]);
+
+      await repo.appendEvents([
+        lessonDone(NEXT_DAY, "s2", "L1", 60, 1),
+        lessonDone(NEXT_DAY, "s3", "L0", 30, 0.75),
+      ]);
+      expect(await repo.getLessonResults()).toEqual([
+        { lessonId: "L0", bestAccuracy: 0.75, completions: 1 },
+        { lessonId: "L1", bestAccuracy: 1, completions: 2 },
+      ]);
+    });
+
+    it("fills the cache of a log written before lesson results were cached", async () => {
+      await repo.appendEvents([lessonDone(DAY, "s1", "L1", 40, 5 / 6)]);
+      await db.runAsync("DELETE FROM lesson_result", []);
+      expect(await repo.getLessonResults()).toEqual([]);
+
+      await repo.rebuildFromEvents();
+
+      expect(await repo.getLessonResults()).toEqual([
+        { lessonId: "L1", bestAccuracy: 5 / 6, completions: 1 },
+      ]);
+    });
+
+    it("clears them with the rest of the progress", async () => {
+      await repo.appendEvents([lessonDone(DAY, "s1", "L1", 40, 1)]);
+      await repo.clearProgress();
+      expect(await repo.getLessonResults()).toEqual([]);
+    });
+  });
+
   describe("rebuildFromEvents", () => {
     it("recomputes a wiped or stale cache from the event log", async () => {
       const events = [
@@ -334,7 +372,8 @@ describe("createSqliteProgressRepository", () => {
     it("writes ONE baseline from the existing progress and keeps the cache identical", async () => {
       repo = await upgradedRepo();
       const before = await cacheOf(repo);
-      expect(before).toEqual({ states, xp: 345, streak, placement: { level: "B1", theta: 0.3 } });
+      const progress = { states, xp: 345, streak, placement: { level: "B1", theta: 0.3 } };
+      expect(before).toEqual({ ...progress, lessonResults: [] });
       const seen: unknown[] = [];
 
       const written = await repo.ensureBaseline((cache) => {
@@ -346,7 +385,7 @@ describe("createSqliteProgressRepository", () => {
 
       expect(written).toBe(true);
       expect(again).toBe(false);
-      expect(seen).toEqual([before]);
+      expect(seen).toEqual([progress]);
       expect(await cacheOf(repo)).toEqual(before);
       const events = await storedEvents(db);
       expect(events.map((e) => e.type)).toEqual(["baseline_imported"]);

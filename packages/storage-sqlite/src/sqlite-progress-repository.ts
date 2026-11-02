@@ -5,6 +5,7 @@ import {
   localDate,
   type AppendedEvents,
   type BaselineImportedEvent,
+  type LessonResult,
   type Level,
   type PlacementResult,
   type ProgressRepository,
@@ -29,6 +30,8 @@ type ReviewStateRow = {
 type StreakRow = { current: number; longest: number; last_active_date: string | null };
 
 type PlacementRow = { level: string; theta: number };
+
+type LessonResultRow = { lesson_id: string; best_accuracy: number; completions: number };
 
 type EventRow = {
   id: string;
@@ -90,6 +93,8 @@ export type SqliteProgressRepositoryOptions = {
 const MAX_IDS_PER_QUERY = 500;
 /** Review states per multi-row upsert (6 parameters each). */
 const STATES_PER_INSERT = 80;
+/** Lesson results per multi-row insert (3 parameters each). */
+const RESULTS_PER_INSERT = 150;
 
 const DEVICE_ID = "device_id";
 const SERVER_CURSOR = "server_cursor";
@@ -171,7 +176,8 @@ function isStorable(event: StoredEvent): boolean {
 
 /**
  * `ProgressRepository` (plus the sync store) backed by SQLite: an append-only `event` table is
- * the source of truth, and `review_state`, `xp`, `streak` and `placement_result` cache its fold.
+ * the source of truth, and `review_state`, `xp`, `streak`, `placement_result` and `lesson_result`
+ * cache its fold.
  * Every write refolds the whole log in the same transaction and writes only what changed.
  * Call `migrate(db)` before using it.
  */
@@ -224,6 +230,30 @@ export function createSqliteProgressRepository(
       [],
     );
     return row === null ? null : { level: toLevel(row.level), theta: row.theta };
+  }
+
+  async function readLessonResults(): Promise<LessonResult[]> {
+    const rows = await db.getAllAsync<LessonResultRow>(
+      "SELECT lesson_id, best_accuracy, completions FROM lesson_result ORDER BY lesson_id",
+      [],
+    );
+    return rows.map((row) => ({
+      lessonId: row.lesson_id,
+      bestAccuracy: row.best_accuracy,
+      completions: row.completions,
+    }));
+  }
+
+  /** Replaces the lesson results (a handful of rows per lesson completed, so rewritten whole). */
+  async function writeLessonResults(results: readonly LessonResult[]): Promise<void> {
+    await db.runAsync("DELETE FROM lesson_result", []);
+    for (const chunk of chunks(results, RESULTS_PER_INSERT)) {
+      await db.runAsync(
+        `INSERT INTO lesson_result (lesson_id, best_accuracy, completions)
+         VALUES ${chunk.map(() => "(?, ?, ?)").join(", ")}`,
+        chunk.flatMap((r) => [r.lessonId, r.bestAccuracy, r.completions]),
+      );
+    }
   }
 
   async function readTotals(): Promise<ProgressTotals> {
@@ -342,6 +372,7 @@ export function createSqliteProgressRepository(
          last_active_date = excluded.last_active_date`,
       [progress.streak.current, progress.streak.longest, progress.streak.lastActiveDate],
     );
+    await writeLessonResults(progress.lessonResults);
     if (progress.placement === null) {
       await db.runAsync("DELETE FROM placement_result", []);
     } else {
@@ -374,6 +405,7 @@ export function createSqliteProgressRepository(
     getStreak: readStreak,
     getXp: readXp,
     getPlacementResult: readPlacement,
+    getLessonResults: readLessonResults,
 
     async getDeviceId() {
       const id = await readSyncState(DEVICE_ID);
