@@ -9,6 +9,8 @@ import { Sticker } from "@/shared/ui/sticker";
 import { Text } from "@/shared/ui/text";
 import { radius, spacing } from "@/shared/ui/theme";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
+import { PerfectBadge } from "@/features/lesson/components/perfect-badge";
+import { scoreDescription, scoreText } from "@/features/lesson/model/lesson-score";
 import type { CardGroup, CardRow } from "./model/card-catalog";
 
 export type CardsViewState =
@@ -109,7 +111,14 @@ function CardRowButton({
   const styles = useStyles();
   const { colors } = useTheme();
   const studied = card.status !== "new";
-  const label = [card.title, card.level, STATUS_WORD[card.status]].filter(Boolean).join(", ");
+  const label = [
+    card.title,
+    card.level,
+    STATUS_WORD[card.status],
+    card.score === undefined ? "" : scoreDescription(card.score),
+  ]
+    .filter(Boolean)
+    .join(", ");
   return (
     <PressableScale
       accessibilityRole="button"
@@ -117,9 +126,19 @@ function CardRowButton({
       onPress={onPress}
       style={({ pressed }) => [styles.row, pressed && styles.pressed]}
     >
-      <Sticker color={color} state={studied ? "done" : "pending"} size={36} tilt={studied ? -6 : 0}>
-        {studied && <HandCheck testID={`card-check-${card.id}`} color={colors.onHighlighter} />}
-      </Sticker>
+      <View>
+        <Sticker
+          color={color}
+          state={studied ? "done" : "pending"}
+          size={36}
+          tilt={studied ? -6 : 0}
+        >
+          {studied && <HandCheck testID={`card-check-${card.id}`} color={colors.onHighlighter} />}
+        </Sticker>
+        {card.score?.perfect === true && (
+          <PerfectBadge testID={`card-perfect-${card.id}`} size={20} style={styles.perfectBadge} />
+        )}
+      </View>
       <View style={styles.rowText}>
         <Text variant="bodyStrong">{card.title}</Text>
         <View style={styles.rowMeta}>
@@ -141,6 +160,11 @@ function CardRowButton({
           {card.status === "mastered" && (
             <Text variant="smallStrong" tone="success">
               Dominada
+            </Text>
+          )}
+          {card.score !== undefined && (
+            <Text variant="smallStrong" tone="success">
+              {scoreText(card.score)}
             </Text>
           )}
         </View>
@@ -179,7 +203,9 @@ const useStyles = themedStyles(({ colors }) =>
     },
     pressed: { backgroundColor: colors.rule },
     rowText: { flex: 1, gap: 2 },
-    rowMeta: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
+    rowMeta: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: spacing.sm },
+    // The star sticks on the card's sticker corner, like a lesson's on the path.
+    perfectBadge: { position: "absolute", right: -8, top: -8 },
     levelChip: { borderRadius: radius.pill, paddingHorizontal: spacing.sm, paddingVertical: 1 },
   }),
 );

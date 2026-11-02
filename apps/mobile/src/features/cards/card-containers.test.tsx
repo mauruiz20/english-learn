@@ -33,6 +33,23 @@ const card = corpus.cardsById.get("b1.grammar.look-forward-to")!;
 const studied = () =>
   createFakeRepository({ states: card.itemIds.map((id) => initialState(id, TODAY)) });
 
+/** The card studied and practiced once with `accuracy`, saved like a lesson with its id. */
+async function practiced(accuracy: number) {
+  const repository = studied();
+  await repository.appendEvents([
+    {
+      id: "0190000a-0000-7000-8000-000000000001",
+      deviceId: "test-device",
+      occurredAt: 1,
+      localDate: TODAY,
+      type: "session_completed",
+      payload: { v: 1, sessionId: "s1", kind: "lesson", lessonId: card.id, answerXp: 60, accuracy },
+    },
+  ]);
+  return repository;
+}
+const exercises = card.exerciseIds.length;
+
 function withServices(repository: FakeProgressRepository, children: ReactNode) {
   return (
     <AppServicesProvider
@@ -64,6 +81,19 @@ describe("CardsContainer", () => {
       screen.getByRole("button", { name: "Look forward to + -ing, B1, estudiada" }),
     );
     expect(mockRouter.push).toHaveBeenCalledWith("/fichas/b1.grammar.look-forward-to");
+  });
+});
+
+describe("CardsContainer results", () => {
+  it("shows each practiced card's best result from the log", async () => {
+    await render(withServices(await practiced(1), <CardsContainer />));
+
+    expect(
+      await screen.findByRole("button", {
+        name: `Look forward to + -ing, B1, estudiada, completada sin errores: ${exercises} de ${exercises} correctas`,
+      }),
+    ).toBeOnTheScreen();
+    expect(screen.getByText(`Perfecta · ${exercises}/${exercises}`)).toBeOnTheScreen();
   });
 });
 

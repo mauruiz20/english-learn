@@ -1,5 +1,12 @@
 import type { Card, CardKind, Corpus, Exercise } from "@english-learn/content";
-import { LEVELS, levelProgress, type Level, type ReviewState } from "@english-learn/domain";
+import {
+  LEVELS,
+  levelProgress,
+  type LessonResult,
+  type Level,
+  type ReviewState,
+} from "@english-learn/domain";
+import { lessonScore, type LessonScore } from "@/features/lesson/model/lesson-score";
 import { topicLabel } from "@/features/topics/topic-labels";
 
 /**
@@ -14,6 +21,8 @@ export type CardRow = {
   readonly title: string;
   readonly level: Level;
   readonly status: CardStatus;
+  /** Its best practice result; none if never practiced. */
+  readonly score?: LessonScore;
 };
 
 export type CardGroup = {
@@ -34,8 +43,32 @@ export function cardStatus(card: Card, states: readonly ReviewState[]): CardStat
   return mastered === total ? "mastered" : "studied";
 }
 
+/**
+ * Card id → its best practice result. Practice is saved as a lesson whose id is the card's, so
+ * the fold's lesson results already hold it; counted over the card's exercises like a lesson.
+ */
+export function cardScores(
+  content: Pick<Corpus, "cards" | "exercisesById">,
+  results: readonly LessonResult[],
+): ReadonlyMap<string, LessonScore> {
+  const resultById = new Map(results.map((r) => [r.lessonId, r]));
+  const scores = new Map<string, LessonScore>();
+  for (const card of content.cards) {
+    const score = lessonScore(
+      resultById.get(card.id),
+      cardExercises(card, content.exercisesById).length,
+    );
+    if (score !== undefined) scores.set(card.id, score);
+  }
+  return scores;
+}
+
 /** The cards by kind, then by level (A1 → C1), in file order inside a level. */
-export function cardGroups(cards: readonly Card[], states: readonly ReviewState[]): CardGroup[] {
+export function cardGroups(
+  cards: readonly Card[],
+  states: readonly ReviewState[],
+  scores: ReadonlyMap<string, LessonScore> = new Map(),
+): CardGroup[] {
   return KIND_ORDER.flatMap((kind) => {
     const ofKind = cards.filter((c) => c.kind === kind);
     const first = ofKind[0];
@@ -48,12 +81,16 @@ export function cardGroups(cards: readonly Card[], states: readonly ReviewState[
         levels: LEVELS.flatMap((level) => {
           const rows = ofKind
             .filter((c) => c.level === level)
-            .map((c) => ({
-              id: c.id,
-              title: c.title,
-              level: c.level,
-              status: cardStatus(c, states),
-            }));
+            .map((c): CardRow => {
+              const score = scores.get(c.id);
+              return {
+                id: c.id,
+                title: c.title,
+                level: c.level,
+                status: cardStatus(c, states),
+                ...(score === undefined ? {} : { score }),
+              };
+            });
           return rows.length === 0 ? [] : [{ level, cards: rows }];
         }),
       },
