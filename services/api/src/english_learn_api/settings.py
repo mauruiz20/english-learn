@@ -22,6 +22,9 @@ DEFAULT_CORS_ORIGINS = (
     "https://english.maumar.com.ar",
     "http://localhost:8081",  # Expo web dev server; production refuses localhost
 )
+# Sites allowed to create progress transfers (`POST /v1/transfers`), besides CORS_ORIGINS: the
+# old address of the web app, which hands its learners' progress over to the new one.
+DEFAULT_TRANSFER_SOURCE_ORIGINS = ("https://english-learn-iwl.pages.dev",)
 # Public OAuth client ids allowed as `aud` (and `azp`) of Google ID tokens: the web client today.
 DEFAULT_GOOGLE_CLIENT_IDS = (
     "78200832989-odkefhj0s4vla7h5p83gevs2440mctev.apps.googleusercontent.com",
@@ -152,6 +155,8 @@ class Settings(DatabaseSettings):
     # How recent the Google sign-in must be for DELETE /v1/account.
     reauthentication_window: timedelta = timedelta(minutes=5)
     cors_origins: Annotated[list[str], NoDecode] = list(DEFAULT_CORS_ORIGINS)
+    # Extra origins for `POST /v1/transfers` only (no credentials); claims stay on CORS_ORIGINS.
+    transfer_source_origins: Annotated[list[str], NoDecode] = list(DEFAULT_TRANSFER_SOURCE_ORIGINS)
     # The refresh cookie (cookie token transport) carries `Secure`; production refuses false.
     refresh_cookie_secure: bool = True
     max_request_body_bytes: int = 1024 * 1024
@@ -190,6 +195,9 @@ class Settings(DatabaseSettings):
         # CORS allows credentials (the refresh cookie), so every origin is listed exactly.
         if "*" in self.cors_origins:
             msg = 'CORS_ORIGINS must list exact origins, not "*"'
+            raise ValueError(msg)
+        if "*" in self.transfer_source_origins:
+            msg = 'TRANSFER_SOURCE_ORIGINS must list exact origins, not "*"'
             raise ValueError(msg)
         return self
 
@@ -230,6 +238,12 @@ class Settings(DatabaseSettings):
         unsafe = [origin for origin in self.cors_origins if not _is_public_https(origin)]
         if unsafe:
             msg = f"CORS_ORIGINS in production must be public https origins, not {unsafe}"
+            raise ValueError(msg)
+        unsafe = [o for o in self.transfer_source_origins if not _is_public_https(o)]
+        if unsafe:
+            msg = (
+                f"TRANSFER_SOURCE_ORIGINS in production must be public https origins, not {unsafe}"
+            )
             raise ValueError(msg)
         return self
 
@@ -278,7 +292,7 @@ class Settings(DatabaseSettings):
             raise ValueError(msg)
         return value
 
-    @field_validator("cors_origins", "google_client_ids", mode="before")
+    @field_validator("cors_origins", "transfer_source_origins", "google_client_ids", mode="before")
     @classmethod
     def _split_commas(cls, value: object) -> object:
         # `CORS_ORIGINS=https://a.example,https://b.example` in the environment.

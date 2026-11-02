@@ -5,7 +5,7 @@ from ipaddress import ip_network
 import pytest
 from starlette.requests import Request
 
-from english_learn_api.shared.client_ip import cf_connecting_ip, socket_client_ip
+from english_learn_api.shared.client_ip import cf_connecting_ip, rate_limit_key, socket_client_ip
 
 PROXY = "172.18.0.5"  # cloudflared on the compose network
 TRUSTED = (ip_network("172.18.0.0/16"), ip_network("fd00:18::/64"))
@@ -86,3 +86,18 @@ class TestCfConnectingIp:
         sent = request("testclient", ("CF-Connecting-IP", "198.51.100.7"))
 
         assert self.resolve(sent) == "testclient"
+
+
+class TestRateLimitKey:
+    def test_an_ipv4_address_is_its_own_key(self) -> None:
+        assert rate_limit_key("203.0.113.9") == "203.0.113.9"
+        assert rate_limit_key("203.0.113.10") == "203.0.113.10"
+
+    def test_ipv6_addresses_key_on_their_64_prefix(self) -> None:
+        # One subscriber usually gets a whole /64: rotating inside it must not reset the limit.
+        assert rate_limit_key("2001:db8:1:2:aaaa::1") == "2001:db8:1:2::/64"
+        assert rate_limit_key("2001:DB8:1:2:ffff:ffff:ffff:ffff") == "2001:db8:1:2::/64"
+        assert rate_limit_key("2001:db8:1:3::1") == "2001:db8:1:3::/64"
+
+    def test_an_unparsable_value_is_kept(self) -> None:
+        assert rate_limit_key("unknown") == "unknown"

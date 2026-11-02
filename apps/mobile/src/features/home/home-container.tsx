@@ -9,6 +9,8 @@ import { useSoundPreference } from "@/features/sound/sound-preference";
 import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
 import { useProgressVersion } from "@/features/account/account-context";
+import { MoveBanner } from "@/features/transfer/move-banner";
+import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
@@ -62,6 +64,8 @@ export function HomeContainer({
   const sound = useSoundPreference();
   const theme = useThemePreference();
   const progressVersion = useProgressVersion();
+  // Only on the app's old web address, while it holds progress to take along.
+  const moveOffer = useOriginMoveOffer();
 
   const load = useCallback(() => {
     let active = true;
@@ -121,6 +125,16 @@ export function HomeContainer({
       onOpenAbout={() => router.push("/about")}
       onOpenAccount={() => router.push("/cuenta")}
       onOpenAlbum={() => router.push("/album")}
+      notice={
+        moveOffer && (
+          <MoveBanner
+            newOrigin={moveOffer.newOrigin}
+            status={moveOffer.status}
+            onTake={moveOffer.take}
+            onSkip={moveOffer.skip}
+          />
+        )
+      }
     />
   );
 }

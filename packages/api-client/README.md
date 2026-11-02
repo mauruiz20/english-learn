@@ -32,7 +32,8 @@ const page = await api.sync({ deviceId, cursor, events });
   and the responses include `refreshToken`.
 
 The types follow the option: `createApiClient({ ..., tokenTransport: "body" })` returns
-`ApiClient<"body">`, otherwise `ApiClient<"cookie">`. Other routes never send credentials.
+`ApiClient<"body">`, otherwise `ApiClient<"cookie">`. Other routes never send credentials; the
+transfer routes send no bearer token either.
 
 | Method                                | Request                       | Returns (cookie · body)                                                  |
 | ------------------------------------- | ----------------------------- | ------------------------------------------------------------------------ |
@@ -42,6 +43,8 @@ The types follow the option: `createApiClient({ ..., tokenTransport: "body" })` 
 | `me()`                                | `GET /v1/me` (Bearer)         | `{ id, email }`                                                          |
 | `deleteAccount()`                     | `DELETE /v1/account` (Bearer) | `void`                                                                   |
 | `sync(request)`                       | `POST /v1/sync` (Bearer)      | `{ events, cursor, hasMore, accepted, duplicates, conflicts }`           |
+| `createTransfer({ events })`          | `POST /v1/transfers`          | `{ token, expiresAt }` (anonymous, no credentials)                       |
+| `claimTransfer(token)`                | `POST /v1/transfers/claim`    | `{ events }`, once; else 404 `transfer_not_found` (anonymous)            |
 
 A non-2xx answer throws `ApiError` with `status`, the API's `code` (`device_conflict`,
 `rate_limited`, `reauthentication_required`…; `http_<status>` when the body is not the API's error

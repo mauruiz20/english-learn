@@ -95,4 +95,14 @@ describe("createSqliteSettingsRepository", () => {
 
     expect(await settings.getThemePreference()).toBe("system");
   });
+
+  it("remembers the origin this device's progress moved to", async () => {
+    expect(await settings.getMigratedTo()).toBeNull();
+
+    await settings.setMigratedTo("https://english.maumar.com.ar");
+
+    expect(await createSqliteSettingsRepository(db).getMigratedTo()).toBe(
+      "https://english.maumar.com.ar",
+    );
+  });
 });

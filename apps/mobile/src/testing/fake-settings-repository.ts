@@ -8,6 +8,7 @@ export function createFakeSettingsRepository(
     account?: AccountMarker | null;
     saveProgressSuggestionDismissed?: boolean;
     themePreference?: ThemePreference;
+    migratedTo?: string | null;
   } = {},
 ): SettingsRepository & {
   readonly soundEnabled: () => boolean;
@@ -15,13 +16,16 @@ export function createFakeSettingsRepository(
   readonly account: () => AccountMarker | null;
   readonly saveProgressSuggestionDismissed: () => boolean;
   readonly themePreference: () => ThemePreference;
+  readonly migratedTo: () => string | null;
 } {
   let soundEnabled = initial.soundEnabled ?? true;
   let lookupHintDismissed = initial.lookupHintDismissed ?? false;
   let account = initial.account ?? null;
   let saveProgressSuggestionDismissed = initial.saveProgressSuggestionDismissed ?? false;
   let themePreference = initial.themePreference ?? "system";
+  let migratedTo = initial.migratedTo ?? null;
   return {
+    migratedTo: () => migratedTo,
     themePreference: () => themePreference,
     soundEnabled: () => soundEnabled,
     lookupHintDismissed: () => lookupHintDismissed,
@@ -49,6 +53,10 @@ export function createFakeSettingsRepository(
     getThemePreference: async () => themePreference,
     setThemePreference: async (next) => {
       themePreference = next;
+    },
+    getMigratedTo: async () => migratedTo,
+    setMigratedTo: async (origin) => {
+      migratedTo = origin;
     },
   };
 }

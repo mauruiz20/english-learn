@@ -268,6 +268,35 @@ network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/a
   reads its URLs from `localStorage` (`english-learn.e2e.*`, dropped from production builds).
   `E2E_PORT` serves the export on another port when 4173 is taken.
 
+## Moving to the new web address (`src/features/transfer/`)
+
+The web app moved from `https://english-learn-iwl.pages.dev` (old) to
+`https://english.maumar.com.ar` (new); both serve the same build. Progress lives on the device per
+origin, and the two cannot message each other (cross-origin isolated), so the API relays it once
+([progress transfers](../../services/api/README.md#progress-transfers)).
+
+- **Old address** (`OriginMoveGate`, right after the database opens, before any screen): with
+  progress, home shows a sticker banner, "La app se mudó a english.maumar.com.ar", with
+  **Llevar mi progreso** (uploads the whole log with `POST /v1/transfers`, remembers
+  `migratedTo`, then opens `https://english.maumar.com.ar/importar#t=<token>`) and **Ir sin mi
+  progreso**. Offline, 413 and 429 are explained, with a retry. Without progress, or once moved, it
+  `location.replace`s itself with the same page (path and query, never the fragment, so a crafted
+  old-address link cannot bounce a `#t=` token) on the new address. `/?transferir=1` offers the
+  move again after an expired or used link. Nothing is deleted on the old address.
+- **New address, `/importar`**: drops the fragment from the address bar, history and the router's
+  `#` param first, then claims the transfer (`POST /v1/transfers/claim`, once) **into memory
+  only** and previews it (folded on its own: XP, completed lessons, streak, dates, event count):
+  "Progreso del sitio anterior … ¿Importarlo a este dispositivo?". Anyone can craft such a link,
+  so nothing is written before **Importar**; then the events become this device's **unsynced**
+  events (`importEvents`: idempotent by id, never marked synced), so a signed-in learner's next
+  sync uploads them (the preview says so when signed in). **Cancelar** discards them and explains
+  the link is spent. A failed save retries from memory without claiming again. An expired or used
+  link explains itself and links back to the old address.
+- The service worker serves `/importar` the app shell; the fragment never reaches a server.
+- E2E (`e2e/transfer.spec.ts`): a second server of the export (`E2E_OLD_PORT`, default
+  `E2E_PORT + 1`) plays the old address and a local fake plays the transfer API; the e2e build
+  reads both addresses from `localStorage` (`english-learn.e2e.oldWebOrigin` / `newWebOrigin`).
+
 ## Design: "el cuaderno de stickers" (`src/shared/ui/`)
 
 The UI borrows from a school English notebook: ruled paper, blue ballpoint ink, highlighters and

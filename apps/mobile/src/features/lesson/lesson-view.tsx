@@ -117,6 +117,8 @@ export function LessonView({
                     verdict={state.feedback.verdict}
                     given={state.feedback.given}
                     correctAnswer={state.feedback.correctAnswer}
+                    diff={state.feedback.diff}
+                    hint={state.feedback.hint}
                     lookupAnswer={answerIsEnglish(state.prepared)}
                     disputed={state.feedback.disputed}
                     onDispute={state.feedback.disputable ? onDispute : undefined}

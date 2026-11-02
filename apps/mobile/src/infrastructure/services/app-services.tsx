@@ -1,4 +1,10 @@
-import type { Clock, ProgressRepository, Rng, SettingsRepository } from "@english-learn/domain";
+import type {
+  Clock,
+  ProgressRepository,
+  Rng,
+  SettingsRepository,
+  StoredEvent,
+} from "@english-learn/domain";
 import { createContext, use, type ReactNode } from "react";
 import type { RandomBytes } from "@/features/progress/progress-events";
 import { silentSoundPlayer, type SoundPlayer } from "../sound/sound-player";
@@ -21,6 +27,15 @@ export type AppServices = {
   readonly sounds: SoundPlayer;
   /** The event log as the optional account's sync needs it; absent in tests that do not sync. */
   readonly account?: AccountStorage;
+  /** The whole event log, to carry it between web addresses; absent in tests that do not. */
+  readonly transfer?: TransferStorage;
+};
+
+/** See `getAllEvents` / `importEvents` of `@english-learn/storage-sqlite`. */
+export type TransferStorage = {
+  getAllEvents(): Promise<readonly StoredEvent[]>;
+  /** Adds missing events as unsynced local ones and rebuilds the progress; resolves to how many. */
+  importEvents(events: readonly StoredEvent[]): Promise<number>;
 };
 
 export type AccountStorage = {

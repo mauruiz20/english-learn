@@ -16,6 +16,7 @@ import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
 import { HomeContainer } from "./home-container";
+import { OriginMoveOfferContext, type OriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { AccountContext, type AccountContextValue } from "@/features/account/account-context";
 import { createCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import { withMotion } from "@/testing/motion";
@@ -49,7 +50,14 @@ function renderContainer(
   repository: ProgressRepository,
   completionMemory: CompletionMemory = createCompletionMemory(),
 ) {
-  return render(
+  return render(renderContainerElement(repository, completionMemory));
+}
+
+function renderContainerElement(
+  repository: ProgressRepository,
+  completionMemory: CompletionMemory = createCompletionMemory(),
+) {
+  return (
     <AppServicesProvider
       services={{
         progressRepository: repository,
@@ -66,13 +74,40 @@ function renderContainer(
           <HomeContainer content={content} completionMemory={completionMemory} />
         </ThemePreferenceProvider>
       </SoundPreferenceProvider>
-    </AppServicesProvider>,
+    </AppServicesProvider>
   );
 }
 
 beforeEach(() => jest.clearAllMocks());
 
 describe("HomeContainer", () => {
+  it("shows the move banner on the old web address, wired to the offer", async () => {
+    const offer: OriginMoveOffer = {
+      newOrigin: "https://english.maumar.com.ar",
+      status: { kind: "idle" },
+      take: jest.fn(),
+      skip: jest.fn(),
+    };
+    await render(
+      <OriginMoveOfferContext value={offer}>
+        {renderContainerElement(createFakeRepository())}
+      </OriginMoveOfferContext>,
+    );
+
+    expect(await screen.findByText("La app se mudó a english.maumar.com.ar")).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Llevar mi progreso" }));
+    expect(offer.take).toHaveBeenCalledTimes(1);
+    await fireEvent.press(screen.getByRole("button", { name: "Ir sin mi progreso" }));
+    expect(offer.skip).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows no move banner anywhere else", async () => {
+    await renderContainer(createFakeRepository());
+
+    expect(await screen.findByLabelText("Racha: 0 días")).toBeOnTheScreen();
+    expect(screen.queryByText(/La app se mudó/)).toBeNull();
+  });
+
   it("renders the empty progress of a new learner", async () => {
     await renderContainer(createFakeRepository());
 

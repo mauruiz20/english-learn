@@ -3,11 +3,14 @@ import {
   ApiError,
   createApiClient,
   type CookieSignInResponse,
+  type ClaimTransferResponse,
   type CookieTokensResponse,
+  type CreateTransferResponse,
   type FetchLike,
   type SignInResponse,
   type SyncRequest,
   type TokensResponse,
+  type TransferEvent,
 } from "./index";
 
 type Call = {
@@ -239,6 +242,63 @@ describe("createApiClient", () => {
       headers: { Authorization: "Bearer access-1", "Content-Type": "application/json" },
     });
     expect(JSON.parse(calls[0]?.body ?? "")).toEqual(upload);
+  });
+
+  it("creates a transfer anonymously: no bearer, no credentials", async () => {
+    const created = { token: "t".repeat(43), expiresAt: "2026-10-30T12:15:00Z" };
+    const { fetch, calls } = fakeFetch({ status: 201, body: created });
+    const events: TransferEvent[] = [
+      {
+        id: "019a3456-7890-7abc-8def-0123456789ab",
+        occurredAt: 1_793_361_600_000,
+        localDate: "2026-10-30",
+        type: "item_reviewed",
+        payload: { v: 1, sessionId: "s1", itemId: "i1", grade: 3 },
+      },
+    ];
+
+    const response = await client(fetch, "access-1").createTransfer({ events });
+
+    expectTypeOf(response).toEqualTypeOf<CreateTransferResponse>();
+    expect(response).toEqual(created);
+    expect(calls).toEqual([
+      {
+        url: "https://api.example.com/v1/transfers",
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ events }),
+      },
+    ]);
+  });
+
+  it("claims a transfer anonymously and returns its events", async () => {
+    const claimed = { events: [] };
+    const { fetch, calls } = fakeFetch({ status: 200, body: claimed });
+
+    const response = await client(fetch, "access-1").claimTransfer("secret-token");
+
+    expectTypeOf(response).toEqualTypeOf<ClaimTransferResponse>();
+    expect(response).toEqual(claimed);
+    expect(calls).toEqual([
+      {
+        url: "https://api.example.com/v1/transfers/claim",
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ token: "secret-token" }),
+      },
+    ]);
+  });
+
+  it("reports an unknown, expired or used transfer as transfer_not_found", async () => {
+    const { fetch } = fakeFetch({
+      status: 404,
+      body: { error: { code: "transfer_not_found", message: "gone" } },
+    });
+
+    await expect(client(fetch).claimTransfer("used")).rejects.toMatchObject({
+      status: 404,
+      code: "transfer_not_found",
+    });
   });
 
   it("omits the Authorization header when there is no access token", async () => {

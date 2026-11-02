@@ -511,6 +511,89 @@ describe("createSqliteProgressRepository", () => {
     });
   });
 
+  describe("transfer to another web origin", () => {
+    it("reads every event of the log, oldest first, whatever its sync state", async () => {
+      const first = lesson(DAY, "l1", { a: 5 }, 10);
+      await repo.appendEvents(first);
+      await repo.markSynced([first[0]!.id], [1]);
+      const remote = lesson(NEXT_DAY, "l2", { b: 5 }, 10).map((e) => ({ ...e, deviceId: "b" }));
+      await repo.insertRemoteEvents(remote);
+
+      const all = await repo.getAllEvents();
+
+      expect(all).toEqual(JSON.parse(JSON.stringify([...first, ...remote])));
+    });
+
+    it("imports missing events as unsynced local events and rebuilds the cache", async () => {
+      const here = lesson(DAY, "l1", { a: 5 }, 10);
+      await repo.appendEvents(here);
+      await repo.markSynced(
+        here.map((e) => e.id),
+        [1, 2],
+      );
+      const moved = lesson(NEXT_DAY, "l2", { b: 5 }, 10);
+
+      expect(await repo.importEvents([...moved, here[0]!])).toBe(2);
+
+      expect(await eventCount(db)).toBe(4);
+      expect(await cacheOf(repo)).toEqual(foldedCache([...here, ...moved]));
+      // They upload with the next sync; what was already synced stays synced.
+      expect((await repo.getUnsyncedEvents(10)).map((e) => e.id)).toEqual(moved.map((e) => e.id));
+    });
+
+    it("is idempotent by id", async () => {
+      const moved = lesson(DAY, "l1", { a: 5 }, 10);
+
+      expect(await repo.importEvents(moved)).toBe(2);
+      expect(await repo.importEvents(moved)).toBe(0);
+
+      expect(await eventCount(db)).toBe(2);
+      expect(await repo.getXp()).toBe(30);
+    });
+
+    it("keeps events this version cannot read and skips unorderable ones", async () => {
+      const future = { ...envelope(DAY), type: "goal_set", payload: { v: 1, goal: 3 } };
+      const broken = { ...envelope(DAY), occurredAt: Number.NaN, type: "x", payload: {} };
+
+      expect(await repo.importEvents([future, broken])).toBe(1);
+      expect(await cacheOf(repo)).toEqual(foldedCache([]));
+    });
+
+    it("folds the old origin's baseline into a new origin's log without double XP", async () => {
+      // The old origin migrated pre-event progress (one baseline: 345 XP, lesson l0 done), then
+      // finished l1. The new origin started empty, so it never wrote a baseline of its own
+      // (`ensureBaseline` writes none for empty progress), and finished l1 and l2 there.
+      const oldLog = [
+        {
+          ...envelope(localDate("2026-10-01"), 1),
+          type: "baseline_imported",
+          payload: {
+            v: 1,
+            states: [state("a", { dueDate: localDate("2026-10-02") })],
+            xp: 345,
+            streak: { current: 2, longest: 5, lastActiveDate: localDate("2026-09-30") },
+            placement: { level: "B1", theta: 0.3 },
+            completedLessonIds: ["l0"],
+          },
+        } satisfies BaselineImportedEvent,
+        ...lesson(DAY, "l0", { a: 5 }, 10), // replayed: no bonus (in the baseline)
+        ...lesson(DAY, "l1", { a: 5 }, 10), // first l1 in fold order: bonus
+      ];
+      expect(await repo.ensureBaseline(baselineFor([]))).toBe(false);
+      await repo.appendEvents(lesson(NEXT_DAY, "l1", { b: 5 }, 10)); // l1 again: no bonus
+      await repo.appendEvents(lesson(NEXT_DAY, "l2", { b: 5 }, 10)); // bonus
+
+      await repo.importEvents(oldLog);
+      await repo.importEvents(oldLog);
+
+      const all = await storedEvents(db);
+      expect(all.filter((e) => e.type === "baseline_imported")).toHaveLength(1);
+      expect(await repo.getXp()).toBe(345 + 10 + (10 + 20) + 10 + (10 + 20));
+      expect(await cacheOf(repo)).toEqual(foldedCache(all));
+      expect(await repo.getPlacementResult()).toEqual({ level: "B1", theta: 0.3 });
+    });
+  });
+
   describe("performance", () => {
     // Canary for order-of-magnitude regressions (e.g. accidental quadratic refolds), not a
     // benchmark: ~25 ms on a laptop, but CI runners share CPU with the other test suites.

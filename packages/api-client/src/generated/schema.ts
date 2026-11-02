@@ -151,10 +151,63 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/transfers": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Create Transfer
+     * @description Store a device's events for 15 minutes and return a single-use token.
+     *
+     *     Anonymous and without credentials: the old web site calls it before sending the learner
+     *     to the new one with the token in the URL fragment.
+     */
+    post: operations["create_transfer_v1_transfers_post"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/transfers/claim": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Claim Transfer
+     * @description Return a transfer's events, exactly once; the transfer is deleted.
+     */
+    post: operations["claim_transfer_v1_transfers_claim_post"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    /** ClaimTransferRequest */
+    ClaimTransferRequest: {
+      /** Token */
+      token: string;
+    };
+    /** ClaimTransferResponse */
+    ClaimTransferResponse: {
+      /** Events */
+      events: components["schemas"]["TransferredEvent"][];
+    };
     /**
      * CookieSignInResponse
      * @description Cookie transport: the refresh token is only in the HttpOnly `el_rt` cookie.
@@ -181,6 +234,27 @@ export interface components {
        * Format: date-time
        */
       accessTokenExpiresAt: string;
+    };
+    /** CreateTransferRequest */
+    CreateTransferRequest: {
+      /**
+       * Events
+       * @description Every event of the device's log, as `POST /v1/sync` uploads them
+       */
+      events: components["schemas"]["EventRequest"][];
+    };
+    /** CreateTransferResponse */
+    CreateTransferResponse: {
+      /**
+       * Expiresat
+       * Format: date-time
+       */
+      expiresAt: string;
+      /**
+       * Token
+       * @description Secret, single use: pass it to the new site in the URL fragment
+       */
+      token: string;
     };
     /** EventRequest */
     EventRequest: {
@@ -330,6 +404,24 @@ export interface components {
       accessTokenExpiresAt: string;
       /** Refreshtoken */
       refreshToken: string;
+    };
+    /**
+     * TransferredEvent
+     * @description An event as it was uploaded (no device: the claiming device adopts it).
+     */
+    TransferredEvent: {
+      /** Id */
+      id: string;
+      /** Localdate */
+      localDate: string;
+      /** Occurredat */
+      occurredAt: number;
+      /** Payload */
+      payload: {
+        [key: string]: unknown;
+      };
+      /** Type */
+      type: string;
     };
     /** UserResponse */
     UserResponse: {
@@ -571,6 +663,93 @@ export interface operations {
       };
       /** @description `device_conflict`: use a new device id */
       409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"];
+        };
+      };
+    };
+  };
+  create_transfer_v1_transfers_post: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateTransferRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CreateTransferResponse"];
+        };
+      };
+      /** @description Body over 2 MiB */
+      413: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"];
+        };
+      };
+      /** @description `transfer_capacity`: too many transfers right now; `busy`: too many in progress at once */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  claim_transfer_v1_transfers_claim_post: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ClaimTransferRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ClaimTransferResponse"];
+        };
+      };
+      /** @description `transfer_not_found`: unknown, expired or already claimed */
+      404: {
         headers: {
           [name: string]: unknown;
         };

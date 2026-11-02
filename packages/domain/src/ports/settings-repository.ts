@@ -28,4 +28,10 @@ export interface SettingsRepository {
   /** Light, dark or the device's setting; follows the system until the learner picks one. */
   getThemePreference(): Promise<ThemePreference>;
   setThemePreference(preference: ThemePreference): Promise<void>;
+  /**
+   * The web origin this device's progress was transferred to (the app moved address), or null.
+   * Once set, the old address sends the learner there instead of showing the app.
+   */
+  getMigratedTo(): Promise<string | null>;
+  setMigratedTo(origin: string): Promise<void>;
 }

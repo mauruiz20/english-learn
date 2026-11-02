@@ -10,6 +10,7 @@ from pydantic import ValidationError
 from english_learn_api.settings import (
     DEFAULT_CORS_ORIGINS,
     DEFAULT_GOOGLE_CLIENT_IDS,
+    DEFAULT_TRANSFER_SOURCE_ORIGINS,
     DatabaseSettings,
     Settings,
 )
@@ -378,3 +379,41 @@ class TestSecretFiles:
         with pytest.raises(ValidationError, match="PostgreSQL") as error:
             Settings(_env_file=None)
         assert "hunter2" not in str(error.value)
+
+
+class TestTransferSourceOrigins:
+    """Origins allowed to create progress transfers (the old site); the app's own claim them."""
+
+    def test_default_to_the_old_pages_dev_site(self) -> None:
+        assert make().transfer_source_origins == ["https://english-learn-iwl.pages.dev"]
+        assert DEFAULT_TRANSFER_SOURCE_ORIGINS == ("https://english-learn-iwl.pages.dev",)
+
+    def test_are_read_comma_separated(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        monkeypatch.setenv("DATABASE_URL", "postgresql://u:p@h:5432/d")
+        monkeypatch.setenv("JWT_SECRET", SECRET)
+        monkeypatch.setenv("TRANSFER_SOURCE_ORIGINS", "https://old.example, http://localhost:4174")
+
+        settings = Settings(_env_file=None)
+
+        assert settings.transfer_source_origins == [
+            "https://old.example",
+            "http://localhost:4174",
+        ]
+
+    def test_refuse_a_wildcard_in_every_environment(self) -> None:
+        with pytest.raises(ValidationError, match="TRANSFER_SOURCE_ORIGINS"):
+            make(transfer_source_origins=["*"])
+
+    @pytest.mark.parametrize("origin", ["http://localhost:4174", "http://old.example"])
+    def test_must_be_public_https_in_production(self, origin: str) -> None:
+        with pytest.raises(ValidationError, match="TRANSFER_SOURCE_ORIGINS"):
+            make(
+                env="production",
+                cors_origins=["https://english.maumar.com.ar"],
+                transfer_source_origins=[origin],
+            )
+
+    def test_the_default_is_valid_in_production(self) -> None:
+        settings = make(env="production", cors_origins=["https://english.maumar.com.ar"])
+
+        assert settings.transfer_source_origins == ["https://english-learn-iwl.pages.dev"]
