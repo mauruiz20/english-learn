@@ -225,6 +225,22 @@
       ]
     },
     {
+      "id": "glossary.increase",
+      "headword": "increase",
+      "kind": "word",
+      "forms": ["increase", "increases", "increased", "increasing"],
+      "senses": [
+        {
+          "es": "aumentar, subir",
+          "pos": "verb"
+        },
+        {
+          "es": "aumento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.infinitive",
       "headword": "infinitive",
       "kind": "word",

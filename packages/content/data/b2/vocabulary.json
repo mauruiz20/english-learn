@@ -120,10 +120,10 @@
       "type": "translate_write",
       "es": "El precio de la gasolina subió otra vez.",
       "accepted": [
-        "The price of {gas|gasoline} {rose|went up} again.",
-        "{Gas|Gasoline} prices {rose|went up} again.",
-        "The price of {gas|gasoline} has {risen|gone up} again.",
-        "{Gas|Gasoline} prices have {risen|gone up} again."
+        "The price of {gas|gasoline} {rose|went up|increased} again.",
+        "{Gas|Gasoline} prices {rose|went up|increased} again.",
+        "The price of {gas|gasoline} has {risen|gone up|increased} again.",
+        "{Gas|Gasoline} prices have {risen|gone up|increased} again."
       ]
     }
   ],

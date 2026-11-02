@@ -438,8 +438,8 @@
       "type": "translate_write",
       "es": "No pude asistir a la clase de ayer.",
       "accepted": [
-        "I couldn't {attend|go to} {yesterday's class|the class yesterday}.",
-        "I wasn't able to {attend|go to} {yesterday's class|the class yesterday}."
+        "I couldn't {attend|go to|make it to} {yesterday's class|the class yesterday|class yesterday}.",
+        "I wasn't able to {attend|go to|make it to} {yesterday's class|the class yesterday|class yesterday}."
       ]
     },
     {
@@ -666,7 +666,7 @@
         {
           "wrong": "There is a lot of traffic in the peak hour.",
           "right": "There is a lot of traffic at rush hour.",
-          "why": "La hora pico se dice rush hour (con at)."
+          "why": "La hora pico se dice rush hour (at rush hour o during rush hour)."
         },
         {
           "wrong": "I commute in bus.",
@@ -897,7 +897,7 @@
         {
           "wrong": "I attended to the class.",
           "right": "I attended the class.",
-          "why": "Attend (asistir a) va sin to."
+          "why": "Attend (asistir a) va sin to. Attend to significa otra cosa: ocuparse de algo o atender a alguien."
         },
         {
           "wrong": "Can I attend you?",
@@ -1038,7 +1038,7 @@
         {
           "wrong": "Remember me to call the doctor.",
           "right": "Remind me to call the doctor.",
-          "why": "Si pides que otra persona te haga acordar, es remind."
+          "why": "Si pides que otra persona te recuerde algo, es remind."
         },
         {
           "wrong": "This song remembers me of my childhood.",

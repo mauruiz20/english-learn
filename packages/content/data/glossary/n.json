@@ -16,11 +16,15 @@
       "id": "glossary.nap",
       "headword": "nap",
       "kind": "word",
-      "forms": ["nap", "naps"],
+      "forms": ["nap", "naps", "napped", "napping"],
       "senses": [
         {
           "es": "siesta",
           "pos": "noun"
+        },
+        {
+          "es": "dormir la siesta",
+          "pos": "verb"
         }
       ]
     },

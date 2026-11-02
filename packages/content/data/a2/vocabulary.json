@@ -242,8 +242,8 @@
       "type": "translate_write",
       "es": "Mi abuelo duerme la siesta todas las tardes.",
       "accepted": [
-        "My {grandfather|grandpa} takes a nap every afternoon.",
-        "Every afternoon[,] my {grandfather|grandpa} takes a nap."
+        "My {grandfather|grandpa} {takes a nap|naps} every afternoon.",
+        "Every afternoon[,] my {grandfather|grandpa} {takes a nap|naps}."
       ]
     },
     {
@@ -352,7 +352,8 @@
       "uses": [
         "Make: make dinner, make a mistake, make a decision, make friends, make money.",
         "Do: do homework, do the dishes, do exercise, do your best, do someone a favor.",
-        "Para hablar de una actividad sin nombrarla se usa do: What are you doing?"
+        "Para hablar de una actividad sin nombrarla se usa do: What are you doing?",
+        "En inglés americano también es muy común decir simplemente exercise o work out."
       ],
       "pitfalls": [
         {
@@ -562,14 +563,14 @@
           "why": "Con home no se usa to: get home."
         },
         {
-          "wrong": "It's putting cold.",
-          "right": "It's getting cold.",
-          "why": "Para un cambio («se está poniendo frío») se usa get, no put."
+          "wrong": "It's making cold.",
+          "right": "It's cold. / It's getting cold.",
+          "why": "«Hace frío» no se dice con make: se usa be (It's cold), y para un cambio, get (It's getting cold)."
         },
         {
           "wrong": "I arrived to the office at nine.",
           "right": "I got to the office at nine.",
-          "why": "Llegar a un lugar es get to o arrive at; arrive to no es correcto."
+          "why": "Llegar a un lugar es get to, arrive at (un lugar concreto) o arrive in (una ciudad o un país); arrive to no es correcto."
         }
       ],
       "examples": [
