@@ -499,6 +499,26 @@ describe("HomeView deepen step", () => {
     }
   });
 
+  it("runs the pencil line on beside the steps only when another stop follows", async () => {
+    await renderWithCards();
+    expect(
+      screen.getByTestId("deepen-trail-culture-1", { includeHiddenElements: true }),
+    ).toBeOnTheScreen();
+
+    await render(
+      <HomeView
+        state={{ ...ready, lessons: { ...lessons, items: lessons.items.slice(0, 1) } }}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenCard={jest.fn()}
+      />,
+    );
+    expect(
+      screen.queryByTestId("deepen-trail-culture-1", { includeHiddenElements: true }),
+    ).not.toBeOnTheScreen();
+  });
+
   it("stays secondary to the lesson stops", async () => {
     await renderWithCards();
 

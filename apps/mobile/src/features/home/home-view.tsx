@@ -1,7 +1,7 @@
 import type { Level } from "@english-learn/domain";
 import { useState, type ReactNode } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Line, Path } from "react-native-svg";
 import { Button } from "@/shared/ui/button";
 import { formatDays } from "@/shared/ui/format";
 import { ClipChainMark } from "@/shared/ui/clip-chain";
@@ -441,8 +441,11 @@ function DeepenSteps({
   lessonId: string;
   cards: readonly HomeDeepenCard[];
   offset: number;
-  /** Another stop of the topic follows: the pencil line goes on beside the cards. */
-  continues: boolean;
+  /**
+   * Another stop of the topic follows: the pencil line goes on beside the cards, solid when that
+   * stop is done too, dotted ahead (like the line between stops).
+   */
+  continues: "drawn" | "ahead" | false;
   onOpenCard: (cardId: string) => void;
 }) {
   const styles = useStyles();
@@ -450,7 +453,27 @@ function DeepenSteps({
   return (
     <View style={[styles.deepen, { marginLeft: `${offset * 100}%` }]}>
       <View style={styles.deepenTrail}>
-        {continues && <View testID={`deepen-trail-${lessonId}`} style={styles.deepenLine} />}
+        {continues !== false && (
+          <Svg
+            testID={`deepen-trail-${lessonId}`}
+            aria-hidden
+            width={6}
+            height="100%"
+            style={styles.deepenLine}
+          >
+            <Line
+              x1={3}
+              y1={0}
+              x2={3}
+              y2="100%"
+              stroke={colors.ink}
+              strokeWidth={continues === "drawn" ? 3.5 : 3}
+              strokeLinecap="round"
+              {...(continues === "drawn" ? {} : { strokeDasharray: "1 8" })}
+              opacity={continues === "drawn" ? 0.9 : 0.55}
+            />
+          </Svg>
+        )}
       </View>
       <View style={styles.deepenList}>
         {cards.map((card) => (
@@ -621,6 +644,7 @@ function LessonIndex({
               {group.lessons.map(({ lesson, number }, i) => {
                 const offset = STOP_OFFSETS[(number - 1) % STOP_OFFSETS.length] ?? 0;
                 const previous = group.lessons[i - 1];
+                const next = group.lessons[i + 1];
                 const previousOffset =
                   previous === undefined
                     ? undefined
@@ -652,7 +676,9 @@ function LessonIndex({
                           lessonId={lesson.id}
                           cards={lesson.deepen}
                           offset={offset}
-                          continues={i < group.lessons.length - 1}
+                          continues={
+                            next === undefined ? false : next.lesson.done ? "drawn" : "ahead"
+                          }
                           onOpenCard={onOpenCard}
                         />
                       )}
@@ -839,8 +865,9 @@ const useStyles = themedStyles(({ colors }) =>
     },
     // Under a done stop: the pencil line's column, then the cards, smaller than a stop.
     deepen: { flexDirection: "row", alignItems: "stretch" },
-    deepenTrail: { width: STICKER_COLUMN, alignItems: "center" },
-    deepenLine: { flex: 1, width: 3, borderRadius: 2, backgroundColor: colors.ink, opacity: 0.55 },
+    deepenTrail: { width: STICKER_COLUMN },
+    // Out of the flow, so the line never makes the row taller than its cards.
+    deepenLine: { position: "absolute", top: 0, bottom: 0, left: STICKER_COLUMN / 2 - 3 },
     deepenList: { flexShrink: 1, gap: spacing.xs, paddingVertical: spacing.xs },
     deepenWrapper: { alignSelf: "flex-start", maxWidth: "100%" },
     deepenStep: {
