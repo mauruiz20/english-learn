@@ -1,4 +1,4 @@
-import { answerCorrectly } from "./support/content";
+import { answerCorrectly, currentExerciseId } from "./support/content";
 import { expect, test, type ConsoleMessage, type Page } from "./support/test";
 
 /** The words of the marked answer that carry the red-pen strike. */
@@ -28,11 +28,12 @@ test("free writing: an extra article is 'almost', with only that word struck and
 
   // Every exercise before the translation, answered right.
   const writing = page.getByLabel("Tu traducción en inglés");
-  for (let i = 0; i < 10 && !(await writing.isVisible()); i++) {
-    await answerCorrectly(page, "Comprobar");
+  await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
+  for (let i = 0; i < 10 && (await writing.count()) === 0; i++) {
+    const answered = await answerCorrectly(page, "Comprobar");
     await expect(page.getByRole("alert")).toHaveText("Correcto");
     await page.getByRole("button", { name: "Continuar", exact: true }).click();
-    await expect(page.getByText(/^Ejercicio \d+ de \d+$/)).toBeVisible();
+    await expect.poll(() => currentExerciseId(page)).not.toBe(answered);
   }
 
   // "Normalmente me voy a la cama a las once.": "to the bed" is a calque of "a la cama".
