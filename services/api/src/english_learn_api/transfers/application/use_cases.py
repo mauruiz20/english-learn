@@ -97,3 +97,27 @@ class ClaimTransfer:
             raise TransferNotFoundError(msg)
         logger.info("transfer claimed", extra={"events": len(events), "purged": purged})
         return events
+
+
+class PurgeStaleTransfers:
+    """Deletes one bounded batch of claimed or expired transfers; the app runs it periodically, so
+    stale payloads go even when nobody creates or claims a transfer."""
+
+    def __init__(
+        self,
+        *,
+        unit_of_work: TransferUnitOfWorkFactory,
+        clock: Clock,
+        batch: int = PURGE_BATCH,
+    ) -> None:
+        self._unit_of_work = unit_of_work
+        self._clock = clock
+        self._batch = batch
+
+    async def execute(self) -> int:
+        async with self._unit_of_work() as uow:
+            purged = await uow.transfers.purge(self._clock.now(), self._batch)
+            await uow.commit()
+        if purged:
+            logger.info("stale transfers purged", extra={"purged": purged})
+        return purged

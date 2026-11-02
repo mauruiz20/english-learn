@@ -3,6 +3,8 @@
 Run locally with `uv run uvicorn english_learn_api.main:app_from_env --factory --reload`.
 """
 
+import asyncio
+import contextlib
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
@@ -50,6 +52,7 @@ from english_learn_api.shared.middleware import (
     PathCorsMiddleware,
     RequestLogMiddleware,
 )
+from english_learn_api.shared.periodic import run_periodically
 from english_learn_api.shared.rate_limit import Rate, TokenBucketLimiter, limit_by_client_ip
 from english_learn_api.sync.api.router import STATUS_BY_ERROR as SYNC_STATUS_BY_ERROR
 from english_learn_api.sync.api.router import build_sync_router
@@ -64,8 +67,12 @@ from english_learn_api.transfers.api.admission import (
 )
 from english_learn_api.transfers.api.router import CLAIM_PATH, CREATE_PATH, build_transfers_router
 from english_learn_api.transfers.api.router import STATUS_BY_ERROR as TRANSFER_STATUS_BY_ERROR
-from english_learn_api.transfers.application.use_cases import ClaimTransfer, CreateTransfer
-from english_learn_api.transfers.domain.limits import MAX_TRANSFER_BODY_BYTES
+from english_learn_api.transfers.application.use_cases import (
+    ClaimTransfer,
+    CreateTransfer,
+    PurgeStaleTransfers,
+)
+from english_learn_api.transfers.domain.limits import MAX_TRANSFER_BODY_BYTES, PURGE_INTERVAL
 from english_learn_api.transfers.infrastructure.sqlalchemy_unit_of_work import (
     SqlAlchemyTransferUnitOfWork,
 )
@@ -106,6 +113,7 @@ def create_app(
         DEFAULT_MAX_CONCURRENT_CREATES,
         DEFAULT_CREATE_WAIT_SECONDS,
     ),
+    transfer_purge_interval: timedelta = PURGE_INTERVAL,
 ) -> FastAPI:
     """Build the app. Tests swap the Google verifier and the clock; everything else is real."""
     clock = clock or SystemClock()
@@ -139,10 +147,22 @@ def create_app(
         max_lifetime=settings.session_max_lifetime,
     )
 
+    purge_stale_transfers = PurgeStaleTransfers(unit_of_work=transfer_unit_of_work, clock=clock)
+
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-        yield
-        await engine.dispose()
+        purging = asyncio.create_task(
+            run_periodically(
+                purge_stale_transfers.execute, transfer_purge_interval, name="transfer purge"
+            )
+        )
+        try:
+            yield
+        finally:
+            purging.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await purging
+            await engine.dispose()
 
     # Production does not publish its schema; `python -m english_learn_api.export_openapi`
     # writes it for client generation instead.

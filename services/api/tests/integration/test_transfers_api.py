@@ -333,3 +333,37 @@ class TestCapacity:
             usage = await uow.transfers.live_usage(clock.now())
 
         assert (usage.count, usage.payload_bytes) == (2, 10)
+
+
+async def test_stale_transfers_are_purged_without_any_traffic(
+    database_url: str, engine: AsyncEngine, clock: FakeClock
+) -> None:
+    async with engine.begin() as connection:
+        await connection.execute(
+            text(
+                "INSERT INTO transfers (token_hash, payload, created_at, expires_at) "
+                "VALUES ('expired', 'x', '2026-10-30T11:00Z', '2026-10-30T11:15Z'), "
+                "       ('live', 'x', '2026-10-30T11:55Z', '2026-10-30T12:10Z')"
+            )
+        )
+    app = create_app(
+        make_settings(database_url=database_url),
+        clock=clock,
+        transfer_purge_interval=timedelta(milliseconds=10),
+    )
+
+    async with app.router.lifespan_context(app):
+        assert await _eventually_hashes(engine, {"live"})
+        clock.advance(timedelta(minutes=10))
+        assert await _eventually_hashes(engine, set())
+
+
+async def _eventually_hashes(engine: AsyncEngine, expected: set[str]) -> bool:
+    """Whether the stored token hashes become `expected` within about five seconds."""
+    for _ in range(500):
+        async with engine.connect() as connection:
+            rows = await connection.execute(text("SELECT token_hash FROM transfers"))
+            if set(rows.scalars()) == expected:
+                return True
+        await asyncio.sleep(0.01)
+    return False

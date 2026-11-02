@@ -8,7 +8,11 @@ import pytest
 
 from english_learn_api.shared.logging import JsonFormatter
 from english_learn_api.sync.domain.models import NewEvent
-from english_learn_api.transfers.application.use_cases import ClaimTransfer, CreateTransfer
+from english_learn_api.transfers.application.use_cases import (
+    ClaimTransfer,
+    CreateTransfer,
+    PurgeStaleTransfers,
+)
 from english_learn_api.transfers.domain.errors import TransferCapacityError, TransferNotFoundError
 from english_learn_api.transfers.domain.limits import TRANSFER_TTL
 from tests.fakes import T0, FakeClock
@@ -179,3 +183,34 @@ class TestCapacity:
         with pytest.raises(TransferCapacityError):
             await create(store, clock, max_live_bytes=900).execute([event()])
         await create(store, clock, max_live_bytes=901).execute([event()])
+
+
+class TestPurgeWithoutTraffic:
+    def purge(self, store: TransferStore, clock: FakeClock, batch: int) -> PurgeStaleTransfers:
+        return PurgeStaleTransfers(
+            unit_of_work=lambda: FakeTransferUnitOfWork(store), clock=clock, batch=batch
+        )
+
+    async def test_deletes_stale_transfers_one_bounded_batch_per_run(
+        self, store: TransferStore, clock: FakeClock
+    ) -> None:
+        store.rows = [
+            StoredTransfer(f"expired-{n}", (event(),), T0, T0 - timedelta(seconds=1))
+            for n in range(3)
+        ] + [StoredTransfer("live", (event(),), T0, T0 + TRANSFER_TTL)]
+        purge = self.purge(store, clock, batch=2)
+
+        assert [await purge.execute() for _ in range(3)] == [2, 1, 0]
+        assert [row.token_hash for row in store.rows] == ["live"]
+
+    async def test_what_is_stale_follows_the_clock(
+        self, store: TransferStore, clock: FakeClock
+    ) -> None:
+        await create(store, clock).execute([event()])
+        purge = self.purge(store, clock, batch=100)
+
+        clock.advance(TRANSFER_TTL - timedelta(seconds=1))
+        assert await purge.execute() == 0
+        clock.advance(timedelta(seconds=1))
+        assert await purge.execute() == 1
+        assert store.rows == []
