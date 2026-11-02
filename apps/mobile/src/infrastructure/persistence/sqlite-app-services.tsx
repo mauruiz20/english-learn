@@ -123,6 +123,7 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
               syncStore: trackWrites(progressRepository, writes, SYNC_WRITES),
               localChanges,
             },
+            transfer: trackWrites(progressRepository, writes, ["importEvents"]),
           },
     [progressRepository, settingsRepository, clock, deviceId, sounds, localChanges, writes],
   );
