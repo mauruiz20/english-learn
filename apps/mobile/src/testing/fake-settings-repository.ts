@@ -1,4 +1,4 @@
-import type { AccountMarker, SettingsRepository } from "@english-learn/domain";
+import type { AccountMarker, SettingsRepository, ThemePreference } from "@english-learn/domain";
 
 /** In-memory `SettingsRepository` for tests. */
 export function createFakeSettingsRepository(
@@ -7,18 +7,22 @@ export function createFakeSettingsRepository(
     lookupHintDismissed?: boolean;
     account?: AccountMarker | null;
     saveProgressSuggestionDismissed?: boolean;
+    themePreference?: ThemePreference;
   } = {},
 ): SettingsRepository & {
   readonly soundEnabled: () => boolean;
   readonly lookupHintDismissed: () => boolean;
   readonly account: () => AccountMarker | null;
   readonly saveProgressSuggestionDismissed: () => boolean;
+  readonly themePreference: () => ThemePreference;
 } {
   let soundEnabled = initial.soundEnabled ?? true;
   let lookupHintDismissed = initial.lookupHintDismissed ?? false;
   let account = initial.account ?? null;
   let saveProgressSuggestionDismissed = initial.saveProgressSuggestionDismissed ?? false;
+  let themePreference = initial.themePreference ?? "system";
   return {
+    themePreference: () => themePreference,
     soundEnabled: () => soundEnabled,
     lookupHintDismissed: () => lookupHintDismissed,
     account: () => account,
@@ -41,6 +45,10 @@ export function createFakeSettingsRepository(
     getSaveProgressSuggestionDismissed: async () => saveProgressSuggestionDismissed,
     setSaveProgressSuggestionDismissed: async () => {
       saveProgressSuggestionDismissed = true;
+    },
+    getThemePreference: async () => themePreference,
+    setThemePreference: async (next) => {
+      themePreference = next;
     },
   };
 }

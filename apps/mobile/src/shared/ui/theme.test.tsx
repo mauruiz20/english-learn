@@ -1,7 +1,8 @@
-import { render, screen } from "@testing-library/react-native";
+import { act, render, screen } from "@testing-library/react-native";
 import { Text } from "./text";
 import { HIGHLIGHTER_NAMES, palettes, themeFor } from "./theme";
-import { ThemeOverride, useTheme } from "./use-theme";
+import { createThemePreferenceStore, type ThemePreference } from "./theme-preference";
+import { ThemeOverride, ThemePreferenceStoreProvider, useTheme } from "./use-theme";
 
 function SchemeProbe() {
   const { scheme, colors } = useTheme();
@@ -53,6 +54,57 @@ describe("useTheme", () => {
       <ThemeOverride scheme="light">
         <SchemeProbe />
       </ThemeOverride>,
+    );
+
+    expect(screen.getByText("light #F5F7FF")).toBeOnTheScreen();
+  });
+
+  function renderWithPreference(preference: ThemePreference) {
+    const store = createThemePreferenceStore(preference);
+    const view = render(
+      <ThemePreferenceStoreProvider store={store}>
+        <SchemeProbe />
+      </ThemePreferenceStoreProvider>,
+    );
+    return { store, view };
+  }
+
+  it.each([
+    ["dark", "light", "dark #0F1A33"],
+    ["light", "dark", "light #F5F7FF"],
+    ["system", "dark", "dark #0F1A33"],
+    ["system", "light", "light #F5F7FF"],
+  ] as const)(
+    "with the %s preference and a %s system, shows %s",
+    async (preference, system, shown) => {
+      mockSystemScheme = system;
+
+      const { view } = renderWithPreference(preference);
+      await view;
+
+      expect(screen.getByText(shown)).toBeOnTheScreen();
+    },
+  );
+
+  it("switches the tokens as soon as the preference changes", async () => {
+    const { store, view } = renderWithPreference("system");
+    await view;
+    expect(screen.getByText("light #F5F7FF")).toBeOnTheScreen();
+
+    await act(() => store.set("dark"));
+    expect(screen.getByText("dark #0F1A33")).toBeOnTheScreen();
+
+    await act(() => store.set("system"));
+    expect(screen.getByText("light #F5F7FF")).toBeOnTheScreen();
+  });
+
+  it("keeps a forced subtree whatever the preference", async () => {
+    await render(
+      <ThemePreferenceStoreProvider store={createThemePreferenceStore("dark")}>
+        <ThemeOverride scheme="light">
+          <SchemeProbe />
+        </ThemeOverride>
+      </ThemePreferenceStoreProvider>,
     );
 
     expect(screen.getByText("light #F5F7FF")).toBeOnTheScreen();
