@@ -6,7 +6,7 @@ import {
   type Clock,
   type AppendedEvents,
 } from "@english-learn/domain";
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react-native";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react-native";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import {
   createFakeRepository,
@@ -334,8 +334,9 @@ describe("LessonContainer", () => {
 
     expect(await screen.findByText("¡Lección completada!")).toBeOnTheScreen();
     expect(screen.getByRole("header", { name: "Para repasar" })).toBeOnTheScreen();
-    expect(screen.getByText("wake up")).toBeOnTheScreen();
-    expect(screen.getByText("despertarse")).toBeOnTheScreen();
+    const missed = screen.getByTestId("summary-to-review");
+    expect(within(missed).getByText("wake up")).toBeOnTheScreen();
+    expect(within(missed).getByText("despertarse")).toBeOnTheScreen();
   });
 
   it("measures response time with the clock", async () => {
@@ -354,6 +355,41 @@ describe("LessonContainer", () => {
     expect(wakeUp?.ease).toBeCloseTo(2.5);
     const usually = repository.snapshot().states.find((s) => s.itemId === "a2.routine.usually");
     expect(usually?.ease).toBeCloseTo(2.6);
+  });
+
+  it("recaps the lesson's new items after the summary and opens the card that teaches one", async () => {
+    await renderLesson(createFakeRepository());
+    await playCorrectly();
+
+    const recap = await screen.findByTestId("summary-recap");
+    expect(within(recap).getByText("despertarse")).toBeOnTheScreen();
+    await fireEvent.press(
+      within(recap).getByRole("button", { name: "Ver ficha: Phrasal verbs: la rutina" }),
+    );
+
+    expect(mockRouter.push).toHaveBeenCalledWith("/fichas/a2.phrasal-verbs.routine");
+  });
+
+  it("repeats the lesson from its summary; the redo pays answer XP but no second bonus", async () => {
+    const repository = createFakeRepository();
+    await renderLesson(repository);
+    await press("dormirse", "radio");
+    await check();
+    await press("Continuar");
+    await playAfterVocab();
+    // 5 right × 10 + the first-completion bonus (5/6 ≥ 80 %).
+    expect(await screen.findByText("XP ganada: 70")).toBeOnTheScreen();
+
+    await press("Repetir lección");
+    expect(screen.getByText("Ejercicio 1 de 6")).toBeOnTheScreen();
+    await playCorrectly();
+
+    expect(await screen.findByText("XP ganada: 60")).toBeOnTheScreen();
+    expect(screen.getByText("Aciertos: 6 de 6")).toBeOnTheScreen();
+    expect(repository.snapshot().xp).toBe(130);
+    expect(await repository.getLessonResults()).toEqual([
+      { lessonId: lesson.id, bestAccuracy: 1, completions: 2 },
+    ]);
   });
 
   it("returns home after the summary", async () => {

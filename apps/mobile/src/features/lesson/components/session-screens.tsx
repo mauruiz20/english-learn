@@ -33,6 +33,7 @@ import { useReducedMotion } from "@/shared/ui/use-reduced-motion";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { STREAK_SOUND_DELAY_MS } from "../use-session-sounds";
 import type { ReviewNote } from "../model/items-to-review";
+import type { RecapItem } from "../model/lesson-recap";
 
 /**
  * Where the learner is in a lesson or review: one step per exercise, each answered step colored
@@ -130,6 +131,12 @@ type SummaryProps = {
   /** The button at the end ("Volver al inicio" by default). */
   doneLabel?: string | undefined;
   onGoHome: () => void;
+  /** "Lo nuevo de hoy": the lesson's new items (lessons only). */
+  recap?: readonly RecapItem[] | undefined;
+  /** Opens a recap item's study card; without it, cards are not linked. */
+  onOpenCard?: ((cardId: string) => void) | undefined;
+  /** "Repetir lección": runs the lesson again (lessons only). */
+  onRedo?: (() => void) | undefined;
 };
 
 /** An album sticker as the summary announces it. */
@@ -172,6 +179,9 @@ export function SessionSummary({
   achievements = [],
   doneLabel = "Volver al inicio",
   onGoHome,
+  recap = [],
+  onOpenCard,
+  onRedo,
 }: SummaryProps) {
   const styles = useStyles();
   const { colors } = useTheme();
@@ -248,7 +258,7 @@ export function SessionSummary({
       {achievements.map((a, i) => (
         <EarnedCard key={a.id} sticker={a} index={i} />
       ))}
-      <View style={styles.review}>
+      <View testID="summary-to-review" style={styles.review}>
         <Text accessibilityRole="header" variant="title" tone="ink">
           Para repasar
         </Text>
@@ -273,9 +283,80 @@ export function SessionSummary({
           </View>
         )}
       </View>
+      {recap.length > 0 && <Recap items={recap} onOpenCard={onOpenCard} />}
       <Button label={doneLabel} onPress={onGoHome} />
+      {onRedo !== undefined && (
+        <Button
+          label="Repetir lección"
+          variant={perfect ? "text" : "secondary"}
+          accessibilityHint={
+            perfect ? "Vuelve a hacer la lección" : "Vuelve a hacer la lección para sacar todo bien"
+          }
+          onPress={onRedo}
+        />
+      )}
       <Confetti delayMs={250} />
     </ScreenContainer>
+  );
+}
+
+/**
+ * "Lo nuevo de hoy": the words, phrases and structures the lesson introduced, one per ruled line:
+ * the term and its Spanish, then the study card that teaches it ("Ver ficha: …") or, without a
+ * card, an example sentence with its translation.
+ */
+function Recap({
+  items,
+  onOpenCard,
+}: {
+  items: readonly RecapItem[];
+  onOpenCard: ((cardId: string) => void) | undefined;
+}) {
+  const styles = useStyles();
+  return (
+    <View testID="summary-recap" style={styles.review}>
+      <Text accessibilityRole="header" variant="title" tone="ink">
+        Lo nuevo de hoy
+      </Text>
+      <Text variant="small" tone="muted">
+        Vuelven en tus próximos repasos.
+      </Text>
+      <View>
+        {items.map((item) => (
+          <View key={item.id} style={[styles.line, styles.recapItem]}>
+            <View style={styles.note}>
+              <GlossaryText
+                variant="bodyStrong"
+                text={item.term}
+                enabled={lookupEnabled("summary.terms", true)}
+              />
+              <Text tone="muted">{item.es}</Text>
+            </View>
+            {item.card !== undefined && onOpenCard !== undefined ? (
+              <Button
+                label={`Ver ficha: ${item.card.title}`}
+                variant="text"
+                onPress={() => onOpenCard(item.card!.id)}
+              />
+            ) : (
+              item.example !== undefined && (
+                <View style={styles.example}>
+                  <GlossaryText
+                    text={item.example.en}
+                    enabled={lookupEnabled("summary.terms", true)}
+                  />
+                  {item.example.es !== undefined && (
+                    <Text variant="small" tone="muted">
+                      {item.example.es}
+                    </Text>
+                  )}
+                </View>
+              )
+            )}
+          </View>
+        ))}
+      </View>
+    </View>
   );
 }
 
@@ -504,6 +585,14 @@ const useStyles = themedStyles(({ colors }) =>
       borderBottomColor: colors.rule,
     },
     review: { gap: spacing.xs },
+    recapItem: { gap: spacing.xs },
+    // The example hangs under its word, like a note indented on the ruled line.
+    example: {
+      gap: 2,
+      paddingLeft: spacing.sm,
+      borderLeftWidth: 2,
+      borderLeftColor: colors.rule,
+    },
     streak: { flexDirection: "row", alignItems: "center" },
     allRight: { paddingTop: spacing.xs },
     // "have breakfast   desayunar": the word and its meaning on one ruled line (wraps if long).

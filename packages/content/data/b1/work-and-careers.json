@@ -14,7 +14,11 @@
       "topics": ["work-and-careers"],
       "kind": "word",
       "term": "interview",
-      "es": "entrevista"
+      "es": "entrevista",
+      "example": {
+        "en": "I have a job interview tomorrow morning.",
+        "es": "Mañana por la mañana tengo una entrevista de trabajo."
+      }
     },
     {
       "id": "b1.work-and-careers.salary",
@@ -38,7 +42,11 @@
       "topics": ["work-and-careers"],
       "kind": "word",
       "term": "deadline",
-      "es": "fecha límite, plazo"
+      "es": "fecha límite, plazo",
+      "example": {
+        "en": "The deadline for the report is Friday.",
+        "es": "La fecha límite del informe es el viernes."
+      }
     },
     {
       "id": "b1.work-and-careers.get-promoted",
@@ -333,6 +341,18 @@
         "I {have worked|have been working} {at|for} this {company|firm} since 2020.",
         "I have been with this {company|firm} since 2020."
       ]
+    },
+    {
+      "id": "b1.work-and-careers.vocab-004",
+      "itemIds": ["b1.work-and-careers.experience"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'experience' mean in 'She has five years of experience'?",
+      "options": ["experimento", "experiencia", "entrenamiento", "expectativa"],
+      "answerIndex": 1
     }
   ],
   "lessons": [
@@ -349,6 +369,13 @@
         "b1.work-and-careers.reading-001",
         "b1.work-and-careers.write-001",
         "b1.work-and-careers.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.work-and-careers.for-since",
+        "b1.work-and-careers.apply-for",
+        "b1.work-and-careers.interview",
+        "b1.work-and-careers.dont-have-to-mustnt",
+        "b1.work-and-careers.get-promoted"
       ]
     },
     {
@@ -364,6 +391,11 @@
         "b1.work-and-careers.choice-002",
         "b1.work-and-careers.choice-003",
         "b1.work-and-careers.write-002"
+      ],
+      "newItemIds": [
+        "b1.work-and-careers.deadline",
+        "b1.work-and-careers.turn-down",
+        "b1.work-and-careers.quit"
       ]
     }
   ]

@@ -172,6 +172,15 @@ describe("glossaryTexts", () => {
     ]);
   });
 
+  it("checks an item's example sentence (English only)", () => {
+    const example = { en: "Although it rained, we went out.", es: "Aunque llovió, salimos." };
+    const texts = glossaryTexts([file({ items: [fx.item({ example })] })]);
+    expect(texts.map((t) => [t.path, t.text])).toEqual([
+      ["items[0].term", "although"],
+      ["items[0].example.en", example.en],
+    ]);
+  });
+
   it("skips the quoted Spanish term of a 'Choose the English for' prompt", () => {
     const [prompt] = glossaryTexts([
       file({ exercises: [fx.vocab({ prompt: "Choose the English for 'sala de estar'." })] }),

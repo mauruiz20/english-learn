@@ -157,6 +157,27 @@ describe("initProgressStore (upgrade to the event log)", () => {
     expect(first.xpEarned).toBe(lessonItemIds(otherLesson, corpus.exercisesById).length * 10 + 20);
   });
 
+  it("fills the lesson results of a log from before they were cached", async () => {
+    const repo = await initProgressStore(db, options);
+    await completeSession({
+      repository: repo,
+      today: TODAY,
+      nowMs: clock.nowMs(),
+      randomBytes: options.randomBytes,
+      deviceId: await repo.getDeviceId(),
+      summary: lessonSummary(doneLesson.id, ["a2.daily-routine.wake-up"]),
+      kind: "lesson",
+    });
+    // As an app version before the lesson result cache left it: schema 3, no lesson_result.
+    await db.execAsync("DROP TABLE lesson_result; PRAGMA user_version = 3;");
+
+    const upgraded = await initProgressStore(db, options);
+
+    expect(await upgraded.getLessonResults()).toEqual([
+      { lessonId: doneLesson.id, bestAccuracy: 1, completions: 1 },
+    ]);
+  });
+
   it("writes no baseline on a fresh install, only the device id", async () => {
     const repo = await initProgressStore(db, options);
 

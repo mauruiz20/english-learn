@@ -30,7 +30,11 @@
       "topics": ["daily-routine", "work"],
       "kind": "word",
       "term": "commute",
-      "es": "trayecto al trabajo"
+      "es": "trayecto al trabajo",
+      "example": {
+        "en": "My commute to work takes thirty minutes.",
+        "es": "Mi trayecto al trabajo dura treinta minutos."
+      }
     },
     {
       "id": "a2.daily-routine.go-to-bed",
@@ -62,7 +66,8 @@
       "topics": ["daily-routine"],
       "kind": "phrase",
       "term": "get dressed",
-      "es": "vestirse"
+      "es": "vestirse",
+      "example": { "en": "I get dressed after breakfast.", "es": "Me visto después del desayuno." }
     },
     {
       "id": "a2.daily-routine.every-morning",
@@ -298,6 +303,18 @@
         "He reads the {newspaper|paper} {every|each} morning.",
         "{Every|Each} morning[,] he reads the {newspaper|paper}."
       ]
+    },
+    {
+      "id": "a2.daily-routine.vocab-004",
+      "itemIds": ["a2.daily-routine.commute"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'commute' mean?",
+      "options": ["horario de trabajo", "trayecto al trabajo", "día libre", "hora del almuerzo"],
+      "answerIndex": 1
     }
   ],
   "lessons": [
@@ -313,6 +330,13 @@
         "a2.daily-routine.choice-001",
         "a2.daily-routine.reading-001",
         "a2.daily-routine.write-001"
+      ],
+      "newItemIds": [
+        "a2.daily-routine.wake-up",
+        "a2.daily-routine.have-breakfast",
+        "a2.daily-routine.usually",
+        "a2.daily-routine.go-to-bed",
+        "a2.daily-routine.commute"
       ]
     },
     {
@@ -328,6 +352,13 @@
         "a2.daily-routine.vocab-003",
         "a2.daily-routine.choice-003",
         "a2.daily-routine.write-002"
+      ],
+      "newItemIds": [
+        "a2.daily-routine.get-dressed",
+        "a2.daily-routine.get-up",
+        "a2.daily-routine.present-simple-routines",
+        "a2.daily-routine.every-morning",
+        "a2.daily-routine.take-a-shower"
       ]
     }
   ]

@@ -6,7 +6,11 @@
       "topics": ["health-and-lifestyle"],
       "kind": "word",
       "term": "healthy",
-      "es": "saludable, sano"
+      "es": "saludable, sano",
+      "example": {
+        "en": "Fruit and vegetables are healthy.",
+        "es": "Las frutas y las verduras son saludables."
+      }
     },
     {
       "id": "b1.health-and-lifestyle.habit",
@@ -22,7 +26,11 @@
       "topics": ["health-and-lifestyle"],
       "kind": "word",
       "term": "diet",
-      "es": "alimentación, dieta"
+      "es": "alimentación, dieta",
+      "example": {
+        "en": "She eats a healthy diet with a lot of fruit.",
+        "es": "Ella lleva una alimentación saludable con mucha fruta."
+      }
     },
     {
       "id": "b1.health-and-lifestyle.lose-weight",
@@ -335,6 +343,13 @@
         "b1.health-and-lifestyle.reading-001",
         "b1.health-and-lifestyle.write-001",
         "b1.health-and-lifestyle.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.health-and-lifestyle.gerund-infinitive",
+        "b1.health-and-lifestyle.give-up",
+        "b1.health-and-lifestyle.lose-weight",
+        "b1.health-and-lifestyle.keep-fit",
+        "b1.health-and-lifestyle.get-enough-sleep"
       ]
     },
     {
@@ -350,6 +365,13 @@
         "b1.health-and-lifestyle.choice-002",
         "b1.health-and-lifestyle.write-002",
         "b1.health-and-lifestyle.write-003"
+      ],
+      "newItemIds": [
+        "b1.health-and-lifestyle.healthy",
+        "b1.health-and-lifestyle.should",
+        "b1.health-and-lifestyle.used-to",
+        "b1.health-and-lifestyle.stop-doing",
+        "b1.health-and-lifestyle.diet"
       ]
     }
   ]

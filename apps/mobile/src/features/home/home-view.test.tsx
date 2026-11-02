@@ -182,6 +182,64 @@ describe("HomeView", () => {
   });
 });
 
+describe("HomeView lesson results", () => {
+  const lessons = {
+    level: "A2",
+    items: [
+      {
+        id: "a",
+        title: "Saludos",
+        topic: "greetings",
+        done: true,
+        score: { correct: 6, total: 6, perfect: true },
+      },
+      {
+        id: "b",
+        title: "Mi rutina",
+        topic: "daily-routine",
+        done: true,
+        score: { correct: 5, total: 6, perfect: false },
+      },
+      { id: "c", title: "La ciudad", topic: "city", done: true },
+      { id: "d", title: "El clima", topic: "weather", done: false },
+    ],
+  } as const;
+
+  it("marks a lesson done with every answer right as perfect, with its score", async () => {
+    await renderView({ ...ready, lessons });
+
+    const perfect = screen.getByRole("button", {
+      name: "Saludos, completada sin errores: 6 de 6 correctas",
+    });
+    expect(perfect).toBeOnTheScreen();
+    expect(screen.getByText("Perfecta · 6/6")).toBeOnTheScreen();
+    expect(screen.getByTestId("perfect-a", { includeHiddenElements: true })).toBeOnTheScreen();
+  });
+
+  it("shows the best score of a lesson with mistakes and invites to redo it", async () => {
+    await renderView({ ...ready, lessons });
+
+    const withMistakes = screen.getByRole("button", {
+      name: "Mi rutina, completada con errores: 5 de 6 correctas",
+    });
+    expect(withMistakes.props.accessibilityHint).toBe("Repítela para sacar todo bien");
+    expect(screen.getByText("Completada · 5/6")).toBeOnTheScreen();
+    expect(
+      screen.queryByTestId("perfect-b", { includeHiddenElements: true }),
+    ).not.toBeOnTheScreen();
+
+    await fireEvent.press(withMistakes);
+    expect(handlers.onOpenLesson).toHaveBeenCalledWith("b");
+  });
+
+  it("keeps a done lesson without a recorded result as simply completed", async () => {
+    await renderView({ ...ready, lessons });
+
+    expect(screen.getByRole("button", { name: "La ciudad, completada" })).toBeOnTheScreen();
+    expect(screen.getByText("Completada")).toBeOnTheScreen();
+  });
+});
+
 describe("HomeView completion check", () => {
   const lessons = {
     level: "A2",

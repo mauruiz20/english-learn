@@ -30,7 +30,11 @@
       "topics": ["shopping"],
       "kind": "word",
       "term": "cheap",
-      "es": "barato"
+      "es": "barato",
+      "example": {
+        "en": "This jacket is cheap. It's only ten dollars.",
+        "es": "Esta chaqueta es barata. Cuesta solo diez dólares."
+      }
     },
     {
       "id": "a2.shopping.price",
@@ -70,7 +74,8 @@
       "topics": ["shopping"],
       "kind": "phrase",
       "term": "try on",
-      "es": "probarse (ropa)"
+      "es": "probarse (ropa)",
+      "example": { "en": "Can I try on these shoes?", "es": "¿Puedo probarme estos zapatos?" }
     },
     {
       "id": "a2.shopping.pay-in-cash",
@@ -78,7 +83,8 @@
       "topics": ["shopping"],
       "kind": "phrase",
       "term": "pay in cash",
-      "es": "pagar en efectivo"
+      "es": "pagar en efectivo",
+      "example": { "en": "Can I pay in cash?", "es": "¿Puedo pagar en efectivo?" }
     },
     {
       "id": "a2.shopping.how-much-is",
@@ -324,6 +330,18 @@
       "type": "translate_write",
       "es": "¿Me lo puedo probar?",
       "accepted": ["{Can|May|Could} I try {it|this} on[, please]?"]
+    },
+    {
+      "id": "a2.shopping.vocab-004",
+      "itemIds": ["a2.shopping.pay-in-cash"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'pagar en efectivo'.",
+      "options": ["pay by card", "pay the bill", "pay in cash", "pay later"],
+      "answerIndex": 2
     }
   ],
   "lessons": [
@@ -340,6 +358,13 @@
         "a2.shopping.reading-001",
         "a2.shopping.write-001",
         "a2.shopping.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.shopping.cheap",
+        "a2.shopping.too-adjective",
+        "a2.shopping.how-much-is",
+        "a2.shopping.try-on",
+        "a2.shopping.pay-in-cash"
       ]
     },
     {
@@ -355,7 +380,8 @@
         "a2.shopping.choice-002",
         "a2.shopping.choice-003",
         "a2.shopping.write-002"
-      ]
+      ],
+      "newItemIds": ["a2.shopping.price", "a2.shopping.too-adjective", "a2.shopping.market"]
     }
   ]
 }

@@ -13,6 +13,7 @@ import {
 import type { GradeResult } from "./model/grade-exercise";
 import { answerIsEnglish } from "./model/lookup-policy";
 import type { ReviewNote } from "./model/items-to-review";
+import type { RecapItem } from "./model/lesson-recap";
 import type { PreparedExercise } from "./model/prepare-exercise";
 import type { ExerciseResponse } from "./model/response";
 import { correctInARow } from "./model/session-results";
@@ -82,6 +83,8 @@ export type LessonViewState =
       readonly achievements?: readonly EarnedSticker[];
       /** The lesson's topic (the color of the sticker it earns). */
       readonly topic?: string | undefined;
+      /** "Lo nuevo de hoy": the lesson's new items (lessons only). */
+      readonly recap?: readonly RecapItem[] | undefined;
     };
 
 type LessonViewProps = {
@@ -93,6 +96,10 @@ type LessonViewProps = {
   onRetrySave: () => void;
   /** Opens a study card on top of the session ("Ver ficha"). */
   onOpenCard?: ((cardId: string) => void) | undefined;
+  /** Opens a recap item's study card from the summary. */
+  onOpenRecapCard?: ((cardId: string) => void) | undefined;
+  /** "Repetir lección" on the summary. */
+  onRedo?: (() => void) | undefined;
   copy?: SessionCopy;
 };
 
@@ -104,6 +111,8 @@ export function LessonView({
   onGoHome,
   onRetrySave,
   onOpenCard,
+  onOpenRecapCard,
+  onRedo,
   copy = LESSON_COPY,
 }: LessonViewProps) {
   switch (state.status) {
@@ -127,6 +136,8 @@ export function LessonView({
           doneLabel={copy.done}
           {...state}
           onGoHome={onGoHome}
+          onOpenCard={onOpenRecapCard}
+          onRedo={onRedo}
         />
       );
     case "exercise":

@@ -25,6 +25,15 @@ export type FoldAnomaly = {
   readonly detail: string;
 };
 
+/** How a learner has done in one lesson, over every time they completed it. */
+export type LessonResult = {
+  readonly lessonId: string;
+  /** The best `accuracy` of its `session_completed` events (share of fully correct answers). */
+  readonly bestAccuracy: number;
+  /** How many distinct sessions completed it. */
+  readonly completions: number;
+};
+
 /** The learner's progress, derived entirely from the event log. */
 export type ProgressState = {
   /** One state per reviewed item, sorted by itemId. */
@@ -36,6 +45,11 @@ export type ProgressState = {
   readonly activeDates: readonly LocalDate[];
   /** Sorted lesson ids that already earned (or, per a baseline, must not earn) the bonus. */
   readonly completedLessonIds: readonly string[];
+  /**
+   * One result per lesson completed in a `session_completed` event, sorted by lessonId (lessons a
+   * baseline lists have none: pre-event storage kept no score).
+   */
+  readonly lessonResults: readonly LessonResult[];
   /** Events that were skipped, in fold order. Never thrown. */
   readonly anomalies: readonly FoldAnomaly[];
 };
@@ -47,6 +61,7 @@ export const EMPTY_PROGRESS: ProgressState = {
   placement: null,
   activeDates: [],
   completedLessonIds: [],
+  lessonResults: [],
   anomalies: [],
 };
 
@@ -98,6 +113,7 @@ class Folder {
   readonly reviewed = new Set<string>();
   readonly sessions = new Set<string>();
   readonly completed = new Set<string>();
+  readonly results = new Map<string, LessonResult>();
   readonly activeDates = new Set<LocalDate>();
   readonly anomalies: FoldAnomaly[] = [];
   xp = 0;
@@ -125,7 +141,9 @@ class Folder {
         this.sessions.add(sessionId);
         this.activeDates.add(event.localDate);
         this.xp += answerXp;
-        if (kind === "lesson" && lessonId !== undefined && !this.completed.has(lessonId)) {
+        if (kind !== "lesson" || lessonId === undefined) return;
+        this.recordResult(lessonId, accuracy);
+        if (!this.completed.has(lessonId)) {
           this.completed.add(lessonId);
           this.xp += xpForLessonCompletion(accuracy);
         }
@@ -152,6 +170,16 @@ class Folder {
     for (const lessonId of payload.completedLessonIds ?? []) this.completed.add(lessonId);
   }
 
+  /** Best accuracy is a max and completions a count: both independent of the fold order. */
+  recordResult(lessonId: string, accuracy: number): void {
+    const current = this.results.get(lessonId);
+    this.results.set(lessonId, {
+      lessonId,
+      bestAccuracy: Math.max(current?.bestAccuracy ?? 0, accuracy),
+      completions: (current?.completions ?? 0) + 1,
+    });
+  }
+
   report(kind: FoldAnomalyKind, eventId: string, detail: string): void {
     this.anomalies.push({ kind, eventId, detail });
   }
@@ -165,6 +193,7 @@ class Folder {
       placement: this.placement,
       activeDates,
       completedLessonIds: [...this.completed].sort(byText),
+      lessonResults: [...this.results.values()].sort((a, b) => byText(a.lessonId, b.lessonId)),
       anomalies: this.anomalies,
     };
   }

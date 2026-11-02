@@ -71,6 +71,7 @@ function createLog() {
       getStreak: async () => fold().streak,
       getReviewStates: async () => fold().states,
       getPlacementResult: async () => fold().placement,
+      getLessonResults: async () => fold().lessonResults,
     },
   };
 }

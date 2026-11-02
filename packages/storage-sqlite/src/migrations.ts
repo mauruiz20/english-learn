@@ -58,6 +58,15 @@ const MIGRATIONS: readonly string[] = [
     value TEXT NOT NULL
   );
   `,
+  // 3 → 4: cache of each lesson's best result (the fold's `lessonResults`). It starts empty on an
+  // upgraded database: the caller refolds after an upgrade (see `migrate`'s result).
+  `
+  CREATE TABLE lesson_result (
+    lesson_id TEXT PRIMARY KEY NOT NULL,
+    best_accuracy REAL NOT NULL,
+    completions INTEGER NOT NULL
+  );
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */
@@ -80,9 +89,11 @@ export class SchemaTooNewError extends Error {
 
 /**
  * Brings the database schema up to `SCHEMA_VERSION`. Idempotent: already-applied migrations
- * are skipped. Each migration and its version bump run in one transaction.
+ * are skipped. Each migration and its version bump run in one transaction. Resolves to the
+ * version the database had before: below `SCHEMA_VERSION` means it was upgraded, and cache
+ * tables a migration added must be refilled from the event log (`rebuildFromEvents`).
  */
-export async function migrate(db: SqlDatabase): Promise<void> {
+export async function migrate(db: SqlDatabase): Promise<number> {
   const row = await db.getFirstAsync<{ user_version: number }>("PRAGMA user_version", []);
   const current = row?.user_version ?? 0;
 
@@ -98,4 +109,5 @@ export async function migrate(db: SqlDatabase): Promise<void> {
       await db.execAsync(`PRAGMA user_version = ${version + 1}`);
     });
   }
+  return current;
 }

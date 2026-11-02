@@ -46,7 +46,8 @@
       "topics": ["work"],
       "kind": "word",
       "term": "salary",
-      "es": "sueldo"
+      "es": "sueldo",
+      "example": { "en": "She has a good salary.", "es": "Ella tiene un buen sueldo." }
     },
     {
       "id": "a2.work.part-time",
@@ -62,7 +63,8 @@
       "topics": ["work"],
       "kind": "phrase",
       "term": "work from home",
-      "es": "trabajar desde casa"
+      "es": "trabajar desde casa",
+      "example": { "en": "I work from home on Fridays.", "es": "Trabajo desde casa los viernes." }
     },
     {
       "id": "a2.work.look-for",
@@ -329,6 +331,23 @@
       "type": "translate_write",
       "es": "Me encanta mi trabajo.",
       "accepted": ["I {really |}love my {work|job}."]
+    },
+    {
+      "id": "a2.work.vocab-004",
+      "itemIds": ["a2.work.work-from-home"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'work from home' mean?",
+      "options": [
+        "trabajar a tiempo parcial",
+        "buscar trabajo",
+        "trabajar desde casa",
+        "volver a casa del trabajo"
+      ],
+      "answerIndex": 2
     }
   ],
   "lessons": [
@@ -345,6 +364,13 @@
         "a2.work.reading-001",
         "a2.work.write-001",
         "a2.work.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.work.boss",
+        "a2.work.finish",
+        "a2.work.job",
+        "a2.work.work-from-home",
+        "a2.work.look-for"
       ]
     },
     {
@@ -360,7 +386,8 @@
         "a2.work.choice-002",
         "a2.work.choice-003",
         "a2.work.write-002"
-      ]
+      ],
+      "newItemIds": ["a2.work.salary", "a2.work.on-monday", "a2.work.part-time"]
     }
   ]
 }

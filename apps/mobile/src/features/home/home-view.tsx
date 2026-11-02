@@ -25,6 +25,7 @@ import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 import { cardsCount } from "@/features/cards/cards-view";
+import type { LessonScore } from "@/features/lesson/model/lesson-score";
 
 export type HomeLesson = {
   readonly id: string;
@@ -34,6 +35,8 @@ export type HomeLesson = {
   readonly done: boolean;
   /** Completed since the index was last seen: its check is drawn now, once. */
   readonly justCompleted?: boolean;
+  /** Its best result, when the log has one (lessons done before the event log have none). */
+  readonly score?: LessonScore | undefined;
 };
 
 export type HomeLessons = { readonly level: Level; readonly items: readonly HomeLesson[] };
@@ -292,6 +295,30 @@ const CONNECTOR_HEIGHT = 22;
 
 type StopKind = "done" | "next" | "pending";
 
+/** "Mi rutina, completada con errores: 5 de 6 correctas", or just the title when not done. */
+function stopLabel(lesson: HomeLesson): string {
+  if (!lesson.done) return lesson.title;
+  const { score } = lesson;
+  if (score === undefined) return `${lesson.title}, completada`;
+  const how = score.perfect ? "sin errores" : "con errores";
+  return `${lesson.title}, completada ${how}: ${score.correct} de ${score.total} correctas`;
+}
+
+/** The hint of a stop: the next lesson, or a done one worth redoing for a perfect page. */
+function stopHint(lesson: HomeLesson, kind: StopKind): string | undefined {
+  if (kind === "next") return "Tu siguiente lección";
+  if (kind === "done" && lesson.score !== undefined && !lesson.score.perfect) {
+    return "Repítela para sacar todo bien";
+  }
+  return undefined;
+}
+
+/** "Perfecta · 6/6", "Completada · 5/6", or "Completada" without a recorded result. */
+function doneText(score: LessonScore | undefined): string {
+  if (score === undefined) return "Completada";
+  return `${score.perfect ? "Perfecta" : "Completada"} · ${score.correct}/${score.total}`;
+}
+
 function stopKind(lesson: HomeLesson, nextId: string | undefined): StopKind {
   if (lesson.done) return "done";
   return lesson.id === nextId ? "next" : "pending";
@@ -319,11 +346,12 @@ function PathStop({
   const styles = useStyles();
   const { colors } = useTheme();
   const tilt = TILTS[number % TILTS.length] ?? 0;
+  const hint = stopHint(lesson, kind);
   return (
     <PressableScale
       accessibilityRole="button"
-      accessibilityLabel={lesson.done ? `${lesson.title}, completada` : lesson.title}
-      {...(kind === "next" ? { accessibilityHint: "Tu siguiente lección" } : {})}
+      accessibilityLabel={stopLabel(lesson)}
+      {...(hint === undefined ? {} : { accessibilityHint: hint })}
       onPress={onPress}
       wrapperStyle={{ marginLeft: `${offset * 100}%` }}
       style={({ pressed }) => [styles.stop, pressed && styles.stopPressed]}
@@ -345,6 +373,7 @@ function PathStop({
             />
           </Sticker>
         )}
+        {kind === "done" && lesson.score?.perfect === true && <PerfectBadge id={lesson.id} />}
         {kind === "next" && (
           <>
             <Sticker color="yellow" state="current" size={76}>
@@ -367,7 +396,7 @@ function PathStop({
         <Text variant={kind === "next" ? "bodyStrong" : "body"}>{lesson.title}</Text>
         {kind === "done" && (
           <Text variant="smallStrong" tone="success">
-            Completada
+            {doneText(lesson.score)}
           </Text>
         )}
         {kind === "next" && (
@@ -379,6 +408,33 @@ function PathStop({
         )}
       </View>
     </PressableScale>
+  );
+}
+
+/**
+ * A small yellow star sticker on the corner of a lesson won with every answer right (yellow means
+ * "correct"). Decorative: the stop's label says it.
+ */
+function PerfectBadge({ id }: { id: string }) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  return (
+    <View
+      testID={`perfect-${id}`}
+      aria-hidden
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      style={styles.perfectBadge}
+    >
+      <Sticker color="yellow" size={30} tilt={10}>
+        <Svg width={16} height={16} viewBox="0 0 24 24">
+          <Path
+            d="M12 3 14.6 9 21 9.6 16.2 13.8 17.6 20.2 12 16.9 6.4 20.2 7.8 13.8 3 9.6 9.4 9Z"
+            fill={colors.onHighlighter}
+          />
+        </Svg>
+      </Sticker>
+    </View>
   );
 }
 
@@ -676,6 +732,7 @@ const useStyles = themedStyles(({ colors }) =>
       justifyContent: "center",
     },
     // Avi perches at the top corner of the next sticker the pencil line comes from.
+    perfectBadge: { position: "absolute", right: 2, top: 2 },
     guideLeft: { position: "absolute", left: -2, top: -12 },
     guideRight: { position: "absolute", right: -2, top: -12 },
     stopText: { flexShrink: 1, gap: 2, alignItems: "flex-start" },

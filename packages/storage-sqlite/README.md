@@ -5,10 +5,13 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
 `SQLiteDatabase` it uses), so the app passes its expo-sqlite database directly.
 
 - `migrate(db)`: versioned migrations tracked in `PRAGMA user_version`; idempotent, one
-  transaction per migration. Refuses databases created by a newer schema.
+  transaction per migration. Refuses databases created by a newer schema. Resolves to the
+  version it found: after an upgrade the caller refolds (`rebuildFromEvents`), since a cache
+  table a migration adds starts empty (the app's `initProgressStore` does).
 - `createSqliteProgressRepository(db, { now? })`: progress as an **append-only event log**
   (migration 3: `event` table, see `@english-learn/domain` "Progress event log"). The
-  `review_state`, `xp`, `streak` and `placement_result` tables are a cache of `foldEvents` over
+  `review_state`, `xp`, `streak`, `placement_result` and `lesson_result` (migration 4: each
+  lesson's best accuracy and completions, `getLessonResults()`) tables are a cache of `foldEvents` over
   the whole log, so reads stay fast; every write refolds in the same transaction and writes only
   the review states that changed (≈25 ms for a 5k-event log on `node:sqlite`).
   - `appendEvents(events)`: inserts local events (malformed ones are refused) and refreshes the

@@ -1,5 +1,6 @@
 import type { Level } from "../cefr";
 import type { ProgressEvent, StoredEvent } from "../progress-log/events";
+import type { LessonResult } from "../progress-log/fold";
 import type { ReviewState } from "../srs";
 import type { Streak } from "../streak";
 
@@ -32,6 +33,8 @@ export interface ProgressRepository {
   getStreak(): Promise<Streak>;
   getXp(): Promise<number>;
   getPlacementResult(): Promise<PlacementResult | null>;
+  /** The cached best result of every lesson completed in the log (sorted by lessonId). */
+  getLessonResults(): Promise<readonly LessonResult[]>;
 
   /** Stable id of this install; every event it writes carries it as `deviceId`. */
   getDeviceId(): Promise<string>;

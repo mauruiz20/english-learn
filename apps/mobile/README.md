@@ -177,10 +177,30 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   component by type; tagged `testID="exercise-<id>"`) and `AnswerFeedback`.
 - `lesson-container.tsx` / `lesson-view.tsx`: the `/lesson/[id]` screen, summary and unknown-id
   message.
+- **"Lo nuevo de hoy"** (`model/lesson-recap.ts`): the lesson summary ends with the 3–5 items the
+  lesson introduces (the content's `newItemIds`; without them, the lesson's items no earlier
+  lesson practices). Each shows its term (with word lookup) and Spanish, then "Ver ficha:
+  <título>" when a study card teaches it (opens `/fichas/[id]` on top of the summary), or else an
+  example: the item's own `example`, or a sentence of an exercise that practices it, with its
+  Spanish and linking the item's glossary entry (the lesson's exercises first). Card practice and
+  the daily review have no recap.
+- **"Repetir lección"** on the lesson summary (a secondary button with mistakes, a text button on
+  a perfect page) runs the lesson again from the start as a new session (`LessonContainer`
+  remounts the session with a new key): answer XP again, never a second completion bonus.
 
 Home lists the lessons of the level nearest to the placement level that has lessons (ties go to
 the lower level; with MVP content A1 → A2 and B2/C1 → B1), or A2 without a placement. A lesson
 shows as done once every item it practices has a review state.
+
+**Lesson results on the path.** A done lesson also shows its best result, from the fold's
+`lessonResults` (the best `accuracy` of its `session_completed` events; no new event):
+`model/lesson-score.ts` turns it into right answers out of the lesson's exercises (accuracy ×
+exercises, rounded; anything below 1 is never shown as all right). Every answer right: "Perfecta
+· 6/6" and a small yellow star sticker on its corner, labelled "<título>, completada sin errores:
+6 de 6 correctas"; otherwise "Completada · 5/6", labelled "… completada con errores: 5 de 6
+correctas" with the hint "Repítela para sacar todo bien". The best attempt counts, so a perfect
+redo makes it perfect for good. Lessons done before the event log (or only through other
+lessons' items) have no result and keep "Completada". Tapping a done lesson redoes it.
 
 ## Word lookup (`src/features/glossary/`)
 
@@ -258,7 +278,15 @@ latest result wins.
 ## Daily review (`src/features/review/`)
 
 `/review` plans the session with `selectSession({ maxReviews: 20, maxNew: 0 })` over the due
-states that some non-reading exercise covers (new items come from lessons only). For each due
+states that some non-reading exercise covers (new items come from lessons only), items in their
+first steps (interval ≤ 1 day: a lesson's new items the day after, and lapses) first, so a
+backlog of older reviews never pushes them out of the 20.
+
+**How lesson items enter review.** Nothing extra is written: a finished lesson's `item_reviewed`
+events give each new item a state due the next day (`applyReview`: passed → SM-2 interval 1;
+missed → fresh, due tomorrow), and the reviews then grow it (1 → 6 → interval × ease). Every
+lesson item has a non-reading exercise (content rule 20), so none waits unreviewed; nine items
+only a reading practiced got a review-only `vocab` exercise. For each due
 item, in priority order, it picks one exercise that practices it, preferring a different type
 than the previous pick, chosen with the injected rng; an exercise covering several due items
 reviews all of them. Only the due items are saved (an exercise may also practice items that are
