@@ -192,6 +192,16 @@ Home lists the lessons of the level nearest to the placement level that has less
 the lower level; with MVP content A1 → A2 and B2/C1 → B1), or A2 without a placement. A lesson
 shows as done once every item it practices has a review state.
 
+**Lesson results on the path.** A done lesson also shows its best result, from the fold's
+`lessonResults` (the best `accuracy` of its `session_completed` events; no new event):
+`model/lesson-score.ts` turns it into right answers out of the lesson's exercises (accuracy ×
+exercises, rounded; anything below 1 is never shown as all right). Every answer right: "Perfecta
+· 6/6" and a small yellow star sticker on its corner, labelled "<título>, completada sin errores:
+6 de 6 correctas"; otherwise "Completada · 5/6", labelled "… completada con errores: 5 de 6
+correctas" with the hint "Repítela para sacar todo bien". The best attempt counts, so a perfect
+redo makes it perfect for good. Lessons done before the event log (or only through other
+lessons' items) have no result and keep "Completada". Tapping a done lesson redoes it.
+
 ## Word lookup (`src/features/glossary/`)
 
 Learners look up the Spanish of English words and phrases from the static glossary

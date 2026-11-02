@@ -1,9 +1,19 @@
 import type { Corpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
-import { isStreakAlive, type Level, type ReviewState } from "@english-learn/domain";
+import {
+  isStreakAlive,
+  type LessonResult,
+  type Level,
+  type ReviewState,
+} from "@english-learn/domain";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { isLessonDone, lessonsForLevel } from "@/features/lesson/model/lesson-catalog";
+import {
+  isLessonDone,
+  lessonExercises,
+  lessonsForLevel,
+} from "@/features/lesson/model/lesson-catalog";
+import { lessonScore } from "@/features/lesson/model/lesson-score";
 import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
 import { useThemePreference } from "@/features/theme/theme-preference";
@@ -21,13 +31,18 @@ import {
   unlockedAchievements,
 } from "@/features/achievements/model/achievements";
 
-/** Lessons for the learner's level (A2 by default), each marked done when all its items were reviewed. */
+/**
+ * Lessons for the learner's level (A2 by default), each marked done when all its items were
+ * reviewed, with its best result from the log.
+ */
 function homeLessons(
   content: Corpus,
   level: Level | null,
   states: readonly ReviewState[],
+  results: readonly LessonResult[],
 ): HomeLessons {
   const reviewed = new Set(states.map((s) => s.itemId));
+  const resultById = new Map(results.map((r) => [r.lessonId, r]));
   const selection = lessonsForLevel(content.lessons, level);
   return {
     level: selection.level,
@@ -36,6 +51,10 @@ function homeLessons(
       title: lesson.title,
       topic: lesson.topic,
       done: isLessonDone(lesson, content.exercisesById, reviewed),
+      score: lessonScore(
+        resultById.get(lesson.id),
+        lessonExercises(lesson, content.exercisesById).length,
+      ),
     })),
   };
 }
@@ -75,8 +94,9 @@ export function HomeContainer({
       progressRepository.getXp(),
       progressRepository.getPlacementResult(),
       progressRepository.getReviewStates(),
+      progressRepository.getLessonResults(),
     ]).then(
-      ([streak, xp, placement, states]) => {
+      ([streak, xp, placement, states, results]) => {
         if (!active) return;
         const level = placement?.level ?? null;
         const today = clock.today();
@@ -88,7 +108,10 @@ export function HomeContainer({
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
           level,
-          lessons: markJustCompleted(homeLessons(content, level, states), completionMemory),
+          lessons: markJustCompleted(
+            homeLessons(content, level, states, results),
+            completionMemory,
+          ),
           album: {
             unlocked: unlockedAchievements(
               achievementFacts(content, { states, xp, streak, placement }),

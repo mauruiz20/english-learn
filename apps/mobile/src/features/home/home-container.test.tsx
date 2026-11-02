@@ -15,6 +15,7 @@ import { createFakeSettingsRepository } from "@/testing/fake-settings-repository
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
+import { completeSession } from "@/features/lesson/application/complete-session";
 import { HomeContainer } from "./home-container";
 import { OriginMoveOfferContext, type OriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { AccountContext, type AccountContextValue } from "@/features/account/account-context";
@@ -186,6 +187,49 @@ describe("HomeContainer", () => {
     );
 
     expect(await screen.findByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
+  });
+
+  it("shows each lesson's best result: the redo that got everything right counts", async () => {
+    const repository = createFakeRepository();
+    const itemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
+    const save = (accuracy: number) =>
+      completeSession({
+        repository,
+        today: TODAY,
+        nowMs: 0,
+        randomBytes: testRandomBytes,
+        deviceId: "test-device",
+        kind: "lesson",
+        summary: {
+          lessonId: lesson.id,
+          verdicts: [],
+          accuracy,
+          answerXp: 0,
+          itemOutcomes: itemIds.map((itemId) => ({
+            itemId,
+            exerciseType: "vocab",
+            verdict: "correct",
+            responseMs: 1000,
+          })),
+        },
+      });
+    await save(4 / 6);
+    const first = await renderContainer(repository);
+    expect(
+      await screen.findByRole("button", {
+        name: "Mi rutina, completada con errores: 4 de 6 correctas",
+      }),
+    ).toBeOnTheScreen();
+    await first.unmount();
+
+    await save(1);
+    await save(5 / 6);
+    await renderContainer(repository);
+    expect(
+      await screen.findByRole("button", {
+        name: "Mi rutina, completada sin errores: 6 de 6 correctas",
+      }),
+    ).toBeOnTheScreen();
   });
 
   it("draws the check of a lesson completed since home was last seen", async () => {
