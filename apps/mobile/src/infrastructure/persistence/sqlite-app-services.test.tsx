@@ -6,6 +6,7 @@ import type {
   OwnershipDiagnostics,
   OwnershipState,
 } from "./ownership/database-ownership";
+import { BACKGROUND_RETRY_INTERVAL_MS } from "./background-retry";
 import type { OpenRetry } from "./open-retry";
 import { createPageDatabase } from "./page-database";
 import { SqliteAppServicesProvider, type DatabasePage } from "./sqlite-app-services";
@@ -29,12 +30,22 @@ jest.mock("@english-learn/storage-sqlite", () => ({
   createSqliteProgressRepository: () => ({ getDeviceId: async () => "device-1" }),
 }));
 
-function fakeOpenRetry(retries = false, attempts = 0): OpenRetry {
+function fakeOpenRetry(
+  retries = false,
+  attempts = 0,
+  {
+    waitedMs = null,
+    inBackground = false,
+  }: { waitedMs?: number | null; inBackground?: boolean } = {},
+): OpenRetry {
   return {
     onFailure: jest.fn(() => retries),
     onOpened: jest.fn(),
     clear: jest.fn(),
     attempts: () => attempts,
+    waitedMs: () => waitedMs,
+    retriesInBackground: () => inBackground,
+    retryInBackground: jest.fn(),
   };
 }
 
@@ -150,8 +161,69 @@ describe("SqliteAppServicesProvider", () => {
 
     await act(async () => {});
     expect(page.openRetry.onFailure).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole("header")).toBeNull();
+    expect(screen.queryByText(/No pudimos abrir/)).toBeNull();
     expect(mockOpen).toHaveBeenCalledTimes(1);
+  });
+
+  it("web: while a busy open waits for its retry, a calm loading state instead of the error", async () => {
+    page = fakePage({ retries: true, reopenable: false });
+    mockOpen.mockRejectedValue(new Error("The object is in an invalid state."));
+    await render(
+      <SqliteAppServicesProvider page={page}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+
+    expect(await screen.findByText("Abriendo tus datos…")).toBeOnTheScreen();
+    expect(screen.queryByText(/No pudimos abrir/)).toBeNull();
+  });
+
+  it("web: a page reloaded by a retry shows the loading state while it opens again", async () => {
+    page = fakePage({ attempts: 2, reopenable: false });
+    mockOpen.mockReturnValue(new Promise(() => {}));
+    await render(
+      <SqliteAppServicesProvider page={page}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+
+    expect(await screen.findByText("Abriendo tus datos…")).toBeOnTheScreen();
+  });
+
+  it("a first open shows nothing extra (no loading flash on a normal start)", async () => {
+    mockOpen.mockReturnValue(new Promise(() => {}));
+    await render(
+      <SqliteAppServicesProvider page={page}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+
+    await act(async () => {});
+    expect(screen.queryByText("Abriendo tus datos…")).toBeNull();
+  });
+
+  it("web: when the wait is used up, the error screen keeps retrying through the policy", async () => {
+    jest.useFakeTimers();
+    try {
+      page = {
+        ...fakePage({ reopenable: false }),
+        openRetry: fakeOpenRetry(false, 6, { inBackground: true }),
+      };
+      mockOpen.mockRejectedValue(new Error("The object is in an invalid state."));
+      await render(
+        <SqliteAppServicesProvider page={page}>
+          <Text>Inicio</Text>
+        </SqliteAppServicesProvider>,
+      );
+      expect(await screen.findByText(/se abrirá sola/)).toBeOnTheScreen();
+
+      await act(async () => {
+        jest.advanceTimersByTime(BACKGROUND_RETRY_INTERVAL_MS);
+      });
+      expect(page.openRetry.retryInBackground).toHaveBeenCalledTimes(1);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   it("tells the retry policy once the database opened (its count starts over)", async () => {
@@ -167,7 +239,10 @@ describe("SqliteAppServicesProvider", () => {
   });
 
   it("'Detalles técnicos' show the page's database workers, the probe and the retries", async () => {
-    page = fakePage({ attempts: 3, workers: 2 });
+    page = {
+      ...fakePage({ workers: 2 }),
+      openRetry: fakeOpenRetry(false, 3, { waitedMs: 16_240 }),
+    };
     mockOpen.mockRejectedValue(new Error("The object is in an invalid state."));
     await render(
       <SqliteAppServicesProvider page={page}>
@@ -181,6 +256,7 @@ describe("SqliteAppServicesProvider", () => {
     expect(screen.getByText("Workers de la base de datos: 2")).toBeOnTheScreen();
     expect(screen.getByText("Sondeo de archivos: no")).toBeOnTheScreen();
     expect(screen.getByText("Reintentos automáticos: 3")).toBeOnTheScreen();
+    expect(screen.getByText("Espera total: 16,2 s")).toBeOnTheScreen();
   });
 });
 

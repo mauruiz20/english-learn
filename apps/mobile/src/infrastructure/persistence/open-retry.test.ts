@@ -1,4 +1,10 @@
-import { createOpenRetry, decideOpenRetry, OPEN_RETRY_DELAYS_MS } from "./open-retry";
+import {
+  createOpenRetry,
+  decideOpenRetry,
+  formatWait,
+  OPEN_RETRY_DELAYS_MS,
+  OPEN_RETRY_WINDOW_MS,
+} from "./open-retry";
 
 const BUSY = new Error("The object is in an invalid state.");
 
@@ -10,6 +16,17 @@ describe("decideOpenRetry", () => {
 
     expect(delays).toEqual(OPEN_RETRY_DELAYS_MS.map((delayMs) => ({ retry: true, delayMs })));
     expect([...OPEN_RETRY_DELAYS_MS]).toEqual([...OPEN_RETRY_DELAYS_MS].sort((a, b) => a - b));
+  });
+
+  it("keeps a busy open waiting for about 15 to 20 s before the error shows", () => {
+    const total = OPEN_RETRY_DELAYS_MS.reduce((sum, ms) => sum + ms, 0);
+    expect(OPEN_RETRY_WINDOW_MS).toBe(total);
+    expect(total).toBeGreaterThanOrEqual(15_000);
+    expect(total).toBeLessThanOrEqual(20_000);
+    // Files held for about 8 s are covered with room to spare (each reload also takes a while).
+    let elapsed = 0;
+    const covered = OPEN_RETRY_DELAYS_MS.some((ms) => (elapsed += ms) >= 8_000);
+    expect(covered).toBe(true);
   });
 
   it("stops once the retries are used up", () => {
@@ -103,6 +120,65 @@ describe("createOpenRetry (web)", () => {
     retry.onFailure(BUSY);
     retry.clear();
     expect(retry.attempts()).toBe(0);
+    expect(retry.waitedMs()).toBeNull();
+  });
+
+  it("measures the total wait since the first busy open, across the reloads", () => {
+    const storage = fakeStorage();
+    let now = 1_000;
+    const make = () =>
+      createOpenRetry({ storage, reload: jest.fn(), workersCreated: () => 1, now: () => now });
+    expect(make().waitedMs()).toBeNull();
+
+    make().onFailure(BUSY);
+    now += 400;
+    make().onFailure(BUSY);
+    now += 1_100;
+    expect(make().waitedMs()).toBe(1_500);
+
+    const opened = make();
+    opened.onOpened();
+    expect(opened.waitedMs()).toBeNull();
+  });
+
+  it("once the window is used up, offers to retry in the background without a fresh round", () => {
+    const storage = fakeStorage();
+    const reload = jest.fn();
+    const make = () => createOpenRetry({ storage, reload, workersCreated: () => 1 });
+    for (let i = 0; i < OPEN_RETRY_DELAYS_MS.length; i++) {
+      const page = make();
+      page.onFailure(BUSY);
+      expect(page.retriesInBackground()).toBe(false);
+    }
+    const last = make();
+    expect(last.onFailure(BUSY)).toBe(false);
+    expect(last.retriesInBackground()).toBe(true);
+
+    last.retryInBackground();
+    last.retryInBackground();
+    // One reload (the page goes away), and the count is kept: the next page shows the error
+    // at once and keeps retrying in the background instead of a second 15 s window.
+    expect(reload).toHaveBeenCalledTimes(1);
+    expect(last.attempts()).toBe(OPEN_RETRY_DELAYS_MS.length);
+  });
+
+  it("never retries in the background a failure the window would not retry either", () => {
+    const storage = fakeStorage();
+    const twoWorkers = createOpenRetry({ storage, reload: jest.fn(), workersCreated: () => 2 });
+    twoWorkers.onFailure(BUSY);
+    expect(twoWorkers.retriesInBackground()).toBe(false);
+
+    const other = createOpenRetry({ storage, reload: jest.fn(), workersCreated: () => 1 });
+    other.onFailure(new Error("database disk image is malformed"));
+    expect(other.retriesInBackground()).toBe(false);
+
+    const noStorage = createOpenRetry({
+      storage: undefined,
+      reload: jest.fn(),
+      workersCreated: () => 1,
+    });
+    noStorage.onFailure(BUSY);
+    expect(noStorage.retriesInBackground()).toBe(false);
   });
 
   it("without session storage it shows the error instead of reloading", () => {
@@ -120,5 +196,13 @@ describe("createOpenRetry (web)", () => {
     expect(
       createOpenRetry({ storage: undefined, reload, workersCreated: () => 1 }).onFailure(BUSY),
     ).toBe(false);
+  });
+});
+
+describe("formatWait", () => {
+  it("shows seconds with one decimal for 'Detalles técnicos'", () => {
+    expect(formatWait(16_240)).toBe("16,2 s");
+    expect(formatWait(0)).toBe("0,0 s");
+    expect(formatWait(null)).toBe("sin espera");
   });
 });

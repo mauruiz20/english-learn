@@ -29,11 +29,12 @@ import type * as E2eDatabaseWorkers from "./e2e-database-workers";
 import type * as E2eProgress from "./e2e-progress";
 import type * as E2eSettingsWrites from "./e2e-settings-writes";
 import { initProgressStore } from "./init-progress-store";
-import { createOpenRetry, noOpenRetry, type OpenRetry } from "./open-retry";
+import { createOpenRetry, formatWait, noOpenRetry, type OpenRetry } from "./open-retry";
 import type { DatabaseOwnership, OwnershipState } from "./ownership/database-ownership";
 import {
   DatabaseStuckScreen,
   OpenElsewhereScreen,
+  OpeningDataScreen,
   ReleasedScreen,
 } from "./ownership/ownership-screens";
 import { createPlatformOwnership } from "./ownership/platform-ownership";
@@ -100,7 +101,13 @@ function openDetails(page: DatabasePage): string[] {
     `Workers de la base de datos: ${page.workersCreated()}`,
     "Sondeo de archivos: no",
     `Reintentos automáticos: ${page.openRetry.attempts()}`,
+    `Espera total: ${formatWait(page.openRetry.waitedMs())}`,
   ];
+}
+
+/** The error screen's own retry for files that stayed busy (web), if the policy allows it. */
+function backgroundRetry(page: DatabasePage): (() => void) | undefined {
+  return page.openRetry.retriesInBackground() ? page.openRetry.retryInBackground : undefined;
 }
 
 const SYNC_WRITES = [
@@ -218,7 +225,8 @@ type OpenState =
 /**
  * Opens (or joins) the page's database and runs migrations. A failure is thrown while rendering
  * so the error boundary shows a message instead of a blank screen, unless the retry policy
- * reloads the page (web, files briefly busy): then nothing shows until the reload.
+ * reloads the page (web, files briefly busy): then "Abriendo tus datos…" until the reload, and
+ * on the reloaded page while it opens again (a first open shows nothing: it is quick).
  */
 function PageDatabaseProvider({
   page,
@@ -252,7 +260,10 @@ function PageDatabaseProvider({
   const onOpened = useCallback(() => page.openRetry.onOpened(), [page]);
 
   if (state.kind === "failed") throw new DatabaseOpenError(state.error);
-  if (state.kind !== "open") return null;
+  if (state.kind !== "open") {
+    const waiting = state.kind === "retrying" || page.openRetry.attempts() > 0;
+    return waiting ? <OpeningDataScreen /> : null;
+  }
   return (
     <SqliteServices db={state.db} clock={clock} onOpened={onOpened}>
       {children}
@@ -340,7 +351,7 @@ function DatabaseOwnershipGate({
  * Opens the on-device database, runs migrations, and provides the app services. Any failure
  * (newer schema, corrupt file, storage unavailable, database still held elsewhere) or later
  * render error shows `AppErrorBoundary`'s message. Web: the page opens the database once (see
- * `DatabasePage`); a busy open retries by reloading a few times, and "Reintentar" reloads the
+ * `DatabasePage`); a busy open retries by reloading for about 16 s ("Abriendo tus datos…"), then its error screen keeps retrying on its own; and "Reintentar" reloads the
  * page (expo-sqlite's worker cannot reopen after a failed open). Native: "Reintentar" opens
  * again and remounts the app. On web the database opens only once this page owns it
  * (`ownership`).
@@ -368,8 +379,14 @@ export function SqliteAppServicesProvider({
     setAttempt((n) => n + 1);
   };
   const details = useCallback(() => openDetails(page), [page]);
+  const retryInBackground = useCallback(() => backgroundRetry(page), [page]);
   return (
-    <AppErrorBoundary key={attempt} onRetry={retry} details={details}>
+    <AppErrorBoundary
+      key={attempt}
+      onRetry={retry}
+      details={details}
+      backgroundRetry={retryInBackground}
+    >
       <DatabaseOwnershipGate ownership={ownership}>
         <PageDatabaseProvider page={page} clock={clock}>
           {children}
