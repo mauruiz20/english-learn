@@ -350,6 +350,30 @@
         "The {performance|show|play} {starts|begins|is} at {eight[ o'clock]|8[ o'clock|:00| pm]}.",
         "The {performance|show|play} {starts|begins|is} at 8 p.m."
       ]
+    },
+    {
+      "id": "b1.culture-and-entertainment.vocab-004",
+      "itemIds": ["b1.culture-and-entertainment.play"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'play' mean in 'We saw a play at the theater'?",
+      "options": ["juego", "partido", "película", "obra de teatro"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.culture-and-entertainment.vocab-005",
+      "itemIds": ["b1.culture-and-entertainment.review"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'review' mean in 'The movie got a good review in the newspaper'?",
+      "options": ["reseña", "repaso", "resumen", "entrevista"],
+      "answerIndex": 0
     }
   ],
   "lessons": [
@@ -366,6 +390,13 @@
         "b1.culture-and-entertainment.reading-001",
         "b1.culture-and-entertainment.write-001",
         "b1.culture-and-entertainment.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.culture-and-entertainment.audience",
+        "b1.culture-and-entertainment.relative-who-where",
+        "b1.culture-and-entertainment.exhibition",
+        "b1.culture-and-entertainment.must-cant-might",
+        "b1.culture-and-entertainment.look-forward"
       ]
     },
     {
@@ -381,6 +412,11 @@
         "b1.culture-and-entertainment.choice-002",
         "b1.culture-and-entertainment.write-002",
         "b1.culture-and-entertainment.write-003"
+      ],
+      "newItemIds": [
+        "b1.culture-and-entertainment.sold-out",
+        "b1.culture-and-entertainment.director",
+        "b1.culture-and-entertainment.worth"
       ]
     }
   ]

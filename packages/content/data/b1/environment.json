@@ -340,6 +340,13 @@
         "b1.environment.reading-001",
         "b1.environment.write-001",
         "b1.environment.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.environment.waste",
+        "b1.environment.first-conditional",
+        "b1.environment.recycle",
+        "b1.environment.pollution",
+        "b1.environment.global-warming"
       ]
     },
     {
@@ -355,6 +362,12 @@
         "b1.environment.choice-002",
         "b1.environment.write-002",
         "b1.environment.write-003"
+      ],
+      "newItemIds": [
+        "b1.environment.throw-away",
+        "b1.environment.unless",
+        "b1.environment.energy",
+        "b1.environment.climate"
       ]
     }
   ]

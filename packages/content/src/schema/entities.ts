@@ -29,5 +29,11 @@ export const LessonSchema = z.strictObject({
   /** Spanish title shown to the learner. */
   title: NonEmptyString,
   exerciseIds: z.array(IdSchema).min(5),
+  /**
+   * The 3 to 5 words, phrases or structures the lesson introduces, shown in its end-of-lesson
+   * recap ("Lo nuevo de hoy"). Each one is practiced by an exercise of the lesson. Optional: the
+   * app derives them when absent.
+   */
+  newItemIds: z.array(IdSchema).min(3).max(5).optional(),
 });
 export type Lesson = z.infer<typeof LessonSchema>;

@@ -349,6 +349,13 @@
         "a2.food.reading-001",
         "a2.food.write-001",
         "a2.food.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.food.hungry",
+        "a2.food.dinner",
+        "a2.food.vegetables",
+        "a2.food.rice",
+        "a2.food.how-much-many"
       ]
     },
     {
@@ -364,6 +371,13 @@
         "a2.food.choice-002",
         "a2.food.choice-003",
         "a2.food.write-002"
+      ],
+      "newItemIds": [
+        "a2.food.some-any",
+        "a2.food.would-like",
+        "a2.food.chicken",
+        "a2.food.lunch",
+        "a2.food.bread"
       ]
     }
   ]

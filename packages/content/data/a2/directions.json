@@ -358,6 +358,13 @@
         "a2.directions.reading-001",
         "a2.directions.write-001",
         "a2.directions.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.directions.turn-right",
+        "a2.directions.imperative",
+        "a2.directions.go-straight",
+        "a2.directions.across-from",
+        "a2.directions.excuse-me"
       ]
     },
     {
@@ -373,7 +380,8 @@
         "a2.directions.choice-002",
         "a2.directions.choice-003",
         "a2.directions.write-002"
-      ]
+      ],
+      "newItemIds": ["a2.directions.between", "a2.directions.map", "a2.directions.imperative"]
     }
   ]
 }

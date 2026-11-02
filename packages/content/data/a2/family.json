@@ -330,6 +330,13 @@
         "a2.family.reading-001",
         "a2.family.write-001",
         "a2.family.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.family.aunt",
+        "a2.family.older-than",
+        "a2.family.grandmother",
+        "a2.family.uncle",
+        "a2.family.only-child"
       ]
     },
     {
@@ -345,7 +352,8 @@
         "a2.family.choice-002",
         "a2.family.choice-003",
         "a2.family.write-002"
-      ]
+      ],
+      "newItemIds": ["a2.family.look-like", "a2.family.possessive-s", "a2.family.get-married"]
     }
   ]
 }

@@ -347,6 +347,13 @@
         "b1.relationships.reading-001",
         "b1.relationships.write-001",
         "b1.relationships.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.relationships.get-along",
+        "b1.relationships.break-up",
+        "b1.relationships.fall-in-love",
+        "b1.relationships.make-up",
+        "b1.relationships.if-i-were-you"
       ]
     },
     {
@@ -362,6 +369,11 @@
         "b1.relationships.choice-002",
         "b1.relationships.write-002",
         "b1.relationships.write-003"
+      ],
+      "newItemIds": [
+        "b1.relationships.get-married",
+        "b1.relationships.each-other",
+        "b1.relationships.support"
       ]
     }
   ]

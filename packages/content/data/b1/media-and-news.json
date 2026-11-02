@@ -343,6 +343,13 @@
         "b1.media-and-news.reading-001",
         "b1.media-and-news.write-001",
         "b1.media-and-news.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.media-and-news.headline",
+        "b1.media-and-news.say-tell",
+        "b1.media-and-news.news",
+        "b1.media-and-news.according-to",
+        "b1.media-and-news.fake-news"
       ]
     },
     {
@@ -358,6 +365,11 @@
         "b1.media-and-news.choice-002",
         "b1.media-and-news.write-002",
         "b1.media-and-news.write-003"
+      ],
+      "newItemIds": [
+        "b1.media-and-news.announce",
+        "b1.media-and-news.passive-past",
+        "b1.media-and-news.find-out"
       ]
     }
   ]

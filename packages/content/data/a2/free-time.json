@@ -344,6 +344,13 @@
         "a2.free-time.reading-001",
         "a2.free-time.write-001",
         "a2.free-time.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.free-time.free-time",
+        "a2.free-time.play-soccer",
+        "a2.free-time.play-the-guitar",
+        "a2.free-time.can-ability",
+        "a2.free-time.go-swimming"
       ]
     },
     {
@@ -359,7 +366,8 @@
         "a2.free-time.choice-002",
         "a2.free-time.choice-003",
         "a2.free-time.write-002"
-      ]
+      ],
+      "newItemIds": ["a2.free-time.hobby", "a2.free-time.like-ing", "a2.free-time.can-ability"]
     }
   ]
 }

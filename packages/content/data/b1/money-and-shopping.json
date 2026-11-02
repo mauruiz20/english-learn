@@ -353,6 +353,13 @@
         "b1.money-and-shopping.reading-001",
         "b1.money-and-shopping.write-001",
         "b1.money-and-shopping.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.money-and-shopping.pay-back",
+        "b1.money-and-shopping.second-conditional",
+        "b1.money-and-shopping.save-up",
+        "b1.money-and-shopping.lend",
+        "b1.money-and-shopping.borrow"
       ]
     },
     {
@@ -368,6 +375,11 @@
         "b1.money-and-shopping.choice-002",
         "b1.money-and-shopping.write-002",
         "b1.money-and-shopping.write-003"
+      ],
+      "newItemIds": [
+        "b1.money-and-shopping.bargain",
+        "b1.money-and-shopping.credit-card",
+        "b1.money-and-shopping.refund"
       ]
     }
   ]

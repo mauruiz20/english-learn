@@ -147,6 +147,16 @@ cover cards, and cards can never sit in `placement/` or `glossary/`:
     exercise practices is in the card, and every card item is practiced by a card exercise; an
     exercise belongs to at most one card.
 
+Lesson rules (cross-file):
+
+19. New items (`lesson.newItemIds`, see [Lessons](#lessons)): no duplicates, and every id is an
+    item that an exercise of the lesson practices.
+20. Reviewable lesson items: every item a lesson practices is also practiced by at least one
+    non-reading exercise somewhere in the corpus. The daily review never picks a reading (too
+    long for a quick review), so an item only a reading covers would get a review state from the
+    lesson and never come back. Such items get a short review-only exercise (usually `vocab`)
+    that sits in no lesson (e.g. `a2.weather.vocab-004` for `windy`).
+
 ### Word-order convention
 
 Tokens are written exactly as they appear in the sentence, punctuation attached to its word
@@ -198,6 +208,19 @@ Static English → Spanish lookup for hover (web) / tap (mobile). Tokenizing and
   is not itself a form. Forms no text uses are allowed; `validate` prints their count as a warning.
 - **Authoring**: `pnpm --filter @english-learn/content glossary:gaps [--limit N]` lists uncovered
   words, most frequent first, with one example text each.
+
+## Lessons
+
+A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds? }`.
+
+- `newItemIds` (optional, 3 to 5 item ids): what the lesson introduces, shown in the app's
+  end-of-lesson recap "Lo nuevo de hoy" (each one linked to its study card when a card teaches
+  it, otherwise with its Spanish meaning and an example taken from the lesson's exercises).
+  Pick the words, phrases and structures the lesson is about, in exercise order: items no earlier
+  lesson of the course practices, study-card items and grammar first. A second lesson of a topic
+  that introduces fewer than three items completes the list with the items it practices most.
+  Every bundled lesson lists them; without the field the app derives them (the lesson's items
+  that no earlier lesson practices, at most five).
 
 ## Attribution
 

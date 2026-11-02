@@ -338,6 +338,13 @@
         "b1.technology.reading-001",
         "b1.technology.write-001",
         "b1.technology.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.technology.charger",
+        "b1.technology.password",
+        "b1.technology.back-up",
+        "b1.technology.log-in",
+        "b1.technology.passive-present"
       ]
     },
     {
@@ -353,6 +360,11 @@
         "b1.technology.choice-002",
         "b1.technology.write-002",
         "b1.technology.write-003"
+      ],
+      "newItemIds": [
+        "b1.technology.device",
+        "b1.technology.relative-that-which",
+        "b1.technology.passive-present"
       ]
     }
   ]

@@ -348,6 +348,13 @@
         "b1.education.reading-001",
         "b1.education.write-001",
         "b1.education.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.education.scholarship",
+        "b1.education.past-continuous",
+        "b1.education.reported-speech",
+        "b1.education.take-notes",
+        "b1.education.pass-an-exam"
       ]
     },
     {
@@ -363,6 +370,13 @@
         "b1.education.choice-002",
         "b1.education.write-002",
         "b1.education.write-003"
+      ],
+      "newItemIds": [
+        "b1.education.subject",
+        "b1.education.asked-if",
+        "b1.education.hand-in",
+        "b1.education.homework",
+        "b1.education.degree"
       ]
     }
   ]

@@ -8,6 +8,7 @@ import {
 } from "./glossary";
 import { validateListDuplicates } from "./duplicates";
 import { validateLayout } from "./layout";
+import { validateLessonNewItems, validateReviewableLessonItems } from "./lessons";
 import { validateLevels } from "./levels";
 import { validateAnswerIndexes, validateOptionDuplicates } from "./options";
 import { validateTextPunctuation } from "./punctuation";
@@ -39,6 +40,8 @@ const CROSS_FILE_RULES: readonly Rule[] = [
   validateExerciseTopics,
   validateLevels,
   validateCardReferences,
+  validateLessonNewItems,
+  validateReviewableLessonItems,
   validateGlossaryForms,
   validateGlossaryCoverage,
 ];
