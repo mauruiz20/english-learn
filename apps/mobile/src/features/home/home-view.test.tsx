@@ -357,6 +357,25 @@ describe("HomeView album", () => {
   });
 });
 
+describe("HomeView study cards", () => {
+  it("opens the cards, saying how many there are and how many were studied", async () => {
+    const onOpenCards = jest.fn();
+    await render(
+      <HomeView
+        state={{ ...ready, cards: { total: 28, studied: 3 } }}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenCards={onOpenCards}
+      />,
+    );
+
+    expect(screen.getByText("28 fichas · 3 estudiadas")).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Fichas: 28 fichas, 3 estudiadas" }));
+    expect(onOpenCards).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe("HomeView nothing to review", () => {
   it("shows Avi napping, invisible to screen readers, only when there is nothing to review", async () => {
     await renderView(ready);

@@ -10,6 +10,7 @@ import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
 import { useProgressVersion } from "@/features/account/account-context";
 import { MoveBanner } from "@/features/transfer/move-banner";
+import { cardsSummary } from "@/features/cards/model/card-catalog";
 import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
@@ -94,6 +95,7 @@ export function HomeContainer({
             ).length,
             total: ACHIEVEMENTS.length,
           },
+          cards: cardsSummary(content.cards, states),
         });
       },
       (error: unknown) => {
@@ -125,6 +127,7 @@ export function HomeContainer({
       onOpenAbout={() => router.push("/about")}
       onOpenAccount={() => router.push("/cuenta")}
       onOpenAlbum={() => router.push("/album")}
+      onOpenCards={() => router.push("/fichas")}
       notice={
         moveOffer && (
           <MoveBanner
