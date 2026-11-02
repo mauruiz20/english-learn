@@ -146,7 +146,7 @@ backups and a monthly restore drill: see [docs/deploy.md](docs/deploy.md).
 
 - **Original content** is written for this project. No copyrighted word lists or textbook
   material are copied.
-- **Tatoeba sentences** (113 of 293 exercises) are used under
+- **Tatoeba sentences** (113 of 302 exercises) are used under
   [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Each one records the sentence
   id and author in its `source` field, a pipeline check verifies the English text matches the
   attributed sentence exactly, and the app's About screen credits Tatoeba with the license.
