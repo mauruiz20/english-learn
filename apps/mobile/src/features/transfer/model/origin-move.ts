@@ -26,7 +26,11 @@ export type VisitLocation = {
 export type Visit =
   /** Not the old address: the app as usual. */
   | { readonly kind: "app" }
-  /** Nothing to carry, or carried already: go to the same page on the new address. */
+  /**
+   * Nothing to carry, or carried already: go to the same page on the new address. Path and query
+   * only: the fragment is dropped, so a crafted old-address link cannot bounce a transfer token
+   * (`#t=…`) to the new address's import page.
+   */
   | { readonly kind: "redirect"; readonly url: string }
   /** The old address holds progress: offer to take it along. */
   | { readonly kind: "offer" };
@@ -50,7 +54,7 @@ export function decideVisit({
   params.delete(REPEAT_PARAM);
   const search = params.size > 0 ? `?${params}` : "";
   const target = migratedTo ?? move.newOrigin;
-  return { kind: "redirect", url: `${target}${location.pathname}${search}${location.hash}` };
+  return { kind: "redirect", url: `${target}${location.pathname}${search}` };
 }
 
 export function importUrl(newOrigin: string, token: string): string {
