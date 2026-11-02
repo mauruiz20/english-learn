@@ -4,7 +4,7 @@ import type { LoadedFile, Rule, ValidationError } from "./types";
 const PLACEMENT_DIR = "placement";
 const GLOSSARY_DIR = "glossary";
 const DIRS = [...LEVELS.map((l) => l.toLowerCase()), PLACEMENT_DIR, GLOSSARY_DIR];
-const ENTITY_KINDS = ["items", "exercises", "passages", "lessons"] as const;
+const ENTITY_KINDS = ["items", "exercises", "passages", "lessons", "cards"] as const;
 
 /**
  * Directory <-> content. Fails closed: every file must sit under
