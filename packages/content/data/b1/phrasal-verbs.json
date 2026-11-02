@@ -118,7 +118,7 @@
       "topics": ["phrasal-verbs"],
       "kind": "phrase",
       "term": "break down",
-      "es": "descomponerse (una máquina, un auto)"
+      "es": "descomponerse, dejar de funcionar (una máquina, un auto)"
     },
     {
       "id": "b1.phrasal-verbs.work-out",
@@ -142,7 +142,7 @@
       "topics": ["phrasal-verbs"],
       "kind": "phrase",
       "term": "check out",
-      "es": "dejar el hotel (pagar y salir)"
+      "es": "dejar el hotel (pagar y salir; sin objeto)"
     },
     {
       "id": "b1.phrasal-verbs.get-on",
@@ -301,7 +301,7 @@
       "type": "cloze",
       "sentence": "We have to hand ___ the project on Monday.",
       "answers": ["in"],
-      "distractors": ["on", "up"],
+      "distractors": ["at", "up"],
       "es": "Tenemos que entregar el proyecto el lunes."
     },
     {
@@ -598,7 +598,12 @@
       },
       "type": "translate_write",
       "es": "Mi computadora se descompuso.",
-      "accepted": ["My computer broke down.", "My computer stopped working."]
+      "accepted": [
+        "My computer broke down.",
+        "My computer stopped working.",
+        "My computer broke.",
+        "My computer died."
+      ]
     },
     {
       "id": "b1.phrasal-verbs.travel-cloze-1",
@@ -731,14 +736,14 @@
           "why": "Con un pronombre, este va entre ask y out."
         },
         {
-          "wrong": "She finished with her boyfriend.",
+          "wrong": "She cut with her boyfriend.",
           "right": "She broke up with her boyfriend.",
-          "why": "Terminar una relación es break up with, no finish."
+          "why": "Terminar o cortar con alguien es break up with; cut no se usa así."
         },
         {
-          "wrong": "Can you look my dog this weekend?",
+          "wrong": "Can you care my dog this weekend?",
           "right": "Can you look after my dog this weekend?",
-          "why": "Cuidar es look after; look solo es mirar."
+          "why": "Cuidar es look after o take care of; care solo no lleva objeto directo."
         }
       ],
       "examples": [
@@ -775,7 +780,7 @@
         },
         {
           "verb": "make up",
-          "es": "reconciliarse, hacer las paces",
+          "es": "reconciliarse, hacer las paces (sin objeto)",
           "separable": false,
           "example": {
             "en": "They had a fight, but they made up the next day.",
@@ -1134,7 +1139,7 @@
         },
         {
           "verb": "break down",
-          "es": "descomponerse (una máquina, un auto)",
+          "es": "descomponerse, dejar de funcionar (una máquina, un auto)",
           "separable": false,
           "example": {
             "en": "My car broke down on the highway.",
@@ -1155,8 +1160,8 @@
           "es": "resolver; salir bien",
           "separable": true,
           "example": {
-            "en": "Don't worry. Everything will work out.",
-            "es": "No te preocupes. Todo va a salir bien."
+            "en": "Don't worry. We'll work it out together.",
+            "es": "No te preocupes. Lo vamos a resolver juntos."
           }
         },
         {
@@ -1243,7 +1248,7 @@
       "entries": [
         {
           "verb": "check in",
-          "es": "registrarse (en un hotel o aeropuerto)",
+          "es": "registrarse (en un hotel o aeropuerto; sin objeto)",
           "separable": false,
           "example": {
             "en": "You can check in online the day before.",
@@ -1252,7 +1257,7 @@
         },
         {
           "verb": "check out",
-          "es": "dejar el hotel (pagar y salir)",
+          "es": "dejar el hotel (pagar y salir; sin objeto)",
           "separable": false,
           "example": {
             "en": "We have to check out by noon.",

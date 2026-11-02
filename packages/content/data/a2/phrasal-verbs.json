@@ -128,10 +128,10 @@
       "type": "translate_write",
       "es": "Apaga tu celular, por favor.",
       "accepted": [
-        "[Please ]turn off your {phone|cell phone}.",
-        "[Please ]turn your {phone|cell phone} off.",
-        "Turn off your {phone|cell phone}, please.",
-        "Turn your {phone|cell phone} off, please."
+        "[Please ]turn off your {phone|cell phone|cell}.",
+        "[Please ]turn your {phone|cell phone|cell} off.",
+        "Turn off your {phone|cell phone|cell}, please.",
+        "Turn your {phone|cell phone|cell} off, please."
       ]
     }
   ],
@@ -196,11 +196,11 @@
       "entries": [
         {
           "verb": "wake up",
-          "es": "despertarse",
+          "es": "despertarse; despertar (a alguien)",
           "separable": true,
           "example": {
-            "en": "I wake up at seven every day.",
-            "es": "Me despierto a las siete todos los días."
+            "en": "Please wake me up at seven.",
+            "es": "Por favor, despiértame a las siete."
           }
         },
         {

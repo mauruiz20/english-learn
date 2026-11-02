@@ -289,6 +289,22 @@
       ]
     },
     {
+      "id": "glossary.die",
+      "headword": "die",
+      "kind": "word",
+      "forms": ["die", "dies", "died", "dying"],
+      "senses": [
+        {
+          "es": "morir",
+          "pos": "verb"
+        },
+        {
+          "es": "(una máquina) dejar de funcionar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.diet",
       "headword": "diet",
       "kind": "word",
