@@ -80,6 +80,20 @@ export function ReleasedScreen({ onUseHere }: UseHereProps) {
   );
 }
 
+/**
+ * A busy open waiting for its next try (web): calm and static (no spinner, so nothing moves
+ * with reduced motion either) instead of a blank page or the error.
+ */
+export function OpeningDataScreen() {
+  return (
+    <ScreenContainer title="Abriendo tus datos…" insetTop>
+      <Text accessibilityLiveRegion="polite">
+        Tu progreso está guardado. Esto puede tardar unos segundos.
+      </Text>
+    </ScreenContainer>
+  );
+}
+
 export const STUCK_TITLE = "No pudimos abrir tus datos en esta ventana.";
 
 /** What to do when something keeps the data and never answers (iOS: close everything). */
@@ -90,6 +104,27 @@ export function StuckHelp() {
       <Text>1. Cierra la app por completo desde el selector de apps y vuelve a abrirla.</Text>
       <Text>2. Cierra también las pestañas de english.maumar.com.ar en Safari.</Text>
       <Text>3. Luego pulsa Reintentar.</Text>
+    </View>
+  );
+}
+
+/**
+ * The page's own open found the files busy for the whole wait (on iOS, stale handles in the
+ * storage process, often with no other tab at all). A restart of the iPhone is the proven fix.
+ */
+export function BusyFilesHelp({ retryingOnItsOwn }: { retryingOnItsOwn: boolean }) {
+  return (
+    <View style={styles.steps}>
+      <Text>Tu progreso sigue guardado en este dispositivo.</Text>
+      {retryingOnItsOwn && (
+        <Text accessibilityLiveRegion="polite">
+          Seguimos intentando: la app se abrirá sola en cuanto tus datos estén libres.
+        </Text>
+      )}
+      <Text>Si no se abre en un rato:</Text>
+      <Text>1. Cierra la app por completo desde el selector de apps y vuelve a abrirla.</Text>
+      <Text>2. Cierra también las pestañas de english.maumar.com.ar en Safari.</Text>
+      <Text>3. Si el problema sigue, reinicia el iPhone: así se liberan tus datos.</Text>
     </View>
   );
 }
