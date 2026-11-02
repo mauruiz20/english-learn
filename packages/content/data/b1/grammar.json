@@ -217,7 +217,11 @@
       },
       "type": "translate_write",
       "es": "Fui a Chile el año pasado.",
-      "accepted": ["I went to Chile last year.", "Last year[,] I went to Chile."]
+      "accepted": [
+        "I went to Chile last year.",
+        "Last year[,] I went to Chile.",
+        "I {visited|traveled to} Chile last year."
+      ]
     },
     {
       "id": "b1.grammar.first-conditional-cloze-1",
@@ -605,7 +609,11 @@
       },
       "type": "translate_write",
       "es": "Le pedí a mi hermano que me cortara el pelo.",
-      "accepted": ["I had my brother cut my hair.", "I asked my brother to cut my hair."]
+      "accepted": [
+        "I had my brother cut my hair.",
+        "I asked my brother to cut my hair.",
+        "I got my brother to cut my hair."
+      ]
     }
   ],
   "cards": [
@@ -682,13 +690,13 @@
       "topic": "grammar",
       "kind": "grammar",
       "title": "Presente perfecto o pasado simple",
-      "summary": "El pasado simple habla de un momento terminado y concreto (yesterday, in 2019). El presente perfecto une el pasado con el presente: experiencias y cosas sin fecha.",
+      "summary": "El pasado simple habla de algo terminado, normalmente con un momento concreto (yesterday, in 2019). El presente perfecto une el pasado con el presente: experiencias y cosas sin fecha.",
       "form": "have/has + participio (sin fecha) · verbo en pasado + momento concreto",
       "uses": [
         "Experiencias sin fecha: Have you ever been to Peru?",
         "Algo reciente que importa ahora: I have lost my keys.",
-        "Con yesterday, last week, in 2010 o ago: pasado simple.",
-        "Las preguntas con when van en pasado simple: When did you arrive?"
+        "Con yesterday, last week, in 2010, ago y en preguntas con when: pasado simple (When did you arrive?).",
+        "En inglés americano también es muy común el pasado simple para algo reciente, incluso con just, already y yet: I just ate. Did you finish yet? I lost my keys."
       ],
       "pitfalls": [
         {

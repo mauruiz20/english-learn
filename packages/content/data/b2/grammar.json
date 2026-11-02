@@ -222,8 +222,9 @@
       "es": "Ya estoy acostumbrado a levantarme temprano.",
       "accepted": [
         "I'm [already ]used to getting up early.",
-        "I'm used to getting up early already.",
-        "I'm [already ]used to waking up early."
+        "I'm used to {getting|waking} up early already.",
+        "I'm [already ]used to waking up early.",
+        "I've [already ]gotten used to {getting|waking} up early."
       ]
     }
   ],
@@ -252,6 +253,11 @@
           "wrong": "It doesn't worth it.",
           "right": "It isn't worth it.",
           "why": "Worth no es un verbo: se usa con be (it's worth, it isn't worth)."
+        },
+        {
+          "wrong": "This book is worth reading it.",
+          "right": "This book is worth reading.",
+          "why": "El objeto ya es el sujeto (this book): no se repite con it después del verbo en -ing."
         }
       ],
       "examples": [
