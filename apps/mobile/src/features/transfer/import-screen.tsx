@@ -128,9 +128,12 @@ export function ImportScreen({
     started.current = true;
     const fragment = readFragment();
     clearFragment();
+    // Expo Router keeps the fragment as the `#` param and writes it back into the address bar
+    // whenever it syncs the URL; an empty one is left out.
+    router.setParams({ "#": "" });
     token.current = readTransferToken(fragment);
     void run();
-  }, [readFragment, clearFragment, run]);
+  }, [readFragment, clearFragment, run, router]);
 
   const home = () => router.replace("/");
 

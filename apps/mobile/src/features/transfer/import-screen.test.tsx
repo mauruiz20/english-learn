@@ -14,7 +14,10 @@ import { testRandomBytes } from "@/testing/random-bytes";
 import { ImportScreen } from "./import-screen";
 
 const mockReplace = jest.fn();
-jest.mock("expo-router", () => ({ useRouter: () => ({ replace: mockReplace }) }));
+const mockSetParams = jest.fn();
+jest.mock("expo-router", () => ({
+  useRouter: () => ({ replace: mockReplace, setParams: mockSetParams }),
+}));
 
 const TODAY = localDate("2026-10-30");
 const content = createCorpus([{ exercises: allExercises, passages: [passage], lessons: [lesson] }]);
@@ -133,6 +136,8 @@ describe("ImportScreen", () => {
 
     expect(await screen.findByText("¡Tu progreso llegó!")).toBeOnTheScreen();
     expect(order).toEqual(["cleared", "claim:tok-1"]);
+    // Out of the router's state too, or it would put the fragment back in the address bar.
+    expect(mockSetParams).toHaveBeenCalledWith({ "#": "" });
     expect(log.every((e) => e.deviceId === "new-device")).toBe(true);
     expect(screen.getByText("80 XP")).toBeOnTheScreen();
     expect(screen.getByText("Racha: 1 día")).toBeOnTheScreen();
