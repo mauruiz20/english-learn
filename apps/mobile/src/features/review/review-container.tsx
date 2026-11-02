@@ -3,6 +3,7 @@ import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { completeSession } from "@/features/lesson/application/complete-session";
+import { cardPath } from "@/features/cards/card-routes";
 import { itemsToReview } from "@/features/lesson/model/items-to-review";
 import {
   canDispute,
@@ -16,6 +17,7 @@ import {
   type ExerciseSession,
   type SaveState,
 } from "@/features/lesson/use-exercise-session";
+import { cardByExerciseId } from "@/features/cards/model/card-catalog";
 import { SessionGlossary } from "@/features/glossary/session-glossary";
 import { topicByExerciseId, topicByItemId } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
@@ -87,7 +89,14 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
   if (load.status !== "ready") {
     return <ReviewView state={load} {...noSession} onGoHome={goHome} />;
   }
-  return <ReviewSession plan={load.plan} content={content} onGoHome={goHome} />;
+  return (
+    <ReviewSession
+      plan={load.plan}
+      content={content}
+      onGoHome={goHome}
+      onOpenCard={(cardId) => router.push(cardPath(cardId, { fromSession: true }))}
+    />
+  );
 }
 
 const noop = () => {};
@@ -101,10 +110,12 @@ function ReviewSession({
   plan,
   content,
   onGoHome,
+  onOpenCard,
 }: {
   plan: Plan;
   content: Corpus;
   onGoHome: () => void;
+  onOpenCard: (cardId: string) => void;
 }) {
   const { progressRepository, clock, randomBytes, deviceId } = useAppServices();
   const {
@@ -154,6 +165,7 @@ function ReviewSession({
           onDispute={onDispute}
           onGoHome={onGoHome}
           onRetrySave={retrySave}
+          onOpenCard={onOpenCard}
         />
       </SessionGlossary>
       {dialog}
@@ -204,5 +216,6 @@ function toViewState(
           }
         : null,
     results: sessionResults(session),
+    card: cardByExerciseId(content).get(prepared.exercise.id),
   };
 }

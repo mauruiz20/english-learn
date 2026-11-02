@@ -127,6 +127,8 @@ type SummaryProps = {
   topic?: string | undefined;
   /** Album stickers this session earned. */
   achievements?: readonly EarnedSticker[] | undefined;
+  /** The button at the end ("Volver al inicio" by default). */
+  doneLabel?: string | undefined;
   onGoHome: () => void;
 };
 
@@ -168,6 +170,7 @@ export function SessionSummary({
   toReview,
   topic,
   achievements = [],
+  doneLabel = "Volver al inicio",
   onGoHome,
 }: SummaryProps) {
   const styles = useStyles();
@@ -270,7 +273,7 @@ export function SessionSummary({
           </View>
         )}
       </View>
-      <Button label="Volver al inicio" onPress={onGoHome} />
+      <Button label={doneLabel} onPress={onGoHome} />
       <Confetti delayMs={250} />
     </ScreenContainer>
   );

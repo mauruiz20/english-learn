@@ -1,6 +1,7 @@
 /** Small, valid content fixtures for lesson tests (never shipped: only imported by tests). */
 import type {
   ClozeExercise,
+  PhrasalVerbCard,
   Lesson,
   Passage,
   ReadingExercise,
@@ -98,6 +99,49 @@ export const lesson: Lesson = {
   topic: "routine",
   title: "Mi rutina",
   exerciseIds: allExercises.map((e) => e.id),
+};
+
+/** A study card that teaches "wake up" (practiced by `vocab` and `wordOrder`). */
+export const card: PhrasalVerbCard = {
+  id: "a2.phrasal-verbs.routine",
+  level: "A2",
+  topic: "phrasal-verbs",
+  kind: "phrasal_verbs",
+  title: "Phrasal verbs: la rutina",
+  summary: "Verbos con partícula para contar tu día.",
+  form: "verbo + partícula",
+  uses: ["Para hablar de la rutina diaria."],
+  pitfalls: [
+    { wrong: "I wake at seven.", right: "I wake up at seven.", why: "Falta la partícula up." },
+  ],
+  examples: [
+    { en: "I wake up at six.", es: "Me despierto a las seis." },
+    { en: "She wakes up early.", es: "Ella se despierta temprano." },
+    { en: "We wake up late.", es: "Nos despertamos tarde." },
+    { en: "They wake up at seven.", es: "Ellos se despiertan a las siete." },
+  ],
+  entries: [
+    {
+      verb: "wake up",
+      es: "despertarse",
+      separable: true,
+      example: { en: "Wake me up at six.", es: "Despiértame a las seis." },
+    },
+    {
+      verb: "get up",
+      es: "levantarse",
+      separable: false,
+      example: { en: "I get up early.", es: "Me levanto temprano." },
+    },
+    {
+      verb: "go out",
+      es: "salir",
+      separable: false,
+      example: { en: "We go out on Fridays.", es: "Salimos los viernes." },
+    },
+  ],
+  itemIds: ["a2.routine.wake-up"],
+  exerciseIds: [vocab.id, wordOrder.id],
 };
 
 /** Deterministic rng that cycles through `values` (each in [0, 1)). */
