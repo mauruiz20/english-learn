@@ -20,10 +20,11 @@ import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
 import { useProgressVersion } from "@/features/account/account-context";
 import { MoveBanner } from "@/features/transfer/move-banner";
-import { cardsSummary } from "@/features/cards/model/card-catalog";
+import { cardScores, cardsSummary } from "@/features/cards/model/card-catalog";
+import { cardPath } from "@/features/cards/card-routes";
 import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
-import { HomeView, type HomeLessons, type HomeViewState } from "./home-view";
+import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import {
   ACHIEVEMENTS,
@@ -31,9 +32,23 @@ import {
   unlockedAchievements,
 } from "@/features/achievements/model/achievements";
 
+/** The lesson's linked cards (`deepenCardIds`), with their best practice result. */
+function deepenCards(
+  cardIds: readonly string[] | undefined,
+  content: Corpus,
+  scores: ReturnType<typeof cardScores>,
+): HomeDeepenCard[] {
+  return (cardIds ?? []).flatMap((id) => {
+    const card = content.cardsById.get(id);
+    if (card === undefined) return [];
+    const score = scores.get(id);
+    return [{ id, title: card.title, ...(score === undefined ? {} : { score }) }];
+  });
+}
+
 /**
  * Lessons for the learner's level (A2 by default), each marked done when all its items were
- * reviewed, with its best result from the log.
+ * reviewed, with its best result from the log and, once done, the cards that go deeper into it.
  */
 function homeLessons(
   content: Corpus,
@@ -44,18 +59,24 @@ function homeLessons(
   const reviewed = new Set(states.map((s) => s.itemId));
   const resultById = new Map(results.map((r) => [r.lessonId, r]));
   const selection = lessonsForLevel(content.lessons, level);
+  const scores = cardScores(content, results);
   return {
     level: selection.level,
-    items: selection.lessons.map((lesson) => ({
-      id: lesson.id,
-      title: lesson.title,
-      topic: lesson.topic,
-      done: isLessonDone(lesson, content.exercisesById, reviewed),
-      score: lessonScore(
-        resultById.get(lesson.id),
-        lessonExercises(lesson, content.exercisesById).length,
-      ),
-    })),
+    items: selection.lessons.map((lesson) => {
+      const done = isLessonDone(lesson, content.exercisesById, reviewed);
+      const deepen = done ? deepenCards(lesson.deepenCardIds, content, scores) : [];
+      return {
+        id: lesson.id,
+        title: lesson.title,
+        topic: lesson.topic,
+        done,
+        score: lessonScore(
+          resultById.get(lesson.id),
+          lessonExercises(lesson, content.exercisesById).length,
+        ),
+        ...(deepen.length === 0 ? {} : { deepen }),
+      };
+    }),
   };
 }
 
@@ -151,6 +172,7 @@ export function HomeContainer({
       onOpenAccount={() => router.push("/cuenta")}
       onOpenAlbum={() => router.push("/album")}
       onOpenCards={() => router.push("/fichas")}
+      onOpenCard={(cardId) => router.push(cardPath(cardId))}
       notice={
         moveOffer && (
           <MoveBanner

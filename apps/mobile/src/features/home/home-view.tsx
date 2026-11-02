@@ -32,6 +32,14 @@ import {
   type LessonScore,
 } from "@/features/lesson/model/lesson-score";
 
+/** A study card that goes deeper into a lesson ("Profundiza"), with its best practice result. */
+export type HomeDeepenCard = {
+  readonly id: string;
+  readonly title: string;
+  /** Its best practice result; none if never practiced ("Nueva"). */
+  readonly score?: LessonScore | undefined;
+};
+
 export type HomeLesson = {
   readonly id: string;
   readonly title: string;
@@ -42,6 +50,8 @@ export type HomeLesson = {
   readonly justCompleted?: boolean;
   /** Its best result, when the log has one (lessons done before the event log have none). */
   readonly score?: LessonScore | undefined;
+  /** The cards linked to the lesson, shown under it once it is done. */
+  readonly deepen?: readonly HomeDeepenCard[] | undefined;
 };
 
 export type HomeLessons = { readonly level: Level; readonly items: readonly HomeLesson[] };
@@ -82,6 +92,8 @@ type HomeViewProps = {
   onOpenAccount?: () => void;
   onOpenAlbum?: () => void;
   onOpenCards?: () => void;
+  /** Opens one study card (the "Profundiza" steps under done lessons). */
+  onOpenCard?: (cardId: string) => void;
   /** News above everything else (the old web address's move banner). */
   notice?: ReactNode;
 };
@@ -408,6 +420,104 @@ function PathStop({
   );
 }
 
+/** "Profundiza: <título>, ficha nueva" or "…, completada sin errores: 6 de 6 correctas". */
+function deepenLabel(card: HomeDeepenCard): string {
+  const state = card.score === undefined ? "ficha nueva" : scoreDescription(card.score);
+  return `Profundiza: ${card.title}, ${state}`;
+}
+
+/**
+ * The cards that go deeper into a done lesson, as loose index cards clipped under its sticker:
+ * smaller than a stop, so they never read as another lesson. The pencil line runs on beside them
+ * when the path goes on. Never animated beyond the shared press feedback.
+ */
+function DeepenSteps({
+  lessonId,
+  cards,
+  offset,
+  continues,
+  onOpenCard,
+}: {
+  lessonId: string;
+  cards: readonly HomeDeepenCard[];
+  offset: number;
+  /** Another stop of the topic follows: the pencil line goes on beside the cards. */
+  continues: boolean;
+  onOpenCard: (cardId: string) => void;
+}) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  return (
+    <View style={[styles.deepen, { marginLeft: `${offset * 100}%` }]}>
+      <View style={styles.deepenTrail}>
+        {continues && <View testID={`deepen-trail-${lessonId}`} style={styles.deepenLine} />}
+      </View>
+      <View style={styles.deepenList}>
+        {cards.map((card) => (
+          <PressableScale
+            key={card.id}
+            accessibilityRole="button"
+            accessibilityLabel={deepenLabel(card)}
+            accessibilityHint="Abre la ficha"
+            onPress={() => onOpenCard(card.id)}
+            wrapperStyle={styles.deepenWrapper}
+            style={({ pressed }) => [styles.deepenStep, pressed && styles.stopPressed]}
+          >
+            {/* A small ruled index card with a highlighter tab (decorative). */}
+            <View>
+              <Svg width={26} height={20} viewBox="0 0 44 34" aria-hidden>
+                <Path
+                  d="M5 6 h32 a3 3 0 0 1 3 3 v19 a3 3 0 0 1 -3 3 h-32 a3 3 0 0 1 -3 -3 v-19 a3 3 0 0 1 3 -3 z"
+                  fill={colors.sheet}
+                  stroke={colors.ink}
+                  strokeWidth={2.5}
+                  transform="rotate(-5 22 17)"
+                />
+                <Path
+                  d="M9 15 h24 M9 21 h24"
+                  stroke={colors.rule}
+                  strokeWidth={2.5}
+                  strokeLinecap="round"
+                  transform="rotate(-5 22 17)"
+                />
+                <Path
+                  d="M28 2 h10 v8 h-10 z"
+                  fill={colors.highlighters.lilac}
+                  transform="rotate(-5 22 17)"
+                />
+              </Svg>
+              {card.score?.perfect === true && (
+                <PerfectBadge
+                  testID={`deepen-perfect-${lessonId}-${card.id}`}
+                  size={18}
+                  style={styles.deepenBadge}
+                />
+              )}
+            </View>
+            <View style={styles.deepenText}>
+              <Text variant="small" tone="muted">
+                Profundiza
+              </Text>
+              <Text variant="smallStrong" tone="ink">
+                {card.title}
+              </Text>
+            </View>
+            {card.score === undefined ? (
+              <Text variant="small" tone="muted">
+                Nueva
+              </Text>
+            ) : (
+              <Text variant="smallStrong" tone="success">
+                {scoreText(card.score)}
+              </Text>
+            )}
+          </PressableScale>
+        ))}
+      </View>
+    </View>
+  );
+}
+
 /** Avi on the next sticker, pointing down along the pencil line that comes to it. */
 function Guide({ previousOffset, offset }: { previousOffset: number | undefined; offset: number }) {
   const styles = useStyles();
@@ -471,9 +581,11 @@ function Connector({
 function LessonIndex({
   lessons,
   onOpenLesson,
+  onOpenCard,
 }: {
   lessons: HomeLessons;
   onOpenLesson: (id: string) => void;
+  onOpenCard?: ((cardId: string) => void) | undefined;
 }) {
   const styles = useStyles();
   const [width, setWidth] = useState(0);
@@ -532,6 +644,18 @@ function LessonIndex({
                       previousOffset={previousOffset}
                       onPress={() => onOpenLesson(lesson.id)}
                     />
+                    {lesson.done &&
+                      onOpenCard !== undefined &&
+                      lesson.deepen !== undefined &&
+                      lesson.deepen.length > 0 && (
+                        <DeepenSteps
+                          lessonId={lesson.id}
+                          cards={lesson.deepen}
+                          offset={offset}
+                          continues={i < group.lessons.length - 1}
+                          onOpenCard={onOpenCard}
+                        />
+                      )}
                   </View>
                 );
               })}
@@ -546,6 +670,7 @@ function LessonIndex({
 function ReadyHome({
   state,
   onOpenLesson,
+  onOpenCard,
   onStartPlacement,
   onOpenReview,
   onOpenAbout,
@@ -574,7 +699,7 @@ function ReadyHome({
         </View>
       )}
 
-      <LessonIndex lessons={state.lessons} onOpenLesson={onOpenLesson} />
+      <LessonIndex lessons={state.lessons} onOpenLesson={onOpenLesson} onOpenCard={onOpenCard} />
 
       <View style={styles.footer}>
         {state.level !== null && (
@@ -712,6 +837,27 @@ const useStyles = themedStyles(({ colors }) =>
       paddingHorizontal: spacing.sm,
       paddingVertical: 1,
     },
+    // Under a done stop: the pencil line's column, then the cards, smaller than a stop.
+    deepen: { flexDirection: "row", alignItems: "stretch" },
+    deepenTrail: { width: STICKER_COLUMN, alignItems: "center" },
+    deepenLine: { flex: 1, width: 3, borderRadius: 2, backgroundColor: colors.ink, opacity: 0.55 },
+    deepenList: { flexShrink: 1, gap: spacing.xs, paddingVertical: spacing.xs },
+    deepenWrapper: { alignSelf: "flex-start", maxWidth: "100%" },
+    deepenStep: {
+      minHeight: 48,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.sm,
+      paddingHorizontal: spacing.sm,
+      paddingVertical: spacing.xs,
+      borderRadius: radius.md,
+      borderWidth: 1,
+      borderStyle: "dashed",
+      borderColor: colors.textMuted,
+      backgroundColor: colors.sheet,
+    },
+    deepenBadge: { position: "absolute", right: -8, top: -10 },
+    deepenText: { flexShrink: 1 },
     footer: {
       marginTop: spacing.md,
       paddingTop: spacing.sm,

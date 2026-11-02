@@ -396,6 +396,120 @@ describe("HomeView sticker path", () => {
   });
 });
 
+describe("HomeView deepen step", () => {
+  const lessons = {
+    level: "B1",
+    items: [
+      {
+        id: "culture-1",
+        title: "Una noche de cultura",
+        topic: "culture-and-entertainment",
+        done: true,
+        score: { correct: 7, total: 7, perfect: true },
+        deepen: [
+          { id: "b1.grammar.look-forward-to", title: "Look forward to + -ing" },
+          {
+            id: "b1.grammar.second-conditional",
+            title: "Segundo condicional",
+            score: { correct: 6, total: 6, perfect: true },
+          },
+          {
+            id: "b1.grammar.first-conditional",
+            title: "Primer condicional",
+            score: { correct: 5, total: 7, perfect: false },
+          },
+        ],
+      },
+      {
+        id: "culture-2",
+        title: "Cine, teatro y música",
+        topic: "culture-and-entertainment",
+        done: false,
+        deepen: [{ id: "b1.grammar.gerund-infinitive", title: "Verbo + -ing o verbo + to" }],
+      },
+    ],
+  } as const;
+
+  function renderWithCards(onOpenCard = jest.fn()) {
+    return render(
+      <HomeView
+        state={{ ...ready, lessons }}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenCard={onOpenCard}
+      />,
+    );
+  }
+
+  it("offers a card never practiced under its done lesson as new, and opens it", async () => {
+    const onOpenCard = jest.fn();
+    await renderWithCards(onOpenCard);
+
+    const step = screen.getByRole("button", {
+      name: "Profundiza: Look forward to + -ing, ficha nueva",
+    });
+    expect(step.props.accessibilityHint).toBe("Abre la ficha");
+    expect(screen.getAllByText("Profundiza").length).toBe(3);
+    expect(screen.getByText("Nueva")).toBeOnTheScreen();
+
+    await fireEvent.press(step);
+    expect(onOpenCard).toHaveBeenCalledWith("b1.grammar.look-forward-to");
+  });
+
+  it("shows a practiced card's best result with the shared marker", async () => {
+    await renderWithCards();
+
+    expect(
+      screen.getByRole("button", {
+        name: "Profundiza: Segundo condicional, completada sin errores: 6 de 6 correctas",
+      }),
+    ).toBeOnTheScreen();
+    expect(
+      screen.getByTestId("deepen-perfect-culture-1-b1.grammar.second-conditional", {
+        includeHiddenElements: true,
+      }),
+    ).toBeOnTheScreen();
+    expect(
+      screen.getByRole("button", {
+        name: "Profundiza: Primer condicional, completada con errores: 5 de 7 correctas",
+      }),
+    ).toBeOnTheScreen();
+    expect(screen.getByText("Completada · 5/7")).toBeOnTheScreen();
+    expect(
+      screen.queryByTestId("deepen-perfect-culture-1-b1.grammar.first-conditional", {
+        includeHiddenElements: true,
+      }),
+    ).not.toBeOnTheScreen();
+  });
+
+  it("shows nothing under a lesson not done yet", async () => {
+    await renderWithCards();
+
+    expect(
+      screen.queryByRole("button", { name: /^Profundiza: Verbo \+ -ing o verbo \+ to/ }),
+    ).not.toBeOnTheScreen();
+  });
+
+  it("gives every step a touch target of at least 44 points", async () => {
+    await renderWithCards();
+
+    for (const step of screen.getAllByRole("button", { name: /^Profundiza: / })) {
+      expect(StyleSheet.flatten(step.props.style).minHeight).toBeGreaterThanOrEqual(44);
+    }
+  });
+
+  it("stays secondary to the lesson stops", async () => {
+    await renderWithCards();
+
+    const stop = screen.getByRole("button", { name: /^Una noche de cultura, / });
+    const step = screen.getByRole("button", { name: /^Profundiza: Look forward/ });
+    expect(StyleSheet.flatten(step.props.style).minHeight).toBeLessThan(
+      StyleSheet.flatten(stop.props.style).minHeight,
+    );
+  });
+});
+
 describe("HomeView album", () => {
   it("opens the album, saying how many stickers are won", async () => {
     const onOpenAlbum = jest.fn();
