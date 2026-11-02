@@ -139,8 +139,10 @@ cross-origin isolated: `COOP: same-origin`, `COEP: require-corp`), so the API re
    `{ token, expiresAt }`.
 2. It navigates to `https://english.maumar.com.ar/importar#t=<token>`. The fragment never reaches
    a server or the service worker; the page removes it from history at once.
-3. The new site posts the token to `POST /v1/transfers/claim` and gets `{ events }`, which it
-   imports as local, unsynced events.
+3. The new site posts the token to `POST /v1/transfers/claim` and gets `{ events }`. It keeps
+   them in memory, shows a preview and imports them as local, unsynced events only when the
+   learner confirms (anyone can craft an `/importar#t=…` link, so nothing is written without
+   that confirmation).
 
 - **Anonymous and single use.** No account, no cookie, no bearer: holding the token is the only
   proof. The token is 32 random bytes (base64url, 43 characters); only its SHA-256 is stored,
@@ -153,10 +155,17 @@ cross-origin isolated: `COOP: same-origin`, `COEP: require-corp`), so the API re
 - **Events.** Same envelope rules as [sync](#progress-sync) (UUIDv7 ids, `occurredAt`,
   `localDate`, `type`, payload ≤ 8 KiB), 1 to 20 000 events, request body ≤ 2 MiB (the only route
   above `MAX_REQUEST_BODY_BYTES`). There is no `deviceId`: the claiming device adopts the events.
-  They are kept as zlib-compressed JSON and never read by the server.
+  They are kept as zlib-compressed JSON and never read by the server. A claim inflates at most
+  8 MiB (`MAX_DECOMPRESSED_TRANSFER_BYTES`); a payload past that, or undecodable, is treated as
+  corrupt: generic 500, the transfer is consumed, and the log names no payload bytes.
+- **Capacity.** At most 200 transfers (`MAX_LIVE_TRANSFERS`) or 200 MiB of compressed payload
+  (`MAX_LIVE_TRANSFER_BYTES`) wait to be claimed at once; a create beyond that answers 503
+  `transfer_capacity`. Two creates racing at the edge may overshoot by one each (bounded by the
+  concurrency cap below).
 - **Cleanup.** Each create and claim deletes up to 100 expired or claimed rows
-  (`FOR UPDATE SKIP LOCKED`); a claim usually deletes its own row in the same transaction. No
-  background job.
+  (`FOR UPDATE SKIP LOCKED`); a claim usually deletes its own row in the same transaction. The
+  app's lifespan also runs one such batch every 5 minutes (`PURGE_INTERVAL`), so stale payloads
+  go even without traffic; a failed run is logged by error type and the next one runs as usual.
 - **Logs** carry event counts only, never the token, its hash or the events.
 
 ## Tokens and sessions
@@ -280,11 +289,20 @@ deletion still limit the damage. This works because both hosts are on one regist
 | `DELETE /v1/account`       | 5 / hour    | user      |
 | `POST /v1/sync`            | 60 / minute | user      |
 | `POST /v1/transfers`       | 5 / hour    | client IP |
+| `POST /v1/transfers`       | 100 / hour  | everyone  |
 | `POST /v1/transfers/claim` | 20 / hour   | client IP |
 
 Token buckets: the whole limit is available as a burst and refills continuously. Over the limit
-the API answers 429 `rate_limited` with `Retry-After`. Limits live in code (`RateLimits` in
-`main.py`).
+the API answers 429 `rate_limited` with `Retry-After`; over the global transfer limit it answers
+503 `transfer_capacity` with `Retry-After`. Limits live in code (`RateLimits` in `main.py`).
+
+- **IPv6** clients are keyed by their /64 (`rate_limit_key`): a subscriber usually holds a whole
+  /64 and could otherwise rotate addresses to reset its limit. IPv4 keys on the full address.
+- **Transfers are limited before their body is read.** FastAPI parses a body before route
+  dependencies run, so the transfer routes are admitted by `AdmissionMiddleware`
+  (`transfers/api/admission.py`, keyed on the exact path) instead: a refused client never makes
+  the server read or parse its (up to 2 MiB) body. At most 2 creates run at once; a third waits up
+  to 0.5 s for a slot, then gets 503 `busy` (`transfer_concurrency` in `create_app`).
 
 - **Single instance.** Buckets are kept in this process's memory (bounded to 10 000 keys per
   endpoint). With several instances each one keeps its own buckets, so the effective limit

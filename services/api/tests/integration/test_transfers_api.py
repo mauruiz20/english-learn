@@ -5,6 +5,7 @@ import hashlib
 import json
 import logging
 import uuid
+import zlib
 from collections.abc import AsyncIterator
 from datetime import timedelta
 from typing import Any
@@ -291,3 +292,108 @@ async def test_logs_never_contain_the_token_or_the_events(
 
 def _new_event() -> NewEvent:
     return CreateTransferRequest.model_validate({"events": [event()]}).to_events()[0]
+
+
+class TestCapacity:
+    async def test_create_answers_503_while_two_hundred_transfers_are_live(
+        self, client: httpx.AsyncClient, engine: AsyncEngine
+    ) -> None:
+        async with engine.begin() as connection:
+            await connection.execute(
+                text(
+                    "INSERT INTO transfers (token_hash, payload, created_at, expires_at) "
+                    "SELECT 'live-' || n, 'x', '2026-10-30T11:55Z', '2026-10-30T12:10Z' "
+                    "FROM generate_series(1, 200) AS n"
+                )
+            )
+
+        refused = await create(client, [event()])
+
+        assert refused.status_code == 503
+        assert refused.json()["error"]["code"] == "transfer_capacity"
+        assert refused.headers["access-control-allow-origin"] == OLD_SITE
+
+    async def test_live_usage_counts_unclaimed_unexpired_rows_and_their_bytes(
+        self, engine: AsyncEngine, clock: FakeClock
+    ) -> None:
+        async with engine.begin() as connection:
+            await connection.execute(
+                text(
+                    """
+                    INSERT INTO transfers (token_hash, payload, created_at, expires_at, claimed_at)
+                    VALUES ('a', 'xxxx', '2026-10-30T11:55Z', '2026-10-30T12:10Z', NULL),
+                           ('b', 'xxxxxx', '2026-10-30T11:55Z', '2026-10-30T12:10Z', NULL),
+                           ('expired', 'xx', '2026-10-30T11:00Z', '2026-10-30T11:15Z', NULL),
+                           ('claimed', NULL, '2026-10-30T11:55Z', '2026-10-30T12:10Z',
+                            '2026-10-30T11:56Z')
+                    """
+                )
+            )
+
+        async with SqlAlchemyTransferUnitOfWork(create_session_factory(engine)) as uow:
+            usage = await uow.transfers.live_usage(clock.now())
+
+        assert (usage.count, usage.payload_bytes) == (2, 10)
+
+
+async def test_stale_transfers_are_purged_without_any_traffic(
+    database_url: str, engine: AsyncEngine, clock: FakeClock
+) -> None:
+    async with engine.begin() as connection:
+        await connection.execute(
+            text(
+                "INSERT INTO transfers (token_hash, payload, created_at, expires_at) "
+                "VALUES ('expired', 'x', '2026-10-30T11:00Z', '2026-10-30T11:15Z'), "
+                "       ('live', 'x', '2026-10-30T11:55Z', '2026-10-30T12:10Z')"
+            )
+        )
+    app = create_app(
+        make_settings(database_url=database_url),
+        clock=clock,
+        transfer_purge_interval=timedelta(milliseconds=10),
+    )
+
+    async with app.router.lifespan_context(app):
+        assert await _eventually_hashes(engine, {"live"})
+        clock.advance(timedelta(minutes=10))
+        assert await _eventually_hashes(engine, set())
+
+
+async def _eventually_hashes(engine: AsyncEngine, expected: set[str]) -> bool:
+    """Whether the stored token hashes become `expected` within about five seconds."""
+    for _ in range(500):
+        async with engine.connect() as connection:
+            rows = await connection.execute(text("SELECT token_hash FROM transfers"))
+            if set(rows.scalars()) == expected:
+                return True
+        await asyncio.sleep(0.01)
+    return False
+
+
+async def test_a_payload_that_inflates_too_far_fails_safely_and_is_dropped(
+    app: object, engine: AsyncEngine, caplog: pytest.LogCaptureFixture
+) -> None:
+    caplog.set_level(logging.DEBUG)
+    token = "bomb-token"
+    bomb = zlib.compress(b'[{"secret": "' + b"s" * (9 * 1024 * 1024) + b'"}]')
+    async with engine.begin() as connection:
+        await connection.execute(
+            text(
+                "INSERT INTO transfers (token_hash, payload, created_at, expires_at) "
+                "VALUES (:hash, :payload, '2026-10-30T11:55Z', '2026-10-30T12:10Z')"
+            ),
+            {"hash": hashlib.sha256(token.encode()).hexdigest(), "payload": bomb},
+        )
+
+    # Starlette re-raises after answering 500; the transport must not turn that into a test error.
+    transport = httpx.ASGITransport(app=app, raise_app_exceptions=False)  # type: ignore[arg-type]
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        first = await claim(client, token)
+        again = await claim(client, token)
+
+    assert first.status_code == 500
+    assert first.json() == {"error": {"code": "internal_error", "message": "Internal server error"}}
+    assert again.status_code == 404  # the corrupt transfer was consumed, not left to retry
+    lines = [JsonFormatter().format(record) for record in caplog.records]
+    assert any("transfer corrupt" in line for line in lines)
+    assert not [line for line in lines if "secret" in line or "sss" in line]

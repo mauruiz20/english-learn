@@ -38,3 +38,11 @@ class IssuedTransfer:
 
     token: str
     expires_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
+class LiveUsage:
+    """Transfers still waiting to be claimed, and their stored (compressed) payload bytes."""
+
+    count: int
+    payload_bytes: int

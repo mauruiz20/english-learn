@@ -6,7 +6,7 @@ from types import TracebackType
 from typing import Self
 
 from english_learn_api.sync.domain.models import NewEvent
-from english_learn_api.transfers.domain.models import NewTransfer
+from english_learn_api.transfers.domain.models import LiveUsage, NewTransfer
 
 
 @dataclass
@@ -16,6 +16,7 @@ class StoredTransfer:
     created_at: datetime
     expires_at: datetime
     claimed_at: datetime | None = None
+    payload_bytes: int = 0
 
 
 @dataclass
@@ -40,6 +41,7 @@ class InMemoryTransfers:
                 events=tuple(transfer.events),
                 created_at=transfer.created_at,
                 expires_at=transfer.expires_at,
+                payload_bytes=len(repr(tuple(transfer.events))),
             )
         )
 
@@ -55,6 +57,10 @@ class InMemoryTransfers:
                 row.claimed_at, row.events = now, None
                 return events
         return None
+
+    async def live_usage(self, now: datetime) -> LiveUsage:
+        live = [r for r in self._store.rows if r.claimed_at is None and r.expires_at > now]
+        return LiveUsage(count=len(live), payload_bytes=sum(r.payload_bytes for r in live))
 
     async def purge(self, now: datetime, limit: int) -> int:
         stale = [r for r in self._store.rows if r.claimed_at is not None or r.expires_at <= now]

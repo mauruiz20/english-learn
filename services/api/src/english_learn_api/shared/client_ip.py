@@ -6,6 +6,9 @@
   real client is in `CF-Connecting-IP`. The header is honored only when the peer is in
   `TRUSTED_PROXY_CIDRS` and it holds exactly one valid IP address; otherwise the peer is used, so
   a client that reaches the server directly cannot choose its own address.
+
+Rate limits key on `rate_limit_key(address)`: an IPv4 address as is, an IPv6 address by its /64
+(one subscriber usually holds a whole /64 and could otherwise rotate through it freely).
 """
 
 from collections.abc import Callable, Sequence
@@ -18,6 +21,7 @@ type IpNetwork = IPv4Network | IPv6Network
 
 UNKNOWN_CLIENT = "unknown"
 CF_CONNECTING_IP = "cf-connecting-ip"
+IPV6_RATE_LIMIT_PREFIX = 64
 
 
 def socket_client_ip(request: Request) -> str:
@@ -47,3 +51,11 @@ def _parse(value: str) -> IPv4Address | IPv6Address | None:
     if isinstance(address, IPv6Address) and address.ipv4_mapped is not None:
         return address.ipv4_mapped  # "::ffff:172.18.0.5" from a dual-stack socket
     return address
+
+
+def rate_limit_key(address: str) -> str:
+    """The rate-limit bucket of a client address: IPv4 /32, IPv6 /64; anything else as is."""
+    parsed = _parse(address)
+    if isinstance(parsed, IPv6Address):
+        return str(IPv6Network((parsed, IPV6_RATE_LIMIT_PREFIX), strict=False))
+    return address if parsed is None else str(parsed)

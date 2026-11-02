@@ -5,7 +5,8 @@ than one instance each keeps its own buckets (the effective limit multiplies by 
 count); a shared store such as Redis would be needed then.
 
 Per-IP limits key on the address from the app's single `ClientIpResolver` (see `client_ip`):
-the TCP peer, or Cloudflare's `CF-Connecting-IP` from a trusted proxy.
+the TCP peer, or Cloudflare's `CF-Connecting-IP` from a trusted proxy; IPv6 addresses by their /64
+(`rate_limit_key`).
 """
 
 import math
@@ -17,7 +18,7 @@ from datetime import timedelta
 
 from fastapi import Request
 
-from english_learn_api.shared.client_ip import ClientIpResolver
+from english_learn_api.shared.client_ip import ClientIpResolver, rate_limit_key
 from english_learn_api.shared.errors import ApiError
 
 DEFAULT_MAX_KEYS = 10_000
@@ -111,6 +112,6 @@ def limit_by_client_ip(
     limiter: TokenBucketLimiter, client_ip: ClientIpResolver
 ) -> Callable[[Request], Awaitable[None]]:
     async def dependency(request: Request) -> None:
-        enforce(limiter, client_ip(request))
+        enforce(limiter, rate_limit_key(client_ip(request)))
 
     return dependency

@@ -8,8 +8,20 @@ MAX_EVENTS_PER_TRANSFER = 20_000
 MAX_TRANSFER_BODY_BYTES = 2 * 1024 * 1024
 """Request body of `POST /v1/transfers`; every other route keeps `MAX_REQUEST_BODY_BYTES`."""
 
+MAX_DECOMPRESSED_TRANSFER_BYTES = 8 * 1024 * 1024
+"""A stored payload inflating past this is treated as corrupt (a 2 MiB body re-encodes smaller)."""
+
 TRANSFER_TTL = timedelta(minutes=15)
 """A transfer not claimed within this time is gone."""
 
 PURGE_BATCH = 100
-"""Expired or claimed transfers deleted at most per create or claim (no background job)."""
+"""Expired or claimed transfers deleted at most per create, claim or background purge run."""
+
+PURGE_INTERVAL = timedelta(minutes=5)
+"""How often the app purges stale transfers in the background, so they go even without traffic."""
+
+MAX_LIVE_TRANSFERS = 200
+"""Unclaimed, unexpired transfers kept at once; creates beyond it get 503 `transfer_capacity`."""
+
+MAX_LIVE_TRANSFER_BYTES = 200 * 1024 * 1024
+"""Compressed payload bytes of those transfers together; same refusal beyond it."""

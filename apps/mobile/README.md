@@ -280,13 +280,18 @@ origin, and the two cannot message each other (cross-origin isolated), so the AP
   **Llevar mi progreso** (uploads the whole log with `POST /v1/transfers`, remembers
   `migratedTo`, then opens `https://english.maumar.com.ar/importar#t=<token>`) and **Ir sin mi
   progreso**. Offline, 413 and 429 are explained, with a retry. Without progress, or once moved, it
-  `location.replace`s itself with the same page on the new address. `/?transferir=1` offers the
+  `location.replace`s itself with the same page (path and query, never the fragment, so a crafted
+  old-address link cannot bounce a `#t=` token) on the new address. `/?transferir=1` offers the
   move again after an expired or used link. Nothing is deleted on the old address.
 - **New address, `/importar`**: drops the fragment from the address bar, history and the router's
-  `#` param first, claims the transfer (`POST /v1/transfers/claim`, once) and imports its events
-  as this device's **unsynced** events (`importEvents`: idempotent by id, never marked synced), so
-  a signed-in learner's next sync uploads them. Shows XP, streak and completed lessons, then
-  "Ir al inicio". An expired or used link explains itself and links back to the old address.
+  `#` param first, then claims the transfer (`POST /v1/transfers/claim`, once) **into memory
+  only** and previews it (folded on its own: XP, completed lessons, streak, dates, event count):
+  "Progreso del sitio anterior … ¿Importarlo a este dispositivo?". Anyone can craft such a link,
+  so nothing is written before **Importar**; then the events become this device's **unsynced**
+  events (`importEvents`: idempotent by id, never marked synced), so a signed-in learner's next
+  sync uploads them (the preview says so when signed in). **Cancelar** discards them and explains
+  the link is spent. A failed save retries from memory without claiming again. An expired or used
+  link explains itself and links back to the old address.
 - The service worker serves `/importar` the app shell; the fragment never reaches a server.
 - E2E (`e2e/transfer.spec.ts`): a second server of the export (`E2E_OLD_PORT`, default
   `E2E_PORT + 1`) plays the old address and a local fake plays the transfer API; the e2e build

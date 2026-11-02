@@ -37,7 +37,7 @@ describe("decideVisit", () => {
     ).toEqual({ kind: "offer" });
   });
 
-  it("sends a learner without progress to the same page on the new address", () => {
+  it("sends a learner without progress to the same page on the new address, without fragment", () => {
     expect(
       decideVisit({
         move,
@@ -45,7 +45,20 @@ describe("decideVisit", () => {
         migratedTo: null,
         hasProgress: false,
       }),
-    ).toEqual({ kind: "redirect", url: "https://english.maumar.com.ar/lesson/a2.food?x=1#top" });
+    ).toEqual({ kind: "redirect", url: "https://english.maumar.com.ar/lesson/a2.food?x=1" });
+  });
+
+  it("never forwards a transfer token: a link to the old address cannot bounce one", () => {
+    for (const migratedTo of [null, move.newOrigin]) {
+      expect(
+        decideVisit({
+          move,
+          location: at("https://english-learn-iwl.pages.dev/importar#t=attacker-token"),
+          migratedTo,
+          hasProgress: migratedTo !== null,
+        }),
+      ).toEqual({ kind: "redirect", url: "https://english.maumar.com.ar/importar" });
+    }
   });
 
   it("sends a learner whose progress already moved to where it went", () => {

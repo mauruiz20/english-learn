@@ -882,6 +882,9 @@
               }
             },
             "description": "Validation Error"
+          },
+          "503": {
+            "description": "`transfer_capacity`: too many transfers right now; `busy`: too many in progress at once"
           }
         },
         "summary": "Create Transfer",
