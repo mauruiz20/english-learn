@@ -22,7 +22,12 @@ describe("cardStatus", () => {
   });
 
   it("is studied once every item it teaches has a review state", () => {
-    expect(cardStatus(card, card.itemIds.map((id) => reviewed(id)))).toBe("studied");
+    expect(
+      cardStatus(
+        card,
+        card.itemIds.map((id) => reviewed(id)),
+      ),
+    ).toBe("studied");
   });
 
   it("is studied even when an item was answered wrong (fresh state, due tomorrow)", () => {

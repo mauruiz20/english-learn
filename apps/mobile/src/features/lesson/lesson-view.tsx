@@ -108,9 +108,7 @@ export function LessonView({
 }: LessonViewProps) {
   switch (state.status) {
     case "not-found":
-      return (
-        <SessionMessage title={copy.name} text={copy.notFound} onGoHome={onGoHome} />
-      );
+      return <SessionMessage title={copy.name} text={copy.notFound} onGoHome={onGoHome} />;
     case "save-error":
       return (
         <SessionMessage

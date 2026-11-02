@@ -21,9 +21,7 @@ const topicsInIndexOrder = (level: (typeof LEVELS)[number]) => {
 describe("topicHighlighter", () => {
   it("gives every corpus topic an explicit color, the study cards' topics too", () => {
     const topics = [...corpus.lessons, ...corpus.cards].map((entity) => entity.topic);
-    const missing = [...new Set(topics)].filter(
-      (topic) => !(topic in TOPIC_HIGHLIGHTERS),
-    );
+    const missing = [...new Set(topics)].filter((topic) => !(topic in TOPIC_HIGHLIGHTERS));
     expect(missing).toEqual([]);
   });
 
