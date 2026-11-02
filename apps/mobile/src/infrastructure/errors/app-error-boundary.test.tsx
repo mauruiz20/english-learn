@@ -38,7 +38,7 @@ describe("AppErrorBoundary", () => {
     expect(onRetry).toHaveBeenCalledTimes(1);
   });
 
-  it("explains that the app is already open in another tab", async () => {
+  it("for files held elsewhere, explains how to free them and shows technical details", async () => {
     const error = new DatabaseOpenError(
       new Error("Access Handles cannot be created if there is another open Access Handle"),
     );
@@ -48,8 +48,12 @@ describe("AppErrorBoundary", () => {
       </AppErrorBoundary>,
     );
 
-    expect(screen.getByRole("header")).toHaveTextContent("La app ya está abierta en otra pestaña.");
-    expect(screen.getByText("Ciérrala y pulsa Reintentar.")).toBeOnTheScreen();
+    expect(screen.getByRole("header")).toHaveTextContent(
+      "No pudimos abrir tus datos en esta ventana.",
+    );
+    expect(screen.getByText(/Cierra la app por completo/)).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Detalles técnicos" }));
+    expect(screen.getByText("Motivo: open-failed:AccessHandleBusy")).toBeOnTheScreen();
   });
 
   it("explains a database saved by a newer app version", async () => {

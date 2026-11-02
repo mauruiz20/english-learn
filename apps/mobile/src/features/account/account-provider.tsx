@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState, useSyncExternalStore, type ReactNode } from "react";
+import { router } from "expo-router";
 import { Platform } from "react-native";
+import { COMPLETE_PATH } from "@/infrastructure/auth/callback-relay";
 import { accountAvailability } from "@/infrastructure/auth/account-config";
 import type { SessionState } from "@/infrastructure/auth/auth-session";
 import { useAppServices } from "@/infrastructure/services/app-services";
@@ -31,6 +33,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
           settings: services.settingsRepository,
           randomBytes: services.randomBytes,
           clock: services.clock,
+          openCallbackCompletion: () => router.replace(COMPLETE_PATH),
         })
       : null,
   );

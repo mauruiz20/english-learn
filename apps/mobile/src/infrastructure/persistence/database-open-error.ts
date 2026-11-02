@@ -25,6 +25,18 @@ export function databaseOpenErrorKind(error: unknown): DatabaseOpenErrorKind {
   return "unavailable";
 }
 
+/**
+ * A short code for "Detalles técnicos": which browser error made the open fail (the worker loses
+ * the DOMException name, so it is recovered from the message). No paths or personal data.
+ */
+export function openFailureCode(error: unknown): string {
+  const text = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
+  if (/another open Access Handle/i.test(text)) return "open-failed:AccessHandleBusy";
+  if (/NoModificationAllowedError/i.test(text)) return "open-failed:NoModificationAllowedError";
+  if (/invalid state/i.test(text)) return "open-failed:InvalidStateError";
+  return `open-failed:${error instanceof Error ? error.name : "Unknown"}`;
+}
+
 /** Thrown when the database fails to open or migrate; caught by `AppErrorBoundary`. */
 export class DatabaseOpenError extends Error {
   readonly kind: DatabaseOpenErrorKind;

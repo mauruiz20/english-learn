@@ -140,6 +140,13 @@ export function createPendingSignInStore(storage: KeyValueStorage, now: () => nu
     save(pending: PendingSignIn): void {
       storage.setItem(PENDING_KEY, JSON.stringify(pending));
     },
+    /** Whether this tab started a still-fresh sign-in for `state` (keeps it). */
+    has(state: string): boolean {
+      const pending = parsePending(storage.getItem(PENDING_KEY));
+      return (
+        pending !== null && pending.state === state && now() - pending.createdAt <= PENDING_TTL_MS
+      );
+    },
     take(state: string): PendingSignIn | null {
       const pending = parsePending(storage.getItem(PENDING_KEY));
       storage.removeItem(PENDING_KEY);

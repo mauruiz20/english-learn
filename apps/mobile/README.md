@@ -50,10 +50,12 @@ instead of a blank screen; any other render error shows "Algo salió mal.". "Rei
 reloads the page on web (expo-sqlite's worker cannot reopen after a failed open) and remounts
 the app on native. Messages by cause (`database-open-error.ts`):
 
-- **Another tab has the app open** (web), when the ownership check below could not prevent it:
-  recognized by the messages browsers actually report (Chromium: "Access Handles cannot be
-  created if there is another open Access Handle…"; WebKit: "The object is in an invalid
-  state."): "La app ya está abierta en otra pestaña."
+- **The files are held** (web), when the ownership check below let the open go ahead: recognized
+  by the messages browsers actually report (Chromium: "Access Handles cannot be created if there
+  is another open Access Handle…"; WebKit: "The object is in an invalid state."). It does NOT
+  claim another tab (on iOS this happens with no other tab at all): "No pudimos abrir tus datos
+  en esta ventana." with steps to free them (close the app from the app switcher, close Safari
+  tabs of the site) and "Detalles técnicos" (`open-failed:<code>`).
 - **Database from a newer app version** (`SchemaTooNewError` from `migrate`): asks to update.
 - **Anything else** (corrupt file, storage disabled, e.g. WebKit without OPFS in private
   browsing): "No pudimos abrir tus datos."
@@ -69,17 +71,32 @@ only once this page owns it (`src/infrastructure/persistence/ownership/`):
 2. **Ask**: if the lock is taken, it posts `want-db` on the BroadcastChannel `english-learn-db`;
    the owner answers `owned` within 400 ms → "La app está abierta en otra pestaña o ventana"
    with "Usar aquí". No answer means the owner is unloading (reload, Google redirect return, update):
-   wait up to 6 s for the lock.
+   wait up to 6 s for the lock. Still taken and `navigator.locks.query()` shows a holder (or the
+   query is missing) → the same screen (`lock-held`).
 3. **Probe**: a throwaway worker opens and closes a sync access handle on each of expo-sqlite's
    files; while they are busy (the previous page's worker lets go a moment after its lock) it
-   retries after 100, 200, 400, 800, 1600 and 2400 ms, with the normal loading state. Still busy
-   → the "open in another tab" screen. Any other probe failure goes on to the normal open, which
-   reports genuine errors (private mode, corrupt file, newer schema).
-4. **"Usar aquí"** posts `release`. The owner refuses new writes and waits for the ones in flight
+   retries after 100, 200, 400, 800, 1600 and 2400 ms, with the normal loading state.
+4. **Only positive evidence claims another page**: an `owned` answer, or a lock another client
+   holds. A probe still "busy", a failing probe, a Web Locks request that rejects, or a lock that
+   is never granted although nobody holds it all go on to the normal open, which reports the
+   real error. (On iOS Home Screen apps the probe and Web Locks reported "busy" with no other
+   page alive, even after force-quitting, and "Usar aquí" looped forever.) When the probe said
+   "busy" and the database then opened fine, the device stops trusting the probe
+   (`localStorage` `english-learn-db-probe-distrusted`) so later launches do not wait ~5 s.
+5. **"Usar aquí"** posts `release`. The owner refuses new writes and waits for the ones in flight
    (saves and the sync's, `createWriteTracker().drain()`), unmounts the app (stopping sync and its
    timers), replies `released` and reloads with a one-shot `sessionStorage` flag, so it shows
    "La app se abrió en otra pestaña" with its own "Usar aquí" (which takes the database back the
    same way). The new page then takes the lock and probes as above.
+6. **Never a silent loop**: presses are counted in `sessionStorage`
+   (`english-learn-db-takeover-attempts`, cleared once the database opens). If the lock is still
+   taken after "Usar aquí" (the holder never answered: frozen, suspended), or after a reload that
+   follows a failed "Usar aquí", the page shows "No pudimos abrir tus datos en esta ventana." with
+   iOS steps and "Reintentar", which asks again and waits up to 15 s for the lock.
+7. **"Detalles técnicos"** (collapsed) on these screens: reason code (`owner-answered`,
+   `lock-held`, `no-owner-answer`, `probe-busy`, `probe-error:<name>`, `lock-error:<name>`, …),
+   whether Web Locks / BroadcastChannel / OPFS exist, display mode (`standalone` / `browser`),
+   lock holders, attempts and ISO timestamps. No personal data: meant for a screenshot.
 
 Without Web Locks the channel and the probe still apply. Native apps skip all of this.
 
@@ -269,9 +286,19 @@ network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/a
   (COOP/COEP for expo-sqlite), so Google Identity Services' iframe and popups cannot work. "Continuar
   con Google" stores a random `state` and `nonce` (and where to return) in `sessionStorage` and
   navigates to Google with `response_type=id_token`. Google redirects to
-  `<origin>/auth/callback#id_token=…&state=…`; the callback removes the fragment from history
-  first, checks `state` (once, ≤ 10 min old), sends `{ idToken, nonce }` to `POST /v1/auth/google`
-  in cookie mode (the API checks the token's `nonce` claim) and goes back.
+  `<origin>/auth/callback#id_token=…&state=…`.
+- **`/auth/callback` never opens the database** (`callback-relay.ts`; the root layout renders it
+  without `SqliteAppServicesProvider`). expo-sqlite keeps the OPFS files until its page dies, and
+  on iOS a Home Screen app may load the callback in a second web view; a callback page holding
+  the database would lock the real app window out. The page removes the fragment from history,
+  stashes it in `localStorage` (`english-learn.auth-callback`, ≤ 10 min, read once) and asks on
+  the BroadcastChannel `english-learn-auth` for the window that started this sign-in (the one
+  whose `sessionStorage` has the pending `state`). That window answers and completes the sign-in
+  itself (also when it comes back to the foreground later); the callback page says "Listo" and
+  tries to close. Nobody answers (the usual same-tab redirect) → a full load of
+  `/auth/completar`, which boots the app, checks `state` (once, ≤ 10 min old), sends
+  `{ idToken, nonce }` to `POST /v1/auth/google` in cookie mode (the API checks the token's
+  `nonce` claim) and goes back.
 - **Session** (`auth-session.ts`). Access token in memory only; the device remembers only
   `{ userId, email }` (`SettingsRepository.setAccount`). On start, with that marker, one refresh
   (cookie) restores the session; a 401 signs out, a network failure keeps the learner signed in.

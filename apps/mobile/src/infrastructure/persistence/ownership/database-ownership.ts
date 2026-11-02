@@ -1,4 +1,4 @@
-import { retryWhileBusy, type ProbeResult } from "./retry-while-busy";
+import { RETRY_DELAYS_MS, retryWhileBusy, type ProbeOutcome } from "./retry-while-busy";
 
 /**
  * Messages on the `english-learn-db` BroadcastChannel:
@@ -18,12 +18,70 @@ export type OwnershipChannel = {
   subscribe(listener: (message: OwnershipMessage) => void): () => void;
 };
 
+/** A lock request's outcome: granted, held by someone else, or the request itself failed. */
+export type LockAttempt = "acquired" | "unavailable" | { readonly error: string };
+
 /** One exclusive lock per origin, held for the page's lifetime (released when it unloads). */
 export type OwnershipLocks = {
   /** Takes the lock if nobody holds it. */
-  tryAcquire(): Promise<boolean>;
+  tryAcquire(): Promise<LockAttempt>;
   /** Waits up to `timeoutMs` for the lock. */
-  acquire(timeoutMs: number): Promise<boolean>;
+  acquire(timeoutMs: number): Promise<LockAttempt>;
+  /** How many clients hold the lock (`navigator.locks.query()`); null when it cannot tell. */
+  holders(): Promise<number | null>;
+};
+
+/** What the browser offers, for the diagnostics ("Detalles técnicos"). No personal data. */
+export type OwnershipEnvironment = {
+  readonly webLocks: boolean;
+  readonly broadcastChannel: boolean;
+  readonly opfs: boolean;
+  readonly displayMode: "standalone" | "browser" | "unknown";
+};
+
+/**
+ * Why the page ended where it did (short codes the learner can screenshot):
+ * - "owner-answered": another page answered "owned" on the channel (a live tab).
+ * - "lock-held": another client holds the owner lock and did not let go in time.
+ * - "no-owner-answer": the lock stayed taken, yet nobody answered (a frozen or suspended page),
+ *   or a lock request was never granted although nobody holds it.
+ * - "probe-free" / "probe-busy" / "probe-error:<name>" / "probe-skipped": the file probe.
+ * - "lock-error:<name>": the Web Locks request itself failed.
+ */
+export type OwnershipReason =
+  | "owner-answered"
+  | "lock-held"
+  | "no-owner-answer"
+  | "probe-free"
+  | "probe-busy"
+  | "probe-skipped"
+  | `probe-error:${string}`
+  | `lock-error:${string}`
+  | "released";
+
+export type OwnershipDiagnostics = {
+  readonly reason: OwnershipReason;
+  /** Epoch ms. */
+  readonly startedAt: number;
+  readonly decidedAt: number;
+  /** Holders of the owner lock seen by `navigator.locks.query()`; null when unknown. */
+  readonly lockHolders: number | null;
+  /** The last failed probe's error name, if any. */
+  readonly probeError: string | null;
+  /** "Usar aquí" / "Reintentar" presses in this tab since the database last opened. */
+  readonly takeOverAttempts: number;
+  readonly environment: OwnershipEnvironment;
+};
+
+/**
+ * - "owned": open the database (it may still fail; the real error is shown then).
+ * - "open-elsewhere": positive evidence of another live page ("Usar aquí").
+ * - "stuck": something holds the database and does not answer: explain how to free it.
+ * - "released": this page just handed the database to another one.
+ */
+export type OwnershipState = {
+  readonly kind: "owned" | "open-elsewhere" | "stuck" | "released";
+  readonly diagnostics: OwnershipDiagnostics;
 };
 
 export type OwnershipPorts = {
@@ -31,21 +89,32 @@ export type OwnershipPorts = {
   readonly channel: OwnershipChannel | null;
   readonly locks: OwnershipLocks | null;
   /** Looks at the database files without keeping them (see `retryWhileBusy`). */
-  readonly probe: () => Promise<ProbeResult>;
+  readonly probe: () => Promise<ProbeOutcome>;
   readonly sleep: (ms: number) => Promise<void>;
   /** "This page just handed the database over": survives the reload that follows, read once. */
   readonly releasedFlag: { consume(): boolean; set(): void };
+  /** Failed "Usar aquí" presses in this tab (sessionStorage): survive reloads, catch loops. */
+  readonly takeOverAttempts: { count(): number; increment(): void; clear(): void };
+  /**
+   * Whether this device's probe can be believed (localStorage). Once a "busy" probe was
+   * followed by a database that opened fine, the probe is a false positive here: skip it.
+   */
+  readonly probeTrust: { trusted(): boolean; distrust(): void };
+  readonly now: () => number;
+  readonly environment: () => OwnershipEnvironment;
   /** Reloads the page: the only way to stop expo-sqlite's worker and free the files. */
   readonly reload: () => void;
 };
 
-export type ClaimResult = "owned" | "open-elsewhere";
-
 export interface DatabaseOwnership {
-  /** On page start: "released" right after this page handed the database to another one. */
-  start(): Promise<ClaimResult | "released">;
+  /** On page start. */
+  start(): Promise<OwnershipState>;
   /** "Usar aquí": asks the current owner to release the database, then claims it. */
-  takeOver(): Promise<ClaimResult>;
+  takeOver(): Promise<OwnershipState>;
+  /** "Reintentar" on the help screen: like `takeOver`, waiting longer for the lock. */
+  retry(): Promise<OwnershipState>;
+  /** The database opened: a "busy" probe before it was a false positive on this device. */
+  confirmOpened(): void;
   /**
    * While this page owns the database: answers other pages and, when one asks for it, runs
    * `release` (finish pending writes, stop work), then reloads. Returns a stop function.
@@ -59,10 +128,19 @@ export const OWNER_REPLY_MS = 400;
 export const RELEASE_REPLY_MS = 3000;
 /** How long a page waits for the lock of a page that is unloading. */
 export const LOCK_WAIT_MS = 6000;
+/** "Reintentar" on the help screen waits longer (the learner may be closing the other app). */
+export const RETRY_LOCK_WAIT_MS = 15_000;
+
+type Claim = Omit<OwnershipState, "diagnostics"> & {
+  readonly reason: OwnershipReason;
+  readonly lockHolders: number | null;
+  readonly probeError: string | null;
+};
 
 export function createDatabaseOwnership(ports: OwnershipPorts): DatabaseOwnership {
   const { pageId, channel, locks } = ports;
   let holdingLock = false;
+  let lastProbeBusy = false;
 
   /** Posts `message` and resolves true when `isReply` matches a message within `timeoutMs`. */
   const ask = (
@@ -93,37 +171,124 @@ export function createDatabaseOwnership(ports: OwnershipPorts): DatabaseOwnershi
       OWNER_REPLY_MS,
     );
 
-  const probeUntilFree = async (): Promise<ClaimResult> =>
-    (await retryWhileBusy(ports.probe, ports.sleep)) === "busy" ? "open-elsewhere" : "owned";
+  /**
+   * Another page has the database only with POSITIVE evidence: an "owned" answer, or a lock
+   * that another client holds (and keeps). A failed lock request, a lock nobody holds, or files
+   * that look busy are not evidence: on iOS WebKit they happen without any other page, and
+   * claiming "another tab" then locks the learner out for good. The database opens instead, and
+   * a real conflict surfaces as the open's own error.
+   */
+  const claim = async (askOwner: boolean, lockWaitMs: number): Promise<Claim> => {
+    let lockHolders: number | null = null;
+    let lockNote: OwnershipReason | null = null;
 
-  const claim = async (askOwner: boolean): Promise<ClaimResult> => {
     if (locks !== null && !holdingLock) {
-      holdingLock = await locks.tryAcquire();
-      if (!holdingLock) {
-        if (askOwner && (await ownerAnswers())) return "open-elsewhere";
-        // Nobody answered: the owner is unloading (reload, redirect, update). Wait for it.
-        holdingLock = await locks.acquire(LOCK_WAIT_MS);
-        if (!holdingLock) return "open-elsewhere";
+      let attempt = await locks.tryAcquire();
+      if (attempt === "unavailable") {
+        if (askOwner && (await ownerAnswers())) {
+          return {
+            kind: "open-elsewhere",
+            reason: "owner-answered",
+            lockHolders,
+            probeError: null,
+          };
+        }
+        // Nobody answered: the owner may be unloading (reload, redirect, update). Wait for it.
+        attempt = await locks.acquire(lockWaitMs);
+      }
+      if (attempt === "acquired") {
+        holdingLock = true;
+      } else if (attempt === "unavailable") {
+        lockHolders = await locks.holders();
+        // null: no query API; a lock that was never granted is held by someone.
+        if (lockHolders !== 0) {
+          return { kind: "open-elsewhere", reason: "lock-held", lockHolders, probeError: null };
+        }
+        lockNote = "no-owner-answer";
+      } else {
+        lockNote = `lock-error:${attempt.error}`;
       }
     } else if (locks === null && askOwner && (await ownerAnswers())) {
-      return "open-elsewhere";
+      return { kind: "open-elsewhere", reason: "owner-answered", lockHolders, probeError: null };
     }
-    return probeUntilFree();
+
+    lastProbeBusy = false;
+    if (!ports.probeTrust.trusted()) {
+      return { kind: "owned", reason: lockNote ?? "probe-skipped", lockHolders, probeError: null };
+    }
+    const outcome = await retryWhileBusy(ports.probe, ports.sleep, RETRY_DELAYS_MS);
+    const probeError = outcome.error ?? null;
+    lastProbeBusy = outcome.result === "busy";
+    const probeReason: OwnershipReason =
+      outcome.result === "free"
+        ? "probe-free"
+        : outcome.result === "busy"
+          ? "probe-busy"
+          : `probe-error:${outcome.error ?? "Error"}`;
+    return { kind: "owned", reason: lockNote ?? probeReason, lockHolders, probeError };
+  };
+
+  const finish = (claimed: Claim, startedAt: number): OwnershipState => {
+    if (claimed.kind === "owned") ports.takeOverAttempts.clear();
+    return {
+      kind: claimed.kind,
+      diagnostics: {
+        reason: claimed.reason,
+        startedAt,
+        decidedAt: ports.now(),
+        lockHolders: claimed.lockHolders,
+        probeError: claimed.probeError,
+        takeOverAttempts: ports.takeOverAttempts.count(),
+        environment: ports.environment(),
+      },
+    };
+  };
+
+  const takeOverWith = async (lockWaitMs: number): Promise<OwnershipState> => {
+    const startedAt = ports.now();
+    ports.takeOverAttempts.increment();
+    const released = await ask(
+      { type: "release", from: pageId },
+      (reply) => reply.type === "released" && reply.to === pageId,
+      RELEASE_REPLY_MS,
+    );
+    const claimed = await claim(false, lockWaitMs);
+    if (claimed.kind !== "open-elsewhere") return finish(claimed, startedAt);
+    // Still taken after asking it to let go: never show the same screen again (a silent loop).
+    return finish(
+      { ...claimed, kind: "stuck", reason: released ? "lock-held" : "no-owner-answer" },
+      startedAt,
+    );
   };
 
   return {
     async start() {
-      if (ports.releasedFlag.consume()) return "released";
-      return claim(true);
+      const startedAt = ports.now();
+      if (ports.releasedFlag.consume()) {
+        return finish(
+          { kind: "released", reason: "released", lockHolders: null, probeError: null },
+          startedAt,
+        );
+      }
+      const claimed = await claim(true, LOCK_WAIT_MS);
+      // A failed "Usar aquí" in this tab, then a reload: same holder, show the help instead.
+      if (
+        claimed.kind === "open-elsewhere" &&
+        claimed.reason !== "owner-answered" &&
+        ports.takeOverAttempts.count() > 0
+      ) {
+        return finish({ ...claimed, kind: "stuck" }, startedAt);
+      }
+      return finish(claimed, startedAt);
     },
 
-    async takeOver() {
-      await ask(
-        { type: "release", from: pageId },
-        (reply) => reply.type === "released" && reply.to === pageId,
-        RELEASE_REPLY_MS,
-      );
-      return claim(false);
+    takeOver: () => takeOverWith(LOCK_WAIT_MS),
+
+    retry: () => takeOverWith(RETRY_LOCK_WAIT_MS),
+
+    confirmOpened() {
+      if (lastProbeBusy) ports.probeTrust.distrust();
+      lastProbeBusy = false;
     },
 
     serve(release) {

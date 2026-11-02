@@ -104,6 +104,16 @@ describe("createPendingSignInStore", () => {
     expect(store.take("state-1")).toBeNull();
   });
 
+  it("tells whether this tab started the sign-in for a state, without forgetting it", () => {
+    const store = createPendingSignInStore(memoryStorage(), () => 2_000);
+    store.save(PENDING);
+
+    expect(store.has("forged")).toBe(false);
+    expect(store.has("state-1")).toBe(true);
+    expect(store.take("state-1")).toEqual(PENDING);
+    expect(store.has("state-1")).toBe(false);
+  });
+
   it("refuses a sign-in started more than 10 minutes ago", () => {
     const store = createPendingSignInStore(memoryStorage(), () => 1_000 + 10 * 60_000 + 1);
     store.save(PENDING);
