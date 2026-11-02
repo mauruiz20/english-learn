@@ -1,5 +1,12 @@
 import type { Corpus } from "@english-learn/content";
-import type { Level, PlacementResult, ReviewState, Streak } from "@english-learn/domain";
+import {
+  LEVELS,
+  type Level,
+  type PlacementResult,
+  type ReviewState,
+  type Streak,
+} from "@english-learn/domain";
+import { cardStatus } from "@/features/cards/model/card-catalog";
 import { isLessonDone } from "@/features/lesson/model/lesson-catalog";
 import type { HighlighterName } from "@/shared/ui/theme";
 
@@ -17,6 +24,10 @@ export type AchievementFacts = {
   readonly placed: boolean;
   /** Words and phrases practiced at least once. */
   readonly wordsPracticed: number;
+  /** Study cards whose items all have a review state (`cardStatus` not "new"). */
+  readonly cardsStudied: number;
+  /** Levels with every grammar card studied. */
+  readonly grammarLevelsDone: readonly Level[];
 };
 
 export type Achievement = {
@@ -149,6 +160,20 @@ export const ACHIEVEMENTS: readonly Achievement[] = [
     color: "orange",
     earned: (f) => f.wordsPracticed >= 200,
   },
+  {
+    id: "first-card",
+    title: "Primera ficha",
+    howTo: "Estudia tu primera ficha.",
+    color: "lilac",
+    earned: (f) => f.cardsStudied >= 1,
+  },
+  {
+    id: "grammar-level",
+    title: "Gramática al día",
+    howTo: "Estudia todas las fichas de gramática de un nivel.",
+    color: "pink",
+    earned: (f) => f.grammarLevelsDone.length >= 1,
+  },
 ];
 
 const ORDER = new Map(ACHIEVEMENTS.map((a, i) => [a.id, i]));
@@ -197,5 +222,16 @@ export function achievementFacts(content: Corpus, progress: StoredProgress): Ach
     levelsDone: groupDone((l) => l.level) as Level[],
     placed: progress.placement !== null,
     wordsPracticed: reviewed.size,
+    cardsStudied: content.cards.filter((c) => cardStatus(c, progress.states) !== "new").length,
+    grammarLevelsDone: grammarLevelsDone(content, progress.states),
   };
+}
+
+/** Levels whose grammar cards were all studied. */
+function grammarLevelsDone(content: Corpus, states: readonly ReviewState[]): Level[] {
+  const grammar = content.cards.filter((c) => c.kind === "grammar");
+  return LEVELS.filter((level) => {
+    const ofLevel = grammar.filter((c) => c.level === level);
+    return ofLevel.length > 0 && ofLevel.every((c) => cardStatus(c, states) !== "new");
+  });
 }

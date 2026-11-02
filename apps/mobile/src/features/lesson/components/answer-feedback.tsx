@@ -38,6 +38,8 @@ type AnswerFeedbackProps = {
   onDispute?: (() => void) | undefined;
   /** Right answers in a row so far, this one included (cheered from three). */
   inARow?: number | undefined;
+  /** The study card that explains the exercise: "Ver ficha: …" after a wrong or almost answer. */
+  card?: { readonly title: string; readonly onOpen: () => void } | undefined;
   onContinue: () => void;
 };
 
@@ -114,7 +116,8 @@ function markings(given: string, diff: readonly WordDiffOp[] | undefined): reado
  * "Casi. Fíjate: …") and, when the answer shows a common calque, a hint explains it. Screen
  * readers get a plain sentence instead, naming up to three differences (`feedbackAnnouncement`).
  * A translate_write answer graded wrong or almost can be marked as correct by the learner
- * (`onDispute`): it is then highlighted with "Marcada como correcta".
+ * (`onDispute`): it is then highlighted with "Marcada como correcta". After a wrong or almost
+ * answer, a quiet "Ver ficha: …" opens the study card that explains the exercise (`card`).
  */
 export function AnswerFeedback({
   verdict,
@@ -126,6 +129,7 @@ export function AnswerFeedback({
   disputed = false,
   onDispute,
   inARow = 0,
+  card,
   onContinue,
 }: AnswerFeedbackProps) {
   const styles = useStyles();
@@ -182,6 +186,14 @@ export function AnswerFeedback({
       <Button label="Continuar" onPress={onContinue} />
       {onDispute !== undefined && verdict !== "correct" && (
         <Button label="Mi respuesta también es correcta" variant="text" onPress={onDispute} />
+      )}
+      {card !== undefined && verdict !== "correct" && (
+        <Button
+          label={`Ver ficha: ${card.title}`}
+          variant="text"
+          accessibilityHint="Abre la ficha que lo explica; al volver, sigues donde estabas"
+          onPress={card.onOpen}
+        />
       )}
     </View>
   );

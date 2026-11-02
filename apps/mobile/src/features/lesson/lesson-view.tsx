@@ -18,6 +18,27 @@ import type { ExerciseResponse } from "./model/response";
 import { correctInARow } from "./model/session-results";
 import type { EarnedSticker } from "./components/session-screens";
 
+/** A study card that explains an exercise ("Ver ficha" after a wrong or almost answer). */
+export type ExerciseCard = { readonly id: string; readonly title: string };
+
+/** What the screen calls the session: a lesson, or the practice of a study card. */
+export type SessionCopy = {
+  /** Screen title while loading, saving or failing ("Lección"). */
+  readonly name: string;
+  readonly notFound: string;
+  /** The summary's title ("¡Lección completada!"). */
+  readonly completed: string;
+  /** The summary's button ("Volver al inicio"). */
+  readonly done: string;
+};
+
+export const LESSON_COPY: SessionCopy = {
+  name: "Lección",
+  notFound: "No encontramos esta lección.",
+  completed: "¡Lección completada!",
+  done: "Volver al inicio",
+};
+
 /** Feedback on the current answer, with the learner's answer as text. */
 export type ShownFeedback = GradeResult & {
   readonly given: string;
@@ -42,6 +63,8 @@ export type LessonViewState =
       readonly feedback: ShownFeedback | null;
       /** Verdicts of the exercises answered so far, in order (the shown answer included). */
       readonly results?: readonly Verdict[];
+      /** The study card that explains this exercise, if any. */
+      readonly card?: ExerciseCard | undefined;
     }
   | { readonly status: "saving" }
   | { readonly status: "save-error" }
@@ -68,6 +91,9 @@ type LessonViewProps = {
   onDispute: () => void;
   onGoHome: () => void;
   onRetrySave: () => void;
+  /** Opens a study card on top of the session ("Ver ficha"). */
+  onOpenCard?: ((cardId: string) => void) | undefined;
+  copy?: SessionCopy;
 };
 
 export function LessonView({
@@ -77,25 +103,32 @@ export function LessonView({
   onDispute,
   onGoHome,
   onRetrySave,
+  onOpenCard,
+  copy = LESSON_COPY,
 }: LessonViewProps) {
   switch (state.status) {
     case "not-found":
-      return (
-        <SessionMessage title="Lección" text="No encontramos esta lección." onGoHome={onGoHome} />
-      );
+      return <SessionMessage title={copy.name} text={copy.notFound} onGoHome={onGoHome} />;
     case "save-error":
       return (
         <SessionMessage
-          title="Lección"
+          title={copy.name}
           text="No pudimos guardar tu progreso."
           onRetry={onRetrySave}
           onGoHome={onGoHome}
         />
       );
     case "saving":
-      return <SavingScreen title="Lección" label="Guardando tu progreso" />;
+      return <SavingScreen title={copy.name} label="Guardando tu progreso" />;
     case "summary":
-      return <SessionSummary title="¡Lección completada!" {...state} onGoHome={onGoHome} />;
+      return (
+        <SessionSummary
+          title={copy.completed}
+          doneLabel={copy.done}
+          {...state}
+          onGoHome={onGoHome}
+        />
+      );
     case "exercise":
       return (
         <ScreenContainer
@@ -123,6 +156,7 @@ export function LessonView({
                     disputed={state.feedback.disputed}
                     onDispute={state.feedback.disputable ? onDispute : undefined}
                     inARow={correctInARow(state.results ?? [])}
+                    card={cardLink(state.card, onOpenCard)}
                     onContinue={onContinue}
                   />
                 ),
@@ -141,4 +175,13 @@ export function LessonView({
         </ScreenContainer>
       );
   }
+}
+
+/** The "Ver ficha" link of the feedback, when the exercise has a card and it can be opened. */
+export function cardLink(
+  card: ExerciseCard | undefined,
+  onOpenCard: ((cardId: string) => void) | undefined,
+): { title: string; onOpen: () => void } | undefined {
+  if (card === undefined || onOpenCard === undefined) return undefined;
+  return { title: card.title, onOpen: () => onOpenCard(card.id) };
 }

@@ -8,7 +8,7 @@ import {
 } from "@english-learn/domain";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import type React from "react";
-import { allExercises, lesson, passage } from "@/features/lesson/model/fixtures";
+import { allExercises, card, lesson, passage } from "@/features/lesson/model/fixtures";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
@@ -43,7 +43,7 @@ const b1Lesson = {
   title: "Rutina B1",
 } as const;
 const content = createCorpus([
-  { exercises: allExercises, passages: [passage], lessons: [lesson, b1Lesson] },
+  { exercises: allExercises, passages: [passage], lessons: [lesson, b1Lesson], cards: [card] },
 ]);
 
 function renderContainer(
@@ -212,6 +212,17 @@ describe("HomeContainer", () => {
       await screen.findByRole("button", { name: /^Mi álbum: 1 de \d+ insignias$/ }),
     );
     expect(mockPush).toHaveBeenCalledWith("/album");
+  });
+
+  it("counts the study cards studied and opens them", async () => {
+    await renderContainer(
+      createFakeRepository({ states: card.itemIds.map((id) => initialState(id, TODAY)) }),
+    );
+
+    await fireEvent.press(
+      await screen.findByRole("button", { name: "Fichas: 1 ficha, 1 estudiada" }),
+    );
+    expect(mockPush).toHaveBeenCalledWith("/fichas");
   });
 
   it("counts the items due for review", async () => {

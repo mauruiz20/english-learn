@@ -18,8 +18,12 @@ type AviProps = {
   mood?: AviMood;
   /** Width in points (the plane is 4:3). */
   size?: number;
-  /** Glide in from the left once, after `delayMs` (e.g. to the lesson to do next). */
+  /** Glide in once, from the side it faces, after `delayMs` (e.g. to the lesson to do next). */
   fly?: boolean;
+  /** Final rotation in degrees (positive turns the nose down). The art itself points ≈ 17° up. */
+  tilt?: number;
+  /** Which way the nose points; "left" mirrors the plane. */
+  facing?: "right" | "left";
   delayMs?: number;
   style?: StyleProp<ViewStyle>;
   testID?: string;
@@ -37,6 +41,8 @@ export function Avi({
   mood = "happy",
   size = 64,
   fly = false,
+  tilt = -14,
+  facing = "right",
   delayMs = 0,
   style,
   testID = "avi",
@@ -56,13 +62,17 @@ export function Avi({
   }, [animate, delayMs, t]);
   const glide = useAnimatedStyle(() => {
     const left = 1 - t.value;
+    const away = facing === "left" ? 1 : -1;
     return {
       opacity: Math.min(1, t.value * 3),
       transform: [
-        { translateX: -size * 2.2 * left },
+        // Comes from behind its tail: the left when facing right, the right when mirrored.
+        { translateX: away * size * 2.2 * left },
         // An arc: up, then down onto its spot.
         { translateY: -size * 0.9 * Math.sin(left * Math.PI) },
-        { rotate: `${-14 + 20 * left}deg` },
+        // Mirrored before turning, so a positive tilt still points the nose down.
+        ...(facing === "left" ? [{ scaleX: -1 }] : []),
+        { rotate: `${tilt + 20 * left}deg` },
       ],
     };
   });
