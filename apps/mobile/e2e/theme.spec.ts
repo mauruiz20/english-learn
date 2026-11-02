@@ -1,4 +1,10 @@
-import { expect, test, type ConsoleMessage, type Page } from "./support/test";
+import {
+  expect,
+  expectOneDatabaseWorker,
+  test,
+  type ConsoleMessage,
+  type Page,
+} from "./support/test";
 
 const LIGHT_PAPER = "rgb(245, 247, 255)"; // palettes.light.paper #F5F7FF
 const NIGHT_PAPER = "rgb(15, 26, 51)"; // palettes.dark.paper #0F1A33
@@ -55,6 +61,8 @@ test("the chosen theme applies at once, survives a reload without a flash, and S
   await expect(page.getByText("Tema: Oscuro", { exact: true })).toBeAttached();
   await expect.poll(() => themeAttribute(page)).toBe("dark");
   await expect.poll(() => pageBackground(page)).toBe(NIGHT_PAPER);
+  // A theme change re-renders the whole app: still the page's one SQLite worker.
+  await expectOneDatabaseWorker(page);
 
   // Wait for the save to commit before reloading (test-only hook, EXPO_PUBLIC_E2E=1).
   await page.evaluate(() =>

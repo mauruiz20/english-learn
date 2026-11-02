@@ -56,6 +56,17 @@ describe("check-prod-bundle", () => {
     ]);
   });
 
+  it("finds the e2e database-workers hook", async () => {
+    await write(
+      "_expo/static/js/web/entry-4.js",
+      'Object.defineProperty(h.__e2e,"dbWorkers",{get:c})',
+    );
+    await buildServiceWorker(dir);
+    assert.deepEqual(await findProblems(dir), [
+      `${join(dir, "_expo/static/js/web/entry-4.js")}: contains test-only code (dbWorkers)`,
+    ]);
+  });
+
   it("requires the service worker", async () => {
     await rm(join(dir, "sw.js"));
     assert.deepEqual(await findProblems(dir), ["sw.js is missing"]);

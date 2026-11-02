@@ -5,7 +5,7 @@ import {
   createSqliteSettingsRepository,
   type SqlDatabase,
 } from "@english-learn/storage-sqlite";
-import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
+import { openDatabaseAsync } from "expo-sqlite";
 import {
   createContext,
   use,
@@ -25,9 +25,11 @@ import { AppServicesProvider, type AppServices } from "../services/app-services"
 import { createExpoSoundPlayer } from "../sound/expo-sound-player";
 import { awaitPendingWrites, createWriteTracker, trackWrites } from "./await-pending-writes";
 import { DatabaseOpenError } from "./database-open-error";
+import type * as E2eDatabaseWorkers from "./e2e-database-workers";
 import type * as E2eProgress from "./e2e-progress";
 import type * as E2eSettingsWrites from "./e2e-settings-writes";
 import { initProgressStore } from "./init-progress-store";
+import { createOpenRetry, noOpenRetry, type OpenRetry } from "./open-retry";
 import type { DatabaseOwnership, OwnershipState } from "./ownership/database-ownership";
 import {
   DatabaseStuckScreen,
@@ -35,10 +37,71 @@ import {
   ReleasedScreen,
 } from "./ownership/ownership-screens";
 import { createPlatformOwnership } from "./ownership/platform-ownership";
+import { createPageDatabase, type PageDatabase } from "./page-database";
+import { countWorkers } from "./worker-count";
 import { notifyAppends } from "../sync/notify-appends";
 import { createChangeSignal } from "../sync/sync-triggers";
 
 export const DATABASE_NAME = "english-learn.db";
+
+const isWeb = Platform.OS === "web" && typeof window !== "undefined";
+
+/**
+ * This page's database and how its open is retried. Web: ONE open per page lifetime (see
+ * `createPageDatabase`), retried only by reloading the page, and the page's workers counted
+ * (expo-sqlite's is the only one: a second would collide with it on the same OPFS files).
+ */
+export type DatabasePage = {
+  readonly database: PageDatabase<SqlDatabase>;
+  readonly openRetry: OpenRetry;
+  readonly workersCreated: () => number;
+};
+
+function createDatabasePage(): DatabasePage {
+  if (!isWeb) {
+    return {
+      database: createPageDatabase({ reopenable: true }),
+      openRetry: noOpenRetry,
+      workersCreated: () => 0,
+    };
+  }
+  const workers = countWorkers();
+  // `EXPO_PUBLIC_E2E` is inlined at build time: production builds drop this branch and its module.
+  if (process.env.EXPO_PUBLIC_E2E === "1") {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    (require("./e2e-database-workers") as typeof E2eDatabaseWorkers).exposeDatabaseWorkers(
+      workers.created,
+    );
+  }
+  let storage: Parameters<typeof createOpenRetry>[0]["storage"];
+  try {
+    // Throws when site data is blocked: then busy opens are not retried (see `decideOpenRetry`).
+    storage = (globalThis as { sessionStorage?: typeof storage }).sessionStorage;
+  } catch {
+    storage = undefined;
+  }
+  return {
+    database: createPageDatabase({ reopenable: false }),
+    openRetry: createOpenRetry({
+      storage,
+      reload: () => window.location.reload(),
+      workersCreated: workers.created,
+    }),
+    workersCreated: workers.created,
+  };
+}
+
+/** Module level: the page keeps one database whatever React mounts, remounts or retries. */
+const appDatabasePage = createDatabasePage();
+
+/** Lines for "Detalles técnicos" when the open failed. No personal data. */
+function openDetails(page: DatabasePage): string[] {
+  return [
+    `Workers de la base de datos: ${page.workersCreated()}`,
+    "Sondeo de archivos: no",
+    `Reintentos automáticos: ${page.openRetry.attempts()}`,
+  ];
+}
 
 const SYNC_WRITES = [
   "markSynced",
@@ -80,13 +143,19 @@ function createSettingsRepository(db: SqlDatabase): SettingsRepository {
 
 /** Where the open database registers how to finish its writes before another tab takes it. */
 const DrainContext = createContext<RefObject<(() => Promise<void>) | null> | null>(null);
-/** Where the database reports that it really opened (see `DatabaseOwnership.confirmOpened`). */
-const OpenedContext = createContext<(() => void) | null>(null);
 
-function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode }) {
-  const db = useSQLiteContext();
+function SqliteServices({
+  db,
+  clock,
+  onOpened,
+  children,
+}: {
+  db: SqlDatabase;
+  clock: Clock;
+  onOpened: () => void;
+  children: ReactNode;
+}) {
   const drainRef = use(DrainContext);
-  const opened = use(OpenedContext);
   // Every write (saves and the sync's), so handing the database over never cuts one halfway.
   const [writes] = useState(createWriteTracker);
   useEffect(() => {
@@ -109,8 +178,8 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
     progressRepository.getDeviceId().then(setDeviceId, (error: Error) => setFailure(error));
   }, [progressRepository]);
   useEffect(() => {
-    if (deviceId !== null) opened?.();
-  }, [deviceId, opened]);
+    if (deviceId !== null) onOpened();
+  }, [deviceId, onOpened]);
   if (failure !== null) throw new DatabaseOpenError(failure);
 
   const services = useMemo<AppServices | null>(
@@ -141,10 +210,60 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;
 }
 
-// SQLiteProvider calls this while rendering when opening or migrating fails; throwing hands the
-// failure to the error boundary, which shows a message instead of a blank screen.
-function throwDatabaseOpenError(error: Error): never {
-  throw new DatabaseOpenError(error);
+type OpenState =
+  | { readonly kind: "opening" | "retrying" }
+  | { readonly kind: "open"; readonly db: SqlDatabase }
+  | { readonly kind: "failed"; readonly error: unknown };
+
+/**
+ * Opens (or joins) the page's database and runs migrations. A failure is thrown while rendering
+ * so the error boundary shows a message instead of a blank screen, unless the retry policy
+ * reloads the page (web, files briefly busy): then nothing shows until the reload.
+ */
+function PageDatabaseProvider({
+  page,
+  clock,
+  children,
+}: {
+  page: DatabasePage;
+  clock: Clock;
+  children: ReactNode;
+}) {
+  const [state, setState] = useState<OpenState>({ kind: "opening" });
+  useEffect(() => {
+    let active = true;
+    page.database
+      .get(() => openAppDatabase(clock))
+      .then(
+        (db) => {
+          if (active) setState({ kind: "open", db });
+        },
+        (error: unknown) => {
+          if (!active) return;
+          setState(
+            page.openRetry.onFailure(error) ? { kind: "retrying" } : { kind: "failed", error },
+          );
+        },
+      );
+    return () => {
+      active = false;
+    };
+  }, [page, clock]);
+  const onOpened = useCallback(() => page.openRetry.onOpened(), [page]);
+
+  if (state.kind === "failed") throw new DatabaseOpenError(state.error);
+  if (state.kind !== "open") return null;
+  return (
+    <SqliteServices db={state.db} clock={clock} onOpened={onOpened}>
+      {children}
+    </SqliteServices>
+  );
+}
+
+async function openAppDatabase(clock: Clock): Promise<SqlDatabase> {
+  const db = await openDatabaseAsync(DATABASE_NAME);
+  await initDatabase(db, clock);
+  return db;
 }
 
 type GateState = { readonly kind: "checking" | "handing-over" } | OwnershipState;
@@ -167,7 +286,6 @@ function DatabaseOwnershipGate({
 }) {
   const [state, setState] = useState<GateState>(CHECKING);
   const drainRef = useRef<(() => Promise<void>) | null>(null);
-  const opened = useCallback(() => ownership.confirmOpened(), [ownership]);
 
   useEffect(() => {
     let active = true;
@@ -195,11 +313,7 @@ function DatabaseOwnershipGate({
 
   switch (state.kind) {
     case "owned":
-      return (
-        <DrainContext value={drainRef}>
-          <OpenedContext value={opened}>{children}</OpenedContext>
-        </DrainContext>
-      );
+      return <DrainContext value={drainRef}>{children}</DrainContext>;
     case "open-elsewhere":
       return (
         <OpenElsewhereScreen
@@ -225,37 +339,41 @@ function DatabaseOwnershipGate({
 /**
  * Opens the on-device database, runs migrations, and provides the app services. Any failure
  * (newer schema, corrupt file, storage unavailable, database still held elsewhere) or later
- * render error shows `AppErrorBoundary`'s message. "Reintentar" reloads the page on web
- * (expo-sqlite's worker cannot reopen after a failed open) and remounts the app with a fresh
- * open elsewhere. On web the database opens only once this page owns it (`ownership`).
+ * render error shows `AppErrorBoundary`'s message. Web: the page opens the database once (see
+ * `DatabasePage`); a busy open retries by reloading a few times, and "Reintentar" reloads the
+ * page (expo-sqlite's worker cannot reopen after a failed open). Native: "Reintentar" opens
+ * again and remounts the app. On web the database opens only once this page owns it
+ * (`ownership`).
  */
 export function SqliteAppServicesProvider({
   children,
   ownership: givenOwnership,
+  page = appDatabasePage,
 }: {
   children: ReactNode;
   ownership?: DatabaseOwnership;
+  page?: DatabasePage;
 }) {
   const [attempt, setAttempt] = useState(0);
   const [ownership] = useState(() => givenOwnership ?? createPlatformOwnership());
   // Read once per page load (an e2e `?today=` override must survive in-app navigation).
   const [clock] = useState(createAppClock);
-  // Stable: SQLiteProvider reopens the database whenever `onInit` changes.
-  const onInit = useCallback((db: SqlDatabase) => initDatabase(db, clock), [clock]);
   const retry = () => {
-    if (Platform.OS === "web" && typeof window !== "undefined") window.location.reload();
-    else setAttempt((n) => n + 1);
+    page.openRetry.clear();
+    if (isWeb) {
+      window.location.reload();
+      return;
+    }
+    page.database.reset();
+    setAttempt((n) => n + 1);
   };
+  const details = useCallback(() => openDetails(page), [page]);
   return (
-    <AppErrorBoundary key={attempt} onRetry={retry}>
+    <AppErrorBoundary key={attempt} onRetry={retry} details={details}>
       <DatabaseOwnershipGate ownership={ownership}>
-        <SQLiteProvider
-          databaseName={DATABASE_NAME}
-          onInit={onInit}
-          onError={throwDatabaseOpenError}
-        >
-          <SqliteServices clock={clock}>{children}</SqliteServices>
-        </SQLiteProvider>
+        <PageDatabaseProvider page={page} clock={clock}>
+          {children}
+        </PageDatabaseProvider>
       </DatabaseOwnershipGate>
     </AppErrorBoundary>
   );

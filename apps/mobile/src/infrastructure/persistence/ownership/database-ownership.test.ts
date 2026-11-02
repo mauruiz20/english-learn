@@ -5,7 +5,6 @@ import {
   type OwnershipPorts,
   type OwnershipState,
 } from "./database-ownership";
-import type { ProbeOutcome } from "./retry-while-busy";
 
 /** A BroadcastChannel between pages: a message reaches every OTHER page, asynchronously. */
 function createBus() {
@@ -116,8 +115,6 @@ function createPage(pageId: string, world: World) {
     pageId,
     channel: world.bus.channelFor(pageId),
     locks: world.locks?.locksFor(pageId) ?? null,
-    probe: world.probe,
-    sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
     releasedFlag: {
       consume: () => world.flags.delete(pageId),
       set: () => void world.flags.add(pageId),
@@ -127,13 +124,6 @@ function createPage(pageId: string, world: World) {
       count: () => world.attempts.get(pageId) ?? 0,
       increment: () => void world.attempts.set(pageId, (world.attempts.get(pageId) ?? 0) + 1),
       clear: () => void world.attempts.delete(pageId),
-    },
-    // localStorage: per device.
-    probeTrust: {
-      trusted: () => world.probeTrusted,
-      distrust: () => {
-        world.probeTrusted = false;
-      },
     },
     now: () => Date.now(),
     environment: () => ({
@@ -151,21 +141,12 @@ function createWorld({ withLocks = true }: { withLocks?: boolean } = {}) {
   const world = {
     bus: createBus(),
     locks: withLocks ? createLocks() : null,
-    probeResults: [] as ProbeOutcome[],
-    probeCalls: 0,
-    probe: async (): Promise<ProbeOutcome> => {
-      world.probeCalls += 1;
-      return world.probeResults.shift() ?? { result: "free" };
-    },
     flags: new Set<string>(),
     attempts: new Map<string, number>(),
-    probeTrusted: true,
     page: (id: string) => createPage(id, world as World),
   };
   return world;
 }
-
-const BUSY: ProbeOutcome = { result: "busy", error: "InvalidStateError" };
 
 /** Resolves `promise` while advancing fake timers. */
 async function settle<T>(promise: Promise<T>): Promise<T> {
@@ -212,8 +193,6 @@ describe("database ownership between tabs", () => {
     // The reloaded page starts while the old one is still unloading (no one answers).
     const after = world.page("after-reload").ownership.start();
     setTimeout(() => world.locks?.unload("before-reload"), 700);
-    // Its SQLite worker lets go of the files a moment after the lock.
-    world.probeResults.push(BUSY, BUSY, { result: "free" });
 
     expect(kind(await settle(after))).toBe("owned");
     expect(world.locks?.holder).toBe("after-reload");
@@ -268,10 +247,12 @@ describe("database ownership between tabs", () => {
     expect(kind(await settle(world.page("a").ownership.start()))).toBe("owned");
   });
 
-  it("works without Web Locks (channel and probe only)", async () => {
+  it("works without Web Locks (channel only)", async () => {
     const world = createWorld({ withLocks: false });
     const a = world.page("a");
-    expect(kind(await settle(a.ownership.start()))).toBe("owned");
+    const first = await settle(a.ownership.start());
+    expect(kind(first)).toBe("owned");
+    expect(reason(first)).toBe("no-locks");
     a.ownership.serve(async () => {});
     a.reload.mockImplementation(() => {});
     const b = world.page("b");
@@ -293,25 +274,14 @@ describe("database ownership between tabs", () => {
 });
 
 describe("only positive evidence claims another tab (iOS false positives)", () => {
-  it("files that look busy while nobody holds the lock or answers: opens normally", async () => {
+  it("never touches the database files: the lock alone decides (iOS self-collisions)", async () => {
     const world = createWorld();
-    world.probeResults.push(...Array<ProbeOutcome>(7).fill(BUSY));
 
     const state = await settle(world.page("a").ownership.start());
 
     expect(kind(state)).toBe("owned");
-    expect(reason(state)).toBe("probe-busy");
-    expect(state.diagnostics.probeError).toBe("InvalidStateError");
-  });
-
-  it("a probe that fails for another reason lets the normal open report it", async () => {
-    const world = createWorld();
-    world.probeResults.push({ result: "error", error: "SecurityError" });
-
-    const state = await settle(world.page("a").ownership.start());
-
-    expect(kind(state)).toBe("owned");
-    expect(reason(state)).toBe("probe-error:SecurityError");
+    expect(reason(state)).toBe("lock-acquired");
+    expect(state.diagnostics).not.toHaveProperty("probeError");
   });
 
   it("a Web Locks request that fails is not another tab: opens normally", async () => {
@@ -334,31 +304,6 @@ describe("only positive evidence claims another tab (iOS false positives)", () =
     expect(kind(state)).toBe("owned");
     expect(reason(state)).toBe("no-owner-answer");
     expect(state.diagnostics.lockHolders).toBe(0);
-  });
-
-  it("after a probe false positive the database opened: the device stops trusting the probe", async () => {
-    const world = createWorld();
-    world.probeResults.push(...Array<ProbeOutcome>(7).fill(BUSY));
-    const a = world.page("a");
-    await settle(a.ownership.start());
-    a.ownership.confirmOpened();
-    expect(world.probeTrusted).toBe(false);
-
-    // The next launch does not wait ~5 s for the probe.
-    const callsBefore = world.probeCalls;
-    world.locks?.unload("a");
-    const state = await settle(world.page("a2").ownership.start());
-    expect(kind(state)).toBe("owned");
-    expect(world.probeCalls).toBe(callsBefore);
-    expect(reason(state)).toBe("probe-skipped");
-  });
-
-  it("a confirmed open after a free probe keeps trusting it", async () => {
-    const world = createWorld();
-    const a = world.page("a");
-    await settle(a.ownership.start());
-    a.ownership.confirmOpened();
-    expect(world.probeTrusted).toBe(true);
   });
 });
 
@@ -449,7 +394,7 @@ describe("diagnostics", () => {
     const state = await settle(world.page("a").ownership.start());
 
     expect(state.diagnostics).toMatchObject({
-      reason: "probe-free",
+      reason: "lock-acquired",
       environment: {
         webLocks: true,
         broadcastChannel: true,

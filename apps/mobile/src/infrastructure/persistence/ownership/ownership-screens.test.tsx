@@ -13,7 +13,6 @@ const DIAGNOSTICS: OwnershipDiagnostics = {
   startedAt: Date.parse("2026-11-02T10:00:00.000Z"),
   decidedAt: Date.parse("2026-11-02T10:00:09.500Z"),
   lockHolders: 1,
-  probeError: null,
   takeOverAttempts: 1,
   environment: { webLocks: true, broadcastChannel: true, opfs: true, displayMode: "standalone" },
 };
@@ -74,12 +73,11 @@ describe("technical details", () => {
   });
 
   it("list the codes and timestamps, nothing personal", () => {
-    expect(diagnosticsLines({ ...DIAGNOSTICS, probeError: "InvalidStateError" })).toEqual([
+    expect(diagnosticsLines(DIAGNOSTICS)).toEqual([
       "Motivo: no-owner-answer",
       "Web Locks: sí · BroadcastChannel: sí · OPFS: sí",
       "Modo: standalone",
       "Bloqueos activos: 1",
-      "Error de la prueba: InvalidStateError",
       "Intentos: 1",
       "Inicio: 2026-11-02T10:00:00.000Z",
       "Decisión: 2026-11-02T10:00:09.500Z",

@@ -5,11 +5,10 @@ import type { DatabaseOwnership, OwnershipState } from "./database-ownership";
 const OWNED: OwnershipState = {
   kind: "owned",
   diagnostics: {
-    reason: "probe-skipped",
+    reason: "native",
     startedAt: 0,
     decidedAt: 0,
     lockHolders: null,
-    probeError: null,
     takeOverAttempts: 0,
     environment: { webLocks: false, broadcastChannel: false, opfs: false, displayMode: "unknown" },
   },
@@ -20,7 +19,6 @@ const nativeOwnership: DatabaseOwnership = {
   start: async () => OWNED,
   takeOver: async () => OWNED,
   retry: async () => OWNED,
-  confirmOpened: () => {},
   serve: () => () => {},
 };
 
