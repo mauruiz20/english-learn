@@ -29,6 +29,34 @@
       ]
     },
     {
+      "id": "glossary.gas",
+      "headword": "gas",
+      "kind": "word",
+      "forms": ["gas"],
+      "senses": [
+        {
+          "es": "gasolina",
+          "pos": "noun"
+        },
+        {
+          "es": "gas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gasoline",
+      "headword": "gasoline",
+      "kind": "word",
+      "forms": ["gasoline"],
+      "senses": [
+        {
+          "es": "gasolina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.generally",
       "headword": "generally",
       "kind": "word",
@@ -133,6 +161,18 @@
       ]
     },
     {
+      "id": "glossary.get-off",
+      "headword": "get off",
+      "kind": "phrase",
+      "forms": ["get off", "gets off", "got off", "getting off"],
+      "senses": [
+        {
+          "es": "bajarse (de un transporte)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.get-on",
       "headword": "get on",
       "kind": "phrase",
@@ -181,6 +221,18 @@
         {
           "es": "levantarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-used-to",
+      "headword": "get used to",
+      "kind": "phrase",
+      "forms": ["get used to", "gets used to", "got used to", "gotten used to", "getting used to"],
+      "senses": [
+        {
+          "es": "acostumbrarse a",
+          "pos": "expression"
         }
       ]
     },
@@ -439,6 +491,18 @@
       ]
     },
     {
+      "id": "glossary.grandfather",
+      "headword": "grandfather",
+      "kind": "word",
+      "forms": ["grandfather", "grandfathers"],
+      "senses": [
+        {
+          "es": "abuelo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.grandmother",
       "headword": "grandmother",
       "kind": "word",
@@ -446,6 +510,18 @@
       "senses": [
         {
           "es": "abuela",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grandpa",
+      "headword": "grandpa",
+      "kind": "word",
+      "forms": ["grandpa"],
+      "senses": [
+        {
+          "es": "abuelo",
           "pos": "noun"
         }
       ]

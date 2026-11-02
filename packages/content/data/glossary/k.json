@@ -57,6 +57,18 @@
       ]
     },
     {
+      "id": "glossary.key",
+      "headword": "key",
+      "kind": "word",
+      "forms": ["key", "keys"],
+      "senses": [
+        {
+          "es": "llave",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.keyboard",
       "headword": "keyboard",
       "kind": "word",
@@ -64,6 +76,18 @@
       "senses": [
         {
           "es": "teclado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.kid",
+      "headword": "kid",
+      "kind": "word",
+      "forms": ["kid", "kids"],
+      "senses": [
+        {
+          "es": "niño, niña",
           "pos": "noun"
         }
       ]

@@ -1,0 +1,232 @@
+{
+  "items": [
+    {
+      "id": "b2.vocabulary.raise",
+      "level": "B2",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "raise",
+      "es": "levantar, subir (algo); criar"
+    },
+    {
+      "id": "b2.vocabulary.rise",
+      "level": "B2",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "rise (rose, risen)",
+      "es": "subir, elevarse (solo)"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.vocabulary.raise-rise-cloze-1",
+      "itemIds": ["b2.vocabulary.raise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ your hand if you know the answer.",
+      "answers": ["Raise"],
+      "distractors": ["Rise", "Rose"],
+      "es": "Levanta la mano si sabes la respuesta."
+    },
+    {
+      "id": "b2.vocabulary.raise-rise-cloze-2",
+      "itemIds": ["b2.vocabulary.rise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Prices have ___ a lot this year.",
+      "answers": ["risen"],
+      "distractors": ["raised", "rose"],
+      "es": "Los precios han subido mucho este año."
+    },
+    {
+      "id": "b2.vocabulary.raise-rise-cloze-3",
+      "itemIds": ["b2.vocabulary.rise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The sun ___ in the east.",
+      "answers": ["rises"],
+      "distractors": ["raises", "rise"],
+      "es": "El sol sale por el este."
+    },
+    {
+      "id": "b2.vocabulary.raise-rise-cloze-4",
+      "itemIds": ["b2.vocabulary.raise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The company ___ its prices again last month.",
+      "answers": ["raised"],
+      "distractors": ["rose", "risen"],
+      "es": "La empresa volvió a subir sus precios el mes pasado."
+    },
+    {
+      "id": "b2.vocabulary.raise-rise-vocab-1",
+      "itemIds": ["b2.vocabulary.raise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'criar a los hijos'.",
+      "options": ["rise children", "grow children", "raise children", "rose children"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.vocabulary.raise-rise-choice-1",
+      "itemIds": ["b2.vocabulary.rise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The temperature rose quickly in the afternoon.",
+      "options": [
+        "La temperatura subió rápidamente por la tarde.",
+        "Subieron la temperatura rápidamente por la tarde.",
+        "La temperatura bajó rápidamente por la tarde."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.vocabulary.raise-rise-order-1",
+      "itemIds": ["b2.vocabulary.raise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["a", "raise.", "ask", "going", "to", "boss", "for", "I'm", "my"],
+      "accepted": ["I'm going to ask my boss for a raise."],
+      "es": "Le voy a pedir un aumento a mi jefe."
+    },
+    {
+      "id": "b2.vocabulary.raise-rise-write-1",
+      "itemIds": ["b2.vocabulary.rise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El precio de la gasolina subió otra vez.",
+      "accepted": [
+        "The price of {gas|gasoline} {rose|went up} again.",
+        "{Gas|Gasoline} prices {rose|went up} again.",
+        "The price of {gas|gasoline} has {risen|gone up} again.",
+        "{Gas|Gasoline} prices have {risen|gone up} again."
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "b2.vocabulary.raise-rise",
+      "level": "B2",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Raise o rise",
+      "summary": "Las dos significan «subir», pero raise necesita un objeto (alguien sube algo) y rise no (algo sube solo).",
+      "form": "raise + objeto (raise, raised, raised) · rise sin objeto (rise, rose, risen)",
+      "uses": [
+        "Raise: levantar o aumentar algo (raise your hand, raise prices).",
+        "Rise: subir por sí mismo (prices rise, the sun rises).",
+        "Rise es irregular: rose, risen.",
+        "Raise también es «criar» (raise children) y, como sustantivo, un aumento de sueldo (a raise)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Rise your hand if you know the answer.",
+          "right": "Raise your hand if you know the answer.",
+          "why": "Con objeto (your hand) se usa raise."
+        },
+        {
+          "wrong": "Prices have raised a lot this year.",
+          "right": "Prices have risen a lot this year.",
+          "why": "Los precios suben solos: rise (risen)."
+        },
+        {
+          "wrong": "The sun raises in the east.",
+          "right": "The sun rises in the east.",
+          "why": "El sol sube solo, sin objeto: rises."
+        },
+        {
+          "wrong": "The sun rised at six.",
+          "right": "The sun rose at six.",
+          "why": "Rise es irregular: rose, risen."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Raise your hand if you have a question.",
+          "es": "Levanten la mano si tienen alguna pregunta."
+        },
+        {
+          "en": "The company raised its prices again.",
+          "es": "La empresa volvió a subir sus precios."
+        },
+        {
+          "en": "Prices have risen a lot this year.",
+          "es": "Los precios han subido mucho este año."
+        },
+        {
+          "en": "The sun rises at six in the summer.",
+          "es": "En verano el sol sale a las seis."
+        },
+        {
+          "en": "They raised three children in a small apartment.",
+          "es": "Criaron a tres hijos en un departamento pequeño."
+        },
+        {
+          "en": "I'm going to ask my boss for a raise.",
+          "es": "Le voy a pedir un aumento a mi jefe."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "raise your hand",
+          "es": "levantar la mano"
+        },
+        {
+          "en": "raise prices",
+          "es": "subir los precios"
+        },
+        {
+          "en": "raise children",
+          "es": "criar a los hijos"
+        },
+        {
+          "en": "ask for a raise",
+          "es": "pedir un aumento de sueldo"
+        },
+        {
+          "en": "prices rise",
+          "es": "los precios suben"
+        },
+        {
+          "en": "the sun rises",
+          "es": "sale el sol"
+        }
+      ],
+      "itemIds": ["b2.vocabulary.raise", "b2.vocabulary.rise"],
+      "exerciseIds": [
+        "b2.vocabulary.raise-rise-cloze-1",
+        "b2.vocabulary.raise-rise-cloze-2",
+        "b2.vocabulary.raise-rise-cloze-3",
+        "b2.vocabulary.raise-rise-cloze-4",
+        "b2.vocabulary.raise-rise-vocab-1",
+        "b2.vocabulary.raise-rise-choice-1",
+        "b2.vocabulary.raise-rise-order-1",
+        "b2.vocabulary.raise-rise-write-1"
+      ]
+    }
+  ]
+}

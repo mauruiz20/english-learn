@@ -1,0 +1,639 @@
+{
+  "items": [
+    {
+      "id": "a2.vocabulary.make",
+      "level": "A2",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "make (a mistake, a decision, dinner)",
+      "es": "hacer (crear, producir): cometer, tomar, preparar"
+    },
+    {
+      "id": "a2.vocabulary.do",
+      "level": "A2",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "do (homework, the dishes, exercise)",
+      "es": "hacer (tareas y actividades)"
+    },
+    {
+      "id": "a2.vocabulary.take-a-break",
+      "level": "A2",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "take a break",
+      "es": "hacer una pausa, descansar un rato"
+    },
+    {
+      "id": "a2.vocabulary.take-a-nap",
+      "level": "A2",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "take a nap",
+      "es": "dormir la siesta"
+    },
+    {
+      "id": "a2.vocabulary.take-a-seat",
+      "level": "A2",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "take a seat",
+      "es": "tomar asiento, sentarse"
+    },
+    {
+      "id": "a2.vocabulary.get",
+      "level": "A2",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "get",
+      "es": "recibir, conseguir, llegar, ponerse"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.vocabulary.make-do-cloze-1",
+      "itemIds": ["a2.vocabulary.make"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ a mistake on the test.",
+      "answers": ["made"],
+      "distractors": ["did", "had"],
+      "es": "Cometí un error en el examen."
+    },
+    {
+      "id": "a2.vocabulary.make-do-cloze-2",
+      "itemIds": ["a2.vocabulary.do"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I have to ___ my homework tonight.",
+      "answers": ["do"],
+      "distractors": ["make", "take"],
+      "es": "Tengo que hacer la tarea esta noche."
+    },
+    {
+      "id": "a2.vocabulary.make-do-cloze-3",
+      "itemIds": ["a2.vocabulary.do"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Can you ___ me a favor?",
+      "answers": ["do"],
+      "distractors": ["make", "give"],
+      "es": "¿Me haces un favor?"
+    },
+    {
+      "id": "a2.vocabulary.make-do-cloze-4",
+      "itemIds": ["a2.vocabulary.make"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We need to ___ a decision today.",
+      "answers": ["make"],
+      "distractors": ["do", "put"],
+      "es": "Tenemos que tomar una decisión hoy."
+    },
+    {
+      "id": "a2.vocabulary.make-do-vocab-1",
+      "itemIds": ["a2.vocabulary.do"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'lavar los platos'.",
+      "options": ["make the dishes", "have the dishes", "take the dishes", "do the dishes"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.vocabulary.make-do-choice-1",
+      "itemIds": ["a2.vocabulary.make"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My dad makes dinner every night.",
+      "options": [
+        "Mi papá cena todas las noches.",
+        "Mi papá lava los platos todas las noches.",
+        "Mi papá prepara la cena todas las noches."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.vocabulary.make-do-order-1",
+      "itemIds": ["a2.vocabulary.do"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["every", "does", "exercise", "She", "morning."],
+      "accepted": ["She does exercise every morning."],
+      "es": "Hace ejercicio todas las mañanas."
+    },
+    {
+      "id": "a2.vocabulary.make-do-write-1",
+      "itemIds": ["a2.vocabulary.make"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Cometí muchos errores.",
+      "accepted": ["I made {a lot of|lots of|many} mistakes."]
+    },
+    {
+      "id": "a2.vocabulary.take-a-break-cloze-1",
+      "itemIds": ["a2.vocabulary.take-a-break"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We've worked for three hours. Let's ___ a break.",
+      "answers": ["take"],
+      "distractors": ["make", "do"],
+      "es": "Llevamos tres horas trabajando. Hagamos una pausa."
+    },
+    {
+      "id": "a2.vocabulary.take-a-break-cloze-2",
+      "itemIds": ["a2.vocabulary.take-a-nap"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm tired. I'm going to take a ___ before dinner.",
+      "answers": ["nap"],
+      "distractors": ["sleeping", "dream"],
+      "es": "Estoy cansado. Voy a dormir una siesta antes de la cena."
+    },
+    {
+      "id": "a2.vocabulary.take-a-break-cloze-3",
+      "itemIds": ["a2.vocabulary.take-a-seat"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Please take a ___. The doctor will be with you in a minute.",
+      "answers": ["seat"],
+      "distractors": ["sit", "sitting"],
+      "es": "Por favor, tome asiento. El doctor lo atenderá en un minuto."
+    },
+    {
+      "id": "a2.vocabulary.take-a-break-vocab-1",
+      "itemIds": ["a2.vocabulary.take-a-nap"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'dormir la siesta'.",
+      "options": ["make a nap", "take a nap", "take a dream", "do a nap"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.vocabulary.take-a-break-choice-1",
+      "itemIds": ["a2.vocabulary.take-a-break"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You look tired. Take a break.",
+      "options": [
+        "Te ves cansado. Vuelve al trabajo.",
+        "Te ves cansado. Descansa un rato.",
+        "Te ves cansado. Siéntate."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.vocabulary.take-a-break-order-1",
+      "itemIds": ["a2.vocabulary.take-a-seat"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["seat", "window.", "take", "by", "a", "Please", "the"],
+      "accepted": ["Please take a seat by the window."],
+      "es": "Por favor, siéntese junto a la ventana."
+    },
+    {
+      "id": "a2.vocabulary.take-a-break-write-1",
+      "itemIds": ["a2.vocabulary.take-a-nap"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi abuelo duerme la siesta todas las tardes.",
+      "accepted": [
+        "My {grandfather|grandpa} takes a nap every afternoon.",
+        "Every afternoon[,] my {grandfather|grandpa} takes a nap."
+      ]
+    },
+    {
+      "id": "a2.vocabulary.get-cloze-1",
+      "itemIds": ["a2.vocabulary.get"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "What time did you ___ home last night?",
+      "answers": ["get"],
+      "distractors": ["get to", "arrived"],
+      "es": "¿A qué hora llegaste a casa anoche?"
+    },
+    {
+      "id": "a2.vocabulary.get-cloze-2",
+      "itemIds": ["a2.vocabulary.get"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's ___ cold. Close the window.",
+      "answers": ["getting"],
+      "distractors": ["putting", "doing"],
+      "es": "Está empezando a hacer frío. Cierra la ventana."
+    },
+    {
+      "id": "a2.vocabulary.get-cloze-3",
+      "itemIds": ["a2.vocabulary.get"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ a message from my mom this morning.",
+      "answers": ["got"],
+      "distractors": ["took", "made"],
+      "es": "Recibí un mensaje de mi mamá esta mañana."
+    },
+    {
+      "id": "a2.vocabulary.get-vocab-1",
+      "itemIds": ["a2.vocabulary.get"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'got' in 'I got a new phone.'",
+      "options": ["llegué", "me puse", "entendí", "conseguí, compré"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.vocabulary.get-choice-1",
+      "itemIds": ["a2.vocabulary.get"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She got angry when she saw the mess.",
+      "options": [
+        "Se enojó cuando vio el desorden.",
+        "Llegó enojada y vio el desorden.",
+        "Consiguió ver el desorden."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.vocabulary.get-order-1",
+      "itemIds": ["a2.vocabulary.get"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["better", "I", "get", "soon.", "you", "hope"],
+      "accepted": ["I hope you get better soon."],
+      "es": "Espero que te mejores pronto."
+    },
+    {
+      "id": "a2.vocabulary.get-write-1",
+      "itemIds": ["a2.vocabulary.get"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Llegué a la oficina a las nueve.",
+      "accepted": [
+        "I got to the office at {nine|9}[ o'clock].",
+        "I arrived at the office at {nine|9}[ o'clock]."
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "a2.vocabulary.make-do",
+      "level": "A2",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Make o do",
+      "summary": "Las dos se traducen como «hacer». Make es crear o producir algo; do es realizar una tarea o actividad. Muchas combinaciones se aprenden de memoria.",
+      "form": "make + lo que creas o produces · do + tareas y actividades",
+      "uses": [
+        "Make: make dinner, make a mistake, make a decision, make friends, make money.",
+        "Do: do homework, do the dishes, do exercise, do your best, do someone a favor.",
+        "Para hablar de una actividad sin nombrarla se usa do: What are you doing?"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I did a mistake.",
+          "right": "I made a mistake.",
+          "why": "Equivocarse es make a mistake."
+        },
+        {
+          "wrong": "I have to make my homework.",
+          "right": "I have to do my homework.",
+          "why": "La tarea se hace con do."
+        },
+        {
+          "wrong": "Can you make me a favor?",
+          "right": "Can you do me a favor?",
+          "why": "Hacer un favor es do a favor."
+        },
+        {
+          "wrong": "We need to do a decision.",
+          "right": "We need to make a decision.",
+          "why": "Tomar una decisión es make a decision."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I made a mistake on the test.",
+          "es": "Cometí un error en el examen."
+        },
+        {
+          "en": "Who is making dinner tonight?",
+          "es": "¿Quién prepara la cena esta noche?"
+        },
+        {
+          "en": "I do my homework after school.",
+          "es": "Hago la tarea después de la escuela."
+        },
+        {
+          "en": "Can you do me a favor?",
+          "es": "¿Me haces un favor?"
+        },
+        {
+          "en": "She does exercise every morning.",
+          "es": "Hace ejercicio todas las mañanas."
+        },
+        {
+          "en": "It's hard to make friends in a new city.",
+          "es": "Es difícil hacer amigos en una ciudad nueva."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "make a mistake",
+          "es": "cometer un error"
+        },
+        {
+          "en": "make a decision",
+          "es": "tomar una decisión"
+        },
+        {
+          "en": "make dinner",
+          "es": "preparar la cena"
+        },
+        {
+          "en": "make friends",
+          "es": "hacer amigos"
+        },
+        {
+          "en": "do homework",
+          "es": "hacer la tarea"
+        },
+        {
+          "en": "do the dishes",
+          "es": "lavar los platos"
+        },
+        {
+          "en": "do exercise",
+          "es": "hacer ejercicio"
+        },
+        {
+          "en": "do someone a favor",
+          "es": "hacerle un favor a alguien"
+        }
+      ],
+      "itemIds": ["a2.vocabulary.make", "a2.vocabulary.do"],
+      "exerciseIds": [
+        "a2.vocabulary.make-do-cloze-1",
+        "a2.vocabulary.make-do-cloze-2",
+        "a2.vocabulary.make-do-cloze-3",
+        "a2.vocabulary.make-do-cloze-4",
+        "a2.vocabulary.make-do-vocab-1",
+        "a2.vocabulary.make-do-choice-1",
+        "a2.vocabulary.make-do-order-1",
+        "a2.vocabulary.make-do-write-1"
+      ]
+    },
+    {
+      "id": "a2.vocabulary.take-a-break",
+      "level": "A2",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Take a break, take a nap, take a seat",
+      "summary": "En inglés, muchas acciones de todos los días se dicen con take + sustantivo. Estas tres son muy comunes.",
+      "form": "take + a break / a nap / a seat (también take a shower, take a picture, take a walk)",
+      "uses": [
+        "Take a break: parar un momento para descansar.",
+        "Take a nap: dormir un rato durante el día.",
+        "Take a seat: sentarse (más formal que sit down)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Let's make a break.",
+          "right": "Let's take a break.",
+          "why": "Hacer una pausa es take a break, no make."
+        },
+        {
+          "wrong": "I always do a siesta after lunch.",
+          "right": "I always take a nap after lunch.",
+          "why": "Dormir la siesta es take a nap."
+        },
+        {
+          "wrong": "Take seat, please.",
+          "right": "Take a seat, please.",
+          "why": "Hace falta el artículo a."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Let's take a break and get some coffee.",
+          "es": "Hagamos una pausa y tomemos un café."
+        },
+        {
+          "en": "My grandfather takes a nap every afternoon.",
+          "es": "Mi abuelo duerme la siesta todas las tardes."
+        },
+        {
+          "en": "Please take a seat. The doctor will see you soon.",
+          "es": "Por favor, tome asiento. El doctor lo atenderá pronto."
+        },
+        {
+          "en": "You look tired. Take a break.",
+          "es": "Te ves cansado. Descansa un rato."
+        },
+        {
+          "en": "The baby takes two naps a day.",
+          "es": "El bebé duerme dos siestas al día."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "take a break",
+          "es": "hacer una pausa, descansar un rato"
+        },
+        {
+          "en": "take a nap",
+          "es": "dormir la siesta"
+        },
+        {
+          "en": "take a seat",
+          "es": "tomar asiento"
+        },
+        {
+          "en": "take a shower",
+          "es": "darse una ducha"
+        },
+        {
+          "en": "take a picture",
+          "es": "tomar una foto"
+        },
+        {
+          "en": "take a walk",
+          "es": "dar un paseo"
+        }
+      ],
+      "itemIds": [
+        "a2.vocabulary.take-a-break",
+        "a2.vocabulary.take-a-nap",
+        "a2.vocabulary.take-a-seat"
+      ],
+      "exerciseIds": [
+        "a2.vocabulary.take-a-break-cloze-1",
+        "a2.vocabulary.take-a-break-cloze-2",
+        "a2.vocabulary.take-a-break-cloze-3",
+        "a2.vocabulary.take-a-break-vocab-1",
+        "a2.vocabulary.take-a-break-choice-1",
+        "a2.vocabulary.take-a-break-order-1",
+        "a2.vocabulary.take-a-break-write-1"
+      ]
+    },
+    {
+      "id": "a2.vocabulary.get",
+      "level": "A2",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Los usos de get",
+      "summary": "Get es uno de los verbos más usados en inglés y cambia de significado según lo que va después.",
+      "form": "get + cosa (recibir, conseguir) · get + lugar (llegar) · get + adjetivo (ponerse)",
+      "uses": [
+        "Recibir: I got an email.",
+        "Conseguir o comprar: I need to get some bread.",
+        "Llegar: What time did you get home?",
+        "Ponerse o volverse: It's getting cold. She got angry."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "What time did you get to home?",
+          "right": "What time did you get home?",
+          "why": "Con home no se usa to: get home."
+        },
+        {
+          "wrong": "It's putting cold.",
+          "right": "It's getting cold.",
+          "why": "Para un cambio («se está poniendo frío») se usa get, no put."
+        },
+        {
+          "wrong": "I arrived to the office at nine.",
+          "right": "I got to the office at nine.",
+          "why": "Llegar a un lugar es get to o arrive at; arrive to no es correcto."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I got an email from my boss.",
+          "es": "Recibí un correo de mi jefe."
+        },
+        {
+          "en": "Can you get some bread on the way home?",
+          "es": "¿Puedes comprar pan camino a casa?"
+        },
+        {
+          "en": "What time did you get home last night?",
+          "es": "¿A qué hora llegaste a casa anoche?"
+        },
+        {
+          "en": "It's getting dark.",
+          "es": "Está oscureciendo."
+        },
+        {
+          "en": "She got a new job last month.",
+          "es": "Consiguió un trabajo nuevo el mes pasado."
+        },
+        {
+          "en": "I hope you get better soon.",
+          "es": "Espero que te mejores pronto."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "get an email",
+          "es": "recibir un correo"
+        },
+        {
+          "en": "get home",
+          "es": "llegar a casa"
+        },
+        {
+          "en": "get tired",
+          "es": "cansarse"
+        },
+        {
+          "en": "get a job",
+          "es": "conseguir trabajo"
+        },
+        {
+          "en": "get married",
+          "es": "casarse"
+        },
+        {
+          "en": "get better",
+          "es": "mejorar, mejorarse"
+        }
+      ],
+      "itemIds": ["a2.vocabulary.get"],
+      "exerciseIds": [
+        "a2.vocabulary.get-cloze-1",
+        "a2.vocabulary.get-cloze-2",
+        "a2.vocabulary.get-cloze-3",
+        "a2.vocabulary.get-vocab-1",
+        "a2.vocabulary.get-choice-1",
+        "a2.vocabulary.get-order-1",
+        "a2.vocabulary.get-write-1"
+      ]
+    }
+  ]
+}

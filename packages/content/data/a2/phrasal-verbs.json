@@ -1,0 +1,262 @@
+{
+  "items": [
+    {
+      "id": "a2.phrasal-verbs.put-on",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "put on",
+      "es": "ponerse (ropa)"
+    },
+    {
+      "id": "a2.phrasal-verbs.take-off",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "take off",
+      "es": "quitarse (ropa)"
+    },
+    {
+      "id": "a2.phrasal-verbs.turn-off",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "turn off",
+      "es": "apagar"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.phrasal-verbs.daily-routine-cloze-1",
+      "itemIds": ["a2.daily-routine.wake-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I usually ___ up at six, but I stay in bed for ten minutes.",
+      "answers": ["wake"],
+      "distractors": ["get", "put"],
+      "es": "Normalmente me despierto a las seis, pero me quedo diez minutos en la cama."
+    },
+    {
+      "id": "a2.phrasal-verbs.daily-routine-cloze-2",
+      "itemIds": ["a2.phrasal-verbs.put-on"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's cold outside. Put ___ a sweater.",
+      "answers": ["on"],
+      "distractors": ["off", "up"],
+      "es": "Hace frío afuera. Ponte un suéter."
+    },
+    {
+      "id": "a2.phrasal-verbs.daily-routine-cloze-3",
+      "itemIds": ["a2.phrasal-verbs.take-off"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Please take ___ your shoes before you come in.",
+      "answers": ["off"],
+      "distractors": ["on", "up"],
+      "es": "Por favor, quítate los zapatos antes de entrar."
+    },
+    {
+      "id": "a2.phrasal-verbs.daily-routine-cloze-4",
+      "itemIds": ["a2.phrasal-verbs.turn-off"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's late. Turn ___ the TV and go to bed.",
+      "answers": ["off"],
+      "distractors": ["on", "in"],
+      "es": "Es tarde. Apaga la tele y vete a la cama."
+    },
+    {
+      "id": "a2.phrasal-verbs.daily-routine-vocab-1",
+      "itemIds": ["a2.daily-routine.get-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'get up'.",
+      "options": ["despertarse", "subir", "quitarse", "levantarse (de la cama)"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.phrasal-verbs.daily-routine-order-1",
+      "itemIds": ["a2.daily-routine.get-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["at", "up", "seven", "get", "every", "I", "day."],
+      "accepted": ["I get up at seven every day."],
+      "es": "Me levanto a las siete todos los días."
+    },
+    {
+      "id": "a2.phrasal-verbs.daily-routine-choice-1",
+      "itemIds": ["a2.phrasal-verbs.put-on"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He put his jacket on and left.",
+      "options": [
+        "Se quitó la chaqueta y se fue.",
+        "Dejó la chaqueta y se fue.",
+        "Se puso la chaqueta y se fue."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.daily-routine-write-1",
+      "itemIds": ["a2.phrasal-verbs.turn-off"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Apaga tu celular, por favor.",
+      "accepted": [
+        "[Please ]turn off your {phone|cell phone}.",
+        "[Please ]turn your {phone|cell phone} off.",
+        "Turn off your {phone|cell phone}, please.",
+        "Turn your {phone|cell phone} off, please."
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "a2.phrasal-verbs.daily-routine",
+      "level": "A2",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: la rutina diaria",
+      "summary": "Cinco phrasal verbs para contar tu día, desde que te despiertas hasta que apagas la luz.",
+      "form": "verbo + partícula (up, on, off): la partícula cambia el significado",
+      "uses": [
+        "Contar tu rutina: I wake up at seven and get up at seven fifteen.",
+        "Ropa: put on (ponerse) y take off (quitarse).",
+        "Aparatos y luces: turn off (apagar); lo contrario es turn on.",
+        "Con un pronombre, el pronombre va en el medio: put it on, turn it off."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I put on it.",
+          "right": "I put it on.",
+          "why": "Con pronombres (it, them), el pronombre va entre el verbo y la partícula."
+        },
+        {
+          "wrong": "Can you open the light?",
+          "right": "Can you turn on the light?",
+          "why": "Encender la luz no es open: se dice turn on (y apagarla, turn off)."
+        },
+        {
+          "wrong": "Take out your shoes, please.",
+          "right": "Take off your shoes, please.",
+          "why": "Quitarse la ropa o los zapatos es take off; take out es sacar."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I usually wake up at six thirty.",
+          "es": "Normalmente me despierto a las seis y media."
+        },
+        {
+          "en": "I don't get up until seven.",
+          "es": "No me levanto hasta las siete."
+        },
+        {
+          "en": "She put her coat on and left.",
+          "es": "Se puso el abrigo y se fue."
+        },
+        {
+          "en": "He took his shoes off at the door.",
+          "es": "Se quitó los zapatos en la puerta."
+        },
+        {
+          "en": "Can you turn the TV off?",
+          "es": "¿Puedes apagar la tele?"
+        },
+        {
+          "en": "Don't forget to turn off your phone.",
+          "es": "No te olvides de apagar tu celular."
+        }
+      ],
+      "entries": [
+        {
+          "verb": "wake up",
+          "es": "despertarse",
+          "separable": true,
+          "example": {
+            "en": "I wake up at seven every day.",
+            "es": "Me despierto a las siete todos los días."
+          }
+        },
+        {
+          "verb": "get up",
+          "es": "levantarse (de la cama)",
+          "separable": false,
+          "example": {
+            "en": "I get up at seven fifteen.",
+            "es": "Me levanto a las siete y cuarto."
+          }
+        },
+        {
+          "verb": "put on",
+          "es": "ponerse (ropa)",
+          "separable": true,
+          "example": {
+            "en": "Put on your jacket. It's cold.",
+            "es": "Ponte la chaqueta. Hace frío."
+          }
+        },
+        {
+          "verb": "take off",
+          "es": "quitarse (ropa)",
+          "separable": true,
+          "example": {
+            "en": "Please take off your shoes.",
+            "es": "Por favor, quítate los zapatos."
+          }
+        },
+        {
+          "verb": "turn off",
+          "es": "apagar",
+          "separable": true,
+          "example": {
+            "en": "Turn off the lights before you go to bed.",
+            "es": "Apaga las luces antes de acostarte."
+          }
+        }
+      ],
+      "itemIds": [
+        "a2.daily-routine.wake-up",
+        "a2.daily-routine.get-up",
+        "a2.phrasal-verbs.put-on",
+        "a2.phrasal-verbs.take-off",
+        "a2.phrasal-verbs.turn-off"
+      ],
+      "exerciseIds": [
+        "a2.phrasal-verbs.daily-routine-cloze-1",
+        "a2.phrasal-verbs.daily-routine-cloze-2",
+        "a2.phrasal-verbs.daily-routine-cloze-3",
+        "a2.phrasal-verbs.daily-routine-cloze-4",
+        "a2.phrasal-verbs.daily-routine-vocab-1",
+        "a2.phrasal-verbs.daily-routine-order-1",
+        "a2.phrasal-verbs.daily-routine-choice-1",
+        "a2.phrasal-verbs.daily-routine-write-1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1027 @@
+{
+  "items": [
+    {
+      "id": "b1.grammar.look-forward-to",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "look forward to + -ing",
+      "es": "tener ganas de + infinitivo"
+    },
+    {
+      "id": "b1.grammar.make-someone-do",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "make someone do something",
+      "es": "obligar a alguien a hacer algo"
+    },
+    {
+      "id": "b1.grammar.let-someone-do",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "let someone do something",
+      "es": "dejar que alguien haga algo"
+    },
+    {
+      "id": "b1.grammar.have-someone-do",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "have someone do something",
+      "es": "encargarle a alguien que haga algo"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.grammar.look-forward-to-cloze-1",
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm looking forward to ___ you.",
+      "answers": ["seeing"],
+      "distractors": ["see", "saw"],
+      "es": "Tengo muchas ganas de verte."
+    },
+    {
+      "id": "b1.grammar.look-forward-to-cloze-2",
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I look forward to ___ from you.",
+      "answers": ["hearing"],
+      "distractors": ["hear", "heard"],
+      "es": "Quedo a la espera de su respuesta."
+    },
+    {
+      "id": "b1.grammar.look-forward-to-cloze-3",
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We're looking forward ___ the concert.",
+      "answers": ["to"],
+      "distractors": ["for", "at"],
+      "es": "Tenemos muchas ganas de ir al concierto."
+    },
+    {
+      "id": "b1.grammar.look-forward-to-vocab-1",
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'look forward to'.",
+      "options": ["buscar", "mirar hacia adelante", "tener ganas de", "hacer fila"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.look-forward-to-choice-1",
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She's looking forward to starting her new job.",
+      "options": [
+        "Está buscando un trabajo nuevo.",
+        "Tiene muchas ganas de empezar su nuevo trabajo.",
+        "Empezó su nuevo trabajo la semana pasada."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.look-forward-to-order-1",
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["kids", "to", "looking", "to", "forward", "beach.", "the", "are", "going", "The"],
+      "accepted": ["The kids are looking forward to going to the beach."],
+      "es": "Los niños tienen muchas ganas de ir a la playa."
+    },
+    {
+      "id": "b1.grammar.look-forward-to-write-1",
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo muchas ganas de conocer a tu familia.",
+      "accepted": [
+        "I'm [really ]looking forward to meeting your family.",
+        "I [really ]look forward to meeting your family.",
+        "I can't wait to meet your family."
+      ]
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple-cloze-1",
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ that movie last week.",
+      "answers": ["saw"],
+      "distractors": ["have seen", "have saw"],
+      "es": "Vi esa película la semana pasada."
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple-cloze-2",
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ you ever been to Mexico?",
+      "answers": ["Have"],
+      "distractors": ["Did", "Were"],
+      "es": "¿Alguna vez has estado en México?"
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple-cloze-3",
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "When ___ you arrive?",
+      "answers": ["did"],
+      "distractors": ["have", "has"],
+      "es": "¿Cuándo llegaste?"
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple-cloze-4",
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "They ___ married in 2015.",
+      "answers": ["got"],
+      "distractors": ["have gotten", "have got"],
+      "es": "Se casaron en 2015."
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple-choice-1",
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Have you ever tried Peruvian food?",
+      "options": [
+        "¿Probaste la comida peruana ayer?",
+        "¿Vas a probar la comida peruana?",
+        "¿Alguna vez has probado la comida peruana?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple-order-1",
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["ocean.", "I", "seen", "never", "have", "the"],
+      "accepted": ["I have never seen the ocean."],
+      "es": "Nunca he visto el mar."
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple-write-1",
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Fui a Chile el año pasado.",
+      "accepted": ["I went to Chile last year.", "Last year[,] I went to Chile."]
+    },
+    {
+      "id": "b1.grammar.first-conditional-cloze-1",
+      "itemIds": ["b1.environment.first-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If it ___ tomorrow, we will stay home.",
+      "answers": ["rains"],
+      "distractors": ["will rain", "rained"],
+      "es": "Si llueve mañana, nos quedaremos en casa."
+    },
+    {
+      "id": "b1.grammar.first-conditional-cloze-2",
+      "itemIds": ["b1.environment.first-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If you study, you ___ the test.",
+      "answers": ["will pass"],
+      "distractors": ["passed", "to pass"],
+      "es": "Si estudias, aprobarás el examen."
+    },
+    {
+      "id": "b1.grammar.first-conditional-cloze-3",
+      "itemIds": ["b1.environment.first-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I will call you if I ___ time.",
+      "answers": ["have"],
+      "distractors": ["will have", "had"],
+      "es": "Te llamaré si tengo tiempo."
+    },
+    {
+      "id": "b1.grammar.first-conditional-choice-1",
+      "itemIds": ["b1.environment.first-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If you don't hurry, you will miss the bus.",
+      "options": [
+        "Si no te apuras, perderás el autobús.",
+        "Si no te apuraras, perderías el autobús.",
+        "Como no te apuraste, perdiste el autobús."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.first-conditional-order-1",
+      "itemIds": ["b1.environment.first-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["I", "will", "If", "tell", "her.", "Ana,", "see", "I"],
+      "accepted": ["If I see Ana, I will tell her."],
+      "es": "Si veo a Ana, se lo diré."
+    },
+    {
+      "id": "b1.grammar.first-conditional-write-1",
+      "itemIds": ["b1.environment.first-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si llueve, nos quedaremos en casa.",
+      "accepted": [
+        "If it rains, we {will|are going to} stay {home|at home}.",
+        "We {will|are going to} stay {home|at home} if it rains."
+      ]
+    },
+    {
+      "id": "b1.grammar.first-conditional-vocab-1",
+      "itemIds": ["b1.environment.first-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'si llueve mañana'.",
+      "options": [
+        "if it will rain tomorrow",
+        "if it rain tomorrow",
+        "if it rains tomorrow",
+        "if it would rain tomorrow"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.second-conditional-cloze-1",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If I ___ more money, I would buy a new car.",
+      "answers": ["had"],
+      "distractors": ["have", "would have"],
+      "es": "Si tuviera más dinero, me compraría un auto nuevo."
+    },
+    {
+      "id": "b1.grammar.second-conditional-cloze-2",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If I were you, I ___ call her.",
+      "answers": ["would"],
+      "distractors": ["will", "am"],
+      "es": "Si yo fuera tú, la llamaría."
+    },
+    {
+      "id": "b1.grammar.second-conditional-cloze-3",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "What would you do if you ___ your job?",
+      "answers": ["lost"],
+      "distractors": ["lose", "will lose"],
+      "es": "¿Qué harías si perdieras tu trabajo?"
+    },
+    {
+      "id": "b1.grammar.second-conditional-choice-1",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If we lived near the beach, we would swim every day.",
+      "options": [
+        "Vivimos cerca de la playa y nadamos todos los días.",
+        "Si vivimos cerca de la playa, nadaremos todos los días.",
+        "Si viviéramos cerca de la playa, nadaríamos todos los días."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.second-conditional-order-1",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["happier", "if", "less.", "be", "would", "She", "worked", "she"],
+      "accepted": ["She would be happier if she worked less."],
+      "es": "Sería más feliz si trabajara menos."
+    },
+    {
+      "id": "b1.grammar.second-conditional-write-1",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si tuviera tiempo, te ayudaría.",
+      "accepted": [
+        "If I had {time|the time}, I would help you.",
+        "I would help you if I had {time|the time}."
+      ]
+    },
+    {
+      "id": "b1.grammar.second-conditional-vocab-1",
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'si yo fuera tú'.",
+      "options": ["if I were you", "if I am you", "if I would be you", "if I will be you"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-cloze-1",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I really enjoy ___ for my friends.",
+      "answers": ["cooking"],
+      "distractors": ["to cook", "cook"],
+      "es": "Disfruto mucho cocinar para mis amigos."
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-cloze-2",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We want ___ Peru next year.",
+      "answers": ["to visit"],
+      "distractors": ["visiting", "visit"],
+      "es": "Queremos visitar Perú el próximo año."
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-cloze-3",
+      "itemIds": ["b1.health-and-lifestyle.stop-doing"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He stopped ___ two years ago, and now he feels great.",
+      "answers": ["smoking"],
+      "distractors": ["to smoke", "smoke"],
+      "es": "Dejó de fumar hace dos años y ahora se siente muy bien."
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-cloze-4",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Remember ___ the door when you leave.",
+      "answers": ["to lock"],
+      "distractors": ["locking", "lock"],
+      "es": "Acuérdate de cerrar la puerta con llave cuando salgas."
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-choice-1",
+      "itemIds": ["b1.health-and-lifestyle.stop-doing"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We stopped to buy some water.",
+      "options": [
+        "Dejamos de comprar agua.",
+        "Paramos para comprar agua.",
+        "Dejamos de tomar agua."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-order-1",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["you", "Have", "reading", "finished", "book?", "the"],
+      "accepted": ["Have you finished reading the book?"],
+      "es": "¿Terminaste de leer el libro?"
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-write-1",
+      "itemIds": ["b1.health-and-lifestyle.gerund-infinitive"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Decidí aprender inglés.",
+      "accepted": ["I decided to learn English.", "I have decided to learn English."]
+    },
+    {
+      "id": "b1.grammar.make-let-have-cloze-1",
+      "itemIds": ["b1.grammar.make-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My boss made me ___ late yesterday.",
+      "answers": ["work"],
+      "distractors": ["to work", "working"],
+      "es": "Mi jefe me hizo trabajar hasta tarde ayer."
+    },
+    {
+      "id": "b1.grammar.make-let-have-cloze-2",
+      "itemIds": ["b1.grammar.let-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My parents don't ___ me stay out after midnight.",
+      "answers": ["let"],
+      "distractors": ["allow", "permit"],
+      "es": "Mis papás no me dejan quedarme afuera después de la medianoche."
+    },
+    {
+      "id": "b1.grammar.make-let-have-cloze-3",
+      "itemIds": ["b1.grammar.have-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ the mechanic check the brakes.",
+      "answers": ["had"],
+      "distractors": ["got", "asked"],
+      "es": "Le pedí al mecánico que revisara los frenos."
+    },
+    {
+      "id": "b1.grammar.make-let-have-choice-1",
+      "itemIds": ["b1.grammar.make-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "That movie made me cry.",
+      "options": [
+        "Lloré antes de la película.",
+        "Esa película no me dejó dormir.",
+        "Esa película me hizo llorar."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.make-let-have-order-1",
+      "itemIds": ["b1.grammar.let-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["with", "Let", "me", "help", "you", "bag.", "that"],
+      "accepted": ["Let me help you with that bag."],
+      "es": "Déjame ayudarte con esa bolsa."
+    },
+    {
+      "id": "b1.grammar.make-let-have-write-1",
+      "itemIds": ["b1.grammar.make-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi mamá me hizo limpiar mi cuarto.",
+      "accepted": ["My {mom|mother} made me clean my {room|bedroom}."]
+    },
+    {
+      "id": "b1.grammar.make-let-have-vocab-1",
+      "itemIds": ["b1.grammar.let-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'mis papás me dejan salir'.",
+      "options": [
+        "my parents let me to go out",
+        "my parents make me go out",
+        "my parents allow me go out",
+        "my parents let me go out"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.make-let-have-write-2",
+      "itemIds": ["b1.grammar.have-someone-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Le pedí a mi hermano que me cortara el pelo.",
+      "accepted": ["I had my brother cut my hair.", "I asked my brother to cut my hair."]
+    }
+  ],
+  "cards": [
+    {
+      "id": "b1.grammar.look-forward-to",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Look forward to + -ing",
+      "summary": "Significa «tener muchas ganas de» algo. Aquí to es una preposición, así que después va un sustantivo o un verbo con -ing.",
+      "form": "look forward to + sustantivo / verbo-ing",
+      "uses": [
+        "Expresar ilusión por algo futuro: I'm looking forward to the trip.",
+        "Cerrar correos formales: I look forward to hearing from you.",
+        "Con un verbo, siempre en -ing: looking forward to seeing you."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I look forward to see you.",
+          "right": "I look forward to seeing you.",
+          "why": "Aquí to es preposición, no parte del infinitivo: después va -ing."
+        },
+        {
+          "wrong": "I'm looking forward for the weekend.",
+          "right": "I'm looking forward to the weekend.",
+          "why": "La preposición es siempre to, nunca for."
+        },
+        {
+          "wrong": "I look forward to hear from you.",
+          "right": "I look forward to hearing from you.",
+          "why": "En los correos formales es hearing, con -ing."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I'm looking forward to the weekend.",
+          "es": "Tengo muchas ganas de que llegue el fin de semana."
+        },
+        {
+          "en": "We're looking forward to seeing you.",
+          "es": "Tenemos muchas ganas de verte."
+        },
+        {
+          "en": "I look forward to hearing from you.",
+          "es": "Quedo a la espera de su respuesta."
+        },
+        {
+          "en": "She's looking forward to starting her new job.",
+          "es": "Tiene muchas ganas de empezar su nuevo trabajo."
+        },
+        {
+          "en": "Are you looking forward to the trip?",
+          "es": "¿Tienes ganas de hacer el viaje?"
+        },
+        {
+          "en": "The kids are looking forward to going to the beach.",
+          "es": "Los niños tienen muchas ganas de ir a la playa."
+        }
+      ],
+      "itemIds": ["b1.grammar.look-forward-to"],
+      "exerciseIds": [
+        "b1.grammar.look-forward-to-cloze-1",
+        "b1.grammar.look-forward-to-cloze-2",
+        "b1.grammar.look-forward-to-cloze-3",
+        "b1.grammar.look-forward-to-vocab-1",
+        "b1.grammar.look-forward-to-choice-1",
+        "b1.grammar.look-forward-to-order-1",
+        "b1.grammar.look-forward-to-write-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.present-perfect-past-simple",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Presente perfecto o pasado simple",
+      "summary": "El pasado simple habla de un momento terminado y concreto (yesterday, in 2019). El presente perfecto une el pasado con el presente: experiencias y cosas sin fecha.",
+      "form": "have/has + participio (sin fecha) · verbo en pasado + momento concreto",
+      "uses": [
+        "Experiencias sin fecha: Have you ever been to Peru?",
+        "Algo reciente que importa ahora: I have lost my keys.",
+        "Con yesterday, last week, in 2010 o ago: pasado simple.",
+        "Las preguntas con when van en pasado simple: When did you arrive?"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I have seen that movie yesterday.",
+          "right": "I saw that movie yesterday.",
+          "why": "Con un momento concreto (yesterday) se usa el pasado simple."
+        },
+        {
+          "wrong": "When have you arrived?",
+          "right": "When did you arrive?",
+          "why": "Las preguntas con when piden un momento concreto: pasado simple."
+        },
+        {
+          "wrong": "I have visited Rome two years ago.",
+          "right": "I visited Rome two years ago.",
+          "why": "Con ago siempre va el pasado simple."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I have been to Peru twice.",
+          "es": "He estado en Perú dos veces."
+        },
+        {
+          "en": "I went to Peru in 2019.",
+          "es": "Fui a Perú en 2019."
+        },
+        {
+          "en": "Have you ever tried sushi?",
+          "es": "¿Alguna vez has probado el sushi?"
+        },
+        {
+          "en": "She has lost her keys, so she can't get in.",
+          "es": "Perdió las llaves, así que no puede entrar."
+        },
+        {
+          "en": "When did you arrive?",
+          "es": "¿Cuándo llegaste?"
+        },
+        {
+          "en": "We saw that movie last week.",
+          "es": "Vimos esa película la semana pasada."
+        }
+      ],
+      "itemIds": ["b1.travel.present-perfect-past-simple"],
+      "exerciseIds": [
+        "b1.grammar.present-perfect-past-simple-cloze-1",
+        "b1.grammar.present-perfect-past-simple-cloze-2",
+        "b1.grammar.present-perfect-past-simple-cloze-3",
+        "b1.grammar.present-perfect-past-simple-cloze-4",
+        "b1.grammar.present-perfect-past-simple-choice-1",
+        "b1.grammar.present-perfect-past-simple-order-1",
+        "b1.grammar.present-perfect-past-simple-write-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.first-conditional",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Primer condicional",
+      "summary": "Habla de una situación real o probable en el futuro y de su resultado: if + presente, will + verbo.",
+      "form": "if + presente simple, will + verbo base",
+      "uses": [
+        "Consecuencias probables de algo que puede pasar.",
+        "Advertencias y promesas: If you touch it, you will get hurt.",
+        "La parte con if puede ir al principio (con coma) o al final (sin coma)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "If it will rain tomorrow, we will stay home.",
+          "right": "If it rains tomorrow, we will stay home.",
+          "why": "Después de if va el presente, aunque hable del futuro (como en español: si llueve)."
+        },
+        {
+          "wrong": "If I see him, I tell him.",
+          "right": "If I see him, I will tell him.",
+          "why": "Para el resultado en el futuro se usa will: I will tell him (se lo diré)."
+        },
+        {
+          "wrong": "If you don't hurry, you will to miss the bus.",
+          "right": "If you don't hurry, you will miss the bus.",
+          "why": "Después de will va el verbo sin to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "If it rains, we will stay home.",
+          "es": "Si llueve, nos quedaremos en casa."
+        },
+        {
+          "en": "If you study, you will pass the test.",
+          "es": "Si estudias, aprobarás el examen."
+        },
+        {
+          "en": "I will call you if I have time.",
+          "es": "Te llamaré si tengo tiempo."
+        },
+        {
+          "en": "If she doesn't hurry, she will miss the bus.",
+          "es": "Si no se apura, perderá el autobús."
+        },
+        {
+          "en": "What will you do if they say no?",
+          "es": "¿Qué harás si te dicen que no?"
+        }
+      ],
+      "itemIds": ["b1.environment.first-conditional"],
+      "exerciseIds": [
+        "b1.grammar.first-conditional-cloze-1",
+        "b1.grammar.first-conditional-cloze-2",
+        "b1.grammar.first-conditional-cloze-3",
+        "b1.grammar.first-conditional-choice-1",
+        "b1.grammar.first-conditional-order-1",
+        "b1.grammar.first-conditional-write-1",
+        "b1.grammar.first-conditional-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.second-conditional",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Segundo condicional",
+      "summary": "Habla de situaciones imaginarias o poco probables en el presente o el futuro: if + pasado, would + verbo.",
+      "form": "if + pasado simple, would + verbo base",
+      "uses": [
+        "Situaciones imaginarias: If I had more time, I would travel.",
+        "Dar consejos: If I were you, I would call her.",
+        "Con be, were sirve para todas las personas (if I were…); was también es común."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "If I would have money, I would buy a car.",
+          "right": "If I had money, I would buy a car.",
+          "why": "Después de if no va would: se usa el pasado (had)."
+        },
+        {
+          "wrong": "If I am you, I would call her.",
+          "right": "If I were you, I would call her.",
+          "why": "Para imaginar, después de if va el pasado: were (o was)."
+        },
+        {
+          "wrong": "If I won the lottery, I will travel.",
+          "right": "If I won the lottery, I would travel.",
+          "why": "Con if + pasado, el resultado lleva would, no will."
+        }
+      ],
+      "examples": [
+        {
+          "en": "If I had more time, I would learn to play the guitar.",
+          "es": "Si tuviera más tiempo, aprendería a tocar la guitarra."
+        },
+        {
+          "en": "If I were you, I would call her.",
+          "es": "Si yo fuera tú, la llamaría."
+        },
+        {
+          "en": "What would you do if you lost your job?",
+          "es": "¿Qué harías si perdieras tu trabajo?"
+        },
+        {
+          "en": "If we lived near the beach, we would swim every day.",
+          "es": "Si viviéramos cerca de la playa, nadaríamos todos los días."
+        },
+        {
+          "en": "She would be happier if she worked less.",
+          "es": "Sería más feliz si trabajara menos."
+        }
+      ],
+      "itemIds": ["b1.money-and-shopping.second-conditional"],
+      "exerciseIds": [
+        "b1.grammar.second-conditional-cloze-1",
+        "b1.grammar.second-conditional-cloze-2",
+        "b1.grammar.second-conditional-cloze-3",
+        "b1.grammar.second-conditional-choice-1",
+        "b1.grammar.second-conditional-order-1",
+        "b1.grammar.second-conditional-write-1",
+        "b1.grammar.second-conditional-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Verbo + -ing o verbo + to",
+      "summary": "Algunos verbos van seguidos de -ing (enjoy, finish) y otros de to + verbo (want, decide). Con stop y remember, el significado cambia.",
+      "form": "enjoy / finish + -ing · want / decide + to + verbo · stop y remember: los dos, con otro significado",
+      "uses": [
+        "Enjoy, finish, mind + -ing: I enjoy cooking.",
+        "Want, need, decide, hope + to: I want to rest.",
+        "Stop + -ing = dejar de; stop + to = detenerse para.",
+        "Remember + -ing = recordar algo pasado; remember + to = acordarse de hacer algo."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I enjoy to cook.",
+          "right": "I enjoy cooking.",
+          "why": "Enjoy siempre va con -ing."
+        },
+        {
+          "wrong": "I want going home.",
+          "right": "I want to go home.",
+          "why": "Want va con to + verbo."
+        },
+        {
+          "wrong": "He stopped to smoke last year.",
+          "right": "He stopped smoking last year.",
+          "why": "Dejar de hacer algo es stop + -ing; stop to smoke significa detenerse para fumar."
+        },
+        {
+          "wrong": "Remember locking the door when you leave.",
+          "right": "Remember to lock the door when you leave.",
+          "why": "Para acordarse de hacer algo después se usa remember + to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I enjoy cooking for my friends.",
+          "es": "Disfruto cocinar para mis amigos."
+        },
+        {
+          "en": "We want to visit Peru next year.",
+          "es": "Queremos visitar Perú el próximo año."
+        },
+        {
+          "en": "He stopped smoking two years ago.",
+          "es": "Dejó de fumar hace dos años."
+        },
+        {
+          "en": "We stopped to buy some water.",
+          "es": "Paramos para comprar agua."
+        },
+        {
+          "en": "Remember to call your mom.",
+          "es": "Acuérdate de llamar a tu mamá."
+        },
+        {
+          "en": "I remember meeting her at a party.",
+          "es": "Recuerdo cuando la conocí en una fiesta."
+        }
+      ],
+      "itemIds": [
+        "b1.health-and-lifestyle.gerund-infinitive",
+        "b1.health-and-lifestyle.stop-doing"
+      ],
+      "exerciseIds": [
+        "b1.grammar.gerund-infinitive-cloze-1",
+        "b1.grammar.gerund-infinitive-cloze-2",
+        "b1.grammar.gerund-infinitive-cloze-3",
+        "b1.grammar.gerund-infinitive-cloze-4",
+        "b1.grammar.gerund-infinitive-choice-1",
+        "b1.grammar.gerund-infinitive-order-1",
+        "b1.grammar.gerund-infinitive-write-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.make-let-have",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Make, let y have + persona + verbo",
+      "summary": "Las tres van con una persona y un verbo sin to. Make es obligar, let es dejar o permitir, y have es encargarle a alguien que haga algo.",
+      "form": "make / let / have + persona + verbo base (sin to)",
+      "uses": [
+        "Make: obligar o provocar (My boss made me work late. The movie made me cry.).",
+        "Let: permitir (My parents let me go to the party.).",
+        "Have: encargar un trabajo a alguien (I had the mechanic check the brakes.)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "My mom made me to clean my room.",
+          "right": "My mom made me clean my room.",
+          "why": "Después de make + persona, el verbo va sin to."
+        },
+        {
+          "wrong": "They don't let us to use our phones.",
+          "right": "They don't let us use our phones.",
+          "why": "Let + persona + verbo, sin to."
+        },
+        {
+          "wrong": "My parents allowed me go out.",
+          "right": "My parents let me go out.",
+          "why": "Allow sí lleva to (allow me to go out); let no."
+        },
+        {
+          "wrong": "I had the mechanic to check the brakes.",
+          "right": "I had the mechanic check the brakes.",
+          "why": "Con have + persona, el verbo también va sin to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "My boss made me work late.",
+          "es": "Mi jefe me hizo trabajar hasta tarde."
+        },
+        {
+          "en": "That movie made me cry.",
+          "es": "Esa película me hizo llorar."
+        },
+        {
+          "en": "My parents let me go to the party.",
+          "es": "Mis papás me dejaron ir a la fiesta."
+        },
+        {
+          "en": "Let me help you with that bag.",
+          "es": "Déjame ayudarte con esa bolsa."
+        },
+        {
+          "en": "I had the mechanic check the brakes.",
+          "es": "Le pedí al mecánico que revisara los frenos."
+        },
+        {
+          "en": "She had her assistant send the emails.",
+          "es": "Le encargó a su asistente que enviara los correos."
+        }
+      ],
+      "itemIds": [
+        "b1.grammar.make-someone-do",
+        "b1.grammar.let-someone-do",
+        "b1.grammar.have-someone-do"
+      ],
+      "exerciseIds": [
+        "b1.grammar.make-let-have-cloze-1",
+        "b1.grammar.make-let-have-cloze-2",
+        "b1.grammar.make-let-have-cloze-3",
+        "b1.grammar.make-let-have-choice-1",
+        "b1.grammar.make-let-have-order-1",
+        "b1.grammar.make-let-have-write-1",
+        "b1.grammar.make-let-have-vocab-1",
+        "b1.grammar.make-let-have-write-2"
+      ]
+    }
+  ]
+}

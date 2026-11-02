@@ -1,0 +1,1088 @@
+{
+  "items": [
+    {
+      "id": "b1.vocabulary.commuter",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "commuter",
+      "es": "persona que viaja todos los días al trabajo o a la escuela"
+    },
+    {
+      "id": "b1.vocabulary.rush-hour",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "rush hour",
+      "es": "hora pico"
+    },
+    {
+      "id": "b1.vocabulary.actually",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "actually",
+      "es": "en realidad, de hecho (no «actualmente»)"
+    },
+    {
+      "id": "b1.vocabulary.embarrassed",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "embarrassed",
+      "es": "avergonzado (no «embarazada»)"
+    },
+    {
+      "id": "b1.vocabulary.attend",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "attend",
+      "es": "asistir a (una clase, una reunión)"
+    },
+    {
+      "id": "b1.vocabulary.assist",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "assist",
+      "es": "ayudar (no «asistir a»)"
+    },
+    {
+      "id": "b1.vocabulary.remember",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "remember",
+      "es": "acordarse de, recordar"
+    },
+    {
+      "id": "b1.vocabulary.remind",
+      "level": "B1",
+      "topics": ["vocabulary"],
+      "kind": "word",
+      "term": "remind",
+      "es": "recordarle algo a alguien"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.vocabulary.commute-cloze-1",
+      "itemIds": ["b1.city-life.commute"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My ___ to work takes about an hour.",
+      "answers": ["commute"],
+      "distractors": ["travel", "driver"],
+      "es": "Mi trayecto al trabajo dura más o menos una hora."
+    },
+    {
+      "id": "b1.vocabulary.commute-cloze-2",
+      "itemIds": ["b1.vocabulary.commuter"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The train is full of ___ every morning.",
+      "answers": ["commuters"],
+      "distractors": ["commutes", "commuting"],
+      "es": "El tren va lleno de gente que viaja al trabajo todas las mañanas."
+    },
+    {
+      "id": "b1.vocabulary.commute-cloze-3",
+      "itemIds": ["b1.vocabulary.rush-hour"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There's always a lot of traffic at rush ___.",
+      "answers": ["hour"],
+      "distractors": ["time", "moment"],
+      "es": "Siempre hay mucho tráfico en la hora pico."
+    },
+    {
+      "id": "b1.vocabulary.commute-vocab-1",
+      "itemIds": ["b1.vocabulary.commuter"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'commuter'.",
+      "options": [
+        "turista",
+        "persona que viaja a diario al trabajo o a la escuela",
+        "conductor de autobús",
+        "computadora"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.vocabulary.commute-choice-1",
+      "itemIds": ["b1.city-life.commute"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I commute to work by bike.",
+      "options": [
+        "Trabajo en una tienda de bicicletas.",
+        "Cambié mi bicicleta por otra.",
+        "Voy al trabajo en bicicleta todos los días."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.vocabulary.commute-order-1",
+      "itemIds": ["b1.city-life.commute"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["to", "city", "the", "train.", "She", "commutes", "by"],
+      "accepted": ["She commutes to the city by train."],
+      "es": "Viaja todos los días a la ciudad en tren."
+    },
+    {
+      "id": "b1.vocabulary.commute-write-1",
+      "itemIds": ["b1.vocabulary.rush-hour"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Trato de no manejar en la hora pico.",
+      "accepted": ["I try {not to drive|to avoid driving} {at|during} rush hour."]
+    },
+    {
+      "id": "b1.vocabulary.actually-cloze-1",
+      "itemIds": ["b1.vocabulary.actually"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I thought the movie was boring, but it was ___ really good.",
+      "answers": ["actually"],
+      "distractors": ["currently", "nowadays"],
+      "es": "Pensé que la película era aburrida, pero en realidad era muy buena."
+    },
+    {
+      "id": "b1.vocabulary.actually-cloze-2",
+      "itemIds": ["b1.vocabulary.actually"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___, I'm not from Mexico. I'm from Colombia.",
+      "answers": ["Actually"],
+      "distractors": ["Currently", "Nowadays"],
+      "es": "En realidad, no soy de México. Soy de Colombia."
+    },
+    {
+      "id": "b1.vocabulary.actually-vocab-1",
+      "itemIds": ["b1.vocabulary.actually"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'actually'.",
+      "options": ["actualmente", "de vez en cuando", "al final", "en realidad, de hecho"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.vocabulary.actually-vocab-2",
+      "itemIds": ["b1.vocabulary.actually"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'actualmente'.",
+      "options": ["currently", "actually", "actual", "in fact"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.vocabulary.actually-choice-1",
+      "itemIds": ["b1.vocabulary.actually"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Did she actually say that?",
+      "options": [
+        "¿Ella dice eso actualmente?",
+        "¿Ella dijo eso hace poco?",
+        "¿De verdad dijo eso?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.vocabulary.actually-order-1",
+      "itemIds": ["b1.vocabulary.actually"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["was", "pretty", "easy.", "test", "Actually,", "the"],
+      "accepted": ["Actually, the test was pretty easy."],
+      "es": "En realidad, el examen fue bastante fácil."
+    },
+    {
+      "id": "b1.vocabulary.actually-write-1",
+      "itemIds": ["b1.vocabulary.actually"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Actualmente vivo con mis padres.",
+      "accepted": [
+        "I {currently|now} live with my parents.",
+        "I'm {currently|now} living with my parents.",
+        "{Currently|These days|Right now}[,] I {live|am living} with my parents.",
+        "I live with my parents {now|these days|right now}."
+      ]
+    },
+    {
+      "id": "b1.vocabulary.embarrassed-cloze-1",
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I was so ___ when I called my teacher 'Mom'.",
+      "answers": ["embarrassed"],
+      "distractors": ["embarrassing", "pregnant"],
+      "es": "Me dio mucha vergüenza cuando le dije «mamá» a mi maestra."
+    },
+    {
+      "id": "b1.vocabulary.embarrassed-cloze-2",
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Falling in front of everyone was really ___.",
+      "answers": ["embarrassing"],
+      "distractors": ["embarrassed", "pregnant"],
+      "es": "Caerme delante de todos fue muy vergonzoso."
+    },
+    {
+      "id": "b1.vocabulary.embarrassed-cloze-3",
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My sister is ___. The baby is coming in June.",
+      "answers": ["pregnant"],
+      "distractors": ["embarrassed", "embarrassing"],
+      "es": "Mi hermana está embarazada. El bebé nace en junio."
+    },
+    {
+      "id": "b1.vocabulary.embarrassed-vocab-1",
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'embarrassed'.",
+      "options": ["embarazada", "enojado", "avergonzado", "aburrido"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.vocabulary.embarrassed-choice-1",
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Don't be embarrassed. Everyone makes mistakes.",
+      "options": [
+        "No te enojes. Todos cometemos errores.",
+        "No te avergüences. Todos cometemos errores.",
+        "No estés triste. Nadie es perfecto."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.vocabulary.embarrassed-order-1",
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["embarrassed", "He", "his", "felt", "about", "English."],
+      "accepted": ["He felt embarrassed about his English."],
+      "es": "Le daba vergüenza su inglés."
+    },
+    {
+      "id": "b1.vocabulary.embarrassed-write-1",
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me dio mucha vergüenza.",
+      "accepted": [
+        "I was {so|really|very} embarrassed.",
+        "I felt {so|really|very} embarrassed.",
+        "It was {so|really|very} embarrassing."
+      ]
+    },
+    {
+      "id": "b1.vocabulary.attend-assist-cloze-1",
+      "itemIds": ["b1.vocabulary.attend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Did you ___ the meeting this morning?",
+      "answers": ["attend"],
+      "distractors": ["assist", "assist to"],
+      "es": "¿Fuiste a la reunión de esta mañana?"
+    },
+    {
+      "id": "b1.vocabulary.attend-assist-cloze-2",
+      "itemIds": ["b1.vocabulary.attend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "More than a hundred people ___ the wedding.",
+      "answers": ["attended"],
+      "distractors": ["assisted", "attended to"],
+      "es": "Más de cien personas asistieron a la boda."
+    },
+    {
+      "id": "b1.vocabulary.attend-assist-cloze-3",
+      "itemIds": ["b1.vocabulary.assist"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The nurse ___ the doctor during the operation.",
+      "answers": ["assisted"],
+      "distractors": ["assisted to", "attending"],
+      "es": "La enfermera ayudó al doctor durante la operación."
+    },
+    {
+      "id": "b1.vocabulary.attend-assist-vocab-1",
+      "itemIds": ["b1.vocabulary.attend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'asistir a una clase'.",
+      "options": ["attend a class", "assist a class", "assist to a class", "attend to a class"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.vocabulary.attend-assist-choice-1",
+      "itemIds": ["b1.vocabulary.assist"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Our staff will be happy to assist you.",
+      "options": [
+        "Nuestro personal lo ayudará con gusto.",
+        "Nuestro personal asistirá con gusto a la reunión.",
+        "Nuestro personal está muy contento."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.vocabulary.attend-assist-order-1",
+      "itemIds": ["b1.vocabulary.attend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["night.", "English", "She", "classes", "attends", "at"],
+      "accepted": ["She attends English classes at night."],
+      "es": "Va a clases de inglés por la noche."
+    },
+    {
+      "id": "b1.vocabulary.attend-assist-write-1",
+      "itemIds": ["b1.vocabulary.attend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No pude asistir a la clase de ayer.",
+      "accepted": [
+        "I couldn't {attend|go to} {yesterday's class|the class yesterday}.",
+        "I wasn't able to {attend|go to} {yesterday's class|the class yesterday}."
+      ]
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-cloze-1",
+      "itemIds": ["b1.money-and-shopping.borrow"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Can I ___ your pencil? I forgot mine.",
+      "answers": ["borrow"],
+      "distractors": ["lend", "lent"],
+      "es": "¿Me prestas tu lápiz? Olvidé el mío."
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-cloze-2",
+      "itemIds": ["b1.money-and-shopping.lend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Could you ___ me ten dollars until Friday?",
+      "answers": ["lend"],
+      "distractors": ["borrow", "borrowed"],
+      "es": "¿Me podrías prestar diez dólares hasta el viernes?"
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-cloze-3",
+      "itemIds": ["b1.money-and-shopping.lend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ me her car last weekend.",
+      "answers": ["lent"],
+      "distractors": ["borrowed", "lends"],
+      "es": "Me prestó su auto el fin de semana pasado."
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-cloze-4",
+      "itemIds": ["b1.money-and-shopping.borrow"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ this book from the library.",
+      "answers": ["borrowed"],
+      "distractors": ["lent", "borrows"],
+      "es": "Saqué este libro de la biblioteca."
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-vocab-1",
+      "itemIds": ["b1.money-and-shopping.borrow"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'pedir prestado'.",
+      "options": ["lend", "rent", "borrow", "owe"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-choice-1",
+      "itemIds": ["b1.money-and-shopping.lend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My brother lent me his bike.",
+      "options": [
+        "Mi hermano me pidió prestada la bicicleta.",
+        "Mi hermano me vendió su bicicleta.",
+        "Mi hermano me prestó su bicicleta."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-order-1",
+      "itemIds": ["b1.money-and-shopping.borrow"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["borrows.", "things", "He", "the", "he", "never", "returns"],
+      "accepted": ["He never returns the things he borrows."],
+      "es": "Nunca devuelve las cosas que pide prestadas."
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend-write-1",
+      "itemIds": ["b1.money-and-shopping.borrow", "b1.money-and-shopping.lend"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Me prestas tu teléfono?",
+      "accepted": [
+        "{Can|Could|May} I borrow your {phone|cell phone}?",
+        "{Can|Could|Would} you lend me your {phone|cell phone}?"
+      ]
+    },
+    {
+      "id": "b1.vocabulary.remember-remind-cloze-1",
+      "itemIds": ["b1.vocabulary.remind"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Can you ___ me to call the dentist tomorrow?",
+      "answers": ["remind"],
+      "distractors": ["remember", "remembers"],
+      "es": "¿Me recuerdas que llame al dentista mañana?"
+    },
+    {
+      "id": "b1.vocabulary.remember-remind-cloze-2",
+      "itemIds": ["b1.vocabulary.remember"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm sorry, I don't ___ your name.",
+      "answers": ["remember"],
+      "distractors": ["remind", "reminds"],
+      "es": "Perdón, no me acuerdo de tu nombre."
+    },
+    {
+      "id": "b1.vocabulary.remember-remind-cloze-3",
+      "itemIds": ["b1.vocabulary.remind"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This song ___ me of my first trip to the beach.",
+      "answers": ["reminds"],
+      "distractors": ["remembers", "remember"],
+      "es": "Esta canción me recuerda a mi primer viaje a la playa."
+    },
+    {
+      "id": "b1.vocabulary.remember-remind-vocab-1",
+      "itemIds": ["b1.vocabulary.remind"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'recordarle algo a alguien'.",
+      "options": ["remind someone", "remember someone", "record someone", "recall someone"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.vocabulary.remember-remind-choice-1",
+      "itemIds": ["b1.vocabulary.remind"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You remind me of my sister.",
+      "options": [
+        "Te acuerdas de mi hermana.",
+        "Me recuerdas a mi hermana.",
+        "Recuérdale a mi hermana."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.vocabulary.remember-remind-order-1",
+      "itemIds": ["b1.vocabulary.remember"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["Did", "to", "the", "lock", "you", "remember", "door?"],
+      "accepted": ["Did you remember to lock the door?"],
+      "es": "¿Te acordaste de cerrar la puerta con llave?"
+    },
+    {
+      "id": "b1.vocabulary.remember-remind-write-1",
+      "itemIds": ["b1.vocabulary.remember"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No me acuerdo de su número.",
+      "accepted": [
+        "I don't remember {his|her|their|your} {number|phone number}.",
+        "I can't remember {his|her|their|your} {number|phone number}."
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "b1.vocabulary.commute",
+      "level": "B1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Commute: el trayecto al trabajo",
+      "summary": "Commute es el viaje diario de la casa al trabajo o a la escuela. Puede ser sustantivo (a long commute) o verbo (I commute by train).",
+      "form": "commute (verbo y sustantivo) · commuter (persona) · rush hour (hora pico)",
+      "uses": [
+        "Verbo: I commute to work by bus.",
+        "Sustantivo: My commute takes an hour.",
+        "Commuter: la persona que hace ese viaje todos los días.",
+        "Rush hour: las horas con más tráfico."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "My travel to work is very long.",
+          "right": "My commute to work is very long.",
+          "why": "El trayecto diario al trabajo es commute; travel es viajar en general."
+        },
+        {
+          "wrong": "There is a lot of traffic in the peak hour.",
+          "right": "There is a lot of traffic at rush hour.",
+          "why": "La hora pico se dice rush hour (con at)."
+        },
+        {
+          "wrong": "I commute in bus.",
+          "right": "I commute by bus.",
+          "why": "Con medios de transporte se usa by: by bus, by train, by car."
+        }
+      ],
+      "examples": [
+        {
+          "en": "My commute takes about forty minutes.",
+          "es": "Mi trayecto al trabajo dura unos cuarenta minutos."
+        },
+        {
+          "en": "She commutes to the city by train.",
+          "es": "Viaja todos los días a la ciudad en tren."
+        },
+        {
+          "en": "The train is full of commuters in the morning.",
+          "es": "Por la mañana, el tren va lleno de gente que va al trabajo."
+        },
+        {
+          "en": "I try to avoid driving at rush hour.",
+          "es": "Trato de no manejar en la hora pico."
+        },
+        {
+          "en": "Working from home means no commute.",
+          "es": "Trabajar desde casa significa no tener que viajar al trabajo."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "a long commute",
+          "es": "un trayecto largo"
+        },
+        {
+          "en": "commute to work",
+          "es": "ir y venir del trabajo"
+        },
+        {
+          "en": "commute by train",
+          "es": "viajar en tren al trabajo"
+        },
+        {
+          "en": "the morning rush hour",
+          "es": "la hora pico de la mañana"
+        }
+      ],
+      "itemIds": ["b1.city-life.commute", "b1.vocabulary.commuter", "b1.vocabulary.rush-hour"],
+      "exerciseIds": [
+        "b1.vocabulary.commute-cloze-1",
+        "b1.vocabulary.commute-cloze-2",
+        "b1.vocabulary.commute-cloze-3",
+        "b1.vocabulary.commute-vocab-1",
+        "b1.vocabulary.commute-choice-1",
+        "b1.vocabulary.commute-order-1",
+        "b1.vocabulary.commute-write-1"
+      ]
+    },
+    {
+      "id": "b1.vocabulary.actually",
+      "level": "B1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Actually (falso amigo)",
+      "summary": "Actually parece «actualmente», pero significa «en realidad» o «de hecho». Para decir «actualmente» se usa currently o these days.",
+      "form": "actually = en realidad, de hecho · currently / these days = actualmente",
+      "uses": [
+        "Corregir o aclarar: Actually, I'm from Chile, not Peru.",
+        "Agregar algo que sorprende: The test was actually easy.",
+        "Para «actualmente», usa currently, now o these days."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Actually, I'm living with my parents, but next year I'm moving out.",
+          "right": "Currently, I'm living with my parents, but next year I'm moving out.",
+          "why": "Si quieres decir «actualmente», usa currently o these days; actually significa «en realidad»."
+        },
+        {
+          "wrong": "The actual president is very young.",
+          "right": "The current president is very young.",
+          "why": "Actual en inglés significa «real, verdadero»; «actual» en español es current."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Actually, I'm from Chile, not Peru.",
+          "es": "En realidad, soy de Chile, no de Perú."
+        },
+        {
+          "en": "The test was actually pretty easy.",
+          "es": "De hecho, el examen fue bastante fácil."
+        },
+        {
+          "en": "I currently work in a hotel.",
+          "es": "Actualmente trabajo en un hotel."
+        },
+        {
+          "en": "These days, a lot of people work from home.",
+          "es": "Actualmente mucha gente trabaja desde casa."
+        },
+        {
+          "en": "Did he actually say that?",
+          "es": "¿De verdad dijo eso?"
+        },
+        {
+          "en": "The actual cost was much higher.",
+          "es": "El costo real fue mucho más alto."
+        }
+      ],
+      "falseFriend": {
+        "en": "actually",
+        "looksLike": "actualmente",
+        "actually": "en realidad, de hecho"
+      },
+      "itemIds": ["b1.vocabulary.actually"],
+      "exerciseIds": [
+        "b1.vocabulary.actually-cloze-1",
+        "b1.vocabulary.actually-cloze-2",
+        "b1.vocabulary.actually-vocab-1",
+        "b1.vocabulary.actually-vocab-2",
+        "b1.vocabulary.actually-choice-1",
+        "b1.vocabulary.actually-order-1",
+        "b1.vocabulary.actually-write-1"
+      ]
+    },
+    {
+      "id": "b1.vocabulary.embarrassed",
+      "level": "B1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Embarrassed (falso amigo)",
+      "summary": "Embarrassed parece «embarazada», pero significa «avergonzado». «Embarazada» en inglés es pregnant.",
+      "form": "be / feel embarrassed (avergonzado) · embarrassing (que da vergüenza) · pregnant (embarazada)",
+      "uses": [
+        "Sentir vergüenza: I was so embarrassed.",
+        "Embarrassing describe la situación: an embarrassing moment.",
+        "Para «embarazada», usa pregnant."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "My sister is embarrassed. The baby is coming in May.",
+          "right": "My sister is pregnant. The baby is coming in May.",
+          "why": "Embarazada es pregnant; embarrassed es avergonzado."
+        },
+        {
+          "wrong": "It was a very embarrassed moment.",
+          "right": "It was a very embarrassing moment.",
+          "why": "La situación que da vergüenza es embarrassing; la persona que siente vergüenza está embarrassed."
+        },
+        {
+          "wrong": "I had shame.",
+          "right": "I was embarrassed.",
+          "why": "«Me dio vergüenza» se dice I was embarrassed; I had shame no se usa."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I was so embarrassed when I fell in front of everyone.",
+          "es": "Me dio mucha vergüenza cuando me caí delante de todos."
+        },
+        {
+          "en": "Don't be embarrassed. Everyone makes mistakes.",
+          "es": "No te avergüences. Todos cometemos errores."
+        },
+        {
+          "en": "That was the most embarrassing day of my life.",
+          "es": "Ese fue el día más vergonzoso de mi vida."
+        },
+        {
+          "en": "She's pregnant with her first baby.",
+          "es": "Está embarazada de su primer bebé."
+        },
+        {
+          "en": "He felt embarrassed about his English.",
+          "es": "Le daba vergüenza su inglés."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "feel embarrassed",
+          "es": "sentir vergüenza"
+        },
+        {
+          "en": "an embarrassing moment",
+          "es": "un momento vergonzoso"
+        },
+        {
+          "en": "embarrassed about something",
+          "es": "avergonzado por algo"
+        }
+      ],
+      "falseFriend": {
+        "en": "embarrassed",
+        "looksLike": "embarazada",
+        "actually": "avergonzado, con vergüenza"
+      },
+      "itemIds": ["b1.vocabulary.embarrassed"],
+      "exerciseIds": [
+        "b1.vocabulary.embarrassed-cloze-1",
+        "b1.vocabulary.embarrassed-cloze-2",
+        "b1.vocabulary.embarrassed-cloze-3",
+        "b1.vocabulary.embarrassed-vocab-1",
+        "b1.vocabulary.embarrassed-choice-1",
+        "b1.vocabulary.embarrassed-order-1",
+        "b1.vocabulary.embarrassed-write-1"
+      ]
+    },
+    {
+      "id": "b1.vocabulary.attend-assist",
+      "level": "B1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Attend y assist (falsos amigos)",
+      "summary": "«Asistir a una clase» no es assist: es attend. Assist significa «ayudar» a alguien.",
+      "form": "attend + evento (sin to) · assist + persona (ayudar)",
+      "uses": [
+        "Attend: ir a una clase, una reunión, una boda o un curso.",
+        "Attend va sin preposición: attend the meeting.",
+        "Assist: ayudar, sobre todo en contextos formales (assist a customer).",
+        "En la conversación, para «ir a» se usa mucho go to."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I assisted the meeting yesterday.",
+          "right": "I attended the meeting yesterday.",
+          "why": "Ir a una reunión es attend; assist es ayudar."
+        },
+        {
+          "wrong": "I attended to the class.",
+          "right": "I attended the class.",
+          "why": "Attend (asistir a) va sin to."
+        },
+        {
+          "wrong": "Can I attend you?",
+          "right": "Can I help you?",
+          "why": "En una tienda, «¿Lo atiendo?» se dice Can I help you?"
+        }
+      ],
+      "examples": [
+        {
+          "en": "Did you attend the meeting this morning?",
+          "es": "¿Fuiste a la reunión de esta mañana?"
+        },
+        {
+          "en": "More than a hundred people attended the wedding.",
+          "es": "Más de cien personas asistieron a la boda."
+        },
+        {
+          "en": "She attends classes at night.",
+          "es": "Va a clases por la noche."
+        },
+        {
+          "en": "The nurse assisted the doctor during the operation.",
+          "es": "La enfermera ayudó al doctor durante la operación."
+        },
+        {
+          "en": "Our staff will be happy to assist you.",
+          "es": "Nuestro personal lo ayudará con gusto."
+        }
+      ],
+      "falseFriend": {
+        "en": "assist",
+        "looksLike": "asistir (ir a)",
+        "actually": "ayudar"
+      },
+      "itemIds": ["b1.vocabulary.attend", "b1.vocabulary.assist"],
+      "exerciseIds": [
+        "b1.vocabulary.attend-assist-cloze-1",
+        "b1.vocabulary.attend-assist-cloze-2",
+        "b1.vocabulary.attend-assist-cloze-3",
+        "b1.vocabulary.attend-assist-vocab-1",
+        "b1.vocabulary.attend-assist-choice-1",
+        "b1.vocabulary.attend-assist-order-1",
+        "b1.vocabulary.attend-assist-write-1"
+      ]
+    },
+    {
+      "id": "b1.vocabulary.borrow-lend",
+      "level": "B1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Borrow o lend",
+      "summary": "Borrow es «pedir prestado» (tú recibes) y lend es «prestar» (tú das). En español usamos «prestar» para las dos cosas.",
+      "form": "borrow + algo (+ from + persona) · lend + persona + algo (lend, lent, lent)",
+      "uses": [
+        "Borrow: tú recibes algo (Can I borrow your pencil?).",
+        "Lend: tú das algo (Can you lend me your pencil?).",
+        "El pasado de lend es lent; el de borrow, borrowed."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Can you borrow me your pencil?",
+          "right": "Can you lend me your pencil?",
+          "why": "Si la otra persona te da algo, es lend."
+        },
+        {
+          "wrong": "I lended him my car.",
+          "right": "I lent him my car.",
+          "why": "El pasado de lend es irregular: lent."
+        },
+        {
+          "wrong": "Can I lend your umbrella?",
+          "right": "Can I borrow your umbrella?",
+          "why": "Si tú recibes algo prestado, es borrow."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Can I borrow your pencil?",
+          "es": "¿Me prestas tu lápiz?"
+        },
+        {
+          "en": "Could you lend me ten dollars?",
+          "es": "¿Me podrías prestar diez dólares?"
+        },
+        {
+          "en": "I borrowed a book from the library.",
+          "es": "Saqué un libro de la biblioteca."
+        },
+        {
+          "en": "She lent me her car for the weekend.",
+          "es": "Me prestó su auto para el fin de semana."
+        },
+        {
+          "en": "He never returns the things he borrows.",
+          "es": "Nunca devuelve las cosas que pide prestadas."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "borrow money from the bank",
+          "es": "pedir un préstamo al banco"
+        },
+        {
+          "en": "borrow a book from the library",
+          "es": "sacar un libro de la biblioteca"
+        },
+        {
+          "en": "lend someone a hand",
+          "es": "echarle una mano a alguien"
+        }
+      ],
+      "itemIds": ["b1.money-and-shopping.borrow", "b1.money-and-shopping.lend"],
+      "exerciseIds": [
+        "b1.vocabulary.borrow-lend-cloze-1",
+        "b1.vocabulary.borrow-lend-cloze-2",
+        "b1.vocabulary.borrow-lend-cloze-3",
+        "b1.vocabulary.borrow-lend-cloze-4",
+        "b1.vocabulary.borrow-lend-vocab-1",
+        "b1.vocabulary.borrow-lend-choice-1",
+        "b1.vocabulary.borrow-lend-order-1",
+        "b1.vocabulary.borrow-lend-write-1"
+      ]
+    },
+    {
+      "id": "b1.vocabulary.remember-remind",
+      "level": "B1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Remember o remind",
+      "summary": "Remember es acordarse uno mismo de algo. Remind es hacer que otra persona se acuerde: «recordarle algo a alguien».",
+      "form": "remember + algo · remind + persona + to + verbo · remind + persona + of (hacer pensar en)",
+      "uses": [
+        "Remember: tu propia memoria (I remember her name).",
+        "Remind someone to do something: Remind me to call Ana.",
+        "Remind someone of: algo o alguien te hace pensar en otra cosa (You remind me of my sister)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Remember me to call the doctor.",
+          "right": "Remind me to call the doctor.",
+          "why": "Si pides que otra persona te haga acordar, es remind."
+        },
+        {
+          "wrong": "This song remembers me of my childhood.",
+          "right": "This song reminds me of my childhood.",
+          "why": "Algo que te hace pensar en otra cosa es remind … of."
+        },
+        {
+          "wrong": "I don't remind his name.",
+          "right": "I don't remember his name.",
+          "why": "Acordarte tú mismo de algo es remember."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I don't remember his name.",
+          "es": "No me acuerdo de su nombre."
+        },
+        {
+          "en": "Can you remind me to buy milk?",
+          "es": "¿Me recuerdas que compre leche?"
+        },
+        {
+          "en": "You remind me of my sister.",
+          "es": "Me recuerdas a mi hermana."
+        },
+        {
+          "en": "Did you remember to lock the door?",
+          "es": "¿Te acordaste de cerrar la puerta con llave?"
+        },
+        {
+          "en": "This song reminds me of my childhood.",
+          "es": "Esta canción me recuerda a mi infancia."
+        }
+      ],
+      "itemIds": ["b1.vocabulary.remember", "b1.vocabulary.remind"],
+      "exerciseIds": [
+        "b1.vocabulary.remember-remind-cloze-1",
+        "b1.vocabulary.remember-remind-cloze-2",
+        "b1.vocabulary.remember-remind-cloze-3",
+        "b1.vocabulary.remember-remind-vocab-1",
+        "b1.vocabulary.remember-remind-choice-1",
+        "b1.vocabulary.remember-remind-order-1",
+        "b1.vocabulary.remember-remind-write-1"
+      ]
+    }
+  ]
+}

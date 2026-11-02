@@ -53,6 +53,18 @@
       ]
     },
     {
+      "id": "glossary.call-off",
+      "headword": "call off",
+      "kind": "phrase",
+      "forms": ["call off", "calls off", "called off", "calling off"],
+      "senses": [
+        {
+          "es": "cancelar, suspender",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.can",
       "headword": "can",
       "kind": "word",
@@ -273,6 +285,18 @@
       ]
     },
     {
+      "id": "glossary.catch-up",
+      "headword": "catch up",
+      "kind": "phrase",
+      "forms": ["catch up", "catches up", "caught up", "catching up"],
+      "senses": [
+        {
+          "es": "ponerse al día",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.cause",
       "headword": "cause",
       "kind": "word",
@@ -320,6 +344,18 @@
       "senses": [
         {
           "es": "centro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chair",
+      "headword": "chair",
+      "kind": "word",
+      "forms": ["chair", "chairs"],
+      "senses": [
+        {
+          "es": "silla",
           "pos": "noun"
         }
       ]
@@ -421,6 +457,18 @@
       ]
     },
     {
+      "id": "glossary.check-out",
+      "headword": "check out",
+      "kind": "phrase",
+      "forms": ["check out", "checks out", "checked out", "checking out"],
+      "senses": [
+        {
+          "es": "dejar el hotel (pagar y salir)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.chicken",
       "headword": "chicken",
       "kind": "word",
@@ -444,6 +492,18 @@
         },
         {
           "es": "hijo, hija",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.childhood",
+      "headword": "childhood",
+      "kind": "word",
+      "forms": ["childhood"],
+      "senses": [
+        {
+          "es": "infancia, niñez",
           "pos": "noun"
         }
       ]
@@ -589,6 +649,18 @@
       ]
     },
     {
+      "id": "glossary.client",
+      "headword": "client",
+      "kind": "word",
+      "forms": ["client", "clients"],
+      "senses": [
+        {
+          "es": "cliente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.climate",
       "headword": "climate",
       "kind": "word",
@@ -653,6 +725,18 @@
       ]
     },
     {
+      "id": "glossary.coat",
+      "headword": "coat",
+      "kind": "word",
+      "forms": ["coat", "coats"],
+      "senses": [
+        {
+          "es": "abrigo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.coffee",
       "headword": "coffee",
       "kind": "word",
@@ -705,6 +789,18 @@
       ]
     },
     {
+      "id": "glossary.colombia",
+      "headword": "Colombia",
+      "kind": "word",
+      "forms": ["colombia"],
+      "senses": [
+        {
+          "es": "Colombia",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.color",
       "headword": "color",
       "kind": "word",
@@ -733,6 +829,18 @@
       ]
     },
     {
+      "id": "glossary.come-up-with",
+      "headword": "come up with",
+      "kind": "phrase",
+      "forms": ["come up with", "comes up with", "came up with", "coming up with"],
+      "senses": [
+        {
+          "es": "idear, ocurrírsele (una idea)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.comic",
       "headword": "comic",
       "kind": "word",
@@ -757,6 +865,18 @@
         {
           "es": "viajar diariamente (al trabajo o a la escuela)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.commuter",
+      "headword": "commuter",
+      "kind": "word",
+      "forms": ["commuter", "commuters"],
+      "senses": [
+        {
+          "es": "persona que viaja a diario al trabajo o a la escuela",
+          "pos": "noun"
         }
       ]
     },
@@ -1041,6 +1161,18 @@
       ]
     },
     {
+      "id": "glossary.coworker",
+      "headword": "coworker",
+      "kind": "word",
+      "forms": ["coworker", "coworkers"],
+      "senses": [
+        {
+          "es": "compañero de trabajo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.credit",
       "headword": "credit",
       "kind": "word",
@@ -1096,6 +1228,42 @@
       "senses": [
         {
           "es": "llorar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.current",
+      "headword": "current",
+      "kind": "word",
+      "forms": ["current"],
+      "senses": [
+        {
+          "es": "actual",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.currently",
+      "headword": "currently",
+      "kind": "word",
+      "forms": ["currently"],
+      "senses": [
+        {
+          "es": "actualmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cut",
+      "headword": "cut",
+      "kind": "word",
+      "forms": ["cut", "cuts", "cutting"],
+      "senses": [
+        {
+          "es": "cortar",
           "pos": "verb"
         }
       ]

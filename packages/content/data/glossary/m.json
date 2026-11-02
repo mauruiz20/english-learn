@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.machine",
+      "headword": "machine",
+      "kind": "word",
+      "forms": ["machine", "machines"],
+      "senses": [
+        {
+          "es": "máquina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.madrid",
       "headword": "Madrid",
       "kind": "word",
@@ -265,6 +277,18 @@
       ]
     },
     {
+      "id": "glossary.mechanic",
+      "headword": "mechanic",
+      "kind": "word",
+      "forms": ["mechanic", "mechanics"],
+      "senses": [
+        {
+          "es": "mecánico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.media",
       "headword": "media",
       "kind": "word",
@@ -345,6 +369,30 @@
       ]
     },
     {
+      "id": "glossary.mess",
+      "headword": "mess",
+      "kind": "word",
+      "forms": ["mess"],
+      "senses": [
+        {
+          "es": "desorden",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.message",
+      "headword": "message",
+      "kind": "word",
+      "forms": ["message", "messages"],
+      "senses": [
+        {
+          "es": "mensaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.metro",
       "headword": "metro",
       "kind": "word",
@@ -377,6 +425,18 @@
         {
           "es": "Mia (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.midnight",
+      "headword": "midnight",
+      "kind": "word",
+      "forms": ["midnight"],
+      "senses": [
+        {
+          "es": "medianoche",
+          "pos": "noun"
         }
       ]
     },
@@ -421,6 +481,18 @@
       ]
     },
     {
+      "id": "glossary.mine",
+      "headword": "mine",
+      "kind": "word",
+      "forms": ["mine"],
+      "senses": [
+        {
+          "es": "mío, mía",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
       "id": "glossary.minute",
       "headword": "minute",
       "kind": "word",
@@ -449,6 +521,18 @@
         {
           "es": "faltar a",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mistake",
+      "headword": "mistake",
+      "kind": "word",
+      "forms": ["mistake", "mistakes"],
+      "senses": [
+        {
+          "es": "error",
+          "pos": "noun"
         }
       ]
     },
@@ -484,6 +568,18 @@
       "senses": [
         {
           "es": "mamá",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.moment",
+      "headword": "moment",
+      "kind": "word",
+      "forms": ["moment", "moments"],
+      "senses": [
+        {
+          "es": "momento",
           "pos": "noun"
         }
       ]

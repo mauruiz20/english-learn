@@ -59,7 +59,7 @@
     {
       "id": "b1.city-life.commute",
       "level": "B1",
-      "topics": ["city-life"],
+      "topics": ["city-life", "vocabulary"],
       "kind": "word",
       "term": "commute",
       "es": "trayecto diario (al trabajo o a la escuela) / ir y venir del trabajo"

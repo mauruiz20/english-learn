@@ -209,6 +209,18 @@
       ]
     },
     {
+      "id": "glossary.favor",
+      "headword": "favor",
+      "kind": "word",
+      "forms": ["favor", "favors"],
+      "senses": [
+        {
+          "es": "favor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.february",
       "headword": "February",
       "kind": "word",
@@ -297,6 +309,62 @@
       ]
     },
     {
+      "id": "glossary.fifteen",
+      "headword": "fifteen",
+      "kind": "word",
+      "forms": ["fifteen"],
+      "senses": [
+        {
+          "es": "quince",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fight",
+      "headword": "fight",
+      "kind": "word",
+      "forms": ["fight", "fights", "fought", "fighting"],
+      "senses": [
+        {
+          "es": "pelea",
+          "pos": "noun"
+        },
+        {
+          "es": "pelear(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.figure",
+      "headword": "figure",
+      "kind": "word",
+      "forms": ["figure", "figures", "figured", "figuring"],
+      "senses": [
+        {
+          "es": "(figure out) entender, resolver",
+          "pos": "verb"
+        },
+        {
+          "es": "cifra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.figure-out",
+      "headword": "figure out",
+      "kind": "phrase",
+      "forms": ["figure out", "figures out", "figured out", "figuring out"],
+      "senses": [
+        {
+          "es": "entender, resolver",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.file",
       "headword": "file",
       "kind": "word",
@@ -305,6 +373,30 @@
         {
           "es": "archivo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fill",
+      "headword": "fill",
+      "kind": "word",
+      "forms": ["fill", "fills", "filled", "filling"],
+      "senses": [
+        {
+          "es": "llenar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fill-out",
+      "headword": "fill out",
+      "kind": "phrase",
+      "forms": ["fill out", "fills out", "filled out", "filling out"],
+      "senses": [
+        {
+          "es": "llenar (un formulario)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -569,6 +661,22 @@
         {
           "es": "olvidar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.form",
+      "headword": "form",
+      "kind": "word",
+      "forms": ["form", "forms"],
+      "senses": [
+        {
+          "es": "formulario",
+          "pos": "noun"
+        },
+        {
+          "es": "forma",
+          "pos": "noun"
         }
       ]
     },

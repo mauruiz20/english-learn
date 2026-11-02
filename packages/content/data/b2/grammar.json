@@ -1,0 +1,369 @@
+{
+  "items": [
+    {
+      "id": "b2.grammar.be-worth",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "be worth + -ing",
+      "es": "valer la pena + infinitivo"
+    },
+    {
+      "id": "b2.grammar.be-used-to",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "be used to + -ing",
+      "es": "estar acostumbrado a"
+    },
+    {
+      "id": "b2.grammar.get-used-to",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "get used to + -ing",
+      "es": "acostumbrarse a"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.grammar.be-worth-cloze-1",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The museum is worth ___.",
+      "answers": ["visiting"],
+      "distractors": ["to visit", "visit"],
+      "es": "Vale la pena visitar el museo."
+    },
+    {
+      "id": "b2.grammar.be-worth-cloze-2",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It isn't worth ___ for the bus. Let's walk.",
+      "answers": ["waiting"],
+      "distractors": ["to wait", "wait"],
+      "es": "No vale la pena esperar el autobús. Caminemos."
+    },
+    {
+      "id": "b2.grammar.be-worth-cloze-3",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Was the trip ___ it?",
+      "answers": ["worth"],
+      "distractors": ["worthy", "value"],
+      "es": "¿Valió la pena el viaje?"
+    },
+    {
+      "id": "b2.grammar.be-worth-vocab-1",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'it's worth it'.",
+      "options": ["vale la pena", "cuesta mucho", "no importa", "es muy caro"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.grammar.be-worth-choice-1",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "This book is worth reading.",
+      "options": [
+        "Este libro cuesta mucho.",
+        "Estoy leyendo un libro caro.",
+        "Vale la pena leer este libro."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.be-worth-order-1",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["there", "worth", "early.", "getting", "It's"],
+      "accepted": ["It's worth getting there early."],
+      "es": "Vale la pena llegar temprano."
+    },
+    {
+      "id": "b2.grammar.be-worth-write-1",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Vale la pena aprender otro idioma.",
+      "accepted": [
+        "It's worth learning another language.",
+        "Learning another language is worth it.",
+        "Another language is worth learning."
+      ]
+    },
+    {
+      "id": "b2.grammar.used-to-cloze-1",
+      "itemIds": ["b1.travel.used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "When I was a kid, I ___ play soccer every day.",
+      "answers": ["used to"],
+      "distractors": ["use to", "was used to"],
+      "es": "Cuando era niño, jugaba al fútbol todos los días."
+    },
+    {
+      "id": "b2.grammar.used-to-cloze-2",
+      "itemIds": ["b2.grammar.be-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm used to ___ at night.",
+      "answers": ["working"],
+      "distractors": ["work", "worked"],
+      "es": "Estoy acostumbrado a trabajar de noche."
+    },
+    {
+      "id": "b2.grammar.used-to-cloze-3",
+      "itemIds": ["b2.grammar.get-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Don't worry. You'll get used to ___ on the left.",
+      "answers": ["driving"],
+      "distractors": ["drive", "drove"],
+      "es": "No te preocupes. Te vas a acostumbrar a manejar por la izquierda."
+    },
+    {
+      "id": "b2.grammar.used-to-cloze-4",
+      "itemIds": ["b1.travel.used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Did you ___ live in this neighborhood?",
+      "answers": ["use to"],
+      "distractors": ["used to", "using to"],
+      "es": "¿Antes vivías en este barrio?"
+    },
+    {
+      "id": "b2.grammar.used-to-choice-1",
+      "itemIds": ["b2.grammar.be-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He isn't used to the cold weather.",
+      "options": [
+        "No está acostumbrado al clima frío.",
+        "Antes no le gustaba el clima frío.",
+        "No usa ropa para el frío."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.grammar.used-to-order-1",
+      "itemIds": ["b2.grammar.get-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["the", "month", "get", "a", "to", "me", "took", "It", "to", "noise.", "used"],
+      "accepted": ["It took me a month to get used to the noise."],
+      "es": "Me tomó un mes acostumbrarme al ruido."
+    },
+    {
+      "id": "b2.grammar.used-to-write-1",
+      "itemIds": ["b1.travel.used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Antes vivía en Lima.",
+      "accepted": ["I used to live in Lima.", "I {lived|used to live} in Lima before."]
+    },
+    {
+      "id": "b2.grammar.used-to-write-2",
+      "itemIds": ["b2.grammar.be-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ya estoy acostumbrado a levantarme temprano.",
+      "accepted": [
+        "I'm [already ]used to getting up early.",
+        "I'm used to getting up early already.",
+        "I'm [already ]used to waking up early."
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "b2.grammar.be-worth",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Be worth + -ing",
+      "summary": "Significa que algo «vale la pena». Después de worth va un sustantivo o un verbo con -ing.",
+      "form": "be worth + sustantivo / verbo-ing · it's worth + verbo-ing",
+      "uses": [
+        "Recomendar: The museum is worth visiting.",
+        "Valorar un esfuerzo: It's worth the effort.",
+        "Valor en dinero: This painting is worth a lot of money.",
+        "En negativo: It isn't worth it."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "This book is worth to read.",
+          "right": "This book is worth reading.",
+          "why": "Después de worth va -ing, no to + verbo."
+        },
+        {
+          "wrong": "It doesn't worth it.",
+          "right": "It isn't worth it.",
+          "why": "Worth no es un verbo: se usa con be (it's worth, it isn't worth)."
+        }
+      ],
+      "examples": [
+        {
+          "en": "The museum is worth visiting.",
+          "es": "Vale la pena visitar el museo."
+        },
+        {
+          "en": "This book is worth reading.",
+          "es": "Vale la pena leer este libro."
+        },
+        {
+          "en": "It isn't worth waiting for the bus.",
+          "es": "No vale la pena esperar el autobús."
+        },
+        {
+          "en": "Was the trip worth it?",
+          "es": "¿Valió la pena el viaje?"
+        },
+        {
+          "en": "Their old house is worth a lot of money now.",
+          "es": "Su casa vieja vale mucho dinero ahora."
+        },
+        {
+          "en": "It's worth getting there early.",
+          "es": "Vale la pena llegar temprano."
+        }
+      ],
+      "itemIds": ["b2.grammar.be-worth"],
+      "exerciseIds": [
+        "b2.grammar.be-worth-cloze-1",
+        "b2.grammar.be-worth-cloze-2",
+        "b2.grammar.be-worth-cloze-3",
+        "b2.grammar.be-worth-vocab-1",
+        "b2.grammar.be-worth-choice-1",
+        "b2.grammar.be-worth-order-1",
+        "b2.grammar.be-worth-write-1"
+      ]
+    },
+    {
+      "id": "b2.grammar.used-to",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Used to, be used to y get used to",
+      "summary": "Used to + verbo habla de hábitos del pasado. Be used to + -ing significa «estar acostumbrado a» y get used to + -ing, «acostumbrarse a».",
+      "form": "used to + verbo base · be used to + sustantivo / -ing · get used to + sustantivo / -ing",
+      "uses": [
+        "Used to: algo que hacías antes y ya no (I used to live in Lima).",
+        "Be used to: algo que ya es normal para ti (I'm used to working at night).",
+        "Get used to: el proceso de acostumbrarse (You'll get used to the cold).",
+        "En be used to y get used to, to es preposición: después va -ing."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I am used to work at night.",
+          "right": "I am used to working at night.",
+          "why": "En be used to, to es preposición: va seguido de -ing."
+        },
+        {
+          "wrong": "I use to play soccer when I was a kid.",
+          "right": "I used to play soccer when I was a kid.",
+          "why": "En oraciones afirmativas, el hábito pasado es used to (con -d)."
+        },
+        {
+          "wrong": "Did you used to live here?",
+          "right": "Did you use to live here?",
+          "why": "Con did se usa use to (sin -d)."
+        },
+        {
+          "wrong": "I can't accustom to the weather.",
+          "right": "I can't get used to the weather.",
+          "why": "«Acostumbrarse a» algo se dice get used to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I used to live in Lima.",
+          "es": "Antes vivía en Lima."
+        },
+        {
+          "en": "She didn't use to like coffee.",
+          "es": "Antes no le gustaba el café."
+        },
+        {
+          "en": "I'm used to working at night.",
+          "es": "Estoy acostumbrado a trabajar de noche."
+        },
+        {
+          "en": "He isn't used to the cold weather.",
+          "es": "No está acostumbrado al clima frío."
+        },
+        {
+          "en": "You'll get used to the noise.",
+          "es": "Te vas a acostumbrar al ruido."
+        },
+        {
+          "en": "It took me a month to get used to driving on the left.",
+          "es": "Me tomó un mes acostumbrarme a manejar por la izquierda."
+        }
+      ],
+      "itemIds": ["b1.travel.used-to", "b2.grammar.be-used-to", "b2.grammar.get-used-to"],
+      "exerciseIds": [
+        "b2.grammar.used-to-cloze-1",
+        "b2.grammar.used-to-cloze-2",
+        "b2.grammar.used-to-cloze-3",
+        "b2.grammar.used-to-cloze-4",
+        "b2.grammar.used-to-choice-1",
+        "b2.grammar.used-to-order-1",
+        "b2.grammar.used-to-write-1",
+        "b2.grammar.used-to-write-2"
+      ]
+    }
+  ]
+}

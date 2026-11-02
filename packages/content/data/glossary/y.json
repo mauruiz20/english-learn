@@ -65,6 +65,18 @@
       ]
     },
     {
+      "id": "glossary.you-ll",
+      "headword": "you'll",
+      "kind": "word",
+      "forms": ["you'll"],
+      "senses": [
+        {
+          "es": "tú (you will): futuro, you'll see = verás",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.you-re",
       "headword": "you're",
       "kind": "word",
