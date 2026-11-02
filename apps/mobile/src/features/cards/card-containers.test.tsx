@@ -106,6 +106,19 @@ describe("CardContainer", () => {
     expect(mockRouter.push).toHaveBeenCalledWith("/fichas/b1.grammar.look-forward-to/practicar");
   });
 
+  it("shows the card's best result and offers to practice it again", async () => {
+    await render(withServices(await practiced(0.5), <CardContainer cardId={card.id} />));
+
+    const correct = Math.round(exercises / 2);
+    expect(
+      await screen.findByLabelText(
+        `Tu mejor resultado: completada con errores: ${correct} de ${exercises} correctas`,
+      ),
+    ).toBeOnTheScreen();
+    await fireEvent.press(screen.getByRole("button", { name: "Practicar de nuevo" }));
+    expect(mockRouter.push).toHaveBeenCalledWith("/fichas/b1.grammar.look-forward-to/practicar");
+  });
+
   it("goes back to the session it was opened from", async () => {
     await render(
       withServices(createFakeRepository(), <CardContainer cardId={card.id} fromSession />),

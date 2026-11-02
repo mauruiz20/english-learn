@@ -13,12 +13,20 @@ import { struckText } from "@/shared/ui/struck";
 import { Text } from "@/shared/ui/text";
 import { radius, spacing } from "@/shared/ui/theme";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
+import { PerfectBadge } from "@/features/lesson/components/perfect-badge";
+import {
+  scoreDescription,
+  scoreText,
+  type LessonScore,
+} from "@/features/lesson/model/lesson-score";
 import type { CardStatus } from "./model/card-catalog";
 
 export type CardViewProps = {
   card: Card;
   /** null while the learner's progress loads. */
   status: CardStatus | null;
+  /** Its best practice result; none while loading or if never practiced. */
+  score?: LessonScore | undefined;
   /** Opened from a session's feedback ("Ver ficha"): offer to go back instead of practicing. */
   fromSession: boolean;
   onPractice: () => void;
@@ -36,7 +44,7 @@ const STATUS_LABEL: Readonly<Record<Exclude<CardStatus, "new">, string>> = {
  * right), examples (English words can be looked up; never in a mistake) and, by kind, the phrasal
  * verbs or the collocations and the false friend. "Practicar" opens its exercises.
  */
-export function CardView({ card, status, fromSession, onPractice, onBack }: CardViewProps) {
+export function CardView({ card, status, score, fromSession, onPractice, onBack }: CardViewProps) {
   const styles = useStyles();
   return (
     <ScreenContainer
@@ -51,12 +59,23 @@ export function CardView({ card, status, fromSession, onPractice, onBack }: Card
           />
         ) : (
           <View style={styles.footer}>
-            <Text variant="small" tone="muted">{`${card.exerciseIds.length} ejercicios`}</Text>
-            <Button
-              label="Practicar"
-              accessibilityHint="Ejercicios de esta ficha; después vuelven en tus repasos"
-              onPress={onPractice}
-            />
+            <View style={styles.footerMeta}>
+              <Text variant="small" tone="muted">{`${card.exerciseIds.length} ejercicios`}</Text>
+              {score !== undefined && <BestResult score={score} />}
+            </View>
+            {score === undefined ? (
+              <Button
+                label="Practicar"
+                accessibilityHint="Ejercicios de esta ficha; después vuelven en tus repasos"
+                onPress={onPractice}
+              />
+            ) : (
+              <Button
+                label="Practicar de nuevo"
+                accessibilityHint="Ganas XP por cada respuesta; el bono de completarla ya lo recibiste"
+                onPress={onPractice}
+              />
+            )}
           </View>
         )
       }
@@ -153,6 +172,26 @@ export function CardView({ card, status, fromSession, onPractice, onBack }: Card
         ))}
       </Section>
     </ScreenContainer>
+  );
+}
+
+/**
+ * The card's best practice result, like a done lesson's on the path: "Perfecta · 6/6" with the
+ * star sticker, or "Completada · 5/6". Read as one label.
+ */
+function BestResult({ score }: { score: LessonScore }) {
+  const styles = useStyles();
+  return (
+    <View
+      accessible
+      accessibilityLabel={`Tu mejor resultado: ${scoreDescription(score)}`}
+      style={styles.bestResult}
+    >
+      {score.perfect && <PerfectBadge testID="card-perfect" size={24} />}
+      <Text variant="smallStrong" tone="success">
+        {scoreText(score)}
+      </Text>
+    </View>
   );
 }
 
@@ -306,5 +345,13 @@ const useStyles = themedStyles(({ colors }) =>
       backgroundColor: colors.sheet,
     },
     footer: { gap: spacing.xs, alignItems: "stretch" },
+    footerMeta: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: spacing.sm,
+    },
+    bestResult: { flexDirection: "row", alignItems: "center", gap: spacing.xs },
   }),
 );

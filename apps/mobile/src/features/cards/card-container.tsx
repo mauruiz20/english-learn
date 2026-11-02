@@ -9,12 +9,14 @@ import { useAppServices } from "@/infrastructure/services/app-services";
 import { SessionMessage } from "@/features/lesson/components/session-screens";
 import { cardPracticePath } from "./card-routes";
 import { CardView } from "./card-view";
-import { cardStatus, type CardStatus } from "./model/card-catalog";
+import type { LessonScore } from "@/features/lesson/model/lesson-score";
+import { cardScores, cardStatus, type CardStatus } from "./model/card-catalog";
 
 /**
  * `/fichas/[id]`: one study card, with English words to look up (no SRS signal: nothing is being
- * graded here) and whether the learner studied it. `fromSession`: opened from a session's
- * feedback, so it offers to go back to it.
+ * graded here), whether the learner studied it and its best practice result ("Practicar de
+ * nuevo" then: answer XP only, the completion bonus was paid once). `fromSession`: opened from a
+ * session's feedback, so it offers to go back to it.
  */
 export function CardContainer({
   cardId,
@@ -29,13 +31,20 @@ export function CardContainer({
   const router = useRouter();
   const card = content.cardsById.get(cardId);
   const [status, setStatus] = useState<CardStatus | null>(null);
+  const [score, setScore] = useState<LessonScore | undefined>(undefined);
   const progressVersion = useProgressVersion();
 
   const load = useCallback(() => {
     let active = true;
     if (card === undefined) return undefined;
-    progressRepository.getReviewStates().then(
-      (states) => active && setStatus(cardStatus(card, states)),
+    Promise.all([progressRepository.getReviewStates(), progressRepository.getLessonResults()]).then(
+      ([states, results]) => {
+        if (!active) return;
+        setStatus(cardStatus(card, states));
+        setScore(
+          cardScores({ cards: [card], exercisesById: content.exercisesById }, results).get(card.id),
+        );
+      },
       // The card reads fine without its status.
       (error: unknown) => console.error("Failed to load the card's progress", error),
     );
@@ -43,7 +52,7 @@ export function CardContainer({
       active = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progressRepository, card, progressVersion]);
+  }, [progressRepository, card, content, progressVersion]);
 
   useFocusEffect(load);
 
@@ -62,6 +71,7 @@ export function CardContainer({
       <CardView
         card={card}
         status={status}
+        score={score}
         fromSession={fromSession}
         onPractice={() => router.push(cardPracticePath(card.id))}
         onBack={back}
