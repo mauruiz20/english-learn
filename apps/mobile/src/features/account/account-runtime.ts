@@ -3,7 +3,13 @@ import { uuidv7, type Clock, type SettingsRepository } from "@english-learn/doma
 import type { RandomBytes } from "@/features/progress/progress-events";
 import { accountEndpoints } from "@/infrastructure/auth/account-config";
 import { createAuthSession } from "@/infrastructure/auth/auth-session";
-import { CALLBACK_PATH, createPendingSignInStore } from "@/infrastructure/auth/oidc";
+import {
+  COMPLETE_PATH,
+  browserRelayChannel,
+  createCallbackStash,
+  watchCallbackHandOff,
+} from "@/infrastructure/auth/callback-relay";
+import { createPendingSignInStore } from "@/infrastructure/auth/oidc";
 import type { AccountStorage } from "@/infrastructure/services/app-services";
 import { createSyncCoordinator } from "@/infrastructure/sync/sync-coordinator";
 import { createSyncEngine } from "@/infrastructure/sync/sync-engine";
@@ -21,11 +27,14 @@ export function createAccountRuntime({
   settings,
   randomBytes,
   clock,
+  openCallbackCompletion,
 }: {
   storage: AccountStorage;
   settings: SettingsRepository;
   randomBytes: RandomBytes;
   clock: Clock;
+  /** Goes to `/auth/completar` (a Google callback for this tab's sign-in arrived elsewhere). */
+  openCallbackCompletion: () => void;
 }) {
   const progressChanged = createChangeSignal();
   const endpoints = accountEndpoints();
@@ -48,13 +57,14 @@ export function createAccountRuntime({
     onProgressChanged: progressChanged.emit,
     onSignedOut: () => session.forget(),
   });
+  const pending = createPendingSignInStore(window.sessionStorage);
   const controller = createAccountController({
     origin: window.location.origin,
     session,
     coordinator,
     store: storage.syncStore,
     deleteAccount: () => api.deleteAccount(),
-    pending: createPendingSignInStore(window.sessionStorage),
+    pending,
     randomBytes,
     redirect: (url) => window.location.assign(url),
     onProgressChanged: progressChanged.emit,
@@ -81,8 +91,23 @@ export function createAccountRuntime({
       }
     };
     const unsubscribe = session.subscribe(follow);
-    // The callback page signs in itself; a restore there would only race with it.
-    if (window.location.pathname !== CALLBACK_PATH) {
+    // A Google callback that landed in another page or web view (iOS Home Screen apps): this
+    // window started the sign-in, so it completes it.
+    const stopHandOff = watchCallbackHandOff({
+      stash: createCallbackStash(window.localStorage),
+      channel: browserRelayChannel(),
+      ownsState: (state) => window.location.pathname !== COMPLETE_PATH && pending.has(state),
+      onHandOff: openCallbackCompletion,
+      onVisible(listener) {
+        const onChange = () => {
+          if (document.visibilityState === "visible") listener();
+        };
+        document.addEventListener("visibilitychange", onChange);
+        return () => document.removeEventListener("visibilitychange", onChange);
+      },
+    });
+    // The completion page signs in itself; a restore there would only race with it.
+    if (window.location.pathname !== COMPLETE_PATH) {
       void session.restore().then(() => {
         if (session.getState().status === "signed-in") void coordinator.request();
       });
@@ -90,6 +115,7 @@ export function createAccountRuntime({
     follow();
     return () => {
       unsubscribe();
+      stopHandOff();
       stopTriggers?.();
       stopTriggers = null;
     };

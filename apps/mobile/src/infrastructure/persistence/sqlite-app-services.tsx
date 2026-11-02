@@ -28,8 +28,12 @@ import { DatabaseOpenError } from "./database-open-error";
 import type * as E2eProgress from "./e2e-progress";
 import type * as E2eSettingsWrites from "./e2e-settings-writes";
 import { initProgressStore } from "./init-progress-store";
-import type { ClaimResult, DatabaseOwnership } from "./ownership/database-ownership";
-import { OpenElsewhereScreen, ReleasedScreen } from "./ownership/ownership-screens";
+import type { DatabaseOwnership, OwnershipState } from "./ownership/database-ownership";
+import {
+  DatabaseStuckScreen,
+  OpenElsewhereScreen,
+  ReleasedScreen,
+} from "./ownership/ownership-screens";
 import { createPlatformOwnership } from "./ownership/platform-ownership";
 import { notifyAppends } from "../sync/notify-appends";
 import { createChangeSignal } from "../sync/sync-triggers";
@@ -76,10 +80,13 @@ function createSettingsRepository(db: SqlDatabase): SettingsRepository {
 
 /** Where the open database registers how to finish its writes before another tab takes it. */
 const DrainContext = createContext<RefObject<(() => Promise<void>) | null> | null>(null);
+/** Where the database reports that it really opened (see `DatabaseOwnership.confirmOpened`). */
+const OpenedContext = createContext<(() => void) | null>(null);
 
 function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode }) {
   const db = useSQLiteContext();
   const drainRef = use(DrainContext);
+  const opened = use(OpenedContext);
   // Every write (saves and the sync's), so handing the database over never cuts one halfway.
   const [writes] = useState(createWriteTracker);
   useEffect(() => {
@@ -101,6 +108,9 @@ function SqliteServices({ clock, children }: { clock: Clock; children: ReactNode
   useEffect(() => {
     progressRepository.getDeviceId().then(setDeviceId, (error: Error) => setFailure(error));
   }, [progressRepository]);
+  useEffect(() => {
+    if (deviceId !== null) opened?.();
+  }, [deviceId, opened]);
   if (failure !== null) throw new DatabaseOpenError(failure);
 
   const services = useMemo<AppServices | null>(
@@ -137,14 +147,16 @@ function throwDatabaseOpenError(error: Error): never {
   throw new DatabaseOpenError(error);
 }
 
-type GateState = "checking" | ClaimResult | "released" | "handing-over";
+type GateState = { readonly kind: "checking" | "handing-over" } | OwnershipState;
+const CHECKING: GateState = { kind: "checking" };
 
 /**
  * Web: opens the database only once this page owns it (see `createDatabaseOwnership`). Shows
- * the loading state (nothing) while a reloaded page waits for the previous one to let go, and
- * "Usar aquí" screens when another tab has it or this tab just handed it over. When another tab
- * asks for it, this tab finishes its writes and unmounts the app (stopping sync and timers)
- * before handing it over. Native: always owned.
+ * the loading state (nothing) while a reloaded page waits for the previous one to let go, the
+ * "Usar aquí" screens when another tab answered that it has it or this tab just handed it over,
+ * and the help screen when something holds it without answering ("Usar aquí" never loops).
+ * When another tab asks for it, this tab finishes its writes and unmounts the app (stopping
+ * sync and timers) before handing it over. Native: always owned.
  */
 function DatabaseOwnershipGate({
   ownership,
@@ -153,8 +165,9 @@ function DatabaseOwnershipGate({
   ownership: DatabaseOwnership;
   children: ReactNode;
 }) {
-  const [state, setState] = useState<GateState>("checking");
+  const [state, setState] = useState<GateState>(CHECKING);
   const drainRef = useRef<(() => Promise<void>) | null>(null);
+  const opened = useCallback(() => ownership.confirmOpened(), [ownership]);
 
   useEffect(() => {
     let active = true;
@@ -166,26 +179,43 @@ function DatabaseOwnershipGate({
     };
   }, [ownership]);
 
+  const owned = state.kind === "owned";
   useEffect(() => {
-    if (state !== "owned") return;
+    if (!owned) return;
     return ownership.serve(async () => {
       await drainRef.current?.();
-      setState("handing-over");
+      setState({ kind: "handing-over" });
     });
-  }, [ownership, state]);
+  }, [ownership, owned]);
 
-  const useHere = () => {
-    setState("checking");
-    void ownership.takeOver().then(setState);
+  const claimAgain = (claim: () => Promise<OwnershipState>) => {
+    setState(CHECKING);
+    void claim().then(setState);
   };
 
-  switch (state) {
+  switch (state.kind) {
     case "owned":
-      return <DrainContext value={drainRef}>{children}</DrainContext>;
+      return (
+        <DrainContext value={drainRef}>
+          <OpenedContext value={opened}>{children}</OpenedContext>
+        </DrainContext>
+      );
     case "open-elsewhere":
-      return <OpenElsewhereScreen onUseHere={useHere} />;
+      return (
+        <OpenElsewhereScreen
+          onUseHere={() => claimAgain(() => ownership.takeOver())}
+          diagnostics={state.diagnostics}
+        />
+      );
+    case "stuck":
+      return (
+        <DatabaseStuckScreen
+          onRetry={() => claimAgain(() => ownership.retry())}
+          diagnostics={state.diagnostics}
+        />
+      );
     case "released":
-      return <ReleasedScreen onUseHere={useHere} />;
+      return <ReleasedScreen onUseHere={() => claimAgain(() => ownership.takeOver())} />;
     case "checking":
     case "handing-over":
       return null;

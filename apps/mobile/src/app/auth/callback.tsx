@@ -1,1 +1,1 @@
-export { AuthCallbackScreen as default } from "@/features/account/auth-callback-screen";
+export { AuthCallbackRelayScreen as default } from "@/features/account/auth-callback-relay-screen";
