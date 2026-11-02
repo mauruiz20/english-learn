@@ -69,6 +69,8 @@ type HomeViewProps = {
   /** Shows the "Cuenta" link next to the sound switch. */
   onOpenAccount?: () => void;
   onOpenAlbum?: () => void;
+  /** News above everything else (the old web address's move banner). */
+  notice?: ReactNode;
 };
 
 type Ready = Extract<HomeViewState, { status: "ready" }>;
@@ -473,6 +475,7 @@ export function HomeView({
   onCycleTheme,
   onOpenAccount,
   onOpenAlbum,
+  notice,
   ...handlers
 }: HomeViewProps) {
   const { colors } = useTheme();
@@ -485,6 +488,7 @@ export function HomeView({
   );
   return (
     <ScreenContainer insetTop>
+      {notice}
       <ProgressCard
         days={state.status === "ready" ? state.streakDays : 0}
         xp={state.status === "ready" ? state.xp : null}
