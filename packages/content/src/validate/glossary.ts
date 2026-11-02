@@ -195,12 +195,11 @@ export function glossaryTexts(files: readonly LoadedFile[]): GlossaryText[] {
   return out;
 }
 
-/** English text of a card: pitfalls, examples, phrasal verbs, collocations, the false friend. */
+/** English text of a card: pitfall corrections, examples, phrasal verbs, collocations, the false friend. */
 function cardTexts(card: Card, at: string): [string, string][] {
   const out: [string, string][] = [];
-  card.pitfalls.forEach((p, i) => {
-    out.push([`${at}.pitfalls[${i}].wrong`, p.wrong], [`${at}.pitfalls[${i}].right`, p.right]);
-  });
+  // `wrong` holds deliberate mistakes ("lended", "rised") that must not become glossary forms.
+  card.pitfalls.forEach((p, i) => out.push([`${at}.pitfalls[${i}].right`, p.right]));
   card.examples.forEach((e, i) => out.push([`${at}.examples[${i}].en`, e.en]));
   if (card.kind === "phrasal_verbs") {
     card.entries.forEach((e, i) => {

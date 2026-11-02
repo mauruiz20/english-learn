@@ -269,13 +269,12 @@ describe("cards in the other corpus-wide rules", () => {
     ]);
   });
 
-  it("glossaryTexts lists the English text of every card and skips Spanish", () => {
+  it("glossaryTexts lists the English text of every card and skips Spanish and wrong sentences", () => {
     const texts = glossaryTexts([
       { file: "b1/phrasal-verbs.json", data: { cards: [fx.phrasalVerbCard()] } },
       { file: "b1/vocabulary.json", data: { cards: [fx.vocabularyCard()] } },
     ]).map((t) => `${t.file} ${t.path}`);
     const common = (file: string) => [
-      `${file} cards[0].pitfalls[0].wrong`,
       `${file} cards[0].pitfalls[0].right`,
       `${file} cards[0].examples[0].en`,
       `${file} cards[0].examples[1].en`,
@@ -294,6 +293,16 @@ describe("cards in the other corpus-wide rules", () => {
       "b1/vocabulary.json cards[0].collocations[0].en",
       "b1/vocabulary.json cards[0].falseFriend.en",
     ]);
+  });
+
+  it("does not require glossary entries for the deliberate mistakes in pitfall.wrong", () => {
+    const pitfall = {
+      wrong: "Although it rainned, we went out.",
+      right: "Although it rained, we went out.",
+      why: "Rained lleva una sola n.",
+    };
+    const corpus = [withCard(fx.card({ pitfalls: [pitfall] })), ...fx.glossaryFiles()];
+    expect(validateCorpus(corpus)).toEqual([]);
   });
 
   it("validateCorpus accepts a corpus with a valid card and runs the card rules", () => {
