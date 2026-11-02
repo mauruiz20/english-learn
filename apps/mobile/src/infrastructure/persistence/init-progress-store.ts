@@ -3,6 +3,7 @@ import { uuidv7, type Clock } from "@english-learn/domain";
 import {
   createSqliteProgressRepository,
   migrate,
+  SCHEMA_VERSION,
   type SqlDatabase,
   type SqliteProgressRepository,
 } from "@english-learn/storage-sqlite";
@@ -21,13 +22,14 @@ export type InitProgressStoreOptions = {
  * install's device id once, and — for progress written before the event log — stores ONE
  * `baseline_imported` event. Its `completedLessonIds` are the lessons whose items all have a
  * review state (what the home screen shows as done), so replaying them earns no bonus again.
+ * After a schema upgrade it refolds the log once, so cache tables the upgrade added are filled.
  * Idempotent; resolves to the repository it prepared.
  */
 export async function initProgressStore(
   db: SqlDatabase,
   { clock, randomBytes, content }: InitProgressStoreOptions,
 ): Promise<SqliteProgressRepository> {
-  await migrate(db);
+  const previousVersion = await migrate(db);
   const repository = createSqliteProgressRepository(db);
   const deviceId = await repository.ensureDeviceId(() => uuidv7(clock.nowMs(), randomBytes));
   await repository.ensureBaseline((cache) => {
@@ -39,5 +41,7 @@ export async function initProgressStore(
     const stamp = { deviceId, occurredAt: clock.nowMs(), localDate: clock.today(), randomBytes };
     return baselineImportedEvent(stamp, { ...cache, completedLessonIds });
   });
+  // An upgrade may have added a cache table (e.g. lesson results) that starts empty: refold once.
+  if (previousVersion > 0 && previousVersion < SCHEMA_VERSION) await repository.rebuildFromEvents();
   return repository;
 }

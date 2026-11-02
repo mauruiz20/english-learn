@@ -173,7 +173,7 @@ function exerciseTexts(exercise: AnyExercise, at: string): [string, string][] {
 }
 
 /**
- * Every learner-visible English text: item terms, exercise prompts, sentences,
+ * Every learner-visible English text: item terms and examples, exercise prompts, sentences,
  * answers and options (except Spanish options), passage titles and texts, and
  * placement exercises. Word-order tokens are joined with spaces.
  */
@@ -181,7 +181,10 @@ export function glossaryTexts(files: readonly LoadedFile[]): GlossaryText[] {
   const out: GlossaryText[] = [];
   for (const { file, data } of files) {
     const add = ([path, text]: [string, string]) => out.push({ file, path, text });
-    (data.items ?? []).forEach((item, i) => add([`items[${i}].term`, item.term]));
+    (data.items ?? []).forEach((item, i) => {
+      add([`items[${i}].term`, item.term]);
+      if (item.example !== undefined) add([`items[${i}].example.en`, item.example.en]);
+    });
     (data.exercises ?? []).forEach((ex, i) => exerciseTexts(ex, `exercises[${i}]`).forEach(add));
     (data.passages ?? []).forEach((p, i) => {
       add([`passages[${i}].title`, p.title]);

@@ -54,7 +54,11 @@
       "topics": ["travel"],
       "kind": "word",
       "term": "luggage",
-      "es": "equipaje"
+      "es": "equipaje",
+      "example": {
+        "en": "We can leave our luggage at the hotel.",
+        "es": "Podemos dejar el equipaje en el hotel."
+      }
     },
     {
       "id": "b1.travel.check-in",
@@ -358,6 +362,18 @@
         "We checked {in at|into} the hotel at {three[ o'clock]|3[ o'clock|:00| pm]}.",
         "We checked {in at|into} the hotel at 3 p.m."
       ]
+    },
+    {
+      "id": "b1.travel.vocab-003",
+      "itemIds": ["b1.travel.sightseeing"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'sightseeing' mean?",
+      "options": ["ir de compras", "tomar el sol", "hacer turismo", "hacer las maletas"],
+      "answerIndex": 2
     }
   ],
   "lessons": [
@@ -373,6 +389,12 @@
         "b1.travel.choice-001",
         "b1.travel.reading-001",
         "b1.travel.write-001"
+      ],
+      "newItemIds": [
+        "b1.travel.delayed",
+        "b1.travel.although",
+        "b1.travel.book",
+        "b1.travel.get-lost"
       ]
     },
     {
@@ -389,6 +411,13 @@
         "b1.travel.reading-002",
         "b1.travel.write-002",
         "b1.travel.write-003"
+      ],
+      "newItemIds": [
+        "b1.travel.luggage",
+        "b1.travel.have-ever-been",
+        "b1.travel.present-perfect-past-simple",
+        "b1.travel.set-off",
+        "b1.travel.check-in"
       ]
     }
   ]

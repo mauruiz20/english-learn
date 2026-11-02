@@ -36,7 +36,11 @@ every check passes; installable and usable offline; progress is stored in your b
 - **Lessons with 6 written exercise types**: vocabulary, cloze, word order, translation choice,
   reading comprehension and free-text translation. Free text is graded with typo and
   contraction tolerance (`correct` / `almost` / `wrong`).
-- **Spaced repetition (SM-2)**: a daily review of due items, scheduled per item.
+- **Spaced repetition (SM-2)**: a daily review of due items, scheduled per item. A lesson's new
+  items are due the next day and come first in that review.
+- **"Lo nuevo de hoy"**: every lesson ends with the 3–5 items it introduces, linked to their study
+  card or explained with their meaning and an example; the path shows each lesson's best result
+  (perfect or "5/6"), and any lesson can be redone to get everything right.
 - **Progress as a game**: XP in sheets of stickers, a daily streak as a paperclip chain, the
   level's lessons as a path of stickers, and an album of sixteen achievements, all derived from
   the stored progress.
@@ -47,7 +51,7 @@ every check passes; installable and usable offline; progress is stored in your b
 | ---------------------- | --- | --- | ----- |
 | Topics                 | 10  | 11  | 21    |
 | Lessons                | 20  | 22  | 42    |
-| Exercises              | 139 | 154 | 293   |
+| Exercises              | 143 | 159 | 302   |
 | Items (words, phrases) | 115 | 133 | 248   |
 | Reading passages       | 10  | 12  | 22    |
 
@@ -142,7 +146,7 @@ backups and a monthly restore drill: see [docs/deploy.md](docs/deploy.md).
 
 - **Original content** is written for this project. No copyrighted word lists or textbook
   material are copied.
-- **Tatoeba sentences** (113 of 293 exercises) are used under
+- **Tatoeba sentences** (113 of 302 exercises) are used under
   [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Each one records the sentence
   id and author in its `source` field, a pipeline check verifies the English text matches the
   attributed sentence exactly, and the app's About screen credits Tatoeba with the license.

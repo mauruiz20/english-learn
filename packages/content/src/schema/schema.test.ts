@@ -115,6 +115,16 @@ describe("ItemSchema", () => {
   it("rejects unknown keys", () => {
     expect(ItemSchema.safeParse({ ...fx.item(), extra: 1 }).success).toBe(false);
   });
+  it("takes an optional example sentence with its Spanish", () => {
+    const example = { en: "Although it rained, we went out.", es: "Aunque llovió, salimos." };
+    expect(ItemSchema.safeParse(fx.item({ example })).success).toBe(true);
+    expect(ItemSchema.safeParse(fx.item({ example: { en: example.en } as never })).success).toBe(
+      false,
+    );
+    expect(ItemSchema.safeParse(fx.item({ example: { ...example, es: " x" } })).success).toBe(
+      false,
+    );
+  });
 });
 
 describe("ExerciseSchema", () => {

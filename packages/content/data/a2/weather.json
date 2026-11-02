@@ -38,7 +38,11 @@
       "topics": ["weather"],
       "kind": "word",
       "term": "cloudy",
-      "es": "nublado"
+      "es": "nublado",
+      "example": {
+        "en": "It's cloudy today, but it isn't cold.",
+        "es": "Hoy está nublado, pero no hace frío."
+      }
     },
     {
       "id": "a2.weather.windy",
@@ -70,7 +74,11 @@
       "topics": ["weather"],
       "kind": "word",
       "term": "forecast",
-      "es": "pronóstico"
+      "es": "pronóstico",
+      "example": {
+        "en": "The forecast says it will be sunny tomorrow.",
+        "es": "El pronóstico dice que mañana va a hacer sol."
+      }
     },
     {
       "id": "a2.weather.umbrella",
@@ -78,7 +86,11 @@
       "topics": ["weather"],
       "kind": "word",
       "term": "umbrella",
-      "es": "paraguas"
+      "es": "paraguas",
+      "example": {
+        "en": "Take an umbrella. It's going to rain.",
+        "es": "Lleva un paraguas. Va a llover."
+      }
     },
     {
       "id": "a2.weather.what-is-the-weather-like",
@@ -336,6 +348,18 @@
         "Today[,] it's colder than[ it was] yesterday.",
         "Today is colder than yesterday."
       ]
+    },
+    {
+      "id": "a2.weather.vocab-004",
+      "itemIds": ["a2.weather.windy"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'windy' mean?",
+      "options": ["nublado", "ventoso", "soleado", "lluvioso"],
+      "answerIndex": 1
     }
   ],
   "lessons": [
@@ -352,6 +376,13 @@
         "a2.weather.reading-001",
         "a2.weather.write-001",
         "a2.weather.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.weather.cloudy",
+        "a2.weather.going-to-predictions",
+        "a2.weather.rain",
+        "a2.weather.what-is-the-weather-like",
+        "a2.weather.umbrella"
       ]
     },
     {
@@ -367,7 +398,8 @@
         "a2.weather.choice-002",
         "a2.weather.choice-003",
         "a2.weather.write-002"
-      ]
+      ],
+      "newItemIds": ["a2.weather.forecast", "a2.weather.sunny", "a2.weather.cold"]
     }
   ]
 }

@@ -22,9 +22,19 @@ function exercisesByItem(exercises: readonly Exercise[]): Map<string, Exercise[]
 }
 
 /**
+ * An item in its first steps: learned (or lapsed) at most a day ago. A lesson schedules its new
+ * items for the next day; these are the reviews that keep them from being forgotten.
+ */
+function inFirstSteps(state: ReviewState): boolean {
+  return state.intervalDays <= 1;
+}
+
+/**
  * Items the daily review practices today: due states that some reviewable exercise covers,
- * ordered by `selectSession` (most overdue, then most lapsed) and capped at `REVIEW_MAX_ITEMS`.
- * New items are never added here: they come from lessons.
+ * capped at `REVIEW_MAX_ITEMS`. Items in their first steps (interval ≤ 1 day: yesterday's new
+ * lesson items, lapses) come first, so a backlog never pushes them out; within each group,
+ * `selectSession` orders them (most overdue, then most lapsed). New items are never added here:
+ * they come from lessons.
  */
 export function pendingReviewItems({
   states,
@@ -36,14 +46,19 @@ export function pendingReviewItems({
   exercises: readonly Exercise[];
 }): string[] {
   const byItem = exercisesByItem(exercises);
-  const plan = selectSession({
-    states: states.filter((s) => byItem.has(s.itemId)),
-    today,
-    newItemIds: [],
-    maxReviews: REVIEW_MAX_ITEMS,
-    maxNew: 0,
-  });
-  return [...plan.reviews];
+  const reviewable = states.filter((s) => byItem.has(s.itemId));
+  const plan = (group: readonly ReviewState[]) =>
+    selectSession({
+      states: group,
+      today,
+      newItemIds: [],
+      maxReviews: REVIEW_MAX_ITEMS,
+      maxNew: 0,
+    }).reviews;
+  return [
+    ...plan(reviewable.filter(inFirstSteps)),
+    ...plan(reviewable.filter((s) => !inFirstSteps(s))),
+  ].slice(0, REVIEW_MAX_ITEMS);
 }
 
 /**

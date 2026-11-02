@@ -6,7 +6,11 @@
       "topics": ["technology"],
       "kind": "word",
       "term": "device",
-      "es": "dispositivo, aparato"
+      "es": "dispositivo, aparato",
+      "example": {
+        "en": "You can use the app on any device.",
+        "es": "Puedes usar la aplicación en cualquier dispositivo."
+      }
     },
     {
       "id": "b1.technology.screen",
@@ -22,7 +26,11 @@
       "topics": ["technology"],
       "kind": "word",
       "term": "charger",
-      "es": "cargador"
+      "es": "cargador",
+      "example": {
+        "en": "I forgot my phone charger at home.",
+        "es": "Olvidé el cargador del teléfono en casa."
+      }
     },
     {
       "id": "b1.technology.password",
@@ -338,6 +346,13 @@
         "b1.technology.reading-001",
         "b1.technology.write-001",
         "b1.technology.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.technology.charger",
+        "b1.technology.password",
+        "b1.technology.back-up",
+        "b1.technology.log-in",
+        "b1.technology.passive-present"
       ]
     },
     {
@@ -353,6 +368,11 @@
         "b1.technology.choice-002",
         "b1.technology.write-002",
         "b1.technology.write-003"
+      ],
+      "newItemIds": [
+        "b1.technology.device",
+        "b1.technology.relative-that-which",
+        "b1.technology.passive-present"
       ]
     }
   ]

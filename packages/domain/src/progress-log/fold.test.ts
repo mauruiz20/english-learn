@@ -27,6 +27,7 @@ describe("foldEvents", () => {
       placement: null,
       activeDates: [],
       completedLessonIds: [],
+      lessonResults: [],
       anomalies: [],
     });
   });
@@ -75,6 +76,37 @@ describe("foldEvents", () => {
       ]);
       expect(result.xp).toBe(50 + 20 + 40 + 30 + 10 + 25);
       expect(result.completedLessonIds).toEqual(["L1", "L2"]);
+    });
+
+    it("keeps each lesson's best accuracy, sorted by lessonId; reviews have none", () => {
+      const result = foldEvents([
+        lessonCompleted({ id: "e1", localDate: d1 }, "s1", "L2", 40, 0.5),
+        lessonCompleted({ id: "e2", localDate: d1, occurredAt: 5 }, "s2", "L1", 50, 5 / 6),
+        lessonCompleted({ id: "e3", localDate: d2 }, "s3", "L1", 60, 1),
+        lessonCompleted({ id: "e4", localDate: d3 }, "s4", "L1", 20, 2 / 6),
+        reviewCompleted({ id: "e5", localDate: d3 }, "s5", 25, 1),
+      ]);
+      expect(result.lessonResults).toEqual([
+        { lessonId: "L1", bestAccuracy: 1, completions: 3 },
+        { lessonId: "L2", bestAccuracy: 0.5, completions: 1 },
+      ]);
+    });
+
+    it("counts a session delivered under two event ids once in the lesson results", () => {
+      const result = foldEvents([
+        lessonCompleted({ id: "e1", localDate: d1 }, "s1", "L1", 50, 0.5),
+        lessonCompleted({ id: "e2", localDate: d1, occurredAt: 9 }, "s1", "L1", 60, 1),
+      ]);
+      expect(result.lessonResults).toEqual([{ lessonId: "L1", bestAccuracy: 0.5, completions: 1 }]);
+    });
+
+    it("pays the bonus once however often a lesson is redone, even when the redo is perfect", () => {
+      const result = foldEvents([
+        lessonCompleted({ id: "e1", localDate: d1 }, "s1", "L1", 40, 0.5),
+        lessonCompleted({ id: "e2", localDate: d1, occurredAt: 5 }, "s2", "L1", 60, 1),
+        lessonCompleted({ id: "e3", localDate: d2 }, "s3", "L1", 60, 1),
+      ]);
+      expect(result.xp).toBe(40 + 10 + 60 + 60);
     });
 
     it("pays the bonus for a new lesson whose items were all learned in other lessons", () => {

@@ -14,7 +14,11 @@
       "topics": ["home"],
       "kind": "word",
       "term": "bedroom",
-      "es": "dormitorio"
+      "es": "dormitorio",
+      "example": {
+        "en": "My bedroom is small but very quiet.",
+        "es": "Mi dormitorio es pequeño pero muy tranquilo."
+      }
     },
     {
       "id": "a2.home.bathroom",
@@ -30,7 +34,11 @@
       "topics": ["home"],
       "kind": "phrase",
       "term": "living room",
-      "es": "sala de estar"
+      "es": "sala de estar",
+      "example": {
+        "en": "We watch TV in the living room.",
+        "es": "Vemos televisión en la sala de estar."
+      }
     },
     {
       "id": "a2.home.yard",
@@ -346,6 +354,13 @@
         "a2.home.reading-001",
         "a2.home.write-001",
         "a2.home.vocab-002"
+      ],
+      "newItemIds": [
+        "a2.home.bedroom",
+        "a2.home.there-is-are",
+        "a2.home.bathroom",
+        "a2.home.do-the-dishes",
+        "a2.home.living-room"
       ]
     },
     {
@@ -361,6 +376,13 @@
         "a2.home.choice-002",
         "a2.home.choice-003",
         "a2.home.write-002"
+      ],
+      "newItemIds": [
+        "a2.home.next-to",
+        "a2.work.have-to",
+        "a2.home.kitchen",
+        "a2.home.door",
+        "a2.home.house"
       ]
     }
   ]

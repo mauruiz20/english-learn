@@ -30,7 +30,11 @@
       "topics": ["city-life"],
       "kind": "word",
       "term": "rent",
-      "es": "alquiler, renta / alquilar, rentar"
+      "es": "alquiler, renta / alquilar, rentar",
+      "example": {
+        "en": "The rent is very high in this neighborhood.",
+        "es": "El alquiler es muy alto en este barrio."
+      }
     },
     {
       "id": "b1.city-life.subway",
@@ -330,6 +334,18 @@
         "My commute{ to work|} {takes|takes me|is|lasts} {forty|40} minutes.",
         "It takes me {forty|40} minutes to {get|go} to work."
       ]
+    },
+    {
+      "id": "b1.city-life.vocab-004",
+      "itemIds": ["b1.city-life.neighborhood"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'neighborhood' mean in 'I live in a quiet neighborhood'?",
+      "options": ["vecino", "barrio", "edificio", "ciudad"],
+      "answerIndex": 1
     }
   ],
   "lessons": [
@@ -346,6 +362,13 @@
         "b1.city-life.reading-001",
         "b1.city-life.write-001",
         "b1.city-life.vocab-002"
+      ],
+      "newItemIds": [
+        "b1.city-life.crowded",
+        "b1.city-life.going-to",
+        "b1.city-life.commute",
+        "b1.city-life.move",
+        "b1.city-life.traffic-jam"
       ]
     },
     {
@@ -361,6 +384,12 @@
         "b1.city-life.choice-002",
         "b1.city-life.write-002",
         "b1.city-life.write-003"
+      ],
+      "newItemIds": [
+        "b1.city-life.rent",
+        "b1.city-life.will",
+        "b1.city-life.present-continuous-future",
+        "b1.city-life.noisy"
       ]
     }
   ]

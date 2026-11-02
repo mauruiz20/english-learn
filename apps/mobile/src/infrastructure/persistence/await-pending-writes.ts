@@ -65,6 +65,7 @@ export function awaitPendingWrites(
     getStreak: () => read(() => repository.getStreak()),
     getXp: () => read(() => repository.getXp()),
     getPlacementResult: () => read(() => repository.getPlacementResult()),
+    getLessonResults: () => read(() => repository.getLessonResults()),
     getDeviceId: () => repository.getDeviceId(),
     appendEvents: (events) => tracker.write(() => repository.appendEvents(events)),
     rebuildFromEvents: () => tracker.write(() => repository.rebuildFromEvents()),
