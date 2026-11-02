@@ -6,6 +6,7 @@ const LOOKUP_HINT_DISMISSED = "lookup_hint_dismissed";
 const ACCOUNT = "account";
 const SAVE_PROGRESS_SUGGESTION_DISMISSED = "save_progress_suggestion_dismissed";
 const THEME_PREFERENCE = "theme_preference";
+const MIGRATED_TO = "migrated_to";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -42,6 +43,8 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     setSaveProgressSuggestionDismissed: () => write(SAVE_PROGRESS_SUGGESTION_DISMISSED, "1"),
     getThemePreference: async () => parseThemePreference(await read(THEME_PREFERENCE)),
     setThemePreference: (preference) => write(THEME_PREFERENCE, preference),
+    getMigratedTo: () => read(MIGRATED_TO),
+    setMigratedTo: (origin) => write(MIGRATED_TO, origin),
   };
 }
 

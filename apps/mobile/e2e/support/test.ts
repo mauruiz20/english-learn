@@ -56,13 +56,14 @@ export const test = base.extend({
 });
 
 /**
- * Empties OPFS and removes service workers and their caches for the app's origin, from a
+ * Empties OPFS and removes service workers and their caches for the app's origin (or `origin`,
+ * another server of the same export), from a
  * same-origin page that is not the app (a static JSON file the export always contains), so no
  * database is open while its files are removed. (Service workers and caches live in the same
  * shared WebKit website data as OPFS.)
  */
-export async function clearOriginData(page: Page) {
-  await page.goto("/metadata.json");
+export async function clearOriginData(page: Page, origin = "") {
+  await page.goto(`${origin}/metadata.json`);
   await page.evaluate(async () => {
     const registrations = await navigator.serviceWorker.getRegistrations();
     await Promise.all(registrations.map((registration) => registration.unregister()));
