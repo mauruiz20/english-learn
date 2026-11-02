@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { levenshtein } from "./levenshtein";
 import { canonicalCandidates, normalizeAnswer } from "./normalize";
-import { matchAnswer } from "./match-answer";
+import { FUNCTION_WORDS, matchAnswer } from "./match-answer";
+import { matchPatternAnswer } from "./pattern";
 
 describe("levenshtein", () => {
   it.each([
@@ -93,7 +94,10 @@ describe("matchAnswer: correct", () => {
   });
 
   it("returns the matched accepted answer as closest", () => {
-    expect(matchAnswer("hi", ["Hello", "Hi!"])).toEqual({ verdict: "correct", closest: "Hi!" });
+    expect(matchAnswer("hi", ["Hello", "Hi!"])).toMatchObject({
+      verdict: "correct",
+      closest: "Hi!",
+    });
   });
 });
 
@@ -112,7 +116,7 @@ describe("matchAnswer: almost (typo tolerance)", () => {
       ["The government announced a new environment policy today"],
     ],
   ])("%s", (_label, input, accepted) => {
-    expect(matchAnswer(input, accepted)).toEqual({ verdict: "almost", closest: accepted[0] });
+    expect(matchAnswer(input, accepted)).toMatchObject({ verdict: "almost", closest: accepted[0] });
   });
 });
 
@@ -124,8 +128,8 @@ describe("matchAnswer: wrong", () => {
     ["typos in two different words", "I am vry hapy", ["I am very happy"]],
     ["short word swapped (preposition)", "I live on Madrid", ["I live in Madrid"]],
     ["article changed", "I eat a apple", ["I eat an apple"]],
-    ["missing word", "I happy", ["I am happy"]],
-    ["extra word", "I am am happy", ["I am happy"]],
+    ["missing content word", "I am happy", ["I am very happy"]],
+    ["extra content word", "I am really happy", ["I am happy"]],
     ["totally different", "goodbye", ["hello"]],
     ["no accepted answers", "hello", []],
   ])("%s", (_label, input, accepted) => {
@@ -137,10 +141,94 @@ describe("matchAnswer: wrong", () => {
   });
 
   it("returns an empty closest when there are no accepted answers", () => {
-    expect(matchAnswer("hello", [])).toEqual({ verdict: "wrong", closest: "" });
+    expect(matchAnswer("hello", [])).toMatchObject({ verdict: "wrong", closest: "" });
   });
 
   it("still reports a closest answer for empty input", () => {
-    expect(matchAnswer("", ["happy"])).toEqual({ verdict: "wrong", closest: "happy" });
+    expect(matchAnswer("", ["happy"])).toMatchObject({ verdict: "wrong", closest: "happy" });
+  });
+});
+
+describe("matchAnswer: almost (one extra or missing function word)", () => {
+  it.each([
+    [
+      "owner case: extra article before 'work'",
+      "My commute to the work takes forty minutes",
+      ["My commute to work takes forty minutes."],
+    ],
+    ["missing auxiliary", "I happy", ["I am happy"]],
+    ["extra auxiliary", "I am am happy", ["I am happy"]],
+    ["missing preposition", "I listen music every day", ["I listen to music every day."]],
+    ["missing subject 'it'", "Is raining today", ["It is raining today."]],
+    ["extra possessive", "She washed her the car", ["She washed the car."]],
+    ["missing article, with contractions", "I'm student", ["I am a student."]],
+    [
+      "punctuation differences do not count",
+      "My commute, to the work takes forty minutes!",
+      ["My commute to work takes forty minutes."],
+    ],
+  ])("%s", (_label, input, accepted) => {
+    expect(matchAnswer(input, accepted)).toMatchObject({ verdict: "almost", closest: accepted[0] });
+  });
+
+  it("is 'almost' through answer patterns too", () => {
+    expect(
+      matchPatternAnswer("My commute to the work lasts forty minutes", [
+        "My commute to work {takes|lasts} forty minutes.",
+      ]),
+    ).toMatchObject({ verdict: "almost", closest: "My commute to work lasts forty minutes." });
+  });
+
+  it.each([
+    ["missing negation 'not'", "I do like it", ["I do not like it"]],
+    ["missing negation as a contraction", "I do like it", ["I don't like it"]],
+    ["extra 'never'", "I never eat meat", ["I eat meat"]],
+    ["missing 'no'", "I have time", ["I have no time"]],
+    ["extra 'nothing'", "I see nothing here", ["I see here"]],
+    ["missing content word", "I am happy", ["I am very happy"]],
+    ["missing subject 'I' (not in the list)", "Have a dog", ["I have a dog."]],
+    [
+      "extra function word plus a typo elsewhere",
+      "My comute to the work takes forty minutes",
+      ["My commute to work takes forty minutes."],
+    ],
+    ["two extra function words", "I go to the the school", ["I go to school"]],
+    ["one-word answer missing its article", "apple", ["an apple"]],
+  ])("stays wrong: %s", (_label, input, accepted) => {
+    expect(matchAnswer(input, accepted).verdict).toBe("wrong");
+  });
+
+  it("allows only the explicit list of function words, and no negations", () => {
+    for (const negation of ["not", "no", "never", "nothing", "nobody", "none", "neither", "nor"]) {
+      expect(FUNCTION_WORDS.has(negation)).toBe(false);
+    }
+    expect([...FUNCTION_WORDS].sort()).toEqual(
+      [
+        ...["a", "an", "the"],
+        ...["to", "at", "in", "on", "of", "for", "with", "from", "by", "about"],
+        ...["do", "does", "did", "is", "are", "am", "was", "were", "have", "has", "had"],
+        ...["will", "would"],
+        ...["my", "your", "his", "her", "its", "our", "their"],
+        ...["it", "and", "that"],
+      ].sort(),
+    );
+  });
+});
+
+describe("matchAnswer: word diff and hint", () => {
+  it("returns the word diff against the closest accepted answer, and a calque hint", () => {
+    const result = matchAnswer("My commute to the work takes forty minutes", [
+      "My commute to work takes forty minutes.",
+    ]);
+    expect(result.diff.filter((op) => op.kind !== "same")).toEqual([
+      { kind: "extra", text: "the" },
+    ]);
+    expect(result.hint).toBe("En inglés se dice 'to work', sin 'the'.");
+  });
+
+  it("has no hint and no differences for a correct answer", () => {
+    const result = matchAnswer("I am happy", ["I'm happy."]);
+    expect(result.diff.every((op) => op.kind === "same")).toBe(true);
+    expect(result.hint).toBeUndefined();
   });
 });
