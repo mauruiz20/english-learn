@@ -14,6 +14,7 @@ It does not import `@english-learn/content`; the app layer maps content into the
 | `streak`          | Daily streak (current / longest)                                                                         |
 | `progress`        | Per-level seen / mastered counts                                                                         |
 | `progress-log`    | Append-only progress events, UUIDv7 ids, deterministic `foldEvents`, incremental `advanceFold`           |
+| `rewards`         | Plumas: earning rules and amounts, the daily cap, `Rewards` / `PlumasTotals`, `plumasEarned`             |
 | `placement`       | Adaptive placement test (CAT) → CEFR level                                                               |
 | `shuffle`         | Fisher–Yates shuffle, option shuffling, word-order token scrambling                                      |
 | `local-date`      | Branded `YYYY-MM-DD` date with pure calendar math (no timezones)                                         |
@@ -115,6 +116,8 @@ ids from different milliseconds sort by time). Every payload carries `v: 1`.
 | `placement_completed` | `level, theta`                                                         | when the placement test ends              |
 | `baseline_imported`   | `states, xp, streak, placement, completedLessonIds?`                   | once per device, migrating pre-event data |
 | `answer_disputed`     | `exerciseId, itemIds, answer (trimmed, ≤ 200 chars), accepted: false`  | with a session, per self-regraded answer  |
+| `item_purchased`      | `itemId` (≤ 64 chars), `price` (integer 1–10,000)                      | not yet (wardrobe, phase 2)               |
+| `item_equipped`       | `slot` (snake_case, ≤ 20 chars), `itemId` (≤ 64 chars) or `null`       | not yet (wardrobe, phase 2)               |
 
 The app applies worst-grade-wins and the looked-up cap (grade ≤ 3) **before** writing
 `item_reviewed`. The fold decides everything else, including the lesson bonus. All events of one
@@ -146,6 +149,45 @@ session carry the same `localDate` (the day it was completed), as the app used o
 | Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                               |
 | Baseline streaks | `longest` = max; `current` and `lastActiveDate` from the most recent `lastActiveDate` (larger `current` on a tie)                                                 |
 | Baseline lessons | `completedLessonIds` are unioned (no bonus for them later)                                                                                                        |
+| Plumas           | See "Plumas" below: earned from sessions, on-time reviews and baselines, never from answer XP; spent by the first purchase of each item                           |
+| Equips           | Per slot, the last `item_equipped` in fold order (unknown slots kept; `null` takes the slot off)                                                                  |
+
+### Plumas (`rewards`, `progress-log/rewards-ledger.ts`)
+
+Plumas are Avi's currency (`docs/design/avi-rewards.md`). Like XP they are **derived**: no event
+says "earned"; the fold pays them while it walks the log, so the whole history earns them
+(retroactively, once) and every device converges.
+
+| Source (`PlumasSource`)            | Plumas     | Rule, in fold order                                                                                    |
+| ---------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------ |
+| `study_day` "Día de estudio"       | 5          | The first `session_completed` of a `localDate`                                                         |
+| `new_lesson` "Lección nueva"       | 5          | The first `session_completed` of a `lessonId` (lessons and cards; not lessons a baseline completed)    |
+| `perfect_page` "Página perfecta"   | 10         | `accuracy === 1` and the lesson's best accuracy so far was below 1 (or none): once per `lessonId`      |
+| `on_time_review` "Repaso a tiempo" | 1 / item   | An applied `item_reviewed` with grade ≥ 3 of an item whose state was due (`dueDate ≤ localDate`)       |
+| `daily_review` "Repaso del día"    | 5          | The first review `session_completed` of a `localDate` with `accuracy ≥ 0.8`                            |
+| `study_week` "Semana de estudio"   | 15         | The run of consecutive study dates reaches 7, 14, 21, … (outside the cap)                              |
+| `welcome` "Bienvenida"             | 5 / lesson | Each lesson id a `baseline_imported` adds to `completedLessonIds` for the first time (outside the cap) |
+
+- **Daily cap: 40** per `localDate` for every source but `study_week` and `welcome`. It is applied
+  as plumas arrive: each award pays what is left of the day's 40, so a day's capped total is
+  `min(40, Σ)` whatever the order inside the day; what it held back is counted in `overCap`, and
+  `earnedBySource` always adds up to `earned`.
+- **Anti-farming** follows from the rules: a replay of a done lesson pays at most the day bonus,
+  a perfect redo of a perfect lesson pays nothing, practising items that are not due pays nothing,
+  and `answerXp` is never read.
+- **Spending**: `spent` is Σ `price` of the FIRST `item_purchased` per `itemId` (a repeat from
+  another device is a known no-op, no anomaly); `balance = earned − spent` can go negative after
+  concurrent offline purchases (items are never taken away). `ownedItemIds` keeps unknown ids.
+- `ProgressState.rewards` (`Rewards`): `earned`, `spent`, `balance`, `earnedBySource`, `overCap`,
+  `ownedItemIds`, `equipped`. A write's totals carry `plumas` (`PlumasTotals`), and
+  `plumasEarned(before, after)` gives what it earned per source and whether the cap held some back.
+- The snapshot keeps `rewards`: the totals plus the latest day (`date`, what it paid, whether its
+  review bonus paid) and the run (`lastDate`, `length`). Fold order is by `localDate` first, so
+  that is all `advanceFold` needs to stay exact.
+
+Property tests: answer XP never changes plumas, the capped sources pay ≤ 40 on any date, a
+perfect redo on a studied day pays 0, `balance = earned − spent` with each item charged once by
+its first purchase, and dense two-device histories keep `advanceFold` equal to a refold.
 
 Property tests (fast-check) check permutation invariance, idempotence under duplication, union
 convergence of two devices, a single bonus per lesson across devices, and an oracle: replaying
@@ -159,7 +201,8 @@ store apply only the new events:
 
 - `foldSnapshot(events)`: the fold's full state as plain JSON-safe data (`FoldSnapshot`, format
   `FOLD_SNAPSHOT_VERSION`): review states, XP, merged baseline streak, placement, active dates,
-  completed lessons, lesson results, the ids of completed and of reviewed sessions, the anomalies,
+  completed lessons, lesson results, the ids of completed and of reviewed sessions, the rewards
+  ledger, the anomalies,
   and a **cursor**: the position `(localDate, occurredAt, id, canonical content)` of the last
   orderable event in fold order. Arrays are sorted, so equal folds give equal snapshots.
 - `advanceFold(snapshot, events)`: applies `events` on top, giving exactly `foldSnapshot` of the

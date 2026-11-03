@@ -34,6 +34,7 @@ describe("migrate", () => {
       "lesson_result",
       "placement_result",
       "review_state",
+      "rewards",
       "setting",
       "streak",
       "sync_state",

@@ -6,6 +6,7 @@ export * from "./placement";
 export * from "./ports";
 export * from "./progress";
 export * from "./progress-log";
+export * from "./rewards";
 export * from "./scoring";
 export * from "./shuffle";
 export * from "./srs";

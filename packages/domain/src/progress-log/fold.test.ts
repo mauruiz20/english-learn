@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { localDate } from "../local-date";
+import { EMPTY_REWARDS } from "../rewards";
 import { applyReview, initialState, review, type ReviewState } from "../srs";
 import { EMPTY_STREAK, recordActivity } from "../streak";
 import {
@@ -28,6 +29,7 @@ describe("foldEvents", () => {
       activeDates: [],
       completedLessonIds: [],
       lessonResults: [],
+      rewards: EMPTY_REWARDS,
       anomalies: [],
     });
   });

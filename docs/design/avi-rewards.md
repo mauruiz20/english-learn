@@ -1,6 +1,6 @@
 # Design: Avi's rewards, wardrobe and home presence
 
-Status: proposal · Scope: design only, no feature code · Owner decisions pending: see
+Status: approved, slice 1 implemented · The owner took the five recommended answers in
 [Open questions](#8-open-questions)
 
 Learners earn **plumas** for studying well and on time, and spend them dressing **Avi**, the
@@ -148,12 +148,17 @@ needs no catalogue (the domain does not import content).
 | ---------------- | ------------------------------------------------------------------------------------------------------------- |
 | `earned`         | Σ of section 2.1, with the cap tracked per `localDate`                                                        |
 | `earnedBySource` | Lifetime totals per source, so the summary can show a breakdown as after − before (like XP today)             |
+| `overCap`        | Lifetime plumas the daily cap held back, so the summary knows a session hit the cap                           |
 | `spent`          | Σ `price` of the **first** `item_purchased` per `itemId` in fold order; a repeat is a known no-op (no charge) |
 | `balance`        | `earned − spent`. It can be negative after concurrent offline spends (see 3.3)                                |
 | `ownedItemIds`   | Sorted ids with an applied purchase (unknown ids kept, so newer catalogues survive)                           |
 | `equipped`       | Per slot, the last `item_equipped` in fold order (last-writer-wins per slot; unknown slots kept)              |
 
-New snapshot fields (all tiny): `rewards: { earned, spent, earnedBySource, owned, equipped,
+The cap is applied as plumas arrive: each award pays what is left of the day's 40. A day's total
+is still `min(40, Σ)` whatever the order inside it, and `earnedBySource` adds up to `earned`
+(the plumas the cap held back count in `overCap`, not in a source).
+
+New snapshot fields (all tiny): `rewards: { earned, spent, earnedBySource, overCap, owned, equipped,
 day: { date, earned, reviewBonus }, run: { lastDate, length } }`. Fold order is by `localDate`
 first, so only the cursor's day needs per-day state. That keeps `advanceFold` exact without
 extra refold cases. First completion and first perfect reuse `completedLessonIds` and
@@ -188,13 +193,13 @@ The "debt" alternative to voiding the later purchase is Open question 2.
 
 ### 3.5 Version, golden and storage impact
 
-| Change                                                                                                                                                                    | Impact                                                                                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| New snapshot fields + 2 event types + new earning rules                                                                                                                   | `FOLD_SNAPSHOT_VERSION` 1 → **2**, done once in slice 1 for all fold rules                                                                                                               |
-| `FOLD_RULES_CORPUS` (`fold-rules.ts`) gains: perfect redo, cap overflow, 7-day run, due vs. not-due review, duplicate purchase, equip LWW, unknown slot, negative balance | Regenerate `fold-rules.golden.json` (`UPDATE_FOLD_GOLDEN=1 …`)                                                                                                                           |
-| `foldRulesFingerprint()` changes                                                                                                                                          | Every store refolds once on upgrade (≈ 250 ms, see `packages/storage-sqlite/README.md`)                                                                                                  |
-| `ProgressState` gains `rewards`, `ProgressTotals` gains `plumas`                                                                                                          | `ProgressRepository.getRewards()` (`packages/domain/src/ports/progress-repository.ts`), the SQLite adapter (read from the stored snapshot) and `src/testing/fake-progress-repository.ts` |
-| Settings                                                                                                                                                                  | `SettingsRepository.get/setLastHomeVisit(date)` for the "welcome back" trigger (per device, not synced)                                                                                  |
+| Change                                                                                                                                                                    | Impact                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| New snapshot fields + 2 event types + new earning rules                                                                                                                   | `FOLD_SNAPSHOT_VERSION` 1 → **2**, done once in slice 1 for all fold rules                                                                                                                                                                                                   |
+| `FOLD_RULES_CORPUS` (`fold-rules.ts`) gains: perfect redo, cap overflow, 7-day run, due vs. not-due review, duplicate purchase, equip LWW, unknown slot, negative balance | Regenerate `fold-rules.golden.json` (`UPDATE_FOLD_GOLDEN=1 …`)                                                                                                                                                                                                               |
+| `foldRulesFingerprint()` changes                                                                                                                                          | Every store refolds once on upgrade (≈ 250 ms, see `packages/storage-sqlite/README.md`)                                                                                                                                                                                      |
+| `ProgressState` gains `rewards`, `ProgressTotals` gains `plumas`                                                                                                          | `ProgressRepository.getRewards()` (`packages/domain/src/ports/progress-repository.ts`), the SQLite adapter (a one-row `rewards` cache table, migration 6, written with the other caches so a write's totals stay a cheap read) and `src/testing/fake-progress-repository.ts` |
+| Settings                                                                                                                                                                  | `SettingsRepository.get/setLastHomeVisit(date)` for the "welcome back" trigger (per device, not synced)                                                                                                                                                                      |
 
 ### 3.6 API
 

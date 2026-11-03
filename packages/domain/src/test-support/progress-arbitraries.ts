@@ -6,6 +6,8 @@ import type { Grade, ReviewState } from "../srs";
 import { EMPTY_STREAK, type Streak } from "../streak";
 import {
   baselineImported,
+  itemEquipped,
+  itemPurchased,
   itemReviewed,
   lessonCompleted,
   placementCompleted,
@@ -26,6 +28,9 @@ export const levelArb = fc.constantFrom(...LEVELS);
 export const thetaArb = fc.double({ min: -4, max: 4, noNaN: true });
 export const accuracyArb = fc.integer({ min: 0, max: 20 }).map((n) => n / 20);
 export const answerXpArb = fc.integer({ min: 0, max: 200 });
+export const wardrobeItemArb = fc.constantFrom("gorra", "panuelo", "estrella", "zz-future");
+export const priceArb = fc.integer({ min: 1, max: 250 });
+export const slotArb = fc.constantFrom("head", "neck", "paper", "future_slot");
 
 export const reviewStateArb: fc.Arbitrary<ReviewState> = fc.record({
   itemId: itemIdArb,
@@ -94,6 +99,22 @@ const bodyArb: fc.Arbitrary<Body> = fc.oneof(
       .map((payload) => (m: Meta) => baselineImported(m, payload)),
   },
   {
+    weight: 1,
+    arbitrary: fc.tuple(wardrobeItemArb, priceArb).map(
+      ([item, price]) =>
+        (m: Meta) =>
+          itemPurchased(m, item, price),
+    ),
+  },
+  {
+    weight: 1,
+    arbitrary: fc.tuple(slotArb, fc.option(wardrobeItemArb, { nil: null })).map(
+      ([slot, item]) =>
+        (m: Meta) =>
+          itemEquipped(m, slot, item),
+    ),
+  },
+  {
     // Forward compatibility: a newer app's event type or payload version.
     weight: 1,
     arbitrary: fc.constantFrom("streak_frozen", "session_completed").map(
@@ -137,4 +158,42 @@ export const eventsWithConflictsArb: fc.Arbitrary<StoredEvent[]> = fc
 /** A permutation of `items` (every element exactly once). */
 export function permutationArb<T>(items: readonly T[]): fc.Arbitrary<T[]> {
   return fc.shuffledSubarray([...items], { minLength: items.length, maxLength: items.length });
+}
+
+/**
+ * A dense study history: many sessions over a few weeks, mostly on consecutive days, with
+ * frequent perfect pages and reviews of items that are due, so that the plumas rules (daily cap,
+ * study weeks, first perfect, on-time reviews) all fire. One device; ids `<deviceId>-<n>`.
+ */
+export function studyHistoryArb(deviceId = "A", maxSessions = 40): fc.Arbitrary<StoredEvent[]> {
+  const sessionArb = fc.record({
+    gap: fc.constantFrom(0, 0, 0, 1, 1, 1, 2),
+    kind: fc.constantFrom("lesson", "lesson", "review"),
+    lessonId: fc.constantFrom("L0", "L1", "L2", "L3", "card-1"),
+    accuracy: fc.constantFrom(0.5, 0.8, 1, 1),
+    answerXp: answerXpArb,
+    reviews: fc.uniqueArray(fc.tuple(itemIdArb, gradeArb), {
+      selector: ([itemId]) => itemId,
+      maxLength: 5,
+    }),
+  });
+  return fc.array(sessionArb, { maxLength: maxSessions }).map((sessions) => {
+    const events: StoredEvent[] = [];
+    let date = START;
+    let n = 0;
+    sessions.forEach((s, k) => {
+      date = addDays(date, s.gap);
+      const meta = () => ({ id: `${deviceId}-${n}`, deviceId, localDate: date, occurredAt: n++ });
+      const sessionId = `${deviceId}-session-${k}`;
+      for (const [itemId, grade] of s.reviews) {
+        events.push(itemReviewed(meta(), sessionId, itemId, grade));
+      }
+      events.push(
+        s.kind === "lesson"
+          ? lessonCompleted(meta(), sessionId, s.lessonId, s.answerXp, s.accuracy)
+          : reviewCompleted(meta(), sessionId, s.answerXp, s.accuracy),
+      );
+    });
+    return events;
+  });
 }
