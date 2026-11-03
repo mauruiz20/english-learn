@@ -7,3 +7,6 @@ allowBuilds:
   esbuild: true
   "@parcel/watcher": false
   unrs-resolver: false
+
+patchedDependencies:
+  expo-sqlite@58.0.14: patches/expo-sqlite@58.0.14.patch
