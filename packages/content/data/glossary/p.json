@@ -52,7 +52,7 @@
       "id": "glossary.panic",
       "headword": "panic",
       "kind": "word",
-      "forms": ["panic", "panics", "panicked"],
+      "forms": ["panic", "panics", "panicked", "panicking"],
       "senses": [
         {
           "es": "entrar en pánico",

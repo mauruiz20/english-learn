@@ -631,11 +631,11 @@
       "forms": ["shower", "showers"],
       "senses": [
         {
-          "es": "regadera, ducha",
+          "es": "ducha, regadera",
           "pos": "noun"
         },
         {
-          "es": "(take a shower) bañarse",
+          "es": "(take a shower) ducharse, bañarse",
           "pos": "noun"
         }
       ]
@@ -995,7 +995,7 @@
       "forms": ["snack", "snacks"],
       "senses": [
         {
-          "es": "bocadillo, botana, snack",
+          "es": "refrigerio, algo para picar, snack",
           "pos": "noun"
         }
       ]
@@ -1324,7 +1324,7 @@
       "id": "glossary.spark",
       "headword": "spark",
       "kind": "word",
-      "forms": ["spark", "sparks", "sparked"],
+      "forms": ["spark", "sparks", "sparked", "sparking"],
       "senses": [
         {
           "es": "provocar, desatar",

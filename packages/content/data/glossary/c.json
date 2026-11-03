@@ -19,7 +19,7 @@
       "forms": ["cake", "cakes"],
       "senses": [
         {
-          "es": "pastel",
+          "es": "pastel, torta",
           "pos": "noun"
         }
       ]
@@ -676,10 +676,10 @@
       "id": "glossary.close",
       "headword": "close",
       "kind": "word",
-      "forms": ["close"],
+      "forms": ["close", "closes", "closing"],
       "senses": [
         {
-          "es": "cerca",
+          "es": "cerca, cercano",
           "pos": "adjective"
         },
         {
@@ -996,7 +996,7 @@
       "id": "glossary.conserve",
       "headword": "conserve",
       "kind": "word",
-      "forms": ["conserve", "conserves", "conserved"],
+      "forms": ["conserve", "conserves", "conserved", "conserving"],
       "senses": [
         {
           "es": "conservar, ahorrar (energía, agua)",
