@@ -10,6 +10,7 @@ import {
   watchCallbackHandOff,
 } from "@/infrastructure/auth/callback-relay";
 import { createPendingSignInStore } from "@/infrastructure/auth/oidc";
+import { leavePage } from "@/infrastructure/persistence/app-page-release";
 import type { AccountStorage } from "@/infrastructure/services/app-services";
 import { createSyncCoordinator } from "@/infrastructure/sync/sync-coordinator";
 import { createSyncEngine } from "@/infrastructure/sync/sync-engine";
@@ -66,7 +67,9 @@ export function createAccountRuntime({
     deleteAccount: () => api.deleteAccount(),
     pending,
     randomBytes,
-    redirect: (url) => window.location.assign(url),
+    // Google: the page lets go of its database first. iOS keeps the page that left frozen in
+    // its back/forward cache; holding the files, it locked every later page out of them.
+    redirect: (url) => void leavePage(() => window.location.assign(url)),
     onProgressChanged: progressChanged.emit,
     authorizationEndpoint: endpoints.googleAuthUrl,
   });

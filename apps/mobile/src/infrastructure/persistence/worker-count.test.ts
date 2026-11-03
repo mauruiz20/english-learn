@@ -29,7 +29,17 @@ describe("countWorkers", () => {
     expect(second.created()).toBe(1);
   });
 
+  it("keeps the workers it created, so the page can end them before it leaves", () => {
+    const globals: { Worker?: unknown } = { Worker: FakeWorker };
+    const count = countWorkers(globals);
+    const worker = new (globals.Worker as typeof FakeWorker)("blob:sqlite");
+
+    expect(count.workers()).toEqual([worker]);
+    expect(countWorkers(globals).workers()).toEqual([worker]);
+  });
+
   it("without Worker (native, tests) counts nothing", () => {
     expect(countWorkers({}).created()).toBe(0);
+    expect(countWorkers({}).workers()).toEqual([]);
   });
 });
