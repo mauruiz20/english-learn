@@ -1,6 +1,7 @@
 /** The app's interaction sounds (assets/sounds/*.wav, made by scripts/generate-sounds.mjs). */
 export const SOUND_NAMES = [
   "tap",
+  "press",
   "correct",
   "almost",
   "wrong",

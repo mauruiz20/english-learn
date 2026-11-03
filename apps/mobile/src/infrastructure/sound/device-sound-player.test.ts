@@ -67,6 +67,27 @@ describe("createDeviceSoundPlayer", () => {
     expect(clip("tap").volume).toBeLessThan(clip("correct").volume);
   });
 
+  it("keeps the press click well below the feedback sounds, under the tap", () => {
+    const { clip } = setup();
+    const feedback = (["correct", "almost", "wrong", "complete"] as const).map(
+      (name) => clip(name).volume,
+    );
+
+    expect(clip("press").volume).toBeLessThan(clip("tap").volume);
+    expect(clip("press").volume).toBeLessThanOrEqual(Math.min(...feedback) / 3);
+  });
+
+  it("pairs the press click with the light tap haptic", () => {
+    const ios = setup("ios");
+    const android = setup("android");
+
+    ios.player.play("press");
+    android.player.play("press");
+
+    expect(ios.haptics.calls).toEqual(["impact:light"]);
+    expect(android.haptics.calls).toEqual(["android:tap"]);
+  });
+
   it("stays silent while disabled, and plays again once enabled", () => {
     const { player, clip } = setup();
 

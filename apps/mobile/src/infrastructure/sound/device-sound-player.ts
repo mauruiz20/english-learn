@@ -20,9 +20,13 @@ export type HapticsPort = {
   android(type: AndroidHaptic): Promise<void>;
 };
 
-/** Clip volume per sound: the tap is a whisper, the rest sit just under full volume. */
+/**
+ * Clip volume per sound: the tap is a whisper, the press click (any other button) quieter still,
+ * the rest sit just under full volume.
+ */
 export const VOLUMES: Readonly<Record<SoundName, number>> = {
   tap: 0.35,
+  press: 0.2,
   correct: 0.8,
   almost: 0.8,
   wrong: 0.7,
@@ -33,6 +37,7 @@ export const VOLUMES: Readonly<Record<SoundName, number>> = {
 
 const IOS_HAPTICS: Readonly<Record<SoundName, "light" | HapticNotification | null>> = {
   tap: "light",
+  press: "light",
   correct: "success",
   almost: "warning",
   wrong: "error",
@@ -43,6 +48,7 @@ const IOS_HAPTICS: Readonly<Record<SoundName, "light" | HapticNotification | nul
 
 const ANDROID_HAPTICS: Readonly<Record<SoundName, AndroidHaptic | null>> = {
   tap: "tap",
+  press: "tap",
   correct: "confirm",
   almost: null,
   wrong: "reject",
