@@ -133,6 +133,30 @@
       ]
     },
     {
+      "id": "glossary.take-on",
+      "headword": "take on",
+      "kind": "phrase",
+      "forms": ["take on", "takes on", "took on", "taken on", "taking on"],
+      "senses": [
+        {
+          "es": "contratar (personal); asumir (trabajo)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-over",
+      "headword": "take over",
+      "kind": "phrase",
+      "forms": ["take over", "takes over", "took over", "taken over", "taking over"],
+      "senses": [
+        {
+          "es": "hacerse cargo de, asumir el control de",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.taken-aback",
       "headword": "taken aback",
       "kind": "phrase",
@@ -177,6 +201,30 @@
         {
           "es": "taxi",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tea",
+      "headword": "tea",
+      "kind": "word",
+      "forms": ["tea"],
+      "senses": [
+        {
+          "es": "té",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.teach",
+      "headword": "teach",
+      "kind": "word",
+      "forms": ["teach", "teaches", "taught", "teaching"],
+      "senses": [
+        {
+          "es": "enseñar",
+          "pos": "verb"
         }
       ]
     },
@@ -429,6 +477,18 @@
       ]
     },
     {
+      "id": "glossary.themselves",
+      "headword": "themselves",
+      "kind": "word",
+      "forms": ["themselves"],
+      "senses": [
+        {
+          "es": "(ellos) mismos, a sí mismos",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
       "id": "glossary.then",
       "headword": "then",
       "kind": "word",
@@ -529,6 +589,18 @@
         {
           "es": "ellos son, ellos están (they are)",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thief",
+      "headword": "thief",
+      "kind": "word",
+      "forms": ["thief", "thieves"],
+      "senses": [
+        {
+          "es": "ladrón, ladrona",
+          "pos": "noun"
         }
       ]
     },
@@ -677,6 +749,18 @@
         {
           "es": "garganta",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.through",
+      "headword": "through",
+      "kind": "word",
+      "forms": ["through"],
+      "senses": [
+        {
+          "es": "por, a través de",
+          "pos": "preposition"
         }
       ]
     },
@@ -909,6 +993,18 @@
       ]
     },
     {
+      "id": "glossary.toy",
+      "headword": "toy",
+      "kind": "word",
+      "forms": ["toy", "toys"],
+      "senses": [
+        {
+          "es": "juguete",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.traffic",
       "headword": "traffic",
       "kind": "word",
@@ -1128,7 +1224,14 @@
       "id": "glossary.turn-down",
       "headword": "turn down",
       "kind": "phrase",
-      "forms": ["turn down", "turns down", "turned down", "turned him down"],
+      "forms": [
+        "turn down",
+        "turns down",
+        "turned down",
+        "turned him down",
+        "turn it down",
+        "turned it down"
+      ],
       "senses": [
         {
           "es": "rechazar",
@@ -1156,6 +1259,18 @@
       "senses": [
         {
           "es": "apagar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-out",
+      "headword": "turn out",
+      "kind": "phrase",
+      "forms": ["turn out", "turns out", "turned out", "turning out"],
+      "senses": [
+        {
+          "es": "resultar",
           "pos": "phrasal verb"
         }
       ]

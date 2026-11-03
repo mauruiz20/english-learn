@@ -57,6 +57,18 @@
       ]
     },
     {
+      "id": "glossary.hairdresser",
+      "headword": "hairdresser",
+      "kind": "word",
+      "forms": ["hairdresser", "hairdressers"],
+      "senses": [
+        {
+          "es": "peluquero, peluquera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.half",
       "headword": "half",
       "kind": "word",
@@ -189,6 +201,18 @@
         {
           "es": "sombrero, gorra",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hate",
+      "headword": "hate",
+      "kind": "word",
+      "forms": ["hate", "hates", "hated", "hating"],
+      "senses": [
+        {
+          "es": "odiar",
+          "pos": "verb"
         }
       ]
     },
@@ -460,6 +484,18 @@
         {
           "es": "aquí",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.herself",
+      "headword": "herself",
+      "kind": "word",
+      "forms": ["herself"],
+      "senses": [
+        {
+          "es": "(ella) misma, a sí misma",
+          "pos": "pronoun"
         }
       ]
     },
@@ -836,6 +872,18 @@
         {
           "es": "(forma incorrecta; el pasado de hurt es hurt)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.husband",
+      "headword": "husband",
+      "kind": "word",
+      "forms": ["husband", "husbands"],
+      "senses": [
+        {
+          "es": "esposo",
+          "pos": "noun"
         }
       ]
     }

@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.waiter",
+      "headword": "waiter",
+      "kind": "word",
+      "forms": ["waiter", "waiters"],
+      "senses": [
+        {
+          "es": "mesero, camarero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.wake",
       "headword": "wake",
       "kind": "word",
@@ -61,6 +73,18 @@
         {
           "es": "pasar (caminando) junto a",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wallet",
+      "headword": "wallet",
+      "kind": "word",
+      "forms": ["wallet", "wallets"],
+      "senses": [
+        {
+          "es": "billetera",
+          "pos": "noun"
         }
       ]
     },
@@ -389,6 +413,18 @@
       ]
     },
     {
+      "id": "glossary.wet",
+      "headword": "wet",
+      "kind": "word",
+      "forms": ["wet"],
+      "senses": [
+        {
+          "es": "mojado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.what",
       "headword": "what",
       "kind": "word",
@@ -469,6 +505,18 @@
         {
           "es": "dónde está (where is)",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.whereas",
+      "headword": "whereas",
+      "kind": "word",
+      "forms": ["whereas"],
+      "senses": [
+        {
+          "es": "mientras que (contraste)",
+          "pos": "conjunction"
         }
       ]
     },
@@ -577,6 +625,18 @@
         {
           "es": "generalizado, extendido",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wife",
+      "headword": "wife",
+      "kind": "word",
+      "forms": ["wife", "wives"],
+      "senses": [
+        {
+          "es": "esposa",
+          "pos": "noun"
         }
       ]
     },
@@ -793,6 +853,18 @@
       ]
     },
     {
+      "id": "glossary.worker",
+      "headword": "worker",
+      "kind": "word",
+      "forms": ["worker", "workers"],
+      "senses": [
+        {
+          "es": "trabajador, trabajadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.world",
       "headword": "world",
       "kind": "word",
@@ -829,6 +901,18 @@
       ]
     },
     {
+      "id": "glossary.worse",
+      "headword": "worse",
+      "kind": "word",
+      "forms": ["worse"],
+      "senses": [
+        {
+          "es": "peor",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.worth",
       "headword": "worth",
       "kind": "word",
@@ -856,7 +940,7 @@
       "id": "glossary.would",
       "headword": "would",
       "kind": "word",
-      "forms": ["would"],
+      "forms": ["would", "wouldn't"],
       "senses": [
         {
           "es": "(would + verbo) -ría: I would go = iría",

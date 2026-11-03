@@ -123,6 +123,18 @@
           "pos": "pronoun"
         }
       ]
+    },
+    {
+      "id": "glossary.yourself",
+      "headword": "yourself",
+      "kind": "word",
+      "forms": ["yourself", "yourselves"],
+      "senses": [
+        {
+          "es": "(tú) mismo, a ti mismo; (yourselves) ustedes mismos",
+          "pos": "pronoun"
+        }
+      ]
     }
   ]
 }

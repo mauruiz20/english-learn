@@ -241,6 +241,18 @@
       ]
     },
     {
+      "id": "glossary.refuse",
+      "headword": "refuse",
+      "kind": "word",
+      "forms": ["refuse", "refuses", "refused", "refusing"],
+      "senses": [
+        {
+          "es": "rechazar, negarse a",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.register",
       "headword": "register",
       "kind": "word",
@@ -293,6 +305,18 @@
       ]
     },
     {
+      "id": "glossary.relax",
+      "headword": "relax",
+      "kind": "word",
+      "forms": ["relax", "relaxes", "relaxed", "relaxing"],
+      "senses": [
+        {
+          "es": "relajarse, descansar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.reliable",
       "headword": "reliable",
       "kind": "word",
@@ -337,6 +361,18 @@
         {
           "es": "recordarle (algo a alguien)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.remote",
+      "headword": "remote",
+      "kind": "word",
+      "forms": ["remote"],
+      "senses": [
+        {
+          "es": "remoto, a distancia",
+          "pos": "adjective"
         }
       ]
     },
@@ -413,6 +449,30 @@
       ]
     },
     {
+      "id": "glossary.researcher",
+      "headword": "researcher",
+      "kind": "word",
+      "forms": ["researcher", "researchers"],
+      "senses": [
+        {
+          "es": "investigador, investigadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.resemble",
+      "headword": "resemble",
+      "kind": "word",
+      "forms": ["resemble", "resembles", "resembled", "resembling"],
+      "senses": [
+        {
+          "es": "parecerse a",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.responsibility",
       "headword": "responsibility",
       "kind": "word",
@@ -469,6 +529,18 @@
       ]
     },
     {
+      "id": "glossary.retire",
+      "headword": "retire",
+      "kind": "word",
+      "forms": ["retire", "retires", "retired", "retiring"],
+      "senses": [
+        {
+          "es": "jubilarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.return",
       "headword": "return",
       "kind": "word",
@@ -509,6 +581,18 @@
         {
           "es": "arroz",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rich",
+      "headword": "rich",
+      "kind": "word",
+      "forms": ["rich"],
+      "senses": [
+        {
+          "es": "rico",
+          "pos": "adjective"
         }
       ]
     },
@@ -589,6 +673,18 @@
       ]
     },
     {
+      "id": "glossary.robber",
+      "headword": "robber",
+      "kind": "word",
+      "forms": ["robber", "robbers"],
+      "senses": [
+        {
+          "es": "ladrón, ladrona",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rome",
       "headword": "Rome",
       "kind": "word",
@@ -644,11 +740,27 @@
       "id": "glossary.rule",
       "headword": "rule",
       "kind": "word",
-      "forms": ["rule", "rules"],
+      "forms": ["rule", "rules", "ruled", "ruling"],
       "senses": [
         {
           "es": "regla, norma",
           "pos": "noun"
+        },
+        {
+          "es": "descartar (rule out)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rule-out",
+      "headword": "rule out",
+      "kind": "phrase",
+      "forms": ["rule out", "rules out", "ruled out", "ruling out"],
+      "senses": [
+        {
+          "es": "descartar",
+          "pos": "phrasal verb"
         }
       ]
     },

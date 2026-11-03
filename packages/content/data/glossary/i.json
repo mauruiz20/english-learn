@@ -213,6 +213,18 @@
       ]
     },
     {
+      "id": "glossary.in-spite-of",
+      "headword": "in spite of",
+      "kind": "phrase",
+      "forms": ["in spite of"],
+      "senses": [
+        {
+          "es": "a pesar de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
       "id": "glossary.in-time",
       "headword": "in time",
       "kind": "phrase",
@@ -317,6 +329,18 @@
         {
           "es": "interesante",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.interrupt",
+      "headword": "interrupt",
+      "kind": "word",
+      "forms": ["interrupt", "interrupts", "interrupted", "interrupting"],
+      "senses": [
+        {
+          "es": "interrumpir",
+          "pos": "verb"
         }
       ]
     },
@@ -453,6 +477,18 @@
         {
           "es": "ha (it has)",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.italian",
+      "headword": "Italian",
+      "kind": "word",
+      "forms": ["italian"],
+      "senses": [
+        {
+          "es": "italiano",
+          "pos": "noun"
         }
       ]
     },

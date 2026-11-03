@@ -117,6 +117,18 @@
       ]
     },
     {
+      "id": "glossary.knife",
+      "headword": "knife",
+      "kind": "word",
+      "forms": ["knife", "knives"],
+      "senses": [
+        {
+          "es": "cuchillo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.know",
       "headword": "know",
       "kind": "word",

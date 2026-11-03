@@ -61,6 +61,18 @@
       ]
     },
     {
+      "id": "glossary.understand",
+      "headword": "understand",
+      "kind": "word",
+      "forms": ["understand", "understands", "understood", "understanding"],
+      "senses": [
+        {
+          "es": "entender",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.unfortunately",
       "headword": "unfortunately",
       "kind": "word",
