@@ -230,7 +230,10 @@ title and its best result with the same marker as the path ("Perfecta · 6/6" wi
 `/fichas/[id]`; labelled "Profundiza: <título>, ficha nueva" or "Profundiza: <título>, completada
 sin errores: 6 de 6 correctas", with the hint "Abre la ficha". Rows are 48 pt tall, smaller than
 a stop (84), and the pencil line runs on beside them (solid or dotted, like the line between
-stops) when another stop follows. Only the shared press feedback moves, and not with reduced
+stops) when another stop follows. A card shows once on the path, under the earliest done lesson
+that links it (`model/deepen-steps.ts`), even if content links it from lessons of two topics. The
+title wraps, never the marker: when both don't fit on one line the marker goes under the title,
+and on a narrow phone the cards take the room right of the pencil line. Only the shared press feedback moves, and not with reduced
 motion. Lessons not done yet show nothing.
 
 ## Word lookup (`src/features/glossary/`)
@@ -388,9 +391,15 @@ network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/a
   tries to close. Nobody answers (the usual same-tab redirect) → a full load of
   `/auth/completar`, which boots the app, checks `state` (once, ≤ 10 min old), sends
   `{ idToken, nonce }` to `POST /v1/auth/google` in cookie mode (the API checks the token's
-  `nonce` claim) and goes back.
+  `nonce` claim) and `router.replace`s itself with home (`/`), so back never reopens the
+  callback. Only a deletion that needed a fresh sign-in returns to `/cuenta?eliminada=1`, for
+  its confirmation; the "save your progress" note just opens `/cuenta` and lands on home too.
 - **Session** (`auth-session.ts`). Access token in memory only; the device remembers only
-  `{ userId, email }` (`SettingsRepository.setAccount`). On start, with that marker, one refresh
+  `{ userId, email, givenName? }` (`SettingsRepository.setAccount`). `givenName` is the ID
+  token's `given_name` (or the first word of `name`; `givenNameFromIdToken` in `oidc.ts`), read on
+  the client at each sign-in for the home greeting: never sent to or stored by the API, replaced
+  by the next account's sign-in, gone on sign-out. A refresh carries no ID token, so a marker
+  from before names has none until the next sign-in. On start, with that marker, one refresh
   (cookie) restores the session; a 401 signs out, a network failure keeps the learner signed in.
   Refreshes are single-flight and serialized across tabs with `navigator.locks`
   (`english-learn-refresh`).
@@ -483,7 +492,10 @@ paper, the prompt and the teacher's marking.
   colors at 7, 30 and 100 days; `model/clip-chain.ts`), `XpBar` (every 250 XP fills a sheet of
   stickers; `model/xp-sheet.ts`), `Confetti` (hole-punch dots, deterministic, not rendered at all
   with reduced motion) and `PopBadge` (the "+10" sticker of a right answer).
-- **Home** (`features/home/`): a progress card (clip chain and days, sound and account, the XP
+- **Home** (`features/home/`): the greeting first (`home-greeting.tsx`): "Hola, <nombre>" with
+  the signed-in learner's first name, or "¡Hola!" (signed out, or no name remembered yet); a
+  heading in ink (AA in both schemes), one line with an ellipsis for long names, no motion. Then
+  a progress card (clip chain and days, sound and account, the XP
   sheet, the link to the album with its count), the review sticky note (Avi naps when there is
   nothing to review), the placement invitation, then the level's lessons as a path drawn in
   pencil, grouped by topic: won lessons are tilted stickers with a check, the first lesson not done

@@ -76,6 +76,51 @@ export function randomToken(randomBytes: RandomBytes): string {
   return base64url(randomBytes(32));
 }
 
+function base64urlDecode(text: string): Uint8Array | null {
+  if (!/^[A-Za-z0-9_-]*$/.test(text) || text.length % 4 === 1) return null;
+  const bytes: number[] = [];
+  let buffer = 0;
+  let bits = 0;
+  for (const char of text) {
+    buffer = (buffer << 6) | BASE64URL.indexOf(char);
+    bits += 6;
+    if (bits >= 8) {
+      bits -= 8;
+      bytes.push((buffer >> bits) & 0xff);
+    }
+  }
+  return Uint8Array.from(bytes);
+}
+
+/** Longest name kept: the greeting truncates on screen anyway; this only bounds storage. */
+const MAX_GIVEN_NAME = 80;
+
+const cleanName = (value: unknown): string | undefined => {
+  if (typeof value !== "string") return undefined;
+  const name = value.trim().replace(/\s+/g, " ");
+  return name === "" ? undefined : name.slice(0, MAX_GIVEN_NAME);
+};
+
+/**
+ * The learner's first name from a Google ID token, for the home greeting only: `given_name`, or
+ * the first word of `name` (the `profile` scope asks for both). The token's signature is not
+ * checked here: the API has just verified this very token, and the name is display-only. Nothing
+ * else of the token is kept, and the name never goes to the API.
+ */
+export function givenNameFromIdToken(idToken: string): string | undefined {
+  const payload = idToken.split(".")[1];
+  const bytes = payload === undefined ? null : base64urlDecode(payload);
+  if (bytes === null) return undefined;
+  try {
+    const claims: unknown = JSON.parse(new TextDecoder().decode(bytes));
+    if (typeof claims !== "object" || claims === null || Array.isArray(claims)) return undefined;
+    const { given_name: givenName, name } = claims as Record<string, unknown>;
+    return cleanName(givenName) ?? cleanName(cleanName(name)?.split(" ")[0]);
+  } catch {
+    return undefined;
+  }
+}
+
 export type CallbackResult =
   | { readonly kind: "token"; readonly idToken: string; readonly state: string }
   | { readonly kind: "error"; readonly error: string; readonly state: string }

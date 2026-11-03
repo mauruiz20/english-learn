@@ -18,7 +18,7 @@ import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
 import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
-import { useProgressVersion } from "@/features/account/account-context";
+import { useAccount, useProgressVersion } from "@/features/account/account-context";
 import { MoveBanner } from "@/features/transfer/move-banner";
 import { cardScores, cardsSummary } from "@/features/cards/model/card-catalog";
 import { cardPath } from "@/features/cards/card-routes";
@@ -26,6 +26,7 @@ import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
+import { deepenSteps } from "./model/deepen-steps";
 import {
   ACHIEVEMENTS,
   achievementFacts,
@@ -48,7 +49,8 @@ function deepenCards(
 
 /**
  * Lessons for the learner's level (A2 by default), each marked done when all its items were
- * reviewed, with its best result from the log and, once done, the cards that go deeper into it.
+ * reviewed, with its best result from the log and, once done, the cards that go deeper into it
+ * (each card once, see `deepenSteps`).
  */
 function homeLessons(
   content: Corpus,
@@ -60,11 +62,18 @@ function homeLessons(
   const resultById = new Map(results.map((r) => [r.lessonId, r]));
   const selection = lessonsForLevel(content.lessons, level);
   const scores = cardScores(content, results);
+  const stops = selection.lessons.map((lesson) => ({
+    lesson,
+    done: isLessonDone(lesson, content.exercisesById, reviewed),
+  }));
+  // Each card once on the path, under the earliest done lesson that links it.
+  const steps = deepenSteps(
+    stops.map(({ lesson, done }) => ({ id: lesson.id, done, deepenCardIds: lesson.deepenCardIds })),
+  );
   return {
     level: selection.level,
-    items: selection.lessons.map((lesson) => {
-      const done = isLessonDone(lesson, content.exercisesById, reviewed);
-      const deepen = done ? deepenCards(lesson.deepenCardIds, content, scores) : [];
+    items: stops.map(({ lesson, done }) => {
+      const deepen = deepenCards(steps.get(lesson.id), content, scores);
       return {
         id: lesson.id,
         title: lesson.title,
@@ -105,6 +114,7 @@ export function HomeContainer({
   const sound = useSoundPreference();
   const theme = useThemePreference();
   const progressVersion = useProgressVersion();
+  const { session } = useAccount();
   // Only on the app's old web address, while it holds progress to take along.
   const moveOffer = useOriginMoveOffer();
 
@@ -161,6 +171,7 @@ export function HomeContainer({
   return (
     <HomeView
       state={state}
+      greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}
       themePreference={theme.preference}

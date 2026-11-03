@@ -1,6 +1,7 @@
 import { createTestRandomBytes } from "@/testing/random-bytes";
 import {
   createPendingSignInStore,
+  givenNameFromIdToken,
   googleAuthorizationUrl,
   parseCallbackFragment,
   randomToken,
@@ -133,5 +134,42 @@ describe("createPendingSignInStore", () => {
     store.save({ ...PENDING, returnTo: "https://evil.example/" });
 
     expect(store.take("state-1")?.returnTo).toBe("/cuenta");
+  });
+});
+
+/** An unsigned JWT with these claims (the name is display-only; the API verified the token). */
+function idTokenWith(claims: Record<string, unknown>): string {
+  const part = (value: unknown) => Buffer.from(JSON.stringify(value)).toString("base64url");
+  return `${part({ alg: "RS256" })}.${part(claims)}.signature`;
+}
+
+describe("givenNameFromIdToken", () => {
+  it("reads the given_name claim", () => {
+    expect(givenNameFromIdToken(idTokenWith({ given_name: "Mauricio", name: "X Y" }))).toBe(
+      "Mauricio",
+    );
+  });
+
+  it("keeps accents and other non-ASCII letters (UTF-8)", () => {
+    expect(givenNameFromIdToken(idTokenWith({ given_name: "Inés" }))).toBe("Inés");
+    expect(givenNameFromIdToken(idTokenWith({ given_name: "Ñandú José" }))).toBe("Ñandú José");
+  });
+
+  it("falls back to the first word of name", () => {
+    expect(givenNameFromIdToken(idTokenWith({ name: "  Ángela   Pérez " }))).toBe("Ángela");
+    expect(givenNameFromIdToken(idTokenWith({ given_name: "  ", name: "Ana López" }))).toBe("Ana");
+  });
+
+  it("collapses whitespace and caps very long names", () => {
+    expect(givenNameFromIdToken(idTokenWith({ given_name: " Ana \n  María " }))).toBe("Ana María");
+    expect(givenNameFromIdToken(idTokenWith({ given_name: "a".repeat(200) }))).toHaveLength(80);
+  });
+
+  it("has no name without the claims or for an unreadable token", () => {
+    expect(givenNameFromIdToken(idTokenWith({ email: "ana@example.com" }))).toBeUndefined();
+    expect(givenNameFromIdToken(idTokenWith({ given_name: 42 }))).toBeUndefined();
+    expect(givenNameFromIdToken("not-a-jwt")).toBeUndefined();
+    expect(givenNameFromIdToken("a.%%%.c")).toBeUndefined();
+    expect(givenNameFromIdToken(`a.${Buffer.from("[1]").toString("base64url")}.c`)).toBeUndefined();
   });
 });

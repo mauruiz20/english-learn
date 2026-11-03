@@ -5,6 +5,7 @@ import {
   validateCorpus,
   validateLessonDeepenCards,
   validateLessonNewItems,
+  validateTopicDeepenCards,
   validateReviewableLessonItems,
   type LoadedFile,
 } from "./index";
@@ -208,5 +209,73 @@ describe("validateLessonDeepenCards", () => {
       ...fx.glossaryFiles(),
     ];
     expect(validateCorpus(files).map((e) => e.path)).toContain("lessons[0].deepenCardIds[0]");
+  });
+});
+
+describe("validateTopicDeepenCards", () => {
+  const lessonsFile = (lessons: ReturnType<typeof fx.lesson>[], name = "b1/travel.json") =>
+    file({ ...fx.validFile(), lessons }, name);
+  const first = (deepenCardIds: string[]) => fx.lesson({ deepenCardIds });
+  const second = (deepenCardIds: string[]) =>
+    fx.lesson({ id: "b1.travel.lesson-002", deepenCardIds });
+
+  it("passes when each card is linked by one lesson of the topic", () => {
+    const files = [
+      lessonsFile([first(["b1.grammar.although"]), second(["b1.grammar.unless"])]),
+      fx.cardFile(),
+    ];
+    expect(validateTopicDeepenCards(files)).toEqual([]);
+  });
+
+  it("passes when lessons of different topics link the same card", () => {
+    const other = fx.lesson({
+      id: "b1.city-life.lesson-001",
+      topic: "city-life",
+      deepenCardIds: ["b1.grammar.although"],
+    });
+    const files = [
+      lessonsFile([first(["b1.grammar.although"])]),
+      lessonsFile([other], "b1/city-life.json"),
+    ];
+    expect(validateTopicDeepenCards(files)).toEqual([]);
+  });
+
+  it("passes when lessons of the same topic name at different levels link the same card", () => {
+    const a2 = fx.lesson({
+      id: "a2.travel.lesson-001",
+      level: "A2",
+      deepenCardIds: ["a2.grammar.although"],
+    });
+    const files = [
+      lessonsFile([first(["a2.grammar.although"])]),
+      lessonsFile([a2], "a2/travel.json"),
+    ];
+    expect(validateTopicDeepenCards(files)).toEqual([]);
+  });
+
+  it("reports a card linked by two lessons of the same topic, on the later lesson", () => {
+    const files = [
+      lessonsFile([
+        first(["b1.grammar.although"]),
+        second(["b1.grammar.unless", "b1.grammar.although"]),
+      ]),
+    ];
+    expect(validateTopicDeepenCards(files)).toEqual([
+      {
+        file: "b1/travel.json",
+        path: "lessons[1].deepenCardIds[1]",
+        message:
+          'card "b1.grammar.although" is already linked by "b1.travel.lesson-001", a lesson of the same topic; link it to the lesson that teaches it',
+      },
+    ]);
+  });
+
+  it("is part of validateCorpus", () => {
+    const files = [
+      lessonsFile([first(["b1.grammar.although"]), second(["b1.grammar.although"])]),
+      fx.cardFile(),
+      ...fx.glossaryFiles(),
+    ];
+    expect(validateCorpus(files).map((e) => e.path)).toContain("lessons[1].deepenCardIds[0]");
   });
 });

@@ -80,7 +80,9 @@ export function AccountScreen({ now = Date.now }: { now?: () => number }) {
         syncStatus={syncStatus}
         now={currentTime}
         notice={notice}
-        onSignIn={() => actions?.startSignIn("/cuenta")}
+        // Signed in, the learner lands on home (greeted by name); the callback replaces itself,
+        // so back never reopens it. Deleting the account still returns here (its confirmation).
+        onSignIn={() => actions?.startSignIn("/")}
         onSyncNow={() => void actions?.syncNow()}
         onSignOut={() => setDialog("sign-out")}
         onDeleteAccount={() => setDialog("delete")}

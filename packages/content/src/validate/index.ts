@@ -17,6 +17,7 @@ export {
   validateLessonDeepenCards,
   validateLessonNewItems,
   validateReviewableLessonItems,
+  validateTopicDeepenCards,
 } from "./lessons";
 export {
   findUncoveredWords,

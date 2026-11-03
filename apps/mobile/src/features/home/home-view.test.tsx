@@ -1,5 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import { StyleSheet } from "react-native";
+import { Text } from "@/shared/ui/text";
+import { palettes } from "@/shared/ui/theme";
+import { ThemeOverride } from "@/shared/ui/use-theme";
 import { withMotion } from "@/testing/motion";
 import { HomeView, type HomeViewState } from "./home-view";
 
@@ -42,6 +45,74 @@ function renderView(
 beforeEach(() => jest.clearAllMocks());
 
 describe("HomeView", () => {
+  describe("greeting", () => {
+    it("says hello by first name as the first heading, above any notice and the progress", async () => {
+      await render(
+        <HomeView
+          state={ready}
+          soundEnabled
+          themePreference="system"
+          greetingName="Mauricio"
+          notice={<Text accessibilityRole="header">Aviso</Text>}
+          {...handlers}
+        />,
+      );
+
+      const headers = screen.getAllByRole("header");
+      expect(headers[0]).toHaveTextContent("Hola, Mauricio");
+      expect(headers[1]).toHaveTextContent("Aviso");
+    });
+
+    it("says a plain hello without a name (signed out, or no name remembered yet)", async () => {
+      await renderView(ready);
+
+      expect(screen.getByRole("header", { name: "¡Hola!" })).toBeOnTheScreen();
+      expect(screen.queryByText(/Hola,/)).toBeNull();
+    });
+
+    it("greets while the progress is still loading or failed to load", async () => {
+      await renderView({ status: "loading" });
+      expect(screen.getByRole("header", { name: "¡Hola!" })).toBeOnTheScreen();
+
+      await renderView({ status: "error" });
+      expect(screen.getByRole("header", { name: "¡Hola!" })).toBeOnTheScreen();
+    });
+
+    it("keeps accents and truncates a long name on one line", async () => {
+      const name = "Inés María de los Ángeles Fernández de Córdoba y Villanueva";
+      await render(
+        <HomeView
+          state={ready}
+          soundEnabled
+          themePreference="system"
+          greetingName={name}
+          {...handlers}
+        />,
+      );
+
+      const greeting = screen.getByRole("header", { name: `Hola, ${name}` });
+      expect(greeting).toHaveTextContent(`Hola, ${name}`);
+      expect(greeting.props.numberOfLines).toBe(1);
+      expect(greeting.props.ellipsizeMode).toBe("tail");
+    });
+
+    it.each(["light", "dark"] as const)(
+      "is written in ink, AA on the %s paper (theme tests check the ratio)",
+      async (scheme) => {
+        await render(
+          <ThemeOverride scheme={scheme}>
+            <HomeView state={ready} soundEnabled themePreference="system" {...handlers} />
+          </ThemeOverride>,
+        );
+
+        const style = StyleSheet.flatten(
+          screen.getByRole("header", { name: "¡Hola!" }).props.style,
+        );
+        expect(style.color).toBe(palettes[scheme].ink);
+      },
+    );
+  });
+
   it("has a sound switch that says what pressing it does", async () => {
     await renderView(ready);
     await fireEvent.press(screen.getByRole("button", { name: "Silenciar sonidos" }));
@@ -491,6 +562,15 @@ describe("HomeView deepen step", () => {
         includeHiddenElements: true,
       }),
     ).not.toBeOnTheScreen();
+  });
+
+  it("never lets the marker shrink, so a long title wraps instead", async () => {
+    await renderWithCards();
+
+    // On web a Text shrinks by default, which broke "Perfecta · 8/8" over two lines.
+    for (const marker of ["Nueva", "Perfecta · 6/6", "Completada · 5/7"]) {
+      expect(screen.getByText(marker)).toHaveStyle({ flexShrink: 0 });
+    }
   });
 
   it("shows nothing under a lesson not done yet", async () => {

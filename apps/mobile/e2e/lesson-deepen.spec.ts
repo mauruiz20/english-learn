@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import { expect, test, type ConsoleMessage } from "./support/test";
 import { answerCorrectly, playSessionCorrectly } from "./support/content";
 
@@ -77,9 +77,28 @@ test("deepen: a done lesson links its study card in the recap and on the path, w
   });
   await practiced.scrollIntoViewIfNeeded();
   await expect(practiced).toBeVisible();
-  await expect(practiced.getByText(`Perfecta · ${answered}/${answered}`)).toBeVisible();
+  const marker = practiced.getByText(`Perfecta · ${answered}/${answered}`);
+  await expect(marker).toBeVisible();
+  await expectOneLine(practiced, marker);
+
+  // On a narrow phone the title wraps and the marker goes under it, never broken.
+  await page.setViewportSize({ width: 360, height: 800 });
+  await practiced.scrollIntoViewIfNeeded();
+  await expectOneLine(practiced, marker);
   expect(problems).toEqual([]);
 });
+
+/** The step's marker sits on a single line (as tall as the one-line "Profundiza"), inside it. */
+async function expectOneLine(step: Locator, marker: Locator) {
+  const [label, text, row] = await Promise.all([
+    step.getByText("Profundiza", { exact: true }).boundingBox(),
+    marker.boundingBox(),
+    step.boundingBox(),
+  ]);
+  expect(label && text && row).toBeTruthy();
+  expect(text!.height).toBeLessThan(label!.height * 1.5);
+  expect(text!.x + text!.width).toBeLessThanOrEqual(row!.x + row!.width);
+}
 
 /** `text` as a literal inside a regular expression. */
 function escape(text: string): string {

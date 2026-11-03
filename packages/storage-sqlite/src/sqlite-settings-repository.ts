@@ -33,8 +33,9 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     getLookupHintDismissed: async () => (await read(LOOKUP_HINT_DISMISSED)) === "1",
     setLookupHintDismissed: () => write(LOOKUP_HINT_DISMISSED, "1"),
     getAccount: async () => parseAccount(await read(ACCOUNT)),
-    // Only who is signed in: tokens never reach the device's storage.
-    setAccount: ({ userId, email }) => write(ACCOUNT, JSON.stringify({ userId, email })),
+    // Only who is signed in (and their first name, for the greeting): never a token.
+    setAccount: ({ userId, email, givenName }) =>
+      write(ACCOUNT, JSON.stringify({ userId, email, givenName })),
     clearAccount: async () => {
       await db.runAsync("DELETE FROM setting WHERE key = ?", [ACCOUNT]);
     },
@@ -59,8 +60,9 @@ function parseAccount(value: string | null): AccountMarker | null {
   try {
     const parsed: unknown = JSON.parse(value);
     if (typeof parsed !== "object" || parsed === null) return null;
-    const { userId, email } = parsed as Record<string, unknown>;
-    return typeof userId === "string" && typeof email === "string" ? { userId, email } : null;
+    const { userId, email, givenName } = parsed as Record<string, unknown>;
+    if (typeof userId !== "string" || typeof email !== "string") return null;
+    return typeof givenName === "string" ? { userId, email, givenName } : { userId, email };
   } catch {
     return null;
   }

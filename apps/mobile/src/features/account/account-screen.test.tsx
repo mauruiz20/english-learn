@@ -58,7 +58,8 @@ describe("AccountScreen", () => {
 
     expect(screen.getByText("Guarda tu progreso y úsalo en otros dispositivos.")).toBeOnTheScreen();
     await fireEvent.press(screen.getByRole("button", { name: "Continuar con Google" }));
-    expect(actions.startSignIn).toHaveBeenCalledWith("/cuenta");
+    // A finished sign-in lands on home, where the greeting says hello by name.
+    expect(actions.startSignIn).toHaveBeenCalledWith("/");
 
     await fireEvent.press(screen.getByRole("link", { name: "Política de privacidad" }));
     expect(mockPush).toHaveBeenCalledWith("/privacidad");

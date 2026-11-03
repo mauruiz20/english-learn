@@ -15,6 +15,7 @@ import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { Avi } from "@/shared/ui/mascot";
 import { guideHeading } from "./model/guide-heading";
+import { HomeGreeting } from "./home-greeting";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Sticker } from "@/shared/ui/sticker";
 import { StickyNote } from "@/shared/ui/sticky-note";
@@ -94,8 +95,10 @@ type HomeViewProps = {
   onOpenCards?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
   onOpenCard?: (cardId: string) => void;
-  /** News above everything else (the old web address's move banner). */
+  /** News above everything but the greeting (the old web address's move banner). */
   notice?: ReactNode;
+  /** The signed-in learner's first name for the greeting; without it, a plain "¡Hola!". */
+  greetingName?: string | undefined;
 };
 
 type Ready = Extract<HomeViewState, { status: "ready" }>;
@@ -527,23 +530,26 @@ function DeepenSteps({
                 />
               )}
             </View>
-            <View style={styles.deepenText}>
-              <Text variant="small" tone="muted">
-                Profundiza
-              </Text>
-              <Text variant="smallStrong" tone="ink">
-                {card.title}
-              </Text>
+            {/* The marker goes under the title when both don't fit on one line. */}
+            <View style={styles.deepenBody}>
+              <View style={styles.deepenText}>
+                <Text variant="small" tone="muted">
+                  Profundiza
+                </Text>
+                <Text variant="smallStrong" tone="ink">
+                  {card.title}
+                </Text>
+              </View>
+              {card.score === undefined ? (
+                <Text variant="small" tone="muted" style={styles.deepenMarker}>
+                  Nueva
+                </Text>
+              ) : (
+                <Text variant="smallStrong" tone="success" style={styles.deepenMarker}>
+                  {scoreText(card.score)}
+                </Text>
+              )}
             </View>
-            {card.score === undefined ? (
-              <Text variant="small" tone="muted">
-                Nueva
-              </Text>
-            ) : (
-              <Text variant="smallStrong" tone="success">
-                {scoreText(card.score)}
-              </Text>
-            )}
           </PressableScale>
         ))}
       </View>
@@ -712,7 +718,7 @@ function ReadyHome({
   onOpenAbout,
 }: Omit<
   HomeViewProps,
-  "state" | "soundEnabled" | "onToggleSound" | "themePreference" | "onCycleTheme"
+  "state" | "soundEnabled" | "onToggleSound" | "themePreference" | "onCycleTheme" | "greetingName"
 > & { state: Ready }) {
   const styles = useStyles();
   return (
@@ -765,6 +771,7 @@ export function HomeView({
   onOpenAlbum,
   onOpenCards,
   notice,
+  greetingName,
   ...handlers
 }: HomeViewProps) {
   const { colors } = useTheme();
@@ -777,6 +784,7 @@ export function HomeView({
   );
   return (
     <ScreenContainer insetTop>
+      <HomeGreeting name={greetingName} />
       {notice}
       <ProgressCard
         days={state.status === "ready" ? state.streakDays : null}
@@ -875,7 +883,13 @@ const useStyles = themedStyles(({ colors }) =>
     },
     // Under a done stop: the pencil line's column, then the cards, smaller than a stop.
     deepen: { flexDirection: "row", alignItems: "stretch" },
-    deepenTrail: { width: STICKER_COLUMN },
+    // On a narrow phone the column gives up its room right of the line first, so the cards keep
+    // enough width for their title and marker.
+    deepenTrail: {
+      width: STICKER_COLUMN,
+      minWidth: STICKER_COLUMN / 2 + spacing.sm,
+      flexShrink: 20,
+    },
     // Out of the flow, so the line never makes the row taller than its cards.
     deepenLine: { position: "absolute", top: 0, bottom: 0, left: STICKER_COLUMN / 2 - 3 },
     deepenList: { flexShrink: 1, gap: spacing.xs, paddingVertical: spacing.xs },
@@ -894,7 +908,16 @@ const useStyles = themedStyles(({ colors }) =>
       backgroundColor: colors.sheet,
     },
     deepenBadge: { position: "absolute", right: -8, top: -10 },
+    deepenBody: {
+      flexShrink: 1,
+      flexDirection: "row",
+      flexWrap: "wrap",
+      alignItems: "center",
+      columnGap: spacing.sm,
+    },
     deepenText: { flexShrink: 1 },
+    // The title wraps, never the marker ("Perfecta · 8/8"): a web Text shrinks by default.
+    deepenMarker: { flexShrink: 0 },
     footer: {
       marginTop: spacing.md,
       paddingTop: spacing.sm,

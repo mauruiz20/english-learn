@@ -80,6 +80,41 @@ describe("createAuthSession", () => {
     expect(settings.account()).toEqual(ACCOUNT);
   });
 
+  it("remembers the first name from the ID token with the account, for the greeting", async () => {
+    const { session, settings, api } = setup();
+    const claims = Buffer.from(JSON.stringify({ given_name: "Inés", name: "Inés Pérez" }));
+    const idToken = `header.${claims.toString("base64url")}.signature`;
+
+    await session.signIn(idToken, "nonce-1");
+
+    // The API still gets only the token and the nonce; the name stays on this device.
+    expect(api.signInWithGoogle).toHaveBeenCalledWith(idToken, "nonce-1");
+    const account = { ...ACCOUNT, givenName: "Inés" };
+    expect(session.getState()).toEqual({ status: "signed-in", account });
+    expect(settings.account()).toEqual(account);
+  });
+
+  it("replaces the name on a switch to an account whose token has none", async () => {
+    const { session, settings } = setup({ signedIn: true });
+    await settings.setAccount({ ...ACCOUNT, givenName: "Inés" });
+
+    await session.signIn("id-token", "nonce-1");
+
+    expect(settings.account()).toEqual(ACCOUNT);
+  });
+
+  it("keeps a remembered name on restore (a refresh carries no ID token)", async () => {
+    const { session, settings } = setup();
+    await settings.setAccount({ ...ACCOUNT, givenName: "Inés" });
+
+    await session.restore();
+
+    expect(session.getState()).toEqual({
+      status: "signed-in",
+      account: { ...ACCOUNT, givenName: "Inés" },
+    });
+  });
+
   it("restores a remembered session with the refresh cookie", async () => {
     const { session, lockNames } = setup({ signedIn: true });
 
