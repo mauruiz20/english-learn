@@ -1276,7 +1276,7 @@
       "type": "cloze",
       "sentence": "That ___ be the director. He's only fifteen.",
       "answers": ["can't"],
-      "distractors": ["must", "mustn't"],
+      "distractors": ["must", "doesn't"],
       "es": "Ese no puede ser el director. Solo tiene quince años."
     },
     {
@@ -2438,7 +2438,7 @@
         {
           "wrong": "He mustn't be at home. The lights are off.",
           "right": "He can't be at home. The lights are off.",
-          "why": "Para «seguro que no» se usa can't; mustn't expresa una prohibición."
+          "why": "Para «seguro que no» se usa can't; mustn't se entiende casi siempre como una prohibición («no debe»)."
         },
         {
           "wrong": "She must to be the director.",
