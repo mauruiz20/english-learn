@@ -34,6 +34,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateAnswerPatterns,
   validateTopics,
   validateTextPunctuation,
+  validateNeutralSpanish,
   validateGlossaryEntries,
   validateCards,
 ];

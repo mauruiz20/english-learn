@@ -48,6 +48,12 @@ const PRESENT_EXCEPTIONS = new Set([
   "través",
   "anís",
   "país",
+  // Names.
+  "inés",
+  "moisés",
+  "nicolás",
+  "parís",
+  "tomás",
 ]);
 
 const IMPERATIVE_EXCEPTIONS = new Set([

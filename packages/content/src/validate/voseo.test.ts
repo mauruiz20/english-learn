@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import * as fx from "../testing/fixtures";
+import { validateLocal } from "./corpus";
 import { findVoseo, validateNeutralSpanish } from "./voseo";
 
 describe("findVoseo", () => {
@@ -27,6 +28,7 @@ describe("findVoseo", () => {
     "Está a salvo. ¿Estás listo? Ojalá que estés bien. Mi mamá y mi papá. Un café.",
     "Verás tu nivel. Perderás lo que respondiste. Se abrirá sola. Sumará el progreso.",
     "El estrés, el interés, a través de, quizás. Compraré, iré, diré.",
+    "París, Tomás, Nicolás, Andrés, Inés y Moisés viajan a Panamá.",
     "Send an SOS. The sun sets at seven.",
   ])("accepts neutral Spanish: %j", (text) => {
     expect(findVoseo(text)).toEqual([]);
@@ -46,9 +48,10 @@ describe("validateNeutralSpanish", () => {
 
   it("reports voseo in any text field with its path", () => {
     const data = fx.validFile();
-    const item = { ...data.items[0]!, es: "Mirá, podés" };
+    const items = data.items ?? [];
+    const item = { ...items[0]!, es: "Mirá, podés" };
     const errors = validateNeutralSpanish([
-      { file: "a2/x.json", data: { ...data, items: [item, ...data.items.slice(1)] } },
+      { file: "a2/x.json", data: { ...data, items: [item, ...items.slice(1)] } },
     ]);
     expect(errors).toEqual([
       {
@@ -57,5 +60,15 @@ describe("validateNeutralSpanish", () => {
         message: 'voseo ("Mirá", "podés"); content Spanish uses tú forms (mira, puedes, inicia)',
       },
     ]);
+  });
+
+  it("runs with the other local rules", () => {
+    const data = fx.validFile();
+    const items = data.items ?? [];
+    const item = { ...items[0]!, es: "podés" };
+    const errors = validateLocal([
+      { file: "a2/x.json", data: { ...data, items: [item, ...items.slice(1)] } },
+    ]);
+    expect(errors.map((e) => e.path)).toContain("items[0].es");
   });
 });
