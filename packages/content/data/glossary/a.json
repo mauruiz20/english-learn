@@ -133,6 +133,18 @@
       ]
     },
     {
+      "id": "glossary.accident",
+      "headword": "accident",
+      "kind": "word",
+      "forms": ["accident", "accidents"],
+      "senses": [
+        {
+          "es": "accidente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.according",
       "headword": "according",
       "kind": "word",
@@ -477,6 +489,18 @@
       ]
     },
     {
+      "id": "glossary.alike",
+      "headword": "alike",
+      "kind": "word",
+      "forms": ["alike"],
+      "senses": [
+        {
+          "es": "parecido, iguales (look alike: parecerse)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.all",
       "headword": "all",
       "kind": "word",
@@ -625,6 +649,18 @@
         {
           "es": "América",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.among",
+      "headword": "among",
+      "kind": "word",
+      "forms": ["among"],
+      "senses": [
+        {
+          "es": "entre (más de dos)",
+          "pos": "preposition"
         }
       ]
     },

@@ -863,6 +863,18 @@
           "pos": "determiner"
         }
       ]
+    },
+    {
+      "id": "glossary.myself",
+      "headword": "myself",
+      "kind": "word",
+      "forms": ["myself"],
+      "senses": [
+        {
+          "es": "(yo) mismo, a mí mismo",
+          "pos": "pronoun"
+        }
+      ]
     }
   ]
 }

@@ -49,6 +49,22 @@
       ]
     },
     {
+      "id": "glossary.paint",
+      "headword": "paint",
+      "kind": "word",
+      "forms": ["paint", "paints", "painted", "painting"],
+      "senses": [
+        {
+          "es": "pintar",
+          "pos": "verb"
+        },
+        {
+          "es": "cuadro, pintura (a painting)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.panic",
       "headword": "panic",
       "kind": "word",
@@ -225,6 +241,18 @@
       ]
     },
     {
+      "id": "glossary.passport",
+      "headword": "passport",
+      "kind": "word",
+      "forms": ["passport", "passports"],
+      "senses": [
+        {
+          "es": "pasaporte",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.password",
       "headword": "password",
       "kind": "word",
@@ -365,6 +393,18 @@
       ]
     },
     {
+      "id": "glossary.perhaps",
+      "headword": "perhaps",
+      "kind": "word",
+      "forms": ["perhaps"],
+      "senses": [
+        {
+          "es": "quizás, tal vez",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.permit",
       "headword": "permit",
       "kind": "word",
@@ -405,14 +445,30 @@
       ]
     },
     {
+      "id": "glossary.pharmacy",
+      "headword": "pharmacy",
+      "kind": "word",
+      "forms": ["pharmacy", "pharmacies"],
+      "senses": [
+        {
+          "es": "farmacia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.phone",
       "headword": "phone",
       "kind": "word",
-      "forms": ["phone", "phones"],
+      "forms": ["phone", "phones", "phoned", "phoning"],
       "senses": [
         {
           "es": "teléfono, celular",
           "pos": "noun"
+        },
+        {
+          "es": "llamar por teléfono",
+          "pos": "verb"
         }
       ]
     },
@@ -504,6 +560,18 @@
         },
         {
           "es": "plan",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plane",
+      "headword": "plane",
+      "kind": "word",
+      "forms": ["plane", "planes"],
+      "senses": [
+        {
+          "es": "avión",
           "pos": "noun"
         }
       ]
@@ -637,6 +705,42 @@
       ]
     },
     {
+      "id": "glossary.point",
+      "headword": "point",
+      "kind": "word",
+      "forms": ["point", "points", "pointed", "pointing"],
+      "senses": [
+        {
+          "es": "punto",
+          "pos": "noun"
+        },
+        {
+          "es": "señalar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.point-out",
+      "headword": "point out",
+      "kind": "phrase",
+      "forms": [
+        "point out",
+        "points out",
+        "pointed out",
+        "pointing out",
+        "point it out",
+        "pointed it out",
+        "pointing it out"
+      ],
+      "senses": [
+        {
+          "es": "señalar, hacer notar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.police",
       "headword": "police",
       "kind": "word",
@@ -656,6 +760,18 @@
       "senses": [
         {
           "es": "política, norma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.politics",
+      "headword": "politics",
+      "kind": "word",
+      "forms": ["politics"],
+      "senses": [
+        {
+          "es": "política",
           "pos": "noun"
         }
       ]
@@ -708,6 +824,30 @@
         },
         {
           "es": "posición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.possibility",
+      "headword": "possibility",
+      "kind": "word",
+      "forms": ["possibility", "possibilities"],
+      "senses": [
+        {
+          "es": "posibilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.post-office",
+      "headword": "post office",
+      "kind": "phrase",
+      "forms": ["post office", "post offices"],
+      "senses": [
+        {
+          "es": "oficina de correos",
           "pos": "noun"
         }
       ]
@@ -869,6 +1009,18 @@
       ]
     },
     {
+      "id": "glossary.probably",
+      "headword": "probably",
+      "kind": "word",
+      "forms": ["probably"],
+      "senses": [
+        {
+          "es": "probablemente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.problem",
       "headword": "problem",
       "kind": "word",
@@ -957,6 +1109,18 @@
         {
           "es": "promover",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.promotion",
+      "headword": "promotion",
+      "kind": "word",
+      "forms": ["promotion", "promotions"],
+      "senses": [
+        {
+          "es": "ascenso",
+          "pos": "noun"
         }
       ]
     },

@@ -256,22 +256,25 @@ Candidates for the next pack; none of them is written yet. Card pack 2 covered t
 grammar gaps (present simple, there is / are, should, have to, comparatives, some / any and
 `I would like`, can, time prepositions, going to; future forms, relative clauses, the passive,
 reported speech, used to, past continuous, deduction, unless, have to / must) and the tech phrasal
-verbs (`b1.phrasal-verbs.technology`).
+verbs (`b1.phrasal-verbs.technology`). Card pack 3 covered directions (imperative and place
+prepositions), possessive `'s`, `look like` / `What is… like?`, `like` + -ing, `although` /
+`however`, `each other` / reflexive pronouns, get + adjective (`get lost`, `get married`,
+`get promoted`) and the job phrasal verbs (`apply for`, `turn down`), and added nine B2 cards.
 
-| Lesson                                        | Not covered by a card                                                    |
-| --------------------------------------------- | ------------------------------------------------------------------------ |
-| A2 ¿Cómo llego?, En la ciudad                 | imperative for directions; place prepositions (across from, between)     |
-| A2 Mi familia, Parecidos y diferencias        | possessive `'s`; `look like`                                             |
-| A2 Deportes y aficiones                       | `like` + -ing at A2 (the gerund card is B1)                              |
-| A2 En el médico, ¿Cómo te sientes?            | health phrases (`have a cold`, `feel better`)                            |
-| A2 Las estaciones                             | weather and season words (`forecast`, `sunny`); no card is linked yet    |
-| A2 En el trabajo                              | work words (`boss`, `work from home`, `look for`); no card is linked yet |
-| A2 Mi rutina diaria                           | `commute` at A2 (the commute card is B1, above the lesson)               |
-| B1 Cine, teatro y música                      | `be worth` + -ing at B1 (the be-worth card is B2, above the lesson)      |
-| B1 Consejos para sentirse mejor               | `should` / `shouldn't` at B1 (linked to the A2 should card for now)      |
-| B1 De viaje                                   | contrast linkers (`although`); `get lost`                                |
-| B1 Mi primer trabajo, Obligaciones y cambios  | `apply for`, `turn down`, `get promoted`                                 |
-| B1 Amigos y pareja, Peleas y reconciliaciones | `each other`; `get married`                                              |
+| Lesson                             | Not covered by a card                                                           |
+| ---------------------------------- | ------------------------------------------------------------------------------- |
+| A2 En el médico, ¿Cómo te sientes? | health phrases (`have a cold`, `feel better`)                                   |
+| A2 Las estaciones                  | weather and season words (`forecast`, `sunny`); no card is linked yet           |
+| A2 En el trabajo                   | work words (`boss`, `work from home`, `look for`); no card is linked yet        |
+| A2 Mi rutina diaria                | `commute` at A2 (the commute card is B1, above the lesson)                      |
+| B1 Cine, teatro y música           | `be worth` + -ing at B1 (the be-worth card is B2; a B1 card would repeat it)    |
+| B1 Consejos para sentirse mejor    | `should` / `shouldn't` at B1 (linked to the A2 should card for now)             |
+| B1 Obligaciones y cambios          | `deadline`, `quit` (the job phrasal-verb card is linked to "Mi primer trabajo") |
+
+There are no B2 lessons yet, so the B2 cards (`b2.grammar.*`, `b2.vocabulary.raise-rise`,
+`b2.phrasal-verbs.ideas-and-results`) are reachable from the card list only; link them with
+`deepenCardIds` when B2 lessons exist. B2 points still without a card: inversion (`Never have I…`),
+participle clauses and B2 collocations.
 
 ## Attribution
 

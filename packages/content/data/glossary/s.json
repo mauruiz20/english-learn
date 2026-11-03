@@ -561,6 +561,22 @@
       ]
     },
     {
+      "id": "glossary.short",
+      "headword": "short",
+      "kind": "word",
+      "forms": ["short", "shorter", "shortest"],
+      "senses": [
+        {
+          "es": "bajo (de estatura)",
+          "pos": "adjective"
+        },
+        {
+          "es": "corto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.should",
       "headword": "should",
       "kind": "word",
@@ -973,6 +989,22 @@
       ]
     },
     {
+      "id": "glossary.smile",
+      "headword": "smile",
+      "kind": "word",
+      "forms": ["smile", "smiles", "smiled", "smiling"],
+      "senses": [
+        {
+          "es": "sonreír",
+          "pos": "verb"
+        },
+        {
+          "es": "sonrisa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.smoke",
       "headword": "smoke",
       "kind": "word",
@@ -1165,6 +1197,18 @@
         {
           "es": "algo de, un poco de",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.somebody",
+      "headword": "somebody",
+      "kind": "word",
+      "forms": ["somebody"],
+      "senses": [
+        {
+          "es": "alguien",
+          "pos": "pronoun"
         }
       ]
     },
@@ -1569,6 +1613,18 @@
       ]
     },
     {
+      "id": "glossary.steal",
+      "headword": "steal",
+      "kind": "word",
+      "forms": ["steal", "steals", "stole", "stealing"],
+      "senses": [
+        {
+          "es": "robar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.still",
       "headword": "still",
       "kind": "word",
@@ -1916,11 +1972,15 @@
       "id": "glossary.survey",
       "headword": "survey",
       "kind": "word",
-      "forms": ["survey", "surveys"],
+      "forms": ["survey", "surveys", "surveyed", "surveying"],
       "senses": [
         {
           "es": "encuesta",
           "pos": "noun"
+        },
+        {
+          "es": "encuestar",
+          "pos": "verb"
         }
       ]
     },

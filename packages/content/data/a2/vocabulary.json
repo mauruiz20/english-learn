@@ -47,6 +47,18 @@
       "kind": "word",
       "term": "get",
       "es": "recibir, conseguir, llegar, ponerse"
+    },
+    {
+      "id": "a2.vocabulary.be-like",
+      "level": "A2",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "What is… like?",
+      "es": "¿Cómo es…? (carácter, impresión)",
+      "example": {
+        "en": "What is your new teacher like?",
+        "es": "¿Cómo es tu nuevo profesor?"
+      }
     }
   ],
   "exercises": [
@@ -338,6 +350,108 @@
         "I got to the office at {nine|9}[ o'clock].",
         "I arrived at the office at {nine|9}[ o'clock]."
       ]
+    },
+    {
+      "id": "a2.vocabulary.look-like-cloze-1",
+      "itemIds": ["a2.family.look-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Everyone says I ___ like my grandfather.",
+      "answers": ["look"],
+      "distractors": ["see", "watch", "looks"],
+      "es": "Todos dicen que me parezco a mi abuelo."
+    },
+    {
+      "id": "a2.vocabulary.look-like-cloze-2",
+      "itemIds": ["a2.vocabulary.be-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "What is your new teacher ___?",
+      "answers": ["like"],
+      "distractors": ["how", "as"],
+      "es": "¿Cómo es tu nuevo profesor?"
+    },
+    {
+      "id": "a2.vocabulary.look-like-cloze-3",
+      "itemIds": ["a2.family.look-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You look ___ today. Did you sleep badly?",
+      "answers": ["tired"],
+      "distractors": ["like tired", "as tired"],
+      "es": "Hoy te ves cansado. ¿Dormiste mal?"
+    },
+    {
+      "id": "a2.vocabulary.look-like-choice-1",
+      "itemIds": ["a2.vocabulary.be-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "What is your sister like?",
+      "options": [
+        "¿Qué le gusta a tu hermana?",
+        "¿A quién se parece tu hermana?",
+        "¿Cómo es tu hermana?",
+        "¿Cómo está tu hermana?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.vocabulary.look-like-order-1",
+      "itemIds": ["a2.family.look-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["look", "your", "does", "like?", "What", "brother"],
+      "accepted": ["What does your brother look like?"],
+      "es": "¿Cómo es tu hermano físicamente?"
+    },
+    {
+      "id": "a2.vocabulary.look-like-write-1",
+      "itemIds": ["a2.family.look-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me parezco a mi madre.",
+      "accepted": ["I {look like|resemble|take after|am like} my {mother|mom}."]
+    },
+    {
+      "id": "a2.vocabulary.look-like-write-2",
+      "itemIds": ["a2.vocabulary.be-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Cómo es tu nuevo jefe?",
+      "accepted": ["What is your new boss like?"]
+    },
+    {
+      "id": "a2.vocabulary.look-like-vocab-1",
+      "itemIds": ["a2.vocabulary.be-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'What is he like?' mean?",
+      "options": ["¿Qué le gusta?", "¿Cómo es él?", "¿A quién se parece?", "¿Cómo está él?"],
+      "answerIndex": 1
     }
   ],
   "cards": [
@@ -634,6 +748,89 @@
         "a2.vocabulary.get-choice-1",
         "a2.vocabulary.get-order-1",
         "a2.vocabulary.get-write-1"
+      ]
+    },
+    {
+      "id": "a2.vocabulary.look-like",
+      "level": "A2",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Look like y What is… like?",
+      "summary": "Look like habla del aspecto (parecerse a alguien); What is she like? pregunta cómo es una persona, sobre todo su carácter.",
+      "form": "look like + persona o cosa · look + adjetivo · What is… like? · What does… look like?",
+      "uses": [
+        "Parecerse físicamente: She looks like her mother.",
+        "Aspecto con un adjetivo, sin like: You look tired.",
+        "Preguntar cómo es alguien (carácter): What is your brother like? He's friendly and funny.",
+        "Preguntar por el aspecto físico: What does he look like? He's tall and has short hair."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "She looks like tired.",
+          "right": "She looks tired.",
+          "why": "Con un adjetivo va look sin like; look like va con un sustantivo (She looks like her mother)."
+        },
+        {
+          "wrong": "How is your new teacher like?",
+          "right": "What is your new teacher like?",
+          "why": "Para preguntar cómo es alguien se usa What… like?, no How… like?"
+        },
+        {
+          "wrong": "He looks to his father.",
+          "right": "He looks like his father.",
+          "why": "Parecerse a alguien es look like, no look to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "You look like your father.",
+          "es": "Te pareces a tu padre."
+        },
+        {
+          "en": "What does your cousin look like?",
+          "es": "¿Cómo es tu primo físicamente?"
+        },
+        {
+          "en": "What is your new boss like? She's very nice.",
+          "es": "¿Cómo es tu nueva jefa? Es muy simpática."
+        },
+        {
+          "en": "You look tired today.",
+          "es": "Hoy te ves cansado."
+        },
+        {
+          "en": "My sister and I look alike, but we're very different.",
+          "es": "Mi hermana y yo nos parecemos físicamente, pero somos muy distintas."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "look like your mother",
+          "es": "parecerse a tu madre"
+        },
+        {
+          "en": "look tired",
+          "es": "verse cansado"
+        },
+        {
+          "en": "What is she like?",
+          "es": "¿Cómo es ella?"
+        },
+        {
+          "en": "What does she look like?",
+          "es": "¿Cómo es ella físicamente?"
+        }
+      ],
+      "itemIds": ["a2.family.look-like", "a2.vocabulary.be-like"],
+      "exerciseIds": [
+        "a2.vocabulary.look-like-cloze-1",
+        "a2.vocabulary.look-like-cloze-2",
+        "a2.vocabulary.look-like-cloze-3",
+        "a2.vocabulary.look-like-choice-1",
+        "a2.vocabulary.look-like-order-1",
+        "a2.vocabulary.look-like-write-1",
+        "a2.vocabulary.look-like-write-2",
+        "a2.vocabulary.look-like-vocab-1"
       ]
     }
   ]

@@ -640,6 +640,107 @@
         "I don't remember {his|her|their|your} {number|phone number}.",
         "I can't remember {his|her|their|your} {number|phone number}."
       ]
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-cloze-1",
+      "itemIds": ["b1.travel.get-lost"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We didn't have a map, so we ___ lost.",
+      "answers": ["got"],
+      "distractors": ["did", "had", "made"],
+      "es": "No teníamos mapa, así que nos perdimos."
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-cloze-2",
+      "itemIds": ["b1.relationships.get-married"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My sister is getting married ___ a teacher next month.",
+      "answers": ["to"],
+      "distractors": ["with", "for"],
+      "es": "Mi hermana se casa con un profesor el mes que viene."
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-cloze-3",
+      "itemIds": ["b1.work-and-careers.get-promoted"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He worked hard and got ___ to manager.",
+      "answers": ["promoted"],
+      "distractors": ["promotion", "promote"],
+      "es": "Trabajó mucho y lo ascendieron a gerente."
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-choice-1",
+      "itemIds": ["b1.relationships.get-married"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "They got married in a small church.",
+      "options": [
+        "Se conocieron en una iglesia pequeña.",
+        "Se van a casar en una iglesia pequeña.",
+        "Se casaron en una iglesia pequeña."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-order-1",
+      "itemIds": ["b1.travel.get-lost"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["big", "get", "always", "I", "cities.", "in", "lost"],
+      "accepted": ["I always get lost in big cities."],
+      "es": "Siempre me pierdo en las ciudades grandes."
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-write-1",
+      "itemIds": ["b1.travel.get-lost"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Nos perdimos en el centro.",
+      "accepted": ["We got lost {downtown|in the {city center|center of town|town center}}."]
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-write-2",
+      "itemIds": ["b1.work-and-careers.get-promoted"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi hermano recibió un ascenso.",
+      "accepted": ["My brother {got|was} promoted.", "My brother got a promotion."]
+    },
+    {
+      "id": "b1.vocabulary.get-adjective-vocab-1",
+      "itemIds": ["b1.travel.get-lost"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'perderse (en un lugar)'.",
+      "options": ["lose yourself", "get lost", "make lost", "stay lost"],
+      "answerIndex": 1
     }
   ],
   "cards": [
@@ -1082,6 +1183,109 @@
         "b1.vocabulary.remember-remind-choice-1",
         "b1.vocabulary.remember-remind-order-1",
         "b1.vocabulary.remember-remind-write-1"
+      ]
+    },
+    {
+      "id": "b1.vocabulary.get-adjective",
+      "level": "B1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Get + adjetivo: get lost, get married, get promoted",
+      "summary": "Get + adjetivo o participio expresa un cambio de estado. Muchas veces equivale a un verbo con se o a ponerse: perderse (get lost), casarse (get married), ponerse nervioso (get nervous).",
+      "form": "get + adjetivo o participio (get lost, get married, get angry)",
+      "uses": [
+        "Cambios de estado: get tired, get angry, get better, get worse, get dark.",
+        "Verbos con se o ponerse del español: perderse (get lost), enojarse (get angry), ponerse nervioso (get nervous).",
+        "Cosas que te pasan: get promoted (recibir un ascenso), get hurt (lastimarse).",
+        "Con quién te casas: get married to someone, o marry someone (sin preposición)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "We lost ourselves in the old town.",
+          "right": "We got lost in the old town.",
+          "why": "Perderse en un lugar es get lost."
+        },
+        {
+          "wrong": "She married with a doctor.",
+          "right": "She married a doctor.",
+          "why": "Marry va sin preposición; con get married se dice get married to."
+        },
+        {
+          "wrong": "I put myself nervous before exams.",
+          "right": "I get nervous before exams.",
+          "why": "Ponerse + adjetivo (nervioso, triste, rojo) se dice get + adjetivo."
+        }
+      ],
+      "examples": [
+        {
+          "en": "We got lost in the old town.",
+          "es": "Nos perdimos en el casco antiguo."
+        },
+        {
+          "en": "They got married last summer.",
+          "es": "Se casaron el verano pasado."
+        },
+        {
+          "en": "He got promoted to manager.",
+          "es": "Lo ascendieron a gerente."
+        },
+        {
+          "en": "It's getting dark. Let's go home.",
+          "es": "Está oscureciendo. Vamos a casa."
+        },
+        {
+          "en": "I always get nervous before an interview.",
+          "es": "Siempre me pongo nervioso antes de una entrevista."
+        },
+        {
+          "en": "Don't get angry. It was an accident.",
+          "es": "No te enojes. Fue un accidente."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "get lost",
+          "es": "perderse"
+        },
+        {
+          "en": "get married (to)",
+          "es": "casarse (con)"
+        },
+        {
+          "en": "get promoted",
+          "es": "recibir un ascenso"
+        },
+        {
+          "en": "get angry",
+          "es": "enojarse"
+        },
+        {
+          "en": "get nervous",
+          "es": "ponerse nervioso"
+        },
+        {
+          "en": "get dark",
+          "es": "oscurecer"
+        },
+        {
+          "en": "get worse",
+          "es": "empeorar"
+        }
+      ],
+      "itemIds": [
+        "b1.travel.get-lost",
+        "b1.relationships.get-married",
+        "b1.work-and-careers.get-promoted"
+      ],
+      "exerciseIds": [
+        "b1.vocabulary.get-adjective-cloze-1",
+        "b1.vocabulary.get-adjective-cloze-2",
+        "b1.vocabulary.get-adjective-cloze-3",
+        "b1.vocabulary.get-adjective-choice-1",
+        "b1.vocabulary.get-adjective-order-1",
+        "b1.vocabulary.get-adjective-write-1",
+        "b1.vocabulary.get-adjective-write-2",
+        "b1.vocabulary.get-adjective-vocab-1"
       ]
     }
   ]

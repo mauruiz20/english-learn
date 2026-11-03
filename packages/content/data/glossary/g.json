@@ -600,6 +600,18 @@
       ]
     },
     {
+      "id": "glossary.grocery-store",
+      "headword": "grocery store",
+      "kind": "phrase",
+      "forms": ["grocery store", "grocery stores"],
+      "senses": [
+        {
+          "es": "supermercado, almacén",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ground",
       "headword": "ground",
       "kind": "word",

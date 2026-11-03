@@ -67,7 +67,7 @@
     {
       "id": "a2.directions.across-from",
       "level": "A2",
-      "topics": ["directions"],
+      "topics": ["directions", "grammar"],
       "kind": "phrase",
       "term": "across from",
       "es": "enfrente de",
@@ -79,7 +79,7 @@
     {
       "id": "a2.directions.between",
       "level": "A2",
-      "topics": ["directions"],
+      "topics": ["directions", "grammar"],
       "kind": "word",
       "term": "between",
       "es": "entre"
@@ -95,7 +95,7 @@
     {
       "id": "a2.directions.imperative",
       "level": "A2",
-      "topics": ["directions"],
+      "topics": ["directions", "grammar"],
       "kind": "grammar",
       "term": "imperative for directions (Turn left.)",
       "es": "imperativo para indicaciones (Gire a la izquierda.)"
@@ -369,7 +369,8 @@
         "a2.directions.go-straight",
         "a2.directions.across-from",
         "a2.directions.excuse-me"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.directions"]
     },
     {
       "id": "a2.directions.lesson-002",

@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.fact",
+      "headword": "fact",
+      "kind": "word",
+      "forms": ["fact", "facts"],
+      "senses": [
+        {
+          "es": "hecho, dato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.factory",
       "headword": "factory",
       "kind": "word",
@@ -321,6 +333,18 @@
       ]
     },
     {
+      "id": "glossary.fifty",
+      "headword": "fifty",
+      "kind": "word",
+      "forms": ["fifty"],
+      "senses": [
+        {
+          "es": "cincuenta",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.fight",
       "headword": "fight",
       "kind": "word",
@@ -477,6 +501,18 @@
       ]
     },
     {
+      "id": "glossary.fire",
+      "headword": "fire",
+      "kind": "word",
+      "forms": ["fire", "fires"],
+      "senses": [
+        {
+          "es": "fuego, incendio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.firm",
       "headword": "firm",
       "kind": "word",
@@ -537,6 +573,18 @@
       ]
     },
     {
+      "id": "glossary.fix",
+      "headword": "fix",
+      "kind": "word",
+      "forms": ["fix", "fixes", "fixed", "fixing"],
+      "senses": [
+        {
+          "es": "arreglar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.flat",
       "headword": "flat",
       "kind": "word",
@@ -560,6 +608,18 @@
       "senses": [
         {
           "es": "vuelo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.floor",
+      "headword": "floor",
+      "kind": "word",
+      "forms": ["floor", "floors"],
+      "senses": [
+        {
+          "es": "piso, suelo",
           "pos": "noun"
         }
       ]
@@ -780,6 +840,18 @@
       "senses": [
         {
           "es": "tiempo libre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.french",
+      "headword": "French",
+      "kind": "word",
+      "forms": ["french"],
+      "senses": [
+        {
+          "es": "francés",
           "pos": "noun"
         }
       ]

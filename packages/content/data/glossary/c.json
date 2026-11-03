@@ -113,6 +113,18 @@
       ]
     },
     {
+      "id": "glossary.canada",
+      "headword": "Canada",
+      "kind": "word",
+      "forms": ["canada"],
+      "senses": [
+        {
+          "es": "Canadá",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cancel",
       "headword": "cancel",
       "kind": "word",
@@ -225,6 +237,18 @@
         {
           "es": "llevar, cargar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carry-out",
+      "headword": "carry out",
+      "kind": "phrase",
+      "forms": ["carry out", "carries out", "carried out", "carrying out"],
+      "senses": [
+        {
+          "es": "llevar a cabo, realizar",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -573,6 +597,18 @@
       ]
     },
     {
+      "id": "glossary.church",
+      "headword": "church",
+      "kind": "word",
+      "forms": ["church", "churches"],
+      "senses": [
+        {
+          "es": "iglesia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.city",
       "headword": "city",
       "kind": "word",
@@ -676,7 +712,7 @@
       "id": "glossary.close",
       "headword": "close",
       "kind": "word",
-      "forms": ["close", "closes", "closing"],
+      "forms": ["close", "closes", "closing", "closer", "closest"],
       "senses": [
         {
           "es": "cerca, cercano",
@@ -853,6 +889,18 @@
       ]
     },
     {
+      "id": "glossary.comfortable",
+      "headword": "comfortable",
+      "kind": "word",
+      "forms": ["comfortable"],
+      "senses": [
+        {
+          "es": "cómodo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.comic",
       "headword": "comic",
       "kind": "word",
@@ -989,6 +1037,18 @@
         {
           "es": "condicional",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conduct",
+      "headword": "conduct",
+      "kind": "word",
+      "forms": ["conduct", "conducts", "conducted", "conducting"],
+      "senses": [
+        {
+          "es": "realizar, llevar a cabo (un estudio, una encuesta)",
+          "pos": "verb"
         }
       ]
     },
@@ -1173,6 +1233,18 @@
       ]
     },
     {
+      "id": "glossary.countryside",
+      "headword": "countryside",
+      "kind": "word",
+      "forms": ["countryside"],
+      "senses": [
+        {
+          "es": "el campo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.course",
       "headword": "course",
       "kind": "word",
@@ -1245,6 +1317,18 @@
       ]
     },
     {
+      "id": "glossary.crisis",
+      "headword": "crisis",
+      "kind": "word",
+      "forms": ["crisis"],
+      "senses": [
+        {
+          "es": "crisis",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.criticism",
       "headword": "criticism",
       "kind": "word",
@@ -1253,6 +1337,18 @@
         {
           "es": "críticas, crítica",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cross",
+      "headword": "cross",
+      "kind": "word",
+      "forms": ["cross", "crosses", "crossed", "crossing"],
+      "senses": [
+        {
+          "es": "cruzar",
+          "pos": "verb"
         }
       ]
     },
@@ -1301,6 +1397,18 @@
         {
           "es": "actualmente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.customer",
+      "headword": "customer",
+      "kind": "word",
+      "forms": ["customer", "customers"],
+      "senses": [
+        {
+          "es": "cliente",
+          "pos": "noun"
         }
       ]
     },

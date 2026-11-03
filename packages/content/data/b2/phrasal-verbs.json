@@ -1,0 +1,275 @@
+{
+  "items": [
+    {
+      "id": "b2.phrasal-verbs.carry-out",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "carry out",
+      "es": "llevar a cabo, realizar"
+    },
+    {
+      "id": "b2.phrasal-verbs.point-out",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "point out",
+      "es": "señalar, hacer notar"
+    },
+    {
+      "id": "b2.phrasal-verbs.rule-out",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "rule out",
+      "es": "descartar"
+    },
+    {
+      "id": "b2.phrasal-verbs.turn-out",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "turn out",
+      "es": "resultar"
+    },
+    {
+      "id": "b2.phrasal-verbs.bring-up",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "bring up",
+      "es": "sacar (un tema), mencionar"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-cloze-1",
+      "itemIds": ["b2.phrasal-verbs.carry-out"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The researchers carried ___ a study with five hundred students.",
+      "answers": ["out"],
+      "distractors": ["off", "up", "away"],
+      "es": "Los investigadores realizaron un estudio con quinientos estudiantes."
+    },
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-cloze-2",
+      "itemIds": ["b2.phrasal-verbs.turn-out"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The exam turned ___ to be much easier than I expected.",
+      "answers": ["out"],
+      "distractors": ["up", "off", "over"],
+      "es": "El examen resultó ser mucho más fácil de lo que esperaba."
+    },
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-choice-1",
+      "itemIds": ["b2.phrasal-verbs.point-out"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She pointed out a mistake in my report.",
+      "options": [
+        "Cometió un error en mi informe.",
+        "Corrigió un error en mi informe.",
+        "Señaló un error en mi informe.",
+        "Borró un error de mi informe."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-order-1",
+      "itemIds": ["b2.phrasal-verbs.point-out"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["it", "pointing", "Thanks", "out.", "for"],
+      "accepted": ["Thanks for pointing it out."],
+      "es": "Gracias por señalarlo."
+    },
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-vocab-1",
+      "itemIds": ["b2.phrasal-verbs.bring-up"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'bring up' mean in 'Don't bring up politics at dinner'?",
+      "options": ["traer algo", "criar", "sacar un tema", "subir algo"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-write-1",
+      "itemIds": ["b2.phrasal-verbs.carry-out"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Realizamos una encuesta a nuestros clientes.",
+      "accepted": [
+        "We {carried out|did|conducted|ran} a survey {of|among} our {customers|clients}.",
+        "We {carried out|did|conducted|ran} a {customer|client} survey.",
+        "We surveyed our {customers|clients}."
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-write-2",
+      "itemIds": ["b2.phrasal-verbs.rule-out"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No podemos descartar esa posibilidad.",
+      "accepted": ["We can't rule {out that possibility|that possibility out}."]
+    },
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results-write-3",
+      "itemIds": ["b2.phrasal-verbs.turn-out"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Resultó que ella tenía razón.",
+      "accepted": ["It turned out [that ]she was right.", "She turned out to be right."]
+    }
+  ],
+  "cards": [
+    {
+      "id": "b2.phrasal-verbs.ideas-and-results",
+      "level": "B2",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: ideas, planes y resultados",
+      "summary": "Cinco phrasal verbs frecuentes en el trabajo y en las noticias para realizar, señalar, descartar y comentar ideas, y para contar cómo resultó algo.",
+      "form": "verbo + partícula; en los separables, un pronombre va en el medio: point it out, rule it out",
+      "uses": [
+        "Proyectos: carry out a study, a survey or a plan (llevar a cabo).",
+        "En reuniones: point out a problem (señalar), bring up a subject (sacar un tema).",
+        "Descartar opciones: rule out a possibility.",
+        "Contar un resultado inesperado: It turned out that… / turn out to be…"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "We realized a survey.",
+          "right": "We carried out a survey.",
+          "why": "Realizar (llevar a cabo) es carry out; realize significa darse cuenta."
+        },
+        {
+          "wrong": "She pointed out it.",
+          "right": "She pointed it out.",
+          "why": "Con un pronombre, este va entre point y out."
+        },
+        {
+          "wrong": "The movie resulted boring.",
+          "right": "The movie turned out to be boring.",
+          "why": "Resultar (ser) se dice turn out to be; result in significa causar."
+        },
+        {
+          "wrong": "He touched the subject of money.",
+          "right": "He brought up the subject of money.",
+          "why": "Tocar un tema o sacarlo en una conversación es bring up."
+        }
+      ],
+      "examples": [
+        {
+          "en": "The company carried out a study on remote work.",
+          "es": "La empresa realizó un estudio sobre el trabajo remoto."
+        },
+        {
+          "en": "My boss pointed out that we were over budget.",
+          "es": "Mi jefe señaló que nos habíamos pasado del presupuesto."
+        },
+        {
+          "en": "The police have ruled out an accident.",
+          "es": "La policía descartó que fuera un accidente."
+        },
+        {
+          "en": "It turned out that she was right.",
+          "es": "Resultó que ella tenía razón."
+        },
+        {
+          "en": "I didn't want to bring up the subject at dinner.",
+          "es": "No quería sacar el tema durante la cena."
+        }
+      ],
+      "entries": [
+        {
+          "verb": "carry out",
+          "es": "llevar a cabo, realizar",
+          "separable": true,
+          "example": {
+            "en": "The team carried out a survey.",
+            "es": "El equipo realizó una encuesta."
+          }
+        },
+        {
+          "verb": "point out",
+          "es": "señalar, hacer notar",
+          "separable": true,
+          "example": {
+            "en": "She pointed out a mistake in the report.",
+            "es": "Señaló un error en el informe."
+          }
+        },
+        {
+          "verb": "rule out",
+          "es": "descartar",
+          "separable": true,
+          "example": {
+            "en": "We can't rule out that possibility.",
+            "es": "No podemos descartar esa posibilidad."
+          }
+        },
+        {
+          "verb": "turn out",
+          "es": "resultar",
+          "separable": false,
+          "example": {
+            "en": "The test turned out to be easier than we expected.",
+            "es": "El examen resultó ser más fácil de lo que esperábamos."
+          }
+        },
+        {
+          "verb": "bring up",
+          "es": "sacar (un tema), mencionar",
+          "separable": true,
+          "example": {
+            "en": "Don't bring up politics at dinner.",
+            "es": "No saques el tema de la política en la cena."
+          }
+        }
+      ],
+      "itemIds": [
+        "b2.phrasal-verbs.carry-out",
+        "b2.phrasal-verbs.point-out",
+        "b2.phrasal-verbs.rule-out",
+        "b2.phrasal-verbs.turn-out",
+        "b2.phrasal-verbs.bring-up"
+      ],
+      "exerciseIds": [
+        "b2.phrasal-verbs.ideas-and-results-cloze-1",
+        "b2.phrasal-verbs.ideas-and-results-cloze-2",
+        "b2.phrasal-verbs.ideas-and-results-choice-1",
+        "b2.phrasal-verbs.ideas-and-results-order-1",
+        "b2.phrasal-verbs.ideas-and-results-vocab-1",
+        "b2.phrasal-verbs.ideas-and-results-write-1",
+        "b2.phrasal-verbs.ideas-and-results-write-2",
+        "b2.phrasal-verbs.ideas-and-results-write-3"
+      ]
+    }
+  ]
+}

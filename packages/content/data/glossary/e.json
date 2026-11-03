@@ -317,6 +317,18 @@
       ]
     },
     {
+      "id": "glossary.escape",
+      "headword": "escape",
+      "kind": "word",
+      "forms": ["escape", "escapes", "escaped", "escaping"],
+      "senses": [
+        {
+          "es": "escapar(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.essay",
       "headword": "essay",
       "kind": "word",
@@ -541,6 +553,18 @@
         {
           "es": "exposición",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.expect",
+      "headword": "expect",
+      "kind": "word",
+      "forms": ["expect", "expects", "expected", "expecting"],
+      "senses": [
+        {
+          "es": "esperar (que algo pase)",
+          "pos": "verb"
         }
       ]
     },

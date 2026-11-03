@@ -191,6 +191,30 @@
       "kind": "phrase",
       "term": "plug in",
       "es": "enchufar, conectar"
+    },
+    {
+      "id": "b1.phrasal-verbs.take-on",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "take on",
+      "es": "contratar (personal); asumir (trabajo)"
+    },
+    {
+      "id": "b1.phrasal-verbs.lay-off",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "lay off",
+      "es": "despedir (por recortes)"
+    },
+    {
+      "id": "b1.phrasal-verbs.take-over",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "take over",
+      "es": "hacerse cargo de"
     }
   ],
   "exercises": [
@@ -837,6 +861,110 @@
         "I signed up for an English {course|class}.",
         "I {registered for|enrolled in} an English {course|class}."
       ]
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-cloze-1",
+      "itemIds": ["b1.work-and-careers.apply-for"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm going to apply ___ that job.",
+      "answers": ["for"],
+      "distractors": ["of", "in"],
+      "es": "Voy a postularme a ese trabajo."
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-cloze-2",
+      "itemIds": ["b1.work-and-careers.turn-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "They offered her a promotion, but she turned it ___.",
+      "answers": ["down"],
+      "distractors": ["off", "up", "over"],
+      "es": "Le ofrecieron un ascenso, pero lo rechazó."
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.lay-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The factory had to lay ___ fifty workers.",
+      "answers": ["off"],
+      "distractors": ["out", "down"],
+      "es": "La fábrica tuvo que despedir a cincuenta trabajadores."
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-choice-1",
+      "itemIds": ["b1.phrasal-verbs.take-over"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My colleague took over the project when the manager left.",
+      "options": [
+        "Mi colega dejó el proyecto cuando el gerente se fue.",
+        "Mi colega se hizo cargo del proyecto cuando el gerente se fue.",
+        "Mi colega empezó un proyecto nuevo cuando llegó el gerente."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.take-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'take on' mean in 'The company is taking on new staff'?",
+      "options": ["despedir", "capacitar", "ascender", "contratar"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-order-1",
+      "itemIds": ["b1.phrasal-verbs.lay-off"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["workers.", "off", "laid", "company", "fifty", "The"],
+      "accepted": ["The company laid off fifty workers."],
+      "es": "La empresa despidió a cincuenta trabajadores."
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-write-1",
+      "itemIds": ["b1.work-and-careers.turn-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Rechacé la oferta.",
+      "accepted": [
+        "I turned {down the offer|the offer down}.",
+        "I {rejected|declined|refused} the offer."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs-write-2",
+      "itemIds": ["b1.work-and-careers.apply-for"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me postulé a un trabajo en un hotel.",
+      "accepted": ["I applied {for|to} a job {at|in} a hotel."]
     }
   ],
   "cards": [
@@ -1561,6 +1689,124 @@
         "b1.phrasal-verbs.technology-choice-1",
         "b1.phrasal-verbs.technology-order-1",
         "b1.phrasal-verbs.technology-write-1"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.jobs",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: buscar y cambiar de trabajo",
+      "summary": "Cinco phrasal verbs para hablar de solicitudes, ofertas, contrataciones, despidos y cambios de puesto.",
+      "form": "verbo + partícula; en los separables, un pronombre va en el medio: turn it down",
+      "uses": [
+        "Buscar trabajo: apply for a job (postularse a un trabajo).",
+        "Decir que no: turn down an offer (rechazar una oferta).",
+        "Lo que hacen las empresas: take on staff (contratar personal), lay off workers (despedir por recortes).",
+        "Cambios de puesto: take over a team or a project (hacerse cargo)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "He postulated for the job.",
+          "right": "He applied for the job.",
+          "why": "Postularse a un trabajo es apply for; postulate significa plantear una teoría."
+        },
+        {
+          "wrong": "They offered me a job, but I turned down it.",
+          "right": "They offered me a job, but I turned it down.",
+          "why": "Con un pronombre, este va entre turn y down."
+        },
+        {
+          "wrong": "She took over of the project.",
+          "right": "She took over the project.",
+          "why": "Take over va directo con su objeto, sin of."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I applied for three jobs last week.",
+          "es": "La semana pasada me postulé a tres trabajos."
+        },
+        {
+          "en": "They offered him a job, but he turned it down.",
+          "es": "Le ofrecieron un trabajo, pero lo rechazó."
+        },
+        {
+          "en": "The restaurant is taking on new waiters for the summer.",
+          "es": "El restaurante está contratando meseros nuevos para el verano."
+        },
+        {
+          "en": "Many companies laid off workers during the crisis.",
+          "es": "Muchas empresas despidieron trabajadores durante la crisis."
+        },
+        {
+          "en": "Who will take over when you retire?",
+          "es": "¿Quién se hará cargo cuando te jubiles?"
+        }
+      ],
+      "entries": [
+        {
+          "verb": "apply for",
+          "es": "solicitar, postularse a (un trabajo, una beca)",
+          "separable": false,
+          "example": {
+            "en": "She applied for a job at a bank.",
+            "es": "Se postuló a un trabajo en un banco."
+          }
+        },
+        {
+          "verb": "turn down",
+          "es": "rechazar (una oferta, una solicitud)",
+          "separable": true,
+          "example": {
+            "en": "He turned down the offer because the salary was too low.",
+            "es": "Rechazó la oferta porque el sueldo era demasiado bajo."
+          }
+        },
+        {
+          "verb": "take on",
+          "es": "contratar (personal); asumir (trabajo)",
+          "separable": true,
+          "example": {
+            "en": "The company is taking on new staff.",
+            "es": "La empresa está contratando personal nuevo."
+          }
+        },
+        {
+          "verb": "lay off",
+          "es": "despedir (por recortes, no por culpa del empleado)",
+          "separable": true,
+          "example": {
+            "en": "The factory laid off two hundred workers.",
+            "es": "La fábrica despidió a doscientos trabajadores."
+          }
+        },
+        {
+          "verb": "take over",
+          "es": "hacerse cargo de, asumir el control de",
+          "separable": true,
+          "example": {
+            "en": "She took over the team when her boss left.",
+            "es": "Se hizo cargo del equipo cuando su jefe se fue."
+          }
+        }
+      ],
+      "itemIds": [
+        "b1.work-and-careers.apply-for",
+        "b1.work-and-careers.turn-down",
+        "b1.phrasal-verbs.take-on",
+        "b1.phrasal-verbs.lay-off",
+        "b1.phrasal-verbs.take-over"
+      ],
+      "exerciseIds": [
+        "b1.phrasal-verbs.jobs-cloze-1",
+        "b1.phrasal-verbs.jobs-cloze-2",
+        "b1.phrasal-verbs.jobs-cloze-3",
+        "b1.phrasal-verbs.jobs-choice-1",
+        "b1.phrasal-verbs.jobs-vocab-1",
+        "b1.phrasal-verbs.jobs-order-1",
+        "b1.phrasal-verbs.jobs-write-1",
+        "b1.phrasal-verbs.jobs-write-2"
       ]
     }
   ]
