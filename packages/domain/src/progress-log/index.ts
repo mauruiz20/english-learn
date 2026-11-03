@@ -27,5 +27,6 @@ export type {
   LessonResult,
   ProgressState,
 } from "./fold";
+export { foldRulesFingerprint } from "./fold-rules";
 export { uuidv7 } from "./uuidv7";
 export type { EventId } from "./uuidv7";

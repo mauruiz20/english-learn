@@ -349,8 +349,9 @@ export function foldSnapshot(events: readonly StoredEvent[]): FoldSnapshot {
 
 /**
  * Extends `snapshot` (the fold of a log) with `events` added to that log, so that the result is
- * EXACTLY `foldSnapshot` of the whole new log, in time proportional to `events` instead of the
- * log. Precondition: no id of `events` is already in the folded log (a log keyed by id, like the
+ * EXACTLY `foldSnapshot` of the whole new log, without reading or re-sorting the log: the cost
+ * grows with `events` plus the snapshot's size (rebuilding its maps and sorted arrays: review
+ * states, lesson results, session ids), not with the number of events folded. Precondition: no id of `events` is already in the folded log (a log keyed by id, like the
  * SQLite `event` table, passes only the events it actually added); ids may repeat within
  * `events`.
  *

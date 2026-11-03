@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "fingerprint": "v1-378b4a89",
+  "snapshot": {
+    "v": 1,
+    "cursor": {
+      "localDate": "2026-01-09",
+      "occurredAt": 1000,
+      "id": "r24",
+      "key": "{\"deviceId\":\"A\",\"id\":\"r24\",\"localDate\":\"2026-01-09\",\"occurredAt\":1000,\"payload\":{\"accuracy\":0.5,\"answerXp\":40,\"kind\":\"lesson\",\"lessonId\":\"L2\",\"sessionId\":\"s7\",\"v\":1},\"type\":\"session_completed\"}"
+    },
+    "states": [
+      {
+        "itemId": "i1",
+        "ease": 2.04,
+        "intervalDays": 1,
+        "reps": 0,
+        "lapses": 1,
+        "dueDate": "2026-01-06"
+      },
+      {
+        "itemId": "i2",
+        "ease": 2.46,
+        "intervalDays": 14,
+        "reps": 3,
+        "lapses": 0,
+        "dueDate": "2026-01-23"
+      },
+      {
+        "itemId": "i3",
+        "ease": 2.6,
+        "intervalDays": 1,
+        "reps": 1,
+        "lapses": 0,
+        "dueDate": "2026-01-06"
+      },
+      {
+        "itemId": "i4",
+        "ease": 2.6,
+        "intervalDays": 6,
+        "reps": 2,
+        "lapses": 0,
+        "dueDate": "2026-01-11"
+      },
+      {
+        "itemId": "i5",
+        "ease": 2.5,
+        "intervalDays": 1,
+        "reps": 1,
+        "lapses": 0,
+        "dueDate": "2026-01-10"
+      }
+    ],
+    "xp": 285,
+    "baselineStreak": {
+      "current": 1,
+      "longest": 5,
+      "lastActiveDate": "2026-01-03"
+    },
+    "placement": {
+      "level": "B1",
+      "theta": 0.4
+    },
+    "activeDates": ["2026-01-02", "2026-01-03", "2026-01-05", "2026-01-09"],
+    "completedLessonIds": ["L0", "L1", "L2"],
+    "lessonResults": [
+      {
+        "lessonId": "L0",
+        "bestAccuracy": 1,
+        "completions": 1
+      },
+      {
+        "lessonId": "L1",
+        "bestAccuracy": 1,
+        "completions": 2
+      },
+      {
+        "lessonId": "L2",
+        "bestAccuracy": 0.5,
+        "completions": 1
+      }
+    ],
+    "completedSessionIds": ["s1", "s2", "s3", "s4", "s7"],
+    "reviewedSessionIds": ["s1", "s2", "s3", "s4", "s7"],
+    "envelopeAnomalies": [
+      {
+        "kind": "invalid_event",
+        "eventId": "r21",
+        "detail": "envelope"
+      }
+    ],
+    "anomalies": [
+      {
+        "kind": "duplicate_item_review",
+        "eventId": "r04",
+        "detail": "s1/i2"
+      },
+      {
+        "kind": "duplicate_session",
+        "eventId": "r12",
+        "detail": "s3"
+      },
+      {
+        "kind": "unsupported_event",
+        "eventId": "r17",
+        "detail": "streak_frozen"
+      },
+      {
+        "kind": "unsupported_event",
+        "eventId": "r18",
+        "detail": "session_completed v2"
+      },
+      {
+        "kind": "unsupported_event",
+        "eventId": "r19",
+        "detail": "item_reviewed v2"
+      },
+      {
+        "kind": "invalid_event",
+        "eventId": "r20",
+        "detail": "item_reviewed payload"
+      },
+      {
+        "kind": "conflicting_duplicate",
+        "eventId": "r01",
+        "detail": ""
+      }
+    ]
+  }
+}
