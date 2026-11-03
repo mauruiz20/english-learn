@@ -241,6 +241,18 @@
       ]
     },
     {
+      "id": "glossary.register",
+      "headword": "register",
+      "kind": "word",
+      "forms": ["register", "registers", "registered", "registering"],
+      "senses": [
+        {
+          "es": "inscribirse, registrarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.reject",
       "headword": "reject",
       "kind": "word",
@@ -533,6 +545,18 @@
         {
           "es": "(be right) tener razón",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ring",
+      "headword": "ring",
+      "kind": "word",
+      "forms": ["ring", "rings", "rung", "ringing"],
+      "senses": [
+        {
+          "es": "sonar (un teléfono, un timbre)",
+          "pos": "verb"
         }
       ]
     },

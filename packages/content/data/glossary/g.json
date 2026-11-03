@@ -277,6 +277,22 @@
       ]
     },
     {
+      "id": "glossary.glass",
+      "headword": "glass",
+      "kind": "word",
+      "forms": ["glass", "glasses"],
+      "senses": [
+        {
+          "es": "vaso",
+          "pos": "noun"
+        },
+        {
+          "es": "vidrio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.global",
       "headword": "global",
       "kind": "word",

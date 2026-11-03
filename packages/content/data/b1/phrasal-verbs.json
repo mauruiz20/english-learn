@@ -167,6 +167,30 @@
       "kind": "phrase",
       "term": "pick up",
       "es": "recoger (a alguien)"
+    },
+    {
+      "id": "b1.phrasal-verbs.log-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "log out",
+      "es": "cerrar sesión"
+    },
+    {
+      "id": "b1.phrasal-verbs.sign-up-for",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "sign up for",
+      "es": "inscribirse en, registrarse en"
+    },
+    {
+      "id": "b1.phrasal-verbs.plug-in",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "plug in",
+      "es": "enchufar, conectar"
     }
   ],
   "exercises": [
@@ -707,6 +731,112 @@
       "type": "translate_write",
       "es": "Nos registramos en el aeropuerto dos horas antes del vuelo.",
       "accepted": ["We checked in at the airport {two|2} hours before {the|our} flight."]
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-cloze-1",
+      "itemIds": ["b1.technology.log-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I can't ___ to my email. I forgot my password.",
+      "answers": ["log in"],
+      "distractors": ["log out", "plug in"],
+      "es": "No puedo entrar a mi correo. Olvidé mi contraseña."
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-cloze-2",
+      "itemIds": ["b1.technology.back-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Always ___ your files before an update.",
+      "answers": ["back up"],
+      "distractors": ["log out", "plug in"],
+      "es": "Haz siempre una copia de seguridad de tus archivos antes de una actualización."
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.plug-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My phone has no battery. Can you plug it ___?",
+      "answers": ["in"],
+      "distractors": ["on", "at"],
+      "es": "Mi teléfono no tiene batería. ¿Lo puedes enchufar?"
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.sign-up-for"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Yesterday I ___ for a free account.",
+      "answers": ["signed up"],
+      "distractors": ["logged in", "backed up"],
+      "es": "Ayer me registré para tener una cuenta gratis."
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.log-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'log out'.",
+      "options": ["iniciar sesión", "cerrar sesión", "registrarse", "apagar"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-choice-1",
+      "itemIds": ["b1.technology.back-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Don't forget to back up your photos.",
+      "options": [
+        "No olvides borrar tus fotos.",
+        "No olvides subir tus fotos.",
+        "No olvides hacer una copia de seguridad de tus fotos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-order-1",
+      "itemIds": ["b1.phrasal-verbs.log-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["Did", "the", "computer?", "out", "log", "you", "of"],
+      "accepted": ["Did you log out of the computer?"],
+      "es": "¿Cerraste la sesión en la computadora?"
+    },
+    {
+      "id": "b1.phrasal-verbs.technology-write-1",
+      "itemIds": ["b1.phrasal-verbs.sign-up-for"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me inscribí en un curso de inglés.",
+      "accepted": [
+        "I signed up for an English {course|class}.",
+        "I {registered for|enrolled in} an English {course|class}."
+      ]
     }
   ],
   "cards": [
@@ -1308,6 +1438,129 @@
         "b1.phrasal-verbs.travel-vocab-1",
         "b1.phrasal-verbs.travel-choice-1",
         "b1.phrasal-verbs.travel-write-1"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.technology",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: la tecnología",
+      "summary": "Cinco phrasal verbs para usar computadoras, teléfonos y aplicaciones.",
+      "form": "verbo + partícula (+ preposición): back up, log in to, sign up for",
+      "uses": [
+        "Cuentas y aplicaciones: log in, log out, sign up for.",
+        "Cuidar tus archivos: back up (hacer una copia de seguridad).",
+        "Conectar aparatos: plug in (enchufar).",
+        "Back up y plug in se separan con un pronombre: back it up, plug it in."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I need to enter in my account.",
+          "right": "I need to log in to my account.",
+          "why": "Entrar a una cuenta es log in (to), no enter in."
+        },
+        {
+          "wrong": "Back up them before the update.",
+          "right": "Back them up before the update.",
+          "why": "Con un pronombre, este va entre back y up."
+        },
+        {
+          "wrong": "I registered me for the course online.",
+          "right": "I signed up for the course online.",
+          "why": "Inscribirse es sign up for (o register for), sin me."
+        },
+        {
+          "wrong": "Don't forget to close session.",
+          "right": "Don't forget to log out.",
+          "why": "Cerrar sesión es log out."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Did you back up your files?",
+          "es": "¿Hiciste una copia de seguridad de tus archivos?"
+        },
+        {
+          "en": "I forgot my password, so I can't log in.",
+          "es": "Olvidé mi contraseña, así que no puedo entrar."
+        },
+        {
+          "en": "Remember to log out of your account.",
+          "es": "Acuérdate de cerrar la sesión de tu cuenta."
+        },
+        {
+          "en": "It's free to sign up.",
+          "es": "Registrarse es gratis."
+        },
+        {
+          "en": "The battery is low. Can you plug it in?",
+          "es": "Queda poca batería. ¿Lo puedes enchufar?"
+        }
+      ],
+      "entries": [
+        {
+          "verb": "back up",
+          "es": "hacer una copia de seguridad (de)",
+          "separable": true,
+          "example": {
+            "en": "I back up my photos every week.",
+            "es": "Hago una copia de seguridad de mis fotos todas las semanas."
+          }
+        },
+        {
+          "verb": "log in",
+          "es": "iniciar sesión, entrar (a una cuenta)",
+          "separable": false,
+          "example": {
+            "en": "I can't log in to my email.",
+            "es": "No puedo entrar a mi correo."
+          }
+        },
+        {
+          "verb": "log out",
+          "es": "cerrar sesión",
+          "separable": false,
+          "example": {
+            "en": "Always log out when you use a public computer.",
+            "es": "Cierra siempre la sesión cuando uses una computadora pública."
+          }
+        },
+        {
+          "verb": "sign up for",
+          "es": "inscribirse en, registrarse en",
+          "separable": false,
+          "example": {
+            "en": "I signed up for an online English course.",
+            "es": "Me inscribí en un curso de inglés en línea."
+          }
+        },
+        {
+          "verb": "plug in",
+          "es": "enchufar, conectar",
+          "separable": true,
+          "example": {
+            "en": "Plug in the charger, please.",
+            "es": "Enchufa el cargador, por favor."
+          }
+        }
+      ],
+      "itemIds": [
+        "b1.technology.back-up",
+        "b1.technology.log-in",
+        "b1.phrasal-verbs.log-out",
+        "b1.phrasal-verbs.sign-up-for",
+        "b1.phrasal-verbs.plug-in"
+      ],
+      "exerciseIds": [
+        "b1.phrasal-verbs.technology-cloze-1",
+        "b1.phrasal-verbs.technology-cloze-2",
+        "b1.phrasal-verbs.technology-cloze-3",
+        "b1.phrasal-verbs.technology-cloze-4",
+        "b1.phrasal-verbs.technology-vocab-1",
+        "b1.phrasal-verbs.technology-choice-1",
+        "b1.phrasal-verbs.technology-order-1",
+        "b1.phrasal-verbs.technology-write-1"
       ]
     }
   ]

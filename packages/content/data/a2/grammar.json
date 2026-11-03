@@ -397,6 +397,923 @@
         "There are {a lot of|lots of|many} books in my {house|home}.",
         "My {house|home} has {a lot of|lots of|many} books."
       ]
+    },
+    {
+      "id": "a2.grammar.present-simple-cloze-1",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ up at seven every day.",
+      "answers": ["gets"],
+      "distractors": ["get", "getting"],
+      "es": "Ella se levanta a las siete todos los días."
+    },
+    {
+      "id": "a2.grammar.present-simple-cloze-2",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My parents ___ coffee every morning.",
+      "answers": ["drink"],
+      "distractors": ["drinks", "drinking"],
+      "es": "Mis padres toman café todas las mañanas."
+    },
+    {
+      "id": "a2.grammar.present-simple-cloze-3",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ your sister work on Saturdays?",
+      "answers": ["Does"],
+      "distractors": ["Do", "Is"],
+      "es": "¿Tu hermana trabaja los sábados?"
+    },
+    {
+      "id": "a2.grammar.present-simple-cloze-4",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He ___ watch TV in the morning.",
+      "answers": ["doesn't"],
+      "distractors": ["don't", "isn't"],
+      "es": "Él no ve televisión por la mañana."
+    },
+    {
+      "id": "a2.grammar.present-simple-choice-1",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He takes a shower every night.",
+      "options": ["Se está duchando ahora.", "Se duchó anoche.", "Se ducha todas las noches."],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.present-simple-order-1",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["My", "bed", "late.", "goes", "usually", "brother", "to"],
+      "accepted": ["My brother usually goes to bed late."],
+      "es": "Mi hermano normalmente se acuesta tarde."
+    },
+    {
+      "id": "a2.grammar.present-simple-write-1",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ella trabaja en un hospital.",
+      "accepted": ["She works {in|at} a hospital."]
+    },
+    {
+      "id": "a2.grammar.present-simple-vocab-1",
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'él se viste'.",
+      "options": ["he get dressed", "he gets dressed", "he getting dressed", "he is get dressed"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.there-is-are-cloze-1",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ two bathrooms in our house.",
+      "answers": ["There are"],
+      "distractors": ["There is", "It has"],
+      "es": "Hay dos baños en nuestra casa."
+    },
+    {
+      "id": "a2.grammar.there-is-are-cloze-2",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There ___ a table in the kitchen.",
+      "answers": ["is"],
+      "distractors": ["are", "have"],
+      "es": "Hay una mesa en la cocina."
+    },
+    {
+      "id": "a2.grammar.there-is-are-cloze-3",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ there a bank near here?",
+      "answers": ["Is"],
+      "distractors": ["Are", "Has"],
+      "es": "¿Hay un banco cerca de aquí?"
+    },
+    {
+      "id": "a2.grammar.there-is-are-cloze-4",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There ___ any chairs in the yard.",
+      "answers": ["aren't"],
+      "distractors": ["isn't", "haven't"],
+      "es": "No hay sillas en el patio."
+    },
+    {
+      "id": "a2.grammar.there-is-are-choice-1",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "There are three windows in my bedroom.",
+      "options": [
+        "Tengo tres ventanas en la sala.",
+        "Hay tres ventanas en mi cuarto.",
+        "Había tres ventanas en mi cuarto."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.there-is-are-order-1",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["there", "a", "near", "supermarket", "Is", "your", "house?"],
+      "accepted": ["Is there a supermarket near your house?"],
+      "es": "¿Hay un supermercado cerca de tu casa?"
+    },
+    {
+      "id": "a2.grammar.there-is-are-write-1",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Hay un sofá en la sala.",
+      "accepted": [
+        "There is a {sofa|couch} in the living room.",
+        "In the living room[,] there is a {sofa|couch}."
+      ]
+    },
+    {
+      "id": "a2.grammar.there-is-are-vocab-1",
+      "itemIds": ["a2.home.there-is-are"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'hay dos baños'.",
+      "options": [
+        "there have two bathrooms",
+        "there is two bathrooms",
+        "there are two bathrooms",
+        "is two bathrooms"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.should-cloze-1",
+      "itemIds": ["a2.health.should"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You have a fever. You ___ stay in bed.",
+      "answers": ["should"],
+      "distractors": ["should to", "have"],
+      "es": "Tienes fiebre. Deberías quedarte en cama."
+    },
+    {
+      "id": "a2.grammar.should-cloze-2",
+      "itemIds": ["a2.health.should"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You ___ go to school with a fever.",
+      "answers": ["shouldn't"],
+      "distractors": ["don't should", "not should"],
+      "es": "No deberías ir a la escuela con fiebre."
+    },
+    {
+      "id": "a2.grammar.should-cloze-3",
+      "itemIds": ["a2.health.should"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She should ___ more water.",
+      "answers": ["drink"],
+      "distractors": ["drinks", "to drink"],
+      "es": "Ella debería tomar más agua."
+    },
+    {
+      "id": "a2.grammar.should-choice-1",
+      "itemIds": ["a2.health.should"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You should take this medicine.",
+      "options": [
+        "Tomaste esta medicina.",
+        "Tienes que tomar esta medicina.",
+        "Deberías tomar esta medicina."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.should-order-1",
+      "itemIds": ["a2.health.should"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["I", "about", "do", "my", "should", "What", "headache?"],
+      "accepted": ["What should I do about my headache?"],
+      "es": "¿Qué debería hacer con mi dolor de cabeza?"
+    },
+    {
+      "id": "a2.grammar.should-write-1",
+      "itemIds": ["a2.health.should"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Deberías descansar.",
+      "accepted": ["You should [get some ]rest."]
+    },
+    {
+      "id": "a2.grammar.should-vocab-1",
+      "itemIds": ["a2.health.should"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'no deberías'.",
+      "options": ["you shouldn't", "you don't should", "you not should", "you shouldn't to"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.grammar.have-to-cloze-1",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ work on Saturdays.",
+      "answers": ["have to"],
+      "distractors": ["has to", "having to"],
+      "es": "Tengo que trabajar los sábados."
+    },
+    {
+      "id": "a2.grammar.have-to-cloze-2",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My boss ___ travel a lot.",
+      "answers": ["has to"],
+      "distractors": ["have to", "has"],
+      "es": "Mi jefe tiene que viajar mucho."
+    },
+    {
+      "id": "a2.grammar.have-to-cloze-3",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's Sunday. You ___ get up early.",
+      "answers": ["don't have to"],
+      "distractors": ["haven't to", "doesn't have to"],
+      "es": "Es domingo. No tienes que levantarte temprano."
+    },
+    {
+      "id": "a2.grammar.have-to-cloze-4",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ she have to work tomorrow?",
+      "answers": ["Does"],
+      "distractors": ["Do", "Has"],
+      "es": "¿Ella tiene que trabajar mañana?"
+    },
+    {
+      "id": "a2.grammar.have-to-choice-1",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We don't have to go to the office on Friday.",
+      "options": [
+        "No tenemos que ir a la oficina el viernes.",
+        "No podemos ir a la oficina el viernes.",
+        "Tenemos que ir a la oficina el viernes."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.grammar.have-to-order-1",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["to", "dishes", "you", "have", "Do", "wash", "the", "tonight?"],
+      "accepted": ["Do you have to wash the dishes tonight?"],
+      "es": "¿Tienes que lavar los platos esta noche?"
+    },
+    {
+      "id": "a2.grammar.have-to-write-1",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo que trabajar mañana.",
+      "accepted": [
+        "I have to work tomorrow.",
+        "Tomorrow[,] I have to work.",
+        "I have got to work tomorrow."
+      ]
+    },
+    {
+      "id": "a2.grammar.have-to-vocab-1",
+      "itemIds": ["a2.work.have-to"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'no hace falta que vengas'.",
+      "options": [
+        "you haven't to come",
+        "you don't must come",
+        "you don't have to come",
+        "you not have to come"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.comparatives-cloze-1",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My brother is two years ___ than me.",
+      "answers": ["older"],
+      "distractors": ["more old", "old"],
+      "es": "Mi hermano es dos años mayor que yo."
+    },
+    {
+      "id": "a2.grammar.comparatives-cloze-2",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This book is more interesting ___ the movie.",
+      "answers": ["than"],
+      "distractors": ["that", "as"],
+      "es": "Este libro es más interesante que la película."
+    },
+    {
+      "id": "a2.grammar.comparatives-cloze-3",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My new job is ___ than my old one.",
+      "answers": ["better"],
+      "distractors": ["more good", "good"],
+      "es": "Mi trabajo nuevo es mejor que el anterior."
+    },
+    {
+      "id": "a2.grammar.comparatives-cloze-4",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Your house is ___ than mine.",
+      "answers": ["bigger"],
+      "distractors": ["more big", "big"],
+      "es": "Tu casa es más grande que la mía."
+    },
+    {
+      "id": "a2.grammar.comparatives-choice-1",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My aunt is younger than my mom.",
+      "options": [
+        "Mi tía es mayor que mi mamá.",
+        "Mi tía es tan joven como mi mamá.",
+        "Mi tía es más joven que mi mamá."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.comparatives-order-1",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["is", "cousin", "taller", "his", "than", "My", "father."],
+      "accepted": ["My cousin is taller than his father."],
+      "es": "Mi primo es más alto que su papá."
+    },
+    {
+      "id": "a2.grammar.comparatives-write-1",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi hermana es mayor que yo.",
+      "accepted": ["My sister is older than {me|I am}."]
+    },
+    {
+      "id": "a2.grammar.comparatives-vocab-1",
+      "itemIds": ["a2.family.older-than"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'más caro que'.",
+      "options": [
+        "more expensive that",
+        "more expensive than",
+        "expensive than",
+        "most expensive than"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.some-any-cloze-1",
+      "itemIds": ["a2.food.some-any"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We don't have ___ milk.",
+      "answers": ["any"],
+      "distractors": ["some", "a"],
+      "es": "No tenemos leche."
+    },
+    {
+      "id": "a2.grammar.some-any-cloze-2",
+      "itemIds": ["a2.food.some-any"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I bought ___ apples at the market.",
+      "answers": ["some"],
+      "distractors": ["any", "a"],
+      "es": "Compré unas manzanas en el mercado."
+    },
+    {
+      "id": "a2.grammar.some-any-cloze-3",
+      "itemIds": ["a2.food.some-any"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Are there ___ eggs in the fridge?",
+      "answers": ["any"],
+      "distractors": ["a", "one"],
+      "es": "¿Hay huevos en el refrigerador?"
+    },
+    {
+      "id": "a2.grammar.some-any-cloze-4",
+      "itemIds": ["a2.food.would-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I would ___ a glass of water, please.",
+      "answers": ["like"],
+      "distractors": ["likes", "liking"],
+      "es": "Quisiera un vaso de agua, por favor."
+    },
+    {
+      "id": "a2.grammar.some-any-choice-1",
+      "itemIds": ["a2.food.would-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I'd like some chicken and rice, please.",
+      "options": [
+        "Me gusta el pollo con arroz.",
+        "Quisiera pollo con arroz, por favor.",
+        "¿Quieres pollo con arroz?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.some-any-order-1",
+      "itemIds": ["a2.food.some-any", "a2.food.would-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["you", "some", "Would", "like", "soup?", "bread", "your", "with"],
+      "accepted": ["Would you like some bread with your soup?"],
+      "es": "¿Quieres pan con tu sopa?"
+    },
+    {
+      "id": "a2.grammar.some-any-write-1",
+      "itemIds": ["a2.food.would-like"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Quisiera una ensalada, por favor.",
+      "accepted": ["I would like a salad[, please].", "{Can|Could} I have a salad[, please]?"]
+    },
+    {
+      "id": "a2.grammar.some-any-vocab-1",
+      "itemIds": ["a2.food.some-any"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'no tenemos pan'.",
+      "options": [
+        "we don't have some bread",
+        "we don't have any breads",
+        "we don't have any bread",
+        "we have no any bread"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.can-ability-cloze-1",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My sister ___ play the piano very well.",
+      "answers": ["can"],
+      "distractors": ["cans", "can to"],
+      "es": "Mi hermana sabe tocar el piano muy bien."
+    },
+    {
+      "id": "a2.grammar.can-ability-cloze-2",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ swim. I never learned.",
+      "answers": ["can't"],
+      "distractors": ["don't can", "not can"],
+      "es": "No sé nadar. Nunca aprendí."
+    },
+    {
+      "id": "a2.grammar.can-ability-cloze-3",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ you play the guitar?",
+      "answers": ["Can"],
+      "distractors": ["Are", "Does"],
+      "es": "¿Sabes tocar la guitarra?"
+    },
+    {
+      "id": "a2.grammar.can-ability-choice-1",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He can't cook, but he can dance.",
+      "options": [
+        "No quiere cocinar, pero quiere bailar.",
+        "Sabe cocinar, pero no sabe bailar.",
+        "No sabe cocinar, pero sabe bailar."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.can-ability-order-1",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["play", "soccer?", "your", "brother", "Can"],
+      "accepted": ["Can your brother play soccer?"],
+      "es": "¿Tu hermano sabe jugar al fútbol?"
+    },
+    {
+      "id": "a2.grammar.can-ability-write-1",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Sé nadar.",
+      "accepted": ["I can swim.", "I know how to swim."]
+    },
+    {
+      "id": "a2.grammar.can-ability-vocab-1",
+      "itemIds": ["a2.free-time.can-ability"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'no sé bailar'.",
+      "options": ["I don't can dance", "I can't dance", "I can't to dance", "I not can dance"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.time-prepositions-cloze-1",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The meeting is ___ Monday.",
+      "answers": ["on"],
+      "distractors": ["in", "at"],
+      "es": "La reunión es el lunes."
+    },
+    {
+      "id": "a2.grammar.time-prepositions-cloze-2",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I start work ___ nine o'clock.",
+      "answers": ["at"],
+      "distractors": ["in", "on"],
+      "es": "Empiezo a trabajar a las nueve."
+    },
+    {
+      "id": "a2.grammar.time-prepositions-cloze-3",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We have a lot of work ___ December.",
+      "answers": ["in"],
+      "distractors": ["on", "at"],
+      "es": "Tenemos mucho trabajo en diciembre."
+    },
+    {
+      "id": "a2.grammar.time-prepositions-cloze-4",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She works ___ the afternoon.",
+      "answers": ["in"],
+      "distractors": ["on", "at"],
+      "es": "Ella trabaja por la tarde."
+    },
+    {
+      "id": "a2.grammar.time-prepositions-choice-1",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I have a meeting at three on Friday.",
+      "options": [
+        "Tuve una reunión a las tres el viernes.",
+        "Tengo una reunión el viernes a las tres.",
+        "Tengo tres reuniones el viernes."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.time-prepositions-order-1",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["I", "Saturdays.", "work", "don't", "on"],
+      "accepted": ["I don't work on Saturdays."],
+      "es": "No trabajo los sábados."
+    },
+    {
+      "id": "a2.grammar.time-prepositions-write-1",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi cumpleaños es en julio.",
+      "accepted": ["My birthday is in July."]
+    },
+    {
+      "id": "a2.grammar.time-prepositions-vocab-1",
+      "itemIds": ["a2.work.on-monday"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'el lunes por la mañana'.",
+      "options": [
+        "in Monday morning",
+        "at Monday morning",
+        "on Monday in the morning",
+        "on Monday morning"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.grammar.going-to-predictions-cloze-1",
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Look at the sky! It's going to ___.",
+      "answers": ["rain"],
+      "distractors": ["raining", "rains"],
+      "es": "¡Mira el cielo! Va a llover."
+    },
+    {
+      "id": "a2.grammar.going-to-predictions-cloze-2",
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It ___ going to be cold tonight.",
+      "answers": ["is"],
+      "distractors": ["are", "be"],
+      "es": "Esta noche va a hacer frío."
+    },
+    {
+      "id": "a2.grammar.going-to-predictions-cloze-3",
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Take a coat. It's ___ to snow.",
+      "answers": ["going"],
+      "distractors": ["go", "goes"],
+      "es": "Lleva un abrigo. Va a nevar."
+    },
+    {
+      "id": "a2.grammar.going-to-predictions-choice-1",
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "It isn't going to be sunny tomorrow.",
+      "options": ["Mañana va a hacer sol.", "Mañana no va a hacer sol.", "Ayer no hizo sol."],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.going-to-predictions-order-1",
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["rain", "to", "Is", "weekend?", "this", "going", "it"],
+      "accepted": ["Is it going to rain this weekend?"],
+      "es": "¿Va a llover este fin de semana?"
+    },
+    {
+      "id": "a2.grammar.going-to-predictions-write-1",
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mañana va a hacer calor.",
+      "accepted": [
+        "It's going to be hot tomorrow.",
+        "Tomorrow[,] it's going to be hot.",
+        "It will be hot tomorrow.",
+        "Tomorrow[,] it will be hot."
+      ]
+    },
+    {
+      "id": "a2.grammar.going-to-predictions-vocab-1",
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'va a nevar'.",
+      "options": ["it goes to snow", "it's going snow", "it going to snow", "it's going to snow"],
+      "answerIndex": 3
     }
   ],
   "cards": [
@@ -679,6 +1596,669 @@
         "a2.grammar.much-many-choice-1",
         "a2.grammar.much-many-order-1",
         "a2.grammar.much-many-write-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.present-simple",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Presente simple para rutinas",
+      "summary": "Sirve para hablar de lo que haces habitualmente. Con he, she e it, el verbo afirmativo lleva -s o -es.",
+      "form": "I / you / we / they + verbo · he / she / it + verbo-s · don't / doesn't + verbo",
+      "uses": [
+        "Rutinas y hábitos: I get up at seven every day.",
+        "Con he, she, it el verbo suma -s (works, gets) o -es (watches, goes); have pasa a has.",
+        "Negativas y preguntas con do / does: She doesn't work on Sundays. Does he cook?",
+        "Suele ir con usually, always, never y every day."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "She get up at seven.",
+          "right": "She gets up at seven.",
+          "why": "Con he, she o it el verbo afirmativo lleva -s."
+        },
+        {
+          "wrong": "He don't work on Sundays.",
+          "right": "He doesn't work on Sundays.",
+          "why": "Con he, she o it la negativa es doesn't."
+        },
+        {
+          "wrong": "Does she works here?",
+          "right": "Does she work here?",
+          "why": "Después de does el verbo va sin -s."
+        },
+        {
+          "wrong": "I am get up at six every day.",
+          "right": "I get up at six every day.",
+          "why": "Para rutinas no se agrega am, is o are delante del verbo."
+        }
+      ],
+      "examples": [
+        {
+          "en": "She gets up at seven every morning.",
+          "es": "Ella se levanta a las siete todas las mañanas."
+        },
+        {
+          "en": "I usually have breakfast at home.",
+          "es": "Normalmente desayuno en casa."
+        },
+        {
+          "en": "My brother goes to bed very late.",
+          "es": "Mi hermano se acuesta muy tarde."
+        },
+        {
+          "en": "We don't work on Sundays.",
+          "es": "No trabajamos los domingos."
+        },
+        {
+          "en": "Does your dad take the bus to work?",
+          "es": "¿Tu papá toma el autobús para ir al trabajo?"
+        },
+        {
+          "en": "He watches TV after dinner.",
+          "es": "Él ve televisión después de cenar."
+        }
+      ],
+      "itemIds": ["a2.daily-routine.present-simple-routines"],
+      "exerciseIds": [
+        "a2.grammar.present-simple-cloze-1",
+        "a2.grammar.present-simple-cloze-2",
+        "a2.grammar.present-simple-cloze-3",
+        "a2.grammar.present-simple-cloze-4",
+        "a2.grammar.present-simple-choice-1",
+        "a2.grammar.present-simple-order-1",
+        "a2.grammar.present-simple-write-1",
+        "a2.grammar.present-simple-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.there-is-are",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "There is y there are",
+      "summary": "Equivalen a «hay». There is va con un sustantivo singular o incontable y there are, con un plural.",
+      "form": "there is + singular / incontable · there are + plural · is there…? / are there…?",
+      "uses": [
+        "Decir qué hay en un lugar: There is a sofa in the living room.",
+        "Con plurales: There are two bedrooms.",
+        "Negativas: there isn't / there aren't (any).",
+        "Preguntas: Is there a bathroom? Are there any windows?"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Have two bedrooms in my house.",
+          "right": "There are two bedrooms in my house.",
+          "why": "«Hay» no se dice con have: se usa there is o there are."
+        },
+        {
+          "wrong": "There is three chairs in the kitchen.",
+          "right": "There are three chairs in the kitchen.",
+          "why": "Con un plural se usa there are."
+        },
+        {
+          "wrong": "Is a park near your house?",
+          "right": "Is there a park near your house?",
+          "why": "En la pregunta no se puede omitir there."
+        },
+        {
+          "wrong": "It is a big window in my bedroom.",
+          "right": "There is a big window in my bedroom.",
+          "why": "Para decir que algo existe en un lugar se usa there is, no it is."
+        }
+      ],
+      "examples": [
+        {
+          "en": "There is a big kitchen in my apartment.",
+          "es": "Hay una cocina grande en mi apartamento."
+        },
+        {
+          "en": "There are two bedrooms upstairs.",
+          "es": "Hay dos dormitorios arriba."
+        },
+        {
+          "en": "There isn't a yard in our house.",
+          "es": "No hay patio en nuestra casa."
+        },
+        {
+          "en": "Is there a bathroom next to the kitchen?",
+          "es": "¿Hay un baño al lado de la cocina?"
+        },
+        {
+          "en": "Are there any windows in the living room?",
+          "es": "¿Hay ventanas en la sala?"
+        },
+        {
+          "en": "There are a lot of books in my bedroom.",
+          "es": "Hay muchos libros en mi cuarto."
+        }
+      ],
+      "itemIds": ["a2.home.there-is-are"],
+      "exerciseIds": [
+        "a2.grammar.there-is-are-cloze-1",
+        "a2.grammar.there-is-are-cloze-2",
+        "a2.grammar.there-is-are-cloze-3",
+        "a2.grammar.there-is-are-cloze-4",
+        "a2.grammar.there-is-are-choice-1",
+        "a2.grammar.there-is-are-order-1",
+        "a2.grammar.there-is-are-write-1",
+        "a2.grammar.there-is-are-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.should",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Should para dar consejos",
+      "summary": "Should + verbo sirve para dar o pedir consejos. Equivale a «deberías» o «debería».",
+      "form": "should / shouldn't + verbo base · should I…?",
+      "uses": [
+        "Dar un consejo: You should see a doctor.",
+        "Aconsejar que no se haga algo: You shouldn't go to work today.",
+        "Pedir consejo: What should I do? Should I take this medicine?",
+        "Es igual para todas las personas: he should, she should (sin -s)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "You should to rest.",
+          "right": "You should rest.",
+          "why": "Después de should va el verbo sin to."
+        },
+        {
+          "wrong": "She shoulds go to bed early.",
+          "right": "She should go to bed early.",
+          "why": "Should no cambia con he, she o it."
+        },
+        {
+          "wrong": "You don't should go to work.",
+          "right": "You shouldn't go to work.",
+          "why": "La negativa es shouldn't (should not), sin don't."
+        },
+        {
+          "wrong": "Do I should take this medicine?",
+          "right": "Should I take this medicine?",
+          "why": "En preguntas, should va antes del sujeto, sin do."
+        }
+      ],
+      "examples": [
+        {
+          "en": "You should see a doctor.",
+          "es": "Deberías ir al médico."
+        },
+        {
+          "en": "You shouldn't go to work today.",
+          "es": "No deberías ir a trabajar hoy."
+        },
+        {
+          "en": "She should drink more water.",
+          "es": "Ella debería tomar más agua."
+        },
+        {
+          "en": "What should I take for a headache?",
+          "es": "¿Qué debería tomar para el dolor de cabeza?"
+        },
+        {
+          "en": "You should rest and stay in bed.",
+          "es": "Deberías descansar y quedarte en cama."
+        },
+        {
+          "en": "He shouldn't drink so much coffee.",
+          "es": "No debería tomar tanto café."
+        }
+      ],
+      "itemIds": ["a2.health.should"],
+      "exerciseIds": [
+        "a2.grammar.should-cloze-1",
+        "a2.grammar.should-cloze-2",
+        "a2.grammar.should-cloze-3",
+        "a2.grammar.should-choice-1",
+        "a2.grammar.should-order-1",
+        "a2.grammar.should-write-1",
+        "a2.grammar.should-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.have-to",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Have to y don't have to",
+      "summary": "Have to + verbo expresa una obligación: «tener que». Don't have to significa que algo no es necesario.",
+      "form": "have to / has to + verbo base · don't / doesn't have to + verbo base · do you have to…?",
+      "uses": [
+        "Obligaciones: I have to work on Saturdays.",
+        "Con he, she, it se usa has to: She has to get up early.",
+        "Algo que no es necesario: You don't have to come (no hace falta que vengas).",
+        "Preguntas con do / does: Do you have to work tomorrow?"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I have to working tomorrow.",
+          "right": "I have to work tomorrow.",
+          "why": "Después de have to va el verbo base."
+        },
+        {
+          "wrong": "She have to finish this today.",
+          "right": "She has to finish this today.",
+          "why": "Con he, she o it se usa has to."
+        },
+        {
+          "wrong": "You haven't to come.",
+          "right": "You don't have to come.",
+          "why": "La negativa se forma con don't o doesn't: don't have to."
+        },
+        {
+          "wrong": "He doesn't has to cook.",
+          "right": "He doesn't have to cook.",
+          "why": "Después de doesn't, has vuelve a have."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I have to work on Saturdays.",
+          "es": "Tengo que trabajar los sábados."
+        },
+        {
+          "en": "She has to get up at six.",
+          "es": "Ella tiene que levantarse a las seis."
+        },
+        {
+          "en": "You don't have to come to the meeting.",
+          "es": "No hace falta que vengas a la reunión."
+        },
+        {
+          "en": "Do you have to work tomorrow?",
+          "es": "¿Tienes que trabajar mañana?"
+        },
+        {
+          "en": "He doesn't have to cook tonight.",
+          "es": "Él no tiene que cocinar esta noche."
+        },
+        {
+          "en": "We have to clean the kitchen.",
+          "es": "Tenemos que limpiar la cocina."
+        }
+      ],
+      "itemIds": ["a2.work.have-to"],
+      "exerciseIds": [
+        "a2.grammar.have-to-cloze-1",
+        "a2.grammar.have-to-cloze-2",
+        "a2.grammar.have-to-cloze-3",
+        "a2.grammar.have-to-cloze-4",
+        "a2.grammar.have-to-choice-1",
+        "a2.grammar.have-to-order-1",
+        "a2.grammar.have-to-write-1",
+        "a2.grammar.have-to-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.comparatives",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Comparativos: older than, more interesting than",
+      "summary": "Para comparar dos personas o cosas: adjetivo corto + -er + than, o more + adjetivo largo + than.",
+      "form": "adjetivo corto + -er + than · more + adjetivo largo + than · good → better, bad → worse",
+      "uses": [
+        "Adjetivos cortos: old → older, tall → taller, big → bigger.",
+        "Terminados en -y: happy → happier, funny → funnier.",
+        "Adjetivos largos: more interesting, more expensive.",
+        "Irregulares: good → better, bad → worse."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "My brother is more tall than me.",
+          "right": "My brother is taller than me.",
+          "why": "Con adjetivos cortos se agrega -er; no se usa more."
+        },
+        {
+          "wrong": "She is older that her sister.",
+          "right": "She is older than her sister.",
+          "why": "El «que» de una comparación es than, no that."
+        },
+        {
+          "wrong": "This book is more good than that one.",
+          "right": "This book is better than that one.",
+          "why": "Good es irregular: better."
+        },
+        {
+          "wrong": "My aunt is more younger than my mom.",
+          "right": "My aunt is younger than my mom.",
+          "why": "No se usan more y -er al mismo tiempo."
+        }
+      ],
+      "examples": [
+        {
+          "en": "My sister is older than me.",
+          "es": "Mi hermana es mayor que yo."
+        },
+        {
+          "en": "My dad is taller than my uncle.",
+          "es": "Mi papá es más alto que mi tío."
+        },
+        {
+          "en": "This movie is more interesting than the book.",
+          "es": "Esta película es más interesante que el libro."
+        },
+        {
+          "en": "My cousin is funnier than his brother.",
+          "es": "Mi primo es más gracioso que su hermano."
+        },
+        {
+          "en": "My new phone is better than my old one.",
+          "es": "Mi teléfono nuevo es mejor que el viejo."
+        },
+        {
+          "en": "Is your house bigger than ours?",
+          "es": "¿Tu casa es más grande que la nuestra?"
+        }
+      ],
+      "itemIds": ["a2.family.older-than"],
+      "exerciseIds": [
+        "a2.grammar.comparatives-cloze-1",
+        "a2.grammar.comparatives-cloze-2",
+        "a2.grammar.comparatives-cloze-3",
+        "a2.grammar.comparatives-cloze-4",
+        "a2.grammar.comparatives-choice-1",
+        "a2.grammar.comparatives-order-1",
+        "a2.grammar.comparatives-write-1",
+        "a2.grammar.comparatives-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.some-any",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Some, any y I would like",
+      "summary": "Some y any significan «algo de» o «unos». Some va en afirmativas, ofrecimientos y pedidos; any, en negativas y preguntas. I would like… es la forma educada de pedir.",
+      "form": "some + plural / incontable · any en negativas y preguntas · I would like (I'd like) + sustantivo / to + verbo",
+      "uses": [
+        "Some en afirmativas: I bought some bread.",
+        "Any en negativas y preguntas: We don't have any milk. Do you have any eggs?",
+        "Some en ofrecimientos y pedidos: Would you like some coffee? Can I have some water?",
+        "I'd like para pedir con cortesía: I'd like a chicken sandwich, please."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "We don't have some rice.",
+          "right": "We don't have any rice.",
+          "why": "En negativas se usa any."
+        },
+        {
+          "wrong": "I would like order the chicken.",
+          "right": "I would like to order the chicken.",
+          "why": "Delante de un verbo, would like lleva to."
+        },
+        {
+          "wrong": "I like a glass of water, please.",
+          "right": "I would like a glass of water, please.",
+          "why": "Para pedir algo se usa would like (I'd like); I like significa «me gusta»."
+        },
+        {
+          "wrong": "There isn't any breads.",
+          "right": "There isn't any bread.",
+          "why": "Bread es incontable: no lleva -s."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I'd like a chicken sandwich, please.",
+          "es": "Quisiera un sándwich de pollo, por favor."
+        },
+        {
+          "en": "We need some vegetables for dinner.",
+          "es": "Necesitamos verduras para la cena."
+        },
+        {
+          "en": "We don't have any rice.",
+          "es": "No tenemos arroz."
+        },
+        {
+          "en": "Do you have any bread?",
+          "es": "¿Tienes pan?"
+        },
+        {
+          "en": "Would you like some coffee?",
+          "es": "¿Quieres un poco de café?"
+        },
+        {
+          "en": "I would like to order now.",
+          "es": "Quisiera pedir ahora."
+        }
+      ],
+      "itemIds": ["a2.food.some-any", "a2.food.would-like"],
+      "exerciseIds": [
+        "a2.grammar.some-any-cloze-1",
+        "a2.grammar.some-any-cloze-2",
+        "a2.grammar.some-any-cloze-3",
+        "a2.grammar.some-any-cloze-4",
+        "a2.grammar.some-any-choice-1",
+        "a2.grammar.some-any-order-1",
+        "a2.grammar.some-any-write-1",
+        "a2.grammar.some-any-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.can-ability",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Can para habilidades",
+      "summary": "Can + verbo dice lo que alguien sabe o puede hacer. Es igual para todas las personas y la negativa es can't.",
+      "form": "can / can't + verbo base · can you…? · could (pasado)",
+      "uses": [
+        "Habilidades: I can swim. She can play the guitar.",
+        "Lo que no sabes hacer: I can't dance.",
+        "Preguntas y respuestas cortas: Can you cook? — Yes, I can. / No, I can't.",
+        "En pasado: could / couldn't (I could swim when I was five)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I can to swim.",
+          "right": "I can swim.",
+          "why": "Después de can va el verbo sin to."
+        },
+        {
+          "wrong": "She cans play the piano.",
+          "right": "She can play the piano.",
+          "why": "Can no lleva -s con he, she o it."
+        },
+        {
+          "wrong": "Do you can speak English?",
+          "right": "Can you speak English?",
+          "why": "En preguntas, can va antes del sujeto, sin do."
+        },
+        {
+          "wrong": "I don't can dance.",
+          "right": "I can't dance.",
+          "why": "La negativa es can't (cannot), sin don't."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I can play the guitar.",
+          "es": "Sé tocar la guitarra."
+        },
+        {
+          "en": "My little brother can't swim yet.",
+          "es": "Mi hermano menor todavía no sabe nadar."
+        },
+        {
+          "en": "Can you cook?",
+          "es": "¿Sabes cocinar?"
+        },
+        {
+          "en": "She can run very fast.",
+          "es": "Ella puede correr muy rápido."
+        },
+        {
+          "en": "He can speak three languages.",
+          "es": "Él habla tres idiomas."
+        },
+        {
+          "en": "I could swim when I was five.",
+          "es": "Sabía nadar cuando tenía cinco años."
+        }
+      ],
+      "itemIds": ["a2.free-time.can-ability"],
+      "exerciseIds": [
+        "a2.grammar.can-ability-cloze-1",
+        "a2.grammar.can-ability-cloze-2",
+        "a2.grammar.can-ability-cloze-3",
+        "a2.grammar.can-ability-choice-1",
+        "a2.grammar.can-ability-order-1",
+        "a2.grammar.can-ability-write-1",
+        "a2.grammar.can-ability-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.time-prepositions",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "On, in y at con el tiempo",
+      "summary": "On va con días y fechas; in, con meses, años y partes del día; at, con horas.",
+      "form": "on + día / fecha · in + mes / año / estación / parte del día · at + hora",
+      "uses": [
+        "On: días y fechas (on Monday, on May 12, on my birthday).",
+        "In: meses, años, estaciones y partes del día (in July, in 2020, in summer, in the morning).",
+        "At: horas y momentos exactos (at nine o'clock, at noon, at night).",
+        "Sin preposición con every, next, last y this: I work every Monday."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I have a meeting in Monday.",
+          "right": "I have a meeting on Monday.",
+          "why": "Con los días de la semana se usa on."
+        },
+        {
+          "wrong": "The class starts in nine o'clock.",
+          "right": "The class starts at nine o'clock.",
+          "why": "Con horas se usa at."
+        },
+        {
+          "wrong": "My birthday is on July.",
+          "right": "My birthday is in July.",
+          "why": "Con meses (sin día) se usa in."
+        },
+        {
+          "wrong": "See you on next Friday.",
+          "right": "See you next Friday.",
+          "why": "Con next, last, this y every no se usa preposición."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I don't work on Sundays.",
+          "es": "No trabajo los domingos."
+        },
+        {
+          "en": "The meeting is at ten o'clock.",
+          "es": "La reunión es a las diez."
+        },
+        {
+          "en": "We go on vacation in August.",
+          "es": "Nos vamos de vacaciones en agosto."
+        },
+        {
+          "en": "I study in the morning and work in the afternoon.",
+          "es": "Estudio por la mañana y trabajo por la tarde."
+        },
+        {
+          "en": "My birthday is on May 12.",
+          "es": "Mi cumpleaños es el 12 de mayo."
+        },
+        {
+          "en": "She finishes work at five on Fridays.",
+          "es": "Ella termina de trabajar a las cinco los viernes."
+        }
+      ],
+      "itemIds": ["a2.work.on-monday"],
+      "exerciseIds": [
+        "a2.grammar.time-prepositions-cloze-1",
+        "a2.grammar.time-prepositions-cloze-2",
+        "a2.grammar.time-prepositions-cloze-3",
+        "a2.grammar.time-prepositions-cloze-4",
+        "a2.grammar.time-prepositions-choice-1",
+        "a2.grammar.time-prepositions-order-1",
+        "a2.grammar.time-prepositions-write-1",
+        "a2.grammar.time-prepositions-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.going-to-predictions",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Going to para predicciones",
+      "summary": "Be going to + verbo sirve para decir lo que va a pasar cuando ya se ve venir, como «va a llover».",
+      "form": "am / is / are + going to + verbo base",
+      "uses": [
+        "Predicciones con pruebas: Look at those clouds! It's going to rain.",
+        "El clima de los próximos días: It's going to be cold tonight.",
+        "Negativas: It isn't going to snow.",
+        "Preguntas: Is it going to rain tomorrow?"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "It going to rain.",
+          "right": "It's going to rain.",
+          "why": "Falta el verbo be: it is (it's) going to."
+        },
+        {
+          "wrong": "It's going to raining.",
+          "right": "It's going to rain.",
+          "why": "Después de going to va el verbo base."
+        },
+        {
+          "wrong": "Is going to be sunny tomorrow.",
+          "right": "It's going to be sunny tomorrow.",
+          "why": "En inglés el sujeto es obligatorio: para el clima se usa it."
+        },
+        {
+          "wrong": "Look at the sky! It rains soon.",
+          "right": "Look at the sky! It's going to rain soon.",
+          "why": "Para predecir algo que ves venir se usa going to, no el presente."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Look at those clouds. It's going to rain.",
+          "es": "Mira esas nubes. Va a llover."
+        },
+        {
+          "en": "Take an umbrella. It's going to rain this afternoon.",
+          "es": "Lleva un paraguas. Va a llover esta tarde."
+        },
+        {
+          "en": "It's going to be very hot tomorrow.",
+          "es": "Mañana va a hacer mucho calor."
+        },
+        {
+          "en": "It isn't going to snow this week.",
+          "es": "No va a nevar esta semana."
+        },
+        {
+          "en": "Is it going to be sunny on Saturday?",
+          "es": "¿Va a hacer sol el sábado?"
+        },
+        {
+          "en": "You're going to be cold in that shirt.",
+          "es": "Vas a tener frío con esa camisa."
+        }
+      ],
+      "itemIds": ["a2.weather.going-to-predictions"],
+      "exerciseIds": [
+        "a2.grammar.going-to-predictions-cloze-1",
+        "a2.grammar.going-to-predictions-cloze-2",
+        "a2.grammar.going-to-predictions-cloze-3",
+        "a2.grammar.going-to-predictions-choice-1",
+        "a2.grammar.going-to-predictions-order-1",
+        "a2.grammar.going-to-predictions-write-1",
+        "a2.grammar.going-to-predictions-vocab-1"
       ]
     }
   ]

@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.table",
+      "headword": "table",
+      "kind": "word",
+      "forms": ["table", "tables"],
+      "senses": [
+        {
+          "es": "mesa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.take",
       "headword": "take",
       "kind": "word",
@@ -141,6 +153,18 @@
         {
           "es": "hablar, conversar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tall",
+      "headword": "tall",
+      "kind": "word",
+      "forms": ["tall", "taller", "tallest"],
+      "senses": [
+        {
+          "es": "alto",
+          "pos": "adjective"
         }
       ]
     },
@@ -589,6 +613,18 @@
       ]
     },
     {
+      "id": "glossary.those",
+      "headword": "those",
+      "kind": "word",
+      "forms": ["those"],
+      "senses": [
+        {
+          "es": "esos, esas, aquellos, aquellas",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
       "id": "glossary.though",
       "headword": "though",
       "kind": "word",
@@ -905,6 +941,18 @@
         {
           "es": "tren",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.translate",
+      "headword": "translate",
+      "kind": "word",
+      "forms": ["translate", "translates", "translated", "translating"],
+      "senses": [
+        {
+          "es": "traducir",
+          "pos": "verb"
         }
       ]
     },

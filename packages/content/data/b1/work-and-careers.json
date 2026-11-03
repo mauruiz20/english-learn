@@ -377,7 +377,7 @@
         "b1.work-and-careers.dont-have-to-mustnt",
         "b1.work-and-careers.get-promoted"
       ],
-      "deepenCardIds": ["a2.grammar.for-since"]
+      "deepenCardIds": ["a2.grammar.for-since", "b1.grammar.have-to-must"]
     },
     {
       "id": "b1.work-and-careers.lesson-002",
@@ -397,7 +397,8 @@
         "b1.work-and-careers.deadline",
         "b1.work-and-careers.turn-down",
         "b1.work-and-careers.quit"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.have-to-must"]
     }
   ]
 }

@@ -405,6 +405,18 @@
       ]
     },
     {
+      "id": "glossary.mexican",
+      "headword": "Mexican",
+      "kind": "word",
+      "forms": ["mexican"],
+      "senses": [
+        {
+          "es": "mexicano, mexicana",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.mexico",
       "headword": "Mexico",
       "kind": "word",
@@ -460,6 +472,18 @@
       "senses": [
         {
           "es": "leche",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.million",
+      "headword": "million",
+      "kind": "word",
+      "forms": ["million", "millions"],
+      "senses": [
+        {
+          "es": "millón",
           "pos": "noun"
         }
       ]

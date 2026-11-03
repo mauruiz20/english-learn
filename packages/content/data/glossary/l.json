@@ -469,6 +469,18 @@
       ]
     },
     {
+      "id": "glossary.log-out",
+      "headword": "log out",
+      "kind": "phrase",
+      "forms": ["log out", "logs out", "logged out", "logging out"],
+      "senses": [
+        {
+          "es": "cerrar sesión",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.long",
       "headword": "long",
       "kind": "word",
@@ -645,6 +657,18 @@
         {
           "es": "amor",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.low",
+      "headword": "low",
+      "kind": "word",
+      "forms": ["low", "lower", "lowest"],
+      "senses": [
+        {
+          "es": "bajo",
+          "pos": "adjective"
         }
       ]
     },

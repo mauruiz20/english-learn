@@ -365,7 +365,11 @@
         "b1.education.take-notes",
         "b1.education.pass-an-exam"
       ],
-      "deepenCardIds": ["a2.grammar.say-tell"]
+      "deepenCardIds": [
+        "a2.grammar.say-tell",
+        "b1.grammar.past-continuous",
+        "b1.grammar.reported-speech"
+      ]
     },
     {
       "id": "b1.education.lesson-002",
@@ -388,7 +392,11 @@
         "b1.education.homework",
         "b1.education.degree"
       ],
-      "deepenCardIds": ["b1.phrasal-verbs.work-and-study", "a2.grammar.say-tell"]
+      "deepenCardIds": [
+        "b1.phrasal-verbs.work-and-study",
+        "a2.grammar.say-tell",
+        "b1.grammar.reported-speech"
+      ]
     }
   ]
 }

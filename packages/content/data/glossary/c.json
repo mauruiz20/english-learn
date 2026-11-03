@@ -713,6 +713,18 @@
       ]
     },
     {
+      "id": "glossary.cloud",
+      "headword": "cloud",
+      "kind": "word",
+      "forms": ["cloud", "clouds"],
+      "senses": [
+        {
+          "es": "nube",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cloudy",
       "headword": "cloudy",
       "kind": "word",
@@ -1089,6 +1101,18 @@
       ]
     },
     {
+      "id": "glossary.couch",
+      "headword": "couch",
+      "kind": "word",
+      "forms": ["couch", "couches"],
+      "senses": [
+        {
+          "es": "sofá, sillón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cough",
       "headword": "cough",
       "kind": "word",
@@ -1149,6 +1173,18 @@
       ]
     },
     {
+      "id": "glossary.course",
+      "headword": "course",
+      "kind": "word",
+      "forms": ["course", "courses"],
+      "senses": [
+        {
+          "es": "curso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cousin",
       "headword": "cousin",
       "kind": "word",
@@ -1169,6 +1205,18 @@
         {
           "es": "compañero de trabajo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.create",
+      "headword": "create",
+      "kind": "word",
+      "forms": ["create", "creates", "created", "creating"],
+      "senses": [
+        {
+          "es": "crear",
+          "pos": "verb"
         }
       ]
     },

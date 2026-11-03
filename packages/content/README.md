@@ -241,30 +241,26 @@ A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds?, deepen
 ## Card gaps (next card pack)
 
 Lessons whose key grammar or vocabulary has no study card yet (from the `deepenCardIds` audit).
-Candidates for the next pack; none of them is written yet.
+Candidates for the next pack; none of them is written yet. Card pack 2 covered the A2 and B1
+grammar gaps (present simple, there is / are, should, have to, comparatives, some / any and
+`I would like`, can, time prepositions, going to; future forms, relative clauses, the passive,
+reported speech, used to, past continuous, deduction, unless, have to / must) and the tech phrasal
+verbs (`b1.phrasal-verbs.technology`).
 
-| Lesson                                                       | Not covered by a card                                                               |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| A2 Mañanas y noches                                          | present simple for routines (`she gets up`)                                         |
-| A2 ¿Cómo llego?, En la ciudad                                | imperative for directions; place prepositions (across from, between)                |
-| A2 Mi familia, Parecidos y diferencias                       | comparatives (`older than`); possessive `'s`; `look like`                           |
-| A2 Pedir y preparar comida                                   | `some` / `any`; polite requests (`I would like`)                                    |
-| A2 Mi tiempo libre, Deportes y aficiones                     | `can` (ability); `like` + -ing at A2 (the gerund card is B1)                        |
-| A2 En el médico, ¿Cómo te sientes?                           | `should` for advice; health phrases (`have a cold`, `feel better`)                  |
-| A2 Mi casa, Las tareas de la casa                            | `there is` / `there are`; `have to` / `don't have to`                               |
-| A2 ¿Qué tiempo hace?                                         | `going to` for predictions                                                          |
-| A2 Horarios y obligaciones                                   | time prepositions (`on Monday`); `have to`                                          |
-| A2 Mi rutina diaria                                          | `commute` at A2 (the commute card is B1, above the lesson)                          |
-| B1 La vida en la ciudad, Planes para el futuro               | future forms: `will`, `be going to`, present continuous for arrangements            |
-| B1 Una noche de cultura, Cine, teatro y música               | relative clauses (who / where); deduction (must / can't / might); `be worth` + -ing |
-| B1 Vida de estudiante, Lo que dijo el profesor               | past continuous; reported speech and reported questions (`asked if`)                |
-| B1 Si actuamos hoy…                                          | `unless`                                                                            |
-| B1 Consejos para sentirse mejor                              | `used to`; `should` / `shouldn't`                                                   |
-| B1 Quién dijo qué, Problemas con la tecnología, Cómo se hace | the passive (present and past)                                                      |
-| B1 Problemas con la tecnología, Cómo se hace                 | relative clauses (that / which); tech phrasal verbs (back up, log in)               |
-| B1 De viaje                                                  | contrast linkers (`although`); `get lost`                                           |
-| B1 Mi primer trabajo, Obligaciones y cambios                 | `have to` / `must`; `don't have to` vs `mustn't`; `apply for`, `turn down`          |
-| B1 Amigos y pareja, Peleas y reconciliaciones                | `each other`; `get married`                                                         |
+| Lesson                                        | Not covered by a card                                                    |
+| --------------------------------------------- | ------------------------------------------------------------------------ |
+| A2 ¿Cómo llego?, En la ciudad                 | imperative for directions; place prepositions (across from, between)     |
+| A2 Mi familia, Parecidos y diferencias        | possessive `'s`; `look like`                                             |
+| A2 Deportes y aficiones                       | `like` + -ing at A2 (the gerund card is B1)                              |
+| A2 En el médico, ¿Cómo te sientes?            | health phrases (`have a cold`, `feel better`)                            |
+| A2 Las estaciones                             | weather and season words (`forecast`, `sunny`); no card is linked yet    |
+| A2 En el trabajo                              | work words (`boss`, `work from home`, `look for`); no card is linked yet |
+| A2 Mi rutina diaria                           | `commute` at A2 (the commute card is B1, above the lesson)               |
+| B1 Cine, teatro y música                      | `be worth` + -ing at B1 (the be-worth card is B2, above the lesson)      |
+| B1 Consejos para sentirse mejor               | `should` / `shouldn't` at B1 (linked to the A2 should card for now)      |
+| B1 De viaje                                   | contrast linkers (`although`); `get lost`                                |
+| B1 Mi primer trabajo, Obligaciones y cambios  | `apply for`, `turn down`, `get promoted`                                 |
+| B1 Amigos y pareja, Peleas y reconciliaciones | `each other`; `get married`                                              |
 
 ## Attribution
 

@@ -374,7 +374,7 @@
         "b1.health-and-lifestyle.stop-doing",
         "b1.health-and-lifestyle.diet"
       ],
-      "deepenCardIds": ["b1.grammar.gerund-infinitive"]
+      "deepenCardIds": ["b1.grammar.gerund-infinitive", "b1.grammar.used-to", "a2.grammar.should"]
     }
   ]
 }

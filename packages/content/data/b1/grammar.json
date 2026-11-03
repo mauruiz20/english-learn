@@ -614,6 +614,945 @@
         "I asked my brother to cut my hair.",
         "I got my brother to cut my hair."
       ]
+    },
+    {
+      "id": "b1.grammar.future-forms-cloze-1",
+      "itemIds": ["b1.city-life.will"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's late. I think I ___ take a taxi.",
+      "answers": ["will"],
+      "distractors": ["am", "going"],
+      "es": "Es tarde. Creo que voy a tomar un taxi."
+    },
+    {
+      "id": "b1.grammar.future-forms-cloze-2",
+      "itemIds": ["b1.city-life.going-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We ___ going to move to a bigger apartment next year.",
+      "answers": ["are"],
+      "distractors": ["will", "do"],
+      "es": "Nos vamos a mudar a un apartamento más grande el año que viene."
+    },
+    {
+      "id": "b1.grammar.future-forms-cloze-3",
+      "itemIds": ["b1.city-life.present-continuous-future"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm ___ the doctor at four tomorrow.",
+      "answers": ["seeing"],
+      "distractors": ["see", "will see"],
+      "es": "Mañana a las cuatro tengo cita con el médico."
+    },
+    {
+      "id": "b1.grammar.future-forms-cloze-4",
+      "itemIds": ["b1.city-life.will"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Don't worry. I ___ tell anyone.",
+      "answers": ["won't"],
+      "distractors": ["not", "am not"],
+      "es": "No te preocupes. No se lo voy a contar a nadie."
+    },
+    {
+      "id": "b1.grammar.future-forms-choice-1",
+      "itemIds": ["b1.city-life.present-continuous-future"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We're having dinner with my parents on Saturday.",
+      "options": [
+        "Cenamos con mis papás todos los sábados.",
+        "Cenamos con mis papás el sábado pasado.",
+        "El sábado vamos a cenar con mis papás."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.future-forms-order-1",
+      "itemIds": ["b1.city-life.going-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["Are", "an", "you", "apartment", "downtown?", "to", "going", "rent"],
+      "accepted": ["Are you going to rent an apartment downtown?"],
+      "es": "¿Vas a alquilar un apartamento en el centro?"
+    },
+    {
+      "id": "b1.grammar.future-forms-write-1",
+      "itemIds": ["b1.city-life.will", "b1.city-life.going-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Te llamaré mañana.",
+      "accepted": [
+        "I'll call you tomorrow.",
+        "Tomorrow[,] I'll call you.",
+        "I'm going to call you tomorrow.",
+        "Tomorrow[,] I'm going to call you."
+      ]
+    },
+    {
+      "id": "b1.grammar.future-forms-vocab-1",
+      "itemIds": ["b1.city-life.will"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'te prometo que no voy a llegar tarde'.",
+      "options": [
+        "I promise I'm not late",
+        "I promise I don't be late",
+        "I promise I won't be late",
+        "I promise I'm not being late"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.relative-clauses-cloze-1",
+      "itemIds": ["b1.culture-and-entertainment.relative-who-where"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The man ___ directed the play is from Chile.",
+      "answers": ["who", "that"],
+      "distractors": ["which", "where"],
+      "es": "El hombre que dirigió la obra es de Chile."
+    },
+    {
+      "id": "b1.grammar.relative-clauses-cloze-2",
+      "itemIds": ["b1.culture-and-entertainment.relative-who-where"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "That's the museum ___ we saw the exhibition.",
+      "answers": ["where"],
+      "distractors": ["which", "who"],
+      "es": "Ese es el museo donde vimos la exposición."
+    },
+    {
+      "id": "b1.grammar.relative-clauses-cloze-3",
+      "itemIds": ["b1.technology.relative-that-which"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I bought a phone ___ has a very big screen.",
+      "answers": ["that", "which"],
+      "distractors": ["who", "where"],
+      "es": "Compré un teléfono que tiene una pantalla muy grande."
+    },
+    {
+      "id": "b1.grammar.relative-clauses-cloze-4",
+      "itemIds": ["b1.technology.relative-that-which"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This is the password ___ I always forget.",
+      "answers": ["that", "which"],
+      "distractors": ["what", "where"],
+      "es": "Esta es la contraseña que siempre olvido."
+    },
+    {
+      "id": "b1.grammar.relative-clauses-choice-1",
+      "itemIds": ["b1.technology.relative-that-which"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The device that I bought doesn't work.",
+      "options": [
+        "El aparato que compré no funciona.",
+        "El aparato que me regalaron funciona bien.",
+        "No compré el aparato porque no funciona."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.relative-clauses-order-1",
+      "itemIds": ["b1.culture-and-entertainment.relative-who-where"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["dinner", "where", "had", "we", "very", "restaurant", "was", "The", "noisy."],
+      "accepted": ["The restaurant where we had dinner was very noisy."],
+      "es": "El restaurante donde cenamos era muy ruidoso."
+    },
+    {
+      "id": "b1.grammar.relative-clauses-write-1",
+      "itemIds": ["b1.technology.relative-that-which"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Es la aplicación que uso todos los días.",
+      "accepted": ["{It's|This is} the app {that |which |}I use every day."]
+    },
+    {
+      "id": "b1.grammar.relative-clauses-vocab-1",
+      "itemIds": ["b1.culture-and-entertainment.relative-who-where"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'la ciudad donde nací'.",
+      "options": [
+        "the city which I was born",
+        "the city where I born",
+        "the city who I was born",
+        "the city where I was born"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.passive-cloze-1",
+      "itemIds": ["b1.technology.passive-present"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This app is ___ by millions of people.",
+      "answers": ["used"],
+      "distractors": ["use", "using"],
+      "es": "Millones de personas usan esta aplicación."
+    },
+    {
+      "id": "b1.grammar.passive-cloze-2",
+      "itemIds": ["b1.technology.passive-past"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The photos ___ deleted by mistake.",
+      "answers": ["were"],
+      "distractors": ["was", "did"],
+      "es": "Las fotos se borraron por error."
+    },
+    {
+      "id": "b1.grammar.passive-cloze-3",
+      "itemIds": ["b1.technology.passive-present"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Our computers ___ updated every month.",
+      "answers": ["are"],
+      "distractors": ["is", "be"],
+      "es": "Nuestras computadoras se actualizan todos los meses."
+    },
+    {
+      "id": "b1.grammar.passive-cloze-4",
+      "itemIds": ["b1.technology.passive-past"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The story was written ___ a famous journalist.",
+      "answers": ["by"],
+      "distractors": ["from", "of"],
+      "es": "La historia la escribió un periodista famoso."
+    },
+    {
+      "id": "b1.grammar.passive-choice-1",
+      "itemIds": ["b1.technology.passive-past"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My laptop was stolen last week.",
+      "options": [
+        "Robé una laptop la semana pasada.",
+        "Me robaron la laptop la semana pasada.",
+        "Me van a robar la laptop."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.passive-order-1",
+      "itemIds": ["b1.technology.passive-present"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["your", "password", "is", "to", "sent", "phone.", "The"],
+      "accepted": ["The password is sent to your phone."],
+      "es": "La contraseña se envía a tu teléfono."
+    },
+    {
+      "id": "b1.grammar.passive-write-1",
+      "itemIds": ["b1.technology.passive-past"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La noticia se anunció ayer.",
+      "accepted": ["The news was announced yesterday.", "Yesterday[,] the news was announced."]
+    },
+    {
+      "id": "b1.grammar.passive-vocab-1",
+      "itemIds": ["b1.technology.passive-present"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'se habla inglés'.",
+      "options": [
+        "English speaks",
+        "English is speaking",
+        "English is spoken",
+        "English was speak"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.reported-speech-cloze-1",
+      "itemIds": ["b1.education.reported-speech"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My teacher ___ me that I needed to study more.",
+      "answers": ["told"],
+      "distractors": ["said", "asked"],
+      "es": "Mi profesor me dijo que tenía que estudiar más."
+    },
+    {
+      "id": "b1.grammar.reported-speech-cloze-2",
+      "itemIds": ["b1.education.reported-speech"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She said that she ___ tired.",
+      "answers": ["was"],
+      "distractors": ["were", "be"],
+      "es": "Dijo que estaba cansada."
+    },
+    {
+      "id": "b1.grammar.reported-speech-cloze-3",
+      "itemIds": ["b1.education.asked-if"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He asked me ___ I had a pencil.",
+      "answers": ["if", "whether"],
+      "distractors": ["that", "what"],
+      "es": "Me preguntó si tenía un lápiz."
+    },
+    {
+      "id": "b1.grammar.reported-speech-cloze-4",
+      "itemIds": ["b1.education.reported-speech"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The teacher told us ___ be quiet.",
+      "answers": ["to"],
+      "distractors": ["that", "for"],
+      "es": "El profesor nos dijo que nos calláramos."
+    },
+    {
+      "id": "b1.grammar.reported-speech-choice-1",
+      "itemIds": ["b1.education.asked-if"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She asked me where I worked.",
+      "options": [
+        "Le pregunté dónde trabajaba.",
+        "Me dijo dónde trabajaba.",
+        "Me preguntó dónde trabajaba."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.reported-speech-order-1",
+      "itemIds": ["b1.education.asked-if"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["to", "me", "I", "study", "him.", "with", "asked", "if", "wanted", "He"],
+      "accepted": ["He asked me if I wanted to study with him."],
+      "es": "Me preguntó si quería estudiar con él."
+    },
+    {
+      "id": "b1.grammar.reported-speech-write-1",
+      "itemIds": ["b1.education.reported-speech"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Dijo que el examen era difícil.",
+      "accepted": ["{He|She} said [that ]the {exam|test} was {difficult|hard}."]
+    },
+    {
+      "id": "b1.grammar.reported-speech-vocab-1",
+      "itemIds": ["b1.education.asked-if"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'me preguntó dónde vivía'.",
+      "options": [
+        "she asked me where did I live",
+        "she asked me where I lived",
+        "she said me where I lived",
+        "she asked me where lived I"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.used-to-cloze-1",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ to drink a lot of soda, but now I drink water.",
+      "answers": ["used"],
+      "distractors": ["use", "was used"],
+      "es": "Antes tomaba mucho refresco, pero ahora tomo agua."
+    },
+    {
+      "id": "b1.grammar.used-to-cloze-2",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Did you ___ to play sports at school?",
+      "answers": ["use"],
+      "distractors": ["used", "using"],
+      "es": "¿Hacías deporte en la escuela?"
+    },
+    {
+      "id": "b1.grammar.used-to-cloze-3",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He used to ___ late every night.",
+      "answers": ["stay up"],
+      "distractors": ["staying up", "stays up"],
+      "es": "Se quedaba despierto hasta tarde todas las noches."
+    },
+    {
+      "id": "b1.grammar.used-to-cloze-4",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ go to the gym three times a week now.",
+      "answers": ["usually"],
+      "distractors": ["used to", "use to"],
+      "es": "Ahora normalmente voy al gimnasio tres veces por semana."
+    },
+    {
+      "id": "b1.grammar.used-to-choice-1",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We didn't use to cook at home.",
+      "options": [
+        "No nos gusta cocinar en casa.",
+        "Antes no cocinábamos en casa.",
+        "No vamos a cocinar en casa."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.used-to-order-1",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["My", "father", "used", "to", "lot.", "smoke", "a"],
+      "accepted": ["My father used to smoke a lot."],
+      "es": "Mi papá fumaba mucho."
+    },
+    {
+      "id": "b1.grammar.used-to-write-1",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Antes vivía en el centro.",
+      "accepted": ["I used to live downtown.", "I used to live in the [city ]center."]
+    },
+    {
+      "id": "b1.grammar.used-to-vocab-1",
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'I used to play'.",
+      "options": [
+        "me acostumbré a jugar",
+        "antes jugaba",
+        "usaba para jugar",
+        "estoy acostumbrado a jugar"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.past-continuous-cloze-1",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ studying when the lights went out.",
+      "answers": ["was"],
+      "distractors": ["were", "am"],
+      "es": "Estaba estudiando cuando se fue la luz."
+    },
+    {
+      "id": "b1.grammar.past-continuous-cloze-2",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "They were ___ an exam when the phone rang.",
+      "answers": ["taking"],
+      "distractors": ["take", "took"],
+      "es": "Estaban haciendo un examen cuando sonó el teléfono."
+    },
+    {
+      "id": "b1.grammar.past-continuous-cloze-3",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "While I ___ my homework, my brother was watching TV.",
+      "answers": ["was doing"],
+      "distractors": ["am doing", "were doing"],
+      "es": "Mientras yo hacía la tarea, mi hermano veía televisión."
+    },
+    {
+      "id": "b1.grammar.past-continuous-choice-1",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "What were you doing when I called you?",
+      "options": [
+        "¿Qué hiciste cuando te llamé?",
+        "¿Qué estabas haciendo cuando te llamé?",
+        "¿Qué vas a hacer cuando te llame?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.past-continuous-order-1",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["came", "the", "teacher", "were", "when", "in.", "talking", "We"],
+      "accepted": ["We were talking when the teacher came in."],
+      "es": "Estábamos hablando cuando entró el profesor."
+    },
+    {
+      "id": "b1.grammar.past-continuous-write-1",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Estaba leyendo cuando llegaste.",
+      "accepted": [
+        "I was reading when you {arrived|got here|came}.",
+        "When you {arrived|got here|came}[,] I was reading."
+      ]
+    },
+    {
+      "id": "b1.grammar.past-continuous-vocab-1",
+      "itemIds": ["b1.education.past-continuous"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'estábamos estudiando'.",
+      "options": ["we was studying", "we were study", "we were studying", "we are studying"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.deduction-cloze-1",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Everyone is laughing. The movie ___ be very funny.",
+      "answers": ["must"],
+      "distractors": ["can't", "mustn't"],
+      "es": "Todos se están riendo. La película debe de ser muy graciosa."
+    },
+    {
+      "id": "b1.grammar.deduction-cloze-2",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "That ___ be the director. He's only fifteen.",
+      "answers": ["can't"],
+      "distractors": ["must", "mustn't"],
+      "es": "Ese no puede ser el director. Solo tiene quince años."
+    },
+    {
+      "id": "b1.grammar.deduction-cloze-3",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Take some money. The museum ___ be expensive.",
+      "answers": ["might", "may", "could"],
+      "distractors": ["can't", "mustn't"],
+      "es": "Lleva dinero. Puede que el museo sea caro."
+    },
+    {
+      "id": "b1.grammar.deduction-choice-1",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The band might play a new song tonight.",
+      "options": [
+        "La banda va a tocar una canción nueva esta noche.",
+        "Puede que la banda toque una canción nueva esta noche.",
+        "La banda tiene que tocar una canción nueva esta noche."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.deduction-order-1",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["expensive.", "be", "The", "must", "very", "tickets"],
+      "accepted": ["The tickets must be very expensive."],
+      "es": "Las entradas deben de ser muy caras."
+    },
+    {
+      "id": "b1.grammar.deduction-write-1",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No puede ser verdad.",
+      "accepted": ["{It|That} {can't|cannot} be true."]
+    },
+    {
+      "id": "b1.grammar.deduction-vocab-1",
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'debe de estar cansada'.",
+      "options": [
+        "she must to be tired",
+        "she mustn't be tired",
+        "she has to tired",
+        "she must be tired"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.unless-cloze-1",
+      "itemIds": ["b1.environment.unless"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There will be more pollution ___ we use less plastic.",
+      "answers": ["unless"],
+      "distractors": ["without", "unless not"],
+      "es": "Habrá más contaminación a menos que usemos menos plástico."
+    },
+    {
+      "id": "b1.grammar.unless-cloze-2",
+      "itemIds": ["b1.environment.unless"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Unless it ___, we'll walk to the park.",
+      "answers": ["rains"],
+      "distractors": ["will rain", "doesn't rain"],
+      "es": "A menos que llueva, iremos caminando al parque."
+    },
+    {
+      "id": "b1.grammar.unless-cloze-3",
+      "itemIds": ["b1.environment.unless"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Plants die ___ you water them.",
+      "answers": ["unless"],
+      "distractors": ["if not", "except"],
+      "es": "Las plantas se mueren si no las riegas."
+    },
+    {
+      "id": "b1.grammar.unless-choice-1",
+      "itemIds": ["b1.environment.unless"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Don't buy it unless you really need it.",
+      "options": [
+        "Cómpralo aunque no lo necesites.",
+        "No lo compres si de verdad lo necesitas.",
+        "No lo compres a menos que de verdad lo necesites."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.unless-order-1",
+      "itemIds": ["b1.environment.unless"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["We", "warming", "we", "won't", "act", "now.", "stop", "global", "unless"],
+      "accepted": ["We won't stop global warming unless we act now."],
+      "es": "No vamos a frenar el calentamiento global a menos que actuemos ahora."
+    },
+    {
+      "id": "b1.grammar.unless-write-1",
+      "itemIds": ["b1.environment.unless"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si no reciclamos, habrá más basura.",
+      "accepted": [
+        "Unless we recycle, there will be more {waste|garbage|trash}.",
+        "If we don't recycle, there will be more {waste|garbage|trash}.",
+        "There will be more {waste|garbage|trash} {unless we recycle|if we don't recycle}."
+      ]
+    },
+    {
+      "id": "b1.grammar.unless-vocab-1",
+      "itemIds": ["b1.environment.unless"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'unless'.",
+      "options": ["aunque", "a pesar de", "a menos que", "por lo tanto"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.have-to-must-cloze-1",
+      "itemIds": ["b1.work-and-careers.dont-have-to-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's optional. You ___ come to the meeting.",
+      "answers": ["don't have to"],
+      "distractors": ["mustn't", "doesn't have to"],
+      "es": "Es opcional. No hace falta que vengas a la reunión."
+    },
+    {
+      "id": "b1.grammar.have-to-must-cloze-2",
+      "itemIds": ["b1.work-and-careers.dont-have-to-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You ___ smoke in the office. It's against the rules.",
+      "answers": ["mustn't"],
+      "distractors": ["don't have to", "doesn't have to"],
+      "es": "No se puede fumar en la oficina. Va contra las reglas."
+    },
+    {
+      "id": "b1.grammar.have-to-must-cloze-3",
+      "itemIds": ["b1.work-and-careers.have-to-must"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Yesterday I ___ stay at work until nine.",
+      "answers": ["had to"],
+      "distractors": ["must", "have to"],
+      "es": "Ayer tuve que quedarme en el trabajo hasta las nueve."
+    },
+    {
+      "id": "b1.grammar.have-to-must-cloze-4",
+      "itemIds": ["b1.work-and-careers.have-to-must"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I must ___ this report before the deadline.",
+      "answers": ["finish"],
+      "distractors": ["to finish", "finishing"],
+      "es": "Tengo que terminar este informe antes de la fecha límite."
+    },
+    {
+      "id": "b1.grammar.have-to-must-choice-1",
+      "itemIds": ["b1.work-and-careers.dont-have-to-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You don't have to answer emails on the weekend.",
+      "options": [
+        "No debes responder correos el fin de semana.",
+        "No hace falta que respondas correos el fin de semana.",
+        "Tienes que responder correos el fin de semana."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.have-to-must-order-1",
+      "itemIds": ["b1.work-and-careers.have-to-must"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["work?", "a", "suit", "at", "have", "Do", "you", "wear", "to"],
+      "accepted": ["Do you have to wear a suit at work?"],
+      "es": "¿Tienes que usar traje en el trabajo?"
+    },
+    {
+      "id": "b1.grammar.have-to-must-write-1",
+      "itemIds": ["b1.work-and-careers.dont-have-to-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No debes llegar tarde a la entrevista.",
+      "accepted": [
+        "You mustn't be late for the interview.",
+        "You {can't|shouldn't} be late for the interview.",
+        "Don't be late for the interview."
+      ]
+    },
+    {
+      "id": "b1.grammar.have-to-must-vocab-1",
+      "itemIds": ["b1.work-and-careers.dont-have-to-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'no hace falta que lo hagas'.",
+      "options": [
+        "you mustn't do it",
+        "you haven't to do it",
+        "you don't must do it",
+        "you don't have to do it"
+      ],
+      "answerIndex": 3
     }
   ],
   "cards": [
@@ -1029,6 +1968,662 @@
         "b1.grammar.make-let-have-write-1",
         "b1.grammar.make-let-have-vocab-1",
         "b1.grammar.make-let-have-write-2"
+      ]
+    },
+    {
+      "id": "b1.grammar.future-forms",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "El futuro: will, be going to y presente continuo",
+      "summary": "Will sirve para decisiones del momento, promesas y predicciones; be going to, para planes e intenciones; el presente continuo, para planes ya acordados.",
+      "form": "will + verbo · am / is / are going to + verbo · am / is / are + verbo-ing (+ cuándo)",
+      "uses": [
+        "Will: decisiones del momento, ofrecimientos y promesas (I'll help you).",
+        "Will: predicciones y opiniones (I think the rent will go up).",
+        "Be going to: planes e intenciones ya decididos (We're going to move next year).",
+        "Presente continuo: citas y planes acordados con fecha (I'm meeting Ana on Friday)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I will to call you tomorrow.",
+          "right": "I will call you tomorrow.",
+          "why": "Después de will va el verbo sin to."
+        },
+        {
+          "wrong": "The phone is ringing. I answer it.",
+          "right": "The phone is ringing. I'll answer it.",
+          "why": "Para una decisión del momento («yo contesto») se usa will, no el presente."
+        },
+        {
+          "wrong": "Tonight I go to the movies with Ana.",
+          "right": "Tonight I'm going to the movies with Ana.",
+          "why": "Para un plan ya acordado se usa el presente continuo, no el presente simple."
+        },
+        {
+          "wrong": "I think it's raining tomorrow.",
+          "right": "I think it will rain tomorrow.",
+          "why": "Para una opinión sobre el futuro se usa will o going to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "We're going to move downtown next year.",
+          "es": "Nos vamos a mudar al centro el año que viene."
+        },
+        {
+          "en": "I'm having lunch with Ana on Monday.",
+          "es": "El lunes almuerzo con Ana."
+        },
+        {
+          "en": "Don't worry, I'll help you with the boxes.",
+          "es": "No te preocupes, te ayudo con las cajas."
+        },
+        {
+          "en": "I think the rent will go up again.",
+          "es": "Creo que el alquiler va a volver a subir."
+        },
+        {
+          "en": "What are you doing this weekend?",
+          "es": "¿Qué vas a hacer este fin de semana?"
+        },
+        {
+          "en": "She's going to look for a bigger apartment.",
+          "es": "Va a buscar un apartamento más grande."
+        }
+      ],
+      "itemIds": [
+        "b1.city-life.will",
+        "b1.city-life.going-to",
+        "b1.city-life.present-continuous-future"
+      ],
+      "exerciseIds": [
+        "b1.grammar.future-forms-cloze-1",
+        "b1.grammar.future-forms-cloze-2",
+        "b1.grammar.future-forms-cloze-3",
+        "b1.grammar.future-forms-cloze-4",
+        "b1.grammar.future-forms-choice-1",
+        "b1.grammar.future-forms-order-1",
+        "b1.grammar.future-forms-write-1",
+        "b1.grammar.future-forms-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.relative-clauses",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Oraciones de relativo: who, which, that, where",
+      "summary": "Unen dos ideas y dicen de quién o de qué hablas: who para personas, which para cosas, that para las dos y where para lugares.",
+      "form": "persona + who / that · cosa + which / that · lugar + where",
+      "uses": [
+        "Who para personas: The woman who sings in the band is my neighbor.",
+        "Which para cosas: The laptop which I bought is very fast.",
+        "That puede reemplazar a who o which, sobre todo al hablar: the phone that I bought.",
+        "Where para lugares: the theater where we saw the play."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "The actor which won the prize is Mexican.",
+          "right": "The actor who won the prize is Mexican.",
+          "why": "Para personas se usa who (o that), no which."
+        },
+        {
+          "wrong": "This is the app what I use.",
+          "right": "This is the app that I use.",
+          "why": "El «que» relativo es that o which, nunca what."
+        },
+        {
+          "wrong": "That's the restaurant where we had dinner there.",
+          "right": "That's the restaurant where we had dinner.",
+          "why": "Where ya indica el lugar: no se repite there."
+        },
+        {
+          "wrong": "The phone that I bought it doesn't work.",
+          "right": "The phone that I bought doesn't work.",
+          "why": "That ya reemplaza al objeto: no se repite it."
+        }
+      ],
+      "examples": [
+        {
+          "en": "The woman who sings in the band is my neighbor.",
+          "es": "La mujer que canta en la banda es mi vecina."
+        },
+        {
+          "en": "This is the theater where we saw the play.",
+          "es": "Este es el teatro donde vimos la obra."
+        },
+        {
+          "en": "I need a charger that works with this phone.",
+          "es": "Necesito un cargador que funcione con este teléfono."
+        },
+        {
+          "en": "The laptop which I bought last week is very fast.",
+          "es": "La laptop que compré la semana pasada es muy rápida."
+        },
+        {
+          "en": "He's the director who made that movie.",
+          "es": "Es el director que hizo esa película."
+        },
+        {
+          "en": "Is there an app that can translate this?",
+          "es": "¿Hay alguna aplicación que pueda traducir esto?"
+        }
+      ],
+      "itemIds": [
+        "b1.culture-and-entertainment.relative-who-where",
+        "b1.technology.relative-that-which"
+      ],
+      "exerciseIds": [
+        "b1.grammar.relative-clauses-cloze-1",
+        "b1.grammar.relative-clauses-cloze-2",
+        "b1.grammar.relative-clauses-cloze-3",
+        "b1.grammar.relative-clauses-cloze-4",
+        "b1.grammar.relative-clauses-choice-1",
+        "b1.grammar.relative-clauses-order-1",
+        "b1.grammar.relative-clauses-write-1",
+        "b1.grammar.relative-clauses-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.passive",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "La voz pasiva: presente y pasado",
+      "summary": "Pone el foco en lo que pasa o pasó, no en quién lo hace: is / are o was / were + participio. Suele traducirse con «se» (se habla, se construyó).",
+      "form": "am / is / are + participio · was / were + participio · (+ by + quién lo hace)",
+      "uses": [
+        "Cuando no importa o no se sabe quién hace la acción: My bike was stolen.",
+        "Procesos y productos: These phones are made in Korea.",
+        "Noticias e historia: The news was announced on TV.",
+        "By indica quién lo hizo: The article was written by a young journalist."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "The app was create in 2015.",
+          "right": "The app was created in 2015.",
+          "why": "La pasiva lleva el participio (created), no el verbo base."
+        },
+        {
+          "wrong": "English speaks in many countries.",
+          "right": "English is spoken in many countries.",
+          "why": "«Se habla» se dice con la pasiva: is spoken."
+        },
+        {
+          "wrong": "The phones was made in Korea.",
+          "right": "The phones were made in Korea.",
+          "why": "Con un sujeto plural se usa were (o are)."
+        },
+        {
+          "wrong": "The news was announced from the president.",
+          "right": "The news was announced by the president.",
+          "why": "Quién hace la acción se introduce con by, no con from."
+        }
+      ],
+      "examples": [
+        {
+          "en": "English is spoken in many countries.",
+          "es": "El inglés se habla en muchos países."
+        },
+        {
+          "en": "These phones are made in Korea.",
+          "es": "Estos teléfonos se fabrican en Corea."
+        },
+        {
+          "en": "My password was changed yesterday.",
+          "es": "Ayer se cambió mi contraseña."
+        },
+        {
+          "en": "The website was updated last week.",
+          "es": "El sitio web se actualizó la semana pasada."
+        },
+        {
+          "en": "The news was announced on TV.",
+          "es": "La noticia se anunció en la televisión."
+        },
+        {
+          "en": "The article was written by a young journalist.",
+          "es": "El artículo lo escribió un periodista joven."
+        }
+      ],
+      "itemIds": ["b1.technology.passive-present", "b1.technology.passive-past"],
+      "exerciseIds": [
+        "b1.grammar.passive-cloze-1",
+        "b1.grammar.passive-cloze-2",
+        "b1.grammar.passive-cloze-3",
+        "b1.grammar.passive-cloze-4",
+        "b1.grammar.passive-choice-1",
+        "b1.grammar.passive-order-1",
+        "b1.grammar.passive-write-1",
+        "b1.grammar.passive-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.reported-speech",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Estilo indirecto: said, told y asked",
+      "summary": "Sirve para contar lo que otra persona dijo o preguntó. El verbo suele ir un tiempo más atrás: «I'm tired» → She said she was tired.",
+      "form": "said (that) + oración · told + persona + (that) · told + persona + to + verbo · asked + if / wh- + sujeto + verbo",
+      "uses": [
+        "Contar lo que alguien dijo: He said (that) the test was easy.",
+        "Tell lleva a quién: She told me (that) she was busy. Para órdenes: The teacher told us to be quiet.",
+        "Los tiempos retroceden: am → was, will → would, can → could.",
+        "Preguntas indirectas: She asked if I was ready. He asked me where I lived (sin did y sin invertir el sujeto)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "He said me that he was tired.",
+          "right": "He told me that he was tired.",
+          "why": "Say no lleva a la persona directamente: said that o told me that."
+        },
+        {
+          "wrong": "She asked me where did I live.",
+          "right": "She asked me where I lived.",
+          "why": "En la pregunta indirecta no se usa did y el sujeto va antes del verbo."
+        },
+        {
+          "wrong": "The teacher told us finish the essay.",
+          "right": "The teacher told us to finish the essay.",
+          "why": "Para contar una orden se usa told + persona + to + verbo."
+        },
+        {
+          "wrong": "He asked me that I was ready.",
+          "right": "He asked me if I was ready.",
+          "why": "Una pregunta de sí o no se cuenta con asked if (o whether)."
+        }
+      ],
+      "examples": [
+        {
+          "en": "She said she was tired.",
+          "es": "Dijo que estaba cansada."
+        },
+        {
+          "en": "The teacher told us the exam would be easy.",
+          "es": "La profesora nos dijo que el examen sería fácil."
+        },
+        {
+          "en": "He told me to hand in my homework on Friday.",
+          "es": "Me dijo que entregara la tarea el viernes."
+        },
+        {
+          "en": "My friend asked if I could help her.",
+          "es": "Mi amiga me preguntó si podía ayudarla."
+        },
+        {
+          "en": "She asked me where I lived.",
+          "es": "Me preguntó dónde vivía."
+        },
+        {
+          "en": "They said they had finished the project.",
+          "es": "Dijeron que habían terminado el proyecto."
+        }
+      ],
+      "itemIds": ["b1.education.reported-speech", "b1.education.asked-if"],
+      "exerciseIds": [
+        "b1.grammar.reported-speech-cloze-1",
+        "b1.grammar.reported-speech-cloze-2",
+        "b1.grammar.reported-speech-cloze-3",
+        "b1.grammar.reported-speech-cloze-4",
+        "b1.grammar.reported-speech-choice-1",
+        "b1.grammar.reported-speech-order-1",
+        "b1.grammar.reported-speech-write-1",
+        "b1.grammar.reported-speech-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.used-to",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Used to: hábitos del pasado",
+      "summary": "Used to + verbo habla de hábitos o situaciones del pasado que ya no ocurren. Equivale a «solía» o al pretérito imperfecto (antes comía…).",
+      "form": "used to + verbo base · didn't use to + verbo base · did you use to…?",
+      "uses": [
+        "Hábitos del pasado: I used to smoke, but I gave up.",
+        "Situaciones que cambiaron: She used to live in Lima.",
+        "Negativas y preguntas sin -d: I didn't use to exercise. Did you use to play sports?",
+        "Para hábitos del presente se usa usually, no used to: I usually walk to work."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I use to eat a lot of sugar when I was young.",
+          "right": "I used to eat a lot of sugar when I was young.",
+          "why": "En afirmativas es used to, con -d."
+        },
+        {
+          "wrong": "I didn't used to exercise.",
+          "right": "I didn't use to exercise.",
+          "why": "Después de didn't va use, sin -d."
+        },
+        {
+          "wrong": "I used to go to the gym now.",
+          "right": "I usually go to the gym now.",
+          "why": "Used to es solo pasado; para el presente se usa usually."
+        },
+        {
+          "wrong": "He used to working at night.",
+          "right": "He used to work at night.",
+          "why": "Después de used to va el verbo base, no -ing."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I used to eat a lot of fast food.",
+          "es": "Antes comía mucha comida rápida."
+        },
+        {
+          "en": "She used to smoke, but she gave up last year.",
+          "es": "Ella fumaba, pero lo dejó el año pasado."
+        },
+        {
+          "en": "We didn't use to exercise much.",
+          "es": "Antes no hacíamos mucho ejercicio."
+        },
+        {
+          "en": "Did you use to play any sports at school?",
+          "es": "¿Hacías algún deporte en la escuela?"
+        },
+        {
+          "en": "My grandfather used to walk every day.",
+          "es": "Mi abuelo caminaba todos los días."
+        },
+        {
+          "en": "I used to sleep only five hours a night.",
+          "es": "Antes dormía solo cinco horas por noche."
+        }
+      ],
+      "itemIds": ["b1.health-and-lifestyle.used-to"],
+      "exerciseIds": [
+        "b1.grammar.used-to-cloze-1",
+        "b1.grammar.used-to-cloze-2",
+        "b1.grammar.used-to-cloze-3",
+        "b1.grammar.used-to-cloze-4",
+        "b1.grammar.used-to-choice-1",
+        "b1.grammar.used-to-order-1",
+        "b1.grammar.used-to-write-1",
+        "b1.grammar.used-to-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.past-continuous",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Pasado continuo",
+      "summary": "Was / were + verbo-ing describe una acción que estaba en curso en un momento del pasado. Suele combinarse con el pasado simple: «estaba estudiando cuando llamaste».",
+      "form": "was / were + verbo-ing · pasado continuo + when + pasado simple · while + pasado continuo",
+      "uses": [
+        "Una acción en curso en un momento del pasado: At eight, I was studying.",
+        "Una acción larga interrumpida por otra corta: I was taking notes when the teacher called me.",
+        "Dos acciones al mismo tiempo, con while: While I was reading, she was cooking.",
+        "Describir la escena de una historia: It was raining and everyone was waiting."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I was study when you called.",
+          "right": "I was studying when you called.",
+          "why": "Después de was o were va el verbo con -ing."
+        },
+        {
+          "wrong": "We was taking an exam.",
+          "right": "We were taking an exam.",
+          "why": "Con we, you y they se usa were."
+        },
+        {
+          "wrong": "I studied when you called me.",
+          "right": "I was studying when you called me.",
+          "why": "La acción que estaba en curso va en pasado continuo; la que la interrumpe, en pasado simple."
+        },
+        {
+          "wrong": "I was knowing the answer.",
+          "right": "I knew the answer.",
+          "why": "Verbos como know, want o like casi nunca van en forma continua."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I was studying when you called.",
+          "es": "Estaba estudiando cuando llamaste."
+        },
+        {
+          "en": "What were you doing at nine last night?",
+          "es": "¿Qué estabas haciendo anoche a las nueve?"
+        },
+        {
+          "en": "She was taking notes while the teacher was talking.",
+          "es": "Ella tomaba apuntes mientras el profesor hablaba."
+        },
+        {
+          "en": "It was raining when we left school.",
+          "es": "Estaba lloviendo cuando salimos de la escuela."
+        },
+        {
+          "en": "They weren't listening to the teacher.",
+          "es": "No estaban escuchando al profesor."
+        },
+        {
+          "en": "I fell asleep while I was reading.",
+          "es": "Me quedé dormido mientras leía."
+        }
+      ],
+      "itemIds": ["b1.education.past-continuous"],
+      "exerciseIds": [
+        "b1.grammar.past-continuous-cloze-1",
+        "b1.grammar.past-continuous-cloze-2",
+        "b1.grammar.past-continuous-cloze-3",
+        "b1.grammar.past-continuous-choice-1",
+        "b1.grammar.past-continuous-order-1",
+        "b1.grammar.past-continuous-write-1",
+        "b1.grammar.past-continuous-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.deduction",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Deducciones: must, can't y might",
+      "summary": "Sirven para sacar conclusiones sobre algo que no sabes con seguridad: must (seguro que sí), can't (seguro que no) y might (quizás).",
+      "form": "must / can't / might + verbo base · might not + verbo base",
+      "uses": [
+        "Must: estás casi seguro de que es verdad (She must be tired = debe de estar cansada).",
+        "Can't: estás casi seguro de que no es verdad (That can't be Ana. She's in Spain.).",
+        "Might (o may, could): es posible, pero no seguro (The tickets might be sold out).",
+        "Van con el verbo base, muchas veces be: must be, might be, can't be."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "He mustn't be at home. The lights are off.",
+          "right": "He can't be at home. The lights are off.",
+          "why": "Para «seguro que no» se usa can't; mustn't expresa una prohibición."
+        },
+        {
+          "wrong": "She must to be the director.",
+          "right": "She must be the director.",
+          "why": "Después de must va el verbo sin to."
+        },
+        {
+          "wrong": "It might is expensive.",
+          "right": "It might be expensive.",
+          "why": "Después de might va el verbo base (be), no is."
+        }
+      ],
+      "examples": [
+        {
+          "en": "The theater is full. The play must be very good.",
+          "es": "El teatro está lleno. La obra debe de ser muy buena."
+        },
+        {
+          "en": "That can't be the singer. She's too young.",
+          "es": "Esa no puede ser la cantante. Es demasiado joven."
+        },
+        {
+          "en": "The tickets might be sold out.",
+          "es": "Puede que las entradas estén agotadas."
+        },
+        {
+          "en": "You must be tired after the concert.",
+          "es": "Debes de estar cansado después del concierto."
+        },
+        {
+          "en": "He might not like the movie.",
+          "es": "Quizás no le guste la película."
+        },
+        {
+          "en": "It can't be true!",
+          "es": "¡No puede ser verdad!"
+        }
+      ],
+      "itemIds": ["b1.culture-and-entertainment.must-cant-might"],
+      "exerciseIds": [
+        "b1.grammar.deduction-cloze-1",
+        "b1.grammar.deduction-cloze-2",
+        "b1.grammar.deduction-cloze-3",
+        "b1.grammar.deduction-choice-1",
+        "b1.grammar.deduction-order-1",
+        "b1.grammar.deduction-write-1",
+        "b1.grammar.deduction-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.unless",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Unless: a menos que",
+      "summary": "Unless significa «a menos que» o «si no». Como if, va seguido del presente aunque hable del futuro.",
+      "form": "unless + presente, will + verbo · unless = if… not",
+      "uses": [
+        "Una condición negativa: We will lose the forests unless we act now.",
+        "Equivale a if… not: unless you hurry = if you don't hurry.",
+        "Después de unless va el presente, aunque se hable del futuro.",
+        "El verbo después de unless va en afirmativo: unless it rains (no unless it doesn't rain)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Unless we will recycle, there will be more waste.",
+          "right": "Unless we recycle, there will be more waste.",
+          "why": "Después de unless va el presente, como después de if."
+        },
+        {
+          "wrong": "I won't go unless you don't come.",
+          "right": "I won't go unless you come.",
+          "why": "Unless ya es negativo: el verbo que sigue va en afirmativo."
+        },
+        {
+          "wrong": "We can't save energy unless turn off the lights.",
+          "right": "We can't save energy unless we turn off the lights.",
+          "why": "Después de unless hace falta un sujeto: unless we turn off…"
+        }
+      ],
+      "examples": [
+        {
+          "en": "Unless we act now, the climate will keep changing.",
+          "es": "Si no actuamos ahora, el clima va a seguir cambiando."
+        },
+        {
+          "en": "Don't throw it away unless it's broken.",
+          "es": "No lo tires a menos que esté roto."
+        },
+        {
+          "en": "Unless you turn off the lights, you'll waste energy.",
+          "es": "Si no apagas las luces, vas a desperdiciar energía."
+        },
+        {
+          "en": "I won't buy a car unless I really need one.",
+          "es": "No voy a comprar un auto a menos que de verdad lo necesite."
+        },
+        {
+          "en": "We'll go by bike unless it rains.",
+          "es": "Iremos en bicicleta a menos que llueva."
+        }
+      ],
+      "itemIds": ["b1.environment.unless"],
+      "exerciseIds": [
+        "b1.grammar.unless-cloze-1",
+        "b1.grammar.unless-cloze-2",
+        "b1.grammar.unless-cloze-3",
+        "b1.grammar.unless-choice-1",
+        "b1.grammar.unless-order-1",
+        "b1.grammar.unless-write-1",
+        "b1.grammar.unless-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.have-to-must",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Have to, must, don't have to y mustn't",
+      "summary": "Have to y must expresan obligación. En negativa cambian mucho: don't have to es «no hace falta» y mustn't es «está prohibido».",
+      "form": "have to / must + verbo base · don't have to (no es necesario) · mustn't (está prohibido) · had to (pasado)",
+      "uses": [
+        "Have to: obligaciones que vienen de afuera, como reglas o el trabajo (I have to wear a uniform).",
+        "Must: algo que quien habla considera necesario, o reglas escritas (You must arrive on time).",
+        "Don't have to: no es obligatorio, puedes elegir (You don't have to come).",
+        "Mustn't: no está permitido (You mustn't use your phone in the exam). En pasado se usa had to."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "You mustn't come to the meeting if you are busy.",
+          "right": "You don't have to come to the meeting if you are busy.",
+          "why": "Si algo no es necesario se usa don't have to; mustn't significa que está prohibido."
+        },
+        {
+          "wrong": "I must to finish this report today.",
+          "right": "I must finish this report today.",
+          "why": "Después de must va el verbo sin to."
+        },
+        {
+          "wrong": "Yesterday I must work late.",
+          "right": "Yesterday I had to work late.",
+          "why": "Must no tiene pasado: se usa had to."
+        },
+        {
+          "wrong": "She don't have to work on Fridays.",
+          "right": "She doesn't have to work on Fridays.",
+          "why": "Con he, she o it: doesn't have to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I have to finish this report by Friday.",
+          "es": "Tengo que terminar este informe para el viernes."
+        },
+        {
+          "en": "You must arrive on time for the interview.",
+          "es": "Debes llegar a tiempo a la entrevista."
+        },
+        {
+          "en": "You don't have to wear a suit on Fridays.",
+          "es": "No hace falta que uses traje los viernes."
+        },
+        {
+          "en": "You mustn't share your password with anyone.",
+          "es": "No debes compartir tu contraseña con nadie."
+        },
+        {
+          "en": "I had to work late yesterday.",
+          "es": "Ayer tuve que trabajar hasta tarde."
+        },
+        {
+          "en": "Does she have to travel for work?",
+          "es": "¿Ella tiene que viajar por trabajo?"
+        }
+      ],
+      "itemIds": ["b1.work-and-careers.have-to-must", "b1.work-and-careers.dont-have-to-mustnt"],
+      "exerciseIds": [
+        "b1.grammar.have-to-must-cloze-1",
+        "b1.grammar.have-to-must-cloze-2",
+        "b1.grammar.have-to-must-cloze-3",
+        "b1.grammar.have-to-must-cloze-4",
+        "b1.grammar.have-to-must-choice-1",
+        "b1.grammar.have-to-must-order-1",
+        "b1.grammar.have-to-must-write-1",
+        "b1.grammar.have-to-must-vocab-1"
       ]
     }
   ]
