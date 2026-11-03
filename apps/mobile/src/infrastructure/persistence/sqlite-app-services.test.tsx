@@ -9,6 +9,7 @@ import type {
 import { BACKGROUND_RETRY_INTERVAL_MS } from "./background-retry";
 import type { OpenRetry } from "./open-retry";
 import { createPageDatabase } from "./page-database";
+import type { PageRelease } from "./page-release";
 import { SqliteAppServicesProvider, type DatabasePage } from "./sqlite-app-services";
 
 // expo-sqlite's open: on web its first call starts the page's one SQLite worker.
@@ -49,17 +50,47 @@ function fakeOpenRetry(
   };
 }
 
+/** Records what the page lets go of before leaving; runs the registered drain like the real one. */
+function fakeRelease(log: string[] = []) {
+  let drain: (() => Promise<void>) | null = null;
+  const release = {
+    setDrain: jest.fn((next: (() => Promise<void>) | null) => {
+      drain = next;
+    }),
+    release: jest.fn(async () => {
+      await drain?.();
+      log.push("released");
+    }),
+    releaseNow: jest.fn(),
+    released: () => log.includes("released"),
+    leave: jest.fn(async (navigate: () => void) => {
+      await release.release();
+      navigate();
+    }),
+  } satisfies PageRelease;
+  return release;
+}
+
 /** A fresh page: its own one-open database, retry policy and worker count. */
 function fakePage({
   retries = false,
   attempts = 0,
   workers = 1,
   reopenable = true,
-}: { retries?: boolean; attempts?: number; workers?: number; reopenable?: boolean } = {}) {
+  back,
+}: {
+  retries?: boolean;
+  attempts?: number;
+  workers?: number;
+  reopenable?: boolean;
+  back?: () => void;
+} = {}) {
   return {
     database: createPageDatabase({ reopenable }),
     openRetry: fakeOpenRetry(retries, attempts),
     workersCreated: () => workers,
+    release: fakeRelease(),
+    backToPreviousScreen: () => back,
   } satisfies DatabasePage;
 }
 
@@ -258,6 +289,45 @@ describe("SqliteAppServicesProvider", () => {
     expect(screen.getByText("Reintentos automáticos: 3")).toBeOnTheScreen();
     expect(screen.getByText("Espera total: 16,2 s")).toBeOnTheScreen();
   });
+
+  it("files held with a previous screen of the app in this window: offers to go back to it", async () => {
+    const back = jest.fn();
+    page = fakePage({ back });
+    mockOpen.mockRejectedValue(new Error("The object is in an invalid state."));
+    await render(
+      <SqliteAppServicesProvider page={page}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+    await screen.findByRole("header");
+    await fireEvent.press(screen.getByRole("button", { name: "Volver a la pantalla anterior" }));
+
+    expect(back).toHaveBeenCalledTimes(1);
+  });
+
+  it("files held without a previous screen of the app: no way back is offered", async () => {
+    mockOpen.mockRejectedValue(new Error("The object is in an invalid state."));
+    await render(
+      <SqliteAppServicesProvider page={page}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+    await screen.findByRole("header");
+
+    expect(screen.queryByRole("button", { name: "Volver a la pantalla anterior" })).toBeNull();
+  });
+
+  it("registers how to finish the writes, so leaving the page never cuts one halfway", async () => {
+    mockOpen.mockResolvedValue();
+    await render(
+      <SqliteAppServicesProvider page={page}>
+        <Text>Inicio</Text>
+      </SqliteAppServicesProvider>,
+    );
+    await screen.findByText("Inicio");
+
+    expect(page.release.setDrain).toHaveBeenCalledWith(expect.any(Function));
+  });
 });
 
 const DIAGNOSTICS: OwnershipDiagnostics = {
@@ -342,6 +412,8 @@ describe("SqliteAppServicesProvider: one tab at a time (web)", () => {
     });
 
     expect(screen.queryByText("Inicio")).toBeNull();
+    // The files too, before the other tab is told it can have them.
+    expect(page.release.release).toHaveBeenCalledTimes(1);
   });
 
   it("'Usar aquí' that gets no answer shows the help screen, and 'Reintentar' waits longer", async () => {

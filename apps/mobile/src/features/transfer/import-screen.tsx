@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { useAccount } from "@/features/account/account-context";
 import { isLessonDone } from "@/features/lesson/model/lesson-catalog";
+import { leavePage } from "@/infrastructure/persistence/app-page-release";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { createTransferApi, originMove } from "@/infrastructure/transfer/transfer-config";
 import { Button } from "@/shared/ui/button";
@@ -67,7 +68,8 @@ export function ImportScreen({
   clearFragment = clearBrowserFragment,
   api,
   oldOrigin,
-  assign = (url) => window.location.assign(url),
+  // Through `leavePage`: the page lets go of its database first (see `createPageRelease`).
+  assign = (url) => void leavePage(() => window.location.assign(url)),
   content = corpus,
 }: {
   readFragment?: () => string;

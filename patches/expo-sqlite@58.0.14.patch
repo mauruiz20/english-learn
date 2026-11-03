@@ -1,0 +1,87 @@
+diff --git a/web/worker.ts b/web/worker.ts
+index 8564322163531ab7bf90bd68b60d584550acacb6..f9c00c31813cb7cac3a1d4f145241afa91b12c1a 100644
+--- a/web/worker.ts
++++ b/web/worker.ts
+@@ -58,6 +58,9 @@ let _sqlite3: SQLiteAPI | null = null;
+ let _vfs: AccessHandlePoolVFS | null = null;
+ let _vfsMemory: MemoryVFS | null = null;
+ let _webOptions: SQLiteWebOptions = {};
++// [english-learn patch] Set once the page asked to let go of the OPFS files (see
++// `releaseAccessHandles`): nothing in this worker may take them again.
++let _released = false;
+ 
+ const databaseIdMap = new Map<number, DatabaseEntity>();
+ const statementIdMap = new Map<number, StatementEntity>();
+@@ -70,6 +73,21 @@ self.onmessage = async (event: MessageEvent<SQLiteWorkerMessage | ConfigureWorke
+     _webOptions = event.data.data;
+     return;
+   }
++  // [english-learn patch] The page is about to leave (navigation, reload) and may be kept in the
++  // back/forward cache with this worker alive: close every database and every OPFS sync access
++  // handle of the pool (not only the open databases' files), then acknowledge. Like sqlite-wasm
++  // opfs-sahpool's `pauseVfs()`, but final: this worker never opens a database again.
++  if ((event.data as { type: string }).type === 'releaseAccessHandles') {
++    const { requestId } = event.data as unknown as { requestId: string };
++    let releaseError: string | null = null;
++    try {
++      await releaseAccessHandles();
++    } catch (e) {
++      releaseError = e instanceof Error ? e.message || String(e) : String(e);
++    }
++    self.postMessage({ type: 'accessHandlesReleased', requestId, error: releaseError });
++    return;
++  }
+ 
+   let result: ResultType | null = null;
+   let error: Error | null = null;
+@@ -772,11 +790,50 @@ async function maybeFinalizeAllStatements(sqlite3: SQLiteAPI, dbEntity: Database
+   }
+ }
+ 
++// [english-learn patch] See the `releaseAccessHandles` message above.
++async function releaseAccessHandles(): Promise<void> {
++  _released = true;
++  let firstError: unknown = null;
++  if (_sqlite3 != null) {
++    for (const [nativeSessionId, session] of sessionIdMap) {
++      sessionIdMap.delete(nativeSessionId);
++      try {
++        _sqlite3.session_delete(session.pointer);
++      } catch (e) {
++        firstError ??= e;
++      }
++    }
++    for (const [nativeStatementId, statement] of statementIdMap) {
++      statementIdMap.delete(nativeStatementId);
++      try {
++        await _sqlite3.finalize(statement.pointer);
++      } catch (e) {
++        firstError ??= e;
++      }
++    }
++    const pointers = new Set([...databaseIdMap.values()].map((entity) => entity.pointer));
++    databaseIdMap.clear();
++    for (const pointer of pointers) {
++      try {
++        await _sqlite3.close(pointer);
++      } catch (e) {
++        firstError ??= e;
++      }
++    }
++  }
++  // Closes every sync access handle of the pool, whatever happened above.
++  await _vfs?.close();
++  if (firstError != null) throw firstError;
++}
++
+ async function maybeInitAsync(): Promise<{
+   sqlite3: SQLiteAPI;
+   vfs: AccessHandlePoolVFS;
+   vfsMemory: MemoryVFS;
+ }> {
++  if (_released) {
++    throw new Error('The database files were released: reload the page to open them again');
++  }
+   if (!_sqlite3) {
+     const module = await loadWaSQLiteModuleAsync();
+     _sqlite3 = SQLite.Factory(module) as SQLiteAPI;

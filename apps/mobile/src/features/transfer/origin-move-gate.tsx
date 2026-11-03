@@ -2,6 +2,7 @@ import type { ApiClient } from "@english-learn/api-client";
 import { createContext, use, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Platform } from "react-native";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { leavePage } from "@/infrastructure/persistence/app-page-release";
 import { createTransferApi, originMove } from "@/infrastructure/transfer/transfer-config";
 import { TransferError, sendProgress } from "./application/transfer-progress";
 import type { MoveBannerStatus } from "./move-banner";
@@ -36,8 +37,9 @@ export function OriginMoveGate({
   children,
   move: givenMove,
   location: givenLocation,
-  replace = (url) => window.location.replace(url),
-  assign = (url) => window.location.assign(url),
+  // Through `leavePage`: the page lets go of its database first (see `createPageRelease`).
+  replace = (url) => void leavePage(() => window.location.replace(url)),
+  assign = (url) => void leavePage(() => window.location.assign(url)),
   api: givenApi,
 }: {
   children: ReactNode;

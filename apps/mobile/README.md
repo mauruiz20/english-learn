@@ -87,6 +87,49 @@ same step: when OPFS acquisition fails, every later open in that page fails too,
 included, and after a reload the same OPFS acquisition runs (and fails) first again. A "use
 without saving" mode would need a patched expo-sqlite.
 
+**Leaving the page lets go of the database (web, `page-release.ts`, `app-page-release.ts`).**
+expo-sqlite's `AccessHandlePoolVFS` takes a sync access handle on every file of its pool when its
+worker starts and keeps them for the worker's lifetime: closing the database releases none. iOS
+keeps a page that navigated away in its back/forward cache with that worker alive. On the owner's
+iPhone (Home Screen app), after sign-out and a new Google sign-in, every page showed "No pudimos
+abrir tus datos en esta ventana." (`open-failed:InvalidStateError`, one worker, no probe) until a
+reboot; pressing Back, which restored the page that had redirected to Google, made the app work
+at once. So:
+
+- Every navigation or reload the app makes on purpose goes through `leavePage`: the Google
+  redirect (sign-in, the deletion's re-authentication), "Actualizar" (update banner), the
+  busy-open retry reloads and their background retry, "Reintentar", the old address's move
+  (`location.replace` / `assign`), the import screen's link back, and "Volver a la pantalla
+  anterior". It finishes the writes in flight and refuses new ones (`createWriteTracker().drain()`,
+  at most 2 s), asks expo-sqlite's worker to close every database and every handle of the pool and
+  waits for its answer (at most 1.5 s), ends the worker (`terminate`, which also frees handles of
+  an open that failed halfway) and lets go of the owner Web Lock; then it navigates.
+  `/auth/callback` never opens the database, so its redirect needs none of this. Sign-out does
+  not navigate.
+- "Usar aquí" on another tab does the same before answering `released`.
+- `pagehide` (which cannot wait) ends the worker and lets go of the lock at once, for navigations
+  the app did not start (a link, the browser's Back). A page restored from the back/forward cache
+  (`pageshow` with `persisted`) that let go of its database reloads: that is how it opens again.
+- Not by making the page ineligible for the back/forward cache: navigations are answered by the
+  service worker from its precache, so a `Cache-Control: no-store` in `_headers` would not even
+  reach the page, and nothing shows that WebKit keeps such pages out of its cache. The release
+  works whether or not the page is cached.
+- The worker message is this app's patch of expo-sqlite (`patches/expo-sqlite@58.0.14.patch`,
+  `pnpm patch`): `releaseAccessHandles` closes every session, statement and database, calls
+  `AccessHandlePoolVFS.close()` (which closes every sync access handle) and answers
+  `accessHandlesReleased`; afterwards that worker refuses to open anything (it would take the
+  files again). The page reaches the worker through `countWorkers` (expo-sqlite keeps it private).
+- The busy-files screen offers "Volver a la pantalla anterior" when the Navigation API shows an
+  earlier entry of this window on the app's own address (`back-to-previous-screen.ts`): it may be
+  a page frozen by an older build, or by a navigation the app did not start, still holding the
+  files, and restoring it is what freed them on the iPhone. Only a button, never automatic: going
+  back leaves the current screen, and when that entry is not the holder it just loads normally
+  (and may show the same screen). Never offered for another site or without the Navigation API.
+- E2E (`e2e/back-forward-cache.spec.ts`): Playwright's browsers never keep these pages cached, so
+  `e2e/support/back-forward-cache.ts` freezes an armed page instead of navigating (timers,
+  channels and `fetch` stop, its Web Locks are let go, its workers keep their handles) and
+  continues the navigation in a new page.
+
 Messages by cause (`database-open-error.ts`):
 
 - **The files are held** (web), when the ownership check below let the open go ahead: recognized
@@ -104,8 +147,9 @@ Messages by cause (`database-open-error.ts`):
 ### One tab at a time (web)
 
 expo-sqlite keeps OPFS sync access handles for the whole page session and a file accepts only one,
-so only one page can hold the database. Closing the database does not release them, and after a
-failed open expo-sqlite's worker cannot open again until the page reloads. So the database opens
+so only one page can hold the database. Closing the database does not release them (only the
+release before leaving does, see above), and after a failed open expo-sqlite's worker cannot open
+again until the page reloads. So the database opens
 only once this page owns it (`src/infrastructure/persistence/ownership/`):
 
 1. **Lock**: the page takes the Web Lock `english-learn-db-owner` (held until it unloads).
@@ -125,8 +169,8 @@ only once this page owns it (`src/infrastructure/persistence/ownership/`):
    it, go on to the normal open, which reports the real error. (On iOS Home Screen apps "busy"
    showed up with no other page alive, and "Usar aquí" looped forever.)
 5. **"Usar aquí"** posts `release`. The owner refuses new writes and waits for the ones in flight
-   (saves and the sync's, `createWriteTracker().drain()`), unmounts the app (stopping sync and its
-   timers), replies `released` and reloads with a one-shot `sessionStorage` flag, so it shows
+   (saves and the sync's, `createWriteTracker().drain()`), closes the files and ends the worker
+   (see "Leaving the page" above), unmounts the app (stopping sync and its timers), replies `released` and reloads with a one-shot `sessionStorage` flag, so it shows
    "La app se abrió en otra pestaña" with its own "Usar aquí" (which takes the database back the
    same way). The new page then takes the lock as above.
 6. **Never a silent loop**: presses are counted in `sessionStorage`

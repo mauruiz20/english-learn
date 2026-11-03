@@ -73,7 +73,22 @@ const errorName = (error: unknown) =>
     ? String((error as { name: unknown }).name)
     : "Error";
 
-/** The owner lock: once granted, held until the page unloads (its callback never settles). */
+/** Settles the callbacks of the owner locks this page holds (see `letGoOfOwnerLock`). */
+const heldLocks = new Set<() => void>();
+
+/**
+ * Lets go of the owner lock before the page leaves (see `createPageRelease`): iOS may keep the
+ * page frozen in its back/forward cache, and the next page must not find the lock taken.
+ */
+export function letGoOfOwnerLock(): void {
+  for (const letGo of [...heldLocks]) letGo();
+  heldLocks.clear();
+}
+
+/**
+ * The owner lock: once granted, held until the page unloads or lets go of it before leaving
+ * (its callback settles only then).
+ */
 function webLocks(): OwnershipLocks | null {
   const locks = browser.navigator?.locks;
   if (locks === undefined) return null;
@@ -83,7 +98,9 @@ function webLocks(): OwnershipLocks | null {
         locks
           .request(LOCK_NAME, options, (lock) => {
             resolve(lock === null ? "unavailable" : "acquired");
-            return lock === null ? undefined : new Promise(() => {});
+            return lock === null
+              ? undefined
+              : new Promise<void>((letGo) => void heldLocks.add(letGo));
           })
           // Our own timeout aborts the request: the lock stayed taken. Anything else is a broken
           // request, which says nothing about another page.
