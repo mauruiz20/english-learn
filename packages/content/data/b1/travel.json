@@ -3,7 +3,7 @@
     {
       "id": "b1.travel.although",
       "level": "B1",
-      "topics": ["travel"],
+      "topics": ["travel", "grammar"],
       "kind": "word",
       "term": "although",
       "es": "aunque"
@@ -27,7 +27,7 @@
     {
       "id": "b1.travel.get-lost",
       "level": "B1",
-      "topics": ["travel"],
+      "topics": ["travel", "vocabulary"],
       "kind": "phrase",
       "term": "get lost",
       "es": "perderse"
@@ -395,7 +395,8 @@
         "b1.travel.although",
         "b1.travel.book",
         "b1.travel.get-lost"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.although", "b1.vocabulary.get-adjective"]
     },
     {
       "id": "b1.travel.lesson-002",

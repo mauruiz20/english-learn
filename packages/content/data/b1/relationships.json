@@ -59,7 +59,7 @@
     {
       "id": "b1.relationships.get-married",
       "level": "B1",
-      "topics": ["relationships"],
+      "topics": ["relationships", "vocabulary"],
       "kind": "phrase",
       "term": "get married",
       "es": "casarse"
@@ -67,7 +67,7 @@
     {
       "id": "b1.relationships.each-other",
       "level": "B1",
-      "topics": ["relationships"],
+      "topics": ["relationships", "grammar"],
       "kind": "phrase",
       "term": "each other",
       "es": "el uno al otro, mutuamente"
@@ -375,7 +375,8 @@
         "b1.relationships.get-married",
         "b1.relationships.each-other",
         "b1.relationships.support"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.each-other", "b1.vocabulary.get-adjective"]
     }
   ]
 }
