@@ -91,7 +91,7 @@
     {
       "id": "a2.home.there-is-are",
       "level": "A2",
-      "topics": ["home"],
+      "topics": ["home", "grammar"],
       "kind": "grammar",
       "term": "there is / there are",
       "es": "hay (singular / plural)"

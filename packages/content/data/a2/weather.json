@@ -103,7 +103,7 @@
     {
       "id": "a2.weather.going-to-predictions",
       "level": "A2",
-      "topics": ["weather"],
+      "topics": ["weather", "grammar"],
       "kind": "grammar",
       "term": "going to (predictions)",
       "es": "ir a + infinitivo (predicciones)"

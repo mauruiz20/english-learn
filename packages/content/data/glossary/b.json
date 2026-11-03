@@ -429,6 +429,18 @@
       ]
     },
     {
+      "id": "glossary.birthday",
+      "headword": "birthday",
+      "kind": "word",
+      "forms": ["birthday", "birthdays"],
+      "senses": [
+        {
+          "es": "cumpleaños",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.block",
       "headword": "block",
       "kind": "word",

@@ -1233,6 +1233,18 @@
       ]
     },
     {
+      "id": "glossary.august",
+      "headword": "August",
+      "kind": "word",
+      "forms": ["august"],
+      "senses": [
+        {
+          "es": "agosto",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.aunt",
       "headword": "aunt",
       "kind": "word",

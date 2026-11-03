@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.wash",
+      "headword": "wash",
+      "kind": "word",
+      "forms": ["wash", "washes", "washed", "washing"],
+      "senses": [
+        {
+          "es": "lavar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.washing-machine",
       "headword": "washing machine",
       "kind": "phrase",

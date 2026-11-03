@@ -87,7 +87,7 @@
     {
       "id": "a2.free-time.can-ability",
       "level": "A2",
-      "topics": ["free-time"],
+      "topics": ["free-time", "grammar"],
       "kind": "grammar",
       "term": "can (ability)",
       "es": "saber / poder (habilidad)"

@@ -89,6 +89,18 @@
       ]
     },
     {
+      "id": "glossary.egg",
+      "headword": "egg",
+      "kind": "word",
+      "forms": ["egg", "eggs"],
+      "senses": [
+        {
+          "es": "huevo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.eight",
       "headword": "eight",
       "kind": "word",

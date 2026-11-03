@@ -109,6 +109,18 @@
       ]
     },
     {
+      "id": "glossary.december",
+      "headword": "December",
+      "kind": "word",
+      "forms": ["december"],
+      "senses": [
+        {
+          "es": "diciembre",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.decide",
       "headword": "decide",
       "kind": "word",

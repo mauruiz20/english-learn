@@ -67,7 +67,7 @@
     {
       "id": "a2.family.older-than",
       "level": "A2",
-      "topics": ["family"],
+      "topics": ["family", "grammar"],
       "kind": "grammar",
       "term": "older than",
       "es": "mayor que"

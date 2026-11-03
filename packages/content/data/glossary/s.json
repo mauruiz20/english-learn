@@ -521,6 +521,18 @@
       ]
     },
     {
+      "id": "glossary.shirt",
+      "headword": "shirt",
+      "kind": "word",
+      "forms": ["shirt", "shirts"],
+      "senses": [
+        {
+          "es": "camisa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.shoe",
       "headword": "shoe",
       "kind": "word",
@@ -857,6 +869,18 @@
       ]
     },
     {
+      "id": "glossary.sky",
+      "headword": "sky",
+      "kind": "word",
+      "forms": ["sky", "skies"],
+      "senses": [
+        {
+          "es": "cielo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sleep",
       "headword": "sleep",
       "kind": "word",
@@ -1036,6 +1060,18 @@
       "senses": [
         {
           "es": "refresco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sofa",
+      "headword": "sofa",
+      "kind": "word",
+      "forms": ["sofa", "sofas"],
+      "senses": [
+        {
+          "es": "sofá",
           "pos": "noun"
         }
       ]

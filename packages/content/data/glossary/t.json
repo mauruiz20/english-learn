@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.table",
+      "headword": "table",
+      "kind": "word",
+      "forms": ["table", "tables"],
+      "senses": [
+        {
+          "es": "mesa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.take",
       "headword": "take",
       "kind": "word",
@@ -141,6 +153,18 @@
         {
           "es": "hablar, conversar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tall",
+      "headword": "tall",
+      "kind": "word",
+      "forms": ["tall", "taller", "tallest"],
+      "senses": [
+        {
+          "es": "alto",
+          "pos": "adjective"
         }
       ]
     },
@@ -585,6 +609,18 @@
         {
           "es": "esto",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.those",
+      "headword": "those",
+      "kind": "word",
+      "forms": ["those"],
+      "senses": [
+        {
+          "es": "esos, esas, aquellos, aquellas",
+          "pos": "determiner"
         }
       ]
     },

@@ -85,7 +85,7 @@
     {
       "id": "a2.work.have-to",
       "level": "A2",
-      "topics": ["work"],
+      "topics": ["work", "grammar"],
       "kind": "grammar",
       "term": "have to / don't have to",
       "es": "tener que / no tener que"
@@ -93,7 +93,7 @@
     {
       "id": "a2.work.on-monday",
       "level": "A2",
-      "topics": ["work"],
+      "topics": ["work", "grammar"],
       "kind": "grammar",
       "term": "on + day (on Monday)",
       "es": "el + día (el lunes)"

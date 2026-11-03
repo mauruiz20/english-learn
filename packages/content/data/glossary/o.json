@@ -313,6 +313,22 @@
       ]
     },
     {
+      "id": "glossary.order",
+      "headword": "order",
+      "kind": "word",
+      "forms": ["order", "orders", "ordered", "ordering"],
+      "senses": [
+        {
+          "es": "pedir (en un restaurante)",
+          "pos": "verb"
+        },
+        {
+          "es": "pedido, orden",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.other",
       "headword": "other",
       "kind": "word",
@@ -349,6 +365,18 @@
         {
           "es": "nuestro, nuestra",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ours",
+      "headword": "ours",
+      "kind": "word",
+      "forms": ["ours"],
+      "senses": [
+        {
+          "es": "nuestro, el nuestro, la nuestra",
+          "pos": "pronoun"
         }
       ]
     },

@@ -713,6 +713,18 @@
       ]
     },
     {
+      "id": "glossary.cloud",
+      "headword": "cloud",
+      "kind": "word",
+      "forms": ["cloud", "clouds"],
+      "senses": [
+        {
+          "es": "nube",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cloudy",
       "headword": "cloudy",
       "kind": "word",
@@ -1084,6 +1096,18 @@
         },
         {
           "es": "costo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.couch",
+      "headword": "couch",
+      "kind": "word",
+      "forms": ["couch", "couches"],
+      "senses": [
+        {
+          "es": "sofá, sillón",
           "pos": "noun"
         }
       ]
