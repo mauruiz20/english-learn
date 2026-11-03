@@ -39,7 +39,7 @@ async function signIn(page: Page, account: FakeAccount) {
 
 async function goHome(page: Page) {
   await page.goto("/");
-  await expect(page.getByLabel(/^Racha: /)).toBeVisible();
+  await expect(page.getByLabel(/^Racha: \d/)).toBeVisible();
 }
 
 test.describe("account and sync", () => {
@@ -75,7 +75,7 @@ test.describe("account and sync", () => {
     // The redirect replaced the history entry, so /cuenta has nothing to go back to: the header
     // still offers the way home.
     await page.getByRole("button", { name: "Volver a Inicio", exact: true }).click();
-    await expect(page.getByLabel(/^Racha: /)).toBeVisible();
+    await expect(page.getByLabel(/^Racha: \d/)).toBeVisible();
     expect(new URL(page.url()).pathname).toBe("/");
 
     // A second device: a fresh install, signed out, with no progress.
@@ -117,7 +117,7 @@ test.describe("account and sync", () => {
     await goHome(page);
     await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
     await page.reload();
-    await expect(page.getByLabel(/^Racha: /)).toBeVisible();
+    await expect(page.getByLabel(/^Racha: \d/)).toBeVisible();
     await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
     // Nothing synced after signing out (that would bring the account's progress back).
     expect(account.syncs).toHaveLength(syncsAtSignOut);

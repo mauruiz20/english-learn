@@ -125,7 +125,8 @@ function ProgressCard({
   cards,
   onOpenCards,
 }: {
-  days: number;
+  /** `null` while the progress loads: a dash, never a "0 días" that then jumps. */
+  days: number | null;
   xp: number | null;
   controls: ReactNode;
   album?: { readonly unlocked: number; readonly total: number } | undefined;
@@ -134,17 +135,26 @@ function ProgressCard({
   onOpenCards?: (() => void) | undefined;
 }) {
   const styles = useStyles();
+  const known = days !== null;
   return (
     <View style={styles.card}>
       <View style={styles.cardTop}>
-        <View accessible accessibilityLabel={`Racha: ${formatDays(days)}`} style={styles.streak}>
-          <ClipChainMark days={days} />
+        <View
+          accessible
+          accessibilityLabel={known ? `Racha: ${formatDays(days)}` : "Racha: cargando"}
+          style={styles.streak}
+        >
+          <ClipChainMark days={days ?? 0} />
           <View>
-            <Text variant="display" tone={days > 0 ? "ink" : "text"} style={styles.streakNumber}>
-              {String(days)}
+            <Text
+              variant="display"
+              tone={known ? (days > 0 ? "ink" : "text") : "muted"}
+              style={styles.streakNumber}
+            >
+              {known ? String(days) : "–"}
             </Text>
             <Text variant="smallStrong" tone="muted">
-              {`${days === 1 ? "día" : "días"} de racha`}
+              {known ? `${days === 1 ? "día" : "días"} de racha` : "racha"}
             </Text>
           </View>
         </View>
@@ -769,7 +779,7 @@ export function HomeView({
     <ScreenContainer insetTop>
       {notice}
       <ProgressCard
-        days={state.status === "ready" ? state.streakDays : 0}
+        days={state.status === "ready" ? state.streakDays : null}
         xp={state.status === "ready" ? state.xp : null}
         controls={controls}
         album={state.status === "ready" ? state.album : undefined}

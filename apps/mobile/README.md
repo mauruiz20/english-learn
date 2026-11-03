@@ -1,7 +1,9 @@
 # @english-learn/mobile
 
 Expo (SDK 58) app shell: expo-router screens, SQLite persistence via `expo-sqlite`, and a static
-web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
+web build. Offline-first: no network or AI at runtime. UI copy is neutral Spanish with tú
+("puedes", "inicia"), never voseo ("podés", "iniciá"); `src/neutral-spanish.test.ts` scans `src/`
+and `e2e/` with the content package's `findVoseo` and fails on the common voseo forms.
 
 ## Structure
 
@@ -747,7 +749,7 @@ The web build is an installable PWA that works fully offline after the first vis
   the flow, so it never covers a lesson's buttons). Only that press sends `SKIP_WAITING` and
   reloads once the new worker takes control; nothing reloads on its own, mid-lesson or not.
 - **Manifest and HTML**: `public/manifest.webmanifest` ("English Learn" / "English", `es`,
-  standalone, paper `#F7F9FC` theme and background, 192/512 icons and a maskable 512). With
+  standalone, paper `#F5F7FF` theme and background, 192/512 icons and a maskable 512). With
   `web.output: "single"` the HTML is customized in `public/index.html` (created with
   `npx expo customize public/index.html`, per the SDK 58 PWA guide): manifest link, light/dark
   `theme-color`, `apple-touch-icon` (180 px, opaque) and the `apple-mobile-web-app-*` tags.

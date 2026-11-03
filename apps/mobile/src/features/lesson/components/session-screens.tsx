@@ -459,19 +459,27 @@ function MiniSticker({ color, glyph }: { color: HighlighterName; glyph: "check" 
   );
 }
 
-/** "Racha: 3 días"; when the session grew it, the number rolls up from the old value. */
+/**
+ * "Racha: 3 días"; when the session grew it, "2 días" rolls up to "3 días" (each line with its
+ * own plural). A streak that starts today has no old value worth showing ("0 días"), so it
+ * appears at "1 día".
+ */
 function StreakLine({ days, increased }: { days: number; increased: boolean }) {
   const styles = useStyles();
   const reduced = useReducedMotion();
   const label = `Racha: ${formatDays(days)}`;
-  if (!increased || reduced || days < 1) {
+  if (!increased || reduced || days < 2) {
     return <Text variant="title">{label}</Text>;
   }
   return (
     <View accessible accessibilityLabel={label} style={styles.streak}>
       <Text variant="title">{"Racha:\u00A0"}</Text>
-      <RollingNumber from={days - 1} to={days} delayMs={STREAK_SOUND_DELAY_MS} />
-      <Text variant="title">{`\u00A0${days === 1 ? "día" : "días"}`}</Text>
+      <RollingNumber
+        from={days - 1}
+        to={days}
+        delayMs={STREAK_SOUND_DELAY_MS}
+        format={formatDays}
+      />
     </View>
   );
 }

@@ -17,6 +17,8 @@ type RollingNumberProps = {
   /** When the roll starts (e.g. timed with a sound). */
   delayMs: number;
   variant?: Extract<TextVariant, "title">;
+  /** How each value reads ("2 días"); each line of the drum is formatted on its own. */
+  format?: (value: number) => string;
 };
 
 const LINE = typeScale.title.lineHeight;
@@ -26,7 +28,13 @@ const LINE = typeScale.title.lineHeight;
  * new one comes in from below and settles with a spring). Decorative: the caller gives screen
  * readers the final value. With reduced motion it shows `to` at once.
  */
-export function RollingNumber({ from, to, delayMs, variant = "title" }: RollingNumberProps) {
+export function RollingNumber({
+  from,
+  to,
+  delayMs,
+  variant = "title",
+  format = String,
+}: RollingNumberProps) {
   const reduced = useReducedMotion();
   const [settled, setSettled] = useState(reduced);
   const progress = useSharedValue(0);
@@ -39,12 +47,12 @@ export function RollingNumber({ from, to, delayMs, variant = "title" }: RollingN
   }, [reduced, delayMs, progress]);
   const drum = useAnimatedStyle(() => ({ transform: [{ translateY: -LINE * progress.value }] }));
 
-  if (settled || reduced) return <Text variant={variant}>{String(to)}</Text>;
+  if (settled || reduced) return <Text variant={variant}>{format(to)}</Text>;
   return (
     <View style={styles.window}>
       <Animated.View style={drum}>
-        <Text variant={variant}>{String(from)}</Text>
-        <Text variant={variant}>{String(to)}</Text>
+        <Text variant={variant}>{format(from)}</Text>
+        <Text variant={variant}>{format(to)}</Text>
       </Animated.View>
     </View>
   );

@@ -40,9 +40,9 @@ export function SaveProgressSuggestion() {
   return (
     <View style={styles.wrapper}>
       <StickyNote color="green">
-        <Text variant="title">Guardá tu progreso</Text>
+        <Text variant="title">Guarda tu progreso</Text>
         <Text>
-          Con una cuenta de Google, tu progreso se sincroniza y lo usás en otros dispositivos.
+          Con una cuenta de Google, tu progreso se sincroniza y lo usas en otros dispositivos.
         </Text>
         <View style={styles.actions}>
           <Button label="Crear mi cuenta" onPress={() => router.push("/cuenta")} />

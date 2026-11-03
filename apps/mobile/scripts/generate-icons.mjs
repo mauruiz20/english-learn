@@ -131,7 +131,7 @@ async function writePreview(page, outputs, path) {
     h2 { margin: 16px 0 8px; } section { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
     figure { margin: 0; } figcaption { margin-top: 4px; color: #4A5873; }
     .pair, .row { display: flex; gap: 8px; align-items: center; }
-    .light, .dark { padding: 12px; } .light { background: #F7F9FC; } .dark { background: #0F1A33; }
+    .light, .dark { padding: 12px; } .light { background: #F5F7FF; } .dark { background: #0F1A33; }
     img { display: block; }
   </style></head><body>
     <h2>Variants (on paper and on deep ink)</h2><section>${outputs.map(tile).join("")}</section>

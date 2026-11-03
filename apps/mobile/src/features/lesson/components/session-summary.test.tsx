@@ -137,10 +137,20 @@ describe("SessionSummary", () => {
 
       // Screen readers get the final value from the start.
       expect(screen.getByLabelText("Racha: 2 días")).toBeOnTheScreen();
-      expect(screen.getByText("1", { includeHiddenElements: true })).toBeOnTheScreen();
+      // Each line of the drum carries its own plural: "1 día" rolls up to "2 días".
+      expect(screen.getByText("1 día", { includeHiddenElements: true })).toBeOnTheScreen();
+      expect(screen.getByText("2 días", { includeHiddenElements: true })).toBeOnTheScreen();
+      expect(screen.queryByText(/^1 días|^2 día$/, { includeHiddenElements: true })).toBeNull();
       await act(async () => jest.advanceTimersByTime(STREAK_SOUND_DELAY_MS + 400));
-      expect(screen.queryByText("1", { includeHiddenElements: true })).not.toBeOnTheScreen();
-      expect(screen.getByText("2", { includeHiddenElements: true })).toBeOnTheScreen();
+      expect(screen.queryByText("1 día", { includeHiddenElements: true })).not.toBeOnTheScreen();
+      expect(screen.getByText("2 días", { includeHiddenElements: true })).toBeOnTheScreen();
+    });
+
+    it("never shows 0 días for a streak that starts today: it appears at 1 día", async () => {
+      await render(<SessionSummary {...base} streakDays={1} />);
+
+      expect(screen.getByText("Racha: 1 día")).toBeOnTheScreen();
+      expect(screen.queryByText(/\b0 días?\b/, { includeHiddenElements: true })).toBeNull();
     });
 
     it("does not roll a streak that did not grow", async () => {

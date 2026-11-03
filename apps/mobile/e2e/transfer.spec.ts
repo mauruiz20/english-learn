@@ -78,10 +78,10 @@ test.describe("progress transfer to the new web address", () => {
 
     await page.getByRole("button", { name: "Ir al inicio", exact: true }).click();
     await page.waitForURL(`${NEW}/`);
-    await expect(page.getByLabel(/^Racha: /)).toBeVisible();
+    await expect(page.getByLabel(/^Racha: \d/)).toBeVisible();
     await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
     await page.reload();
-    await expect(page.getByLabel(/^Racha: /)).toBeVisible();
+    await expect(page.getByLabel(/^Racha: \d/)).toBeVisible();
     await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
 
     // Back on the old address: straight to the same page on the new one.

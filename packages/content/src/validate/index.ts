@@ -6,6 +6,7 @@ export { validateAnswerIndexes, validateOptionDuplicates } from "./options";
 export { validateClozes, CLOZE_BLANK } from "./cloze";
 export { validateWordOrders } from "./word-order";
 export { validateTextPunctuation } from "./punctuation";
+export { findVoseo, validateNeutralSpanish, type VoseoOptions } from "./voseo";
 export { validateListDuplicates } from "./duplicates";
 export { validateAnswerPatterns } from "./answer-patterns";
 export { validateLevels } from "./levels";

@@ -38,9 +38,9 @@ describe("png", () => {
     assert.equal(icon.data.length, 1024 * 1024 * 4);
     const pixel = (x, y) => [...icon.data.subarray((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4)];
     // The bar of the "e" in ink, the paper inside its loop, the highlighter under it.
-    assert.deepEqual(pixel(512, 556), [30, 58, 138, 255]);
-    assert.deepEqual(pixel(512, 512), [247, 249, 252, 255]);
-    assert.deepEqual(pixel(512, 700), [255, 225, 53, 255]);
+    assert.deepEqual(pixel(512, 556), [33, 66, 201, 255]);
+    assert.deepEqual(pixel(512, 512), [245, 247, 255, 255]);
+    assert.deepEqual(pixel(512, 700), [255, 210, 63, 255]);
   });
 
   it("downscales by averaging the covered source area", () => {

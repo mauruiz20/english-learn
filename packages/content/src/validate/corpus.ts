@@ -20,6 +20,7 @@ import { validateReferences } from "./references";
 import { validateExerciseTopics, validateTopics } from "./topics";
 import type { LoadedFile, Rule, ValidationError } from "./types";
 import { validateUniqueIds } from "./unique-ids";
+import { validateNeutralSpanish } from "./voseo";
 import { validateWordOrders } from "./word-order";
 
 /** Rules that look at one file at a time and never resolve references. */
@@ -33,6 +34,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateAnswerPatterns,
   validateTopics,
   validateTextPunctuation,
+  validateNeutralSpanish,
   validateGlossaryEntries,
   validateCards,
 ];
