@@ -24,6 +24,7 @@ import { cardScores, cardsSummary } from "@/features/cards/model/card-catalog";
 import { cardPath } from "@/features/cards/card-routes";
 import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { PlumasWelcomeNote } from "@/features/rewards/plumas-welcome-note";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import { deepenSteps } from "./model/deepen-steps";
@@ -111,6 +112,8 @@ export function HomeContainer({
   const { progressRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
+  // Plumas earned so far, for the one-time note (null until the progress loads).
+  const [earned, setEarned] = useState<number | null>(null);
   const sound = useSoundPreference();
   const theme = useThemePreference();
   const progressVersion = useProgressVersion();
@@ -126,9 +129,11 @@ export function HomeContainer({
       progressRepository.getPlacementResult(),
       progressRepository.getReviewStates(),
       progressRepository.getLessonResults(),
+      progressRepository.getRewards(),
     ]).then(
-      ([streak, xp, placement, states, results]) => {
+      ([streak, xp, placement, states, results, rewards]) => {
         if (!active) return;
+        setEarned(rewards.earned);
         const level = placement?.level ?? null;
         const today = clock.today();
         setState({
@@ -138,6 +143,7 @@ export function HomeContainer({
           reviewNoteColor: stickyNoteHighlighter(today),
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
+          plumas: rewards.balance,
           level,
           lessons: markJustCompleted(
             homeLessons(content, level, states, results),
@@ -172,6 +178,7 @@ export function HomeContainer({
     <HomeView
       state={state}
       greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
+      plumasNote={<PlumasWelcomeNote earned={earned} />}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}
       themePreference={theme.preference}

@@ -1,4 +1,9 @@
-import type { AccountMarker, SettingsRepository, ThemePreference } from "@english-learn/domain";
+import type {
+  AccountMarker,
+  PlumasWelcome,
+  SettingsRepository,
+  ThemePreference,
+} from "@english-learn/domain";
 import type { SqlDatabase } from "./sql-database";
 
 const SOUND_ENABLED = "sound_enabled";
@@ -7,6 +12,7 @@ const ACCOUNT = "account";
 const SAVE_PROGRESS_SUGGESTION_DISMISSED = "save_progress_suggestion_dismissed";
 const THEME_PREFERENCE = "theme_preference";
 const MIGRATED_TO = "migrated_to";
+const PLUMAS_WELCOME = "plumas_welcome";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -46,12 +52,29 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     setThemePreference: (preference) => write(THEME_PREFERENCE, preference),
     getMigratedTo: () => read(MIGRATED_TO),
     setMigratedTo: (origin) => write(MIGRATED_TO, origin),
+    getPlumasWelcome: async () => parsePlumasWelcome(await read(PLUMAS_WELCOME)),
+    setPlumasWelcome: ({ plumas, dismissed }) =>
+      write(PLUMAS_WELCOME, JSON.stringify({ plumas, dismissed })),
   };
 }
 
 /** Anything but an explicit light or dark follows the system (the default). */
 function parseThemePreference(value: string | null): ThemePreference {
   return value === "light" || value === "dark" ? value : "system";
+}
+
+/** An unreadable value counts as dismissed: a one-time note never shows twice. */
+function parsePlumasWelcome(value: string | null): PlumasWelcome | null {
+  if (value === null) return null;
+  try {
+    const { plumas, dismissed } = JSON.parse(value) as Record<string, unknown>;
+    if (Number.isInteger(plumas) && typeof dismissed === "boolean") {
+      return { plumas: plumas as number, dismissed };
+    }
+  } catch {
+    // Falls through to dismissed.
+  }
+  return { plumas: 0, dismissed: true };
 }
 
 /** An unreadable value counts as signed out: the learner signs in again. */

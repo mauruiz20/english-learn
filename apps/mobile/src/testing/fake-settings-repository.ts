@@ -1,4 +1,9 @@
-import type { AccountMarker, SettingsRepository, ThemePreference } from "@english-learn/domain";
+import type {
+  AccountMarker,
+  PlumasWelcome,
+  SettingsRepository,
+  ThemePreference,
+} from "@english-learn/domain";
 
 /** In-memory `SettingsRepository` for tests. */
 export function createFakeSettingsRepository(
@@ -9,6 +14,7 @@ export function createFakeSettingsRepository(
     saveProgressSuggestionDismissed?: boolean;
     themePreference?: ThemePreference;
     migratedTo?: string | null;
+    plumasWelcome?: PlumasWelcome | null;
   } = {},
 ): SettingsRepository & {
   readonly soundEnabled: () => boolean;
@@ -17,6 +23,7 @@ export function createFakeSettingsRepository(
   readonly saveProgressSuggestionDismissed: () => boolean;
   readonly themePreference: () => ThemePreference;
   readonly migratedTo: () => string | null;
+  readonly plumasWelcome: () => PlumasWelcome | null;
 } {
   let soundEnabled = initial.soundEnabled ?? true;
   let lookupHintDismissed = initial.lookupHintDismissed ?? false;
@@ -24,7 +31,13 @@ export function createFakeSettingsRepository(
   let saveProgressSuggestionDismissed = initial.saveProgressSuggestionDismissed ?? false;
   let themePreference = initial.themePreference ?? "system";
   let migratedTo = initial.migratedTo ?? null;
+  let plumasWelcome = initial.plumasWelcome ?? null;
   return {
+    plumasWelcome: () => plumasWelcome,
+    getPlumasWelcome: async () => plumasWelcome,
+    setPlumasWelcome: async (note) => {
+      plumasWelcome = note;
+    },
     migratedTo: () => migratedTo,
     themePreference: () => themePreference,
     soundEnabled: () => soundEnabled,

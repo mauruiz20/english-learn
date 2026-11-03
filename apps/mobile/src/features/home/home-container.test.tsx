@@ -102,6 +102,23 @@ describe("HomeContainer", () => {
     expect(offer.skip).toHaveBeenCalledTimes(1);
   });
 
+  it("shows the plumas balance and, for study done before plumas, the one-time note", async () => {
+    // Two lessons a baseline completed (before the event log): 5 plumas each.
+    await renderContainer(createFakeRepository({ xp: 120, completedLessonIds: ["l1", "l2"] }));
+
+    expect(await screen.findByLabelText("Tienes 10 plumas")).toBeOnTheScreen();
+    expect(
+      await screen.findByText("Avi te guardó 10 plumas por lo que ya estudiaste."),
+    ).toBeOnTheScreen();
+  });
+
+  it("shows a new learner 0 plumas and no note", async () => {
+    await renderContainer(createFakeRepository());
+
+    expect(await screen.findByLabelText("Tienes 0 plumas")).toBeOnTheScreen();
+    expect(screen.queryByText(/Avi te guardó/)).toBeNull();
+  });
+
   it("shows no move banner anywhere else", async () => {
     await renderContainer(createFakeRepository());
 

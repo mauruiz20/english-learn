@@ -91,6 +91,15 @@ describe("completeSession", () => {
       xpEarned: 30,
       streak: { current: 3, longest: 5, lastActiveDate: today },
       streakIncreased: true,
+      // Día de estudio + Lección nueva; the seeded baseline completed no lessons.
+      plumas: {
+        total: 10,
+        bySource: [
+          { source: "study_day", plumas: 5 },
+          { source: "new_lesson", plumas: 5 },
+        ],
+        capped: false,
+      },
     });
     const progress = foldEvents(repository.events());
     expect(progress.xp).toBe(result.xp);
@@ -100,6 +109,15 @@ describe("completeSession", () => {
       // New and missed: starts fresh tomorrow, not as a lapse (decided by the fold).
       { ...initialState("b", today), intervalDays: 1, dueDate: localDate("2026-10-30") },
     ]);
+  });
+
+  it("reports no plumas for a replay the same day", async () => {
+    const repository = createFakeRepository();
+
+    await completeSession(input(repository));
+    const replay = await completeSession(input(repository));
+
+    expect(replay.plumas).toEqual({ total: 0, bySource: [], capped: false });
   });
 
   it("pays the bonus only on the first completion of a lesson", async () => {

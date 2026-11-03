@@ -1,3 +1,4 @@
+import type { PlumasEarned } from "@english-learn/domain";
 import { useRef, useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import type { CompleteSessionResult } from "./application/complete-session";
@@ -18,6 +19,8 @@ export type SaveState =
       readonly streakDays: number;
       /** This session extended the streak. */
       readonly streakIncreased: boolean;
+      /** Plumas the session earned (the fold decides them). */
+      readonly plumas: PlumasEarned;
     };
 
 export type ExerciseSession = {
@@ -52,8 +55,14 @@ export function useExerciseSession({
     saving.current = true;
     setSave({ status: "saving" });
     complete(summary)
-      .then(({ xpEarned, streak, streakIncreased }) => {
-        setSave({ status: "saved", xpEarned, streakDays: streak.current, streakIncreased });
+      .then(({ xpEarned, streak, streakIncreased, plumas }) => {
+        setSave({
+          status: "saved",
+          xpEarned,
+          streakDays: streak.current,
+          streakIncreased,
+          plumas,
+        });
         sounds.completed(streakIncreased);
       })
       .catch((error: unknown) => {

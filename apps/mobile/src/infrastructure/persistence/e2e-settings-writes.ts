@@ -43,5 +43,7 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
     setThemePreference: (preference) => track(repository.setThemePreference(preference)),
     getMigratedTo: () => repository.getMigratedTo(),
     setMigratedTo: (origin) => track(repository.setMigratedTo(origin)),
+    getPlumasWelcome: () => repository.getPlumasWelcome(),
+    setPlumasWelcome: (note) => track(repository.setPlumasWelcome(note)),
   };
 }

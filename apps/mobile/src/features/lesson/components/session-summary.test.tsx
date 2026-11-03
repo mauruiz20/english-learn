@@ -108,6 +108,51 @@ describe("SessionSummary", () => {
     });
   });
 
+  describe("plumas", () => {
+    const plumas = { total: 20, detail: "Lección nueva +10 · Página perfecta +10" };
+
+    it("shows the plumas the session earned and why", async () => {
+      await render(<SessionSummary {...base} plumas={plumas} />);
+
+      const row = screen.getByTestId("summary-plumas");
+      expect(within(row).getByText("Plumas: +20")).toBeOnTheScreen();
+      expect(within(row).getByText("Lección nueva +10 · Página perfecta +10")).toBeOnTheScreen();
+      expect(screen.getByLabelText("Plumas ganadas: 20")).toBeOnTheScreen();
+    });
+
+    it("explains a session that earned none", async () => {
+      await render(
+        <SessionSummary
+          {...base}
+          plumas={{ total: 0, detail: "Repetir no da plumas, pero te ayuda a recordar." }}
+        />,
+      );
+
+      expect(screen.getByText("Plumas: 0")).toBeOnTheScreen();
+      expect(screen.getByText("Repetir no da plumas, pero te ayuda a recordar.")).toBeOnTheScreen();
+    });
+
+    it("has no plumas row without plumas", async () => {
+      await render(<SessionSummary {...base} />);
+
+      expect(screen.queryByTestId("summary-plumas")).not.toBeOnTheScreen();
+    });
+
+    it("counts the plumas up with the XP when motion is allowed", async () => {
+      withMotion();
+      jest.useFakeTimers();
+      try {
+        await render(<SessionSummary {...base} plumas={plumas} />);
+
+        expect(screen.getByText("Plumas: +0")).toBeOnTheScreen();
+        await act(async () => jest.advanceTimersByTime(2000));
+        expect(screen.getByText("Plumas: +20")).toBeOnTheScreen();
+      } finally {
+        jest.useRealTimers();
+      }
+    });
+  });
+
   describe("with reduced motion", () => {
     it("shows the final XP and streak at once", async () => {
       await render(<SessionSummary {...base} />);

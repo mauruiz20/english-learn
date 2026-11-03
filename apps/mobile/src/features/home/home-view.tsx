@@ -22,6 +22,7 @@ import { StickyNote } from "@/shared/ui/sticky-note";
 import { Text } from "@/shared/ui/text";
 import { radius, spacing, type HighlighterName } from "@/shared/ui/theme";
 import { XpBar } from "@/shared/ui/xp-bar";
+import { PlumasBalance } from "@/features/rewards/plumas-balance";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
@@ -68,6 +69,8 @@ export type HomeViewState =
       readonly reviewNoteColor: HighlighterName;
       readonly streakDays: number;
       readonly xp: number;
+      /** The plumas balance (negative after concurrent offline purchases). */
+      readonly plumas?: number;
       readonly level: Level | null;
       /** Lessons of the learner's level (or the default level). */
       readonly lessons: HomeLessons;
@@ -99,6 +102,8 @@ type HomeViewProps = {
   notice?: ReactNode;
   /** The signed-in learner's first name for the greeting; without it, a plain "¡Hola!". */
   greetingName?: string | undefined;
+  /** The one-time plumas note, under the progress card. */
+  plumasNote?: ReactNode;
 };
 
 type Ready = Extract<HomeViewState, { status: "ready" }>;
@@ -117,11 +122,12 @@ function groupByTopic(lessons: readonly HomeLesson[]) {
 
 /**
  * The top of the page: the streak as a chain of paperclips with the number of days, the sound
- * and account controls, and the XP as sheets of stickers.
+ * and account controls, the XP as sheets of stickers and the plumas balance.
  */
 function ProgressCard({
   days,
   xp,
+  plumas,
   controls,
   album,
   onOpenAlbum,
@@ -131,6 +137,7 @@ function ProgressCard({
   /** `null` while the progress loads: a dash, never a "0 días" that then jumps. */
   days: number | null;
   xp: number | null;
+  plumas?: number | undefined;
   controls: ReactNode;
   album?: { readonly unlocked: number; readonly total: number } | undefined;
   onOpenAlbum?: (() => void) | undefined;
@@ -164,6 +171,7 @@ function ProgressCard({
         <View style={styles.controls}>{controls}</View>
       </View>
       {xp !== null && <XpBar xp={xp} />}
+      {plumas !== undefined && <PlumasBalance balance={plumas} />}
       {album !== undefined && onOpenAlbum !== undefined && (
         <AlbumLink album={album} onPress={onOpenAlbum} />
       )}
@@ -772,6 +780,7 @@ export function HomeView({
   onOpenCards,
   notice,
   greetingName,
+  plumasNote,
   ...handlers
 }: HomeViewProps) {
   const { colors } = useTheme();
@@ -789,12 +798,14 @@ export function HomeView({
       <ProgressCard
         days={state.status === "ready" ? state.streakDays : null}
         xp={state.status === "ready" ? state.xp : null}
+        plumas={state.status === "ready" ? state.plumas : undefined}
         controls={controls}
         album={state.status === "ready" ? state.album : undefined}
         onOpenAlbum={onOpenAlbum}
         cards={state.status === "ready" ? state.cards : undefined}
         onOpenCards={onOpenCards}
       />
+      {plumasNote}
       {state.status === "loading" && (
         <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />
       )}

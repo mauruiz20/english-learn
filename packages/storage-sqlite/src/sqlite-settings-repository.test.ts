@@ -133,4 +133,23 @@ describe("createSqliteSettingsRepository", () => {
       "https://english.maumar.com.ar",
     );
   });
+
+  it("remembers the plumas welcome note and its dismissal", async () => {
+    expect(await settings.getPlumasWelcome()).toBeNull();
+
+    await settings.setPlumasWelcome({ plumas: 135, dismissed: false });
+    expect(await createSqliteSettingsRepository(db).getPlumasWelcome()).toEqual({
+      plumas: 135,
+      dismissed: false,
+    });
+
+    await settings.setPlumasWelcome({ plumas: 135, dismissed: true });
+    expect(await settings.getPlumasWelcome()).toEqual({ plumas: 135, dismissed: true });
+  });
+
+  it("treats an unreadable plumas welcome note as dismissed (never shown twice)", async () => {
+    await db.runAsync("INSERT INTO setting (key, value) VALUES ('plumas_welcome', '{')", []);
+
+    expect(await settings.getPlumasWelcome()).toEqual({ plumas: 0, dismissed: true });
+  });
 });
