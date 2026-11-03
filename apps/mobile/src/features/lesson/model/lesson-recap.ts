@@ -1,4 +1,4 @@
-import type { Corpus, Exercise, Item, Lesson } from "@english-learn/content";
+import type { Card, Corpus, Exercise, Item, Lesson } from "@english-learn/content";
 import { annotateText, expandAccepted } from "@english-learn/domain";
 import { itemEntryIds } from "@/features/glossary/model/item-entries";
 import { lessonExercises, lessonItemIds } from "./lesson-catalog";
@@ -122,6 +122,50 @@ function bestExample(
   return undefined;
 }
 
+const normalizeTerm = (term: string) => term.toLowerCase().replace(/\s+/gu, " ").trim();
+
+/** A term as written, without its parenthesized part, and with it unwrapped (`get along (with)`). */
+const termForms = (term: string): string[] =>
+  [term, term.replace(/\([^)]*\)/gu, " "), term.replace(/[()]/gu, " ")].map(normalizeTerm);
+
+/** What a card teaches: its items' terms and its phrasal verbs, and their glossary entries. */
+function taughtBy(card: Card, content: Corpus) {
+  const terms = [
+    ...card.itemIds.flatMap((id) => {
+      const item = content.itemsById.get(id);
+      return item === undefined ? [] : [item.term];
+    }),
+    ...(card.kind === "phrasal_verbs" ? card.entries.map((e) => e.verb) : []),
+  ];
+  return {
+    terms: new Set(terms.flatMap(termForms)),
+    entries: new Set(terms.flatMap((t) => itemEntryIds(t, content.glossaryIndex))),
+  };
+}
+
+/**
+ * The card a recap item links to. The lesson's linked cards (`deepenCardIds`) come first: one
+ * that lists the item, or teaches its term or its headword (the item may have another id). Else
+ * the card that lists the item. Terms are never matched against cards the lesson does not link.
+ */
+function recapCard(item: Item, lesson: Lesson, content: Corpus): Card | undefined {
+  const linked = (lesson.deepenCardIds ?? []).flatMap((id) => {
+    const card = content.cardsById.get(id);
+    return card === undefined ? [] : [card];
+  });
+  const byId = (cards: readonly Card[]) => cards.find((c) => c.itemIds.includes(item.id));
+  const forms = termForms(item.term);
+  const entries = itemEntryIds(item.term, content.glossaryIndex);
+  return (
+    byId(linked) ??
+    linked.find((card) => {
+      const taught = taughtBy(card, content);
+      return forms.some((f) => taught.terms.has(f)) || entries.some((e) => taught.entries.has(e));
+    }) ??
+    byId(content.cards)
+  );
+}
+
 /** "Lo nuevo de hoy" for a lesson: its new items with their card, or meaning and example. */
 export function lessonRecap(lesson: Lesson, content: Corpus): RecapItem[] {
   const exercises = lessonExercises(lesson, content.exercisesById);
@@ -129,7 +173,7 @@ export function lessonRecap(lesson: Lesson, content: Corpus): RecapItem[] {
     const item = content.itemsById.get(id);
     if (item === undefined) return [];
     const base = { id: item.id, term: item.term, es: item.es };
-    const card = content.cards.find((c) => c.itemIds.includes(id));
+    const card = recapCard(item, lesson, content);
     if (card !== undefined) return [{ ...base, card: { id: card.id, title: card.title } }];
     const example = bestExample(item, exercises, content);
     return [example === undefined ? base : { ...base, example }];

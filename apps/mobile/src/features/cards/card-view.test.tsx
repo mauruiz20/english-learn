@@ -99,6 +99,48 @@ describe("CardView", () => {
     expect(screen.getByText(`${grammar.exerciseIds.length} ejercicios`)).toBeOnTheScreen();
   });
 
+  it("shows nothing new on a card never practiced", async () => {
+    await renderCard(grammar);
+
+    expect(screen.queryByLabelText(/^Tu mejor resultado/)).not.toBeOnTheScreen();
+    expect(screen.queryByRole("button", { name: "Practicar de nuevo" })).not.toBeOnTheScreen();
+  });
+
+  it("shows the best result of a perfect practice, with its star, and offers to practice again", async () => {
+    await renderCard(grammar, {
+      status: "studied",
+      score: { correct: 6, total: 6, perfect: true },
+    });
+
+    const result = screen.getByLabelText(
+      "Tu mejor resultado: completada sin errores: 6 de 6 correctas",
+    );
+    expect(within(result).getByText("Perfecta · 6/6")).toBeOnTheScreen();
+    expect(screen.getByTestId("card-perfect", { includeHiddenElements: true })).toBeOnTheScreen();
+    const again = screen.getByRole("button", { name: "Practicar de nuevo" });
+    expect(again.props.accessibilityHint).toBe(
+      "Ganas XP por cada respuesta; el bono de completarla ya lo recibiste",
+    );
+    await fireEvent.press(again);
+    expect(handlers.onPractice).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows a best result with mistakes without the star", async () => {
+    await renderCard(grammar, {
+      status: "studied",
+      score: { correct: 5, total: 6, perfect: false },
+    });
+
+    const result = screen.getByLabelText(
+      "Tu mejor resultado: completada con errores: 5 de 6 correctas",
+    );
+    expect(within(result).getByText("Completada · 5/6")).toBeOnTheScreen();
+    expect(
+      screen.queryByTestId("card-perfect", { includeHiddenElements: true }),
+    ).not.toBeOnTheScreen();
+    expect(screen.getByRole("button", { name: "Practicar de nuevo" })).toBeOnTheScreen();
+  });
+
   it("says when the card was studied or mastered", async () => {
     await renderCard(grammar, { status: "studied" });
     expect(screen.getByText("Estudiada")).toBeOnTheScreen();

@@ -350,7 +350,8 @@
         "b1.health-and-lifestyle.lose-weight",
         "b1.health-and-lifestyle.keep-fit",
         "b1.health-and-lifestyle.get-enough-sleep"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.gerund-infinitive", "b1.phrasal-verbs.problems"]
     },
     {
       "id": "b1.health-and-lifestyle.lesson-002",
@@ -372,7 +373,8 @@
         "b1.health-and-lifestyle.used-to",
         "b1.health-and-lifestyle.stop-doing",
         "b1.health-and-lifestyle.diet"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.gerund-infinitive"]
     }
   ]
 }

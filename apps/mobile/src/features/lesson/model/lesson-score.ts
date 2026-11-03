@@ -23,3 +23,16 @@ export function lessonScore(
   const correct = perfect ? exerciseCount : Math.min(exerciseCount - 1, Math.max(0, rounded));
   return { correct, total: exerciseCount, perfect };
 }
+
+/** "Perfecta · 6/6", "Completada · 5/6", or "Completada" without a recorded result. */
+export function scoreText(score: LessonScore | undefined): string {
+  if (score === undefined) return "Completada";
+  return `${score.perfect ? "Perfecta" : "Completada"} · ${score.correct}/${score.total}`;
+}
+
+/** "completada sin errores: 6 de 6 correctas", for an accessible label after a title. */
+export function scoreDescription(score: LessonScore | undefined): string {
+  if (score === undefined) return "completada";
+  const how = score.perfect ? "sin errores" : "con errores";
+  return `completada ${how}: ${score.correct} de ${score.total} correctas`;
+}

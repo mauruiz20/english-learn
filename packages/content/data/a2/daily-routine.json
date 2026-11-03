@@ -337,7 +337,8 @@
         "a2.daily-routine.usually",
         "a2.daily-routine.go-to-bed",
         "a2.daily-routine.commute"
-      ]
+      ],
+      "deepenCardIds": ["a2.phrasal-verbs.daily-routine"]
     },
     {
       "id": "a2.daily-routine.lesson-002",
@@ -359,7 +360,8 @@
         "a2.daily-routine.present-simple-routines",
         "a2.daily-routine.every-morning",
         "a2.daily-routine.take-a-shower"
-      ]
+      ],
+      "deepenCardIds": ["a2.phrasal-verbs.daily-routine", "a2.vocabulary.take-a-break"]
     }
   ]
 }

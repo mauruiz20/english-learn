@@ -156,6 +156,8 @@ Lesson rules (cross-file):
     long for a quick review), so an item only a reading covers would get a review state from the
     lesson and never come back. Such items get a short review-only exercise (usually `vocab`)
     that sits in no lesson (e.g. `a2.weather.vocab-004` for `windy`).
+21. Linked cards (`lesson.deepenCardIds`): no duplicates, every id is a card, and every card is
+    at or below the lesson level.
 
 ### Word-order convention
 
@@ -211,7 +213,7 @@ Static English → Spanish lookup for hover (web) / tap (mobile). Tokenizing and
 
 ## Lessons
 
-A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds? }`.
+A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds?, deepenCardIds? }`.
 
 - `newItemIds` (optional, 3 to 5 item ids): what the lesson introduces, shown in the app's
   end-of-lesson recap "Lo nuevo de hoy" (each one linked to its study card when a card teaches
@@ -222,10 +224,47 @@ A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds? }`.
   Every bundled lesson lists them; without the field the app derives them (the lesson's items
   that no earlier lesson practices, at most five).
 
+- `deepenCardIds` (optional, 1 to 3 card ids): the study cards that really go deeper into what
+  the lesson teaches, each at or below the lesson level (rule 21). The app shows them under the
+  completed lesson on the path ("Profundiza") and links the recap items they teach to them: a
+  recap item opens a linked card that lists it, or that teaches its term or headword (its glossary
+  entry), even when the card uses another item id (`b1.culture-and-entertainment.look-forward` and
+  `b1.grammar.look-forward-to`). The link is explicit: terms are never matched against cards the
+  lesson does not link. Link a card only when it explains the lesson's own grammar or words, not a
+  loosely related topic.
+
 - Item `example` (optional, `{ en, es }`): an English sentence that uses the item and its
   Spanish. The recap shows it; without it, it takes a sentence (with its Spanish) from an
   exercise that practices the item and links the item's glossary entry. Recap items with no such
   exercise sentence carry one; its `en` counts for glossary coverage.
+
+## Card gaps (next card pack)
+
+Lessons whose key grammar or vocabulary has no study card yet (from the `deepenCardIds` audit).
+Candidates for the next pack; none of them is written yet.
+
+| Lesson                                                       | Not covered by a card                                                               |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| A2 Mañanas y noches                                          | present simple for routines (`she gets up`)                                         |
+| A2 ¿Cómo llego?, En la ciudad                                | imperative for directions; place prepositions (across from, between)                |
+| A2 Mi familia, Parecidos y diferencias                       | comparatives (`older than`); possessive `'s`; `look like`                           |
+| A2 Pedir y preparar comida                                   | `some` / `any`; polite requests (`I would like`)                                    |
+| A2 Mi tiempo libre, Deportes y aficiones                     | `can` (ability); `like` + -ing at A2 (the gerund card is B1)                        |
+| A2 En el médico, ¿Cómo te sientes?                           | `should` for advice; health phrases (`have a cold`, `feel better`)                  |
+| A2 Mi casa, Las tareas de la casa                            | `there is` / `there are`; `have to` / `don't have to`                               |
+| A2 ¿Qué tiempo hace?                                         | `going to` for predictions                                                          |
+| A2 Horarios y obligaciones                                   | time prepositions (`on Monday`); `have to`                                          |
+| A2 Mi rutina diaria                                          | `commute` at A2 (the commute card is B1, above the lesson)                          |
+| B1 La vida en la ciudad, Planes para el futuro               | future forms: `will`, `be going to`, present continuous for arrangements            |
+| B1 Una noche de cultura, Cine, teatro y música               | relative clauses (who / where); deduction (must / can't / might); `be worth` + -ing |
+| B1 Vida de estudiante, Lo que dijo el profesor               | past continuous; reported speech and reported questions (`asked if`)                |
+| B1 Si actuamos hoy…                                          | `unless`                                                                            |
+| B1 Consejos para sentirse mejor                              | `used to`; `should` / `shouldn't`                                                   |
+| B1 Quién dijo qué, Problemas con la tecnología, Cómo se hace | the passive (present and past)                                                      |
+| B1 Problemas con la tecnología, Cómo se hace                 | relative clauses (that / which); tech phrasal verbs (back up, log in)               |
+| B1 De viaje                                                  | contrast linkers (`although`); `get lost`                                           |
+| B1 Mi primer trabajo, Obligaciones y cambios                 | `have to` / `must`; `don't have to` vs `mustn't`; `apply for`, `turn down`          |
+| B1 Amigos y pareja, Peleas y reconciliaciones                | `each other`; `get married`                                                         |
 
 ## Attribution
 

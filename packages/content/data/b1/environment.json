@@ -359,7 +359,8 @@
         "b1.environment.recycle",
         "b1.environment.pollution",
         "b1.environment.global-warming"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.first-conditional"]
     },
     {
       "id": "b1.environment.lesson-002",
@@ -380,7 +381,8 @@
         "b1.environment.unless",
         "b1.environment.energy",
         "b1.environment.climate"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.first-conditional"]
     }
   ]
 }

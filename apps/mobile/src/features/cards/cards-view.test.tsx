@@ -62,4 +62,62 @@ describe("CardsView", () => {
     expect(onOpenCard).toHaveBeenCalledWith("b1.grammar.look-forward-to");
     expect(screen.getByRole("button", { name: "Say o tell, A2" })).toBeOnTheScreen();
   });
+
+  it("shows a practiced card's best result, with a star when every answer was right", async () => {
+    const scored = (id: string, score: { correct: number; total: number; perfect: boolean }) =>
+      cardGroups(corpus.cards, []).map((g) => ({
+        ...g,
+        levels: g.levels.map((l) => ({
+          ...l,
+          cards: l.cards.map((c) =>
+            c.id === id ? { ...c, status: "studied" as const, score } : c,
+          ),
+        })),
+      }));
+    const groups = scored("b1.grammar.look-forward-to", { correct: 6, total: 6, perfect: true });
+    await render(
+      <CardsView
+        state={{ status: "ready", groups, total: corpus.cards.length, studied: 1 }}
+        onOpenCard={onOpenCard}
+      />,
+    );
+
+    expect(
+      screen.getByRole("button", {
+        name: "Look forward to + -ing, B1, estudiada, completada sin errores: 6 de 6 correctas",
+      }),
+    ).toBeOnTheScreen();
+    expect(screen.getByText("Perfecta · 6/6")).toBeOnTheScreen();
+    expect(
+      screen.getByTestId("card-perfect-b1.grammar.look-forward-to", {
+        includeHiddenElements: true,
+      }),
+    ).toBeOnTheScreen();
+    // Cards never practiced show nothing new.
+    expect(screen.getByRole("button", { name: "Say o tell, A2" })).toBeOnTheScreen();
+    expect(screen.getAllByText(/^(Perfecta|Completada) · /)).toHaveLength(1);
+
+    const withMistakes = scored("b1.grammar.look-forward-to", {
+      correct: 5,
+      total: 6,
+      perfect: false,
+    });
+    await render(
+      <CardsView
+        state={{ status: "ready", groups: withMistakes, total: corpus.cards.length, studied: 1 }}
+        onOpenCard={onOpenCard}
+      />,
+    );
+    expect(
+      screen.getByRole("button", {
+        name: "Look forward to + -ing, B1, estudiada, completada con errores: 5 de 6 correctas",
+      }),
+    ).toBeOnTheScreen();
+    expect(screen.getByText("Completada · 5/6")).toBeOnTheScreen();
+    expect(
+      screen.queryByTestId("card-perfect-b1.grammar.look-forward-to", {
+        includeHiddenElements: true,
+      }),
+    ).not.toBeOnTheScreen();
+  });
 });
