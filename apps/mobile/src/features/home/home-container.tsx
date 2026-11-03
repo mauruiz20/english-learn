@@ -26,6 +26,7 @@ import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
+import { deepenSteps } from "./model/deepen-steps";
 import {
   ACHIEVEMENTS,
   achievementFacts,
@@ -48,7 +49,8 @@ function deepenCards(
 
 /**
  * Lessons for the learner's level (A2 by default), each marked done when all its items were
- * reviewed, with its best result from the log and, once done, the cards that go deeper into it.
+ * reviewed, with its best result from the log and, once done, the cards that go deeper into it
+ * (each card once, see `deepenSteps`).
  */
 function homeLessons(
   content: Corpus,
@@ -60,11 +62,18 @@ function homeLessons(
   const resultById = new Map(results.map((r) => [r.lessonId, r]));
   const selection = lessonsForLevel(content.lessons, level);
   const scores = cardScores(content, results);
+  const stops = selection.lessons.map((lesson) => ({
+    lesson,
+    done: isLessonDone(lesson, content.exercisesById, reviewed),
+  }));
+  // Each card once on the path, under the earliest done lesson that links it.
+  const steps = deepenSteps(
+    stops.map(({ lesson, done }) => ({ id: lesson.id, done, deepenCardIds: lesson.deepenCardIds })),
+  );
   return {
     level: selection.level,
-    items: selection.lessons.map((lesson) => {
-      const done = isLessonDone(lesson, content.exercisesById, reviewed);
-      const deepen = done ? deepenCards(lesson.deepenCardIds, content, scores) : [];
+    items: stops.map(({ lesson, done }) => {
+      const deepen = deepenCards(steps.get(lesson.id), content, scores);
       return {
         id: lesson.id,
         title: lesson.title,
