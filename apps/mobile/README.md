@@ -543,12 +543,21 @@ paper, the prompt and the teacher's marking.
   a results card (aciertos, XP, streak with its clip chain), the stickers earned for the album,
   then "Para repasar": up to six missed items (wrong or almost) with their Spanish gloss
   (`model/items-to-review.ts`), or a short line when everything was right.
-- **Sounds** (`src/infrastructure/sound/`): seven short sounds synthesized by
+- **Sounds** (`src/infrastructure/sound/`): eight short sounds synthesized by
   `scripts/generate-sounds.mjs` (deterministic, no dependencies; `pnpm generate:sounds`
   rewrites `assets/sounds/*.wav`, 16-bit mono 44.1 kHz, -6 dBFS peak). `tap` when choosing an
   option or a word, `correct` / `almost` / `wrong` when feedback appears, `complete` when a
   lesson, review or placement result is saved, then `streak` when that session extended the
-  streak, then `achievement` when it earned album stickers. Placement only taps (it gives no per-question feedback). Sounds are loaded once, never
+  streak, then `achievement` when it earned album stickers. Placement only taps (it gives no per-question feedback).
+  `press` (a 45 ms paper tick, 4 KB, volume 0.2 against 0.35 for `tap` and 0.7–0.85 for
+  feedback) clicks on every other press: the shared primitives (`PressableScale`, hence
+  `Button`, `ChoiceRow`, path nodes, Profundiza and card rows, the account link and the theme
+  switch; `PaperStrip`; `BackArrowButton`; `SoundToggleButton`) call `usePressSound`
+  (`shared/ui/press-sound.ts`), which throttles taps closer than 80 ms (one throttle for the
+  whole app) and never throws or waits. Disabled presses do not fire. Where the press has its own
+  sound, the primitive's `pressSound={false}` skips the click: "Comprobar" (the verdict), the
+  last "Continuar" (`complete`), options and word strips (their `tap`). The sound switch clicks
+  after it flips, so turning sounds on clicks and muting is silent. Sounds are loaded once, never
   block the UI and log instead of throwing. Native: expo-audio players (`expo-sound-player.ts`);
   iOS respects the silent switch. Web (`expo-sound-player.web.ts` over
   `web-audio-sound-player.ts`): each WAV is downloaded once with `fetch` (so the service worker
@@ -644,7 +653,7 @@ by `export:web`, hence in CI) fails if the override ever shows up in `dist/`.
 `e2e/offline.spec.ts` covers the PWA on Chromium and WebKit: after one online visit it goes
 offline (`context.setOffline`), reloads `/` and opens `/lesson/a2.daily-routine.lesson-001`; the
 app renders with its SQLite data, `crossOriginIsolated` is true, fonts and sounds come from the
-worker with no failed request, the tap and feedback sounds really play (`__e2e.playedSounds`)
+worker with no failed request, the press, tap and feedback sounds really play (`__e2e.playedSounds`)
 and a fetch of a non-precached URL fails (proof it is offline).
 The update test starts its own server (`createStaticServer` with `serviceWorkerVersion`) on its
 own origin, then bumps the version so `/sw.js` gets a comment appended for every request, which
