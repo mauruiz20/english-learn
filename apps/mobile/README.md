@@ -388,7 +388,9 @@ network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/a
   tries to close. Nobody answers (the usual same-tab redirect) → a full load of
   `/auth/completar`, which boots the app, checks `state` (once, ≤ 10 min old), sends
   `{ idToken, nonce }` to `POST /v1/auth/google` in cookie mode (the API checks the token's
-  `nonce` claim) and goes back.
+  `nonce` claim) and `router.replace`s itself with home (`/`), so back never reopens the
+  callback. Only a deletion that needed a fresh sign-in returns to `/cuenta?eliminada=1`, for
+  its confirmation; the "save your progress" note just opens `/cuenta` and lands on home too.
 - **Session** (`auth-session.ts`). Access token in memory only; the device remembers only
   `{ userId, email }` (`SettingsRepository.setAccount`). On start, with that marker, one refresh
   (cookie) restores the session; a 401 signs out, a network failure keeps the learner signed in.
