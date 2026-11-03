@@ -365,11 +365,7 @@
         "b1.education.take-notes",
         "b1.education.pass-an-exam"
       ],
-      "deepenCardIds": [
-        "a2.grammar.say-tell",
-        "b1.grammar.past-continuous",
-        "b1.grammar.reported-speech"
-      ]
+      "deepenCardIds": ["b1.grammar.past-continuous"]
     },
     {
       "id": "b1.education.lesson-002",

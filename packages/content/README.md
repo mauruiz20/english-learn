@@ -161,6 +161,10 @@ Lesson rules (cross-file):
     that sits in no lesson (e.g. `a2.weather.vocab-004` for `windy`).
 21. Linked cards (`lesson.deepenCardIds`): no duplicates, every id is a card, and every card is
     at or below the lesson level.
+22. One link per topic: a card is linked by at most one lesson of a topic (same level and
+    `topic`), the lesson that teaches it, so the path never shows the same "Profundiza" card under
+    two lessons of a topic. Lessons of other topics may still link it when they teach it too
+    (`a2.grammar.have-to` deepens both `a2.home.lesson-002` and `a2.work.lesson-002`).
 
 ### Word-order convention
 
@@ -234,7 +238,11 @@ A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds?, deepen
   entry), even when the card uses another item id (`b1.culture-and-entertainment.look-forward` and
   `b1.grammar.look-forward-to`). The link is explicit: terms are never matched against cards the
   lesson does not link. Link a card only when it explains the lesson's own grammar or words, not a
-  loosely related topic.
+  loosely related topic. Within a topic a card goes to one lesson only (rule 22): the lesson whose
+  new items introduce what the card explains; when both lessons introduce part of it, the one that
+  practices it most (the earlier one on a tie). City life links `b1.grammar.future-forms` to
+  "Planes para el futuro" (`will`, `going to` and the present continuous), not to "La vida en la
+  ciudad", which only uses `going to` once.
 
 - Item `example` (optional, `{ en, es }`): an English sentence that uses the item and its
   Spanish. The recap shows it; without it, it takes a sentence (with its Spanish) from an

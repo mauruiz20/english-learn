@@ -393,8 +393,7 @@
         "b1.money-and-shopping.bargain",
         "b1.money-and-shopping.credit-card",
         "b1.money-and-shopping.refund"
-      ],
-      "deepenCardIds": ["b1.grammar.second-conditional", "b1.vocabulary.borrow-lend"]
+      ]
     }
   ]
 }

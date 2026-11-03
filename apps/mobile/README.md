@@ -230,7 +230,10 @@ title and its best result with the same marker as the path ("Perfecta · 6/6" wi
 `/fichas/[id]`; labelled "Profundiza: <título>, ficha nueva" or "Profundiza: <título>, completada
 sin errores: 6 de 6 correctas", with the hint "Abre la ficha". Rows are 48 pt tall, smaller than
 a stop (84), and the pencil line runs on beside them (solid or dotted, like the line between
-stops) when another stop follows. Only the shared press feedback moves, and not with reduced
+stops) when another stop follows. A card shows once on the path, under the earliest done lesson
+that links it (`model/deepen-steps.ts`), even if content links it from lessons of two topics. The
+title wraps, never the marker: when both don't fit on one line the marker goes under the title,
+and on a narrow phone the cards take the room right of the pencil line. Only the shared press feedback moves, and not with reduced
 motion. Lessons not done yet show nothing.
 
 ## Word lookup (`src/features/glossary/`)

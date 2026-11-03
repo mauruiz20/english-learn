@@ -380,7 +380,7 @@
         "b1.media-and-news.passive-past",
         "b1.media-and-news.find-out"
       ],
-      "deepenCardIds": ["a2.grammar.say-tell", "b1.grammar.passive"]
+      "deepenCardIds": ["b1.grammar.passive"]
     }
   ]
 }
