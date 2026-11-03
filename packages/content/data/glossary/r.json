@@ -537,6 +537,18 @@
       ]
     },
     {
+      "id": "glossary.ring",
+      "headword": "ring",
+      "kind": "word",
+      "forms": ["ring", "rings", "rung", "ringing"],
+      "senses": [
+        {
+          "es": "sonar (un teléfono, un timbre)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.rise",
       "headword": "rise",
       "kind": "word",

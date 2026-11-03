@@ -201,6 +201,18 @@
       ]
     },
     {
+      "id": "glossary.delete",
+      "headword": "delete",
+      "kind": "word",
+      "forms": ["delete", "deletes", "deleted", "deleting"],
+      "senses": [
+        {
+          "es": "borrar, eliminar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.delicious",
       "headword": "delicious",
       "kind": "word",
@@ -361,6 +373,18 @@
         {
           "es": "cena",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.direct",
+      "headword": "direct",
+      "kind": "word",
+      "forms": ["direct", "directs", "directed", "directing"],
+      "senses": [
+        {
+          "es": "dirigir",
+          "pos": "verb"
         }
       ]
     },

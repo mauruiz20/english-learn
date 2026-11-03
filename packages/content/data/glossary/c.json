@@ -1197,6 +1197,18 @@
       ]
     },
     {
+      "id": "glossary.create",
+      "headword": "create",
+      "kind": "word",
+      "forms": ["create", "creates", "created", "creating"],
+      "senses": [
+        {
+          "es": "crear",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.credit",
       "headword": "credit",
       "kind": "word",

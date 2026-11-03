@@ -301,6 +301,18 @@
       ]
     },
     {
+      "id": "glossary.optional",
+      "headword": "optional",
+      "kind": "word",
+      "forms": ["optional"],
+      "senses": [
+        {
+          "es": "opcional",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.or",
       "headword": "or",
       "kind": "word",

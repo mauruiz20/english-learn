@@ -401,6 +401,18 @@
       ]
     },
     {
+      "id": "glossary.against",
+      "headword": "against",
+      "kind": "word",
+      "forms": ["against"],
+      "senses": [
+        {
+          "es": "contra, en contra de",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
       "id": "glossary.ago",
       "headword": "ago",
       "kind": "word",

@@ -945,6 +945,18 @@
       ]
     },
     {
+      "id": "glossary.translate",
+      "headword": "translate",
+      "kind": "word",
+      "forms": ["translate", "translates", "translated", "translating"],
+      "senses": [
+        {
+          "es": "traducir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.trash",
       "headword": "trash",
       "kind": "word",

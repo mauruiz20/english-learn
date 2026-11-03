@@ -417,6 +417,18 @@
       ]
     },
     {
+      "id": "glossary.photo",
+      "headword": "photo",
+      "kind": "word",
+      "forms": ["photo", "photos"],
+      "senses": [
+        {
+          "es": "foto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.piano",
       "headword": "piano",
       "kind": "word",
@@ -812,6 +824,18 @@
       "senses": [
         {
           "es": "director, directora (de escuela)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.prize",
+      "headword": "prize",
+      "kind": "word",
+      "forms": ["prize", "prizes"],
+      "senses": [
+        {
+          "es": "premio",
           "pos": "noun"
         }
       ]

@@ -765,6 +765,18 @@
       ]
     },
     {
+      "id": "glossary.singer",
+      "headword": "singer",
+      "kind": "word",
+      "forms": ["singer", "singers"],
+      "senses": [
+        {
+          "es": "cantante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sister",
       "headword": "sister",
       "kind": "word",
@@ -1381,6 +1393,18 @@
         {
           "es": "separarse, terminar (una relación)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sport",
+      "headword": "sport",
+      "kind": "word",
+      "forms": ["sport", "sports"],
+      "senses": [
+        {
+          "es": "deporte",
+          "pos": "noun"
         }
       ]
     },

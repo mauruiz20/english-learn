@@ -453,6 +453,18 @@
       ]
     },
     {
+      "id": "glossary.except",
+      "headword": "except",
+      "kind": "word",
+      "forms": ["except"],
+      "senses": [
+        {
+          "es": "excepto, salvo",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
       "id": "glossary.excited",
       "headword": "excited",
       "kind": "word",

@@ -377,6 +377,18 @@
       ]
     },
     {
+      "id": "glossary.weren-t",
+      "headword": "weren't",
+      "kind": "word",
+      "forms": ["weren't"],
+      "senses": [
+        {
+          "es": "no eran, no estaban (were not)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.what",
       "headword": "what",
       "kind": "word",
