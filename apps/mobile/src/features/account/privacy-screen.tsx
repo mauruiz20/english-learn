@@ -4,7 +4,7 @@ import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { TOUCH_TARGET, spacing } from "@/shared/ui/theme";
 
-export const PRIVACY_LAST_UPDATED = "31 de octubre de 2026";
+export const PRIVACY_LAST_UPDATED = "3 de noviembre de 2026";
 const CONTACT_EMAIL = "mauricio@southernmadelabs.com";
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
@@ -38,7 +38,11 @@ export function PrivacyScreen() {
           • Las respuestas que marques como correctas con «Mi respuesta también es correcta»: el
           texto que escribiste y el ejercicio.
         </Text>
-        <Text>No guardamos tu contraseña de Google ni tu nombre o foto.</Text>
+        <Text>No guardamos en el servidor tu contraseña de Google ni tu nombre o foto.</Text>
+        <Text>
+          Tu nombre de pila (el de tu cuenta de Google) queda solo en este dispositivo, para
+          saludarte en el inicio, y se borra al cerrar sesión.
+        </Text>
       </Section>
 
       <Section title="Dónde">
