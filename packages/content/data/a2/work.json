@@ -250,7 +250,7 @@
       "type": "cloze",
       "sentence": "She ___ to work on Saturdays. It's her day off.",
       "answers": ["doesn't have"],
-      "distractors": ["don't have", "hasn't", "isn't"],
+      "distractors": ["don't have", "hasn't", "not have"],
       "es": "Ella no tiene que trabajar los sábados. Es su día libre."
     },
     {

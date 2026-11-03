@@ -128,7 +128,12 @@
       "id": "glossary.get-enough-sleep",
       "headword": "get enough sleep",
       "kind": "phrase",
-      "forms": ["get enough sleep", "gets enough sleep", "got enough sleep"],
+      "forms": [
+        "get enough sleep",
+        "gets enough sleep",
+        "got enough sleep",
+        "getting enough sleep"
+      ],
       "senses": [
         {
           "es": "dormir lo suficiente",
@@ -204,7 +209,7 @@
       "id": "glossary.get-to",
       "headword": "get to",
       "kind": "phrase",
-      "forms": ["get to", "gets to", "getting to"],
+      "forms": ["get to", "gets to", "got to", "gotten to", "getting to"],
       "senses": [
         {
           "es": "llegar a",
@@ -501,7 +506,7 @@
       "forms": ["graduate", "graduates", "graduated", "graduating"],
       "senses": [
         {
-          "es": "graduarse, recibirse",
+          "es": "graduarse, titularse",
           "pos": "verb"
         }
       ]
