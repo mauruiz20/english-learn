@@ -35,6 +35,23 @@ export const SOUNDS = {
     duration: 0.07,
     notes: [{ at: 0, freq: 1320, length: 0.07, attack: 0.002, decay: 0.012, harmonics: [0.3] }],
   },
+  // Any other button: a paper "tick", like a sticker pressed onto the page. Shorter, duller and
+  // lower than the tap (a soft top note that drops a little over a muted body), 45 ms, ~4 KB.
+  press: {
+    duration: 0.045,
+    notes: [
+      {
+        at: 0,
+        freq: 1760,
+        length: 0.045,
+        attack: 0.0015,
+        decay: 0.006,
+        harmonics: [0.12],
+        glide: 0.9,
+      },
+      { at: 0, freq: 620, length: 0.045, attack: 0.002, decay: 0.009, gain: 0.45 },
+    ],
+  },
   // Bright and short: a rising fifth (C6 → G6).
   correct: {
     duration: 0.36,

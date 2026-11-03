@@ -6,6 +6,7 @@ import {
   type AccessibilityActionEvent,
   type AccessibilityActionInfo,
 } from "react-native";
+import { usePressSound } from "./press-sound";
 import { Text } from "./text";
 import { TOUCH_TARGET, spacing } from "./theme";
 import { themedStyles } from "./use-theme";
@@ -24,6 +25,8 @@ type PaperStripProps = {
   /** Extra screen-reader actions (e.g. moving a placed word left or right). */
   accessibilityActions?: readonly AccessibilityActionInfo[] | undefined;
   onAccessibilityAction?: ((event: AccessibilityActionEvent) => void) | undefined;
+  /** Plays the soft press click (default); off when the exercise plays its own tap. */
+  pressSound?: boolean;
 };
 
 /**
@@ -38,8 +41,10 @@ export function PaperStrip({
   lockedContent,
   accessibilityActions,
   onAccessibilityAction,
+  pressSound = true,
 }: PaperStripProps) {
   const styles = useStyles();
+  const click = usePressSound();
   if (disabled && lockedContent !== undefined) {
     return (
       <View style={styles.strip}>
@@ -58,7 +63,10 @@ export function PaperStrip({
         ? {}
         : { accessibilityActions, onAccessibilityAction })}
       disabled={disabled}
-      onPress={onPress}
+      onPress={() => {
+        if (pressSound) click();
+        onPress();
+      }}
       style={({ pressed }) => [styles.strip, pressed && styles.pressed]}
     >
       <Text variant="body" style={styles.text}>

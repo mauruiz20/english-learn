@@ -48,6 +48,8 @@ export function ChoiceList({
           checked={option === selected}
           disabled={disabled || correctOptions !== undefined}
           mark={markOf(option, selected, correctOptions)}
+          // The choice tap below is this press's sound.
+          pressSound={false}
           onPress={() => {
             sounds.play("tap");
             onSelect(option);

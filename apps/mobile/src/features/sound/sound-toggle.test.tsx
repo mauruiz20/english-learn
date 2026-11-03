@@ -46,6 +46,19 @@ describe("SoundToggle", () => {
     expect(settings.soundEnabled()).toBe(false);
   });
 
+  it("is silent when muting and clicks once sounds are back on", async () => {
+    const sounds = createFakeSoundPlayer();
+    await renderToggle(createFakeSettingsRepository(), sounds);
+
+    await fireEvent.press(await screen.findByRole("button", { name: "Silenciar sonidos" }));
+    expect(sounds.played).toEqual([]);
+
+    jest.spyOn(Date, "now").mockReturnValue(Date.now() + 1_000);
+    await fireEvent.press(screen.getByRole("button", { name: "Activar sonidos" }));
+    expect(sounds.played).toEqual(["press"]);
+    jest.restoreAllMocks();
+  });
+
   it("starts muted when the learner muted sounds before, and turns them back on", async () => {
     const settings = createFakeSettingsRepository({ soundEnabled: false });
     const sounds = createFakeSoundPlayer();

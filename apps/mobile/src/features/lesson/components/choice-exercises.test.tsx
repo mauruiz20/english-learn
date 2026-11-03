@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
+import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
+import { renderWithSounds } from "@/testing/render-with-sounds";
 import { cloze, translationChoice, vocab } from "../model/fixtures";
 import { ClozeExercise } from "./cloze-exercise";
 import { TranslationChoiceExercise } from "./translation-choice-exercise";
@@ -21,6 +23,19 @@ describe("VocabExercise", () => {
     expect(screen.getAllByRole("radio").map((r) => r.props.accessibilityLabel)).toEqual(
       prepared.options,
     );
+  });
+
+  it("plays only the choice tap when an option is picked, never the press click too", async () => {
+    const sounds = createFakeSoundPlayer();
+    await renderWithSounds(
+      <VocabExercise prepared={prepared} disabled={false} onSubmit={onSubmit} />,
+      sounds,
+    );
+
+    await fireEvent.press(screen.getByRole("radio", { name: "despertarse" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Comprobar" }));
+
+    expect(sounds.played).toEqual(["tap"]);
   });
 
   it("submits the selected option once the learner checks", async () => {

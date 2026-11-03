@@ -62,7 +62,8 @@ test.describe("offline web app", () => {
     await page.goto(LESSON);
     await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
     expect(await page.evaluate(() => self.crossOriginIsolated)).toBe(true);
-    // Sounds on again, then answer: the tap and feedback sounds come from the cache.
+    // Sounds on again (the switch clicks), then answer: the press click, the tap and the feedback
+    // sound come from the cache ("Comprobar" leaves its sound to the verdict).
     await page.getByRole("button", { name: "Activar sonidos", exact: true }).click();
     await page.getByRole("radio", { name: "despertarse", exact: true }).click();
     await page.getByRole("button", { name: "Comprobar", exact: true }).click();
@@ -74,7 +75,7 @@ test.describe("offline web app", () => {
           () => (window as unknown as { __e2e?: { playedSounds?: string[] } }).__e2e?.playedSounds,
         ),
       )
-      .toEqual(["tap", "correct"]);
+      .toEqual(["press", "tap", "correct"]);
 
     // Fonts load on demand: the ones this screen uses came from the cache, none failed.
     const fonts = await page.evaluate(() => {
