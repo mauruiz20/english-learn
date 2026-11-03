@@ -95,3 +95,32 @@ export const validateLessonDeepenCards: Rule = (files) => {
   }
   return errors;
 };
+
+/**
+ * A card is linked by at most one lesson of a topic (same level and `topic`): the lesson that
+ * teaches it. Otherwise the path shows the same "Profundiza" card under consecutive lessons.
+ * Lessons of other topics may still link it. The later link is reported.
+ */
+export const validateTopicDeepenCards: Rule = (files) => {
+  const firstLinker = new Map<string, string>();
+  const errors: ValidationError[] = [];
+  for (const { file, data } of files) {
+    (data.lessons ?? []).forEach((lesson, i) => {
+      (lesson.deepenCardIds ?? []).forEach((id, j) => {
+        const key = `${lesson.level}|${lesson.topic}|${id}`;
+        const linker = firstLinker.get(key);
+        if (linker === undefined) {
+          firstLinker.set(key, lesson.id);
+          return;
+        }
+        if (linker === lesson.id) return; // a duplicate inside one lesson is rule 21
+        errors.push({
+          file,
+          path: `lessons[${i}].deepenCardIds[${j}]`,
+          message: `card "${id}" is already linked by "${linker}", a lesson of the same topic; link it to the lesson that teaches it`,
+        });
+      });
+    });
+  }
+  return errors;
+};

@@ -12,6 +12,7 @@ import {
   validateLessonDeepenCards,
   validateLessonNewItems,
   validateReviewableLessonItems,
+  validateTopicDeepenCards,
 } from "./lessons";
 import { validateLevels } from "./levels";
 import { validateAnswerIndexes, validateOptionDuplicates } from "./options";
@@ -48,6 +49,7 @@ const CROSS_FILE_RULES: readonly Rule[] = [
   validateCardReferences,
   validateLessonNewItems,
   validateLessonDeepenCards,
+  validateTopicDeepenCards,
   validateReviewableLessonItems,
   validateGlossaryForms,
   validateGlossaryCoverage,
