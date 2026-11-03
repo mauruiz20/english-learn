@@ -67,6 +67,17 @@ const MIGRATIONS: readonly string[] = [
     completions INTEGER NOT NULL
   );
   `,
+  // 4 → 5: the fold's state after the whole log (`FoldSnapshot` JSON), how many events it
+  // covers and the fold rules it was computed with (`foldRulesFingerprint`), so a write applies
+  // only its new events. It starts empty: the next write (or the refold after an upgrade) fills it.
+  `
+  CREATE TABLE fold_snapshot (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    event_count INTEGER NOT NULL,
+    rules TEXT NOT NULL,
+    data TEXT NOT NULL
+  );
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */

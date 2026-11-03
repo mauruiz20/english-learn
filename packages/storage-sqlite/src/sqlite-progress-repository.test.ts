@@ -1,6 +1,9 @@
 import {
   EMPTY_STREAK,
+  addDays,
   foldEvents,
+  foldRulesFingerprint,
+  foldSnapshot,
   localDate,
   type BaselineImportedEvent,
   type Grade,
@@ -10,6 +13,7 @@ import {
   type StoredEvent,
   type Streak,
 } from "@english-learn/domain";
+import fc from "fast-check";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { migrate } from "./migrations";
 import {
@@ -88,6 +92,13 @@ function state(itemId: string, overrides: Partial<ReviewState> = {}): ReviewStat
     dueDate: NEXT_DAY,
     ...overrides,
   };
+}
+
+/** A fresh migrated in-memory database and its repository. */
+async function createSqliteNodeStore(): Promise<{ db: Db; repo: SqliteProgressRepository }> {
+  const db = createNodeSqliteDatabase();
+  await migrate(db);
+  return { db, repo: createSqliteProgressRepository(db) };
 }
 
 async function eventCount(db: Db): Promise<number> {
@@ -541,6 +552,39 @@ describe("createSqliteProgressRepository", () => {
       expect(await repo.getDeviceId()).toBe("device-1");
     });
 
+    it("skips events whose id or device id is not well-formed Unicode", async () => {
+      // SQLite would store a lone surrogate as U+FFFD: a refold would then see another id.
+      const loneId = { ...lessonDone(DAY, "s-lone", "l1", 10), id: "abc\uD800" };
+      const loneDevice = { ...lessonDone(DAY, "s-dev", "l2", 10), deviceId: "\uDC00dev" };
+      const fine = lessonDone(DAY, "s-ok", "l3", 10);
+
+      expect(await repo.insertRemoteEvents([loneId, loneDevice, fine])).toBe(1);
+      expect(await repo.importEvents([loneId, loneDevice])).toBe(0);
+      await expect(repo.appendEvents([loneId as ProgressEvent])).rejects.toThrow(RangeError);
+      expect(await cacheOf(repo)).toEqual(foldedCache([fine]));
+    });
+
+    it("skips them too on a runtime without String.prototype.isWellFormed", async () => {
+      const native = Reflect.get(String.prototype, "isWellFormed") as unknown;
+      Reflect.deleteProperty(String.prototype, "isWellFormed");
+      try {
+        const events = [
+          { ...lessonDone(DAY, "s1", "l1", 10), id: "abc\uD800" },
+          { ...lessonDone(DAY, "s2", "l1", 10), id: "\uDC00abc" },
+          { ...lessonDone(DAY, "s3", "l1", 10), deviceId: "a\uD800\uD800b" },
+          { ...lessonDone(DAY, "s4", "l1", 10), id: "pair-😀" },
+        ];
+        expect(await repo.insertRemoteEvents(events)).toBe(1);
+        expect((await storedEvents(db)).map((e) => e.id)).toEqual(["pair-😀"]);
+      } finally {
+        Reflect.defineProperty(String.prototype, "isWellFormed", {
+          value: native,
+          writable: true,
+          configurable: true,
+        });
+      }
+    });
+
     it("stores remote events this version cannot read, and skips unorderable ones", async () => {
       const future = { ...envelope(DAY), type: "goal_set", payload: { v: 1, goal: 3 } };
       const broken = { ...envelope(DAY), occurredAt: Number.NaN, type: "x", payload: {} };
@@ -633,9 +677,201 @@ describe("createSqliteProgressRepository", () => {
     });
   });
 
+  describe("incremental fold (fold snapshot)", () => {
+    /** Records every SQL statement the repository sends to the database. */
+    function recording(inner: Db) {
+      const statements: string[] = [];
+      const record =
+        <A extends unknown[], R>(run: (sql: string, ...rest: A) => R) =>
+        (sql: string, ...rest: A): R => {
+          statements.push(sql.replace(/\s+/g, " "));
+          return run(sql, ...rest);
+        };
+      const db: Db = {
+        ...inner,
+        execAsync: record(inner.execAsync),
+        runAsync: record(inner.runAsync),
+        getFirstAsync: record(inner.getFirstAsync) as Db["getFirstAsync"],
+        getAllAsync: record(inner.getAllAsync) as Db["getAllAsync"],
+      };
+      return { db, statements };
+    }
+
+    /** Statements that read whole event rows (the full log), not just a count. */
+    const readsEvents = (statements: readonly string[]) =>
+      statements.filter((sql) =>
+        /^SELECT id, device_id.* FROM event(?! WHERE synced_at)/.test(sql),
+      );
+
+    async function storedSnapshot(target: Db = db): Promise<unknown> {
+      const row = await target.getFirstAsync<{ data: string }>(
+        "SELECT data FROM fold_snapshot",
+        [],
+      );
+      return row === null ? null : (JSON.parse(row.data) as unknown);
+    }
+
+    it("saves a session without reading the event log, once a snapshot exists", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5, b: 1 }, 20));
+      const { db: spied, statements } = recording(db);
+      const store = createSqliteProgressRepository(spied);
+
+      await store.appendEvents(lesson(NEXT_DAY, "l2", { a: 3, c: 4 }, 30));
+
+      expect(readsEvents(statements)).toEqual([]);
+      const events = await storedEvents(db);
+      expect(await cacheOf(repo)).toEqual(foldedCache(events));
+      expect(await storedSnapshot()).toEqual(foldSnapshot(events));
+    });
+
+    it("pulls remote events that go after the cursor without reading the event log", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 20));
+      const { db: spied, statements } = recording(db);
+
+      await createSqliteProgressRepository(spied).insertRemoteEvents(
+        lesson(NEXT_DAY, "l1", { a: 4, b: 2 }, 15),
+      );
+
+      expect(readsEvents(statements)).toEqual([]);
+      expect(await cacheOf(repo)).toEqual(foldedCache(await storedEvents(db)));
+    });
+
+    it("refolds the whole log when a pulled event sorts before the cursor", async () => {
+      await repo.appendEvents(lesson(NEXT_DAY, "l1", { a: 5, b: 4 }, 20));
+      const { db: spied, statements } = recording(db);
+
+      // Another device did the same lesson the day before: it earns the bonus, not ours.
+      await createSqliteProgressRepository(spied).insertRemoteEvents(
+        lesson(DAY, "l1", { a: 1 }, 10),
+      );
+
+      expect(readsEvents(statements)).toHaveLength(1);
+      const events = await storedEvents(db);
+      expect(await cacheOf(repo)).toEqual(foldedCache(events));
+      expect(await storedSnapshot()).toEqual(foldSnapshot(events));
+    });
+
+    it("refolds when the stored snapshot does not match the log", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 20));
+      // An event the snapshot never saw (no code path does this; the count catches it).
+      const [stray] = lesson(DAY, "l9", { z: 5 }, 99).slice(-1);
+      await db.runAsync(
+        `INSERT INTO event (id, device_id, occurred_at, local_date, type, payload)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [
+          stray!.id,
+          stray!.deviceId,
+          1,
+          stray!.localDate,
+          stray!.type,
+          JSON.stringify(stray!.payload),
+        ],
+      );
+
+      await repo.appendEvents(lesson(NEXT_DAY, "l2", { b: 4 }, 30));
+
+      expect(await cacheOf(repo)).toEqual(foldedCache(await storedEvents(db)));
+    });
+
+    it("refolds once when the snapshot was stored under other fold rules (an app update)", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 20));
+      await db.runAsync("UPDATE fold_snapshot SET rules = 'v1-00000000'", []);
+      const { db: spied, statements } = recording(db);
+      const store = createSqliteProgressRepository(spied);
+
+      await store.appendEvents(lesson(NEXT_DAY, "l2", { b: 4 }, 30));
+      expect(readsEvents(statements)).toHaveLength(1);
+      const row = await db.getFirstAsync<{ rules: string }>("SELECT rules FROM fold_snapshot", []);
+      expect(row?.rules).toBe(foldRulesFingerprint());
+      const events = await storedEvents(db);
+      expect(await cacheOf(repo)).toEqual(foldedCache(events));
+      expect(await storedSnapshot()).toEqual(foldSnapshot(events));
+
+      statements.length = 0;
+      await store.appendEvents(lesson(NEXT_DAY, "l3", { c: 4 }, 30));
+      expect(readsEvents(statements)).toEqual([]);
+    });
+
+    it("refolds when the stored snapshot has another format version", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 20));
+      await db.runAsync(`UPDATE fold_snapshot SET data = '{"v":0}'`, []);
+
+      await repo.appendEvents(lesson(NEXT_DAY, "l1", { a: 4 }, 30));
+
+      const events = await storedEvents(db);
+      expect(await cacheOf(repo)).toEqual(foldedCache(events));
+      expect(await storedSnapshot()).toEqual(foldSnapshot(events));
+    });
+
+    it("rebuilds the snapshot with the cache", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 20));
+      await db.runAsync("DELETE FROM fold_snapshot", []);
+
+      await repo.rebuildFromEvents();
+
+      expect(await storedSnapshot()).toEqual(foldSnapshot(await storedEvents(db)));
+    });
+
+    it("is cleared with the rest of the progress (sign-out data deletion)", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 20));
+
+      await repo.clearProgress();
+
+      expect(await storedSnapshot()).toBeNull();
+      await repo.appendEvents(lesson(NEXT_DAY, "l2", { b: 4 }, 30));
+      expect(await cacheOf(repo)).toEqual(foldedCache(await storedEvents(db)));
+    });
+
+    it("keeps the cache equal to a full refold over any mix of writes", async () => {
+      const day = (n: number) => addDays(DAY, n);
+      const writeArb = fc.oneof(
+        fc.record({ kind: fc.constant("local" as const), day: fc.nat(6), items: fc.nat(3) }),
+        fc.record({ kind: fc.constant("remote" as const), day: fc.nat(6), items: fc.nat(3) }),
+        fc.record({ kind: fc.constant("import" as const), day: fc.nat(6), items: fc.nat(3) }),
+        fc.record({ kind: fc.constant("redeliver" as const), pick: fc.nat(40) }),
+      );
+      await fc.assert(
+        fc.asyncProperty(fc.array(writeArb, { minLength: 1, maxLength: 8 }), async (writes) => {
+          const store = await createSqliteNodeStore();
+          try {
+            const written: StoredEvent[] = [];
+            for (const write of writes) {
+              if (write.kind === "redeliver") {
+                const event = written[write.pick % (written.length || 1)];
+                if (event !== undefined) await store.repo.insertRemoteEvents([event]);
+              } else {
+                const grades = Object.fromEntries(
+                  Array.from({ length: write.items + 1 }, (_, i) => [
+                    `i${(i * 3 + write.day) % 5}`,
+                    ((i + write.day) % 6) as Grade,
+                  ]),
+                );
+                const events = lesson(day(write.day), `l${write.day % 3}`, grades, 10);
+                written.push(...events);
+                if (write.kind === "local") await store.repo.appendEvents(events);
+                else if (write.kind === "remote") await store.repo.insertRemoteEvents(events);
+                else await store.repo.importEvents(events);
+              }
+              const events = await storedEvents(store.db);
+              expect(await cacheOf(store.repo)).toEqual(foldedCache(events));
+              // No snapshot before the first event (nothing to fold yet).
+              if (events.length > 0) {
+                expect(await storedSnapshot(store.db)).toEqual(foldSnapshot(events));
+              }
+            }
+          } finally {
+            store.db.close();
+          }
+        }),
+        { numRuns: 60 },
+      );
+    });
+  });
+
   describe("performance", () => {
     // Canary for order-of-magnitude regressions (e.g. accidental quadratic refolds), not a
-    // benchmark: ~25 ms on a laptop, but CI runners share CPU with the other test suites.
+    // benchmark (`pnpm bench`): a few ms on a laptop, since the append folds only its own events,
+    // but CI runners share CPU with the other test suites.
     it("appends a session over a 5k-event log without an order-of-magnitude slowdown", async () => {
       const start = Date.parse("2025-01-01T00:00:00Z");
       const events: ProgressEvent[] = [];
@@ -661,7 +897,7 @@ describe("createSqliteProgressRepository", () => {
       }
       const best = Math.min(...timings);
       console.info(
-        `append+refold over ${await eventCount(db)} events: ${timings.map((t) => t.toFixed(1)).join(" / ")} ms`,
+        `append over ${await eventCount(db)} events: ${timings.map((t) => t.toFixed(1)).join(" / ")} ms`,
       );
       expect(best).toBeLessThan(400);
       expect(await cacheOf(repo)).toEqual(foldedCache(await storedEvents(db)));

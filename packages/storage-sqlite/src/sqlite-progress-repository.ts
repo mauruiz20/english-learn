@@ -1,10 +1,17 @@
 import {
+  EMPTY_PROGRESS,
   EMPTY_STREAK,
+  FOLD_SNAPSHOT_VERSION,
   LEVELS,
+  advanceFold,
   foldEvents,
+  foldRulesFingerprint,
+  foldSnapshot,
   localDate,
+  snapshotProgress,
   type AppendedEvents,
   type BaselineImportedEvent,
+  type FoldSnapshot,
   type LessonResult,
   type Level,
   type PlacementResult,
@@ -150,6 +157,35 @@ function parsePayload(text: string): unknown {
   }
 }
 
+/**
+ * The event exactly as reading it back from the `event` table gives it (only the envelope's
+ * columns, the payload through JSON), so the incremental fold sees what a refold would.
+ */
+function asStored(event: StoredEvent): StoredEvent {
+  return {
+    id: event.id,
+    deviceId: event.deviceId,
+    occurredAt: event.occurredAt,
+    localDate: event.localDate,
+    type: event.type,
+    payload: parsePayload(JSON.stringify(event.payload ?? null)),
+  };
+}
+
+function sameLessonResult(a: LessonResult, b: LessonResult): boolean {
+  return a.bestAccuracy === b.bestAccuracy && a.completions === b.completions;
+}
+
+/** A stored `FoldSnapshot`, or `null` when it cannot be used (unreadable, other version). */
+function parseSnapshot(text: string): FoldSnapshot | null {
+  try {
+    const value = JSON.parse(text) as { v?: unknown } | null;
+    return value?.v === FOLD_SNAPSHOT_VERSION ? (value as FoldSnapshot) : null;
+  } catch {
+    return null;
+  }
+}
+
 function toStoredEvent(row: EventRow): StoredEvent {
   return {
     id: row.id,
@@ -161,16 +197,44 @@ function toStoredEvent(row: EventRow): StoredEvent {
   };
 }
 
-/** Envelope fields the event table needs (the fold re-validates everything on read). */
+/**
+ * Whether `text` is well-formed UTF-16 (no lone surrogate). SQLite stores text as UTF-8 and turns
+ * a lone surrogate into U+FFFD, so such a value would read back different from what was written.
+ * `String.prototype.isWellFormed` (ES2024) when the runtime has it, else a scan.
+ */
+function isWellFormedText(text: string): boolean {
+  const native = (text as { isWellFormed?: () => boolean }).isWellFormed;
+  if (typeof native === "function") return native.call(text);
+  for (let i = 0; i < text.length; i++) {
+    const unit = text.charCodeAt(i);
+    if (unit >= 0xd800 && unit <= 0xdbff) {
+      const next = text.charCodeAt(i + 1);
+      if (!(next >= 0xdc00 && next <= 0xdfff)) return false;
+      i += 1;
+    } else if (unit >= 0xdc00 && unit <= 0xdfff) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * Envelope fields the event table needs, as text SQLite reads back unchanged (the fold
+ * re-validates everything on read; the payload is JSON, which escapes lone surrogates).
+ */
 function isStorable(event: StoredEvent): boolean {
   return (
     typeof event.id === "string" &&
     event.id.length > 0 &&
+    isWellFormedText(event.id) &&
     typeof event.deviceId === "string" &&
+    isWellFormedText(event.deviceId) &&
     typeof event.occurredAt === "number" &&
     Number.isFinite(event.occurredAt) &&
     typeof event.localDate === "string" &&
-    typeof event.type === "string"
+    isWellFormedText(event.localDate) &&
+    typeof event.type === "string" &&
+    isWellFormedText(event.type)
   );
 }
 
@@ -178,7 +242,9 @@ function isStorable(event: StoredEvent): boolean {
  * `ProgressRepository` (plus the sync store) backed by SQLite: an append-only `event` table is
  * the source of truth, and `review_state`, `xp`, `streak`, `placement_result` and `lesson_result`
  * cache its fold.
- * Every write refolds the whole log in the same transaction and writes only what changed.
+ * Every write applies only its new events to a stored fold snapshot (`advanceFold`), refolding the
+ * whole log only when they do not go after it, in the same transaction, and writes only what
+ * changed.
  * Call `migrate(db)` before using it.
  */
 export function createSqliteProgressRepository(
@@ -244,13 +310,30 @@ export function createSqliteProgressRepository(
     }));
   }
 
-  /** Replaces the lesson results (a handful of rows per lesson completed, so rewritten whole). */
-  async function writeLessonResults(results: readonly LessonResult[]): Promise<void> {
-    await db.runAsync("DELETE FROM lesson_result", []);
-    for (const chunk of chunks(results, RESULTS_PER_INSERT)) {
+  /** Makes `lesson_result` equal to `results`, given what it holds now (`cached`). */
+  async function writeLessonResults(
+    results: readonly LessonResult[],
+    cached: readonly LessonResult[],
+  ): Promise<void> {
+    const stale = new Map(cached.map((r) => [r.lessonId, r]));
+    const changed = results.filter((r) => {
+      const current = stale.get(r.lessonId);
+      stale.delete(r.lessonId);
+      return current === undefined || !sameLessonResult(current, r);
+    });
+    for (const chunk of chunks([...stale.keys()], MAX_IDS_PER_QUERY)) {
+      await db.runAsync(
+        `DELETE FROM lesson_result WHERE lesson_id IN (${chunk.map(() => "?").join(", ")})`,
+        chunk,
+      );
+    }
+    for (const chunk of chunks(changed, RESULTS_PER_INSERT)) {
       await db.runAsync(
         `INSERT INTO lesson_result (lesson_id, best_accuracy, completions)
-         VALUES ${chunk.map(() => "(?, ?, ?)").join(", ")}`,
+         VALUES ${chunk.map(() => "(?, ?, ?)").join(", ")}
+         ON CONFLICT (lesson_id) DO UPDATE SET
+           best_accuracy = excluded.best_accuracy,
+           completions = excluded.completions`,
         chunk.flatMap((r) => [r.lessonId, r.bestAccuracy, r.completions]),
       );
     }
@@ -344,9 +427,18 @@ export function createSqliteProgressRepository(
     }
   }
 
-  /** Makes the cache tables equal to `progress`, writing only the review states that changed. */
-  async function writeCache(progress: ProgressState): Promise<void> {
-    const cached = new Map((await readAllStates()).map((s) => [s.itemId, s]));
+  /**
+   * Makes the cache tables equal to `progress`, writing only the review states and lesson
+   * results that changed. `cached` is what the tables hold now when known (the previous
+   * snapshot's progress); otherwise they are read.
+   */
+  async function writeCache(
+    progress: ProgressState,
+    cachedProgress: ProgressState | null,
+  ): Promise<void> {
+    const cached = new Map(
+      (cachedProgress?.states ?? (await readAllStates())).map((s) => [s.itemId, s]),
+    );
     const changed = progress.states.filter((s) => {
       const current = cached.get(s.itemId);
       cached.delete(s.itemId);
@@ -372,7 +464,10 @@ export function createSqliteProgressRepository(
          last_active_date = excluded.last_active_date`,
       [progress.streak.current, progress.streak.longest, progress.streak.lastActiveDate],
     );
-    await writeLessonResults(progress.lessonResults);
+    await writeLessonResults(
+      progress.lessonResults,
+      cachedProgress?.lessonResults ?? (await readLessonResults()),
+    );
     if (progress.placement === null) {
       await db.runAsync("DELETE FROM placement_result", []);
     } else {
@@ -384,8 +479,61 @@ export function createSqliteProgressRepository(
     }
   }
 
+  async function countEvents(): Promise<number> {
+    const row = await db.getFirstAsync<{ n: number }>("SELECT COUNT(*) AS n FROM event", []);
+    return Number(row?.n ?? 0);
+  }
+
+  /**
+   * The stored snapshot, or `null` when it cannot be used: none, unreadable, another format
+   * version, or computed with other fold rules (an app update changed them: refold once).
+   */
+  async function readSnapshot(): Promise<{ snapshot: FoldSnapshot; eventCount: number } | null> {
+    const row = await db.getFirstAsync<{ event_count: number; rules: string; data: string }>(
+      "SELECT event_count, rules, data FROM fold_snapshot WHERE id = 1",
+      [],
+    );
+    if (row === null || row.rules !== foldRulesFingerprint()) return null;
+    const snapshot = parseSnapshot(row.data);
+    return snapshot === null ? null : { snapshot, eventCount: Number(row.event_count) };
+  }
+
+  async function writeSnapshot(snapshot: FoldSnapshot, eventCount: number): Promise<void> {
+    await db.runAsync(
+      `INSERT INTO fold_snapshot (id, event_count, rules, data) VALUES (1, ?, ?, ?)
+       ON CONFLICT (id) DO UPDATE SET
+         event_count = excluded.event_count,
+         rules = excluded.rules,
+         data = excluded.data`,
+      [eventCount, foldRulesFingerprint(), JSON.stringify(snapshot)],
+    );
+  }
+
+  /** Folds the whole log: the cache and the snapshot from scratch. */
   async function refold(): Promise<void> {
-    await writeCache(foldEvents(await readEvents()));
+    const events = await readEvents();
+    const snapshot = foldSnapshot(events);
+    await writeCache(snapshotProgress(snapshot), null);
+    await writeSnapshot(snapshot, events.length);
+  }
+
+  /**
+   * Brings the cache and the snapshot up to date after `added` (events just inserted, none of
+   * whose ids was stored before) by applying only them on top of the stored snapshot. Refolds
+   * the whole log when there is no usable snapshot, when it does not cover exactly the other
+   * events (count), or when the new events do not go after it (`advanceFold` refuses).
+   */
+  async function foldAdded(added: readonly StoredEvent[]): Promise<void> {
+    if (added.length === 0) return;
+    const stored = await readSnapshot();
+    const eventCount = await countEvents();
+    const advanced =
+      stored !== null && stored.eventCount + added.length === eventCount
+        ? advanceFold(stored.snapshot, added.map(asStored))
+        : null;
+    if (stored === null || advanced === null) return refold();
+    await writeCache(snapshotProgress(advanced), snapshotProgress(stored.snapshot));
+    await writeSnapshot(advanced, eventCount);
   }
 
   /** Runs `task` in a transaction and resolves to its result. */
@@ -442,7 +590,7 @@ export function createSqliteProgressRepository(
         const baseline = build(cache);
         assertWellFormed([baseline]);
         await insertEvent(baseline, { ignoreExisting: false, syncedAt: null, serverSeq: null });
-        await refold();
+        await foldAdded([baseline]);
         return true;
       });
     },
@@ -454,7 +602,7 @@ export function createSqliteProgressRepository(
         for (const event of events) {
           await insertEvent(event, { ignoreExisting: false, syncedAt: null, serverSeq: null });
         }
-        await refold();
+        await foldAdded(events);
         return { before, after: await readTotals() };
       });
     },
@@ -503,7 +651,8 @@ export function createSqliteProgressRepository(
       await transaction(async () => {
         await db.runAsync("DELETE FROM event", []);
         await db.runAsync("DELETE FROM sync_state WHERE key = ?", [SERVER_CURSOR]);
-        await refold();
+        await db.runAsync("DELETE FROM fold_snapshot", []);
+        await writeCache(EMPTY_PROGRESS, null);
       });
     },
 
@@ -524,37 +673,37 @@ export function createSqliteProgressRepository(
 
     async importEvents(events) {
       return transaction(async () => {
-        let inserted = 0;
+        const added: StoredEvent[] = [];
         for (const event of events) {
           if (!isStorable(event)) continue;
-          const added = await insertEvent(event, {
+          const isNew = await insertEvent(event, {
             ignoreExisting: true,
             syncedAt: null,
             serverSeq: null,
           });
-          if (added) inserted += 1;
+          if (isNew) added.push(event);
         }
-        if (inserted > 0) await refold();
-        return inserted;
+        await foldAdded(added);
+        return added.length;
       });
     },
 
     async insertRemoteEvents(events) {
       const syncedAt = now();
       return transaction(async () => {
-        let inserted = 0;
+        const added: StoredEvent[] = [];
         for (const event of events) {
           if (!isStorable(event)) continue;
           const { serverSeq, ...stored } = event;
-          const added = await insertEvent(stored, {
+          const isNew = await insertEvent(stored, {
             ignoreExisting: true,
             syncedAt,
             serverSeq: serverSeq ?? null,
           });
-          if (added) inserted += 1;
+          if (isNew) added.push(stored);
         }
-        if (inserted > 0) await refold();
-        return inserted;
+        await foldAdded(added);
+        return added.length;
       });
     },
   };
@@ -562,6 +711,10 @@ export function createSqliteProgressRepository(
 
 /** Local writes must be events this version folds cleanly; anything else is a bug. */
 function assertWellFormed(events: readonly StoredEvent[]): void {
+  const unstorable = events.find((event) => !isStorable(event));
+  if (unstorable !== undefined) {
+    throw new RangeError(`Refusing to write an unstorable event (${String(unstorable.id)})`);
+  }
   const { anomalies } = foldEvents(events);
   const first = anomalies[0];
   if (first !== undefined) {

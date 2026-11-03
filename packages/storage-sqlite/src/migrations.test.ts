@@ -30,6 +30,7 @@ describe("migrate", () => {
     expect(await userVersion(db)).toBe(SCHEMA_VERSION);
     expect(await tableNames(db)).toEqual([
       "event",
+      "fold_snapshot",
       "lesson_result",
       "placement_result",
       "review_state",
