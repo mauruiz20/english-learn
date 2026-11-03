@@ -18,14 +18,21 @@ test("review: items learned in a lesson come back days later and can be reviewed
   await expect(page.getByText("Nada para repasar hoy")).toBeVisible();
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
   await playSessionCorrectly(page, "¡Lección completada!");
+  // The summary's "XP ganada" counts up on screen; its accessible name holds the final value
+  // from the start, so read that instead of the number mid-count.
+  const lessonXp = Number(
+    (await page.getByLabel(/^XP ganada: \d+$/).getAttribute("aria-label"))?.match(/\d+/)?.[0],
+  );
+  expect(lessonXp).toBeGreaterThan(0);
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
 
-  // Same day: everything was just learned, nothing is due.
+  // Same day: everything was just learned, nothing is due. Home is still mounted under the
+  // lesson with the progress it loaded before it (0 XP, nothing to review), and reloads on focus:
+  // wait for the new total instead of reading the XP once (on WebKit that read could land before
+  // the reload and see 0).
+  const xpAfterLesson = lessonXp;
+  await expect(page.getByText(`${xpAfterLesson} XP`, { exact: true })).toBeVisible();
   await expect(page.getByText("Nada para repasar hoy")).toBeVisible();
-  const xpAfterLesson = Number(
-    (await page.getByText(/^\d+ XP$/).textContent())?.replace(" XP", ""),
-  );
-  expect(xpAfterLesson).toBeGreaterThan(0);
 
   await page.goto(`/?today=${DAY_3}`);
   const pending = page.getByText(/^\d+ pendientes?$/);
