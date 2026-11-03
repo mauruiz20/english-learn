@@ -144,6 +144,8 @@ export function DraggableStrip({
         disabled={disabled}
         lockedContent={lockedContent}
         onPress={onPress}
+        // The exercise taps when a strip moves (`WordOrderExercise`): no press click on top.
+        pressSound={false}
         accessibilityActions={accessibilityActions}
         onAccessibilityAction={
           onAccessibilityAction === undefined

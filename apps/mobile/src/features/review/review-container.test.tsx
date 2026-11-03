@@ -110,7 +110,15 @@ describe("ReviewContainer", () => {
     await answer("Continuar", "button");
 
     expect(await screen.findByText("¡Repaso completado!")).toBeOnTheScreen();
-    expect(sounds.played.slice(0, 5)).toEqual(["tap", "correct", "tap", "correct", "complete"]);
+    // "Comprobar" and the last "Continuar" leave the sound to the verdict and the completion.
+    expect(sounds.played.slice(0, 6)).toEqual([
+      "tap",
+      "correct",
+      "press",
+      "tap",
+      "correct",
+      "complete",
+    ]);
     await waitFor(() => expect(sounds.played.slice(-1)).toEqual(["streak"]));
     expect(screen.getByText("XP ganada: 20")).toBeOnTheScreen();
     expect(screen.getByText("Racha: 2 días")).toBeOnTheScreen();

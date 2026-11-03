@@ -19,14 +19,20 @@ type ExerciseLayoutProps = {
   submitLabel?: string | undefined;
 };
 
-/** Instruction + exercise body + "Comprobar" button shared by every exercise type. */
+const CHECK_LABEL = "Comprobar";
+
+/**
+ * Instruction + exercise body + "Comprobar" button shared by every exercise type. "Comprobar" is
+ * answered by the verdict sound, so it does not click; another submit (placement's "Siguiente",
+ * which gives no feedback) does.
+ */
 export function ExerciseLayout({
   instruction,
   children,
   canSubmit,
   locked,
   onSubmit,
-  submitLabel = "Comprobar",
+  submitLabel = CHECK_LABEL,
 }: ExerciseLayoutProps) {
   return (
     <View style={styles.layout}>
@@ -34,7 +40,14 @@ export function ExerciseLayout({
         {instruction}
       </Text>
       {children}
-      {!locked && <Button label={submitLabel} disabled={!canSubmit} onPress={onSubmit} />}
+      {!locked && (
+        <Button
+          label={submitLabel}
+          disabled={!canSubmit}
+          pressSound={submitLabel !== CHECK_LABEL}
+          onPress={onSubmit}
+        />
+      )}
     </View>
   );
 }

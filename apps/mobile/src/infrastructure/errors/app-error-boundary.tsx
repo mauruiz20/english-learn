@@ -46,6 +46,11 @@ type AppErrorBoundaryProps = {
    * undefined when it must not (another failure, two workers, no attempt counter).
    */
   backgroundRetry?: () => (() => void) | undefined;
+  /**
+   * For files that stayed busy (web): goes back to the app's previous screen in this window
+   * (it may be a frozen page holding them), or undefined when there is none.
+   */
+  backToPreviousScreen?: () => (() => void) | undefined;
 };
 
 /** Files held after the whole wait: the help, and (web) another try whenever it may work. */
@@ -53,11 +58,13 @@ function BusyFilesScreen({
   error,
   onRetry,
   retryInBackground,
+  goBack,
   details,
 }: {
   error: DatabaseOpenError;
   onRetry: () => void;
   retryInBackground: (() => void) | undefined;
+  goBack: (() => void) | undefined;
   details: readonly string[];
 }) {
   useEffect(() => {
@@ -68,6 +75,15 @@ function BusyFilesScreen({
     <ScreenContainer title={STUCK_TITLE} insetTop>
       <BusyFilesHelp retryingOnItsOwn={retryInBackground !== undefined} />
       <Button label="Reintentar" onPress={onRetry} />
+      {goBack === undefined ? null : (
+        <>
+          <Text>
+            Si llegaste aquí después de iniciar sesión, tus datos pueden seguir abiertos en la
+            pantalla anterior de esta ventana.
+          </Text>
+          <Button label="Volver a la pantalla anterior" onPress={goBack} />
+        </>
+      )}
       <TechnicalDetails
         lines={[
           `Motivo: ${openFailureCode(error.cause)}`,
@@ -108,6 +124,7 @@ export class AppErrorBoundary extends Component<AppErrorBoundaryProps, { error: 
           error={error}
           onRetry={this.props.onRetry}
           retryInBackground={this.props.backgroundRetry?.()}
+          goBack={this.props.backToPreviousScreen?.()}
           details={this.props.details?.() ?? []}
         />
       );

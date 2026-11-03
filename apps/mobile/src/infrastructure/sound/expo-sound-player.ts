@@ -11,6 +11,7 @@ import type { SoundName, SoundPlayer } from "./sound-player";
 // Bundled with the app (offline; same-origin on web, so COEP `require-corp` allows them).
 const SOURCES: Readonly<Record<SoundName, number>> = {
   tap: require("../../../assets/sounds/tap.wav"),
+  press: require("../../../assets/sounds/press.wav"),
   correct: require("../../../assets/sounds/correct.wav"),
   almost: require("../../../assets/sounds/almost.wav"),
   wrong: require("../../../assets/sounds/wrong.wav"),

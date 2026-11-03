@@ -7,6 +7,7 @@ import { createWebAudioSoundPlayer } from "./web-audio-sound-player";
 // worker, so COEP `require-corp` allows them and they load offline.
 const SOURCES: Readonly<Record<SoundName, number>> = {
   tap: require("../../../assets/sounds/tap.wav"),
+  press: require("../../../assets/sounds/press.wav"),
   correct: require("../../../assets/sounds/correct.wav"),
   almost: require("../../../assets/sounds/almost.wav"),
   wrong: require("../../../assets/sounds/wrong.wav"),

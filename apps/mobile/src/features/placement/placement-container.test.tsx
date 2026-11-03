@@ -93,7 +93,12 @@ describe("PlacementContainer", () => {
     const asked = await answerAll("no");
     await screen.findByText("Tu nivel estimado");
 
-    expect(sounds.played).toEqual([...Array<string>(asked).fill("tap"), "complete"]);
+    // "Empezar" and each "Siguiente" click (throttled when taps come fast, as here).
+    expect(sounds.played[0]).toBe("press");
+    expect(sounds.played.filter((name) => name !== "press")).toEqual([
+      ...Array<string>(asked).fill("tap"),
+      "complete",
+    ]);
   });
 
   it("asks before leaving once a question was answered, and never after the result", async () => {

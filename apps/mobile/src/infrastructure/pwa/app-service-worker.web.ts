@@ -1,6 +1,7 @@
 // Web: the app's service worker (offline app shell, see scripts/service-worker.mjs). Registered
 // in production exports only (`expo export -p web`, the e2e export included), never by the dev
 // server, whose bundles are not content-hashed and must not be cached.
+import { leavePage } from "@/infrastructure/persistence/app-page-release";
 import {
   createServiceWorkerUpdates,
   shouldRegisterServiceWorker,
@@ -28,7 +29,8 @@ const inert: ServiceWorkerUpdates = {
 export const appServiceWorkerUpdates: ServiceWorkerUpdates = enabled
   ? createServiceWorkerUpdates({
       container: navigator.serviceWorker,
-      reload: () => window.location.reload(),
+      // "Actualizar": the page lets go of its database first (see `createPageRelease`).
+      reload: () => void leavePage(() => window.location.reload()),
       // Offline update checks fail by design; the app keeps working from the cache.
       onError: (error) => console.warn("Service worker:", error),
     })

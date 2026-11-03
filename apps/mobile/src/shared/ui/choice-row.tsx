@@ -21,6 +21,8 @@ type ChoiceRowProps = {
   disabled: boolean;
   onPress: () => void;
   mark?: ChoiceMark | undefined;
+  /** Plays the soft press click (default); off when the list plays its own tap. */
+  pressSound?: boolean;
 };
 
 /** What a screen reader hears: the option, plus how it was marked. */
@@ -36,7 +38,15 @@ function spokenLabel(label: string, checked: boolean, mark: ChoiceMark | undefin
  * One option of a single-choice group (a radio): ink outline, filled with ink when chosen. Once
  * marked it is a corrected answer instead (see `ChoiceMark`).
  */
-export function ChoiceRow({ label, content, checked, disabled, onPress, mark }: ChoiceRowProps) {
+export function ChoiceRow({
+  label,
+  content,
+  checked,
+  disabled,
+  onPress,
+  mark,
+  pressSound = true,
+}: ChoiceRowProps) {
   const styles = useStyles();
   const { colors } = useTheme();
   const filled = checked && mark === undefined;
@@ -46,6 +56,7 @@ export function ChoiceRow({ label, content, checked, disabled, onPress, mark }: 
       accessibilityLabel={spokenLabel(label, checked, mark)}
       accessibilityState={{ checked, disabled }}
       disabled={disabled}
+      pressSound={pressSound}
       onPress={onPress}
       style={({ pressed }) => [
         styles.row,

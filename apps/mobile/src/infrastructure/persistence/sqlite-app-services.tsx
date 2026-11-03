@@ -23,6 +23,8 @@ import { cryptoRandomBytes } from "../ids/crypto-random-bytes";
 import { AppErrorBoundary } from "../errors/app-error-boundary";
 import { AppServicesProvider, type AppServices } from "../services/app-services";
 import { createExpoSoundPlayer } from "../sound/expo-sound-player";
+import { appPageRelease, leavePage } from "./app-page-release";
+import { previousScreenOfTheApp, type NavigationHistory } from "./back-to-previous-screen";
 import { awaitPendingWrites, createWriteTracker, trackWrites } from "./await-pending-writes";
 import { DatabaseOpenError } from "./database-open-error";
 import type * as E2eDatabaseWorkers from "./e2e-database-workers";
@@ -39,6 +41,7 @@ import {
 } from "./ownership/ownership-screens";
 import { createPlatformOwnership } from "./ownership/platform-ownership";
 import { createPageDatabase, type PageDatabase } from "./page-database";
+import type { PageRelease } from "./page-release";
 import { countWorkers } from "./worker-count";
 import { notifyAppends } from "../sync/notify-appends";
 import { createChangeSignal } from "../sync/sync-triggers";
@@ -56,7 +59,24 @@ export type DatabasePage = {
   readonly database: PageDatabase<SqlDatabase>;
   readonly openRetry: OpenRetry;
   readonly workersCreated: () => number;
+  /** Lets go of the database before the page leaves (see `createPageRelease`). */
+  readonly release: PageRelease;
+  /**
+   * For files that stayed busy (web): goes back to the app's previous screen in this window,
+   * which may be the frozen page holding them; undefined when there is none (see
+   * `previousScreenOfTheApp`).
+   */
+  readonly backToPreviousScreen: () => (() => void) | undefined;
 };
+
+/** Reloads this page once it let go of its database (a reload is how it opens again). */
+const reloadPage = () => void leavePage(() => window.location.reload());
+
+function backToPreviousScreen(): (() => void) | undefined {
+  const navigation = (globalThis as { navigation?: NavigationHistory }).navigation;
+  if (!previousScreenOfTheApp(navigation, window.location.origin)) return undefined;
+  return () => void leavePage(() => window.history.back());
+}
 
 function createDatabasePage(): DatabasePage {
   if (!isWeb) {
@@ -64,6 +84,8 @@ function createDatabasePage(): DatabasePage {
       database: createPageDatabase({ reopenable: true }),
       openRetry: noOpenRetry,
       workersCreated: () => 0,
+      release: appPageRelease,
+      backToPreviousScreen: () => undefined,
     };
   }
   const workers = countWorkers();
@@ -85,10 +107,12 @@ function createDatabasePage(): DatabasePage {
     database: createPageDatabase({ reopenable: false }),
     openRetry: createOpenRetry({
       storage,
-      reload: () => window.location.reload(),
+      reload: reloadPage,
       workersCreated: workers.created,
     }),
     workersCreated: workers.created,
+    release: appPageRelease,
+    backToPreviousScreen,
   };
 }
 
@@ -290,13 +314,23 @@ const CHECKING: GateState = { kind: "checking" };
  */
 function DatabaseOwnershipGate({
   ownership,
+  release,
   children,
 }: {
   ownership: DatabaseOwnership;
+  release: PageRelease;
   children: ReactNode;
 }) {
   const [state, setState] = useState<GateState>(CHECKING);
   const drainRef = useRef<(() => Promise<void>) | null>(null);
+
+  // Leaving the page (or handing the database over) finishes the open database's writes first.
+  useEffect(() => {
+    release.setDrain(async () => {
+      await drainRef.current?.();
+    });
+    return () => release.setDrain(null);
+  }, [release]);
 
   useEffect(() => {
     let active = true;
@@ -312,10 +346,12 @@ function DatabaseOwnershipGate({
   useEffect(() => {
     if (!owned) return;
     return ownership.serve(async () => {
-      await drainRef.current?.();
+      // Writes finished, file handles closed, worker ended, lock let go: then the other tab may
+      // open the files (this one reloads without them).
+      await release.release();
       setState({ kind: "handing-over" });
     });
-  }, [ownership, owned]);
+  }, [ownership, owned, release]);
 
   const claimAgain = (claim: () => Promise<OwnershipState>) => {
     setState(CHECKING);
@@ -372,7 +408,7 @@ export function SqliteAppServicesProvider({
   const retry = () => {
     page.openRetry.clear();
     if (isWeb) {
-      window.location.reload();
+      reloadPage();
       return;
     }
     page.database.reset();
@@ -380,14 +416,16 @@ export function SqliteAppServicesProvider({
   };
   const details = useCallback(() => openDetails(page), [page]);
   const retryInBackground = useCallback(() => backgroundRetry(page), [page]);
+  const goBack = useCallback(() => page.backToPreviousScreen(), [page]);
   return (
     <AppErrorBoundary
       key={attempt}
       onRetry={retry}
       details={details}
       backgroundRetry={retryInBackground}
+      backToPreviousScreen={goBack}
     >
-      <DatabaseOwnershipGate ownership={ownership}>
+      <DatabaseOwnershipGate ownership={ownership} release={page.release}>
         <PageDatabaseProvider page={page} clock={clock}>
           {children}
         </PageDatabaseProvider>

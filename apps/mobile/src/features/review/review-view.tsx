@@ -142,6 +142,7 @@ export function ReviewView({
                     lookupAnswer={answerIsEnglish(state.prepared)}
                     inARow={correctInARow(state.results ?? [])}
                     card={cardLink(state.card, onOpenCard)}
+                    finishes={state.position === state.total}
                     onContinue={onContinue}
                   />
                 ),

@@ -14,6 +14,8 @@ type ButtonProps = {
   variant?: "primary" | "secondary" | "text";
   accessibilityHint?: string;
   disabled?: boolean;
+  /** Plays the soft press click (default); off where the press plays its own sound. */
+  pressSound?: boolean;
 };
 
 export function Button({
@@ -22,6 +24,7 @@ export function Button({
   variant = "primary",
   accessibilityHint,
   disabled = false,
+  pressSound = true,
 }: ButtonProps) {
   const styles = useStyles();
   return (
@@ -32,6 +35,7 @@ export function Button({
       accessibilityState={{ disabled }}
       {...(accessibilityHint === undefined ? {} : { accessibilityHint })}
       disabled={disabled}
+      pressSound={pressSound}
       onPress={onPress}
       style={({ pressed }) => [
         styles.base,

@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, View } from "react-native";
+import { usePressSound } from "@/shared/ui/press-sound";
 import { TOUCH_TARGET, spacing } from "@/shared/ui/theme";
 import { themedStyles } from "@/shared/ui/use-theme";
 
@@ -7,11 +8,15 @@ type BackArrowButtonProps = { label: string; onPress: () => void };
 /** The pen-drawn back arrow of the notebook header (a shaft and an open head). */
 export function BackArrowButton({ label, onPress }: BackArrowButtonProps) {
   const styles = useStyles();
+  const click = usePressSound();
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={label}
-      onPress={onPress}
+      onPress={() => {
+        click();
+        onPress();
+      }}
       hitSlop={4}
       style={({ pressed }) => [styles.back, pressed && styles.pressed]}
     >
