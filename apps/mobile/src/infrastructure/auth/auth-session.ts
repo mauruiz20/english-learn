@@ -1,5 +1,6 @@
 import { ApiError, type CookieAuth } from "@english-learn/api-client";
 import type { AccountMarker, SettingsRepository } from "@english-learn/domain";
+import { givenNameFromIdToken } from "./oidc";
 
 /** The cookie-mode auth calls the session needs (see `@english-learn/api-client`). */
 export type AuthApi = CookieAuth;
@@ -29,8 +30,9 @@ const isUnauthorized = (error: unknown): error is ApiError =>
 
 /**
  * The web session. The refresh token lives in an HttpOnly cookie the browser keeps; the access
- * token lives in memory only; the device remembers only who is signed in (`AccountMarker`), so a
- * restart restores the session with one refresh.
+ * token lives in memory only; the device remembers only who is signed in (`AccountMarker`, with
+ * the first name of the ID token for the greeting), so a restart restores the session with one
+ * refresh. A refresh carries no ID token: the name is (re)derived at each sign-in only.
  *
  * - Refreshes are single-flight in the tab and serialized across tabs with a Web Lock, because
  *   concurrent rotations of one cookie would end the session (see services/api/README.md).
@@ -124,7 +126,13 @@ export function createAuthSession({
     async signIn(idToken: string, nonce: string): Promise<AccountMarker> {
       const signedIn = await api.signInWithGoogle(idToken, nonce);
       generation += 1;
-      const account = { userId: signedIn.user.id, email: signedIn.user.email };
+      // The first name comes from the ID token itself (the API never stores or returns it).
+      const givenName = givenNameFromIdToken(idToken);
+      const account: AccountMarker = {
+        userId: signedIn.user.id,
+        email: signedIn.user.email,
+        ...(givenName === undefined ? {} : { givenName }),
+      };
       setToken(signedIn.accessToken, signedIn.accessTokenExpiresAt);
       await settings.setAccount(account);
       setState({ status: "signed-in", account });

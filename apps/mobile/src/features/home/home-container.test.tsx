@@ -395,6 +395,52 @@ describe("HomeContainer", () => {
     expect(mockPush).toHaveBeenCalledWith("/cuenta");
   });
 
+  describe("greeting", () => {
+    const signedIn = (account: AccountContextValue["session"]): AccountContextValue => ({
+      availability: "available",
+      session: account,
+      syncStatus: { kind: "idle" },
+      progressVersion: 0,
+      actions: null,
+    });
+
+    it("says hello by the signed-in learner's first name", async () => {
+      await render(
+        <AccountContext
+          value={signedIn({
+            status: "signed-in",
+            account: { userId: "u1", email: "ines@example.com", givenName: "Inés" },
+          })}
+        >
+          {renderContainerElement(createFakeRepository())}
+        </AccountContext>,
+      );
+
+      expect(await screen.findByRole("header", { name: "Hola, Inés" })).toBeOnTheScreen();
+    });
+
+    it("says a plain hello when signed in from before names were remembered", async () => {
+      await render(
+        <AccountContext
+          value={signedIn({
+            status: "signed-in",
+            account: { userId: "u1", email: "ines@example.com" },
+          })}
+        >
+          {renderContainerElement(createFakeRepository())}
+        </AccountContext>,
+      );
+
+      expect(await screen.findByRole("header", { name: "¡Hola!" })).toBeOnTheScreen();
+    });
+
+    it("says a plain hello when signed out", async () => {
+      await renderContainer(createFakeRepository());
+
+      expect(await screen.findByRole("header", { name: "¡Hola!" })).toBeOnTheScreen();
+    });
+  });
+
   it("reloads progress after a sync brought progress from another device", async () => {
     const repository = createFakeRepository();
     const account = (progressVersion: number): AccountContextValue => ({

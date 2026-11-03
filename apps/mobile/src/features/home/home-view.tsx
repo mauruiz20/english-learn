@@ -15,6 +15,7 @@ import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { Avi } from "@/shared/ui/mascot";
 import { guideHeading } from "./model/guide-heading";
+import { HomeGreeting } from "./home-greeting";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Sticker } from "@/shared/ui/sticker";
 import { StickyNote } from "@/shared/ui/sticky-note";
@@ -94,8 +95,10 @@ type HomeViewProps = {
   onOpenCards?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
   onOpenCard?: (cardId: string) => void;
-  /** News above everything else (the old web address's move banner). */
+  /** News above everything but the greeting (the old web address's move banner). */
   notice?: ReactNode;
+  /** The signed-in learner's first name for the greeting; without it, a plain "¡Hola!". */
+  greetingName?: string | undefined;
 };
 
 type Ready = Extract<HomeViewState, { status: "ready" }>;
@@ -712,7 +715,7 @@ function ReadyHome({
   onOpenAbout,
 }: Omit<
   HomeViewProps,
-  "state" | "soundEnabled" | "onToggleSound" | "themePreference" | "onCycleTheme"
+  "state" | "soundEnabled" | "onToggleSound" | "themePreference" | "onCycleTheme" | "greetingName"
 > & { state: Ready }) {
   const styles = useStyles();
   return (
@@ -765,6 +768,7 @@ export function HomeView({
   onOpenAlbum,
   onOpenCards,
   notice,
+  greetingName,
   ...handlers
 }: HomeViewProps) {
   const { colors } = useTheme();
@@ -777,6 +781,7 @@ export function HomeView({
   );
   return (
     <ScreenContainer insetTop>
+      <HomeGreeting name={greetingName} />
       {notice}
       <ProgressCard
         days={state.status === "ready" ? state.streakDays : null}

@@ -35,6 +35,8 @@ async function readBody(request: IncomingMessage): Promise<unknown> {
 
 export class FakeAccount {
   readonly email = "ana@example.com";
+  /** The ID token's `given_name` (with an accent: the greeting must keep it). */
+  readonly givenName = "Inés";
   readonly userId = "019a3456-7890-7abc-8def-0123456789ab";
   /** Every Google authorization request, as URL query parameters. */
   readonly googleRequests: URLSearchParams[] = [];
@@ -144,7 +146,13 @@ export class FakeAccount {
   /** Google: the learner picks the account; back to the app with an ID token in the fragment. */
   private google(params: URLSearchParams, response: ServerResponse): void {
     this.googleRequests.push(params);
-    const claims = { sub: "google-ana", email: this.email, nonce: params.get("nonce") };
+    const claims = {
+      sub: "google-ana",
+      email: this.email,
+      given_name: this.givenName,
+      name: `${this.givenName} Pérez`,
+      nonce: params.get("nonce"),
+    };
     const idToken = [
       base64url(JSON.stringify({ alg: "RS256" })),
       base64url(JSON.stringify(claims)),

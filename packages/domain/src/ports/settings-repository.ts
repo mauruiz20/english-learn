@@ -5,6 +5,12 @@
 export type AccountMarker = {
   readonly userId: string;
   readonly email: string;
+  /**
+   * The learner's first name from Google's ID token, for the home greeting. Device only (never
+   * sent to or stored by the API); missing for accounts remembered before it existed, until the
+   * next sign-in.
+   */
+  readonly givenName?: string;
 };
 
 /** The app's look: follow the device's light/dark setting, or always one of them. */

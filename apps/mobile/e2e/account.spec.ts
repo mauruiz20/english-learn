@@ -30,9 +30,17 @@ async function playFirstLesson(page: Page) {
   await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
 }
 
+/** Signs in from Cuenta: the app lands on home, greeting the learner by first name. */
 async function signIn(page: Page, account: FakeAccount) {
   await page.getByRole("link", { name: "Cuenta", exact: true }).click();
   await page.getByRole("button", { name: "Continuar con Google", exact: true }).click();
+  await expect(page.getByRole("heading", { name: `Hola, ${account.givenName}` })).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe("/");
+}
+
+/** Opens Cuenta and waits for the first sync after signing in. */
+async function expectSynced(page: Page, account: FakeAccount) {
+  await page.getByRole("link", { name: "Cuenta", exact: true }).click();
   await expect(page.getByText(account.email)).toBeVisible();
   await expect(page.getByText("Sincronizado hace un momento")).toBeVisible();
 }
@@ -49,8 +57,11 @@ test.describe("account and sync", () => {
   }) => {
     await page.goto("/");
     await playFirstLesson(page);
+    await expect(page.getByRole("heading", { name: "¡Hola!", exact: true })).toBeVisible();
     await signIn(page, account);
     expect(account.cookieTransport).toBe(true);
+    // The greeting is the first heading of home, above the progress.
+    await expect(page.getByRole("heading").first()).toHaveText(`Hola, ${account.givenName}`);
 
     // The redirect carried a fresh state and nonce; the API got the same nonce back.
     const google = account.googleRequests[0]!;
@@ -59,7 +70,6 @@ test.describe("account and sync", () => {
     expect(account.signIns[0]?.nonce).toBe(google.get("nonce"));
     // The token never stays in the address bar or the history entry.
     expect(page.url()).not.toContain("id_token");
-    expect(new URL(page.url()).pathname).toBe("/cuenta");
     // Back from Google (/auth/callback, then /auth/completar): one SQLite worker on this page.
     await expectOneDatabaseWorker(page);
 
@@ -72,17 +82,20 @@ test.describe("account and sync", () => {
     expect(first.events.every((e) => !("deviceId" in e))).toBe(true);
     expect(account.storedTypes()).toContain("session_completed");
 
-    // The redirect replaced the history entry, so /cuenta has nothing to go back to: the header
-    // still offers the way home.
-    await page.getByRole("button", { name: "Volver a Inicio", exact: true }).click();
-    await expect(page.getByLabel(/^Racha: \d/)).toBeVisible();
-    expect(new URL(page.url()).pathname).toBe("/");
+    // Google, the callback and /auth/completar each replaced the entry before: back goes to
+    // Cuenta, where the sign-in started, and never reopens the callback.
+    await page.goBack();
+    await expect(page.getByText("Sincronizado hace un momento")).toBeVisible();
+    expect(new URL(page.url()).pathname).toBe("/cuenta");
+    expect(page.url()).not.toContain("id_token");
+    await expect(page.getByText(account.email)).toBeVisible();
 
     // A second device: a fresh install, signed out, with no progress.
     await clearOriginData(page);
     await goHome(page);
     await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
     await signIn(page, account);
+    await expectSynced(page, account);
     const second = account.syncs.at(-1)!;
     expect(second.deviceId).not.toBe(first.deviceId);
 
@@ -99,14 +112,19 @@ test.describe("account and sync", () => {
     await page.goto("/");
     await playFirstLesson(page);
     await signIn(page, account);
+    await expectSynced(page, account);
 
     await page.getByRole("button", { name: "Cerrar sesión", exact: true }).click();
     await page.getByRole("button", { name: "Cerrar sesión ahora", exact: true }).click();
     await expect(page.getByRole("button", { name: "Continuar con Google" })).toBeVisible();
     await goHome(page);
     await expect(page.getByText("80 XP", { exact: true })).toBeVisible();
+    // Signed out, the name is gone: a plain hello.
+    await expect(page.getByRole("heading", { name: "¡Hola!", exact: true })).toBeVisible();
+    await expect(page.getByText(account.givenName)).toHaveCount(0);
 
     await signIn(page, account);
+    await expectSynced(page, account);
     await page.getByRole("button", { name: "Cerrar sesión", exact: true }).click();
     await page.getByRole("radio", { name: /Borrarlo de este dispositivo/ }).click();
     await page.getByRole("button", { name: "Cerrar sesión ahora", exact: true }).click();
@@ -136,7 +154,11 @@ test.describe("account and sync", () => {
     await page.goto("/");
     await signIn(page, account);
 
-    // The marker survives a reload; the refresh cookie gives a new access token.
+    // The marker (with the first name) survives a reload; the refresh cookie gives a new
+    // access token.
+    await page.reload();
+    await expect(page.getByRole("heading", { name: `Hola, ${account.givenName}` })).toBeVisible();
+    await expectSynced(page, account);
     await page.reload();
     await expect(page.getByText(account.email)).toBeVisible();
 

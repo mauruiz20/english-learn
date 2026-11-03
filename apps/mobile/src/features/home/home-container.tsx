@@ -18,7 +18,7 @@ import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
 import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
-import { useProgressVersion } from "@/features/account/account-context";
+import { useAccount, useProgressVersion } from "@/features/account/account-context";
 import { MoveBanner } from "@/features/transfer/move-banner";
 import { cardScores, cardsSummary } from "@/features/cards/model/card-catalog";
 import { cardPath } from "@/features/cards/card-routes";
@@ -105,6 +105,7 @@ export function HomeContainer({
   const sound = useSoundPreference();
   const theme = useThemePreference();
   const progressVersion = useProgressVersion();
+  const { session } = useAccount();
   // Only on the app's old web address, while it holds progress to take along.
   const moveOffer = useOriginMoveOffer();
 
@@ -161,6 +162,7 @@ export function HomeContainer({
   return (
     <HomeView
       state={state}
+      greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}
       themePreference={theme.preference}
