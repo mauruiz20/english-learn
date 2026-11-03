@@ -46,6 +46,11 @@ it(`progress store with a ${LOG_SIZE}-event log`, { timeout: 600_000 }, async ()
     ),
     "rebuild from events": await median(() => repository.rebuildFromEvents()),
   };
+  const snapshot = await db.getFirstAsync<{ bytes: number }>(
+    "SELECT length(data) AS bytes FROM fold_snapshot",
+    [],
+  );
+  console.info(`fold snapshot: ${((snapshot?.bytes ?? 0) / 1024).toFixed(0)} KiB`);
   console.table(
     Object.entries(results).map(([operation, ms]) => ({ operation, "median ms": ms.toFixed(1) })),
   );
