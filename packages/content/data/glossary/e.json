@@ -293,6 +293,18 @@
       ]
     },
     {
+      "id": "glossary.enroll",
+      "headword": "enroll",
+      "kind": "word",
+      "forms": ["enroll", "enrolls", "enrolled", "enrolling"],
+      "senses": [
+        {
+          "es": "inscribirse, matricularse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.environment",
       "headword": "environment",
       "kind": "word",

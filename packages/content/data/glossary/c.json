@@ -1173,6 +1173,18 @@
       ]
     },
     {
+      "id": "glossary.course",
+      "headword": "course",
+      "kind": "word",
+      "forms": ["course", "courses"],
+      "senses": [
+        {
+          "es": "curso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cousin",
       "headword": "cousin",
       "kind": "word",

@@ -59,7 +59,7 @@
     {
       "id": "b1.technology.log-in",
       "level": "B1",
-      "topics": ["technology"],
+      "topics": ["technology", "phrasal-verbs"],
       "kind": "phrase",
       "term": "log in (to)",
       "es": "iniciar sesión (en)"
@@ -67,7 +67,7 @@
     {
       "id": "b1.technology.back-up",
       "level": "B1",
-      "topics": ["technology"],
+      "topics": ["technology", "phrasal-verbs"],
       "kind": "phrase",
       "term": "back up",
       "es": "hacer una copia de seguridad (de)"

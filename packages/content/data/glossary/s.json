@@ -709,6 +709,18 @@
       ]
     },
     {
+      "id": "glossary.sign-up",
+      "headword": "sign up",
+      "kind": "phrase",
+      "forms": ["sign up", "signs up", "signed up", "signing up"],
+      "senses": [
+        {
+          "es": "inscribirse, registrarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.silent",
       "headword": "silent",
       "kind": "word",

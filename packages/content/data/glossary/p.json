@@ -609,6 +609,34 @@
       ]
     },
     {
+      "id": "glossary.plug",
+      "headword": "plug",
+      "kind": "word",
+      "forms": ["plug", "plugs", "plugged", "plugging"],
+      "senses": [
+        {
+          "es": "(plug in) enchufar",
+          "pos": "verb"
+        },
+        {
+          "es": "enchufe",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plug-in",
+      "headword": "plug in",
+      "kind": "phrase",
+      "forms": ["plug in", "plugs in", "plugged in", "plugging in"],
+      "senses": [
+        {
+          "es": "enchufar, conectar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.police",
       "headword": "police",
       "kind": "word",

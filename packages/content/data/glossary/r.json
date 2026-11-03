@@ -241,6 +241,18 @@
       ]
     },
     {
+      "id": "glossary.register",
+      "headword": "register",
+      "kind": "word",
+      "forms": ["register", "registers", "registered", "registering"],
+      "senses": [
+        {
+          "es": "inscribirse, registrarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.reject",
       "headword": "reject",
       "kind": "word",
