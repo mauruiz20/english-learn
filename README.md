@@ -15,7 +15,7 @@ every check passes; installable and usable offline; progress is stored in your b
 | Architecture | pnpm monorepo · hexagonal (ports & adapters) · screaming architecture             |
 | Quality      | TDD · 592 unit/integration tests · 12 Playwright e2e specs on Chromium + WebKit   |
 | Delivery     | GitFlow · Conventional Commits · GitHub Actions (format, lint, types, tests, e2e) |
-| Version      | 0.1.0 (MVP), see [CHANGELOG](CHANGELOG.md)                                        |
+| Version      | 0.2.0, see [CHANGELOG](CHANGELOG.md)                                              |
 
 ## Contents
 
@@ -200,6 +200,8 @@ grades all its items with one verdict, and the web app works in one tab at a tim
 
 ## License
 
-- **Code**: License: to be decided.
-- **Content**: sentences from [Tatoeba](https://tatoeba.org) are licensed CC BY 2.0 FR and
-  credited as described above.
+- **Code**: the source code is licensed under the [MIT License](LICENSE).
+- **Third-party data keeps its own license**: the MIT License does not cover it. Example
+  sentences from [Tatoeba](https://tatoeba.org) in `packages/content/data` are licensed
+  [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/) and credited as described in
+  [Content and licensing](#content-and-licensing).
