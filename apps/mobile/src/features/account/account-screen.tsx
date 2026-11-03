@@ -45,7 +45,7 @@ export function AccountScreen({ now = Date.now }: { now?: () => number }) {
       console.error("Sign-out failed", error);
       setNotice({
         kind: "error",
-        message: "No pudimos cerrar la sesión en este dispositivo. Intentá de nuevo.",
+        message: "No pudimos cerrar la sesión en este dispositivo. Intenta de nuevo.",
       });
       close();
     } finally {
@@ -64,7 +64,7 @@ export function AccountScreen({ now = Date.now }: { now?: () => number }) {
       setNotice({
         kind: "error",
         message:
-          "No pudimos eliminar tu cuenta. Revisá tu conexión e intentá de nuevo en unos minutos.",
+          "No pudimos eliminar tu cuenta. Revisa tu conexión e intenta de nuevo en unos minutos.",
       });
     } finally {
       setBusy(false);

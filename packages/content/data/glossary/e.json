@@ -89,6 +89,18 @@
       ]
     },
     {
+      "id": "glossary.egg",
+      "headword": "egg",
+      "kind": "word",
+      "forms": ["egg", "eggs"],
+      "senses": [
+        {
+          "es": "huevo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.eight",
       "headword": "eight",
       "kind": "word",
@@ -281,6 +293,18 @@
       ]
     },
     {
+      "id": "glossary.enroll",
+      "headword": "enroll",
+      "kind": "word",
+      "forms": ["enroll", "enrolls", "enrolled", "enrolling"],
+      "senses": [
+        {
+          "es": "inscribirse, matricularse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.environment",
       "headword": "environment",
       "kind": "word",
@@ -437,6 +461,18 @@
         {
           "es": "examen",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.except",
+      "headword": "except",
+      "kind": "word",
+      "forms": ["except"],
+      "senses": [
+        {
+          "es": "excepto, salvo",
+          "pos": "preposition"
         }
       ]
     },

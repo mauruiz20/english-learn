@@ -1,7 +1,9 @@
 # @english-learn/mobile
 
 Expo (SDK 58) app shell: expo-router screens, SQLite persistence via `expo-sqlite`, and a static
-web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
+web build. Offline-first: no network or AI at runtime. UI copy is neutral Spanish with tú
+("puedes", "inicia"), never voseo ("podés", "iniciá"); `src/neutral-spanish.test.ts` scans `src/`
+and `e2e/` with the content package's `findVoseo` and fails on the common voseo forms.
 
 ## Structure
 
@@ -25,7 +27,8 @@ random sources.
 ### Progress is an event log
 
 Progress is stored as the domain's append-only event log (`@english-learn/domain`, "Progress
-event log"); the progress tables are a cache of its fold that every write refreshes, and reads
+event log"); the progress tables are a cache of its fold that every write refreshes (incrementally,
+from a stored fold snapshot: see `@english-learn/storage-sqlite`), and reads
 come from that cache. The app only builds events (`src/features/progress/progress-events.ts`,
 UUIDv7 ids from `clock.nowMs()` and `randomBytes`, stamped with the install's device id):
 
@@ -394,7 +397,7 @@ network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/a
 - **Sync** (`sync-engine.ts`, `sync-coordinator.ts`, `sync-triggers.ts`). Each `POST /v1/sync`
   uploads up to 500 unsynced events (and < 900 KB) and pulls the account's events after the
   cursor; it loops while events remain or `hasMore`, applies pulled events with
-  `insertRemoteEvents` (refold), marks uploads synced and stores the cursor after each page.
+  `insertRemoteEvents` (incremental fold), marks uploads synced and stores the cursor after each page.
   Network errors and 5xx back off exponentially with jitter (5 attempts), 429 waits
   `Retry-After`, 401 refreshes once, 409 `device_conflict` takes a new device id once, conflicts
   are logged. Triggers: sign-in (the first sync uploads the whole history, baseline included), app
@@ -648,7 +651,7 @@ on one worker and each test first empties OPFS and removes service workers and t
 
 ## Android builds
 
-App identity lives in `app.json`: version `0.1.0`, `android.versionCode` `1` (increment it for
+App identity lives in `app.json`: version `0.2.0`, `android.versionCode` `1` (increment it for
 every Play Store upload), portrait only. The package name `com.mruizdev.englishlearn` is a
 placeholder and can still change before the first Play Store release; after that it is permanent.
 `eas.json` reads versions from `app.json` (`appVersionSource: "local"`).
@@ -747,7 +750,7 @@ The web build is an installable PWA that works fully offline after the first vis
   the flow, so it never covers a lesson's buttons). Only that press sends `SKIP_WAITING` and
   reloads once the new worker takes control; nothing reloads on its own, mid-lesson or not.
 - **Manifest and HTML**: `public/manifest.webmanifest` ("English Learn" / "English", `es`,
-  standalone, paper `#F7F9FC` theme and background, 192/512 icons and a maskable 512). With
+  standalone, paper `#F5F7FF` theme and background, 192/512 icons and a maskable 512). With
   `web.output: "single"` the HTML is customized in `public/index.html` (created with
   `npx expo customize public/index.html`, per the SDK 58 PWA guide): manifest link, light/dark
   `theme-color`, `apple-touch-icon` (180 px, opaque) and the `apple-mobile-web-app-*` tags.

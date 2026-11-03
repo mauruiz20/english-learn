@@ -56,7 +56,7 @@ function Notice({ notice }: { notice: AccountNotice }) {
     case "reauthenticating":
       return (
         <Text accessibilityRole="alert">
-          Te pedimos que vuelvas a entrar con Google para confirmar que sos vos; después eliminamos
+          Te pedimos que vuelvas a entrar con Google para confirmar que eres tú; después eliminamos
           la cuenta.
         </Text>
       );
@@ -100,7 +100,7 @@ function SignedIn({
         {syncStatus.kind === "error" ? (
           <>
             <Text variant="small" tone="muted">
-              Revisá tu conexión. Tu progreso está a salvo en este dispositivo.
+              Revisa tu conexión. Tu progreso está a salvo en este dispositivo.
             </Text>
             <Button label="Reintentar" variant="secondary" onPress={onSyncNow} />
           </>
@@ -138,7 +138,7 @@ export function AccountView(props: AccountViewProps) {
         <View style={styles.section}>
           <Text variant="title">Disponible próximamente en la app</Text>
           <Text>
-            Por ahora podés guardar tu progreso con una cuenta en la versión web. En la app tu
+            Por ahora puedes guardar tu progreso con una cuenta en la versión web. En la app tu
             progreso queda guardado en este dispositivo.
           </Text>
         </View>
@@ -148,7 +148,7 @@ export function AccountView(props: AccountViewProps) {
         <View style={styles.section}>
           <Text variant="title">Las cuentas están en english.maumar.com.ar</Text>
           <Text>
-            Para guardar tu progreso en una cuenta, abrí la app en https://english.maumar.com.ar.
+            Para guardar tu progreso en una cuenta, abre la app en https://english.maumar.com.ar.
             Pronto vas a poder llevar el progreso de esta dirección a tu cuenta.
           </Text>
         </View>
@@ -157,7 +157,7 @@ export function AccountView(props: AccountViewProps) {
       {availability === "available" && email === null && (
         <>
           <View style={styles.section}>
-            <Text variant="title">Guardá tu progreso y usalo en otros dispositivos.</Text>
+            <Text variant="title">Guarda tu progreso y úsalo en otros dispositivos.</Text>
             <Text>
               Es opcional: la app funciona igual sin cuenta y sin conexión. Con una cuenta, tu
               progreso se sincroniza solo cuando hay internet.

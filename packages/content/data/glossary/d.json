@@ -109,6 +109,18 @@
       ]
     },
     {
+      "id": "glossary.december",
+      "headword": "December",
+      "kind": "word",
+      "forms": ["december"],
+      "senses": [
+        {
+          "es": "diciembre",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.decide",
       "headword": "decide",
       "kind": "word",
@@ -176,7 +188,7 @@
       "id": "glossary.delay",
       "headword": "delay",
       "kind": "word",
-      "forms": ["delay", "delays", "delayed"],
+      "forms": ["delay", "delays", "delayed", "delaying"],
       "senses": [
         {
           "es": "retrasar",
@@ -185,6 +197,18 @@
         {
           "es": "retraso",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.delete",
+      "headword": "delete",
+      "kind": "word",
+      "forms": ["delete", "deletes", "deleted", "deleting"],
+      "senses": [
+        {
+          "es": "borrar, eliminar",
+          "pos": "verb"
         }
       ]
     },
@@ -349,6 +373,18 @@
         {
           "es": "cena",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.direct",
+      "headword": "direct",
+      "kind": "word",
+      "forms": ["direct", "directs", "directed", "directing"],
+      "senses": [
+        {
+          "es": "dirigir",
+          "pos": "verb"
         }
       ]
     },

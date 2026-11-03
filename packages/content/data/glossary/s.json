@@ -521,6 +521,18 @@
       ]
     },
     {
+      "id": "glossary.shirt",
+      "headword": "shirt",
+      "kind": "word",
+      "forms": ["shirt", "shirts"],
+      "senses": [
+        {
+          "es": "camisa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.shoe",
       "headword": "shoe",
       "kind": "word",
@@ -619,11 +631,11 @@
       "forms": ["shower", "showers"],
       "senses": [
         {
-          "es": "regadera, ducha",
+          "es": "ducha, regadera",
           "pos": "noun"
         },
         {
-          "es": "(take a shower) bañarse",
+          "es": "(take a shower) ducharse, bañarse",
           "pos": "noun"
         }
       ]
@@ -697,6 +709,18 @@
       ]
     },
     {
+      "id": "glossary.sign-up",
+      "headword": "sign up",
+      "kind": "phrase",
+      "forms": ["sign up", "signs up", "signed up", "signing up"],
+      "senses": [
+        {
+          "es": "inscribirse, registrarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.silent",
       "headword": "silent",
       "kind": "word",
@@ -749,6 +773,18 @@
         {
           "es": "cantar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.singer",
+      "headword": "singer",
+      "kind": "word",
+      "forms": ["singer", "singers"],
+      "senses": [
+        {
+          "es": "cantante",
+          "pos": "noun"
         }
       ]
     },
@@ -857,6 +893,18 @@
       ]
     },
     {
+      "id": "glossary.sky",
+      "headword": "sky",
+      "kind": "word",
+      "forms": ["sky", "skies"],
+      "senses": [
+        {
+          "es": "cielo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sleep",
       "headword": "sleep",
       "kind": "word",
@@ -947,7 +995,7 @@
       "forms": ["snack", "snacks"],
       "senses": [
         {
-          "es": "bocadillo, botana, snack",
+          "es": "refrigerio, algo para picar, snack",
           "pos": "noun"
         }
       ]
@@ -1036,6 +1084,18 @@
       "senses": [
         {
           "es": "refresco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sofa",
+      "headword": "sofa",
+      "kind": "word",
+      "forms": ["sofa", "sofas"],
+      "senses": [
+        {
+          "es": "sofá",
           "pos": "noun"
         }
       ]
@@ -1264,7 +1324,7 @@
       "id": "glossary.spark",
       "headword": "spark",
       "kind": "word",
-      "forms": ["spark", "sparks", "sparked"],
+      "forms": ["spark", "sparks", "sparked", "sparking"],
       "senses": [
         {
           "es": "provocar, desatar",
@@ -1345,6 +1405,18 @@
         {
           "es": "separarse, terminar (una relación)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sport",
+      "headword": "sport",
+      "kind": "word",
+      "forms": ["sport", "sports"],
+      "senses": [
+        {
+          "es": "deporte",
+          "pos": "noun"
         }
       ]
     },

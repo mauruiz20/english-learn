@@ -85,7 +85,7 @@
     {
       "id": "a2.work.have-to",
       "level": "A2",
-      "topics": ["work"],
+      "topics": ["work", "grammar"],
       "kind": "grammar",
       "term": "have to / don't have to",
       "es": "tener que / no tener que"
@@ -93,7 +93,7 @@
     {
       "id": "a2.work.on-monday",
       "level": "A2",
-      "topics": ["work"],
+      "topics": ["work", "grammar"],
       "kind": "grammar",
       "term": "on + day (on Monday)",
       "es": "el + día (el lunes)"
@@ -250,7 +250,7 @@
       "type": "cloze",
       "sentence": "She ___ to work on Saturdays. It's her day off.",
       "answers": ["doesn't have"],
-      "distractors": ["don't have", "hasn't", "isn't"],
+      "distractors": ["don't have", "hasn't", "not have"],
       "es": "Ella no tiene que trabajar los sábados. Es su día libre."
     },
     {
@@ -387,7 +387,8 @@
         "a2.work.choice-003",
         "a2.work.write-002"
       ],
-      "newItemIds": ["a2.work.salary", "a2.work.on-monday", "a2.work.part-time"]
+      "newItemIds": ["a2.work.salary", "a2.work.on-monday", "a2.work.part-time"],
+      "deepenCardIds": ["a2.grammar.have-to", "a2.grammar.time-prepositions"]
     }
   ]
 }

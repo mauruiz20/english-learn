@@ -140,7 +140,7 @@
       "senses": [
         {
           "es": "(according to) según",
-          "pos": "adjective"
+          "pos": "preposition"
         }
       ]
     },
@@ -340,7 +340,7 @@
       "id": "glossary.afford",
       "headword": "afford",
       "kind": "word",
-      "forms": ["afford", "affords", "afforded"],
+      "forms": ["afford", "affords", "afforded", "affording"],
       "senses": [
         {
           "es": "poder pagar, permitirse (comprar)",
@@ -397,6 +397,18 @@
         {
           "es": "otra vez, de nuevo",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.against",
+      "headword": "against",
+      "kind": "word",
+      "forms": ["against"],
+      "senses": [
+        {
+          "es": "contra, en contra de",
+          "pos": "preposition"
         }
       ]
     },
@@ -807,7 +819,7 @@
       "forms": ["apartment", "apartments"],
       "senses": [
         {
-          "es": "departamento, apartamento",
+          "es": "apartamento, departamento",
           "pos": "noun"
         }
       ]
@@ -1233,6 +1245,18 @@
       ]
     },
     {
+      "id": "glossary.august",
+      "headword": "August",
+      "kind": "word",
+      "forms": ["august"],
+      "senses": [
+        {
+          "es": "agosto",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.aunt",
       "headword": "aunt",
       "kind": "word",
@@ -1279,7 +1303,7 @@
           "pos": "adverb"
         },
         {
-          "es": "(de) distancia",
+          "es": "a… de distancia (two miles away = a dos millas de distancia)",
           "pos": "adverb"
         }
       ]

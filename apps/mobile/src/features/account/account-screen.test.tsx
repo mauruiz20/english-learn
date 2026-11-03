@@ -56,7 +56,7 @@ describe("AccountScreen", () => {
   it("offers Google sign-in when signed out, with what is stored and the privacy policy", async () => {
     const { actions } = await renderScreen();
 
-    expect(screen.getByText("Guardá tu progreso y usalo en otros dispositivos.")).toBeOnTheScreen();
+    expect(screen.getByText("Guarda tu progreso y úsalo en otros dispositivos.")).toBeOnTheScreen();
     await fireEvent.press(screen.getByRole("button", { name: "Continuar con Google" }));
     expect(actions.startSignIn).toHaveBeenCalledWith("/cuenta");
 

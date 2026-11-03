@@ -80,7 +80,7 @@
     {
       "id": "a2.daily-routine.present-simple-routines",
       "level": "A2",
-      "topics": ["daily-routine"],
+      "topics": ["daily-routine", "grammar"],
       "kind": "grammar",
       "term": "present simple for routines (she gets up)",
       "es": "presente simple para rutinas (ella se levanta)"
@@ -338,7 +338,7 @@
         "a2.daily-routine.go-to-bed",
         "a2.daily-routine.commute"
       ],
-      "deepenCardIds": ["a2.phrasal-verbs.daily-routine"]
+      "deepenCardIds": ["a2.phrasal-verbs.daily-routine", "a2.grammar.present-simple"]
     },
     {
       "id": "a2.daily-routine.lesson-002",
@@ -361,7 +361,11 @@
         "a2.daily-routine.every-morning",
         "a2.daily-routine.take-a-shower"
       ],
-      "deepenCardIds": ["a2.phrasal-verbs.daily-routine", "a2.vocabulary.take-a-break"]
+      "deepenCardIds": [
+        "a2.phrasal-verbs.daily-routine",
+        "a2.vocabulary.take-a-break",
+        "a2.grammar.present-simple"
+      ]
     }
   ]
 }

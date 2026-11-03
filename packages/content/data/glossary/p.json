@@ -52,7 +52,7 @@
       "id": "glossary.panic",
       "headword": "panic",
       "kind": "word",
-      "forms": ["panic", "panics", "panicked"],
+      "forms": ["panic", "panics", "panicked", "panicking"],
       "senses": [
         {
           "es": "entrar en pánico",
@@ -417,6 +417,18 @@
       ]
     },
     {
+      "id": "glossary.photo",
+      "headword": "photo",
+      "kind": "word",
+      "forms": ["photo", "photos"],
+      "senses": [
+        {
+          "es": "foto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.piano",
       "headword": "piano",
       "kind": "word",
@@ -593,6 +605,34 @@
         {
           "es": "(plenty of) mucho, bastante",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plug",
+      "headword": "plug",
+      "kind": "word",
+      "forms": ["plug", "plugs", "plugged", "plugging"],
+      "senses": [
+        {
+          "es": "(plug in) enchufar",
+          "pos": "verb"
+        },
+        {
+          "es": "enchufe",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plug-in",
+      "headword": "plug in",
+      "kind": "phrase",
+      "forms": ["plug in", "plugs in", "plugged in", "plugging in"],
+      "senses": [
+        {
+          "es": "enchufar, conectar",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -812,6 +852,18 @@
       "senses": [
         {
           "es": "director, directora (de escuela)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.prize",
+      "headword": "prize",
+      "kind": "word",
+      "forms": ["prize", "prizes"],
+      "senses": [
+        {
+          "es": "premio",
           "pos": "noun"
         }
       ]

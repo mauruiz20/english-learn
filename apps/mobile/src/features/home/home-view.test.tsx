@@ -66,6 +66,16 @@ describe("HomeView", () => {
     expect(screen.getByLabelText("Cargando tu progreso")).toBeOnTheScreen();
   });
 
+  it("shows no streak number until the progress has loaded", async () => {
+    await renderView({ status: "loading" });
+
+    // Not "0 días": the streak is not known yet. A neutral dash keeps the card's layout.
+    expect(screen.queryByText("0", { includeHiddenElements: true })).toBeNull();
+    expect(screen.queryByText(/días? de racha/, { includeHiddenElements: true })).toBeNull();
+    expect(screen.queryByLabelText(/^Racha: \d/)).toBeNull();
+    expect(screen.getByText("–", { includeHiddenElements: true })).toBeOnTheScreen();
+  });
+
   it("shows an error message", async () => {
     await renderView({ status: "error" });
 

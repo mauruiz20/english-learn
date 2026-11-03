@@ -40,7 +40,7 @@ export interface ProgressRepository {
   getDeviceId(): Promise<string>;
 
   /**
-   * Appends locally written events and refreshes the cache from the fold of the whole log, in ONE
+   * Appends locally written events and brings the cache up to the fold of the whole log, in ONE
    * transaction: all or nothing, so a failed append can be retried. Resolves to the totals just
    * before and after (the difference is what these events earned, as the fold decides it).
    */

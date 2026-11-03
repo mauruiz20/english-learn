@@ -543,7 +543,7 @@
       "forms": ["flat", "flats"],
       "senses": [
         {
-          "es": "departamento (inglés británico)",
+          "es": "apartamento, departamento (inglés británico)",
           "pos": "noun"
         },
         {
@@ -900,7 +900,7 @@
       "id": "glossary.funny",
       "headword": "funny",
       "kind": "word",
-      "forms": ["funny"],
+      "forms": ["funny", "funnier", "funniest"],
       "senses": [
         {
           "es": "gracioso, divertido",

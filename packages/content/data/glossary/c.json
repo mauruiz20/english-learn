@@ -19,7 +19,7 @@
       "forms": ["cake", "cakes"],
       "senses": [
         {
-          "es": "pastel",
+          "es": "pastel, torta",
           "pos": "noun"
         }
       ]
@@ -676,10 +676,10 @@
       "id": "glossary.close",
       "headword": "close",
       "kind": "word",
-      "forms": ["close"],
+      "forms": ["close", "closes", "closing"],
       "senses": [
         {
-          "es": "cerca",
+          "es": "cerca, cercano",
           "pos": "adjective"
         },
         {
@@ -708,6 +708,18 @@
       "senses": [
         {
           "es": "ropa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cloud",
+      "headword": "cloud",
+      "kind": "word",
+      "forms": ["cloud", "clouds"],
+      "senses": [
+        {
+          "es": "nube",
           "pos": "noun"
         }
       ]
@@ -984,7 +996,7 @@
       "id": "glossary.conserve",
       "headword": "conserve",
       "kind": "word",
-      "forms": ["conserve", "conserves", "conserved"],
+      "forms": ["conserve", "conserves", "conserved", "conserving"],
       "senses": [
         {
           "es": "conservar, ahorrar (energía, agua)",
@@ -1089,6 +1101,18 @@
       ]
     },
     {
+      "id": "glossary.couch",
+      "headword": "couch",
+      "kind": "word",
+      "forms": ["couch", "couches"],
+      "senses": [
+        {
+          "es": "sofá, sillón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cough",
       "headword": "cough",
       "kind": "word",
@@ -1149,6 +1173,18 @@
       ]
     },
     {
+      "id": "glossary.course",
+      "headword": "course",
+      "kind": "word",
+      "forms": ["course", "courses"],
+      "senses": [
+        {
+          "es": "curso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cousin",
       "headword": "cousin",
       "kind": "word",
@@ -1169,6 +1205,18 @@
         {
           "es": "compañero de trabajo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.create",
+      "headword": "create",
+      "kind": "word",
+      "forms": ["create", "creates", "created", "creating"],
+      "senses": [
+        {
+          "es": "crear",
+          "pos": "verb"
         }
       ]
     },

@@ -9,7 +9,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { decodePng, encodePng, flatten, resize } from "./png.mjs";
 
 const SOURCE = new URL("../assets/images/icon.png", import.meta.url);
-const PAPER = [0xf7, 0xf9, 0xfc];
+const PAPER = [0xf5, 0xf7, 0xff];
 
 export const ICONS = [
   { path: "icons/icon-192.png", size: 192 },

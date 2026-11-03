@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.wash",
+      "headword": "wash",
+      "kind": "word",
+      "forms": ["wash", "washes", "washed", "washing"],
+      "senses": [
+        {
+          "es": "lavar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.washing-machine",
       "headword": "washing machine",
       "kind": "phrase",
@@ -360,6 +372,18 @@
         },
         {
           "es": "(if I were you) si yo fuera tú",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.weren-t",
+      "headword": "weren't",
+      "kind": "word",
+      "forms": ["weren't"],
+      "senses": [
+        {
+          "es": "no eran, no estaban (were not)",
           "pos": "verb"
         }
       ]

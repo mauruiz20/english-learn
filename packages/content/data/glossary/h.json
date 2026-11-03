@@ -264,7 +264,18 @@
       "id": "glossary.have-to",
       "headword": "have to",
       "kind": "phrase",
-      "forms": ["have to", "has to", "had to", "having to", "got to"],
+      "forms": [
+        "have to",
+        "has to",
+        "had to",
+        "having to",
+        "have got to",
+        "has got to",
+        "i've got to",
+        "you've got to",
+        "we've got to",
+        "they've got to"
+      ],
       "senses": [
         {
           "es": "tener que",

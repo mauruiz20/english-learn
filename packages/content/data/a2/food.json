@@ -75,7 +75,7 @@
     {
       "id": "a2.food.would-like",
       "level": "A2",
-      "topics": ["food"],
+      "topics": ["food", "grammar"],
       "kind": "phrase",
       "term": "I would like",
       "es": "quisiera / me gustaría"
@@ -91,7 +91,7 @@
     {
       "id": "a2.food.some-any",
       "level": "A2",
-      "topics": ["food"],
+      "topics": ["food", "grammar"],
       "kind": "grammar",
       "term": "some / any",
       "es": "algo de, unos (afirmativas) / nada de, ningún (negativas); algo de, alguno (preguntas)"
@@ -380,7 +380,7 @@
         "a2.food.lunch",
         "a2.food.bread"
       ],
-      "deepenCardIds": ["a2.grammar.much-many"]
+      "deepenCardIds": ["a2.grammar.much-many", "a2.grammar.some-any"]
     }
   ]
 }

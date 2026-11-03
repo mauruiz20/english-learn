@@ -291,7 +291,7 @@
       "forms": ["bedroom", "bedrooms"],
       "senses": [
         {
-          "es": "dormitorio, recámara",
+          "es": "dormitorio, habitación",
           "pos": "noun"
         }
       ]
@@ -423,7 +423,19 @@
       "forms": ["bin", "bins"],
       "senses": [
         {
-          "es": "bote de basura, contenedor",
+          "es": "cesto de basura, contenedor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.birthday",
+      "headword": "birthday",
+      "kind": "word",
+      "forms": ["birthday", "birthdays"],
+      "senses": [
+        {
+          "es": "cumpleaños",
           "pos": "noun"
         }
       ]
@@ -700,7 +712,7 @@
       "id": "glossary.break-up",
       "headword": "break up",
       "kind": "phrase",
-      "forms": ["break up", "breaks up", "broke up", "breaking up"],
+      "forms": ["break up", "breaks up", "broke up", "broken up", "breaking up"],
       "senses": [
         {
           "es": "terminar (una relación), romper (con)",

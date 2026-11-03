@@ -9,7 +9,7 @@ export function AccountLink({ onPress }: { onPress: () => void }) {
     <PressableScale
       accessibilityRole="link"
       accessibilityLabel="Cuenta"
-      accessibilityHint="Guardá y sincronizá tu progreso"
+      accessibilityHint="Guarda y sincroniza tu progreso"
       hitSlop={4}
       onPress={onPress}
       style={styles.link}

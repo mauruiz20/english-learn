@@ -157,6 +157,18 @@
       ]
     },
     {
+      "id": "glossary.upstairs",
+      "headword": "upstairs",
+      "kind": "word",
+      "forms": ["upstairs"],
+      "senses": [
+        {
+          "es": "arriba (en el piso de arriba)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.us",
       "headword": "us",
       "kind": "word",
