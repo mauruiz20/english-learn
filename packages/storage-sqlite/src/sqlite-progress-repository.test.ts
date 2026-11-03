@@ -2,6 +2,7 @@ import {
   EMPTY_STREAK,
   addDays,
   foldEvents,
+  foldRulesFingerprint,
   foldSnapshot,
   localDate,
   type BaselineImportedEvent,
@@ -551,6 +552,39 @@ describe("createSqliteProgressRepository", () => {
       expect(await repo.getDeviceId()).toBe("device-1");
     });
 
+    it("skips events whose id or device id is not well-formed Unicode", async () => {
+      // SQLite would store a lone surrogate as U+FFFD: a refold would then see another id.
+      const loneId = { ...lessonDone(DAY, "s-lone", "l1", 10), id: "abc\uD800" };
+      const loneDevice = { ...lessonDone(DAY, "s-dev", "l2", 10), deviceId: "\uDC00dev" };
+      const fine = lessonDone(DAY, "s-ok", "l3", 10);
+
+      expect(await repo.insertRemoteEvents([loneId, loneDevice, fine])).toBe(1);
+      expect(await repo.importEvents([loneId, loneDevice])).toBe(0);
+      await expect(repo.appendEvents([loneId as ProgressEvent])).rejects.toThrow(RangeError);
+      expect(await cacheOf(repo)).toEqual(foldedCache([fine]));
+    });
+
+    it("skips them too on a runtime without String.prototype.isWellFormed", async () => {
+      const native = Reflect.get(String.prototype, "isWellFormed") as unknown;
+      Reflect.deleteProperty(String.prototype, "isWellFormed");
+      try {
+        const events = [
+          { ...lessonDone(DAY, "s1", "l1", 10), id: "abc\uD800" },
+          { ...lessonDone(DAY, "s2", "l1", 10), id: "\uDC00abc" },
+          { ...lessonDone(DAY, "s3", "l1", 10), deviceId: "a\uD800\uD800b" },
+          { ...lessonDone(DAY, "s4", "l1", 10), id: "pair-😀" },
+        ];
+        expect(await repo.insertRemoteEvents(events)).toBe(1);
+        expect((await storedEvents(db)).map((e) => e.id)).toEqual(["pair-😀"]);
+      } finally {
+        Reflect.defineProperty(String.prototype, "isWellFormed", {
+          value: native,
+          writable: true,
+          configurable: true,
+        });
+      }
+    });
+
     it("stores remote events this version cannot read, and skips unorderable ones", async () => {
       const future = { ...envelope(DAY), type: "goal_set", payload: { v: 1, goal: 3 } };
       const broken = { ...envelope(DAY), occurredAt: Number.NaN, type: "x", payload: {} };
@@ -737,6 +771,25 @@ describe("createSqliteProgressRepository", () => {
       await repo.appendEvents(lesson(NEXT_DAY, "l2", { b: 4 }, 30));
 
       expect(await cacheOf(repo)).toEqual(foldedCache(await storedEvents(db)));
+    });
+
+    it("refolds once when the snapshot was stored under other fold rules (an app update)", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 20));
+      await db.runAsync("UPDATE fold_snapshot SET rules = 'v1-00000000'", []);
+      const { db: spied, statements } = recording(db);
+      const store = createSqliteProgressRepository(spied);
+
+      await store.appendEvents(lesson(NEXT_DAY, "l2", { b: 4 }, 30));
+      expect(readsEvents(statements)).toHaveLength(1);
+      const row = await db.getFirstAsync<{ rules: string }>("SELECT rules FROM fold_snapshot", []);
+      expect(row?.rules).toBe(foldRulesFingerprint());
+      const events = await storedEvents(db);
+      expect(await cacheOf(repo)).toEqual(foldedCache(events));
+      expect(await storedSnapshot()).toEqual(foldSnapshot(events));
+
+      statements.length = 0;
+      await store.appendEvents(lesson(NEXT_DAY, "l3", { c: 4 }, 30));
+      expect(readsEvents(statements)).toEqual([]);
     });
 
     it("refolds when the stored snapshot has another format version", async () => {

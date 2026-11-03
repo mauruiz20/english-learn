@@ -5,6 +5,7 @@ import {
   LEVELS,
   advanceFold,
   foldEvents,
+  foldRulesFingerprint,
   foldSnapshot,
   localDate,
   snapshotProgress,
@@ -196,16 +197,44 @@ function toStoredEvent(row: EventRow): StoredEvent {
   };
 }
 
-/** Envelope fields the event table needs (the fold re-validates everything on read). */
+/**
+ * Whether `text` is well-formed UTF-16 (no lone surrogate). SQLite stores text as UTF-8 and turns
+ * a lone surrogate into U+FFFD, so such a value would read back different from what was written.
+ * `String.prototype.isWellFormed` (ES2024) when the runtime has it, else a scan.
+ */
+function isWellFormedText(text: string): boolean {
+  const native = (text as { isWellFormed?: () => boolean }).isWellFormed;
+  if (typeof native === "function") return native.call(text);
+  for (let i = 0; i < text.length; i++) {
+    const unit = text.charCodeAt(i);
+    if (unit >= 0xd800 && unit <= 0xdbff) {
+      const next = text.charCodeAt(i + 1);
+      if (!(next >= 0xdc00 && next <= 0xdfff)) return false;
+      i += 1;
+    } else if (unit >= 0xdc00 && unit <= 0xdfff) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * Envelope fields the event table needs, as text SQLite reads back unchanged (the fold
+ * re-validates everything on read; the payload is JSON, which escapes lone surrogates).
+ */
 function isStorable(event: StoredEvent): boolean {
   return (
     typeof event.id === "string" &&
     event.id.length > 0 &&
+    isWellFormedText(event.id) &&
     typeof event.deviceId === "string" &&
+    isWellFormedText(event.deviceId) &&
     typeof event.occurredAt === "number" &&
     Number.isFinite(event.occurredAt) &&
     typeof event.localDate === "string" &&
-    typeof event.type === "string"
+    isWellFormedText(event.localDate) &&
+    typeof event.type === "string" &&
+    isWellFormedText(event.type)
   );
 }
 
@@ -455,20 +484,28 @@ export function createSqliteProgressRepository(
     return Number(row?.n ?? 0);
   }
 
+  /**
+   * The stored snapshot, or `null` when it cannot be used: none, unreadable, another format
+   * version, or computed with other fold rules (an app update changed them: refold once).
+   */
   async function readSnapshot(): Promise<{ snapshot: FoldSnapshot; eventCount: number } | null> {
-    const row = await db.getFirstAsync<{ event_count: number; data: string }>(
-      "SELECT event_count, data FROM fold_snapshot WHERE id = 1",
+    const row = await db.getFirstAsync<{ event_count: number; rules: string; data: string }>(
+      "SELECT event_count, rules, data FROM fold_snapshot WHERE id = 1",
       [],
     );
-    const snapshot = row === null ? null : parseSnapshot(row.data);
-    return snapshot === null ? null : { snapshot, eventCount: Number(row?.event_count) };
+    if (row === null || row.rules !== foldRulesFingerprint()) return null;
+    const snapshot = parseSnapshot(row.data);
+    return snapshot === null ? null : { snapshot, eventCount: Number(row.event_count) };
   }
 
   async function writeSnapshot(snapshot: FoldSnapshot, eventCount: number): Promise<void> {
     await db.runAsync(
-      `INSERT INTO fold_snapshot (id, event_count, data) VALUES (1, ?, ?)
-       ON CONFLICT (id) DO UPDATE SET event_count = excluded.event_count, data = excluded.data`,
-      [eventCount, JSON.stringify(snapshot)],
+      `INSERT INTO fold_snapshot (id, event_count, rules, data) VALUES (1, ?, ?, ?)
+       ON CONFLICT (id) DO UPDATE SET
+         event_count = excluded.event_count,
+         rules = excluded.rules,
+         data = excluded.data`,
+      [eventCount, foldRulesFingerprint(), JSON.stringify(snapshot)],
     );
   }
 
@@ -674,6 +711,10 @@ export function createSqliteProgressRepository(
 
 /** Local writes must be events this version folds cleanly; anything else is a bug. */
 function assertWellFormed(events: readonly StoredEvent[]): void {
+  const unstorable = events.find((event) => !isStorable(event));
+  if (unstorable !== undefined) {
+    throw new RangeError(`Refusing to write an unstorable event (${String(unstorable.id)})`);
+  }
   const { anomalies } = foldEvents(events);
   const first = anomalies[0];
   if (first !== undefined) {
