@@ -13,7 +13,7 @@ It does not import `@english-learn/content`; the app layer maps content into the
 | `scoring`         | XP per answer, lesson completion bonus, accuracy                                                         |
 | `streak`          | Daily streak (current / longest)                                                                         |
 | `progress`        | Per-level seen / mastered counts                                                                         |
-| `progress-log`    | Append-only progress events, UUIDv7 ids, deterministic `foldEvents`                                      |
+| `progress-log`    | Append-only progress events, UUIDv7 ids, deterministic `foldEvents`, incremental `advanceFold`           |
 | `placement`       | Adaptive placement test (CAT) → CEFR level                                                               |
 | `shuffle`         | Fisher–Yates shuffle, option shuffling, word-order token scrambling                                      |
 | `local-date`      | Branded `YYYY-MM-DD` date with pure calendar math (no timezones)                                         |
@@ -151,6 +151,32 @@ Property tests (fast-check) check permutation invariance, idempotence under dupl
 convergence of two devices, a single bonus per lesson across devices, and an oracle: replaying
 generated single-device histories with the pre-event app rules gives the same progress as folding
 the events the app would write.
+
+### Incremental fold (snapshots)
+
+Refolding the whole log on every write costs time proportional to the log. A **snapshot** lets a
+store apply only the new events:
+
+- `foldSnapshot(events)`: the fold's full state as plain JSON-safe data (`FoldSnapshot`, format
+  `FOLD_SNAPSHOT_VERSION`): review states, XP, merged baseline streak, placement, active dates,
+  completed lessons, lesson results, the ids of completed and of reviewed sessions, the anomalies,
+  and a **cursor**: the position `(localDate, occurredAt, id, canonical content)` of the last
+  orderable event in fold order. Arrays are sorted, so equal folds give equal snapshots.
+- `advanceFold(snapshot, events)`: applies `events` on top, giving exactly `foldSnapshot` of the
+  whole new log. Precondition: none of their ids is already in the folded log (a store keyed by
+  id passes only the events it inserted). It returns `null` (the caller refolds the whole log)
+  when the events cannot just go after the cursor: one sorts at or before it (an older date, or
+  another device's event pulled by sync), one cannot be ordered (those are reported first), or one
+  reviews an item in a session that already has folded reviews (detecting a duplicate review
+  would need every `sessionId/itemId`). A repeated `session_completed` is exact without a refold:
+  its session id is in the snapshot.
+- `snapshotProgress(snapshot)`: the `ProgressState`; `foldEvents(events)` is
+  `snapshotProgress(foldSnapshot(events))`, so the rules above are unchanged.
+
+Property tests check that keeping a snapshot with `advanceFold` (refolding when it refuses) always
+equals a full refold, for random batches from several devices, out of order, with conflicting ids
+and re-delivered duplicates, and that a snapshot survives a JSON round trip. Any change to the
+fold rules must bump `FOLD_SNAPSHOT_VERSION`, so stored snapshots are discarded and refolded.
 
 **Change from the pre-event app rule**: the app paid the lesson bonus when "at least one item of the
 lesson had no review state yet". Lessons share items, so a lesson first completed after its items

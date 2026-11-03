@@ -12,14 +12,27 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
   (migration 3: `event` table, see `@english-learn/domain` "Progress event log"). The
   `review_state`, `xp`, `streak`, `placement_result` and `lesson_result` (migration 4: each
   lesson's best accuracy and completions, `getLessonResults()`) tables are a cache of `foldEvents` over
-  the whole log, so reads stay fast; every write refolds in the same transaction and writes only
-  the review states that changed (≈25 ms for a 5k-event log on `node:sqlite`).
+  the whole log, so reads stay fast; every write updates them in the same transaction and writes
+  only the review states and lesson results that changed.
+  - **Incremental fold** (migration 5: `fold_snapshot`). One row holds the domain's `FoldSnapshot`
+    of the whole log (JSON) and the number of events it covers. A write applies only the events
+    it actually inserted (`advanceFold`) and stores the new snapshot with the cache. It refolds
+    the whole log instead (and rewrites both) when there is no snapshot (first write after the
+    upgrade, after `clearProgress`), when it has another format version, when its event count
+    is not the log's minus the new events (a write that bypassed it), or when `advanceFold`
+    refuses: an event sorting before the cursor (a pulled event from another device or an older
+    date), an unorderable one, or a review in a session already folded. Either way the cache is
+    exactly `foldEvents` of the log (property-tested against a full refold).
+  - Cost on `node:sqlite` with a 50k-event log (`pnpm --filter @english-learn/storage-sqlite
+bench`, median): saving a 13-event session ≈ 4 ms (was ≈ 240 ms, a full refold per write);
+    a write that must refold ≈ 250 ms. The snapshot is ≈ 280 KiB (review states plus completed
+    and reviewed session ids).
   - `appendEvents(events)`: inserts local events (malformed ones are refused) and refreshes the
     cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak), so the caller
     shows exactly what the fold paid. All or nothing, so a failed save can be retried.
     (expo-sqlite's `withTransactionAsync` caveat applies: unrelated queries issued concurrently on
     the same connection may land inside the transaction; the app issues none while saving.)
-  - `rebuildFromEvents()`: recomputes the cache from the log.
+  - `rebuildFromEvents()`: recomputes the cache and the fold snapshot from the log.
   - `ensureDeviceId(generate)` / `getDeviceId()`: a stable per-install id in `sync_state`.
   - `ensureBaseline(build)`: upgrade path. When the log is empty and the cache tables hold
     progress (written before the event log), stores the ONE `baseline_imported` event `build`
@@ -27,17 +40,17 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
     Atomic and idempotent.
   - Sync store: `getUnsyncedEvents(limit)` (oldest first), `markSynced(ids, serverSeqs)`,
     `getSyncCursor()` / `setSyncCursor(n)` (last pulled server sequence, 0 at first), and
-    `insertRemoteEvents(events)` (idempotent by id, stored as synced, then the cache is rebuilt;
+    `insertRemoteEvents(events)` (idempotent by id, stored as synced, then the cache is updated;
     events this version cannot read are kept for the fold to skip, unorderable ones are dropped).
     Empty database → `[]`, `EMPTY_STREAK`, `0`, `null`. `markSynced` takes `null` for a sequence
     the server did not report.
   - Account lifecycle: `replaceDeviceId(id)` (the server said the id belongs to another account),
     `resetSyncState()` (every event unsynced again, cursor 0: the next account receives the whole
-    log; progress unchanged) and `clearProgress()` (deletes every event and the cache, keeps the
-    device id).
+    log; progress unchanged) and `clearProgress()` (deletes every event, the cache and the fold
+    snapshot, keeps the device id).
   - Transfer to another web origin: `getAllEvents()` (the whole log, oldest first, synced or not)
     and `importEvents(events)` (idempotent by id; new events are stored as **unsynced local**
-    events, so the next sync uploads them, never marked synced; then the cache is rebuilt, in one
+    events, so the next sync uploads them, never marked synced; then the cache is updated, in one
     transaction; resolves to the number added).
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;

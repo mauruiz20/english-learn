@@ -25,7 +25,8 @@ random sources.
 ### Progress is an event log
 
 Progress is stored as the domain's append-only event log (`@english-learn/domain`, "Progress
-event log"); the progress tables are a cache of its fold that every write refreshes, and reads
+event log"); the progress tables are a cache of its fold that every write refreshes (incrementally,
+from a stored fold snapshot: see `@english-learn/storage-sqlite`), and reads
 come from that cache. The app only builds events (`src/features/progress/progress-events.ts`,
 UUIDv7 ids from `clock.nowMs()` and `randomBytes`, stamped with the install's device id):
 
@@ -394,7 +395,7 @@ network call. `/privacidad` is the privacy policy (linked from `/cuenta` and `/a
 - **Sync** (`sync-engine.ts`, `sync-coordinator.ts`, `sync-triggers.ts`). Each `POST /v1/sync`
   uploads up to 500 unsynced events (and < 900 KB) and pulls the account's events after the
   cursor; it loops while events remain or `hasMore`, applies pulled events with
-  `insertRemoteEvents` (refold), marks uploads synced and stores the cursor after each page.
+  `insertRemoteEvents` (incremental fold), marks uploads synced and stores the cursor after each page.
   Network errors and 5xx back off exponentially with jitter (5 attempts), 429 waits
   `Retry-After`, 401 refreshes once, 409 `device_conflict` takes a new device id once, conflicts
   are logged. Triggers: sign-in (the first sync uploads the whole history, baseline included), app
