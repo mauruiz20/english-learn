@@ -55,11 +55,11 @@ describe("SaveProgressSuggestion", () => {
     const settings = createFakeSettingsRepository();
     const first = await renderSuggestion({ settings });
 
-    expect(await screen.findByText("Guardá tu progreso")).toBeOnTheScreen();
+    expect(await screen.findByText("Guarda tu progreso")).toBeOnTheScreen();
     await first.unmount();
 
     await renderSuggestion({ settings });
-    expect(screen.queryByText("Guardá tu progreso")).toBeNull();
+    expect(screen.queryByText("Guarda tu progreso")).toBeNull();
   });
 
   it("opens the account page", async () => {
@@ -75,7 +75,7 @@ describe("SaveProgressSuggestion", () => {
 
     await fireEvent.press(await screen.findByRole("button", { name: "Ahora no" }));
 
-    expect(screen.queryByText("Guardá tu progreso")).toBeNull();
+    expect(screen.queryByText("Guarda tu progreso")).toBeNull();
   });
 
   it.each([
@@ -87,7 +87,7 @@ describe("SaveProgressSuggestion", () => {
     await renderSuggestion({ settings, ...options });
 
     await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(screen.queryByText("Guardá tu progreso")).toBeNull();
+    expect(screen.queryByText("Guarda tu progreso")).toBeNull();
     expect(settings.saveProgressSuggestionDismissed()).toBe(false);
   });
 });

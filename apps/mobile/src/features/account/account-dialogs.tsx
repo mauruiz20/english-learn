@@ -93,7 +93,7 @@ export function DeleteAccountDialog({
       </Text>
       <Text variant="small" tone="muted">
         Si entraste con Google hace más de 5 minutos, te pediremos que vuelvas a entrar para
-        confirmar que sos vos.
+        confirmar que eres tú.
       </Text>
       <View style={styles.actions}>
         <Button label="Cancelar" onPress={onCancel} disabled={busy} />

@@ -25,7 +25,7 @@ export function PrivacyScreen() {
       <Text variant="small" tone="muted">{`Última actualización: ${PRIVACY_LAST_UPDATED}`}</Text>
       <Text>
         English Learn funciona sin cuenta: tu progreso queda guardado en tu dispositivo. Esta
-        política se aplica solo si creás una cuenta (opcional) para sincronizar tu progreso.
+        política se aplica solo si creas una cuenta (opcional) para sincronizar tu progreso.
       </Text>
 
       <Section title="Qué guardamos">
@@ -63,7 +63,7 @@ export function PrivacyScreen() {
 
       <Section title="Cómo eliminar tus datos">
         <Text>
-          En Cuenta, tocá «Eliminar cuenta»: borramos del servidor tu cuenta y todo el progreso
+          En Cuenta, toca «Eliminar cuenta»: borramos del servidor tu cuenta y todo el progreso
           guardado en ella. El progreso de tu dispositivo no se toca.
         </Text>
       </Section>

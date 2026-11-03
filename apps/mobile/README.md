@@ -1,7 +1,9 @@
 # @english-learn/mobile
 
 Expo (SDK 58) app shell: expo-router screens, SQLite persistence via `expo-sqlite`, and a static
-web build. Offline-first: no network or AI at runtime. UI copy is Spanish.
+web build. Offline-first: no network or AI at runtime. UI copy is neutral Spanish with tú
+("puedes", "inicia"), never voseo ("podés", "iniciá"); `src/neutral-spanish.test.ts` scans `src/`
+and `e2e/` with the content package's `findVoseo` and fails on the common voseo forms.
 
 ## Structure
 
