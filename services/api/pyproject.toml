@@ -3,6 +3,7 @@ name = "english-learn-api"
 version = "0.1.0"
 description = "Sync and sign-in API for English Learn: Google sign-in, tokens and an opaque progress event store."
 readme = "README.md"
+license = "MIT"
 authors = [
     { name = "Ruiz, Francisco Mauricio", email = "69861356+mauruiz20@users.noreply.github.com" }
 ]

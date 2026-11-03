@@ -200,6 +200,8 @@ grades all its items with one verdict, and the web app works in one tab at a tim
 
 ## License
 
-- **Code**: License: to be decided.
-- **Content**: sentences from [Tatoeba](https://tatoeba.org) are licensed CC BY 2.0 FR and
-  credited as described above.
+- **Code**: the source code is licensed under the [MIT License](LICENSE).
+- **Third-party data keeps its own license**: the MIT License does not cover it. Example
+  sentences from [Tatoeba](https://tatoeba.org) in `packages/content/data` are licensed
+  [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/) and credited as described in
+  [Content and licensing](#content-and-licensing).

@@ -1,6 +1,7 @@
 {
   "name": "@english-learn/mobile",
   "version": "0.1.0",
+  "license": "MIT",
   "main": "expo-router/entry",
   "dependencies": {
     "@english-learn/api-client": "workspace:*",
