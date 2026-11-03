@@ -651,7 +651,7 @@ on one worker and each test first empties OPFS and removes service workers and t
 
 ## Android builds
 
-App identity lives in `app.json`: version `0.1.0`, `android.versionCode` `1` (increment it for
+App identity lives in `app.json`: version `0.2.0`, `android.versionCode` `1` (increment it for
 every Play Store upload), portrait only. The package name `com.mruizdev.englishlearn` is a
 placeholder and can still change before the first Play Store release; after that it is permanent.
 `eas.json` reads versions from `app.json` (`appVersionSource: "local"`).

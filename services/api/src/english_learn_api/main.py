@@ -169,7 +169,7 @@ def create_app(
     public_docs = not settings.is_production
     app = FastAPI(
         title="English Learn API",
-        version="0.1.0",
+        version="0.2.0",
         lifespan=lifespan,
         openapi_url="/openapi.json" if public_docs else None,
         docs_url="/docs" if public_docs else None,
