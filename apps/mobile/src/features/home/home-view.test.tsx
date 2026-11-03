@@ -493,6 +493,15 @@ describe("HomeView deepen step", () => {
     ).not.toBeOnTheScreen();
   });
 
+  it("never lets the marker shrink, so a long title wraps instead", async () => {
+    await renderWithCards();
+
+    // On web a Text shrinks by default, which broke "Perfecta · 8/8" over two lines.
+    for (const marker of ["Nueva", "Perfecta · 6/6", "Completada · 5/7"]) {
+      expect(screen.getByText(marker)).toHaveStyle({ flexShrink: 0 });
+    }
+  });
+
   it("shows nothing under a lesson not done yet", async () => {
     await renderWithCards();
 

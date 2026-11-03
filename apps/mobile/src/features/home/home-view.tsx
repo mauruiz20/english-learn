@@ -527,23 +527,26 @@ function DeepenSteps({
                 />
               )}
             </View>
-            <View style={styles.deepenText}>
-              <Text variant="small" tone="muted">
-                Profundiza
-              </Text>
-              <Text variant="smallStrong" tone="ink">
-                {card.title}
-              </Text>
+            {/* The marker goes under the title when both don't fit on one line. */}
+            <View style={styles.deepenBody}>
+              <View style={styles.deepenText}>
+                <Text variant="small" tone="muted">
+                  Profundiza
+                </Text>
+                <Text variant="smallStrong" tone="ink">
+                  {card.title}
+                </Text>
+              </View>
+              {card.score === undefined ? (
+                <Text variant="small" tone="muted" style={styles.deepenMarker}>
+                  Nueva
+                </Text>
+              ) : (
+                <Text variant="smallStrong" tone="success" style={styles.deepenMarker}>
+                  {scoreText(card.score)}
+                </Text>
+              )}
             </View>
-            {card.score === undefined ? (
-              <Text variant="small" tone="muted">
-                Nueva
-              </Text>
-            ) : (
-              <Text variant="smallStrong" tone="success">
-                {scoreText(card.score)}
-              </Text>
-            )}
           </PressableScale>
         ))}
       </View>
@@ -875,7 +878,13 @@ const useStyles = themedStyles(({ colors }) =>
     },
     // Under a done stop: the pencil line's column, then the cards, smaller than a stop.
     deepen: { flexDirection: "row", alignItems: "stretch" },
-    deepenTrail: { width: STICKER_COLUMN },
+    // On a narrow phone the column gives up its room right of the line first, so the cards keep
+    // enough width for their title and marker.
+    deepenTrail: {
+      width: STICKER_COLUMN,
+      minWidth: STICKER_COLUMN / 2 + spacing.sm,
+      flexShrink: 20,
+    },
     // Out of the flow, so the line never makes the row taller than its cards.
     deepenLine: { position: "absolute", top: 0, bottom: 0, left: STICKER_COLUMN / 2 - 3 },
     deepenList: { flexShrink: 1, gap: spacing.xs, paddingVertical: spacing.xs },
@@ -894,7 +903,16 @@ const useStyles = themedStyles(({ colors }) =>
       backgroundColor: colors.sheet,
     },
     deepenBadge: { position: "absolute", right: -8, top: -10 },
+    deepenBody: {
+      flexShrink: 1,
+      flexDirection: "row",
+      flexWrap: "wrap",
+      alignItems: "center",
+      columnGap: spacing.sm,
+    },
     deepenText: { flexShrink: 1 },
+    // The title wraps, never the marker ("Perfecta · 8/8"): a web Text shrinks by default.
+    deepenMarker: { flexShrink: 0 },
     footer: {
       marginTop: spacing.md,
       paddingTop: spacing.sm,
