@@ -114,7 +114,10 @@ Reference-free rules (run on every file that parsed, even when other files fail)
 7. Topics: `item.topics` / `passage.topics` include the topic segment of their id; a lesson's id
    topic segment equals `lesson.topic`; every exercise a lesson lists has that topic segment.
 8. Punctuation: no text field contains exactly two dots in a row (`..`, e.g. `p.m..`) or four or
-   more; a three-dot ellipsis `...` and `…` are allowed.
+   more; a three-dot ellipsis `...` and `…` are allowed. Register: Spanish is neutral, with tú
+   ("puedes", "inicia"), never voseo ("podés", "iniciá", "usalo", "vos"); `findVoseo`
+   (`src/validate/voseo.ts`) catches the common shapes, allowing "pedí" / "abrí" as the first
+   person past. The app's copy is checked with the same function (`apps/mobile/src/neutral-spanish.test.ts`).
 9. Glossary entries (see [Glossary](#glossary)): file name, order, form shape, headword among the
    forms, word vs phrase forms.
 10. Answer patterns (translate_write `accepted`): every entry parses; each entry and the whole
