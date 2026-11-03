@@ -168,6 +168,7 @@ export function LessonView({
                     onDispute={state.feedback.disputable ? onDispute : undefined}
                     inARow={correctInARow(state.results ?? [])}
                     card={cardLink(state.card, onOpenCard)}
+                    finishes={state.position === state.total}
                     onContinue={onContinue}
                   />
                 ),

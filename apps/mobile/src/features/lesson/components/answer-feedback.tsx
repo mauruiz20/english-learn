@@ -40,6 +40,8 @@ type AnswerFeedbackProps = {
   inARow?: number | undefined;
   /** The study card that explains the exercise: "Ver ficha: …" after a wrong or almost answer. */
   card?: { readonly title: string; readonly onOpen: () => void } | undefined;
+  /** "Continuar" finishes the session: the completion sound plays, not the press click. */
+  finishes?: boolean | undefined;
   onContinue: () => void;
 };
 
@@ -130,6 +132,7 @@ export function AnswerFeedback({
   onDispute,
   inARow = 0,
   card,
+  finishes = false,
   onContinue,
 }: AnswerFeedbackProps) {
   const styles = useStyles();
@@ -183,7 +186,7 @@ export function AnswerFeedback({
           </>
         )}
       </View>
-      <Button label="Continuar" onPress={onContinue} />
+      <Button label="Continuar" pressSound={!finishes} onPress={onContinue} />
       {onDispute !== undefined && verdict !== "correct" && (
         <Button label="Mi respuesta también es correcta" variant="text" onPress={onDispute} />
       )}

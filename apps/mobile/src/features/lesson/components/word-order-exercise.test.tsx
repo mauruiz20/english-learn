@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
+import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
+import { renderWithSounds } from "@/testing/render-with-sounds";
 import { wordOrder } from "../model/fixtures";
 import { WordOrderExercise } from "./word-order-exercise";
 
@@ -35,6 +37,19 @@ describe("WordOrderExercise", () => {
 
     expect(screen.getByRole("button", { name: "wake" })).toBeOnTheScreen();
     expect(screen.queryByRole("button", { name: "Quitar wake" })).not.toBeOnTheScreen();
+  });
+
+  it("plays only its tap when a tile moves, never the press click too", async () => {
+    const sounds = createFakeSoundPlayer();
+    await renderWithSounds(
+      <WordOrderExercise prepared={prepared} disabled={false} onSubmit={onSubmit} />,
+      sounds,
+    );
+
+    await fireEvent.press(screen.getByRole("button", { name: "I" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Quitar I" }));
+
+    expect(sounds.played).toEqual(["tap", "tap"]);
   });
 
   it("submits the built tokens once every token is used", async () => {

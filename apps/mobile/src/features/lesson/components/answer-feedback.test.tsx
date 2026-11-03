@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import { StyleSheet } from "react-native";
 import { diffAnswer } from "@english-learn/domain";
+import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
+import { renderWithSounds } from "@/testing/render-with-sounds";
 import { AnswerFeedback } from "./answer-feedback";
 
 const onContinue = jest.fn();
@@ -8,6 +10,28 @@ const onContinue = jest.fn();
 beforeEach(() => jest.clearAllMocks());
 
 describe("AnswerFeedback", () => {
+  it("clicks on Continuar, but not on the last one: the completion sound plays instead", async () => {
+    const sounds = createFakeSoundPlayer();
+    const feedback = (finishes: boolean) => (
+      <AnswerFeedback
+        verdict="correct"
+        given="have"
+        correctAnswer="have"
+        finishes={finishes}
+        onContinue={onContinue}
+      />
+    );
+    const { rerender } = await renderWithSounds(feedback(false), sounds);
+    await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));
+    expect(sounds.played).toEqual(["press"]);
+
+    await rerender(feedback(true));
+    await fireEvent.press(screen.getByRole("button", { name: "Continuar" }));
+
+    expect(sounds.played).toEqual(["press"]);
+    expect(onContinue).toHaveBeenCalledTimes(2);
+  });
+
   it("announces a correct answer plainly, without repeating it", async () => {
     await render(
       <AnswerFeedback

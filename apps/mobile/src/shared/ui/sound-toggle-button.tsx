@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, View } from "react-native";
+import { usePressSound } from "./press-sound";
 import { TOUCH_TARGET } from "./theme";
 import { themedStyles } from "./use-theme";
 
@@ -10,15 +11,20 @@ type SoundToggleButtonProps = {
 
 /**
  * A pen-drawn speaker: with sound waves when sounds are on, crossed out when muted. Its label
- * says what pressing it does ("Silenciar sonidos" / "Activar sonidos").
+ * says what pressing it does ("Silenciar sonidos" / "Activar sonidos"). It clicks after flipping,
+ * so turning sounds on is confirmed by the click and muting is silent.
  */
 export function SoundToggleButton({ enabled, onToggle }: SoundToggleButtonProps) {
   const styles = useStyles();
+  const click = usePressSound();
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={enabled ? "Silenciar sonidos" : "Activar sonidos"}
-      onPress={onToggle}
+      onPress={() => {
+        onToggle();
+        click();
+      }}
       hitSlop={4}
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
     >
