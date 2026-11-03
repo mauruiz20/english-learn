@@ -15,11 +15,14 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
   the whole log, so reads stay fast; every write updates them in the same transaction and writes
   only the review states and lesson results that changed.
   - **Incremental fold** (migration 5: `fold_snapshot`). One row holds the domain's `FoldSnapshot`
-    of the whole log (JSON) and the number of events it covers. A write applies only the events
-    it actually inserted (`advanceFold`) and stores the new snapshot with the cache. It refolds
-    the whole log instead (and rewrites both) when there is no snapshot (first write after the
-    upgrade, after `clearProgress`), when it has another format version, when its event count
-    is not the log's minus the new events (a write that bypassed it), or when `advanceFold`
+    of the whole log (JSON), the number of events it covers and the `foldRulesFingerprint` it
+    was computed with. A write applies only the events it actually inserted (`advanceFold`) and
+    stores the new snapshot with the cache; it still costs the snapshot's size (parse, rebuild,
+    write) and a `COUNT(*)` of the log, kept on purpose as the guard below. It refolds the whole
+    log instead (and rewrites both) when there is no snapshot (first write after the upgrade,
+    after `clearProgress`), when it has another format version or other fold rules (the first
+    write after an app update that changed them), when its event count is not the log's minus
+    the new events (a write that bypassed it), or when `advanceFold`
     refuses: an event sorting before the cursor (a pulled event from another device or an older
     date), an unorderable one, or a review in a session already folded. Either way the cache is
     exactly `foldEvents` of the log (property-tested against a full refold).
@@ -52,6 +55,9 @@ bench`, median): saving a 13-event session ≈ 4 ms (was ≈ 240 ms, a full refo
     and `importEvents(events)` (idempotent by id; new events are stored as **unsynced local**
     events, so the next sync uploads them, never marked synced; then the cache is updated, in one
     transaction; resolves to the number added).
+  - **Unstorable events**: an envelope whose `id`, `deviceId`, `localDate` or `type` is not
+    well-formed Unicode (a lone surrogate, which SQLite would read back as U+FFFD) is skipped by
+    `insertRemoteEvents` / `importEvents` and refused by `appendEvents`, like an unorderable one.
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
   `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).

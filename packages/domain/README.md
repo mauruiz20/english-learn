@@ -175,8 +175,19 @@ store apply only the new events:
 
 Property tests check that keeping a snapshot with `advanceFold` (refolding when it refuses) always
 equals a full refold, for random batches from several devices, out of order, with conflicting ids
-and re-delivered duplicates, and that a snapshot survives a JSON round trip. Any change to the
-fold rules must bump `FOLD_SNAPSHOT_VERSION`, so stored snapshots are discarded and refolded.
+and re-delivered duplicates, and that a snapshot survives a JSON round trip.
+
+**Changing the fold rules.** Stored snapshots carry the rules they were computed with, which
+include `applyReview`, `xpForLessonCompletion` and `parseEvent` outside `fold.ts`. Two guards:
+
+- `FOLD_RULES_CORPUS` (`fold-rules.ts`) is a fixed log that exercises every rule and anomaly.
+  `fold-rules.test.ts` compares its `foldSnapshot` with `fold-rules.golden.json`, pinned for the
+  current `FOLD_SNAPSHOT_VERSION`. If the output changes, CI fails until the version is bumped
+  and the golden is regenerated:
+  `UPDATE_FOLD_GOLDEN=1 pnpm --filter @english-learn/domain test fold-rules`, then `pnpm format`.
+- `foldRulesFingerprint()` is `v<version>-<FNV-1a hash of that fold>`. Stores keep it with
+  their snapshot and refold once when it differs, so every app update re-derives the cache under
+  the rules it ships.
 
 **Change from the pre-event app rule**: the app paid the lesson bonus when "at least one item of the
 lesson had no review state yet". Lessons share items, so a lesson first completed after its items
