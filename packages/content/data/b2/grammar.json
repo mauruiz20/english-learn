@@ -23,6 +23,82 @@
       "kind": "grammar",
       "term": "get used to + -ing",
       "es": "acostumbrarse a"
+    },
+    {
+      "id": "b2.grammar.third-conditional",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "If I had known, I would have…",
+      "es": "tercer condicional (si hubiera…, habría…)"
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "If I had…, I would be… now",
+      "es": "condicional mixto (si hubiera…, ahora sería…)"
+    },
+    {
+      "id": "b2.grammar.wish-if-only",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "I wish… / If only…",
+      "es": "ojalá…, si tan solo…"
+    },
+    {
+      "id": "b2.grammar.should-have",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "should have done / could have done",
+      "es": "debería haber hecho / podría haber hecho"
+    },
+    {
+      "id": "b2.grammar.past-deduction",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "must have / might have / can't have done",
+      "es": "seguramente / quizás / es imposible que (deducción sobre el pasado)"
+    },
+    {
+      "id": "b2.grammar.reporting-passive",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "It is said that… / He is said to…",
+      "es": "se dice que…, dicen que…"
+    },
+    {
+      "id": "b2.grammar.causative",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "have / get something done",
+      "es": "mandar a hacer algo; que te hagan algo"
+    },
+    {
+      "id": "b2.grammar.despite",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "despite / in spite of",
+      "es": "a pesar de"
+    },
+    {
+      "id": "b2.grammar.whereas",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "word",
+      "term": "whereas",
+      "es": "mientras que (contraste)",
+      "example": {
+        "en": "I love cities, whereas my brother prefers the countryside.",
+        "es": "A mí me encantan las ciudades, mientras que mi hermano prefiere el campo."
+      }
     }
   ],
   "exercises": [
@@ -226,6 +302,867 @@
         "I'm [already ]used to waking up early.",
         "I've [already ]gotten used to {getting|waking} up early."
       ]
+    },
+    {
+      "id": "b2.grammar.third-conditional-cloze-1",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If I ___ about the meeting, I would have come.",
+      "answers": ["had known"],
+      "distractors": ["would have known", "knew", "have known"],
+      "es": "Si hubiera sabido de la reunión, habría venido."
+    },
+    {
+      "id": "b2.grammar.third-conditional-cloze-2",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If we had left earlier, we ___ the train.",
+      "answers": ["wouldn't have missed", "would not have missed"],
+      "distractors": ["didn't miss", "won't miss", "hadn't missed"],
+      "es": "Si hubiéramos salido antes, no habríamos perdido el tren."
+    },
+    {
+      "id": "b2.grammar.third-conditional-cloze-3",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ have failed the exam if she had studied more.",
+      "answers": ["wouldn't", "would not"],
+      "distractors": ["won't", "didn't", "hadn't"],
+      "es": "No habría reprobado el examen si hubiera estudiado más."
+    },
+    {
+      "id": "b2.grammar.third-conditional-choice-1",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If it hadn't rained, we would have gone to the beach.",
+      "options": [
+        "Si no llueve, iremos a la playa.",
+        "Si no lloviera, iríamos a la playa.",
+        "Si no hubiera llovido, habríamos ido a la playa.",
+        "Como llovió, fuimos a la playa."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.third-conditional-order-1",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["helped", "I", "known,", "If", "would", "had", "you.", "have", "I"],
+      "accepted": ["If I had known, I would have helped you."],
+      "es": "Si lo hubiera sabido, te habría ayudado."
+    },
+    {
+      "id": "b2.grammar.third-conditional-write-1",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si lo hubiera sabido, te habría llamado.",
+      "accepted": [
+        "If I had known, I would have {called|phoned} you.",
+        "I would have {called|phoned} you if I had known."
+      ]
+    },
+    {
+      "id": "b2.grammar.third-conditional-write-2",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si hubiéramos salido antes, no habríamos perdido el vuelo.",
+      "accepted": [
+        "If we had left earlier, we wouldn't have missed the {flight|plane}.",
+        "We wouldn't have missed the {flight|plane} if we had left earlier."
+      ]
+    },
+    {
+      "id": "b2.grammar.third-conditional-vocab-1",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'si lo hubiera sabido'.",
+      "options": ["if I would have known", "if I knew", "if I have known", "if I had known"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-cloze-1",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If I had saved more money, I ___ rich now.",
+      "answers": ["would be"],
+      "distractors": ["would have been", "will be", "had been"],
+      "es": "Si hubiera ahorrado más dinero, ahora sería rico."
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-cloze-2",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If she ___ so shy, she would have talked to him.",
+      "answers": ["weren't", "wasn't"],
+      "distractors": ["hadn't", "wouldn't be", "isn't"],
+      "es": "Si no fuera tan tímida, le habría hablado."
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-cloze-3",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If we hadn't gotten lost, we ___ at the hotel now.",
+      "answers": ["would be"],
+      "distractors": ["would have been", "will be", "are"],
+      "es": "Si no nos hubiéramos perdido, ahora estaríamos en el hotel."
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-choice-1",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If I had taken that job, I would live in Canada now.",
+      "options": [
+        "Si acepto ese trabajo, viviré en Canadá.",
+        "Si hubiera aceptado ese trabajo, habría vivido en Canadá.",
+        "Acepté ese trabajo y ahora vivo en Canadá.",
+        "Si hubiera aceptado ese trabajo, ahora viviría en Canadá."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-order-1",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["more.", "be", "if", "slept", "so", "had", "I", "tired", "wouldn't", "I"],
+      "accepted": ["I wouldn't be so tired if I had slept more."],
+      "es": "No estaría tan cansado si hubiera dormido más."
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-write-1",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si hubiera estudiado más, ahora tendría un trabajo mejor.",
+      "accepted": [
+        "If I had studied {more|harder}, I would have a better job now.",
+        "If I had studied {more|harder}, {now I would|I would now} have a better job.",
+        "I would have a better job now if I had studied {more|harder}."
+      ]
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-write-2",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si hablara inglés, habría conseguido ese trabajo.",
+      "accepted": [
+        "If I {spoke|could speak|knew} English, I would have {gotten|got} that job.",
+        "I would have {gotten|got} that job if I {spoke|could speak|knew} English."
+      ]
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals-vocab-1",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'ahora sería médico'.",
+      "options": [
+        "I would have been a doctor now",
+        "I will be a doctor now",
+        "I would be a doctor now",
+        "I had been a doctor now"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.wish-if-only-cloze-1",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I wish I ___ more time to read.",
+      "answers": ["had"],
+      "distractors": ["have", "will have", "would have"],
+      "es": "Ojalá tuviera más tiempo para leer."
+    },
+    {
+      "id": "b2.grammar.wish-if-only-cloze-2",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I wish I ___ so much last night.",
+      "answers": ["hadn't eaten", "had not eaten"],
+      "distractors": ["didn't eat", "haven't eaten", "wouldn't eat"],
+      "es": "Ojalá no hubiera comido tanto anoche."
+    },
+    {
+      "id": "b2.grammar.wish-if-only-cloze-3",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If ___ I could speak Japanese!",
+      "answers": ["only"],
+      "distractors": ["just", "even"],
+      "es": "¡Si tan solo pudiera hablar japonés!"
+    },
+    {
+      "id": "b2.grammar.wish-if-only-cloze-4",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I wish you ___ stop interrupting me.",
+      "answers": ["would"],
+      "distractors": ["will", "are"],
+      "es": "Ojalá dejaras de interrumpirme."
+    },
+    {
+      "id": "b2.grammar.wish-if-only-choice-1",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She wishes she hadn't moved to the city.",
+      "options": [
+        "Ella espera mudarse a la ciudad.",
+        "Ella desearía no haberse mudado a la ciudad.",
+        "Ella quiere mudarse a la ciudad.",
+        "Ella se mudó a la ciudad porque quería."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.grammar.wish-if-only-order-1",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["the", "lived", "I", "near", "beach.", "wish", "I"],
+      "accepted": ["I wish I lived near the beach."],
+      "es": "Ojalá viviera cerca de la playa."
+    },
+    {
+      "id": "b2.grammar.wish-if-only-write-1",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ojalá yo tuviera un auto.",
+      "accepted": ["{I wish|If only} I had a car."]
+    },
+    {
+      "id": "b2.grammar.wish-if-only-write-2",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ojalá yo no hubiera dicho eso.",
+      "accepted": ["{I wish|If only} I hadn't said that."]
+    },
+    {
+      "id": "b2.grammar.should-have-cloze-1",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm so tired. I ___ gone to bed earlier.",
+      "answers": ["should have"],
+      "distractors": ["should", "have", "must"],
+      "es": "Estoy muy cansado. Debería haberme acostado más temprano."
+    },
+    {
+      "id": "b2.grammar.should-have-cloze-2",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You should have ___ me. I would have helped you.",
+      "answers": ["told"],
+      "distractors": ["tell", "telling"],
+      "es": "Deberías habérmelo dicho. Te habría ayudado."
+    },
+    {
+      "id": "b2.grammar.should-have-cloze-3",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We ___ have won the game, but we made too many mistakes.",
+      "answers": ["could", "should"],
+      "distractors": ["can", "will"],
+      "es": "Podríamos haber ganado el partido, pero cometimos demasiados errores."
+    },
+    {
+      "id": "b2.grammar.should-have-cloze-4",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You ___ have eaten all the cake! It was for the party.",
+      "answers": ["shouldn't", "should not"],
+      "distractors": ["mustn't", "don't", "didn't"],
+      "es": "¡No deberías haberte comido todo el pastel! Era para la fiesta."
+    },
+    {
+      "id": "b2.grammar.should-have-choice-1",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I would have helped you, but I didn't know.",
+      "options": [
+        "Te ayudé, aunque no lo sabía.",
+        "Te ayudaría, pero no sé cómo.",
+        "Te habría ayudado, pero no lo sabía."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.should-have-order-1",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["a", "have", "We", "taxi.", "taken", "could"],
+      "accepted": ["We could have taken a taxi."],
+      "es": "Podríamos haber tomado un taxi."
+    },
+    {
+      "id": "b2.grammar.should-have-write-1",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Debería haber estudiado más.",
+      "accepted": ["{I|He|She} {should|ought to} have studied {more|harder}."]
+    },
+    {
+      "id": "b2.grammar.should-have-write-2",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No deberías haber gastado tanto dinero.",
+      "accepted": ["You shouldn't have spent {so|that} much[ money]."]
+    },
+    {
+      "id": "b2.grammar.past-deduction-cloze-1",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The ground is wet. It ___ rained last night.",
+      "answers": ["must have"],
+      "distractors": ["can't have", "must", "should"],
+      "es": "El suelo está mojado. Seguramente llovió anoche."
+    },
+    {
+      "id": "b2.grammar.past-deduction-cloze-2",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He ___ seen us. He was asleep the whole time.",
+      "answers": ["can't have", "couldn't have"],
+      "distractors": ["must have", "must"],
+      "es": "No puede ser que nos haya visto. Estuvo dormido todo el tiempo."
+    },
+    {
+      "id": "b2.grammar.past-deduction-cloze-3",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She isn't answering. She might have ___ her phone at home.",
+      "answers": ["left"],
+      "distractors": ["leave", "leaving", "to leave"],
+      "es": "No contesta. Quizás dejó el teléfono en casa."
+    },
+    {
+      "id": "b2.grammar.past-deduction-choice-1",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "They must have missed the bus.",
+      "options": [
+        "Tenían que tomar el autobús.",
+        "No perdieron el autobús.",
+        "Deberían haber tomado el autobús.",
+        "Seguramente perdieron el autobús."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.grammar.past-deduction-choice-2",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You can't have finished already!",
+      "options": [
+        "¡No puedes terminar todavía!",
+        "¡No puede ser que ya hayas terminado!",
+        "¡Ya deberías haber terminado!"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.grammar.past-deduction-order-1",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["lost.", "have", "They", "gotten", "may"],
+      "accepted": ["They may have gotten lost."],
+      "es": "Puede que se hayan perdido."
+    },
+    {
+      "id": "b2.grammar.past-deduction-write-1",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Seguramente olvidó la reunión.",
+      "accepted": [
+        "{He|She} must have forgotten [about ]the meeting.",
+        "{He|She} probably forgot [about ]the meeting."
+      ]
+    },
+    {
+      "id": "b2.grammar.past-deduction-write-2",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Quizás tomaron el tren equivocado.",
+      "accepted": [
+        "They {might|may|could} have taken the wrong train.",
+        "{Maybe|Perhaps} they took the wrong train."
+      ]
+    },
+    {
+      "id": "b2.grammar.reporting-passive-cloze-1",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It is ___ that the fire started in the kitchen.",
+      "answers": ["believed", "thought", "said", "reported"],
+      "distractors": ["believe", "believing"],
+      "es": "Se cree que el incendio empezó en la cocina."
+    },
+    {
+      "id": "b2.grammar.reporting-passive-cloze-2",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The singer is said ___ very shy.",
+      "answers": ["to be"],
+      "distractors": ["that is", "being", "be"],
+      "es": "Dicen que el cantante es muy tímido."
+    },
+    {
+      "id": "b2.grammar.reporting-passive-cloze-3",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The thieves are thought to ___ escaped through a window.",
+      "answers": ["have"],
+      "distractors": ["has", "had", "be"],
+      "es": "Se cree que los ladrones escaparon por una ventana."
+    },
+    {
+      "id": "b2.grammar.reporting-passive-cloze-4",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ is said that the hotel has the best views in the city.",
+      "answers": ["It"],
+      "distractors": ["There", "They", "This"],
+      "es": "Se dice que el hotel tiene las mejores vistas de la ciudad."
+    },
+    {
+      "id": "b2.grammar.reporting-passive-choice-1",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The president is expected to arrive tomorrow.",
+      "options": [
+        "El presidente espera llegar mañana.",
+        "El presidente llegó ayer, como se esperaba.",
+        "Se espera que el presidente llegue mañana."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.reporting-passive-order-1",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["country.", "to", "believed", "He", "left", "is", "the", "have"],
+      "accepted": ["He is believed to have left the country."],
+      "es": "Se cree que se fue del país."
+    },
+    {
+      "id": "b2.grammar.reporting-passive-write-1",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Dicen que es muy rico.",
+      "accepted": [
+        "{He|She} is said to be {very|really} rich.",
+        "It is said [that ]{he|she} is {very|really} rich.",
+        "{They|People} say [that ]{he|she} is {very|really} rich."
+      ]
+    },
+    {
+      "id": "b2.grammar.reporting-passive-write-2",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Se cree que los ladrones escaparon en auto.",
+      "accepted": [
+        "The {thieves|robbers} are {believed|thought} to have escaped {by car|in a car}.",
+        "It is {believed|thought} [that ]the {thieves|robbers} escaped {by car|in a car}."
+      ]
+    },
+    {
+      "id": "b2.grammar.causative-cloze-1",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I need to have my car ___.",
+      "answers": ["repaired", "fixed"],
+      "distractors": ["repair", "repairing"],
+      "es": "Tengo que mandar a arreglar el auto."
+    },
+    {
+      "id": "b2.grammar.causative-cloze-2",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ her hair cut every two months.",
+      "answers": ["has", "gets"],
+      "distractors": ["does", "makes", "cuts"],
+      "es": "Se corta el pelo en la peluquería cada dos meses."
+    },
+    {
+      "id": "b2.grammar.causative-cloze-3",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We're having the house ___ next week.",
+      "answers": ["painted"],
+      "distractors": ["paint", "to paint", "painting"],
+      "es": "La semana que viene nos van a pintar la casa."
+    },
+    {
+      "id": "b2.grammar.causative-choice-1",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He had his wallet stolen on the bus.",
+      "options": [
+        "Robó una billetera en el autobús.",
+        "Perdió su billetera en el autobús.",
+        "Le robaron la billetera en el autobús.",
+        "Encontró una billetera en el autobús."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.causative-order-1",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["cut", "my", "yesterday.", "I", "hair", "had"],
+      "accepted": ["I had my hair cut yesterday."],
+      "es": "Ayer me corté el pelo (en la peluquería)."
+    },
+    {
+      "id": "b2.grammar.causative-write-1",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo que mandar a arreglar el auto.",
+      "accepted": ["I {have to|need to|must} {have|get} {my|the} car {repaired|fixed}."]
+    },
+    {
+      "id": "b2.grammar.causative-write-2",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Nos robaron el auto anoche.",
+      "accepted": [
+        "We had our car stolen last night.",
+        "Our car {was|got} stolen last night.",
+        "{Someone|Somebody} stole our car last night."
+      ]
+    },
+    {
+      "id": "b2.grammar.causative-vocab-1",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'me corté el pelo en la peluquería'.",
+      "options": ["I cut my hair", "I had my hair cut", "I had cut my hair", "I made my hair cut"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.grammar.despite-cloze-1",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ the traffic, we arrived on time.",
+      "answers": ["Despite", "In spite of"],
+      "distractors": ["Although", "Even though", "However"],
+      "es": "A pesar del tráfico, llegamos a tiempo."
+    },
+    {
+      "id": "b2.grammar.despite-cloze-2",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She went to work in spite of ___ sick.",
+      "answers": ["feeling", "being"],
+      "distractors": ["she felt", "feel", "to feel"],
+      "es": "Fue a trabajar a pesar de sentirse mal."
+    },
+    {
+      "id": "b2.grammar.despite-cloze-3",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ it was raining, we went for a walk.",
+      "answers": ["Although", "Even though", "Though"],
+      "distractors": ["Despite", "In spite of"],
+      "es": "Aunque llovía, salimos a caminar."
+    },
+    {
+      "id": "b2.grammar.despite-cloze-4",
+      "itemIds": ["b2.grammar.whereas"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I love cities, ___ my brother prefers the countryside.",
+      "answers": ["whereas", "while", "but"],
+      "distractors": ["despite", "in spite of"],
+      "es": "A mí me encantan las ciudades, mientras que mi hermano prefiere el campo."
+    },
+    {
+      "id": "b2.grammar.despite-choice-1",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He didn't get the job despite having a lot of experience.",
+      "options": [
+        "No consiguió el trabajo porque no tenía experiencia.",
+        "No consiguió el trabajo a pesar de tener mucha experiencia.",
+        "Consiguió el trabajo gracias a su experiencia."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.grammar.despite-order-1",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["trip.", "the", "rain,", "enjoyed", "Despite", "we", "the"],
+      "accepted": ["Despite the rain, we enjoyed the trip."],
+      "es": "A pesar de la lluvia, disfrutamos el viaje."
+    },
+    {
+      "id": "b2.grammar.despite-write-1",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "A pesar del frío, fuimos a la playa.",
+      "accepted": [
+        "{Despite|In spite of} the cold[ weather], we went to the beach.",
+        "We went to the beach {despite|in spite of} the cold[ weather].",
+        "{Although|Even though|Though} it was cold, we went to the beach.",
+        "We went to the beach {although|even though|though} it was cold."
+      ]
+    },
+    {
+      "id": "b2.grammar.despite-write-2",
+      "itemIds": ["b2.grammar.whereas"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi hermano es muy alto, mientras que yo soy bajo.",
+      "accepted": ["My brother is {very|really} tall, {whereas|while|but} I am short."]
     }
   ],
   "cards": [
@@ -369,6 +1306,553 @@
         "b2.grammar.used-to-order-1",
         "b2.grammar.used-to-write-1",
         "b2.grammar.used-to-write-2"
+      ]
+    },
+    {
+      "id": "b2.grammar.third-conditional",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Tercer condicional",
+      "summary": "Imagina un pasado diferente y su resultado, también en el pasado: If I had known, I would have called you (si lo hubiera sabido, te habría llamado).",
+      "form": "if + had + participio, would have + participio",
+      "uses": [
+        "Lamentos sobre el pasado: If I had studied more, I would have passed.",
+        "Reproches: If you had left earlier, you wouldn't have missed the train.",
+        "Could have o might have en lugar de would have para algo solo posible: we could have won.",
+        "La forma corta 'd es had en la parte del if y would en el resultado: If I'd known, I'd have come."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "If I would have known, I would have called you.",
+          "right": "If I had known, I would have called you.",
+          "why": "En la parte del if no va would: se usa had + participio."
+        },
+        {
+          "wrong": "If I had known, I would called you.",
+          "right": "If I had known, I would have called you.",
+          "why": "El resultado lleva would have + participio; no se puede quitar have."
+        },
+        {
+          "wrong": "If I knew it yesterday, I would have helped you.",
+          "right": "If I had known it yesterday, I would have helped you.",
+          "why": "Para un pasado imaginario se usa had + participio (had known), no el pasado simple."
+        },
+        {
+          "wrong": "If you had told me, I would of come.",
+          "right": "If you had told me, I would have come.",
+          "why": "Would've suena como would of, pero se escribe would have."
+        }
+      ],
+      "examples": [
+        {
+          "en": "If I had known about the party, I would have gone.",
+          "es": "Si hubiera sabido de la fiesta, habría ido."
+        },
+        {
+          "en": "If we had left earlier, we wouldn't have missed the flight.",
+          "es": "Si hubiéramos salido antes, no habríamos perdido el vuelo."
+        },
+        {
+          "en": "She would have passed the exam if she had studied harder.",
+          "es": "Habría aprobado el examen si hubiera estudiado más."
+        },
+        {
+          "en": "What would you have done if you had lost your passport?",
+          "es": "¿Qué habrías hecho si hubieras perdido el pasaporte?"
+        },
+        {
+          "en": "If it hadn't rained, we could have played outside.",
+          "es": "Si no hubiera llovido, podríamos haber jugado afuera."
+        }
+      ],
+      "itemIds": ["b2.grammar.third-conditional"],
+      "exerciseIds": [
+        "b2.grammar.third-conditional-cloze-1",
+        "b2.grammar.third-conditional-cloze-2",
+        "b2.grammar.third-conditional-cloze-3",
+        "b2.grammar.third-conditional-choice-1",
+        "b2.grammar.third-conditional-order-1",
+        "b2.grammar.third-conditional-write-1",
+        "b2.grammar.third-conditional-write-2",
+        "b2.grammar.third-conditional-vocab-1"
+      ]
+    },
+    {
+      "id": "b2.grammar.mixed-conditionals",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Condicionales mixtos",
+      "summary": "Mezclan tiempos: un pasado diferente con un resultado en el presente (If I had studied medicine, I would be a doctor now), o una situación presente con un resultado pasado.",
+      "form": "if + had + participio, would + verbo (pasado → presente) · if + pasado simple, would have + participio (presente → pasado)",
+      "uses": [
+        "Pasado imaginario con resultado ahora: If I had taken that job, I would live in Canada now.",
+        "Situación actual con resultado en el pasado: If I weren't so shy, I would have talked to her.",
+        "Palabras como now, today o still suelen marcar que el resultado es presente."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "If I had studied medicine, I would have been a doctor now.",
+          "right": "If I had studied medicine, I would be a doctor now.",
+          "why": "Con now, el resultado es presente: would + verbo, no would have."
+        },
+        {
+          "wrong": "If I would speak French, I would have gotten the job.",
+          "right": "If I spoke French, I would have gotten the job.",
+          "why": "En la parte del if no va would; una situación presente se expresa con el pasado simple."
+        },
+        {
+          "wrong": "If I didn't miss the bus, I would be home now.",
+          "right": "If I hadn't missed the bus, I would be home now.",
+          "why": "El pasado imaginario va con had + participio."
+        }
+      ],
+      "examples": [
+        {
+          "en": "If I had studied medicine, I would be a doctor now.",
+          "es": "Si hubiera estudiado medicina, ahora sería médico."
+        },
+        {
+          "en": "If we hadn't missed the bus, we would be home by now.",
+          "es": "Si no hubiéramos perdido el autobús, ya estaríamos en casa."
+        },
+        {
+          "en": "If she weren't so shy, she would have spoken to him.",
+          "es": "Si no fuera tan tímida, le habría hablado."
+        },
+        {
+          "en": "If I spoke Italian, I would have understood the movie.",
+          "es": "Si hablara italiano, habría entendido la película."
+        },
+        {
+          "en": "I wouldn't be so tired if I had gone to bed earlier.",
+          "es": "No estaría tan cansado si me hubiera acostado más temprano."
+        }
+      ],
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "exerciseIds": [
+        "b2.grammar.mixed-conditionals-cloze-1",
+        "b2.grammar.mixed-conditionals-cloze-2",
+        "b2.grammar.mixed-conditionals-cloze-3",
+        "b2.grammar.mixed-conditionals-choice-1",
+        "b2.grammar.mixed-conditionals-order-1",
+        "b2.grammar.mixed-conditionals-write-1",
+        "b2.grammar.mixed-conditionals-write-2",
+        "b2.grammar.mixed-conditionals-vocab-1"
+      ]
+    },
+    {
+      "id": "b2.grammar.wish-if-only",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Wish e if only",
+      "summary": "Expresan deseos y lamentos: wish + pasado para el presente (I wish I had more time) y wish + had + participio para el pasado (I wish I hadn't said that).",
+      "form": "wish / if only + pasado simple (presente) · + had + participio (pasado) · + would + verbo (quejas)",
+      "uses": [
+        "Deseos sobre el presente: I wish I lived near the beach. (ojalá viviera…)",
+        "Lamentos sobre el pasado: I wish I hadn't eaten so much. (ojalá no hubiera…)",
+        "Quejas por lo que hace otra persona: I wish you would stop talking. (ojalá dejaras de…)",
+        "If only significa lo mismo, con más intensidad: If only I had more time!"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I wish I have more time.",
+          "right": "I wish I had more time.",
+          "why": "Después de wish, el presente se expresa con el pasado: had, no have."
+        },
+        {
+          "wrong": "I wish I didn't say that yesterday.",
+          "right": "I wish I hadn't said that yesterday.",
+          "why": "Para lamentar algo del pasado se usa had + participio."
+        },
+        {
+          "wrong": "I wish I would be taller.",
+          "right": "I wish I were taller.",
+          "why": "Wish + would sirve para quejarse de lo que hace otra persona, no para uno mismo; con be, usa were (o was)."
+        },
+        {
+          "wrong": "I hope I had a car.",
+          "right": "I wish I had a car.",
+          "why": "Hope es para algo posible (I hope you pass); wish, para algo imposible o poco probable."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I wish I had more free time.",
+          "es": "Ojalá tuviera más tiempo libre."
+        },
+        {
+          "en": "I wish I lived closer to my family.",
+          "es": "Ojalá viviera más cerca de mi familia."
+        },
+        {
+          "en": "She wishes she hadn't sold her car.",
+          "es": "Ella desearía no haber vendido su auto."
+        },
+        {
+          "en": "If only we had left earlier!",
+          "es": "¡Si tan solo hubiéramos salido antes!"
+        },
+        {
+          "en": "I wish you would stop making that noise.",
+          "es": "Ojalá dejaras de hacer ese ruido."
+        },
+        {
+          "en": "I wish I were taller.",
+          "es": "Ojalá fuera más alto."
+        }
+      ],
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "exerciseIds": [
+        "b2.grammar.wish-if-only-cloze-1",
+        "b2.grammar.wish-if-only-cloze-2",
+        "b2.grammar.wish-if-only-cloze-3",
+        "b2.grammar.wish-if-only-cloze-4",
+        "b2.grammar.wish-if-only-choice-1",
+        "b2.grammar.wish-if-only-order-1",
+        "b2.grammar.wish-if-only-write-1",
+        "b2.grammar.wish-if-only-write-2"
+      ]
+    },
+    {
+      "id": "b2.grammar.should-have",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Should have, could have y would have",
+      "summary": "Modal + have + participio habla del pasado: lo que debería haber pasado (should have), lo que era posible (could have) y lo que habría pasado (would have).",
+      "form": "should / could / would + have + participio",
+      "uses": [
+        "Lamentos y reproches: I should have studied more. You shouldn't have shouted.",
+        "Una posibilidad que no se aprovechó: We could have taken a taxi. (podríamos haber tomado)",
+        "Un resultado imaginado: I would have helped you, but I didn't know.",
+        "Al hablar suenan como should've, could've y would've."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I should studied more.",
+          "right": "I should have studied more.",
+          "why": "Para el pasado, should va con have + participio."
+        },
+        {
+          "wrong": "You should have came earlier.",
+          "right": "You should have come earlier.",
+          "why": "Después de have va el participio (come), no el pasado (came)."
+        },
+        {
+          "wrong": "I must have called you, sorry.",
+          "right": "I should have called you, sorry.",
+          "why": "Para decir debería haber (reproche o lamento) se usa should have; must have es una deducción (seguramente)."
+        },
+        {
+          "wrong": "We could of won.",
+          "right": "We could have won.",
+          "why": "Could've suena como could of, pero se escribe could have."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I should have brought an umbrella.",
+          "es": "Debería haber traído un paraguas."
+        },
+        {
+          "en": "You shouldn't have spent so much money.",
+          "es": "No deberías haber gastado tanto dinero."
+        },
+        {
+          "en": "We could have taken a taxi, but we walked.",
+          "es": "Podríamos haber tomado un taxi, pero caminamos."
+        },
+        {
+          "en": "I would have called you, but my phone died.",
+          "es": "Te habría llamado, pero se me descargó el teléfono."
+        },
+        {
+          "en": "She could have been a great singer.",
+          "es": "Podría haber sido una gran cantante."
+        }
+      ],
+      "itemIds": ["b2.grammar.should-have"],
+      "exerciseIds": [
+        "b2.grammar.should-have-cloze-1",
+        "b2.grammar.should-have-cloze-2",
+        "b2.grammar.should-have-cloze-3",
+        "b2.grammar.should-have-cloze-4",
+        "b2.grammar.should-have-choice-1",
+        "b2.grammar.should-have-order-1",
+        "b2.grammar.should-have-write-1",
+        "b2.grammar.should-have-write-2"
+      ]
+    },
+    {
+      "id": "b2.grammar.past-deduction",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Deducciones sobre el pasado: must have, might have, can't have",
+      "summary": "Para deducir qué pasó: must have (seguramente), might / may / could have (quizás) y can't / couldn't have (es imposible que).",
+      "form": "must / might / may / could / can't / couldn't + have + participio",
+      "uses": [
+        "Casi seguro: She must have missed the bus. (seguramente perdió el autobús)",
+        "Posible: They might have gotten lost. (quizás se perdieron)",
+        "Imposible: He can't have finished already. (no puede ser que ya haya terminado)",
+        "Es el pasado de must, might y can't para deducir (B1)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "She must missed the train.",
+          "right": "She must have missed the train.",
+          "why": "Para deducir algo del pasado se usa must have + participio."
+        },
+        {
+          "wrong": "They might have get lost.",
+          "right": "They might have gotten lost.",
+          "why": "Después de have va el participio: gotten en inglés americano, no get."
+        },
+        {
+          "wrong": "You can't have saw him.",
+          "right": "You can't have seen him.",
+          "why": "Have va con el participio (seen), no con el pasado (saw)."
+        }
+      ],
+      "examples": [
+        {
+          "en": "The streets are wet. It must have rained last night.",
+          "es": "Las calles están mojadas. Seguramente llovió anoche."
+        },
+        {
+          "en": "She isn't answering. She might have left her phone at home.",
+          "es": "No contesta. Quizás dejó el teléfono en casa."
+        },
+        {
+          "en": "He can't have finished the report already. It's very long.",
+          "es": "No puede ser que ya haya terminado el informe. Es muy largo."
+        },
+        {
+          "en": "They're late. They may have gotten lost.",
+          "es": "Llegan tarde. Puede que se hayan perdido."
+        },
+        {
+          "en": "You must have been very tired after the trip.",
+          "es": "Debes de haber estado muy cansado después del viaje."
+        }
+      ],
+      "itemIds": ["b2.grammar.past-deduction"],
+      "exerciseIds": [
+        "b2.grammar.past-deduction-cloze-1",
+        "b2.grammar.past-deduction-cloze-2",
+        "b2.grammar.past-deduction-cloze-3",
+        "b2.grammar.past-deduction-choice-1",
+        "b2.grammar.past-deduction-choice-2",
+        "b2.grammar.past-deduction-order-1",
+        "b2.grammar.past-deduction-write-1",
+        "b2.grammar.past-deduction-write-2"
+      ]
+    },
+    {
+      "id": "b2.grammar.reporting-passive",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Pasiva con verbos de opinión: it is said that…",
+      "summary": "Para contar lo que la gente dice o cree sin decir quién: It is said that… o He is said to…, muy común en las noticias.",
+      "form": "It is said / believed / thought / reported + that + oración · sujeto + is said / believed + to + verbo (to have + participio para el pasado)",
+      "uses": [
+        "Noticias y rumores: It is believed that the fire started in the kitchen.",
+        "Con la persona como sujeto: He is said to be very rich. (dicen que es muy rico)",
+        "Para algo anterior: She is believed to have left the country. (se cree que se fue del país)",
+        "Verbos típicos: say, believe, think, report, expect, know."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Is said that he is very rich.",
+          "right": "It is said that he is very rich.",
+          "why": "La oración necesita sujeto: It is said that…, nunca Is said that."
+        },
+        {
+          "wrong": "He is said that he is very rich.",
+          "right": "He is said to be very rich.",
+          "why": "Con la persona como sujeto se usa to + verbo, no that."
+        },
+        {
+          "wrong": "She is believed to leave the country last year.",
+          "right": "She is believed to have left the country last year.",
+          "why": "Para algo que ya pasó se usa to have + participio."
+        }
+      ],
+      "examples": [
+        {
+          "en": "It is believed that the fire started in the kitchen.",
+          "es": "Se cree que el incendio empezó en la cocina."
+        },
+        {
+          "en": "The singer is said to be very shy.",
+          "es": "Dicen que el cantante es muy tímido."
+        },
+        {
+          "en": "It is reported that ten people were hurt.",
+          "es": "Se informa que diez personas resultaron heridas."
+        },
+        {
+          "en": "The thieves are thought to have escaped by car.",
+          "es": "Se cree que los ladrones escaparon en auto."
+        },
+        {
+          "en": "It is expected that prices will rise again.",
+          "es": "Se espera que los precios vuelvan a subir."
+        },
+        {
+          "en": "He is known to be a great cook.",
+          "es": "Se sabe que es un gran cocinero."
+        }
+      ],
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "exerciseIds": [
+        "b2.grammar.reporting-passive-cloze-1",
+        "b2.grammar.reporting-passive-cloze-2",
+        "b2.grammar.reporting-passive-cloze-3",
+        "b2.grammar.reporting-passive-cloze-4",
+        "b2.grammar.reporting-passive-choice-1",
+        "b2.grammar.reporting-passive-order-1",
+        "b2.grammar.reporting-passive-write-1",
+        "b2.grammar.reporting-passive-write-2"
+      ]
+    },
+    {
+      "id": "b2.grammar.causative",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Have / get something done",
+      "summary": "Se usa cuando otra persona hace algo por ti, normalmente un servicio: I had my hair cut (me corté el pelo en la peluquería).",
+      "form": "have / get + objeto + participio (have my car repaired)",
+      "uses": [
+        "Servicios: I'm having my car repaired. We got the house painted.",
+        "Get es más informal que have: You should get your eyes checked.",
+        "Cosas malas que te pasan: She had her phone stolen. (le robaron el teléfono)",
+        "Funciona en todos los tiempos: I'll have it fixed tomorrow."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I cut my hair at the hairdresser's yesterday.",
+          "right": "I had my hair cut at the hairdresser's yesterday.",
+          "why": "Si te lo cortó otra persona, se dice have (o get) your hair cut; I cut my hair significa que te lo cortaste tú."
+        },
+        {
+          "wrong": "I had repaired my car.",
+          "right": "I had my car repaired.",
+          "why": "El objeto va antes del participio: have + my car + repaired."
+        },
+        {
+          "wrong": "We're going to have the house paint.",
+          "right": "We're going to have the house painted.",
+          "why": "Después del objeto va el participio (painted), no el verbo base."
+        },
+        {
+          "wrong": "I stole my wallet on the bus.",
+          "right": "I had my wallet stolen on the bus.",
+          "why": "Para decir me robaron… se usa have + objeto + stolen; I stole significa yo robé."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I had my hair cut yesterday.",
+          "es": "Ayer me corté el pelo (en la peluquería)."
+        },
+        {
+          "en": "We're having the kitchen painted next week.",
+          "es": "La semana que viene nos van a pintar la cocina."
+        },
+        {
+          "en": "You should get your eyes checked.",
+          "es": "Deberías hacerte revisar la vista."
+        },
+        {
+          "en": "She had her phone stolen on the subway.",
+          "es": "Le robaron el teléfono en el metro."
+        },
+        {
+          "en": "Where did you get your car repaired?",
+          "es": "¿Dónde te arreglaron el auto?"
+        }
+      ],
+      "itemIds": ["b2.grammar.causative"],
+      "exerciseIds": [
+        "b2.grammar.causative-cloze-1",
+        "b2.grammar.causative-cloze-2",
+        "b2.grammar.causative-cloze-3",
+        "b2.grammar.causative-choice-1",
+        "b2.grammar.causative-order-1",
+        "b2.grammar.causative-write-1",
+        "b2.grammar.causative-write-2",
+        "b2.grammar.causative-vocab-1"
+      ]
+    },
+    {
+      "id": "b2.grammar.despite",
+      "level": "B2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Despite, in spite of y whereas",
+      "summary": "Despite e in spite of (a pesar de) van con un sustantivo o con un verbo en -ing; whereas (mientras que) compara dos hechos opuestos.",
+      "form": "despite / in spite of + sustantivo o -ing · despite the fact that + oración · oración, whereas + oración",
+      "uses": [
+        "Contraste con un sustantivo: Despite the rain, we went out.",
+        "Con un verbo en -ing: In spite of feeling sick, she went to work.",
+        "Con una oración completa: despite the fact that it was raining (o simplemente although).",
+        "Comparar dos hechos: I love the beach, whereas my sister prefers the mountains."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Despite of the rain, we went out.",
+          "right": "Despite the rain, we went out.",
+          "why": "Despite va sin of; in spite of sí lleva of."
+        },
+        {
+          "wrong": "Despite it was raining, we went out.",
+          "right": "Despite the rain, we went out.",
+          "why": "Despite no va con una oración: usa un sustantivo, -ing o although."
+        },
+        {
+          "wrong": "In spite of she was tired, she kept working.",
+          "right": "In spite of being tired, she kept working.",
+          "why": "Después de in spite of va -ing o un sustantivo, no sujeto + verbo."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Despite the rain, we enjoyed the trip.",
+          "es": "A pesar de la lluvia, disfrutamos el viaje."
+        },
+        {
+          "en": "In spite of feeling sick, she went to work.",
+          "es": "A pesar de sentirse mal, fue a trabajar."
+        },
+        {
+          "en": "He didn't get the job despite having a lot of experience.",
+          "es": "No consiguió el trabajo a pesar de tener mucha experiencia."
+        },
+        {
+          "en": "Despite the fact that it was late, the store was still open.",
+          "es": "A pesar de que era tarde, la tienda seguía abierta."
+        },
+        {
+          "en": "I prefer coffee, whereas my husband only drinks tea.",
+          "es": "Yo prefiero el café, mientras que mi esposo solo toma té."
+        }
+      ],
+      "itemIds": ["b2.grammar.despite", "b2.grammar.whereas"],
+      "exerciseIds": [
+        "b2.grammar.despite-cloze-1",
+        "b2.grammar.despite-cloze-2",
+        "b2.grammar.despite-cloze-3",
+        "b2.grammar.despite-cloze-4",
+        "b2.grammar.despite-choice-1",
+        "b2.grammar.despite-order-1",
+        "b2.grammar.despite-write-1",
+        "b2.grammar.despite-write-2"
       ]
     }
   ]
