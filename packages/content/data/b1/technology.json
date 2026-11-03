@@ -353,7 +353,8 @@
         "b1.technology.back-up",
         "b1.technology.log-in",
         "b1.technology.passive-present"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.passive", "b1.phrasal-verbs.technology"]
     },
     {
       "id": "b1.technology.lesson-002",
@@ -373,6 +374,11 @@
         "b1.technology.device",
         "b1.technology.relative-that-which",
         "b1.technology.passive-present"
+      ],
+      "deepenCardIds": [
+        "b1.grammar.relative-clauses",
+        "b1.grammar.passive",
+        "b1.phrasal-verbs.technology"
       ]
     }
   ]

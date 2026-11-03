@@ -383,7 +383,8 @@
         "a2.weather.rain",
         "a2.weather.what-is-the-weather-like",
         "a2.weather.umbrella"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.going-to-predictions"]
     },
     {
       "id": "a2.weather.lesson-002",

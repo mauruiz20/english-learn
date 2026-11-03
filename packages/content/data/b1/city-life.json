@@ -370,7 +370,7 @@
         "b1.city-life.move",
         "b1.city-life.traffic-jam"
       ],
-      "deepenCardIds": ["b1.vocabulary.commute"]
+      "deepenCardIds": ["b1.vocabulary.commute", "b1.grammar.future-forms"]
     },
     {
       "id": "b1.city-life.lesson-002",
@@ -391,7 +391,8 @@
         "b1.city-life.will",
         "b1.city-life.present-continuous-future",
         "b1.city-life.noisy"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.future-forms"]
     }
   ]
 }

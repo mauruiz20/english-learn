@@ -381,7 +381,8 @@
         "a2.health.choice-003",
         "a2.health.write-002"
       ],
-      "newItemIds": ["a2.health.should", "a2.health.hurt", "a2.health.medicine"]
+      "newItemIds": ["a2.health.should", "a2.health.hurt", "a2.health.medicine"],
+      "deepenCardIds": ["a2.grammar.should"]
     }
   ]
 }

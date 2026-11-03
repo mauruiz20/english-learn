@@ -355,7 +355,8 @@
         "a2.free-time.play-the-guitar",
         "a2.free-time.can-ability",
         "a2.free-time.go-swimming"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.can-ability"]
     },
     {
       "id": "a2.free-time.lesson-002",
@@ -371,7 +372,8 @@
         "a2.free-time.choice-003",
         "a2.free-time.write-002"
       ],
-      "newItemIds": ["a2.free-time.hobby", "a2.free-time.like-ing", "a2.free-time.can-ability"]
+      "newItemIds": ["a2.free-time.hobby", "a2.free-time.like-ing", "a2.free-time.can-ability"],
+      "deepenCardIds": ["a2.grammar.can-ability"]
     }
   ]
 }

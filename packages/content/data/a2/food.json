@@ -380,7 +380,7 @@
         "a2.food.lunch",
         "a2.food.bread"
       ],
-      "deepenCardIds": ["a2.grammar.much-many"]
+      "deepenCardIds": ["a2.grammar.much-many", "a2.grammar.some-any"]
     }
   ]
 }

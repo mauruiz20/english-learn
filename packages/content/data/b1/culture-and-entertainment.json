@@ -406,7 +406,11 @@
         "b1.culture-and-entertainment.must-cant-might",
         "b1.culture-and-entertainment.look-forward"
       ],
-      "deepenCardIds": ["b1.grammar.look-forward-to"]
+      "deepenCardIds": [
+        "b1.grammar.look-forward-to",
+        "b1.grammar.relative-clauses",
+        "b1.grammar.deduction"
+      ]
     },
     {
       "id": "b1.culture-and-entertainment.lesson-002",
@@ -426,7 +430,8 @@
         "b1.culture-and-entertainment.sold-out",
         "b1.culture-and-entertainment.director",
         "b1.culture-and-entertainment.worth"
-      ]
+      ],
+      "deepenCardIds": ["b1.grammar.relative-clauses", "b1.grammar.deduction"]
     }
   ]
 }

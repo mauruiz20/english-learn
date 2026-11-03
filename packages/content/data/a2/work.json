@@ -387,7 +387,8 @@
         "a2.work.choice-003",
         "a2.work.write-002"
       ],
-      "newItemIds": ["a2.work.salary", "a2.work.on-monday", "a2.work.part-time"]
+      "newItemIds": ["a2.work.salary", "a2.work.on-monday", "a2.work.part-time"],
+      "deepenCardIds": ["a2.grammar.have-to", "a2.grammar.time-prepositions"]
     }
   ]
 }

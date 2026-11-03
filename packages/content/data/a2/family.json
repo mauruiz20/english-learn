@@ -337,7 +337,8 @@
         "a2.family.grandmother",
         "a2.family.uncle",
         "a2.family.only-child"
-      ]
+      ],
+      "deepenCardIds": ["a2.grammar.comparatives"]
     },
     {
       "id": "a2.family.lesson-002",

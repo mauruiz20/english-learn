@@ -362,7 +362,7 @@
         "a2.home.do-the-dishes",
         "a2.home.living-room"
       ],
-      "deepenCardIds": ["a2.vocabulary.make-do"]
+      "deepenCardIds": ["a2.vocabulary.make-do", "a2.grammar.there-is-are"]
     },
     {
       "id": "a2.home.lesson-002",
@@ -385,7 +385,7 @@
         "a2.home.door",
         "a2.home.house"
       ],
-      "deepenCardIds": ["a2.vocabulary.make-do"]
+      "deepenCardIds": ["a2.vocabulary.make-do", "a2.grammar.have-to"]
     }
   ]
 }
