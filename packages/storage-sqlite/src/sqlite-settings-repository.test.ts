@@ -61,6 +61,34 @@ describe("createSqliteSettingsRepository", () => {
     expect(await settings.getAccount()).toBeNull();
   });
 
+  it("remembers the first name for the greeting with the account, and forgets it with it", async () => {
+    await settings.setAccount({ userId: "user-1", email: "ana@example.com", givenName: "Inés" });
+
+    expect(await createSqliteSettingsRepository(db).getAccount()).toEqual({
+      userId: "user-1",
+      email: "ana@example.com",
+      givenName: "Inés",
+    });
+
+    // Another account replaces it whole: no name left over from the previous one.
+    await settings.setAccount({ userId: "user-2", email: "bo@example.com" });
+    expect(await settings.getAccount()).toEqual({ userId: "user-2", email: "bo@example.com" });
+
+    await settings.setAccount({ userId: "user-1", email: "ana@example.com", givenName: "Inés" });
+    await settings.clearAccount();
+    const rows = await db.getAllAsync<{ value: string }>("SELECT value FROM setting", []);
+    expect(rows.some((row) => row.value.includes("Inés"))).toBe(false);
+  });
+
+  it("reads an account stored before names (no name) and ignores an unreadable name", async () => {
+    await db.runAsync(
+      `INSERT INTO setting (key, value) VALUES ('account', '{"userId":"u","email":"e@x.com","givenName":7}')`,
+      [],
+    );
+
+    expect(await settings.getAccount()).toEqual({ userId: "u", email: "e@x.com" });
+  });
+
   it("treats an unreadable stored account as signed out", async () => {
     await db.runAsync("INSERT INTO setting (key, value) VALUES ('account', '{oops')", []);
 

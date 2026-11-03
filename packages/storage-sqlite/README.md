@@ -61,8 +61,9 @@ bench`, median): saving a 13-event session ≈ 4 ms (was ≈ 240 ms, a full refo
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
   `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).
-  `getAccount()` / `setAccount({ userId, email })` / `clearAccount()` remember who is signed in
-  (never a token; an unreadable value reads as signed out), and
+  `getAccount()` / `setAccount({ userId, email, givenName? })` / `clearAccount()` remember who is
+  signed in and their first name for the home greeting (never a token; an unreadable value reads
+  as signed out, an unreadable name as no name), and
   `getSaveProgressSuggestionDismissed()` the one-time "save your progress" card.
   `getMigratedTo()` / `setMigratedTo(origin)` remember where this device's progress was
   transferred (the old web address then sends the learner there).
