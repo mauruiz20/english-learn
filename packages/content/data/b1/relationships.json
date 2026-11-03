@@ -375,8 +375,7 @@
         "b1.relationships.get-married",
         "b1.relationships.each-other",
         "b1.relationships.support"
-      ],
-      "deepenCardIds": ["b1.phrasal-verbs.relationships"]
+      ]
     }
   ]
 }

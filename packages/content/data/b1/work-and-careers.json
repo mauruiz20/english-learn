@@ -397,8 +397,7 @@
         "b1.work-and-careers.deadline",
         "b1.work-and-careers.turn-down",
         "b1.work-and-careers.quit"
-      ],
-      "deepenCardIds": ["b1.grammar.have-to-must"]
+      ]
     }
   ]
 }

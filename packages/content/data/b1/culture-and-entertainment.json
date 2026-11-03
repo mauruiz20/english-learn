@@ -430,8 +430,7 @@
         "b1.culture-and-entertainment.sold-out",
         "b1.culture-and-entertainment.director",
         "b1.culture-and-entertainment.worth"
-      ],
-      "deepenCardIds": ["b1.grammar.relative-clauses", "b1.grammar.deduction"]
+      ]
     }
   ]
 }
