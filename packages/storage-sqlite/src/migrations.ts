@@ -78,6 +78,14 @@ const MIGRATIONS: readonly string[] = [
     data TEXT NOT NULL
   );
   `,
+  // 5 → 6: cache of the fold's plumas, purchases and equips (`ProgressState.rewards`, JSON), read
+  // with the totals of every write. It starts empty: the refold after an upgrade fills it.
+  `
+  CREATE TABLE rewards (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    data TEXT NOT NULL
+  );
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */

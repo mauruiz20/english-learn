@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.large",
+      "headword": "large",
+      "kind": "word",
+      "forms": ["large"],
+      "senses": [
+        {
+          "es": "grande",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.last",
       "headword": "last",
       "kind": "word",
@@ -73,6 +85,30 @@
         {
           "es": "reír(se)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lay",
+      "headword": "lay",
+      "kind": "word",
+      "forms": ["lay", "lays", "laid", "laying"],
+      "senses": [
+        {
+          "es": "poner, colocar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lay-off",
+      "headword": "lay off",
+      "kind": "phrase",
+      "forms": ["lay off", "lays off", "laid off", "laying off"],
+      "senses": [
+        {
+          "es": "despedir (por recortes)",
+          "pos": "phrasal verb"
         }
       ]
     },

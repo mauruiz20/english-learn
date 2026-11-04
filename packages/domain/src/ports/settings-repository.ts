@@ -13,6 +13,12 @@ export type AccountMarker = {
   readonly givenName?: string;
 };
 
+/**
+ * The one-time note for the plumas earned by study done before plumas existed ("Avi te guardó N
+ * plumas…"): the amount decided on the first home visit, and whether the learner dismissed it.
+ */
+export type PlumasWelcome = { readonly plumas: number; readonly dismissed: boolean };
+
 /** The app's look: follow the device's light/dark setting, or always one of them. */
 export type ThemePreference = "system" | "light" | "dark";
 
@@ -40,4 +46,9 @@ export interface SettingsRepository {
    */
   getMigratedTo(): Promise<string | null>;
   setMigratedTo(origin: string): Promise<void>;
+  /** The plumas welcome note, or null before the first home visit with plumas decided it. */
+  getPlumasWelcome(): Promise<PlumasWelcome | null>;
+  setPlumasWelcome(note: PlumasWelcome): Promise<void>;
+  /** Forgets it (a sign-out that deletes this device's progress): the next learner decides anew. */
+  clearPlumasWelcome(): Promise<void>;
 }

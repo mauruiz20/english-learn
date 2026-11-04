@@ -77,6 +77,18 @@
       ]
     },
     {
+      "id": "glossary.badly",
+      "headword": "badly",
+      "kind": "word",
+      "forms": ["badly"],
+      "senses": [
+        {
+          "es": "mal",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.bag",
       "headword": "bag",
       "kind": "word",
@@ -333,6 +345,18 @@
         {
           "es": "detrás de",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.believe",
+      "headword": "believe",
+      "kind": "word",
+      "forms": ["believe", "believes", "believed", "believing"],
+      "senses": [
+        {
+          "es": "creer",
+          "pos": "verb"
         }
       ]
     },
@@ -781,6 +805,22 @@
       ]
     },
     {
+      "id": "glossary.bring-up",
+      "headword": "bring up",
+      "kind": "phrase",
+      "forms": ["bring up", "brings up", "brought up", "bringing up"],
+      "senses": [
+        {
+          "es": "sacar (un tema), mencionar",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "criar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.brother",
       "headword": "brother",
       "kind": "word",
@@ -788,6 +828,18 @@
       "senses": [
         {
           "es": "hermano",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.budget",
+      "headword": "budget",
+      "kind": "word",
+      "forms": ["budget", "budgets"],
+      "senses": [
+        {
+          "es": "presupuesto",
           "pos": "noun"
         }
       ]

@@ -1,6 +1,7 @@
 import {
   EMPTY_STREAK,
   foldEvents,
+  plumasTotals,
   type PlacementResult,
   type ProgressEvent,
   type ProgressRepository,
@@ -57,8 +58,8 @@ export function createFakeRepository(
   }
   const progress = () => foldEvents(log);
   const totals = () => {
-    const { xp, streak } = progress();
-    return { xp, streak };
+    const { xp, streak, rewards } = progress();
+    return { xp, streak, plumas: plumasTotals(rewards) };
   };
 
   return {
@@ -68,6 +69,7 @@ export function createFakeRepository(
     getXp: async () => progress().xp,
     getPlacementResult: async () => progress().placement,
     getLessonResults: async () => progress().lessonResults,
+    getRewards: async () => progress().rewards,
     getDeviceId: async () => FAKE_DEVICE_ID,
     // Mirrors the SQLite all-or-nothing contract: validate before writing anything.
     appendEvents: async (events) => {

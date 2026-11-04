@@ -64,6 +64,7 @@ export function createAccountRuntime({
     session,
     coordinator,
     store: storage.syncStore,
+    settings,
     deleteAccount: () => api.deleteAccount(),
     pending,
     randomBytes,

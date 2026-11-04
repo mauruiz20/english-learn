@@ -393,6 +393,18 @@
       ]
     },
     {
+      "id": "glossary.ourselves",
+      "headword": "ourselves",
+      "kind": "word",
+      "forms": ["ourselves"],
+      "senses": [
+        {
+          "es": "(nosotros) mismos, a nosotros mismos",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
       "id": "glossary.out",
       "headword": "out",
       "kind": "word",
@@ -449,6 +461,18 @@
         {
           "es": "deber (dinero)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.own",
+      "headword": "own",
+      "kind": "word",
+      "forms": ["own"],
+      "senses": [
+        {
+          "es": "propio (on my own: solo, por mi cuenta)",
+          "pos": "adjective"
         }
       ]
     }

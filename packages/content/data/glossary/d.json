@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.dangerous",
+      "headword": "dangerous",
+      "kind": "word",
+      "forms": ["dangerous"],
+      "senses": [
+        {
+          "es": "peligroso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.daniel",
       "headword": "Daniel",
       "kind": "word",
@@ -141,6 +153,18 @@
         {
           "es": "decisión",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.decline",
+      "headword": "decline",
+      "kind": "word",
+      "forms": ["decline", "declines", "declined", "declining"],
+      "senses": [
+        {
+          "es": "rechazar (una oferta, una invitación)",
+          "pos": "verb"
         }
       ]
     },
@@ -337,6 +361,18 @@
         {
           "es": "dieta",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.different",
+      "headword": "different",
+      "kind": "word",
+      "forms": ["different"],
+      "senses": [
+        {
+          "es": "diferente, distinto",
+          "pos": "adjective"
         }
       ]
     },
@@ -704,6 +740,18 @@
       "senses": [
         {
           "es": "conductor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drugstore",
+      "headword": "drugstore",
+      "kind": "word",
+      "forms": ["drugstore", "drugstores"],
+      "senses": [
+        {
+          "es": "farmacia",
           "pos": "noun"
         }
       ]

@@ -31,6 +31,30 @@
       "kind": "grammar",
       "term": "have someone do something",
       "es": "encargarle a alguien que haga algo"
+    },
+    {
+      "id": "b1.grammar.however",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "word",
+      "term": "however",
+      "es": "sin embargo",
+      "example": {
+        "en": "The hotel was old. However, the rooms were very clean.",
+        "es": "El hotel era viejo. Sin embargo, las habitaciones estaban muy limpias."
+      }
+    },
+    {
+      "id": "b1.grammar.reflexive-pronouns",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "myself, yourself, themselves…",
+      "es": "pronombres reflexivos (me, te, se…; a mí mismo)",
+      "example": {
+        "en": "Be careful! Don't hurt yourself.",
+        "es": "¡Cuidado! No te lastimes."
+      }
     }
   ],
   "exercises": [
@@ -1553,6 +1577,222 @@
         "you don't have to do it"
       ],
       "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.although-cloze-1",
+      "itemIds": ["b1.travel.although"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ it was raining, we went for a walk.",
+      "answers": ["Although", "Even though", "Though"],
+      "distractors": ["But", "However", "Despite"],
+      "es": "Aunque llovía, salimos a caminar."
+    },
+    {
+      "id": "b1.grammar.although-cloze-2",
+      "itemIds": ["b1.travel.although"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We missed the bus, ___ we arrived on time.",
+      "answers": ["but"],
+      "distractors": ["despite", "even"],
+      "es": "Perdimos el autobús, pero llegamos a tiempo."
+    },
+    {
+      "id": "b1.grammar.although-cloze-3",
+      "itemIds": ["b1.grammar.however"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The hotel was old. ___, the rooms were very clean.",
+      "answers": ["However"],
+      "distractors": ["Although", "Even though"],
+      "es": "El hotel era viejo. Sin embargo, las habitaciones estaban muy limpias."
+    },
+    {
+      "id": "b1.grammar.although-choice-1",
+      "itemIds": ["b1.travel.although"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Even though she was sick, she went to work.",
+      "options": [
+        "Como estaba enferma, no fue a trabajar.",
+        "Aunque estaba enferma, fue a trabajar.",
+        "Aunque fue a trabajar, se enfermó."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.although-order-1",
+      "itemIds": ["b1.travel.although"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["went", "late,", "it", "out.", "was", "we", "Although"],
+      "accepted": ["Although it was late, we went out."],
+      "es": "Aunque era tarde, salimos."
+    },
+    {
+      "id": "b1.grammar.although-write-1",
+      "itemIds": ["b1.travel.although"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Aunque llovía, fuimos a la playa.",
+      "accepted": [
+        "{Although|Even though|Though} it was raining, we went to the beach.",
+        "{Although|Even though|Though} it rained, we went to the beach.",
+        "We went to the beach {although|even though|though} it was raining.",
+        "We went to the beach {although|even though|though} it rained."
+      ]
+    },
+    {
+      "id": "b1.grammar.although-write-2",
+      "itemIds": ["b1.grammar.however"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El vuelo era barato. Sin embargo, fue muy cómodo.",
+      "accepted": [
+        "The flight was cheap. {However,|But|Still,|Nevertheless,} it was {very|really} comfortable."
+      ]
+    },
+    {
+      "id": "b1.grammar.although-vocab-1",
+      "itemIds": ["b1.grammar.however"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'sin embargo'.",
+      "options": ["although", "because", "so", "however"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.each-other-cloze-1",
+      "itemIds": ["b1.relationships.each-other"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My best friend and I talk to ___ every day.",
+      "answers": ["each other"],
+      "distractors": ["us", "we"],
+      "es": "Mi mejor amigo y yo hablamos todos los días."
+    },
+    {
+      "id": "b1.grammar.each-other-cloze-2",
+      "itemIds": ["b1.grammar.reflexive-pronouns"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Be careful with that knife. Don't cut ___.",
+      "answers": ["yourself"],
+      "distractors": ["you", "yours"],
+      "es": "Ten cuidado con ese cuchillo. No te cortes."
+    },
+    {
+      "id": "b1.grammar.each-other-cloze-3",
+      "itemIds": ["b1.relationships.each-other"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We've known ___ since we were kids.",
+      "answers": ["each other"],
+      "distractors": ["us", "ourselves"],
+      "es": "Nos conocemos desde que éramos niños."
+    },
+    {
+      "id": "b1.grammar.each-other-cloze-4",
+      "itemIds": ["b1.grammar.reflexive-pronouns"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Did you enjoy ___ at the party?",
+      "answers": ["yourself", "yourselves"],
+      "distractors": ["you", "your"],
+      "es": "¿Te divertiste en la fiesta?"
+    },
+    {
+      "id": "b1.grammar.each-other-choice-1",
+      "itemIds": ["b1.relationships.each-other"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "They looked at each other and smiled.",
+      "options": [
+        "Se miraron el uno al otro y sonrieron.",
+        "Se miraron en el espejo y sonrieron.",
+        "Los miraron y sonrieron."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.each-other-order-1",
+      "itemIds": ["b1.relationships.each-other"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["every", "other", "We", "weekend.", "see", "each"],
+      "accepted": ["We see each other every weekend."],
+      "es": "Nos vemos todos los fines de semana."
+    },
+    {
+      "id": "b1.grammar.each-other-write-1",
+      "itemIds": ["b1.relationships.each-other"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi hermano y yo nos llamamos por teléfono todas las noches.",
+      "accepted": [
+        "My brother and I {call|phone} each other every night.",
+        "Every night{,|} my brother and I {call|phone} each other."
+      ]
+    },
+    {
+      "id": "b1.grammar.each-other-write-2",
+      "itemIds": ["b1.grammar.reflexive-pronouns"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ella aprendió a tocar la guitarra sola.",
+      "accepted": [
+        "She taught herself {to play|how to play} the guitar.",
+        "She learned {to play|how to play} the guitar {by herself|on her own}."
+      ]
     }
   ],
   "cards": [
@@ -2624,6 +2864,140 @@
         "b1.grammar.have-to-must-order-1",
         "b1.grammar.have-to-must-write-1",
         "b1.grammar.have-to-must-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.although",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Although, even though, but y however",
+      "summary": "Para unir dos ideas que contrastan se usa although o even though (aunque) con una oración completa, but dentro de la misma oración y however al empezar una oración nueva.",
+      "form": "Although / Even though + oración, oración · oración, but + oración · Oración. However, oración.",
+      "uses": [
+        "Although va delante de una oración completa (sujeto + verbo): Although it was late, we went out.",
+        "Even though es más enfático: aunque, a pesar de que.",
+        "But une las dos ideas en una sola oración: It was late, but we went out.",
+        "However (sin embargo) suele empezar una oración nueva y lleva coma: It was late. However, we went out."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Although it was raining, but we went out.",
+          "right": "Although it was raining, we went out.",
+          "why": "Although y but no van juntos en la misma oración: usa uno solo."
+        },
+        {
+          "wrong": "Although the rain, we went out.",
+          "right": "Although it was raining, we went out.",
+          "why": "Although va con una oración (sujeto + verbo); con un sustantivo se usa despite (nivel B2)."
+        },
+        {
+          "wrong": "It was expensive, however we bought it.",
+          "right": "It was expensive. However, we bought it.",
+          "why": "However suele empezar una oración nueva (o ir después de punto y coma) y lleva coma después."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Although the hotel was expensive, we decided to stay.",
+          "es": "Aunque el hotel era caro, decidimos quedarnos."
+        },
+        {
+          "en": "We enjoyed the trip even though it rained every day.",
+          "es": "Disfrutamos el viaje aunque llovió todos los días."
+        },
+        {
+          "en": "The flight was delayed, but we arrived on time.",
+          "es": "El vuelo se retrasó, pero llegamos a tiempo."
+        },
+        {
+          "en": "The museum was crowded. However, we saw everything.",
+          "es": "El museo estaba lleno de gente. Sin embargo, vimos todo."
+        },
+        {
+          "en": "Although he is very young, he has traveled a lot.",
+          "es": "Aunque es muy joven, ha viajado mucho."
+        }
+      ],
+      "itemIds": ["b1.travel.although", "b1.grammar.however"],
+      "exerciseIds": [
+        "b1.grammar.although-cloze-1",
+        "b1.grammar.although-cloze-2",
+        "b1.grammar.although-cloze-3",
+        "b1.grammar.although-choice-1",
+        "b1.grammar.although-order-1",
+        "b1.grammar.although-write-1",
+        "b1.grammar.although-write-2",
+        "b1.grammar.although-vocab-1"
+      ]
+    },
+    {
+      "id": "b1.grammar.each-other",
+      "level": "B1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Each other o myself, yourself…",
+      "summary": "Each other expresa una acción mutua (el uno al otro); myself, yourself, themselves… indican que la acción vuelve a la misma persona.",
+      "form": "verbo + each other (mutuo) · verbo + myself / yourself / himself / herself / ourselves / yourselves / themselves (reflexivo)",
+      "uses": [
+        "Acción mutua: They love each other. (él la quiere a ella y ella a él)",
+        "Acción sobre uno mismo: She hurt herself. Enjoy yourselves!",
+        "Muchos verbos reflexivos del español no llevan pronombre en inglés: get up, relax, meet, feel.",
+        "También después de una preposición: They talk to each other every day."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "We see us every weekend.",
+          "right": "We see each other every weekend.",
+          "why": "Para decir «nos vemos» (uno al otro) se usa each other, no us."
+        },
+        {
+          "wrong": "I always relax myself on Sundays.",
+          "right": "I always relax on Sundays.",
+          "why": "Relax no lleva myself, aunque en español digas relajarse."
+        },
+        {
+          "wrong": "Did you enjoy at the party?",
+          "right": "Did you enjoy yourself at the party?",
+          "why": "Enjoy necesita un objeto: enjoy yourself (divertirse) o enjoy the party."
+        }
+      ],
+      "examples": [
+        {
+          "en": "My sister and I call each other every Sunday.",
+          "es": "Mi hermana y yo nos llamamos por teléfono todos los domingos."
+        },
+        {
+          "en": "We've known each other since school.",
+          "es": "Nos conocemos desde la escuela."
+        },
+        {
+          "en": "They looked at each other and laughed.",
+          "es": "Se miraron y se rieron."
+        },
+        {
+          "en": "Be careful! Don't hurt yourself.",
+          "es": "¡Cuidado! No te lastimes."
+        },
+        {
+          "en": "Did you enjoy yourselves at the wedding?",
+          "es": "¿Se divirtieron en la boda?"
+        },
+        {
+          "en": "She taught herself to play the piano.",
+          "es": "Aprendió a tocar el piano sola."
+        }
+      ],
+      "itemIds": ["b1.relationships.each-other", "b1.grammar.reflexive-pronouns"],
+      "exerciseIds": [
+        "b1.grammar.each-other-cloze-1",
+        "b1.grammar.each-other-cloze-2",
+        "b1.grammar.each-other-cloze-3",
+        "b1.grammar.each-other-cloze-4",
+        "b1.grammar.each-other-choice-1",
+        "b1.grammar.each-other-order-1",
+        "b1.grammar.each-other-write-1",
+        "b1.grammar.each-other-write-2"
       ]
     }
   ]

@@ -11,7 +11,9 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
 - `createSqliteProgressRepository(db, { now? })`: progress as an **append-only event log**
   (migration 3: `event` table, see `@english-learn/domain` "Progress event log"). The
   `review_state`, `xp`, `streak`, `placement_result` and `lesson_result` (migration 4: each
-  lesson's best accuracy and completions, `getLessonResults()`) tables are a cache of `foldEvents` over
+  lesson's best accuracy and completions, `getLessonResults()`) and `rewards` (migration 6: the
+  fold's plumas, purchases and equips as JSON, `getRewards()`; an unreadable row reads as none)
+  tables are a cache of `foldEvents` over
   the whole log, so reads stay fast; every write updates them in the same transaction and writes
   only the review states and lesson results that changed.
   - **Incremental fold** (migration 5: `fold_snapshot`). One row holds the domain's `FoldSnapshot`
@@ -27,11 +29,11 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
     date), an unorderable one, or a review in a session already folded. Either way the cache is
     exactly `foldEvents` of the log (property-tested against a full refold).
   - Cost on `node:sqlite` with a 50k-event log (`pnpm --filter @english-learn/storage-sqlite
-bench`, median): saving a 13-event session ≈ 4 ms (was ≈ 240 ms, a full refold per write);
-    a write that must refold ≈ 250 ms. The snapshot is ≈ 280 KiB (review states plus completed
-    and reviewed session ids).
+bench`, median): saving a 13-event session ≈ 3 ms (was ≈ 240 ms, a full refold per write);
+    a write that must refold ≈ 240 ms. The snapshot is ≈ 283 KiB (review states plus completed
+    and reviewed session ids; the plumas ledger adds a few hundred bytes).
   - `appendEvents(events)`: inserts local events (malformed ones are refused) and refreshes the
-    cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak), so the caller
+    cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak, plumas), so the caller
     shows exactly what the fold paid. All or nothing, so a failed save can be retried.
     (expo-sqlite's `withTransactionAsync` caveat applies: unrelated queries issued concurrently on
     the same connection may land inside the transaction; the app issues none while saving.)
@@ -67,6 +69,8 @@ bench`, median): saving a 13-event session ≈ 4 ms (was ≈ 240 ms, a full refo
   `getSaveProgressSuggestionDismissed()` the one-time "save your progress" card.
   `getMigratedTo()` / `setMigratedTo(origin)` remember where this device's progress was
   transferred (the old web address then sends the learner there).
+  `getPlumasWelcome()` / `setPlumasWelcome({ plumas, dismissed })` / `clearPlumasWelcome()` keep
+  the one-time plumas note (`null` until home decides it; an unreadable value reads as dismissed).
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

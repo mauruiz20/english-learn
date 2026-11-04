@@ -1,5 +1,6 @@
 import type { Verdict } from "@english-learn/domain";
 import type { Passage } from "@english-learn/content";
+import type { SessionPlumas } from "@/features/rewards/model/plumas-copy";
 import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { AnswerFeedback } from "./components/answer-feedback";
@@ -74,6 +75,8 @@ export type LessonViewState =
       readonly correct: number;
       readonly total: number;
       readonly xpEarned: number;
+      /** Plumas the session earned and why. */
+      readonly plumas?: SessionPlumas | undefined;
       readonly streakDays: number;
       /** This session extended the streak (the summary rolls the number). */
       readonly streakIncreased?: boolean;

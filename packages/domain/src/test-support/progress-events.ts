@@ -2,6 +2,8 @@ import type { LocalDate } from "../local-date";
 import type {
   AnswerDisputedEvent,
   BaselineImportedEvent,
+  ItemEquippedEvent,
+  ItemPurchasedEvent,
   ItemReviewedEvent,
   PlacementCompletedEvent,
   SessionCompletedEvent,
@@ -91,4 +93,12 @@ export function answerDisputed(
     type: "answer_disputed",
     payload: { v: 1, exerciseId, itemIds, answer: "my answer", accepted: false, ...overrides },
   } as AnswerDisputedEvent;
+}
+
+export function itemPurchased(meta: Meta, itemId: string, price: number): ItemPurchasedEvent {
+  return { ...envelope(meta), type: "item_purchased", payload: { v: 1, itemId, price } };
+}
+
+export function itemEquipped(meta: Meta, slot: string, itemId: string | null): ItemEquippedEvent {
+  return { ...envelope(meta), type: "item_equipped", payload: { v: 1, slot, itemId } };
 }

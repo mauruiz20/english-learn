@@ -220,7 +220,8 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   `ProgressRepository.appendEvents` (ONE transaction, all or nothing). XP = sum of `xpForAnswer`,
   plus the lesson completion bonus the first time a `lessonId` is completed (decided by the fold;
   before the event log it was "some item had no state yet"); replays and reviews earn answer XP
-  only. The summary shows the XP and streak the fold produced (totals after minus before).
+  only. The summary shows the XP, streak and plumas the fold produced (totals after minus
+  before; see "Plumas").
 - `use-exercise-session.ts`: hook shared by lesson and review (answer → feedback → next →
   save). Saving is guarded against double submission; a failed save shows "Reintentar"; the
   header back button and swipe gesture are disabled while saving. The browser back button is
@@ -410,6 +411,39 @@ explanation with the items it teaches and 6–8 practice exercises that are in n
   offers "Volver al ejercicio" instead of "Practicar". Not offered while practicing the card.
 - **Album**: "Primera ficha" (a card studied) and "Gramática al día" (every grammar card of a
   level studied), derived like the other stickers.
+
+## Plumas (`src/features/rewards/`)
+
+Plumas are Avi's currency (`docs/design/avi-rewards.md`, phase 1). The fold derives them from the
+events the app already writes (`@english-learn/domain`, "Plumas"): nothing new is written, so the
+whole history earns them once, and every device shows the same balance. Spending them (the
+wardrobe) comes in phase 2; the fold already reads purchases and equips.
+
+- **Summary row** (lessons, reviews and card practice, `SessionSummary`): "Plumas: +17" counts up
+  with the XP (`useCountUp`, at once with reduced motion), labelled "Plumas ganadas: 17", with a
+  muted line saying why: "Día de estudio +5 · Lección nueva +5 · Repasos a tiempo +7" ("Ficha
+  nueva" for a card). It is `plumasEarned(before, after)` of the save (`completeSession`) turned
+  into words by `model/plumas-copy.ts`. Nothing earned: "Repetir no da plumas, pero te ayuda a
+  recordar." (a review: "Este repaso no sumó plumas, …"); the daily cap held some back: "Ya
+  ganaste las 40 plumas de hoy. Tu práctica sigue contando para tu repaso." The reasons always
+  add up to the total: when a save refolds (it sorts before a synced session of the same day)
+  and plumas move between sources, only the total shows (never below 0). The mark is a small
+  pink sticker with a feather (`feather.ts`, strokes only, no letters).
+- **Home balance** (`plumas-balance.tsx`), in the progress card under the XP: a feather sticker
+  and "135 plumas", read as "Tienes 135 plumas" ("Debes 30 plumas" when two offline devices
+  overspent). Not a button yet (the wardrobe is phase 2).
+- **One-time note** (`plumas-welcome-note.tsx`): "Avi te guardó 135 plumas por lo que ya
+  estudiaste." on a pink sticky note under the progress card, with a paper-key "Entendido"
+  (≥ 44 pt; ink on white, since ink on a highlighter is below 4.5:1). N is the baseline's
+  "Bienvenida" grant (`earnedBySource.welcome`: lessons done before the event log), never the
+  balance, so a learner who started with the event log is never told about past study, even
+  after a first lesson. The first home visit that has progress decides (`plumasWelcome`); an
+  empty store (a new device before its first sync pull) decides nothing. With a grant, the note
+  keeps that amount until it is dismissed; without, it never shows. "Entendido" is final: a read
+  already under way cannot bring the note back. Stored per device with
+  `SettingsRepository.get/setPlumasWelcome` (`{ plumas, dismissed }`; an unreadable value reads as
+  dismissed) and forgotten (`clearPlumasWelcome`) by a sign-out that deletes this device's
+  progress.
 
 ## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)
 

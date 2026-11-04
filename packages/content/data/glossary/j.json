@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.japanese",
+      "headword": "Japanese",
+      "kind": "word",
+      "forms": ["japanese"],
+      "senses": [
+        {
+          "es": "japonés",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.jar",
       "headword": "jar",
       "kind": "word",

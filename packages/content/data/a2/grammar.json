@@ -1314,6 +1314,313 @@
       "prompt": "Choose the English for 'va a nevar'.",
       "options": ["it goes to snow", "it's going snow", "it going to snow", "it's going to snow"],
       "answerIndex": 3
+    },
+    {
+      "id": "a2.grammar.directions-cloze-1",
+      "itemIds": ["a2.directions.imperative"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ cross the street here. It's dangerous.",
+      "answers": ["Don't"],
+      "distractors": ["Not", "No", "Doesn't"],
+      "es": "No cruce la calle aquí. Es peligroso."
+    },
+    {
+      "id": "a2.grammar.directions-cloze-2",
+      "itemIds": ["a2.directions.across-from"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The pharmacy is across ___ the park.",
+      "answers": ["from"],
+      "distractors": ["of", "to", "in"],
+      "es": "La farmacia está enfrente del parque."
+    },
+    {
+      "id": "a2.grammar.directions-cloze-3",
+      "itemIds": ["a2.directions.between"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The café is ___ the bank and the post office.",
+      "answers": ["between"],
+      "distractors": ["among", "in", "at"],
+      "es": "El café está entre el banco y la oficina de correos."
+    },
+    {
+      "id": "a2.grammar.directions-choice-1",
+      "itemIds": ["a2.directions.across-from", "a2.directions.imperative"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Turn right, and the hotel is across from the station.",
+      "options": [
+        "Gire a la derecha y el hotel está al lado de la estación.",
+        "Gire a la derecha y el hotel está enfrente de la estación.",
+        "Gire a la izquierda y el hotel está detrás de la estación."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.directions-order-1",
+      "itemIds": ["a2.directions.imperative"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["street", "the", "left.", "Take", "on", "second", "the"],
+      "accepted": ["Take the second street on the left."],
+      "es": "Tome la segunda calle a la izquierda."
+    },
+    {
+      "id": "a2.grammar.directions-write-1",
+      "itemIds": ["a2.directions.between"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El banco está entre el supermercado y la farmacia.",
+      "accepted": [
+        "The bank is between the {supermarket|grocery store} and the {pharmacy|drugstore}.",
+        "The bank is between the {pharmacy|drugstore} and the {supermarket|grocery store}."
+      ]
+    },
+    {
+      "id": "a2.grammar.directions-write-2",
+      "itemIds": ["a2.directions.imperative"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Cruce la calle y siga derecho.",
+      "accepted": ["Cross the street and {go|keep going|walk|continue} straight[ ahead| on]."]
+    },
+    {
+      "id": "a2.grammar.directions-vocab-1",
+      "itemIds": ["a2.directions.across-from"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'enfrente de (al otro lado de la calle)'.",
+      "options": ["next to", "between", "across from", "behind"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.possessive-s-cloze-1",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This is my ___ car.",
+      "answers": ["father's"],
+      "distractors": ["father", "father of"],
+      "es": "Este es el auto de mi padre."
+    },
+    {
+      "id": "a2.grammar.possessive-s-cloze-2",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We had dinner at my ___ house.",
+      "answers": ["parents'"],
+      "distractors": ["parents", "parent"],
+      "es": "Cenamos en la casa de mis padres."
+    },
+    {
+      "id": "a2.grammar.possessive-s-cloze-3",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ phone is this? It's Ana's.",
+      "answers": ["Whose"],
+      "distractors": ["Who's", "Who"],
+      "es": "¿De quién es este teléfono? Es de Ana."
+    },
+    {
+      "id": "a2.grammar.possessive-s-choice-1",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My brother's wife is a doctor.",
+      "options": [
+        "Mi hermano y su esposa son médicos.",
+        "La esposa de mi hermano es médica.",
+        "Mi hermano es el médico de mi esposa."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.possessive-s-order-1",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["small.", "room", "is", "My", "very", "sister's"],
+      "accepted": ["My sister's room is very small."],
+      "es": "La habitación de mi hermana es muy pequeña."
+    },
+    {
+      "id": "a2.grammar.possessive-s-write-1",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Es el cumpleaños de mi madre.",
+      "accepted": ["It's my {mother's|mom's} birthday."]
+    },
+    {
+      "id": "a2.grammar.possessive-s-write-2",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La casa de mis abuelos es muy grande.",
+      "accepted": ["My grandparents' house is {very|really} {big|large}."]
+    },
+    {
+      "id": "a2.grammar.possessive-s-vocab-1",
+      "itemIds": ["a2.family.possessive-s"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'el perro de Ana'.",
+      "options": ["Ana's dog", "the dog Ana", "the Ana's dog", "Ana dog"],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.grammar.like-ing-cloze-1",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I like ___ in bed before I go to sleep.",
+      "answers": ["reading"],
+      "distractors": ["read", "reads"],
+      "es": "Me gusta leer en la cama antes de dormirme."
+    },
+    {
+      "id": "a2.grammar.like-ing-cloze-2",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She really enjoys ___.",
+      "answers": ["dancing"],
+      "distractors": ["to dance", "dance"],
+      "es": "Ella disfruta mucho bailar."
+    },
+    {
+      "id": "a2.grammar.like-ing-cloze-3",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I don't mind ___ the dishes.",
+      "answers": ["doing"],
+      "distractors": ["to do", "do"],
+      "es": "No me molesta lavar los platos."
+    },
+    {
+      "id": "a2.grammar.like-ing-cloze-4",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I would like ___ to the beach this weekend.",
+      "answers": ["to go"],
+      "distractors": ["going", "go"],
+      "es": "Me gustaría ir a la playa este fin de semana."
+    },
+    {
+      "id": "a2.grammar.like-ing-choice-1",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My brother loves playing video games.",
+      "options": [
+        "Mi hermano está jugando videojuegos.",
+        "A mi hermano le gustaría jugar videojuegos.",
+        "A mi hermano le encanta jugar videojuegos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.like-ing-order-1",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["going", "Fridays.", "the", "We", "on", "movies", "enjoy", "to"],
+      "accepted": ["We enjoy going to the movies on Fridays."],
+      "es": "Disfrutamos ir al cine los viernes."
+    },
+    {
+      "id": "a2.grammar.like-ing-write-1",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me gusta nadar.",
+      "accepted": ["I like {swimming|to swim}."]
+    },
+    {
+      "id": "a2.grammar.like-ing-write-2",
+      "itemIds": ["a2.free-time.like-ing"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Odio levantarme temprano.",
+      "accepted": ["I hate {getting up|waking up|to get up|to wake up} early."]
     }
   ],
   "cards": [
@@ -2259,6 +2566,218 @@
         "a2.grammar.going-to-predictions-order-1",
         "a2.grammar.going-to-predictions-write-1",
         "a2.grammar.going-to-predictions-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.directions",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Indicaciones: imperativo y preposiciones de lugar",
+      "summary": "Para indicar un camino se usa el imperativo (Turn left, Go straight), y para ubicar un lugar, preposiciones como next to, across from y between.",
+      "form": "verbo base sin sujeto (Turn left.) · Don't + verbo · next to / across from / between… and… / on the corner",
+      "uses": [
+        "Indicar el camino: Go straight, turn right, take the second street on the left.",
+        "Imperativo negativo con don't: Don't cross the street here.",
+        "Ubicar un lugar: next to (al lado de), across from (enfrente de, al otro lado de la calle), on the corner (en la esquina).",
+        "Between va con dos cosas unidas por and: between the bank and the café."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Turn to the left at the bank.",
+          "right": "Turn left at the bank.",
+          "why": "Girar a la izquierda o a la derecha es turn left / turn right, sin to the."
+        },
+        {
+          "wrong": "Not cross the street here.",
+          "right": "Don't cross the street here.",
+          "why": "El imperativo negativo se forma con don't + verbo."
+        },
+        {
+          "wrong": "The bakery is next of the bank.",
+          "right": "The bakery is next to the bank.",
+          "why": "Al lado de se dice next to, no next of."
+        },
+        {
+          "wrong": "The pharmacy is in the corner.",
+          "right": "The pharmacy is on the corner.",
+          "why": "Un lugar en la esquina de una calle está on the corner; in the corner es el rincón de una habitación."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Go straight and take the second street on the left.",
+          "es": "Siga derecho y tome la segunda calle a la izquierda."
+        },
+        {
+          "en": "Turn right at the traffic light.",
+          "es": "Gire a la derecha en el semáforo."
+        },
+        {
+          "en": "Don't take the first street. Take the second one.",
+          "es": "No tome la primera calle. Tome la segunda."
+        },
+        {
+          "en": "The pharmacy is across from the park.",
+          "es": "La farmacia está enfrente del parque."
+        },
+        {
+          "en": "The café is between the bank and the post office.",
+          "es": "El café está entre el banco y la oficina de correos."
+        },
+        {
+          "en": "The bus stop is next to the school.",
+          "es": "La parada del autobús está al lado de la escuela."
+        },
+        {
+          "en": "The museum is on the corner.",
+          "es": "El museo está en la esquina."
+        }
+      ],
+      "itemIds": ["a2.directions.imperative", "a2.directions.across-from", "a2.directions.between"],
+      "exerciseIds": [
+        "a2.grammar.directions-cloze-1",
+        "a2.grammar.directions-cloze-2",
+        "a2.grammar.directions-cloze-3",
+        "a2.grammar.directions-choice-1",
+        "a2.grammar.directions-order-1",
+        "a2.grammar.directions-write-1",
+        "a2.grammar.directions-write-2",
+        "a2.grammar.directions-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.possessive-s",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "El posesivo 's",
+      "summary": "Para decir de quién es algo, el inglés pone primero al dueño y le agrega 's: my father's car (el auto de mi padre).",
+      "form": "dueño + 's + cosa (Ana's book) · plural terminado en -s: solo ' (my parents' house)",
+      "uses": [
+        "Personas y animales: my sister's room, the dog's bed.",
+        "Plural terminado en -s: solo el apóstrofo, my parents' house.",
+        "Plurales irregulares: + 's, the children's toys.",
+        "Para preguntar de quién es algo se usa whose: Whose phone is this? It's Ana's."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "This is the car of my father.",
+          "right": "This is my father's car.",
+          "why": "Con personas, el inglés usa 's y pone primero al dueño; the car of my father suena muy poco natural."
+        },
+        {
+          "wrong": "This is the Ana's bag.",
+          "right": "This is Ana's bag.",
+          "why": "Delante de un nombre con 's no va the."
+        },
+        {
+          "wrong": "We had lunch at my parent's house.",
+          "right": "We had lunch at my parents' house.",
+          "why": "Si los dueños son varios (parents), el apóstrofo va después de la s."
+        }
+      ],
+      "examples": [
+        {
+          "en": "This is my father's car.",
+          "es": "Este es el auto de mi padre."
+        },
+        {
+          "en": "My sister's room is very small.",
+          "es": "La habitación de mi hermana es muy pequeña."
+        },
+        {
+          "en": "We had lunch at my grandparents' house.",
+          "es": "Almorzamos en la casa de mis abuelos."
+        },
+        {
+          "en": "The children's toys are on the floor.",
+          "es": "Los juguetes de los niños están en el piso."
+        },
+        {
+          "en": "Whose phone is this? It's Ana's.",
+          "es": "¿De quién es este teléfono? Es de Ana."
+        }
+      ],
+      "itemIds": ["a2.family.possessive-s"],
+      "exerciseIds": [
+        "a2.grammar.possessive-s-cloze-1",
+        "a2.grammar.possessive-s-cloze-2",
+        "a2.grammar.possessive-s-cloze-3",
+        "a2.grammar.possessive-s-choice-1",
+        "a2.grammar.possessive-s-order-1",
+        "a2.grammar.possessive-s-write-1",
+        "a2.grammar.possessive-s-write-2",
+        "a2.grammar.possessive-s-vocab-1"
+      ]
+    },
+    {
+      "id": "a2.grammar.like-ing",
+      "level": "A2",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Like, love, enjoy y hate + -ing",
+      "summary": "Para hablar de gustos se usa like, love, enjoy o hate seguido del verbo con -ing: I like reading (me gusta leer).",
+      "form": "like / love / enjoy / hate / don't mind + verbo-ing",
+      "uses": [
+        "Gustos y pasatiempos: I like swimming. She loves dancing.",
+        "Lo que no te gusta: I hate getting up early. I don't like cooking.",
+        "Enjoy y don't mind (no me molesta) van siempre con -ing: We enjoy playing cards.",
+        "I would like (me gustaría) es distinto: va con to + verbo, I'd like to go."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I like read books.",
+          "right": "I like reading books.",
+          "why": "Después de like, el verbo no va en forma base: usa -ing (también se oye like to read)."
+        },
+        {
+          "wrong": "She enjoys to cook.",
+          "right": "She enjoys cooking.",
+          "why": "Enjoy solo admite -ing."
+        },
+        {
+          "wrong": "I would like going to the beach tomorrow.",
+          "right": "I would like to go to the beach tomorrow.",
+          "why": "I would like (me gustaría) va con to + verbo."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I like reading in bed.",
+          "es": "Me gusta leer en la cama."
+        },
+        {
+          "en": "My brother loves playing video games.",
+          "es": "A mi hermano le encanta jugar videojuegos."
+        },
+        {
+          "en": "Do you like dancing?",
+          "es": "¿Te gusta bailar?"
+        },
+        {
+          "en": "I hate getting up early on Mondays.",
+          "es": "Odio levantarme temprano los lunes."
+        },
+        {
+          "en": "We really enjoy going to the movies.",
+          "es": "Disfrutamos mucho ir al cine."
+        },
+        {
+          "en": "She doesn't mind cooking.",
+          "es": "A ella no le molesta cocinar."
+        }
+      ],
+      "itemIds": ["a2.free-time.like-ing"],
+      "exerciseIds": [
+        "a2.grammar.like-ing-cloze-1",
+        "a2.grammar.like-ing-cloze-2",
+        "a2.grammar.like-ing-cloze-3",
+        "a2.grammar.like-ing-cloze-4",
+        "a2.grammar.like-ing-choice-1",
+        "a2.grammar.like-ing-order-1",
+        "a2.grammar.like-ing-write-1",
+        "a2.grammar.like-ing-write-2"
       ]
     }
   ]

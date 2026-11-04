@@ -3,7 +3,7 @@
     {
       "id": "b1.work-and-careers.apply-for",
       "level": "B1",
-      "topics": ["work-and-careers"],
+      "topics": ["work-and-careers", "phrasal-verbs"],
       "kind": "phrase",
       "term": "apply for",
       "es": "solicitar, postularse a (un trabajo, una beca)"
@@ -51,7 +51,7 @@
     {
       "id": "b1.work-and-careers.get-promoted",
       "level": "B1",
-      "topics": ["work-and-careers"],
+      "topics": ["work-and-careers", "vocabulary"],
       "kind": "phrase",
       "term": "get promoted",
       "es": "ser ascendido, recibir un ascenso"
@@ -75,7 +75,7 @@
     {
       "id": "b1.work-and-careers.turn-down",
       "level": "B1",
-      "topics": ["work-and-careers"],
+      "topics": ["work-and-careers", "phrasal-verbs"],
       "kind": "phrase",
       "term": "turn down",
       "es": "rechazar (una oferta, una solicitud)"
@@ -377,7 +377,7 @@
         "b1.work-and-careers.dont-have-to-mustnt",
         "b1.work-and-careers.get-promoted"
       ],
-      "deepenCardIds": ["a2.grammar.for-since", "b1.grammar.have-to-must"]
+      "deepenCardIds": ["a2.grammar.for-since", "b1.grammar.have-to-must", "b1.phrasal-verbs.jobs"]
     },
     {
       "id": "b1.work-and-careers.lesson-002",

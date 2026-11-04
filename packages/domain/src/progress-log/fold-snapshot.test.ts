@@ -5,6 +5,7 @@ import {
   START,
   deviceEventsArb,
   eventsWithConflictsArb,
+  studyHistoryArb,
 } from "../test-support/progress-arbitraries";
 import { itemReviewed, lessonCompleted, reviewCompleted } from "../test-support/progress-events";
 import type { StoredEvent } from "./events";
@@ -148,6 +149,23 @@ describe("incremental fold (advanceFold)", () => {
     // Both paths run: most batches advance; recurring sessions and conflicting ids refold.
     expect(totals.advances).toBeGreaterThan(totals.refolds);
     expect(totals.refolds).toBeGreaterThan(0);
+  });
+
+  it("keeps plumas exact: dense study histories, saved in order and synced late", () => {
+    fc.assert(
+      fc.property(
+        studyHistoryArb("A"),
+        studyHistoryArb("B", 12),
+        fc.array(fc.nat(200), { maxLength: 12 }),
+        fc.array(fc.nat(60), { maxLength: 4 }),
+        (a, b, cutsA, cutsB) => {
+          // Device A saves session by session (the incremental path: same day, day after day,
+          // the daily cap and study weeks), then device B's history arrives by sync.
+          replay([...split(a, cutsA), ...split(b, cutsB)]);
+        },
+      ),
+      { numRuns: RUNS },
+    );
   });
 
   it("applies sessions saved in fold order without ever refolding", () => {

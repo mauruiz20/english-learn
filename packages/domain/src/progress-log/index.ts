@@ -1,8 +1,16 @@
-export { EVENT_PAYLOAD_VERSION, MAX_DISPUTED_ANSWER_LENGTH } from "./events";
+export {
+  EVENT_PAYLOAD_VERSION,
+  MAX_DISPUTED_ANSWER_LENGTH,
+  MAX_ITEM_ID_LENGTH,
+  MAX_ITEM_PRICE,
+  MAX_SLOT_LENGTH,
+} from "./events";
 export type {
   AnswerDisputedEvent,
   BaselineImportedEvent,
   EventEnvelope,
+  ItemEquippedEvent,
+  ItemPurchasedEvent,
   ItemReviewedEvent,
   PlacementCompletedEvent,
   ProgressEvent,

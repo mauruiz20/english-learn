@@ -51,7 +51,7 @@
     {
       "id": "a2.family.look-like",
       "level": "A2",
-      "topics": ["family"],
+      "topics": ["family", "vocabulary"],
       "kind": "phrase",
       "term": "look like",
       "es": "parecerse a"
@@ -75,7 +75,7 @@
     {
       "id": "a2.family.possessive-s",
       "level": "A2",
-      "topics": ["family"],
+      "topics": ["family", "grammar"],
       "kind": "grammar",
       "term": "'s (my father's car)",
       "es": "de (el auto de mi padre)"
@@ -354,7 +354,8 @@
         "a2.family.choice-003",
         "a2.family.write-002"
       ],
-      "newItemIds": ["a2.family.look-like", "a2.family.possessive-s", "a2.family.get-married"]
+      "newItemIds": ["a2.family.look-like", "a2.family.possessive-s", "a2.family.get-married"],
+      "deepenCardIds": ["a2.grammar.possessive-s", "a2.vocabulary.look-like", "a2.vocabulary.get"]
     }
   ]
 }

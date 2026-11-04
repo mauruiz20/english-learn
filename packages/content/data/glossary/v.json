@@ -97,6 +97,18 @@
       ]
     },
     {
+      "id": "glossary.view",
+      "headword": "view",
+      "kind": "word",
+      "forms": ["view", "views"],
+      "senses": [
+        {
+          "es": "vista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.village",
       "headword": "village",
       "kind": "word",

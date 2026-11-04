@@ -1,5 +1,6 @@
 import {
   EMPTY_PROGRESS,
+  EMPTY_REWARDS,
   EMPTY_STREAK,
   FOLD_SNAPSHOT_VERSION,
   LEVELS,
@@ -8,6 +9,7 @@ import {
   foldRulesFingerprint,
   foldSnapshot,
   localDate,
+  plumasTotals,
   snapshotProgress,
   type AppendedEvents,
   type BaselineImportedEvent,
@@ -20,6 +22,7 @@ import {
   type ProgressSyncStore,
   type ProgressTotals,
   type ReviewState,
+  type Rewards,
   type StoredEvent,
   type Streak,
 } from "@english-learn/domain";
@@ -174,6 +177,17 @@ function asStored(event: StoredEvent): StoredEvent {
 
 function sameLessonResult(a: LessonResult, b: LessonResult): boolean {
   return a.bestAccuracy === b.bestAccuracy && a.completions === b.completions;
+}
+
+/** The cached rewards; a missing or unreadable row reads as none (the next write rewrites it). */
+function parseRewards(text: string | undefined): Rewards {
+  if (text === undefined) return EMPTY_REWARDS;
+  try {
+    const value = JSON.parse(text) as Rewards | null;
+    return typeof value?.balance === "number" ? value : EMPTY_REWARDS;
+  } catch {
+    return EMPTY_REWARDS;
+  }
 }
 
 /** A stored `FoldSnapshot`, or `null` when it cannot be used (unreadable, other version). */
@@ -339,8 +353,20 @@ export function createSqliteProgressRepository(
     }
   }
 
+  async function readRewards(): Promise<Rewards> {
+    const row = await db.getFirstAsync<{ data: string }>(
+      "SELECT data FROM rewards WHERE id = 1",
+      [],
+    );
+    return parseRewards(row?.data);
+  }
+
   async function readTotals(): Promise<ProgressTotals> {
-    return { xp: await readXp(), streak: await readStreak() };
+    return {
+      xp: await readXp(),
+      streak: await readStreak(),
+      plumas: plumasTotals(await readRewards()),
+    };
   }
 
   async function readSyncState(key: string): Promise<string | null> {
@@ -468,6 +494,11 @@ export function createSqliteProgressRepository(
       progress.lessonResults,
       cachedProgress?.lessonResults ?? (await readLessonResults()),
     );
+    await db.runAsync(
+      `INSERT INTO rewards (id, data) VALUES (1, ?)
+       ON CONFLICT (id) DO UPDATE SET data = excluded.data`,
+      [JSON.stringify(progress.rewards)],
+    );
     if (progress.placement === null) {
       await db.runAsync("DELETE FROM placement_result", []);
     } else {
@@ -554,6 +585,7 @@ export function createSqliteProgressRepository(
     getXp: readXp,
     getPlacementResult: readPlacement,
     getLessonResults: readLessonResults,
+    getRewards: readRewards,
 
     async getDeviceId() {
       const id = await readSyncState(DEVICE_ID);
