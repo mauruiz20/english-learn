@@ -55,6 +55,9 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     getPlumasWelcome: async () => parsePlumasWelcome(await read(PLUMAS_WELCOME)),
     setPlumasWelcome: ({ plumas, dismissed }) =>
       write(PLUMAS_WELCOME, JSON.stringify({ plumas, dismissed })),
+    clearPlumasWelcome: async () => {
+      await db.runAsync("DELETE FROM setting WHERE key = ?", [PLUMAS_WELCOME]);
+    },
   };
 }
 

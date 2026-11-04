@@ -425,18 +425,25 @@ wardrobe) comes in phase 2; the fold already reads purchases and equips.
   nueva" for a card). It is `plumasEarned(before, after)` of the save (`completeSession`) turned
   into words by `model/plumas-copy.ts`. Nothing earned: "Repetir no da plumas, pero te ayuda a
   recordar." (a review: "Este repaso no sumó plumas, …"); the daily cap held some back: "Ya
-  ganaste las 40 plumas de hoy. Tu práctica sigue contando para tu repaso." The mark is a small
+  ganaste las 40 plumas de hoy. Tu práctica sigue contando para tu repaso." The reasons always
+  add up to the total: when a save refolds (it sorts before a synced session of the same day)
+  and plumas move between sources, only the total shows (never below 0). The mark is a small
   pink sticker with a feather (`feather.ts`, strokes only, no letters).
 - **Home balance** (`plumas-balance.tsx`), in the progress card under the XP: a feather sticker
   and "135 plumas", read as "Tienes 135 plumas" ("Debes 30 plumas" when two offline devices
   overspent). Not a button yet (the wardrobe is phase 2).
 - **One-time note** (`plumas-welcome-note.tsx`): "Avi te guardó 135 plumas por lo que ya
   estudiaste." on a pink sticky note under the progress card, with a paper-key "Entendido"
-  (≥ 44 pt; ink on white, since ink on a highlighter is below 4.5:1). The first home visit with
-  the progress loaded decides (`plumasWelcome`): with plumas, the note keeps that amount until it
-  is dismissed; a new learner (0 plumas) never sees it. Stored per device with
+  (≥ 44 pt; ink on white, since ink on a highlighter is below 4.5:1). N is the baseline's
+  "Bienvenida" grant (`earnedBySource.welcome`: lessons done before the event log), never the
+  balance, so a learner who started with the event log is never told about past study, even
+  after a first lesson. The first home visit that has progress decides (`plumasWelcome`); an
+  empty store (a new device before its first sync pull) decides nothing. With a grant, the note
+  keeps that amount until it is dismissed; without, it never shows. "Entendido" is final: a read
+  already under way cannot bring the note back. Stored per device with
   `SettingsRepository.get/setPlumasWelcome` (`{ plumas, dismissed }`; an unreadable value reads as
-  dismissed).
+  dismissed) and forgotten (`clearPlumasWelcome`) by a sign-out that deletes this device's
+  progress.
 
 ## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)
 

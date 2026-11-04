@@ -38,6 +38,9 @@ export function createFakeSettingsRepository(
     setPlumasWelcome: async (note) => {
       plumasWelcome = note;
     },
+    clearPlumasWelcome: async () => {
+      plumasWelcome = null;
+    },
     migratedTo: () => migratedTo,
     themePreference: () => themePreference,
     soundEnabled: () => soundEnabled,

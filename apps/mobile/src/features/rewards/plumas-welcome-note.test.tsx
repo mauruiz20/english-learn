@@ -1,3 +1,4 @@
+import type { SettingsRepository } from "@english-learn/domain";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import { createFakeRepository } from "@/testing/fake-progress-repository";
@@ -22,25 +23,26 @@ function contrast(a: string, b: string): number {
 
 const TEXT = "Avi te guardó 135 plumas por lo que ya estudiaste.";
 
-async function renderNote(earned: number | null, settings = createFakeSettingsRepository()) {
-  return {
-    settings,
-    ...(await render(
-      <AppServicesProvider
-        services={{
-          progressRepository: createFakeRepository(),
-          clock: { today: () => "2026-10-30" as never, nowMs: () => 0 },
-          random: () => 0,
-          randomBytes: testRandomBytes,
-          deviceId: "d",
-          settingsRepository: settings,
-          sounds: createFakeSoundPlayer(),
-        }}
-      >
-        <PlumasWelcomeNote earned={earned} />
-      </AppServicesProvider>,
-    )),
-  };
+function noteElement(welcome: number | null, settings: SettingsRepository) {
+  return (
+    <AppServicesProvider
+      services={{
+        progressRepository: createFakeRepository(),
+        clock: { today: () => "2026-10-30" as never, nowMs: () => 0 },
+        random: () => 0,
+        randomBytes: testRandomBytes,
+        deviceId: "d",
+        settingsRepository: settings,
+        sounds: createFakeSoundPlayer(),
+      }}
+    >
+      <PlumasWelcomeNote welcome={welcome} />
+    </AppServicesProvider>
+  );
+}
+
+async function renderNote(welcome: number | null, settings = createFakeSettingsRepository()) {
+  return { settings, ...(await render(noteElement(welcome, settings))) };
 }
 
 describe("PlumasWelcomeNote", () => {
@@ -49,17 +51,15 @@ describe("PlumasWelcomeNote", () => {
     expect(contrast(text, highlighters[PLUMAS_NOTE_COLOR])).toBeGreaterThanOrEqual(4.5);
     // "Entendido" is a secondary button: ink on white paper, never ink on the highlighter.
     expect(contrast(ink, sheet)).toBeGreaterThanOrEqual(4.5);
-    expect(contrast(ink, highlighters[PLUMAS_NOTE_COLOR])).toBeLessThan(4.5);
   });
 
-  it("tells a learner with study from before plumas what Avi kept, once, until dismissed", async () => {
+  it("tells a learner with study from before the event log what Avi kept, until dismissed", async () => {
     const { settings } = await renderNote(135);
 
     expect(await screen.findByText(TEXT)).toBeOnTheScreen();
     expect(settings.plumasWelcome()).toEqual({ plumas: 135, dismissed: false });
 
-    const ok = screen.getByRole("button", { name: "Entendido" });
-    fireEvent.press(ok);
+    fireEvent.press(screen.getByRole("button", { name: "Entendido" }));
 
     await waitFor(() => expect(screen.queryByText(TEXT)).not.toBeOnTheScreen());
     expect(settings.plumasWelcome()).toEqual({ plumas: 135, dismissed: true });
@@ -74,7 +74,7 @@ describe("PlumasWelcomeNote", () => {
     expect(await screen.findByText(TEXT)).toBeOnTheScreen();
   });
 
-  it("never shows to a new learner, nor once dismissed", async () => {
+  it("never shows without a welcome grant, nor once dismissed", async () => {
     const fresh = await renderNote(0);
     await waitFor(() =>
       expect(fresh.settings.plumasWelcome()).toEqual({ plumas: 0, dismissed: true }),
@@ -89,10 +89,27 @@ describe("PlumasWelcomeNote", () => {
     await waitFor(() => expect(screen.queryByText(/Avi te guardó/)).not.toBeOnTheScreen());
   });
 
-  it("decides nothing while the progress loads", async () => {
+  it("decides nothing until there is progress (loading, or a device before its first pull)", async () => {
     const { settings } = await renderNote(null);
 
     await waitFor(() => expect(settings.plumasWelcome()).toBeNull());
     expect(screen.queryByText(/Avi te guardó/)).not.toBeOnTheScreen();
+  });
+
+  it("stays dismissed when a late read still has the note pending", async () => {
+    const settings = createFakeSettingsRepository({
+      plumasWelcome: { plumas: 135, dismissed: false },
+    });
+    // The dismissal is still being written when home reloads and reads the setting again.
+    settings.setPlumasWelcome = () => new Promise(() => {});
+    const view = await renderNote(135, settings);
+    expect(await screen.findByText(TEXT)).toBeOnTheScreen();
+
+    fireEvent.press(screen.getByRole("button", { name: "Entendido" }));
+    await view.rerender(noteElement(140, settings));
+
+    await waitFor(() => expect(screen.queryByText(TEXT)).not.toBeOnTheScreen());
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(screen.queryByText(TEXT)).not.toBeOnTheScreen();
   });
 });

@@ -147,6 +147,14 @@ describe("createSqliteSettingsRepository", () => {
     expect(await settings.getPlumasWelcome()).toEqual({ plumas: 135, dismissed: true });
   });
 
+  it("forgets the plumas welcome note (a sign-out that deletes this device's progress)", async () => {
+    await settings.setPlumasWelcome({ plumas: 135, dismissed: true });
+
+    await settings.clearPlumasWelcome();
+
+    expect(await createSqliteSettingsRepository(db).getPlumasWelcome()).toBeNull();
+  });
+
   it("treats an unreadable plumas welcome note as dismissed (never shown twice)", async () => {
     await db.runAsync("INSERT INTO setting (key, value) VALUES ('plumas_welcome', '{')", []);
 

@@ -45,5 +45,6 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
     setMigratedTo: (origin) => track(repository.setMigratedTo(origin)),
     getPlumasWelcome: () => repository.getPlumasWelcome(),
     setPlumasWelcome: (note) => track(repository.setPlumasWelcome(note)),
+    clearPlumasWelcome: () => track(repository.clearPlumasWelcome()),
   };
 }

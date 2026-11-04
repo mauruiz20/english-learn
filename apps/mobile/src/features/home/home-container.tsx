@@ -112,8 +112,8 @@ export function HomeContainer({
   const { progressRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
-  // Plumas earned so far, for the one-time note (null until the progress loads).
-  const [earned, setEarned] = useState<number | null>(null);
+  // The baseline's plumas grant, for the one-time note: null until there is progress to decide on.
+  const [welcome, setWelcome] = useState<number | null>(null);
   const sound = useSoundPreference();
   const theme = useThemePreference();
   const progressVersion = useProgressVersion();
@@ -133,7 +133,18 @@ export function HomeContainer({
     ]).then(
       ([streak, xp, placement, states, results, rewards]) => {
         if (!active) return;
-        setEarned(rewards.earned);
+        // Every event leaves a trace here (a baseline always holds progress), so an empty store
+        // (a new device before its first sync pull) decides nothing yet.
+        const hasProgress =
+          states.length > 0 ||
+          xp > 0 ||
+          placement !== null ||
+          streak.lastActiveDate !== null ||
+          results.length > 0 ||
+          rewards.earned > 0 ||
+          rewards.spent > 0 ||
+          Object.keys(rewards.equipped).length > 0;
+        setWelcome(hasProgress ? rewards.earnedBySource.welcome : null);
         const level = placement?.level ?? null;
         const today = clock.today();
         setState({
@@ -178,7 +189,7 @@ export function HomeContainer({
     <HomeView
       state={state}
       greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
-      plumasNote={<PlumasWelcomeNote earned={earned} />}
+      plumasNote={<PlumasWelcomeNote welcome={welcome} />}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}
       themePreference={theme.preference}

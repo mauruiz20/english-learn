@@ -69,6 +69,8 @@ bench`, median): saving a 13-event session ≈ 3 ms (was ≈ 240 ms, a full refo
   `getSaveProgressSuggestionDismissed()` the one-time "save your progress" card.
   `getMigratedTo()` / `setMigratedTo(origin)` remember where this device's progress was
   transferred (the old web address then sends the learner there).
+  `getPlumasWelcome()` / `setPlumasWelcome({ plumas, dismissed })` / `clearPlumasWelcome()` keep
+  the one-time plumas note (`null` until home decides it; an unreadable value reads as dismissed).
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { Button } from "@/shared/ui/button";
@@ -17,33 +17,38 @@ import { plumasWelcome, welcomeText } from "./model/plumas-copy";
 export const PLUMAS_NOTE_COLOR = PLUMAS_COLOR;
 
 /**
- * The one-time note on home for the plumas earned by study done before plumas existed: "Avi te
- * guardó 135 plumas por lo que ya estudiaste." The first home visit with the progress loaded
- * decides (see `plumasWelcome`): a new learner never sees it. "Entendido" dismisses it for good.
+ * The one-time note on home for the plumas a baseline granted (lessons done before the event
+ * log): "Avi te guardó 135 plumas por lo que ya estudiaste." `welcome` is that grant
+ * (`earnedBySource.welcome`), or `null` while there is nothing to decide on: the progress is
+ * loading, or the store has no events yet (a new device before its first sync pull). The first
+ * decision is stored (see `plumasWelcome`); "Entendido" dismisses the note for good, and a read
+ * that was already under way when it was pressed cannot bring it back.
  */
-export function PlumasWelcomeNote({ earned }: { earned: number | null }) {
+export function PlumasWelcomeNote({ welcome }: { welcome: number | null }) {
   const { settingsRepository } = useAppServices();
   const [shown, setShown] = useState<number | null>(null);
+  const dismissed = useRef(false);
 
   useEffect(() => {
-    if (earned === null) return;
+    if (welcome === null) return;
     let active = true;
     settingsRepository
       .getPlumasWelcome()
       .then(async (stored) => {
-        const { show, store } = plumasWelcome(stored, earned);
+        const { show, store } = plumasWelcome(stored, welcome);
         if (store !== null) await settingsRepository.setPlumasWelcome(store);
-        if (active) setShown(show);
+        if (active && !dismissed.current) setShown(show);
       })
       .catch((error: unknown) => console.error("Failed to read the plumas note", error));
     return () => {
       active = false;
     };
-  }, [earned, settingsRepository]);
+  }, [welcome, settingsRepository]);
 
   if (shown === null) return null;
   const dismiss = () => {
     const plumas = shown;
+    dismissed.current = true;
     setShown(null);
     settingsRepository
       .setPlumasWelcome({ plumas, dismissed: true })

@@ -49,4 +49,6 @@ export interface SettingsRepository {
   /** The plumas welcome note, or null before the first home visit with plumas decided it. */
   getPlumasWelcome(): Promise<PlumasWelcome | null>;
   setPlumasWelcome(note: PlumasWelcome): Promise<void>;
+  /** Forgets it (a sign-out that deletes this device's progress): the next learner decides anew. */
+  clearPlumasWelcome(): Promise<void>;
 }

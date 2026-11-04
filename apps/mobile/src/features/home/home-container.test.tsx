@@ -5,8 +5,9 @@ import {
   review,
   type Clock,
   type ProgressRepository,
+  type SettingsRepository,
 } from "@english-learn/domain";
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
 import type React from "react";
 import { allExercises, card, lesson, passage } from "@/features/lesson/model/fixtures";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
@@ -50,13 +51,15 @@ const content = createCorpus([
 function renderContainer(
   repository: ProgressRepository,
   completionMemory: CompletionMemory = createCompletionMemory(),
+  settings: SettingsRepository = createFakeSettingsRepository(),
 ) {
-  return render(renderContainerElement(repository, completionMemory));
+  return render(renderContainerElement(repository, completionMemory, settings));
 }
 
 function renderContainerElement(
   repository: ProgressRepository,
   completionMemory: CompletionMemory = createCompletionMemory(),
+  settings: SettingsRepository = createFakeSettingsRepository(),
 ) {
   return (
     <AppServicesProvider
@@ -66,7 +69,7 @@ function renderContainerElement(
         random: () => 0,
         randomBytes: testRandomBytes,
         deviceId: "test-device",
-        settingsRepository: createFakeSettingsRepository(),
+        settingsRepository: settings,
         sounds: createFakeSoundPlayer(),
       }}
     >
@@ -112,10 +115,31 @@ describe("HomeContainer", () => {
     ).toBeOnTheScreen();
   });
 
-  it("shows a new learner 0 plumas and no note", async () => {
-    await renderContainer(createFakeRepository());
+  it("decides nothing on an empty store (a new device before its first sync pull)", async () => {
+    const settings = createFakeSettingsRepository();
+    await renderContainer(createFakeRepository(), undefined, settings);
 
     expect(await screen.findByLabelText("Tienes 0 plumas")).toBeOnTheScreen();
+    expect(screen.queryByText(/Avi te guardó/)).toBeNull();
+    expect(settings.plumasWelcome()).toBeNull();
+  });
+
+  it("never tells a learner who started with plumas about past study, even after a lesson", async () => {
+    const repository = createFakeRepository();
+    await completeSession({
+      repository,
+      today: TODAY,
+      nowMs: 0,
+      randomBytes: testRandomBytes,
+      deviceId: "test-device",
+      kind: "lesson",
+      summary: { lessonId: lesson.id, verdicts: [], accuracy: 1, answerXp: 0, itemOutcomes: [] },
+    });
+    const settings = createFakeSettingsRepository();
+    await renderContainer(repository, undefined, settings);
+
+    expect(await screen.findByLabelText("Tienes 20 plumas")).toBeOnTheScreen();
+    await waitFor(() => expect(settings.plumasWelcome()).toEqual({ plumas: 0, dismissed: true }));
     expect(screen.queryByText(/Avi te guardó/)).toBeNull();
   });
 
