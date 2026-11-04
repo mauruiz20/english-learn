@@ -180,7 +180,9 @@ says "earned"; the fold pays them while it walks the log, so the whole history e
   concurrent offline purchases (items are never taken away). `ownedItemIds` keeps unknown ids.
 - `ProgressState.rewards` (`Rewards`): `earned`, `spent`, `balance`, `earnedBySource`, `overCap`,
   `ownedItemIds`, `equipped`. A write's totals carry `plumas` (`PlumasTotals`), and
-  `plumasEarned(before, after)` gives what it earned per source and whether the cap held some back.
+  `plumasEarned(before, after)` gives what it earned (never below 0) per source and whether the
+  cap held some back. The breakdown always adds up to the total: a write that refolds can move
+  plumas between sources or days, and then the breakdown is empty.
 - The snapshot keeps `rewards`: the totals plus the latest day (`date`, what it paid, whether its
   review bonus paid) and the run (`lastDate`, `length`). Fold order is by `localDate` first, so
   that is all `advanceFold` needs to stay exact.
