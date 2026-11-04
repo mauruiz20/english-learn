@@ -1,4 +1,5 @@
 import { ApiError } from "@english-learn/api-client";
+import type { SettingsRepository } from "@english-learn/domain";
 import type { RandomBytes } from "@/features/progress/progress-events";
 import type { AuthSession } from "@/infrastructure/auth/auth-session";
 import {
@@ -46,6 +47,7 @@ export function createAccountController({
   session,
   coordinator,
   store,
+  settings,
   deleteAccount,
   pending,
   randomBytes,
@@ -59,6 +61,8 @@ export function createAccountController({
   session: Pick<AuthSession, "signIn" | "signOut" | "forget" | "authorized" | "getState">;
   coordinator: Pick<SyncCoordinator, "request" | "stop" | "resume">;
   store: { resetSyncState(): Promise<void>; clearProgress(): Promise<void> };
+  /** Device notes tied to the progress (the plumas welcome), forgotten with it. */
+  settings: Pick<SettingsRepository, "clearPlumasWelcome">;
   /** `DELETE /v1/account` with the current access token. */
   deleteAccount: () => Promise<void>;
   pending: PendingSignInStore;
@@ -158,7 +162,10 @@ export function createAccountController({
       await coordinator.stop();
       try {
         if (keepLocalProgress) await store.resetSyncState();
-        else await store.clearProgress();
+        else {
+          await store.clearProgress();
+          await settings.clearPlumasWelcome();
+        }
       } catch (error) {
         coordinator.resume();
         throw error;

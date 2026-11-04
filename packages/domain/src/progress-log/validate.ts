@@ -6,6 +6,9 @@ import type { Streak } from "../streak";
 import {
   EVENT_PAYLOAD_VERSION,
   MAX_DISPUTED_ANSWER_LENGTH,
+  MAX_ITEM_ID_LENGTH,
+  MAX_ITEM_PRICE,
+  MAX_SLOT_LENGTH,
   type ProgressEvent,
   type StoredEvent,
 } from "./events";
@@ -26,6 +29,8 @@ const isText = (v: unknown): v is string => typeof v === "string" && v.length > 
 const isNonNegInt = (v: unknown): v is number => Number.isInteger(v) && (v as number) >= 0;
 const isFiniteNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
 const isDate = (v: unknown): boolean => typeof v === "string" && isValidLocalDate(v);
+const isItemId = (v: unknown): v is string => isText(v) && v.length <= MAX_ITEM_ID_LENGTH;
+const SLOT = new RegExp(`^[a-z][a-z0-9_]{0,${MAX_SLOT_LENGTH - 1}}$`);
 
 /** Envelope fields needed to order an event at all. */
 export function validEnvelope(e: StoredEvent): boolean {
@@ -95,6 +100,13 @@ const VALIDATORS: Readonly<Record<ProgressEvent["type"], (p: Obj) => boolean>> =
     typeof p.answer === "string" &&
     p.answer.length <= MAX_DISPUTED_ANSWER_LENGTH &&
     p.accepted === false,
+  item_purchased: (p) =>
+    isItemId(p.itemId) &&
+    Number.isInteger(p.price) &&
+    (p.price as number) >= 1 &&
+    (p.price as number) <= MAX_ITEM_PRICE,
+  item_equipped: (p) =>
+    typeof p.slot === "string" && SLOT.test(p.slot) && (p.itemId === null || isItemId(p.itemId)),
 };
 
 const isKnownType = (t: string): t is ProgressEvent["type"] => Object.hasOwn(VALIDATORS, t);

@@ -38,6 +38,7 @@ function setup() {
     resume: jest.fn(),
   };
   const store = { resetSyncState: jest.fn(async () => {}), clearProgress: jest.fn(async () => {}) };
+  const settings = { clearPlumasWelcome: jest.fn(async () => {}) };
   const deleteAccount = jest.fn(async () => {});
   const onProgressChanged = jest.fn();
   const controller = createAccountController({
@@ -45,6 +46,7 @@ function setup() {
     session,
     coordinator,
     store,
+    settings,
     deleteAccount,
     pending: createPendingSignInStore(memoryStorage(), () => 1_000),
     randomBytes: createTestRandomBytes(),
@@ -63,6 +65,7 @@ function setup() {
     session,
     coordinator,
     store,
+    settings,
     deleteAccount,
     onProgressChanged,
     redirects,
@@ -157,12 +160,22 @@ describe("createAccountController", () => {
   });
 
   it("signs out deleting local progress from this device", async () => {
-    const { controller, store, onProgressChanged } = setup();
+    const { controller, store, settings, onProgressChanged } = setup();
 
     await controller.signOut({ keepLocalProgress: false });
 
     expect(store.clearProgress).toHaveBeenCalled();
+    // The next learner on this device decides the plumas note afresh.
+    expect(settings.clearPlumasWelcome).toHaveBeenCalled();
     expect(onProgressChanged).toHaveBeenCalled();
+  });
+
+  it("keeps the plumas note decision when the local progress stays", async () => {
+    const { controller, settings } = setup();
+
+    await controller.signOut({ keepLocalProgress: true });
+
+    expect(settings.clearPlumasWelcome).not.toHaveBeenCalled();
   });
 
   it("deletes the account and forgets the session, keeping local progress", async () => {
@@ -276,6 +289,7 @@ describe("signing out while a sync is in flight", () => {
       session,
       coordinator,
       store,
+      settings: { clearPlumasWelcome: async () => {} },
       deleteAccount: async () => {},
       pending: createPendingSignInStore(memoryStorage(), () => 1_000),
       randomBytes: createTestRandomBytes(),

@@ -29,16 +29,34 @@ const lesson = (
   payload: { v: 1, sessionId, kind: "lesson", lessonId, answerXp, accuracy },
 });
 
-const reviewSession = (e: Envelope, sessionId: string, answerXp: number): StoredEvent => ({
+const reviewSession = (
+  e: Envelope,
+  sessionId: string,
+  answerXp: number,
+  accuracy = 0.5,
+): StoredEvent => ({
   ...e,
   type: "session_completed",
-  payload: { v: 1, sessionId, kind: "review", answerXp, accuracy: 0.5 },
+  payload: { v: 1, sessionId, kind: "review", answerXp, accuracy },
+});
+
+const purchase = (e: Envelope, itemId: string, price: number): StoredEvent => ({
+  ...e,
+  type: "item_purchased",
+  payload: { v: 1, itemId, price },
+});
+
+const equip = (e: Envelope, slot: string, itemId: string | null): StoredEvent => ({
+  ...e,
+  type: "item_equipped",
+  payload: { v: 1, slot, itemId },
 });
 
 /**
  * A fixed log that exercises every fold rule (SM-2 reviews and lapses, answer XP, the lesson
- * bonus, baselines, streak, placement, lesson results and every anomaly). Its fold is pinned by a
- * golden test, and `foldRulesFingerprint` hashes it.
+ * bonus, baselines, streak, placement, lesson results, every plumas source and the daily cap,
+ * purchases, equips and every anomaly). Its fold is pinned by a golden test, and
+ * `foldRulesFingerprint` hashes it.
  */
 export const FOLD_RULES_CORPUS: readonly StoredEvent[] = [
   {
@@ -119,6 +137,29 @@ export const FOLD_RULES_CORPUS: readonly StoredEvent[] = [
   review(at("r22", "2026-01-09"), "s7", "i2", 5),
   review(at("r23", "2026-01-09"), "s7", "i5", 4),
   lesson(at("r24", "2026-01-09"), "s7", "L2", 40, 0.5),
+  // Plumas. 01-10: a perfect redo of an already-perfect lesson (no perfect page again), an item
+  // that is due (i2, on time) and one that is not (i5); then a review session at 0.8 (daily review).
+  review(at("p01", "2026-01-10"), "s8", "i2", 5),
+  review(at("p02", "2026-01-10"), "s8", "i5", 5),
+  lesson(at("p03", "2026-01-10"), "s8", "L1", 30, 1),
+  reviewSession(at("p04", "2026-01-10", 2_000), "s9", 10, 0.8),
+  reviewSession(at("p05", "2026-01-10", 3_000), "s10", 10, 1),
+  // 01-11: five new perfect lessons, 80 plumas raw: the daily cap keeps 40.
+  ...["L3", "L4", "L5", "L6", "L7"].map((lessonId, n) =>
+    lesson(at(`p1${n}`, "2026-01-11", 1_000 + n), `cap${n}`, lessonId, 20, 1),
+  ),
+  // 01-12 … 01-15: the run 01-09 … 01-15 reaches 7 days (week bonus, outside the cap).
+  ...["12", "13", "14", "15"].map((d) => reviewSession(at(`p2${d}`, `2026-01-${d}`), `w${d}`, 5)),
+  // Purchases: a repeat charges nothing; a price above the balance makes it negative.
+  purchase(at("p30", "2026-01-15", 2_000), "estrella", 40),
+  purchase(at("p31", "2026-01-15", 3_000, "B"), "estrella", 40),
+  purchase(at("p32", "2026-01-15", 4_000, "B"), "corona-de-papel", 250),
+  // Equips: the last per slot in fold order wins, an unknown slot is kept, null takes one off.
+  equip(at("p40", "2026-01-15", 5_000), "head", "corona-de-papel"),
+  equip(at("p41", "2026-01-15", 6_000, "B"), "head", "gorra"),
+  equip(at("p42", "2026-01-15", 5_500), "sticker", "estrella"),
+  equip(at("p43", "2026-01-15", 7_000), "sticker", null),
+  equip(at("p44", "2026-01-15", 7_000), "future_slot", "gafas-3d"),
 ];
 
 /** 32-bit FNV-1a of the UTF-16 code units, as 8 hex digits. */

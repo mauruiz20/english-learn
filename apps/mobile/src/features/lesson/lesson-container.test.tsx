@@ -139,6 +139,10 @@ describe("LessonContainer", () => {
     expect(await screen.findByText("¡Lección completada!")).toBeOnTheScreen();
     expect(screen.getByText("Aciertos: 6 de 6")).toBeOnTheScreen();
     expect(screen.getByText("XP ganada: 80")).toBeOnTheScreen();
+    expect(screen.getByText("Plumas: +20")).toBeOnTheScreen();
+    expect(
+      screen.getByText("Día de estudio +5 · Lección nueva +5 · Página perfecta +10"),
+    ).toBeOnTheScreen();
     expect(screen.getByText("Racha: 1 día")).toBeOnTheScreen();
 
     const saved = repository.snapshot();
@@ -386,6 +390,9 @@ describe("LessonContainer", () => {
 
     expect(await screen.findByText("XP ganada: 60")).toBeOnTheScreen();
     expect(screen.getByText("Aciertos: 6 de 6")).toBeOnTheScreen();
+    // Imperfect → perfect the same day: only the first perfect page pays.
+    expect(screen.getByText("Plumas: +10")).toBeOnTheScreen();
+    expect(screen.getByText("Página perfecta +10")).toBeOnTheScreen();
     expect(repository.snapshot().xp).toBe(130);
     expect(await repository.getLessonResults()).toEqual([
       { lessonId: lesson.id, bestAccuracy: 1, completions: 2 },

@@ -98,12 +98,40 @@ export type AnswerDisputedEvent = EventEnvelope<
 
 export const MAX_DISPUTED_ANSWER_LENGTH = 200;
 
+/**
+ * The learner bought an item for Avi. `price` is the price shown when buying (so a later price
+ * change never rewrites old balances, and the fold needs no catalogue). Only the FIRST purchase
+ * of an `itemId` in fold order charges; a repeat (two offline devices) is a known no-op.
+ */
+export type ItemPurchasedEvent = EventEnvelope<
+  "item_purchased",
+  { readonly v: 1; readonly itemId: string; readonly price: number }
+>;
+
+/**
+ * The learner changed what Avi wears in one slot ("Listo" in the wardrobe writes one per changed
+ * slot); `itemId: null` takes the slot off. The last one per slot in fold order wins.
+ */
+export type ItemEquippedEvent = EventEnvelope<
+  "item_equipped",
+  { readonly v: 1; readonly slot: string; readonly itemId: string | null }
+>;
+
+/** Longest `itemId` of a purchase or equip. */
+export const MAX_ITEM_ID_LENGTH = 64;
+/** Highest price a purchase may carry (prices are whole plumas, at least 1). */
+export const MAX_ITEM_PRICE = 10_000;
+/** Longest wardrobe `slot` name (snake_case). */
+export const MAX_SLOT_LENGTH = 20;
+
 export type ProgressEvent =
   | ItemReviewedEvent
   | SessionCompletedEvent
   | PlacementCompletedEvent
   | BaselineImportedEvent
-  | AnswerDisputedEvent;
+  | AnswerDisputedEvent
+  | ItemPurchasedEvent
+  | ItemEquippedEvent;
 
 export type ProgressEventType = ProgressEvent["type"];
 

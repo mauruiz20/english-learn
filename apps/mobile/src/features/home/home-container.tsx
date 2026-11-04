@@ -24,6 +24,7 @@ import { cardScores, cardsSummary } from "@/features/cards/model/card-catalog";
 import { cardPath } from "@/features/cards/card-routes";
 import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { PlumasWelcomeNote } from "@/features/rewards/plumas-welcome-note";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import { deepenSteps } from "./model/deepen-steps";
@@ -111,6 +112,8 @@ export function HomeContainer({
   const { progressRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
+  // The baseline's plumas grant, for the one-time note: null until there is progress to decide on.
+  const [welcome, setWelcome] = useState<number | null>(null);
   const sound = useSoundPreference();
   const theme = useThemePreference();
   const progressVersion = useProgressVersion();
@@ -126,9 +129,22 @@ export function HomeContainer({
       progressRepository.getPlacementResult(),
       progressRepository.getReviewStates(),
       progressRepository.getLessonResults(),
+      progressRepository.getRewards(),
     ]).then(
-      ([streak, xp, placement, states, results]) => {
+      ([streak, xp, placement, states, results, rewards]) => {
         if (!active) return;
+        // Every event leaves a trace here (a baseline always holds progress), so an empty store
+        // (a new device before its first sync pull) decides nothing yet.
+        const hasProgress =
+          states.length > 0 ||
+          xp > 0 ||
+          placement !== null ||
+          streak.lastActiveDate !== null ||
+          results.length > 0 ||
+          rewards.earned > 0 ||
+          rewards.spent > 0 ||
+          Object.keys(rewards.equipped).length > 0;
+        setWelcome(hasProgress ? rewards.earnedBySource.welcome : null);
         const level = placement?.level ?? null;
         const today = clock.today();
         setState({
@@ -138,6 +154,7 @@ export function HomeContainer({
           reviewNoteColor: stickyNoteHighlighter(today),
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
+          plumas: rewards.balance,
           level,
           lessons: markJustCompleted(
             homeLessons(content, level, states, results),
@@ -172,6 +189,7 @@ export function HomeContainer({
     <HomeView
       state={state}
       greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
+      plumasNote={<PlumasWelcomeNote welcome={welcome} />}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}
       themePreference={theme.preference}

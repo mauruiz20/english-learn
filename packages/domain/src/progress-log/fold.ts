@@ -1,10 +1,17 @@
 import { compareLocalDate, type LocalDate } from "../local-date";
 import type { PlacementResult } from "../ports";
+import { DAILY_REVIEW_MIN_ACCURACY, EMPTY_REWARDS, type Rewards } from "../rewards";
 import { xpForLessonCompletion } from "../scoring";
 import { applyReview, type ReviewState } from "../srs";
 import { EMPTY_STREAK, recordActivity, type Streak } from "../streak";
 import { canonicalJson } from "./canonical";
 import type { BaselineImportedEvent, ProgressEvent, StoredEvent } from "./events";
+import {
+  EMPTY_REWARDS_SNAPSHOT,
+  RewardsLedger,
+  rewardsOf,
+  type RewardsSnapshot,
+} from "./rewards-ledger";
 import { parseEvent, validEnvelope } from "./validate";
 
 export type FoldAnomalyKind =
@@ -50,6 +57,8 @@ export type ProgressState = {
    * baseline lists have none: pre-event storage kept no score).
    */
   readonly lessonResults: readonly LessonResult[];
+  /** Plumas earned and spent, items owned and worn (see `RewardsLedger`). */
+  readonly rewards: Rewards;
   /** Events that were skipped, in fold order. Never thrown. */
   readonly anomalies: readonly FoldAnomaly[];
 };
@@ -62,6 +71,7 @@ export const EMPTY_PROGRESS: ProgressState = {
   activeDates: [],
   completedLessonIds: [],
   lessonResults: [],
+  rewards: EMPTY_REWARDS,
   anomalies: [],
 };
 
@@ -132,7 +142,7 @@ function mergeStreaks(a: Streak, b: Streak): Streak {
 }
 
 /** The snapshot format; a stored snapshot of another version is discarded (refold). */
-export const FOLD_SNAPSHOT_VERSION = 1;
+export const FOLD_SNAPSHOT_VERSION = 2;
 
 /**
  * Everything the fold knows after the events it applied, as plain JSON-safe data, so later
@@ -156,6 +166,8 @@ export type FoldSnapshot = {
   readonly completedSessionIds: readonly string[];
   /** Sessions with an `item_reviewed` applied (a later review of one needs a refold). */
   readonly reviewedSessionIds: readonly string[];
+  /** Plumas, purchases and equips so far, with the per-day state the next events need. */
+  readonly rewards: RewardsSnapshot;
   /** Unorderable events, reported first and sorted by content. */
   readonly envelopeAnomalies: readonly FoldAnomaly[];
   /** The other skipped events, in fold order. */
@@ -174,6 +186,7 @@ export const EMPTY_FOLD_SNAPSHOT: FoldSnapshot = {
   lessonResults: [],
   completedSessionIds: [],
   reviewedSessionIds: [],
+  rewards: EMPTY_REWARDS_SNAPSHOT,
   envelopeAnomalies: [],
   anomalies: [],
 };
@@ -191,6 +204,7 @@ class Folder {
   readonly activeDates: Set<LocalDate>;
   readonly envelopeAnomalies: FoldAnomaly[];
   readonly anomalies: FoldAnomaly[];
+  readonly rewards: RewardsLedger;
   xp: number;
   baselineStreak: Streak;
   placement: PlacementResult | null;
@@ -205,6 +219,7 @@ class Folder {
     this.activeDates = new Set(from.activeDates);
     this.envelopeAnomalies = [...from.envelopeAnomalies];
     this.anomalies = [...from.anomalies];
+    this.rewards = new RewardsLedger(from.rewards);
     this.xp = from.xp;
     this.baselineStreak = from.baselineStreak;
     this.placement = from.placement;
@@ -219,10 +234,11 @@ class Folder {
         if (this.reviewed.has(key)) return this.report("duplicate_item_review", event.id, key);
         this.reviewed.add(key);
         this.reviewedSessions.add(sessionId);
-        this.states.set(
-          itemId,
-          applyReview(this.states.get(itemId), itemId, grade, event.localDate),
-        );
+        const previous = this.states.get(itemId);
+        this.states.set(itemId, applyReview(previous, itemId, grade, event.localDate));
+        const wasDue =
+          previous !== undefined && compareLocalDate(previous.dueDate, event.localDate) <= 0;
+        if (wasDue && grade >= 3) this.rewards.onTimeReview(event.localDate);
         return;
       }
       case "session_completed": {
@@ -231,35 +247,56 @@ class Folder {
           return this.report("duplicate_session", event.id, sessionId);
         }
         this.sessions.add(sessionId);
-        this.activeDates.add(event.localDate);
+        const date = event.localDate;
+        if (!this.activeDates.has(date)) {
+          this.activeDates.add(date);
+          this.rewards.studyDay(date);
+        }
         this.xp += answerXp;
-        if (kind !== "lesson" || lessonId === undefined) return;
+        if (kind !== "lesson" || lessonId === undefined) {
+          if (accuracy >= DAILY_REVIEW_MIN_ACCURACY) this.rewards.dailyReview(date);
+          return;
+        }
+        const wasPerfect = this.results.get(lessonId)?.bestAccuracy === 1;
         this.recordResult(lessonId, accuracy);
         if (!this.completed.has(lessonId)) {
           this.completed.add(lessonId);
           this.xp += xpForLessonCompletion(accuracy);
+          this.rewards.newLesson(date);
         }
+        if (accuracy === 1 && !wasPerfect) this.rewards.perfectPage(date);
         return;
       }
       case "placement_completed":
         this.placement = { level: event.payload.level, theta: event.payload.theta };
         return;
       case "baseline_imported":
-        return this.applyBaseline(event.payload);
+        return this.applyBaseline(event.payload, event.localDate);
       case "answer_disputed":
         // Content feedback only: the session's own events already carry the regraded answer.
         return;
+      case "item_purchased":
+        return this.rewards.purchase(event.payload.itemId, event.payload.price);
+      case "item_equipped":
+        return this.rewards.equip(event.payload.slot, event.payload.itemId);
     }
   }
 
-  applyBaseline(payload: BaselineImportedEvent["payload"]): void {
+  applyBaseline(payload: BaselineImportedEvent["payload"], date: LocalDate): void {
     for (const state of payload.states) {
       if (preferState(this.states.get(state.itemId), state)) this.states.set(state.itemId, state);
     }
     this.xp += payload.xp;
     this.baselineStreak = mergeStreaks(this.baselineStreak, payload.streak);
     if (payload.placement !== null) this.placement = payload.placement;
-    for (const lessonId of payload.completedLessonIds ?? []) this.completed.add(lessonId);
+    let added = 0;
+    for (const lessonId of payload.completedLessonIds ?? []) {
+      if (this.completed.has(lessonId)) continue;
+      this.completed.add(lessonId);
+      added += 1;
+    }
+    // "Bienvenida": study done before the event log earns plumas once, like a first completion.
+    this.rewards.welcome(date, added);
   }
 
   /** Best accuracy is a max and completions a count: both independent of the fold order. */
@@ -313,6 +350,7 @@ class Folder {
       lessonResults: [...this.results.values()].sort((a, b) => byText(a.lessonId, b.lessonId)),
       completedSessionIds: sortedText(this.sessions),
       reviewedSessionIds: sortedText(this.reviewedSessions),
+      rewards: this.rewards.snapshot(),
       envelopeAnomalies: this.envelopeAnomalies,
       anomalies: this.anomalies,
     };
@@ -402,6 +440,7 @@ export function snapshotProgress(snapshot: FoldSnapshot): ProgressState {
     activeDates: snapshot.activeDates,
     completedLessonIds: snapshot.completedLessonIds,
     lessonResults: snapshot.lessonResults,
+    rewards: rewardsOf(snapshot.rewards),
     anomalies: [...snapshot.envelopeAnomalies, ...snapshot.anomalies],
   };
 }

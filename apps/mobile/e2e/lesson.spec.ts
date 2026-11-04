@@ -10,7 +10,9 @@ async function checkAndContinue(page: Page, verdict: string) {
   await page.getByRole("button", { name: "Continuar", exact: true }).click();
 }
 
-test("completes the seed A2 lesson and keeps XP and streak after a reload", async ({ page }) => {
+test("completes the seed A2 lesson and keeps XP, streak and plumas after a reload", async ({
+  page,
+}) => {
   const problems: string[] = [];
   page.on("console", (message: ConsoleMessage) => {
     if (message.type() === "error") problems.push(message.text());
@@ -19,6 +21,9 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
 
   await page.goto("/");
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
+  await expect(page.getByLabel("Tienes 0 plumas")).toBeVisible();
+  // A new learner has no study from before plumas: no one-time note.
+  await expect(page.getByText(/Avi te guardó/)).toHaveCount(0);
   await expect(page.getByText("Lecciones de nivel A2")).toBeVisible();
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
 
@@ -55,15 +60,23 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
   await expect(page.getByText("Aciertos: 5 de 6")).toBeVisible();
   await expect(page.getByText("XP ganada: 75")).toBeVisible();
   await expect(page.getByText("Racha: 1 día")).toBeVisible();
+  // Plumas: the first study day and a new lesson (not a perfect page: one answer was almost).
+  const plumas = page.getByTestId("summary-plumas");
+  await expect(plumas.getByText("Plumas: +10", { exact: true })).toBeVisible();
+  await expect(
+    plumas.getByText("Día de estudio +5 · Lección nueva +5", { exact: true }),
+  ).toBeVisible();
 
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
   await expect(page.getByLabel("Racha: 1 día")).toBeVisible();
   await expect(page.getByText("75 XP", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Tienes 10 plumas")).toBeVisible();
   await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
 
   await page.reload();
   await expect(page.getByLabel("Racha: 1 día")).toBeVisible();
   await expect(page.getByText("75 XP", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Tienes 10 plumas")).toBeVisible();
   await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
 
   expect(problems).toEqual([]);
