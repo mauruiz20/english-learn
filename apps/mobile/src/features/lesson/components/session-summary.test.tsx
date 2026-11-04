@@ -132,6 +132,16 @@ describe("SessionSummary", () => {
       expect(screen.getByText("Repetir no da plumas, pero te ayuda a recordar.")).toBeOnTheScreen();
     });
 
+    it("shows only the total when there is no breakdown, never a negative number", async () => {
+      await render(<SessionSummary {...base} plumas={{ total: 12, detail: "" }} />);
+      const row = screen.getByTestId("summary-plumas");
+      expect(row).toHaveTextContent("Plumas: +12", { exact: true });
+
+      await render(<SessionSummary {...base} plumas={{ total: -5, detail: "" }} />);
+      expect(screen.getByText("Plumas: 0")).toBeOnTheScreen();
+      expect(screen.getByLabelText("Plumas ganadas: 0")).toBeOnTheScreen();
+    });
+
     it("has no plumas row without plumas", async () => {
       await render(<SessionSummary {...base} />);
 

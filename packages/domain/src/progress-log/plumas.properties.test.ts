@@ -5,6 +5,8 @@ import {
   DAILY_PLUMAS_CAP,
   PLUMAS_SOURCES,
   UNCAPPED_PLUMAS_SOURCES,
+  plumasEarned,
+  plumasTotals,
   type Rewards,
 } from "../rewards";
 import {
@@ -33,6 +35,20 @@ const cappedEarned = (rewards: Rewards) =>
 const sum = (values: readonly number[]) => values.reduce((a, b) => a + b, 0);
 
 describe("plumas properties", () => {
+  it("reports what a write earned with a breakdown that adds up to a total ≥ 0", () => {
+    fc.assert(
+      fc.property(logArb, studyHistoryArb("W", 6), (events, write) => {
+        // `write` may sort anywhere in the log (a refold), like a synced or late save.
+        const before = plumasTotals(foldEvents(events).rewards);
+        const after = plumasTotals(foldEvents([...events, ...write]).rewards);
+        const { total, bySource } = plumasEarned(before, after);
+        expect(total).toBeGreaterThanOrEqual(0);
+        if (bySource.length > 0) expect(sum(bySource.map((s) => s.plumas))).toBe(total);
+      }),
+      { numRuns: RUNS },
+    );
+  });
+
   it("never come from answer XP: any answerXp gives the same rewards", () => {
     fc.assert(
       fc.property(logArb, fc.infiniteStream(answerXpArb), (events, xps) => {

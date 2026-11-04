@@ -89,10 +89,25 @@ describe("sessionPlumas", () => {
         "Lección nueva +5 · Ya ganaste las 40 plumas de hoy. Tu práctica sigue contando para tu repaso.",
     });
   });
+
+  it("shows only the total when there is no breakdown that adds up (a refold moved plumas)", () => {
+    expect(sessionPlumas({ total: 12, bySource: [], capped: false }, "lesson")).toEqual({
+      total: 12,
+      detail: "",
+    });
+    expect(sessionPlumas({ total: 0, bySource: [], capped: true }, "lesson")).toEqual({
+      total: 0,
+      detail: "Ya ganaste las 40 plumas de hoy. Tu práctica sigue contando para tu repaso.",
+    });
+  });
+
+  it("never shows a negative total", () => {
+    expect(sessionPlumas({ total: -5, bySource: [], capped: false }, "review").total).toBe(0);
+  });
 });
 
-describe("plumasWelcome (the one-time note for study done before plumas existed)", () => {
-  it("decides on the first visit: a learner with plumas gets the note, a new one never", () => {
+describe("plumasWelcome (the one-time note for study done before the event log)", () => {
+  it("decides on the first visit: a learner with a welcome grant gets the note, others never", () => {
     expect(plumasWelcome(null, 135)).toEqual({
       show: 135,
       store: { plumas: 135, dismissed: false },

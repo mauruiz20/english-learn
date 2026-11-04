@@ -108,14 +108,24 @@ export type PlumasEarned = {
   readonly capped: boolean;
 };
 
+/**
+ * The breakdown always adds up to `total`. A write that refolds (an event sorting before others
+ * of the same day, e.g. after a sync) can move plumas between sources or days, so a source can go
+ * down: then there is no honest per-source story, and `bySource` is empty. `total` is never
+ * negative.
+ */
 export function plumasEarned(before: PlumasTotals, after: PlumasTotals): PlumasEarned {
-  const bySource = PLUMAS_SOURCES.map((source) => ({
+  const deltas = PLUMAS_SOURCES.map((source) => ({
     source,
     plumas: after.earnedBySource[source] - before.earnedBySource[source],
-  })).filter(({ plumas }) => plumas > 0);
+  }));
+  const total = Math.max(0, after.earned - before.earned);
+  const moved = deltas.some(({ plumas }) => plumas < 0);
+  const bySource = deltas.filter(({ plumas }) => plumas > 0);
+  const sum = bySource.reduce((acc, { plumas }) => acc + plumas, 0);
   return {
-    total: after.earned - before.earned,
-    bySource,
+    total,
+    bySource: moved || sum !== total ? [] : bySource,
     capped: after.overCap > before.overCap,
   };
 }

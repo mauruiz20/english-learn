@@ -42,33 +42,40 @@ const CAP_REACHED = `Ya ganaste las ${DAILY_PLUMAS_CAP} plumas de hoy. Tu práct
 /** The summary's plumas row: the total, and why ("Día de estudio +5 · Lección nueva +5"). */
 export type SessionPlumas = { readonly total: number; readonly detail: string };
 
+/**
+ * The total is never negative, and the reasons always add up to it: without a breakdown
+ * (`plumasEarned` drops it when a refold moved plumas between sources) `detail` is empty, or only
+ * the cap note.
+ */
 export function sessionPlumas(earned: PlumasEarned, kind: PlumasSessionKind): SessionPlumas {
+  const total = Math.max(0, earned.total);
   const reasons = earned.bySource.map(
     ({ source, plumas }) => `${sourceName(source, plumas, kind)} +${plumas}`,
   );
   if (earned.capped) reasons.push(CAP_REACHED);
-  if (reasons.length === 0) {
+  if (reasons.length === 0 && total === 0) {
     reasons.push(
       kind === "review"
         ? "Este repaso no sumó plumas, pero te ayuda a recordar."
         : "Repetir no da plumas, pero te ayuda a recordar.",
     );
   }
-  return { total: earned.total, detail: reasons.join(" · ") };
+  return { total, detail: reasons.join(" · ") };
 }
 
 /**
- * The one-time note for plumas earned by study done before they existed. The first home visit
- * decides: with plumas, the note shows that amount until it is dismissed; without (a new
- * learner), it never shows. `store` is what to remember, when it changes.
+ * The one-time note for the plumas a baseline granted ("Bienvenida": lessons done before the
+ * event log). The first home visit with progress decides: with a grant, the note shows that
+ * amount until it is dismissed; without one (a learner who started with the event log, even
+ * after a first lesson), it never shows. `store` is what to remember, when it changes.
  */
 export function plumasWelcome(
   stored: PlumasWelcome | null,
-  earned: number,
+  welcome: number,
 ): { readonly show: number | null; readonly store: PlumasWelcome | null } {
   if (stored === null) {
-    return earned > 0
-      ? { show: earned, store: { plumas: earned, dismissed: false } }
+    return welcome > 0
+      ? { show: welcome, store: { plumas: welcome, dismissed: false } }
       : { show: null, store: { plumas: 0, dismissed: true } };
   }
   return { show: stored.dismissed ? null : stored.plumas, store: null };

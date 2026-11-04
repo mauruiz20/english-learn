@@ -192,7 +192,9 @@ export function SessionSummary({
   const { colors } = useTheme();
   const perfect = total > 0 && correct === total;
   const xp = useCountUp(xpEarned);
-  const plumasCount = useCountUp(plumas?.total ?? 0);
+  // Never negative, whatever a refold made of the totals (see `sessionPlumas`).
+  const plumasTotal = Math.max(0, plumas?.total ?? 0);
+  const plumasCount = useCountUp(plumasTotal);
   return (
     <ScreenContainer
       title={title}
@@ -251,12 +253,14 @@ export function SessionSummary({
             testID="summary-plumas"
             mark={<MiniSticker color={PLUMAS_COLOR} glyph="feather" />}
           >
-            <Text variant="title" accessibilityLabel={`Plumas ganadas: ${plumas.total}`}>
-              {plumas.total > 0 ? `Plumas: +${plumasCount}` : "Plumas: 0"}
+            <Text variant="title" accessibilityLabel={`Plumas ganadas: ${plumasTotal}`}>
+              {plumasTotal > 0 ? `Plumas: +${plumasCount}` : "Plumas: 0"}
             </Text>
-            <Text variant="small" tone="muted">
-              {plumas.detail}
-            </Text>
+            {plumas.detail !== "" && (
+              <Text variant="small" tone="muted">
+                {plumas.detail}
+              </Text>
+            )}
           </ResultRow>
         )}
         <ResultRow
