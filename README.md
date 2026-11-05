@@ -136,6 +136,23 @@ CI (`.github/workflows/ci.yml`) runs on pushes and pull requests to `main` and `
 format, lint, typecheck, unit tests, content validation, corpus freshness, production web export
 (with the bundle check) and the Playwright suite.
 
+- **Sharded e2e.** `web-e2e-build` exports `dist-e2e/` once and uploads it; four
+  `web-e2e (shard i/4)` jobs download it and run `playwright test --shard=i/4` on both browsers;
+  `web-e2e-report` merges their blob reports into one `playwright-report` HTML artifact. The
+  aggregate `web-e2e` job passes only if the build and every shard passed: it is the check
+  `deploy-web` needs and the one to require in branch protection.
+- **No retest on release.** A push to `main` first runs `tested-tree`
+  ([`.github/scripts/tested-tree.sh`](.github/scripts/tested-tree.sh)): it takes
+  `git rev-parse HEAD^{tree}` and compares it with the trees of the last 30 successful `ci.yml`
+  runs on `develop` (GitHub API, `GITHUB_TOKEN` with `actions: read` and `contents: read`). Only
+  runs of this repository's `ci.yml`, triggered by `push` to `develop` and concluded `success`,
+  count. A `--no-ff` release merge has the tree develop already tested, so `check`, `api`,
+  `api-client` and `web-e2e` are skipped and `deploy-web` runs directly. A hotfix pushed straight
+  to `main`, or any lookup error, finds no match and runs everything. `deploy-web` uses
+  `always()` with explicit results: it deploys only if every needed job succeeded, or was skipped
+  because the tree matched; a failure or cancel never deploys. API images (`release.yml`) are a
+  separate workflow and are unaffected.
+
 ## Optional backend
 
 [`services/api`](services/api/README.md) is a FastAPI + PostgreSQL service (Python 3.14, uv,

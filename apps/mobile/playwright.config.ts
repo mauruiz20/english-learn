@@ -13,7 +13,9 @@ export default defineConfig({
   testDir: "./e2e",
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? "github" : "list",
+  // CI runs the suite in shards; each also writes a blob report (blob-report/) that the
+  // web-e2e-report job merges into one HTML report.
+  reporter: process.env.CI ? [["github"], ["blob"]] : "list",
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
