@@ -78,6 +78,8 @@ export type HomeViewState =
       readonly album?: { readonly unlocked: number; readonly total: number };
       /** Study cards ("Fichas"), and how many the learner studied. */
       readonly cards?: { readonly total: number; readonly studied: number };
+      /** Titles of the "Práctica libre" collections (none: no link). */
+      readonly practiceTopics?: readonly string[];
     };
 
 type HomeViewProps = {
@@ -96,6 +98,8 @@ type HomeViewProps = {
   onOpenAccount?: () => void;
   onOpenAlbum?: () => void;
   onOpenCards?: () => void;
+  /** "Práctica libre", under the study cards. */
+  onOpenPractice?: () => void;
   /** Makes the plumas balance the way into Avi's wardrobe. */
   onOpenWardrobe?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
@@ -136,6 +140,8 @@ function ProgressCard({
   onOpenAlbum,
   cards,
   onOpenCards,
+  practiceTopics,
+  onOpenPractice,
 }: {
   /** `null` while the progress loads: a dash, never a "0 días" that then jumps. */
   days: number | null;
@@ -147,6 +153,8 @@ function ProgressCard({
   onOpenAlbum?: (() => void) | undefined;
   cards?: { readonly total: number; readonly studied: number } | undefined;
   onOpenCards?: (() => void) | undefined;
+  practiceTopics?: readonly string[] | undefined;
+  onOpenPractice?: (() => void) | undefined;
 }) {
   const styles = useStyles();
   const known = days !== null;
@@ -182,6 +190,11 @@ function ProgressCard({
       {cards !== undefined && cards.total > 0 && onOpenCards !== undefined && (
         <CardsLink cards={cards} onPress={onOpenCards} />
       )}
+      {practiceTopics !== undefined &&
+        practiceTopics.length > 0 &&
+        onOpenPractice !== undefined && (
+          <PracticeLink topics={practiceTopics} onPress={onOpenPractice} />
+        )}
     </View>
   );
 }
@@ -234,6 +247,75 @@ function CardsLink({
         </Text>
         <Text variant="small" tone="muted">
           {count}
+        </Text>
+      </View>
+      <Svg width={20} height={20} viewBox="0 0 24 24" aria-hidden>
+        <Path
+          d="M9 5l7 7-7 7"
+          fill="none"
+          stroke={colors.ink}
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </PressableScale>
+  );
+}
+
+/**
+ * "Práctica libre · Phrasal verbs, a tu ritmo", under the study cards: free practice by topic,
+ * apart from the path (secondary to it, like the cards).
+ */
+function PracticeLink({ topics, onPress }: { topics: readonly string[]; onPress: () => void }) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  const subtitle = `${topics.join(", ")}, a tu ritmo`;
+  return (
+    <PressableScale
+      accessibilityRole="button"
+      accessibilityLabel={`Práctica libre: ${subtitle}`}
+      onPress={onPress}
+      style={({ pressed }) => [styles.albumLink, pressed && styles.stopPressed]}
+    >
+      {/* A small spiral notebook with a highlighter stripe (decorative). */}
+      <View style={styles.albumStickers}>
+        <Svg width={44} height={34} viewBox="0 0 44 34" aria-hidden>
+          <Path
+            d="M10 4 h26 a3 3 0 0 1 3 3 v21 a3 3 0 0 1 -3 3 h-26 z"
+            fill={colors.sheet}
+            stroke={colors.ink}
+            strokeWidth={2}
+            transform="rotate(4 22 17)"
+          />
+          <Path
+            d="M15 13 h18"
+            stroke={colors.highlighters.green}
+            strokeWidth={5}
+            transform="rotate(4 22 17)"
+          />
+          <Path
+            d="M15 21 h18 M15 26 h11"
+            stroke={colors.rule}
+            strokeWidth={2}
+            strokeLinecap="round"
+            transform="rotate(4 22 17)"
+          />
+          <Path
+            d="M6 8 h7 M6 14 h7 M6 20 h7 M6 26 h7"
+            stroke={colors.ink}
+            strokeWidth={2}
+            strokeLinecap="round"
+            transform="rotate(4 22 17)"
+          />
+        </Svg>
+      </View>
+      <View style={styles.albumText}>
+        <Text variant="bodyStrong" tone="ink">
+          Práctica libre
+        </Text>
+        <Text variant="small" tone="muted">
+          {subtitle}
         </Text>
       </View>
       <Svg width={20} height={20} viewBox="0 0 24 24" aria-hidden>
@@ -782,6 +864,7 @@ export function HomeView({
   onOpenAccount,
   onOpenAlbum,
   onOpenCards,
+  onOpenPractice,
   onOpenWardrobe,
   notice,
   greetingName,
@@ -810,6 +893,8 @@ export function HomeView({
         onOpenAlbum={onOpenAlbum}
         cards={state.status === "ready" ? state.cards : undefined}
         onOpenCards={onOpenCards}
+        practiceTopics={state.status === "ready" ? state.practiceTopics : undefined}
+        onOpenPractice={onOpenPractice}
       />
       {plumasNote}
       {state.status === "loading" && (

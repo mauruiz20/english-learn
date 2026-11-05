@@ -167,6 +167,7 @@ export function HomeContainer({
             total: ACHIEVEMENTS.length,
           },
           cards: cardsSummary(content.cards, states),
+          practiceTopics: content.practice.map((c) => c.title),
         });
       },
       (error: unknown) => {
@@ -201,6 +202,7 @@ export function HomeContainer({
       onOpenAccount={() => router.push("/cuenta")}
       onOpenAlbum={() => router.push("/album")}
       onOpenCards={() => router.push("/fichas")}
+      onOpenPractice={() => router.push("/practica")}
       onOpenWardrobe={() => router.push("/armario")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       notice={
