@@ -16,6 +16,7 @@ import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { SoundToggle } from "@/features/sound/sound-toggle";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
 import { OriginMoveGate } from "@/features/transfer/origin-move-gate";
+import { WardrobeOutfitProvider } from "@/features/wardrobe/wardrobe-outfit";
 import { isDatabaseFreePath } from "@/infrastructure/auth/callback-relay";
 import { SqliteAppServicesProvider } from "@/infrastructure/persistence/sqlite-app-services";
 import { startServiceWorker } from "@/infrastructure/pwa/app-service-worker";
@@ -88,73 +89,77 @@ export default function RootLayout() {
               <StatusBar style={scheme === "dark" ? "light" : "dark"} />
               {/* Optional Google account and progress sync (web, on the app's own site). */}
               <AccountProvider>
-                <Stack
-                  screenOptions={{
-                    headerStyle: { backgroundColor: colors.paper },
-                    headerTintColor: colors.ink,
-                    headerTitleStyle: { fontFamily: fonts.headingMedium, color: colors.ink },
-                    headerShadowVisible: false,
-                    contentStyle: { backgroundColor: colors.paper },
-                    // On web the header lines up with the page's reading column; native keeps its own.
-                    ...(Platform.OS === "web" && {
-                      header: ({ back, options, route, navigation }) => {
-                        const backAction = headerBack(route.name, back);
-                        return (
-                          <NotebookHeader
-                            title={options.title ?? route.name}
-                            backTitle={backAction.title}
-                            showBack={backAction.show && options.headerBackVisible !== false}
-                            onBack={
-                              backAction.target === "home"
-                                ? () => router.replace("/")
-                                : navigation.goBack
-                            }
-                            right={options.headerRight?.({
-                              tintColor: colors.ink,
-                              canGoBack: back !== undefined,
-                            })}
-                          />
-                        );
-                      },
-                    }),
-                  }}
-                >
-                  <Stack.Screen name="index" options={{ title: "Inicio", headerShown: false }} />
-                  {/* Exercise screens keep the sound switch at hand, in the header. */}
-                  <Stack.Screen
-                    name="placement"
-                    options={{ title: "Test de nivel", headerRight }}
-                  />
-                  <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
-                  <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
-                  <Stack.Screen name="album" options={{ title: "Álbum", ...homeFallback }} />
-                  <Stack.Screen
-                    name="fichas/index"
-                    options={{ title: "Fichas", ...homeFallback }}
-                  />
-                  <Stack.Screen
-                    name="fichas/[id]/index"
-                    options={{ title: "Ficha", ...homeFallback }}
-                  />
-                  <Stack.Screen
-                    name="fichas/[id]/practicar"
-                    options={{ title: "Práctica", headerRight }}
-                  />
-                  <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
-                  <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
-                  <Stack.Screen
-                    name="privacidad"
-                    options={{ title: "Privacidad", ...homeFallback }}
-                  />
-                  <Stack.Screen
-                    name="auth/completar"
-                    options={{ title: "Cuenta", headerBackVisible: false }}
-                  />
-                  <Stack.Screen
-                    name="importar"
-                    options={{ title: "Importar progreso", headerBackVisible: false }}
-                  />
-                </Stack>
+                {/* Every Avi on every screen wears the learner's outfit. */}
+                <WardrobeOutfitProvider>
+                  <Stack
+                    screenOptions={{
+                      headerStyle: { backgroundColor: colors.paper },
+                      headerTintColor: colors.ink,
+                      headerTitleStyle: { fontFamily: fonts.headingMedium, color: colors.ink },
+                      headerShadowVisible: false,
+                      contentStyle: { backgroundColor: colors.paper },
+                      // On web the header lines up with the page's reading column; native keeps its own.
+                      ...(Platform.OS === "web" && {
+                        header: ({ back, options, route, navigation }) => {
+                          const backAction = headerBack(route.name, back);
+                          return (
+                            <NotebookHeader
+                              title={options.title ?? route.name}
+                              backTitle={backAction.title}
+                              showBack={backAction.show && options.headerBackVisible !== false}
+                              onBack={
+                                backAction.target === "home"
+                                  ? () => router.replace("/")
+                                  : navigation.goBack
+                              }
+                              right={options.headerRight?.({
+                                tintColor: colors.ink,
+                                canGoBack: back !== undefined,
+                              })}
+                            />
+                          );
+                        },
+                      }),
+                    }}
+                  >
+                    <Stack.Screen name="index" options={{ title: "Inicio", headerShown: false }} />
+                    {/* Exercise screens keep the sound switch at hand, in the header. */}
+                    <Stack.Screen
+                      name="placement"
+                      options={{ title: "Test de nivel", headerRight }}
+                    />
+                    <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
+                    <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
+                    <Stack.Screen name="album" options={{ title: "Álbum", ...homeFallback }} />
+                    <Stack.Screen name="armario" options={{ title: "Armario", ...homeFallback }} />
+                    <Stack.Screen
+                      name="fichas/index"
+                      options={{ title: "Fichas", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="fichas/[id]/index"
+                      options={{ title: "Ficha", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="fichas/[id]/practicar"
+                      options={{ title: "Práctica", headerRight }}
+                    />
+                    <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
+                    <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
+                    <Stack.Screen
+                      name="privacidad"
+                      options={{ title: "Privacidad", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="auth/completar"
+                      options={{ title: "Cuenta", headerBackVisible: false }}
+                    />
+                    <Stack.Screen
+                      name="importar"
+                      options={{ title: "Importar progreso", headerBackVisible: false }}
+                    />
+                  </Stack>
+                </WardrobeOutfitProvider>
               </AccountProvider>
             </ThemePreferenceProvider>
           </SoundPreferenceProvider>

@@ -11,3 +11,11 @@ export {
   plumasTotals,
 } from "./plumas";
 export type { PlumasBySource, PlumasEarned, PlumasSource, PlumasTotals, Rewards } from "./plumas";
+export {
+  WARDROBE_CATALOG,
+  WARDROBE_SLOTS,
+  catalogItem,
+  isShopItem,
+  resolveOutfit,
+} from "./catalog";
+export type { BadgeItem, Outfit, ShopItem, WardrobeItem, WardrobeSlot } from "./catalog";

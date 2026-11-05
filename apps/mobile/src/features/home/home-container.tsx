@@ -201,6 +201,7 @@ export function HomeContainer({
       onOpenAccount={() => router.push("/cuenta")}
       onOpenAlbum={() => router.push("/album")}
       onOpenCards={() => router.push("/fichas")}
+      onOpenWardrobe={() => router.push("/armario")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       notice={
         moveOffer && (

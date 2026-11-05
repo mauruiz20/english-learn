@@ -41,12 +41,17 @@ describe("headerBack (web header)", () => {
     });
   });
 
-  it.each(["cuenta", "privacidad", "about", "album", "fichas/index", "fichas/[id]/index"])(
-    "offers a way home on /%s even without history",
-    (route) => {
-      expect(headerBack(route, undefined)).toEqual({ show: true, title: "Inicio", target: "home" });
-    },
-  );
+  it.each([
+    "cuenta",
+    "privacidad",
+    "about",
+    "album",
+    "armario",
+    "fichas/index",
+    "fichas/[id]/index",
+  ])("offers a way home on /%s even without history", (route) => {
+    expect(headerBack(route, undefined)).toEqual({ show: true, title: "Inicio", target: "home" });
+  });
 
   it("hides the back button on other screens without history", () => {
     expect(headerBack("lesson/[id]", undefined)).toEqual({

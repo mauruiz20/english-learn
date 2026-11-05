@@ -34,7 +34,11 @@ UUIDv7 ids from `clock.nowMs()` and `randomBytes`, stamped with the install's de
 
 - a finished lesson or review → one `item_reviewed` per item with its final grade and one
   `session_completed`, sharing a session id and the save's `today`;
-- a finished placement test → `placement_completed`.
+- a finished placement test → `placement_completed`;
+- in Avi's wardrobe (`/armario`, `src/features/wardrobe/`) a confirmed purchase →
+  `item_purchased` with the catalogue price, and "Ponérselo" / "Quitárselo" → one
+  `item_equipped` for that slot. `WardrobeOutfitProvider` (root layout) dresses every `Avi` in
+  the outfit the fold derives (`resolveOutfit`), and reloads it after a sync.
 
 `initProgressStore` (`src/infrastructure/persistence/`) runs on every start: migrations, the
 device id (generated once), and for learners upgrading from before the event log ONE
