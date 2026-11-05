@@ -16,6 +16,7 @@ import {
 } from "./lessons";
 import { validateLevels } from "./levels";
 import { validateAnswerIndexes, validateOptionDuplicates } from "./options";
+import { validatePracticeCollections, validatePracticeLessons } from "./practice";
 import { validateTextPunctuation } from "./punctuation";
 import { validateReferences } from "./references";
 import { validateExerciseTopics, validateTopics } from "./topics";
@@ -38,6 +39,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateNeutralSpanish,
   validateGlossaryEntries,
   validateCards,
+  validatePracticeCollections,
 ];
 
 /** Rules that need the whole corpus (ids, references, levels across files). */
@@ -51,6 +53,7 @@ const CROSS_FILE_RULES: readonly Rule[] = [
   validateLessonDeepenCards,
   validateTopicDeepenCards,
   validateReviewableLessonItems,
+  validatePracticeLessons,
   validateGlossaryForms,
   validateGlossaryCoverage,
 ];

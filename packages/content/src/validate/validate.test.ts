@@ -539,7 +539,7 @@ describe("validateExerciseTopics", () => {
 
 describe("validateLayout", () => {
   const ROOT_MSG =
-    'content files must live in data/<a1|a2|b1|b2|c1|placement|glossary>/; "x.json" is at the root';
+    'content files must live in data/<a1|a2|b1|b2|c1|placement|glossary|practice>/; "x.json" is at the root';
   it("passes for a level file and a placement file", () => {
     expect(
       validateLayout([
@@ -564,13 +564,13 @@ describe("validateLayout", () => {
         file: "misc/x.json",
         path: "(root)",
         message:
-          'unknown content directory "misc"; expected one of a1, a2, b1, b2, c1, placement, glossary',
+          'unknown content directory "misc"; expected one of a1, a2, b1, b2, c1, placement, glossary, practice',
       },
       {
         file: "B1/x.json",
         path: "(root)",
         message:
-          'unknown content directory "B1"; expected one of a1, a2, b1, b2, c1, placement, glossary',
+          'unknown content directory "B1"; expected one of a1, a2, b1, b2, c1, placement, glossary, practice',
       },
     ]);
   });

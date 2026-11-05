@@ -4,6 +4,7 @@ import { ExerciseSchema } from "./exercise";
 import { GlossaryEntrySchema } from "./glossary";
 import { ItemSchema, LessonSchema, PassageSchema } from "./entities";
 import { PlacementQuestionSchema } from "./placement";
+import { PracticeCollectionSchema } from "./practice";
 
 /** One JSON file under data/. The corpus is the union of many such files. */
 export const ContentFileSchema = z.strictObject({
@@ -14,5 +15,7 @@ export const ContentFileSchema = z.strictObject({
   placement: z.array(PlacementQuestionSchema).optional(),
   glossary: z.array(GlossaryEntrySchema).optional(),
   cards: z.array(CardSchema).optional(),
+  /** "Práctica libre" collections (only under `data/practice/`). */
+  practice: z.array(PracticeCollectionSchema).optional(),
 });
 export type ContentFile = z.infer<typeof ContentFileSchema>;

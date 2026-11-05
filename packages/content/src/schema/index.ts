@@ -4,4 +4,5 @@ export * from "./exercise";
 export * from "./placement";
 export * from "./glossary";
 export * from "./card";
+export * from "./practice";
 export * from "./content-file";

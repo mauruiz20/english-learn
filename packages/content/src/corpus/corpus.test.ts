@@ -118,3 +118,36 @@ describe("generated corpus", () => {
     }
   });
 });
+
+describe("createCorpus practice", () => {
+  const practice = fx.practiceFiles().map((f) => f.data);
+
+  it("lists the collections and keeps their lessons out of the path's lessons", () => {
+    const corpus = createCorpus([fx.validFile(), ...practice]);
+
+    expect(corpus.practice.map((c) => c.id)).toEqual(["practice.phrasal-verbs"]);
+    expect(corpus.lessons.map((l) => l.id)).toEqual(["b1.travel.lesson-001"]);
+    expect(corpus.lessonsById.has("b1.phrasal-verbs.practice-travel-1")).toBe(false);
+    expect(corpus.practiceLessons.map((l) => l.id)).toEqual([
+      "b1.phrasal-verbs.practice-travel-1",
+      "b1.phrasal-verbs.practice-travel-2",
+    ]);
+    expect(corpus.practiceLessonsById.get("b1.phrasal-verbs.practice-travel-2")?.title).toBe(
+      "Viajes 2",
+    );
+  });
+
+  it("indexes practice items and exercises like any other", () => {
+    const corpus = createCorpus([fx.validFile(), ...practice]);
+
+    expect(corpus.itemsById.get("b1.phrasal-verbs.go-out")?.term).toBe("go out");
+    expect(corpus.exercisesById.has("b1.phrasal-verbs.practice-travel-cloze-2")).toBe(true);
+  });
+
+  it("has no practice without collections", () => {
+    const corpus = createCorpus([fx.validFile()]);
+
+    expect(corpus.practice).toEqual([]);
+    expect(corpus.practiceLessons).toEqual([]);
+  });
+});
