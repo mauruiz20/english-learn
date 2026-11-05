@@ -73,6 +73,18 @@
       ]
     },
     {
+      "id": "glossary.unfair",
+      "headword": "unfair",
+      "kind": "word",
+      "forms": ["unfair"],
+      "senses": [
+        {
+          "es": "injusto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.unfortunately",
       "headword": "unfortunately",
       "kind": "word",
@@ -133,6 +145,18 @@
         {
           "es": "hasta que",
           "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unusual",
+      "headword": "unusual",
+      "kind": "word",
+      "forms": ["unusual"],
+      "senses": [
+        {
+          "es": "poco común, inusual",
+          "pos": "adjective"
         }
       ]
     },
@@ -252,6 +276,30 @@
       "senses": [
         {
           "es": "útil",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.user",
+      "headword": "user",
+      "kind": "word",
+      "forms": ["user", "users"],
+      "senses": [
+        {
+          "es": "usuario",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.usual",
+      "headword": "usual",
+      "kind": "word",
+      "forms": ["usual"],
+      "senses": [
+        {
+          "es": "habitual, de siempre",
           "pos": "adjective"
         }
       ]

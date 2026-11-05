@@ -8,6 +8,7 @@ import {
   hasDigits,
   hasProperName,
   inWordRange,
+  parseLevel,
 } from "./filter";
 import { buildPairs, parseLinkRow, parseSentenceRow, parseTsv, type Pair } from "./tatoeba";
 
@@ -80,6 +81,18 @@ describe("filters", () => {
     expect(inWordRange(Array(14).fill("go").join(" "), "A2")).toBe(true);
     expect(inWordRange(Array(15).fill("go").join(" "), "A2")).toBe(false);
     expect(inWordRange(Array(20).fill("go").join(" "), "B1")).toBe(true);
+  });
+  it("counts words for the B2 range (8-24)", () => {
+    expect(inWordRange(Array(7).fill("go").join(" "), "B2")).toBe(false);
+    expect(inWordRange(Array(8).fill("go").join(" "), "B2")).toBe(true);
+    expect(inWordRange(Array(24).fill("go").join(" "), "B2")).toBe(true);
+    expect(inWordRange(Array(25).fill("go").join(" "), "B2")).toBe(false);
+  });
+  it("accepts the levels the content has lessons for", () => {
+    expect(parseLevel("A2")).toBe("A2");
+    expect(parseLevel("B1")).toBe("B1");
+    expect(parseLevel("B2")).toBe("B2");
+    expect(() => parseLevel("C1")).toThrow("--level must be A2, B1 or B2");
   });
   it("detects digits, proper names and blocked words", () => {
     expect(hasDigits("I bought 3 apples.")).toBe(true);

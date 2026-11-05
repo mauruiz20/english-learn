@@ -4,12 +4,22 @@
  */
 import type { Pair, Sentence } from "./tatoeba";
 
-export type PipelineLevel = "A2" | "B1";
+export const PIPELINE_LEVELS = ["A2", "B1", "B2"] as const;
+
+export type PipelineLevel = (typeof PIPELINE_LEVELS)[number];
+
+/** The `--level` argument as a level, or an error naming the accepted ones. */
+export function parseLevel(value: string): PipelineLevel {
+  const level = PIPELINE_LEVELS.find((l) => l === value);
+  if (level === undefined) throw new Error("--level must be A2, B1 or B2");
+  return level;
+}
 
 /** Inclusive English word-count range per level. */
 export const WORD_RANGE: Record<PipelineLevel, { min: number; max: number }> = {
   A2: { min: 3, max: 14 },
   B1: { min: 6, max: 20 },
+  B2: { min: 8, max: 24 },
 };
 
 /** Capitalized words that are not proper names of people or places. */

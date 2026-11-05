@@ -3,7 +3,7 @@
     {
       "id": "b2.vocabulary.raise",
       "level": "B2",
-      "topics": ["vocabulary"],
+      "topics": ["vocabulary", "climate-policy"],
       "kind": "word",
       "term": "raise",
       "es": "levantar, subir (algo); criar"
@@ -11,7 +11,7 @@
     {
       "id": "b2.vocabulary.rise",
       "level": "B2",
-      "topics": ["vocabulary"],
+      "topics": ["vocabulary", "climate-policy"],
       "kind": "phrase",
       "term": "rise (rose, risen)",
       "es": "subir, elevarse (solo)"

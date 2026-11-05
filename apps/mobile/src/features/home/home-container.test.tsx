@@ -1,4 +1,4 @@
-import { createCorpus } from "@english-learn/content";
+import { createCorpus, type Corpus, type VocabExercise } from "@english-learn/content";
 import {
   initialState,
   localDate,
@@ -9,7 +9,7 @@ import {
 } from "@english-learn/domain";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
 import type React from "react";
-import { allExercises, card, lesson, passage } from "@/features/lesson/model/fixtures";
+import { allExercises, card, lesson, passage, vocab } from "@/features/lesson/model/fixtures";
 import { AppServicesProvider } from "@/infrastructure/services/app-services";
 import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
@@ -47,19 +47,40 @@ const b1Lesson = {
 const content = createCorpus([
   { exercises: allExercises, passages: [passage], lessons: [lesson, b1Lesson], cards: [card] },
 ]);
+/** Only the A2 lesson: finishing it keeps the path on A2 (there is no level to move on to). */
+const a2Content = createCorpus([
+  { exercises: allExercises, passages: [passage], lessons: [lesson], cards: [card] },
+]);
+/** A2, then a B1 lesson with an item of its own, so finishing A2 leaves B1 to do. */
+const b1Vocab: VocabExercise = {
+  ...vocab,
+  id: "b1.routine.vocab-001",
+  level: "B1",
+  itemIds: ["b1.routine.x"],
+};
+const pathContent = createCorpus([
+  {
+    exercises: [...allExercises, b1Vocab],
+    passages: [passage],
+    lessons: [lesson, { ...b1Lesson, exerciseIds: [b1Vocab.id] }],
+  },
+]);
+const a2ItemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
 
 function renderContainer(
   repository: ProgressRepository,
   completionMemory: CompletionMemory = createCompletionMemory(),
   settings: SettingsRepository = createFakeSettingsRepository(),
+  homeContent: Corpus = content,
 ) {
-  return render(renderContainerElement(repository, completionMemory, settings));
+  return render(renderContainerElement(repository, completionMemory, settings, homeContent));
 }
 
 function renderContainerElement(
   repository: ProgressRepository,
   completionMemory: CompletionMemory = createCompletionMemory(),
   settings: SettingsRepository = createFakeSettingsRepository(),
+  homeContent: Corpus = content,
 ) {
   return (
     <AppServicesProvider
@@ -75,7 +96,7 @@ function renderContainerElement(
     >
       <SoundPreferenceProvider>
         <ThemePreferenceProvider>
-          <HomeContainer content={content} completionMemory={completionMemory} />
+          <HomeContainer content={homeContent} completionMemory={completionMemory} />
         </ThemePreferenceProvider>
       </SoundPreferenceProvider>
     </AppServicesProvider>
@@ -221,10 +242,29 @@ describe("HomeContainer", () => {
     expect(screen.getByText("Tu nivel: C1")).toBeOnTheScreen();
   });
 
-  it("marks a lesson as done once all its items have review states", async () => {
-    const itemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
+  it("moves on to the next level's lessons once every lesson of the level is done", async () => {
     await renderContainer(
-      createFakeRepository({ states: itemIds.map((id) => initialState(id, TODAY)) }),
+      createFakeRepository({
+        placement: { level: "A2", theta: -1 },
+        states: a2ItemIds.map((id) => initialState(id, TODAY)),
+      }),
+      undefined,
+      undefined,
+      pathContent,
+    );
+
+    expect(await screen.findByText("Lecciones de nivel B1")).toBeOnTheScreen();
+    expect(screen.getByRole("button", { name: "Rutina B1" })).toBeOnTheScreen();
+    expect(screen.queryByRole("button", { name: /^Mi rutina/ })).not.toBeOnTheScreen();
+    expect(screen.getByText("Tu nivel: A2")).toBeOnTheScreen();
+  });
+
+  it("marks a lesson as done once all its items have review states", async () => {
+    await renderContainer(
+      createFakeRepository({ states: a2ItemIds.map((id) => initialState(id, TODAY)) }),
+      undefined,
+      undefined,
+      a2Content,
     );
 
     expect(await screen.findByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
@@ -255,7 +295,7 @@ describe("HomeContainer", () => {
         },
       });
     await save(4 / 6);
-    const first = await renderContainer(repository);
+    const first = await renderContainer(repository, undefined, undefined, a2Content);
     expect(
       await screen.findByRole("button", {
         name: "Mi rutina, completada con errores: 4 de 6 correctas",
@@ -265,7 +305,7 @@ describe("HomeContainer", () => {
 
     await save(1);
     await save(5 / 6);
-    await renderContainer(repository);
+    await renderContainer(repository, undefined, undefined, a2Content);
     expect(
       await screen.findByRole("button", {
         name: "Mi rutina, completada sin errores: 6 de 6 correctas",
@@ -277,10 +317,11 @@ describe("HomeContainer", () => {
     withMotion();
     const memory = createCompletionMemory();
     memory.take([]); // Home was seen earlier in the session, with nothing done.
-    const itemIds = [...new Set(allExercises.flatMap((e) => e.itemIds))];
     await renderContainer(
-      createFakeRepository({ states: itemIds.map((id) => initialState(id, TODAY)) }),
+      createFakeRepository({ states: a2ItemIds.map((id) => initialState(id, TODAY)) }),
       memory,
+      undefined,
+      a2Content,
     );
 
     const check = await screen.findByTestId(`check-${lesson.id}`, { includeHiddenElements: true });

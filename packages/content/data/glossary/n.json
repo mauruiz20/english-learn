@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.nature",
+      "headword": "nature",
+      "kind": "word",
+      "forms": ["nature"],
+      "senses": [
+        {
+          "es": "naturaleza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.near",
       "headword": "near",
       "kind": "word",

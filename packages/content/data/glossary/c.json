@@ -177,6 +177,30 @@
       ]
     },
     {
+      "id": "glossary.cancer",
+      "headword": "cancer",
+      "kind": "word",
+      "forms": ["cancer"],
+      "senses": [
+        {
+          "es": "cáncer",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.candidate",
+      "headword": "candidate",
+      "kind": "word",
+      "forms": ["candidate", "candidates"],
+      "senses": [
+        {
+          "es": "candidato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.capital",
       "headword": "capital",
       "kind": "word",
@@ -196,6 +220,18 @@
       "senses": [
         {
           "es": "auto, carro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carbon-footprint",
+      "headword": "carbon footprint",
+      "kind": "phrase",
+      "forms": ["carbon footprint", "carbon footprints"],
+      "senses": [
+        {
+          "es": "huella de carbono",
           "pos": "noun"
         }
       ]
@@ -464,6 +500,22 @@
         },
         {
           "es": "cambio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.charge",
+      "headword": "charge",
+      "kind": "word",
+      "forms": ["charge", "charges", "charged", "charging"],
+      "senses": [
+        {
+          "es": "cobrar",
+          "pos": "verb"
+        },
+        {
+          "es": "(in charge of) a cargo de",
           "pos": "noun"
         }
       ]
@@ -821,7 +873,7 @@
       "id": "glossary.clear",
       "headword": "clear",
       "kind": "word",
-      "forms": ["clear", "clears", "cleared", "clearing"],
+      "forms": ["clear", "clears", "cleared", "clearing", "clearer"],
       "senses": [
         {
           "es": "despejar, liberar",
@@ -854,6 +906,22 @@
         {
           "es": "clima",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.climb",
+      "headword": "climb",
+      "kind": "word",
+      "forms": ["climb", "climbs", "climbed", "climbing"],
+      "senses": [
+        {
+          "es": "subida",
+          "pos": "noun"
+        },
+        {
+          "es": "subir, escalar",
+          "pos": "verb"
         }
       ]
     },
@@ -922,6 +990,18 @@
       ]
     },
     {
+      "id": "glossary.coal",
+      "headword": "coal",
+      "kind": "word",
+      "forms": ["coal"],
+      "senses": [
+        {
+          "es": "carbón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.coat",
       "headword": "coat",
       "kind": "word",
@@ -937,11 +1017,15 @@
       "id": "glossary.code",
       "headword": "code",
       "kind": "word",
-      "forms": ["code", "codes"],
+      "forms": ["code", "codes", "coding"],
       "senses": [
         {
           "es": "código",
           "pos": "noun"
+        },
+        {
+          "es": "programar",
+          "pos": "verb"
         }
       ]
     },
@@ -986,6 +1070,18 @@
       ]
     },
     {
+      "id": "glossary.collect",
+      "headword": "collect",
+      "kind": "word",
+      "forms": ["collect", "collects", "collected", "collecting"],
+      "senses": [
+        {
+          "es": "recopilar, juntar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.college",
       "headword": "college",
       "kind": "word",
@@ -1013,11 +1109,15 @@
       "id": "glossary.color",
       "headword": "color",
       "kind": "word",
-      "forms": ["color", "colors"],
+      "forms": ["color", "colors", "colored"],
       "senses": [
         {
           "es": "color",
           "pos": "noun"
+        },
+        {
+          "es": "teñir, colorear",
+          "pos": "verb"
         }
       ]
     },
@@ -1094,6 +1194,18 @@
         {
           "es": "cómic, historieta",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.common",
+      "headword": "common",
+      "kind": "word",
+      "forms": ["common"],
+      "senses": [
+        {
+          "es": "común",
+          "pos": "adjective"
         }
       ]
     },
@@ -1242,6 +1354,18 @@
       ]
     },
     {
+      "id": "glossary.conclude",
+      "headword": "conclude",
+      "kind": "word",
+      "forms": ["conclude", "concludes", "concluded", "concluding"],
+      "senses": [
+        {
+          "es": "concluir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.conditional",
       "headword": "conditional",
       "kind": "word",
@@ -1262,6 +1386,18 @@
         {
           "es": "realizar, llevar a cabo (un estudio, una encuesta)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.connected",
+      "headword": "connected",
+      "kind": "word",
+      "forms": ["connected"],
+      "senses": [
+        {
+          "es": "conectado, unido",
+          "pos": "adjective"
         }
       ]
     },
@@ -1314,6 +1450,30 @@
       ]
     },
     {
+      "id": "glossary.control",
+      "headword": "control",
+      "kind": "word",
+      "forms": ["control"],
+      "senses": [
+        {
+          "es": "control",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conversation",
+      "headword": "conversation",
+      "kind": "word",
+      "forms": ["conversation", "conversations"],
+      "senses": [
+        {
+          "es": "conversación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cook",
       "headword": "cook",
       "kind": "word",
@@ -1338,6 +1498,18 @@
         {
           "es": "cocina (actividad de cocinar)",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cope-with",
+      "headword": "cope with",
+      "kind": "phrase",
+      "forms": ["cope with", "copes with", "coped with", "coping with"],
+      "senses": [
+        {
+          "es": "sobrellevar, afrontar",
+          "pos": "verb"
         }
       ]
     },
@@ -1381,6 +1553,18 @@
         },
         {
           "es": "costo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cost-of-living",
+      "headword": "cost of living",
+      "kind": "phrase",
+      "forms": ["cost of living"],
+      "senses": [
+        {
+          "es": "costo de vida",
           "pos": "noun"
         }
       ]
@@ -1494,6 +1678,22 @@
       ]
     },
     {
+      "id": "glossary.couple",
+      "headword": "couple",
+      "kind": "word",
+      "forms": ["couple", "couples"],
+      "senses": [
+        {
+          "es": "(a couple of) un par de",
+          "pos": "noun"
+        },
+        {
+          "es": "pareja",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.course",
       "headword": "course",
       "kind": "word",
@@ -1590,6 +1790,18 @@
       ]
     },
     {
+      "id": "glossary.crop",
+      "headword": "crop",
+      "kind": "word",
+      "forms": ["crop", "crops"],
+      "senses": [
+        {
+          "es": "cultivo, cosecha",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cross",
       "headword": "cross",
       "kind": "word",
@@ -1622,6 +1834,30 @@
         {
           "es": "llorar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.culture",
+      "headword": "culture",
+      "kind": "word",
+      "forms": ["culture", "cultures"],
+      "senses": [
+        {
+          "es": "cultura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.culture-shock",
+      "headword": "culture shock",
+      "kind": "phrase",
+      "forms": ["culture shock"],
+      "senses": [
+        {
+          "es": "choque cultural",
+          "pos": "noun"
         }
       ]
     },

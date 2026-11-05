@@ -1,0 +1,385 @@
+{
+  "items": [
+    {
+      "id": "b2.science-and-ethics.research",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "word",
+      "term": "research",
+      "es": "investigación; investigar",
+      "example": {
+        "en": "Her research focuses on new vaccines.",
+        "es": "Su investigación se centra en nuevas vacunas."
+      }
+    },
+    {
+      "id": "b2.science-and-ethics.experiment",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "word",
+      "term": "experiment",
+      "es": "experimento"
+    },
+    {
+      "id": "b2.science-and-ethics.side-effect",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "phrase",
+      "term": "side effect",
+      "es": "efecto secundario"
+    },
+    {
+      "id": "b2.science-and-ethics.artificial-intelligence",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "phrase",
+      "term": "artificial intelligence",
+      "es": "inteligencia artificial",
+      "example": {
+        "en": "Artificial intelligence is changing the way we work.",
+        "es": "La inteligencia artificial está cambiando nuestra forma de trabajar."
+      }
+    },
+    {
+      "id": "b2.science-and-ethics.privacy",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "word",
+      "term": "privacy",
+      "es": "privacidad",
+      "example": {
+        "en": "Many apps collect data without respecting our privacy.",
+        "es": "Muchas aplicaciones recopilan datos sin respetar nuestra privacidad."
+      }
+    },
+    {
+      "id": "b2.science-and-ethics.breakthrough",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "word",
+      "term": "breakthrough",
+      "es": "avance, gran descubrimiento"
+    },
+    {
+      "id": "b2.science-and-ethics.invention",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "word",
+      "term": "invention",
+      "es": "invento, invención",
+      "example": {
+        "en": "The printing press was one of the most important inventions in history.",
+        "es": "La imprenta fue uno de los inventos más importantes de la historia."
+      }
+    },
+    {
+      "id": "b2.science-and-ethics.ethical",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "kind": "word",
+      "term": "ethical",
+      "es": "ético",
+      "example": {
+        "en": "Is it ethical to use animals in experiments?",
+        "es": "¿Es ético usar animales en experimentos?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.science-and-ethics.who-decides",
+      "level": "B2",
+      "topics": ["science-and-ethics"],
+      "title": "Who decides what machines learn?",
+      "text": "Artificial intelligence is now part of daily life. It recommends the songs we hear, translates our messages and helps doctors find illnesses earlier. Many experts call it the biggest breakthrough since the internet, but it is also one of the most debated. These systems learn from huge amounts of data, and much of that data comes from ordinary people who never agreed to share it. It is believed that some companies have used millions of private photos without asking anyone. Researchers also worry about side effects that nobody planned. A program that chooses job candidates, for example, can repeat the unfair decisions of the past if it learns from unfair examples. Because of this, it is often said that the real question is not what the technology can do, but what it should do. Some countries now require companies to explain how their systems make decisions and to protect users' privacy. Most scientists agree that the research must continue, but they want it to be ethical, open and checked by people from outside the companies.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.science-and-ethics.vocab-001",
+      "itemIds": ["b2.science-and-ethics.research"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'research' mean in 'Her research focuses on new vaccines'?",
+      "options": ["resumen", "investigación", "encuesta", "receta"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.science-and-ethics.cloze-001",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 238449,
+        "author": "CM",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "It is ___ that whales have their own language.",
+      "answers": ["believed"],
+      "distractors": ["believe", "believing", "belief"],
+      "es": "Se cree que las ballenas tienen su propio idioma."
+    },
+    {
+      "id": "b2.science-and-ethics.order-001",
+      "itemIds": ["b2.science-and-ethics.experiment"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 23397,
+        "author": "Swift",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["wrong", "week.", "experiment", "Our", "last", "went"],
+      "accepted": ["Our experiment went wrong last week."],
+      "es": "Nuestro experimento salió mal la semana pasada."
+    },
+    {
+      "id": "b2.science-and-ethics.choice-001",
+      "itemIds": ["b2.grammar.reporting-passive", "b2.science-and-ethics.side-effect"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The new drug is said to have serious side effects.",
+      "options": [
+        "Se dice que el nuevo medicamento no tiene efectos secundarios.",
+        "El nuevo medicamento dice tener efectos secundarios graves.",
+        "Se sabe que el nuevo medicamento cura enfermedades graves.",
+        "Se dice que el nuevo medicamento tiene efectos secundarios graves."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.science-and-ethics.reading-001",
+      "itemIds": [
+        "b2.science-and-ethics.artificial-intelligence",
+        "b2.science-and-ethics.breakthrough",
+        "b2.science-and-ethics.privacy"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.science-and-ethics.who-decides",
+      "questions": [
+        {
+          "prompt": "Where does much of the data come from?",
+          "options": [
+            "From doctors and hospitals",
+            "From ordinary people who never agreed to share it",
+            "From the companies' own employees"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What can happen if a program learns from unfair examples?",
+          "options": [
+            "It stops working.",
+            "It becomes more expensive.",
+            "It can repeat the unfair decisions of the past."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What do most scientists want?",
+          "options": [
+            "Research that is ethical, open and checked by outsiders",
+            "An end to all research on artificial intelligence",
+            "Companies that keep their systems secret"
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.science-and-ethics.write-001",
+      "itemIds": ["b2.grammar.reporting-passive", "b2.science-and-ethics.artificial-intelligence"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Se cree que la inteligencia artificial cambiará muchos trabajos.",
+      "accepted": [
+        "It is {believed|thought} that artificial intelligence will change {many|a lot of} jobs.",
+        "People {believe|think} that artificial intelligence will change {many|a lot of} jobs."
+      ]
+    },
+    {
+      "id": "b2.science-and-ethics.vocab-002",
+      "itemIds": ["b2.science-and-ethics.privacy"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'privacidad'.",
+      "options": ["private", "priority", "property", "privacy"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.science-and-ethics.vocab-003",
+      "itemIds": ["b2.science-and-ethics.invention"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'invention' mean in 'The printing press was an important invention'?",
+      "options": ["inversión", "invitación", "invento", "intención"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.science-and-ethics.cloze-002",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If the internet hadn't been invented, our lives ___ very different today.",
+      "answers": ["would be"],
+      "distractors": ["will be", "had been", "are"],
+      "es": "Si no se hubiera inventado internet, hoy nuestras vidas serían muy diferentes."
+    },
+    {
+      "id": "b2.science-and-ethics.cloze-003",
+      "itemIds": ["b2.science-and-ethics.side-effect"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Headaches are a common side ___ of this medicine.",
+      "answers": ["effect"],
+      "distractors": ["affect", "result", "cause"],
+      "es": "El dolor de cabeza es un efecto secundario común de este medicamento."
+    },
+    {
+      "id": "b2.science-and-ethics.order-002",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "vaccines,",
+        "would",
+        "If",
+        "people",
+        "developed",
+        "be",
+        "scientists",
+        "now.",
+        "sick",
+        "more",
+        "hadn't",
+        "many"
+      ],
+      "accepted": ["If scientists hadn't developed vaccines, many more people would be sick now."],
+      "es": "Si los científicos no hubieran desarrollado las vacunas, ahora mucha más gente estaría enferma."
+    },
+    {
+      "id": "b2.science-and-ethics.choice-002",
+      "itemIds": ["b2.science-and-ethics.breakthrough", "b2.science-and-ethics.research"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The discovery was a major breakthrough in cancer research.",
+      "options": [
+        "El descubrimiento fue un gran fracaso en la investigación del cáncer.",
+        "El descubrimiento fue un gran avance en la investigación del cáncer.",
+        "El descubrimiento interrumpió la investigación del cáncer.",
+        "El descubrimiento causó una crisis en los hospitales."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.science-and-ethics.write-002",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si hubiera estudiado ciencias, ahora sería investigadora.",
+      "accepted": [
+        "If I had studied science, I would be a {researcher|scientist} {now|today}.",
+        "If I had studied science, I would now be a {researcher|scientist}."
+      ]
+    },
+    {
+      "id": "b2.science-and-ethics.write-003",
+      "itemIds": ["b2.science-and-ethics.ethical", "b2.science-and-ethics.experiment"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Es ético usar animales en los experimentos?",
+      "accepted": [
+        "Is it ethical to use animals in experiments?",
+        "Is using animals in experiments ethical?"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.science-and-ethics.lesson-001",
+      "level": "B2",
+      "topic": "science-and-ethics",
+      "title": "Ciencia con conciencia",
+      "exerciseIds": [
+        "b2.science-and-ethics.vocab-001",
+        "b2.science-and-ethics.cloze-001",
+        "b2.science-and-ethics.order-001",
+        "b2.science-and-ethics.choice-001",
+        "b2.science-and-ethics.reading-001",
+        "b2.science-and-ethics.write-001",
+        "b2.science-and-ethics.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.grammar.reporting-passive",
+        "b2.science-and-ethics.research",
+        "b2.science-and-ethics.experiment",
+        "b2.science-and-ethics.side-effect",
+        "b2.science-and-ethics.privacy"
+      ],
+      "deepenCardIds": ["b2.grammar.reporting-passive"]
+    },
+    {
+      "id": "b2.science-and-ethics.lesson-002",
+      "level": "B2",
+      "topic": "science-and-ethics",
+      "title": "Inventos que lo cambiaron todo",
+      "exerciseIds": [
+        "b2.science-and-ethics.vocab-003",
+        "b2.science-and-ethics.cloze-002",
+        "b2.science-and-ethics.cloze-003",
+        "b2.science-and-ethics.order-002",
+        "b2.science-and-ethics.choice-002",
+        "b2.science-and-ethics.write-002",
+        "b2.science-and-ethics.write-003"
+      ],
+      "newItemIds": [
+        "b2.grammar.mixed-conditionals",
+        "b2.science-and-ethics.invention",
+        "b2.science-and-ethics.ethical"
+      ],
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+    }
+  ]
+}

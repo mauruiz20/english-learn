@@ -1,0 +1,415 @@
+{
+  "items": [
+    {
+      "id": "b2.money-and-economy.afford",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "word",
+      "term": "afford",
+      "es": "poder pagar, permitirse"
+    },
+    {
+      "id": "b2.money-and-economy.budget",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "word",
+      "term": "budget",
+      "es": "presupuesto",
+      "example": {
+        "en": "We wrote a budget to see where our money goes.",
+        "es": "Hicimos un presupuesto para ver en qué se nos va el dinero."
+      }
+    },
+    {
+      "id": "b2.money-and-economy.make-ends-meet",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "phrase",
+      "term": "make ends meet",
+      "es": "llegar a fin de mes",
+      "example": {
+        "en": "Many families struggle to make ends meet.",
+        "es": "A muchas familias les cuesta llegar a fin de mes."
+      }
+    },
+    {
+      "id": "b2.money-and-economy.cost-of-living",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "phrase",
+      "term": "cost of living",
+      "es": "costo de vida",
+      "example": {
+        "en": "The cost of living in big cities keeps going up.",
+        "es": "El costo de vida en las grandes ciudades no deja de subir."
+      }
+    },
+    {
+      "id": "b2.money-and-economy.debt",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "word",
+      "term": "debt",
+      "es": "deuda",
+      "example": {
+        "en": "They worked hard to pay off their debt.",
+        "es": "Trabajaron mucho para saldar su deuda."
+      }
+    },
+    {
+      "id": "b2.money-and-economy.loan",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "word",
+      "term": "loan",
+      "es": "préstamo"
+    },
+    {
+      "id": "b2.money-and-economy.inflation",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "word",
+      "term": "inflation",
+      "es": "inflación"
+    },
+    {
+      "id": "b2.money-and-economy.interest-rate",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "phrase",
+      "term": "interest rate",
+      "es": "tasa de interés"
+    },
+    {
+      "id": "b2.money-and-economy.invest",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "kind": "word",
+      "term": "invest",
+      "es": "invertir"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.money-and-economy.living-on-a-budget",
+      "level": "B2",
+      "topics": ["money-and-economy"],
+      "title": "Living on a budget",
+      "text": "When prices started to rise last year, Sofía and her husband realized that their salaries were no longer enough to make ends meet. The cost of living in their city had gone up much faster than their pay, and inflation was the main topic of every conversation. So they sat down and wrote their first real budget. They listed everything they spent money on and were surprised by the small things: coffee on the way to work, food delivered to the door and subscriptions they never used. They also changed some habits. Instead of having their car repaired at the dealer, they now take it to a small local garage, which charges half the price. Sofía learned to cut her own hair, although she still has it colored at a salon twice a year. The biggest decision was about their debt. They had borrowed money to buy furniture, and the interest rate on the loan was very high, so they paid it off first. \"We can't afford everything we want,\" Sofía says, \"but for the first time we know where our money goes.\"",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.money-and-economy.vocab-001",
+      "itemIds": ["b2.money-and-economy.afford"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'afford' mean in 'We can't afford a new car'?",
+      "options": ["ofrecer", "prestar", "esforzarse", "poder pagar"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.money-and-economy.cloze-001",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 250675,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "How much will it cost to have my shoes ___?",
+      "answers": ["repaired"],
+      "distractors": ["repair", "repairing", "to repair"],
+      "es": "¿Cuánto costará mandar a arreglar mis zapatos?"
+    },
+    {
+      "id": "b2.money-and-economy.order-001",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 253849,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["computer", "to", "repaired.", "get", "I", "my", "have"],
+      "accepted": ["I have to get my computer repaired."],
+      "es": "Tengo que mandar a reparar mi computadora."
+    },
+    {
+      "id": "b2.money-and-economy.choice-001",
+      "itemIds": ["b2.grammar.causative"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She has her hair cut every two months.",
+      "options": [
+        "Se corta el pelo ella misma cada dos meses.",
+        "Le corta el pelo a su hija cada dos meses.",
+        "Va a cortarse el pelo a la peluquería cada dos meses.",
+        "No se corta el pelo desde hace dos meses."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.money-and-economy.reading-001",
+      "itemIds": [
+        "b2.money-and-economy.budget",
+        "b2.money-and-economy.make-ends-meet",
+        "b2.money-and-economy.cost-of-living"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.money-and-economy.living-on-a-budget",
+      "questions": [
+        {
+          "prompt": "Why did Sofía and her husband write a budget?",
+          "options": [
+            "They wanted to buy a new car.",
+            "Their salaries were no longer enough.",
+            "Their bank asked them to."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Where do they have their car repaired now?",
+          "options": ["At the dealer", "At home", "At a small local garage"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What did they pay off first?",
+          "options": ["The loan with a high interest rate", "Their subscriptions", "Their new car"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.money-and-economy.write-001",
+      "itemIds": ["b2.money-and-economy.afford"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No podemos permitirnos unas vacaciones este año.",
+      "accepted": ["We can't afford {a vacation|to go on vacation|to take a vacation} this year."]
+    },
+    {
+      "id": "b2.money-and-economy.vocab-002",
+      "itemIds": ["b2.money-and-economy.budget"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'presupuesto'.",
+      "options": ["bucket", "budget", "bargain", "balance"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.money-and-economy.vocab-003",
+      "itemIds": ["b2.money-and-economy.debt"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'debt' mean in 'They paid off all their debt'?",
+      "options": ["deuda", "deber", "depósito", "descuento"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.money-and-economy.cloze-002",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 30952,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "If I had had enough money, I would have ___ the bag.",
+      "answers": ["bought"],
+      "distractors": ["buy", "buying", "buys"],
+      "es": "Si hubiera tenido suficiente dinero, habría comprado el bolso."
+    },
+    {
+      "id": "b2.money-and-economy.cloze-003",
+      "itemIds": ["b2.grammar.third-conditional", "b2.money-and-economy.loan"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If they hadn't taken out that loan, they ___ lost their house.",
+      "answers": ["wouldn't have"],
+      "distractors": ["won't have", "wouldn't", "didn't"],
+      "es": "Si no hubieran pedido ese préstamo, no habrían perdido su casa."
+    },
+    {
+      "id": "b2.money-and-economy.order-002",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "saved",
+        "we",
+        "bought",
+        "more,",
+        "If",
+        "would",
+        "house.",
+        "a",
+        "we",
+        "have",
+        "had"
+      ],
+      "accepted": ["If we had saved more, we would have bought a house."],
+      "es": "Si hubiéramos ahorrado más, habríamos comprado una casa."
+    },
+    {
+      "id": "b2.money-and-economy.choice-002",
+      "itemIds": ["b2.money-and-economy.inflation", "b2.money-and-economy.interest-rate"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "When inflation is high, banks usually raise interest rates.",
+      "options": [
+        "Cuando la inflación es alta, los bancos suelen bajar las tasas de interés.",
+        "Cuando la inflación es alta, los bancos suelen subir las tasas de interés.",
+        "Cuando los bancos suben las tasas de interés, la inflación siempre sube.",
+        "Cuando la inflación es baja, los bancos no prestan dinero."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.money-and-economy.write-002",
+      "itemIds": ["b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 662573,
+        "author": "bluepie88",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Si lo hubiera sabido, te lo habría dicho.",
+      "accepted": [
+        "If I had known about it, I would have told you.",
+        "If I had known, I would have told you.",
+        "I would have told you if I had known[ about it]."
+      ]
+    },
+    {
+      "id": "b2.money-and-economy.write-003",
+      "itemIds": ["b2.money-and-economy.invest", "b2.grammar.third-conditional"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si hubiera invertido en esa empresa, habría ganado mucho dinero.",
+      "accepted": [
+        "If I had invested in that company, I would have {made|earned} {a lot of|lots of} money.",
+        "I would have {made|earned} {a lot of|lots of} money if I had invested in that company."
+      ]
+    },
+    {
+      "id": "b2.money-and-economy.vocab-004",
+      "itemIds": ["b2.money-and-economy.make-ends-meet"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'make ends meet' mean in 'Many families struggle to make ends meet'?",
+      "options": [
+        "conocer gente nueva",
+        "llegar a fin de mes",
+        "terminar el trabajo",
+        "cerrar un trato"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.money-and-economy.vocab-005",
+      "itemIds": ["b2.money-and-economy.cost-of-living"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'costo de vida'.",
+      "options": ["living room", "life insurance", "price list", "cost of living"],
+      "answerIndex": 3
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.money-and-economy.lesson-001",
+      "level": "B2",
+      "topic": "money-and-economy",
+      "title": "Vivir con un presupuesto",
+      "exerciseIds": [
+        "b2.money-and-economy.vocab-001",
+        "b2.money-and-economy.cloze-001",
+        "b2.money-and-economy.order-001",
+        "b2.money-and-economy.choice-001",
+        "b2.money-and-economy.reading-001",
+        "b2.money-and-economy.write-001",
+        "b2.money-and-economy.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.grammar.causative",
+        "b2.money-and-economy.afford",
+        "b2.money-and-economy.budget",
+        "b2.money-and-economy.make-ends-meet",
+        "b2.money-and-economy.cost-of-living"
+      ],
+      "deepenCardIds": ["b2.grammar.causative"]
+    },
+    {
+      "id": "b2.money-and-economy.lesson-002",
+      "level": "B2",
+      "topic": "money-and-economy",
+      "title": "Si lo hubiera sabido…",
+      "exerciseIds": [
+        "b2.money-and-economy.vocab-003",
+        "b2.money-and-economy.cloze-002",
+        "b2.money-and-economy.cloze-003",
+        "b2.money-and-economy.order-002",
+        "b2.money-and-economy.choice-002",
+        "b2.money-and-economy.write-002",
+        "b2.money-and-economy.write-003"
+      ],
+      "newItemIds": [
+        "b2.grammar.third-conditional",
+        "b2.money-and-economy.debt",
+        "b2.money-and-economy.loan",
+        "b2.money-and-economy.inflation",
+        "b2.money-and-economy.invest"
+      ],
+      "deepenCardIds": ["b2.grammar.third-conditional"]
+    }
+  ]
+}

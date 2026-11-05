@@ -3,7 +3,8 @@ import { localDate, type ProgressRepository } from "@english-learn/domain";
 import { render, screen } from "@testing-library/react-native";
 import type React from "react";
 import { completeSession } from "@/features/lesson/application/complete-session";
-import { lessonExercises } from "@/features/lesson/model/lesson-catalog";
+import { achievementFacts } from "@/features/achievements/model/achievements";
+import { isLessonDone, lessonExercises, pathLessons } from "@/features/lesson/model/lesson-catalog";
 import { HomeContainer } from "@/features/home/home-container";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
@@ -98,5 +99,35 @@ describe("Práctica libre and the learning path", () => {
     expect(after).toEqual(before);
     expect(after.next).toBe("Tu siguiente lección");
     expect(after.stops.some((label) => label.includes("completada"))).toBe(false);
+  });
+
+  it("never lets practice move the path to the next level or complete a level", async () => {
+    const empty = createFakeRepository();
+    const repository = createFakeRepository();
+    await completeAllPractice(repository);
+    const progress = async (r: ProgressRepository) => ({
+      states: await r.getReviewStates(),
+      xp: await r.getXp(),
+      streak: await r.getStreak(),
+      placement: await r.getPlacementResult(),
+    });
+    const before = await progress(empty);
+    const after = await progress(repository);
+    const practiceIds = new Set(corpus.practiceLessons.map((l) => l.id));
+
+    for (const level of [null, "A2", "B1", "B2"] as const) {
+      const reviewed = new Set(after.states.map((s) => s.itemId));
+      const path = pathLessons(corpus.lessons, level, (lesson) =>
+        isLessonDone(lesson, corpus.exercisesById, reviewed),
+      );
+      const fresh = pathLessons(corpus.lessons, level, () => false);
+      expect(path.level).toBe(fresh.level);
+      expect(path.lessons.some((l) => practiceIds.has(l.id))).toBe(false);
+    }
+    const factsBefore = achievementFacts(corpus, before);
+    const factsAfter = achievementFacts(corpus, after);
+    expect(factsAfter.lessonsDone).toBe(factsBefore.lessonsDone);
+    expect(factsAfter.topicsDone).toBe(factsBefore.topicsDone);
+    expect(factsAfter.levelsDone).toEqual(factsBefore.levelsDone);
   });
 });

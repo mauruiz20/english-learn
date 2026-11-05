@@ -1,0 +1,390 @@
+{
+  "items": [
+    {
+      "id": "b2.lifelong-learning.fluent",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "word",
+      "term": "fluent",
+      "es": "fluido, que habla con fluidez",
+      "example": {
+        "en": "She is fluent in three languages.",
+        "es": "Habla tres idiomas con fluidez."
+      }
+    },
+    {
+      "id": "b2.lifelong-learning.pick-up",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "phrase",
+      "term": "pick up",
+      "es": "aprender (sin estudiar formalmente)"
+    },
+    {
+      "id": "b2.lifelong-learning.brush-up-on",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "phrase",
+      "term": "brush up on",
+      "es": "repasar, refrescar (un conocimiento)"
+    },
+    {
+      "id": "b2.lifelong-learning.online-course",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "phrase",
+      "term": "online course",
+      "es": "curso en línea"
+    },
+    {
+      "id": "b2.lifelong-learning.self-taught",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "word",
+      "term": "self-taught",
+      "es": "autodidacta",
+      "example": {
+        "en": "He is a self-taught musician.",
+        "es": "Es un músico autodidacta."
+      }
+    },
+    {
+      "id": "b2.lifelong-learning.keep-up-with",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "phrase",
+      "term": "keep up with",
+      "es": "mantenerse al día con, seguir el ritmo de"
+    },
+    {
+      "id": "b2.lifelong-learning.retire",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "word",
+      "term": "retire",
+      "es": "jubilarse",
+      "example": {
+        "en": "My grandmother retired at sixty-five.",
+        "es": "Mi abuela se jubiló a los sesenta y cinco años."
+      }
+    },
+    {
+      "id": "b2.lifelong-learning.degree",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "word",
+      "term": "degree",
+      "es": "título (universitario)",
+      "example": {
+        "en": "She has a degree in economics.",
+        "es": "Tiene un título en economía."
+      }
+    },
+    {
+      "id": "b2.lifelong-learning.skill",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "kind": "word",
+      "term": "skill",
+      "es": "habilidad, destreza"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.lifelong-learning.back-to-school",
+      "level": "B2",
+      "topics": ["lifelong-learning"],
+      "title": "Never too late",
+      "text": "When Elena retired at sixty-eight, her grandchildren gave her a tablet. She could barely send a message, and she hated asking for help. \"I wish I had learned this years ago,\" she thought. Instead of giving up, she signed up for a free online course for beginners. Two years later, she has finished eleven courses, from photography to Italian. \"I'm not fluent yet,\" she laughs, \"but I can order dinner and argue about soccer.\" Elena is not unusual. More and more older adults are going back to learning, sometimes to keep up with technology and sometimes just for pleasure. Many of them are self-taught: they pick up new skills from videos, books and patient friends. Researchers say that learning in later life keeps the brain active and helps people feel connected to others. Elena's advice for anyone who thinks they are too old is simple: \"Don't wait until you have time. Start with something small that you enjoy, and do a little every day.\"",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.lifelong-learning.vocab-001",
+      "itemIds": ["b2.lifelong-learning.fluent"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'fluent' mean in 'She is fluent in three languages'?",
+      "options": ["fiel", "famoso", "que habla con fluidez", "flojo"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.lifelong-learning.cloze-001",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I wish I ___ learned to play an instrument as a child.",
+      "answers": ["had"],
+      "distractors": ["have", "would", "did"],
+      "es": "Ojalá hubiera aprendido a tocar un instrumento de niño."
+    },
+    {
+      "id": "b2.lifelong-learning.order-001",
+      "itemIds": ["b2.lifelong-learning.pick-up"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["French", "She", "a", "from", "picked", "her", "little", "up", "neighbors."],
+      "accepted": ["She picked up a little French from her neighbors."],
+      "es": "Aprendió un poco de francés de sus vecinos."
+    },
+    {
+      "id": "b2.lifelong-learning.choice-001",
+      "itemIds": ["b2.lifelong-learning.brush-up-on"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I need to brush up on my English before the trip.",
+      "options": [
+        "Necesito repasar mi inglés antes del viaje.",
+        "Necesito empezar a estudiar inglés después del viaje.",
+        "Necesito olvidarme del inglés durante el viaje.",
+        "Necesito un profesor de inglés para el viaje."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.lifelong-learning.reading-001",
+      "itemIds": [
+        "b2.lifelong-learning.online-course",
+        "b2.lifelong-learning.self-taught",
+        "b2.lifelong-learning.keep-up-with"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.lifelong-learning.back-to-school",
+      "questions": [
+        {
+          "prompt": "What did Elena's grandchildren give her?",
+          "options": ["An online course", "A tablet", "A book about photography"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why are many older adults going back to learning?",
+          "options": [
+            "Because they have to find new jobs",
+            "Because universities are free for them",
+            "To keep up with technology or just for pleasure"
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What is Elena's advice?",
+          "options": [
+            "Start with something small and do a little every day.",
+            "Wait until you have more time.",
+            "Only study with a teacher."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.lifelong-learning.write-001",
+      "itemIds": ["b2.grammar.wish-if-only", "b2.lifelong-learning.fluent"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ojalá hablara inglés con fluidez.",
+      "accepted": [
+        "I wish I {spoke|could speak} English fluently.",
+        "I wish I {were|was} fluent in English.",
+        "If only I {spoke|could speak} English fluently!"
+      ]
+    },
+    {
+      "id": "b2.lifelong-learning.vocab-002",
+      "itemIds": ["b2.lifelong-learning.retire"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'jubilarse'.",
+      "options": ["retreat", "rehearse", "retire", "resign"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.lifelong-learning.vocab-003",
+      "itemIds": ["b2.lifelong-learning.degree"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'degree' mean in 'She has a degree in economics'?",
+      "options": ["beca", "título universitario", "deuda", "matrícula"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.lifelong-learning.cloze-002",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If I had studied harder at school, I ___ a better job now.",
+      "answers": ["would have"],
+      "distractors": ["would had", "will have", "had had"],
+      "es": "Si hubiera estudiado más en la escuela, ahora tendría un mejor trabajo."
+    },
+    {
+      "id": "b2.lifelong-learning.cloze-003",
+      "itemIds": ["b2.lifelong-learning.skill"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Learning to code is a useful ___ for almost any job.",
+      "answers": ["skill"],
+      "distractors": ["skin", "scale", "still"],
+      "es": "Aprender a programar es una habilidad útil para casi cualquier trabajo."
+    },
+    {
+      "id": "b2.lifelong-learning.order-002",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "three",
+        "she",
+        "abroad,",
+        "If",
+        "speak",
+        "moved",
+        "hadn't",
+        "wouldn't",
+        "she",
+        "now.",
+        "languages"
+      ],
+      "accepted": ["If she hadn't moved abroad, she wouldn't speak three languages now."],
+      "es": "Si no se hubiera mudado al extranjero, ahora no hablaría tres idiomas."
+    },
+    {
+      "id": "b2.lifelong-learning.choice-002",
+      "itemIds": ["b2.lifelong-learning.keep-up-with"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "It's hard to keep up with all the changes in technology.",
+      "options": [
+        "Es fácil seguir todos los cambios de la tecnología.",
+        "Es difícil mantenerse al día con todos los cambios de la tecnología.",
+        "Es difícil vivir sin tecnología.",
+        "Es difícil arreglar todos los aparatos tecnológicos."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.lifelong-learning.write-002",
+      "itemIds": ["b2.grammar.mixed-conditionals", "b2.lifelong-learning.fluent"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si hubiera aprendido inglés de niño, ahora hablaría con fluidez.",
+      "accepted": [
+        "If I had learned English {as a child|when I was a child|when I was little}, I would {speak fluently|speak it fluently|be fluent} now.",
+        "If I had learned English {as a child|when I was a child|when I was little}, I would now {speak fluently|speak it fluently|be fluent}."
+      ]
+    },
+    {
+      "id": "b2.lifelong-learning.write-003",
+      "itemIds": ["b2.lifelong-learning.degree", "b2.lifelong-learning.online-course"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No tengo un título, pero aprendí mucho con cursos en línea.",
+      "accepted": [
+        "I {don't have a|have no} degree, but I {learned|have learned} a lot {from|with|through|by taking} online courses."
+      ]
+    },
+    {
+      "id": "b2.lifelong-learning.vocab-004",
+      "itemIds": ["b2.lifelong-learning.self-taught"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'self-taught' mean in 'He is a self-taught musician'?",
+      "options": ["egoísta", "autodidacta", "bien educado", "tímido"],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.lifelong-learning.lesson-001",
+      "level": "B2",
+      "topic": "lifelong-learning",
+      "title": "Nunca es tarde",
+      "exerciseIds": [
+        "b2.lifelong-learning.vocab-001",
+        "b2.lifelong-learning.cloze-001",
+        "b2.lifelong-learning.order-001",
+        "b2.lifelong-learning.choice-001",
+        "b2.lifelong-learning.reading-001",
+        "b2.lifelong-learning.write-001",
+        "b2.lifelong-learning.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.lifelong-learning.fluent",
+        "b2.lifelong-learning.pick-up",
+        "b2.lifelong-learning.brush-up-on",
+        "b2.lifelong-learning.online-course",
+        "b2.lifelong-learning.retire"
+      ],
+      "deepenCardIds": ["b2.grammar.wish-if-only"]
+    },
+    {
+      "id": "b2.lifelong-learning.lesson-002",
+      "level": "B2",
+      "topic": "lifelong-learning",
+      "title": "Si hubiera estudiado…",
+      "exerciseIds": [
+        "b2.lifelong-learning.vocab-003",
+        "b2.lifelong-learning.cloze-002",
+        "b2.lifelong-learning.cloze-003",
+        "b2.lifelong-learning.order-002",
+        "b2.lifelong-learning.choice-002",
+        "b2.lifelong-learning.write-002",
+        "b2.lifelong-learning.write-003"
+      ],
+      "newItemIds": [
+        "b2.grammar.mixed-conditionals",
+        "b2.lifelong-learning.degree",
+        "b2.lifelong-learning.skill"
+      ],
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+    }
+  ]
+}

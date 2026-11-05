@@ -258,8 +258,11 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   remounts the session with a new key): answer XP again, never a second completion bonus.
 
 Home lists the lessons of the level nearest to the placement level that has lessons (ties go to
-the lower level; with MVP content A1 → A2 and B2/C1 → B1), or A2 without a placement. A lesson
-shows as done once every item it practices has a review state.
+the lower level; with the bundled content A1 → A2 and C1 → B2), or A2 without a placement. Once
+every lesson of that level is done, the path moves on to the next level with lessons (A2 → B1 →
+B2; `pathLessons` in `model/lesson-catalog.ts`); with every level done it stays on the last one,
+and it never goes below the placement level. A lesson shows as done once every item it practices
+has a review state.
 
 **Lesson results on the path.** A done lesson also shows its best result, from the fold's
 `lessonResults` (the best `accuracy` of its `session_completed` events; no new event):
@@ -613,7 +616,7 @@ paper, the prompt and the teacher's marking.
   the next sticker (`model/guide-heading.ts`): from a stop on the left it faces right, nose
   tilted down, on the sticker's top left; from a stop on the right it is mirrored onto its top
   right (`Avi` `tilt` / `facing`; it glides in from the side it faces).
-- **Album** (`features/achievements/`, route `/album`): eighteen achievements derived from the
+- **Album** (`features/achievements/`, route `/album`): nineteen achievements derived from the
   stored progress only (lessons, whole topics, whole levels, the longest streak, XP, placement,
   words practiced, study cards; `model/achievements.ts`), so they need no storage and follow sync. Won ones are
   stickers (rare ones get a holographic rim), the others dashed slots that say how to win them.

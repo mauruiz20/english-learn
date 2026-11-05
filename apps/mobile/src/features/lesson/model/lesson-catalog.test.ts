@@ -7,6 +7,7 @@ import {
   lessonLevelFor,
   lessonItemIds,
   lessonsForLevel,
+  pathLessons,
 } from "./lesson-catalog";
 
 const content = createCorpus([
@@ -63,6 +64,48 @@ describe("lesson catalog", () => {
 
   it("uses the default level when there are no lessons at all", () => {
     expect(lessonsForLevel([], "C1")).toEqual({ level: "A2", lessons: [] });
+  });
+
+  it("maps B2 and C1 to B2 once B2 has lessons", () => {
+    const b2 = { ...lesson, id: "b2.x.lesson-001", level: "B2" } as const;
+
+    expect(lessonLevelFor([...content.lessons, b2], "B2")).toBe("B2");
+    expect(lessonLevelFor([...content.lessons, b2], "C1")).toBe("B2");
+    expect(lessonLevelFor([...content.lessons, b2], "B1")).toBe("B1");
+  });
+
+  describe("pathLessons", () => {
+    const b1 = content.lessonsById.get("b1.routine.lesson-001")!;
+    const b2 = { ...lesson, id: "b2.x.lesson-001", level: "B2", title: "B2" } as const;
+    const all = [...content.lessons, b2];
+    const doneIds =
+      (...ids: string[]) =>
+      (l: { id: string }) =>
+        ids.includes(l.id);
+
+    it("stays on the placement's lesson level while it has lessons to do", () => {
+      expect(pathLessons(all, "B1", doneIds())).toEqual({ level: "B1", lessons: [b1] });
+      expect(pathLessons(all, null, doneIds())).toEqual({ level: "A2", lessons: [lesson] });
+    });
+
+    it("moves on to the next level with lessons once every lesson of the level is done", () => {
+      expect(pathLessons(all, null, doneIds(lesson.id)).level).toBe("B1");
+      expect(pathLessons(all, "B1", doneIds(b1.id))).toEqual({ level: "B2", lessons: [b2] });
+      expect(pathLessons(all, "A1", doneIds(lesson.id, b1.id)).level).toBe("B2");
+    });
+
+    it("keeps the last level with lessons when everything is done", () => {
+      expect(pathLessons(all, "B2", doneIds(b2.id)).level).toBe("B2");
+      expect(pathLessons(content.lessons, "B1", doneIds(b1.id)).level).toBe("B1");
+    });
+
+    it("never goes back below the placement's lesson level", () => {
+      expect(pathLessons(all, "B2", doneIds()).level).toBe("B2");
+    });
+
+    it("uses the default level when there are no lessons at all", () => {
+      expect(pathLessons([], "B1", doneIds())).toEqual({ level: "A2", lessons: [] });
+    });
   });
 
   it("counts a lesson as done once every item has a review state", () => {

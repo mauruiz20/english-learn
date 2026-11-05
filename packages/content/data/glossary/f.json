@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.fact-check",
+      "headword": "fact-check",
+      "kind": "word",
+      "forms": ["fact-check", "fact-checks", "fact-checked", "fact-checking"],
+      "senses": [
+        {
+          "es": "verificar (datos)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.factory",
       "headword": "factory",
       "kind": "word",
@@ -129,6 +141,18 @@
       ]
     },
     {
+      "id": "glossary.false",
+      "headword": "false",
+      "kind": "word",
+      "forms": ["false"],
+      "senses": [
+        {
+          "es": "falso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.family",
       "headword": "family",
       "kind": "word",
@@ -193,10 +217,22 @@
       ]
     },
     {
+      "id": "glossary.farmer",
+      "headword": "farmer",
+      "kind": "word",
+      "forms": ["farmer", "farmers"],
+      "senses": [
+        {
+          "es": "agricultor, granjero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fast",
       "headword": "fast",
       "kind": "word",
-      "forms": ["fast"],
+      "forms": ["fast", "faster"],
       "senses": [
         {
           "es": "rápido",
@@ -253,6 +289,18 @@
         {
           "es": "febrero",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feedback",
+      "headword": "feedback",
+      "kind": "word",
+      "forms": ["feedback"],
+      "senses": [
+        {
+          "es": "comentarios, opinión",
+          "pos": "noun"
         }
       ]
     },
@@ -641,6 +689,22 @@
       ]
     },
     {
+      "id": "glossary.flood",
+      "headword": "flood",
+      "kind": "word",
+      "forms": ["flood", "floods", "flooded", "flooding"],
+      "senses": [
+        {
+          "es": "inundación",
+          "pos": "noun"
+        },
+        {
+          "es": "inundar(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.floor",
       "headword": "floor",
       "kind": "word",
@@ -649,6 +713,54 @@
         {
           "es": "piso, suelo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fluent",
+      "headword": "fluent",
+      "kind": "word",
+      "forms": ["fluent"],
+      "senses": [
+        {
+          "es": "fluido, con fluidez",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fluently",
+      "headword": "fluently",
+      "kind": "word",
+      "forms": ["fluently"],
+      "senses": [
+        {
+          "es": "con fluidez",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fly",
+      "headword": "fly",
+      "kind": "word",
+      "forms": ["fly", "flies", "flew", "flown", "flying"],
+      "senses": [
+        {
+          "es": "volar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.focus",
+      "headword": "focus",
+      "kind": "word",
+      "forms": ["focus", "focuses", "focused", "focusing"],
+      "senses": [
+        {
+          "es": "(focus on) centrarse en",
+          "pos": "verb"
         }
       ]
     },
@@ -805,6 +917,18 @@
         {
           "es": "(look forward to) tener ganas de",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fossil-fuel",
+      "headword": "fossil fuel",
+      "kind": "phrase",
+      "forms": ["fossil fuel", "fossil fuels"],
+      "senses": [
+        {
+          "es": "combustible fósil",
+          "pos": "noun"
         }
       ]
     },
@@ -1029,6 +1153,18 @@
         {
           "es": "gracioso, divertido",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.furniture",
+      "headword": "furniture",
+      "kind": "word",
+      "forms": ["furniture"],
+      "senses": [
+        {
+          "es": "muebles",
+          "pos": "noun"
         }
       ]
     },

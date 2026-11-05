@@ -25,15 +25,15 @@
       }
     },
     {
-      "id": "b1.phrasal-verbs.brush-up-on",
+      "id": "b1.phrasal-verbs.read-up-on",
       "level": "B1",
       "topics": ["phrasal-verbs"],
       "kind": "phrase",
-      "term": "brush up on (something)",
-      "es": "repasar, refrescar (lo que ya sabías)",
+      "term": "read up on (something)",
+      "es": "informarse (leyendo) sobre",
       "example": {
-        "en": "I need to brush up on my French before the trip.",
-        "es": "Necesito repasar mi francés antes del viaje."
+        "en": "Before the interview, she read up on the company.",
+        "es": "Antes de la entrevista, se informó sobre la empresa."
       }
     },
     {
@@ -49,15 +49,15 @@
       }
     },
     {
-      "id": "b1.phrasal-verbs.keep-up-with",
+      "id": "b1.phrasal-verbs.hand-out",
       "level": "B1",
       "topics": ["phrasal-verbs"],
       "kind": "phrase",
-      "term": "keep up with (someone/something)",
-      "es": "seguir el ritmo de, mantenerse al día con",
+      "term": "hand (something) out",
+      "es": "repartir",
       "example": {
-        "en": "It's hard to keep up with the rest of the class.",
-        "es": "Es difícil seguirle el ritmo al resto de la clase."
+        "en": "The teacher handed out the tests.",
+        "es": "La profesora repartió los exámenes."
       }
     },
     {
@@ -104,20 +104,20 @@
     },
     {
       "id": "b1.phrasal-verbs.practice-study-vocab-2",
-      "itemIds": ["b1.phrasal-verbs.brush-up-on"],
+      "itemIds": ["b1.phrasal-verbs.read-up-on"],
       "level": "B1",
       "source": {
         "kind": "original"
       },
       "type": "vocab",
-      "prompt": "Choose the best meaning of 'brush up on'.",
+      "prompt": "Choose the best meaning of 'read up on'.",
       "options": [
-        "cepillar algo",
-        "aprender algo desde cero",
-        "repasar algo que ya sabías",
-        "olvidar algo"
+        "leer en voz alta",
+        "informarse leyendo sobre un tema",
+        "corregir un texto",
+        "dejar de leer"
       ],
-      "answerIndex": 2
+      "answerIndex": 1
     },
     {
       "id": "b1.phrasal-verbs.practice-study-choice-2",
@@ -137,16 +137,16 @@
     },
     {
       "id": "b1.phrasal-verbs.practice-study-cloze-1",
-      "itemIds": ["b1.phrasal-verbs.keep-up-with"],
+      "itemIds": ["b1.phrasal-verbs.hand-out"],
       "level": "B1",
       "source": {
         "kind": "original"
       },
       "type": "cloze",
-      "sentence": "She walks so fast that I can't keep up ___ her.",
-      "answers": ["with"],
-      "distractors": ["to", "for"],
-      "es": "Camina tan rápido que no puedo seguirle el paso."
+      "sentence": "The teacher handed ___ the tests at nine o'clock.",
+      "answers": ["out"],
+      "distractors": ["up", "away"],
+      "es": "La profesora repartió los exámenes a las nueve."
     },
     {
       "id": "b1.phrasal-verbs.practice-study-vocab-3",
@@ -241,26 +241,32 @@
     },
     {
       "id": "b1.phrasal-verbs.practice-study-order-2",
-      "itemIds": ["b1.phrasal-verbs.keep-up-with"],
+      "itemIds": ["b1.phrasal-verbs.hand-out"],
       "level": "B1",
       "source": {
         "kind": "original"
       },
       "type": "word_order",
-      "tokens": ["my", "hard", "It's", "keep", "with", "up", "to", "classes."],
-      "accepted": ["It's hard to keep up with my classes."],
-      "es": "Me cuesta mantenerme al día con mis clases."
+      "tokens": ["the", "out", "Please", "books", "to", "these", "class.", "hand"],
+      "accepted": [
+        "Please hand these books out to the class.",
+        "Please hand out these books to the class."
+      ],
+      "es": "Por favor, reparte estos libros en la clase."
     },
     {
       "id": "b1.phrasal-verbs.practice-study-write-2",
-      "itemIds": ["b1.phrasal-verbs.brush-up-on"],
+      "itemIds": ["b1.phrasal-verbs.read-up-on"],
       "level": "B1",
       "source": {
         "kind": "original"
       },
       "type": "translate_write",
-      "es": "Estoy repasando mi inglés para la entrevista.",
-      "accepted": ["I'm {brushing up on|reviewing} my English for the [job ]interview."]
+      "es": "Antes del viaje, me informé sobre la ciudad.",
+      "accepted": [
+        "Before the trip[,] I {read up on|read about|learned about} the city.",
+        "I {read up on|read about|learned about} the city before the trip."
+      ]
     },
     {
       "id": "b1.phrasal-verbs.practice-study-choice-5",
@@ -329,15 +335,15 @@
     },
     {
       "id": "b1.phrasal-verbs.practice-study-order-3",
-      "itemIds": ["b1.phrasal-verbs.brush-up-on"],
+      "itemIds": ["b1.phrasal-verbs.read-up-on"],
       "level": "B1",
       "source": {
         "kind": "original"
       },
       "type": "word_order",
-      "tokens": ["brush", "my", "French.", "up", "I", "on", "want", "to"],
-      "accepted": ["I want to brush up on my French."],
-      "es": "Quiero repasar mi francés."
+      "tokens": ["topic.", "read", "I", "on", "this", "need", "up", "to"],
+      "accepted": ["I need to read up on this topic."],
+      "es": "Necesito informarme sobre este tema."
     },
     {
       "id": "b1.phrasal-verbs.practice-study-choice-6",
@@ -374,9 +380,9 @@
       "newItemIds": [
         "b1.phrasal-verbs.write-down",
         "b1.phrasal-verbs.go-over",
-        "b1.phrasal-verbs.brush-up-on",
+        "b1.phrasal-verbs.read-up-on",
         "b1.phrasal-verbs.fall-behind",
-        "b1.phrasal-verbs.keep-up-with"
+        "b1.phrasal-verbs.hand-out"
       ]
     },
     {
@@ -398,7 +404,7 @@
         "b1.phrasal-verbs.write-down",
         "b1.phrasal-verbs.go-over",
         "b1.phrasal-verbs.fall-behind",
-        "b1.phrasal-verbs.keep-up-with"
+        "b1.phrasal-verbs.hand-out"
       ]
     },
     {

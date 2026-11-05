@@ -2,7 +2,7 @@
  * Content pipeline CLI.
  *
  *   pnpm --filter @english-learn/content-pipeline download
- *   pnpm --filter @english-learn/content-pipeline candidates [--level A2|B1] [--limit 60]
+ *   pnpm --filter @english-learn/content-pipeline candidates [--level A2|B1|B2] [--limit 60]
  *
  * Raw exports live in the git-ignored `.cache/` directory and are never committed.
  */
@@ -21,7 +21,7 @@ import { createInterface } from "node:readline";
 import { fileURLToPath } from "node:url";
 import { checkAttribution, exercisesOf } from "./attribution";
 import { buildShortlist } from "./candidates";
-import type { PipelineLevel } from "./filter";
+import { parseLevel } from "./filter";
 import { buildPairs, parseLinkRow, parseSentenceRow, type Sentence } from "./tatoeba";
 import { TOPIC_KEYWORDS } from "./topics";
 
@@ -73,8 +73,7 @@ function arg(name: string, fallback: string): string {
 }
 
 async function candidates(): Promise<void> {
-  const level = arg("level", "A2") as PipelineLevel;
-  if (level !== "A2" && level !== "B1") throw new Error("--level must be A2 or B1");
+  const level = parseLevel(arg("level", "A2"));
   const limit = Number(arg("limit", "60"));
   const tsv = (url: string) => cachePath(url).replace(/\.bz2$/, "");
   for (const url of Object.values(EXPORTS)) {
@@ -133,7 +132,9 @@ async function verify(): Promise<void> {
 const commands: Record<string, () => Promise<void>> = { download, candidates, verify };
 const run = commands[process.argv[2] ?? ""];
 if (!run) {
-  console.error("usage: tsx src/cli.ts <download|candidates|verify> [--level A2|B1] [--limit N]");
+  console.error(
+    "usage: tsx src/cli.ts <download|candidates|verify> [--level A2|B1|B2] [--limit N]",
+  );
   process.exit(1);
 }
 run().catch((e: unknown) => {

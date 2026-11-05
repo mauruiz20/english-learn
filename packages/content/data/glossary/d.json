@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.daily",
+      "headword": "daily",
+      "kind": "word",
+      "forms": ["daily"],
+      "senses": [
+        {
+          "es": "diario, cotidiano",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.dance",
       "headword": "dance",
       "kind": "word",
@@ -61,6 +73,18 @@
         {
           "es": "oscuro",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.data",
+      "headword": "data",
+      "kind": "word",
+      "forms": ["data"],
+      "senses": [
+        {
+          "es": "datos",
+          "pos": "noun"
         }
       ]
     },
@@ -132,6 +156,58 @@
         },
         {
           "es": "trato, acuerdo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.deal-with",
+      "headword": "deal with",
+      "kind": "phrase",
+      "forms": ["deal with", "deals with", "dealt with", "dealing with"],
+      "senses": [
+        {
+          "es": "lidiar con, ocuparse de",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dealer",
+      "headword": "dealer",
+      "kind": "word",
+      "forms": ["dealer", "dealers"],
+      "senses": [
+        {
+          "es": "concesionario, vendedor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.debate",
+      "headword": "debate",
+      "kind": "word",
+      "forms": ["debate", "debates", "debated", "debating"],
+      "senses": [
+        {
+          "es": "debatir",
+          "pos": "verb"
+        },
+        {
+          "es": "debate",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.debt",
+      "headword": "debt",
+      "kind": "word",
+      "forms": ["debt", "debts"],
+      "senses": [
+        {
+          "es": "deuda",
           "pos": "noun"
         }
       ]
@@ -241,6 +317,18 @@
       ]
     },
     {
+      "id": "glossary.delegate",
+      "headword": "delegate",
+      "kind": "word",
+      "forms": ["delegate", "delegates", "delegated", "delegating"],
+      "senses": [
+        {
+          "es": "delegar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.delete",
       "headword": "delete",
       "kind": "word",
@@ -261,6 +349,18 @@
         {
           "es": "delicioso, rico",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.deliver",
+      "headword": "deliver",
+      "kind": "word",
+      "forms": ["deliver", "delivers", "delivered", "delivering"],
+      "senses": [
+        {
+          "es": "entregar, llevar a domicilio",
+          "pos": "verb"
         }
       ]
     },
@@ -329,6 +429,18 @@
       ]
     },
     {
+      "id": "glossary.designer",
+      "headword": "designer",
+      "kind": "word",
+      "forms": ["designer", "designers"],
+      "senses": [
+        {
+          "es": "diseñador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.despite",
       "headword": "despite",
       "kind": "word",
@@ -337,6 +449,42 @@
         {
           "es": "a pesar de",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.destroy",
+      "headword": "destroy",
+      "kind": "word",
+      "forms": ["destroy", "destroys", "destroyed", "destroying"],
+      "senses": [
+        {
+          "es": "destruir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.determined",
+      "headword": "determined",
+      "kind": "word",
+      "forms": ["determined"],
+      "senses": [
+        {
+          "es": "decidido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.develop",
+      "headword": "develop",
+      "kind": "word",
+      "forms": ["develop", "develops", "developed", "developing"],
+      "senses": [
+        {
+          "es": "desarrollar",
+          "pos": "verb"
         }
       ]
     },
@@ -405,6 +553,18 @@
       ]
     },
     {
+      "id": "glossary.difference",
+      "headword": "difference",
+      "kind": "word",
+      "forms": ["difference", "differences"],
+      "senses": [
+        {
+          "es": "diferencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.different",
       "headword": "different",
       "kind": "word",
@@ -437,6 +597,18 @@
         {
           "es": "difícil",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.difficulty",
+      "headword": "difficulty",
+      "kind": "word",
+      "forms": ["difficulty", "difficulties"],
+      "senses": [
+        {
+          "es": "dificultad",
+          "pos": "noun"
         }
       ]
     },
@@ -493,6 +665,18 @@
       ]
     },
     {
+      "id": "glossary.disappear",
+      "headword": "disappear",
+      "kind": "word",
+      "forms": ["disappear", "disappears", "disappeared", "disappearing"],
+      "senses": [
+        {
+          "es": "desaparecer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.discount",
       "headword": "discount",
       "kind": "word",
@@ -500,6 +684,30 @@
       "senses": [
         {
           "es": "descuento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.discover",
+      "headword": "discover",
+      "kind": "word",
+      "forms": ["discover", "discovers", "discovered", "discovering"],
+      "senses": [
+        {
+          "es": "descubrir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.discovery",
+      "headword": "discovery",
+      "kind": "word",
+      "forms": ["discovery", "discoveries"],
+      "senses": [
+        {
+          "es": "descubrimiento",
           "pos": "noun"
         }
       ]
@@ -645,6 +853,22 @@
       ]
     },
     {
+      "id": "glossary.double",
+      "headword": "double",
+      "kind": "word",
+      "forms": ["double", "doubles", "doubled", "doubling"],
+      "senses": [
+        {
+          "es": "duplicar(se)",
+          "pos": "verb"
+        },
+        {
+          "es": "doble",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.down",
       "headword": "down",
       "kind": "word",
@@ -697,6 +921,30 @@
         {
           "es": "drama",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dramatic",
+      "headword": "dramatic",
+      "kind": "word",
+      "forms": ["dramatic"],
+      "senses": [
+        {
+          "es": "dramático, llamativo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drastically",
+      "headword": "drastically",
+      "kind": "word",
+      "forms": ["drastically"],
+      "senses": [
+        {
+          "es": "drásticamente",
+          "pos": "adverb"
         }
       ]
     },
@@ -842,6 +1090,34 @@
         {
           "es": "abandonar, dejar (los estudios)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drought",
+      "headword": "drought",
+      "kind": "word",
+      "forms": ["drought", "droughts"],
+      "senses": [
+        {
+          "es": "sequía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drug",
+      "headword": "drug",
+      "kind": "word",
+      "forms": ["drug", "drugs"],
+      "senses": [
+        {
+          "es": "medicamento",
+          "pos": "noun"
+        },
+        {
+          "es": "droga",
+          "pos": "noun"
         }
       ]
     },
