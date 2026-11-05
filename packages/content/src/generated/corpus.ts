@@ -32,41 +32,43 @@ import file26 from "../../data/b1/work-and-careers.json";
 import file27 from "../../data/b2/climate-policy.json";
 import file28 from "../../data/b2/grammar.json";
 import file29 from "../../data/b2/health-and-psychology.json";
-import file30 from "../../data/b2/media-and-misinformation.json";
-import file31 from "../../data/b2/phrasal-verbs.json";
-import file32 from "../../data/b2/science-and-ethics.json";
-import file33 from "../../data/b2/travel-and-identity.json";
-import file34 from "../../data/b2/vocabulary.json";
-import file35 from "../../data/b2/work-and-leadership.json";
-import file36 from "../../data/glossary/a.json";
-import file37 from "../../data/glossary/b.json";
-import file38 from "../../data/glossary/c.json";
-import file39 from "../../data/glossary/d.json";
-import file40 from "../../data/glossary/e.json";
-import file41 from "../../data/glossary/f.json";
-import file42 from "../../data/glossary/g.json";
-import file43 from "../../data/glossary/h.json";
-import file44 from "../../data/glossary/i.json";
-import file45 from "../../data/glossary/j.json";
-import file46 from "../../data/glossary/k.json";
-import file47 from "../../data/glossary/l.json";
-import file48 from "../../data/glossary/m.json";
-import file49 from "../../data/glossary/n.json";
-import file50 from "../../data/glossary/o.json";
-import file51 from "../../data/glossary/p.json";
-import file52 from "../../data/glossary/q.json";
-import file53 from "../../data/glossary/r.json";
-import file54 from "../../data/glossary/s.json";
-import file55 from "../../data/glossary/t.json";
-import file56 from "../../data/glossary/u.json";
-import file57 from "../../data/glossary/v.json";
-import file58 from "../../data/glossary/w.json";
-import file59 from "../../data/glossary/y.json";
-import file60 from "../../data/placement/a1.json";
-import file61 from "../../data/placement/a2.json";
-import file62 from "../../data/placement/b1.json";
-import file63 from "../../data/placement/b2.json";
-import file64 from "../../data/placement/c1.json";
+import file30 from "../../data/b2/lifelong-learning.json";
+import file31 from "../../data/b2/media-and-misinformation.json";
+import file32 from "../../data/b2/money-and-economy.json";
+import file33 from "../../data/b2/phrasal-verbs.json";
+import file34 from "../../data/b2/science-and-ethics.json";
+import file35 from "../../data/b2/travel-and-identity.json";
+import file36 from "../../data/b2/vocabulary.json";
+import file37 from "../../data/b2/work-and-leadership.json";
+import file38 from "../../data/glossary/a.json";
+import file39 from "../../data/glossary/b.json";
+import file40 from "../../data/glossary/c.json";
+import file41 from "../../data/glossary/d.json";
+import file42 from "../../data/glossary/e.json";
+import file43 from "../../data/glossary/f.json";
+import file44 from "../../data/glossary/g.json";
+import file45 from "../../data/glossary/h.json";
+import file46 from "../../data/glossary/i.json";
+import file47 from "../../data/glossary/j.json";
+import file48 from "../../data/glossary/k.json";
+import file49 from "../../data/glossary/l.json";
+import file50 from "../../data/glossary/m.json";
+import file51 from "../../data/glossary/n.json";
+import file52 from "../../data/glossary/o.json";
+import file53 from "../../data/glossary/p.json";
+import file54 from "../../data/glossary/q.json";
+import file55 from "../../data/glossary/r.json";
+import file56 from "../../data/glossary/s.json";
+import file57 from "../../data/glossary/t.json";
+import file58 from "../../data/glossary/u.json";
+import file59 from "../../data/glossary/v.json";
+import file60 from "../../data/glossary/w.json";
+import file61 from "../../data/glossary/y.json";
+import file62 from "../../data/placement/a1.json";
+import file63 from "../../data/placement/a2.json";
+import file64 from "../../data/placement/b1.json";
+import file65 from "../../data/placement/b2.json";
+import file66 from "../../data/placement/c1.json";
 
 const files = [
   file0,
@@ -134,6 +136,8 @@ const files = [
   file62,
   file63,
   file64,
+  file65,
+  file66,
 ] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);
