@@ -1,0 +1,421 @@
+{
+  "items": [
+    {
+      "id": "b1.tenses.past-perfect",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "past perfect (had + past participle)",
+      "es": "pasado perfecto (pluscuamperfecto): had + participio",
+      "example": {
+        "en": "He couldn't open the door because he had lost his keys.",
+        "es": "No pudo abrir la puerta porque había perdido las llaves."
+      }
+    },
+    {
+      "id": "b1.tenses.had-already",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "had already (the train had already left)",
+      "es": "ya había…",
+      "example": {
+        "en": "When I got to the station, the train had already left.",
+        "es": "Cuando llegué a la estación, el tren ya había salido."
+      }
+    },
+    {
+      "id": "b1.tenses.by-the-time",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "phrase",
+      "term": "by the time",
+      "es": "para cuando, cuando (ya)",
+      "example": {
+        "en": "By the time we got to the party, everyone had gone home.",
+        "es": "Para cuando llegamos a la fiesta, todos se habían ido a casa."
+      }
+    },
+    {
+      "id": "b1.tenses.had-never-before",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "had never… before (I had never seen snow before)",
+      "es": "nunca antes había…",
+      "example": {
+        "en": "I had never seen snow before I moved to Canada.",
+        "es": "Nunca había visto la nieve antes de mudarme a Canadá."
+      }
+    },
+    {
+      "id": "b1.tenses.because-had",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "past perfect for the earlier reason (I was hungry because I hadn't eaten)",
+      "es": "pasado perfecto para la causa, que pasó antes",
+      "example": {
+        "en": "I was tired because I hadn't slept well.",
+        "es": "Estaba cansado porque no había dormido bien."
+      }
+    },
+    {
+      "id": "b1.tenses.after-had-done",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "after + past perfect (after she had left)",
+      "es": "después de que (ya) había…",
+      "example": {
+        "en": "After she had finished her homework, she went out.",
+        "es": "Después de terminar la tarea, salió."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.tenses.practice-past-perfect-paul",
+      "level": "B1",
+      "topics": ["tenses"],
+      "title": "A terrible morning",
+      "text": "Last Monday was a disaster for Paul. He woke up late because he had forgotten to set his alarm. By the time he got to the bus stop, the bus had already left, so he took a taxi. When he arrived at the office, he realized that he had left his laptop at home. He went back to get it, and when he returned, the meeting had already finished. \"I had never had a morning like that before,\" he said.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.tenses.practice-past-perfect-vocab-1",
+      "itemIds": ["b1.tenses.past-perfect"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "When we arrived, the movie has started.",
+        "When we arrived, the movie had start.",
+        "When we arrived, the movie had started."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-choice-1",
+      "itemIds": ["b1.tenses.had-already"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "When I got to the station, the train had already left.",
+      "options": [
+        "Cuando llegué a la estación, el tren ya había salido.",
+        "Cuando llegué a la estación, el tren estaba saliendo.",
+        "Cuando llegué a la estación, el tren todavía no salía."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-cloze-1",
+      "itemIds": ["b1.tenses.had-never-before"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I had never ___ snow before I moved to Canada.",
+      "answers": ["seen"],
+      "distractors": ["saw", "see"],
+      "es": "Nunca había visto la nieve antes de mudarme a Canadá."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-cloze-2",
+      "itemIds": ["b1.tenses.by-the-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "___ the time we got to the party, everyone had gone home.",
+      "answers": ["By"],
+      "distractors": ["Until", "For"],
+      "es": "Para cuando llegamos a la fiesta, todos se habían ido a casa."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-vocab-2",
+      "itemIds": ["b1.tenses.because-had"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "'I was hungry because I hadn't eaten all day.' What happened first?",
+      "options": ["Being hungry", "Not eating all day", "Both at the same time"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-choice-2",
+      "itemIds": ["b1.tenses.after-had-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "After she had finished her homework, she went out.",
+      "options": [
+        "Antes de terminar la tarea, salió.",
+        "Mientras terminaba la tarea, salió.",
+        "Después de terminar la tarea, salió."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-cloze-3",
+      "itemIds": ["b1.tenses.past-perfect"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "He couldn't open the door because he ___ his keys.",
+      "answers": ["had lost"],
+      "distractors": ["has lost", "loses"],
+      "es": "No pudo abrir la puerta porque había perdido las llaves."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-order-1",
+      "itemIds": ["b1.tenses.had-already"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["arrived.", "already", "movie", "The", "we", "started", "had", "when"],
+      "accepted": ["The movie had already started when we arrived."],
+      "es": "La película ya había empezado cuando llegamos."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-write-1",
+      "itemIds": ["b1.tenses.had-never-before"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Nunca había visto el mar antes.",
+      "accepted": ["{I|He|She} had never seen the {ocean|sea}[ before]."]
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-cloze-4",
+      "itemIds": ["b1.tenses.by-the-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "By the time I got home, my roommate ___ dinner.",
+      "answers": ["had cooked"],
+      "distractors": ["has cooked", "cooks"],
+      "es": "Para cuando llegué a casa, mi compañero de cuarto ya había hecho la cena."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-choice-3",
+      "itemIds": ["b1.tenses.because-had"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She was nervous because she had never flown before.",
+      "options": [
+        "Está nerviosa porque nunca va a volar.",
+        "Estaba nerviosa porque había volado muchas veces.",
+        "Estaba nerviosa porque nunca había volado."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-write-2",
+      "itemIds": ["b1.tenses.had-already"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Cuando llegamos, la tienda ya había cerrado.",
+      "accepted": [
+        "When we {arrived|got there}, the {store|shop} had already closed.",
+        "The {store|shop} had already closed when we {arrived|got there}."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-reading-1",
+      "itemIds": ["b1.tenses.because-had", "b1.tenses.by-the-time", "b1.tenses.had-already"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.tenses.practice-past-perfect-paul",
+      "questions": [
+        {
+          "prompt": "Why did Paul wake up late?",
+          "options": [
+            "He had gone to bed late.",
+            "He had forgotten to set his alarm.",
+            "The bus had already left."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why did he take a taxi?",
+          "options": ["He had lost his laptop.", "It was raining.", "The bus had already left."],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What had he left at home?",
+          "options": ["His laptop", "His phone", "His keys"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-cloze-5",
+      "itemIds": ["b1.tenses.after-had-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "___ they had eaten, they went for a walk.",
+      "answers": ["After"],
+      "distractors": ["During", "Until"],
+      "es": "Después de comer, salieron a caminar."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-vocab-3",
+      "itemIds": ["b1.tenses.had-already"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "When I arrived, she had already left.",
+        "When I arrived, she had already leave.",
+        "When I arrived, she has already left."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-cloze-6",
+      "itemIds": ["b1.tenses.past-perfect"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I knew the ending of the movie because I ___ the book.",
+      "answers": ["had read"],
+      "distractors": ["have read", "had reading"],
+      "es": "Sabía cómo terminaba la película porque había leído el libro."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-choice-4",
+      "itemIds": ["b1.tenses.by-the-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "By the time I called, he had gone to bed.",
+      "options": [
+        "Cuando llamé, se fue a dormir.",
+        "Cuando llamé, ya se había ido a dormir.",
+        "Cuando llamé, se estaba yendo a dormir."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-order-2",
+      "itemIds": ["b1.tenses.because-had"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["slept", "because", "tired", "I", "well.", "hadn't", "was", "I"],
+      "accepted": ["I was tired because I hadn't slept well."],
+      "es": "Estaba cansado porque no había dormido bien."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-write-3",
+      "itemIds": ["b1.tenses.after-had-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Después de que se fueron los invitados, lavamos los platos.",
+      "accepted": [
+        "After the guests {had left|left}, we {washed|did} the dishes.",
+        "We {washed|did} the dishes after the guests {had left|left}."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-cloze-7",
+      "itemIds": ["b1.tenses.had-never-before"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "It was my first concert. I had never ___ to one before.",
+      "answers": ["been"],
+      "distractors": ["went", "go"],
+      "es": "Era mi primer concierto. Nunca había ido a uno."
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-write-4",
+      "itemIds": ["b1.tenses.by-the-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Para cuando llegó la policía, el ladrón ya se había escapado.",
+      "accepted": [
+        "By the time the police {arrived|got there}, the thief had already {escaped|run away|gotten away}.",
+        "The thief had already {escaped|run away|gotten away} by the time the police {arrived|got there}."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.tenses.practice-past-perfect-1",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Pasado perfecto: conócelo",
+      "exerciseIds": [
+        "b1.tenses.practice-past-perfect-vocab-1",
+        "b1.tenses.practice-past-perfect-choice-1",
+        "b1.tenses.practice-past-perfect-cloze-1",
+        "b1.tenses.practice-past-perfect-cloze-2",
+        "b1.tenses.practice-past-perfect-vocab-2",
+        "b1.tenses.practice-past-perfect-choice-2",
+        "b1.tenses.practice-past-perfect-cloze-3"
+      ],
+      "newItemIds": [
+        "b1.tenses.past-perfect",
+        "b1.tenses.had-already",
+        "b1.tenses.had-never-before",
+        "b1.tenses.by-the-time",
+        "b1.tenses.because-had"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-2",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Pasado perfecto: practícalo",
+      "exerciseIds": [
+        "b1.tenses.practice-past-perfect-order-1",
+        "b1.tenses.practice-past-perfect-write-1",
+        "b1.tenses.practice-past-perfect-cloze-4",
+        "b1.tenses.practice-past-perfect-choice-3",
+        "b1.tenses.practice-past-perfect-write-2",
+        "b1.tenses.practice-past-perfect-reading-1",
+        "b1.tenses.practice-past-perfect-cloze-5"
+      ],
+      "newItemIds": [
+        "b1.tenses.after-had-done",
+        "b1.tenses.had-already",
+        "b1.tenses.by-the-time",
+        "b1.tenses.because-had",
+        "b1.tenses.had-never-before"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-perfect-3",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Pasado perfecto: no lo confundas",
+      "exerciseIds": [
+        "b1.tenses.practice-past-perfect-vocab-3",
+        "b1.tenses.practice-past-perfect-cloze-6",
+        "b1.tenses.practice-past-perfect-choice-4",
+        "b1.tenses.practice-past-perfect-order-2",
+        "b1.tenses.practice-past-perfect-write-3",
+        "b1.tenses.practice-past-perfect-cloze-7",
+        "b1.tenses.practice-past-perfect-write-4"
+      ],
+      "newItemIds": [
+        "b1.tenses.past-perfect",
+        "b1.tenses.by-the-time",
+        "b1.tenses.because-had",
+        "b1.tenses.after-had-done",
+        "b1.tenses.had-never-before"
+      ]
+    }
+  ]
+}

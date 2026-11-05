@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.zero",
+      "headword": "zero",
+      "kind": "word",
+      "forms": ["zero"],
+      "senses": [
+        {
+          "es": "cero",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.zoom",
       "headword": "zoom",
       "kind": "word",

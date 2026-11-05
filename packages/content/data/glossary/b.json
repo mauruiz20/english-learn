@@ -53,6 +53,18 @@
       ]
     },
     {
+      "id": "glossary.background",
+      "headword": "background",
+      "kind": "word",
+      "forms": ["background", "backgrounds"],
+      "senses": [
+        {
+          "es": "fondo, contexto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.backpack",
       "headword": "backpack",
       "kind": "word",
@@ -108,6 +120,18 @@
       "senses": [
         {
           "es": "bolsa, bolso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.baggage",
+      "headword": "baggage",
+      "kind": "word",
+      "forms": ["baggage"],
+      "senses": [
+        {
+          "es": "equipaje",
           "pos": "noun"
         }
       ]
@@ -172,6 +196,18 @@
       "senses": [
         {
           "es": "banco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bar",
+      "headword": "bar",
+      "kind": "word",
+      "forms": ["bar", "bars"],
+      "senses": [
+        {
+          "es": "bar",
           "pos": "noun"
         }
       ]
@@ -281,6 +317,42 @@
         {
           "es": "playa",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bean",
+      "headword": "bean",
+      "kind": "word",
+      "forms": ["bean", "beans"],
+      "senses": [
+        {
+          "es": "grano, frijol",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bear",
+      "headword": "bear",
+      "kind": "word",
+      "forms": ["bear", "bears"],
+      "senses": [
+        {
+          "es": "oso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.beautiful",
+      "headword": "beautiful",
+      "kind": "word",
+      "forms": ["beautiful"],
+      "senses": [
+        {
+          "es": "hermoso, precioso",
+          "pos": "adjective"
         }
       ]
     },
@@ -437,6 +509,29 @@
       ]
     },
     {
+      "id": "glossary.belt",
+      "headword": "belt",
+      "kind": "word",
+      "forms": ["belt", "belts"],
+      "senses": [
+        {
+          "es": "cinturón (seat belt: cinturón de seguridad)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ben",
+      "headword": "Ben",
+      "kind": "word",
+      "forms": ["ben"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
       "id": "glossary.best",
       "headword": "best",
       "kind": "word",
@@ -517,6 +612,18 @@
       ]
     },
     {
+      "id": "glossary.bill",
+      "headword": "bill",
+      "kind": "word",
+      "forms": ["bill", "bills"],
+      "senses": [
+        {
+          "es": "cuenta, factura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.bin",
       "headword": "bin",
       "kind": "word",
@@ -524,6 +631,18 @@
       "senses": [
         {
           "es": "cesto de basura, contenedor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bird",
+      "headword": "bird",
+      "kind": "word",
+      "forms": ["bird", "birds"],
+      "senses": [
+        {
+          "es": "pájaro, ave",
           "pos": "noun"
         }
       ]
@@ -541,6 +660,18 @@
       ]
     },
     {
+      "id": "glossary.bit",
+      "headword": "bit",
+      "kind": "word",
+      "forms": ["bit", "bits"],
+      "senses": [
+        {
+          "es": "poco (a bit: un poco)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.black",
       "headword": "black",
       "kind": "word",
@@ -549,6 +680,18 @@
         {
           "es": "negro",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.blender",
+      "headword": "blender",
+      "kind": "word",
+      "forms": ["blender", "blenders"],
+      "senses": [
+        {
+          "es": "licuadora",
+          "pos": "noun"
         }
       ]
     },
@@ -569,6 +712,46 @@
       ]
     },
     {
+      "id": "glossary.blue",
+      "headword": "blue",
+      "kind": "word",
+      "forms": ["blue"],
+      "senses": [
+        {
+          "es": "azul",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.board",
+      "headword": "board",
+      "kind": "word",
+      "forms": ["board", "boards", "boarded", "boarding"],
+      "senses": [
+        {
+          "es": "abordar, subir (a un avión o un barco)",
+          "pos": "verb"
+        },
+        {
+          "es": "tablero, pizarrón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boat",
+      "headword": "boat",
+      "kind": "word",
+      "forms": ["boat", "boats"],
+      "senses": [
+        {
+          "es": "barco, bote",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.body",
       "headword": "body",
       "kind": "word",
@@ -576,6 +759,30 @@
       "senses": [
         {
           "es": "cuerpo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boil",
+      "headword": "boil",
+      "kind": "word",
+      "forms": ["boil", "boils", "boiled", "boiling"],
+      "senses": [
+        {
+          "es": "hervir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bone",
+      "headword": "bone",
+      "kind": "word",
+      "forms": ["bone", "bones"],
+      "senses": [
+        {
+          "es": "hueso",
           "pos": "noun"
         }
       ]
@@ -693,6 +900,18 @@
         {
           "es": "jefe, jefa",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boston",
+      "headword": "Boston",
+      "kind": "word",
+      "forms": ["boston"],
+      "senses": [
+        {
+          "es": "Boston (ciudad)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -929,6 +1148,18 @@
       ]
     },
     {
+      "id": "glossary.bright",
+      "headword": "bright",
+      "kind": "word",
+      "forms": ["bright", "brighter", "brightest"],
+      "senses": [
+        {
+          "es": "brillante, luminoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.bring",
       "headword": "bring",
       "kind": "word",
@@ -965,6 +1196,18 @@
         {
           "es": "hermano",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.brown",
+      "headword": "brown",
+      "kind": "word",
+      "forms": ["brown"],
+      "senses": [
+        {
+          "es": "marrón, café",
+          "pos": "adjective"
         }
       ]
     },
@@ -1101,6 +1344,18 @@
         {
           "es": "pero",
           "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.button",
+      "headword": "button",
+      "kind": "word",
+      "forms": ["button", "buttons"],
+      "senses": [
+        {
+          "es": "botón",
+          "pos": "noun"
         }
       ]
     },

@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.quick",
+      "headword": "quick",
+      "kind": "word",
+      "forms": ["quick", "quicker", "quickest"],
+      "senses": [
+        {
+          "es": "rápido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.quickly",
       "headword": "quickly",
       "kind": "word",
@@ -49,6 +61,18 @@
         {
           "es": "dejar (un hábito)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.quiz",
+      "headword": "quiz",
+      "kind": "word",
+      "forms": ["quiz", "quizzes"],
+      "senses": [
+        {
+          "es": "concurso de preguntas, prueba corta",
+          "pos": "noun"
         }
       ]
     }

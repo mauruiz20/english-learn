@@ -1,6 +1,58 @@
 {
   "glossary": [
     {
+      "id": "glossary.lake",
+      "headword": "lake",
+      "kind": "word",
+      "forms": ["lake", "lakes"],
+      "senses": [
+        {
+          "es": "lago",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.land",
+      "headword": "land",
+      "kind": "word",
+      "forms": ["land", "lands", "landed", "landing"],
+      "senses": [
+        {
+          "es": "aterrizar",
+          "pos": "verb"
+        },
+        {
+          "es": "tierra, terreno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.landlady",
+      "headword": "landlady",
+      "kind": "word",
+      "forms": ["landlady", "landladies"],
+      "senses": [
+        {
+          "es": "dueña (de la vivienda que alquilas), casera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.landlord",
+      "headword": "landlord",
+      "kind": "word",
+      "forms": ["landlord", "landlords"],
+      "senses": [
+        {
+          "es": "dueño (de la vivienda que alquilas), casero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.language",
       "headword": "language",
       "kind": "word",
@@ -32,6 +84,18 @@
       "senses": [
         {
           "es": "grande",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.larger",
+      "headword": "larger",
+      "kind": "word",
+      "forms": ["larger", "largest"],
+      "senses": [
+        {
+          "es": "más grande",
           "pos": "adjective"
         }
       ]
@@ -72,6 +136,18 @@
         },
         {
           "es": "(later) después, más tarde",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lately",
+      "headword": "lately",
+      "kind": "word",
+      "forms": ["lately"],
+      "senses": [
+        {
+          "es": "últimamente",
           "pos": "adverb"
         }
       ]
@@ -173,6 +249,18 @@
       ]
     },
     {
+      "id": "glossary.lease",
+      "headword": "lease",
+      "kind": "word",
+      "forms": ["lease", "leases"],
+      "senses": [
+        {
+          "es": "contrato de alquiler",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.least",
       "headword": "least",
       "kind": "word",
@@ -205,6 +293,17 @@
       ]
     },
     {
+      "id": "glossary.lee",
+      "headword": "Lee",
+      "kind": "word",
+      "forms": ["lee"],
+      "senses": [
+        {
+          "es": "(apellido)"
+        }
+      ]
+    },
+    {
       "id": "glossary.left",
       "headword": "left",
       "kind": "word",
@@ -229,6 +328,18 @@
         {
           "es": "prestar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.leo",
+      "headword": "Leo",
+      "kind": "word",
+      "forms": ["leo"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -855,6 +966,29 @@
       ]
     },
     {
+      "id": "glossary.loyal",
+      "headword": "loyal",
+      "kind": "word",
+      "forms": ["loyal"],
+      "senses": [
+        {
+          "es": "leal, fiel",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lucas",
+      "headword": "Lucas",
+      "kind": "word",
+      "forms": ["lucas"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
       "id": "glossary.lucia",
       "headword": "Lucía",
       "kind": "word",
@@ -887,6 +1021,18 @@
         {
           "es": "equipaje",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.luna",
+      "headword": "Luna",
+      "kind": "word",
+      "forms": ["luna"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
         }
       ]
     },

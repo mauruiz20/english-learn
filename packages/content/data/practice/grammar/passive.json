@@ -1,0 +1,470 @@
+{
+  "items": [
+    {
+      "id": "b1.grammar.passive-is-made",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "present passive (it is made)",
+      "es": "voz pasiva en presente: se hace, se fabrica",
+      "example": {
+        "en": "Most of these toys are made in China.",
+        "es": "La mayoría de estos juguetes se fabrican en China."
+      }
+    },
+    {
+      "id": "b1.grammar.passive-was-built",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "past passive (it was built)",
+      "es": "voz pasiva en pasado: se construyó, fue construido",
+      "example": {
+        "en": "The school was built in 1960.",
+        "es": "La escuela se construyó en 1960."
+      }
+    },
+    {
+      "id": "b1.grammar.passive-has-been-done",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "present perfect passive (it has been sold)",
+      "es": "voz pasiva en presente perfecto: se ha vendido, ha sido vendido",
+      "example": {
+        "en": "The house has been sold.",
+        "es": "La casa ya se vendió."
+      }
+    },
+    {
+      "id": "b1.grammar.passive-modal",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "passive with modals (it can be done)",
+      "es": "voz pasiva con modales: se puede hacer, debe hacerse",
+      "example": {
+        "en": "This problem can be fixed in a few minutes.",
+        "es": "Este problema se puede arreglar en unos minutos."
+      }
+    },
+    {
+      "id": "b1.grammar.passive-by-agent",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "passive + by (written by…)",
+      "es": "pasiva + by: quién hace la acción (escrito por…)",
+      "example": {
+        "en": "The letter was written by my grandmother.",
+        "es": "La carta la escribió mi abuela."
+      }
+    },
+    {
+      "id": "b1.grammar.passive-question",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "passive questions (Where was it made?)",
+      "es": "preguntas en voz pasiva: ¿dónde se hizo?",
+      "example": {
+        "en": "When was this photo taken?",
+        "es": "¿Cuándo se tomó esta foto?"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.grammar.practice-passive-vocab-1",
+      "itemIds": ["b1.grammar.passive-is-made"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "Coffee is grow in Colombia.",
+        "Coffee is grown in Colombia.",
+        "Coffee are grown in Colombia.",
+        "Coffee is growing by Colombia."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-passive-choice-1",
+      "itemIds": ["b1.grammar.passive-was-built"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "This bridge was built in 1890.",
+      "options": [
+        "Están construyendo este puente desde 1890.",
+        "Este puente se reparó en 1890.",
+        "Este puente se construyó en 1890."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-passive-cloze-1",
+      "itemIds": ["b1.grammar.passive-is-made"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "These shoes ___ made in Italy.",
+      "answers": ["are"],
+      "distractors": ["is", "have"],
+      "es": "Estos zapatos se fabrican en Italia."
+    },
+    {
+      "id": "b1.grammar.practice-passive-choice-2",
+      "itemIds": ["b1.grammar.passive-has-been-done"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The tickets have already been sold.",
+      "options": [
+        "Ya se vendieron las entradas.",
+        "Todavía no se venden las entradas.",
+        "Las entradas se van a vender mañana."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-passive-cloze-2",
+      "itemIds": ["b1.grammar.passive-modal"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This form must ___ signed by both parents.",
+      "answers": ["be"],
+      "distractors": ["is", "been"],
+      "es": "Este formulario lo deben firmar los dos padres."
+    },
+    {
+      "id": "b1.grammar.practice-passive-vocab-2",
+      "itemIds": ["b1.grammar.passive-by-agent"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'by' mean in 'The book was written by a doctor.'?",
+      "options": ["al lado de", "antes de", "por (quién lo hizo)", "para"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-passive-reading-1",
+      "itemIds": [
+        "b1.grammar.passive-is-made",
+        "b1.grammar.passive-was-built",
+        "b1.grammar.passive-has-been-done"
+      ],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b1.grammar.practice-passive-chocolate",
+      "questions": [
+        {
+          "prompt": "Where are cacao beans grown?",
+          "options": ["In cold countries", "In hot countries", "Only in Europe"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Where was chocolate first drunk?",
+          "options": ["In Mexico", "In Ghana", "In Europe"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What was added later in Europe?",
+          "options": ["Milk", "Salt", "Sugar"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-passive-cloze-3",
+      "itemIds": ["b1.grammar.passive-was-built"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Our house ___ built in 1975.",
+      "answers": ["was"],
+      "distractors": ["is", "has"],
+      "es": "Nuestra casa se construyó en 1975."
+    },
+    {
+      "id": "b1.grammar.practice-passive-order-1",
+      "itemIds": ["b1.grammar.passive-has-been-done"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["stolen.", "been", "car", "My", "has"],
+      "accepted": ["My car has been stolen."],
+      "es": "Me robaron el auto."
+    },
+    {
+      "id": "b1.grammar.practice-passive-write-1",
+      "itemIds": ["b1.grammar.passive-is-made"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El inglés se habla en muchos países.",
+      "accepted": [
+        "English is spoken in {many|a lot of|lots of} countries.",
+        "{People|They} speak English in {many|a lot of|lots of} countries."
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-passive-choice-3",
+      "itemIds": ["b1.grammar.passive-modal"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Phones can't be used during the exam.",
+      "options": [
+        "No puedo usar mi teléfono después del examen.",
+        "Los teléfonos no se pueden usar durante el examen.",
+        "Los teléfonos no se usaron durante el examen."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-passive-cloze-4",
+      "itemIds": ["b1.grammar.passive-by-agent"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This song was written ___ my grandfather.",
+      "answers": ["by"],
+      "distractors": ["from", "of"],
+      "es": "Esta canción la escribió mi abuelo."
+    },
+    {
+      "id": "b1.grammar.practice-passive-order-2",
+      "itemIds": ["b1.grammar.passive-modal"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["held", "will", "The", "Friday.", "be", "on", "meeting"],
+      "accepted": ["The meeting will be held on Friday."],
+      "es": "La reunión se va a hacer el viernes."
+    },
+    {
+      "id": "b1.grammar.practice-passive-write-2",
+      "itemIds": ["b1.grammar.passive-has-been-done"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ya se canceló el vuelo.",
+      "accepted": [
+        "The flight has already been canceled.",
+        "The flight has been canceled already.",
+        "The flight was already canceled.",
+        "They {have already|already} canceled the flight."
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-passive-vocab-3",
+      "itemIds": ["b1.grammar.passive-was-built"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "The museum was build in 2005.",
+        "The museum built in 2005.",
+        "The museum is build in 2005.",
+        "The museum was built in 2005."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.practice-passive-cloze-5",
+      "itemIds": ["b1.grammar.passive-is-made"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Rice ___ eaten all over the world.",
+      "answers": ["is"],
+      "distractors": ["are", "does"],
+      "es": "El arroz se come en todo el mundo."
+    },
+    {
+      "id": "b1.grammar.practice-passive-write-3",
+      "itemIds": ["b1.grammar.passive-by-agent"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Este libro lo escribió mi profesora.",
+      "accepted": ["This book was written by my teacher.", "My teacher wrote this book."]
+    },
+    {
+      "id": "b1.grammar.practice-passive-choice-4",
+      "itemIds": ["b1.grammar.passive-is-made"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Thousands of cars are made here every year.",
+      "options": [
+        "Aquí se fabricaron miles de autos el año pasado.",
+        "Aquí se fabrican miles de autos cada año.",
+        "Aquí se arreglan autos desde hace miles de años."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-passive-order-3",
+      "itemIds": ["b1.grammar.passive-question"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["taken?", "this", "Where", "photo", "was"],
+      "accepted": ["Where was this photo taken?"],
+      "es": "¿Dónde se tomó esta foto?"
+    },
+    {
+      "id": "b1.grammar.practice-passive-cloze-6",
+      "itemIds": ["b1.grammar.passive-question"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "When ___ the bridge opened?",
+      "answers": ["was"],
+      "distractors": ["did", "has"],
+      "es": "¿Cuándo se inauguró el puente?"
+    },
+    {
+      "id": "b1.grammar.practice-passive-write-4",
+      "itemIds": ["b1.grammar.passive-question"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Dónde se fabrican estos teléfonos?",
+      "accepted": [
+        "Where are these {phones|cell phones} made?",
+        "Where do they make these {phones|cell phones}?"
+      ]
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.grammar.practice-passive-chocolate",
+      "level": "B1",
+      "topics": ["grammar"],
+      "title": "How chocolate is made",
+      "text": "Chocolate is made from cacao beans. The beans are grown in hot countries, like Ghana and Ecuador. First, they are picked by hand and left in the sun for a few days. Then they are sent to factories, where they are cleaned and roasted. Chocolate was first drunk in Mexico more than three thousand years ago, and sugar was added much later in Europe. Today, millions of tons of chocolate are eaten every year, and many new flavors have been invented.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.grammar.practice-passive-1",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "La voz pasiva: conócela",
+      "exerciseIds": [
+        "b1.grammar.practice-passive-vocab-1",
+        "b1.grammar.practice-passive-choice-1",
+        "b1.grammar.practice-passive-cloze-1",
+        "b1.grammar.practice-passive-choice-2",
+        "b1.grammar.practice-passive-cloze-2",
+        "b1.grammar.practice-passive-vocab-2",
+        "b1.grammar.practice-passive-reading-1"
+      ],
+      "newItemIds": [
+        "b1.grammar.passive-is-made",
+        "b1.grammar.passive-was-built",
+        "b1.grammar.passive-has-been-done",
+        "b1.grammar.passive-modal",
+        "b1.grammar.passive-by-agent"
+      ],
+      "deepenCardIds": ["b1.grammar.passive"]
+    },
+    {
+      "id": "b1.grammar.practice-passive-2",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "La voz pasiva: practícala",
+      "exerciseIds": [
+        "b1.grammar.practice-passive-cloze-3",
+        "b1.grammar.practice-passive-order-1",
+        "b1.grammar.practice-passive-write-1",
+        "b1.grammar.practice-passive-choice-3",
+        "b1.grammar.practice-passive-cloze-4",
+        "b1.grammar.practice-passive-order-2",
+        "b1.grammar.practice-passive-write-2"
+      ],
+      "newItemIds": [
+        "b1.grammar.passive-was-built",
+        "b1.grammar.passive-has-been-done",
+        "b1.grammar.passive-is-made",
+        "b1.grammar.passive-modal",
+        "b1.grammar.passive-by-agent"
+      ],
+      "deepenCardIds": ["b1.grammar.passive"]
+    },
+    {
+      "id": "b1.grammar.practice-passive-3",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "La voz pasiva: no la confundas",
+      "exerciseIds": [
+        "b1.grammar.practice-passive-vocab-3",
+        "b1.grammar.practice-passive-cloze-5",
+        "b1.grammar.practice-passive-write-3",
+        "b1.grammar.practice-passive-choice-4",
+        "b1.grammar.practice-passive-order-3",
+        "b1.grammar.practice-passive-cloze-6",
+        "b1.grammar.practice-passive-write-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.passive-was-built",
+        "b1.grammar.passive-is-made",
+        "b1.grammar.passive-by-agent",
+        "b1.grammar.passive-question"
+      ],
+      "deepenCardIds": ["b1.grammar.passive"]
+    }
+  ]
+}

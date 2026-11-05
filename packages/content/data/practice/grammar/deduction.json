@@ -1,0 +1,463 @@
+{
+  "items": [
+    {
+      "id": "b2.grammar.deduction-must-be",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "must be (I'm sure it is)",
+      "es": "must be: debe de ser, seguro que es",
+      "example": {
+        "en": "You must be tired after such a long trip.",
+        "es": "Debes de estar cansado después de un viaje tan largo."
+      }
+    },
+    {
+      "id": "b2.grammar.deduction-cant-be",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "can't be (I'm sure it isn't)",
+      "es": "can't be: no puede ser, seguro que no es",
+      "example": {
+        "en": "That can't be Tom. He's in Japan.",
+        "es": "Ese no puede ser Tom. Está en Japón."
+      }
+    },
+    {
+      "id": "b2.grammar.deduction-might-be",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "might / may / could be (maybe it is)",
+      "es": "might, may o could be: puede que sea, quizás es",
+      "example": {
+        "en": "She might be at the gym.",
+        "es": "Puede que esté en el gimnasio."
+      }
+    },
+    {
+      "id": "b2.grammar.deduction-must-have",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "must have done (I'm sure it happened)",
+      "es": "must have + participio: debe de haber…, seguro que…",
+      "example": {
+        "en": "Someone must have taken my umbrella.",
+        "es": "Alguien se debe de haber llevado mi paraguas."
+      }
+    },
+    {
+      "id": "b2.grammar.deduction-cant-have",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "can't have / couldn't have done (I'm sure it didn't happen)",
+      "es": "can't have o couldn't have + participio: no puede haber…",
+      "example": {
+        "en": "He can't have seen us. It was too dark.",
+        "es": "No puede habernos visto. Estaba demasiado oscuro."
+      }
+    },
+    {
+      "id": "b2.grammar.deduction-might-have",
+      "level": "B2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "might have / may have done (maybe it happened)",
+      "es": "might have o may have + participio: puede que haya…",
+      "example": {
+        "en": "I might have left my wallet at the restaurant.",
+        "es": "Puede que haya dejado la billetera en el restaurante."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.grammar.practice-deduction-vocab-1",
+      "itemIds": ["b2.grammar.deduction-must-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'must' mean in 'She must be tired after the trip.'?",
+      "options": [
+        "tiene la obligación de",
+        "seguramente, debe de (estoy casi seguro)",
+        "quizás no",
+        "nunca"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.grammar.practice-deduction-choice-1",
+      "itemIds": ["b2.grammar.deduction-cant-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "That can't be Tom. He's in Japan this week.",
+      "options": [
+        "Ese no puede ser Tom. Está en Japón esta semana.",
+        "Ese debe de ser Tom. Volvió de Japón esta semana.",
+        "Tom no puede ir a Japón esta semana."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.grammar.practice-deduction-cloze-1",
+      "itemIds": ["b2.grammar.deduction-might-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Take an umbrella. It ___ rain later.",
+      "answers": ["might", "may", "could"],
+      "distractors": ["must", "can't"],
+      "es": "Lleva un paraguas. Puede que llueva más tarde."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-choice-2",
+      "itemIds": ["b2.grammar.deduction-must-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You must have been very scared.",
+      "options": [
+        "Tenías que tener mucho miedo.",
+        "No tuviste nada de miedo.",
+        "Debes de haber tenido mucho miedo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.practice-deduction-cloze-2",
+      "itemIds": ["b2.grammar.deduction-cant-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ have seen me. She was looking the other way.",
+      "answers": ["can't", "couldn't"],
+      "distractors": ["must", "has to"],
+      "es": "No puede haberme visto. Estaba mirando para el otro lado."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-vocab-2",
+      "itemIds": ["b2.grammar.deduction-might-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'might have left' mean in 'I might have left my keys at work.'?",
+      "options": ["tuve que dejar", "debería haber dejado", "puede que haya dejado", "nunca dejé"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.grammar.practice-deduction-reading-1",
+      "itemIds": [
+        "b2.grammar.deduction-must-have",
+        "b2.grammar.deduction-cant-have",
+        "b2.grammar.deduction-might-have"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.grammar.practice-deduction-cake",
+      "questions": [
+        {
+          "prompt": "Why couldn't it have been her brother?",
+          "options": ["He was at soccer practice.", "He doesn't like chocolate.", "He was asleep."],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Who ate the cake?",
+          "options": ["Laura's mom", "Max, the dog", "Laura's brother"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What did Laura see on the floor?",
+          "options": ["Pieces of glass", "Her brother's shoes", "Small footprints"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b2.grammar.practice-deduction-order-1",
+      "itemIds": ["b2.grammar.deduction-must-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["home", "They", "by", "be", "at", "now.", "must"],
+      "accepted": ["They must be at home by now."],
+      "es": "Ya deben de estar en casa."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-write-1",
+      "itemIds": ["b2.grammar.deduction-cant-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No puede ser verdad.",
+      "accepted": ["{That|It|This} can't be true."]
+    },
+    {
+      "id": "b2.grammar.practice-deduction-cloze-3",
+      "itemIds": ["b2.grammar.deduction-might-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'm not sure, but he ___ have missed the train.",
+      "answers": ["might", "may", "could"],
+      "distractors": ["must", "can't"],
+      "es": "No estoy seguro, pero puede que haya perdido el tren."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-choice-3",
+      "itemIds": ["b2.grammar.deduction-cant-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He can't have finished already. He only started ten minutes ago.",
+      "options": [
+        "Tiene que terminar ya. Empezó hace diez minutos.",
+        "No puede haber terminado ya. Empezó hace solo diez minutos.",
+        "Ya terminó porque empezó hace diez minutos."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.grammar.practice-deduction-order-2",
+      "itemIds": ["b2.grammar.deduction-must-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["taken", "my", "must", "Someone", "bag.", "have"],
+      "accepted": ["Someone must have taken my bag."],
+      "es": "Alguien se debe de haber llevado mi bolso."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-write-2",
+      "itemIds": ["b2.grammar.deduction-might-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Puede que esté enfermo.",
+      "accepted": ["He {might|may|could} be {sick|ill}.", "{Maybe|Perhaps} he's {sick|ill}."]
+    },
+    {
+      "id": "b2.grammar.practice-deduction-cloze-4",
+      "itemIds": ["b2.grammar.deduction-must-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You've been working all day. You ___ be exhausted.",
+      "answers": ["must"],
+      "distractors": ["can't", "mustn't"],
+      "es": "Has estado trabajando todo el día. Debes de estar agotado."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-vocab-3",
+      "itemIds": ["b2.grammar.deduction-cant-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "That must not to be true.",
+        "That can't be true.",
+        "That doesn't must be true.",
+        "That can't to be true."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.grammar.practice-deduction-cloze-5",
+      "itemIds": ["b2.grammar.deduction-must-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The streets are wet. It ___ rained last night.",
+      "answers": ["must have"],
+      "distractors": ["had to", "must"],
+      "es": "Las calles están mojadas. Debe de haber llovido anoche."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-write-3",
+      "itemIds": ["b2.grammar.deduction-must-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Debes de haber estado cansado.",
+      "accepted": ["You must have been tired."]
+    },
+    {
+      "id": "b2.grammar.practice-deduction-choice-4",
+      "itemIds": ["b2.grammar.deduction-might-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She might have called while we were out.",
+      "options": [
+        "Puede que haya llamado mientras estábamos fuera.",
+        "Puede que llame mientras estemos fuera.",
+        "Tuvo que llamar mientras estábamos fuera."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.grammar.practice-deduction-order-3",
+      "itemIds": ["b2.grammar.deduction-cant-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["lost", "phone", "have", "You", "again!", "can't", "your"],
+      "accepted": ["You can't have lost your phone again!"],
+      "es": "¡No puede ser que hayas perdido el teléfono otra vez!"
+    },
+    {
+      "id": "b2.grammar.practice-deduction-cloze-6",
+      "itemIds": ["b2.grammar.deduction-might-be"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ she's in the library.",
+      "answers": ["Maybe"],
+      "distractors": ["May be", "Must"],
+      "es": "Quizás está en la biblioteca."
+    },
+    {
+      "id": "b2.grammar.practice-deduction-write-4",
+      "itemIds": ["b2.grammar.deduction-might-have"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Puede que lo hayan olvidado.",
+      "accepted": [
+        "They {might|may|could} have forgotten [it|about it].",
+        "{Maybe|Perhaps} they {forgot|have forgotten} [it|about it]."
+      ]
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.grammar.practice-deduction-cake",
+      "level": "B2",
+      "topics": ["grammar"],
+      "title": "The missing cake",
+      "text": "When Laura got home, the chocolate cake she had made for her party was gone. Only a few crumbs were left on the table. 'It can't have been my brother,' she thought. 'He's been at soccer practice all afternoon.' Her mom was at work too, so it couldn't have been her. Then Laura noticed small brown footprints on the kitchen floor. The dog was asleep under the table, and his nose was covered in chocolate. 'It must have been Max!' she said. 'He might have eaten the whole thing.'",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.grammar.practice-deduction-1",
+      "level": "B2",
+      "topic": "grammar",
+      "title": "Deducciones: conócelas",
+      "exerciseIds": [
+        "b2.grammar.practice-deduction-vocab-1",
+        "b2.grammar.practice-deduction-choice-1",
+        "b2.grammar.practice-deduction-cloze-1",
+        "b2.grammar.practice-deduction-choice-2",
+        "b2.grammar.practice-deduction-cloze-2",
+        "b2.grammar.practice-deduction-vocab-2",
+        "b2.grammar.practice-deduction-reading-1"
+      ],
+      "newItemIds": [
+        "b2.grammar.deduction-must-be",
+        "b2.grammar.deduction-cant-be",
+        "b2.grammar.deduction-might-be",
+        "b2.grammar.deduction-must-have",
+        "b2.grammar.deduction-cant-have"
+      ],
+      "deepenCardIds": ["b1.grammar.deduction", "b2.grammar.past-deduction"]
+    },
+    {
+      "id": "b2.grammar.practice-deduction-2",
+      "level": "B2",
+      "topic": "grammar",
+      "title": "Deducciones: practícalas",
+      "exerciseIds": [
+        "b2.grammar.practice-deduction-order-1",
+        "b2.grammar.practice-deduction-write-1",
+        "b2.grammar.practice-deduction-cloze-3",
+        "b2.grammar.practice-deduction-choice-3",
+        "b2.grammar.practice-deduction-order-2",
+        "b2.grammar.practice-deduction-write-2",
+        "b2.grammar.practice-deduction-cloze-4"
+      ],
+      "newItemIds": [
+        "b2.grammar.deduction-must-be",
+        "b2.grammar.deduction-cant-be",
+        "b2.grammar.deduction-might-have",
+        "b2.grammar.deduction-cant-have",
+        "b2.grammar.deduction-must-have"
+      ],
+      "deepenCardIds": ["b1.grammar.deduction", "b2.grammar.past-deduction"]
+    },
+    {
+      "id": "b2.grammar.practice-deduction-3",
+      "level": "B2",
+      "topic": "grammar",
+      "title": "Deducciones: no las confundas",
+      "exerciseIds": [
+        "b2.grammar.practice-deduction-vocab-3",
+        "b2.grammar.practice-deduction-cloze-5",
+        "b2.grammar.practice-deduction-write-3",
+        "b2.grammar.practice-deduction-choice-4",
+        "b2.grammar.practice-deduction-order-3",
+        "b2.grammar.practice-deduction-cloze-6",
+        "b2.grammar.practice-deduction-write-4"
+      ],
+      "newItemIds": [
+        "b2.grammar.deduction-cant-be",
+        "b2.grammar.deduction-must-have",
+        "b2.grammar.deduction-might-have",
+        "b2.grammar.deduction-cant-have",
+        "b2.grammar.deduction-might-be"
+      ],
+      "deepenCardIds": ["b1.grammar.deduction", "b2.grammar.past-deduction"]
+    }
+  ]
+}

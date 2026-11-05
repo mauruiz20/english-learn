@@ -114,6 +114,33 @@
       ]
     },
     {
+      "id": "glossary.kim",
+      "headword": "Kim",
+      "kind": "word",
+      "forms": ["kim"],
+      "senses": [
+        {
+          "es": "(apellido)"
+        }
+      ]
+    },
+    {
+      "id": "glossary.kind",
+      "headword": "kind",
+      "kind": "word",
+      "forms": ["kind", "kinds", "kinder", "kindest"],
+      "senses": [
+        {
+          "es": "amable",
+          "pos": "adjective"
+        },
+        {
+          "es": "tipo, clase",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.king",
       "headword": "king",
       "kind": "word",
@@ -133,6 +160,18 @@
       "senses": [
         {
           "es": "cocina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.knee",
+      "headword": "knee",
+      "kind": "word",
+      "forms": ["knee", "knees"],
+      "senses": [
+        {
+          "es": "rodilla",
           "pos": "noun"
         }
       ]

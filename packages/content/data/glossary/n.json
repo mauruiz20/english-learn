@@ -29,6 +29,30 @@
       ]
     },
     {
+      "id": "glossary.national",
+      "headword": "national",
+      "kind": "word",
+      "forms": ["national"],
+      "senses": [
+        {
+          "es": "nacional",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.natural",
+      "headword": "natural",
+      "kind": "word",
+      "forms": ["natural"],
+      "senses": [
+        {
+          "es": "natural",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.nature",
       "headword": "nature",
       "kind": "word",
@@ -69,6 +93,18 @@
       ]
     },
     {
+      "id": "glossary.necessary",
+      "headword": "necessary",
+      "kind": "word",
+      "forms": ["necessary"],
+      "senses": [
+        {
+          "es": "necesario",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.need",
       "headword": "need",
       "kind": "word",
@@ -77,6 +113,30 @@
         {
           "es": "necesitar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.needn-t",
+      "headword": "needn't",
+      "kind": "word",
+      "forms": ["needn't"],
+      "senses": [
+        {
+          "es": "no hace falta, no es necesario (need not)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.negative",
+      "headword": "negative",
+      "kind": "word",
+      "forms": ["negative", "negatives"],
+      "senses": [
+        {
+          "es": "negativo; oración negativa",
+          "pos": "adjective"
         }
       ]
     },
@@ -220,7 +280,7 @@
       "id": "glossary.nice",
       "headword": "nice",
       "kind": "word",
-      "forms": ["nice"],
+      "forms": ["nice", "nicest"],
       "senses": [
         {
           "es": "lindo, agradable",
@@ -252,6 +312,18 @@
       "senses": [
         {
           "es": "nueve",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ninety",
+      "headword": "ninety",
+      "kind": "word",
+      "forms": ["ninety"],
+      "senses": [
+        {
+          "es": "noventa",
           "pos": "number"
         }
       ]
@@ -333,6 +405,17 @@
       ]
     },
     {
+      "id": "glossary.nora",
+      "headword": "Nora",
+      "kind": "word",
+      "forms": ["nora"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
       "id": "glossary.normally",
       "headword": "normally",
       "kind": "word",
@@ -341,6 +424,18 @@
         {
           "es": "normalmente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nose",
+      "headword": "nose",
+      "kind": "word",
+      "forms": ["nose", "noses"],
+      "senses": [
+        {
+          "es": "nariz; hocico",
+          "pos": "noun"
         }
       ]
     },
@@ -417,6 +512,18 @@
         {
           "es": "a pesar de, no obstante",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.noun",
+      "headword": "noun",
+      "kind": "word",
+      "forms": ["noun", "nouns"],
+      "senses": [
+        {
+          "es": "sustantivo",
+          "pos": "noun"
         }
       ]
     },

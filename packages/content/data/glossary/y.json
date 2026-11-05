@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.yes",
+      "headword": "yes",
+      "kind": "word",
+      "forms": ["yes"],
+      "senses": [
+        {
+          "es": "sí",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.yesterday",
       "headword": "yesterday",
       "kind": "word",
@@ -85,6 +97,17 @@
         {
           "es": "tú eres, tú estás (you are)",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.you-ve",
+      "headword": "you've",
+      "kind": "word",
+      "forms": ["you've"],
+      "senses": [
+        {
+          "es": "tú has (you have + participio)"
         }
       ]
     },

@@ -1,0 +1,406 @@
+{
+  "items": [
+    {
+      "id": "b1.tenses.present-perfect-continuous",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present perfect continuous (I've been working)",
+      "es": "presente perfecto continuo: have / has been + verbo-ing",
+      "example": {
+        "en": "She's tired because she has been running all morning.",
+        "es": "Está cansada porque ha estado corriendo toda la mañana."
+      }
+    },
+    {
+      "id": "b1.tenses.how-long-been-doing",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "How long have you been + -ing? (How long have you been waiting?)",
+      "es": "¿cuánto tiempo llevas…? / ¿cuánto tiempo hace que…?",
+      "example": {
+        "en": "How long have you been learning English?",
+        "es": "¿Cuánto tiempo llevas aprendiendo inglés?"
+      }
+    },
+    {
+      "id": "b1.tenses.been-living-since",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "I've been living here since… (not I'm living here since…)",
+      "es": "vivo aquí desde… / llevo… viviendo aquí (nunca con el presente)",
+      "example": {
+        "en": "I've been living here since 2019.",
+        "es": "Vivo aquí desde 2019."
+      }
+    },
+    {
+      "id": "b1.tenses.visible-result",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present perfect continuous for a visible result (You've been crying)",
+      "es": "algo que estuviste haciendo y todavía se nota",
+      "example": {
+        "en": "Your eyes are red. Have you been crying?",
+        "es": "Tienes los ojos rojos. ¿Has estado llorando?"
+      }
+    },
+    {
+      "id": "b1.tenses.lately",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "word",
+      "term": "lately",
+      "es": "últimamente",
+      "example": {
+        "en": "I've been sleeping badly lately.",
+        "es": "Últimamente he estado durmiendo mal."
+      }
+    },
+    {
+      "id": "b1.tenses.all-day",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "phrase",
+      "term": "all day (I've been working all day)",
+      "es": "todo el día",
+      "example": {
+        "en": "It's been raining all day.",
+        "es": "Ha estado lloviendo todo el día."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.tenses.practice-perfect-continuous-maya",
+      "level": "B1",
+      "topics": ["tenses"],
+      "title": "A busy month",
+      "text": "Maya looks tired, and there's a good reason. She has been preparing for a marathon for three months, and lately she has been running almost every day. This week she has also been studying for an important exam, so she hasn't been sleeping well. \"I've been drinking too much coffee,\" she says with a smile. Her race is next Sunday, and she can't wait.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.tenses.practice-perfect-continuous-vocab-1",
+      "itemIds": ["b1.tenses.present-perfect-continuous"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I have been work here for a year.",
+        "I've been working here for a year.",
+        "I'm been working here for a year."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-choice-1",
+      "itemIds": ["b1.tenses.how-long-been-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "How long have you been waiting?",
+      "options": [
+        "¿Cuánto tiempo vas a esperar?",
+        "¿Por qué estás esperando?",
+        "¿Cuánto tiempo llevas esperando?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-cloze-1",
+      "itemIds": ["b1.tenses.present-perfect-continuous"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She's tired because she has ___ running all morning.",
+      "answers": ["been"],
+      "distractors": ["being", "be"],
+      "es": "Está cansada porque ha estado corriendo toda la mañana."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-cloze-2",
+      "itemIds": ["b1.tenses.lately"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I've been sleeping badly ___.",
+      "answers": ["lately"],
+      "distractors": ["ago", "yesterday"],
+      "es": "Últimamente he estado durmiendo mal."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-vocab-2",
+      "itemIds": ["b1.tenses.visible-result"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'You've been crying' mean?",
+      "options": ["Vas a llorar.", "Has estado llorando (se nota).", "Lloras mucho."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-choice-2",
+      "itemIds": ["b1.tenses.been-living-since"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I've been living here since 2019.",
+      "options": ["Viví aquí en 2019.", "Vivo aquí desde 2019.", "Voy a vivir aquí hasta 2019."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-cloze-3",
+      "itemIds": ["b1.tenses.all-day"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I've been studying ___ day, so I really need a break.",
+      "answers": ["all"],
+      "distractors": ["whole", "during"],
+      "es": "He estado estudiando todo el día, así que de verdad necesito un descanso."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-order-1",
+      "itemIds": ["b1.tenses.how-long-been-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["learning", "you", "English?", "long", "been", "How", "have"],
+      "accepted": ["How long have you been learning English?"],
+      "es": "¿Cuánto tiempo llevas aprendiendo inglés?"
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-write-1",
+      "itemIds": ["b1.tenses.been-living-since"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Vivo en esta ciudad desde 2020.",
+      "accepted": ["I've {been living|lived} in this city since 2020."]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-cloze-4",
+      "itemIds": ["b1.tenses.visible-result"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Why are your hands so dirty? — I've been ___ in the garden.",
+      "answers": ["working"],
+      "distractors": ["worked", "work"],
+      "es": "¿Por qué tienes las manos tan sucias? — He estado trabajando en el jardín."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-choice-3",
+      "itemIds": ["b1.tenses.lately"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "What have you been doing lately?",
+      "options": [
+        "¿Qué hiciste ayer?",
+        "¿Qué vas a hacer después?",
+        "¿Qué has estado haciendo últimamente?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-write-2",
+      "itemIds": ["b1.tenses.all-day"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ha estado lloviendo todo el día.",
+      "accepted": ["It's been raining all day[ long]."]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-reading-1",
+      "itemIds": ["b1.tenses.present-perfect-continuous", "b1.tenses.lately"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.tenses.practice-perfect-continuous-maya",
+      "questions": [
+        {
+          "prompt": "How long has Maya been preparing for the marathon?",
+          "options": ["For three weeks", "For three months", "Since Sunday"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why hasn't she been sleeping well this week?",
+          "options": [
+            "She has been studying for an exam.",
+            "She has been working at night.",
+            "She has been sick."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-cloze-5",
+      "itemIds": ["b1.tenses.how-long-been-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "How long ___ she been working at the hospital?",
+      "answers": ["has"],
+      "distractors": ["is", "does"],
+      "es": "¿Cuánto tiempo lleva trabajando en el hospital?"
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-vocab-3",
+      "itemIds": ["b1.tenses.been-living-since"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I am living here since 2019.",
+        "I live here since 2019.",
+        "I've been living here since 2019."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-cloze-6",
+      "itemIds": ["b1.tenses.present-perfect-continuous"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We ___ for the bus for twenty minutes, and it still hasn't come.",
+      "answers": ["have been waiting"],
+      "distractors": ["are waiting", "wait"],
+      "es": "Llevamos veinte minutos esperando el autobús y todavía no llega."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-choice-4",
+      "itemIds": ["b1.tenses.how-long-been-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Sorry I'm late. Have you been waiting long?",
+      "options": [
+        "Perdón por llegar tarde. ¿Esperaste mucho ayer?",
+        "Perdón por llegar tarde. ¿Llevas mucho tiempo esperando?",
+        "Perdón por llegar tarde. ¿Vas a esperar mucho?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-order-2",
+      "itemIds": ["b1.tenses.all-day"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["games", "day.", "been", "They've", "all", "video", "playing"],
+      "accepted": ["They've been playing video games all day."],
+      "es": "Han estado jugando videojuegos todo el día."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-write-3",
+      "itemIds": ["b1.tenses.how-long-been-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Cuánto tiempo llevas trabajando aquí?",
+      "accepted": ["How long have you {been working|worked} here?"]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-cloze-7",
+      "itemIds": ["b1.tenses.present-perfect-continuous"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I've been reading this book for weeks, and I still haven't ___ it.",
+      "answers": ["finished"],
+      "distractors": ["been finishing", "finishing"],
+      "es": "Llevo semanas leyendo este libro y todavía no lo termino."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-write-4",
+      "itemIds": ["b1.tenses.been-living-since"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Estudio inglés desde hace dos años.",
+      "accepted": [
+        "I've been {studying|learning} English for {two|2} years.",
+        "I've {studied|learned} English for {two|2} years."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.tenses.practice-perfect-continuous-1",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto continuo: conócelo",
+      "exerciseIds": [
+        "b1.tenses.practice-perfect-continuous-vocab-1",
+        "b1.tenses.practice-perfect-continuous-choice-1",
+        "b1.tenses.practice-perfect-continuous-cloze-1",
+        "b1.tenses.practice-perfect-continuous-cloze-2",
+        "b1.tenses.practice-perfect-continuous-vocab-2",
+        "b1.tenses.practice-perfect-continuous-choice-2",
+        "b1.tenses.practice-perfect-continuous-cloze-3"
+      ],
+      "newItemIds": [
+        "b1.tenses.present-perfect-continuous",
+        "b1.tenses.how-long-been-doing",
+        "b1.tenses.been-living-since",
+        "b1.tenses.lately",
+        "b1.tenses.visible-result"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-2",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto continuo: practícalo",
+      "exerciseIds": [
+        "b1.tenses.practice-perfect-continuous-order-1",
+        "b1.tenses.practice-perfect-continuous-write-1",
+        "b1.tenses.practice-perfect-continuous-cloze-4",
+        "b1.tenses.practice-perfect-continuous-choice-3",
+        "b1.tenses.practice-perfect-continuous-write-2",
+        "b1.tenses.practice-perfect-continuous-reading-1",
+        "b1.tenses.practice-perfect-continuous-cloze-5"
+      ],
+      "newItemIds": [
+        "b1.tenses.all-day",
+        "b1.tenses.how-long-been-doing",
+        "b1.tenses.been-living-since",
+        "b1.tenses.visible-result",
+        "b1.tenses.lately"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-continuous-3",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto continuo: no lo confundas",
+      "exerciseIds": [
+        "b1.tenses.practice-perfect-continuous-vocab-3",
+        "b1.tenses.practice-perfect-continuous-cloze-6",
+        "b1.tenses.practice-perfect-continuous-choice-4",
+        "b1.tenses.practice-perfect-continuous-order-2",
+        "b1.tenses.practice-perfect-continuous-write-3",
+        "b1.tenses.practice-perfect-continuous-cloze-7",
+        "b1.tenses.practice-perfect-continuous-write-4"
+      ],
+      "newItemIds": [
+        "b1.tenses.been-living-since",
+        "b1.tenses.present-perfect-continuous",
+        "b1.tenses.how-long-been-doing",
+        "b1.tenses.all-day"
+      ],
+      "deepenCardIds": ["a2.grammar.for-since"]
+    }
+  ]
+}

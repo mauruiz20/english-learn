@@ -1,6 +1,30 @@
 {
   "glossary": [
     {
+      "id": "glossary.cab",
+      "headword": "cab",
+      "kind": "word",
+      "forms": ["cab", "cabs"],
+      "senses": [
+        {
+          "es": "taxi",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cacao",
+      "headword": "cacao",
+      "kind": "word",
+      "forms": ["cacao"],
+      "senses": [
+        {
+          "es": "cacao",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cafe",
       "headword": "café",
       "kind": "word",
@@ -8,6 +32,18 @@
       "senses": [
         {
           "es": "café, cafetería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cafeteria",
+      "headword": "cafeteria",
+      "kind": "word",
+      "forms": ["cafeteria", "cafeterias"],
+      "senses": [
+        {
+          "es": "cafetería, comedor",
           "pos": "noun"
         }
       ]
@@ -269,6 +305,18 @@
       ]
     },
     {
+      "id": "glossary.career",
+      "headword": "career",
+      "kind": "word",
+      "forms": ["career", "careers"],
+      "senses": [
+        {
+          "es": "carrera profesional, trayectoria (no la carrera universitaria)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.careful",
       "headword": "careful",
       "kind": "word",
@@ -289,6 +337,17 @@
         {
           "es": "con cuidado, cuidadosamente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carla",
+      "headword": "Carla",
+      "kind": "word",
+      "forms": ["carla"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
         }
       ]
     },
@@ -369,6 +428,30 @@
       ]
     },
     {
+      "id": "glossary.cashier",
+      "headword": "cashier",
+      "kind": "word",
+      "forms": ["cashier", "cashiers"],
+      "senses": [
+        {
+          "es": "cajero, cajera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.casual",
+      "headword": "casual",
+      "kind": "word",
+      "forms": ["casual"],
+      "senses": [
+        {
+          "es": "informal",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.cat",
       "headword": "cat",
       "kind": "word",
@@ -445,6 +528,18 @@
         {
           "es": "celular",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.celsius",
+      "headword": "Celsius",
+      "kind": "word",
+      "forms": ["celsius"],
+      "senses": [
+        {
+          "es": "centígrados",
+          "pos": "adjective"
         }
       ]
     },
@@ -597,6 +692,18 @@
       ]
     },
     {
+      "id": "glossary.checkout",
+      "headword": "checkout",
+      "kind": "word",
+      "forms": ["checkout", "checkouts"],
+      "senses": [
+        {
+          "es": "salida (del hotel), hora de dejar la habitación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cheer",
       "headword": "cheer",
       "kind": "word",
@@ -634,6 +741,30 @@
         {
           "es": "animarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cheese",
+      "headword": "cheese",
+      "kind": "word",
+      "forms": ["cheese", "cheeses"],
+      "senses": [
+        {
+          "es": "queso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chicago",
+      "headword": "Chicago",
+      "kind": "word",
+      "forms": ["chicago"],
+      "senses": [
+        {
+          "es": "Chicago (ciudad)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -686,6 +817,18 @@
         {
           "es": "Chile",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.china",
+      "headword": "China",
+      "kind": "word",
+      "forms": ["china"],
+      "senses": [
+        {
+          "es": "China",
+          "pos": "noun"
         }
       ]
     },
@@ -770,6 +913,18 @@
       ]
     },
     {
+      "id": "glossary.christmas",
+      "headword": "Christmas",
+      "kind": "word",
+      "forms": ["christmas"],
+      "senses": [
+        {
+          "es": "Navidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.church",
       "headword": "church",
       "kind": "word",
@@ -777,6 +932,18 @@
       "senses": [
         {
           "es": "iglesia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cinema",
+      "headword": "cinema",
+      "kind": "word",
+      "forms": ["cinema", "cinemas"],
+      "senses": [
+        {
+          "es": "cine",
           "pos": "noun"
         }
       ]
@@ -801,6 +968,22 @@
       "senses": [
         {
           "es": "centro de la ciudad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.claim",
+      "headword": "claim",
+      "kind": "word",
+      "forms": ["claim", "claims", "claimed", "claiming"],
+      "senses": [
+        {
+          "es": "reclamar, recoger",
+          "pos": "verb"
+        },
+        {
+          "es": "reclamo (baggage claim: recogida de equipaje)",
           "pos": "noun"
         }
       ]
@@ -886,6 +1069,18 @@
       ]
     },
     {
+      "id": "glossary.clerk",
+      "headword": "clerk",
+      "kind": "word",
+      "forms": ["clerk", "clerks"],
+      "senses": [
+        {
+          "es": "empleado, dependiente (de una tienda)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.client",
       "headword": "client",
       "kind": "word",
@@ -922,6 +1117,18 @@
         {
           "es": "subir, escalar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.clock",
+      "headword": "clock",
+      "kind": "word",
+      "forms": ["clock", "clocks"],
+      "senses": [
+        {
+          "es": "reloj (de pared o despertador)",
+          "pos": "noun"
         }
       ]
     },
@@ -990,6 +1197,18 @@
       ]
     },
     {
+      "id": "glossary.coach",
+      "headword": "coach",
+      "kind": "word",
+      "forms": ["coach", "coaches"],
+      "senses": [
+        {
+          "es": "entrenador, entrenadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.coal",
       "headword": "coal",
       "kind": "word",
@@ -997,6 +1216,18 @@
       "senses": [
         {
           "es": "carbón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.coast",
+      "headword": "coast",
+      "kind": "word",
+      "forms": ["coast", "coasts"],
+      "senses": [
+        {
+          "es": "costa",
           "pos": "noun"
         }
       ]
@@ -1053,6 +1284,18 @@
         },
         {
           "es": "resfriado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.collar",
+      "headword": "collar",
+      "kind": "word",
+      "forms": ["collar", "collars"],
+      "senses": [
+        {
+          "es": "collar (de perro), cuello (de camisa)",
           "pos": "noun"
         }
       ]
@@ -1198,6 +1441,34 @@
       ]
     },
     {
+      "id": "glossary.comma",
+      "headword": "comma",
+      "kind": "word",
+      "forms": ["comma", "commas"],
+      "senses": [
+        {
+          "es": "coma (signo de puntuación)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.comment",
+      "headword": "comment",
+      "kind": "word",
+      "forms": ["comment", "comments", "commented", "commenting"],
+      "senses": [
+        {
+          "es": "comentario",
+          "pos": "noun"
+        },
+        {
+          "es": "comentar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.common",
       "headword": "common",
       "kind": "word",
@@ -1250,6 +1521,18 @@
       ]
     },
     {
+      "id": "glossary.comparative",
+      "headword": "comparative",
+      "kind": "word",
+      "forms": ["comparative", "comparatives"],
+      "senses": [
+        {
+          "es": "comparativo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.compare",
       "headword": "compare",
       "kind": "word",
@@ -1258,6 +1541,18 @@
         {
           "es": "comparar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.complaint",
+      "headword": "complaint",
+      "kind": "word",
+      "forms": ["complaint", "complaints"],
+      "senses": [
+        {
+          "es": "queja, reclamo",
+          "pos": "noun"
         }
       ]
     },
@@ -1542,6 +1837,18 @@
       ]
     },
     {
+      "id": "glossary.correct",
+      "headword": "correct",
+      "kind": "word",
+      "forms": ["correct", "correctly"],
+      "senses": [
+        {
+          "es": "correcto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.cost",
       "headword": "cost",
       "kind": "word",
@@ -1706,6 +2013,22 @@
       ]
     },
     {
+      "id": "glossary.court",
+      "headword": "court",
+      "kind": "word",
+      "forms": ["court", "courts"],
+      "senses": [
+        {
+          "es": "cancha (de tenis)",
+          "pos": "noun"
+        },
+        {
+          "es": "tribunal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cousin",
       "headword": "cousin",
       "kind": "word",
@@ -1714,6 +2037,18 @@
         {
           "es": "primo, prima",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cover",
+      "headword": "cover",
+      "kind": "word",
+      "forms": ["cover", "covers", "covered", "covering"],
+      "senses": [
+        {
+          "es": "cubrir",
+          "pos": "verb"
         }
       ]
     },
@@ -1826,6 +2161,18 @@
       ]
     },
     {
+      "id": "glossary.crumb",
+      "headword": "crumb",
+      "kind": "word",
+      "forms": ["crumb", "crumbs"],
+      "senses": [
+        {
+          "es": "miga, migaja",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cry",
       "headword": "cry",
       "kind": "word",
@@ -1857,6 +2204,18 @@
       "senses": [
         {
           "es": "choque cultural",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cup",
+      "headword": "cup",
+      "kind": "word",
+      "forms": ["cup", "cups"],
+      "senses": [
+        {
+          "es": "taza",
           "pos": "noun"
         }
       ]

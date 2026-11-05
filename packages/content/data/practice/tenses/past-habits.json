@@ -1,0 +1,422 @@
+{
+  "items": [
+    {
+      "id": "b2.tenses.would-past-habits",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "would for repeated past actions (We would play outside)",
+      "es": "would: acciones que se repetían en el pasado (solíamos…)",
+      "example": {
+        "en": "On Sundays, my grandfather would tell us stories.",
+        "es": "Los domingos, mi abuelo nos contaba historias."
+      }
+    },
+    {
+      "id": "b2.tenses.used-to-states",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "used to for past states (I used to have long hair)",
+      "es": "used to: estados del pasado que ya cambiaron",
+      "example": {
+        "en": "I used to have long hair.",
+        "es": "Antes tenía el pelo largo."
+      }
+    },
+    {
+      "id": "b2.tenses.no-would-states",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "used to, not would, with states (not I would have a dog)",
+      "es": "con estados (tener, ser, gustar) va used to, nunca would",
+      "example": {
+        "en": "When I was a child, I used to have a dog.",
+        "es": "Cuando era niño, tenía un perro."
+      }
+    },
+    {
+      "id": "b2.tenses.didnt-use-to",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "didn't use to / Did you use to…? (use, not used)",
+      "es": "no solía / ¿solías…? (use sin -d después de did)",
+      "example": {
+        "en": "I didn't use to like vegetables, but now I love them.",
+        "es": "Antes no me gustaban las verduras, pero ahora me encantan."
+      }
+    },
+    {
+      "id": "b2.tenses.not-anymore",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "phrase",
+      "term": "not… anymore",
+      "es": "ya no",
+      "example": {
+        "en": "I don't live there anymore.",
+        "es": "Ya no vivo ahí."
+      }
+    },
+    {
+      "id": "b2.tenses.used-to-vs-be-used-to",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "used to do vs be used to doing",
+      "es": "used to do: solía hacer · be used to doing: estar acostumbrado a hacer",
+      "example": {
+        "en": "I used to work at night, so I'm used to sleeping during the day.",
+        "es": "Antes trabajaba de noche, así que estoy acostumbrado a dormir de día."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.tenses.practice-past-habits-village",
+      "level": "B2",
+      "topics": ["tenses"],
+      "title": "My grandmother's village",
+      "text": "When my grandmother was young, life in her village was very different. There used to be only one phone, in the post office. In the evenings, families would sit outside and talk with their neighbors. My grandmother didn't use to go to school in winter, because the roads were too bad. She used to have a horse called Luna, and every morning she would ride it to the river to get water. The village doesn't look like that anymore: now there's a school, a paved road and good internet.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.tenses.practice-past-habits-vocab-1",
+      "itemIds": ["b2.tenses.would-past-habits"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'would go' mean in 'Every summer, we would go to the lake.'?",
+      "options": [
+        "iríamos (si pudiéramos)",
+        "vamos a ir",
+        "fuimos una sola vez",
+        "íbamos (solíamos ir)"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-choice-1",
+      "itemIds": ["b2.tenses.used-to-states"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I used to have long hair.",
+      "options": [
+        "Estoy acostumbrado a tener el pelo largo.",
+        "Antes tenía el pelo largo.",
+        "Quiero tener el pelo largo."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-cloze-1",
+      "itemIds": ["b2.tenses.didnt-use-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I didn't ___ to like vegetables, but now I love them.",
+      "answers": ["use"],
+      "distractors": ["used", "using"],
+      "es": "Antes no me gustaban las verduras, pero ahora me encantan."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-cloze-2",
+      "itemIds": ["b2.tenses.not-anymore"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She used to smoke, but she doesn't smoke ___.",
+      "answers": ["anymore"],
+      "distractors": ["yet", "already"],
+      "es": "Antes fumaba, pero ya no fuma."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-vocab-2",
+      "itemIds": ["b2.tenses.no-would-states"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "When I was a child, I used to have a dog.",
+        "When I was a child, I would have a dog.",
+        "When I was a child, I use to have a dog."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-choice-2",
+      "itemIds": ["b2.tenses.would-past-habits"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "On Sundays, my grandfather would tell us stories.",
+      "options": [
+        "Los domingos, mi abuelo nos contaría historias.",
+        "El domingo, mi abuelo nos va a contar historias.",
+        "Los domingos, mi abuelo nos contaba historias."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-cloze-3",
+      "itemIds": ["b2.tenses.used-to-states"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "There ___ to be a movie theater on this street, but now it's a supermarket.",
+      "answers": ["used"],
+      "distractors": ["would", "use"],
+      "es": "Antes había un cine en esta calle, pero ahora es un supermercado."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-order-1",
+      "itemIds": ["b2.tenses.didnt-use-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["have", "use", "We", "car.", "to", "didn't", "a"],
+      "accepted": ["We didn't use to have a car."],
+      "es": "Antes no teníamos auto."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-write-1",
+      "itemIds": ["b2.tenses.used-to-states"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Antes vivía en un pueblo pequeño.",
+      "accepted": ["{I|He|She} used to live in a {small town|village|small village}."]
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-cloze-4",
+      "itemIds": ["b2.tenses.would-past-habits"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "When we were kids, we ___ ride our bikes to school every day.",
+      "answers": ["would"],
+      "distractors": ["were", "have"],
+      "es": "Cuando éramos niños, íbamos en bicicleta a la escuela todos los días."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-choice-3",
+      "itemIds": ["b2.tenses.not-anymore"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I don't live there anymore.",
+      "options": ["Todavía vivo ahí.", "Ya no vivo ahí.", "Nunca viví ahí."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-write-2",
+      "itemIds": ["b2.tenses.didnt-use-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Antes no tomaba café.",
+      "accepted": ["{I|He|She} {didn't use to|never used to|used not to} drink coffee."]
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-reading-1",
+      "itemIds": [
+        "b2.tenses.would-past-habits",
+        "b2.tenses.used-to-states",
+        "b2.tenses.didnt-use-to",
+        "b2.tenses.not-anymore"
+      ],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b2.tenses.practice-past-habits-village",
+      "questions": [
+        {
+          "prompt": "Where was the only phone in the village?",
+          "options": ["At the school", "At her house", "In the post office"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What would families do in the evenings?",
+          "options": ["Watch TV", "Sit outside and talk", "Ride to the river"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why didn't the grandmother go to school in winter?",
+          "options": ["The roads were too bad.", "She had to work.", "The school was closed."],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-cloze-5",
+      "itemIds": ["b2.tenses.used-to-vs-be-used-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'm used to ___ up early, so 6 a.m. isn't a problem for me.",
+      "answers": ["getting"],
+      "distractors": ["get", "got"],
+      "es": "Estoy acostumbrado a levantarme temprano, así que las 6 a.m. no son un problema para mí."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-vocab-3",
+      "itemIds": ["b2.tenses.didnt-use-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which question is correct?",
+      "options": [
+        "Did you used to play soccer?",
+        "Did you use to playing soccer?",
+        "Did you use to play soccer?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-cloze-6",
+      "itemIds": ["b2.tenses.used-to-vs-be-used-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "When I moved to Boston, I wasn't used to the cold, but now I ___ used to it.",
+      "answers": ["am"],
+      "distractors": ["use", "would"],
+      "es": "Cuando me mudé a Boston, no estaba acostumbrado al frío, pero ahora ya me acostumbré."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-choice-4",
+      "itemIds": ["b2.tenses.used-to-vs-be-used-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm used to working at night.",
+      "options": [
+        "Antes trabajaba de noche.",
+        "Estoy acostumbrado a trabajar de noche.",
+        "Voy a empezar a trabajar de noche."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-choice-5",
+      "itemIds": ["b2.tenses.used-to-vs-be-used-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I used to work at night.",
+      "options": [
+        "Antes trabajaba de noche.",
+        "Estoy acostumbrado a trabajar de noche.",
+        "Voy a empezar a trabajar de noche."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-order-2",
+      "itemIds": ["b2.tenses.would-past-habits"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["night.", "read", "dad", "My", "every", "to", "would", "us"],
+      "accepted": ["My dad would read to us every night."],
+      "es": "Mi papá nos leía todas las noches."
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-write-3",
+      "itemIds": ["b2.tenses.not-anymore"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ya no juego al tenis.",
+      "accepted": ["I don't play tennis anymore.", "I no longer play tennis."]
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-cloze-7",
+      "itemIds": ["b2.tenses.no-would-states"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "As a teenager, I ___ love horror movies, but now I can't watch them.",
+      "answers": ["used to"],
+      "distractors": ["would", "was used to"],
+      "es": "De adolescente me encantaban las películas de terror, pero ahora no puedo verlas."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.tenses.practice-past-habits-1",
+      "level": "B2",
+      "topic": "tenses",
+      "title": "Used to y would: conócelos",
+      "exerciseIds": [
+        "b2.tenses.practice-past-habits-vocab-1",
+        "b2.tenses.practice-past-habits-choice-1",
+        "b2.tenses.practice-past-habits-cloze-1",
+        "b2.tenses.practice-past-habits-cloze-2",
+        "b2.tenses.practice-past-habits-vocab-2",
+        "b2.tenses.practice-past-habits-choice-2",
+        "b2.tenses.practice-past-habits-cloze-3"
+      ],
+      "newItemIds": [
+        "b2.tenses.would-past-habits",
+        "b2.tenses.used-to-states",
+        "b2.tenses.didnt-use-to",
+        "b2.tenses.not-anymore",
+        "b2.tenses.no-would-states"
+      ],
+      "deepenCardIds": ["b1.grammar.used-to"]
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-2",
+      "level": "B2",
+      "topic": "tenses",
+      "title": "Used to y would: practícalos",
+      "exerciseIds": [
+        "b2.tenses.practice-past-habits-order-1",
+        "b2.tenses.practice-past-habits-write-1",
+        "b2.tenses.practice-past-habits-cloze-4",
+        "b2.tenses.practice-past-habits-choice-3",
+        "b2.tenses.practice-past-habits-write-2",
+        "b2.tenses.practice-past-habits-reading-1",
+        "b2.tenses.practice-past-habits-cloze-5"
+      ],
+      "newItemIds": [
+        "b2.tenses.used-to-vs-be-used-to",
+        "b2.tenses.would-past-habits",
+        "b2.tenses.used-to-states",
+        "b2.tenses.didnt-use-to",
+        "b2.tenses.not-anymore"
+      ],
+      "deepenCardIds": ["b2.grammar.used-to"]
+    },
+    {
+      "id": "b2.tenses.practice-past-habits-3",
+      "level": "B2",
+      "topic": "tenses",
+      "title": "Used to y would: no los confundas",
+      "exerciseIds": [
+        "b2.tenses.practice-past-habits-vocab-3",
+        "b2.tenses.practice-past-habits-cloze-6",
+        "b2.tenses.practice-past-habits-choice-4",
+        "b2.tenses.practice-past-habits-choice-5",
+        "b2.tenses.practice-past-habits-order-2",
+        "b2.tenses.practice-past-habits-write-3",
+        "b2.tenses.practice-past-habits-cloze-7"
+      ],
+      "newItemIds": [
+        "b2.tenses.used-to-vs-be-used-to",
+        "b2.tenses.didnt-use-to",
+        "b2.tenses.would-past-habits",
+        "b2.tenses.not-anymore",
+        "b2.tenses.no-would-states"
+      ],
+      "deepenCardIds": ["b2.grammar.used-to"]
+    }
+  ]
+}

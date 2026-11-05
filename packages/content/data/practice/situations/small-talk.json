@@ -1,0 +1,440 @@
+{
+  "items": [
+    {
+      "id": "b1.situations.hows-it-going",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "How's it going?",
+      "es": "¿Qué tal?, ¿cómo va todo? (informal)",
+      "example": {
+        "en": "Hey, Tom! How's it going?",
+        "es": "¡Hola, Tom! ¿Qué tal?"
+      }
+    },
+    {
+      "id": "b1.situations.what-do-you-do",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "What do you do?",
+      "es": "¿A qué te dedicas?",
+      "example": {
+        "en": "So, what do you do? I'm a nurse.",
+        "es": "Y, ¿a qué te dedicas? Soy enfermera."
+      }
+    },
+    {
+      "id": "b1.situations.what-brings-you-here",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "What brings you here?",
+      "es": "¿Qué te trae por aquí?",
+      "example": {
+        "en": "So, what brings you here? Are you a friend of the bride?",
+        "es": "¿Y qué te trae por aquí? ¿Eres amigo de la novia?"
+      }
+    },
+    {
+      "id": "b1.situations.how-do-you-know",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "How do you know (someone)?",
+      "es": "¿De dónde conoces a (alguien)?",
+      "example": {
+        "en": "How do you know Sara? We work together.",
+        "es": "¿De dónde conoces a Sara? Trabajamos juntos."
+      }
+    },
+    {
+      "id": "b1.situations.nice-talking-to-you",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "It was nice talking to you.",
+      "es": "Fue un gusto hablar contigo.",
+      "example": {
+        "en": "I have to go now. It was nice talking to you!",
+        "es": "Ya me tengo que ir. ¡Fue un gusto hablar contigo!"
+      }
+    },
+    {
+      "id": "b1.situations.beautiful-day-isnt-it",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Beautiful day, isn't it?",
+      "es": "Hace un día precioso, ¿no?",
+      "example": {
+        "en": "Beautiful day, isn't it? Yes, finally some sun!",
+        "es": "Hace un día precioso, ¿no? Sí, ¡por fin un poco de sol!"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.situations.practice-small-talk-wedding",
+      "level": "B1",
+      "topics": ["situations"],
+      "title": "At the wedding",
+      "text": "Emma: Hi! I don't think we've met. I'm Emma. Daniel: Hi, Emma. I'm Daniel. Beautiful day, isn't it? Emma: It really is. So, how do you know the bride? Daniel: We went to college together. What about you? Emma: She's my cousin. And what do you do, Daniel? Daniel: I'm a nurse. I work at a children's hospital. Emma: That sounds interesting! Well, I should go and find my seat. It was nice talking to you. Daniel: You too!",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.situations.practice-small-talk-vocab-1",
+      "itemIds": ["b1.situations.hows-it-going"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'How's it going?' mean?",
+      "options": [
+        "¿Adónde vas?",
+        "¿Qué tal?, ¿cómo va todo?",
+        "¿Cómo te vas?",
+        "¿Qué estás haciendo?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-small-talk-choice-1",
+      "itemIds": ["b1.situations.what-do-you-do"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "So, what do you do, Mark?",
+      "options": [
+        "Y, ¿qué estás haciendo, Mark?",
+        "Y, ¿qué vas a hacer hoy, Mark?",
+        "Y, ¿a qué te dedicas, Mark?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-small-talk-cloze-1",
+      "itemIds": ["b1.situations.how-do-you-know"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "This is a great party. How do you ___ Sara?",
+      "answers": ["know"],
+      "distractors": ["knew", "known"],
+      "es": "Qué buena fiesta. ¿De dónde conoces a Sara?"
+    },
+    {
+      "id": "b1.situations.practice-small-talk-vocab-2",
+      "itemIds": ["b1.situations.what-brings-you-here"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'What brings you here?' mean?",
+      "options": [
+        "¿Qué trajiste?",
+        "¿Quién te trajo?",
+        "¿Qué te trae por aquí?",
+        "¿Qué vas a traer?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-small-talk-choice-2",
+      "itemIds": ["b1.situations.nice-talking-to-you"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Well, I have to go. It was nice talking to you!",
+      "options": [
+        "Bueno, me tengo que ir. ¡Fue un gusto hablar contigo!",
+        "Bueno, me tengo que ir. ¡Llámame cuando puedas!",
+        "Bueno, me tengo que ir. ¡Hablamos mañana!"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.situations.practice-small-talk-vocab-3",
+      "itemIds": ["b1.situations.beautiful-day-isnt-it"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "You're waiting for the bus next to a stranger. What is a natural way to start a conversation?",
+      "options": [
+        "How much money do you make?",
+        "How old are you?",
+        "Beautiful day, isn't it?",
+        "Why are you here?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-small-talk-choice-3",
+      "itemIds": ["b1.situations.hows-it-going"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Hey, Tom! How's it going?",
+      "options": ["¡Hola, Tom! ¿Adónde vas?", "¡Hola, Tom! ¿Qué tal?", "¡Hola, Tom! ¿Cómo te fue?"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-small-talk-reading-1",
+      "itemIds": [
+        "b1.situations.beautiful-day-isnt-it",
+        "b1.situations.how-do-you-know",
+        "b1.situations.what-do-you-do",
+        "b1.situations.nice-talking-to-you"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.situations.practice-small-talk-wedding",
+      "questions": [
+        {
+          "prompt": "How does Daniel know the bride?",
+          "options": [
+            "She is his cousin.",
+            "They went to college together.",
+            "They work together."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does Daniel do?",
+          "options": ["He's a teacher.", "He's a doctor.", "He's a nurse."],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Who is Emma?",
+          "options": ["The bride's cousin", "The bride's sister", "Daniel's cousin"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.situations.practice-small-talk-cloze-2",
+      "itemIds": ["b1.situations.nice-talking-to-you"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "It was nice ___ to you. See you around!",
+      "answers": ["talking"],
+      "distractors": ["talk", "talked"],
+      "es": "Fue un gusto hablar contigo. ¡Nos vemos!"
+    },
+    {
+      "id": "b1.situations.practice-small-talk-order-1",
+      "itemIds": ["b1.situations.what-brings-you-here"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["here?", "you", "what", "brings", "So,"],
+      "accepted": ["So, what brings you here?"],
+      "es": "¿Y qué te trae por aquí?"
+    },
+    {
+      "id": "b1.situations.practice-small-talk-write-1",
+      "itemIds": ["b1.situations.what-do-you-do"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿A qué te dedicas?",
+      "accepted": [
+        "What do you do[ for a living]?",
+        "What's your job?",
+        "What {kind|type} of work do you do?"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-small-talk-choice-4",
+      "itemIds": ["b1.situations.how-do-you-know"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "How do you two know each other?",
+      "options": [
+        "¿Cuánto tiempo hace que se conocen?",
+        "¿De dónde se conocen ustedes dos?",
+        "¿Cómo se llaman ustedes dos?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-small-talk-cloze-3",
+      "itemIds": ["b1.situations.beautiful-day-isnt-it"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Beautiful day, ___ it?",
+      "answers": ["isn't"],
+      "distractors": ["is", "doesn't"],
+      "es": "Hace un día precioso, ¿no?"
+    },
+    {
+      "id": "b1.situations.practice-small-talk-write-2",
+      "itemIds": ["b1.situations.hows-it-going"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Hola, Ana, ¿qué tal?",
+      "accepted": ["{Hi|Hey|Hello}, Ana, {how's it going|how are you|how are things}?"]
+    },
+    {
+      "id": "b1.situations.practice-small-talk-vocab-4",
+      "itemIds": ["b1.situations.what-do-you-do"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "At a party, someone asks you 'What do you do?'. What do they want to know?",
+      "options": [
+        "qué estás haciendo ahora",
+        "a qué te dedicas, cuál es tu trabajo",
+        "qué vas a hacer hoy",
+        "qué hiciste ayer"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-small-talk-choice-5",
+      "itemIds": ["b1.situations.what-do-you-do"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "What are you doing this weekend?",
+      "options": [
+        "¿A qué te dedicas los fines de semana?",
+        "¿Qué hiciste este fin de semana?",
+        "¿Qué vas a hacer este fin de semana?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-small-talk-cloze-4",
+      "itemIds": ["b1.situations.how-do-you-know"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "So, ___ do you know Pedro? From work?",
+      "answers": ["how"],
+      "distractors": ["what", "who"],
+      "es": "¿Y de dónde conoces a Pedro? ¿Del trabajo?"
+    },
+    {
+      "id": "b1.situations.practice-small-talk-order-2",
+      "itemIds": ["b1.situations.nice-talking-to-you"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["talking", "really", "was", "to", "nice", "you.", "It"],
+      "accepted": ["It was really nice talking to you."],
+      "es": "Fue un verdadero gusto hablar contigo."
+    },
+    {
+      "id": "b1.situations.practice-small-talk-write-3",
+      "itemIds": ["b1.situations.what-brings-you-here"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Y qué te trae por aquí?",
+      "accepted": ["{So|And}[,] what brings you here?", "What brings you here?"]
+    },
+    {
+      "id": "b1.situations.practice-small-talk-choice-6",
+      "itemIds": ["b1.situations.hows-it-going"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Hey! How's it going? I haven't seen you in ages!",
+      "options": [
+        "¡Hola! ¿Adónde vas? ¡Hace siglos que no te veo!",
+        "¡Hola! ¿Cómo te fue? ¡Hace siglos que no te veía!",
+        "¡Hola! ¿Qué tal? ¡Hace siglos que no te veo!"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-small-talk-vocab-5",
+      "itemIds": ["b1.situations.beautiful-day-isnt-it"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'Beautiful day, isn't it?' mean?",
+      "options": [
+        "Mañana va a hacer buen día.",
+        "Hace un día precioso, ¿no?",
+        "¿Hoy no es tu día?",
+        "¿Qué día es hoy?"
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.situations.practice-small-talk-1",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Charla informal: frases clave",
+      "exerciseIds": [
+        "b1.situations.practice-small-talk-vocab-1",
+        "b1.situations.practice-small-talk-choice-1",
+        "b1.situations.practice-small-talk-cloze-1",
+        "b1.situations.practice-small-talk-vocab-2",
+        "b1.situations.practice-small-talk-choice-2",
+        "b1.situations.practice-small-talk-vocab-3",
+        "b1.situations.practice-small-talk-choice-3"
+      ],
+      "newItemIds": [
+        "b1.situations.hows-it-going",
+        "b1.situations.what-do-you-do",
+        "b1.situations.how-do-you-know",
+        "b1.situations.what-brings-you-here",
+        "b1.situations.nice-talking-to-you"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-small-talk-2",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Charla informal: practícalas",
+      "exerciseIds": [
+        "b1.situations.practice-small-talk-reading-1",
+        "b1.situations.practice-small-talk-cloze-2",
+        "b1.situations.practice-small-talk-order-1",
+        "b1.situations.practice-small-talk-write-1",
+        "b1.situations.practice-small-talk-choice-4",
+        "b1.situations.practice-small-talk-cloze-3",
+        "b1.situations.practice-small-talk-write-2"
+      ],
+      "newItemIds": [
+        "b1.situations.beautiful-day-isnt-it",
+        "b1.situations.nice-talking-to-you",
+        "b1.situations.what-brings-you-here",
+        "b1.situations.what-do-you-do",
+        "b1.situations.how-do-you-know"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-small-talk-3",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Charla informal: dilo bien",
+      "exerciseIds": [
+        "b1.situations.practice-small-talk-vocab-4",
+        "b1.situations.practice-small-talk-choice-5",
+        "b1.situations.practice-small-talk-cloze-4",
+        "b1.situations.practice-small-talk-order-2",
+        "b1.situations.practice-small-talk-write-3",
+        "b1.situations.practice-small-talk-choice-6",
+        "b1.situations.practice-small-talk-vocab-5"
+      ],
+      "newItemIds": [
+        "b1.situations.what-do-you-do",
+        "b1.situations.how-do-you-know",
+        "b1.situations.nice-talking-to-you",
+        "b1.situations.what-brings-you-here",
+        "b1.situations.hows-it-going"
+      ]
+    }
+  ]
+}

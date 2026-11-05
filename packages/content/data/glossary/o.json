@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.obligation",
+      "headword": "obligation",
+      "kind": "word",
+      "forms": ["obligation", "obligations"],
+      "senses": [
+        {
+          "es": "obligación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ocean",
       "headword": "ocean",
       "kind": "word",
@@ -105,6 +117,18 @@
         {
           "es": "a menudo, con frecuencia",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.oh",
+      "headword": "oh",
+      "kind": "word",
+      "forms": ["oh"],
+      "senses": [
+        {
+          "es": "ah, oh",
+          "pos": "interjection"
         }
       ]
     },
@@ -405,6 +429,18 @@
       ]
     },
     {
+      "id": "glossary.organized",
+      "headword": "organized",
+      "kind": "word",
+      "forms": ["organized"],
+      "senses": [
+        {
+          "es": "organizado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.original",
       "headword": "original",
       "kind": "word",
@@ -556,11 +592,23 @@
       "id": "glossary.own",
       "headword": "own",
       "kind": "word",
-      "forms": ["own"],
+      "forms": ["own", "owns", "owned", "owning"],
       "senses": [
         {
           "es": "propio (on my own: solo, por mi cuenta)",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.owner",
+      "headword": "owner",
+      "kind": "word",
+      "forms": ["owner", "owners"],
+      "senses": [
+        {
+          "es": "dueño",
+          "pos": "noun"
         }
       ]
     }

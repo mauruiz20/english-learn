@@ -1,0 +1,458 @@
+{
+  "items": [
+    {
+      "id": "a2.grammar.articles-a-an",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "a / an by sound (a car, an hour)",
+      "es": "a / an: un, una (an antes de sonido vocálico)",
+      "example": {
+        "en": "I waited for an hour in a long line.",
+        "es": "Esperé una hora en una fila larga."
+      }
+    },
+    {
+      "id": "a2.grammar.articles-jobs",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "a / an with jobs (She's a nurse.)",
+      "es": "a / an con profesiones (en español no se usa)",
+      "example": {
+        "en": "My mom is an engineer.",
+        "es": "Mi mamá es ingeniera."
+      }
+    },
+    {
+      "id": "a2.grammar.articles-the-specific",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "the for something specific or already mentioned",
+      "es": "the: algo concreto o que ya se mencionó",
+      "example": {
+        "en": "I bought a shirt and a jacket. The jacket was cheap.",
+        "es": "Compré una camisa y una chaqueta. La chaqueta fue barata."
+      }
+    },
+    {
+      "id": "a2.grammar.articles-zero-general",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "no article to talk in general (Dogs are…, Life is…)",
+      "es": "sin artículo para hablar en general",
+      "example": {
+        "en": "Life is short, so enjoy it.",
+        "es": "La vida es corta, así que disfrútala."
+      }
+    },
+    {
+      "id": "a2.grammar.articles-the-unique",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "the with unique things (the sun, the internet)",
+      "es": "the con cosas únicas (el sol, internet)",
+      "example": {
+        "en": "The moon is beautiful tonight.",
+        "es": "La luna está hermosa esta noche."
+      }
+    },
+    {
+      "id": "a2.grammar.articles-zero-places",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "no article with home, work, school and bed (go to work)",
+      "es": "sin artículo: go home, at work, to school, in bed",
+      "example": {
+        "en": "He goes to bed at eleven.",
+        "es": "Se acuesta a las once."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.grammar.practice-articles-vocab-1",
+      "itemIds": ["a2.grammar.articles-a-an"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which phrase is correct?",
+      "options": ["a hour", "an car", "an hour", "a umbrella"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-articles-cloze-1",
+      "itemIds": ["a2.grammar.articles-jobs"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My sister is ___ engineer.",
+      "answers": ["an"],
+      "distractors": ["a", "some"],
+      "es": "Mi hermana es ingeniera."
+    },
+    {
+      "id": "a2.grammar.practice-articles-choice-1",
+      "itemIds": ["a2.grammar.articles-zero-general"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Dogs are loyal animals.",
+      "options": [
+        "Estos perros son animales leales.",
+        "Los perros son animales leales.",
+        "Un perro es un animal leal."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-articles-cloze-2",
+      "itemIds": ["a2.grammar.articles-the-specific"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I bought a shirt and a jacket. ___ jacket was on sale.",
+      "answers": ["The"],
+      "distractors": ["A", "An"],
+      "es": "Compré una camisa y una chaqueta. La chaqueta estaba en oferta."
+    },
+    {
+      "id": "a2.grammar.practice-articles-vocab-2",
+      "itemIds": ["a2.grammar.articles-the-unique"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "Sun is very hot today.",
+        "A sun is very hot today.",
+        "The sun is very hot today."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-articles-choice-2",
+      "itemIds": ["a2.grammar.articles-zero-places"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He goes to work by bus.",
+      "options": [
+        "Va al trabajo en autobús.",
+        "Vuelve del trabajo en autobús.",
+        "Trabaja en un autobús."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.grammar.practice-articles-reading-1",
+      "itemIds": [
+        "a2.grammar.articles-a-an",
+        "a2.grammar.articles-zero-places",
+        "a2.grammar.articles-the-specific"
+      ],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a2.grammar.practice-articles-nurse",
+      "questions": [
+        {
+          "prompt": "What is Laura's job?",
+          "options": ["She's a teacher.", "She's a nurse.", "She's a doctor."],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "How does Laura go to work?",
+          "options": ["By bike", "By bus", "On foot"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What was expensive?",
+          "options": ["The guitar", "The hospital", "The book"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-articles-order-1",
+      "itemIds": ["a2.grammar.articles-jobs"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["architect.", "is", "My", "an", "father"],
+      "accepted": ["My father is an architect."],
+      "es": "Mi papá es arquitecto."
+    },
+    {
+      "id": "a2.grammar.practice-articles-write-1",
+      "itemIds": ["a2.grammar.articles-zero-general"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me encanta la música.",
+      "accepted": ["I love music."]
+    },
+    {
+      "id": "a2.grammar.practice-articles-cloze-3",
+      "itemIds": ["a2.grammar.articles-a-an"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We waited for ___ hour at the station.",
+      "answers": ["an"],
+      "distractors": ["a", "some"],
+      "es": "Esperamos una hora en la estación."
+    },
+    {
+      "id": "a2.grammar.practice-articles-choice-3",
+      "itemIds": ["a2.grammar.articles-the-unique"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I read the news on the internet every morning.",
+      "options": [
+        "Escucho las noticias en la radio todas las mañanas.",
+        "Leo noticias en un sitio web todas las noches.",
+        "Leo las noticias en internet todas las mañanas."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-articles-order-2",
+      "itemIds": ["a2.grammar.articles-zero-places"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["to", "late.", "brother", "goes", "very", "bed", "My"],
+      "accepted": ["My brother goes to bed very late."],
+      "es": "Mi hermano se acuesta muy tarde."
+    },
+    {
+      "id": "a2.grammar.practice-articles-write-2",
+      "itemIds": ["a2.grammar.articles-jobs"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ella es profesora.",
+      "accepted": ["She is a {teacher|professor}."]
+    },
+    {
+      "id": "a2.grammar.practice-articles-cloze-4",
+      "itemIds": ["a2.grammar.articles-the-specific"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Can you close ___ door, please? It's cold.",
+      "answers": ["the"],
+      "distractors": ["a", "an"],
+      "es": "¿Puedes cerrar la puerta, por favor? Hace frío."
+    },
+    {
+      "id": "a2.grammar.practice-articles-vocab-3",
+      "itemIds": ["a2.grammar.articles-zero-general"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "The life is hard sometimes.",
+        "Life is hard sometimes.",
+        "A life is hard sometimes."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-articles-cloze-5",
+      "itemIds": ["a2.grammar.articles-jobs"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He wants to be ___ doctor when he grows up.",
+      "answers": ["a"],
+      "distractors": ["an", "any"],
+      "es": "Quiere ser médico cuando sea grande."
+    },
+    {
+      "id": "a2.grammar.practice-articles-choice-4",
+      "itemIds": ["a2.grammar.articles-the-specific", "a2.grammar.articles-zero-general"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I like coffee, but the coffee at this café is terrible.",
+      "options": [
+        "No me gusta el café, y el café de esta cafetería es malísimo.",
+        "Me gusta el café, pero el café de esta cafetería es malísimo.",
+        "Me gusta el café de esta cafetería, pero el de mi casa es malísimo."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-articles-write-3",
+      "itemIds": ["a2.grammar.articles-zero-places"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mis hijos están en la escuela.",
+      "accepted": ["My {kids|children} are {at|in} school."]
+    },
+    {
+      "id": "a2.grammar.practice-articles-order-3",
+      "itemIds": ["a2.grammar.articles-a-an"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["man.", "honest", "is", "He", "an"],
+      "accepted": ["He is an honest man."],
+      "es": "Es un hombre honesto."
+    },
+    {
+      "id": "a2.grammar.practice-articles-cloze-6",
+      "itemIds": ["a2.grammar.articles-the-unique"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Look at ___ moon! It's so bright tonight.",
+      "answers": ["the"],
+      "distractors": ["a", "an"],
+      "es": "¡Mira la luna! Está muy brillante esta noche."
+    },
+    {
+      "id": "a2.grammar.practice-articles-write-4",
+      "itemIds": ["a2.grammar.articles-zero-general"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Los niños necesitan dormir mucho.",
+      "accepted": [
+        "{Children|Kids} need {a lot of|lots of|plenty of} sleep.",
+        "{Children|Kids} need to sleep a lot."
+      ]
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.grammar.practice-articles-nurse",
+      "level": "A2",
+      "topics": ["grammar"],
+      "title": "Laura's day",
+      "text": "My name is Laura and I'm a nurse. I work in a hospital in the center of the city. The hospital is old, but it's very clean. I usually go to work by bike, and I get home at seven. I love my job because people are kind and every day is different. Last week I bought a guitar and an old book of songs. The guitar was cheap, but the book was expensive!",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.grammar.practice-articles-1",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Artículos: conócelos",
+      "exerciseIds": [
+        "a2.grammar.practice-articles-vocab-1",
+        "a2.grammar.practice-articles-cloze-1",
+        "a2.grammar.practice-articles-choice-1",
+        "a2.grammar.practice-articles-cloze-2",
+        "a2.grammar.practice-articles-vocab-2",
+        "a2.grammar.practice-articles-choice-2",
+        "a2.grammar.practice-articles-reading-1"
+      ],
+      "newItemIds": [
+        "a2.grammar.articles-a-an",
+        "a2.grammar.articles-jobs",
+        "a2.grammar.articles-zero-general",
+        "a2.grammar.articles-the-specific",
+        "a2.grammar.articles-the-unique"
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-articles-2",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Artículos: practícalos",
+      "exerciseIds": [
+        "a2.grammar.practice-articles-order-1",
+        "a2.grammar.practice-articles-write-1",
+        "a2.grammar.practice-articles-cloze-3",
+        "a2.grammar.practice-articles-choice-3",
+        "a2.grammar.practice-articles-order-2",
+        "a2.grammar.practice-articles-write-2",
+        "a2.grammar.practice-articles-cloze-4"
+      ],
+      "newItemIds": [
+        "a2.grammar.articles-jobs",
+        "a2.grammar.articles-zero-general",
+        "a2.grammar.articles-a-an",
+        "a2.grammar.articles-the-unique",
+        "a2.grammar.articles-zero-places"
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-articles-3",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Artículos: no los confundas",
+      "exerciseIds": [
+        "a2.grammar.practice-articles-vocab-3",
+        "a2.grammar.practice-articles-cloze-5",
+        "a2.grammar.practice-articles-choice-4",
+        "a2.grammar.practice-articles-write-3",
+        "a2.grammar.practice-articles-order-3",
+        "a2.grammar.practice-articles-cloze-6",
+        "a2.grammar.practice-articles-write-4"
+      ],
+      "newItemIds": [
+        "a2.grammar.articles-zero-general",
+        "a2.grammar.articles-jobs",
+        "a2.grammar.articles-the-specific",
+        "a2.grammar.articles-zero-places",
+        "a2.grammar.articles-a-an"
+      ]
+    }
+  ]
+}

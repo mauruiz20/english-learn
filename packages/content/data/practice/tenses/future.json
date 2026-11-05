@@ -1,0 +1,415 @@
+{
+  "items": [
+    {
+      "id": "b1.tenses.will-instant-decision",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "will for decisions made now (I'll get it)",
+      "es": "will: decisiones que tomas en el momento",
+      "example": {
+        "en": "It's cold in here. — I'll close the window.",
+        "es": "Hace frío aquí. — Cierro la ventana."
+      }
+    },
+    {
+      "id": "b1.tenses.going-to-plan",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "going to for plans already decided (I'm going to study medicine)",
+      "es": "going to: planes e intenciones que ya decidiste",
+      "example": {
+        "en": "I'm going to buy a car. I've saved enough money.",
+        "es": "Voy a comprar un auto. Ya ahorré suficiente dinero."
+      }
+    },
+    {
+      "id": "b1.tenses.present-continuous-arrangement",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present continuous for fixed arrangements (I'm meeting Ana at six)",
+      "es": "presente continuo: citas y planes con día y hora",
+      "example": {
+        "en": "I can't see you tonight. I'm having dinner with my parents.",
+        "es": "No puedo verte esta noche. Voy a cenar con mis papás."
+      }
+    },
+    {
+      "id": "b1.tenses.present-simple-timetable",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present simple for timetables (The train leaves at 7:30)",
+      "es": "presente simple: horarios fijos (trenes, vuelos, clases)",
+      "example": {
+        "en": "Hurry up! The movie starts at eight.",
+        "es": "¡Apúrate! La película empieza a las ocho."
+      }
+    },
+    {
+      "id": "b1.tenses.will-promise",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "will for promises and offers (I'll call you)",
+      "es": "will: promesas y ofrecimientos",
+      "example": {
+        "en": "I'll send you the photos tonight.",
+        "es": "Esta noche te mando las fotos."
+      }
+    },
+    {
+      "id": "b1.tenses.i-think-will",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "I think… will (I think she'll win)",
+      "es": "creo que + will: predicciones y opiniones sobre el futuro",
+      "example": {
+        "en": "I think it'll be a great party.",
+        "es": "Creo que va a ser una gran fiesta."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.tenses.practice-future-sofia",
+      "level": "B1",
+      "topics": ["tenses"],
+      "title": "Weekend plans",
+      "text": "Sofia has a busy weekend. On Saturday morning she's playing tennis with her sister; they booked the court last week. Her bus to the coast leaves at 2:15, and she's going to spend the night at a friend's house there. She hasn't packed yet, but she says she'll do it tonight. \"I think it'll rain on Sunday,\" she says, \"so I'm going to take an umbrella.\"",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.tenses.practice-future-vocab-1",
+      "itemIds": ["b1.tenses.will-instant-decision"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "The doorbell rings. Which reply is correct?",
+      "options": ["I get it!", "I'll get it!", "I'm get it!"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-future-choice-1",
+      "itemIds": ["b1.tenses.present-simple-timetable"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "The train leaves at 7:30 tomorrow morning.",
+      "options": [
+        "El tren salió a las 7:30 esta mañana.",
+        "El tren sale todos los días a las 7:30.",
+        "El tren sale mañana a las 7:30 de la mañana."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-future-cloze-1",
+      "itemIds": ["b1.tenses.going-to-plan"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I've made up my mind. I'm ___ to study medicine next year.",
+      "answers": ["going"],
+      "distractors": ["will", "go"],
+      "es": "Ya me decidí. Voy a estudiar medicina el próximo año."
+    },
+    {
+      "id": "b1.tenses.practice-future-cloze-2",
+      "itemIds": ["b1.tenses.present-continuous-arrangement"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I can't see you tonight. I'm ___ dinner with my parents at eight.",
+      "answers": ["having"],
+      "distractors": ["have", "will"],
+      "es": "No puedo verte esta noche. Voy a cenar con mis papás a las ocho."
+    },
+    {
+      "id": "b1.tenses.practice-future-vocab-2",
+      "itemIds": ["b1.tenses.will-promise"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'I'll call you tomorrow, I promise.' express?",
+      "options": ["un horario", "un hábito", "una promesa", "algo que ya pasó"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-future-choice-2",
+      "itemIds": ["b1.tenses.i-think-will"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I think it'll be a great party.",
+      "options": [
+        "Creo que fue una gran fiesta.",
+        "Creo que va a ser una gran fiesta.",
+        "Creo que es una gran fiesta."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-future-cloze-3",
+      "itemIds": ["b1.tenses.present-simple-timetable"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Hurry up! The movie ___ at eight.",
+      "answers": ["starts"],
+      "distractors": ["start", "starting"],
+      "es": "¡Apúrate! La película empieza a las ocho."
+    },
+    {
+      "id": "b1.tenses.practice-future-order-1",
+      "itemIds": ["b1.tenses.present-continuous-arrangement"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["Chicago", "flying", "Saturday.", "We're", "to", "on"],
+      "accepted": ["We're flying to Chicago on Saturday."],
+      "es": "Volamos a Chicago el sábado."
+    },
+    {
+      "id": "b1.tenses.practice-future-write-1",
+      "itemIds": ["b1.tenses.will-promise"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Yo te ayudo con las maletas.",
+      "accepted": ["I'll help you with {your|the} {bags|suitcases|luggage}."]
+    },
+    {
+      "id": "b1.tenses.practice-future-cloze-4",
+      "itemIds": ["b1.tenses.going-to-plan"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We ___ going to paint the kitchen this weekend. We already bought the paint.",
+      "answers": ["are"],
+      "distractors": ["will", "do"],
+      "es": "Vamos a pintar la cocina este fin de semana. Ya compramos la pintura."
+    },
+    {
+      "id": "b1.tenses.practice-future-choice-3",
+      "itemIds": ["b1.tenses.will-instant-decision"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "It's cold in here. — I'll close the window.",
+      "options": [
+        "Hace frío aquí. — Cerré la ventana.",
+        "Hace frío aquí. — Siempre cierro la ventana.",
+        "Hace frío aquí. — Cierro la ventana."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-future-write-2",
+      "itemIds": ["b1.tenses.present-continuous-arrangement"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Mañana me voy a reunir con mi jefe a las diez.",
+      "accepted": [
+        "{I'm meeting|I'm going to meet|I'll meet} [with ]my boss {at {ten|10}[ o'clock] tomorrow|tomorrow at {ten|10}[ o'clock]}.",
+        "Tomorrow[,] {I'm meeting|I'm going to meet|I'll meet} [with ]my boss at {ten|10}[ o'clock]."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-future-reading-1",
+      "itemIds": [
+        "b1.tenses.present-continuous-arrangement",
+        "b1.tenses.present-simple-timetable",
+        "b1.tenses.going-to-plan"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.tenses.practice-future-sofia",
+      "questions": [
+        {
+          "prompt": "What is Sofia doing on Saturday morning?",
+          "options": ["Playing tennis", "Taking a bus", "Packing"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "When does her bus leave?",
+          "options": ["On Sunday", "Tonight", "At 2:15"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What is she going to take?",
+          "options": ["A tennis racket", "An umbrella", "A friend"],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-future-cloze-5",
+      "itemIds": ["b1.tenses.i-think-will"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'm sure you ___ love this book.",
+      "answers": ["will"],
+      "distractors": ["are", "going"],
+      "es": "Estoy seguro de que te va a encantar este libro."
+    },
+    {
+      "id": "b1.tenses.practice-future-vocab-3",
+      "itemIds": ["b1.tenses.going-to-plan"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I going to visit my aunt next week.",
+        "I'm going to visit my aunt next week.",
+        "I'm going visit my aunt next week."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-future-cloze-6",
+      "itemIds": ["b1.tenses.present-simple-timetable"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "According to the schedule, the flight ___ at 6:45.",
+      "answers": ["lands"],
+      "distractors": ["land", "landing"],
+      "es": "Según el horario, el vuelo aterriza a las 6:45."
+    },
+    {
+      "id": "b1.tenses.practice-future-choice-4",
+      "itemIds": ["b1.tenses.going-to-plan"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm going to buy a car. I've saved enough money.",
+      "options": [
+        "Compré un auto. Ahorré suficiente dinero.",
+        "Tal vez compre un auto algún día.",
+        "Voy a comprar un auto. Ya ahorré suficiente dinero."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-future-order-2",
+      "itemIds": ["b1.tenses.will-promise"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["photos", "send", "tonight.", "I'll", "the", "you"],
+      "accepted": ["I'll send you the photos tonight."],
+      "es": "Esta noche te mando las fotos."
+    },
+    {
+      "id": "b1.tenses.practice-future-write-3",
+      "itemIds": ["b1.tenses.will-instant-decision"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Tienes sed? Te traigo un vaso de agua.",
+      "accepted": ["Are you thirsty? I'll {get|bring} you a glass of water."]
+    },
+    {
+      "id": "b1.tenses.practice-future-cloze-7",
+      "itemIds": ["b1.tenses.present-continuous-arrangement"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "What ___ you doing tomorrow night? Do you want to go out?",
+      "answers": ["are"],
+      "distractors": ["do", "will"],
+      "es": "¿Qué vas a hacer mañana en la noche? ¿Quieres salir?"
+    },
+    {
+      "id": "b1.tenses.practice-future-write-4",
+      "itemIds": ["b1.tenses.i-think-will"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Creo que mañana va a llover.",
+      "accepted": [
+        "I think it {will|is going to} rain tomorrow.",
+        "I think tomorrow it {will|is going to} rain."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.tenses.practice-future-1",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Formas del futuro: conócelas",
+      "exerciseIds": [
+        "b1.tenses.practice-future-vocab-1",
+        "b1.tenses.practice-future-choice-1",
+        "b1.tenses.practice-future-cloze-1",
+        "b1.tenses.practice-future-cloze-2",
+        "b1.tenses.practice-future-vocab-2",
+        "b1.tenses.practice-future-choice-2",
+        "b1.tenses.practice-future-cloze-3"
+      ],
+      "newItemIds": [
+        "b1.tenses.will-instant-decision",
+        "b1.tenses.present-simple-timetable",
+        "b1.tenses.going-to-plan",
+        "b1.tenses.present-continuous-arrangement",
+        "b1.tenses.will-promise"
+      ],
+      "deepenCardIds": ["b1.grammar.future-forms"]
+    },
+    {
+      "id": "b1.tenses.practice-future-2",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Formas del futuro: practícalas",
+      "exerciseIds": [
+        "b1.tenses.practice-future-order-1",
+        "b1.tenses.practice-future-write-1",
+        "b1.tenses.practice-future-cloze-4",
+        "b1.tenses.practice-future-choice-3",
+        "b1.tenses.practice-future-write-2",
+        "b1.tenses.practice-future-reading-1",
+        "b1.tenses.practice-future-cloze-5"
+      ],
+      "newItemIds": [
+        "b1.tenses.i-think-will",
+        "b1.tenses.present-continuous-arrangement",
+        "b1.tenses.will-promise",
+        "b1.tenses.going-to-plan",
+        "b1.tenses.will-instant-decision"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-future-3",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Formas del futuro: no las confundas",
+      "exerciseIds": [
+        "b1.tenses.practice-future-vocab-3",
+        "b1.tenses.practice-future-cloze-6",
+        "b1.tenses.practice-future-choice-4",
+        "b1.tenses.practice-future-order-2",
+        "b1.tenses.practice-future-write-3",
+        "b1.tenses.practice-future-cloze-7",
+        "b1.tenses.practice-future-write-4"
+      ],
+      "newItemIds": [
+        "b1.tenses.present-simple-timetable",
+        "b1.tenses.going-to-plan",
+        "b1.tenses.will-promise",
+        "b1.tenses.will-instant-decision",
+        "b1.tenses.i-think-will"
+      ]
+    }
+  ]
+}

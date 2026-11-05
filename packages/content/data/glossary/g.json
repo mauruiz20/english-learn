@@ -45,6 +45,30 @@
       ]
     },
     {
+      "id": "glossary.garcia",
+      "headword": "García",
+      "kind": "word",
+      "forms": ["garcía", "garcia"],
+      "senses": [
+        {
+          "es": "García (apellido)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.garden",
+      "headword": "garden",
+      "kind": "word",
+      "forms": ["garden", "gardens"],
+      "senses": [
+        {
+          "es": "jardín",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.gas",
       "headword": "gas",
       "kind": "word",
@@ -69,6 +93,30 @@
         {
           "es": "gasolina",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gate",
+      "headword": "gate",
+      "kind": "word",
+      "forms": ["gate", "gates"],
+      "senses": [
+        {
+          "es": "puerta (de embarque); reja, portón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.general",
+      "headword": "general",
+      "kind": "word",
+      "forms": ["general"],
+      "senses": [
+        {
+          "es": "general (in general: en general)",
+          "pos": "adjective"
         }
       ]
     },
@@ -298,6 +346,18 @@
         {
           "es": "acostumbrarse a",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ghana",
+      "headword": "Ghana",
+      "kind": "word",
+      "forms": ["ghana"],
+      "senses": [
+        {
+          "es": "Ghana",
+          "pos": "noun"
         }
       ]
     },
@@ -626,6 +686,18 @@
       ]
     },
     {
+      "id": "glossary.goodbye",
+      "headword": "goodbye",
+      "kind": "word",
+      "forms": ["goodbye", "goodbyes"],
+      "senses": [
+        {
+          "es": "adiós (say goodbye: despedirse)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.government",
       "headword": "government",
       "kind": "word",
@@ -685,6 +757,18 @@
       "senses": [
         {
           "es": "abuelo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grandma",
+      "headword": "grandma",
+      "kind": "word",
+      "forms": ["grandma", "grandmas"],
+      "senses": [
+        {
+          "es": "abuela, abuelita",
           "pos": "noun"
         }
       ]
@@ -842,6 +926,18 @@
         {
           "es": "crecer, criarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.guess",
+      "headword": "guess",
+      "kind": "word",
+      "forms": ["guess", "guesses", "guessed", "guessing"],
+      "senses": [
+        {
+          "es": "adivinar (Guess what?: ¿sabes qué?)",
+          "pos": "verb"
         }
       ]
     },

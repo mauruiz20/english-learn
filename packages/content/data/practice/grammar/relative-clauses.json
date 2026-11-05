@@ -1,0 +1,460 @@
+{
+  "items": [
+    {
+      "id": "b1.grammar.relative-clauses-who-that",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "who / that for people (the woman who called)",
+      "es": "who o that para personas: la mujer que llamó",
+      "example": {
+        "en": "The woman who called you is my aunt.",
+        "es": "La mujer que te llamó es mi tía."
+      }
+    },
+    {
+      "id": "b1.grammar.relative-clauses-which-that",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "which / that for things (the bus that goes downtown)",
+      "es": "which o that para cosas: el autobús que va al centro",
+      "example": {
+        "en": "I lost the book that you gave me.",
+        "es": "Perdí el libro que me diste."
+      }
+    },
+    {
+      "id": "b1.grammar.relative-clauses-where",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "where for places (the town where I grew up)",
+      "es": "where para lugares: el pueblo donde crecí",
+      "example": {
+        "en": "This is the street where I grew up.",
+        "es": "Esta es la calle donde crecí."
+      }
+    },
+    {
+      "id": "b1.grammar.relative-clauses-whose",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "whose (the boy whose dog…)",
+      "es": "whose: cuyo, cuya (de quien)",
+      "example": {
+        "en": "I have a friend whose mother is a doctor.",
+        "es": "Tengo un amigo cuya mamá es médica."
+      }
+    },
+    {
+      "id": "b1.grammar.relative-clauses-no-pronoun",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "relative clause without who / that (the movie we saw)",
+      "es": "oración de relativo sin who ni that: la película que vimos",
+      "example": {
+        "en": "The movie we saw last night was great.",
+        "es": "La película que vimos anoche fue excelente."
+      }
+    },
+    {
+      "id": "b1.grammar.relative-clauses-commas",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "extra information between commas (my sister, who lives in Miami, …)",
+      "es": "información extra entre comas: mi hermana, que vive en Miami, …",
+      "example": {
+        "en": "My sister, who lives in Miami, is a nurse.",
+        "es": "Mi hermana, que vive en Miami, es enfermera."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.grammar.practice-relative-clauses-vocab-1",
+      "itemIds": ["b1.grammar.relative-clauses-whose"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'whose' mean in 'That's the girl whose brother is a pilot.'?",
+      "options": ["cuyo, cuya (de quien)", "quien", "donde", "el cual"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-choice-1",
+      "itemIds": ["b1.grammar.relative-clauses-who-that"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The man who lives next door is a firefighter.",
+      "options": [
+        "El hombre que vivía al lado era bombero.",
+        "El hombre de al lado vive con un bombero.",
+        "El hombre que vive al lado es bombero."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-cloze-1",
+      "itemIds": ["b1.grammar.relative-clauses-which-that"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I lost the umbrella ___ you gave me.",
+      "answers": ["that", "which"],
+      "distractors": ["who", "where"],
+      "es": "Perdí el paraguas que me diste."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-cloze-2",
+      "itemIds": ["b1.grammar.relative-clauses-where"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This is the café ___ we met for the first time.",
+      "answers": ["where"],
+      "distractors": ["which", "who"],
+      "es": "Este es el café donde nos conocimos."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-choice-2",
+      "itemIds": ["b1.grammar.relative-clauses-no-pronoun"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The movie we saw last night was boring.",
+      "options": [
+        "Vimos una película aburrida la semana pasada.",
+        "La película que vimos anoche fue aburrida.",
+        "La película que vamos a ver esta noche es aburrida."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-vocab-2",
+      "itemIds": ["b1.grammar.relative-clauses-commas"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "My sister, that lives in Miami, is a nurse.",
+        "My sister who lives in Miami, is a nurse.",
+        "My sister, which lives in Miami, is a nurse.",
+        "My sister, who lives in Miami, is a nurse."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-reading-1",
+      "itemIds": [
+        "b1.grammar.relative-clauses-who-that",
+        "b1.grammar.relative-clauses-where",
+        "b1.grammar.relative-clauses-whose"
+      ],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b1.grammar.practice-relative-clauses-neighborhood",
+      "questions": [
+        {
+          "prompt": "Who lives across the hall?",
+          "options": ["The owner of the bakery", "A retired teacher", "A soccer coach"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Where is the bakery owner's family from?",
+          "options": ["Italy", "France", "Spain"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What doesn't the writer like?",
+          "options": ["The bakery", "The park", "The bus to the office"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-order-1",
+      "itemIds": ["b1.grammar.relative-clauses-whose"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["father", "a", "whose", "pilot.", "I", "is", "have", "friend", "a"],
+      "accepted": ["I have a friend whose father is a pilot."],
+      "es": "Tengo un amigo cuyo papá es piloto."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-write-1",
+      "itemIds": ["b1.grammar.relative-clauses-who-that"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La mujer que me ayudó era enfermera.",
+      "accepted": ["The woman {who|that} helped me was a nurse."]
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-cloze-3",
+      "itemIds": ["b1.grammar.relative-clauses-which-that"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The bus ___ goes to the airport leaves every hour.",
+      "answers": ["that", "which"],
+      "distractors": ["who", "where"],
+      "es": "El autobús que va al aeropuerto sale cada hora."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-choice-3",
+      "itemIds": ["b1.grammar.relative-clauses-where"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "That's the hospital where I was born.",
+      "options": [
+        "Ese es el hospital donde trabaja mi mamá.",
+        "Nací cerca de ese hospital.",
+        "Ese es el hospital donde nací."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-order-2",
+      "itemIds": ["b1.grammar.relative-clauses-no-pronoun"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["about.", "the", "song", "This", "you", "I", "is", "told"],
+      "accepted": ["This is the song I told you about."],
+      "es": "Esta es la canción de la que te hablé."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-write-2",
+      "itemIds": ["b1.grammar.relative-clauses-no-pronoun"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El libro que estoy leyendo es muy bueno.",
+      "accepted": ["The book [that|which] I'm reading is {very|really} good."]
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-cloze-4",
+      "itemIds": ["b1.grammar.relative-clauses-commas"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Our boss, ___ is usually calm, got very angry today.",
+      "answers": ["who"],
+      "distractors": ["that", "which"],
+      "es": "Nuestra jefa, que normalmente es tranquila, se enojó mucho hoy."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-vocab-3",
+      "itemIds": ["b1.grammar.relative-clauses-who-that"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "The man which called you is here.",
+        "The man who called you is here.",
+        "The man who he called you is here.",
+        "The man where called you is here."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-cloze-5",
+      "itemIds": ["b1.grammar.relative-clauses-where"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This is the town ___ I grew up.",
+      "answers": ["where"],
+      "distractors": ["which", "that"],
+      "es": "Este es el pueblo donde crecí."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-write-3",
+      "itemIds": ["b1.grammar.relative-clauses-whose"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ese es el chico cuyo perro se perdió.",
+      "accepted": ["That's the {boy|kid} whose dog got lost."]
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-choice-4",
+      "itemIds": ["b1.grammar.relative-clauses-commas"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My brother, who lives in Canada, is coming to visit us.",
+      "options": [
+        "Mi hermano, que vive en Canadá, viene a visitarnos.",
+        "Mi hermano quiere vivir en Canadá y viene a visitarnos.",
+        "Vamos a visitar a mi hermano, que vive en Canadá."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-order-3",
+      "itemIds": ["b1.grammar.relative-clauses-no-pronoun"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["talking", "person", "Is", "you", "to?", "the", "were", "this"],
+      "accepted": ["Is this the person you were talking to?"],
+      "es": "¿Esta es la persona con la que estabas hablando?"
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-cloze-6",
+      "itemIds": ["b1.grammar.relative-clauses-whose"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I met a woman ___ son plays on the national team.",
+      "answers": ["whose"],
+      "distractors": ["who", "who's"],
+      "es": "Conocí a una mujer cuyo hijo juega en la selección nacional."
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-write-4",
+      "itemIds": ["b1.grammar.relative-clauses-commas"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi abuela, que tiene noventa años, todavía maneja.",
+      "accepted": ["My {grandmother|grandma}, who is {ninety|90} [years old], still drives."]
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.grammar.practice-relative-clauses-neighborhood",
+      "level": "B1",
+      "topics": ["grammar"],
+      "title": "My new neighborhood",
+      "text": "Last month I moved to a small apartment in a neighborhood where everyone seems to know each other. The woman who lives across the hall is a retired teacher, and she has already invited me for coffee twice. Downstairs there is a bakery that sells the best bread in town. The owner, whose family is from Italy, gets up at four every morning. There is also a park where kids play soccer after school. The only thing I don't like is the bus that goes to my office: it's always late!",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.grammar.practice-relative-clauses-1",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Oraciones de relativo: conócelas",
+      "exerciseIds": [
+        "b1.grammar.practice-relative-clauses-vocab-1",
+        "b1.grammar.practice-relative-clauses-choice-1",
+        "b1.grammar.practice-relative-clauses-cloze-1",
+        "b1.grammar.practice-relative-clauses-cloze-2",
+        "b1.grammar.practice-relative-clauses-choice-2",
+        "b1.grammar.practice-relative-clauses-vocab-2",
+        "b1.grammar.practice-relative-clauses-reading-1"
+      ],
+      "newItemIds": [
+        "b1.grammar.relative-clauses-whose",
+        "b1.grammar.relative-clauses-who-that",
+        "b1.grammar.relative-clauses-which-that",
+        "b1.grammar.relative-clauses-where",
+        "b1.grammar.relative-clauses-no-pronoun"
+      ],
+      "deepenCardIds": ["b1.grammar.relative-clauses"]
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-2",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Oraciones de relativo: practícalas",
+      "exerciseIds": [
+        "b1.grammar.practice-relative-clauses-order-1",
+        "b1.grammar.practice-relative-clauses-write-1",
+        "b1.grammar.practice-relative-clauses-cloze-3",
+        "b1.grammar.practice-relative-clauses-choice-3",
+        "b1.grammar.practice-relative-clauses-order-2",
+        "b1.grammar.practice-relative-clauses-write-2",
+        "b1.grammar.practice-relative-clauses-cloze-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.relative-clauses-whose",
+        "b1.grammar.relative-clauses-who-that",
+        "b1.grammar.relative-clauses-no-pronoun",
+        "b1.grammar.relative-clauses-commas",
+        "b1.grammar.relative-clauses-where"
+      ],
+      "deepenCardIds": ["b1.grammar.relative-clauses"]
+    },
+    {
+      "id": "b1.grammar.practice-relative-clauses-3",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Oraciones de relativo: no las confundas",
+      "exerciseIds": [
+        "b1.grammar.practice-relative-clauses-vocab-3",
+        "b1.grammar.practice-relative-clauses-cloze-5",
+        "b1.grammar.practice-relative-clauses-write-3",
+        "b1.grammar.practice-relative-clauses-choice-4",
+        "b1.grammar.practice-relative-clauses-order-3",
+        "b1.grammar.practice-relative-clauses-cloze-6",
+        "b1.grammar.practice-relative-clauses-write-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.relative-clauses-who-that",
+        "b1.grammar.relative-clauses-where",
+        "b1.grammar.relative-clauses-whose",
+        "b1.grammar.relative-clauses-commas",
+        "b1.grammar.relative-clauses-no-pronoun"
+      ],
+      "deepenCardIds": ["b1.grammar.relative-clauses"]
+    }
+  ]
+}

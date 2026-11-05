@@ -77,6 +77,18 @@
       ]
     },
     {
+      "id": "glossary.wall",
+      "headword": "wall",
+      "kind": "word",
+      "forms": ["wall", "walls"],
+      "senses": [
+        {
+          "es": "pared, muro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.wallet",
       "headword": "wallet",
       "kind": "word",
@@ -296,7 +308,7 @@
       "id": "glossary.weakness",
       "headword": "weakness",
       "kind": "word",
-      "forms": ["weakness"],
+      "forms": ["weakness", "weaknesses"],
       "senses": [
         {
           "es": "debilidad",
@@ -353,6 +365,18 @@
       ]
     },
     {
+      "id": "glossary.wednesday",
+      "headword": "Wednesday",
+      "kind": "word",
+      "forms": ["wednesday", "wednesdays"],
+      "senses": [
+        {
+          "es": "miércoles",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.week",
       "headword": "week",
       "kind": "word",
@@ -397,6 +421,22 @@
         {
           "es": "peso",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.welcome",
+      "headword": "welcome",
+      "kind": "word",
+      "forms": ["welcome", "welcomed"],
+      "senses": [
+        {
+          "es": "bienvenido (you're welcome: de nada)",
+          "pos": "adjective"
+        },
+        {
+          "es": "dar la bienvenida",
+          "pos": "verb"
         }
       ]
     },
@@ -713,6 +753,18 @@
       ]
     },
     {
+      "id": "glossary.win",
+      "headword": "win",
+      "kind": "word",
+      "forms": ["win", "wins", "winning"],
+      "senses": [
+        {
+          "es": "ganar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.wind",
       "headword": "wind",
       "kind": "word",
@@ -1020,6 +1072,18 @@
       "senses": [
         {
           "es": "peor",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.worst",
+      "headword": "worst",
+      "kind": "word",
+      "forms": ["worst"],
+      "senses": [
+        {
+          "es": "el peor, lo peor (de bad)",
           "pos": "adjective"
         }
       ]

@@ -1,0 +1,143 @@
+{
+  "practice": [
+    {
+      "id": "practice.grammar",
+      "title": "Gramática",
+      "summary": "Los puntos de gramática que más cuestan, con ejercicios nuevos y los errores típicos de quien habla español.",
+      "groups": [
+        {
+          "id": "practice.grammar.articles",
+          "level": "A2",
+          "title": "Artículos",
+          "summary": "A, an, the o nada: cuándo va cada uno.",
+          "lessonIds": [
+            "a2.grammar.practice-articles-1",
+            "a2.grammar.practice-articles-2",
+            "a2.grammar.practice-articles-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.prepositions",
+          "level": "A2",
+          "title": "Preposiciones de tiempo y lugar",
+          "summary": "In, on, at y compañía para fechas, horas y lugares.",
+          "lessonIds": [
+            "a2.grammar.practice-prepositions-1",
+            "a2.grammar.practice-prepositions-2",
+            "a2.grammar.practice-prepositions-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.countable",
+          "level": "A2",
+          "title": "Contables e incontables",
+          "summary": "Much, many, a lot of, a few y a little.",
+          "lessonIds": [
+            "a2.grammar.practice-countable-1",
+            "a2.grammar.practice-countable-2",
+            "a2.grammar.practice-countable-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.comparatives",
+          "level": "A2",
+          "title": "Comparativos y superlativos",
+          "summary": "Bigger, the biggest, as… as y los irregulares.",
+          "lessonIds": [
+            "a2.grammar.practice-comparatives-1",
+            "a2.grammar.practice-comparatives-2",
+            "a2.grammar.practice-comparatives-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.obligation",
+          "level": "B1",
+          "title": "Obligación y consejo",
+          "summary": "Must, have to, should, don't have to y mustn't.",
+          "lessonIds": [
+            "b1.grammar.practice-obligation-1",
+            "b1.grammar.practice-obligation-2",
+            "b1.grammar.practice-obligation-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.gerund-infinitive",
+          "level": "B1",
+          "title": "Gerundio o infinitivo",
+          "summary": "Enjoy doing, decide to do y los verbos que cambian de sentido.",
+          "lessonIds": [
+            "b1.grammar.practice-gerund-infinitive-1",
+            "b1.grammar.practice-gerund-infinitive-2",
+            "b1.grammar.practice-gerund-infinitive-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.passive",
+          "level": "B1",
+          "title": "La voz pasiva",
+          "summary": "Is made, was built, has been sold: cuando importa lo que pasó.",
+          "lessonIds": [
+            "b1.grammar.practice-passive-1",
+            "b1.grammar.practice-passive-2",
+            "b1.grammar.practice-passive-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.reported-speech",
+          "level": "B1",
+          "title": "Estilo indirecto",
+          "summary": "Contar lo que alguien dijo, preguntó o pidió.",
+          "lessonIds": [
+            "b1.grammar.practice-reported-speech-1",
+            "b1.grammar.practice-reported-speech-2",
+            "b1.grammar.practice-reported-speech-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.relative-clauses",
+          "level": "B1",
+          "title": "Oraciones de relativo",
+          "summary": "Who, which, that, where y whose.",
+          "lessonIds": [
+            "b1.grammar.practice-relative-clauses-1",
+            "b1.grammar.practice-relative-clauses-2",
+            "b1.grammar.practice-relative-clauses-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.questions",
+          "level": "B1",
+          "title": "Preguntas y question tags",
+          "summary": "El orden de la pregunta, preguntas de sujeto y …, isn't it?",
+          "lessonIds": [
+            "b1.grammar.practice-questions-1",
+            "b1.grammar.practice-questions-2",
+            "b1.grammar.practice-questions-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.deduction",
+          "level": "B2",
+          "title": "Deducciones",
+          "summary": "Must, might, can't, en presente y en pasado.",
+          "lessonIds": [
+            "b2.grammar.practice-deduction-1",
+            "b2.grammar.practice-deduction-2",
+            "b2.grammar.practice-deduction-3"
+          ]
+        },
+        {
+          "id": "practice.grammar.conditionals",
+          "level": "B2",
+          "title": "Condicionales",
+          "summary": "Del condicional cero al tercero.",
+          "lessonIds": [
+            "b2.grammar.practice-conditionals-1",
+            "b2.grammar.practice-conditionals-2",
+            "b2.grammar.practice-conditionals-3"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.ecuador",
+      "headword": "Ecuador",
+      "kind": "word",
+      "forms": ["ecuador"],
+      "senses": [
+        {
+          "es": "Ecuador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.edit",
       "headword": "edit",
       "kind": "word",
@@ -161,6 +173,18 @@
       ]
     },
     {
+      "id": "glossary.electricity",
+      "headword": "electricity",
+      "kind": "word",
+      "forms": ["electricity"],
+      "senses": [
+        {
+          "es": "electricidad, luz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.elena",
       "headword": "Elena",
       "kind": "word",
@@ -173,6 +197,18 @@
       ]
     },
     {
+      "id": "glossary.elevator",
+      "headword": "elevator",
+      "kind": "word",
+      "forms": ["elevator", "elevators"],
+      "senses": [
+        {
+          "es": "elevador, ascensor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.eleven",
       "headword": "eleven",
       "kind": "word",
@@ -181,6 +217,18 @@
         {
           "es": "once",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.else",
+      "headword": "else",
+      "kind": "word",
+      "forms": ["else"],
+      "senses": [
+        {
+          "es": "más, otro (something else: otra cosa)",
+          "pos": "adverb"
         }
       ]
     },
@@ -245,6 +293,17 @@
       ]
     },
     {
+      "id": "glossary.emma",
+      "headword": "Emma",
+      "kind": "word",
+      "forms": ["emma"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
       "id": "glossary.emotion",
       "headword": "emotion",
       "kind": "word",
@@ -304,6 +363,18 @@
       "senses": [
         {
           "es": "energía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.engineer",
+      "headword": "engineer",
+      "kind": "word",
+      "forms": ["engineer", "engineers"],
+      "senses": [
+        {
+          "es": "ingeniero, ingeniera",
           "pos": "noun"
         }
       ]
@@ -373,6 +444,18 @@
         {
           "es": "inscribirse, matricularse",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.entry",
+      "headword": "entry",
+      "kind": "word",
+      "forms": ["entry", "entries"],
+      "senses": [
+        {
+          "es": "entrada",
+          "pos": "noun"
         }
       ]
     },
@@ -449,6 +532,18 @@
       ]
     },
     {
+      "id": "glossary.europe",
+      "headword": "Europe",
+      "kind": "word",
+      "forms": ["europe"],
+      "senses": [
+        {
+          "es": "Europa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.even",
       "headword": "even",
       "kind": "word",
@@ -489,6 +584,18 @@
       ]
     },
     {
+      "id": "glossary.event",
+      "headword": "event",
+      "kind": "word",
+      "forms": ["event", "events"],
+      "senses": [
+        {
+          "es": "evento, acontecimiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ever",
       "headword": "ever",
       "kind": "word",
@@ -509,6 +616,18 @@
         {
           "es": "cada, todos los",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.everybody",
+      "headword": "everybody",
+      "kind": "word",
+      "forms": ["everybody"],
+      "senses": [
+        {
+          "es": "todos, todo el mundo",
+          "pos": "pronoun"
         }
       ]
     },
@@ -609,6 +728,22 @@
       ]
     },
     {
+      "id": "glossary.exchange",
+      "headword": "exchange",
+      "kind": "word",
+      "forms": ["exchange", "exchanges", "exchanged", "exchanging"],
+      "senses": [
+        {
+          "es": "cambiar (exchange for: cambiar por)",
+          "pos": "verb"
+        },
+        {
+          "es": "cambio, intercambio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.excited",
       "headword": "excited",
       "kind": "word",
@@ -661,6 +796,18 @@
         {
           "es": "hacer ejercicio",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exhausted",
+      "headword": "exhausted",
+      "kind": "word",
+      "forms": ["exhausted"],
+      "senses": [
+        {
+          "es": "agotado",
+          "pos": "adjective"
         }
       ]
     },
@@ -744,6 +891,18 @@
       "senses": [
         {
           "es": "explicar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.express",
+      "headword": "express",
+      "kind": "word",
+      "forms": ["express", "expresses", "expressed", "expressing"],
+      "senses": [
+        {
+          "es": "expresar",
           "pos": "verb"
         }
       ]

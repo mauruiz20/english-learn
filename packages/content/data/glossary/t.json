@@ -37,6 +37,30 @@
       ]
     },
     {
+      "id": "glossary.taco",
+      "headword": "taco",
+      "kind": "word",
+      "forms": ["taco", "tacos"],
+      "senses": [
+        {
+          "es": "taco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tag",
+      "headword": "tag",
+      "kind": "word",
+      "forms": ["tag", "tags"],
+      "senses": [
+        {
+          "es": "etiqueta; coletilla (question tag)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.take",
       "headword": "take",
       "kind": "word",
@@ -381,6 +405,18 @@
       ]
     },
     {
+      "id": "glossary.teeth",
+      "headword": "teeth",
+      "kind": "word",
+      "forms": ["teeth", "tooth"],
+      "senses": [
+        {
+          "es": "dientes (tooth: diente)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tell",
       "headword": "tell",
       "kind": "word",
@@ -409,6 +445,18 @@
       ]
     },
     {
+      "id": "glossary.temporary",
+      "headword": "temporary",
+      "kind": "word",
+      "forms": ["temporary"],
+      "senses": [
+        {
+          "es": "temporal, provisorio",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.ten",
       "headword": "ten",
       "kind": "word",
@@ -417,6 +465,42 @@
         {
           "es": "diez",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tenant",
+      "headword": "tenant",
+      "kind": "word",
+      "forms": ["tenant", "tenants"],
+      "senses": [
+        {
+          "es": "inquilino",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tennis",
+      "headword": "tennis",
+      "kind": "word",
+      "forms": ["tennis"],
+      "senses": [
+        {
+          "es": "tenis",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tense",
+      "headword": "tense",
+      "kind": "word",
+      "forms": ["tense", "tenses"],
+      "senses": [
+        {
+          "es": "tiempo verbal",
+          "pos": "noun"
         }
       ]
     },
@@ -693,6 +777,17 @@
         {
           "es": "ellos son, ellos están (they are)",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.they-ve",
+      "headword": "they've",
+      "kind": "word",
+      "forms": ["they've"],
+      "senses": [
+        {
+          "es": "ellos han (they have + participio)"
         }
       ]
     },
@@ -1005,6 +1100,18 @@
       ]
     },
     {
+      "id": "glossary.timetable",
+      "headword": "timetable",
+      "kind": "word",
+      "forms": ["timetable", "timetables"],
+      "senses": [
+        {
+          "es": "horario (de trenes, clases)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tired",
       "headword": "tired",
       "kind": "word",
@@ -1013,6 +1120,18 @@
         {
           "es": "cansado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.title",
+      "headword": "title",
+      "kind": "word",
+      "forms": ["title", "titles"],
+      "senses": [
+        {
+          "es": "título (de un libro, un puesto)",
+          "pos": "noun"
         }
       ]
     },
@@ -1073,6 +1192,30 @@
       ]
     },
     {
+      "id": "glossary.tom",
+      "headword": "Tom",
+      "kind": "word",
+      "forms": ["tom"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tomato",
+      "headword": "tomato",
+      "kind": "word",
+      "forms": ["tomato", "tomatoes"],
+      "senses": [
+        {
+          "es": "tomate, jitomate",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tomorrow",
       "headword": "tomorrow",
       "kind": "word",
@@ -1081,6 +1224,18 @@
         {
           "es": "mañana",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ton",
+      "headword": "ton",
+      "kind": "word",
+      "forms": ["ton", "tons"],
+      "senses": [
+        {
+          "es": "tonelada",
+          "pos": "noun"
         }
       ]
     },
@@ -1137,6 +1292,18 @@
       ]
     },
     {
+      "id": "glossary.toronto",
+      "headword": "Toronto",
+      "kind": "word",
+      "forms": ["toronto"],
+      "senses": [
+        {
+          "es": "(nombre propio) Toronto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.total",
       "headword": "total",
       "kind": "word",
@@ -1168,6 +1335,18 @@
       "senses": [
         {
           "es": "turista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.towel",
+      "headword": "towel",
+      "kind": "word",
+      "forms": ["towel", "towels"],
+      "senses": [
+        {
+          "es": "toalla",
           "pos": "noun"
         }
       ]
@@ -1228,6 +1407,18 @@
       "senses": [
         {
           "es": "tren",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.training",
+      "headword": "training",
+      "kind": "word",
+      "forms": ["training"],
+      "senses": [
+        {
+          "es": "capacitación, entrenamiento",
           "pos": "noun"
         }
       ]
@@ -1316,6 +1507,18 @@
       "senses": [
         {
           "es": "viaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trouble",
+      "headword": "trouble",
+      "kind": "word",
+      "forms": ["trouble", "troubles"],
+      "senses": [
+        {
+          "es": "molestia, problema",
           "pos": "noun"
         }
       ]

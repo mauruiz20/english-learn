@@ -1,0 +1,416 @@
+{
+  "items": [
+    {
+      "id": "a2.tenses.present-simple-habits",
+      "level": "A2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present simple for habits and facts (I work every day)",
+      "es": "presente simple: hábitos, rutinas y cosas que siempre son ciertas",
+      "example": {
+        "en": "She works in a bank and takes the bus every day.",
+        "es": "Trabaja en un banco y toma el autobús todos los días."
+      }
+    },
+    {
+      "id": "a2.tenses.present-continuous-now",
+      "level": "A2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present continuous for now (I'm working)",
+      "es": "presente continuo: lo que está pasando ahora",
+      "example": {
+        "en": "Be quiet! The baby is sleeping.",
+        "es": "¡Silencio! El bebé está durmiendo."
+      }
+    },
+    {
+      "id": "a2.tenses.present-continuous-temporary",
+      "level": "A2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present continuous for temporary situations (I'm staying with a friend)",
+      "es": "presente continuo: situaciones temporales",
+      "example": {
+        "en": "I'm staying with my cousin this month.",
+        "es": "Me estoy quedando con mi primo este mes."
+      }
+    },
+    {
+      "id": "a2.tenses.at-the-moment",
+      "level": "A2",
+      "topics": ["tenses"],
+      "kind": "phrase",
+      "term": "at the moment",
+      "es": "en este momento",
+      "example": {
+        "en": "Sorry, Mark is busy at the moment.",
+        "es": "Perdón, Mark está ocupado en este momento."
+      }
+    },
+    {
+      "id": "a2.tenses.how-often",
+      "level": "A2",
+      "topics": ["tenses"],
+      "kind": "phrase",
+      "term": "How often…?",
+      "es": "¿con qué frecuencia…?",
+      "example": {
+        "en": "How often do you go to the gym?",
+        "es": "¿Con qué frecuencia vas al gimnasio?"
+      }
+    },
+    {
+      "id": "a2.tenses.do-does-questions",
+      "level": "A2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "do / does in present simple questions (Does she work?)",
+      "es": "do / does para preguntar en presente simple",
+      "example": {
+        "en": "Does your sister live near here?",
+        "es": "¿Tu hermana vive cerca de aquí?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.tenses.practice-present-lucia",
+      "level": "A2",
+      "topics": ["tenses"],
+      "title": "A different month",
+      "text": "Lucía is a nurse. She usually works at night and sleeps in the morning. But this month she is working during the day, because a coworker is on vacation. She doesn't like it very much: she gets up at six and she's always tired. Right now it's one o'clock, and she's having lunch with her friend Tom in the hospital cafeteria. Tom works in the same hospital. How often do they eat together? Only once or twice a month.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.tenses.practice-present-vocab-1",
+      "itemIds": ["a2.tenses.present-simple-habits"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is about a habit?",
+      "options": [
+        "I'm watching a great movie.",
+        "I watch TV every evening.",
+        "Look, I'm wearing my new jacket."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.tenses.practice-present-choice-1",
+      "itemIds": ["a2.tenses.present-continuous-now"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Be quiet! The baby is sleeping.",
+      "options": [
+        "¡Silencio! El bebé duerme mucho.",
+        "¡Silencio! El bebé durmió toda la tarde.",
+        "¡Silencio! El bebé está durmiendo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.tenses.practice-present-cloze-1",
+      "itemIds": ["a2.tenses.present-simple-habits"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My dad ___ coffee every morning.",
+      "answers": ["drinks"],
+      "distractors": ["is drinking", "drink"],
+      "es": "Mi papá toma café todas las mañanas."
+    },
+    {
+      "id": "a2.tenses.practice-present-cloze-2",
+      "itemIds": ["a2.tenses.present-continuous-now"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Look out the window! It ___.",
+      "answers": ["is snowing"],
+      "distractors": ["snows", "snow"],
+      "es": "¡Mira por la ventana! Está nevando."
+    },
+    {
+      "id": "a2.tenses.practice-present-vocab-2",
+      "itemIds": ["a2.tenses.at-the-moment"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'at the moment' mean in 'She's in a meeting at the moment.'?",
+      "options": ["en un momento", "hace un momento", "en este momento", "por un momento"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.tenses.practice-present-choice-2",
+      "itemIds": ["a2.tenses.present-continuous-temporary"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm living with my aunt until I find an apartment.",
+      "options": [
+        "Estoy viviendo con mi tía hasta que encuentre un departamento.",
+        "Vivo con mi tía desde que era niño.",
+        "Viví con mi tía antes de encontrar un departamento."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.tenses.practice-present-vocab-3",
+      "itemIds": ["a2.tenses.how-often"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best answer to 'How often do you go swimming?'",
+      "options": ["Yes, I do.", "At the pool.", "With my sister.", "Twice a week."],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.tenses.practice-present-cloze-3",
+      "itemIds": ["a2.tenses.do-does-questions"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "___ your sister live near here?",
+      "answers": ["Does"],
+      "distractors": ["Is", "Do"],
+      "es": "¿Tu hermana vive cerca de aquí?"
+    },
+    {
+      "id": "a2.tenses.practice-present-order-1",
+      "itemIds": ["a2.tenses.present-continuous-now", "a2.tenses.at-the-moment"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["moment.", "having", "We're", "the", "dinner", "at"],
+      "accepted": ["We're having dinner at the moment."],
+      "es": "Estamos cenando en este momento."
+    },
+    {
+      "id": "a2.tenses.practice-present-write-1",
+      "itemIds": ["a2.tenses.present-simple-habits"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ella trabaja en un hospital.",
+      "accepted": ["She works {in|at} a hospital."]
+    },
+    {
+      "id": "a2.tenses.practice-present-choice-3",
+      "itemIds": ["a2.tenses.how-often"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "How often do you call your parents?",
+      "options": [
+        "¿Cuándo llamaste a tus papás?",
+        "¿Con qué frecuencia llamas a tus papás?",
+        "¿Por qué llamas a tus papás?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.tenses.practice-present-write-2",
+      "itemIds": ["a2.tenses.present-continuous-now"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Qué estás haciendo ahora?",
+      "accepted": ["What are you doing [right ]now?", "What are you doing at the moment?"]
+    },
+    {
+      "id": "a2.tenses.practice-present-cloze-4",
+      "itemIds": ["a2.tenses.present-continuous-temporary"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My office is closed this week, so I'm ___ from home.",
+      "answers": ["working"],
+      "distractors": ["work", "works"],
+      "es": "Mi oficina está cerrada esta semana, así que estoy trabajando desde casa."
+    },
+    {
+      "id": "a2.tenses.practice-present-reading-1",
+      "itemIds": ["a2.tenses.present-simple-habits", "a2.tenses.present-continuous-temporary"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.tenses.practice-present-lucia",
+      "questions": [
+        {
+          "prompt": "When does Lucía usually work?",
+          "options": ["At night", "In the morning", "On weekends"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Why is she working during the day this month?",
+          "options": [
+            "She doesn't like the night.",
+            "A coworker is on vacation.",
+            "She has a new job."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What is she doing right now?",
+          "options": ["She's sleeping.", "She's working.", "She's having lunch."],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.tenses.practice-present-vocab-4",
+      "itemIds": ["a2.tenses.do-does-questions"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which question is correct?",
+      "options": [
+        "Where you live?",
+        "Where are you live?",
+        "Where do you live?",
+        "Where does you live?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.tenses.practice-present-cloze-5",
+      "itemIds": ["a2.tenses.present-simple-habits"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Water ___ at 100 degrees Celsius.",
+      "answers": ["boils"],
+      "distractors": ["is boiling", "boil"],
+      "es": "El agua hierve a 100 grados centígrados."
+    },
+    {
+      "id": "a2.tenses.practice-present-choice-4",
+      "itemIds": ["a2.tenses.present-simple-habits", "a2.tenses.present-continuous-now"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Tom drives to work every day, but today he's taking the bus.",
+      "options": [
+        "Tom hoy maneja al trabajo, pero normalmente toma el autobús.",
+        "Tom maneja al trabajo todos los días, pero hoy va en autobús.",
+        "Tom nunca maneja al trabajo; siempre toma el autobús."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.tenses.practice-present-write-3",
+      "itemIds": ["a2.tenses.how-often"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Con qué frecuencia vas al cine?",
+      "accepted": ["How often do you go to the {movies|cinema}?"]
+    },
+    {
+      "id": "a2.tenses.practice-present-cloze-6",
+      "itemIds": ["a2.tenses.at-the-moment"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I can't talk ___. I'm driving.",
+      "answers": ["at the moment"],
+      "distractors": ["every day", "on weekends"],
+      "es": "No puedo hablar en este momento. Estoy manejando."
+    },
+    {
+      "id": "a2.tenses.practice-present-order-2",
+      "itemIds": ["a2.tenses.do-does-questions"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["work", "brother", "Saturdays?", "Does", "your", "on"],
+      "accepted": ["Does your brother work on Saturdays?"],
+      "es": "¿Tu hermano trabaja los sábados?"
+    },
+    {
+      "id": "a2.tenses.practice-present-write-4",
+      "itemIds": ["a2.tenses.present-continuous-temporary"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Este mes me estoy quedando con mi primo.",
+      "accepted": [
+        "I'm staying with my cousin this month.",
+        "This month[,] I'm staying with my cousin."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.tenses.practice-present-1",
+      "level": "A2",
+      "topic": "tenses",
+      "title": "Presente simple y continuo: conócelos",
+      "exerciseIds": [
+        "a2.tenses.practice-present-vocab-1",
+        "a2.tenses.practice-present-choice-1",
+        "a2.tenses.practice-present-cloze-1",
+        "a2.tenses.practice-present-cloze-2",
+        "a2.tenses.practice-present-vocab-2",
+        "a2.tenses.practice-present-choice-2",
+        "a2.tenses.practice-present-vocab-3"
+      ],
+      "newItemIds": [
+        "a2.tenses.present-simple-habits",
+        "a2.tenses.present-continuous-now",
+        "a2.tenses.at-the-moment",
+        "a2.tenses.present-continuous-temporary",
+        "a2.tenses.how-often"
+      ],
+      "deepenCardIds": ["a2.grammar.present-simple"]
+    },
+    {
+      "id": "a2.tenses.practice-present-2",
+      "level": "A2",
+      "topic": "tenses",
+      "title": "Presente simple y continuo: practícalos",
+      "exerciseIds": [
+        "a2.tenses.practice-present-cloze-3",
+        "a2.tenses.practice-present-order-1",
+        "a2.tenses.practice-present-write-1",
+        "a2.tenses.practice-present-choice-3",
+        "a2.tenses.practice-present-write-2",
+        "a2.tenses.practice-present-cloze-4",
+        "a2.tenses.practice-present-reading-1"
+      ],
+      "newItemIds": [
+        "a2.tenses.do-does-questions",
+        "a2.tenses.present-continuous-now",
+        "a2.tenses.present-simple-habits",
+        "a2.tenses.how-often",
+        "a2.tenses.present-continuous-temporary"
+      ]
+    },
+    {
+      "id": "a2.tenses.practice-present-3",
+      "level": "A2",
+      "topic": "tenses",
+      "title": "Presente simple y continuo: no los confundas",
+      "exerciseIds": [
+        "a2.tenses.practice-present-vocab-4",
+        "a2.tenses.practice-present-cloze-5",
+        "a2.tenses.practice-present-choice-4",
+        "a2.tenses.practice-present-write-3",
+        "a2.tenses.practice-present-cloze-6",
+        "a2.tenses.practice-present-order-2",
+        "a2.tenses.practice-present-write-4"
+      ],
+      "newItemIds": [
+        "a2.tenses.do-does-questions",
+        "a2.tenses.present-simple-habits",
+        "a2.tenses.present-continuous-now",
+        "a2.tenses.at-the-moment",
+        "a2.tenses.present-continuous-temporary"
+      ]
+    }
+  ]
+}

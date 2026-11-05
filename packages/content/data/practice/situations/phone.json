@@ -1,0 +1,435 @@
+{
+  "items": [
+    {
+      "id": "b1.situations.could-i-speak-to",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Could I speak to (someone)?",
+      "es": "¿Podría hablar con (alguien)?",
+      "example": {
+        "en": "Hello, could I speak to Dr. Silva, please?",
+        "es": "Hola, ¿podría hablar con la doctora Silva, por favor?"
+      }
+    },
+    {
+      "id": "b1.situations.whos-calling",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Who's calling?",
+      "es": "¿De parte de quién?",
+      "example": {
+        "en": "May I ask who's calling?",
+        "es": "¿De parte de quién?"
+      }
+    },
+    {
+      "id": "b1.situations.im-calling-about",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I'm calling about (something).",
+      "es": "Llamo por (algo).",
+      "example": {
+        "en": "Hi, I'm calling about the job ad on your website.",
+        "es": "Hola, llamo por el anuncio de trabajo de su sitio web."
+      }
+    },
+    {
+      "id": "b1.situations.leave-a-message",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "leave a message",
+      "es": "dejar un mensaje",
+      "example": {
+        "en": "She's in a meeting. Would you like to leave a message?",
+        "es": "Está en una reunión. ¿Quieres dejarle un mensaje?"
+      }
+    },
+    {
+      "id": "b1.situations.youre-breaking-up",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "You're breaking up.",
+      "es": "Se corta la llamada, te escucho entrecortado.",
+      "example": {
+        "en": "Sorry, I can't hear you. You're breaking up.",
+        "es": "Perdón, no te escucho. Se corta la llamada."
+      }
+    },
+    {
+      "id": "b1.situations.this-is-on-the-phone",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "This is (name).",
+      "es": "habla (nombre), soy (nombre) (al teléfono)",
+      "example": {
+        "en": "Hi, Carla, this is Ben. I'm calling from the bank.",
+        "es": "Hola, Carla, habla Ben. Te llamo del banco."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.situations.practice-phone-doctors-office",
+      "level": "B1",
+      "topics": ["situations"],
+      "title": "Calling the doctor's office",
+      "text": "Receptionist: Good morning, Dr. Silva's office. How can I help you? Paul: Hi, could I speak to Dr. Silva, please? Receptionist: I'm sorry, she's with a patient right now. Who's calling, please? Paul: This is Paul Ross. I'm calling about my appointment on Friday. Receptionist: Would you like to leave a message? Paul: Yes, please. Could you ask her to call me back this afternoon? Receptionist: Of course. Sorry, Mr. Ross, you're breaking up. Did you say this afternoon? Paul: Yes, after three. Thank you!",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.situations.practice-phone-vocab-1",
+      "itemIds": ["b1.situations.could-i-speak-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'Could I speak to Mr. Lee, please?' mean?",
+      "options": [
+        "¿Podría hablar como el señor Lee, por favor?",
+        "¿El señor Lee podría hablar más fuerte, por favor?",
+        "¿Podría hablar con el señor Lee, por favor?",
+        "¿Conoce al señor Lee?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-phone-choice-1",
+      "itemIds": ["b1.situations.whos-calling"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Who's calling, please?",
+      "options": [
+        "¿Quién llamó, por favor?",
+        "¿De parte de quién, por favor?",
+        "¿A quién llama, por favor?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-phone-cloze-1",
+      "itemIds": ["b1.situations.im-calling-about"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Hello, I'm calling ___ the job ad on your website.",
+      "answers": ["about"],
+      "distractors": ["for", "of"],
+      "es": "Hola, llamo por el anuncio de trabajo de su sitio web."
+    },
+    {
+      "id": "b1.situations.practice-phone-vocab-2",
+      "itemIds": ["b1.situations.leave-a-message"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'Can I leave a message?' mean?",
+      "options": [
+        "¿Me dejas un mensaje?",
+        "¿Puedo leer el mensaje?",
+        "¿Puedo irme?",
+        "¿Puedo dejar un mensaje?"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.situations.practice-phone-choice-2",
+      "itemIds": ["b1.situations.this-is-on-the-phone"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Hi, Carla, this is Ben. I'm calling from the bank.",
+      "options": [
+        "Hola, Carla, ¿está Ben? Te llamo del banco.",
+        "Hola, Carla, soy del banco. ¿Hablo con Ben?",
+        "Hola, Carla, habla Ben. Te llamo del banco."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-phone-vocab-3",
+      "itemIds": ["b1.situations.youre-breaking-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "On the phone, what does 'Sorry, you're breaking up.' mean?",
+      "options": [
+        "Perdón, estás terminando conmigo.",
+        "Perdón, se corta la llamada.",
+        "Perdón, estás muy ocupado.",
+        "Perdón, tengo que colgar."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-phone-choice-3",
+      "itemIds": ["b1.situations.leave-a-message"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She's not here right now. Would you like to leave a message?",
+      "options": [
+        "Ahora no está. ¿Quieres dejarle un mensaje?",
+        "Ahora no está. ¿Quieres que te deje un mensaje?",
+        "Ahora no está. ¿Quieres leer su mensaje?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.situations.practice-phone-reading-1",
+      "itemIds": [
+        "b1.situations.could-i-speak-to",
+        "b1.situations.whos-calling",
+        "b1.situations.im-calling-about"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.situations.practice-phone-doctors-office",
+      "questions": [
+        {
+          "prompt": "Why is Paul calling?",
+          "options": [
+            "To pay a bill",
+            "To make a new appointment",
+            "About his appointment on Friday"
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Why can't Dr. Silva come to the phone?",
+          "options": ["She is on vacation.", "She is with a patient.", "She is in a meeting."],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does Paul want Dr. Silva to do?",
+          "options": ["Call him back", "Send him an email", "Change his appointment"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.situations.practice-phone-cloze-2",
+      "itemIds": ["b1.situations.whos-calling"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Who's ___, please?",
+      "answers": ["calling"],
+      "distractors": ["call", "called"],
+      "es": "¿De parte de quién, por favor?"
+    },
+    {
+      "id": "b1.situations.practice-phone-order-1",
+      "itemIds": ["b1.situations.could-i-speak-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["the", "speak", "please?", "Could", "manager,", "to", "I"],
+      "accepted": ["Could I speak to the manager, please?"],
+      "es": "¿Podría hablar con el gerente, por favor?"
+    },
+    {
+      "id": "b1.situations.practice-phone-write-1",
+      "itemIds": ["b1.situations.leave-a-message"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Puedo dejar un mensaje?",
+      "accepted": ["{Can|Could|May} I leave a message?"]
+    },
+    {
+      "id": "b1.situations.practice-phone-choice-4",
+      "itemIds": ["b1.situations.youre-breaking-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "You're breaking up. I'll call you back in five minutes.",
+      "options": [
+        "Estás enojado. Te llamo en cinco minutos.",
+        "Se corta la llamada. Te vuelvo a llamar en cinco minutos.",
+        "Estás ocupado. Te llamo en cinco minutos."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-phone-cloze-3",
+      "itemIds": ["b1.situations.this-is-on-the-phone"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Hello, Mrs. Hall? ___ is Laura from the dentist's office.",
+      "answers": ["This"],
+      "distractors": ["I", "Here"],
+      "es": "¿Hola, señora Hall? Habla Laura, del consultorio del dentista."
+    },
+    {
+      "id": "b1.situations.practice-phone-write-2",
+      "itemIds": ["b1.situations.im-calling-about"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Llamo por la reserva.",
+      "accepted": ["I'm calling {about|regarding} {the|my} {reservation|booking}."]
+    },
+    {
+      "id": "b1.situations.practice-phone-vocab-4",
+      "itemIds": ["b1.situations.im-calling-about"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'Llamo por el departamento'.",
+      "options": [
+        "I'm calling for the apartment.",
+        "I'm calling about the apartment.",
+        "I'm calling of the apartment.",
+        "I call for the apartment."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-phone-choice-5",
+      "itemIds": ["b1.situations.whos-calling"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "May I ask who's calling?",
+      "options": ["¿A quién busca?", "¿Quién lo llamó?", "¿De parte de quién?"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-phone-cloze-4",
+      "itemIds": ["b1.situations.leave-a-message"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'm sorry, Mr. Davis is out of the office. Can I ___ a message?",
+      "answers": ["take"],
+      "distractors": ["leave", "do"],
+      "es": "Lo siento, el señor Davis no está en la oficina. ¿Quieres dejarle un mensaje?"
+    },
+    {
+      "id": "b1.situations.practice-phone-order-2",
+      "itemIds": ["b1.situations.youre-breaking-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["You're", "can't", "Sorry,", "up.", "hear", "breaking", "you.", "I"],
+      "accepted": ["Sorry, I can't hear you. You're breaking up."],
+      "es": "Perdón, no te escucho. Se corta la llamada."
+    },
+    {
+      "id": "b1.situations.practice-phone-write-3",
+      "itemIds": ["b1.situations.could-i-speak-to"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Podría hablar con Laura, por favor?",
+      "accepted": ["{Could|Can|May} I {speak|talk} {to|with} Laura[, please]?"]
+    },
+    {
+      "id": "b1.situations.practice-phone-choice-6",
+      "itemIds": ["b1.situations.this-is-on-the-phone"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Hi, this is Ana. Is Marta there?",
+      "options": [
+        "Hola, ¿eres Ana? ¿Está Marta?",
+        "Hola, soy Ana. ¿Está Marta?",
+        "Hola, esta es Ana. ¿Marta está afuera?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-phone-vocab-5",
+      "itemIds": ["b1.situations.whos-calling"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "The receptionist asks 'Who's calling?'. What does she want to know?",
+      "options": [
+        "a qué hora llamaste",
+        "de parte de quién es la llamada",
+        "a quién buscas",
+        "cuándo vas a volver a llamar"
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.situations.practice-phone-1",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Llamadas telefónicas: frases clave",
+      "exerciseIds": [
+        "b1.situations.practice-phone-vocab-1",
+        "b1.situations.practice-phone-choice-1",
+        "b1.situations.practice-phone-cloze-1",
+        "b1.situations.practice-phone-vocab-2",
+        "b1.situations.practice-phone-choice-2",
+        "b1.situations.practice-phone-vocab-3",
+        "b1.situations.practice-phone-choice-3"
+      ],
+      "newItemIds": [
+        "b1.situations.could-i-speak-to",
+        "b1.situations.whos-calling",
+        "b1.situations.im-calling-about",
+        "b1.situations.leave-a-message",
+        "b1.situations.this-is-on-the-phone"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-phone-2",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Llamadas telefónicas: practícalas",
+      "exerciseIds": [
+        "b1.situations.practice-phone-reading-1",
+        "b1.situations.practice-phone-cloze-2",
+        "b1.situations.practice-phone-order-1",
+        "b1.situations.practice-phone-write-1",
+        "b1.situations.practice-phone-choice-4",
+        "b1.situations.practice-phone-cloze-3",
+        "b1.situations.practice-phone-write-2"
+      ],
+      "newItemIds": [
+        "b1.situations.youre-breaking-up",
+        "b1.situations.could-i-speak-to",
+        "b1.situations.whos-calling",
+        "b1.situations.leave-a-message",
+        "b1.situations.im-calling-about"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-phone-3",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Llamadas telefónicas: dilo bien",
+      "exerciseIds": [
+        "b1.situations.practice-phone-vocab-4",
+        "b1.situations.practice-phone-choice-5",
+        "b1.situations.practice-phone-cloze-4",
+        "b1.situations.practice-phone-order-2",
+        "b1.situations.practice-phone-write-3",
+        "b1.situations.practice-phone-choice-6",
+        "b1.situations.practice-phone-vocab-5"
+      ],
+      "newItemIds": [
+        "b1.situations.im-calling-about",
+        "b1.situations.whos-calling",
+        "b1.situations.leave-a-message",
+        "b1.situations.youre-breaking-up",
+        "b1.situations.this-is-on-the-phone"
+      ]
+    }
+  ]
+}

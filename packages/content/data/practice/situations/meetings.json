@@ -1,0 +1,435 @@
+{
+  "items": [
+    {
+      "id": "b2.situations.sorry-to-interrupt",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Sorry to interrupt, but…",
+      "es": "perdón por interrumpir, pero…",
+      "example": {
+        "en": "Sorry to interrupt, but we only have five minutes left.",
+        "es": "Perdón por interrumpir, pero solo nos quedan cinco minutos."
+      }
+    },
+    {
+      "id": "b2.situations.lets-move-on-to",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Let's move on to (something).",
+      "es": "Pasemos a (algo).",
+      "example": {
+        "en": "OK, let's move on to the next item on the agenda.",
+        "es": "Bueno, pasemos al siguiente punto del orden del día."
+      }
+    },
+    {
+      "id": "b2.situations.not-sure-i-agree",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I'm not sure I agree.",
+      "es": "No sé si estoy de acuerdo.",
+      "example": {
+        "en": "I see your point, but I'm not sure I agree.",
+        "es": "Entiendo lo que dices, pero no sé si estoy de acuerdo."
+      }
+    },
+    {
+      "id": "b2.situations.please-find-attached",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Please find attached (something).",
+      "es": "Adjunto (algo). (en un correo)",
+      "example": {
+        "en": "Please find attached the report for March.",
+        "es": "Adjunto el informe de marzo."
+      }
+    },
+    {
+      "id": "b2.situations.look-forward-to-hearing-from-you",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I look forward to hearing from you.",
+      "es": "Quedo a la espera de tu respuesta.",
+      "example": {
+        "en": "Thank you for your time. I look forward to hearing from you.",
+        "es": "Gracias por tu tiempo. Quedo a la espera de tu respuesta."
+      }
+    },
+    {
+      "id": "b2.situations.best-regards",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Best regards",
+      "es": "saludos cordiales (para cerrar un correo)",
+      "example": {
+        "en": "Thanks again for your help. Best regards, Ana",
+        "es": "Gracias de nuevo por tu ayuda. Saludos cordiales, Ana"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.situations.practice-meetings-email",
+      "level": "B2",
+      "topics": ["situations"],
+      "title": "Project update",
+      "text": "Hi Mark, Thank you for your time at yesterday's meeting. Please find attached the new budget for the website project. As we discussed, we need to move on to the design stage next week, so I'd appreciate your comments by Thursday. If you have any questions, just let me know. I look forward to hearing from you. Best regards, Laura Kim",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.situations.practice-meetings-vocab-1",
+      "itemIds": ["b2.situations.sorry-to-interrupt"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'Sorry to interrupt, but…' mean?",
+      "options": [
+        "Perdón por llegar tarde, pero…",
+        "Perdón por interrumpir, pero…",
+        "Disculpa, no te entendí, pero…",
+        "Perdón por irme, pero…"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-meetings-choice-1",
+      "itemIds": ["b2.situations.lets-move-on-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "OK, let's move on to the next item on the agenda.",
+      "options": [
+        "Bueno, mudémonos al siguiente punto.",
+        "Bueno, volvamos al primer punto del orden del día.",
+        "Bueno, pasemos al siguiente punto del orden del día."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-meetings-cloze-1",
+      "itemIds": ["b2.situations.not-sure-i-agree"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I see your point, but I'm not sure I ___ with you.",
+      "answers": ["agree"],
+      "distractors": ["am agree", "agreeing"],
+      "es": "Entiendo lo que dices, pero no sé si estoy de acuerdo contigo."
+    },
+    {
+      "id": "b2.situations.practice-meetings-vocab-2",
+      "itemIds": ["b2.situations.please-find-attached"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "In a work email, what does 'Please find attached the report.' mean?",
+      "options": [
+        "Por favor, busca el informe.",
+        "El informe está en tu escritorio.",
+        "Por favor, encuentra el informe perdido.",
+        "Adjunto el informe."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.situations.practice-meetings-choice-2",
+      "itemIds": ["b2.situations.look-forward-to-hearing-from-you"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I look forward to hearing from you.",
+      "options": [
+        "Espero verte pronto.",
+        "Te escribo para informarte.",
+        "Quedo a la espera de tu respuesta."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-meetings-vocab-3",
+      "itemIds": ["b2.situations.best-regards"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What is the best way to end a formal work email?",
+      "options": ["Kisses,", "See ya,", "Best regards,", "Bye bye!"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-meetings-choice-3",
+      "itemIds": ["b2.situations.sorry-to-interrupt"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Sorry to interrupt, but we only have five minutes left.",
+      "options": [
+        "Perdón por interrumpir, pero solo nos quedan cinco minutos.",
+        "Perdón por llegar tarde, pero solo tengo cinco minutos.",
+        "No me interrumpas, que solo nos quedan cinco minutos."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.situations.practice-meetings-reading-1",
+      "itemIds": [
+        "b2.situations.please-find-attached",
+        "b2.situations.lets-move-on-to",
+        "b2.situations.look-forward-to-hearing-from-you",
+        "b2.situations.best-regards"
+      ],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b2.situations.practice-meetings-email",
+      "questions": [
+        {
+          "prompt": "Why is Laura writing to Mark?",
+          "options": [
+            "To cancel the meeting",
+            "To ask for a new job",
+            "To send him the new budget"
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "When does Laura need Mark's comments?",
+          "options": ["By next week", "By Thursday", "By yesterday's meeting"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What will the team start next week?",
+          "options": ["The design stage", "A new budget", "Another meeting"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.situations.practice-meetings-cloze-2",
+      "itemIds": ["b2.situations.lets-move-on-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We're running out of time, so let's move ___ to the budget.",
+      "answers": ["on"],
+      "distractors": ["in", "up"],
+      "es": "Se nos acaba el tiempo, así que pasemos al presupuesto."
+    },
+    {
+      "id": "b2.situations.practice-meetings-order-1",
+      "itemIds": ["b2.situations.not-sure-i-agree"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["agree", "I'm", "that", "not", "idea.", "with", "sure", "I"],
+      "accepted": ["I'm not sure I agree with that idea."],
+      "es": "No sé si estoy de acuerdo con esa idea."
+    },
+    {
+      "id": "b2.situations.practice-meetings-write-1",
+      "itemIds": ["b2.situations.sorry-to-interrupt"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Perdón por interrumpir, pero tengo una pregunta.",
+      "accepted": [
+        "{Sorry|I'm sorry} {to interrupt|for interrupting}, but {I have|I've got} a question.",
+        "Excuse me for interrupting, but {I have|I've got} a question."
+      ]
+    },
+    {
+      "id": "b2.situations.practice-meetings-choice-4",
+      "itemIds": ["b2.situations.best-regards"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Thanks again for your help. Best regards, Ana",
+      "options": [
+        "Gracias de nuevo por tu ayuda. Te extraño, Ana",
+        "Gracias de nuevo por tu ayuda. Saludos cordiales, Ana",
+        "Gracias de nuevo por tu ayuda. Feliz cumpleaños, Ana"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-meetings-cloze-3",
+      "itemIds": ["b2.situations.please-find-attached"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Please find ___ the invoice for March.",
+      "answers": ["attached"],
+      "distractors": ["attaching", "attach"],
+      "es": "Adjunto la factura de marzo."
+    },
+    {
+      "id": "b2.situations.practice-meetings-write-2",
+      "itemIds": ["b2.situations.look-forward-to-hearing-from-you"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Quedo a la espera de tu respuesta.",
+      "accepted": [
+        "{I look|I'm looking} forward to {hearing from you|your reply|your response|your answer}."
+      ]
+    },
+    {
+      "id": "b2.situations.practice-meetings-vocab-4",
+      "itemIds": ["b2.situations.not-sure-i-agree"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'Estoy de acuerdo contigo'.",
+      "options": [
+        "I am agree with you.",
+        "I agree with you.",
+        "I'm agree to you.",
+        "I agreed you."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-meetings-choice-5",
+      "itemIds": ["b2.situations.lets-move-on-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Let's move the meeting to Friday.",
+      "options": [
+        "Pasemos a hablar del viernes.",
+        "Cambiemos la reunión para el viernes.",
+        "Terminemos la reunión el viernes."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-meetings-cloze-4",
+      "itemIds": ["b2.situations.look-forward-to-hearing-from-you"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I look forward to ___ from you.",
+      "answers": ["hearing"],
+      "distractors": ["hear", "heard"],
+      "es": "Quedo a la espera de tu respuesta."
+    },
+    {
+      "id": "b2.situations.practice-meetings-order-2",
+      "itemIds": ["b2.situations.please-find-attached"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["attached", "contract", "find", "Please", "the"],
+      "accepted": ["Please find attached the contract", "Please find the contract attached"],
+      "es": "Adjunto el contrato."
+    },
+    {
+      "id": "b2.situations.practice-meetings-write-3",
+      "itemIds": ["b2.situations.not-sure-i-agree"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "No sé si estoy de acuerdo.",
+      "accepted": ["I'm not sure [that |if ]I agree.", "I don't know if I agree."]
+    },
+    {
+      "id": "b2.situations.practice-meetings-choice-6",
+      "itemIds": ["b2.situations.not-sure-i-agree", "b2.situations.lets-move-on-to"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm not sure I agree, but let's move on.",
+      "options": [
+        "No estoy de acuerdo, así que vámonos.",
+        "No sé si estoy de acuerdo, pero sigamos.",
+        "Estoy seguro de que tienes razón, sigamos."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-meetings-vocab-5",
+      "itemIds": ["b2.situations.best-regards"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which closing is too casual for an email to a new client?",
+      "options": ["Best regards,", "Kind regards,", "Sincerely,", "Love ya, xx"],
+      "answerIndex": 3
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.situations.practice-meetings-1",
+      "level": "B2",
+      "topic": "situations",
+      "title": "Reuniones y correos: frases clave",
+      "exerciseIds": [
+        "b2.situations.practice-meetings-vocab-1",
+        "b2.situations.practice-meetings-choice-1",
+        "b2.situations.practice-meetings-cloze-1",
+        "b2.situations.practice-meetings-vocab-2",
+        "b2.situations.practice-meetings-choice-2",
+        "b2.situations.practice-meetings-vocab-3",
+        "b2.situations.practice-meetings-choice-3"
+      ],
+      "newItemIds": [
+        "b2.situations.sorry-to-interrupt",
+        "b2.situations.lets-move-on-to",
+        "b2.situations.not-sure-i-agree",
+        "b2.situations.please-find-attached",
+        "b2.situations.look-forward-to-hearing-from-you"
+      ]
+    },
+    {
+      "id": "b2.situations.practice-meetings-2",
+      "level": "B2",
+      "topic": "situations",
+      "title": "Reuniones y correos: practícalas",
+      "exerciseIds": [
+        "b2.situations.practice-meetings-reading-1",
+        "b2.situations.practice-meetings-cloze-2",
+        "b2.situations.practice-meetings-order-1",
+        "b2.situations.practice-meetings-write-1",
+        "b2.situations.practice-meetings-choice-4",
+        "b2.situations.practice-meetings-cloze-3",
+        "b2.situations.practice-meetings-write-2"
+      ],
+      "newItemIds": [
+        "b2.situations.best-regards",
+        "b2.situations.please-find-attached",
+        "b2.situations.lets-move-on-to",
+        "b2.situations.look-forward-to-hearing-from-you",
+        "b2.situations.sorry-to-interrupt"
+      ]
+    },
+    {
+      "id": "b2.situations.practice-meetings-3",
+      "level": "B2",
+      "topic": "situations",
+      "title": "Reuniones y correos: dilo bien",
+      "exerciseIds": [
+        "b2.situations.practice-meetings-vocab-4",
+        "b2.situations.practice-meetings-choice-5",
+        "b2.situations.practice-meetings-cloze-4",
+        "b2.situations.practice-meetings-order-2",
+        "b2.situations.practice-meetings-write-3",
+        "b2.situations.practice-meetings-choice-6",
+        "b2.situations.practice-meetings-vocab-5"
+      ],
+      "newItemIds": [
+        "b2.situations.not-sure-i-agree",
+        "b2.situations.lets-move-on-to",
+        "b2.situations.look-forward-to-hearing-from-you",
+        "b2.situations.please-find-attached",
+        "b2.situations.best-regards"
+      ]
+    }
+  ]
+}

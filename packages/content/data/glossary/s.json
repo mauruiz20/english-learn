@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.safe",
+      "headword": "safe",
+      "kind": "word",
+      "forms": ["safe", "safer", "safest"],
+      "senses": [
+        {
+          "es": "seguro, a salvo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.said",
       "headword": "said",
       "kind": "word",
@@ -81,6 +93,18 @@
       ]
     },
     {
+      "id": "glossary.salesperson",
+      "headword": "salesperson",
+      "kind": "word",
+      "forms": ["salesperson", "salespeople"],
+      "senses": [
+        {
+          "es": "vendedor, vendedora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.salon",
       "headword": "salon",
       "kind": "word",
@@ -88,6 +112,18 @@
       "senses": [
         {
           "es": "salón de belleza, peluquería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.salt",
+      "headword": "salt",
+      "kind": "word",
+      "forms": ["salt"],
+      "senses": [
+        {
+          "es": "sal",
           "pos": "noun"
         }
       ]
@@ -125,6 +161,18 @@
         {
           "es": "sándwich",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sara",
+      "headword": "Sara",
+      "kind": "word",
+      "forms": ["sara"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -213,6 +261,18 @@
       ]
     },
     {
+      "id": "glossary.scared",
+      "headword": "scared",
+      "kind": "word",
+      "forms": ["scared"],
+      "senses": [
+        {
+          "es": "asustado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.scene",
       "headword": "scene",
       "kind": "word",
@@ -220,6 +280,18 @@
       "senses": [
         {
           "es": "escena",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.schedule",
+      "headword": "schedule",
+      "kind": "word",
+      "forms": ["schedule", "schedules"],
+      "senses": [
+        {
+          "es": "horario, agenda",
           "pos": "noun"
         }
       ]
@@ -349,6 +421,18 @@
       ]
     },
     {
+      "id": "glossary.season",
+      "headword": "season",
+      "kind": "word",
+      "forms": ["season", "seasons"],
+      "senses": [
+        {
+          "es": "estación (del año), temporada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.seat",
       "headword": "seat",
       "kind": "word",
@@ -393,6 +477,18 @@
       ]
     },
     {
+      "id": "glossary.security",
+      "headword": "security",
+      "kind": "word",
+      "forms": ["security"],
+      "senses": [
+        {
+          "es": "seguridad, garantía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.see",
       "headword": "see",
       "kind": "word",
@@ -413,6 +509,18 @@
         {
           "es": "despedir (a alguien que se va de viaje)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.seem",
+      "headword": "seem",
+      "kind": "word",
+      "forms": ["seem", "seems", "seemed", "seeming"],
+      "senses": [
+        {
+          "es": "parecer",
+          "pos": "verb"
         }
       ]
     },
@@ -501,6 +609,18 @@
       ]
     },
     {
+      "id": "glossary.separately",
+      "headword": "separately",
+      "kind": "word",
+      "forms": ["separately"],
+      "senses": [
+        {
+          "es": "por separado, aparte",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.serious",
       "headword": "serious",
       "kind": "word",
@@ -521,6 +641,34 @@
         {
           "es": "servir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.server",
+      "headword": "server",
+      "kind": "word",
+      "forms": ["server", "servers"],
+      "senses": [
+        {
+          "es": "mesero, mesera",
+          "pos": "noun"
+        },
+        {
+          "es": "servidor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.service",
+      "headword": "service",
+      "kind": "word",
+      "forms": ["service", "services"],
+      "senses": [
+        {
+          "es": "servicio",
+          "pos": "noun"
         }
       ]
     },
@@ -705,6 +853,17 @@
         {
           "es": "ella",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.she-ll",
+      "headword": "she'll",
+      "kind": "word",
+      "forms": ["she'll"],
+      "senses": [
+        {
+          "es": "ella (she will): futuro, she'll win = va a ganar"
         }
       ]
     },
@@ -1077,6 +1236,17 @@
       ]
     },
     {
+      "id": "glossary.silva",
+      "headword": "Silva",
+      "kind": "word",
+      "forms": ["silva"],
+      "senses": [
+        {
+          "es": "(apellido)"
+        }
+      ]
+    },
+    {
       "id": "glossary.simple",
       "headword": "simple",
       "kind": "word",
@@ -1301,6 +1471,18 @@
       ]
     },
     {
+      "id": "glossary.slice",
+      "headword": "slice",
+      "kind": "word",
+      "forms": ["slice", "slices"],
+      "senses": [
+        {
+          "es": "rebanada, porción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.slow",
       "headword": "slow",
       "kind": "word",
@@ -1512,7 +1694,7 @@
       "id": "glossary.sofia",
       "headword": "Sofía",
       "kind": "word",
-      "forms": ["sofía"],
+      "forms": ["sofía", "sofia"],
       "senses": [
         {
           "es": "Sofía (nombre propio)",
@@ -1649,6 +1831,18 @@
       ]
     },
     {
+      "id": "glossary.son",
+      "headword": "son",
+      "kind": "word",
+      "forms": ["son", "sons"],
+      "senses": [
+        {
+          "es": "hijo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.song",
       "headword": "song",
       "kind": "word",
@@ -1745,6 +1939,22 @@
       ]
     },
     {
+      "id": "glossary.sound",
+      "headword": "sound",
+      "kind": "word",
+      "forms": ["sound", "sounds", "sounded", "sounding"],
+      "senses": [
+        {
+          "es": "sonar, parecer",
+          "pos": "verb"
+        },
+        {
+          "es": "sonido",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.soup",
       "headword": "soup",
       "kind": "word",
@@ -1809,6 +2019,18 @@
       ]
     },
     {
+      "id": "glossary.spain",
+      "headword": "Spain",
+      "kind": "word",
+      "forms": ["spain"],
+      "senses": [
+        {
+          "es": "España",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.spark",
       "headword": "spark",
       "kind": "word",
@@ -1849,6 +2071,18 @@
       ]
     },
     {
+      "id": "glossary.specific",
+      "headword": "specific",
+      "kind": "word",
+      "forms": ["specific"],
+      "senses": [
+        {
+          "es": "concreto, específico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.speech",
       "headword": "speech",
       "kind": "word",
@@ -1877,6 +2111,18 @@
         {
           "es": "pasar (tiempo)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spicy",
+      "headword": "spicy",
+      "kind": "word",
+      "forms": ["spicy"],
+      "senses": [
+        {
+          "es": "picante",
+          "pos": "adjective"
         }
       ]
     },
@@ -1985,6 +2231,18 @@
       ]
     },
     {
+      "id": "glossary.stairs",
+      "headword": "stairs",
+      "kind": "word",
+      "forms": ["stairs"],
+      "senses": [
+        {
+          "es": "escaleras",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.stand",
       "headword": "stand",
       "kind": "word",
@@ -2021,6 +2279,18 @@
         {
           "es": "empezar, comenzar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.state",
+      "headword": "state",
+      "kind": "word",
+      "forms": ["state", "states"],
+      "senses": [
+        {
+          "es": "estado",
+          "pos": "noun"
         }
       ]
     },
@@ -2257,6 +2527,18 @@
       ]
     },
     {
+      "id": "glossary.stranger",
+      "headword": "stranger",
+      "kind": "word",
+      "forms": ["stranger", "strangers"],
+      "senses": [
+        {
+          "es": "desconocido, desconocida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.street",
       "headword": "street",
       "kind": "word",
@@ -2264,6 +2546,30 @@
       "senses": [
         {
           "es": "calle",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.strength",
+      "headword": "strength",
+      "kind": "word",
+      "forms": ["strength", "strengths"],
+      "senses": [
+        {
+          "es": "fortaleza, punto fuerte; fuerza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.strengths-and-weaknesses",
+      "headword": "strengths and weaknesses",
+      "kind": "phrase",
+      "forms": ["strengths and weaknesses"],
+      "senses": [
+        {
+          "es": "fortalezas y debilidades",
           "pos": "noun"
         }
       ]
@@ -2389,6 +2695,18 @@
       ]
     },
     {
+      "id": "glossary.success",
+      "headword": "success",
+      "kind": "word",
+      "forms": ["success"],
+      "senses": [
+        {
+          "es": "éxito",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.such",
       "headword": "such",
       "kind": "word",
@@ -2401,6 +2719,18 @@
         {
           "es": "tal, tan",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suddenly",
+      "headword": "suddenly",
+      "kind": "word",
+      "forms": ["suddenly"],
+      "senses": [
+        {
+          "es": "de repente",
+          "pos": "adverb"
         }
       ]
     },
@@ -2429,6 +2759,18 @@
       ]
     },
     {
+      "id": "glossary.suggest",
+      "headword": "suggest",
+      "kind": "word",
+      "forms": ["suggest", "suggests", "suggested", "suggesting"],
+      "senses": [
+        {
+          "es": "sugerir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.suit",
       "headword": "suit",
       "kind": "word",
@@ -2436,6 +2778,18 @@
       "senses": [
         {
           "es": "traje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suitcase",
+      "headword": "suitcase",
+      "kind": "word",
+      "forms": ["suitcase", "suitcases"],
+      "senses": [
+        {
+          "es": "maleta",
           "pos": "noun"
         }
       ]
@@ -2492,7 +2846,7 @@
       "id": "glossary.sunny",
       "headword": "sunny",
       "kind": "word",
-      "forms": ["sunny"],
+      "forms": ["sunny", "sunnier", "sunniest"],
       "senses": [
         {
           "es": "soleado",
@@ -2541,6 +2895,18 @@
         {
           "es": "(make sure) asegurarse",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.surface",
+      "headword": "surface",
+      "kind": "word",
+      "forms": ["surface", "surfaces"],
+      "senses": [
+        {
+          "es": "superficie",
+          "pos": "noun"
         }
       ]
     },
@@ -2621,6 +2987,18 @@
         {
           "es": "nadar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.swimmer",
+      "headword": "swimmer",
+      "kind": "word",
+      "forms": ["swimmer", "swimmers"],
+      "senses": [
+        {
+          "es": "nadador, nadadora",
+          "pos": "noun"
         }
       ]
     },

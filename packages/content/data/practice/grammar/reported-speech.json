@@ -1,0 +1,470 @@
+{
+  "items": [
+    {
+      "id": "b1.grammar.reported-speech-backshift",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "reported speech: one tense back (is → was)",
+      "es": "estilo indirecto: el verbo retrocede un tiempo (is → was)",
+      "example": {
+        "en": "She said she was hungry.",
+        "es": "Dijo que tenía hambre."
+      }
+    },
+    {
+      "id": "b1.grammar.reported-speech-told-me",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "told me / said to me (never said me)",
+      "es": "told me o said to me: nunca said me",
+      "example": {
+        "en": "He told me he was busy.",
+        "es": "Me dijo que estaba ocupado."
+      }
+    },
+    {
+      "id": "b1.grammar.reported-speech-will-would",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "reported speech: will → would",
+      "es": "estilo indirecto: will pasa a would",
+      "example": {
+        "en": "They said they would help us.",
+        "es": "Dijeron que nos ayudarían."
+      }
+    },
+    {
+      "id": "b1.grammar.reported-speech-wh-questions",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "reported questions with where / what (asked where I lived)",
+      "es": "preguntas indirectas con wh-: me preguntó dónde vivía",
+      "example": {
+        "en": "She asked me where I worked.",
+        "es": "Me preguntó dónde trabajaba."
+      }
+    },
+    {
+      "id": "b1.grammar.reported-speech-requests",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "reported requests (asked me to…)",
+      "es": "pedidos en estilo indirecto: me pidió que…",
+      "example": {
+        "en": "My mom asked me to buy some bread.",
+        "es": "Mi mamá me pidió que comprara pan."
+      }
+    },
+    {
+      "id": "b1.grammar.reported-speech-time-words",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "reported speech: time words (the next day)",
+      "es": "estilo indirecto: palabras de tiempo (al día siguiente)",
+      "example": {
+        "en": "He said he would call the next day.",
+        "es": "Dijo que llamaría al día siguiente."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.grammar.practice-reported-speech-vocab-1",
+      "itemIds": ["b1.grammar.reported-speech-backshift"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Ana said, 'I'm tired.' Which sentence reports it correctly?",
+      "options": [
+        "Ana said she tired.",
+        "Ana said she was tired.",
+        "Ana said me she was tired.",
+        "Ana told that she was tired."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-choice-1",
+      "itemIds": ["b1.grammar.reported-speech-will-would"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He said he would call me later.",
+      "options": [
+        "Dijo que me llamó más tarde.",
+        "Me dijo que lo llamara más tarde.",
+        "Dijo que me llamaría más tarde."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-cloze-1",
+      "itemIds": ["b1.grammar.reported-speech-told-me"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ me that the store was closed.",
+      "answers": ["told"],
+      "distractors": ["said", "asked"],
+      "es": "Me dijo que la tienda estaba cerrada."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-choice-2",
+      "itemIds": ["b1.grammar.reported-speech-wh-questions"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The teacher asked me where I lived.",
+      "options": [
+        "La maestra me preguntó dónde vivía.",
+        "La maestra me dijo dónde vivía.",
+        "La maestra me preguntó si vivía cerca."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-cloze-2",
+      "itemIds": ["b1.grammar.reported-speech-requests"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My boss asked me ___ send the report today.",
+      "answers": ["to"],
+      "distractors": ["that", "for"],
+      "es": "Mi jefe me pidió que enviara el informe hoy."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-vocab-2",
+      "itemIds": ["b1.grammar.reported-speech-time-words"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'the next day' mean in 'He said he would come back the next day.'?",
+      "options": ["el día anterior", "al día siguiente", "hoy mismo", "la semana que viene"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-reading-1",
+      "itemIds": [
+        "b1.grammar.reported-speech-backshift",
+        "b1.grammar.reported-speech-wh-questions",
+        "b1.grammar.reported-speech-requests"
+      ],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b1.grammar.practice-reported-speech-interview",
+      "questions": [
+        {
+          "prompt": "What did the manager ask first?",
+          "options": [
+            "How old the writer was",
+            "Where the writer had worked before",
+            "If the writer liked hotels"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What did she ask the writer to send?",
+          "options": ["A photo", "A list of hotels", "A copy of a diploma"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What did the manager say this morning?",
+          "options": [
+            "That the writer had the job",
+            "That she would call again",
+            "That the job was gone"
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-order-1",
+      "itemIds": ["b1.grammar.reported-speech-wh-questions"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["it", "me", "was.", "asked", "what", "She", "time"],
+      "accepted": ["She asked me what time it was."],
+      "es": "Me preguntó qué hora era."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-write-1",
+      "itemIds": ["b1.grammar.reported-speech-told-me"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me dijo que estaba cansado.",
+      "accepted": ["{He|She} {told me|said|said to me} [that] he {was|is} tired."]
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-choice-3",
+      "itemIds": ["b1.grammar.reported-speech-requests"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She asked us not to make any noise.",
+      "options": [
+        "Nos preguntó si hacíamos ruido.",
+        "Nos pidió que no hiciéramos ruido.",
+        "Nos dijo que no había ruido."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-cloze-3",
+      "itemIds": ["b1.grammar.reported-speech-will-would"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Last week Tom said he ___ come to my party, but he never came.",
+      "answers": ["would"],
+      "distractors": ["will", "does"],
+      "es": "La semana pasada Tom dijo que vendría a mi fiesta, pero nunca vino."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-order-2",
+      "itemIds": ["b1.grammar.reported-speech-requests"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["rest.", "me", "The", "to", "told", "doctor"],
+      "accepted": ["The doctor told me to rest."],
+      "es": "El médico me dijo que descansara."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-write-2",
+      "itemIds": ["b1.grammar.reported-speech-wh-questions"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me preguntó dónde trabajaba.",
+      "accepted": ["{He|She} asked [me] where I {worked|was working|work}."]
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-cloze-4",
+      "itemIds": ["b1.grammar.reported-speech-backshift"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Two years ago, Maria told me she ___ in Boston, but now she lives in Chicago.",
+      "answers": ["lived"],
+      "distractors": ["live", "living"],
+      "es": "Hace dos años, María me dijo que vivía en Boston, pero ahora vive en Chicago."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-vocab-3",
+      "itemIds": ["b1.grammar.reported-speech-told-me"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "She said me the truth.",
+        "She told me the truth.",
+        "She said to me the truth.",
+        "She told to me the truth."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-cloze-5",
+      "itemIds": ["b1.grammar.reported-speech-wh-questions"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He asked me where ___.",
+      "answers": ["I was going"],
+      "distractors": ["was I going", "I going"],
+      "es": "Me preguntó adónde iba."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-write-3",
+      "itemIds": ["b1.grammar.reported-speech-requests"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Le pedí que cerrara la puerta.",
+      "accepted": ["I asked {him|her|you} to {close|shut} the door."]
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-choice-4",
+      "itemIds": ["b1.grammar.reported-speech-time-words"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She said she had seen him the day before.",
+      "options": [
+        "Dijo que lo vería al día siguiente.",
+        "Dijo que lo ve todos los días.",
+        "Dijo que lo había visto el día anterior."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-order-3",
+      "itemIds": ["b1.grammar.reported-speech-backshift"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["feeling", "she", "said", "was", "better.", "She", "that"],
+      "accepted": ["She said that she was feeling better."],
+      "es": "Dijo que se sentía mejor."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-cloze-6",
+      "itemIds": ["b1.grammar.reported-speech-told-me"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He ___ that he was busy.",
+      "answers": ["said"],
+      "distractors": ["told", "asked"],
+      "es": "Dijo que estaba ocupado."
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-write-4",
+      "itemIds": ["b1.grammar.reported-speech-will-would"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Dijeron que llegarían tarde.",
+      "accepted": [
+        "They said [that] they {would|were going to} {arrive|be|get there|get here|come} late."
+      ]
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.grammar.practice-reported-speech-interview",
+      "level": "B1",
+      "topics": ["grammar"],
+      "title": "What the manager said",
+      "text": "Yesterday I had a job interview at a hotel. The manager was very friendly. First, she asked me where I had worked before, and I told her about my summer job at a café. Then she asked me if I could work on weekends. I said that I could, but that I had classes on Monday mornings. At the end, she told me that they would call me the next day. She also asked me to send her a copy of my diploma. This morning she called and said I had the job!",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.grammar.practice-reported-speech-1",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Estilo indirecto: conócelo",
+      "exerciseIds": [
+        "b1.grammar.practice-reported-speech-vocab-1",
+        "b1.grammar.practice-reported-speech-choice-1",
+        "b1.grammar.practice-reported-speech-cloze-1",
+        "b1.grammar.practice-reported-speech-choice-2",
+        "b1.grammar.practice-reported-speech-cloze-2",
+        "b1.grammar.practice-reported-speech-vocab-2",
+        "b1.grammar.practice-reported-speech-reading-1"
+      ],
+      "newItemIds": [
+        "b1.grammar.reported-speech-backshift",
+        "b1.grammar.reported-speech-will-would",
+        "b1.grammar.reported-speech-told-me",
+        "b1.grammar.reported-speech-wh-questions",
+        "b1.grammar.reported-speech-requests"
+      ],
+      "deepenCardIds": ["b1.grammar.reported-speech", "a2.grammar.say-tell"]
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-2",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Estilo indirecto: practícalo",
+      "exerciseIds": [
+        "b1.grammar.practice-reported-speech-order-1",
+        "b1.grammar.practice-reported-speech-write-1",
+        "b1.grammar.practice-reported-speech-choice-3",
+        "b1.grammar.practice-reported-speech-cloze-3",
+        "b1.grammar.practice-reported-speech-order-2",
+        "b1.grammar.practice-reported-speech-write-2",
+        "b1.grammar.practice-reported-speech-cloze-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.reported-speech-wh-questions",
+        "b1.grammar.reported-speech-told-me",
+        "b1.grammar.reported-speech-requests",
+        "b1.grammar.reported-speech-will-would",
+        "b1.grammar.reported-speech-backshift"
+      ],
+      "deepenCardIds": ["b1.grammar.reported-speech", "a2.grammar.say-tell"]
+    },
+    {
+      "id": "b1.grammar.practice-reported-speech-3",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Estilo indirecto: no lo confundas",
+      "exerciseIds": [
+        "b1.grammar.practice-reported-speech-vocab-3",
+        "b1.grammar.practice-reported-speech-cloze-5",
+        "b1.grammar.practice-reported-speech-write-3",
+        "b1.grammar.practice-reported-speech-choice-4",
+        "b1.grammar.practice-reported-speech-order-3",
+        "b1.grammar.practice-reported-speech-cloze-6",
+        "b1.grammar.practice-reported-speech-write-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.reported-speech-told-me",
+        "b1.grammar.reported-speech-wh-questions",
+        "b1.grammar.reported-speech-requests",
+        "b1.grammar.reported-speech-time-words",
+        "b1.grammar.reported-speech-backshift"
+      ],
+      "deepenCardIds": ["b1.grammar.reported-speech", "a2.grammar.say-tell"]
+    }
+  ]
+}

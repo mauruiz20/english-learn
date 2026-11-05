@@ -1,0 +1,440 @@
+{
+  "items": [
+    {
+      "id": "b2.situations.tell-me-about-yourself",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Tell me about yourself.",
+      "es": "Háblame de ti.",
+      "example": {
+        "en": "So, tell me a little about yourself.",
+        "es": "Bueno, cuéntame un poco sobre ti."
+      }
+    },
+    {
+      "id": "b2.situations.strengths-and-weaknesses",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "strengths and weaknesses",
+      "es": "fortalezas y debilidades",
+      "example": {
+        "en": "What would you say are your strengths and weaknesses?",
+        "es": "¿Cuáles dirías que son tus fortalezas y tus debilidades?"
+      }
+    },
+    {
+      "id": "b2.situations.have-experience-in",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "have experience in (something)",
+      "es": "tener experiencia en (algo)",
+      "example": {
+        "en": "I have five years of experience in customer service.",
+        "es": "Tengo cinco años de experiencia en atención al cliente."
+      }
+    },
+    {
+      "id": "b2.situations.be-in-charge-of",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I'm in charge of (something).",
+      "es": "estoy a cargo de (algo), soy responsable de",
+      "example": {
+        "en": "I'm in charge of a team of six people.",
+        "es": "Estoy a cargo de un equipo de seis personas."
+      }
+    },
+    {
+      "id": "b2.situations.degree-in",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "a degree in (something)",
+      "es": "un título (universitario) en (algo)",
+      "example": {
+        "en": "I have a degree in economics.",
+        "es": "Tengo un título en Economía."
+      }
+    },
+    {
+      "id": "b2.situations.any-questions-for-us",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Do you have any questions for us?",
+      "es": "¿Tienes alguna pregunta para nosotros?",
+      "example": {
+        "en": "Before we finish, do you have any questions for us?",
+        "es": "Antes de terminar, ¿tienes alguna pregunta para nosotros?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.situations.practice-interview-sofia",
+      "level": "B2",
+      "topics": ["situations"],
+      "title": "The interview",
+      "text": "Interviewer: Thanks for coming in, Sofia. So, tell me about yourself. Sofia: Sure. I have a degree in marketing, and I have six years of experience in online sales. At the moment, I'm in charge of a small team at a travel company. Interviewer: What would you say are your strengths and weaknesses? Sofia: I'm good at solving problems under pressure. My weakness is that I sometimes find it hard to say no, but I'm working on it. Interviewer: Great. Do you have any questions for us? Sofia: Yes. What are the next steps in the process?",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.situations.practice-interview-vocab-1",
+      "itemIds": ["b2.situations.tell-me-about-yourself"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "In a job interview, what does 'Tell me about yourself.' mean?",
+      "options": [
+        "Cuéntame qué te pasó.",
+        "Dime tu nombre completo.",
+        "Háblame de tu jefe.",
+        "Háblame de ti."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.situations.practice-interview-choice-1",
+      "itemIds": ["b2.situations.strengths-and-weaknesses"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "One of my strengths is that I'm very organized.",
+      "options": [
+        "Uno de mis problemas es que soy muy organizado.",
+        "Una de mis tareas es organizar todo.",
+        "Una de mis fortalezas es que soy muy organizado."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-interview-cloze-1",
+      "itemIds": ["b2.situations.have-experience-in"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I have five years of experience ___ customer service.",
+      "answers": ["in"],
+      "distractors": ["on", "at"],
+      "es": "Tengo cinco años de experiencia en atención al cliente."
+    },
+    {
+      "id": "b2.situations.practice-interview-vocab-2",
+      "itemIds": ["b2.situations.be-in-charge-of"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'in charge of' mean in 'I'm in charge of a team of six people.'?",
+      "options": ["cobrando a", "molesto con", "acusado de", "a cargo de, responsable de"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.situations.practice-interview-choice-2",
+      "itemIds": ["b2.situations.degree-in"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I have a degree in economics from the University of Chile.",
+      "options": [
+        "Estoy estudiando Economía en la Universidad de Chile.",
+        "Tengo un título en Economía de la Universidad de Chile.",
+        "Doy clases de Economía en la Universidad de Chile."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-interview-vocab-3",
+      "itemIds": ["b2.situations.any-questions-for-us"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "At the end of an interview, the manager asks 'Do you have any questions for us?'. What is the best answer?",
+      "options": [
+        "No.",
+        "Yes. What does a typical day in this job look like?",
+        "I don't know.",
+        "Not really, I just need the money."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-interview-choice-3",
+      "itemIds": ["b2.situations.tell-me-about-yourself"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "So, tell me a little about yourself.",
+      "options": [
+        "Bueno, cuéntame un poco sobre ti.",
+        "Bueno, cuéntame un poco sobre tu familia.",
+        "Bueno, te voy a contar un poco sobre mí."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.situations.practice-interview-reading-1",
+      "itemIds": [
+        "b2.situations.tell-me-about-yourself",
+        "b2.situations.degree-in",
+        "b2.situations.be-in-charge-of",
+        "b2.situations.strengths-and-weaknesses",
+        "b2.situations.any-questions-for-us"
+      ],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b2.situations.practice-interview-sofia",
+      "questions": [
+        {
+          "prompt": "What does Sofia do now?",
+          "options": [
+            "She is a marketing student.",
+            "She works alone in online sales.",
+            "She manages a small team at a travel company."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What is Sofia's weakness?",
+          "options": [
+            "She can't work under pressure.",
+            "She sometimes finds it hard to say no.",
+            "She doesn't have a degree."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does Sofia ask at the end?",
+          "options": ["What the next steps are", "How much she will earn", "When she can start"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.situations.practice-interview-cloze-2",
+      "itemIds": ["b2.situations.strengths-and-weaknesses"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "What would you say is your biggest ___?",
+      "answers": ["strength"],
+      "distractors": ["strong", "strongest"],
+      "es": "¿Cuál dirías que es tu mayor fortaleza?"
+    },
+    {
+      "id": "b2.situations.practice-interview-order-1",
+      "itemIds": ["b2.situations.be-in-charge-of"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["sales", "of", "in", "the", "I'm", "charge", "team."],
+      "accepted": ["I'm in charge of the sales team."],
+      "es": "Estoy a cargo del equipo de ventas."
+    },
+    {
+      "id": "b2.situations.practice-interview-write-1",
+      "itemIds": ["b2.situations.have-experience-in"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Tengo experiencia en ventas.",
+      "accepted": ["{I have|I've got} experience in sales."]
+    },
+    {
+      "id": "b2.situations.practice-interview-choice-4",
+      "itemIds": ["b2.situations.any-questions-for-us"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Before we finish, do you have any questions for us?",
+      "options": [
+        "Antes de terminar, ¿podemos hacerte unas preguntas?",
+        "Antes de terminar, ¿tienes alguna pregunta para nosotros?",
+        "Antes de terminar, ¿respondiste todas las preguntas?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-interview-cloze-3",
+      "itemIds": ["b2.situations.degree-in"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She has a master's ___ in computer science.",
+      "answers": ["degree"],
+      "distractors": ["career", "title"],
+      "es": "Tiene una maestría en informática."
+    },
+    {
+      "id": "b2.situations.practice-interview-write-2",
+      "itemIds": ["b2.situations.tell-me-about-yourself"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Háblame un poco de ti.",
+      "accepted": ["Tell me {a little|a bit} about yourself."]
+    },
+    {
+      "id": "b2.situations.practice-interview-vocab-4",
+      "itemIds": ["b2.situations.degree-in"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'Tengo un título en Derecho'.",
+      "options": [
+        "I studied the career of law.",
+        "I have a title in law.",
+        "I have a degree in law.",
+        "I have a law career title."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-interview-choice-5",
+      "itemIds": ["b2.situations.be-in-charge-of"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm currently in charge of customer service at a bank.",
+      "options": [
+        "En realidad, estoy a cargo de la atención al cliente en un banco.",
+        "Actualmente estoy a cargo de la atención al cliente en un banco.",
+        "Antes estaba a cargo de la atención al cliente en un banco."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-interview-cloze-4",
+      "itemIds": ["b2.situations.be-in-charge-of"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "In my last job, I was in charge ___ training new staff.",
+      "answers": ["of"],
+      "distractors": ["for", "to"],
+      "es": "En mi último trabajo, estaba a cargo de capacitar al personal nuevo."
+    },
+    {
+      "id": "b2.situations.practice-interview-order-2",
+      "itemIds": ["b2.situations.strengths-and-weaknesses"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["main", "your", "What", "strengths?", "are"],
+      "accepted": ["What are your main strengths?"],
+      "es": "¿Cuáles son tus principales fortalezas?"
+    },
+    {
+      "id": "b2.situations.practice-interview-write-3",
+      "itemIds": ["b2.situations.degree-in"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Tengo un título en ingeniería.",
+      "accepted": ["{I have|I've got} {a degree in engineering|an engineering degree}."]
+    },
+    {
+      "id": "b2.situations.practice-interview-choice-6",
+      "itemIds": ["b2.situations.have-experience-in"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I don't have much experience in management, but I learn fast.",
+      "options": [
+        "No me gusta mucho la gestión, pero aprendo rápido.",
+        "No hice muchos experimentos de gestión, pero aprendo rápido.",
+        "No tengo mucha experiencia en gestión, pero aprendo rápido."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-interview-vocab-5",
+      "itemIds": ["b2.situations.tell-me-about-yourself"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "The interviewer says 'Tell me about yourself.' What is the best way to start?",
+      "options": [
+        "About me? I don't know.",
+        "I'm a sales manager with eight years of experience in retail.",
+        "Myself is a good worker.",
+        "My name is Juan and I have 34 years."
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.situations.practice-interview-1",
+      "level": "B2",
+      "topic": "situations",
+      "title": "La entrevista de trabajo: frases clave",
+      "exerciseIds": [
+        "b2.situations.practice-interview-vocab-1",
+        "b2.situations.practice-interview-choice-1",
+        "b2.situations.practice-interview-cloze-1",
+        "b2.situations.practice-interview-vocab-2",
+        "b2.situations.practice-interview-choice-2",
+        "b2.situations.practice-interview-vocab-3",
+        "b2.situations.practice-interview-choice-3"
+      ],
+      "newItemIds": [
+        "b2.situations.tell-me-about-yourself",
+        "b2.situations.strengths-and-weaknesses",
+        "b2.situations.have-experience-in",
+        "b2.situations.be-in-charge-of",
+        "b2.situations.degree-in"
+      ]
+    },
+    {
+      "id": "b2.situations.practice-interview-2",
+      "level": "B2",
+      "topic": "situations",
+      "title": "La entrevista de trabajo: practícalas",
+      "exerciseIds": [
+        "b2.situations.practice-interview-reading-1",
+        "b2.situations.practice-interview-cloze-2",
+        "b2.situations.practice-interview-order-1",
+        "b2.situations.practice-interview-write-1",
+        "b2.situations.practice-interview-choice-4",
+        "b2.situations.practice-interview-cloze-3",
+        "b2.situations.practice-interview-write-2"
+      ],
+      "newItemIds": [
+        "b2.situations.any-questions-for-us",
+        "b2.situations.strengths-and-weaknesses",
+        "b2.situations.be-in-charge-of",
+        "b2.situations.have-experience-in",
+        "b2.situations.degree-in"
+      ]
+    },
+    {
+      "id": "b2.situations.practice-interview-3",
+      "level": "B2",
+      "topic": "situations",
+      "title": "La entrevista de trabajo: dilo bien",
+      "exerciseIds": [
+        "b2.situations.practice-interview-vocab-4",
+        "b2.situations.practice-interview-choice-5",
+        "b2.situations.practice-interview-cloze-4",
+        "b2.situations.practice-interview-order-2",
+        "b2.situations.practice-interview-write-3",
+        "b2.situations.practice-interview-choice-6",
+        "b2.situations.practice-interview-vocab-5"
+      ],
+      "newItemIds": [
+        "b2.situations.degree-in",
+        "b2.situations.be-in-charge-of",
+        "b2.situations.strengths-and-weaknesses",
+        "b2.situations.have-experience-in",
+        "b2.situations.tell-me-about-yourself"
+      ]
+    }
+  ]
+}
