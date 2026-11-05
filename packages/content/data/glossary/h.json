@@ -507,6 +507,18 @@
       ]
     },
     {
+      "id": "glossary.heart",
+      "headword": "heart",
+      "kind": "word",
+      "forms": ["heart", "hearts"],
+      "senses": [
+        {
+          "es": "corazón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.heat",
       "headword": "heat",
       "kind": "word",
@@ -534,7 +546,7 @@
       "id": "glossary.heavy",
       "headword": "heavy",
       "kind": "word",
-      "forms": ["heavy"],
+      "forms": ["heavy", "heavier", "heaviest"],
       "senses": [
         {
           "es": "pesado",
@@ -551,6 +563,18 @@
         {
           "es": "hola",
           "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.helmet",
+      "headword": "helmet",
+      "kind": "word",
+      "forms": ["helmet", "helmets"],
+      "senses": [
+        {
+          "es": "casco",
+          "pos": "noun"
         }
       ]
     },
@@ -815,6 +839,18 @@
       ]
     },
     {
+      "id": "glossary.honest",
+      "headword": "honest",
+      "kind": "word",
+      "forms": ["honest"],
+      "senses": [
+        {
+          "es": "honesto, sincero",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.hope",
       "headword": "hope",
       "kind": "word",
@@ -862,6 +898,18 @@
       "senses": [
         {
           "es": "hospital",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.host",
+      "headword": "host",
+      "kind": "word",
+      "forms": ["host", "hosts"],
+      "senses": [
+        {
+          "es": "presentador, anfitrión",
           "pos": "noun"
         }
       ]
@@ -1026,6 +1074,18 @@
       "senses": [
         {
           "es": "enorme",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.human",
+      "headword": "human",
+      "kind": "word",
+      "forms": ["human", "humans"],
+      "senses": [
+        {
+          "es": "humano",
           "pos": "adjective"
         }
       ]

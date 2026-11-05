@@ -49,6 +49,18 @@
       ]
     },
     {
+      "id": "glossary.tag",
+      "headword": "tag",
+      "kind": "word",
+      "forms": ["tag", "tags"],
+      "senses": [
+        {
+          "es": "etiqueta; coletilla (question tag)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.take",
       "headword": "take",
       "kind": "word",
@@ -476,6 +488,18 @@
       "senses": [
         {
           "es": "tenis",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tense",
+      "headword": "tense",
+      "kind": "word",
+      "forms": ["tense", "tenses"],
+      "senses": [
+        {
+          "es": "tiempo verbal",
           "pos": "noun"
         }
       ]
@@ -1180,6 +1204,18 @@
       ]
     },
     {
+      "id": "glossary.tomato",
+      "headword": "tomato",
+      "kind": "word",
+      "forms": ["tomato", "tomatoes"],
+      "senses": [
+        {
+          "es": "tomate, jitomate",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tomorrow",
       "headword": "tomorrow",
       "kind": "word",
@@ -1188,6 +1224,18 @@
         {
           "es": "mañana",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ton",
+      "headword": "ton",
+      "kind": "word",
+      "forms": ["ton", "tons"],
+      "senses": [
+        {
+          "es": "tonelada",
+          "pos": "noun"
         }
       ]
     },
@@ -1244,6 +1292,18 @@
       ]
     },
     {
+      "id": "glossary.toronto",
+      "headword": "Toronto",
+      "kind": "word",
+      "forms": ["toronto"],
+      "senses": [
+        {
+          "es": "(nombre propio) Toronto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.total",
       "headword": "total",
       "kind": "word",
@@ -1275,6 +1335,18 @@
       "senses": [
         {
           "es": "turista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.towel",
+      "headword": "towel",
+      "kind": "word",
+      "forms": ["towel", "towels"],
+      "senses": [
+        {
+          "es": "toalla",
           "pos": "noun"
         }
       ]

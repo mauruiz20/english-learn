@@ -1,0 +1,470 @@
+{
+  "items": [
+    {
+      "id": "b1.grammar.questions-word-order",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "question word order (Where do you live?)",
+      "es": "orden de la pregunta: palabra interrogativa + auxiliar + sujeto + verbo",
+      "example": {
+        "en": "Where does your brother work?",
+        "es": "¿Dónde trabaja tu hermano?"
+      }
+    },
+    {
+      "id": "b1.grammar.questions-subject",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "subject questions (Who called?)",
+      "es": "preguntas de sujeto, sin do: ¿quién llamó?",
+      "example": {
+        "en": "Who called you this morning?",
+        "es": "¿Quién te llamó esta mañana?"
+      }
+    },
+    {
+      "id": "b1.grammar.questions-preposition-end",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "questions ending in a preposition (Who are you talking to?)",
+      "es": "preguntas con la preposición al final: ¿con quién hablas?",
+      "example": {
+        "en": "Who are you talking to?",
+        "es": "¿Con quién estás hablando?"
+      }
+    },
+    {
+      "id": "b1.grammar.questions-indirect",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "indirect questions (Do you know where…?)",
+      "es": "preguntas indirectas: ¿sabes dónde…? (sujeto antes del verbo)",
+      "example": {
+        "en": "Do you know where the station is?",
+        "es": "¿Sabes dónde está la estación?"
+      }
+    },
+    {
+      "id": "b1.grammar.questions-tags",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "question tags (…, isn't it?)",
+      "es": "question tags: ¿no?, ¿verdad? al final de la frase",
+      "example": {
+        "en": "It's a beautiful day, isn't it?",
+        "es": "Es un día hermoso, ¿no?"
+      }
+    },
+    {
+      "id": "b1.grammar.questions-be-or-do",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "be or do in questions (Are you…? / Do you…?)",
+      "es": "be o do en preguntas: ¿Are you…? o ¿Do you…?",
+      "example": {
+        "en": "Are you hungry? Do you want a sandwich?",
+        "es": "¿Tienes hambre? ¿Quieres un sándwich?"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.grammar.practice-questions-vocab-1",
+      "itemIds": ["b1.grammar.questions-word-order"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which question is correct?",
+      "options": [
+        "Where you live?",
+        "Where do you live?",
+        "Where lives you?",
+        "Where are you live?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-questions-choice-1",
+      "itemIds": ["b1.grammar.questions-subject"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Who called you last night?",
+      "options": [
+        "¿A quién llamaste anoche?",
+        "¿Quién te llamó anoche?",
+        "¿Quién llamó a tu casa anoche?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-questions-cloze-1",
+      "itemIds": ["b1.grammar.questions-tags"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's cold today, ___ it?",
+      "answers": ["isn't"],
+      "distractors": ["doesn't", "is"],
+      "es": "Hace frío hoy, ¿no?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-choice-2",
+      "itemIds": ["b1.grammar.questions-preposition-end"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Who are you waiting for?",
+      "options": [
+        "¿A quién estás esperando?",
+        "¿Quién te está esperando?",
+        "¿Por qué estás esperando?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-questions-cloze-2",
+      "itemIds": ["b1.grammar.questions-be-or-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ you like spicy food?",
+      "answers": ["Do"],
+      "distractors": ["Are", "Does"],
+      "es": "¿Te gusta la comida picante?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-vocab-2",
+      "itemIds": ["b1.grammar.questions-indirect"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which question is correct?",
+      "options": [
+        "Do you know where is the station?",
+        "Do you know where does the station is?",
+        "Do you know where the station is?",
+        "You know where is it the station?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-questions-reading-1",
+      "itemIds": [
+        "b1.grammar.questions-word-order",
+        "b1.grammar.questions-subject",
+        "b1.grammar.questions-tags"
+      ],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b1.grammar.practice-questions-quiz-night",
+      "questions": [
+        {
+          "prompt": "When do they go to quiz night?",
+          "options": ["On Fridays", "On Thursdays", "Every day"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does Sam always say?",
+          "options": [
+            "That they are going to win",
+            "That the questions are easy",
+            "That he wants to go home"
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Which question was hard?",
+          "options": [
+            "The capital of Canada",
+            "Who is coming back next week",
+            "The number of bones in the body"
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-questions-order-1",
+      "itemIds": ["b1.grammar.questions-preposition-end"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["looking", "at?", "are", "What", "you"],
+      "accepted": ["What are you looking at?"],
+      "es": "¿Qué estás mirando?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-write-1",
+      "itemIds": ["b1.grammar.questions-word-order"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Dónde trabaja tu hermana?",
+      "accepted": ["Where does your sister work?"]
+    },
+    {
+      "id": "b1.grammar.practice-questions-cloze-3",
+      "itemIds": ["b1.grammar.questions-subject"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Who ___ the window?",
+      "answers": ["broke"],
+      "distractors": ["did broke", "does broke"],
+      "es": "¿Quién rompió la ventana?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-choice-3",
+      "itemIds": ["b1.grammar.questions-indirect"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Could you tell me what time the bank opens?",
+      "options": [
+        "¿Me podría decir a qué hora cierra el banco?",
+        "¿Podría abrir el banco a tiempo?",
+        "¿Me podría decir a qué hora abre el banco?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-questions-cloze-4",
+      "itemIds": ["b1.grammar.questions-tags"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "You haven't seen my keys, ___ you?",
+      "answers": ["have"],
+      "distractors": ["haven't", "did"],
+      "es": "No has visto mis llaves, ¿verdad?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-order-2",
+      "itemIds": ["b1.grammar.questions-indirect"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["she", "know", "where", "you", "lives?", "Do"],
+      "accepted": ["Do you know where she lives?"],
+      "es": "¿Sabes dónde vive ella?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-write-2",
+      "itemIds": ["b1.grammar.questions-preposition-end"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿De dónde eres?",
+      "accepted": ["Where are you from?", "Where do you come from?"]
+    },
+    {
+      "id": "b1.grammar.practice-questions-vocab-3",
+      "itemIds": ["b1.grammar.questions-subject"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which question is correct?",
+      "options": [
+        "Who did told you that?",
+        "Who tells you that yesterday?",
+        "Who you told that?",
+        "Who told you that?"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.grammar.practice-questions-cloze-5",
+      "itemIds": ["b1.grammar.questions-be-or-do"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ she working today?",
+      "answers": ["Is"],
+      "distractors": ["Does", "Do"],
+      "es": "¿Ella está trabajando hoy?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-write-3",
+      "itemIds": ["b1.grammar.questions-indirect"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Sabes dónde está el baño?",
+      "accepted": ["Do you know where the {bathroom|restroom} is?"]
+    },
+    {
+      "id": "b1.grammar.practice-questions-choice-4",
+      "itemIds": ["b1.grammar.questions-tags"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You're coming to the party, aren't you?",
+      "options": [
+        "¿Por qué no vienes a la fiesta?",
+        "Vienes a la fiesta, ¿no?",
+        "No vienes a la fiesta, ¿verdad?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-questions-order-3",
+      "itemIds": ["b1.grammar.questions-word-order"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["lived", "you", "How", "here?", "have", "long"],
+      "accepted": ["How long have you lived here?"],
+      "es": "¿Cuánto tiempo hace que vives aquí?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-cloze-6",
+      "itemIds": ["b1.grammar.questions-preposition-end"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Who did you go to the movies ___?",
+      "answers": ["with"],
+      "distractors": ["at", "of"],
+      "es": "¿Con quién fuiste al cine?"
+    },
+    {
+      "id": "b1.grammar.practice-questions-write-4",
+      "itemIds": ["b1.grammar.questions-tags"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Hace calor, ¿no?",
+      "accepted": ["It's {hot|warm}, isn't it?"]
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.grammar.practice-questions-quiz-night",
+      "level": "B1",
+      "topics": ["grammar"],
+      "title": "Quiz night",
+      "text": "Every Thursday, my friends and I go to quiz night at a bar near our office. The host asks twenty questions, and each team writes its answers on a piece of paper. Last week the questions were hard. 'What is the capital of Canada?' was easy, but 'How many bones are there in the human body?' wasn't. My friend Sam always says, 'We're going to win tonight, aren't we?' We never win, but we always have fun. At the end, the host asks, 'Who's coming back next week?' and everybody raises their hand.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.grammar.practice-questions-1",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Preguntas y question tags: conócelas",
+      "exerciseIds": [
+        "b1.grammar.practice-questions-vocab-1",
+        "b1.grammar.practice-questions-choice-1",
+        "b1.grammar.practice-questions-cloze-1",
+        "b1.grammar.practice-questions-choice-2",
+        "b1.grammar.practice-questions-cloze-2",
+        "b1.grammar.practice-questions-vocab-2",
+        "b1.grammar.practice-questions-reading-1"
+      ],
+      "newItemIds": [
+        "b1.grammar.questions-word-order",
+        "b1.grammar.questions-subject",
+        "b1.grammar.questions-tags",
+        "b1.grammar.questions-preposition-end",
+        "b1.grammar.questions-indirect"
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-questions-2",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Preguntas y question tags: practícalas",
+      "exerciseIds": [
+        "b1.grammar.practice-questions-order-1",
+        "b1.grammar.practice-questions-write-1",
+        "b1.grammar.practice-questions-cloze-3",
+        "b1.grammar.practice-questions-choice-3",
+        "b1.grammar.practice-questions-cloze-4",
+        "b1.grammar.practice-questions-order-2",
+        "b1.grammar.practice-questions-write-2"
+      ],
+      "newItemIds": [
+        "b1.grammar.questions-preposition-end",
+        "b1.grammar.questions-word-order",
+        "b1.grammar.questions-subject",
+        "b1.grammar.questions-indirect",
+        "b1.grammar.questions-tags"
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-questions-3",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Preguntas y question tags: no las confundas",
+      "exerciseIds": [
+        "b1.grammar.practice-questions-vocab-3",
+        "b1.grammar.practice-questions-cloze-5",
+        "b1.grammar.practice-questions-write-3",
+        "b1.grammar.practice-questions-choice-4",
+        "b1.grammar.practice-questions-order-3",
+        "b1.grammar.practice-questions-cloze-6",
+        "b1.grammar.practice-questions-write-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.questions-subject",
+        "b1.grammar.questions-be-or-do",
+        "b1.grammar.questions-indirect",
+        "b1.grammar.questions-tags",
+        "b1.grammar.questions-word-order"
+      ]
+    }
+  ]
+}

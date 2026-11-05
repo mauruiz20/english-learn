@@ -397,6 +397,18 @@
       ]
     },
     {
+      "id": "glossary.regret",
+      "headword": "regret",
+      "kind": "word",
+      "forms": ["regret", "regrets", "regretted", "regretting"],
+      "senses": [
+        {
+          "es": "arrepentimiento; lamentar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.reject",
       "headword": "reject",
       "kind": "word",
@@ -657,6 +669,18 @@
       ]
     },
     {
+      "id": "glossary.request",
+      "headword": "request",
+      "kind": "word",
+      "forms": ["request", "requests", "requested", "requesting"],
+      "senses": [
+        {
+          "es": "pedido, solicitud; pedir",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.require",
       "headword": "require",
       "kind": "word",
@@ -800,6 +824,18 @@
       "senses": [
         {
           "es": "restaurante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.restroom",
+      "headword": "restroom",
+      "kind": "word",
+      "forms": ["restroom", "restrooms"],
+      "senses": [
+        {
+          "es": "baño (en un lugar público)",
           "pos": "noun"
         }
       ]
@@ -1017,6 +1053,18 @@
         {
           "es": "camino, carretera",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.roast",
+      "headword": "roast",
+      "kind": "word",
+      "forms": ["roast", "roasts", "roasted", "roasting"],
+      "senses": [
+        {
+          "es": "tostar, asar",
+          "pos": "verb"
         }
       ]
     },

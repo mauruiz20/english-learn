@@ -1,0 +1,460 @@
+{
+  "items": [
+    {
+      "id": "a2.grammar.countable-uncountable-nouns",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "uncountable nouns (water, money, furniture)",
+      "es": "sustantivos incontables: sin a / an y sin plural",
+      "example": {
+        "en": "We need some new furniture.",
+        "es": "Necesitamos muebles nuevos."
+      }
+    },
+    {
+      "id": "a2.grammar.countable-a-few",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "a few + plural noun (a few friends)",
+      "es": "a few: unos pocos, algunos (con plural)",
+      "example": {
+        "en": "I have a few friends in this city.",
+        "es": "Tengo algunos amigos en esta ciudad."
+      }
+    },
+    {
+      "id": "a2.grammar.countable-a-little",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "a little + uncountable noun (a little sugar)",
+      "es": "a little: un poco de (con incontables)",
+      "example": {
+        "en": "Can I have a little milk in my coffee?",
+        "es": "¿Me puedes poner un poco de leche en el café?"
+      }
+    },
+    {
+      "id": "a2.grammar.countable-piece-of",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "phrase",
+      "term": "a piece of advice",
+      "es": "un consejo (advice no lleva a / an)",
+      "example": {
+        "en": "She gave me a good piece of advice.",
+        "es": "Me dio un buen consejo."
+      }
+    },
+    {
+      "id": "a2.grammar.countable-no-plural",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "information, advice and news (no plural)",
+      "es": "information, advice, news: siempre en singular",
+      "example": {
+        "en": "The news is good.",
+        "es": "Las noticias son buenas."
+      }
+    },
+    {
+      "id": "a2.grammar.countable-not-much-many",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "not much / not many in negative sentences (not much time)",
+      "es": "not much / not many: no mucho, no muchos",
+      "example": {
+        "en": "We don't have much time.",
+        "es": "No tenemos mucho tiempo."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.grammar.practice-countable-vocab-1",
+      "itemIds": ["a2.grammar.countable-uncountable-nouns"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which word is uncountable?",
+      "options": ["chair", "apple", "water", "friend"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-countable-cloze-1",
+      "itemIds": ["a2.grammar.countable-a-few"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I have ___ friends in this city.",
+      "answers": ["a few"],
+      "distractors": ["a little", "much"],
+      "es": "Tengo algunos amigos en esta ciudad."
+    },
+    {
+      "id": "a2.grammar.practice-countable-cloze-2",
+      "itemIds": ["a2.grammar.countable-a-little"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Can I have ___ milk in my coffee?",
+      "answers": ["a little"],
+      "distractors": ["a few", "many"],
+      "es": "¿Me puedes poner un poco de leche en el café?"
+    },
+    {
+      "id": "a2.grammar.practice-countable-choice-1",
+      "itemIds": ["a2.grammar.countable-piece-of"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She gave me a good piece of advice.",
+      "options": [
+        "Me dio un buen pedazo de pastel.",
+        "Me dio un buen consejo.",
+        "Me pidió un buen consejo."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-countable-vocab-2",
+      "itemIds": ["a2.grammar.countable-no-plural"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I need some informations.",
+        "I need an information.",
+        "I need some information."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-countable-choice-2",
+      "itemIds": ["a2.grammar.countable-not-much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We don't have much time.",
+      "options": ["No tenemos mucho tiempo.", "No tenemos tiempo libre.", "Tenemos mucho tiempo."],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.grammar.practice-countable-order-1",
+      "itemIds": ["a2.grammar.countable-a-few"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["days.", "to", "for", "I'm", "a", "stay", "few", "going"],
+      "accepted": ["I'm going to stay for a few days."],
+      "es": "Me voy a quedar unos días."
+    },
+    {
+      "id": "a2.grammar.practice-countable-cloze-3",
+      "itemIds": ["a2.grammar.countable-not-much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There aren't ___ people here today.",
+      "answers": ["many"],
+      "distractors": ["much", "a little"],
+      "es": "Hoy no hay mucha gente aquí."
+    },
+    {
+      "id": "a2.grammar.practice-countable-write-1",
+      "itemIds": ["a2.grammar.countable-no-plural"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Las noticias son buenas.",
+      "accepted": ["The news is good."]
+    },
+    {
+      "id": "a2.grammar.practice-countable-order-2",
+      "itemIds": ["a2.grammar.countable-a-little"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["Japanese.", "a", "speaks", "She", "little"],
+      "accepted": ["She speaks a little Japanese."],
+      "es": "Habla un poco de japonés."
+    },
+    {
+      "id": "a2.grammar.practice-countable-choice-3",
+      "itemIds": ["a2.grammar.countable-uncountable-nouns"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "How much money do you need?",
+      "options": ["¿Necesitas dinero?", "¿Cuántas monedas necesitas?", "¿Cuánto dinero necesitas?"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-countable-write-2",
+      "itemIds": ["a2.grammar.countable-a-few"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo algunas preguntas.",
+      "accepted": ["I {have|have got} {a few|some} questions."]
+    },
+    {
+      "id": "a2.grammar.practice-countable-cloze-4",
+      "itemIds": ["a2.grammar.countable-piece-of"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Let me give you a ___ of advice.",
+      "answers": ["piece"],
+      "distractors": ["glass", "slice"],
+      "es": "Déjame darte un consejo."
+    },
+    {
+      "id": "a2.grammar.practice-countable-reading-1",
+      "itemIds": [
+        "a2.grammar.countable-uncountable-nouns",
+        "a2.grammar.countable-a-few",
+        "a2.grammar.countable-a-little",
+        "a2.grammar.countable-not-much-many"
+      ],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a2.grammar.practice-countable-dinner",
+      "questions": [
+        {
+          "prompt": "Why does Nora write a quick list?",
+          "options": [
+            "She doesn't have much time.",
+            "She has a lot of food.",
+            "Her friends are late."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What does Nora already have?",
+          "options": ["Tomatoes and bread", "Rice and cheese", "Milk and eggs"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does she want for dessert?",
+          "options": ["Cake", "Ice cream", "Fruit"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-countable-vocab-3",
+      "itemIds": ["a2.grammar.countable-uncountable-nouns"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "We bought new furnitures.",
+        "We bought some new furniture.",
+        "We bought a new furniture."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-countable-cloze-5",
+      "itemIds": ["a2.grammar.countable-not-much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "How ___ coffee do you drink a day?",
+      "answers": ["much"],
+      "distractors": ["many", "few"],
+      "es": "¿Cuánto café tomas al día?"
+    },
+    {
+      "id": "a2.grammar.practice-countable-choice-4",
+      "itemIds": ["a2.grammar.countable-a-few", "a2.grammar.countable-a-little"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I need a little help and a few minutes.",
+      "options": [
+        "Necesito mucha ayuda y unos minutos.",
+        "Necesito un poco de ayuda y muchos minutos.",
+        "Necesito un poco de ayuda y unos minutos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-countable-write-3",
+      "itemIds": ["a2.grammar.countable-not-much-many"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No tengo mucho dinero.",
+      "accepted": [
+        "I don't have {much|a lot of|lots of} money.",
+        "I haven't got {much|a lot of|lots of} money."
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-countable-order-3",
+      "itemIds": ["a2.grammar.countable-no-plural"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["advice?", "you", "me", "Can", "some", "give"],
+      "accepted": ["Can you give me some advice?"],
+      "es": "¿Me puedes dar un consejo?"
+    },
+    {
+      "id": "a2.grammar.practice-countable-cloze-6",
+      "itemIds": ["a2.grammar.countable-a-few"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There are only ___ eggs left. Let's buy more.",
+      "answers": ["a few"],
+      "distractors": ["a little", "much"],
+      "es": "Solo quedan unos pocos huevos. Compremos más."
+    },
+    {
+      "id": "a2.grammar.practice-countable-write-4",
+      "itemIds": ["a2.grammar.countable-piece-of"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Te doy un consejo.",
+      "accepted": [
+        "{I'll give|Let me give|I'm going to give} you {a piece of|some|a bit of} advice."
+      ]
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.grammar.practice-countable-dinner",
+      "level": "A2",
+      "topics": ["grammar"],
+      "title": "Dinner for friends",
+      "text": "Tonight Nora is making dinner for a few friends. She doesn't have much time, so she writes a quick list. She has a little rice and some cheese, but she needs a few tomatoes and some bread. There isn't much milk in the fridge, and there aren't many eggs. She also wants some fruit for dessert. At the store she spends a lot of money, but the dinner is a big success.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.grammar.practice-countable-1",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Contables e incontables: conócelos",
+      "exerciseIds": [
+        "a2.grammar.practice-countable-vocab-1",
+        "a2.grammar.practice-countable-cloze-1",
+        "a2.grammar.practice-countable-cloze-2",
+        "a2.grammar.practice-countable-choice-1",
+        "a2.grammar.practice-countable-vocab-2",
+        "a2.grammar.practice-countable-choice-2",
+        "a2.grammar.practice-countable-order-1"
+      ],
+      "newItemIds": [
+        "a2.grammar.countable-uncountable-nouns",
+        "a2.grammar.countable-a-few",
+        "a2.grammar.countable-a-little",
+        "a2.grammar.countable-piece-of",
+        "a2.grammar.countable-no-plural"
+      ],
+      "deepenCardIds": ["a2.grammar.much-many", "a2.grammar.some-any"]
+    },
+    {
+      "id": "a2.grammar.practice-countable-2",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Contables e incontables: practícalos",
+      "exerciseIds": [
+        "a2.grammar.practice-countable-cloze-3",
+        "a2.grammar.practice-countable-write-1",
+        "a2.grammar.practice-countable-order-2",
+        "a2.grammar.practice-countable-choice-3",
+        "a2.grammar.practice-countable-write-2",
+        "a2.grammar.practice-countable-cloze-4",
+        "a2.grammar.practice-countable-reading-1"
+      ],
+      "newItemIds": [
+        "a2.grammar.countable-not-much-many",
+        "a2.grammar.countable-no-plural",
+        "a2.grammar.countable-a-little",
+        "a2.grammar.countable-uncountable-nouns",
+        "a2.grammar.countable-a-few"
+      ],
+      "deepenCardIds": ["a2.grammar.much-many"]
+    },
+    {
+      "id": "a2.grammar.practice-countable-3",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Contables e incontables: no los confundas",
+      "exerciseIds": [
+        "a2.grammar.practice-countable-vocab-3",
+        "a2.grammar.practice-countable-cloze-5",
+        "a2.grammar.practice-countable-choice-4",
+        "a2.grammar.practice-countable-write-3",
+        "a2.grammar.practice-countable-order-3",
+        "a2.grammar.practice-countable-cloze-6",
+        "a2.grammar.practice-countable-write-4"
+      ],
+      "newItemIds": [
+        "a2.grammar.countable-uncountable-nouns",
+        "a2.grammar.countable-not-much-many",
+        "a2.grammar.countable-a-few",
+        "a2.grammar.countable-a-little",
+        "a2.grammar.countable-piece-of"
+      ],
+      "deepenCardIds": ["a2.grammar.much-many", "a2.grammar.some-any"]
+    }
+  ]
+}

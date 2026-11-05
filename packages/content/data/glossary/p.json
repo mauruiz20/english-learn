@@ -297,6 +297,18 @@
       ]
     },
     {
+      "id": "glossary.passenger",
+      "headword": "passenger",
+      "kind": "word",
+      "forms": ["passenger", "passengers"],
+      "senses": [
+        {
+          "es": "pasajero, pasajera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.passive",
       "headword": "passive",
       "kind": "word",
@@ -680,6 +692,18 @@
       ]
     },
     {
+      "id": "glossary.phrase",
+      "headword": "phrase",
+      "kind": "word",
+      "forms": ["phrase", "phrases"],
+      "senses": [
+        {
+          "es": "frase, expresión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.piano",
       "headword": "piano",
       "kind": "word",
@@ -744,6 +768,18 @@
       ]
     },
     {
+      "id": "glossary.piece",
+      "headword": "piece",
+      "kind": "word",
+      "forms": ["piece", "pieces"],
+      "senses": [
+        {
+          "es": "pedazo, trozo (a piece of advice: un consejo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pill",
       "headword": "pill",
       "kind": "word",
@@ -751,6 +787,18 @@
       "senses": [
         {
           "es": "pastilla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pilot",
+      "headword": "pilot",
+      "kind": "word",
+      "forms": ["pilot", "pilots"],
+      "senses": [
+        {
+          "es": "piloto",
           "pos": "noun"
         }
       ]
@@ -960,6 +1008,18 @@
       ]
     },
     {
+      "id": "glossary.plural",
+      "headword": "plural",
+      "kind": "word",
+      "forms": ["plural"],
+      "senses": [
+        {
+          "es": "plural",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.point",
       "headword": "point",
       "kind": "word",
@@ -1063,6 +1123,18 @@
       "senses": [
         {
           "es": "contaminación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pool",
+      "headword": "pool",
+      "kind": "word",
+      "forms": ["pool", "pools"],
+      "senses": [
+        {
+          "es": "piscina, alberca",
           "pos": "noun"
         }
       ]
@@ -1248,6 +1320,18 @@
       ]
     },
     {
+      "id": "glossary.preposition",
+      "headword": "preposition",
+      "kind": "word",
+      "forms": ["preposition", "prepositions"],
+      "senses": [
+        {
+          "es": "preposición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.prescription",
       "headword": "prescription",
       "kind": "word",
@@ -1288,6 +1372,18 @@
       ]
     },
     {
+      "id": "glossary.press",
+      "headword": "press",
+      "kind": "word",
+      "forms": ["press", "presses", "pressed", "pressing"],
+      "senses": [
+        {
+          "es": "presionar, apretar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.pressure",
       "headword": "pressure",
       "kind": "word",
@@ -1303,7 +1399,7 @@
       "id": "glossary.pretty",
       "headword": "pretty",
       "kind": "word",
-      "forms": ["pretty"],
+      "forms": ["pretty", "prettiest"],
       "senses": [
         {
           "es": "bastante",
@@ -1712,6 +1808,30 @@
         {
           "es": "jalar, tirar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.purple",
+      "headword": "purple",
+      "kind": "word",
+      "forms": ["purple"],
+      "senses": [
+        {
+          "es": "morado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.purpose",
+      "headword": "purpose",
+      "kind": "word",
+      "forms": ["purpose", "purposes"],
+      "senses": [
+        {
+          "es": "propósito, finalidad",
+          "pos": "noun"
         }
       ]
     },

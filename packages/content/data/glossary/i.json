@@ -81,6 +81,18 @@
       ]
     },
     {
+      "id": "glossary.ice-cream",
+      "headword": "ice cream",
+      "kind": "phrase",
+      "forms": ["ice cream", "ice creams"],
+      "senses": [
+        {
+          "es": "helado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.id",
       "headword": "ID",
       "kind": "word",
@@ -133,6 +145,18 @@
       ]
     },
     {
+      "id": "glossary.ill",
+      "headword": "ill",
+      "kind": "word",
+      "forms": ["ill"],
+      "senses": [
+        {
+          "es": "enfermo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.illness",
       "headword": "illness",
       "kind": "word",
@@ -153,6 +177,18 @@
         {
           "es": "imagen",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.imaginary",
+      "headword": "imaginary",
+      "kind": "word",
+      "forms": ["imaginary"],
+      "senses": [
+        {
+          "es": "imaginario",
+          "pos": "adjective"
         }
       ]
     },
@@ -373,6 +409,18 @@
       ]
     },
     {
+      "id": "glossary.indirect",
+      "headword": "indirect",
+      "kind": "word",
+      "forms": ["indirect"],
+      "senses": [
+        {
+          "es": "indirecto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.individual",
       "headword": "individual",
       "kind": "word",
@@ -416,6 +464,18 @@
       "senses": [
         {
           "es": "inflación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.information",
+      "headword": "information",
+      "kind": "word",
+      "forms": ["information"],
+      "senses": [
+        {
+          "es": "información",
           "pos": "noun"
         }
       ]

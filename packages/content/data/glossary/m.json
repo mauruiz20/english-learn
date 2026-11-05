@@ -221,6 +221,18 @@
       ]
     },
     {
+      "id": "glossary.maria",
+      "headword": "Maria",
+      "kind": "word",
+      "forms": ["maria"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.mark",
       "headword": "Mark",
       "kind": "word",
@@ -333,6 +345,18 @@
         {
           "es": "importar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.max",
+      "headword": "Max",
+      "kind": "word",
+      "forms": ["max"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "noun"
         }
       ]
     },
@@ -665,6 +689,18 @@
       ]
     },
     {
+      "id": "glossary.miami",
+      "headword": "Miami",
+      "kind": "word",
+      "forms": ["miami"],
+      "senses": [
+        {
+          "es": "Miami",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.midnight",
       "headword": "midnight",
       "kind": "word",
@@ -797,6 +833,18 @@
       ]
     },
     {
+      "id": "glossary.mix",
+      "headword": "mix",
+      "kind": "word",
+      "forms": ["mix", "mixes", "mixed", "mixing"],
+      "senses": [
+        {
+          "es": "mezclar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.mobile",
       "headword": "mobile",
       "kind": "word",
@@ -805,6 +853,18 @@
         {
           "es": "móvil",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.modal",
+      "headword": "modal",
+      "kind": "word",
+      "forms": ["modal", "modals"],
+      "senses": [
+        {
+          "es": "verbo modal (can, must, should…)",
+          "pos": "noun"
         }
       ]
     },
@@ -912,6 +972,18 @@
       "senses": [
         {
           "es": "estado de ánimo, humor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.moon",
+      "headword": "moon",
+      "kind": "word",
+      "forms": ["moon"],
+      "senses": [
+        {
+          "es": "luna",
           "pos": "noun"
         }
       ]

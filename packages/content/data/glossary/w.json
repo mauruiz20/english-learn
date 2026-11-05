@@ -77,6 +77,18 @@
       ]
     },
     {
+      "id": "glossary.wall",
+      "headword": "wall",
+      "kind": "word",
+      "forms": ["wall", "walls"],
+      "senses": [
+        {
+          "es": "pared, muro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.wallet",
       "headword": "wallet",
       "kind": "word",
@@ -1060,6 +1072,18 @@
       "senses": [
         {
           "es": "peor",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.worst",
+      "headword": "worst",
+      "kind": "word",
+      "forms": ["worst"],
+      "senses": [
+        {
+          "es": "el peor, lo peor (de bad)",
           "pos": "adjective"
         }
       ]

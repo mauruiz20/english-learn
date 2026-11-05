@@ -528,6 +528,18 @@
       ]
     },
     {
+      "id": "glossary.dessert",
+      "headword": "dessert",
+      "kind": "word",
+      "forms": ["dessert", "desserts"],
+      "senses": [
+        {
+          "es": "postre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.destroy",
       "headword": "destroy",
       "kind": "word",
@@ -719,6 +731,18 @@
       "senses": [
         {
           "es": "cena",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.diploma",
+      "headword": "diploma",
+      "kind": "word",
+      "forms": ["diploma", "diplomas"],
+      "senses": [
+        {
+          "es": "título, diploma",
           "pos": "noun"
         }
       ]
@@ -1048,6 +1072,18 @@
         {
           "es": "descargar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.downstairs",
+      "headword": "downstairs",
+      "kind": "word",
+      "forms": ["downstairs"],
+      "senses": [
+        {
+          "es": "abajo, en el piso de abajo",
+          "pos": "adverb"
         }
       ]
     },

@@ -37,6 +37,18 @@
       ]
     },
     {
+      "id": "glossary.uncountable",
+      "headword": "uncountable",
+      "kind": "word",
+      "forms": ["uncountable"],
+      "senses": [
+        {
+          "es": "incontable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.under",
       "headword": "under",
       "kind": "word",
@@ -129,6 +141,18 @@
         {
           "es": "uniforme",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unique",
+      "headword": "unique",
+      "kind": "word",
+      "forms": ["unique"],
+      "senses": [
+        {
+          "es": "único",
+          "pos": "adjective"
         }
       ]
     },

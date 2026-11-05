@@ -1,0 +1,454 @@
+{
+  "items": [
+    {
+      "id": "b1.grammar.obligation-must-rules",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "must + base verb for rules (You must wear a helmet.)",
+      "es": "must + verbo base (sin to): reglas y obligación fuerte",
+      "example": {
+        "en": "All passengers must wear a seat belt.",
+        "es": "Todos los pasajeros deben usar el cinturón de seguridad."
+      }
+    },
+    {
+      "id": "b1.grammar.obligation-have-to-external",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "have to / has to for outside obligations (She has to start at six.)",
+      "es": "have to / has to + verbo: tener que (obligación externa)",
+      "example": {
+        "en": "My sister has to wake up at five.",
+        "es": "Mi hermana tiene que levantarse a las cinco."
+      }
+    },
+    {
+      "id": "b1.grammar.obligation-dont-have-to",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "don't have to = it isn't necessary (You don't have to pay.)",
+      "es": "don't have to: no hace falta, no es necesario",
+      "example": {
+        "en": "You don't have to bring anything.",
+        "es": "No hace falta que traigas nada."
+      }
+    },
+    {
+      "id": "b1.grammar.obligation-mustnt",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "mustn't = it isn't allowed (You mustn't park here.)",
+      "es": "mustn't: está prohibido",
+      "example": {
+        "en": "You mustn't use your phone here.",
+        "es": "Aquí no puedes usar el teléfono."
+      }
+    },
+    {
+      "id": "b1.grammar.obligation-had-to",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "had to (past obligation)",
+      "es": "had to: tuve que, tuvo que",
+      "example": {
+        "en": "We had to wait two hours at the airport.",
+        "es": "Tuvimos que esperar dos horas en el aeropuerto."
+      }
+    },
+    {
+      "id": "b1.grammar.obligation-ought-to",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "ought to (advice)",
+      "es": "ought to + verbo: deberías (consejo, como should)",
+      "example": {
+        "en": "You ought to rest more.",
+        "es": "Deberías descansar más."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.grammar.practice-obligation-vocab-1",
+      "itemIds": ["b1.grammar.obligation-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'mustn't' mean in 'You mustn't park here.'?",
+      "options": ["no es necesario", "no está permitido", "no es buena idea", "no quieres"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-obligation-cloze-1",
+      "itemIds": ["b1.grammar.obligation-must-rules"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "All passengers ___ wear a seat belt.",
+      "answers": ["must"],
+      "distractors": ["must to", "have"],
+      "es": "Todos los pasajeros deben usar el cinturón de seguridad."
+    },
+    {
+      "id": "b1.grammar.practice-obligation-choice-1",
+      "itemIds": ["b1.grammar.obligation-dont-have-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You don't have to bring anything.",
+      "options": [
+        "No hace falta que traigas nada.",
+        "No debes traer nada.",
+        "No puedes traer nada."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-obligation-cloze-2",
+      "itemIds": ["b1.grammar.obligation-have-to-external"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My sister ___ to wake up at five for her new job.",
+      "answers": ["has"],
+      "distractors": ["have", "must"],
+      "es": "Mi hermana tiene que levantarse a las cinco por su nuevo trabajo."
+    },
+    {
+      "id": "b1.grammar.practice-obligation-choice-2",
+      "itemIds": ["b1.grammar.obligation-had-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We had to wait two hours at the airport.",
+      "options": [
+        "Tenemos que esperar dos horas en el aeropuerto.",
+        "No tuvimos que esperar dos horas en el aeropuerto.",
+        "Tuvimos que esperar dos horas en el aeropuerto."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-obligation-vocab-2",
+      "itemIds": ["b1.grammar.obligation-ought-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": ["You ought rest more.", "You must to rest more.", "You ought to rest more."],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-obligation-order-1",
+      "itemIds": ["b1.grammar.obligation-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["phone", "You", "use", "here.", "your", "mustn't"],
+      "accepted": ["You mustn't use your phone here."],
+      "es": "Aquí no puedes usar el teléfono."
+    },
+    {
+      "id": "b1.grammar.practice-obligation-write-1",
+      "itemIds": ["b1.grammar.obligation-have-to-external"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo que trabajar el sábado.",
+      "accepted": [
+        "I {have to|have got to|need to|must} work {on Saturday|this Saturday}.",
+        "{On Saturday|This Saturday}[,] I {have to|have got to|need to|must} work."
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-obligation-cloze-3",
+      "itemIds": ["b1.grammar.obligation-had-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Yesterday I ___ to stay late at the office.",
+      "answers": ["had"],
+      "distractors": ["must", "have"],
+      "es": "Ayer tuve que quedarme hasta tarde en la oficina."
+    },
+    {
+      "id": "b1.grammar.practice-obligation-order-2",
+      "itemIds": ["b1.grammar.obligation-dont-have-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["have", "tomorrow.", "don't", "come", "You", "to"],
+      "accepted": ["You don't have to come tomorrow."],
+      "es": "No hace falta que vengas mañana."
+    },
+    {
+      "id": "b1.grammar.practice-obligation-choice-3",
+      "itemIds": ["b1.grammar.obligation-must-rules"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I must call my grandmother. It's her birthday.",
+      "options": [
+        "Debería llamar a mi abuela algún día.",
+        "Tengo que llamar a mi abuela. Es su cumpleaños.",
+        "No tengo que llamar a mi abuela. Es su cumpleaños."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-obligation-reading-1",
+      "itemIds": [
+        "b1.grammar.obligation-must-rules",
+        "b1.grammar.obligation-mustnt",
+        "b1.grammar.obligation-dont-have-to",
+        "b1.grammar.obligation-have-to-external"
+      ],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b1.grammar.practice-obligation-pool-rules",
+      "questions": [
+        {
+          "prompt": "What must swimmers do before they get in the water?",
+          "options": ["Pay at the front desk", "Take a shower", "Buy a towel"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Which of these is not allowed?",
+          "options": ["Bringing a towel", "Swimming on Mondays", "Running near the pool"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Why don't swimmers have to bring a towel?",
+          "options": ["The pool has towels.", "It isn't cold.", "Towels aren't allowed."],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-obligation-write-2",
+      "itemIds": ["b1.grammar.obligation-ought-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Deberías hablar con tu jefe.",
+      "accepted": ["You {should|ought to} {talk|speak} {to|with} your boss."]
+    },
+    {
+      "id": "b1.grammar.practice-obligation-cloze-4",
+      "itemIds": ["b1.grammar.obligation-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This is a library. You ___ talk on the phone in here.",
+      "answers": ["mustn't"],
+      "distractors": ["don't have to", "haven't to"],
+      "es": "Esto es una biblioteca. Aquí no puedes hablar por teléfono."
+    },
+    {
+      "id": "b1.grammar.practice-obligation-vocab-3",
+      "itemIds": ["b1.grammar.obligation-must-rules"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": ["I must to go now.", "I must go now.", "I must going now."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-obligation-cloze-5",
+      "itemIds": ["b1.grammar.obligation-dont-have-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's Sunday, so I ___ get up early.",
+      "answers": ["don't have to"],
+      "distractors": ["mustn't to", "haven't to"],
+      "es": "Es domingo, así que no tengo que levantarme temprano."
+    },
+    {
+      "id": "b1.grammar.practice-obligation-choice-4",
+      "itemIds": ["b1.grammar.obligation-mustnt"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Visitors mustn't feed the animals.",
+      "options": [
+        "Los visitantes no necesitan darles de comer a los animales.",
+        "Está prohibido que los visitantes les den de comer a los animales.",
+        "Los visitantes tienen que darles de comer a los animales."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-obligation-write-3",
+      "itemIds": ["b1.grammar.obligation-had-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tuve que tomar un taxi.",
+      "accepted": ["I had to {take|get|catch} a {taxi|cab}."]
+    },
+    {
+      "id": "b1.grammar.practice-obligation-order-3",
+      "itemIds": ["b1.grammar.obligation-have-to-external"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["have", "uniform?", "she", "a", "Does", "wear", "to"],
+      "accepted": ["Does she have to wear a uniform?"],
+      "es": "¿Tiene que usar uniforme?"
+    },
+    {
+      "id": "b1.grammar.practice-obligation-cloze-6",
+      "itemIds": ["b1.grammar.obligation-had-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Did you ___ to pay for the tickets?",
+      "answers": ["have"],
+      "distractors": ["had", "must"],
+      "es": "¿Tuviste que pagar las entradas?"
+    },
+    {
+      "id": "b1.grammar.practice-obligation-write-4",
+      "itemIds": ["b1.grammar.obligation-dont-have-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No tienes que pagar.",
+      "accepted": ["You {don't have to|don't need to|needn't|haven't got to} pay."]
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.grammar.practice-obligation-pool-rules",
+      "level": "B1",
+      "topics": ["grammar"],
+      "title": "Pool rules",
+      "text": "Welcome to the city pool! Please read our rules. All swimmers must take a shower before they get in the water. You mustn't run near the pool, and you mustn't bring glass bottles. A child under ten has to swim with an adult. You don't have to bring a towel, because we have towels at the front desk. And you don't have to pay on Mondays: entry is free! Have fun and stay safe.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.grammar.practice-obligation-1",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Obligación y consejo: conócelos",
+      "exerciseIds": [
+        "b1.grammar.practice-obligation-vocab-1",
+        "b1.grammar.practice-obligation-cloze-1",
+        "b1.grammar.practice-obligation-choice-1",
+        "b1.grammar.practice-obligation-cloze-2",
+        "b1.grammar.practice-obligation-choice-2",
+        "b1.grammar.practice-obligation-vocab-2",
+        "b1.grammar.practice-obligation-order-1"
+      ],
+      "newItemIds": [
+        "b1.grammar.obligation-mustnt",
+        "b1.grammar.obligation-must-rules",
+        "b1.grammar.obligation-dont-have-to",
+        "b1.grammar.obligation-have-to-external",
+        "b1.grammar.obligation-had-to"
+      ],
+      "deepenCardIds": ["b1.grammar.have-to-must", "a2.grammar.have-to"]
+    },
+    {
+      "id": "b1.grammar.practice-obligation-2",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Obligación y consejo: practícalos",
+      "exerciseIds": [
+        "b1.grammar.practice-obligation-write-1",
+        "b1.grammar.practice-obligation-cloze-3",
+        "b1.grammar.practice-obligation-order-2",
+        "b1.grammar.practice-obligation-choice-3",
+        "b1.grammar.practice-obligation-reading-1",
+        "b1.grammar.practice-obligation-write-2",
+        "b1.grammar.practice-obligation-cloze-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.obligation-have-to-external",
+        "b1.grammar.obligation-had-to",
+        "b1.grammar.obligation-dont-have-to",
+        "b1.grammar.obligation-must-rules",
+        "b1.grammar.obligation-ought-to"
+      ],
+      "deepenCardIds": ["b1.grammar.have-to-must", "a2.grammar.should"]
+    },
+    {
+      "id": "b1.grammar.practice-obligation-3",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Obligación y consejo: no los confundas",
+      "exerciseIds": [
+        "b1.grammar.practice-obligation-vocab-3",
+        "b1.grammar.practice-obligation-cloze-5",
+        "b1.grammar.practice-obligation-choice-4",
+        "b1.grammar.practice-obligation-write-3",
+        "b1.grammar.practice-obligation-order-3",
+        "b1.grammar.practice-obligation-cloze-6",
+        "b1.grammar.practice-obligation-write-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.obligation-must-rules",
+        "b1.grammar.obligation-dont-have-to",
+        "b1.grammar.obligation-mustnt",
+        "b1.grammar.obligation-had-to",
+        "b1.grammar.obligation-have-to-external"
+      ],
+      "deepenCardIds": ["b1.grammar.have-to-must"]
+    }
+  ]
+}

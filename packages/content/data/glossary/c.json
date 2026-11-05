@@ -1,6 +1,30 @@
 {
   "glossary": [
     {
+      "id": "glossary.cab",
+      "headword": "cab",
+      "kind": "word",
+      "forms": ["cab", "cabs"],
+      "senses": [
+        {
+          "es": "taxi",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cacao",
+      "headword": "cacao",
+      "kind": "word",
+      "forms": ["cacao"],
+      "senses": [
+        {
+          "es": "cacao",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cafe",
       "headword": "café",
       "kind": "word",
@@ -721,6 +745,18 @@
       ]
     },
     {
+      "id": "glossary.cheese",
+      "headword": "cheese",
+      "kind": "word",
+      "forms": ["cheese", "cheeses"],
+      "senses": [
+        {
+          "es": "queso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.chicago",
       "headword": "Chicago",
       "kind": "word",
@@ -781,6 +817,18 @@
         {
           "es": "Chile",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.china",
+      "headword": "China",
+      "kind": "word",
+      "forms": ["china"],
+      "senses": [
+        {
+          "es": "China",
+          "pos": "noun"
         }
       ]
     },
@@ -861,6 +909,18 @@
         {
           "es": "elegir, escoger",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.christmas",
+      "headword": "Christmas",
+      "kind": "word",
+      "forms": ["christmas"],
+      "senses": [
+        {
+          "es": "Navidad",
+          "pos": "noun"
         }
       ]
     },
@@ -1137,6 +1197,18 @@
       ]
     },
     {
+      "id": "glossary.coach",
+      "headword": "coach",
+      "kind": "word",
+      "forms": ["coach", "coaches"],
+      "senses": [
+        {
+          "es": "entrenador, entrenadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.coal",
       "headword": "coal",
       "kind": "word",
@@ -1369,6 +1441,18 @@
       ]
     },
     {
+      "id": "glossary.comma",
+      "headword": "comma",
+      "kind": "word",
+      "forms": ["comma", "commas"],
+      "senses": [
+        {
+          "es": "coma (signo de puntuación)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.comment",
       "headword": "comment",
       "kind": "word",
@@ -1432,6 +1516,18 @@
       "senses": [
         {
           "es": "empresa, compañía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.comparative",
+      "headword": "comparative",
+      "kind": "word",
+      "forms": ["comparative", "comparatives"],
+      "senses": [
+        {
+          "es": "comparativo",
           "pos": "noun"
         }
       ]
@@ -1945,6 +2041,18 @@
       ]
     },
     {
+      "id": "glossary.cover",
+      "headword": "cover",
+      "kind": "word",
+      "forms": ["cover", "covers", "covered", "covering"],
+      "senses": [
+        {
+          "es": "cubrir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.coworker",
       "headword": "coworker",
       "kind": "word",
@@ -2049,6 +2157,18 @@
         {
           "es": "lleno de gente, abarrotado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.crumb",
+      "headword": "crumb",
+      "kind": "word",
+      "forms": ["crumb", "crumbs"],
+      "senses": [
+        {
+          "es": "miga, migaja",
+          "pos": "noun"
         }
       ]
     },

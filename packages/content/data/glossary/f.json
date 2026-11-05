@@ -281,6 +281,18 @@
       ]
     },
     {
+      "id": "glossary.favorite",
+      "headword": "favorite",
+      "kind": "word",
+      "forms": ["favorite", "favorites"],
+      "senses": [
+        {
+          "es": "favorito, preferido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.fear",
       "headword": "fear",
       "kind": "word",
@@ -305,6 +317,18 @@
         {
           "es": "febrero",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feed",
+      "headword": "feed",
+      "kind": "word",
+      "forms": ["feed", "feeds", "fed", "feeding"],
+      "senses": [
+        {
+          "es": "dar de comer, alimentar",
+          "pos": "verb"
         }
       ]
     },
@@ -633,6 +657,18 @@
       ]
     },
     {
+      "id": "glossary.firefighter",
+      "headword": "firefighter",
+      "kind": "word",
+      "forms": ["firefighter", "firefighters"],
+      "senses": [
+        {
+          "es": "bombero, bombera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.firm",
       "headword": "firm",
       "kind": "word",
@@ -753,6 +789,18 @@
         {
           "es": "plano",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.flavor",
+      "headword": "flavor",
+      "kind": "word",
+      "forms": ["flavor", "flavors"],
+      "senses": [
+        {
+          "es": "sabor",
+          "pos": "noun"
         }
       ]
     },
@@ -900,6 +948,18 @@
       "senses": [
         {
           "es": "pie",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.footprint",
+      "headword": "footprint",
+      "kind": "word",
+      "forms": ["footprint", "footprints"],
+      "senses": [
+        {
+          "es": "huella (de un pie o una pata)",
           "pos": "noun"
         }
       ]
@@ -1176,7 +1236,7 @@
       "id": "glossary.friendly",
       "headword": "friendly",
       "kind": "word",
-      "forms": ["friendly"],
+      "forms": ["friendly", "friendlier", "friendliest"],
       "senses": [
         {
           "es": "amable, simpático",
@@ -1245,6 +1305,22 @@
         {
           "es": "completamente, totalmente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fun",
+      "headword": "fun",
+      "kind": "word",
+      "forms": ["fun"],
+      "senses": [
+        {
+          "es": "diversión (have fun: divertirse)",
+          "pos": "noun"
+        },
+        {
+          "es": "divertido",
+          "pos": "adjective"
         }
       ]
     },

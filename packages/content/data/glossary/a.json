@@ -373,6 +373,18 @@
       ]
     },
     {
+      "id": "glossary.add",
+      "headword": "add",
+      "kind": "word",
+      "forms": ["add", "adds", "added", "adding"],
+      "senses": [
+        {
+          "es": "agregar, añadir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.address",
       "headword": "address",
       "kind": "word",
@@ -1237,6 +1249,18 @@
         {
           "es": "agradecer, valorar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.architect",
+      "headword": "architect",
+      "kind": "word",
+      "forms": ["architect", "architects"],
+      "senses": [
+        {
+          "es": "arquitecto, arquitecta",
+          "pos": "noun"
         }
       ]
     },

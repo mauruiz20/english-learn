@@ -109,6 +109,18 @@
       ]
     },
     {
+      "id": "glossary.general",
+      "headword": "general",
+      "kind": "word",
+      "forms": ["general"],
+      "senses": [
+        {
+          "es": "general (in general: en general)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.generally",
       "headword": "generally",
       "kind": "word",
@@ -334,6 +346,18 @@
         {
           "es": "acostumbrarse a",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ghana",
+      "headword": "Ghana",
+      "kind": "word",
+      "forms": ["ghana"],
+      "senses": [
+        {
+          "es": "Ghana",
+          "pos": "noun"
         }
       ]
     },
@@ -662,6 +686,18 @@
       ]
     },
     {
+      "id": "glossary.goodbye",
+      "headword": "goodbye",
+      "kind": "word",
+      "forms": ["goodbye", "goodbyes"],
+      "senses": [
+        {
+          "es": "adiós (say goodbye: despedirse)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.government",
       "headword": "government",
       "kind": "word",
@@ -721,6 +757,18 @@
       "senses": [
         {
           "es": "abuelo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grandma",
+      "headword": "grandma",
+      "kind": "word",
+      "forms": ["grandma", "grandmas"],
+      "senses": [
+        {
+          "es": "abuela, abuelita",
           "pos": "noun"
         }
       ]

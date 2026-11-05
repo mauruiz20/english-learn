@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.ecuador",
+      "headword": "Ecuador",
+      "kind": "word",
+      "forms": ["ecuador"],
+      "senses": [
+        {
+          "es": "Ecuador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.edit",
       "headword": "edit",
       "kind": "word",
@@ -356,6 +368,18 @@
       ]
     },
     {
+      "id": "glossary.engineer",
+      "headword": "engineer",
+      "kind": "word",
+      "forms": ["engineer", "engineers"],
+      "senses": [
+        {
+          "es": "ingeniero, ingeniera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.engineering",
       "headword": "engineering",
       "kind": "word",
@@ -420,6 +444,18 @@
         {
           "es": "inscribirse, matricularse",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.entry",
+      "headword": "entry",
+      "kind": "word",
+      "forms": ["entry", "entries"],
+      "senses": [
+        {
+          "es": "entrada",
+          "pos": "noun"
         }
       ]
     },
@@ -496,6 +532,18 @@
       ]
     },
     {
+      "id": "glossary.europe",
+      "headword": "Europe",
+      "kind": "word",
+      "forms": ["europe"],
+      "senses": [
+        {
+          "es": "Europa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.even",
       "headword": "even",
       "kind": "word",
@@ -536,6 +584,18 @@
       ]
     },
     {
+      "id": "glossary.event",
+      "headword": "event",
+      "kind": "word",
+      "forms": ["event", "events"],
+      "senses": [
+        {
+          "es": "evento, acontecimiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ever",
       "headword": "ever",
       "kind": "word",
@@ -556,6 +616,18 @@
         {
           "es": "cada, todos los",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.everybody",
+      "headword": "everybody",
+      "kind": "word",
+      "forms": ["everybody"],
+      "senses": [
+        {
+          "es": "todos, todo el mundo",
+          "pos": "pronoun"
         }
       ]
     },
@@ -724,6 +796,18 @@
         {
           "es": "hacer ejercicio",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exhausted",
+      "headword": "exhausted",
+      "kind": "word",
+      "forms": ["exhausted"],
+      "senses": [
+        {
+          "es": "agotado",
+          "pos": "adjective"
         }
       ]
     },

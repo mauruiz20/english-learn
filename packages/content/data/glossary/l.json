@@ -966,6 +966,29 @@
       ]
     },
     {
+      "id": "glossary.loyal",
+      "headword": "loyal",
+      "kind": "word",
+      "forms": ["loyal"],
+      "senses": [
+        {
+          "es": "leal, fiel",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lucas",
+      "headword": "Lucas",
+      "kind": "word",
+      "forms": ["lucas"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
       "id": "glossary.lucia",
       "headword": "Lucía",
       "kind": "word",

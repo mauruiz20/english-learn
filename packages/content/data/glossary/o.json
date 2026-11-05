@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.obligation",
+      "headword": "obligation",
+      "kind": "word",
+      "forms": ["obligation", "obligations"],
+      "senses": [
+        {
+          "es": "obligación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ocean",
       "headword": "ocean",
       "kind": "word",

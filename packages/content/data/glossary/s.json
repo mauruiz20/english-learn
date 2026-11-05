@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.safe",
+      "headword": "safe",
+      "kind": "word",
+      "forms": ["safe", "safer", "safest"],
+      "senses": [
+        {
+          "es": "seguro, a salvo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.said",
       "headword": "said",
       "kind": "word",
@@ -100,6 +112,18 @@
       "senses": [
         {
           "es": "salón de belleza, peluquería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.salt",
+      "headword": "salt",
+      "kind": "word",
+      "forms": ["salt"],
+      "senses": [
+        {
+          "es": "sal",
           "pos": "noun"
         }
       ]
@@ -233,6 +257,18 @@
         {
           "es": "balanza",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scared",
+      "headword": "scared",
+      "kind": "word",
+      "forms": ["scared"],
+      "senses": [
+        {
+          "es": "asustado",
+          "pos": "adjective"
         }
       ]
     },
@@ -380,6 +416,18 @@
         },
         {
           "es": "búsqueda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.season",
+      "headword": "season",
+      "kind": "word",
+      "forms": ["season", "seasons"],
+      "senses": [
+        {
+          "es": "estación (del año), temporada",
           "pos": "noun"
         }
       ]
@@ -1423,6 +1471,18 @@
       ]
     },
     {
+      "id": "glossary.slice",
+      "headword": "slice",
+      "kind": "word",
+      "forms": ["slice", "slices"],
+      "senses": [
+        {
+          "es": "rebanada, porción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.slow",
       "headword": "slow",
       "kind": "word",
@@ -1771,6 +1831,18 @@
       ]
     },
     {
+      "id": "glossary.son",
+      "headword": "son",
+      "kind": "word",
+      "forms": ["son", "sons"],
+      "senses": [
+        {
+          "es": "hijo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.song",
       "headword": "song",
       "kind": "word",
@@ -1947,6 +2019,18 @@
       ]
     },
     {
+      "id": "glossary.spain",
+      "headword": "Spain",
+      "kind": "word",
+      "forms": ["spain"],
+      "senses": [
+        {
+          "es": "España",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.spark",
       "headword": "spark",
       "kind": "word",
@@ -2027,6 +2111,18 @@
         {
           "es": "pasar (tiempo)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spicy",
+      "headword": "spicy",
+      "kind": "word",
+      "forms": ["spicy"],
+      "senses": [
+        {
+          "es": "picante",
+          "pos": "adjective"
         }
       ]
     },
@@ -2599,6 +2695,18 @@
       ]
     },
     {
+      "id": "glossary.success",
+      "headword": "success",
+      "kind": "word",
+      "forms": ["success"],
+      "senses": [
+        {
+          "es": "éxito",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.such",
       "headword": "such",
       "kind": "word",
@@ -2738,7 +2846,7 @@
       "id": "glossary.sunny",
       "headword": "sunny",
       "kind": "word",
-      "forms": ["sunny"],
+      "forms": ["sunny", "sunnier", "sunniest"],
       "senses": [
         {
           "es": "soleado",
@@ -2787,6 +2895,18 @@
         {
           "es": "(make sure) asegurarse",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.surface",
+      "headword": "surface",
+      "kind": "word",
+      "forms": ["surface", "surfaces"],
+      "senses": [
+        {
+          "es": "superficie",
+          "pos": "noun"
         }
       ]
     },
@@ -2867,6 +2987,18 @@
         {
           "es": "nadar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.swimmer",
+      "headword": "swimmer",
+      "kind": "word",
+      "forms": ["swimmer", "swimmers"],
+      "senses": [
+        {
+          "es": "nadador, nadadora",
+          "pos": "noun"
         }
       ]
     },
