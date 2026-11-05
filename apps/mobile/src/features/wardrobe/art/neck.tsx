@@ -92,44 +92,38 @@ export function Mono({ eye: ink, highlighters, small }: AviArtProps) {
 }
 
 /**
- * A long green scarf with yellow stripes, wrapped once, both ends streaming back in the wind above
- * the plane (clear of the tail sticker).
+ * A long green scarf with yellow stripes, wrapped around the top edge (Avi's neck, local y ≈ −7):
+ * a collar over the edge, one end hanging down the wing to the fold and one trailing back along
+ * the edge, close to the paper, so the scarf reads as worn rather than floating beside it.
  */
 export function BufandaDeRayas({ eye: ink, highlighters, small }: AviArtProps) {
+  const piece = {
+    fill: highlighters.green,
+    stroke: ink,
+    strokeWidth: OUTLINE,
+    strokeLinejoin: "round",
+  } as const;
   return (
     <>
+      {/* The end trailing back along the edge. */}
       <Path
-        d="M-1 -9 C-5 -13 -9.5 -10.4 -14.5 -13.6 L-14 -10.2 C-9.6 -8 -5.6 -10 -1.4 -7.4 Z"
-        fill={highlighters.green}
-        stroke={ink}
-        strokeWidth={OUTLINE}
-        strokeLinejoin="round"
+        d="M-3.4 -9.8 C-7.4 -11 -10.4 -9.2 -14.6 -10.4 L-13.8 -7 C-10.2 -6.2 -7 -7.4 -3.6 -6.2 Z"
+        {...piece}
       />
-      <Path
-        d="M-1.4 -7.8 C-3.8 -8.8 -5.8 -8 -8.2 -9.6 L-8 -7.6 C-5.8 -6.6 -3.8 -7 -1.4 -6.2 Z"
-        fill={highlighters.green}
-        stroke={ink}
-        strokeWidth={OUTLINE}
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M-3.2 -8 L3.2 -8 L3.6 4 L-3.6 4 Z"
-        fill={highlighters.green}
-        stroke={ink}
-        strokeWidth={OUTLINE}
-        strokeLinejoin="round"
-      />
+      {/* The end hanging down the wing. */}
+      <Path d="M-3 -7 L1.8 -7 L2.8 4.4 L-2 4.4 Z" {...piece} />
+      {/* The collar, wrapped over the edge. */}
+      <Path d="M-4.4 -10.4 Q0 -11.8 4.4 -10.2 L4.6 -6.4 Q0 -7.8 -4.6 -6.4 Z" {...piece} />
       {!small && (
         <>
           <G fill={highlighters.yellow}>
-            <Path d="M-3.3 -5.6 H3.3 V-4 H-3.3 Z" />
-            <Path d="M-3.4 -1.6 H3.4 V0 H-3.4 Z" />
-            <Path d="M-6.6 -12 l1.6 0 l0 3.2 l-1.6 0 Z" />
-            <Path d="M-10.8 -11.8 l1.6 0.1 l-0.1 3.1 l-1.6 -0.1 Z" />
-            <Path d="M-5.2 -8.6 l1.4 -0.2 l0.2 1.8 l-1.4 0.2 Z" />
+            <Path d="M-2.6 -3.4 H2.1 L2.2 -1.8 H-2.6 Z" />
+            <Path d="M-2.3 0.4 H2.4 L2.5 2 H-2.2 Z" />
+            <Path d="M-7.6 -10.4 l1.6 -0.2 l0.3 3.6 l-1.6 0.2 Z" />
+            <Path d="M-11.6 -10 l1.6 0 l0.1 3.4 l-1.6 0 Z" />
           </G>
           <Path
-            d="M-14.6 -13.2 l-1.6 -0.3 M-14.4 -11.8 l-1.6 -0.3 M-14.2 -10.5 l-1.6 -0.3"
+            d="M-1.4 4.6 l-0.2 1.4 M0.4 4.6 l0 1.4 M2.2 4.6 l0.2 1.4 M-14.6 -9.6 l-1.4 0.2 M-14.4 -8.2 l-1.4 0.2"
             stroke={ink}
             strokeWidth={DETAIL}
             strokeLinecap="round"

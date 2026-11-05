@@ -77,7 +77,7 @@ describe("Avi", () => {
   it("wears every slot, layered tail sticker → neck → face → glasses → hat", async () => {
     await render(<Avi size={64} outfit={FULL} />);
 
-    const order = paintOrder().filter((id) => id.startsWith("avi-"));
+    const order = paintOrder().filter((id) => id.startsWith("avi-") && !id.includes("-eyes-"));
     expect(order).toEqual([
       "avi-svg",
       "avi-body",
@@ -152,5 +152,38 @@ describe("Avi", () => {
   it("is plain white paper by default", async () => {
     await render(<Avi />);
     expect(fillOf("avi-body")).toBe(processColor("#FFFFFF"));
+  });
+  describe("face", () => {
+    it.each([
+      ["happy", "avi-eyes-open"],
+      ["cheer", "avi-eyes-open"],
+      ["sleepy", "avi-eyes-closed"],
+      ["sad", "avi-eyes-sad"],
+    ] as const)("draws %s eyes", async (mood, eyes) => {
+      await render(<Avi mood={mood} />);
+
+      expect(byId(eyes)).toBeTruthy();
+    });
+
+    it("gives the sad mood a flat mouth", async () => {
+      await render(<Avi mood="sad" />);
+
+      expect(byId("avi-mouth-flat")).toBeTruthy();
+    });
+
+    it("closes its eyes for a blink, whatever the mood", async () => {
+      await render(<Avi mood="sad" blink />);
+
+      expect(byId("avi-eyes-closed")).toBeTruthy();
+      expect(screen.queryByTestId("avi-eyes-sad", HIDDEN)).toBeNull();
+    });
+
+    it("keeps glasses on over any mood", async () => {
+      await render(<Avi mood="sad" outfit={{ eyes: piece("gafas-de-sol") }} />);
+
+      expect(paintOrder().indexOf("avi-item-gafas-de-sol")).toBeGreaterThan(
+        paintOrder().indexOf("avi-eyes-sad"),
+      );
+    });
   });
 });

@@ -1,4 +1,4 @@
-import type { SettingsRepository } from "@english-learn/domain";
+import { localDate, type SettingsRepository } from "@english-learn/domain";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { migrate } from "./migrations";
 import { createSqliteSettingsRepository } from "./sqlite-settings-repository";
@@ -159,5 +159,18 @@ describe("createSqliteSettingsRepository", () => {
     await db.runAsync("INSERT INTO setting (key, value) VALUES ('plumas_welcome', '{')", []);
 
     expect(await settings.getPlumasWelcome()).toEqual({ plumas: 0, dismissed: true });
+  });
+  it("remembers the last home visit (per device, for Avi's welcome back)", async () => {
+    expect(await settings.getLastHomeVisit()).toBeNull();
+
+    await settings.setLastHomeVisit(localDate("2026-11-05"));
+
+    expect(await createSqliteSettingsRepository(db).getLastHomeVisit()).toBe("2026-11-05");
+  });
+
+  it("treats an unreadable last home visit as none", async () => {
+    await db.runAsync("INSERT INTO setting (key, value) VALUES ('last_home_visit', 'ayer')", []);
+
+    expect(await settings.getLastHomeVisit()).toBeNull();
   });
 });

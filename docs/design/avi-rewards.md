@@ -1,6 +1,7 @@
 # Design: Avi's rewards, wardrobe and home presence
 
-Status: approved, slices 1 and 2 implemented (see [Slice 2 as built](#71-slice-2-as-built)) ·
+Status: approved, slices 1 to 3 implemented (see [Slice 2 as built](#71-slice-2-as-built) and
+[Slice 3 as built](#72-slice-3-as-built)) ·
 The owner took the five recommended answers in
 [Open questions](#8-open-questions)
 
@@ -384,6 +385,28 @@ What changed from the plan above, and why:
 | Try-on motion     | The preview Avi hops 8 pt (330 ms) instead of the item dropping onto its anchor (all layers share one `Svg`); none with reduced motion                                                                                                                                               |
 | Entry points      | Home's plumas balance is a button ("Tienes 135 plumas", hint "Abre el armario de Avi"). No link from Cuenta (it is about the account and sync); the hero Avi arrives with slice 3. `/armario?item=<id>` opens on that item                                                           |
 | Purchase guard    | `buyItem` checks the stored balance and ownership before writing, so a stale screen cannot overspend or buy twice on one device                                                                                                                                                      |
+
+### 7.2 Slice 3 as built
+
+What changed from sections 5 and 6.4, and why:
+
+| Topic           | As built                                                                                                                                                                                                                                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Size and place  | 76 pt on phones, 96 pt from 768 px wide (not 56 pt): the owner found the outfit hard to see on the 40 pt path guide. Avi sits on the right of the greeting row, **mirrored** so it faces the page; the row is about 50 pt taller than the old greeting, so the path barely moves                                                            |
+| Bubble          | A small speech bubble (sheet paper, ink outline, a tail pointing at Avi) under the greeting heading, in body text (not muted): it is the state's only carrier. It is a polite live region, so a screen reader says a new line once, not on every render                                                                                     |
+| States          | The six of 5.1, in that order, from `homeAviState` (`features/home/model/home-avi.ts`), a pure function of the date, the hour, the streak, the last home visit, the reviews due, whether there is any progress, and what is new                                                                                                             |
+| Celebrate       | A lesson completed since home was last seen (hop), or a new album badge (loop). Badge prizes unlock with slice 4                                                                                                                                                                                                                            |
+| New outfit      | Also a newly **bought** item, not only a change of clothes (the animation table already twirls for a purchase). What is new is kept in memory for the app session (`createHomeAviMemory`), like `completion-memory.ts`: a reload celebrates nothing                                                                                         |
+| Missed you      | As designed. Its button name says "con ganas de verte", never "triste"                                                                                                                                                                                                                                                                      |
+| Welcome back    | Not on the very first visit (`lastHomeVisit` is null): that is a greeting, not a return. A failed settings read only skips this state                                                                                                                                                                                                       |
+| Resting         | Also **at night**, 22:00 to 05:59 local time ("Ya es tarde. ¡Que descanses!"), after "missed you" and "welcome back"                                                                                                                                                                                                                        |
+| Idle            | Not always quiet: a fresh learner gets "¡Hola! Soy Avi. ¿Empezamos?", and reviews due get "¿Repasamos un poco?"                                                                                                                                                                                                                             |
+| Ambient motion  | **Deviation from "no idle loops"** (asked by the owner): a gentle hover (2.5 pt, 1.4 s up and 1.4 s down) and a blink (eyes shut 150 ms every 4 s). Both run only while home is the focused screen and the app or tab is visible (`useAppVisible`, over `AppState`, which follows `visibilitychange` on web), and never with reduced motion |
+| Moments         | As in 5.2: wave 600 ms, hop ≈ 500 ms, loop 900 ms, twirl 700 ms, droop 400 ms (stays), perk up 250 ms. With reduced motion, the final pose at once (the droop's tilt and drop included)                                                                                                                                                     |
+| Hero label      | "Avi, contento, con gorra y bufanda de rayas. Abre el armario" (state and outfit), instead of "Avi. Abrir el armario"                                                                                                                                                                                                                       |
+| Sound           | None for the states (as designed); the tap clicks with the shared `press` sound, silent while sounds are off                                                                                                                                                                                                                                |
+| `lastHomeVisit` | `SettingsRepository.get/setLastHomeVisit(date)` (SQLite `setting` key `last_home_visit`; an unreadable value reads as no visit), written once per new date when home loads                                                                                                                                                                  |
+| Neckwear art    | The striped scarf (`Bufanda de rayas`) now wraps over the top edge: a collar across the edge, one end down the wing to the fold and one trailing back along the edge, close to the paper. In slice 2 its ends streamed high above the plane and it looked detached                                                                          |
 
 ## 8. Open questions
 
