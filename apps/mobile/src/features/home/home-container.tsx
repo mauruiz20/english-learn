@@ -18,7 +18,7 @@ import {
   pathLevels,
 } from "@/features/lesson/model/lesson-catalog";
 import { lessonScore } from "@/features/lesson/model/lesson-score";
-import { pendingReviewItems } from "@/features/review/model/review-plan";
+import { reviewOutlook } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
 import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
@@ -189,11 +189,9 @@ export function HomeContainer({
         setWelcome(hasProgress ? rewards.earnedBySource.welcome : null);
         const level = placement?.level ?? null;
         const today = clock.today();
-        const pendingReviews = pendingReviewItems({
-          states,
-          today,
-          exercises: content.exercises,
-        }).length;
+        // Exactly what `/review` will serve next (same plan), and what later reviews serve today.
+        const outlook = reviewOutlook({ states, today, exercises: content.exercises });
+        const pendingReviews = outlook.next;
         const lessons = markJustCompleted(
           homeLessons(content, level, states, results, chosenLevel),
           completionMemory,
@@ -227,6 +225,7 @@ export function HomeContainer({
         setState({
           status: "ready",
           pendingReviews,
+          laterReviews: outlook.later,
           reviewNoteColor: stickyNoteHighlighter(today),
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,

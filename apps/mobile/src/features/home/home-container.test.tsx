@@ -6,6 +6,7 @@ import {
   type Clock,
   type ProgressEvent,
   type ProgressRepository,
+  type ReviewState,
   type SettingsRepository,
 } from "@english-learn/domain";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
@@ -26,6 +27,9 @@ import { createHomeAviMemory, type HomeAviMemory } from "./model/home-avi";
 import { withMotion } from "@/testing/motion";
 import { StyleSheet } from "react-native";
 import { testRandomBytes } from "@/testing/random-bytes";
+import { corpus } from "@english-learn/content/corpus";
+import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
+import { planReview, reviewOutlook } from "@/features/review/model/review-plan";
 
 const mockPush = jest.fn();
 
@@ -38,6 +42,21 @@ jest.mock("expo-router", () => {
 });
 
 const TODAY = localDate("2026-10-29");
+
+/** States due on `TODAY` for the first `n` reviewable items of the bundled lessons. */
+function realCorpusDueStates(n: number): ReviewState[] {
+  const yesterday = localDate("2026-10-28");
+  const ids = new Set<string>();
+  for (const l of corpus.lessons) {
+    for (const id of lessonItemIds(l, corpus.exercisesById)) {
+      const reviewable = corpus.exercises.some(
+        (e) => e.type !== "reading" && e.itemIds.includes(id),
+      );
+      if (ids.size < n && reviewable) ids.add(id);
+    }
+  }
+  return [...ids].map((id) => review(initialState(id, yesterday), 5, yesterday));
+}
 const fixedClock: Clock = { today: () => TODAY, nowMs: () => 0 };
 
 const b1Lesson = {
@@ -577,6 +596,22 @@ describe("HomeContainer", () => {
     await fireEvent.press(screen.getByRole("button", { name: "Repasar" }));
     expect(mockPush).toHaveBeenCalledWith("/review");
   });
+
+  it.each([5, 20, 45])(
+    "with %i due items, counts exactly the exercises the next review serves",
+    async (n) => {
+      const states = realCorpusDueStates(n);
+      const input = { states, today: TODAY, exercises: corpus.exercises };
+      const { next, later } = reviewOutlook(input);
+      expect(next).toBe(planReview(input).exercises.length);
+
+      await renderContainer(createFakeRepository({ states }), undefined, undefined, corpus);
+
+      expect(await screen.findByText(`${next} pendientes`)).toBeOnTheScreen();
+      if (later > 0) expect(screen.getByText(`y ${later} más después`)).toBeOnTheScreen();
+      else expect(screen.queryByText(/más después/)).not.toBeOnTheScreen();
+    },
+  );
 
   it("opens a lesson", async () => {
     await renderContainer(createFakeRepository());
