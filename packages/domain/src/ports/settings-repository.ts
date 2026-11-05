@@ -1,3 +1,5 @@
+import type { Level } from "../cefr";
+
 /**
  * The account this device is signed in to, as remembered across restarts: who, never a token
  * (the session itself lives in an HttpOnly cookie and an in-memory access token).
@@ -51,4 +53,13 @@ export interface SettingsRepository {
   setPlumasWelcome(note: PlumasWelcome): Promise<void>;
   /** Forgets it (a sign-out that deletes this device's progress): the next learner decides anew. */
   clearPlumasWelcome(): Promise<void>;
+  /**
+   * The level the home path shows, picked by hand on this device; null follows the automatic
+   * level. A view preference only, never part of the progress.
+   */
+  getPathLevel(): Promise<Level | null>;
+  /** Picks the path's level; null goes back to the automatic one. */
+  setPathLevel(level: Level | null): Promise<void>;
+  /** Forgets it (a sign-out that deletes this device's progress), like `clearPlumasWelcome`. */
+  clearPathLevel(): Promise<void>;
 }

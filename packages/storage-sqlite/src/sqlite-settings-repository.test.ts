@@ -160,4 +160,29 @@ describe("createSqliteSettingsRepository", () => {
 
     expect(await settings.getPlumasWelcome()).toEqual({ plumas: 0, dismissed: true });
   });
+  it("follows the automatic path level until the learner picks one", async () => {
+    expect(await settings.getPathLevel()).toBeNull();
+
+    await settings.setPathLevel("B2");
+    expect(await createSqliteSettingsRepository(db).getPathLevel()).toBe("B2");
+
+    await settings.setPathLevel("A2");
+    expect(await settings.getPathLevel()).toBe("A2");
+  });
+
+  it("goes back to the automatic path level, also on a full sign-out", async () => {
+    await settings.setPathLevel("B1");
+    await settings.setPathLevel(null);
+    expect(await settings.getPathLevel()).toBeNull();
+
+    await settings.setPathLevel("B1");
+    await settings.clearPathLevel();
+    expect(await createSqliteSettingsRepository(db).getPathLevel()).toBeNull();
+  });
+
+  it("treats an unreadable path level as automatic", async () => {
+    await db.runAsync("INSERT INTO setting (key, value) VALUES ('path_level', 'Z9')", []);
+
+    expect(await settings.getPathLevel()).toBeNull();
+  });
 });
