@@ -271,10 +271,41 @@ prepositions), possessive `'s`, `look like` / `What is… like?`, `like` + -ing,
 | B1 Consejos para sentirse mejor    | `should` / `shouldn't` at B1 (linked to the A2 should card for now)             |
 | B1 Obligaciones y cambios          | `deadline`, `quit` (the job phrasal-verb card is linked to "Mi primer trabajo") |
 
-There are no B2 lessons yet, so the B2 cards (`b2.grammar.*`, `b2.vocabulary.raise-rise`,
-`b2.phrasal-verbs.ideas-and-results`) are reachable from the card list only; link them with
-`deepenCardIds` when B2 lessons exist. B2 points still without a card: inversion (`Never have I…`),
-participle clauses and B2 collocations.
+Every B2 card is linked from a B2 lesson (see [Level coverage](#level-coverage)); no B2 card is
+left unlinked. B2 points still without a card: inversion (`Never have I…`), participle clauses,
+B2 collocations, and the topic vocabulary of the B2 lessons (`workload`, `make ends meet`,
+`carbon footprint`, `culture shock`).
+
+## Level coverage
+
+| Level | Topics | Lessons | Notes                                                |
+| ----- | ------ | ------- | ---------------------------------------------------- |
+| A1    | —      | —       | Placement only; A1 learners start on the A2 path.    |
+| A2    | 10     | 20      | Default path without a placement.                    |
+| B1    | 11     | 22      |                                                      |
+| B2    | 8      | 16      | C1 learners start here (nearest level with lessons). |
+| C1    | —      | —       | Placement only.                                      |
+
+The app moves a learner's path on to the next level with lessons once every lesson of the
+current one is done.
+
+B2 lessons practice the B2 card items directly (the item gets the lesson topic too, like
+`b1.travel.check-in` gets `phrasal-verbs`), so a card item never has a duplicate lesson item.
+Each card is linked from the lesson that teaches it, once per topic (rule 22):
+
+| Topic                      | Lesson 1 (cards)                                       | Lesson 2 (cards)                                             |
+| -------------------------- | ------------------------------------------------------ | ------------------------------------------------------------ |
+| `climate-policy`           | Un planeta más caliente (`raise-rise`)                 | Acuerdos y desacuerdos (`despite`)                           |
+| `health-and-psychology`    | Nuevos hábitos (`used-to`)                             | Ojalá… (`wish-if-only`)                                      |
+| `lifelong-learning`        | Nunca es tarde (`wish-if-only`)                        | Si hubiera estudiado… (`mixed-conditionals`)                 |
+| `media-and-misinformation` | ¿Verdad o mentira? (`past-deduction`)                  | Rumores que corren (`ideas-and-results`: turn out, rule out) |
+| `money-and-economy`        | Vivir con un presupuesto (`causative`)                 | Si lo hubiera sabido… (`third-conditional`)                  |
+| `science-and-ethics`       | Ciencia con conciencia (`reporting-passive`)           | Inventos que lo cambiaron todo (`mixed-conditionals`)        |
+| `travel-and-identity`      | Viajar de otra manera (`be-worth`)                     | Vivir en otro país (`despite`, `used-to`)                    |
+| `work-and-leadership`      | Aprender a liderar (`ideas-and-results`: carry out, …) | Errores y lecciones (`should-have`)                          |
+
+B2 Tatoeba sentences were shortlisted with `candidates --level B2` (see
+`tools/content-pipeline`).
 
 ## Attribution
 
@@ -314,8 +345,9 @@ pnpm --filter @english-learn/content disputed-answers [events.json]  # disputed 
 
 - One file per topic and level (`data/a2/food.json`); placement questions live in one file per
   level (`data/placement/a1.json` … `c1.json`).
-- Each topic file has 8–15 items, at least one passage, and lessons of 6–8 exercises that together
-  cover all six exercise types. Lesson titles are in Spanish; Spanish text is neutral (no voseo).
+- Each topic teaches 8–15 items (a B2 file holds fewer, because its lessons also practice the B2
+  card items), has at least one passage, and lessons of 6–8 exercises that together cover all six
+  exercise types. Lesson titles are in Spanish; Spanish text is neutral (no voseo).
 - Example sentences can come from Tatoeba via `tools/content-pipeline` (see its README): run
   `download`, then `candidates --level A2`, pick sentences from `.cache/candidates-a2.json`, and
   run `verify` to check that every Tatoeba attribution quotes the English sentence exactly. Spanish
