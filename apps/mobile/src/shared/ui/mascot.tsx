@@ -223,11 +223,16 @@ export function Avi({
 }
 
 /**
- * A worn piece's test id: `data-testid` on web (react-native-svg hands its props to the DOM as
- * they are, and Playwright looks for `data-testid`), `testID` elsewhere.
+ * A test id on an svg element: `data-testid` on web (react-native-svg hands its props to the DOM
+ * as they are, and Playwright looks for `data-testid`), `testID` elsewhere.
  */
+function svgTestId(id: string): Record<string, string> {
+  return Platform.OS === "web" ? { "data-testid": id } : { testID: id };
+}
+
+/** A worn piece's test id. */
 function itemTestId(id: string): Record<string, string> {
-  return Platform.OS === "web" ? { "data-testid": `avi-item-${id}` } : { testID: `avi-item-${id}` };
+  return svgTestId(`avi-item-${id}`);
 }
 
 /** One worn piece, moved to its slot's anchor. */
@@ -257,18 +262,18 @@ function Face({
   const eyes =
     blink || mood === "sleepy" ? (
       // Shut: two little arcs, smiling down.
-      <G testID="avi-eyes-closed">
+      <G {...svgTestId("avi-eyes-closed")}>
         <Path d="M40 19 q3 2 6 0" {...line} />
         <Path d="M47.5 16 q3 2 6 0" {...line} />
       </G>
     ) : mood === "sad" ? (
       // Downcast: the arcs turn over, the outer ends drooping.
-      <G testID="avi-eyes-sad">
+      <G {...svgTestId("avi-eyes-sad")}>
         <Path d="M40 20.4 q3 -2.6 6 -0.2" {...line} strokeWidth={2.2} />
         <Path d="M47.5 17.6 q3 -2.4 6 0.4" {...line} strokeWidth={2.2} />
       </G>
     ) : (
-      <G testID="avi-eyes-open">
+      <G {...svgTestId("avi-eyes-open")}>
         <Circle cx={43} cy={19} r={2.6} fill={eye} />
         <Circle cx={50} cy={16} r={2.6} fill={eye} />
       </G>
@@ -283,7 +288,7 @@ function Face({
         strokeLinejoin="round"
       />
     ) : mood === "sad" ? (
-      <Path testID="avi-mouth-flat" d="M44.4 24.6 l5.4 -1.7" {...line} />
+      <Path {...svgTestId("avi-mouth-flat")} d="M44.4 24.6 l5.4 -1.7" {...line} />
     ) : (
       <Path d="M44 24 q3 2.5 6 -1" {...line} />
     );

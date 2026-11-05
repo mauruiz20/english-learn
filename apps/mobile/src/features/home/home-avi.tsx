@@ -241,9 +241,11 @@ function usePose(state: HomeAviState, reduced: boolean, ambient: boolean) {
   return useAnimatedStyle(() => ({
     transform: [
       { translateY: lift.value + bob.value },
+      // Mirrored, so Avi faces its bubble and the page; mirrored before turning, so a positive
+      // tilt still points the nose down. A twirl turns it around and back.
+      { scaleX: -turn.value },
       { rotate: `${tilt.value}deg` },
       { rotate: `${spin.value}deg` },
-      { scaleX: turn.value },
     ],
   }));
 }
@@ -255,7 +257,8 @@ const useStyles = themedStyles(({ colors }) =>
     button: { alignItems: "center", justifyContent: "center", borderRadius: radius.lg },
     pressed: { backgroundColor: colors.rule },
     bubble: {
-      alignSelf: "flex-start",
+      // Next to Avi, whose nose points at it.
+      alignSelf: "flex-end",
       maxWidth: "100%",
       marginRight: spacing.sm,
       paddingVertical: spacing.xs + 2,
