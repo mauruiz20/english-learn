@@ -293,8 +293,29 @@ data/practice/phrasal-verbs/travel.json       the group's items, exercises and l
   `<level>.phrasal-verbs.practice-<group>-<type>-<n>`. Lesson 1 introduces the verbs ("conócelos"),
   lesson 2 practices them with every exercise type but reading ("practícalos"), lesson 3
   contrasts near-synonyms, particles and the object's place ("no los confundas").
-- **A new collection** (Tiempos verbales, Situaciones, Gramática) is content only: a new
-  `data/practice/<slug>/` directory. The app lists collections and groups from the corpus.
+- **Tiempos verbales** (`practice/tenses/`, topic `tenses`): ten groups of six items, one or
+  two tenses each (A2: presente simple y continuo; B1: pasado simple y continuo, presente
+  perfecto, presente perfecto o pasado, presente perfecto continuo, pasado perfecto, formas del
+  futuro, verbos de estado; B2: futuro continuo y perfecto, used to y would). Form, use, time
+  expressions and the typical mistakes (`I am living here since 2019`). Lessons "conócelo(s)",
+  "practícalo(s)", "no lo(s) confundas".
+- **Situaciones** (`practice/situations/`, topic `situations`): twelve groups of six phrases
+  (A2: aeropuerto, hotel, restaurante, médico, indicaciones; B1: compras y devoluciones,
+  alquilar, charla informal, llamadas; B2: quejas, entrevista de trabajo, reuniones y correos).
+  Each lesson 1 has a reading with a short dialogue (speaker labels inline, no line breaks).
+  Lessons "frases clave", "practícalas" and "dilo bien" (register: polite vs casual, calques and
+  false friends).
+- **Gramática** (`practice/grammar/`, topic `grammar`): twelve groups of six items (A2:
+  artículos, preposiciones, contables e incontables, comparativos; B1: obligación y consejo,
+  gerundio o infinitivo, pasiva, estilo indirecto, oraciones de relativo, preguntas y question
+  tags; B2: deducciones, condicionales). Item ids start with the group
+  (`a2.grammar.articles-…`) so they never clash with study-card items; the cards that already
+  explain a point are linked with `deepenCardIds` instead of re-explaining it.
+- In every collection, item ids are `<level>.<topic>.<slug>`, lessons
+  `<level>.<topic>.practice-<group>-<1|2|3>` and exercises
+  `<level>.<topic>.practice-<group>-<type>-<n>`. A new collection is content only: a new
+  `data/practice/<slug>/` directory. The app lists collections (in path order of their
+  directories) and groups from the corpus.
 
 ## Card gaps (next card pack)
 

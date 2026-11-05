@@ -424,7 +424,8 @@ explanation with the items it teaches and 6–8 practice exercises that are in n
 Free practice by topic, apart from the path and its levels (content: `corpus.practice`, see
 `@english-learn/content`, "Práctica libre"). Nothing is locked; a group's level is a label.
 
-- **Home**: "Práctica libre · Phrasal verbs, a tu ritmo" under "Fichas" in the progress card
+- **Home**: "Práctica libre · Gramática, Phrasal verbs, Situaciones, Tiempos verbales, a tu ritmo"
+  (the collection titles) under "Fichas" in the progress card
   (secondary to the path), shown when the content has collections. It opens `/practica`.
 - **`/practica`**: one card per collection ("Phrasal verbs: 10 grupos, 30 lecciones, 2 hechas")
   and a line saying it does not change the path and that new words come back in reviews.
