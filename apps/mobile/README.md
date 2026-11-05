@@ -257,12 +257,31 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   a perfect page) runs the lesson again from the start as a new session (`LessonContainer`
   remounts the session with a new key): answer XP again, never a second completion bonus.
 
-Home lists the lessons of the level nearest to the placement level that has lessons (ties go to
-the lower level; with the bundled content A1 → A2 and C1 → B2), or A2 without a placement. Once
-every lesson of that level is done, the path moves on to the next level with lessons (A2 → B1 →
-B2; `pathLessons` in `model/lesson-catalog.ts`); with every level done it stays on the last one,
-and it never goes below the placement level. A lesson shows as done once every item it practices
+Home lists the lessons of one level, the path's level (`autoPathLevel` in
+`model/lesson-catalog.ts`). It starts at the level nearest to the placement level that has lessons
+(ties go to the lower level; with the bundled content A1 → A2 and C1 → B2), or A2 without a
+placement. If the learner started the nearest lower level with lessons (at least one lesson done)
+and has not finished it, the path starts there instead: progress counts more than a newer
+placement or new content (until B2 had lessons, a B2 or C1 placement started on B1, so those
+learners stay on the B1 they began). From that start the path moves up past every finished level
+to the first one with lessons left (A2 → B1 → B2); with every level done it stays on the last one.
+A new learner is never placed below the placement level. The learner can also pick the level by
+hand (see "Path level, picked by hand" below). A lesson shows as done once every item it practices
 has a review state.
+
+**Path level, picked by hand.** Under "Lecciones de nivel B1" a chip says which level the path
+shows and how: "Nivel B1 · automático" or "Nivel B1 · elegido" (labelled "Nivel del recorrido: B1,
+automático" / "…, elegido a mano", hint "Muestra los niveles para elegir cuál ver"; 44 pt tall, ink
+on the sheet). It opens a short list of radios right under it (`path-level-picker.tsx`):
+"Automático · ahora B1" and every level with lessons with its progress ("B2 · 0 % completado").
+Picking one closes the list and shows that level's path; a level picked by hand stays even once
+every lesson of it is done, and "Automático" goes back to the rule above. Nothing animates but the
+shared press feedback. The choice is a view preference, not progress: no event, stored on the
+device (`SettingsRepository.getPathLevel` / `setPathLevel`, null = automatic; an unreadable
+value reads as automatic) and forgotten with the progress on a sign-out that deletes it
+(`clearPathLevel`). The next lesson, "Siguiente" and Avi on the path follow the level shown.
+Showing another level never draws checks again: the completion memory remembers the done lessons
+of every level.
 
 **Lesson results on the path.** A done lesson also shows its best result, from the fold's
 `lessonResults` (the best `accuracy` of its `session_completed` events; no new event):

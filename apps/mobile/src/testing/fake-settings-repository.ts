@@ -1,5 +1,6 @@
 import type {
   AccountMarker,
+  Level,
   LocalDate,
   PlumasWelcome,
   SettingsRepository,
@@ -16,6 +17,7 @@ export function createFakeSettingsRepository(
     themePreference?: ThemePreference;
     migratedTo?: string | null;
     plumasWelcome?: PlumasWelcome | null;
+    pathLevel?: Level | null;
     lastHomeVisit?: LocalDate | null;
   } = {},
 ): SettingsRepository & {
@@ -26,6 +28,7 @@ export function createFakeSettingsRepository(
   readonly themePreference: () => ThemePreference;
   readonly migratedTo: () => string | null;
   readonly plumasWelcome: () => PlumasWelcome | null;
+  readonly pathLevel: () => Level | null;
   readonly lastHomeVisit: () => LocalDate | null;
 } {
   let soundEnabled = initial.soundEnabled ?? true;
@@ -35,8 +38,17 @@ export function createFakeSettingsRepository(
   let themePreference = initial.themePreference ?? "system";
   let migratedTo = initial.migratedTo ?? null;
   let plumasWelcome = initial.plumasWelcome ?? null;
+  let pathLevel = initial.pathLevel ?? null;
   let lastHomeVisit = initial.lastHomeVisit ?? null;
   return {
+    pathLevel: () => pathLevel,
+    getPathLevel: async () => pathLevel,
+    setPathLevel: async (level) => {
+      pathLevel = level;
+    },
+    clearPathLevel: async () => {
+      pathLevel = null;
+    },
     lastHomeVisit: () => lastHomeVisit,
     getLastHomeVisit: async () => lastHomeVisit,
     setLastHomeVisit: async (date) => {

@@ -1,6 +1,8 @@
 import {
-  isValidLocalDate,
+  LEVELS,
   type AccountMarker,
+  type Level,
+  isValidLocalDate,
   type LocalDate,
   type PlumasWelcome,
   type SettingsRepository,
@@ -15,6 +17,7 @@ const SAVE_PROGRESS_SUGGESTION_DISMISSED = "save_progress_suggestion_dismissed";
 const THEME_PREFERENCE = "theme_preference";
 const MIGRATED_TO = "migrated_to";
 const PLUMAS_WELCOME = "plumas_welcome";
+const PATH_LEVEL = "path_level";
 const LAST_HOME_VISIT = "last_home_visit";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
@@ -61,6 +64,14 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     clearPlumasWelcome: async () => {
       await db.runAsync("DELETE FROM setting WHERE key = ?", [PLUMAS_WELCOME]);
     },
+    getPathLevel: async () => parseLevel(await read(PATH_LEVEL)),
+    setPathLevel: async (level) => {
+      if (level === null) await db.runAsync("DELETE FROM setting WHERE key = ?", [PATH_LEVEL]);
+      else await write(PATH_LEVEL, level);
+    },
+    clearPathLevel: async () => {
+      await db.runAsync("DELETE FROM setting WHERE key = ?", [PATH_LEVEL]);
+    },
     getLastHomeVisit: async () => parseLocalDate(await read(LAST_HOME_VISIT)),
     setLastHomeVisit: (date) => write(LAST_HOME_VISIT, date),
   };
@@ -74,6 +85,11 @@ function parseLocalDate(value: string | null): LocalDate | null {
 /** Anything but an explicit light or dark follows the system (the default). */
 function parseThemePreference(value: string | null): ThemePreference {
   return value === "light" || value === "dark" ? value : "system";
+}
+
+/** Anything but a CEFR level follows the automatic path level. */
+function parseLevel(value: string | null): Level | null {
+  return LEVELS.find((level) => level === value) ?? null;
 }
 
 /** An unreadable value counts as dismissed: a one-time note never shows twice. */
