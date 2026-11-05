@@ -57,7 +57,7 @@ export const AVI_ANCHORS = {
   head: { x: 46, y: 10, rotate: -17 },
   neck: { x: 36, y: 20, rotate: -17 },
   eyes: { x: 46.5, y: 17.5, rotate: -23 },
-  sticker: { x: 20, y: 21, rotate: -17 },
+  sticker: { x: 23, y: 21.6, rotate: -17 },
 } as const;
 
 export type AviAnchoredSlot = keyof typeof AVI_ANCHORS;
@@ -228,15 +228,7 @@ function itemTestId(id: string): Record<string, string> {
 }
 
 /** One worn piece, moved to its slot's anchor. */
-function Worn({
-  slot,
-  piece,
-  art,
-}: {
-  slot: AviAnchoredSlot;
-  piece: AviPiece;
-  art: AviArtProps;
-}) {
+function Worn({ slot, piece, art }: { slot: AviAnchoredSlot; piece: AviPiece; art: AviArtProps }) {
   const { x, y, rotate } = AVI_ANCHORS[slot];
   const { Art } = piece;
   return (

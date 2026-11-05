@@ -5,7 +5,7 @@ import {
   type WardrobeSlot,
 } from "@english-learn/domain";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -195,25 +195,28 @@ function SlotTabs({
 }) {
   const styles = useStyles();
   return (
-    <View accessibilityRole="tablist" style={styles.tabs}>
-      {SLOT_TABS.map((tab) => {
-        const selected = tab.slot === slot;
-        return (
-          <PressableScale
-            key={tab.slot}
-            accessibilityRole="tab"
-            accessibilityLabel={tab.label}
-            accessibilityState={{ selected }}
-            onPress={() => onSelect(tab.slot)}
-            style={[styles.tab, selected && styles.tabSelected]}
-          >
-            <Text variant="smallStrong" tone={selected ? "onInk" : "ink"}>
-              {tab.label}
-            </Text>
-          </PressableScale>
-        );
-      })}
-    </View>
+    // One row that scrolls sideways on a narrow phone (five tabs do not fit 375 pt).
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabsScroll}>
+      <View accessibilityRole="tablist" style={styles.tabs}>
+        {SLOT_TABS.map((tab) => {
+          const selected = tab.slot === slot;
+          return (
+            <PressableScale
+              key={tab.slot}
+              accessibilityRole="tab"
+              accessibilityLabel={tab.label}
+              accessibilityState={{ selected }}
+              onPress={() => onSelect(tab.slot)}
+              style={[styles.tab, selected && styles.tabSelected]}
+            >
+              <Text variant="smallStrong" tone={selected ? "onInk" : "ink"}>
+                {tab.label}
+              </Text>
+            </PressableScale>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -335,7 +338,9 @@ const useStyles = themedStyles(({ colors }) =>
       boxShadow: `0 3px 0 ${colors.rule}`,
     },
     announcement: { textAlign: "center", minHeight: 0 },
-    tabs: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
+    // Bleeds to the screen edges so a cut-off tab reads as "more to the side".
+    tabsScroll: { marginHorizontal: -spacing.md, flexGrow: 0 },
+    tabs: { flexDirection: "row", gap: spacing.sm, paddingHorizontal: spacing.md },
     tab: {
       minHeight: TOUCH_TARGET,
       justifyContent: "center",

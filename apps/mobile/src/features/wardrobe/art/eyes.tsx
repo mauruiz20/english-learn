@@ -8,7 +8,9 @@ import { DETAIL, OUTLINE, PAPER_WHITE } from "./ink";
 const ARM = "M-7.2 -0.8 L-12.4 -2.2";
 
 /** Round ink frames over clear lenses with a glint. */
-export function GafasRedondas({ ink, small }: AviArtProps) {
+export function GafasRedondas({ eye, small }: AviArtProps) {
+  // Glasses sit on the face, which is light paper in both schemes: drawn in the face ink.
+  const ink = eye;
   return (
     <>
       <Path d={ARM} stroke={ink} strokeWidth={1.2} strokeLinecap="round" />
@@ -31,7 +33,8 @@ export function GafasRedondas({ ink, small }: AviArtProps) {
 }
 
 /** Dark lenses (the eyes disappear behind them) in ink frames, each with a white glint. */
-export function GafasDeSol({ ink, eye, small }: AviArtProps) {
+export function GafasDeSol({ eye, small }: AviArtProps) {
+  const ink = eye;
   const lens = "M-7.4 -2.6 H-0.8 V0.4 C-0.8 3 -2.4 3.8 -4 3.8 C-6.2 3.8 -7.4 2.6 -7.4 0.4 Z";
   return (
     <>
@@ -54,7 +57,8 @@ export function GafasDeSol({ ink, eye, small }: AviArtProps) {
 }
 
 /** Aviator glasses: sky-tinted teardrop lenses, a double bridge and a yellow (gold) frame. */
-export function GafasDeAviador({ ink, highlighters, small }: AviArtProps) {
+export function GafasDeAviador({ eye, highlighters, small }: AviArtProps) {
+  const ink = eye;
   const lens =
     "M-7.6 -2.6 Q-4.2 -3.4 -0.8 -2.4 Q-0.4 1.6 -2.4 3.4 Q-5 4.6 -6.9 2.4 Q-8 0.6 -7.6 -2.6 Z";
   return (

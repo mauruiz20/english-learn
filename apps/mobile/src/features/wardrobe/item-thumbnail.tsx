@@ -1,11 +1,19 @@
 import type { WardrobeItem } from "@english-learn/domain";
+import type { ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
 import { Avi } from "@/shared/ui/mascot";
+import { radius } from "@/shared/ui/theme";
 import { useTheme } from "@/shared/ui/use-theme";
 import { ITEM_ART } from "./art/item-art";
 
 /** Avi's dark face ink: item art is drawn for light paper. */
 const EYE = "#1B2333";
+
+/** Item art is drawn for Avi's light paper: on its card it sits on a chip of that paper. */
+function PaperChip({ children }: { children: ReactNode }) {
+  return <View style={styles.chip}>{children}</View>;
+}
 
 /**
  * An item on its card (decorative): the piece alone, zoomed into its box; a paper as a small Avi
@@ -37,12 +45,22 @@ export function ItemThumbnail({ item, size }: { item: WardrobeItem; size: number
     );
   }
   if (art.slot === "paper") {
-    return <Avi size={size} tilt={0} outfit={{ paper: art.paper }} testID={`thumb-${item.id}`} />;
+    return (
+      <PaperChip>
+        <Avi size={size} tilt={0} outfit={{ paper: art.paper }} testID={`thumb-${item.id}`} />
+      </PaperChip>
+    );
   }
   const { Art } = art.piece;
   return (
-    <Svg width={size} height={(size * 3) / 4} viewBox={art.frame} aria-hidden>
-      <Art ink={colors.ink} highlighters={colors.highlighters} eye={EYE} small={false} />
-    </Svg>
+    <PaperChip>
+      <Svg width={size} height={(size * 3) / 4} viewBox={art.frame} aria-hidden>
+        <Art ink={colors.ink} highlighters={colors.highlighters} eye={EYE} small={false} />
+      </Svg>
+    </PaperChip>
   );
 }
+
+const styles = StyleSheet.create({
+  chip: { backgroundColor: "#FFFFFF", borderRadius: radius.md, padding: 2 },
+});

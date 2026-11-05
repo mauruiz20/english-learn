@@ -23,7 +23,7 @@ export type ItemArt =
 
 const FRAMES: Readonly<Record<AviAnchoredSlot, string>> = {
   head: "-14 -15 28 21",
-  neck: "-18 -13 24 24",
+  neck: "-17 -15 25 25",
   eyes: "-13.5 -6 22 12",
   sticker: "-6 -6 12 12",
 };

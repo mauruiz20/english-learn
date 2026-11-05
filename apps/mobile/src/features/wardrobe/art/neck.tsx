@@ -4,10 +4,10 @@ import { DETAIL, OUTLINE, PAPER_WHITE } from "./ink";
 
 // Neckwear, drawn around the neck anchor, behind Avi's face: a collar band runs from the top edge
 // (y ≈ −7) down across the wing to the fold (y ≈ 4). Behind is −x, towards the tail: what blows
-// in the wind blows that way.
+// in the wind blows that way. Outlined in the face ink: neckwear lies on Avi's light paper.
 
 /** An orange polka-dot kerchief: a collar band, its knot's ends in the wind, a flap below. */
-export function Panuelo({ ink, highlighters, small }: AviArtProps) {
+export function Panuelo({ eye: ink, highlighters, small }: AviArtProps) {
   return (
     <>
       <Path
@@ -52,13 +52,13 @@ export function Panuelo({ ink, highlighters, small }: AviArtProps) {
   );
 }
 
-/** A lilac bow tie under a white paper collar. */
-export function Mono({ ink, highlighters, small }: AviArtProps) {
+/** A lilac bow tie on a lilac ribbon around the neck. */
+export function Mono({ eye: ink, highlighters, small }: AviArtProps) {
   return (
     <>
       <Path
-        d="M-1.5 -7.4 L1.5 -7.4 L1.8 2 L-1.8 2 Z"
-        fill={PAPER_WHITE}
+        d="M-1.3 -7.4 L1.3 -7.4 L1.6 2 L-1.6 2 Z"
+        fill={highlighters.lilac}
         stroke={ink}
         strokeWidth={OUTLINE}
         strokeLinejoin="round"
@@ -91,19 +91,22 @@ export function Mono({ ink, highlighters, small }: AviArtProps) {
   );
 }
 
-/** A long green scarf with yellow stripes, wrapped once, both ends streaming back in the wind. */
-export function BufandaDeRayas({ ink, highlighters, small }: AviArtProps) {
+/**
+ * A long green scarf with yellow stripes, wrapped once, both ends streaming back in the wind above
+ * the plane (clear of the tail sticker).
+ */
+export function BufandaDeRayas({ eye: ink, highlighters, small }: AviArtProps) {
   return (
     <>
       <Path
-        d="M-1 -8 C-6 -11.6 -10.6 -7.6 -16 -10 L-15.2 -6 C-10.6 -4.4 -6.4 -7.8 -1.4 -4.8 Z"
+        d="M-1 -9 C-5 -13 -9.5 -10.4 -14.5 -13.6 L-14 -10.2 C-9.6 -8 -5.6 -10 -1.4 -7.4 Z"
         fill={highlighters.green}
         stroke={ink}
         strokeWidth={OUTLINE}
         strokeLinejoin="round"
       />
       <Path
-        d="M-1.6 -6.4 C-5 -6.2 -8.4 -2.4 -13.4 -2.6 L-12 0.8 C-7.6 1 -4.6 -2.6 -1.6 -2.6 Z"
+        d="M-1.4 -7.8 C-3.8 -8.8 -5.8 -8 -8.2 -9.6 L-8 -7.6 C-5.8 -6.6 -3.8 -7 -1.4 -6.2 Z"
         fill={highlighters.green}
         stroke={ink}
         strokeWidth={OUTLINE}
@@ -121,12 +124,12 @@ export function BufandaDeRayas({ ink, highlighters, small }: AviArtProps) {
           <G fill={highlighters.yellow}>
             <Path d="M-3.3 -5.6 H3.3 V-4 H-3.3 Z" />
             <Path d="M-3.4 -1.6 H3.4 V0 H-3.4 Z" />
-            <Path d="M-6.2 -9.6 l1.6 -0.2 l0.4 3.4 l-1.6 0.2 Z" />
-            <Path d="M-10.4 -8.6 l1.6 0.2 l-0.4 3.2 l-1.6 -0.2 Z" />
-            <Path d="M-6.4 -4.6 l1.6 -0.8 l0.6 3 l-1.6 0.8 Z" />
+            <Path d="M-6.6 -12 l1.6 0 l0 3.2 l-1.6 0 Z" />
+            <Path d="M-10.8 -11.8 l1.6 0.1 l-0.1 3.1 l-1.6 -0.1 Z" />
+            <Path d="M-5.2 -8.6 l1.4 -0.2 l0.2 1.8 l-1.4 0.2 Z" />
           </G>
           <Path
-            d="M-15.8 -9.4 l-1.6 0.4 M-15.6 -7.8 l-1.6 0.4 M-15.4 -6.4 l-1.6 0.4 M-13 -2.2 l-1.4 0.6 M-12.6 -0.8 l-1.4 0.6"
+            d="M-14.6 -13.2 l-1.6 -0.3 M-14.4 -11.8 l-1.6 -0.3 M-14.2 -10.5 l-1.6 -0.3"
             stroke={ink}
             strokeWidth={DETAIL}
             strokeLinecap="round"
