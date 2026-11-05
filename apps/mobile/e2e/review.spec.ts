@@ -43,7 +43,8 @@ test("review: items learned in a lesson come back days later and can be reviewed
   await page.getByRole("button", { name: "Repasar", exact: true }).click();
   const reviewed = await playSessionCorrectly(page, "¡Repaso completado!");
   expect(reviewed).toBeGreaterThan(0);
-  expect(reviewed).toBeLessThanOrEqual(pendingCount);
+  // Home counted exactly what the review served.
+  expect(reviewed).toBe(pendingCount);
   await expect(page.getByText(`XP ganada: ${reviewed * 10}`)).toBeVisible();
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
 

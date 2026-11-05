@@ -14,7 +14,7 @@ type ExerciseData =
   | { type: "reading"; questions: ({ prompt: string } & Choice)[] };
 
 type ContentFile = {
-  exercises?: ({ id: string } & ExerciseData)[];
+  exercises?: ({ id: string; itemIds?: string[] } & ExerciseData)[];
   placement?: { id: string; exercise: ExerciseData }[];
 };
 
@@ -40,6 +40,21 @@ const exercisesById: ReadonlyMap<string, ExerciseData> = new Map(
 );
 
 const EXERCISE = '[data-testid^="exercise-"]';
+
+/** The first `n` item ids (sorted) that some non-reading exercise practices: reviewable items. */
+export function reviewableItemIds(n: number): string[] {
+  const ids = new Set<string>();
+  for (const path of jsonFiles(DATA_DIR)) {
+    const file = JSON.parse(readFileSync(path, "utf8")) as ContentFile;
+    for (const exercise of file.exercises ?? []) {
+      if (exercise.type === "reading") continue;
+      for (const id of exercise.itemIds ?? []) ids.add(id);
+    }
+  }
+  const sorted = [...ids].sort();
+  if (sorted.length < n) throw new Error(`Only ${sorted.length} reviewable items`);
+  return sorted.slice(0, n);
+}
 
 /** Id of the exercise on screen. */
 export async function currentExerciseId(page: Page): Promise<string> {

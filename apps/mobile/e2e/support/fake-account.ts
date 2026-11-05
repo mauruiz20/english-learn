@@ -75,6 +75,14 @@ export class FakeAccount {
     );
   }
 
+  /** Stores events another device of this account already uploaded. */
+  seed(deviceId: string, events: SyncBody["events"]): void {
+    for (const event of events) {
+      this.seq += 1;
+      this.log.push({ ...event, seq: this.seq, deviceId });
+    }
+  }
+
   /** Event types the server holds, in server order. */
   storedTypes(): string[] {
     return this.log.map((e) => e.type);
