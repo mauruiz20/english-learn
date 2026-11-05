@@ -3,7 +3,7 @@ import { LEVELS } from "@english-learn/domain";
 
 /**
  * Level used when the learner has no placement result, or when their level has no lessons
- * yet. The MVP content only covers A2 and B1.
+ * yet. The bundled content covers A2, B1 and B2.
  */
 export const DEFAULT_LEVEL: Level = "A2";
 
@@ -28,7 +28,7 @@ export function lessonItemIds(
 
 /**
  * The level whose lessons a learner at `level` should take: the nearest level that has
- * lessons, preferring the lower one on a tie (with MVP content: A1 → A2, B2 and C1 → B1).
+ * lessons, preferring the lower one on a tie (with the bundled content: A1 → A2, C1 → B2).
  * No level yet, or no lessons at all → `DEFAULT_LEVEL`.
  */
 export function lessonLevelFor(lessons: readonly Lesson[], level: Level | null): Level {
@@ -50,6 +50,26 @@ export function lessonsForLevel(
 ): { level: Level; lessons: Lesson[] } {
   const target = lessonLevelFor(lessons, level);
   return { level: target, lessons: lessons.filter((l) => l.level === target) };
+}
+
+/**
+ * The lessons home shows on the path: those of the placement's lesson level (`lessonLevelFor`),
+ * moving on to the next level with lessons once every lesson of a level is done (A2 → B1 → B2).
+ * When every level is done the path stays on the last one; it never goes below the placement.
+ */
+export function pathLessons(
+  lessons: readonly Lesson[],
+  level: Level | null,
+  isDone: (lesson: Lesson) => boolean,
+): { level: Level; lessons: Lesson[] } {
+  let current = lessonsForLevel(lessons, level);
+  const start = LEVELS.indexOf(current.level);
+  for (const next of LEVELS.slice(start + 1)) {
+    if (!current.lessons.every(isDone)) break;
+    const ofNext = lessons.filter((l) => l.level === next);
+    if (ofNext.length > 0) current = { level: next, lessons: ofNext };
+  }
+  return current;
 }
 
 /** A lesson is done once every item it practices has a review state. */

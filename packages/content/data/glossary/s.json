@@ -81,6 +81,18 @@
       ]
     },
     {
+      "id": "glossary.salon",
+      "headword": "salon",
+      "kind": "word",
+      "forms": ["salon", "salons"],
+      "senses": [
+        {
+          "es": "salón de belleza, peluquería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sam",
       "headword": "Sam",
       "kind": "word",
@@ -185,6 +197,22 @@
       ]
     },
     {
+      "id": "glossary.scale",
+      "headword": "scale",
+      "kind": "word",
+      "forms": ["scale", "scales"],
+      "senses": [
+        {
+          "es": "escala",
+          "pos": "noun"
+        },
+        {
+          "es": "balanza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.scene",
       "headword": "scene",
       "kind": "word",
@@ -221,6 +249,18 @@
       ]
     },
     {
+      "id": "glossary.science",
+      "headword": "science",
+      "kind": "word",
+      "forms": ["science", "sciences"],
+      "senses": [
+        {
+          "es": "ciencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.scientist",
       "headword": "scientist",
       "kind": "word",
@@ -240,6 +280,30 @@
       "senses": [
         {
           "es": "pantalla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sea",
+      "headword": "sea",
+      "kind": "word",
+      "forms": ["sea", "seas"],
+      "senses": [
+        {
+          "es": "mar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sea-level",
+      "headword": "sea level",
+      "kind": "phrase",
+      "forms": ["sea level", "sea levels"],
+      "senses": [
+        {
+          "es": "nivel del mar",
           "pos": "noun"
         }
       ]
@@ -289,6 +353,22 @@
       ]
     },
     {
+      "id": "glossary.secret",
+      "headword": "secret",
+      "kind": "word",
+      "forms": ["secret", "secrets"],
+      "senses": [
+        {
+          "es": "secreto",
+          "pos": "adjective"
+        },
+        {
+          "es": "secreto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.see",
       "headword": "see",
       "kind": "word",
@@ -297,6 +377,18 @@
         {
           "es": "ver",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.self-taught",
+      "headword": "self-taught",
+      "kind": "word",
+      "forms": ["self-taught"],
+      "senses": [
+        {
+          "es": "autodidacta",
+          "pos": "adjective"
         }
       ]
     },
@@ -337,6 +429,18 @@
       ]
     },
     {
+      "id": "glossary.sense",
+      "headword": "sense",
+      "kind": "word",
+      "forms": ["sense"],
+      "senses": [
+        {
+          "es": "sentido",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sensible",
       "headword": "sensible",
       "kind": "word",
@@ -357,6 +461,18 @@
         {
           "es": "oración, frase",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.serious",
+      "headword": "serious",
+      "kind": "word",
+      "forms": ["serious"],
+      "senses": [
+        {
+          "es": "grave, serio",
+          "pos": "adjective"
         }
       ]
     },
@@ -453,6 +569,18 @@
       ]
     },
     {
+      "id": "glossary.shadow",
+      "headword": "shadow",
+      "kind": "word",
+      "forms": ["shadow", "shadows"],
+      "senses": [
+        {
+          "es": "sombra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.shape",
       "headword": "shape",
       "kind": "word",
@@ -477,6 +605,18 @@
         {
           "es": "compartir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shark",
+      "headword": "shark",
+      "kind": "word",
+      "forms": ["shark", "sharks"],
+      "senses": [
+        {
+          "es": "tiburón",
+          "pos": "noun"
         }
       ]
     },
@@ -521,6 +661,18 @@
       ]
     },
     {
+      "id": "glossary.shine",
+      "headword": "shine",
+      "kind": "word",
+      "forms": ["shine", "shines", "shone", "shining"],
+      "senses": [
+        {
+          "es": "brillar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.shirt",
       "headword": "shirt",
       "kind": "word",
@@ -528,6 +680,18 @@
       "senses": [
         {
           "es": "camisa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shock",
+      "headword": "shock",
+      "kind": "word",
+      "forms": ["shock", "shocks"],
+      "senses": [
+        {
+          "es": "impacto, conmoción",
           "pos": "noun"
         }
       ]
@@ -681,6 +845,30 @@
       ]
     },
     {
+      "id": "glossary.side",
+      "headword": "side",
+      "kind": "word",
+      "forms": ["side", "sides"],
+      "senses": [
+        {
+          "es": "lado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.side-effect",
+      "headword": "side effect",
+      "kind": "phrase",
+      "forms": ["side effect", "side effects"],
+      "senses": [
+        {
+          "es": "efecto secundario",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sight",
       "headword": "sight",
       "kind": "word",
@@ -737,6 +925,18 @@
       ]
     },
     {
+      "id": "glossary.signal",
+      "headword": "signal",
+      "kind": "word",
+      "forms": ["signal", "signals"],
+      "senses": [
+        {
+          "es": "señal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.silent",
       "headword": "silent",
       "kind": "word",
@@ -744,6 +944,18 @@
       "senses": [
         {
           "es": "en silencio, callado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.silly",
+      "headword": "silly",
+      "kind": "word",
+      "forms": ["silly"],
+      "senses": [
+        {
+          "es": "tonto, ridículo",
           "pos": "adjective"
         }
       ]
@@ -893,6 +1105,18 @@
       ]
     },
     {
+      "id": "glossary.sixty",
+      "headword": "sixty",
+      "kind": "word",
+      "forms": ["sixty"],
+      "senses": [
+        {
+          "es": "sesenta",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.size",
       "headword": "size",
       "kind": "word",
@@ -904,6 +1128,30 @@
         },
         {
           "es": "tamaño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.skill",
+      "headword": "skill",
+      "kind": "word",
+      "forms": ["skill", "skills"],
+      "senses": [
+        {
+          "es": "habilidad, destreza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.skin",
+      "headword": "skin",
+      "kind": "word",
+      "forms": ["skin"],
+      "senses": [
+        {
+          "es": "piel",
           "pos": "noun"
         }
       ]
@@ -972,6 +1220,18 @@
       "senses": [
         {
           "es": "pequeño, chico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.smart",
+      "headword": "smart",
+      "kind": "word",
+      "forms": ["smart", "smarter", "smartest"],
+      "senses": [
+        {
+          "es": "inteligente, listo",
           "pos": "adjective"
         }
       ]
@@ -1141,6 +1401,18 @@
         {
           "es": "Sofía (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.solar-power",
+      "headword": "solar power",
+      "kind": "phrase",
+      "forms": ["solar power"],
+      "senses": [
+        {
+          "es": "energía solar",
+          "pos": "noun"
         }
       ]
     },
@@ -1425,6 +1697,18 @@
       ]
     },
     {
+      "id": "glossary.spite",
+      "headword": "spite",
+      "kind": "word",
+      "forms": ["spite"],
+      "senses": [
+        {
+          "es": "(in spite of) a pesar de",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.split",
       "headword": "split",
       "kind": "word",
@@ -1461,6 +1745,18 @@
         {
           "es": "deporte",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spread",
+      "headword": "spread",
+      "kind": "word",
+      "forms": ["spread", "spreads", "spreading"],
+      "senses": [
+        {
+          "es": "difundir(se), propagar(se)",
+          "pos": "verb"
         }
       ]
     },
@@ -1737,6 +2033,18 @@
       ]
     },
     {
+      "id": "glossary.strange",
+      "headword": "strange",
+      "kind": "word",
+      "forms": ["strange"],
+      "senses": [
+        {
+          "es": "extraño, raro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.street",
       "headword": "street",
       "kind": "word",
@@ -1789,6 +2097,18 @@
       ]
     },
     {
+      "id": "glossary.struggle",
+      "headword": "struggle",
+      "kind": "word",
+      "forms": ["struggle", "struggles", "struggled", "struggling"],
+      "senses": [
+        {
+          "es": "tener dificultades, luchar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.student",
       "headword": "student",
       "kind": "word",
@@ -1833,6 +2153,18 @@
       ]
     },
     {
+      "id": "glossary.subscription",
+      "headword": "subscription",
+      "kind": "word",
+      "forms": ["subscription", "subscriptions"],
+      "senses": [
+        {
+          "es": "suscripción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.subway",
       "headword": "subway",
       "kind": "word",
@@ -1841,6 +2173,34 @@
         {
           "es": "metro",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.such",
+      "headword": "such",
+      "kind": "word",
+      "forms": ["such"],
+      "senses": [
+        {
+          "es": "(such as) como",
+          "pos": "expression"
+        },
+        {
+          "es": "tal, tan",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suffer",
+      "headword": "suffer",
+      "kind": "word",
+      "forms": ["suffer", "suffers", "suffered", "suffering"],
+      "senses": [
+        {
+          "es": "sufrir",
+          "pos": "verb"
         }
       ]
     },
@@ -1957,6 +2317,38 @@
       ]
     },
     {
+      "id": "glossary.sure",
+      "headword": "sure",
+      "kind": "word",
+      "forms": ["sure"],
+      "senses": [
+        {
+          "es": "seguro",
+          "pos": "adjective"
+        },
+        {
+          "es": "(make sure) asegurarse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.surprise",
+      "headword": "surprise",
+      "kind": "word",
+      "forms": ["surprise", "surprises", "surprised"],
+      "senses": [
+        {
+          "es": "sorprender",
+          "pos": "verb"
+        },
+        {
+          "es": "sorpresa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.surprising",
       "headword": "surprising",
       "kind": "word",
@@ -2017,6 +2409,18 @@
         {
           "es": "nadar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.system",
+      "headword": "system",
+      "kind": "word",
+      "forms": ["system", "systems"],
+      "senses": [
+        {
+          "es": "sistema",
+          "pos": "noun"
         }
       ]
     }

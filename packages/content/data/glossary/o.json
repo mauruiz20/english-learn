@@ -57,6 +57,18 @@
       ]
     },
     {
+      "id": "glossary.off-the-beaten-track",
+      "headword": "off the beaten track",
+      "kind": "phrase",
+      "forms": ["off the beaten track"],
+      "senses": [
+        {
+          "es": "lejos de las rutas turísticas",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.offer",
       "headword": "offer",
       "kind": "word",
@@ -93,6 +105,22 @@
         {
           "es": "a menudo, con frecuencia",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.oil",
+      "headword": "oil",
+      "kind": "word",
+      "forms": ["oil"],
+      "senses": [
+        {
+          "es": "petróleo",
+          "pos": "noun"
+        },
+        {
+          "es": "aceite",
+          "pos": "noun"
         }
       ]
     },
@@ -273,6 +301,18 @@
       ]
     },
     {
+      "id": "glossary.openly",
+      "headword": "openly",
+      "kind": "word",
+      "forms": ["openly"],
+      "senses": [
+        {
+          "es": "abiertamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.operation",
       "headword": "operation",
       "kind": "word",
@@ -281,6 +321,18 @@
         {
           "es": "operación",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.oppose",
+      "headword": "oppose",
+      "kind": "word",
+      "forms": ["oppose", "opposes", "opposed", "opposing"],
+      "senses": [
+        {
+          "es": "oponerse a",
+          "pos": "verb"
         }
       ]
     },
@@ -337,6 +389,30 @@
         {
           "es": "pedido, orden",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ordinary",
+      "headword": "ordinary",
+      "kind": "word",
+      "forms": ["ordinary"],
+      "senses": [
+        {
+          "es": "común, corriente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.original",
+      "headword": "original",
+      "kind": "word",
+      "forms": ["original"],
+      "senses": [
+        {
+          "es": "original",
+          "pos": "adjective"
         }
       ]
     },
@@ -429,6 +505,18 @@
         {
           "es": "afuera",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.outsider",
+      "headword": "outsider",
+      "kind": "word",
+      "forms": ["outsider", "outsiders"],
+      "senses": [
+        {
+          "es": "persona de afuera",
+          "pos": "noun"
         }
       ]
     },

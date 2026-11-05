@@ -13,6 +13,30 @@
       ]
     },
     {
+      "id": "glossary.tablet",
+      "headword": "tablet",
+      "kind": "word",
+      "forms": ["tablet", "tablets"],
+      "senses": [
+        {
+          "es": "tableta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.taboo",
+      "headword": "taboo",
+      "kind": "word",
+      "forms": ["taboo"],
+      "senses": [
+        {
+          "es": "tabú",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.take",
       "headword": "take",
       "kind": "word",
@@ -193,6 +217,30 @@
       ]
     },
     {
+      "id": "glossary.task",
+      "headword": "task",
+      "kind": "word",
+      "forms": ["task", "tasks"],
+      "senses": [
+        {
+          "es": "tarea",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tax",
+      "headword": "tax",
+      "kind": "word",
+      "forms": ["tax", "taxes"],
+      "senses": [
+        {
+          "es": "impuesto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.taxi",
       "headword": "taxi",
       "kind": "word",
@@ -272,6 +320,18 @@
       "senses": [
         {
           "es": "técnico, técnica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.technology",
+      "headword": "technology",
+      "kind": "word",
+      "forms": ["technology", "technologies"],
+      "senses": [
+        {
+          "es": "tecnología",
           "pos": "noun"
         }
       ]
@@ -501,6 +561,18 @@
         {
           "es": "entonces",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.therapist",
+      "headword": "therapist",
+      "kind": "word",
+      "forms": ["therapist", "therapists"],
+      "senses": [
+        {
+          "es": "terapeuta",
+          "pos": "noun"
         }
       ]
     },
@@ -969,6 +1041,54 @@
       ]
     },
     {
+      "id": "glossary.top",
+      "headword": "top",
+      "kind": "word",
+      "forms": ["top"],
+      "senses": [
+        {
+          "es": "cima, parte de arriba",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.topic",
+      "headword": "topic",
+      "kind": "word",
+      "forms": ["topic", "topics"],
+      "senses": [
+        {
+          "es": "tema",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.total",
+      "headword": "total",
+      "kind": "word",
+      "forms": ["total"],
+      "senses": [
+        {
+          "es": "total",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tour",
+      "headword": "tour",
+      "kind": "word",
+      "forms": ["tour", "tours"],
+      "senses": [
+        {
+          "es": "recorrido, excursión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tourist",
       "headword": "tourist",
       "kind": "word",
@@ -1048,6 +1168,18 @@
       "senses": [
         {
           "es": "traducir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trap",
+      "headword": "trap",
+      "kind": "word",
+      "forms": ["trap", "traps", "trapped", "trapping"],
+      "senses": [
+        {
+          "es": "atrapar",
           "pos": "verb"
         }
       ]

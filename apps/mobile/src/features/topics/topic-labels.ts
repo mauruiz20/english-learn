@@ -4,6 +4,7 @@
  */
 const TOPIC_LABELS: Readonly<Record<string, string>> = {
   "city-life": "Vida en la ciudad",
+  "climate-policy": "Clima y medio ambiente",
   "culture-and-entertainment": "Cultura y ocio",
   "daily-routine": "Rutina diaria",
   directions: "Direcciones",
@@ -15,18 +16,25 @@ const TOPIC_LABELS: Readonly<Record<string, string>> = {
   grammar: "Gramática",
   health: "Salud",
   "health-and-lifestyle": "Salud y estilo de vida",
+  "health-and-psychology": "Salud y psicología",
   home: "La casa",
+  "lifelong-learning": "Aprender toda la vida",
+  "media-and-misinformation": "Medios y desinformación",
   "media-and-news": "Medios y noticias",
   "phrasal-verbs": "Phrasal verbs",
+  "money-and-economy": "Dinero y economía",
   "money-and-shopping": "Dinero y compras",
   relationships: "Relaciones",
+  "science-and-ethics": "Ciencia y ética",
   shopping: "Compras",
   technology: "Tecnología",
   travel: "Viajes",
+  "travel-and-identity": "Viajes e identidad",
   vocabulary: "Vocabulario",
   weather: "El tiempo",
   work: "Trabajo",
   "work-and-careers": "Trabajo y carrera",
+  "work-and-leadership": "Trabajo y liderazgo",
 };
 
 /** The topic's Spanish name; an unknown slug is shown as words ("new-topic" → "New topic"). */

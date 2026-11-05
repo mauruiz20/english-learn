@@ -17,6 +17,22 @@
       ]
     },
     {
+      "id": "glossary.garage",
+      "headword": "garage",
+      "kind": "word",
+      "forms": ["garage", "garages"],
+      "senses": [
+        {
+          "es": "taller mecánico",
+          "pos": "noun"
+        },
+        {
+          "es": "garaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.garbage",
       "headword": "garbage",
       "kind": "word",
@@ -32,7 +48,7 @@
       "id": "glossary.gas",
       "headword": "gas",
       "kind": "word",
-      "forms": ["gas"],
+      "forms": ["gas", "gases"],
       "senses": [
         {
           "es": "gasolina",
@@ -456,6 +472,30 @@
       ]
     },
     {
+      "id": "glossary.go-viral",
+      "headword": "go viral",
+      "kind": "phrase",
+      "forms": ["go viral", "goes viral", "went viral", "gone viral", "going viral"],
+      "senses": [
+        {
+          "es": "hacerse viral",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.goat",
+      "headword": "goat",
+      "kind": "word",
+      "forms": ["goat", "goats"],
+      "senses": [
+        {
+          "es": "cabra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.going-to",
       "headword": "going to",
       "kind": "phrase",
@@ -484,6 +524,18 @@
       ]
     },
     {
+      "id": "glossary.government",
+      "headword": "government",
+      "kind": "word",
+      "forms": ["government", "governments"],
+      "senses": [
+        {
+          "es": "gobierno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.grade",
       "headword": "grade",
       "kind": "word",
@@ -508,6 +560,18 @@
         {
           "es": "graduarse, titularse",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grandchild",
+      "headword": "grandchild",
+      "kind": "word",
+      "forms": ["grandchild", "grandchildren"],
+      "senses": [
+        {
+          "es": "nieto, nieta",
+          "pos": "noun"
         }
       ]
     },
@@ -596,6 +660,18 @@
         {
           "es": "ecológico",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.greenhouse-gas",
+      "headword": "greenhouse gas",
+      "kind": "phrase",
+      "forms": ["greenhouse gas", "greenhouse gases"],
+      "senses": [
+        {
+          "es": "gas de efecto invernadero",
+          "pos": "noun"
         }
       ]
     },

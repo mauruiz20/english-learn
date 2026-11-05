@@ -285,6 +285,22 @@
       ]
     },
     {
+      "id": "glossary.patient",
+      "headword": "patient",
+      "kind": "word",
+      "forms": ["patient", "patients"],
+      "senses": [
+        {
+          "es": "paciente",
+          "pos": "adjective"
+        },
+        {
+          "es": "paciente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pay",
       "headword": "pay",
       "kind": "word",
@@ -421,6 +437,18 @@
       ]
     },
     {
+      "id": "glossary.person",
+      "headword": "person",
+      "kind": "word",
+      "forms": ["person"],
+      "senses": [
+        {
+          "es": "persona",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.peru",
       "headword": "Peru",
       "kind": "word",
@@ -480,6 +508,18 @@
       "senses": [
         {
           "es": "foto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.photography",
+      "headword": "photography",
+      "kind": "word",
+      "forms": ["photography"],
+      "senses": [
+        {
+          "es": "fotografía",
           "pos": "noun"
         }
       ]
@@ -577,6 +617,18 @@
       ]
     },
     {
+      "id": "glossary.planet",
+      "headword": "planet",
+      "kind": "word",
+      "forms": ["planet", "planets"],
+      "senses": [
+        {
+          "es": "planeta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.plant",
       "headword": "plant",
       "kind": "word",
@@ -661,6 +713,18 @@
         {
           "es": "por favor",
           "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pleasure",
+      "headword": "pleasure",
+      "kind": "word",
+      "forms": ["pleasure"],
+      "senses": [
+        {
+          "es": "placer",
+          "pos": "noun"
         }
       ]
     },
@@ -865,6 +929,22 @@
       ]
     },
     {
+      "id": "glossary.power",
+      "headword": "power",
+      "kind": "word",
+      "forms": ["power"],
+      "senses": [
+        {
+          "es": "energía",
+          "pos": "noun"
+        },
+        {
+          "es": "poder",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.practice",
       "headword": "practice",
       "kind": "word",
@@ -997,6 +1077,46 @@
       ]
     },
     {
+      "id": "glossary.printing-press",
+      "headword": "printing press",
+      "kind": "phrase",
+      "forms": ["printing press"],
+      "senses": [
+        {
+          "es": "imprenta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.privacy",
+      "headword": "privacy",
+      "kind": "word",
+      "forms": ["privacy"],
+      "senses": [
+        {
+          "es": "privacidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.private",
+      "headword": "private",
+      "kind": "word",
+      "forms": ["private"],
+      "senses": [
+        {
+          "es": "privado",
+          "pos": "adjective"
+        },
+        {
+          "es": "(in private) en privado",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.prize",
       "headword": "prize",
       "kind": "word",
@@ -1029,6 +1149,18 @@
         {
           "es": "problema",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.produce",
+      "headword": "produce",
+      "kind": "word",
+      "forms": ["produce", "produces", "produced", "producing"],
+      "senses": [
+        {
+          "es": "producir",
+          "pos": "verb"
         }
       ]
     },
@@ -1149,6 +1281,22 @@
       ]
     },
     {
+      "id": "glossary.protest",
+      "headword": "protest",
+      "kind": "word",
+      "forms": ["protest", "protests", "protested", "protesting"],
+      "senses": [
+        {
+          "es": "protesta",
+          "pos": "noun"
+        },
+        {
+          "es": "protestar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.proud",
       "headword": "proud",
       "kind": "word",
@@ -1181,6 +1329,18 @@
         {
           "es": "provocar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.psychologist",
+      "headword": "psychologist",
+      "kind": "word",
+      "forms": ["psychologist", "psychologists"],
+      "senses": [
+        {
+          "es": "psicólogo",
+          "pos": "noun"
         }
       ]
     },

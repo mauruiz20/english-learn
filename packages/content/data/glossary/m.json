@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.magazine",
+      "headword": "magazine",
+      "kind": "word",
+      "forms": ["magazine", "magazines"],
+      "senses": [
+        {
+          "es": "revista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.main",
       "headword": "main",
       "kind": "word",
@@ -32,6 +44,18 @@
       "senses": [
         {
           "es": "principal",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.major",
+      "headword": "major",
+      "kind": "word",
+      "forms": ["major"],
+      "senses": [
+        {
+          "es": "importante, grande",
           "pos": "adjective"
         }
       ]
@@ -49,6 +73,18 @@
         {
           "es": "preparar (comida)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.make-ends-meet",
+      "headword": "make ends meet",
+      "kind": "phrase",
+      "forms": ["make ends meet", "makes ends meet", "made ends meet", "making ends meet"],
+      "senses": [
+        {
+          "es": "llegar a fin de mes",
+          "pos": "expression"
         }
       ]
     },
@@ -77,6 +113,22 @@
         {
           "es": "hombre",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.manage",
+      "headword": "manage",
+      "kind": "word",
+      "forms": ["manage", "manages", "managed", "managing"],
+      "senses": [
+        {
+          "es": "dirigir, gestionar",
+          "pos": "verb"
+        },
+        {
+          "es": "controlar, manejar",
+          "pos": "verb"
         }
       ]
     },
@@ -173,6 +225,18 @@
       ]
     },
     {
+      "id": "glossary.marta",
+      "headword": "Marta",
+      "kind": "word",
+      "forms": ["marta"],
+      "senses": [
+        {
+          "es": "Marta (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.math",
       "headword": "math",
       "kind": "word",
@@ -193,6 +257,18 @@
         {
           "es": "matemáticas",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.matter",
+      "headword": "matter",
+      "kind": "word",
+      "forms": ["matter", "matters", "mattered"],
+      "senses": [
+        {
+          "es": "importar",
+          "pos": "verb"
         }
       ]
     },
@@ -277,6 +353,18 @@
       ]
     },
     {
+      "id": "glossary.meat",
+      "headword": "meat",
+      "kind": "word",
+      "forms": ["meat"],
+      "senses": [
+        {
+          "es": "carne",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.mechanic",
       "headword": "mechanic",
       "kind": "word",
@@ -353,6 +441,42 @@
         {
           "es": "Meg (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.melt",
+      "headword": "melt",
+      "kind": "word",
+      "forms": ["melt", "melts", "melted", "melting"],
+      "senses": [
+        {
+          "es": "derretirse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.member",
+      "headword": "member",
+      "kind": "word",
+      "forms": ["member", "members"],
+      "senses": [
+        {
+          "es": "miembro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mental-health",
+      "headword": "mental health",
+      "kind": "phrase",
+      "forms": ["mental health"],
+      "senses": [
+        {
+          "es": "salud mental",
+          "pos": "noun"
         }
       ]
     },
@@ -525,6 +649,18 @@
         {
           "es": "minuto",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.misleading",
+      "headword": "misleading",
+      "kind": "word",
+      "forms": ["misleading"],
+      "senses": [
+        {
+          "es": "engañoso",
+          "pos": "adjective"
         }
       ]
     },
@@ -821,6 +957,18 @@
         {
           "es": "musical",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.musician",
+      "headword": "musician",
+      "kind": "word",
+      "forms": ["musician", "musicians"],
+      "senses": [
+        {
+          "es": "músico",
+          "pos": "noun"
         }
       ]
     },
