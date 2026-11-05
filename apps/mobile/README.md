@@ -7,14 +7,14 @@ and `e2e/` with the content package's `findVoseo` and fails on the common voseo 
 
 ## Structure
 
-| Path                  | Responsibility                                                                     |
-| --------------------- | ---------------------------------------------------------------------------------- |
-| `src/app/`            | Routes only (`/`, `/placement`, `/lesson/[id]`, `/review`, `/fichas`, `/about`, …) |
-| `src/features/*`      | Feature screens; containers load data, views are pure (props only)                 |
-| `src/infrastructure/` | Adapters: `SystemClock`, SQLite wiring, `AppServicesProvider` (DI)                 |
-| `src/shared/ui/`      | Notebook design system: theme tokens, `useTheme`, UI primitives                    |
-| `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                                      |
-| `e2e/`                | Playwright tests against the exported web build                                    |
+| Path                  | Responsibility                                                                        |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `src/app/`            | Routes only (`/`, `/placement`, `/lesson/[id]`, `/review`, `/fichas`, `/practica`, …) |
+| `src/features/*`      | Feature screens; containers load data, views are pure (props only)                    |
+| `src/infrastructure/` | Adapters: `SystemClock`, SQLite wiring, `AppServicesProvider` (DI)                    |
+| `src/shared/ui/`      | Notebook design system: theme tokens, `useTheme`, UI primitives                       |
+| `src/testing/`        | Test helpers (in-memory `ProgressRepository`)                                         |
+| `e2e/`                | Playwright tests against the exported web build                                       |
 
 Features read `ProgressRepository`, `SettingsRepository`, `Clock`, `random` (an `Rng`),
 `randomBytes` (for event ids) and `sounds` (a `SoundPlayer`) from `useAppServices()`. The root
@@ -258,8 +258,11 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   remounts the session with a new key): answer XP again, never a second completion bonus.
 
 Home lists the lessons of the level nearest to the placement level that has lessons (ties go to
-the lower level; with MVP content A1 → A2 and B2/C1 → B1), or A2 without a placement. A lesson
-shows as done once every item it practices has a review state.
+the lower level; with the bundled content A1 → A2 and C1 → B2), or A2 without a placement. Once
+every lesson of that level is done, the path moves on to the next level with lessons (A2 → B1 →
+B2; `pathLessons` in `model/lesson-catalog.ts`); with every level done it stays on the last one,
+and it never goes below the placement level. A lesson shows as done once every item it practices
+has a review state.
 
 **Lesson results on the path.** A done lesson also shows its best result, from the fold's
 `lessonResults` (the best `accuracy` of its `session_completed` events; no new event):
@@ -415,6 +418,33 @@ explanation with the items it teaches and 6–8 practice exercises that are in n
   offers "Volver al ejercicio" instead of "Practicar". Not offered while practicing the card.
 - **Album**: "Primera ficha" (a card studied) and "Gramática al día" (every grammar card of a
   level studied), derived like the other stickers.
+
+## Práctica libre (`src/features/practice/`)
+
+Free practice by topic, apart from the path and its levels (content: `corpus.practice`, see
+`@english-learn/content`, "Práctica libre"). Nothing is locked; a group's level is a label.
+
+- **Home**: "Práctica libre · Phrasal verbs, a tu ritmo" under "Fichas" in the progress card
+  (secondary to the path), shown when the content has collections. It opens `/practica`.
+- **`/practica`**: one card per collection ("Phrasal verbs: 10 grupos, 30 lecciones, 2 hechas")
+  and a line saying it does not change the path and that new words come back in reviews.
+- **`/practica/[collection]`**: the groups in order, each with its title, its level chip, its
+  summary and its verbs (the item terms of its first lesson, with the object's place:
+  `clean (something) up`), then its 2–3 lessons. A lesson row shows "Nueva" or its best result
+  with the path's marker ("Perfecta · 7/7" with the star, "Completada · 5/7" with the hint
+  "Repítela para sacar todo bien"), labelled "<título>, nueva" or "<título>, completada sin
+  errores: 7 de 7 correctas". Rows are ≥ 56 pt; only the shared press feedback moves.
+- **Lessons** play on `/lesson/[id]` (`LessonContainer` finds practice lessons in
+  `practiceLessonsById`): the same exercises, feedback, lookups, sounds, summary with XP and
+  plumas, "Lo nuevo de hoy" (cards linked with `deepenCardIds`) and "Repetir lección". They are
+  saved as lessons with their own id (`session_completed` kind `lesson`; no new event, no fold
+  change), so the fold pays the completion bonus and "Lección nueva" once per lesson id,
+  "Página perfecta" once, and their items enter spaced repetition like any lesson's. The summary
+  button reads "Volver a Phrasal verbs" and goes back to the collection.
+- **Never path progress**: the corpus keeps practice lessons out of `lessons`, and content rule
+  24 keeps their items apart from the path's, so home, the next lesson, the level move, the album
+  and the transfer preview count exactly what they counted before
+  (`practice-path-separation.test.tsx` completes every practice lesson and compares the path).
 
 ## Plumas (`src/features/rewards/`)
 
@@ -586,7 +616,7 @@ paper, the prompt and the teacher's marking.
   the next sticker (`model/guide-heading.ts`): from a stop on the left it faces right, nose
   tilted down, on the sticker's top left; from a stop on the right it is mirrored onto its top
   right (`Avi` `tilt` / `facing`; it glides in from the side it faces).
-- **Album** (`features/achievements/`, route `/album`): eighteen achievements derived from the
+- **Album** (`features/achievements/`, route `/album`): nineteen achievements derived from the
   stored progress only (lessons, whole topics, whole levels, the longest streak, XP, placement,
   words practiced, study cards; `model/achievements.ts`), so they need no storage and follow sync. Won ones are
   stickers (rare ones get a holographic rim), the others dashed slots that say how to win them.

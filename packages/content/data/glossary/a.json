@@ -133,6 +133,30 @@
       ]
     },
     {
+      "id": "glossary.accent",
+      "headword": "accent",
+      "kind": "word",
+      "forms": ["accent", "accents"],
+      "senses": [
+        {
+          "es": "acento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.accept",
+      "headword": "accept",
+      "kind": "word",
+      "forms": ["accept", "accepts", "accepted", "accepting"],
+      "senses": [
+        {
+          "es": "aceptar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.accident",
       "headword": "accident",
       "kind": "word",
@@ -181,6 +205,18 @@
         {
           "es": "relato",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.accustomed",
+      "headword": "accustomed",
+      "kind": "word",
+      "forms": ["accustomed"],
+      "senses": [
+        {
+          "es": "(be accustomed to) acostumbrado a",
+          "pos": "adjective"
         }
       ]
     },
@@ -249,6 +285,18 @@
         {
           "es": "acción",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.active",
+      "headword": "active",
+      "kind": "word",
+      "forms": ["active"],
+      "senses": [
+        {
+          "es": "activo",
+          "pos": "adjective"
         }
       ]
     },
@@ -325,6 +373,30 @@
       ]
     },
     {
+      "id": "glossary.admit",
+      "headword": "admit",
+      "kind": "word",
+      "forms": ["admit", "admits", "admitted", "admitting"],
+      "senses": [
+        {
+          "es": "admitir, reconocer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.adult",
+      "headword": "adult",
+      "kind": "word",
+      "forms": ["adult", "adults"],
+      "senses": [
+        {
+          "es": "adulto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.adventure",
       "headword": "adventure",
       "kind": "word",
@@ -345,6 +417,30 @@
         {
           "es": "consejo, consejos",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.advise",
+      "headword": "advise",
+      "kind": "word",
+      "forms": ["advise", "advises", "advised", "advising"],
+      "senses": [
+        {
+          "es": "aconsejar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.affect",
+      "headword": "affect",
+      "kind": "word",
+      "forms": ["affect", "affects", "affected", "affecting"],
+      "senses": [
+        {
+          "es": "afectar",
+          "pos": "verb"
         }
       ]
     },
@@ -665,6 +761,18 @@
       ]
     },
     {
+      "id": "glossary.amount",
+      "headword": "amount",
+      "kind": "word",
+      "forms": ["amount", "amounts"],
+      "senses": [
+        {
+          "es": "cantidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.an",
       "headword": "an",
       "kind": "word",
@@ -777,6 +885,30 @@
       ]
     },
     {
+      "id": "glossary.anxiety",
+      "headword": "anxiety",
+      "kind": "word",
+      "forms": ["anxiety"],
+      "senses": [
+        {
+          "es": "ansiedad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.anxious",
+      "headword": "anxious",
+      "kind": "word",
+      "forms": ["anxious"],
+      "senses": [
+        {
+          "es": "ansioso, nervioso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.any",
       "headword": "any",
       "kind": "word",
@@ -844,6 +976,22 @@
       "senses": [
         {
           "es": "de todas formas, de todos modos",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.anywhere",
+      "headword": "anywhere",
+      "kind": "word",
+      "forms": ["anywhere"],
+      "senses": [
+        {
+          "es": "(en negativas) en ningún lugar",
+          "pos": "adverb"
+        },
+        {
+          "es": "en cualquier lugar",
           "pos": "adverb"
         }
       ]
@@ -1049,6 +1197,18 @@
       ]
     },
     {
+      "id": "glossary.artificial-intelligence",
+      "headword": "artificial intelligence",
+      "kind": "phrase",
+      "forms": ["artificial intelligence"],
+      "senses": [
+        {
+          "es": "inteligencia artificial",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.as",
       "headword": "as",
       "kind": "word",
@@ -1089,6 +1249,18 @@
         {
           "es": "en cuanto, tan pronto como",
           "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aside",
+      "headword": "aside",
+      "kind": "word",
+      "forms": ["aside"],
+      "senses": [
+        {
+          "es": "a un lado, aparte",
+          "pos": "adverb"
         }
       ]
     },
@@ -1245,6 +1417,18 @@
       ]
     },
     {
+      "id": "glossary.atmosphere",
+      "headword": "atmosphere",
+      "kind": "word",
+      "forms": ["atmosphere"],
+      "senses": [
+        {
+          "es": "atmósfera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.attend",
       "headword": "attend",
       "kind": "word",
@@ -1313,6 +1497,18 @@
         {
           "es": "automáticamente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.average",
+      "headword": "average",
+      "kind": "word",
+      "forms": ["average"],
+      "senses": [
+        {
+          "es": "promedio, medio",
+          "pos": "adjective"
         }
       ]
     },

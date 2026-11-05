@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.fact-check",
+      "headword": "fact-check",
+      "kind": "word",
+      "forms": ["fact-check", "fact-checks", "fact-checked", "fact-checking"],
+      "senses": [
+        {
+          "es": "verificar (datos)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.factory",
       "headword": "factory",
       "kind": "word",
@@ -93,6 +105,18 @@
       ]
     },
     {
+      "id": "glossary.fall-behind",
+      "headword": "fall behind",
+      "kind": "phrase",
+      "forms": ["fall behind", "falls behind", "fell behind", "fallen behind", "falling behind"],
+      "senses": [
+        {
+          "es": "atrasarse, quedarse atrás",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.fall-in-love",
       "headword": "fall in love",
       "kind": "phrase",
@@ -113,6 +137,18 @@
         {
           "es": "(have a falling-out) pelea, distanciamiento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.false",
+      "headword": "false",
+      "kind": "word",
+      "forms": ["false"],
+      "senses": [
+        {
+          "es": "falso",
+          "pos": "adjective"
         }
       ]
     },
@@ -181,10 +217,22 @@
       ]
     },
     {
+      "id": "glossary.farmer",
+      "headword": "farmer",
+      "kind": "word",
+      "forms": ["farmer", "farmers"],
+      "senses": [
+        {
+          "es": "agricultor, granjero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fast",
       "headword": "fast",
       "kind": "word",
-      "forms": ["fast"],
+      "forms": ["fast", "faster"],
       "senses": [
         {
           "es": "rápido",
@@ -241,6 +289,18 @@
         {
           "es": "febrero",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feedback",
+      "headword": "feedback",
+      "kind": "word",
+      "forms": ["feedback"],
+      "senses": [
+        {
+          "es": "comentarios, opinión",
+          "pos": "noun"
         }
       ]
     },
@@ -409,6 +469,22 @@
         {
           "es": "llenar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fill-in",
+      "headword": "fill in",
+      "kind": "phrase",
+      "forms": ["fill in", "fills in", "filled in", "filling in"],
+      "senses": [
+        {
+          "es": "reemplazar, cubrir (fill in for: reemplazar a alguien)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "llenar, completar (un formulario)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -613,6 +689,22 @@
       ]
     },
     {
+      "id": "glossary.flood",
+      "headword": "flood",
+      "kind": "word",
+      "forms": ["flood", "floods", "flooded", "flooding"],
+      "senses": [
+        {
+          "es": "inundación",
+          "pos": "noun"
+        },
+        {
+          "es": "inundar(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.floor",
       "headword": "floor",
       "kind": "word",
@@ -621,6 +713,54 @@
         {
           "es": "piso, suelo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fluent",
+      "headword": "fluent",
+      "kind": "word",
+      "forms": ["fluent"],
+      "senses": [
+        {
+          "es": "fluido, con fluidez",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fluently",
+      "headword": "fluently",
+      "kind": "word",
+      "forms": ["fluently"],
+      "senses": [
+        {
+          "es": "con fluidez",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fly",
+      "headword": "fly",
+      "kind": "word",
+      "forms": ["fly", "flies", "flew", "flown", "flying"],
+      "senses": [
+        {
+          "es": "volar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.focus",
+      "headword": "focus",
+      "kind": "word",
+      "forms": ["focus", "focuses", "focused", "focusing"],
+      "senses": [
+        {
+          "es": "(focus on) centrarse en",
+          "pos": "verb"
         }
       ]
     },
@@ -645,6 +785,18 @@
         {
           "es": "seguir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.follow-up",
+      "headword": "follow up",
+      "kind": "phrase",
+      "forms": ["follow up", "follows up", "followed up", "following up"],
+      "senses": [
+        {
+          "es": "dar seguimiento (follow up on: dar seguimiento a)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -769,6 +921,18 @@
       ]
     },
     {
+      "id": "glossary.fossil-fuel",
+      "headword": "fossil fuel",
+      "kind": "phrase",
+      "forms": ["fossil fuel", "fossil fuels"],
+      "senses": [
+        {
+          "es": "combustible fósil",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fountain",
       "headword": "fountain",
       "kind": "word",
@@ -841,6 +1005,18 @@
         {
           "es": "tiempo libre",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.free-up",
+      "headword": "free up",
+      "kind": "phrase",
+      "forms": ["free up", "frees up", "freed up", "freeing up"],
+      "senses": [
+        {
+          "es": "liberar (espacio, tiempo)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -977,6 +1153,18 @@
         {
           "es": "gracioso, divertido",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.furniture",
+      "headword": "furniture",
+      "kind": "word",
+      "forms": ["furniture"],
+      "senses": [
+        {
+          "es": "muebles",
+          "pos": "noun"
         }
       ]
     },

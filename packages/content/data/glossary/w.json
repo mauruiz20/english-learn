@@ -113,6 +113,18 @@
       ]
     },
     {
+      "id": "glossary.warm-up",
+      "headword": "warm up",
+      "kind": "phrase",
+      "forms": ["warm up", "warms up", "warmed up", "warming up"],
+      "senses": [
+        {
+          "es": "calentar (antes de hacer ejercicio)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.warming",
       "headword": "warming",
       "kind": "word",
@@ -281,6 +293,18 @@
       ]
     },
     {
+      "id": "glossary.weakness",
+      "headword": "weakness",
+      "kind": "word",
+      "forms": ["weakness"],
+      "senses": [
+        {
+          "es": "debilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.wear",
       "headword": "wear",
       "kind": "word",
@@ -353,6 +377,18 @@
       ]
     },
     {
+      "id": "glossary.weekly",
+      "headword": "weekly",
+      "kind": "word",
+      "forms": ["weekly"],
+      "senses": [
+        {
+          "es": "semanal",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.weight",
       "headword": "weight",
       "kind": "word",
@@ -421,6 +457,18 @@
         {
           "es": "mojado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.whale",
+      "headword": "whale",
+      "kind": "word",
+      "forms": ["whale", "whales"],
+      "senses": [
+        {
+          "es": "ballena",
+          "pos": "noun"
         }
       ]
     },
@@ -561,6 +609,18 @@
       ]
     },
     {
+      "id": "glossary.white",
+      "headword": "white",
+      "kind": "word",
+      "forms": ["white"],
+      "senses": [
+        {
+          "es": "blanco",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.who",
       "headword": "who",
       "kind": "word",
@@ -653,6 +713,18 @@
       ]
     },
     {
+      "id": "glossary.wind",
+      "headword": "wind",
+      "kind": "word",
+      "forms": ["wind", "winds"],
+      "senses": [
+        {
+          "es": "viento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.window",
       "headword": "window",
       "kind": "word",
@@ -725,6 +797,22 @@
       ]
     },
     {
+      "id": "glossary.withdraw",
+      "headword": "withdraw",
+      "kind": "word",
+      "forms": ["withdraw", "withdraws", "withdrew", "withdrawn", "withdrawing"],
+      "senses": [
+        {
+          "es": "retirarse",
+          "pos": "verb"
+        },
+        {
+          "es": "retirar (dinero)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.within",
       "headword": "within",
       "kind": "word",
@@ -785,6 +873,18 @@
         {
           "es": "(won't open) no quiere abrir, no abre",
           "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wonder",
+      "headword": "wonder",
+      "kind": "word",
+      "forms": ["wonder", "wonders", "wondered", "wondering"],
+      "senses": [
+        {
+          "es": "preguntarse",
+          "pos": "verb"
         }
       ]
     },
@@ -860,6 +960,18 @@
       "senses": [
         {
           "es": "trabajador, trabajadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.workload",
+      "headword": "workload",
+      "kind": "word",
+      "forms": ["workload", "workloads"],
+      "senses": [
+        {
+          "es": "carga de trabajo",
           "pos": "noun"
         }
       ]
@@ -985,6 +1097,26 @@
         {
           "es": "escribir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.write-down",
+      "headword": "write down",
+      "kind": "phrase",
+      "forms": [
+        "write down",
+        "writes down",
+        "wrote down",
+        "written down",
+        "writing down",
+        "write it down",
+        "wrote it down"
+      ],
+      "senses": [
+        {
+          "es": "anotar, apuntar",
+          "pos": "phrasal verb"
         }
       ]
     },

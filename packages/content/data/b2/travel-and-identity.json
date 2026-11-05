@@ -1,0 +1,366 @@
+{
+  "items": [
+    {
+      "id": "b2.travel-and-identity.local",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "word",
+      "term": "local",
+      "es": "local, del lugar",
+      "example": {
+        "en": "We stayed with a local family instead of in a hotel.",
+        "es": "Nos quedamos con una familia del lugar en vez de en un hotel."
+      }
+    },
+    {
+      "id": "b2.travel-and-identity.sightseeing",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "word",
+      "term": "sightseeing",
+      "es": "turismo, recorrer lugares de interés"
+    },
+    {
+      "id": "b2.travel-and-identity.off-the-beaten-track",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "phrase",
+      "term": "off the beaten track",
+      "es": "lejos de las rutas turísticas",
+      "example": {
+        "en": "The best moments of the trip happened off the beaten track.",
+        "es": "Los mejores momentos del viaje ocurrieron lejos de las rutas turísticas."
+      }
+    },
+    {
+      "id": "b2.travel-and-identity.homesick",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "word",
+      "term": "homesick",
+      "es": "que extraña su casa o su país"
+    },
+    {
+      "id": "b2.travel-and-identity.identity",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "word",
+      "term": "identity",
+      "es": "identidad"
+    },
+    {
+      "id": "b2.travel-and-identity.accent",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "word",
+      "term": "accent",
+      "es": "acento",
+      "example": {
+        "en": "She speaks English with a strong accent.",
+        "es": "Habla inglés con mucho acento."
+      }
+    },
+    {
+      "id": "b2.travel-and-identity.culture-shock",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "phrase",
+      "term": "culture shock",
+      "es": "choque cultural"
+    },
+    {
+      "id": "b2.travel-and-identity.belong",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "kind": "word",
+      "term": "belong",
+      "es": "pertenecer, sentirse parte de un lugar"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.travel-and-identity.slow-travel",
+      "level": "B2",
+      "topics": ["travel-and-identity"],
+      "title": "Off the beaten track",
+      "text": "Every summer, millions of tourists visit the same famous places, take the same photos and go home. Daniel decided to travel differently. For six months he traveled through small towns, staying with local families instead of in hotels and avoiding the usual sightseeing tours. \"Some famous places are definitely worth visiting,\" he says, \"but the best moments of my trip happened off the beaten track.\" He learned to cook with a grandmother who spoke no English, and he spent a whole afternoon helping a farmer find a lost goat. Traveling this way was not always easy. In some villages nobody understood him, and at times he felt homesick and lonely. But he also discovered how much of his identity came from the place where he grew up: his sense of humor, the food he missed and even his accent. \"You don't really know your own culture until you leave it,\" he says. \"It's worth traveling just for that.\"",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.travel-and-identity.vocab-001",
+      "itemIds": ["b2.travel-and-identity.local"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'local' mean in 'We ate at a small local restaurant'?",
+      "options": ["del lugar", "lujoso", "lejano", "ruidoso"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.travel-and-identity.cloze-001",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 44332,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "It is worth ___ that museum.",
+      "answers": ["visiting"],
+      "distractors": ["visit", "to visit", "visited"],
+      "es": "Vale la pena visitar ese museo."
+    },
+    {
+      "id": "b2.travel-and-identity.order-001",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["worth", "the", "long", "The", "view", "climb.", "from", "is", "top", "the"],
+      "accepted": ["The view from the top is worth the long climb."],
+      "es": "Por la vista desde la cima, vale la pena la larga subida."
+    },
+    {
+      "id": "b2.travel-and-identity.choice-001",
+      "itemIds": ["b2.travel-and-identity.sightseeing"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We spent the whole morning sightseeing in the old town.",
+      "options": [
+        "Pasamos toda la mañana durmiendo en el casco antiguo.",
+        "Pasamos toda la tarde de compras en el centro nuevo.",
+        "Vimos el casco antiguo desde lejos toda la mañana.",
+        "Pasamos toda la mañana recorriendo los lugares de interés del casco antiguo."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.travel-and-identity.reading-001",
+      "itemIds": [
+        "b2.travel-and-identity.off-the-beaten-track",
+        "b2.travel-and-identity.homesick",
+        "b2.travel-and-identity.identity"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.travel-and-identity.slow-travel",
+      "questions": [
+        {
+          "prompt": "Where did Daniel stay during his trip?",
+          "options": ["In expensive hotels", "In tourist apartments", "With local families"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "How did Daniel feel at times?",
+          "options": ["Homesick and lonely", "Bored and tired", "Angry and lost"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What did Daniel discover about himself?",
+          "options": [
+            "He wanted to become a farmer.",
+            "Much of his identity came from the place where he grew up.",
+            "He preferred the famous places."
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "b2.travel-and-identity.write-001",
+      "itemIds": ["b2.grammar.be-worth"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Vale la pena visitar ese pueblo.",
+      "accepted": [
+        "That {town|village} is worth {visiting|a visit}.",
+        "It is worth visiting that {town|village}."
+      ]
+    },
+    {
+      "id": "b2.travel-and-identity.vocab-002",
+      "itemIds": ["b2.travel-and-identity.off-the-beaten-track"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'lejos de las rutas turísticas'.",
+      "options": ["on the right track", "out of order", "off the beaten track", "off the record"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.travel-and-identity.vocab-003",
+      "itemIds": ["b2.travel-and-identity.accent"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'accent' mean in 'She speaks English with a strong accent'?",
+      "options": ["acceso", "acierto", "asiento", "acento"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.travel-and-identity.cloze-002",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 239776,
+        "author": "CM",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "In spite ___ the language difficulty, we soon became friends.",
+      "answers": ["of"],
+      "distractors": ["for", "from", "that"],
+      "es": "A pesar de la dificultad del idioma, pronto nos hicimos amigos."
+    },
+    {
+      "id": "b2.travel-and-identity.cloze-003",
+      "itemIds": ["b2.grammar.get-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 269213,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "It always takes time to get ___ to a new place.",
+      "answers": ["used"],
+      "distractors": ["use", "using", "usual"],
+      "es": "Siempre lleva tiempo acostumbrarse a un lugar nuevo."
+    },
+    {
+      "id": "b2.travel-and-identity.order-002",
+      "itemIds": ["b2.travel-and-identity.culture-shock", "b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "the",
+        "to",
+        "Despite",
+        "shock,",
+        "never",
+        "culture",
+        "home.",
+        "she",
+        "go",
+        "wanted"
+      ],
+      "accepted": ["Despite the culture shock, she never wanted to go home."],
+      "es": "A pesar del choque cultural, nunca quiso volver a casa."
+    },
+    {
+      "id": "b2.travel-and-identity.choice-002",
+      "itemIds": ["b2.travel-and-identity.belong"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "After ten years abroad, I don't feel that I belong anywhere.",
+      "options": [
+        "Después de diez años en el extranjero, no siento que pertenezca a ningún lugar.",
+        "Después de diez años en el extranjero, quiero volver a mi país.",
+        "Después de diez años en mi país, quiero vivir en el extranjero.",
+        "Después de diez años en el extranjero, me siento en casa en todas partes."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.travel-and-identity.write-002",
+      "itemIds": ["b2.travel-and-identity.homesick", "b2.grammar.get-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Al principio extrañaba mi casa, pero me acostumbré.",
+      "accepted": [
+        "At first I {was homesick|felt homesick|missed home|missed my home}[,] but I got used to it."
+      ]
+    },
+    {
+      "id": "b2.travel-and-identity.write-003",
+      "itemIds": ["b2.travel-and-identity.accent", "b2.travel-and-identity.identity"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi acento es parte de mi identidad.",
+      "accepted": ["My accent is [a ]part of my identity."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.travel-and-identity.lesson-001",
+      "level": "B2",
+      "topic": "travel-and-identity",
+      "title": "Viajar de otra manera",
+      "exerciseIds": [
+        "b2.travel-and-identity.vocab-001",
+        "b2.travel-and-identity.cloze-001",
+        "b2.travel-and-identity.order-001",
+        "b2.travel-and-identity.choice-001",
+        "b2.travel-and-identity.reading-001",
+        "b2.travel-and-identity.write-001",
+        "b2.travel-and-identity.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.grammar.be-worth",
+        "b2.travel-and-identity.local",
+        "b2.travel-and-identity.sightseeing",
+        "b2.travel-and-identity.off-the-beaten-track",
+        "b2.travel-and-identity.homesick"
+      ],
+      "deepenCardIds": ["b2.grammar.be-worth"]
+    },
+    {
+      "id": "b2.travel-and-identity.lesson-002",
+      "level": "B2",
+      "topic": "travel-and-identity",
+      "title": "Vivir en otro país",
+      "exerciseIds": [
+        "b2.travel-and-identity.vocab-003",
+        "b2.travel-and-identity.cloze-002",
+        "b2.travel-and-identity.cloze-003",
+        "b2.travel-and-identity.order-002",
+        "b2.travel-and-identity.choice-002",
+        "b2.travel-and-identity.write-002",
+        "b2.travel-and-identity.write-003"
+      ],
+      "newItemIds": [
+        "b2.travel-and-identity.accent",
+        "b2.travel-and-identity.culture-shock",
+        "b2.travel-and-identity.belong"
+      ],
+      "deepenCardIds": ["b2.grammar.despite", "b2.grammar.used-to"]
+    }
+  ]
+}

@@ -58,6 +58,7 @@ describe("unlockedAchievements", () => {
     expect(unlockedAchievements({ ...none, placed: true })).toEqual(["placement"]);
     expect(unlockedAchievements({ ...none, topicsDone: 1 })).toEqual(["first-topic"]);
     expect(unlockedAchievements({ ...none, levelsDone: ["B1"] })).toEqual(["level-b1"]);
+    expect(unlockedAchievements({ ...none, levelsDone: ["B2"] })).toEqual(["level-b2"]);
     expect(unlockedAchievements({ ...none, wordsPracticed: 50 })).toEqual(["words-50"]);
   });
 
@@ -72,7 +73,7 @@ describe("unlockedAchievements", () => {
       longestStreak: 100,
       lessonsDone: 99,
       topicsDone: 99,
-      levelsDone: ["A2", "B1"],
+      levelsDone: ["A2", "B1", "B2"],
       placed: true,
       wordsPracticed: 999,
       cardsStudied: 28,

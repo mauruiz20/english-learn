@@ -49,6 +49,8 @@ describe("headerBack (web header)", () => {
     "armario",
     "fichas/index",
     "fichas/[id]/index",
+    "practica/index",
+    "practica/[collection]",
   ])("offers a way home on /%s even without history", (route) => {
     expect(headerBack(route, undefined)).toEqual({ show: true, title: "Inicio", target: "home" });
   });

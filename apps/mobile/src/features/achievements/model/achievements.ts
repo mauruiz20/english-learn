@@ -96,6 +96,14 @@ export const ACHIEVEMENTS: readonly Achievement[] = [
     earned: (f) => f.levelsDone.includes("B1"),
   },
   {
+    id: "level-b2",
+    title: "Nivel B2 completo",
+    howTo: "Completa todas las lecciones de B2.",
+    color: "yellow",
+    rare: true,
+    earned: (f) => f.levelsDone.includes("B2"),
+  },
+  {
     id: "streak-3",
     title: "Tres clips",
     howTo: "Estudia 3 días seguidos.",

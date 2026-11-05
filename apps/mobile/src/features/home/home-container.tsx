@@ -8,11 +8,7 @@ import {
 } from "@english-learn/domain";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import {
-  isLessonDone,
-  lessonExercises,
-  lessonsForLevel,
-} from "@/features/lesson/model/lesson-catalog";
+import { isLessonDone, lessonExercises, pathLessons } from "@/features/lesson/model/lesson-catalog";
 import { lessonScore } from "@/features/lesson/model/lesson-score";
 import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
@@ -49,9 +45,10 @@ function deepenCards(
 }
 
 /**
- * Lessons for the learner's level (A2 by default), each marked done when all its items were
- * reviewed, with its best result from the log and, once done, the cards that go deeper into it
- * (each card once, see `deepenSteps`).
+ * Lessons on the learner's path (their level, A2 by default, moving on to the next level with
+ * lessons once every lesson of it is done; see `pathLessons`), each marked done when all its
+ * items were reviewed, with its best result from the log and, once done, the cards that go
+ * deeper into it (each card once, see `deepenSteps`).
  */
 function homeLessons(
   content: Corpus,
@@ -61,7 +58,9 @@ function homeLessons(
 ): HomeLessons {
   const reviewed = new Set(states.map((s) => s.itemId));
   const resultById = new Map(results.map((r) => [r.lessonId, r]));
-  const selection = lessonsForLevel(content.lessons, level);
+  const selection = pathLessons(content.lessons, level, (lesson) =>
+    isLessonDone(lesson, content.exercisesById, reviewed),
+  );
   const scores = cardScores(content, results);
   const stops = selection.lessons.map((lesson) => ({
     lesson,
@@ -167,6 +166,7 @@ export function HomeContainer({
             total: ACHIEVEMENTS.length,
           },
           cards: cardsSummary(content.cards, states),
+          practiceTopics: content.practice.map((c) => c.title),
         });
       },
       (error: unknown) => {
@@ -201,6 +201,7 @@ export function HomeContainer({
       onOpenAccount={() => router.push("/cuenta")}
       onOpenAlbum={() => router.push("/album")}
       onOpenCards={() => router.push("/fichas")}
+      onOpenPractice={() => router.push("/practica")}
       onOpenWardrobe={() => router.push("/armario")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       notice={

@@ -29,38 +29,58 @@ import file23 from "../../data/b1/technology.json";
 import file24 from "../../data/b1/travel.json";
 import file25 from "../../data/b1/vocabulary.json";
 import file26 from "../../data/b1/work-and-careers.json";
-import file27 from "../../data/b2/grammar.json";
-import file28 from "../../data/b2/phrasal-verbs.json";
-import file29 from "../../data/b2/vocabulary.json";
-import file30 from "../../data/glossary/a.json";
-import file31 from "../../data/glossary/b.json";
-import file32 from "../../data/glossary/c.json";
-import file33 from "../../data/glossary/d.json";
-import file34 from "../../data/glossary/e.json";
-import file35 from "../../data/glossary/f.json";
-import file36 from "../../data/glossary/g.json";
-import file37 from "../../data/glossary/h.json";
-import file38 from "../../data/glossary/i.json";
-import file39 from "../../data/glossary/j.json";
-import file40 from "../../data/glossary/k.json";
-import file41 from "../../data/glossary/l.json";
-import file42 from "../../data/glossary/m.json";
-import file43 from "../../data/glossary/n.json";
-import file44 from "../../data/glossary/o.json";
-import file45 from "../../data/glossary/p.json";
-import file46 from "../../data/glossary/q.json";
-import file47 from "../../data/glossary/r.json";
-import file48 from "../../data/glossary/s.json";
-import file49 from "../../data/glossary/t.json";
-import file50 from "../../data/glossary/u.json";
-import file51 from "../../data/glossary/v.json";
-import file52 from "../../data/glossary/w.json";
-import file53 from "../../data/glossary/y.json";
-import file54 from "../../data/placement/a1.json";
-import file55 from "../../data/placement/a2.json";
-import file56 from "../../data/placement/b1.json";
-import file57 from "../../data/placement/b2.json";
-import file58 from "../../data/placement/c1.json";
+import file27 from "../../data/b2/climate-policy.json";
+import file28 from "../../data/b2/grammar.json";
+import file29 from "../../data/b2/health-and-psychology.json";
+import file30 from "../../data/b2/lifelong-learning.json";
+import file31 from "../../data/b2/media-and-misinformation.json";
+import file32 from "../../data/b2/money-and-economy.json";
+import file33 from "../../data/b2/phrasal-verbs.json";
+import file34 from "../../data/b2/science-and-ethics.json";
+import file35 from "../../data/b2/travel-and-identity.json";
+import file36 from "../../data/b2/vocabulary.json";
+import file37 from "../../data/b2/work-and-leadership.json";
+import file38 from "../../data/glossary/a.json";
+import file39 from "../../data/glossary/b.json";
+import file40 from "../../data/glossary/c.json";
+import file41 from "../../data/glossary/d.json";
+import file42 from "../../data/glossary/e.json";
+import file43 from "../../data/glossary/f.json";
+import file44 from "../../data/glossary/g.json";
+import file45 from "../../data/glossary/h.json";
+import file46 from "../../data/glossary/i.json";
+import file47 from "../../data/glossary/j.json";
+import file48 from "../../data/glossary/k.json";
+import file49 from "../../data/glossary/l.json";
+import file50 from "../../data/glossary/m.json";
+import file51 from "../../data/glossary/n.json";
+import file52 from "../../data/glossary/o.json";
+import file53 from "../../data/glossary/p.json";
+import file54 from "../../data/glossary/q.json";
+import file55 from "../../data/glossary/r.json";
+import file56 from "../../data/glossary/s.json";
+import file57 from "../../data/glossary/t.json";
+import file58 from "../../data/glossary/u.json";
+import file59 from "../../data/glossary/v.json";
+import file60 from "../../data/glossary/w.json";
+import file61 from "../../data/glossary/y.json";
+import file62 from "../../data/glossary/z.json";
+import file63 from "../../data/placement/a1.json";
+import file64 from "../../data/placement/a2.json";
+import file65 from "../../data/placement/b1.json";
+import file66 from "../../data/placement/b2.json";
+import file67 from "../../data/placement/c1.json";
+import file68 from "../../data/practice/phrasal-verbs/collection.json";
+import file69 from "../../data/practice/phrasal-verbs/health.json";
+import file70 from "../../data/practice/phrasal-verbs/home.json";
+import file71 from "../../data/practice/phrasal-verbs/money.json";
+import file72 from "../../data/practice/phrasal-verbs/phone.json";
+import file73 from "../../data/practice/phrasal-verbs/plans.json";
+import file74 from "../../data/practice/phrasal-verbs/relationships.json";
+import file75 from "../../data/practice/phrasal-verbs/study.json";
+import file76 from "../../data/practice/phrasal-verbs/technology.json";
+import file77 from "../../data/practice/phrasal-verbs/travel.json";
+import file78 from "../../data/practice/phrasal-verbs/work.json";
 
 const files = [
   file0,
@@ -122,6 +142,26 @@ const files = [
   file56,
   file57,
   file58,
+  file59,
+  file60,
+  file61,
+  file62,
+  file63,
+  file64,
+  file65,
+  file66,
+  file67,
+  file68,
+  file69,
+  file70,
+  file71,
+  file72,
+  file73,
+  file74,
+  file75,
+  file76,
+  file77,
+  file78,
 ] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);

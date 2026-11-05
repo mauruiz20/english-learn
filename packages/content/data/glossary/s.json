@@ -81,6 +81,18 @@
       ]
     },
     {
+      "id": "glossary.salon",
+      "headword": "salon",
+      "kind": "word",
+      "forms": ["salon", "salons"],
+      "senses": [
+        {
+          "es": "salón de belleza, peluquería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sam",
       "headword": "Sam",
       "kind": "word",
@@ -185,6 +197,22 @@
       ]
     },
     {
+      "id": "glossary.scale",
+      "headword": "scale",
+      "kind": "word",
+      "forms": ["scale", "scales"],
+      "senses": [
+        {
+          "es": "escala",
+          "pos": "noun"
+        },
+        {
+          "es": "balanza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.scene",
       "headword": "scene",
       "kind": "word",
@@ -221,6 +249,18 @@
       ]
     },
     {
+      "id": "glossary.science",
+      "headword": "science",
+      "kind": "word",
+      "forms": ["science", "sciences"],
+      "senses": [
+        {
+          "es": "ciencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.scientist",
       "headword": "scientist",
       "kind": "word",
@@ -240,6 +280,54 @@
       "senses": [
         {
           "es": "pantalla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scroll",
+      "headword": "scroll",
+      "kind": "word",
+      "forms": ["scroll", "scrolls", "scrolled", "scrolling"],
+      "senses": [
+        {
+          "es": "desplazarse (en la pantalla)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scroll-down",
+      "headword": "scroll down",
+      "kind": "phrase",
+      "forms": ["scroll down", "scrolls down", "scrolled down", "scrolling down"],
+      "senses": [
+        {
+          "es": "desplazarse hacia abajo (en la pantalla)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sea",
+      "headword": "sea",
+      "kind": "word",
+      "forms": ["sea", "seas"],
+      "senses": [
+        {
+          "es": "mar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sea-level",
+      "headword": "sea level",
+      "kind": "phrase",
+      "forms": ["sea level", "sea levels"],
+      "senses": [
+        {
+          "es": "nivel del mar",
           "pos": "noun"
         }
       ]
@@ -289,6 +377,22 @@
       ]
     },
     {
+      "id": "glossary.secret",
+      "headword": "secret",
+      "kind": "word",
+      "forms": ["secret", "secrets"],
+      "senses": [
+        {
+          "es": "secreto",
+          "pos": "adjective"
+        },
+        {
+          "es": "secreto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.see",
       "headword": "see",
       "kind": "word",
@@ -297,6 +401,30 @@
         {
           "es": "ver",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.see-off",
+      "headword": "see off",
+      "kind": "phrase",
+      "forms": ["see off", "sees off", "saw off", "seen off", "seeing off"],
+      "senses": [
+        {
+          "es": "despedir (a alguien que se va de viaje)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.self-taught",
+      "headword": "self-taught",
+      "kind": "word",
+      "forms": ["self-taught"],
+      "senses": [
+        {
+          "es": "autodidacta",
+          "pos": "adjective"
         }
       ]
     },
@@ -337,6 +465,18 @@
       ]
     },
     {
+      "id": "glossary.sense",
+      "headword": "sense",
+      "kind": "word",
+      "forms": ["sense"],
+      "senses": [
+        {
+          "es": "sentido",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sensible",
       "headword": "sensible",
       "kind": "word",
@@ -357,6 +497,18 @@
         {
           "es": "oración, frase",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.serious",
+      "headword": "serious",
+      "kind": "word",
+      "forms": ["serious"],
+      "senses": [
+        {
+          "es": "grave, serio",
+          "pos": "adjective"
         }
       ]
     },
@@ -389,6 +541,18 @@
         {
           "es": "conjunto",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.set-aside",
+      "headword": "set aside",
+      "kind": "phrase",
+      "forms": ["set aside", "sets aside", "setting aside"],
+      "senses": [
+        {
+          "es": "apartar, reservar (dinero)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -429,6 +593,34 @@
       ]
     },
     {
+      "id": "glossary.settle",
+      "headword": "settle",
+      "kind": "word",
+      "forms": ["settle", "settles", "settled", "settling"],
+      "senses": [
+        {
+          "es": "resolver, arreglar",
+          "pos": "verb"
+        },
+        {
+          "es": "instalarse, establecerse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.settle-on",
+      "headword": "settle on",
+      "kind": "phrase",
+      "forms": ["settle on", "settles on", "settled on", "settling on"],
+      "senses": [
+        {
+          "es": "decidirse por, elegir",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.seven",
       "headword": "seven",
       "kind": "word",
@@ -449,6 +641,18 @@
         {
           "es": "varios",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shadow",
+      "headword": "shadow",
+      "kind": "word",
+      "forms": ["shadow", "shadows"],
+      "senses": [
+        {
+          "es": "sombra",
+          "pos": "noun"
         }
       ]
     },
@@ -477,6 +681,18 @@
         {
           "es": "compartir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shark",
+      "headword": "shark",
+      "kind": "word",
+      "forms": ["shark", "sharks"],
+      "senses": [
+        {
+          "es": "tiburón",
+          "pos": "noun"
         }
       ]
     },
@@ -521,6 +737,18 @@
       ]
     },
     {
+      "id": "glossary.shine",
+      "headword": "shine",
+      "kind": "word",
+      "forms": ["shine", "shines", "shone", "shining"],
+      "senses": [
+        {
+          "es": "brillar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.shirt",
       "headword": "shirt",
       "kind": "word",
@@ -528,6 +756,18 @@
       "senses": [
         {
           "es": "camisa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shock",
+      "headword": "shock",
+      "kind": "word",
+      "forms": ["shock", "shocks"],
+      "senses": [
+        {
+          "es": "impacto, conmoción",
           "pos": "noun"
         }
       ]
@@ -557,6 +797,18 @@
         {
           "es": "ir de compras",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shop-around",
+      "headword": "shop around",
+      "kind": "phrase",
+      "forms": ["shop around", "shops around", "shopped around", "shopping around"],
+      "senses": [
+        {
+          "es": "comparar precios (en varias tiendas)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -657,6 +909,34 @@
       ]
     },
     {
+      "id": "glossary.shut",
+      "headword": "shut",
+      "kind": "word",
+      "forms": ["shut", "shuts", "shutting"],
+      "senses": [
+        {
+          "es": "cerrar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shut-down",
+      "headword": "shut down",
+      "kind": "phrase",
+      "forms": ["shut down", "shuts down", "shutting down"],
+      "senses": [
+        {
+          "es": "apagar (una computadora o un sistema)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "cerrar (una empresa)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.shy",
       "headword": "shy",
       "kind": "word",
@@ -677,6 +957,30 @@
         {
           "es": "enfermo",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.side",
+      "headword": "side",
+      "kind": "word",
+      "forms": ["side", "sides"],
+      "senses": [
+        {
+          "es": "lado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.side-effect",
+      "headword": "side effect",
+      "kind": "phrase",
+      "forms": ["side effect", "side effects"],
+      "senses": [
+        {
+          "es": "efecto secundario",
+          "pos": "noun"
         }
       ]
     },
@@ -737,6 +1041,18 @@
       ]
     },
     {
+      "id": "glossary.signal",
+      "headword": "signal",
+      "kind": "word",
+      "forms": ["signal", "signals"],
+      "senses": [
+        {
+          "es": "señal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.silent",
       "headword": "silent",
       "kind": "word",
@@ -744,6 +1060,18 @@
       "senses": [
         {
           "es": "en silencio, callado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.silly",
+      "headword": "silly",
+      "kind": "word",
+      "forms": ["silly"],
+      "senses": [
+        {
+          "es": "tonto, ridículo",
           "pos": "adjective"
         }
       ]
@@ -893,6 +1221,18 @@
       ]
     },
     {
+      "id": "glossary.sixty",
+      "headword": "sixty",
+      "kind": "word",
+      "forms": ["sixty"],
+      "senses": [
+        {
+          "es": "sesenta",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.size",
       "headword": "size",
       "kind": "word",
@@ -904,6 +1244,30 @@
         },
         {
           "es": "tamaño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.skill",
+      "headword": "skill",
+      "kind": "word",
+      "forms": ["skill", "skills"],
+      "senses": [
+        {
+          "es": "habilidad, destreza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.skin",
+      "headword": "skin",
+      "kind": "word",
+      "forms": ["skin"],
+      "senses": [
+        {
+          "es": "piel",
           "pos": "noun"
         }
       ]
@@ -972,6 +1336,18 @@
       "senses": [
         {
           "es": "pequeño, chico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.smart",
+      "headword": "smart",
+      "kind": "word",
+      "forms": ["smart", "smarter", "smartest"],
+      "senses": [
+        {
+          "es": "inteligente, listo",
           "pos": "adjective"
         }
       ]
@@ -1145,6 +1521,18 @@
       ]
     },
     {
+      "id": "glossary.solar-power",
+      "headword": "solar power",
+      "kind": "phrase",
+      "forms": ["solar power"],
+      "senses": [
+        {
+          "es": "energía solar",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sold",
       "headword": "sold",
       "kind": "word",
@@ -1181,6 +1569,18 @@
         {
           "es": "solución",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.solve",
+      "headword": "solve",
+      "kind": "word",
+      "forms": ["solve", "solves", "solved", "solving"],
+      "senses": [
+        {
+          "es": "resolver",
+          "pos": "verb"
         }
       ]
     },
@@ -1313,6 +1713,38 @@
       ]
     },
     {
+      "id": "glossary.sort",
+      "headword": "sort",
+      "kind": "word",
+      "forms": ["sort", "sorts", "sorted", "sorting"],
+      "senses": [
+        {
+          "es": "ordenar, clasificar",
+          "pos": "verb"
+        },
+        {
+          "es": "tipo, clase",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sort-out",
+      "headword": "sort out",
+      "kind": "phrase",
+      "forms": ["sort out", "sorts out", "sorted out", "sorting out"],
+      "senses": [
+        {
+          "es": "resolver, arreglar",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "ordenar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.soup",
       "headword": "soup",
       "kind": "word",
@@ -1365,6 +1797,18 @@
       ]
     },
     {
+      "id": "glossary.space",
+      "headword": "space",
+      "kind": "word",
+      "forms": ["space", "spaces"],
+      "senses": [
+        {
+          "es": "espacio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.spark",
       "headword": "spark",
       "kind": "word",
@@ -1389,6 +1833,18 @@
         {
           "es": "hablar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.speak-up",
+      "headword": "speak up",
+      "kind": "phrase",
+      "forms": ["speak up", "speaks up", "spoke up", "spoken up", "speaking up"],
+      "senses": [
+        {
+          "es": "hablar más fuerte",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -1421,6 +1877,18 @@
         {
           "es": "pasar (tiempo)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spite",
+      "headword": "spite",
+      "kind": "word",
+      "forms": ["spite"],
+      "senses": [
+        {
+          "es": "(in spite of) a pesar de",
+          "pos": "noun"
         }
       ]
     },
@@ -1461,6 +1929,18 @@
         {
           "es": "deporte",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spread",
+      "headword": "spread",
+      "kind": "word",
+      "forms": ["spread", "spreads", "spreading"],
+      "senses": [
+        {
+          "es": "difundir(se), propagar(se)",
+          "pos": "verb"
         }
       ]
     },
@@ -1625,6 +2105,34 @@
       ]
     },
     {
+      "id": "glossary.step",
+      "headword": "step",
+      "kind": "word",
+      "forms": ["step", "steps", "stepped", "stepping"],
+      "senses": [
+        {
+          "es": "paso, escalón",
+          "pos": "noun"
+        },
+        {
+          "es": "dar un paso, pisar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.step-down",
+      "headword": "step down",
+      "kind": "phrase",
+      "forms": ["step down", "steps down", "stepped down", "stepping down"],
+      "senses": [
+        {
+          "es": "renunciar (a un cargo), dejar el puesto",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.still",
       "headword": "still",
       "kind": "word",
@@ -1737,6 +2245,18 @@
       ]
     },
     {
+      "id": "glossary.strange",
+      "headword": "strange",
+      "kind": "word",
+      "forms": ["strange"],
+      "senses": [
+        {
+          "es": "extraño, raro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.street",
       "headword": "street",
       "kind": "word",
@@ -1789,6 +2309,18 @@
       ]
     },
     {
+      "id": "glossary.struggle",
+      "headword": "struggle",
+      "kind": "word",
+      "forms": ["struggle", "struggles", "struggled", "struggling"],
+      "senses": [
+        {
+          "es": "tener dificultades, luchar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.student",
       "headword": "student",
       "kind": "word",
@@ -1833,6 +2365,18 @@
       ]
     },
     {
+      "id": "glossary.subscription",
+      "headword": "subscription",
+      "kind": "word",
+      "forms": ["subscription", "subscriptions"],
+      "senses": [
+        {
+          "es": "suscripción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.subway",
       "headword": "subway",
       "kind": "word",
@@ -1841,6 +2385,34 @@
         {
           "es": "metro",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.such",
+      "headword": "such",
+      "kind": "word",
+      "forms": ["such"],
+      "senses": [
+        {
+          "es": "(such as) como",
+          "pos": "expression"
+        },
+        {
+          "es": "tal, tan",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suffer",
+      "headword": "suffer",
+      "kind": "word",
+      "forms": ["suffer", "suffers", "suffered", "suffering"],
+      "senses": [
+        {
+          "es": "sufrir",
+          "pos": "verb"
         }
       ]
     },
@@ -1957,6 +2529,38 @@
       ]
     },
     {
+      "id": "glossary.sure",
+      "headword": "sure",
+      "kind": "word",
+      "forms": ["sure"],
+      "senses": [
+        {
+          "es": "seguro",
+          "pos": "adjective"
+        },
+        {
+          "es": "(make sure) asegurarse",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.surprise",
+      "headword": "surprise",
+      "kind": "word",
+      "forms": ["surprise", "surprises", "surprised"],
+      "senses": [
+        {
+          "es": "sorprender",
+          "pos": "verb"
+        },
+        {
+          "es": "sorpresa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.surprising",
       "headword": "surprising",
       "kind": "word",
@@ -2017,6 +2621,18 @@
         {
           "es": "nadar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.system",
+      "headword": "system",
+      "kind": "word",
+      "forms": ["system", "systems"],
+      "senses": [
+        {
+          "es": "sistema",
+          "pos": "noun"
         }
       ]
     }

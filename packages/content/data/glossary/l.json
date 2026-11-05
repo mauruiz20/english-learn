@@ -89,6 +89,30 @@
       ]
     },
     {
+      "id": "glossary.laura",
+      "headword": "Laura",
+      "kind": "word",
+      "forms": ["laura"],
+      "senses": [
+        {
+          "es": "Laura (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lawyer",
+      "headword": "lawyer",
+      "kind": "word",
+      "forms": ["lawyer", "lawyers"],
+      "senses": [
+        {
+          "es": "abogado, abogada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.lay",
       "headword": "lay",
       "kind": "word",
@@ -109,6 +133,18 @@
         {
           "es": "despedir (por recortes)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lead",
+      "headword": "lead",
+      "kind": "word",
+      "forms": ["lead", "leads", "leading"],
+      "senses": [
+        {
+          "es": "dirigir, liderar",
+          "pos": "verb"
         }
       ]
     },
@@ -225,6 +261,28 @@
       ]
     },
     {
+      "id": "glossary.let-down",
+      "headword": "let down",
+      "kind": "phrase",
+      "forms": [
+        "let down",
+        "lets down",
+        "letting down",
+        "let me down",
+        "let you down",
+        "let him down",
+        "let her down",
+        "let us down",
+        "let them down"
+      ],
+      "senses": [
+        {
+          "es": "decepcionar, fallarle (a alguien)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.letter",
       "headword": "letter",
       "kind": "word",
@@ -236,6 +294,18 @@
         },
         {
           "es": "letra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.level",
+      "headword": "level",
+      "kind": "word",
+      "forms": ["level", "levels"],
+      "senses": [
+        {
+          "es": "nivel",
           "pos": "noun"
         }
       ]
@@ -269,6 +339,18 @@
       ]
     },
     {
+      "id": "glossary.lie-down",
+      "headword": "lie down",
+      "kind": "phrase",
+      "forms": ["lie down", "lies down", "lay down", "lain down", "lying down"],
+      "senses": [
+        {
+          "es": "acostarse, recostarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.life",
       "headword": "life",
       "kind": "word",
@@ -276,6 +358,18 @@
       "senses": [
         {
           "es": "vida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lifestyle",
+      "headword": "lifestyle",
+      "kind": "word",
+      "forms": ["lifestyle", "lifestyles"],
+      "senses": [
+        {
+          "es": "estilo de vida",
           "pos": "noun"
         }
       ]
@@ -377,6 +471,22 @@
       ]
     },
     {
+      "id": "glossary.list",
+      "headword": "list",
+      "kind": "word",
+      "forms": ["list", "lists", "listed", "listing"],
+      "senses": [
+        {
+          "es": "lista",
+          "pos": "noun"
+        },
+        {
+          "es": "hacer una lista de",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.listen",
       "headword": "listen",
       "kind": "word",
@@ -449,6 +559,18 @@
       ]
     },
     {
+      "id": "glossary.loan",
+      "headword": "loan",
+      "kind": "word",
+      "forms": ["loan", "loans"],
+      "senses": [
+        {
+          "es": "préstamo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.local",
       "headword": "local",
       "kind": "word",
@@ -513,6 +635,18 @@
         {
           "es": "cerrar sesión",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lonely",
+      "headword": "lonely",
+      "kind": "word",
+      "forms": ["lonely"],
+      "senses": [
+        {
+          "es": "solo, solitario",
+          "pos": "adjective"
         }
       ]
     },
@@ -617,6 +751,18 @@
       ]
     },
     {
+      "id": "glossary.look-up-to",
+      "headword": "look up to",
+      "kind": "phrase",
+      "forms": ["look up to", "looks up to", "looked up to", "looking up to"],
+      "senses": [
+        {
+          "es": "admirar (a alguien)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.lose",
       "headword": "lose",
       "kind": "word",
@@ -672,7 +818,7 @@
       "id": "glossary.loud",
       "headword": "loud",
       "kind": "word",
-      "forms": ["loud"],
+      "forms": ["loud", "louder"],
       "senses": [
         {
           "es": "fuerte (sonido), ruidoso",

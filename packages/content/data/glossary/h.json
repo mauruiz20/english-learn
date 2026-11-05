@@ -113,6 +113,66 @@
       ]
     },
     {
+      "id": "glossary.hand-out",
+      "headword": "hand out",
+      "kind": "phrase",
+      "forms": ["hand out", "hands out", "handed out", "handing out"],
+      "senses": [
+        {
+          "es": "repartir",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hand-over",
+      "headword": "hand over",
+      "kind": "phrase",
+      "forms": ["hand over", "hands over", "handed over", "handing over"],
+      "senses": [
+        {
+          "es": "entregar, traspasar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hang",
+      "headword": "hang",
+      "kind": "word",
+      "forms": ["hang", "hangs", "hung", "hanging"],
+      "senses": [
+        {
+          "es": "colgar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hang-out",
+      "headword": "hang out",
+      "kind": "phrase",
+      "forms": ["hang out", "hangs out", "hung out", "hanging out"],
+      "senses": [
+        {
+          "es": "pasar el rato, salir (con amigos)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hang-up",
+      "headword": "hang up",
+      "kind": "phrase",
+      "forms": ["hang up", "hangs up", "hung up", "hanging up"],
+      "senses": [
+        {
+          "es": "colgar (el teléfono)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.happen",
       "headword": "happen",
       "kind": "word",
@@ -352,6 +412,22 @@
       ]
     },
     {
+      "id": "glossary.head",
+      "headword": "head",
+      "kind": "word",
+      "forms": ["head", "heads"],
+      "senses": [
+        {
+          "es": "cabeza",
+          "pos": "noun"
+        },
+        {
+          "es": "dirigir, encabezar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.headache",
       "headword": "headache",
       "kind": "word",
@@ -412,6 +488,18 @@
         {
           "es": "(hear from someone) tener noticias de alguien",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.heat",
+      "headword": "heat",
+      "kind": "word",
+      "forms": ["heat"],
+      "senses": [
+        {
+          "es": "calor",
+          "pos": "noun"
         }
       ]
     },
@@ -560,6 +648,18 @@
       ]
     },
     {
+      "id": "glossary.himself",
+      "headword": "himself",
+      "kind": "word",
+      "forms": ["himself"],
+      "senses": [
+        {
+          "es": "él mismo, se",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
       "id": "glossary.his",
       "headword": "his",
       "kind": "word",
@@ -572,6 +672,18 @@
         {
           "es": "suyo (de él)",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.history",
+      "headword": "history",
+      "kind": "word",
+      "forms": ["history"],
+      "senses": [
+        {
+          "es": "historia",
+          "pos": "noun"
         }
       ]
     },
@@ -600,6 +712,18 @@
       ]
     },
     {
+      "id": "glossary.hold-on",
+      "headword": "hold on",
+      "kind": "phrase",
+      "forms": ["hold on", "holds on", "held on", "holding on"],
+      "senses": [
+        {
+          "es": "esperar (un momento)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.home",
       "headword": "home",
       "kind": "word",
@@ -612,6 +736,18 @@
         {
           "es": "a casa",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.homesick",
+      "headword": "homesick",
+      "kind": "word",
+      "forms": ["homesick"],
+      "senses": [
+        {
+          "es": "que extraña su casa o su país",
+          "pos": "adjective"
         }
       ]
     },
@@ -803,6 +939,30 @@
         },
         {
           "es": "abrazo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.huge",
+      "headword": "huge",
+      "kind": "word",
+      "forms": ["huge"],
+      "senses": [
+        {
+          "es": "enorme",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.humor",
+      "headword": "humor",
+      "kind": "word",
+      "forms": ["humor"],
+      "senses": [
+        {
+          "es": "humor",
           "pos": "noun"
         }
       ]

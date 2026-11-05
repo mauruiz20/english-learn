@@ -1,0 +1,433 @@
+{
+  "items": [
+    {
+      "id": "b1.phrasal-verbs.hang-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "hang out",
+      "es": "pasar el rato, salir (con amigos)",
+      "example": {
+        "en": "I like to hang out with my friends on weekends.",
+        "es": "Me gusta pasar el rato con mis amigos los fines de semana."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.look-up-to",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "look up to (someone)",
+      "es": "admirar (a alguien)",
+      "example": {
+        "en": "She has always looked up to her older sister.",
+        "es": "Ella siempre ha admirado a su hermana mayor."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.let-down",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "let (someone) down",
+      "es": "decepcionar, fallarle (a alguien)",
+      "example": {
+        "en": "I promised to help, and I won't let you down.",
+        "es": "Prometí ayudar, y no te voy a fallar."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.count-on",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "count on (someone/something)",
+      "es": "contar con",
+      "example": {
+        "en": "You can always count on me.",
+        "es": "Siempre puedes contar conmigo."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.cheer-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "cheer (someone) up",
+      "es": "animar, levantar el ánimo",
+      "example": {
+        "en": "We bought her a cake to cheer her up.",
+        "es": "Le compramos un pastel para animarla."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.calm-down",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "calm down",
+      "es": "calmarse, tranquilizarse",
+      "example": {
+        "en": "Calm down and tell me what happened.",
+        "es": "Cálmate y cuéntame qué pasó."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.hang-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'hang out' mean in 'We hung out at the park all afternoon.'?",
+      "options": ["colgar algo", "pasar el rato", "trabajar", "esperar afuera"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-choice-1",
+      "itemIds": ["b1.phrasal-verbs.look-up-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Many kids look up to their parents.",
+      "options": [
+        "Muchos niños admiran a sus padres.",
+        "Muchos niños buscan a sus padres.",
+        "Muchos niños cuidan a sus padres."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-vocab-2",
+      "itemIds": ["b1.phrasal-verbs.let-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'let someone down'.",
+      "options": [
+        "bajar a alguien",
+        "dejar entrar a alguien",
+        "ayudar a alguien",
+        "decepcionar a alguien"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-choice-2",
+      "itemIds": ["b1.phrasal-verbs.count-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I know I can count on my best friend.",
+      "options": [
+        "Sé que puedo contarle todo a mi mejor amigo.",
+        "Sé que mi mejor amigo sabe contar.",
+        "Sé que puedo contar con mi mejor amigo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.cheer-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Ana was sad, so we took her out to dinner to cheer her ___.",
+      "answers": ["up"],
+      "distractors": ["down", "out"],
+      "es": "Ana estaba triste, así que la invitamos a cenar para animarla."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-vocab-3",
+      "itemIds": ["b1.phrasal-verbs.calm-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'calm down' mean in 'Please calm down. Everything is OK.'?",
+      "options": ["callarse", "acostarse", "calmarse", "sentarse"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-choice-3",
+      "itemIds": ["b1.phrasal-verbs.let-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Please don't let me down.",
+      "options": [
+        "Por favor, no me decepciones.",
+        "Por favor, no me bajes.",
+        "Por favor, no me dejes solo."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.calm-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The baby was crying, but she ___ down when her mom picked her up.",
+      "answers": ["calmed"],
+      "distractors": ["let", "took"],
+      "es": "La bebé estaba llorando, pero se calmó cuando su mamá la cargó."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-order-1",
+      "itemIds": ["b1.phrasal-verbs.let-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["down.", "let", "I'm", "you", "sorry", "I"],
+      "accepted": ["I'm sorry I let you down."],
+      "es": "Perdón por haberte fallado."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-write-1",
+      "itemIds": ["b1.phrasal-verbs.count-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Puedes contar conmigo.",
+      "accepted": ["You can {count|rely|depend} on me."]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-choice-4",
+      "itemIds": ["b1.phrasal-verbs.cheer-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My friends always cheer me up when I'm sad.",
+      "options": [
+        "Mis amigos siempre se ríen de mí cuando estoy triste.",
+        "Mis amigos siempre me animan cuando estoy triste.",
+        "Mis amigos siempre me dejan solo cuando estoy triste."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.hang-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Last night we ___ out at Carlos's apartment and watched movies.",
+      "answers": ["hung"],
+      "distractors": ["let", "calmed"],
+      "es": "Anoche pasamos el rato en el departamento de Carlos y vimos películas."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-order-2",
+      "itemIds": ["b1.phrasal-verbs.look-up-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["me.", "up", "brother", "to", "looks", "My", "little"],
+      "accepted": ["My little brother looks up to me."],
+      "es": "Mi hermanito me admira."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-write-2",
+      "itemIds": ["b1.phrasal-verbs.cheer-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Esta canción siempre anima a mi hermana.",
+      "accepted": ["This song always {cheers up my sister|cheers my sister up}."]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.look-up-to", "b1.phrasal-verbs.look-after"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I really look up ___ my older brother. I want to be like him.",
+      "answers": ["to"],
+      "distractors": ["after", "for"],
+      "es": "Admiro mucho a mi hermano mayor. Quiero ser como él."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-choice-5",
+      "itemIds": ["b1.phrasal-verbs.look-after", "b1.phrasal-verbs.look-up-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She looks after her younger brothers.",
+      "options": [
+        "Ella admira a sus hermanos menores.",
+        "Ella cuida a sus hermanos menores.",
+        "Ella busca a sus hermanos menores."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-vocab-4",
+      "itemIds": ["b1.phrasal-verbs.look-up", "b1.phrasal-verbs.look-up-to"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'look up' mean in 'I looked up the word in the dictionary.'?",
+      "options": ["admirar", "cuidar", "decepcionar", "buscar"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-cloze-5",
+      "itemIds": ["b1.phrasal-verbs.count-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Don't worry. You can always count ___ me.",
+      "answers": ["on"],
+      "distractors": ["with", "to"],
+      "es": "No te preocupes. Siempre puedes contar conmigo."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-write-3",
+      "itemIds": ["b1.phrasal-verbs.let-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Te prometo que no te voy a fallar.",
+      "accepted": [
+        "I promise {I won't|I'm not going to} let you down.",
+        "I promise not to let you down."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-vocab-5",
+      "itemIds": ["b1.phrasal-verbs.cheer-up", "b1.phrasal-verbs.calm-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'cheer up' mean in 'Cheer up! It's not the end of the world.'?",
+      "options": ["cálmate", "anímate", "apúrate", "cállate"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-choice-6",
+      "itemIds": ["b1.phrasal-verbs.let-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Sorry, I let you down again.",
+      "options": [
+        "Perdón, te volví a rechazar.",
+        "Perdón, te volví a criticar.",
+        "Perdón, te volví a fallar."
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-1",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Relaciones y emociones: conócelos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-relationships-vocab-1",
+        "b1.phrasal-verbs.practice-relationships-choice-1",
+        "b1.phrasal-verbs.practice-relationships-vocab-2",
+        "b1.phrasal-verbs.practice-relationships-choice-2",
+        "b1.phrasal-verbs.practice-relationships-cloze-1",
+        "b1.phrasal-verbs.practice-relationships-vocab-3",
+        "b1.phrasal-verbs.practice-relationships-choice-3"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.hang-out",
+        "b1.phrasal-verbs.look-up-to",
+        "b1.phrasal-verbs.let-down",
+        "b1.phrasal-verbs.count-on",
+        "b1.phrasal-verbs.cheer-up"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-2",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Relaciones y emociones: practícalos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-relationships-cloze-2",
+        "b1.phrasal-verbs.practice-relationships-order-1",
+        "b1.phrasal-verbs.practice-relationships-write-1",
+        "b1.phrasal-verbs.practice-relationships-choice-4",
+        "b1.phrasal-verbs.practice-relationships-cloze-3",
+        "b1.phrasal-verbs.practice-relationships-order-2",
+        "b1.phrasal-verbs.practice-relationships-write-2"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.calm-down",
+        "b1.phrasal-verbs.let-down",
+        "b1.phrasal-verbs.count-on",
+        "b1.phrasal-verbs.cheer-up",
+        "b1.phrasal-verbs.hang-out"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-relationships-3",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Relaciones y emociones: no los confundas",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-relationships-cloze-4",
+        "b1.phrasal-verbs.practice-relationships-choice-5",
+        "b1.phrasal-verbs.practice-relationships-vocab-4",
+        "b1.phrasal-verbs.practice-relationships-cloze-5",
+        "b1.phrasal-verbs.practice-relationships-write-3",
+        "b1.phrasal-verbs.practice-relationships-vocab-5",
+        "b1.phrasal-verbs.practice-relationships-choice-6"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.look-up-to",
+        "b1.phrasal-verbs.look-after",
+        "b1.phrasal-verbs.look-up",
+        "b1.phrasal-verbs.count-on",
+        "b1.phrasal-verbs.let-down"
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.relationships", "b1.phrasal-verbs.work-and-study"]
+    }
+  ]
+}

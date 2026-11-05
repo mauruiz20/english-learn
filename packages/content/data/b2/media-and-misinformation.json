@@ -1,0 +1,369 @@
+{
+  "items": [
+    {
+      "id": "b2.media-and-misinformation.misleading",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "word",
+      "term": "misleading",
+      "es": "engañoso",
+      "example": {
+        "en": "The headline was misleading: the story said something very different.",
+        "es": "El titular era engañoso: la noticia decía algo muy distinto."
+      }
+    },
+    {
+      "id": "b2.media-and-misinformation.fake-news",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "phrase",
+      "term": "fake news",
+      "es": "noticias falsas"
+    },
+    {
+      "id": "b2.media-and-misinformation.spread",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "word",
+      "term": "spread",
+      "es": "difundir(se), propagar(se)"
+    },
+    {
+      "id": "b2.media-and-misinformation.headline",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "word",
+      "term": "headline",
+      "es": "titular",
+      "example": {
+        "en": "The headline caught my eye this morning.",
+        "es": "El titular me llamó la atención esta mañana."
+      }
+    },
+    {
+      "id": "b2.media-and-misinformation.go-viral",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "phrase",
+      "term": "go viral",
+      "es": "hacerse viral"
+    },
+    {
+      "id": "b2.media-and-misinformation.source",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "word",
+      "term": "source",
+      "es": "fuente (de una información)",
+      "example": {
+        "en": "Always check the source before you share a story.",
+        "es": "Siempre verifica la fuente antes de compartir una noticia."
+      }
+    },
+    {
+      "id": "b2.media-and-misinformation.rumor",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "word",
+      "term": "rumor",
+      "es": "rumor"
+    },
+    {
+      "id": "b2.media-and-misinformation.fact-check",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "kind": "word",
+      "term": "fact-check",
+      "es": "verificar (datos)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.media-and-misinformation.fake-photo",
+      "level": "B2",
+      "topics": ["media-and-misinformation"],
+      "title": "The shark on the highway",
+      "text": "Last spring, a photo of a shark swimming along a flooded highway went viral. Within hours it had been shared more than a million times, and several news websites used it under dramatic headlines. The photo looked real, but a few readers noticed something strange: the shark's shadow was in the wrong place. A team of journalists decided to fact-check it. They searched for the original images and found that the shark came from a nature magazine published years earlier. \"Someone must have put the two pictures together,\" they concluded. The person who made it was never found. It might have been a joke that got out of control, or someone might have wanted to bring visitors to a website. Experts say that misleading stories spread faster than true ones, because they surprise us and make us feel strong emotions. Their advice is simple: before you share something, check the source, look for the same story on other websites and ask yourself why someone wants you to see it.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.media-and-misinformation.vocab-001",
+      "itemIds": ["b2.media-and-misinformation.misleading"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'misleading' mean in 'The headline was misleading'?",
+      "options": ["desaparecido", "mal escrito", "engañoso", "aburrido"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.media-and-misinformation.cloze-001",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 26233,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "Someone who knows English well must have ___ this.",
+      "answers": ["written"],
+      "distractors": ["write", "wrote", "writing"],
+      "es": "Alguien que sabe bien inglés debe de haber escrito esto."
+    },
+    {
+      "id": "b2.media-and-misinformation.order-001",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 308345,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["written", "She", "herself.", "have", "it", "can't"],
+      "accepted": ["She can't have written it herself."],
+      "es": "No puede ser que lo haya escrito ella misma."
+    },
+    {
+      "id": "b2.media-and-misinformation.choice-001",
+      "itemIds": ["b2.media-and-misinformation.fake-news", "b2.media-and-misinformation.spread"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Fake news spreads faster than the truth.",
+      "options": [
+        "Las noticias falsas se difunden más rápido que la verdad.",
+        "Las noticias falsas son más difíciles de creer que la verdad.",
+        "La verdad se difunde más rápido que las noticias falsas.",
+        "Las noticias viejas se olvidan más rápido que la verdad."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.media-and-misinformation.reading-001",
+      "itemIds": [
+        "b2.media-and-misinformation.go-viral",
+        "b2.media-and-misinformation.headline",
+        "b2.media-and-misinformation.misleading"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.media-and-misinformation.fake-photo",
+      "questions": [
+        {
+          "prompt": "What did a few readers notice about the photo?",
+          "options": [
+            "The highway was not flooded.",
+            "The shark's shadow was in the wrong place.",
+            "The photo was in black and white."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Where did the shark in the photo come from?",
+          "options": ["A news website", "A flooded highway", "A nature magazine"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What do the experts advise?",
+          "options": [
+            "Check the source before you share something.",
+            "Share surprising stories as fast as you can.",
+            "Stop reading the news on the internet."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.media-and-misinformation.write-001",
+      "itemIds": ["b2.grammar.past-deduction"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Alguien debe de haber editado la foto.",
+      "accepted": ["{Someone|Somebody} must have edited the {photo|picture}."]
+    },
+    {
+      "id": "b2.media-and-misinformation.vocab-002",
+      "itemIds": ["b2.media-and-misinformation.headline"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'titular (de una noticia)'.",
+      "options": ["deadline", "headlight", "headline", "guideline"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.media-and-misinformation.vocab-003",
+      "itemIds": ["b2.media-and-misinformation.source"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'source' mean in 'Always check the source of a story'?",
+      "options": ["salsa", "fuente", "recurso", "suerte"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.media-and-misinformation.cloze-002",
+      "itemIds": ["b2.phrasal-verbs.turn-out", "b2.media-and-misinformation.rumor"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 34312,
+        "author": "mailohilohi",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "The rumor turned ___ to be false.",
+      "answers": ["out"],
+      "distractors": ["up", "down", "off"],
+      "es": "El rumor resultó ser falso."
+    },
+    {
+      "id": "b2.media-and-misinformation.cloze-003",
+      "itemIds": ["b2.phrasal-verbs.rule-out"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 263673,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "We cannot rule ___ the possibility of an accident.",
+      "answers": ["out"],
+      "distractors": ["off", "down", "over"],
+      "es": "No podemos descartar la posibilidad de un accidente."
+    },
+    {
+      "id": "b2.media-and-misinformation.order-002",
+      "itemIds": ["b2.media-and-misinformation.rumor"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 38224,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["started", "I", "rumor.", "who", "that", "wonder"],
+      "accepted": ["I wonder who started that rumor."],
+      "es": "Me pregunto quién empezó ese rumor."
+    },
+    {
+      "id": "b2.media-and-misinformation.choice-002",
+      "itemIds": ["b2.media-and-misinformation.fact-check"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The journalists fact-checked the story before publishing it.",
+      "options": [
+        "Los periodistas inventaron la historia antes de publicarla.",
+        "Los periodistas publicaron la historia sin leerla.",
+        "Los periodistas tradujeron la historia antes de publicarla.",
+        "Los periodistas verificaron los datos de la historia antes de publicarla."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.media-and-misinformation.write-002",
+      "itemIds": ["b2.phrasal-verbs.turn-out"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 246863,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Resultó que yo tenía razón.",
+      "accepted": [
+        "It turned out that I was right.",
+        "It turned out I was right.",
+        "I turned out to be right."
+      ]
+    },
+    {
+      "id": "b2.media-and-misinformation.write-003",
+      "itemIds": ["b2.media-and-misinformation.rumor", "b2.media-and-misinformation.go-viral"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El rumor se hizo viral en pocas horas.",
+      "accepted": ["The rumor went viral {in|within} {a few|just a few} hours."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.media-and-misinformation.lesson-001",
+      "level": "B2",
+      "topic": "media-and-misinformation",
+      "title": "¿Verdad o mentira?",
+      "exerciseIds": [
+        "b2.media-and-misinformation.vocab-001",
+        "b2.media-and-misinformation.cloze-001",
+        "b2.media-and-misinformation.order-001",
+        "b2.media-and-misinformation.choice-001",
+        "b2.media-and-misinformation.reading-001",
+        "b2.media-and-misinformation.write-001",
+        "b2.media-and-misinformation.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.grammar.past-deduction",
+        "b2.media-and-misinformation.misleading",
+        "b2.media-and-misinformation.fake-news",
+        "b2.media-and-misinformation.spread",
+        "b2.media-and-misinformation.headline"
+      ],
+      "deepenCardIds": ["b2.grammar.past-deduction"]
+    },
+    {
+      "id": "b2.media-and-misinformation.lesson-002",
+      "level": "B2",
+      "topic": "media-and-misinformation",
+      "title": "Rumores que corren",
+      "exerciseIds": [
+        "b2.media-and-misinformation.vocab-003",
+        "b2.media-and-misinformation.cloze-002",
+        "b2.media-and-misinformation.cloze-003",
+        "b2.media-and-misinformation.order-002",
+        "b2.media-and-misinformation.choice-002",
+        "b2.media-and-misinformation.write-002",
+        "b2.media-and-misinformation.write-003"
+      ],
+      "newItemIds": [
+        "b2.phrasal-verbs.turn-out",
+        "b2.phrasal-verbs.rule-out",
+        "b2.media-and-misinformation.source",
+        "b2.media-and-misinformation.rumor",
+        "b2.media-and-misinformation.fact-check"
+      ],
+      "deepenCardIds": ["b2.phrasal-verbs.ideas-and-results"]
+    }
+  ]
+}

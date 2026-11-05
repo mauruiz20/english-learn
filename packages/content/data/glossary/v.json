@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.vaccine",
+      "headword": "vaccine",
+      "kind": "word",
+      "forms": ["vaccine", "vaccines"],
+      "senses": [
+        {
+          "es": "vacuna",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.value",
       "headword": "value",
       "kind": "word",
@@ -144,6 +156,30 @@
         },
         {
           "es": "visita",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.visitor",
+      "headword": "visitor",
+      "kind": "word",
+      "forms": ["visitor", "visitors"],
+      "senses": [
+        {
+          "es": "visitante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.volume",
+      "headword": "volume",
+      "kind": "word",
+      "forms": ["volume"],
+      "senses": [
+        {
+          "es": "volumen",
           "pos": "noun"
         }
       ]

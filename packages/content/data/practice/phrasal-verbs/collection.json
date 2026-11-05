@@ -1,0 +1,121 @@
+{
+  "practice": [
+    {
+      "id": "practice.phrasal-verbs",
+      "title": "Phrasal verbs",
+      "summary": "Verbos con partícula por tema: qué significan, dónde va el objeto y cómo no confundirlos.",
+      "groups": [
+        {
+          "id": "practice.phrasal-verbs.home",
+          "level": "A2",
+          "title": "Casa y rutina",
+          "summary": "Ordenar, guardar, encender y descansar en casa.",
+          "lessonIds": [
+            "a2.phrasal-verbs.practice-home-1",
+            "a2.phrasal-verbs.practice-home-2",
+            "a2.phrasal-verbs.practice-home-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.travel",
+          "level": "A2",
+          "title": "Viajes",
+          "summary": "Subir y bajar del auto, despedirte, irte y volver.",
+          "lessonIds": [
+            "a2.phrasal-verbs.practice-travel-1",
+            "a2.phrasal-verbs.practice-travel-2",
+            "a2.phrasal-verbs.practice-travel-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.phone",
+          "level": "B1",
+          "title": "Comunicación y teléfono",
+          "summary": "Llamar, esperar, cortar y comunicarte por teléfono.",
+          "lessonIds": [
+            "b1.phrasal-verbs.practice-phone-1",
+            "b1.phrasal-verbs.practice-phone-2",
+            "b1.phrasal-verbs.practice-phone-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.money",
+          "level": "B1",
+          "title": "Dinero y compras",
+          "summary": "Pagar deudas, elegir, comparar precios y apartar dinero.",
+          "lessonIds": [
+            "b1.phrasal-verbs.practice-money-1",
+            "b1.phrasal-verbs.practice-money-2",
+            "b1.phrasal-verbs.practice-money-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.relationships",
+          "level": "B1",
+          "title": "Relaciones y emociones",
+          "summary": "Pasar tiempo con otros, admirar, apoyar y consolar.",
+          "lessonIds": [
+            "b1.phrasal-verbs.practice-relationships-1",
+            "b1.phrasal-verbs.practice-relationships-2",
+            "b1.phrasal-verbs.practice-relationships-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.health",
+          "level": "B1",
+          "title": "Salud y deporte",
+          "summary": "Entrenar, enfermarte, reducir hábitos y empezar un deporte.",
+          "lessonIds": [
+            "b1.phrasal-verbs.practice-health-1",
+            "b1.phrasal-verbs.practice-health-2",
+            "b1.phrasal-verbs.practice-health-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.study",
+          "level": "B1",
+          "title": "Estudio y aprendizaje",
+          "summary": "Anotar, repasar, informarte y no quedarte atrás.",
+          "lessonIds": [
+            "b1.phrasal-verbs.practice-study-1",
+            "b1.phrasal-verbs.practice-study-2",
+            "b1.phrasal-verbs.practice-study-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.technology",
+          "level": "B1",
+          "title": "Tecnología",
+          "summary": "Apagar, imprimir, desplazarte y liberar espacio.",
+          "lessonIds": [
+            "b1.phrasal-verbs.practice-technology-1",
+            "b1.phrasal-verbs.practice-technology-2",
+            "b1.phrasal-verbs.practice-technology-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.work",
+          "level": "B2",
+          "title": "Trabajo",
+          "summary": "Reemplazar, entregar, dar seguimiento y resolver en el trabajo.",
+          "lessonIds": [
+            "b2.phrasal-verbs.practice-work-1",
+            "b2.phrasal-verbs.practice-work-2",
+            "b2.phrasal-verbs.practice-work-3"
+          ]
+        },
+        {
+          "id": "practice.phrasal-verbs.plans",
+          "level": "B2",
+          "title": "Planes y decisiones",
+          "summary": "Pensar bien, seguir adelante, echarte atrás y decidirte.",
+          "lessonIds": [
+            "b2.phrasal-verbs.practice-plans-1",
+            "b2.phrasal-verbs.practice-plans-2",
+            "b2.phrasal-verbs.practice-plans-3"
+          ]
+        }
+      ]
+    }
+  ]
+}

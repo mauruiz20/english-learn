@@ -25,6 +25,8 @@ import { LESSON_COPY, LessonView, type LessonViewState, type SessionCopy } from 
 import { useExerciseSession, type ExerciseSession, type SaveState } from "./use-exercise-session";
 import { sessionResults } from "./model/session-results";
 import { useNewAchievements } from "@/features/achievements/use-new-achievements";
+import { practiceLessonPlace } from "@/features/practice/model/practice-catalog";
+import { practiceCollectionPath } from "@/features/practice/practice-routes";
 import type { EarnedSticker } from "./components/session-screens";
 
 type LessonContainerProps = {
@@ -42,7 +44,9 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
   const router = useRouter();
   // Each attempt is a fresh session (new shuffles, new session id when saved).
   const [attempt, setAttempt] = useState(0);
-  const lesson = content.lessonsById.get(lessonId);
+  // Practice lessons ("Práctica libre") play here too, and go back to their collection.
+  const lesson = content.lessonsById.get(lessonId) ?? content.practiceLessonsById.get(lessonId);
+  const place = practiceLessonPlace(content, lessonId);
   const unit =
     lesson === undefined
       ? null
@@ -57,9 +61,19 @@ export function LessonContainer({ lessonId, content = corpus }: LessonContainerP
       key={attempt}
       unit={unit}
       content={content}
-      copy={LESSON_COPY}
+      copy={
+        place === undefined
+          ? LESSON_COPY
+          : { ...LESSON_COPY, done: `Volver a ${place.collectionTitle}` }
+      }
       leaveTitle="¿Salir de la lección?"
-      onDone={() => (router.canDismiss() ? router.dismissAll() : router.replace("/"))}
+      onDone={() => {
+        if (place !== undefined) {
+          if (router.canGoBack()) router.back();
+          else router.replace(practiceCollectionPath(place.slug));
+        } else if (router.canDismiss()) router.dismissAll();
+        else router.replace("/");
+      }}
       onOpenCard={(cardId) => router.push(cardPath(cardId, { fromSession: true }))}
       onOpenRecapCard={(cardId) => router.push(cardPath(cardId))}
       onRedo={() => setAttempt((n) => n + 1)}

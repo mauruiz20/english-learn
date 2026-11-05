@@ -13,6 +13,30 @@
       ]
     },
     {
+      "id": "glossary.tablet",
+      "headword": "tablet",
+      "kind": "word",
+      "forms": ["tablet", "tablets"],
+      "senses": [
+        {
+          "es": "tableta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.taboo",
+      "headword": "taboo",
+      "kind": "word",
+      "forms": ["taboo"],
+      "senses": [
+        {
+          "es": "tabú",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.take",
       "headword": "take",
       "kind": "word",
@@ -145,6 +169,18 @@
       ]
     },
     {
+      "id": "glossary.take-out",
+      "headword": "take out",
+      "kind": "phrase",
+      "forms": ["take out", "takes out", "took out", "taken out", "taking out"],
+      "senses": [
+        {
+          "es": "sacar (la basura)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.take-over",
       "headword": "take over",
       "kind": "phrase",
@@ -152,6 +188,26 @@
       "senses": [
         {
           "es": "hacerse cargo de, asumir el control de",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-up",
+      "headword": "take up",
+      "kind": "phrase",
+      "forms": [
+        "take up",
+        "takes up",
+        "took up",
+        "taken up",
+        "taking up",
+        "take it up",
+        "took it up"
+      ],
+      "senses": [
+        {
+          "es": "empezar (un deporte o pasatiempo)",
           "pos": "phrasal verb"
         }
       ]
@@ -189,6 +245,30 @@
         {
           "es": "alto",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.task",
+      "headword": "task",
+      "kind": "word",
+      "forms": ["task", "tasks"],
+      "senses": [
+        {
+          "es": "tarea",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tax",
+      "headword": "tax",
+      "kind": "word",
+      "forms": ["tax", "taxes"],
+      "senses": [
+        {
+          "es": "impuesto",
+          "pos": "noun"
         }
       ]
     },
@@ -272,6 +352,18 @@
       "senses": [
         {
           "es": "técnico, técnica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.technology",
+      "headword": "technology",
+      "kind": "word",
+      "forms": ["technology", "technologies"],
+      "senses": [
+        {
+          "es": "tecnología",
           "pos": "noun"
         }
       ]
@@ -505,6 +597,18 @@
       ]
     },
     {
+      "id": "glossary.therapist",
+      "headword": "therapist",
+      "kind": "word",
+      "forms": ["therapist", "therapists"],
+      "senses": [
+        {
+          "es": "terapeuta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.there",
       "headword": "there",
       "kind": "word",
@@ -629,6 +733,18 @@
         {
           "es": "creer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.think-over",
+      "headword": "think over",
+      "kind": "phrase",
+      "forms": ["think over", "thinks over", "thought over", "thinking over"],
+      "senses": [
+        {
+          "es": "pensar bien, considerar",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -805,6 +921,18 @@
       ]
     },
     {
+      "id": "glossary.throw-up",
+      "headword": "throw up",
+      "kind": "phrase",
+      "forms": ["throw up", "throws up", "threw up", "thrown up", "throwing up"],
+      "senses": [
+        {
+          "es": "vomitar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.thursday",
       "headword": "Thursday",
       "kind": "word",
@@ -825,6 +953,22 @@
         {
           "es": "boleto, entrada",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tidy",
+      "headword": "tidy",
+      "kind": "word",
+      "forms": ["tidy", "tidies", "tidied", "tidying"],
+      "senses": [
+        {
+          "es": "ordenar",
+          "pos": "verb"
+        },
+        {
+          "es": "ordenado",
+          "pos": "adjective"
         }
       ]
     },
@@ -969,6 +1113,54 @@
       ]
     },
     {
+      "id": "glossary.top",
+      "headword": "top",
+      "kind": "word",
+      "forms": ["top"],
+      "senses": [
+        {
+          "es": "cima, parte de arriba",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.topic",
+      "headword": "topic",
+      "kind": "word",
+      "forms": ["topic", "topics"],
+      "senses": [
+        {
+          "es": "tema",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.total",
+      "headword": "total",
+      "kind": "word",
+      "forms": ["total"],
+      "senses": [
+        {
+          "es": "total",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tour",
+      "headword": "tour",
+      "kind": "word",
+      "forms": ["tour", "tours"],
+      "senses": [
+        {
+          "es": "recorrido, excursión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tourist",
       "headword": "tourist",
       "kind": "word",
@@ -1048,6 +1240,18 @@
       "senses": [
         {
           "es": "traducir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trap",
+      "headword": "trap",
+      "kind": "word",
+      "forms": ["trap", "traps", "trapped", "trapping"],
+      "senses": [
+        {
+          "es": "atrapar",
           "pos": "verb"
         }
       ]
@@ -1264,6 +1468,18 @@
       ]
     },
     {
+      "id": "glossary.turn-on",
+      "headword": "turn on",
+      "kind": "phrase",
+      "forms": ["turn on", "turns on", "turned on", "turning on"],
+      "senses": [
+        {
+          "es": "encender, prender",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.turn-out",
       "headword": "turn out",
       "kind": "phrase",
@@ -1284,6 +1500,18 @@
         {
           "es": "girar a la derecha, doblar a la derecha",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-up",
+      "headword": "turn up",
+      "kind": "phrase",
+      "forms": ["turn up", "turns up", "turned up", "turning up"],
+      "senses": [
+        {
+          "es": "subir (el volumen, la calefacción)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -1344,6 +1572,34 @@
         {
           "es": "dos",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.type",
+      "headword": "type",
+      "kind": "word",
+      "forms": ["type", "types", "typed", "typing"],
+      "senses": [
+        {
+          "es": "escribir (con el teclado)",
+          "pos": "verb"
+        },
+        {
+          "es": "tipo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.type-in",
+      "headword": "type in",
+      "kind": "phrase",
+      "forms": ["type in", "types in", "typed in", "typing in"],
+      "senses": [
+        {
+          "es": "escribir, ingresar (con el teclado)",
+          "pos": "phrasal verb"
         }
       ]
     }

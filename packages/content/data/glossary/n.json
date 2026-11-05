@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.nature",
+      "headword": "nature",
+      "kind": "word",
+      "forms": ["nature"],
+      "senses": [
+        {
+          "es": "naturaleza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.near",
       "headword": "near",
       "kind": "word",
@@ -41,6 +53,18 @@
         {
           "es": "cercano",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nearly",
+      "headword": "nearly",
+      "kind": "word",
+      "forms": ["nearly"],
+      "senses": [
+        {
+          "es": "casi",
+          "pos": "adverb"
         }
       ]
     },

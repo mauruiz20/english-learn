@@ -144,6 +144,14 @@ export default function RootLayout() {
                       name="fichas/[id]/practicar"
                       options={{ title: "Práctica", headerRight }}
                     />
+                    <Stack.Screen
+                      name="practica/index"
+                      options={{ title: "Práctica libre", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="practica/[collection]"
+                      options={{ title: "Práctica libre", ...homeFallback }}
+                    />
                     <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
                     <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
                     <Stack.Screen

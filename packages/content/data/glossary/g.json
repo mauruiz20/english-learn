@@ -17,6 +17,22 @@
       ]
     },
     {
+      "id": "glossary.garage",
+      "headword": "garage",
+      "kind": "word",
+      "forms": ["garage", "garages"],
+      "senses": [
+        {
+          "es": "taller mecánico",
+          "pos": "noun"
+        },
+        {
+          "es": "garaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.garbage",
       "headword": "garbage",
       "kind": "word",
@@ -32,7 +48,7 @@
       "id": "glossary.gas",
       "headword": "gas",
       "kind": "word",
-      "forms": ["gas"],
+      "forms": ["gas", "gases"],
       "senses": [
         {
           "es": "gasolina",
@@ -142,6 +158,22 @@
       ]
     },
     {
+      "id": "glossary.get-in",
+      "headword": "get in",
+      "kind": "phrase",
+      "forms": ["get in", "gets in", "got in", "gotten in", "getting in"],
+      "senses": [
+        {
+          "es": "subirse (a un auto o un taxi)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "entrar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.get-lost",
       "headword": "get lost",
       "kind": "phrase",
@@ -194,6 +226,22 @@
       ]
     },
     {
+      "id": "glossary.get-out-of",
+      "headword": "get out of",
+      "kind": "phrase",
+      "forms": ["get out of", "gets out of", "got out of", "gotten out of", "getting out of"],
+      "senses": [
+        {
+          "es": "bajarse de (un auto o un taxi)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "salir de",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.get-promoted",
       "headword": "get promoted",
       "kind": "phrase",
@@ -202,6 +250,18 @@
         {
           "es": "ser ascendido, conseguir un ascenso",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-through",
+      "headword": "get through",
+      "kind": "phrase",
+      "forms": ["get through", "gets through", "got through", "gotten through", "getting through"],
+      "senses": [
+        {
+          "es": "lograr comunicarse (por teléfono)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -238,6 +298,18 @@
         {
           "es": "acostumbrarse a",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gift",
+      "headword": "gift",
+      "kind": "word",
+      "forms": ["gift", "gifts"],
+      "senses": [
+        {
+          "es": "regalo",
+          "pos": "noun"
         }
       ]
     },
@@ -362,6 +434,22 @@
       ]
     },
     {
+      "id": "glossary.go-away",
+      "headword": "go away",
+      "kind": "phrase",
+      "forms": ["go away", "goes away", "went away", "gone away", "going away"],
+      "senses": [
+        {
+          "es": "irse (de viaje)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "irse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.go-back",
       "headword": "go back",
       "kind": "phrase",
@@ -414,6 +502,18 @@
       ]
     },
     {
+      "id": "glossary.go-over",
+      "headword": "go over",
+      "kind": "phrase",
+      "forms": ["go over", "goes over", "went over", "gone over", "going over"],
+      "senses": [
+        {
+          "es": "repasar, revisar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.go-straight",
       "headword": "go straight",
       "kind": "phrase",
@@ -444,6 +544,24 @@
       ]
     },
     {
+      "id": "glossary.go-through-with",
+      "headword": "go through with",
+      "kind": "phrase",
+      "forms": [
+        "go through with",
+        "goes through with",
+        "went through with",
+        "gone through with",
+        "going through with"
+      ],
+      "senses": [
+        {
+          "es": "llevar a cabo (algo difícil o dudoso)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.go-to-bed",
       "headword": "go to bed",
       "kind": "phrase",
@@ -452,6 +570,30 @@
         {
           "es": "acostarse, irse a dormir",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.go-viral",
+      "headword": "go viral",
+      "kind": "phrase",
+      "forms": ["go viral", "goes viral", "went viral", "gone viral", "going viral"],
+      "senses": [
+        {
+          "es": "hacerse viral",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.goat",
+      "headword": "goat",
+      "kind": "word",
+      "forms": ["goat", "goats"],
+      "senses": [
+        {
+          "es": "cabra",
+          "pos": "noun"
         }
       ]
     },
@@ -484,6 +626,18 @@
       ]
     },
     {
+      "id": "glossary.government",
+      "headword": "government",
+      "kind": "word",
+      "forms": ["government", "governments"],
+      "senses": [
+        {
+          "es": "gobierno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.grade",
       "headword": "grade",
       "kind": "word",
@@ -508,6 +662,18 @@
         {
           "es": "graduarse, titularse",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grandchild",
+      "headword": "grandchild",
+      "kind": "word",
+      "forms": ["grandchild", "grandchildren"],
+      "senses": [
+        {
+          "es": "nieto, nieta",
+          "pos": "noun"
         }
       ]
     },
@@ -596,6 +762,18 @@
         {
           "es": "ecológico",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.greenhouse-gas",
+      "headword": "greenhouse gas",
+      "kind": "phrase",
+      "forms": ["greenhouse gas", "greenhouse gases"],
+      "senses": [
+        {
+          "es": "gas de efecto invernadero",
+          "pos": "noun"
         }
       ]
     },

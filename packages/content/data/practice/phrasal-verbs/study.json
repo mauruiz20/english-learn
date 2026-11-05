@@ -1,0 +1,434 @@
+{
+  "items": [
+    {
+      "id": "b1.phrasal-verbs.write-down",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "write (something) down",
+      "es": "anotar, apuntar",
+      "example": {
+        "en": "Let me write down your phone number.",
+        "es": "Déjame anotar tu número de teléfono."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.go-over",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "go over (something)",
+      "es": "repasar, revisar",
+      "example": {
+        "en": "Let's go over the answers together.",
+        "es": "Repasemos las respuestas juntos."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.read-up-on",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "read up on (something)",
+      "es": "informarse (leyendo) sobre",
+      "example": {
+        "en": "Before the interview, she read up on the company.",
+        "es": "Antes de la entrevista, se informó sobre la empresa."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.fall-behind",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "fall behind",
+      "es": "atrasarse, quedarse atrás",
+      "example": {
+        "en": "He was sick for two weeks and fell behind in math.",
+        "es": "Estuvo enfermo dos semanas y se atrasó en matemáticas."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.hand-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "hand (something) out",
+      "es": "repartir",
+      "example": {
+        "en": "The teacher handed out the tests.",
+        "es": "La profesora repartió los exámenes."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.drop-out-of",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "drop out of (something)",
+      "es": "abandonar, dejar (los estudios)",
+      "example": {
+        "en": "She dropped out of college to start her own company.",
+        "es": "Dejó la universidad para crear su propia empresa."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.phrasal-verbs.practice-study-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.write-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'write down' mean in 'Please write down the address.'?",
+      "options": ["borrar", "anotar", "leer en voz alta", "dictar"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-choice-1",
+      "itemIds": ["b1.phrasal-verbs.go-over"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The teacher went over the homework with us.",
+      "options": [
+        "El profesor nos dejó más tarea.",
+        "El profesor repasó la tarea con nosotros.",
+        "El profesor se llevó la tarea."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-vocab-2",
+      "itemIds": ["b1.phrasal-verbs.read-up-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'read up on'.",
+      "options": [
+        "leer en voz alta",
+        "informarse leyendo sobre un tema",
+        "corregir un texto",
+        "dejar de leer"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-choice-2",
+      "itemIds": ["b1.phrasal-verbs.fall-behind"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If you miss too many classes, you'll fall behind.",
+      "options": [
+        "Si faltas a muchas clases, te vas a atrasar.",
+        "Si faltas a muchas clases, te vas a caer.",
+        "Si faltas a muchas clases, te van a castigar."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.hand-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The teacher handed ___ the tests at nine o'clock.",
+      "answers": ["out"],
+      "distractors": ["up", "away"],
+      "es": "La profesora repartió los exámenes a las nueve."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-vocab-3",
+      "itemIds": ["b1.phrasal-verbs.drop-out-of"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'drop out of' mean in 'He dropped out of school at 16.'?",
+      "options": ["graduarse", "dejar caer algo", "cambiarse de escuela", "dejar los estudios"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-choice-3",
+      "itemIds": ["b1.phrasal-verbs.write-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Did you write it down?",
+      "options": ["¿Lo bajaste?", "¿Lo borraste?", "¿Lo anotaste?"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.drop-out-of"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He ___ out of college after his first year.",
+      "answers": ["dropped"],
+      "distractors": ["fell", "wrote"],
+      "es": "Dejó la universidad después de su primer año."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-order-1",
+      "itemIds": ["b1.phrasal-verbs.write-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["for", "it", "write", "Can", "down", "me?", "you"],
+      "accepted": ["Can you write it down for me?"],
+      "es": "¿Me lo puedes anotar?"
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-write-1",
+      "itemIds": ["b1.phrasal-verbs.write-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Anota la fecha del examen.",
+      "accepted": [
+        "{Write down the {exam|test} date|Write down the date of the {exam|test}|Write the {exam|test} date down|Write the date of the {exam|test} down}."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-choice-4",
+      "itemIds": ["b1.phrasal-verbs.go-over"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Let's go over the plan one more time.",
+      "options": [
+        "Cambiemos el plan una vez más.",
+        "Repasemos el plan una vez más.",
+        "Olvidemos el plan una vez más."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.fall-behind"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I was sick for a week, so I ___ behind in class.",
+      "answers": ["fell"],
+      "distractors": ["fallen", "wrote"],
+      "es": "Estuve enfermo una semana, así que me atrasé en clase."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-order-2",
+      "itemIds": ["b1.phrasal-verbs.hand-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["the", "out", "Please", "books", "to", "these", "class.", "hand"],
+      "accepted": [
+        "Please hand these books out to the class.",
+        "Please hand out these books to the class."
+      ],
+      "es": "Por favor, reparte estos libros en la clase."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-write-2",
+      "itemIds": ["b1.phrasal-verbs.read-up-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Antes del viaje, me informé sobre la ciudad.",
+      "accepted": [
+        "Before the trip[,] I {read up on|read about|learned about} the city.",
+        "I {read up on|read about|learned about} the city before the trip."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-choice-5",
+      "itemIds": ["b1.phrasal-verbs.fall-behind", "b1.phrasal-verbs.catch-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I was sick, so I fell behind. Now I'm catching up.",
+      "options": [
+        "Estuve enfermo, así que me puse al día. Ahora me estoy atrasando.",
+        "Estuve enfermo, así que me atrasé. Ahora me estoy poniendo al día.",
+        "Estuve enfermo, así que me caí. Ahora me estoy levantando."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.drop-out-of"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She dropped out ___ high school, but she went back two years later.",
+      "answers": ["of"],
+      "distractors": ["to", "for"],
+      "es": "Dejó la secundaria, pero volvió dos años después."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-vocab-4",
+      "itemIds": ["b1.phrasal-verbs.go-over", "b1.phrasal-verbs.look-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'go over' mean in 'Before the test, we went over our notes.'?",
+      "options": ["buscar", "repasar", "pasar por encima", "copiar"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-cloze-5",
+      "itemIds": ["b1.phrasal-verbs.look-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I didn't know the word, so I ___ it up in the dictionary.",
+      "answers": ["looked"],
+      "distractors": ["went", "wrote"],
+      "es": "No conocía la palabra, así que la busqué en el diccionario."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-write-3",
+      "itemIds": ["b1.phrasal-verbs.write-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Es una buena idea. Anótala.",
+      "accepted": ["It's a good idea. Write {it|that} down."]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-order-3",
+      "itemIds": ["b1.phrasal-verbs.read-up-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["topic.", "read", "I", "on", "this", "need", "up", "to"],
+      "accepted": ["I need to read up on this topic."],
+      "es": "Necesito informarme sobre este tema."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-choice-6",
+      "itemIds": ["b1.phrasal-verbs.write-down", "b1.phrasal-verbs.fill-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Fill out the form and write down your phone number.",
+      "options": [
+        "Lee el formulario y anota tu número de teléfono.",
+        "Llena el formulario y borra tu número de teléfono.",
+        "Llena el formulario y anota tu número de teléfono."
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.phrasal-verbs.practice-study-1",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Estudio y aprendizaje: conócelos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-study-vocab-1",
+        "b1.phrasal-verbs.practice-study-choice-1",
+        "b1.phrasal-verbs.practice-study-vocab-2",
+        "b1.phrasal-verbs.practice-study-choice-2",
+        "b1.phrasal-verbs.practice-study-cloze-1",
+        "b1.phrasal-verbs.practice-study-vocab-3",
+        "b1.phrasal-verbs.practice-study-choice-3"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.write-down",
+        "b1.phrasal-verbs.go-over",
+        "b1.phrasal-verbs.read-up-on",
+        "b1.phrasal-verbs.fall-behind",
+        "b1.phrasal-verbs.hand-out"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-2",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Estudio y aprendizaje: practícalos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-study-cloze-2",
+        "b1.phrasal-verbs.practice-study-order-1",
+        "b1.phrasal-verbs.practice-study-write-1",
+        "b1.phrasal-verbs.practice-study-choice-4",
+        "b1.phrasal-verbs.practice-study-cloze-3",
+        "b1.phrasal-verbs.practice-study-order-2",
+        "b1.phrasal-verbs.practice-study-write-2"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.drop-out-of",
+        "b1.phrasal-verbs.write-down",
+        "b1.phrasal-verbs.go-over",
+        "b1.phrasal-verbs.fall-behind",
+        "b1.phrasal-verbs.hand-out"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-study-3",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Estudio y aprendizaje: no los confundas",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-study-choice-5",
+        "b1.phrasal-verbs.practice-study-cloze-4",
+        "b1.phrasal-verbs.practice-study-vocab-4",
+        "b1.phrasal-verbs.practice-study-cloze-5",
+        "b1.phrasal-verbs.practice-study-write-3",
+        "b1.phrasal-verbs.practice-study-order-3",
+        "b1.phrasal-verbs.practice-study-choice-6"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.fall-behind",
+        "b1.phrasal-verbs.catch-up",
+        "b1.phrasal-verbs.drop-out-of",
+        "b1.phrasal-verbs.go-over",
+        "b1.phrasal-verbs.look-up"
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.work-and-study"]
+    }
+  ]
+}

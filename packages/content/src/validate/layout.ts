@@ -3,7 +3,8 @@ import type { LoadedFile, Rule, ValidationError } from "./types";
 
 const PLACEMENT_DIR = "placement";
 const GLOSSARY_DIR = "glossary";
-const DIRS = [...LEVELS.map((l) => l.toLowerCase()), PLACEMENT_DIR, GLOSSARY_DIR];
+const PRACTICE_DIR = "practice";
+const DIRS = [...LEVELS.map((l) => l.toLowerCase()), PLACEMENT_DIR, GLOSSARY_DIR, PRACTICE_DIR];
 const ENTITY_KINDS = ["items", "exercises", "passages", "lessons", "cards"] as const;
 
 /**
@@ -11,6 +12,8 @@ const ENTITY_KINDS = ["items", "exercises", "passages", "lessons", "cards"] as c
  * `data/<a1|a2|b1|b2|c1|placement|glossary>/` (subdirectories allowed).
  * - `placement/` holds only `placement` entries; level dirs never hold them.
  * - `glossary/` holds only `glossary` entries; no other directory holds them.
+ * - `practice/<collection>/` holds practice collections (`practice`, only there) and their
+ *   items, exercises, passages and lessons, never cards or placement entries.
  * - Every entity under `<level>/` has that level.
  * - An id's level prefix matches the entity's `level` field.
  */
@@ -38,6 +41,23 @@ export const validateLayout: Rule = (files: readonly LoadedFile[]) => {
             file,
             path: `${kind}[${i}]`,
             message: `${GLOSSARY_DIR}/ may contain only glossary entries`,
+          }),
+        );
+      }
+    } else if (dir === PRACTICE_DIR) {
+      if (segments.length < 3) {
+        errors.push({
+          file,
+          path: "(root)",
+          message: `${PRACTICE_DIR} files must live in ${PRACTICE_DIR}/<collection>/`,
+        });
+      }
+      for (const kind of ["cards", "placement"] as const) {
+        (data[kind] ?? []).forEach((_, i) =>
+          errors.push({
+            file,
+            path: `${kind}[${i}]`,
+            message: `${PRACTICE_DIR}/ may not contain ${kind}`,
           }),
         );
       }
@@ -71,6 +91,16 @@ export const validateLayout: Rule = (files: readonly LoadedFile[]) => {
           }
         });
       }
+    }
+
+    if (dir !== PRACTICE_DIR) {
+      (data.practice ?? []).forEach((_, i) =>
+        errors.push({
+          file,
+          path: `practice[${i}]`,
+          message: `practice collections belong in ${PRACTICE_DIR}/<collection>/, not ${dir}/`,
+        }),
+      );
     }
 
     if (DIRS.includes(dir) && dir !== GLOSSARY_DIR) {

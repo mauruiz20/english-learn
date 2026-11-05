@@ -1,0 +1,376 @@
+{
+  "items": [
+    {
+      "id": "b2.climate-policy.drought",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "kind": "word",
+      "term": "drought",
+      "es": "sequía"
+    },
+    {
+      "id": "b2.climate-policy.emissions",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "kind": "word",
+      "term": "emissions",
+      "es": "emisiones",
+      "example": {
+        "en": "Cars and planes produce a lot of emissions.",
+        "es": "Los autos y los aviones producen muchas emisiones."
+      }
+    },
+    {
+      "id": "b2.climate-policy.fossil-fuels",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "kind": "phrase",
+      "term": "fossil fuels",
+      "es": "combustibles fósiles"
+    },
+    {
+      "id": "b2.climate-policy.carbon-footprint",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "kind": "phrase",
+      "term": "carbon footprint",
+      "es": "huella de carbono",
+      "example": {
+        "en": "Flying less is one of the easiest ways to reduce your carbon footprint.",
+        "es": "Volar menos es una de las formas más fáciles de reducir tu huella de carbono."
+      }
+    },
+    {
+      "id": "b2.climate-policy.policy",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "kind": "word",
+      "term": "policy",
+      "es": "política, medida (de un gobierno o una empresa)"
+    },
+    {
+      "id": "b2.climate-policy.renewable-energy",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "kind": "phrase",
+      "term": "renewable energy",
+      "es": "energía renovable"
+    },
+    {
+      "id": "b2.climate-policy.ban",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "kind": "word",
+      "term": "ban",
+      "es": "prohibir; prohibición"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.climate-policy.warmer-world",
+      "level": "B2",
+      "topics": ["climate-policy"],
+      "title": "A warmer world",
+      "text": "Scientists agree that the planet is getting warmer and that people are the main cause. When we burn fossil fuels such as coal, oil and gas, we release emissions that trap heat in the atmosphere. As a result, average temperatures have risen in almost every region, and sea levels are rising as the ice melts. Some places now suffer longer droughts, while others have more floods. Governments have tried different policies. Some have raised taxes on gasoline, and others have banned old cars from city centers. Many countries are investing in renewable energy, like wind and solar power, which produces almost no emissions. But individuals matter too. Your carbon footprint is the total amount of greenhouse gases that your lifestyle produces: how you travel, what you eat and how much you buy. Flying less, eating less meat and keeping things for longer can all make a difference. The sun still rises every morning, as it always has, but the world it shines on is changing fast.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.climate-policy.vocab-001",
+      "itemIds": ["b2.climate-policy.drought"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'drought' mean in 'The long drought destroyed the crops'?",
+      "options": ["inundación", "sequía", "tormenta", "helada"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.climate-policy.cloze-001",
+      "itemIds": ["b2.vocabulary.rise"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 5397255,
+        "author": "Hybrid",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "The sea level is ___.",
+      "answers": ["rising"],
+      "distractors": ["raising", "rose", "risen"],
+      "es": "El nivel del mar está subiendo."
+    },
+    {
+      "id": "b2.climate-policy.order-001",
+      "itemIds": ["b2.vocabulary.raise"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 681648,
+        "author": "Source_VOA",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["taxes.", "plan", "They", "raise", "the", "oppose", "to"],
+      "accepted": ["They oppose the plan to raise taxes."],
+      "es": "Se oponen al plan de subir los impuestos."
+    },
+    {
+      "id": "b2.climate-policy.choice-001",
+      "itemIds": ["b2.vocabulary.rise", "b2.climate-policy.policy"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 58246,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "Prices rose drastically as a result of this policy.",
+      "options": [
+        "Los precios bajaron drásticamente como resultado de esta política.",
+        "Esta política subió un poco los precios.",
+        "Los precios subieron drásticamente como resultado de esta política.",
+        "Los precios no cambiaron a pesar de esta política."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.climate-policy.reading-001",
+      "itemIds": [
+        "b2.climate-policy.fossil-fuels",
+        "b2.climate-policy.emissions",
+        "b2.climate-policy.carbon-footprint"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.climate-policy.warmer-world",
+      "questions": [
+        {
+          "prompt": "What happens when we burn fossil fuels?",
+          "options": [
+            "Sea levels go down.",
+            "We release emissions that trap heat.",
+            "Temperatures stay the same."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What have some governments done?",
+          "options": [
+            "They have raised taxes on gasoline.",
+            "They have banned wind and solar power.",
+            "They have stopped all flights."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What is a carbon footprint?",
+          "options": [
+            "The money you spend on energy",
+            "The number of trees in a country",
+            "The total amount of greenhouse gases your lifestyle produces"
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b2.climate-policy.write-001",
+      "itemIds": ["b2.vocabulary.raise"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El gobierno subió los impuestos a la gasolina.",
+      "accepted": ["The government {raised|increased} {[the ]taxes|the tax} on {gasoline|gas}."]
+    },
+    {
+      "id": "b2.climate-policy.vocab-002",
+      "itemIds": ["b2.climate-policy.emissions"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'emisiones'.",
+      "options": ["emotions", "missions", "emissions", "admissions"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.climate-policy.vocab-003",
+      "itemIds": ["b2.climate-policy.renewable-energy"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'renewable energy' mean in 'Wind and solar power are forms of renewable energy'?",
+      "options": ["energía renovable", "energía nuclear", "ahorro de energía", "energía eléctrica"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.climate-policy.cloze-002",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 249102,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "___ our efforts, we failed after all.",
+      "answers": ["Despite"],
+      "distractors": ["Although", "However", "Even though"],
+      "es": "A pesar de nuestros esfuerzos, al final fracasamos."
+    },
+    {
+      "id": "b2.climate-policy.cloze-003",
+      "itemIds": ["b2.grammar.whereas"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Some countries have cut their emissions, ___ others have increased them.",
+      "answers": ["whereas"],
+      "distractors": ["despite", "in spite of", "because of"],
+      "es": "Algunos países redujeron sus emisiones, mientras que otros las aumentaron."
+    },
+    {
+      "id": "b2.climate-policy.order-002",
+      "itemIds": ["b2.grammar.despite", "b2.climate-policy.ban"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "the",
+        "banned",
+        "Despite",
+        "protests,",
+        "city",
+        "cars",
+        "the",
+        "from",
+        "center.",
+        "the"
+      ],
+      "accepted": ["Despite the protests, the city banned cars from the center."],
+      "es": "A pesar de las protestas, la ciudad prohibió los autos en el centro."
+    },
+    {
+      "id": "b2.climate-policy.choice-002",
+      "itemIds": ["b2.grammar.whereas"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Solar power is getting cheaper, whereas coal is becoming more expensive.",
+      "options": [
+        "La energía solar es cada vez más barata porque el carbón es cada vez más caro.",
+        "La energía solar y el carbón son cada vez más caros.",
+        "La energía solar es cada vez más barata, mientras que el carbón es cada vez más caro.",
+        "Aunque el carbón es barato, la energía solar es cada vez más cara."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.climate-policy.write-002",
+      "itemIds": ["b2.grammar.despite", "b2.climate-policy.drought"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "A pesar de la sequía, los agricultores no perdieron la esperanza.",
+      "accepted": [
+        "{Despite|In spite of} the drought, {the farmers|farmers} didn't lose hope.",
+        "{The farmers|Farmers} didn't lose hope {despite|in spite of} the drought."
+      ]
+    },
+    {
+      "id": "b2.climate-policy.write-003",
+      "itemIds": ["b2.climate-policy.renewable-energy", "b2.climate-policy.fossil-fuels"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Deberíamos usar energía renovable en lugar de combustibles fósiles.",
+      "accepted": ["We should use renewable energy {instead of|rather than} fossil fuels."]
+    },
+    {
+      "id": "b2.climate-policy.vocab-004",
+      "itemIds": ["b2.climate-policy.carbon-footprint"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'carbon footprint' mean in 'Flying less reduces your carbon footprint'?",
+      "options": ["mina de carbón", "impuesto al carbono", "huella de carbono", "pie de página"],
+      "answerIndex": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.climate-policy.lesson-001",
+      "level": "B2",
+      "topic": "climate-policy",
+      "title": "Un planeta más caliente",
+      "exerciseIds": [
+        "b2.climate-policy.vocab-001",
+        "b2.climate-policy.cloze-001",
+        "b2.climate-policy.order-001",
+        "b2.climate-policy.choice-001",
+        "b2.climate-policy.reading-001",
+        "b2.climate-policy.write-001",
+        "b2.climate-policy.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.vocabulary.rise",
+        "b2.vocabulary.raise",
+        "b2.climate-policy.drought",
+        "b2.climate-policy.policy",
+        "b2.climate-policy.emissions"
+      ],
+      "deepenCardIds": ["b2.vocabulary.raise-rise"]
+    },
+    {
+      "id": "b2.climate-policy.lesson-002",
+      "level": "B2",
+      "topic": "climate-policy",
+      "title": "Acuerdos y desacuerdos",
+      "exerciseIds": [
+        "b2.climate-policy.vocab-003",
+        "b2.climate-policy.cloze-002",
+        "b2.climate-policy.cloze-003",
+        "b2.climate-policy.order-002",
+        "b2.climate-policy.choice-002",
+        "b2.climate-policy.write-002",
+        "b2.climate-policy.write-003"
+      ],
+      "newItemIds": [
+        "b2.grammar.despite",
+        "b2.grammar.whereas",
+        "b2.climate-policy.renewable-energy",
+        "b2.climate-policy.ban"
+      ],
+      "deepenCardIds": ["b2.grammar.despite"]
+    }
+  ]
+}

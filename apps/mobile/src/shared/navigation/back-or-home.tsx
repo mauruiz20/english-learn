@@ -13,6 +13,8 @@ export const HOME_FALLBACK_ROUTES: ReadonlySet<string> = new Set([
   "armario",
   "fichas/index",
   "fichas/[id]/index",
+  "practica/index",
+  "practica/[collection]",
 ]);
 
 export type HeaderBack = {

@@ -13,6 +13,7 @@ import type {
   Lesson,
   Passage,
   PlacementQuestion,
+  PracticeCollection,
   ReadingExercise,
   TranslateWriteExercise,
   TranslationChoiceExercise,
@@ -347,4 +348,73 @@ export function cardFile(c: Card = card()): LoadedFile {
       cards: [c],
     },
   };
+}
+
+const PRACTICE_ITEM_ID = "b1.phrasal-verbs.go-out";
+const practiceExerciseIds = (n: number): string[] =>
+  ["vocab", "cloze", "order", "choice", "write"].map(
+    (type) => `b1.phrasal-verbs.practice-travel-${type}-${n}`,
+  );
+
+/** A valid "Práctica libre" collection with one B1 group of two lessons (see `practiceFiles`). */
+export function practiceCollection(o: Partial<PracticeCollection> = {}): PracticeCollection {
+  return {
+    id: "practice.phrasal-verbs",
+    title: "Phrasal verbs",
+    summary: "Verbos con partícula, por temas.",
+    groups: [
+      {
+        id: "practice.phrasal-verbs.travel",
+        level: "B1",
+        title: "Viajes",
+        summary: "Salir y volver.",
+        lessonIds: ["b1.phrasal-verbs.practice-travel-1", "b1.phrasal-verbs.practice-travel-2"],
+      },
+    ],
+    ...o,
+  };
+}
+
+/** A practice lesson of the group in `practiceFiles()` (`n` is 1 or 2). */
+export function practiceLesson(n: number, o: Partial<Lesson> = {}): Lesson {
+  return {
+    id: `b1.phrasal-verbs.practice-travel-${n}`,
+    level: "B1",
+    topic: "phrasal-verbs",
+    title: `Viajes ${n}`,
+    exerciseIds: practiceExerciseIds(n),
+    ...o,
+  };
+}
+
+/**
+ * Valid `practice/phrasal-verbs/` files: the collection, and its group's file with one item
+ * (`go out`), the exercises of two lessons and the lessons. Their English uses the words of
+ * `glossaryFiles()`.
+ */
+export function practiceFiles(): LoadedFile[] {
+  const itemIds = [PRACTICE_ITEM_ID];
+  const exercises = [1, 2].flatMap((n) => {
+    const id = (type: string) => `b1.phrasal-verbs.practice-travel-${type}-${n}`;
+    return [
+      vocab({ id: id("vocab"), itemIds }),
+      cloze({ id: id("cloze"), itemIds }),
+      wordOrder({ id: id("order"), itemIds }),
+      translationChoice({ id: id("choice"), itemIds }),
+      translateWrite({ id: id("write"), itemIds }),
+    ];
+  });
+  return [
+    { file: "practice/phrasal-verbs/collection.json", data: { practice: [practiceCollection()] } },
+    {
+      file: "practice/phrasal-verbs/travel.json",
+      data: {
+        items: [
+          item({ id: PRACTICE_ITEM_ID, topics: ["phrasal-verbs"], kind: "phrase", term: "go out" }),
+        ],
+        exercises,
+        lessons: [practiceLesson(1), practiceLesson(2)],
+      },
+    },
+  ];
 }

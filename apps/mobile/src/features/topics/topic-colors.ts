@@ -42,6 +42,15 @@ export const TOPIC_HIGHLIGHTERS: Readonly<Record<string, TopicHighlighter>> = {
   technology: "sky",
   travel: "orange",
   "work-and-careers": "lilac",
+  // B2, in index order.
+  "climate-policy": "green",
+  "health-and-psychology": "orange",
+  "lifelong-learning": "sky",
+  "media-and-misinformation": "lilac",
+  "money-and-economy": "green",
+  "science-and-ethics": "sky",
+  "travel-and-identity": "orange",
+  "work-and-leadership": "lilac",
   // Study cards ("Fichas"), in the order of their list.
   grammar: "lilac",
   "phrasal-verbs": "orange",

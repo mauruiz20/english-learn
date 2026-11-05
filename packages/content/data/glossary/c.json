@@ -53,6 +53,18 @@
       ]
     },
     {
+      "id": "glossary.call-back",
+      "headword": "call back",
+      "kind": "phrase",
+      "forms": ["call back", "calls back", "called back", "calling back"],
+      "senses": [
+        {
+          "es": "devolver la llamada, volver a llamar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.call-off",
       "headword": "call off",
       "kind": "phrase",
@@ -60,6 +72,34 @@
       "senses": [
         {
           "es": "cancelar, suspender",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.calm",
+      "headword": "calm",
+      "kind": "word",
+      "forms": ["calm", "calms", "calmed", "calming"],
+      "senses": [
+        {
+          "es": "calmar, tranquilizar",
+          "pos": "verb"
+        },
+        {
+          "es": "tranquilo, calmado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.calm-down",
+      "headword": "calm down",
+      "kind": "phrase",
+      "forms": ["calm down", "calms down", "calmed down", "calming down"],
+      "senses": [
+        {
+          "es": "calmarse, tranquilizarse",
           "pos": "phrasal verb"
         }
       ]
@@ -137,6 +177,30 @@
       ]
     },
     {
+      "id": "glossary.cancer",
+      "headword": "cancer",
+      "kind": "word",
+      "forms": ["cancer"],
+      "senses": [
+        {
+          "es": "cáncer",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.candidate",
+      "headword": "candidate",
+      "kind": "word",
+      "forms": ["candidate", "candidates"],
+      "senses": [
+        {
+          "es": "candidato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.capital",
       "headword": "capital",
       "kind": "word",
@@ -156,6 +220,18 @@
       "senses": [
         {
           "es": "auto, carro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carbon-footprint",
+      "headword": "carbon footprint",
+      "kind": "phrase",
+      "forms": ["carbon footprint", "carbon footprints"],
+      "senses": [
+        {
+          "es": "huella de carbono",
           "pos": "noun"
         }
       ]
@@ -237,6 +313,18 @@
         {
           "es": "llevar, cargar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carry-on",
+      "headword": "carry on",
+      "kind": "phrase",
+      "forms": ["carry on", "carries on", "carried on", "carrying on"],
+      "senses": [
+        {
+          "es": "continuar, seguir",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -417,6 +505,22 @@
       ]
     },
     {
+      "id": "glossary.charge",
+      "headword": "charge",
+      "kind": "word",
+      "forms": ["charge", "charges", "charged", "charging"],
+      "senses": [
+        {
+          "es": "cobrar",
+          "pos": "verb"
+        },
+        {
+          "es": "(in charge of) a cargo de",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.charger",
       "headword": "charger",
       "kind": "word",
@@ -493,6 +597,47 @@
       ]
     },
     {
+      "id": "glossary.cheer",
+      "headword": "cheer",
+      "kind": "word",
+      "forms": ["cheer", "cheers", "cheered", "cheering"],
+      "senses": [
+        {
+          "es": "animar",
+          "pos": "verb"
+        },
+        {
+          "es": "¡salud!",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cheer-up",
+      "headword": "cheer up",
+      "kind": "phrase",
+      "forms": [
+        "cheer up",
+        "cheers up",
+        "cheered up",
+        "cheering up",
+        "cheer me up",
+        "cheers me up",
+        "cheer her up",
+        "cheer you up"
+      ],
+      "senses": [
+        {
+          "es": "animar, levantar el ánimo",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "animarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.chicken",
       "headword": "chicken",
       "kind": "word",
@@ -557,6 +702,34 @@
         {
           "es": "chino (idioma)",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chip",
+      "headword": "chip",
+      "kind": "word",
+      "forms": ["chip", "chips", "chipped", "chipping"],
+      "senses": [
+        {
+          "es": "chip",
+          "pos": "noun"
+        },
+        {
+          "es": "papa frita (de bolsa)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chip-in",
+      "headword": "chip in",
+      "kind": "phrase",
+      "forms": ["chip in", "chips in", "chipped in", "chipping in"],
+      "senses": [
+        {
+          "es": "poner dinero (entre varios)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -685,6 +858,34 @@
       ]
     },
     {
+      "id": "glossary.clean-up",
+      "headword": "clean up",
+      "kind": "phrase",
+      "forms": ["clean up", "cleans up", "cleaned up", "cleaning up"],
+      "senses": [
+        {
+          "es": "ordenar, limpiar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.clear",
+      "headword": "clear",
+      "kind": "word",
+      "forms": ["clear", "clears", "cleared", "clearing", "clearer"],
+      "senses": [
+        {
+          "es": "despejar, liberar",
+          "pos": "verb"
+        },
+        {
+          "es": "claro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.client",
       "headword": "client",
       "kind": "word",
@@ -705,6 +906,22 @@
         {
           "es": "clima",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.climb",
+      "headword": "climb",
+      "kind": "word",
+      "forms": ["climb", "climbs", "climbed", "climbing"],
+      "senses": [
+        {
+          "es": "subida",
+          "pos": "noun"
+        },
+        {
+          "es": "subir, escalar",
+          "pos": "verb"
         }
       ]
     },
@@ -773,6 +990,18 @@
       ]
     },
     {
+      "id": "glossary.coal",
+      "headword": "coal",
+      "kind": "word",
+      "forms": ["coal"],
+      "senses": [
+        {
+          "es": "carbón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.coat",
       "headword": "coat",
       "kind": "word",
@@ -781,6 +1010,22 @@
         {
           "es": "abrigo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.code",
+      "headword": "code",
+      "kind": "word",
+      "forms": ["code", "codes", "coding"],
+      "senses": [
+        {
+          "es": "código",
+          "pos": "noun"
+        },
+        {
+          "es": "programar",
+          "pos": "verb"
         }
       ]
     },
@@ -825,6 +1070,18 @@
       ]
     },
     {
+      "id": "glossary.collect",
+      "headword": "collect",
+      "kind": "word",
+      "forms": ["collect", "collects", "collected", "collecting"],
+      "senses": [
+        {
+          "es": "recopilar, juntar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.college",
       "headword": "college",
       "kind": "word",
@@ -852,11 +1109,15 @@
       "id": "glossary.color",
       "headword": "color",
       "kind": "word",
-      "forms": ["color", "colors"],
+      "forms": ["color", "colors", "colored"],
       "senses": [
         {
           "es": "color",
           "pos": "noun"
+        },
+        {
+          "es": "teñir, colorear",
+          "pos": "verb"
         }
       ]
     },
@@ -873,6 +1134,30 @@
         {
           "es": "llegar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.come-back",
+      "headword": "come back",
+      "kind": "phrase",
+      "forms": ["come back", "comes back", "came back", "coming back"],
+      "senses": [
+        {
+          "es": "volver, regresar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.come-down-with",
+      "headword": "come down with",
+      "kind": "phrase",
+      "forms": ["come down with", "comes down with", "came down with", "coming down with"],
+      "senses": [
+        {
+          "es": "enfermarse de, contagiarse de",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -913,6 +1198,18 @@
       ]
     },
     {
+      "id": "glossary.common",
+      "headword": "common",
+      "kind": "word",
+      "forms": ["common"],
+      "senses": [
+        {
+          "es": "común",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.commute",
       "headword": "commute",
       "kind": "word",
@@ -949,6 +1246,34 @@
         {
           "es": "empresa, compañía",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.compare",
+      "headword": "compare",
+      "kind": "word",
+      "forms": ["compare", "compares", "compared", "comparing"],
+      "senses": [
+        {
+          "es": "comparar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.complete",
+      "headword": "complete",
+      "kind": "word",
+      "forms": ["complete", "completes", "completed", "completing"],
+      "senses": [
+        {
+          "es": "completar",
+          "pos": "verb"
+        },
+        {
+          "es": "completo",
+          "pos": "adjective"
         }
       ]
     },
@@ -1029,6 +1354,18 @@
       ]
     },
     {
+      "id": "glossary.conclude",
+      "headword": "conclude",
+      "kind": "word",
+      "forms": ["conclude", "concludes", "concluded", "concluding"],
+      "senses": [
+        {
+          "es": "concluir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.conditional",
       "headword": "conditional",
       "kind": "word",
@@ -1049,6 +1386,18 @@
         {
           "es": "realizar, llevar a cabo (un estudio, una encuesta)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.connected",
+      "headword": "connected",
+      "kind": "word",
+      "forms": ["connected"],
+      "senses": [
+        {
+          "es": "conectado, unido",
+          "pos": "adjective"
         }
       ]
     },
@@ -1089,6 +1438,42 @@
       ]
     },
     {
+      "id": "glossary.contract",
+      "headword": "contract",
+      "kind": "word",
+      "forms": ["contract", "contracts"],
+      "senses": [
+        {
+          "es": "contrato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.control",
+      "headword": "control",
+      "kind": "word",
+      "forms": ["control"],
+      "senses": [
+        {
+          "es": "control",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conversation",
+      "headword": "conversation",
+      "kind": "word",
+      "forms": ["conversation", "conversations"],
+      "senses": [
+        {
+          "es": "conversación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cook",
       "headword": "cook",
       "kind": "word",
@@ -1113,6 +1498,18 @@
         {
           "es": "cocina (actividad de cocinar)",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cope-with",
+      "headword": "cope with",
+      "kind": "phrase",
+      "forms": ["cope with", "copes with", "coped with", "coping with"],
+      "senses": [
+        {
+          "es": "sobrellevar, afrontar",
+          "pos": "verb"
         }
       ]
     },
@@ -1156,6 +1553,18 @@
         },
         {
           "es": "costo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cost-of-living",
+      "headword": "cost of living",
+      "kind": "phrase",
+      "forms": ["cost of living"],
+      "senses": [
+        {
+          "es": "costo de vida",
           "pos": "noun"
         }
       ]
@@ -1221,6 +1630,30 @@
       ]
     },
     {
+      "id": "glossary.count",
+      "headword": "count",
+      "kind": "word",
+      "forms": ["count", "counts", "counted", "counting"],
+      "senses": [
+        {
+          "es": "contar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.count-on",
+      "headword": "count on",
+      "kind": "phrase",
+      "forms": ["count on", "counts on", "counted on", "counting on"],
+      "senses": [
+        {
+          "es": "contar con",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.country",
       "headword": "country",
       "kind": "word",
@@ -1240,6 +1673,22 @@
       "senses": [
         {
           "es": "el campo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.couple",
+      "headword": "couple",
+      "kind": "word",
+      "forms": ["couple", "couples"],
+      "senses": [
+        {
+          "es": "(a couple of) un par de",
+          "pos": "noun"
+        },
+        {
+          "es": "pareja",
           "pos": "noun"
         }
       ]
@@ -1341,6 +1790,18 @@
       ]
     },
     {
+      "id": "glossary.crop",
+      "headword": "crop",
+      "kind": "word",
+      "forms": ["crop", "crops"],
+      "senses": [
+        {
+          "es": "cultivo, cosecha",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cross",
       "headword": "cross",
       "kind": "word",
@@ -1373,6 +1834,30 @@
         {
           "es": "llorar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.culture",
+      "headword": "culture",
+      "kind": "word",
+      "forms": ["culture", "cultures"],
+      "senses": [
+        {
+          "es": "cultura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.culture-shock",
+      "headword": "culture shock",
+      "kind": "phrase",
+      "forms": ["culture shock"],
+      "senses": [
+        {
+          "es": "choque cultural",
+          "pos": "noun"
         }
       ]
     },
@@ -1421,6 +1906,18 @@
         {
           "es": "cortar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cut-down-on",
+      "headword": "cut down on",
+      "kind": "phrase",
+      "forms": ["cut down on", "cuts down on", "cutting down on"],
+      "senses": [
+        {
+          "es": "reducir (el consumo de)",
+          "pos": "phrasal verb"
         }
       ]
     }

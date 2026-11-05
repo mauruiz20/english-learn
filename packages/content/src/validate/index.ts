@@ -31,5 +31,11 @@ export {
   type GlossaryText,
   type UncoveredWord,
 } from "./glossary";
+export {
+  isPracticeFile,
+  PRACTICE_DIR,
+  validatePracticeCollections,
+  validatePracticeLessons,
+} from "./practice";
 export { validateCorpus, validateLocal } from "./corpus";
 export { findDuplicateKeys, type DuplicateKey } from "./json-keys";

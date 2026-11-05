@@ -713,6 +713,40 @@ describe("HomeView study cards", () => {
   });
 });
 
+describe("HomeView free practice", () => {
+  it("opens Práctica libre, naming its topics, apart from the path", async () => {
+    const onOpenPractice = jest.fn();
+    await render(
+      <HomeView
+        state={{ ...ready, practiceTopics: ["Phrasal verbs"] }}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenPractice={onOpenPractice}
+      />,
+    );
+
+    expect(screen.getByText("Phrasal verbs, a tu ritmo")).toBeOnTheScreen();
+    await fireEvent.press(
+      screen.getByRole("button", { name: "Práctica libre: Phrasal verbs, a tu ritmo" }),
+    );
+    expect(onOpenPractice).toHaveBeenCalledTimes(1);
+  });
+
+  it("is hidden without practice topics", async () => {
+    await render(
+      <HomeView
+        state={{ ...ready, practiceTopics: [] }}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenPractice={jest.fn()}
+      />,
+    );
+    expect(screen.queryByRole("button", { name: /^Práctica libre/ })).toBeNull();
+  });
+});
+
 describe("HomeView nothing to review", () => {
   it("shows Avi napping, invisible to screen readers, only when there is nothing to review", async () => {
     await renderView(ready);
