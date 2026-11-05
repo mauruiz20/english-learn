@@ -77,6 +77,18 @@
       ]
     },
     {
+      "id": "glossary.joke",
+      "headword": "joke",
+      "kind": "word",
+      "forms": ["joke", "jokes"],
+      "senses": [
+        {
+          "es": "broma, chiste",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.journalist",
       "headword": "journalist",
       "kind": "word",

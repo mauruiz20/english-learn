@@ -352,6 +352,22 @@
       ]
     },
     {
+      "id": "glossary.head",
+      "headword": "head",
+      "kind": "word",
+      "forms": ["head", "heads"],
+      "senses": [
+        {
+          "es": "cabeza",
+          "pos": "noun"
+        },
+        {
+          "es": "dirigir, encabezar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.headache",
       "headword": "headache",
       "kind": "word",
@@ -412,6 +428,18 @@
         {
           "es": "(hear from someone) tener noticias de alguien",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.heat",
+      "headword": "heat",
+      "kind": "word",
+      "forms": ["heat"],
+      "senses": [
+        {
+          "es": "calor",
+          "pos": "noun"
         }
       ]
     },
@@ -560,6 +588,18 @@
       ]
     },
     {
+      "id": "glossary.himself",
+      "headword": "himself",
+      "kind": "word",
+      "forms": ["himself"],
+      "senses": [
+        {
+          "es": "él mismo, se",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
       "id": "glossary.his",
       "headword": "his",
       "kind": "word",
@@ -572,6 +612,18 @@
         {
           "es": "suyo (de él)",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.history",
+      "headword": "history",
+      "kind": "word",
+      "forms": ["history"],
+      "senses": [
+        {
+          "es": "historia",
+          "pos": "noun"
         }
       ]
     },
@@ -612,6 +664,18 @@
         {
           "es": "a casa",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.homesick",
+      "headword": "homesick",
+      "kind": "word",
+      "forms": ["homesick"],
+      "senses": [
+        {
+          "es": "que extraña su casa o su país",
+          "pos": "adjective"
         }
       ]
     },
@@ -803,6 +867,30 @@
         },
         {
           "es": "abrazo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.huge",
+      "headword": "huge",
+      "kind": "word",
+      "forms": ["huge"],
+      "senses": [
+        {
+          "es": "enorme",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.humor",
+      "headword": "humor",
+      "kind": "word",
+      "forms": ["humor"],
+      "senses": [
+        {
+          "es": "humor",
           "pos": "noun"
         }
       ]

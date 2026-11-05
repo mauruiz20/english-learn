@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.reader",
+      "headword": "reader",
+      "kind": "word",
+      "forms": ["reader", "readers"],
+      "senses": [
+        {
+          "es": "lector",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ready",
       "headword": "ready",
       "kind": "word",
@@ -121,6 +133,18 @@
         {
           "es": "real, verdadero",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.realize",
+      "headword": "realize",
+      "kind": "word",
+      "forms": ["realize", "realizes", "realized", "realizing"],
+      "senses": [
+        {
+          "es": "darse cuenta de",
+          "pos": "verb"
         }
       ]
     },
@@ -253,6 +277,18 @@
       ]
     },
     {
+      "id": "glossary.region",
+      "headword": "region",
+      "kind": "word",
+      "forms": ["region", "regions"],
+      "senses": [
+        {
+          "es": "región",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.register",
       "headword": "register",
       "kind": "word",
@@ -312,6 +348,18 @@
       "senses": [
         {
           "es": "relajarse, descansar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.release",
+      "headword": "release",
+      "kind": "word",
+      "forms": ["release", "releases", "released", "releasing"],
+      "senses": [
+        {
+          "es": "liberar, emitir",
           "pos": "verb"
         }
       ]
@@ -377,6 +425,18 @@
       ]
     },
     {
+      "id": "glossary.renewable-energy",
+      "headword": "renewable energy",
+      "kind": "phrase",
+      "forms": ["renewable energy"],
+      "senses": [
+        {
+          "es": "energía renovable",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rent",
       "headword": "rent",
       "kind": "word",
@@ -388,6 +448,18 @@
         },
         {
           "es": "alquiler, renta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reorganization",
+      "headword": "reorganization",
+      "kind": "word",
+      "forms": ["reorganization"],
+      "senses": [
+        {
+          "es": "reorganización",
           "pos": "noun"
         }
       ]
@@ -421,6 +493,18 @@
       ]
     },
     {
+      "id": "glossary.repeat",
+      "headword": "repeat",
+      "kind": "word",
+      "forms": ["repeat", "repeats", "repeated", "repeating"],
+      "senses": [
+        {
+          "es": "repetir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.report",
       "headword": "report",
       "kind": "word",
@@ -449,6 +533,34 @@
       ]
     },
     {
+      "id": "glossary.require",
+      "headword": "require",
+      "kind": "word",
+      "forms": ["require", "requires", "required", "requiring"],
+      "senses": [
+        {
+          "es": "exigir, requerir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.research",
+      "headword": "research",
+      "kind": "word",
+      "forms": ["research", "researches", "researched", "researching"],
+      "senses": [
+        {
+          "es": "investigación",
+          "pos": "noun"
+        },
+        {
+          "es": "investigar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.researcher",
       "headword": "researcher",
       "kind": "word",
@@ -469,6 +581,22 @@
         {
           "es": "parecerse a",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.respect",
+      "headword": "respect",
+      "kind": "word",
+      "forms": ["respect", "respects", "respected", "respecting"],
+      "senses": [
+        {
+          "es": "respetar",
+          "pos": "verb"
+        },
+        {
+          "es": "respeto",
+          "pos": "noun"
         }
       ]
     },
@@ -761,6 +889,18 @@
         {
           "es": "descartar",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rumor",
+      "headword": "rumor",
+      "kind": "word",
+      "forms": ["rumor", "rumors"],
+      "senses": [
+        {
+          "es": "rumor",
+          "pos": "noun"
         }
       ]
     },

@@ -125,6 +125,22 @@
       ]
     },
     {
+      "id": "glossary.ban",
+      "headword": "ban",
+      "kind": "word",
+      "forms": ["ban", "bans", "banned", "banning"],
+      "senses": [
+        {
+          "es": "prohibir",
+          "pos": "verb"
+        },
+        {
+          "es": "prohibición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.band",
       "headword": "band",
       "kind": "word",
@@ -145,6 +161,18 @@
         {
           "es": "banco",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.barely",
+      "headword": "barely",
+      "kind": "word",
+      "forms": ["barely"],
+      "senses": [
+        {
+          "es": "apenas",
+          "pos": "adverb"
         }
       ]
     },
@@ -337,6 +365,18 @@
       ]
     },
     {
+      "id": "glossary.beginner",
+      "headword": "beginner",
+      "kind": "word",
+      "forms": ["beginner", "beginners"],
+      "senses": [
+        {
+          "es": "principiante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.behind",
       "headword": "behind",
       "kind": "word",
@@ -349,6 +389,18 @@
       ]
     },
     {
+      "id": "glossary.belief",
+      "headword": "belief",
+      "kind": "word",
+      "forms": ["belief", "beliefs"],
+      "senses": [
+        {
+          "es": "creencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.believe",
       "headword": "believe",
       "kind": "word",
@@ -356,6 +408,18 @@
       "senses": [
         {
           "es": "creer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.belong",
+      "headword": "belong",
+      "kind": "word",
+      "forms": ["belong", "belongs", "belonged", "belonging"],
+      "senses": [
+        {
+          "es": "pertenecer, sentirse parte",
           "pos": "verb"
         }
       ]
@@ -465,6 +529,18 @@
       ]
     },
     {
+      "id": "glossary.black",
+      "headword": "black",
+      "kind": "word",
+      "forms": ["black"],
+      "senses": [
+        {
+          "es": "negro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.block",
       "headword": "block",
       "kind": "word",
@@ -476,6 +552,18 @@
         },
         {
           "es": "bloque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.body",
+      "headword": "body",
+      "kind": "word",
+      "forms": ["body", "bodies"],
+      "senses": [
+        {
+          "es": "cuerpo",
           "pos": "noun"
         }
       ]
@@ -681,6 +769,18 @@
       ]
     },
     {
+      "id": "glossary.brain",
+      "headword": "brain",
+      "kind": "word",
+      "forms": ["brain", "brains"],
+      "senses": [
+        {
+          "es": "cerebro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.brake",
       "headword": "brake",
       "kind": "word",
@@ -752,6 +852,18 @@
       "senses": [
         {
           "es": "desayuno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.breakthrough",
+      "headword": "breakthrough",
+      "kind": "word",
+      "forms": ["breakthrough", "breakthroughs"],
+      "senses": [
+        {
+          "es": "avance, gran descubrimiento",
           "pos": "noun"
         }
       ]
@@ -833,6 +945,18 @@
       ]
     },
     {
+      "id": "glossary.brush-up-on",
+      "headword": "brush up on",
+      "kind": "phrase",
+      "forms": ["brush up on", "brushes up on", "brushed up on", "brushing up on"],
+      "senses": [
+        {
+          "es": "repasar, refrescar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.budget",
       "headword": "budget",
       "kind": "word",
@@ -856,6 +980,30 @@
         },
         {
           "es": "(building) edificio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.burn",
+      "headword": "burn",
+      "kind": "word",
+      "forms": ["burn", "burns", "burned", "burning"],
+      "senses": [
+        {
+          "es": "quemar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.burnout",
+      "headword": "burnout",
+      "kind": "word",
+      "forms": ["burnout"],
+      "senses": [
+        {
+          "es": "agotamiento (por exceso de trabajo)",
           "pos": "noun"
         }
       ]

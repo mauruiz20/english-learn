@@ -41,6 +41,18 @@
       ]
     },
     {
+      "id": "glossary.earn",
+      "headword": "earn",
+      "kind": "word",
+      "forms": ["earn", "earns", "earned", "earning"],
+      "senses": [
+        {
+          "es": "ganar (dinero)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.east",
       "headword": "east",
       "kind": "word",
@@ -84,6 +96,42 @@
       "senses": [
         {
           "es": "economía (carrera)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.edit",
+      "headword": "edit",
+      "kind": "word",
+      "forms": ["edit", "edits", "edited", "editing"],
+      "senses": [
+        {
+          "es": "editar, retocar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.effect",
+      "headword": "effect",
+      "kind": "word",
+      "forms": ["effect", "effects"],
+      "senses": [
+        {
+          "es": "efecto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.effort",
+      "headword": "effort",
+      "kind": "word",
+      "forms": ["effort", "efforts"],
+      "senses": [
+        {
+          "es": "esfuerzo",
           "pos": "noun"
         }
       ]
@@ -180,6 +228,30 @@
       "senses": [
         {
           "es": "emergencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.emission",
+      "headword": "emission",
+      "kind": "word",
+      "forms": ["emission", "emissions"],
+      "senses": [
+        {
+          "es": "emisión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.emotion",
+      "headword": "emotion",
+      "kind": "word",
+      "forms": ["emotion", "emotions"],
+      "senses": [
+        {
+          "es": "emoción",
           "pos": "noun"
         }
       ]
@@ -317,6 +389,18 @@
       ]
     },
     {
+      "id": "glossary.error",
+      "headword": "error",
+      "kind": "word",
+      "forms": ["error", "errors"],
+      "senses": [
+        {
+          "es": "error",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.escape",
       "headword": "escape",
       "kind": "word",
@@ -337,6 +421,30 @@
         {
           "es": "ensayo, redacción",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.essential",
+      "headword": "essential",
+      "kind": "word",
+      "forms": ["essential"],
+      "senses": [
+        {
+          "es": "esencial",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ethical",
+      "headword": "ethical",
+      "kind": "word",
+      "forms": ["ethical"],
+      "senses": [
+        {
+          "es": "ético",
+          "pos": "adjective"
         }
       ]
     },
@@ -477,6 +585,18 @@
       ]
     },
     {
+      "id": "glossary.example",
+      "headword": "example",
+      "kind": "word",
+      "forms": ["example", "examples"],
+      "senses": [
+        {
+          "es": "ejemplo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.except",
       "headword": "except",
       "kind": "word",
@@ -593,6 +713,30 @@
       ]
     },
     {
+      "id": "glossary.experiment",
+      "headword": "experiment",
+      "kind": "word",
+      "forms": ["experiment", "experiments"],
+      "senses": [
+        {
+          "es": "experimento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.expert",
+      "headword": "expert",
+      "kind": "word",
+      "forms": ["expert", "experts"],
+      "senses": [
+        {
+          "es": "experto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.explain",
       "headword": "explain",
       "kind": "word",
@@ -601,6 +745,18 @@
         {
           "es": "explicar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.extra",
+      "headword": "extra",
+      "kind": "word",
+      "forms": ["extra"],
+      "senses": [
+        {
+          "es": "adicional, extra",
+          "pos": "adjective"
         }
       ]
     },

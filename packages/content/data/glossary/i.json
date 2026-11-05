@@ -69,6 +69,18 @@
       ]
     },
     {
+      "id": "glossary.ice",
+      "headword": "ice",
+      "kind": "word",
+      "forms": ["ice"],
+      "senses": [
+        {
+          "es": "hielo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.idea",
       "headword": "idea",
       "kind": "word",
@@ -76,6 +88,18 @@
       "senses": [
         {
           "es": "idea",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.identity",
+      "headword": "identity",
+      "kind": "word",
+      "forms": ["identity", "identities"],
+      "senses": [
+        {
+          "es": "identidad",
           "pos": "noun"
         }
       ]
@@ -93,6 +117,30 @@
         {
           "es": "si (en preguntas indirectas)",
           "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.illness",
+      "headword": "illness",
+      "kind": "word",
+      "forms": ["illness", "illnesses"],
+      "senses": [
+        {
+          "es": "enfermedad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.image",
+      "headword": "image",
+      "kind": "word",
+      "forms": ["image", "images"],
+      "senses": [
+        {
+          "es": "imagen",
+          "pos": "noun"
         }
       ]
     },
@@ -133,6 +181,18 @@
       ]
     },
     {
+      "id": "glossary.impossible",
+      "headword": "impossible",
+      "kind": "word",
+      "forms": ["impossible"],
+      "senses": [
+        {
+          "es": "imposible",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.impressive",
       "headword": "impressive",
       "kind": "word",
@@ -141,6 +201,18 @@
         {
           "es": "impresionante",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.improve",
+      "headword": "improve",
+      "kind": "word",
+      "forms": ["improve", "improves", "improved", "improving"],
+      "senses": [
+        {
+          "es": "mejorar",
+          "pos": "verb"
         }
       ]
     },
@@ -185,6 +257,18 @@
         {
           "es": "en efectivo",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.in-charge-of",
+      "headword": "in charge of",
+      "kind": "phrase",
+      "forms": ["in charge of"],
+      "senses": [
+        {
+          "es": "a cargo de",
+          "pos": "expression"
         }
       ]
     },
@@ -253,6 +337,18 @@
       ]
     },
     {
+      "id": "glossary.individual",
+      "headword": "individual",
+      "kind": "word",
+      "forms": ["individual", "individuals"],
+      "senses": [
+        {
+          "es": "individuo, persona",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.infinitive",
       "headword": "infinitive",
       "kind": "word",
@@ -260,6 +356,18 @@
       "senses": [
         {
           "es": "infinitivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.inflation",
+      "headword": "inflation",
+      "kind": "word",
+      "forms": ["inflation"],
+      "senses": [
+        {
+          "es": "inflación",
           "pos": "noun"
         }
       ]
@@ -321,6 +429,30 @@
       ]
     },
     {
+      "id": "glossary.instrument",
+      "headword": "instrument",
+      "kind": "word",
+      "forms": ["instrument", "instruments"],
+      "senses": [
+        {
+          "es": "instrumento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.interest-rate",
+      "headword": "interest rate",
+      "kind": "phrase",
+      "forms": ["interest rate", "interest rates"],
+      "senses": [
+        {
+          "es": "tasa de interés",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.interesting",
       "headword": "interesting",
       "kind": "word",
@@ -329,6 +461,18 @@
         {
           "es": "interesante",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.internet",
+      "headword": "internet",
+      "kind": "word",
+      "forms": ["internet"],
+      "senses": [
+        {
+          "es": "internet",
+          "pos": "noun"
         }
       ]
     },
@@ -392,6 +536,30 @@
       "senses": [
         {
           "es": "inventar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.invention",
+      "headword": "invention",
+      "kind": "word",
+      "forms": ["invention", "inventions"],
+      "senses": [
+        {
+          "es": "invento, invención",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.invest",
+      "headword": "invest",
+      "kind": "word",
+      "forms": ["invest", "invests", "invested", "investing"],
+      "senses": [
+        {
+          "es": "invertir",
           "pos": "verb"
         }
       ]
