@@ -1,0 +1,375 @@
+{
+  "items": [
+    {
+      "id": "b2.health-and-psychology.anxious",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "word",
+      "term": "anxious",
+      "es": "ansioso, nervioso",
+      "example": {
+        "en": "I always feel anxious before an exam.",
+        "es": "Siempre me siento ansioso antes de un examen."
+      }
+    },
+    {
+      "id": "b2.health-and-psychology.stress",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "word",
+      "term": "stress",
+      "es": "estrés"
+    },
+    {
+      "id": "b2.health-and-psychology.cope-with",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "phrase",
+      "term": "cope with",
+      "es": "sobrellevar, afrontar"
+    },
+    {
+      "id": "b2.health-and-psychology.mood",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "word",
+      "term": "mood",
+      "es": "estado de ánimo",
+      "example": {
+        "en": "A short walk can improve your mood.",
+        "es": "Una caminata corta puede mejorar tu estado de ánimo."
+      }
+    },
+    {
+      "id": "b2.health-and-psychology.therapist",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "word",
+      "term": "therapist",
+      "es": "terapeuta"
+    },
+    {
+      "id": "b2.health-and-psychology.burnout",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "word",
+      "term": "burnout",
+      "es": "agotamiento (por exceso de trabajo)",
+      "example": {
+        "en": "Working long hours without a break can lead to burnout.",
+        "es": "Trabajar muchas horas sin descanso puede llevar al agotamiento."
+      }
+    },
+    {
+      "id": "b2.health-and-psychology.well-being",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "word",
+      "term": "well-being",
+      "es": "bienestar",
+      "example": {
+        "en": "Sleep is essential for your well-being.",
+        "es": "El sueño es esencial para tu bienestar."
+      }
+    },
+    {
+      "id": "b2.health-and-psychology.mental-health",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "kind": "phrase",
+      "term": "mental health",
+      "es": "salud mental"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.health-and-psychology.new-routine",
+      "level": "B2",
+      "topics": ["health-and-psychology"],
+      "title": "A new routine",
+      "text": "When Marta started working from home, she thought her stress would disappear: no more traffic and no more noisy office. But after a few months she felt anxious most of the time, and her mood changed quickly. She worked late every night because her office was also her living room, and she was close to burnout. A therapist helped her understand the problem. Our bodies are used to clear signals that tell them when work starts and ends, and Marta had lost all of them. Together they made a plan. Marta now gets dressed every morning as if she were going out, takes a short walk before she starts and closes her laptop at six o'clock. \"At first it felt silly,\" she says, \"but I got used to it in a couple of weeks.\" She also started talking openly about mental health with her colleagues and discovered that many of them were coping with the same feelings. Psychologists say that small daily habits protect our well-being better than big changes we cannot keep. \"I wish I had asked for help earlier,\" Marta admits. \"It isn't a weakness. It's part of looking after yourself.\"",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.health-and-psychology.vocab-001",
+      "itemIds": ["b2.health-and-psychology.anxious"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'anxious' mean in 'I always feel anxious before an exam'?",
+      "options": ["antiguo", "enojado", "aburrido", "ansioso, nervioso"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.health-and-psychology.cloze-001",
+      "itemIds": ["b2.grammar.get-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 15966,
+        "author": "Swift",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "You will soon get used to ___ in public.",
+      "answers": ["speaking"],
+      "distractors": ["speak", "spoke", "spoken"],
+      "es": "Pronto te acostumbrarás a hablar en público."
+    },
+    {
+      "id": "b2.health-and-psychology.order-001",
+      "itemIds": ["b2.grammar.be-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["so", "used", "going", "bed", "I'm", "to", "early.", "not", "to"],
+      "accepted": ["I'm not used to going to bed so early."],
+      "es": "No estoy acostumbrado a acostarme tan temprano."
+    },
+    {
+      "id": "b2.health-and-psychology.choice-001",
+      "itemIds": ["b2.health-and-psychology.cope-with", "b2.health-and-psychology.stress"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She copes with stress by going for a run every morning.",
+      "options": [
+        "Le causa estrés salir a correr todas las mañanas.",
+        "Sobrelleva el estrés saliendo a correr todas las mañanas.",
+        "No sale a correr por las mañanas porque tiene estrés.",
+        "Tiene estrés porque corre todas las mañanas."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.health-and-psychology.reading-001",
+      "itemIds": [
+        "b2.health-and-psychology.burnout",
+        "b2.health-and-psychology.therapist",
+        "b2.health-and-psychology.mood"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.health-and-psychology.new-routine",
+      "questions": [
+        {
+          "prompt": "Why did Marta work late every night?",
+          "options": [
+            "Her boss asked her to.",
+            "There was too much traffic in the morning.",
+            "Her office was also her living room."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What does Marta do before she starts work now?",
+          "options": [
+            "She takes a short walk.",
+            "She calls her therapist.",
+            "She drives to the office."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What does Marta wish?",
+          "options": [
+            "That she worked in an office again",
+            "That she had asked for help earlier",
+            "That her colleagues talked less"
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "b2.health-and-psychology.write-001",
+      "itemIds": ["b2.grammar.be-used-to"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Estoy acostumbrada a trabajar desde casa.",
+      "accepted": ["I'm {used|accustomed} to working {from|at} home."]
+    },
+    {
+      "id": "b2.health-and-psychology.vocab-002",
+      "itemIds": ["b2.health-and-psychology.mood"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'estado de ánimo'.",
+      "options": ["mode", "mood", "mind", "moon"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.health-and-psychology.vocab-003",
+      "itemIds": ["b2.health-and-psychology.well-being"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'well-being' mean in 'Sleep is essential for your well-being'?",
+      "options": ["ser humano", "buena suerte", "bien hecho", "bienestar"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.health-and-psychology.cloze-002",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 28027,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I wish I ___ followed the doctor's advice.",
+      "answers": ["had"],
+      "distractors": ["have", "would", "did"],
+      "es": "Ojalá hubiera seguido el consejo del médico."
+    },
+    {
+      "id": "b2.health-and-psychology.cloze-003",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If only I ___ sleep better at night!",
+      "answers": ["could"],
+      "distractors": ["can", "will", "am"],
+      "es": "¡Si tan solo pudiera dormir mejor por la noche!"
+    },
+    {
+      "id": "b2.health-and-psychology.order-002",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["so", "I", "much", "about", "wish", "everything.", "worry", "didn't", "I"],
+      "accepted": ["I wish I didn't worry so much about everything."],
+      "es": "Ojalá no me preocupara tanto por todo."
+    },
+    {
+      "id": "b2.health-and-psychology.choice-002",
+      "itemIds": ["b2.health-and-psychology.mental-health"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Talking about mental health is no longer taboo.",
+      "options": [
+        "Hablar de salud mental todavía es tabú.",
+        "Hablar de salud mental ya no es tabú.",
+        "La salud física ya no es un tema importante.",
+        "Nadie quiere hablar de salud mental."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.health-and-psychology.write-002",
+      "itemIds": ["b2.grammar.wish-if-only"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ojalá durmiera más.",
+      "accepted": [
+        "I wish I {slept|could sleep} more.",
+        "If only I {slept|could sleep} more!",
+        "I wish I got more sleep."
+      ]
+    },
+    {
+      "id": "b2.health-and-psychology.write-003",
+      "itemIds": ["b2.health-and-psychology.therapist", "b2.health-and-psychology.cope-with"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi terapeuta me ayudó a sobrellevar la ansiedad.",
+      "accepted": ["My therapist helped me [to ]{cope with|deal with|manage} {my anxiety|anxiety}."]
+    },
+    {
+      "id": "b2.health-and-psychology.vocab-004",
+      "itemIds": ["b2.health-and-psychology.burnout"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'burnout' mean in 'Working long hours can lead to burnout'?",
+      "options": ["quemadura", "aburrimiento", "agotamiento", "incendio"],
+      "answerIndex": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.health-and-psychology.lesson-001",
+      "level": "B2",
+      "topic": "health-and-psychology",
+      "title": "Nuevos hábitos",
+      "exerciseIds": [
+        "b2.health-and-psychology.vocab-001",
+        "b2.health-and-psychology.cloze-001",
+        "b2.health-and-psychology.order-001",
+        "b2.health-and-psychology.choice-001",
+        "b2.health-and-psychology.reading-001",
+        "b2.health-and-psychology.write-001",
+        "b2.health-and-psychology.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.grammar.get-used-to",
+        "b2.grammar.be-used-to",
+        "b2.health-and-psychology.anxious",
+        "b2.health-and-psychology.cope-with",
+        "b2.health-and-psychology.stress"
+      ],
+      "deepenCardIds": ["b2.grammar.used-to"]
+    },
+    {
+      "id": "b2.health-and-psychology.lesson-002",
+      "level": "B2",
+      "topic": "health-and-psychology",
+      "title": "Ojalá…",
+      "exerciseIds": [
+        "b2.health-and-psychology.vocab-003",
+        "b2.health-and-psychology.cloze-002",
+        "b2.health-and-psychology.cloze-003",
+        "b2.health-and-psychology.order-002",
+        "b2.health-and-psychology.choice-002",
+        "b2.health-and-psychology.write-002",
+        "b2.health-and-psychology.write-003"
+      ],
+      "newItemIds": [
+        "b2.grammar.wish-if-only",
+        "b2.health-and-psychology.well-being",
+        "b2.health-and-psychology.mental-health"
+      ],
+      "deepenCardIds": ["b2.grammar.wish-if-only"]
+    }
+  ]
+}
