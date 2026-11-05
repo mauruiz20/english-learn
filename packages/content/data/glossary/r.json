@@ -1,6 +1,30 @@
 {
   "glossary": [
     {
+      "id": "glossary.race",
+      "headword": "race",
+      "kind": "word",
+      "forms": ["race", "races"],
+      "senses": [
+        {
+          "es": "carrera (competencia)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.racket",
+      "headword": "racket",
+      "kind": "word",
+      "forms": ["racket", "rackets"],
+      "senses": [
+        {
+          "es": "raqueta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rain",
       "headword": "rain",
       "kind": "word",
@@ -245,6 +269,18 @@
         {
           "es": "reciclaje",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.red",
+      "headword": "red",
+      "kind": "word",
+      "forms": ["red"],
+      "senses": [
+        {
+          "es": "rojo",
+          "pos": "adjective"
         }
       ]
     },
@@ -524,6 +560,22 @@
       "senses": [
         {
           "es": "repetir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reply",
+      "headword": "reply",
+      "kind": "word",
+      "forms": ["reply", "replies", "replied", "replying"],
+      "senses": [
+        {
+          "es": "respuesta",
+          "pos": "noun"
+        },
+        {
+          "es": "responder",
           "pos": "verb"
         }
       ]
@@ -849,6 +901,18 @@
       ]
     },
     {
+      "id": "glossary.risky",
+      "headword": "risky",
+      "kind": "word",
+      "forms": ["risky"],
+      "senses": [
+        {
+          "es": "arriesgado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.river",
       "headword": "river",
       "kind": "word",
@@ -856,6 +920,18 @@
       "senses": [
         {
           "es": "río",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.road",
+      "headword": "road",
+      "kind": "word",
+      "forms": ["road", "roads"],
+      "senses": [
+        {
+          "es": "camino, carretera",
           "pos": "noun"
         }
       ]
@@ -896,6 +972,18 @@
         },
         {
           "es": "sala",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.roommate",
+      "headword": "roommate",
+      "kind": "word",
+      "forms": ["roommate", "roommates"],
+      "senses": [
+        {
+          "es": "compañero de cuarto, compañero de departamento",
           "pos": "noun"
         }
       ]

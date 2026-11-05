@@ -337,6 +337,18 @@
       ]
     },
     {
+      "id": "glossary.indian",
+      "headword": "Indian",
+      "kind": "word",
+      "forms": ["indian"],
+      "senses": [
+        {
+          "es": "indio, de la India",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.individual",
       "headword": "individual",
       "kind": "word",

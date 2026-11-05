@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.dan",
+      "headword": "Dan",
+      "kind": "word",
+      "forms": ["dan"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dance",
       "headword": "dance",
       "kind": "word",
@@ -413,6 +425,18 @@
       ]
     },
     {
+      "id": "glossary.describe",
+      "headword": "describe",
+      "kind": "word",
+      "forms": ["describe", "describes", "described", "describing"],
+      "senses": [
+        {
+          "es": "describir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.design",
       "headword": "design",
       "kind": "word",
@@ -461,6 +485,18 @@
         {
           "es": "destruir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.detail",
+      "headword": "detail",
+      "kind": "word",
+      "forms": ["detail", "details"],
+      "senses": [
+        {
+          "es": "detalle",
+          "pos": "noun"
         }
       ]
     },
@@ -665,6 +701,18 @@
       ]
     },
     {
+      "id": "glossary.dirty",
+      "headword": "dirty",
+      "kind": "word",
+      "forms": ["dirty", "dirtier", "dirtiest"],
+      "senses": [
+        {
+          "es": "sucio",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.disappear",
       "headword": "disappear",
       "kind": "word",
@@ -673,6 +721,18 @@
         {
           "es": "desaparecer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disaster",
+      "headword": "disaster",
+      "kind": "word",
+      "forms": ["disaster", "disasters"],
+      "senses": [
+        {
+          "es": "desastre",
+          "pos": "noun"
         }
       ]
     },
@@ -848,6 +908,18 @@
       "senses": [
         {
           "es": "puerta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.doorbell",
+      "headword": "doorbell",
+      "kind": "word",
+      "forms": ["doorbell", "doorbells"],
+      "senses": [
+        {
+          "es": "timbre (de la puerta)",
           "pos": "noun"
         }
       ]

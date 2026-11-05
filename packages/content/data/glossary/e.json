@@ -749,6 +749,18 @@
       ]
     },
     {
+      "id": "glossary.express",
+      "headword": "express",
+      "kind": "word",
+      "forms": ["express", "expresses", "expressed", "expressing"],
+      "senses": [
+        {
+          "es": "expresar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.extra",
       "headword": "extra",
       "kind": "word",

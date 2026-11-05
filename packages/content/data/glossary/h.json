@@ -588,6 +588,18 @@
       ]
     },
     {
+      "id": "glossary.hi",
+      "headword": "hi",
+      "kind": "word",
+      "forms": ["hi"],
+      "senses": [
+        {
+          "es": "hola",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.high",
       "headword": "high",
       "kind": "word",
@@ -775,6 +787,30 @@
         },
         {
           "es": "esperanza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.horror",
+      "headword": "horror",
+      "kind": "word",
+      "forms": ["horror"],
+      "senses": [
+        {
+          "es": "horror, terror (horror movie: película de terror)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.horse",
+      "headword": "horse",
+      "kind": "word",
+      "forms": ["horse", "horses"],
+      "senses": [
+        {
+          "es": "caballo",
           "pos": "noun"
         }
       ]

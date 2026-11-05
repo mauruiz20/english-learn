@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.cafeteria",
+      "headword": "cafeteria",
+      "kind": "word",
+      "forms": ["cafeteria", "cafeterias"],
+      "senses": [
+        {
+          "es": "cafetería, comedor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cake",
       "headword": "cake",
       "kind": "word",
@@ -449,6 +461,18 @@
       ]
     },
     {
+      "id": "glossary.celsius",
+      "headword": "Celsius",
+      "kind": "word",
+      "forms": ["celsius"],
+      "senses": [
+        {
+          "es": "centígrados",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.center",
       "headword": "center",
       "kind": "word",
@@ -638,6 +662,18 @@
       ]
     },
     {
+      "id": "glossary.chicago",
+      "headword": "Chicago",
+      "kind": "word",
+      "forms": ["chicago"],
+      "senses": [
+        {
+          "es": "Chicago (ciudad)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.chicken",
       "headword": "chicken",
       "kind": "word",
@@ -777,6 +813,18 @@
       "senses": [
         {
           "es": "iglesia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cinema",
+      "headword": "cinema",
+      "kind": "word",
+      "forms": ["cinema", "cinemas"],
+      "senses": [
+        {
+          "es": "cine",
           "pos": "noun"
         }
       ]
@@ -1002,6 +1050,18 @@
       ]
     },
     {
+      "id": "glossary.coast",
+      "headword": "coast",
+      "kind": "word",
+      "forms": ["coast", "coasts"],
+      "senses": [
+        {
+          "es": "costa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.coat",
       "headword": "coat",
       "kind": "word",
@@ -1053,6 +1113,18 @@
         },
         {
           "es": "resfriado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.collar",
+      "headword": "collar",
+      "kind": "word",
+      "forms": ["collar", "collars"],
+      "senses": [
+        {
+          "es": "collar (de perro), cuello (de camisa)",
           "pos": "noun"
         }
       ]
@@ -1542,6 +1614,18 @@
       ]
     },
     {
+      "id": "glossary.correct",
+      "headword": "correct",
+      "kind": "word",
+      "forms": ["correct", "correctly"],
+      "senses": [
+        {
+          "es": "correcto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.cost",
       "headword": "cost",
       "kind": "word",
@@ -1706,6 +1790,22 @@
       ]
     },
     {
+      "id": "glossary.court",
+      "headword": "court",
+      "kind": "word",
+      "forms": ["court", "courts"],
+      "senses": [
+        {
+          "es": "cancha (de tenis)",
+          "pos": "noun"
+        },
+        {
+          "es": "tribunal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cousin",
       "headword": "cousin",
       "kind": "word",
@@ -1857,6 +1957,18 @@
       "senses": [
         {
           "es": "choque cultural",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cup",
+      "headword": "cup",
+      "kind": "word",
+      "forms": ["cup", "cups"],
+      "senses": [
+        {
+          "es": "taza",
           "pos": "noun"
         }
       ]

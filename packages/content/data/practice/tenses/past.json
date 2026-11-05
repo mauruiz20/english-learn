@@ -1,0 +1,433 @@
+{
+  "items": [
+    {
+      "id": "b1.tenses.past-simple-finished",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "past simple for finished actions (I called her yesterday)",
+      "es": "pasado simple: acciones terminadas",
+      "example": {
+        "en": "We visited the museum last Sunday.",
+        "es": "Visitamos el museo el domingo pasado."
+      }
+    },
+    {
+      "id": "b1.tenses.past-continuous-background",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "past continuous for the background (It was raining)",
+      "es": "pasado continuo: lo que estaba pasando (el contexto de una historia)",
+      "example": {
+        "en": "It was raining and the streets were empty.",
+        "es": "Estaba lloviendo y las calles estaban vacías."
+      }
+    },
+    {
+      "id": "b1.tenses.was-doing-when",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "was doing… when… did (I was cooking when he called)",
+      "es": "una acción en curso interrumpida por otra",
+      "example": {
+        "en": "I was cooking when my sister called.",
+        "es": "Estaba cocinando cuando llamó mi hermana."
+      }
+    },
+    {
+      "id": "b1.tenses.while-was-doing",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "while + past continuous (while I was reading)",
+      "es": "mientras + pasado continuo",
+      "example": {
+        "en": "While I was walking home, it started to rain.",
+        "es": "Mientras caminaba a casa, empezó a llover."
+      }
+    },
+    {
+      "id": "b1.tenses.past-simple-sequence",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "past simple for actions in a row (I got up, had a shower and left)",
+      "es": "pasado simple: acciones seguidas, una después de otra",
+      "example": {
+        "en": "She got up, had a shower and left the house.",
+        "es": "Se levantó, se duchó y salió de la casa."
+      }
+    },
+    {
+      "id": "b1.tenses.at-that-time",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "phrase",
+      "term": "at that time",
+      "es": "en ese momento, en esa época",
+      "example": {
+        "en": "At that time, I was living in Chicago.",
+        "es": "En esa época, yo vivía en Chicago."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.tenses.practice-past-dog",
+      "level": "B1",
+      "topics": ["tenses"],
+      "title": "A strange night",
+      "text": "Last Friday, I was walking home from work. It was dark and it was raining a little. While I was crossing the park, I heard a strange noise behind me. I stopped and turned around. A small dog was following me! It didn't have a collar, so I took it home and gave it some water. The next day, I saw a poster with its photo in the park. I called the number on the poster, and the owner came to get it an hour later.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.tenses.practice-past-vocab-1",
+      "itemIds": ["b1.tenses.past-continuous-background"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence describes an action in progress at six o'clock yesterday?",
+      "options": [
+        "I called Ana at six.",
+        "I was watching TV at six.",
+        "I watch TV at six.",
+        "I've called Ana."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-past-choice-1",
+      "itemIds": ["b1.tenses.was-doing-when"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I was cooking when my sister called.",
+      "options": [
+        "Cociné después de que llamó mi hermana.",
+        "Voy a cocinar cuando llame mi hermana.",
+        "Estaba cocinando cuando llamó mi hermana."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-past-cloze-1",
+      "itemIds": ["b1.tenses.past-simple-finished"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We ___ the museum last Sunday.",
+      "answers": ["visited"],
+      "distractors": ["have visited", "visit"],
+      "es": "Visitamos el museo el domingo pasado."
+    },
+    {
+      "id": "b1.tenses.practice-past-cloze-2",
+      "itemIds": ["b1.tenses.while-was-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "___ I was walking home, it started to rain.",
+      "answers": ["While"],
+      "distractors": ["During", "For"],
+      "es": "Mientras caminaba a casa, empezó a llover."
+    },
+    {
+      "id": "b1.tenses.practice-past-vocab-2",
+      "itemIds": ["b1.tenses.at-that-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'at that time' mean in 'At that time, I was living in Chicago.'?",
+      "options": ["a tiempo", "al mismo tiempo", "todo el tiempo", "en esa época"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.tenses.practice-past-choice-2",
+      "itemIds": ["b1.tenses.past-simple-sequence"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She got up, had a shower and left the house.",
+      "options": [
+        "Se levantó, se duchó y salió de la casa.",
+        "Se estaba levantando cuando salió de la casa.",
+        "Se levanta, se ducha y sale de la casa."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.tenses.practice-past-cloze-3",
+      "itemIds": ["b1.tenses.past-continuous-background"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "It was a beautiful morning. The sun ___ and the birds were singing.",
+      "answers": ["was shining"],
+      "distractors": ["shines", "is shining"],
+      "es": "Era una mañana hermosa. El sol brillaba y los pájaros cantaban."
+    },
+    {
+      "id": "b1.tenses.practice-past-order-1",
+      "itemIds": ["b1.tenses.was-doing-when"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["the", "when", "rang.", "sleeping", "I", "phone", "was"],
+      "accepted": ["I was sleeping when the phone rang."],
+      "es": "Estaba durmiendo cuando sonó el teléfono."
+    },
+    {
+      "id": "b1.tenses.practice-past-write-1",
+      "itemIds": ["b1.tenses.past-simple-finished"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ayer llamé a mi mamá.",
+      "accepted": ["I called my {mom|mother} yesterday.", "Yesterday[,] I called my {mom|mother}."]
+    },
+    {
+      "id": "b1.tenses.practice-past-cloze-4",
+      "itemIds": ["b1.tenses.was-doing-when"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "They were having dinner when the lights suddenly ___ out.",
+      "answers": ["went"],
+      "distractors": ["were going", "go"],
+      "es": "Estaban cenando cuando de repente se fue la luz."
+    },
+    {
+      "id": "b1.tenses.practice-past-choice-3",
+      "itemIds": ["b1.tenses.while-was-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "While I was studying, my roommate was playing the guitar.",
+      "options": [
+        "Cuando terminé de estudiar, mi compañero de cuarto tocó la guitarra.",
+        "Mientras yo estudiaba, mi compañero de cuarto tocaba la guitarra.",
+        "Mientras yo estudio, mi compañero de cuarto toca la guitarra."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-past-write-2",
+      "itemIds": ["b1.tenses.was-doing-when"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Estaba manejando cuando vi el accidente.",
+      "accepted": [
+        "{I was driving when I|He was driving when he|She was driving when she} saw the accident."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-reading-1",
+      "itemIds": [
+        "b1.tenses.past-continuous-background",
+        "b1.tenses.while-was-doing",
+        "b1.tenses.past-simple-finished"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.tenses.practice-past-dog",
+      "questions": [
+        {
+          "prompt": "What was the weather like?",
+          "options": ["It was snowing.", "It was raining a little.", "It was sunny and hot."],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What happened while the writer was crossing the park?",
+          "options": [
+            "The writer heard a strange noise.",
+            "The writer lost a dog.",
+            "The writer saw a poster."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What did the writer do the next day?",
+          "options": [
+            "The writer kept the dog.",
+            "The writer bought a collar.",
+            "The writer called the number on a poster."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-cloze-5",
+      "itemIds": ["b1.tenses.past-simple-sequence"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "When I got to the café, I ___ off my coat, sat down and ordered a coffee.",
+      "answers": ["took"],
+      "distractors": ["was taking", "take"],
+      "es": "Cuando llegué al café, me quité el abrigo, me senté y pedí un café."
+    },
+    {
+      "id": "b1.tenses.practice-past-vocab-3",
+      "itemIds": ["b1.tenses.while-was-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "During I was cooking, the phone rang.",
+        "While I was cooking, the phone rang.",
+        "While I cooking, the phone rang."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-past-cloze-6",
+      "itemIds": ["b1.tenses.past-continuous-background"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "What ___ you doing at ten last night? I called you, but you didn't answer.",
+      "answers": ["were"],
+      "distractors": ["did", "was"],
+      "es": "¿Qué estabas haciendo anoche a las diez? Te llamé, pero no contestaste."
+    },
+    {
+      "id": "b1.tenses.practice-past-choice-4",
+      "itemIds": ["b1.tenses.was-doing-when"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "When Laura arrived, we were having dinner.",
+      "options": [
+        "Cuando llegó Laura, cenamos.",
+        "Cuando llegó Laura, estábamos cenando.",
+        "Cuando llegó Laura, ya habíamos cenado."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-past-choice-5",
+      "itemIds": ["b1.tenses.past-simple-sequence"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "When Laura arrived, we had dinner.",
+      "options": [
+        "Cuando llegó Laura, cenamos.",
+        "Cuando llegó Laura, estábamos cenando.",
+        "Cuando llegó Laura, ya habíamos cenado."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.tenses.practice-past-order-2",
+      "itemIds": ["b1.tenses.while-was-doing"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["while", "rang", "shower.", "My", "a", "I", "taking", "phone", "was"],
+      "accepted": ["My phone rang while I was taking a shower."],
+      "es": "Mi teléfono sonó mientras me estaba bañando."
+    },
+    {
+      "id": "b1.tenses.practice-past-write-3",
+      "itemIds": ["b1.tenses.at-that-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "En esa época, yo vivía en Chicago.",
+      "accepted": [
+        "At that time[,] I {lived|was living} in Chicago.",
+        "I {lived|was living} in Chicago at that time."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-write-4",
+      "itemIds": ["b1.tenses.past-continuous-background"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Estaba lloviendo cuando salimos.",
+      "accepted": [
+        "It was raining when we {left|went out}.",
+        "When we {left|went out}, it was raining."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.tenses.practice-past-1",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Pasado simple y continuo: conócelos",
+      "exerciseIds": [
+        "b1.tenses.practice-past-vocab-1",
+        "b1.tenses.practice-past-choice-1",
+        "b1.tenses.practice-past-cloze-1",
+        "b1.tenses.practice-past-cloze-2",
+        "b1.tenses.practice-past-vocab-2",
+        "b1.tenses.practice-past-choice-2",
+        "b1.tenses.practice-past-cloze-3"
+      ],
+      "newItemIds": [
+        "b1.tenses.past-continuous-background",
+        "b1.tenses.was-doing-when",
+        "b1.tenses.past-simple-finished",
+        "b1.tenses.while-was-doing",
+        "b1.tenses.at-that-time"
+      ],
+      "deepenCardIds": ["b1.grammar.past-continuous"]
+    },
+    {
+      "id": "b1.tenses.practice-past-2",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Pasado simple y continuo: practícalos",
+      "exerciseIds": [
+        "b1.tenses.practice-past-order-1",
+        "b1.tenses.practice-past-write-1",
+        "b1.tenses.practice-past-cloze-4",
+        "b1.tenses.practice-past-choice-3",
+        "b1.tenses.practice-past-write-2",
+        "b1.tenses.practice-past-reading-1",
+        "b1.tenses.practice-past-cloze-5"
+      ],
+      "newItemIds": [
+        "b1.tenses.past-simple-sequence",
+        "b1.tenses.was-doing-when",
+        "b1.tenses.past-simple-finished",
+        "b1.tenses.while-was-doing",
+        "b1.tenses.past-continuous-background"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-past-3",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Pasado simple y continuo: no los confundas",
+      "exerciseIds": [
+        "b1.tenses.practice-past-vocab-3",
+        "b1.tenses.practice-past-cloze-6",
+        "b1.tenses.practice-past-choice-4",
+        "b1.tenses.practice-past-choice-5",
+        "b1.tenses.practice-past-order-2",
+        "b1.tenses.practice-past-write-3",
+        "b1.tenses.practice-past-write-4"
+      ],
+      "newItemIds": [
+        "b1.tenses.while-was-doing",
+        "b1.tenses.past-continuous-background",
+        "b1.tenses.was-doing-when",
+        "b1.tenses.past-simple-sequence",
+        "b1.tenses.at-that-time"
+      ]
+    }
+  ]
+}

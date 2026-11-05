@@ -129,6 +129,18 @@
       ]
     },
     {
+      "id": "glossary.sara",
+      "headword": "Sara",
+      "kind": "word",
+      "forms": ["sara"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.saturday",
       "headword": "Saturday",
       "kind": "word",
@@ -220,6 +232,18 @@
       "senses": [
         {
           "es": "escena",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.schedule",
+      "headword": "schedule",
+      "kind": "word",
+      "forms": ["schedule", "schedules"],
+      "senses": [
+        {
+          "es": "horario, agenda",
           "pos": "noun"
         }
       ]
@@ -413,6 +437,18 @@
         {
           "es": "despedir (a alguien que se va de viaje)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.seem",
+      "headword": "seem",
+      "kind": "word",
+      "forms": ["seem", "seems", "seemed", "seeming"],
+      "senses": [
+        {
+          "es": "parecer",
+          "pos": "verb"
         }
       ]
     },
@@ -705,6 +741,17 @@
         {
           "es": "ella",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.she-ll",
+      "headword": "she'll",
+      "kind": "word",
+      "forms": ["she'll"],
+      "senses": [
+        {
+          "es": "ella (she will): futuro, she'll win = va a ganar"
         }
       ]
     },
@@ -1521,6 +1568,18 @@
       ]
     },
     {
+      "id": "glossary.sofia-2",
+      "headword": "Sofia",
+      "kind": "word",
+      "forms": ["sofia"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.solar-power",
       "headword": "solar power",
       "kind": "phrase",
@@ -1849,6 +1908,18 @@
       ]
     },
     {
+      "id": "glossary.specific",
+      "headword": "specific",
+      "kind": "word",
+      "forms": ["specific"],
+      "senses": [
+        {
+          "es": "concreto, específico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.speech",
       "headword": "speech",
       "kind": "word",
@@ -2021,6 +2092,18 @@
         {
           "es": "empezar, comenzar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.state",
+      "headword": "state",
+      "kind": "word",
+      "forms": ["state", "states"],
+      "senses": [
+        {
+          "es": "estado",
+          "pos": "noun"
         }
       ]
     },
@@ -2405,6 +2488,18 @@
       ]
     },
     {
+      "id": "glossary.suddenly",
+      "headword": "suddenly",
+      "kind": "word",
+      "forms": ["suddenly"],
+      "senses": [
+        {
+          "es": "de repente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.suffer",
       "headword": "suffer",
       "kind": "word",
@@ -2436,6 +2531,18 @@
       "senses": [
         {
           "es": "traje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suitcase",
+      "headword": "suitcase",
+      "kind": "word",
+      "forms": ["suitcase", "suitcases"],
+      "senses": [
+        {
+          "es": "maleta",
           "pos": "noun"
         }
       ]

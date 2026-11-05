@@ -53,6 +53,18 @@
       ]
     },
     {
+      "id": "glossary.background",
+      "headword": "background",
+      "kind": "word",
+      "forms": ["background", "backgrounds"],
+      "senses": [
+        {
+          "es": "fondo, contexto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.backpack",
       "headword": "backpack",
       "kind": "word",
@@ -281,6 +293,30 @@
         {
           "es": "playa",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bear",
+      "headword": "bear",
+      "kind": "word",
+      "forms": ["bear", "bears"],
+      "senses": [
+        {
+          "es": "oso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.beautiful",
+      "headword": "beautiful",
+      "kind": "word",
+      "forms": ["beautiful"],
+      "senses": [
+        {
+          "es": "hermoso, precioso",
+          "pos": "adjective"
         }
       ]
     },
@@ -529,6 +565,18 @@
       ]
     },
     {
+      "id": "glossary.bird",
+      "headword": "bird",
+      "kind": "word",
+      "forms": ["bird", "birds"],
+      "senses": [
+        {
+          "es": "pájaro, ave",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.birthday",
       "headword": "birthday",
       "kind": "word",
@@ -536,6 +584,18 @@
       "senses": [
         {
           "es": "cumpleaños",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bit",
+      "headword": "bit",
+      "kind": "word",
+      "forms": ["bit", "bits"],
+      "senses": [
+        {
+          "es": "poco (a bit: un poco)",
           "pos": "noun"
         }
       ]
@@ -577,6 +637,18 @@
         {
           "es": "cuerpo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boil",
+      "headword": "boil",
+      "kind": "word",
+      "forms": ["boil", "boils", "boiled", "boiling"],
+      "senses": [
+        {
+          "es": "hervir",
+          "pos": "verb"
         }
       ]
     },
@@ -693,6 +765,18 @@
         {
           "es": "jefe, jefa",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.boston",
+      "headword": "Boston",
+      "kind": "word",
+      "forms": ["boston"],
+      "senses": [
+        {
+          "es": "Boston (ciudad)",
+          "pos": "proper noun"
         }
       ]
     },

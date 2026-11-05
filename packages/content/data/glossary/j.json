@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.japan",
+      "headword": "Japan",
+      "kind": "word",
+      "forms": ["japan"],
+      "senses": [
+        {
+          "es": "Japón",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.japanese",
       "headword": "Japanese",
       "kind": "word",

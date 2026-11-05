@@ -173,6 +173,18 @@
       ]
     },
     {
+      "id": "glossary.marathon",
+      "headword": "marathon",
+      "kind": "word",
+      "forms": ["marathon", "marathons"],
+      "senses": [
+        {
+          "es": "maratón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.march",
       "headword": "March",
       "kind": "word",
@@ -192,6 +204,18 @@
       "senses": [
         {
           "es": "Marco (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mark",
+      "headword": "Mark",
+      "kind": "word",
+      "forms": ["mark"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
           "pos": "proper noun"
         }
       ]
@@ -288,6 +312,18 @@
         },
         {
           "es": "(May) mayo",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.maya",
+      "headword": "Maya",
+      "kind": "word",
+      "forms": ["maya"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
           "pos": "proper noun"
         }
       ]

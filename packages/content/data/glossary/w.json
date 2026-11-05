@@ -353,6 +353,18 @@
       ]
     },
     {
+      "id": "glossary.wednesday",
+      "headword": "Wednesday",
+      "kind": "word",
+      "forms": ["wednesday", "wednesdays"],
+      "senses": [
+        {
+          "es": "miércoles",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.week",
       "headword": "week",
       "kind": "word",
@@ -709,6 +721,18 @@
         {
           "es": "(will + verbo) futuro: I will go = iré",
           "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.win",
+      "headword": "win",
+      "kind": "word",
+      "forms": ["win", "wins", "winning"],
+      "senses": [
+        {
+          "es": "ganar",
+          "pos": "verb"
         }
       ]
     },

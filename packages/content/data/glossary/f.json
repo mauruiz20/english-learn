@@ -565,6 +565,18 @@
       ]
     },
     {
+      "id": "glossary.finger",
+      "headword": "finger",
+      "kind": "word",
+      "forms": ["finger", "fingers"],
+      "senses": [
+        {
+          "es": "dedo (de la mano)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.finish",
       "headword": "finish",
       "kind": "word",

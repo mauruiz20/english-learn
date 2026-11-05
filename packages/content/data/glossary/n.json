@@ -81,6 +81,18 @@
       ]
     },
     {
+      "id": "glossary.negative",
+      "headword": "negative",
+      "kind": "word",
+      "forms": ["negative", "negatives"],
+      "senses": [
+        {
+          "es": "negativo; oración negativa",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.neighbor",
       "headword": "neighbor",
       "kind": "word",

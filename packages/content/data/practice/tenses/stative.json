@@ -1,0 +1,403 @@
+{
+  "items": [
+    {
+      "id": "b1.tenses.know-stative",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "know without -ing (I know, not I'm knowing)",
+      "es": "know (saber, conocer) no va en forma continua",
+      "example": {
+        "en": "Do you know my brother?",
+        "es": "¿Conoces a mi hermano?"
+      }
+    },
+    {
+      "id": "b1.tenses.want-need-stative",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "want / need without -ing (I want, not I'm wanting)",
+      "es": "want (querer) y need (necesitar) no van en forma continua",
+      "example": {
+        "en": "Right now I want a big glass of water.",
+        "es": "Ahora mismo quiero un vaso grande de agua."
+      }
+    },
+    {
+      "id": "b1.tenses.believe-understand",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "believe / understand without -ing (I understand)",
+      "es": "believe (creer) y understand (entender): verbos mentales, sin -ing",
+      "example": {
+        "en": "Sorry, I don't understand what you mean.",
+        "es": "Perdón, no entiendo lo que quieres decir."
+      }
+    },
+    {
+      "id": "b1.tenses.own-stative",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "own without -ing (He owns two restaurants)",
+      "es": "own (ser dueño de, tener) no va en forma continua",
+      "example": {
+        "en": "My uncle owns two restaurants downtown.",
+        "es": "Mi tío es dueño de dos restaurantes en el centro."
+      }
+    },
+    {
+      "id": "b1.tenses.think-have-two-meanings",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "think / have: state or action (I think so / I'm thinking about it)",
+      "es": "think y have: sin -ing como estado (creer, tener), con -ing como acción (pensar, comer)",
+      "example": {
+        "en": "I'm having lunch with a client, but I think I can call you later.",
+        "es": "Estoy almorzando con un cliente, pero creo que puedo llamarte más tarde."
+      }
+    },
+    {
+      "id": "b1.tenses.seem-stative",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "seem without -ing (You seem tired)",
+      "es": "seem (parecer) no va en forma continua",
+      "example": {
+        "en": "You seem worried. Is everything OK?",
+        "es": "Pareces preocupado. ¿Está todo bien?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.tenses.practice-stative-leo",
+      "level": "B1",
+      "topics": ["tenses"],
+      "title": "A message from college",
+      "text": "Hi Mom, I'm writing from the library. I know you want me to call more often, and I understand why. The problem is that I don't have much free time this month. I'm thinking about getting a part-time job, but I'm not sure yet. My roommate seems nice. He owns a car, so he sometimes drives me to class. Oh, and I really need some new shoes. Can you send me a little money? Love, Leo",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.tenses.practice-stative-vocab-1",
+      "itemIds": ["b1.tenses.know-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": ["I'm knowing the answer.", "I knowing the answer.", "I know the answer."],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-stative-choice-1",
+      "itemIds": ["b1.tenses.want-need-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Do you need any help?",
+      "options": ["¿Estás ayudando a alguien?", "¿Necesitaste ayuda?", "¿Necesitas ayuda?"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-stative-cloze-1",
+      "itemIds": ["b1.tenses.believe-understand"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Sorry, I don't ___ what you mean.",
+      "answers": ["understand"],
+      "distractors": ["understanding", "am understanding"],
+      "es": "Perdón, no entiendo lo que quieres decir."
+    },
+    {
+      "id": "b1.tenses.practice-stative-cloze-2",
+      "itemIds": ["b1.tenses.own-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My uncle ___ two restaurants downtown.",
+      "answers": ["owns"],
+      "distractors": ["is owning", "own"],
+      "es": "Mi tío es dueño de dos restaurantes en el centro."
+    },
+    {
+      "id": "b1.tenses.practice-stative-vocab-2",
+      "itemIds": ["b1.tenses.think-have-two-meanings"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'I'm thinking about it' mean?",
+      "options": ["Creo que sí.", "Lo estoy pensando (todavía no decido).", "No me importa."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-stative-choice-2",
+      "itemIds": ["b1.tenses.seem-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "You seem worried. Is everything OK?",
+      "options": [
+        "Me estás preocupando. ¿Está todo bien?",
+        "Pareces preocupado. ¿Está todo bien?",
+        "Te preocupas demasiado. ¿Está todo bien?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-stative-cloze-3",
+      "itemIds": ["b1.tenses.want-need-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Right now I ___ a big glass of water.",
+      "answers": ["want"],
+      "distractors": ["am wanting", "wanting"],
+      "es": "Ahora mismo quiero un vaso grande de agua."
+    },
+    {
+      "id": "b1.tenses.practice-stative-order-1",
+      "itemIds": ["b1.tenses.believe-understand"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["he", "word", "believe", "a", "says.", "don't", "I"],
+      "accepted": ["I don't believe a word he says."],
+      "es": "No le creo ni una palabra."
+    },
+    {
+      "id": "b1.tenses.practice-stative-write-1",
+      "itemIds": ["b1.tenses.know-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Conoces a mi hermano?",
+      "accepted": ["Do you know my brother?"]
+    },
+    {
+      "id": "b1.tenses.practice-stative-cloze-4",
+      "itemIds": ["b1.tenses.think-have-two-meanings"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I ___ about changing jobs, but I haven't decided yet.",
+      "answers": ["am thinking"],
+      "distractors": ["thinking", "am think"],
+      "es": "Estoy pensando en cambiar de trabajo, pero todavía no lo decido."
+    },
+    {
+      "id": "b1.tenses.practice-stative-choice-3",
+      "itemIds": ["b1.tenses.own-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Who owns this car?",
+      "options": [
+        "¿Quién maneja este auto?",
+        "¿De quién es este auto?",
+        "¿Quién compró este auto ayer?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-stative-write-2",
+      "itemIds": ["b1.tenses.want-need-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Necesito un descanso ahora mismo.",
+      "accepted": [
+        "I need a break {right now|now}.",
+        "{Right now|Now}[,] I need a break.",
+        "I need to take a break {right now|now}."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-stative-reading-1",
+      "itemIds": [
+        "b1.tenses.think-have-two-meanings",
+        "b1.tenses.own-stative",
+        "b1.tenses.want-need-stative"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.tenses.practice-stative-leo",
+      "questions": [
+        {
+          "prompt": "What is Leo thinking about?",
+          "options": ["Buying a car", "Changing rooms", "Getting a part-time job"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Who owns a car?",
+          "options": ["Leo", "Leo's roommate", "Leo's mom"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does Leo need?",
+          "options": ["New shoes", "A new phone", "A car"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-stative-cloze-5",
+      "itemIds": ["b1.tenses.seem-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Your plan ___ a bit risky to me.",
+      "answers": ["seems"],
+      "distractors": ["is seeming", "seem"],
+      "es": "Tu plan me parece un poco arriesgado."
+    },
+    {
+      "id": "b1.tenses.practice-stative-vocab-3",
+      "itemIds": ["b1.tenses.think-have-two-meanings"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": ["I'm having a car.", "I have a car.", "I having a car."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-stative-cloze-6",
+      "itemIds": ["b1.tenses.think-have-two-meanings"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Can I call you back? I ___ lunch with a client right now.",
+      "answers": ["am having"],
+      "distractors": ["have", "has"],
+      "es": "¿Te puedo llamar después? Estoy almorzando con un cliente ahora mismo."
+    },
+    {
+      "id": "b1.tenses.practice-stative-choice-4",
+      "itemIds": ["b1.tenses.think-have-two-meanings"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I think you're right.",
+      "options": [
+        "Creo que tienes razón.",
+        "Estoy pensando si tienes razón.",
+        "Pensé que tenías razón."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.tenses.practice-stative-order-2",
+      "itemIds": ["b1.tenses.want-need-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["for", "want", "birthday?", "do", "What", "your", "you"],
+      "accepted": ["What do you want for your birthday?"],
+      "es": "¿Qué quieres para tu cumpleaños?"
+    },
+    {
+      "id": "b1.tenses.practice-stative-write-3",
+      "itemIds": ["b1.tenses.believe-understand"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "No te creo.",
+      "accepted": ["I don't believe you."]
+    },
+    {
+      "id": "b1.tenses.practice-stative-cloze-7",
+      "itemIds": ["b1.tenses.know-stative"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We ___ each other since we were kids.",
+      "answers": ["have known"],
+      "distractors": ["are knowing", "know"],
+      "es": "Nos conocemos desde que éramos niños."
+    },
+    {
+      "id": "b1.tenses.practice-stative-write-4",
+      "itemIds": ["b1.tenses.believe-understand"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ahora entiendo el problema.",
+      "accepted": ["Now I understand the problem.", "I understand the problem now."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.tenses.practice-stative-1",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Verbos de estado: conócelos",
+      "exerciseIds": [
+        "b1.tenses.practice-stative-vocab-1",
+        "b1.tenses.practice-stative-choice-1",
+        "b1.tenses.practice-stative-cloze-1",
+        "b1.tenses.practice-stative-cloze-2",
+        "b1.tenses.practice-stative-vocab-2",
+        "b1.tenses.practice-stative-choice-2",
+        "b1.tenses.practice-stative-cloze-3"
+      ],
+      "newItemIds": [
+        "b1.tenses.know-stative",
+        "b1.tenses.want-need-stative",
+        "b1.tenses.believe-understand",
+        "b1.tenses.own-stative",
+        "b1.tenses.think-have-two-meanings"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-stative-2",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Verbos de estado: practícalos",
+      "exerciseIds": [
+        "b1.tenses.practice-stative-order-1",
+        "b1.tenses.practice-stative-write-1",
+        "b1.tenses.practice-stative-cloze-4",
+        "b1.tenses.practice-stative-choice-3",
+        "b1.tenses.practice-stative-write-2",
+        "b1.tenses.practice-stative-reading-1",
+        "b1.tenses.practice-stative-cloze-5"
+      ],
+      "newItemIds": [
+        "b1.tenses.seem-stative",
+        "b1.tenses.believe-understand",
+        "b1.tenses.know-stative",
+        "b1.tenses.think-have-two-meanings",
+        "b1.tenses.own-stative"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-stative-3",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Verbos de estado: no los confundas",
+      "exerciseIds": [
+        "b1.tenses.practice-stative-vocab-3",
+        "b1.tenses.practice-stative-cloze-6",
+        "b1.tenses.practice-stative-choice-4",
+        "b1.tenses.practice-stative-order-2",
+        "b1.tenses.practice-stative-write-3",
+        "b1.tenses.practice-stative-cloze-7",
+        "b1.tenses.practice-stative-write-4"
+      ],
+      "newItemIds": [
+        "b1.tenses.think-have-two-meanings",
+        "b1.tenses.want-need-stative",
+        "b1.tenses.believe-understand",
+        "b1.tenses.know-stative"
+      ]
+    }
+  ]
+}

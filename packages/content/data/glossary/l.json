@@ -1,6 +1,34 @@
 {
   "glossary": [
     {
+      "id": "glossary.lake",
+      "headword": "lake",
+      "kind": "word",
+      "forms": ["lake", "lakes"],
+      "senses": [
+        {
+          "es": "lago",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.land",
+      "headword": "land",
+      "kind": "word",
+      "forms": ["land", "lands", "landed", "landing"],
+      "senses": [
+        {
+          "es": "aterrizar",
+          "pos": "verb"
+        },
+        {
+          "es": "tierra, terreno",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.language",
       "headword": "language",
       "kind": "word",
@@ -72,6 +100,18 @@
         },
         {
           "es": "(later) después, más tarde",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lately",
+      "headword": "lately",
+      "kind": "word",
+      "forms": ["lately"],
+      "senses": [
+        {
+          "es": "últimamente",
           "pos": "adverb"
         }
       ]
@@ -229,6 +269,18 @@
         {
           "es": "prestar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.leo",
+      "headword": "Leo",
+      "kind": "word",
+      "forms": ["leo"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -887,6 +939,18 @@
         {
           "es": "equipaje",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.luna",
+      "headword": "Luna",
+      "kind": "word",
+      "forms": ["luna"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
         }
       ]
     },

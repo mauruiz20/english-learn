@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.pack",
+      "headword": "pack",
+      "kind": "word",
+      "forms": ["pack", "packs", "packed", "packing"],
+      "senses": [
+        {
+          "es": "hacer la maleta, empacar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.page",
       "headword": "page",
       "kind": "word",
@@ -309,6 +321,30 @@
         {
           "es": "paciente",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.paul",
+      "headword": "Paul",
+      "kind": "word",
+      "forms": ["paul"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.paved",
+      "headword": "paved",
+      "kind": "word",
+      "forms": ["paved"],
+      "senses": [
+        {
+          "es": "pavimentado",
+          "pos": "adjective"
         }
       ]
     },
@@ -865,6 +901,18 @@
       ]
     },
     {
+      "id": "glossary.polite",
+      "headword": "polite",
+      "kind": "word",
+      "forms": ["polite", "politely"],
+      "senses": [
+        {
+          "es": "amable, cortés",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.politics",
       "headword": "politics",
       "kind": "word",
@@ -948,6 +996,18 @@
       "senses": [
         {
           "es": "oficina de correos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.poster",
+      "headword": "poster",
+      "kind": "word",
+      "forms": ["poster", "posters"],
+      "senses": [
+        {
+          "es": "cartel, afiche",
           "pos": "noun"
         }
       ]
@@ -1256,6 +1316,18 @@
       "senses": [
         {
           "es": "programa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.progress",
+      "headword": "progress",
+      "kind": "word",
+      "forms": ["progress"],
+      "senses": [
+        {
+          "es": "progreso (in progress: en curso)",
           "pos": "noun"
         }
       ]

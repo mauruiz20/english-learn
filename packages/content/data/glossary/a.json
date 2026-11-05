@@ -57,6 +57,18 @@
       ]
     },
     {
+      "id": "glossary.a-m",
+      "headword": "a.m.",
+      "kind": "word",
+      "forms": ["a.m."],
+      "senses": [
+        {
+          "es": "de la mañana (a. m.)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.aback",
       "headword": "aback",
       "kind": "word",
@@ -349,6 +361,18 @@
       ]
     },
     {
+      "id": "glossary.ad",
+      "headword": "ad",
+      "kind": "word",
+      "forms": ["ad", "ads"],
+      "senses": [
+        {
+          "es": "anuncio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.address",
       "headword": "address",
       "kind": "word",
@@ -580,6 +604,18 @@
       "senses": [
         {
           "es": "aeropuerto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.alarm",
+      "headword": "alarm",
+      "kind": "word",
+      "forms": ["alarm", "alarms"],
+      "senses": [
+        {
+          "es": "alarma, despertador",
           "pos": "noun"
         }
       ]

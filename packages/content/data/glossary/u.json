@@ -85,6 +85,18 @@
       ]
     },
     {
+      "id": "glossary.unfinished",
+      "headword": "unfinished",
+      "kind": "word",
+      "forms": ["unfinished"],
+      "senses": [
+        {
+          "es": "sin terminar, no terminado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.unfortunately",
       "headword": "unfortunately",
       "kind": "word",

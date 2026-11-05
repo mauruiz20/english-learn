@@ -1,0 +1,420 @@
+{
+  "items": [
+    {
+      "id": "b1.tenses.present-perfect-experience",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present perfect for experiences (I've tried sushi)",
+      "es": "presente perfecto: experiencias (alguna vez, nunca)",
+      "example": {
+        "en": "I've never seen the ocean.",
+        "es": "Nunca he visto el mar."
+      }
+    },
+    {
+      "id": "b1.tenses.present-perfect-unfinished-time",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present perfect with unfinished time (today, this week)",
+      "es": "presente perfecto con un período que no terminó (hoy, esta semana)",
+      "example": {
+        "en": "I've drunk three cups of coffee today.",
+        "es": "Hoy me he tomado tres cafés."
+      }
+    },
+    {
+      "id": "b1.tenses.just-done",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "just + present perfect (I've just eaten)",
+      "es": "acabar de (have just + participio)",
+      "example": {
+        "en": "The train has just left.",
+        "es": "El tren acaba de salir."
+      }
+    },
+    {
+      "id": "b1.tenses.already-done",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "already + present perfect (I've already paid)",
+      "es": "ya (en afirmaciones)",
+      "example": {
+        "en": "We've already seen this movie.",
+        "es": "Ya vimos esta película."
+      }
+    },
+    {
+      "id": "b1.tenses.yet-done",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "yet in questions and negatives (Have you finished yet? / not yet)",
+      "es": "ya (en preguntas) y todavía (en negativas)",
+      "example": {
+        "en": "I haven't called the bank yet.",
+        "es": "Todavía no he llamado al banco."
+      }
+    },
+    {
+      "id": "b1.tenses.how-long-have-you",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "How long have you…? (How long have you known her?)",
+      "es": "¿cuánto tiempo hace que…? (con for / since)",
+      "example": {
+        "en": "How long have you known Ana?",
+        "es": "¿Cuánto tiempo hace que conoces a Ana?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.tenses.practice-present-perfect-dan",
+      "level": "B1",
+      "topics": ["tenses"],
+      "title": "A new city",
+      "text": "Dan moved to a new city last month for work. He has already learned the names of the streets near his apartment, and he has made two friends at the office. He has never lived alone before, so it's a big change for him. This week he has cooked dinner every night. He hasn't visited the famous old market yet, but he wants to go on Saturday. His mom has just called him to ask how everything is going.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.tenses.practice-present-perfect-vocab-1",
+      "itemIds": ["b1.tenses.just-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'just' mean in 'I've just arrived.'?",
+      "options": ["solo", "acabo de", "justo a tiempo", "todavía no"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-choice-1",
+      "itemIds": ["b1.tenses.present-perfect-experience"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Have you ever tried Indian food?",
+      "options": [
+        "¿Vas a probar la comida india?",
+        "¿Te gusta la comida india?",
+        "¿Alguna vez has probado la comida india?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-cloze-1",
+      "itemIds": ["b1.tenses.already-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Don't buy milk. I've ___ bought some.",
+      "answers": ["already"],
+      "distractors": ["yet", "ever"],
+      "es": "No compres leche. Ya compré."
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-cloze-2",
+      "itemIds": ["b1.tenses.yet-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Have you finished your homework ___?",
+      "answers": ["yet"],
+      "distractors": ["ago", "ever"],
+      "es": "¿Ya terminaste tu tarea?"
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-vocab-2",
+      "itemIds": ["b1.tenses.present-perfect-unfinished-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I've drunk three cups of coffee yesterday.",
+        "I drink three cups of coffee yesterday.",
+        "I've drunk three cups of coffee today."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-choice-2",
+      "itemIds": ["b1.tenses.present-perfect-experience"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I've never seen the ocean.",
+      "options": ["No vi el mar ayer.", "Nunca he visto el mar.", "Nunca voy a ver el mar."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-cloze-3",
+      "itemIds": ["b1.tenses.just-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Be careful, the coffee is very hot. I've ___ made it.",
+      "answers": ["just"],
+      "distractors": ["yet", "ever"],
+      "es": "Ten cuidado, el café está muy caliente. Lo acabo de hacer."
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-order-1",
+      "itemIds": ["b1.tenses.yet-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["yet.", "called", "I", "bank", "haven't", "the"],
+      "accepted": ["I haven't called the bank yet."],
+      "es": "Todavía no he llamado al banco."
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-write-1",
+      "itemIds": ["b1.tenses.present-perfect-experience"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Alguna vez has visto un oso?",
+      "accepted": ["Have you ever seen a bear?"]
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-cloze-4",
+      "itemIds": ["b1.tenses.present-perfect-unfinished-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "It's only nine o'clock, and she ___ ten emails this morning.",
+      "answers": ["has sent"],
+      "distractors": ["has send", "have sent"],
+      "es": "Son apenas las nueve y ya ha enviado diez correos esta mañana."
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-choice-3",
+      "itemIds": ["b1.tenses.already-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We've already seen this movie.",
+      "options": [
+        "Todavía no vimos esta película.",
+        "Vamos a ver esta película.",
+        "Ya vimos esta película."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-write-2",
+      "itemIds": ["b1.tenses.just-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Acabo de llegar a casa.",
+      "accepted": ["I've just {gotten|arrived|come} home.", "I just {got|arrived|came} home."]
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-cloze-5",
+      "itemIds": ["b1.tenses.how-long-have-you"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We've lived in this house ___ ten years.",
+      "answers": ["for"],
+      "distractors": ["since", "during"],
+      "es": "Vivimos en esta casa desde hace diez años."
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-reading-1",
+      "itemIds": [
+        "b1.tenses.already-done",
+        "b1.tenses.yet-done",
+        "b1.tenses.present-perfect-experience",
+        "b1.tenses.just-done"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.tenses.practice-present-perfect-dan",
+      "questions": [
+        {
+          "prompt": "Has Dan visited the old market?",
+          "options": ["Yes, last week.", "No, not yet.", "Yes, every Saturday."],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What has Dan never done before?",
+          "options": ["Lived alone", "Made friends at work", "Cooked dinner"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Who has just called him?",
+          "options": ["His boss", "A friend from the office", "His mom"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-vocab-3",
+      "itemIds": ["b1.tenses.yet-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": ["I haven't eaten already.", "I haven't eaten yet.", "I have eaten yet."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-vocab-4",
+      "itemIds": ["b1.tenses.how-long-have-you"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I know Ana since 2019.",
+        "I'm knowing Ana since 2019.",
+        "I've known Ana since 2019."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-cloze-6",
+      "itemIds": ["b1.tenses.present-perfect-experience"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Have you ever ___ to Canada?",
+      "answers": ["been"],
+      "distractors": ["went", "go"],
+      "es": "¿Alguna vez has estado en Canadá?"
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-choice-4",
+      "itemIds": ["b1.tenses.just-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "The train has just left.",
+      "options": ["El tren sale ahora.", "El tren acaba de salir.", "El tren todavía no sale."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-order-2",
+      "itemIds": ["b1.tenses.already-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["report.", "finished", "She", "already", "the", "has"],
+      "accepted": ["She has already finished the report."],
+      "es": "Ella ya terminó el informe."
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-write-3",
+      "itemIds": ["b1.tenses.yet-done"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Todavía no he terminado el libro.",
+      "accepted": [
+        "I haven't finished the book yet.",
+        "I {still haven't|haven't yet} finished the book."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-cloze-7",
+      "itemIds": ["b1.tenses.how-long-have-you"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I've known Marta ___ we were kids.",
+      "answers": ["since"],
+      "distractors": ["for", "from"],
+      "es": "Conozco a Marta desde que éramos niños."
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-write-4",
+      "itemIds": ["b1.tenses.how-long-have-you"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Cuánto tiempo hace que conoces a Ana?",
+      "accepted": ["How long have you known Ana?"]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.tenses.practice-present-perfect-1",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto: conócelo",
+      "exerciseIds": [
+        "b1.tenses.practice-present-perfect-vocab-1",
+        "b1.tenses.practice-present-perfect-choice-1",
+        "b1.tenses.practice-present-perfect-cloze-1",
+        "b1.tenses.practice-present-perfect-cloze-2",
+        "b1.tenses.practice-present-perfect-vocab-2",
+        "b1.tenses.practice-present-perfect-choice-2",
+        "b1.tenses.practice-present-perfect-cloze-3"
+      ],
+      "newItemIds": [
+        "b1.tenses.just-done",
+        "b1.tenses.present-perfect-experience",
+        "b1.tenses.already-done",
+        "b1.tenses.yet-done",
+        "b1.tenses.present-perfect-unfinished-time"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-2",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto: practícalo",
+      "exerciseIds": [
+        "b1.tenses.practice-present-perfect-order-1",
+        "b1.tenses.practice-present-perfect-write-1",
+        "b1.tenses.practice-present-perfect-cloze-4",
+        "b1.tenses.practice-present-perfect-choice-3",
+        "b1.tenses.practice-present-perfect-write-2",
+        "b1.tenses.practice-present-perfect-cloze-5",
+        "b1.tenses.practice-present-perfect-reading-1"
+      ],
+      "newItemIds": [
+        "b1.tenses.how-long-have-you",
+        "b1.tenses.present-perfect-unfinished-time",
+        "b1.tenses.present-perfect-experience",
+        "b1.tenses.already-done",
+        "b1.tenses.yet-done"
+      ],
+      "deepenCardIds": ["a2.grammar.for-since"]
+    },
+    {
+      "id": "b1.tenses.practice-present-perfect-3",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto: no lo confundas",
+      "exerciseIds": [
+        "b1.tenses.practice-present-perfect-vocab-3",
+        "b1.tenses.practice-present-perfect-vocab-4",
+        "b1.tenses.practice-present-perfect-cloze-6",
+        "b1.tenses.practice-present-perfect-choice-4",
+        "b1.tenses.practice-present-perfect-order-2",
+        "b1.tenses.practice-present-perfect-write-3",
+        "b1.tenses.practice-present-perfect-cloze-7",
+        "b1.tenses.practice-present-perfect-write-4"
+      ],
+      "newItemIds": [
+        "b1.tenses.how-long-have-you",
+        "b1.tenses.yet-done",
+        "b1.tenses.present-perfect-experience",
+        "b1.tenses.just-done",
+        "b1.tenses.already-done"
+      ]
+    }
+  ]
+}

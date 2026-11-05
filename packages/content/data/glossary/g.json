@@ -45,6 +45,18 @@
       ]
     },
     {
+      "id": "glossary.garden",
+      "headword": "garden",
+      "kind": "word",
+      "forms": ["garden", "gardens"],
+      "senses": [
+        {
+          "es": "jardín",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.gas",
       "headword": "gas",
       "kind": "word",
@@ -842,6 +854,18 @@
         {
           "es": "crecer, criarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.guess",
+      "headword": "guess",
+      "kind": "word",
+      "forms": ["guess", "guesses", "guessed", "guessing"],
+      "senses": [
+        {
+          "es": "adivinar (Guess what?: ¿sabes qué?)",
+          "pos": "verb"
         }
       ]
     },
