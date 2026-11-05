@@ -8,7 +8,7 @@ import { expandAccepted } from "../../../../packages/domain/src/answer-matching/
 type Choice = { options: string[]; answerIndex: number };
 type ExerciseData =
   | ({ type: "vocab" | "translation_choice" } & Choice)
-  | { type: "cloze"; answers: string[] }
+  | { type: "cloze"; answers: string[]; distractors: string[] }
   | { type: "word_order"; accepted: string[] }
   | { type: "translate_write"; accepted: string[] }
   | { type: "reading"; questions: ({ prompt: string } & Choice)[] };
@@ -91,6 +91,36 @@ export async function answerCorrectly(page: Page, submit: string): Promise<strin
       break;
   }
   await scope.getByRole("button", { name: submit, exact: true }).click();
+  return id;
+}
+
+const LEVELS = ["a1", "a2", "b1", "b2", "c1"] as const;
+
+/**
+ * Answers the placement question on screen as a learner at `level` would: right up to that
+ * level (from its `placement.<level>.` id), wrong above it, then presses "Siguiente".
+ */
+export async function answerPlacementAs(
+  page: Page,
+  level: (typeof LEVELS)[number],
+): Promise<string> {
+  const id = await currentExerciseId(page);
+  const questionLevel = /^placement\.([a-c][12])\./.exec(id)?.[1] ?? "";
+  if (LEVELS.indexOf(questionLevel as (typeof LEVELS)[number]) <= LEVELS.indexOf(level)) {
+    return answerCorrectly(page, "Siguiente");
+  }
+  const exercise = exercisesById.get(id);
+  if (exercise === undefined) throw new Error(`Unknown exercise "${id}"`);
+  const scope = page.getByTestId(`exercise-${id}`);
+  const wrong =
+    exercise.type === "vocab" || exercise.type === "translation_choice"
+      ? exercise.options.find((_, i) => i !== exercise.answerIndex)
+      : exercise.type === "cloze"
+        ? exercise.distractors[0]
+        : undefined;
+  if (wrong === undefined) throw new Error(`No wrong option for "${id}"`);
+  await scope.getByRole("radio", { name: wrong, exact: true }).click();
+  await scope.getByRole("button", { name: "Siguiente", exact: true }).click();
   return id;
 }
 

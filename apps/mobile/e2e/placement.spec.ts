@@ -1,7 +1,7 @@
 import { expect, test } from "./support/test";
 import { answerCorrectly } from "./support/content";
 
-test("placement: answering everything correctly places at C1 and lists B1 lessons", async ({
+test("placement: answering everything correctly places at C1 and lists B2 lessons", async ({
   page,
 }) => {
   await page.goto("/");
@@ -24,16 +24,16 @@ test("placement: answering everything correctly places at C1 and lists B1 lesson
   expect(asked).toBeLessThanOrEqual(20);
 
   await expect(page.getByLabel("Tu nivel estimado: C1")).toBeVisible();
-  await expect(page.getByText(/Te recomendamos las de nivel B1/)).toBeVisible();
+  await expect(page.getByText(/Te recomendamos las de nivel B2/)).toBeVisible();
   await page.getByRole("button", { name: "Ir a mis lecciones", exact: true }).click();
 
   await expect(page.getByText("Tu nivel: C1")).toBeVisible();
-  await expect(page.getByText("Lecciones de nivel B1")).toBeVisible();
+  await expect(page.getByText("Lecciones de nivel B2")).toBeVisible();
   // Placement never touches XP or the streak.
   await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
 
   await page.reload();
   await expect(page.getByText("Tu nivel: C1")).toBeVisible();
-  await expect(page.getByText("Lecciones de nivel B1")).toBeVisible();
+  await expect(page.getByText("Lecciones de nivel B2")).toBeVisible();
   await expect(page.getByRole("button", { name: "Repetir test de nivel" })).toBeVisible();
 });

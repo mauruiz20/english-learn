@@ -1,13 +1,13 @@
 import type { Locator, Page } from "@playwright/test";
 import { expect, test, type ConsoleMessage } from "./support/test";
-import { answerCorrectly, playSessionCorrectly } from "./support/content";
+import { answerPlacementAs, playSessionCorrectly } from "./support/content";
 
 // `?today=` is a test-only clock override, compiled in only with EXPO_PUBLIC_E2E=1.
 const DAY_1 = "2030-01-01";
 const LESSON = "Una noche de cultura";
 const CARD = "Look forward to + -ing";
 
-/** Takes the placement test answering everything right (C1), which lists the B1 lessons. */
+/** Takes the placement test as a B1 learner (right up to B1, wrong above), which lists B1. */
 async function placeAtB1(page: Page) {
   await page.getByRole("button", { name: "Hacer test de nivel" }).click();
   await page.getByRole("button", { name: "Empezar", exact: true }).click();
@@ -16,9 +16,10 @@ async function placeAtB1(page: Page) {
   await expect(page.getByText("Pregunta 1 de hasta 20")).toBeVisible();
   while (!(await result.isVisible())) {
     asked += 1;
-    await answerCorrectly(page, "Siguiente");
+    await answerPlacementAs(page, "b1");
     await expect(result.or(page.getByText(`Pregunta ${asked + 1} de hasta 20`))).toBeVisible();
   }
+  await expect(page.getByLabel("Tu nivel estimado: B1")).toBeVisible();
   await page.getByRole("button", { name: "Ir a mis lecciones", exact: true }).click();
   await expect(page.getByText("Lecciones de nivel B1")).toBeVisible();
 }
