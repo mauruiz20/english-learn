@@ -18,6 +18,9 @@ async function lessonOn(page: Page, day: string, lesson: string) {
   await page.getByRole("button", { name: lesson, exact: true }).click();
   await playSessionCorrectly(page, "¡Lección completada!");
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
+  // Home is back before the next `goto`: a navigation still under way could abort it and keep
+  // the old page (and its `?today=` date).
+  await expect(page.getByTestId("home-avi")).toBeVisible();
 }
 
 /** The pose's transform, sampled every frame for `ms`. */

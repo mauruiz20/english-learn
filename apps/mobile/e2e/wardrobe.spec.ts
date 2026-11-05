@@ -22,6 +22,9 @@ async function perfectLessonOn(page: Page, day: string, lesson: string) {
   await playSessionCorrectly(page, "¡Lección completada!");
   await expect(page.getByTestId("summary-plumas").getByText("Plumas: +20")).toBeVisible();
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
+  // Home is back before the next `goto`: a navigation still under way could abort it and keep
+  // the old page (and its `?today=` date).
+  await expect(page.getByTestId("home-avi")).toBeVisible();
 }
 
 /** Two study days: 40 plumas, the price of a sticker. */
