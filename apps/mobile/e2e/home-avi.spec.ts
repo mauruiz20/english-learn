@@ -100,7 +100,25 @@ test.describe("Avi on home", () => {
     await expect(page.getByText("¡Hola! Soy Avi. ¿Empezamos?")).toBeVisible();
     const moving = await poseSamples(page, 1600);
     expect(new Set(moving).size).toBeGreaterThan(1);
-    await expect(hero(page).getByTestId("avi-eyes-closed")).toBeAttached({ timeout: 6000 });
+    // A blink shuts the eyes for only 150 ms: watch the DOM for it rather than polling.
+    const blinked = await page.evaluate(
+      () =>
+        new Promise<boolean>((resolve) => {
+          const avi = document.querySelector('[data-testid="home-avi"]')!;
+          const shut = () => avi.querySelector('[data-testid="avi-eyes-closed"]') !== null;
+          const observer = new MutationObserver(() => {
+            if (!shut()) return;
+            observer.disconnect();
+            resolve(true);
+          });
+          observer.observe(avi, { childList: true, subtree: true, attributes: true });
+          setTimeout(() => {
+            observer.disconnect();
+            resolve(shut());
+          }, 6000);
+        }),
+    );
+    expect(blinked).toBe(true);
 
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.reload();
