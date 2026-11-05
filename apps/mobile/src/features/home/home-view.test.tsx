@@ -54,6 +54,25 @@ describe("HomeView", () => {
       expect(screen.getByLabelText("Tienes 135 plumas")).toBeOnTheScreen();
     });
 
+    it("opens Avi's wardrobe from the balance", async () => {
+      const onOpenWardrobe = jest.fn();
+      await render(
+        <HomeView
+          state={{ ...ready, plumas: 135 }}
+          soundEnabled
+          themePreference="system"
+          onOpenWardrobe={onOpenWardrobe}
+          {...handlers}
+        />,
+      );
+
+      const balance = screen.getByRole("button", { name: "Tienes 135 plumas" });
+      expect(balance.props.accessibilityHint).toBe("Abre el armario de Avi");
+      expect(screen.getByTestId("home-plumas")).toHaveStyle({ minHeight: 48 });
+      await fireEvent.press(balance);
+      expect(onOpenWardrobe).toHaveBeenCalledTimes(1);
+    });
+
     it("reads a negative balance as a debt", async () => {
       await renderView({ ...ready, plumas: -30 });
 

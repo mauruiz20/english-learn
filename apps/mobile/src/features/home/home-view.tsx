@@ -96,6 +96,8 @@ type HomeViewProps = {
   onOpenAccount?: () => void;
   onOpenAlbum?: () => void;
   onOpenCards?: () => void;
+  /** Makes the plumas balance the way into Avi's wardrobe. */
+  onOpenWardrobe?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
   onOpenCard?: (cardId: string) => void;
   /** News above everything but the greeting (the old web address's move banner). */
@@ -128,6 +130,7 @@ function ProgressCard({
   days,
   xp,
   plumas,
+  onOpenWardrobe,
   controls,
   album,
   onOpenAlbum,
@@ -138,6 +141,7 @@ function ProgressCard({
   days: number | null;
   xp: number | null;
   plumas?: number | undefined;
+  onOpenWardrobe?: (() => void) | undefined;
   controls: ReactNode;
   album?: { readonly unlocked: number; readonly total: number } | undefined;
   onOpenAlbum?: (() => void) | undefined;
@@ -171,7 +175,7 @@ function ProgressCard({
         <View style={styles.controls}>{controls}</View>
       </View>
       {xp !== null && <XpBar xp={xp} />}
-      {plumas !== undefined && <PlumasBalance balance={plumas} />}
+      {plumas !== undefined && <PlumasBalance balance={plumas} onPress={onOpenWardrobe} />}
       {album !== undefined && onOpenAlbum !== undefined && (
         <AlbumLink album={album} onPress={onOpenAlbum} />
       )}
@@ -778,6 +782,7 @@ export function HomeView({
   onOpenAccount,
   onOpenAlbum,
   onOpenCards,
+  onOpenWardrobe,
   notice,
   greetingName,
   plumasNote,
@@ -799,6 +804,7 @@ export function HomeView({
         days={state.status === "ready" ? state.streakDays : null}
         xp={state.status === "ready" ? state.xp : null}
         plumas={state.status === "ready" ? state.plumas : undefined}
+        onOpenWardrobe={onOpenWardrobe}
         controls={controls}
         album={state.status === "ready" ? state.album : undefined}
         onOpenAlbum={onOpenAlbum}
