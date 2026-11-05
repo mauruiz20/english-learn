@@ -1,5 +1,6 @@
 import type {
   AccountMarker,
+  LocalDate,
   PlumasWelcome,
   SettingsRepository,
   ThemePreference,
@@ -15,6 +16,7 @@ export function createFakeSettingsRepository(
     themePreference?: ThemePreference;
     migratedTo?: string | null;
     plumasWelcome?: PlumasWelcome | null;
+    lastHomeVisit?: LocalDate | null;
   } = {},
 ): SettingsRepository & {
   readonly soundEnabled: () => boolean;
@@ -24,6 +26,7 @@ export function createFakeSettingsRepository(
   readonly themePreference: () => ThemePreference;
   readonly migratedTo: () => string | null;
   readonly plumasWelcome: () => PlumasWelcome | null;
+  readonly lastHomeVisit: () => LocalDate | null;
 } {
   let soundEnabled = initial.soundEnabled ?? true;
   let lookupHintDismissed = initial.lookupHintDismissed ?? false;
@@ -32,7 +35,13 @@ export function createFakeSettingsRepository(
   let themePreference = initial.themePreference ?? "system";
   let migratedTo = initial.migratedTo ?? null;
   let plumasWelcome = initial.plumasWelcome ?? null;
+  let lastHomeVisit = initial.lastHomeVisit ?? null;
   return {
+    lastHomeVisit: () => lastHomeVisit,
+    getLastHomeVisit: async () => lastHomeVisit,
+    setLastHomeVisit: async (date) => {
+      lastHomeVisit = date;
+    },
     plumasWelcome: () => plumasWelcome,
     getPlumasWelcome: async () => plumasWelcome,
     setPlumasWelcome: async (note) => {

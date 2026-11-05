@@ -15,7 +15,7 @@ import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { Avi } from "@/shared/ui/mascot";
 import { guideHeading } from "./model/guide-heading";
-import { HomeGreeting } from "./home-greeting";
+import { HomeGreeting, type HomeGreetingAvi } from "./home-greeting";
 import { ScreenContainer } from "@/shared/ui/screen-container";
 import { Sticker } from "@/shared/ui/sticker";
 import { StickyNote } from "@/shared/ui/sticky-note";
@@ -110,6 +110,8 @@ type HomeViewProps = {
   greetingName?: string | undefined;
   /** The one-time plumas note, under the progress card. */
   plumasNote?: ReactNode;
+  /** Avi beside the greeting (with `onOpenWardrobe`, which tapping it opens). */
+  avi?: HomeGreetingAvi | undefined;
 };
 
 type Ready = Extract<HomeViewState, { status: "ready" }>;
@@ -869,6 +871,7 @@ export function HomeView({
   notice,
   greetingName,
   plumasNote,
+  avi,
   ...handlers
 }: HomeViewProps) {
   const { colors } = useTheme();
@@ -881,7 +884,7 @@ export function HomeView({
   );
   return (
     <ScreenContainer insetTop>
-      <HomeGreeting name={greetingName} />
+      <HomeGreeting name={greetingName} avi={avi} onOpenWardrobe={onOpenWardrobe} />
       {notice}
       <ProgressCard
         days={state.status === "ready" ? state.streakDays : null}

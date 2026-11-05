@@ -466,7 +466,7 @@ wardrobe) comes in phase 2; the fold already reads purchases and equips.
   pink sticker with a feather (`feather.ts`, strokes only, no letters).
 - **Home balance** (`plumas-balance.tsx`), in the progress card under the XP: a feather sticker
   and "135 plumas", read as "Tienes 135 plumas" ("Debes 30 plumas" when two offline devices
-  overspent). Not a button yet (the wardrobe is phase 2).
+  overspent). A button into the wardrobe, like Avi beside the greeting.
 - **One-time note** (`plumas-welcome-note.tsx`): "Avi te guardó 135 plumas por lo que ya
   estudiaste." on a pink sticky note under the progress card, with a paper-key "Entendido"
   (≥ 44 pt; ink on white, since ink on a highlighter is below 4.5:1). N is the baseline's
@@ -600,14 +600,28 @@ paper, the prompt and the teacher's marking.
   root layout keeps the splash screen up until they load.
 - **Game pieces** (original art, SVG drawn in code, all decorative and hidden from screen
   readers): `Sticker` (round, die-cut, tilted; `done` / `current` / `pending` dashed slot; can be
-  slapped on once), `Avi` (`mascot.tsx`, the paper-plane mascot: happy, cheer, sleepy; can glide
-  in once; never on an exercise), `ClipChainMark` (the streak, one clip per day up to five, new
+  slapped on once), `Avi` (`mascot.tsx`, the paper-plane mascot: happy, cheer, sleepy, sad; can glide
+  in once and blink; never on an exercise), `ClipChainMark` (the streak, one clip per day up to five, new
   colors at 7, 30 and 100 days; `model/clip-chain.ts`), `XpBar` (every 250 XP fills a sheet of
   stickers; `model/xp-sheet.ts`), `Confetti` (hole-punch dots, deterministic, not rendered at all
   with reduced motion) and `PopBadge` (the "+10" sticker of a right answer).
 - **Home** (`features/home/`): the greeting first (`home-greeting.tsx`): "Hola, <nombre>" with
   the signed-in learner's first name, or "¡Hola!" (signed out, or no name remembered yet); a
-  heading in ink (AA in both schemes), one line with an ellipsis for long names, no motion. Then
+  heading in ink (AA in both schemes), one line with an ellipsis for long names. Beside it, **Avi
+  on home** (`home-avi.tsx`, `model/home-avi.ts`; `docs/design/avi-rewards.md`, section 5 and
+  "Slice 3 as built"): Avi at 76 pt (96 pt on wide screens) on the right, mirrored to face the
+  page, in the learner's outfit, with one line in a speech bubble under the heading. It is a
+  button that opens `/armario`, named after its state and outfit ("Avi, contento, con gorra y
+  bufanda de rayas. Abre el armario"); the bubble is a polite live region. `homeAviState` picks
+  the state on each home focus, first match wins: celebrate ("¡Lo lograste!", a lesson done or a
+  new badge since home was last seen), new outfit ("¿Cómo me veo?", bought or changed clothes),
+  missed you (sad, "Te extrañé. Hoy empezamos una racha nueva.", the streak broke and nothing was
+  studied today; no numbers, nothing to buy), welcome back ("¡Qué bueno verte!", first visit of a
+  new day, from `SettingsRepository.getLastHomeVisit`, per device), resting (sleepy, "Todo listo
+  por hoy." when today's study is done and nothing is due, or "Ya es tarde. ¡Que descanses!" from
+  22:00 to 05:59) and idle ("¡Hola! Soy Avi. ¿Empezamos?" for a fresh learner, "¿Repasamos un
+  poco?" with reviews due, otherwise quiet). What is new is kept in memory for the app session
+  (`createHomeAviMemory`, like the completion memory), so a reload celebrates nothing. Then
   a progress card (clip chain and days, sound and account, the XP
   sheet, the link to the album with its count), the review sticky note (Avi naps when there is
   nothing to review), the placement invitation, then the level's lessons as a path drawn in
@@ -693,16 +707,18 @@ paper, the prompt and the teacher's marking.
   (Reanimated reads it at startup, `AccessibilityInfo` keeps it current); with it on, every
   animation below shows its end state at once.
 
-  | Where                            | What                                                                                                                                                                                                          | Duration        |
-  | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-  | Feedback, correct                | highlighter swipe over the answer (`Highlight animate`)                                                                                                                                                       | 250 ms          |
-  | Feedback, wrong / almost         | red-pen strike drawn left → right over the off words, then the margin note fades/settles in                                                                                                                   | 250 ms + 150 ms |
-  | Choice rows, buttons, index rows | press-in scale to 0.97 (`PressableScale`), no hover                                                                                                                                                           | 90 ms           |
-  | Next exercise                    | page turn: the new page comes in from the right (`PageTurn`)                                                                                                                                                  | 220 ms          |
-  | Word order                       | strips dragged from the bank to the line, reordered, or off it back to the bank; lift while dragging, spring settle, `tap` sound + light haptic on drop                                                       | spring          |
-  | Feedback, points                 | the "+10" / "+5" sticker pops in with a bounce and settles a little higher; the answered progress step pops once                                                                                              | ≈ 650 / 250 ms  |
-  | Summary                          | the sticker is slapped on, Avi glides in, confetti falls; perfect page: the stamp lands; XP counts up; a grown streak rolls and hooks a new clip; earned album stickers rise in, with the `achievement` sound | ≈ 1.4 s in all  |
-  | Home path                        | a lesson completed since home was last seen gets its sticker slapped on and its check drawn once (`model/completion-memory.ts`); Avi glides to the next lesson                                                | ≈ 900 / 700 ms  |
+  | Where                             | What                                                                                                                                                                                                          | Duration                               |
+  | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+  | Feedback, correct                 | highlighter swipe over the answer (`Highlight animate`)                                                                                                                                                       | 250 ms                                 |
+  | Feedback, wrong / almost          | red-pen strike drawn left → right over the off words, then the margin note fades/settles in                                                                                                                   | 250 ms + 150 ms                        |
+  | Choice rows, buttons, index rows  | press-in scale to 0.97 (`PressableScale`), no hover                                                                                                                                                           | 90 ms                                  |
+  | Next exercise                     | page turn: the new page comes in from the right (`PageTurn`)                                                                                                                                                  | 220 ms                                 |
+  | Word order                        | strips dragged from the bank to the line, reordered, or off it back to the bank; lift while dragging, spring settle, `tap` sound + light haptic on drop                                                       | spring                                 |
+  | Feedback, points                  | the "+10" / "+5" sticker pops in with a bounce and settles a little higher; the answered progress step pops once                                                                                              | ≈ 650 / 250 ms                         |
+  | Summary                           | the sticker is slapped on, Avi glides in, confetti falls; perfect page: the stamp lands; XP counts up; a grown streak rolls and hooks a new clip; earned album stickers rise in, with the `achievement` sound | ≈ 1.4 s in all                         |
+  | Home path                         | a lesson completed since home was last seen gets its sticker slapped on and its check drawn once (`model/completion-memory.ts`); Avi glides to the next lesson                                                | ≈ 900 / 700 ms                         |
+  | Home Avi, entering a state        | wave (welcome back, ±6° twice), hop (a lesson, 10 pt with `SLAP_SPRING`), loop (a badge, one 360° roll on an arc), twirl (new outfit, turns around), droop (missed you, 12° and 4 pt down, stays), perk up    | 600 / ≈ 500 / 900 / 700 / 400 / 250 ms |
+  | Home Avi, while home is on screen | a gentle hover (2.5 pt) and a blink; only while home is focused and the app or tab is visible (`useAppVisible`), none at all with reduced motion                                                              | 1.4 s each way / 150 ms every 4 s      |
 
   Pen strokes (highlighter, strike, check) share one hand: `usePenStroke` + `StrokeClip`, a
   clipped copy revealed left to right. Word order stays fully usable by tap, and placed words

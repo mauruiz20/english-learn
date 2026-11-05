@@ -4,10 +4,12 @@ import {
   isStreakAlive,
   type LessonResult,
   type Level,
+  type Outfit,
   type ReviewState,
 } from "@english-learn/domain";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
+import { wardrobeFromRewards } from "@/features/wardrobe/model/wardrobe";
 import { isLessonDone, lessonExercises, pathLessons } from "@/features/lesson/model/lesson-catalog";
 import { lessonScore } from "@/features/lesson/model/lesson-score";
 import { pendingReviewItems } from "@/features/review/model/review-plan";
@@ -24,6 +26,13 @@ import { PlumasWelcomeNote } from "@/features/rewards/plumas-welcome-note";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import { deepenSteps } from "./model/deepen-steps";
+import {
+  homeAviLabel,
+  homeAviState,
+  sessionHomeAviMemory,
+  type HomeAviMemory,
+  type HomeAviState,
+} from "./model/home-avi";
 import {
   ACHIEVEMENTS,
   achievementFacts,
@@ -99,20 +108,32 @@ function markJustCompleted(lessons: HomeLessons, memory: CompletionMemory): Home
   };
 }
 
+const QUIET_AVI = {
+  state: { kind: "idle", mood: "happy", bubble: null, moment: null },
+  outfit: {},
+} as const satisfies { state: HomeAviState; outfit: Outfit };
+
 /** Loads the learner's progress from the repository every time the screen gains focus. */
 export function HomeContainer({
   content = corpus,
   completionMemory = sessionCompletionMemory,
+  aviMemory = sessionHomeAviMemory,
 }: {
   content?: Corpus;
   /** What the index last showed as done (the app session's, by default). */
   completionMemory?: CompletionMemory;
+  /** The badges, items and outfit home last showed (the app session's, by default). */
+  aviMemory?: HomeAviMemory;
 }) {
-  const { progressRepository, clock } = useAppServices();
+  const { progressRepository, settingsRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
   // The baseline's plumas grant, for the one-time note: null until there is progress to decide on.
   const [welcome, setWelcome] = useState<number | null>(null);
+  // Avi beside the greeting: idle and quiet until the progress says more.
+  const [avi, setAvi] = useState<{ state: HomeAviState; outfit: Outfit }>(QUIET_AVI);
+  // Home is the focused screen (Avi's bob and blink pause under another screen).
+  const [focused, setFocused] = useState(true);
   const sound = useSoundPreference();
   const theme = useThemePreference();
   const progressVersion = useProgressVersion();
@@ -129,8 +150,10 @@ export function HomeContainer({
       progressRepository.getReviewStates(),
       progressRepository.getLessonResults(),
       progressRepository.getRewards(),
+      // A settings read that fails only costs Avi's "welcome back".
+      settingsRepository.getLastHomeVisit().catch(() => null),
     ]).then(
-      ([streak, xp, placement, states, results, rewards]) => {
+      ([streak, xp, placement, states, results, rewards, lastHomeVisit]) => {
         if (!active) return;
         // Every event leaves a trace here (a baseline always holds progress), so an empty store
         // (a new device before its first sync pull) decides nothing yet.
@@ -146,23 +169,52 @@ export function HomeContainer({
         setWelcome(hasProgress ? rewards.earnedBySource.welcome : null);
         const level = placement?.level ?? null;
         const today = clock.today();
+        const pendingReviews = pendingReviewItems({
+          states,
+          today,
+          exercises: content.exercises,
+        }).length;
+        const lessons = markJustCompleted(
+          homeLessons(content, level, states, results),
+          completionMemory,
+        );
+        const badges = unlockedAchievements(
+          achievementFacts(content, { states, xp, streak, placement }),
+        );
+        const { outfit } = wardrobeFromRewards(rewards);
+        const news = aviMemory.take({
+          badges,
+          owned: rewards.ownedItemIds,
+          outfit,
+        });
+        setAvi({
+          state: homeAviState({
+            today,
+            hour: new Date(clock.nowMs()).getHours(),
+            streak,
+            lastHomeVisit,
+            pendingReviews,
+            hasProgress,
+            news: { ...news, lessonDone: lessons.items.some((l) => l.justCompleted === true) },
+          }),
+          outfit,
+        });
+        if (lastHomeVisit !== today) {
+          settingsRepository.setLastHomeVisit(today).catch((error: unknown) => {
+            console.error("Failed to remember the home visit", error);
+          });
+        }
         setState({
           status: "ready",
-          pendingReviews: pendingReviewItems({ states, today, exercises: content.exercises })
-            .length,
+          pendingReviews,
           reviewNoteColor: stickyNoteHighlighter(today),
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
           plumas: rewards.balance,
           level,
-          lessons: markJustCompleted(
-            homeLessons(content, level, states, results),
-            completionMemory,
-          ),
+          lessons,
           album: {
-            unlocked: unlockedAchievements(
-              achievementFacts(content, { states, xp, streak, placement }),
-            ).length,
+            unlocked: badges.length,
             total: ACHIEVEMENTS.length,
           },
           cards: cardsSummary(content.cards, states),
@@ -181,14 +233,33 @@ export function HomeContainer({
     // `progressVersion` is not read, only depended on: a new version (a sync brought progress
     // from another device) makes a new `load`, which `useFocusEffect` runs again.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progressRepository, clock, content, completionMemory, progressVersion]);
+  }, [
+    progressRepository,
+    settingsRepository,
+    clock,
+    content,
+    completionMemory,
+    aviMemory,
+    progressVersion,
+  ]);
 
   useFocusEffect(load);
+  useFocusEffect(
+    useCallback(() => {
+      setFocused(true);
+      return () => setFocused(false);
+    }, []),
+  );
 
   return (
     <HomeView
       state={state}
       greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
+      avi={{
+        state: avi.state,
+        label: homeAviLabel(avi.state, avi.outfit),
+        active: focused,
+      }}
       plumasNote={<PlumasWelcomeNote welcome={welcome} />}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}

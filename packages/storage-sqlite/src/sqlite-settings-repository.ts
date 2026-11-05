@@ -1,8 +1,10 @@
-import type {
-  AccountMarker,
-  PlumasWelcome,
-  SettingsRepository,
-  ThemePreference,
+import {
+  isValidLocalDate,
+  type AccountMarker,
+  type LocalDate,
+  type PlumasWelcome,
+  type SettingsRepository,
+  type ThemePreference,
 } from "@english-learn/domain";
 import type { SqlDatabase } from "./sql-database";
 
@@ -13,6 +15,7 @@ const SAVE_PROGRESS_SUGGESTION_DISMISSED = "save_progress_suggestion_dismissed";
 const THEME_PREFERENCE = "theme_preference";
 const MIGRATED_TO = "migrated_to";
 const PLUMAS_WELCOME = "plumas_welcome";
+const LAST_HOME_VISIT = "last_home_visit";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -58,7 +61,14 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     clearPlumasWelcome: async () => {
       await db.runAsync("DELETE FROM setting WHERE key = ?", [PLUMAS_WELCOME]);
     },
+    getLastHomeVisit: async () => parseLocalDate(await read(LAST_HOME_VISIT)),
+    setLastHomeVisit: (date) => write(LAST_HOME_VISIT, date),
   };
+}
+
+/** An unreadable date counts as no visit yet. */
+function parseLocalDate(value: string | null): LocalDate | null {
+  return value !== null && isValidLocalDate(value) ? value : null;
 }
 
 /** Anything but an explicit light or dark follows the system (the default). */

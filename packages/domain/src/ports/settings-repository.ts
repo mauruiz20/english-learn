@@ -1,3 +1,5 @@
+import type { LocalDate } from "../local-date";
+
 /**
  * The account this device is signed in to, as remembered across restarts: who, never a token
  * (the session itself lives in an HttpOnly cookie and an in-memory access token).
@@ -51,4 +53,10 @@ export interface SettingsRepository {
   setPlumasWelcome(note: PlumasWelcome): Promise<void>;
   /** Forgets it (a sign-out that deletes this device's progress): the next learner decides anew. */
   clearPlumasWelcome(): Promise<void>;
+  /**
+   * The date home was last opened on this device, or null before the first visit: Avi says
+   * "welcome back" on the first visit of a new day. Device only, never synced.
+   */
+  getLastHomeVisit(): Promise<LocalDate | null>;
+  setLastHomeVisit(date: LocalDate): Promise<void>;
 }
