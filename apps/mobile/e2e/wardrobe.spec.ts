@@ -118,6 +118,11 @@ test.describe("Avi's wardrobe", () => {
     page,
     account,
   }) => {
+    // The longest journey of the suite: two whole lessons, a purchase and two Google sign-ins,
+    // each a cold start of the app. About 22 s on Linux WebKit in Docker and 31 s on a hosted CI
+    // runner, past the default 30 s (CI hit it mid-step on both attempts, which then reported
+    // a missing heading and a closed page).
+    test.setTimeout(60_000);
     await earnFortyPlumas(page);
     await buyAndWearStar(page);
 
