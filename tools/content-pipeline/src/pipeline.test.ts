@@ -82,6 +82,13 @@ describe("filters", () => {
     expect(inWordRange(Array(15).fill("go").join(" "), "A2")).toBe(false);
     expect(inWordRange(Array(20).fill("go").join(" "), "B1")).toBe(true);
   });
+  it("counts words for the C1 range (10-30)", () => {
+    expect(inWordRange(Array(9).fill("go").join(" "), "C1")).toBe(false);
+    expect(inWordRange(Array(10).fill("go").join(" "), "C1")).toBe(true);
+    expect(inWordRange(Array(30).fill("go").join(" "), "C1")).toBe(true);
+    expect(inWordRange(Array(31).fill("go").join(" "), "C1")).toBe(false);
+  });
+
   it("counts words for the B2 range (8-24)", () => {
     expect(inWordRange(Array(7).fill("go").join(" "), "B2")).toBe(false);
     expect(inWordRange(Array(8).fill("go").join(" "), "B2")).toBe(true);
@@ -92,7 +99,8 @@ describe("filters", () => {
     expect(parseLevel("A2")).toBe("A2");
     expect(parseLevel("B1")).toBe("B1");
     expect(parseLevel("B2")).toBe("B2");
-    expect(() => parseLevel("C1")).toThrow("--level must be A2, B1 or B2");
+    expect(parseLevel("C1")).toBe("C1");
+    expect(() => parseLevel("C2")).toThrow("--level must be A2, B1, B2 or C1");
   });
   it("detects digits, proper names and blocked words", () => {
     expect(hasDigits("I bought 3 apples.")).toBe(true);

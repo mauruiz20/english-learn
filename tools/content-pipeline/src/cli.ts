@@ -2,7 +2,7 @@
  * Content pipeline CLI.
  *
  *   pnpm --filter @english-learn/content-pipeline download
- *   pnpm --filter @english-learn/content-pipeline candidates [--level A2|B1|B2] [--limit 60]
+ *   pnpm --filter @english-learn/content-pipeline candidates [--level A2|B1|B2|C1] [--limit 60]
  *
  * Raw exports live in the git-ignored `.cache/` directory and are never committed.
  */
@@ -133,7 +133,7 @@ const commands: Record<string, () => Promise<void>> = { download, candidates, ve
 const run = commands[process.argv[2] ?? ""];
 if (!run) {
   console.error(
-    "usage: tsx src/cli.ts <download|candidates|verify> [--level A2|B1|B2] [--limit N]",
+    "usage: tsx src/cli.ts <download|candidates|verify> [--level A2|B1|B2|C1] [--limit N]",
   );
   process.exit(1);
 }
