@@ -245,6 +245,30 @@
       ]
     },
     {
+      "id": "glossary.scroll",
+      "headword": "scroll",
+      "kind": "word",
+      "forms": ["scroll", "scrolls", "scrolled", "scrolling"],
+      "senses": [
+        {
+          "es": "desplazarse (en la pantalla)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scroll-down",
+      "headword": "scroll down",
+      "kind": "phrase",
+      "forms": ["scroll down", "scrolls down", "scrolled down", "scrolling down"],
+      "senses": [
+        {
+          "es": "desplazarse hacia abajo (en la pantalla)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.search",
       "headword": "search",
       "kind": "word",
@@ -297,6 +321,18 @@
         {
           "es": "ver",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.see-off",
+      "headword": "see off",
+      "kind": "phrase",
+      "forms": ["see off", "sees off", "saw off", "seen off", "seeing off"],
+      "senses": [
+        {
+          "es": "despedir (a alguien que se va de viaje)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -393,6 +429,18 @@
       ]
     },
     {
+      "id": "glossary.set-aside",
+      "headword": "set aside",
+      "kind": "phrase",
+      "forms": ["set aside", "sets aside", "setting aside"],
+      "senses": [
+        {
+          "es": "apartar, reservar (dinero)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.set-off",
       "headword": "set off",
       "kind": "phrase",
@@ -424,6 +472,34 @@
       "senses": [
         {
           "es": "organizar, preparar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.settle",
+      "headword": "settle",
+      "kind": "word",
+      "forms": ["settle", "settles", "settled", "settling"],
+      "senses": [
+        {
+          "es": "resolver, arreglar",
+          "pos": "verb"
+        },
+        {
+          "es": "instalarse, establecerse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.settle-on",
+      "headword": "settle on",
+      "kind": "phrase",
+      "forms": ["settle on", "settles on", "settled on", "settling on"],
+      "senses": [
+        {
+          "es": "decidirse por, elegir",
           "pos": "phrasal verb"
         }
       ]
@@ -561,6 +637,18 @@
       ]
     },
     {
+      "id": "glossary.shop-around",
+      "headword": "shop around",
+      "kind": "phrase",
+      "forms": ["shop around", "shops around", "shopped around", "shopping around"],
+      "senses": [
+        {
+          "es": "comparar precios (en varias tiendas)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.short",
       "headword": "short",
       "kind": "word",
@@ -653,6 +741,34 @@
         {
           "es": "(take a shower) ducharse, bañarse",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shut",
+      "headword": "shut",
+      "kind": "word",
+      "forms": ["shut", "shuts", "shutting"],
+      "senses": [
+        {
+          "es": "cerrar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shut-down",
+      "headword": "shut down",
+      "kind": "phrase",
+      "forms": ["shut down", "shuts down", "shutting down"],
+      "senses": [
+        {
+          "es": "apagar (una computadora o un sistema)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "cerrar (una empresa)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -1185,6 +1301,18 @@
       ]
     },
     {
+      "id": "glossary.solve",
+      "headword": "solve",
+      "kind": "word",
+      "forms": ["solve", "solves", "solved", "solving"],
+      "senses": [
+        {
+          "es": "resolver",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.some",
       "headword": "some",
       "kind": "word",
@@ -1313,6 +1441,38 @@
       ]
     },
     {
+      "id": "glossary.sort",
+      "headword": "sort",
+      "kind": "word",
+      "forms": ["sort", "sorts", "sorted", "sorting"],
+      "senses": [
+        {
+          "es": "ordenar, clasificar",
+          "pos": "verb"
+        },
+        {
+          "es": "tipo, clase",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sort-out",
+      "headword": "sort out",
+      "kind": "phrase",
+      "forms": ["sort out", "sorts out", "sorted out", "sorting out"],
+      "senses": [
+        {
+          "es": "resolver, arreglar",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "ordenar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.soup",
       "headword": "soup",
       "kind": "word",
@@ -1365,6 +1525,18 @@
       ]
     },
     {
+      "id": "glossary.space",
+      "headword": "space",
+      "kind": "word",
+      "forms": ["space", "spaces"],
+      "senses": [
+        {
+          "es": "espacio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.spark",
       "headword": "spark",
       "kind": "word",
@@ -1389,6 +1561,18 @@
         {
           "es": "hablar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.speak-up",
+      "headword": "speak up",
+      "kind": "phrase",
+      "forms": ["speak up", "speaks up", "spoke up", "spoken up", "speaking up"],
+      "senses": [
+        {
+          "es": "hablar más fuerte",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -1621,6 +1805,34 @@
         {
           "es": "robar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.step",
+      "headword": "step",
+      "kind": "word",
+      "forms": ["step", "steps", "stepped", "stepping"],
+      "senses": [
+        {
+          "es": "paso, escalón",
+          "pos": "noun"
+        },
+        {
+          "es": "dar un paso, pisar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.step-down",
+      "headword": "step down",
+      "kind": "phrase",
+      "forms": ["step down", "steps down", "stepped down", "stepping down"],
+      "senses": [
+        {
+          "es": "renunciar (a un cargo), dejar el puesto",
+          "pos": "phrasal verb"
         }
       ]
     },

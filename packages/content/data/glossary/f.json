@@ -93,6 +93,18 @@
       ]
     },
     {
+      "id": "glossary.fall-behind",
+      "headword": "fall behind",
+      "kind": "phrase",
+      "forms": ["fall behind", "falls behind", "fell behind", "fallen behind", "falling behind"],
+      "senses": [
+        {
+          "es": "atrasarse, quedarse atrás",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.fall-in-love",
       "headword": "fall in love",
       "kind": "phrase",
@@ -413,6 +425,22 @@
       ]
     },
     {
+      "id": "glossary.fill-in",
+      "headword": "fill in",
+      "kind": "phrase",
+      "forms": ["fill in", "fills in", "filled in", "filling in"],
+      "senses": [
+        {
+          "es": "reemplazar, cubrir (fill in for: reemplazar a alguien)",
+          "pos": "phrasal verb"
+        },
+        {
+          "es": "llenar, completar (un formulario)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.fill-out",
       "headword": "fill out",
       "kind": "phrase",
@@ -649,6 +677,18 @@
       ]
     },
     {
+      "id": "glossary.follow-up",
+      "headword": "follow up",
+      "kind": "phrase",
+      "forms": ["follow up", "follows up", "followed up", "following up"],
+      "senses": [
+        {
+          "es": "dar seguimiento (follow up on: dar seguimiento a)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.food",
       "headword": "food",
       "kind": "word",
@@ -841,6 +881,18 @@
         {
           "es": "tiempo libre",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.free-up",
+      "headword": "free up",
+      "kind": "phrase",
+      "forms": ["free up", "frees up", "freed up", "freeing up"],
+      "senses": [
+        {
+          "es": "liberar (espacio, tiempo)",
+          "pos": "phrasal verb"
         }
       ]
     },

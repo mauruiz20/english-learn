@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.back-out",
+      "headword": "back out",
+      "kind": "phrase",
+      "forms": ["back out", "backs out", "backed out", "backing out"],
+      "senses": [
+        {
+          "es": "echarse para atrás, retirarse (back out of: retirarse de)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.back-up",
       "headword": "back up",
       "kind": "phrase",
@@ -633,6 +645,18 @@
       ]
     },
     {
+      "id": "glossary.bottom",
+      "headword": "bottom",
+      "kind": "word",
+      "forms": ["bottom", "bottoms"],
+      "senses": [
+        {
+          "es": "parte de abajo, final",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.bound",
       "headword": "bound",
       "kind": "word",
@@ -833,6 +857,34 @@
       ]
     },
     {
+      "id": "glossary.brush",
+      "headword": "brush",
+      "kind": "word",
+      "forms": ["brush", "brushes", "brushed", "brushing"],
+      "senses": [
+        {
+          "es": "cepillar",
+          "pos": "verb"
+        },
+        {
+          "es": "cepillo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.brush-up-on",
+      "headword": "brush up on",
+      "kind": "phrase",
+      "forms": ["brush up on", "brushes up on", "brushed up on", "brushing up on"],
+      "senses": [
+        {
+          "es": "repasar, refrescar (lo que ya sabías)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.budget",
       "headword": "budget",
       "kind": "word",
@@ -868,6 +920,22 @@
       "senses": [
         {
           "es": "autobús",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.business",
+      "headword": "business",
+      "kind": "word",
+      "forms": ["business", "businesses"],
+      "senses": [
+        {
+          "es": "negocios",
+          "pos": "noun"
+        },
+        {
+          "es": "empresa, negocio",
           "pos": "noun"
         }
       ]

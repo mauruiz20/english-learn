@@ -57,6 +57,27 @@
       ]
     },
     {
+      "id": "glossary.keep-up-with",
+      "headword": "keep up with",
+      "kind": "phrase",
+      "forms": [
+        "keep up with",
+        "keeps up with",
+        "kept up with",
+        "keeping up with",
+        "keep up",
+        "keeps up",
+        "kept up",
+        "keeping up"
+      ],
+      "senses": [
+        {
+          "es": "seguir el ritmo de, mantenerse al día con",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.key",
       "headword": "key",
       "kind": "word",

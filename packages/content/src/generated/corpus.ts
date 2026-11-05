@@ -56,11 +56,23 @@ import file50 from "../../data/glossary/u.json";
 import file51 from "../../data/glossary/v.json";
 import file52 from "../../data/glossary/w.json";
 import file53 from "../../data/glossary/y.json";
-import file54 from "../../data/placement/a1.json";
-import file55 from "../../data/placement/a2.json";
-import file56 from "../../data/placement/b1.json";
-import file57 from "../../data/placement/b2.json";
-import file58 from "../../data/placement/c1.json";
+import file54 from "../../data/glossary/z.json";
+import file55 from "../../data/placement/a1.json";
+import file56 from "../../data/placement/a2.json";
+import file57 from "../../data/placement/b1.json";
+import file58 from "../../data/placement/b2.json";
+import file59 from "../../data/placement/c1.json";
+import file60 from "../../data/practice/phrasal-verbs/collection.json";
+import file61 from "../../data/practice/phrasal-verbs/health.json";
+import file62 from "../../data/practice/phrasal-verbs/home.json";
+import file63 from "../../data/practice/phrasal-verbs/money.json";
+import file64 from "../../data/practice/phrasal-verbs/phone.json";
+import file65 from "../../data/practice/phrasal-verbs/plans.json";
+import file66 from "../../data/practice/phrasal-verbs/relationships.json";
+import file67 from "../../data/practice/phrasal-verbs/study.json";
+import file68 from "../../data/practice/phrasal-verbs/technology.json";
+import file69 from "../../data/practice/phrasal-verbs/travel.json";
+import file70 from "../../data/practice/phrasal-verbs/work.json";
 
 const files = [
   file0,
@@ -122,6 +134,18 @@ const files = [
   file56,
   file57,
   file58,
+  file59,
+  file60,
+  file61,
+  file62,
+  file63,
+  file64,
+  file65,
+  file66,
+  file67,
+  file68,
+  file69,
+  file70,
 ] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);

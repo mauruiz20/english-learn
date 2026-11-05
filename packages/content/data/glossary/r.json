@@ -341,6 +341,18 @@
       ]
     },
     {
+      "id": "glossary.rely",
+      "headword": "rely",
+      "kind": "word",
+      "forms": ["rely", "relies", "relied", "relying"],
+      "senses": [
+        {
+          "es": "contar con, depender de",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.remember",
       "headword": "remember",
       "kind": "word",
@@ -473,6 +485,18 @@
       ]
     },
     {
+      "id": "glossary.resign",
+      "headword": "resign",
+      "kind": "word",
+      "forms": ["resign", "resigns", "resigned", "resigning"],
+      "senses": [
+        {
+          "es": "renunciar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.responsibility",
       "headword": "responsibility",
       "kind": "word",
@@ -560,7 +584,7 @@
       "id": "glossary.review",
       "headword": "review",
       "kind": "word",
-      "forms": ["review", "reviews"],
+      "forms": ["review", "reviews", "reviewed", "reviewing"],
       "senses": [
         {
           "es": "reseña, crítica",
@@ -641,6 +665,30 @@
         {
           "es": "sonar (un teléfono, un timbre)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rip",
+      "headword": "rip",
+      "kind": "word",
+      "forms": ["rip", "rips", "ripped", "ripping"],
+      "senses": [
+        {
+          "es": "rasgar, romper",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rip-off",
+      "headword": "rip off",
+      "kind": "phrase",
+      "forms": ["rip off", "rips off", "ripped off", "ripping off"],
+      "senses": [
+        {
+          "es": "estafar, cobrar de más",
+          "pos": "phrasal verb"
         }
       ]
     },

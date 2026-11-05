@@ -113,6 +113,54 @@
       ]
     },
     {
+      "id": "glossary.hand-over",
+      "headword": "hand over",
+      "kind": "phrase",
+      "forms": ["hand over", "hands over", "handed over", "handing over"],
+      "senses": [
+        {
+          "es": "entregar, traspasar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hang",
+      "headword": "hang",
+      "kind": "word",
+      "forms": ["hang", "hangs", "hung", "hanging"],
+      "senses": [
+        {
+          "es": "colgar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hang-out",
+      "headword": "hang out",
+      "kind": "phrase",
+      "forms": ["hang out", "hangs out", "hung out", "hanging out"],
+      "senses": [
+        {
+          "es": "pasar el rato, salir (con amigos)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hang-up",
+      "headword": "hang up",
+      "kind": "phrase",
+      "forms": ["hang up", "hangs up", "hung up", "hanging up"],
+      "senses": [
+        {
+          "es": "colgar (el teléfono)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.happen",
       "headword": "happen",
       "kind": "word",
@@ -596,6 +644,18 @@
         {
           "es": "sostener, tener",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hold-on",
+      "headword": "hold on",
+      "kind": "phrase",
+      "forms": ["hold on", "holds on", "held on", "holding on"],
+      "senses": [
+        {
+          "es": "esperar (un momento)",
+          "pos": "phrasal verb"
         }
       ]
     },

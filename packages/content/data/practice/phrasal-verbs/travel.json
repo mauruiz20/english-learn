@@ -1,0 +1,391 @@
+{
+  "items": [
+    {
+      "id": "a2.phrasal-verbs.get-in",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "get in (something)",
+      "es": "subirse (a un auto o un taxi)",
+      "example": {
+        "en": "Get in the car. We're late!",
+        "es": "Súbete al auto. ¡Vamos tarde!"
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.get-out-of",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "get out of (something)",
+      "es": "bajarse (de un auto o un taxi), salir de",
+      "example": {
+        "en": "She got out of the taxi in front of the hotel.",
+        "es": "Se bajó del taxi frente al hotel."
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.drop-off",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "drop (someone/something) off",
+      "es": "dejar (a alguien o algo en un lugar)",
+      "example": {
+        "en": "Can you drop me off at the station?",
+        "es": "¿Me puedes dejar en la estación?"
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.see-off",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "see (someone) off",
+      "es": "despedir (a alguien que se va de viaje)",
+      "example": {
+        "en": "My parents came to the airport to see me off.",
+        "es": "Mis papás vinieron al aeropuerto a despedirme."
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.go-away",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "go away",
+      "es": "irse (de viaje); irse",
+      "example": {
+        "en": "We're going away for the weekend.",
+        "es": "Nos vamos de viaje el fin de semana."
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.come-back",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "come back",
+      "es": "volver, regresar",
+      "example": {
+        "en": "When are you coming back from your vacation?",
+        "es": "¿Cuándo vuelves de tus vacaciones?"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.phrasal-verbs.practice-travel-vocab-1",
+      "itemIds": ["a2.phrasal-verbs.get-in"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'get in' mean in 'Get in the taxi, please.'?",
+      "options": ["bajarse del taxi", "subirse al taxi", "pagar el taxi", "llamar un taxi"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-choice-1",
+      "itemIds": ["a2.phrasal-verbs.get-out-of"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We got out of the taxi at the corner.",
+      "options": [
+        "Nos subimos al taxi en la esquina.",
+        "Esperamos el taxi en la esquina.",
+        "Nos bajamos del taxi en la esquina.",
+        "Pagamos el taxi en la esquina."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-cloze-1",
+      "itemIds": ["a2.phrasal-verbs.drop-off"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Mom, can you drop me ___ at school?",
+      "answers": ["off"],
+      "distractors": ["on", "out"],
+      "es": "Mamá, ¿me puedes dejar en la escuela?"
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-vocab-2",
+      "itemIds": ["a2.phrasal-verbs.see-off"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'see someone off'.",
+      "options": [
+        "ver a alguien de lejos",
+        "recibir a alguien en el aeropuerto",
+        "despedir a alguien que se va de viaje",
+        "no ver a alguien por mucho tiempo"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-choice-2",
+      "itemIds": ["a2.phrasal-verbs.go-away"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We're going away for a week in July.",
+      "options": [
+        "Nos vamos de viaje una semana en julio.",
+        "Volvemos de un viaje de una semana en julio.",
+        "Nos quedamos en casa una semana en julio."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-vocab-3",
+      "itemIds": ["a2.phrasal-verbs.come-back"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'come back' mean in 'I'll come back on Sunday.'?",
+      "options": ["venir por primera vez", "irse", "quedarse", "volver, regresar"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-choice-3",
+      "itemIds": ["a2.phrasal-verbs.drop-off"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I dropped the kids off at my mom's house.",
+      "options": [
+        "Recogí a los niños en la casa de mi mamá.",
+        "Dejé a los niños en la casa de mi mamá.",
+        "Visité a los niños en la casa de mi mamá."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-cloze-2",
+      "itemIds": ["a2.phrasal-verbs.come-back"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My brother is in Canada, but he's coming ___ next week.",
+      "answers": ["back"],
+      "distractors": ["away", "off"],
+      "es": "Mi hermano está en Canadá, pero vuelve la próxima semana."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-order-1",
+      "itemIds": ["a2.phrasal-verbs.drop-off"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["off", "me", "airport?", "you", "at", "Can", "drop", "the"],
+      "accepted": ["Can you drop me off at the airport?"],
+      "es": "¿Me puedes dejar en el aeropuerto?"
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-write-1",
+      "itemIds": ["a2.phrasal-verbs.get-out-of"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Se bajó del taxi.",
+      "accepted": ["{He|She} got out of the taxi."]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-choice-4",
+      "itemIds": ["a2.phrasal-verbs.see-off"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "All my friends came to the bus station to see me off.",
+      "options": [
+        "Todos mis amigos vinieron a la terminal de autobuses a recibirme.",
+        "Todos mis amigos vinieron a la terminal de autobuses a buscarme.",
+        "Todos mis amigos vinieron a la terminal de autobuses a despedirme."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-cloze-3",
+      "itemIds": ["a2.phrasal-verbs.get-in"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We got ___ the car and drove to the beach.",
+      "answers": ["in"],
+      "distractors": ["on", "off"],
+      "es": "Nos subimos al auto y fuimos a la playa."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-order-2",
+      "itemIds": ["a2.phrasal-verbs.drop-off"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["work.", "sister", "off", "at", "dropped", "my", "I"],
+      "accepted": ["I dropped off my sister at work.", "I dropped my sister off at work."],
+      "es": "Dejé a mi hermana en el trabajo."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-write-2",
+      "itemIds": ["a2.phrasal-verbs.come-back"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Volvimos de las vacaciones el domingo.",
+      "accepted": [
+        "We {came back|got back|returned} from {our vacation|vacation|the vacation} on Sunday.",
+        "On Sunday[,] we {came back|got back|returned} from {our vacation|vacation|the vacation}."
+      ]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-cloze-4",
+      "itemIds": ["a2.phrasal-verbs.get-in"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The taxi is here. Get ___! We're late.",
+      "answers": ["in"],
+      "distractors": ["on", "off"],
+      "es": "El taxi ya llegó. ¡Súbete! Vamos tarde."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-choice-5",
+      "itemIds": ["a2.phrasal-verbs.get-out-of"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We got out of the taxi and got on the bus.",
+      "options": [
+        "Nos subimos al taxi y nos bajamos del autobús.",
+        "Nos bajamos del taxi y nos subimos al autobús.",
+        "Nos bajamos del autobús y nos subimos al taxi."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-write-3",
+      "itemIds": ["a2.phrasal-verbs.get-in"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Súbete al auto.",
+      "accepted": ["Get {in|into} the car."]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-vocab-4",
+      "itemIds": ["a2.phrasal-verbs.go-away"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'go away' mean in 'Go away! I'm busy.'?",
+      "options": ["volver", "irse", "venir", "acercarse"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-choice-6",
+      "itemIds": ["a2.phrasal-verbs.go-away", "a2.phrasal-verbs.come-back"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "My dad went away on a business trip, but he's coming back tomorrow.",
+      "options": [
+        "Mi papá volvió de un viaje de negocios, pero se va otra vez mañana.",
+        "Mi papá se va de viaje de negocios mañana, pero vuelve pronto.",
+        "Mi papá se fue de viaje de negocios, pero vuelve mañana."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-order-3",
+      "itemIds": ["a2.phrasal-verbs.see-off"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["me", "the", "parents", "off", "airport.", "saw", "My", "at"],
+      "accepted": ["My parents saw me off at the airport."],
+      "es": "Mis papás me despidieron en el aeropuerto."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-cloze-5",
+      "itemIds": ["a2.phrasal-verbs.get-out-of"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She got out ___ the taxi and paid the driver.",
+      "answers": ["of"],
+      "distractors": ["from", "off"],
+      "es": "Se bajó del taxi y le pagó al conductor."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.phrasal-verbs.practice-travel-1",
+      "level": "A2",
+      "topic": "phrasal-verbs",
+      "title": "Viajes: conócelos",
+      "exerciseIds": [
+        "a2.phrasal-verbs.practice-travel-vocab-1",
+        "a2.phrasal-verbs.practice-travel-choice-1",
+        "a2.phrasal-verbs.practice-travel-cloze-1",
+        "a2.phrasal-verbs.practice-travel-vocab-2",
+        "a2.phrasal-verbs.practice-travel-choice-2",
+        "a2.phrasal-verbs.practice-travel-vocab-3",
+        "a2.phrasal-verbs.practice-travel-choice-3"
+      ],
+      "newItemIds": [
+        "a2.phrasal-verbs.get-in",
+        "a2.phrasal-verbs.get-out-of",
+        "a2.phrasal-verbs.drop-off",
+        "a2.phrasal-verbs.see-off",
+        "a2.phrasal-verbs.go-away"
+      ]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-2",
+      "level": "A2",
+      "topic": "phrasal-verbs",
+      "title": "Viajes: practícalos",
+      "exerciseIds": [
+        "a2.phrasal-verbs.practice-travel-cloze-2",
+        "a2.phrasal-verbs.practice-travel-order-1",
+        "a2.phrasal-verbs.practice-travel-write-1",
+        "a2.phrasal-verbs.practice-travel-choice-4",
+        "a2.phrasal-verbs.practice-travel-cloze-3",
+        "a2.phrasal-verbs.practice-travel-order-2",
+        "a2.phrasal-verbs.practice-travel-write-2"
+      ],
+      "newItemIds": [
+        "a2.phrasal-verbs.come-back",
+        "a2.phrasal-verbs.drop-off",
+        "a2.phrasal-verbs.get-out-of",
+        "a2.phrasal-verbs.see-off",
+        "a2.phrasal-verbs.get-in"
+      ]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-travel-3",
+      "level": "A2",
+      "topic": "phrasal-verbs",
+      "title": "Viajes: no los confundas",
+      "exerciseIds": [
+        "a2.phrasal-verbs.practice-travel-cloze-4",
+        "a2.phrasal-verbs.practice-travel-choice-5",
+        "a2.phrasal-verbs.practice-travel-write-3",
+        "a2.phrasal-verbs.practice-travel-vocab-4",
+        "a2.phrasal-verbs.practice-travel-choice-6",
+        "a2.phrasal-verbs.practice-travel-order-3",
+        "a2.phrasal-verbs.practice-travel-cloze-5"
+      ],
+      "newItemIds": [
+        "a2.phrasal-verbs.get-in",
+        "a2.phrasal-verbs.get-out-of",
+        "a2.phrasal-verbs.go-away",
+        "a2.phrasal-verbs.come-back",
+        "a2.phrasal-verbs.see-off"
+      ]
+    }
+  ]
+}
