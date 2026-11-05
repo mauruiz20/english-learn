@@ -1,6 +1,7 @@
 # Design: Avi's rewards, wardrobe and home presence
 
-Status: approved, slice 1 implemented · The owner took the five recommended answers in
+Status: approved, slices 1 and 2 implemented (see [Slice 2 as built](#71-slice-2-as-built)) ·
+The owner took the five recommended answers in
 [Open questions](#8-open-questions)
 
 Learners earn **plumas** for studying well and on time, and spend them dressing **Avi**, the
@@ -218,11 +219,11 @@ inside the existing `Animated.View`, so `tilt`, `facing` (mirror via `scaleX: -1
 | Layer (bottom → top) | Source                                             | Anchor in the 64×48 viewBox                                  |
 | -------------------- | -------------------------------------------------- | ------------------------------------------------------------ |
 | 1. Body              | `BODY` path, fill = paper item (default `#FFFFFF`) | —                                                            |
-| 2. Tail sticker      | `sticker` slot                                     | (20, 21), about 9 units wide, rotated −17° with the top edge |
+| 2. Tail sticker      | `sticker` slot                                     | (23, 21.6), about 9.5 units wide, rotated −17° with the edge |
 | 3. Fold line         | `FOLD` path                                        | —                                                            |
 | 4. Neck              | `neck` slot                                        | (36, 20), across the body behind the face                    |
 | 5. Face              | eyes, mouth, cheek (mood)                          | eyes (43, 19) / (50, 16)                                     |
-| 6. Eyes              | `eyes` slot                                        | centre (46.5, 17.5), on the eye line                         |
+| 6. Eyes              | `eyes` slot                                        | centre (46.5, 17.5), rotated −23° along the eye line         |
 | 7. Head              | `head` slot                                        | (46, 10) on the top edge `M3 23 → L61 5`, rotated −17°       |
 
 - **Headroom.** Hats rise above y = 0. A dressed Avi uses `viewBox="0 -12 64 60"` with a
@@ -365,6 +366,24 @@ The breakdown is `earnedBySource` after − before, from `appendEvents`.
 | **4. Badges + full catalogue** | The other 6 shop items, 4 exclusives, album prize lines, the summary "premio" line, the `/__wardrobe` review screen                                                                                  | Badge → item mapping tests against the real corpus (every exclusive is winnable). Playwright screenshot of the review screen in both schemes                                                                                                                                                                                                                                              |
 
 Each slice merges into `develop` alone and is usable on its own. Only slice 1 touches the fold.
+
+### 7.1 Slice 2 as built
+
+What changed from the plan above, and why:
+
+| Topic             | As built                                                                                                                                                                                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Catalogue         | All **16 shop items** ship in slice 2 (not 10), so the whole sink exists from day one. The 4 badge prizes are in `catalog.ts` and show in the wardrobe as padlock cards ("Con insignia", "Se gana con la insignia …"); their art and unlocking stay in slice 4                       |
+| Art files         | One file per slot (`features/wardrobe/art/{head,neck,eyes,sticker,paper}.tsx`) and a registry, `art/item-art.ts` (`ITEM_ART`, `outfitArt`), instead of one file per item                                                                                                             |
+| Outfit everywhere | `AviOutfitContext` (in `mascot.tsx`) plus `WardrobeOutfitProvider` at the root layout: every `Avi` wears the learner's outfit with no change at its call sites; `outfit` overrides it (the wardrobe preview, card thumbnails). It reloads after a sync and after each wardrobe write |
+| Ink               | Hats use `colors.ink` (they stand against the page). Neckwear, glasses and stickers lie on Avi's light paper, so they use Avi's face ink (`#1B2333`): the dark scheme's light ink was too faint on white paper                                                                       |
+| Small sizes       | The tail sticker is **not** hidden at 40 pt: it stays (the home guide is the only Avi on home until slice 3), and pieces drop their detail strokes at ≤ 44 pt                                                                                                                        |
+| Equip writes      | "Ponérselo" / "Quitárselo" write one `item_equipped` at once (no "Listo" batch and no "Quitar todo"): nothing is lost if the learner leaves with the back button, and each change syncs on its own                                                                                   |
+| Labels            | "Ponérselo" / "Quitárselo" instead of "Usar" / "Quitar". Card labels: "Gorra, 80 plumas, comprado, puesto"                                                                                                                                                                           |
+| Not enough plumas | A dashed key with "Te faltan 20 plumas" (muted text, AA) instead of a dimmed button (the 40 % opacity would fail contrast); it is exposed as a disabled button "Comprar por 60 plumas. Te faltan 20 plumas". A negative balance reads "Debes 30 plumas" in red pen                   |
+| Try-on motion     | The preview Avi hops 8 pt (330 ms) instead of the item dropping onto its anchor (all layers share one `Svg`); none with reduced motion                                                                                                                                               |
+| Entry points      | Home's plumas balance is a button ("Tienes 135 plumas", hint "Abre el armario de Avi"). No link from Cuenta (it is about the account and sync); the hero Avi arrives with slice 3. `/armario?item=<id>` opens on that item                                                           |
+| Purchase guard    | `buyItem` checks the stored balance and ownership before writing, so a stale screen cannot overspend or buy twice on one device                                                                                                                                                      |
 
 ## 8. Open questions
 
