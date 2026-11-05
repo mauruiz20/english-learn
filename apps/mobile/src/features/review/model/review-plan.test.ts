@@ -20,7 +20,9 @@ import {
   REVIEW_MAX_ITEMS,
   pendingReviewItems,
   pickReviewExercises,
+  planReview,
   restrictToItems,
+  reviewOutlook,
 } from "./review-plan";
 
 const today = localDate("2026-10-29");
@@ -233,5 +235,85 @@ describe("study card items", () => {
     expect(itemIds).toEqual(card.itemIds);
     expect(picked.length).toBeGreaterThan(0);
     expect(picked.every((e) => card.exerciseIds.includes(e.id))).toBe(true);
+  });
+});
+
+/** Due states for the first `n` reviewable items of the bundled lessons, in lesson order. */
+function dueCorpusStates(n: number): ReviewState[] {
+  const ids = new Set<string>();
+  for (const lesson of corpus.lessons) {
+    for (const id of lessonItemIds(lesson, corpus.exercisesById)) {
+      if (
+        ids.size < n &&
+        corpus.exercises.some((e) => e.type !== "reading" && e.itemIds.includes(id))
+      )
+        ids.add(id);
+    }
+  }
+  return [...ids].map((id) => due(id));
+}
+
+describe("planReview and reviewOutlook: home says what the next review serves", () => {
+  it.each([5, 20, 45])(
+    "with %i due items, home's count is exactly the next session's exercises",
+    (n) => {
+      const states = dueCorpusStates(n);
+      const input = { states, today, exercises: corpus.exercises };
+      const plan = planReview(input);
+
+      expect(planReview(input)).toEqual(plan);
+      expect(reviewOutlook(input).next).toBe(plan.exercises.length);
+      expect(plan.itemIds).toEqual(pendingReviewItems(input));
+    },
+  );
+
+  it("counts the exercises, not the items, when one exercise reviews several due items", () => {
+    // The owner's report: home said 20 (items) and the review served 18 (exercises).
+    const states = dueCorpusStates(20);
+    const input = { states, today, exercises: corpus.exercises };
+    const plan = planReview(input);
+    expect(plan.itemIds).toHaveLength(20);
+    expect(plan.exercises.length).toBeLessThan(20);
+    expect(reviewOutlook(input).next).toBe(plan.exercises.length);
+  });
+
+  it("says nothing remains when one session holds every due item", () => {
+    const input = { states: dueCorpusStates(12), today, exercises: corpus.exercises };
+    expect(reviewOutlook(input).later).toBe(0);
+  });
+
+  it("counts what later sessions of the day will serve when more are due than one holds", () => {
+    const states = dueCorpusStates(45);
+    const input = { states, today, exercises: corpus.exercises };
+    const { next, later } = reviewOutlook(input);
+    expect(later).toBeGreaterThan(0);
+
+    // Every session of the day, played in turn: the planned items leave today's due set.
+    let left = states;
+    const sizes: number[] = [];
+    for (;;) {
+      const plan = planReview({ states: left, today, exercises: corpus.exercises });
+      if (plan.exercises.length === 0) break;
+      sizes.push(plan.exercises.length);
+      left = left.filter((s) => !plan.itemIds.includes(s.itemId));
+    }
+    expect(sizes[0]).toBe(next);
+    expect(sizes.slice(1).reduce((a, b) => a + b, 0)).toBe(later);
+  });
+
+  it("never counts items without a reviewable exercise", () => {
+    const input = {
+      states: [due("a2.routine.commute"), due("a2.routine.wake-up")],
+      today,
+      exercises: allExercises,
+    };
+    expect(planReview(input).itemIds).toEqual(["a2.routine.wake-up"]);
+    expect(reviewOutlook(input)).toEqual({ next: 1, later: 0 });
+  });
+
+  it("serves nothing and counts nothing when nothing is due", () => {
+    const input = { states: [notDue("a2.routine.wake-up")], today, exercises: allExercises };
+    expect(planReview(input)).toEqual({ itemIds: [], exercises: [] });
+    expect(reviewOutlook(input)).toEqual({ next: 0, later: 0 });
   });
 });
