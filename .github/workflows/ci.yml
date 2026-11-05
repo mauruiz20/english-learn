@@ -14,7 +14,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Releases merge develop into main with --no-ff: a new commit whose tree develop's CI already
+  # tested. On a push to main this looks for that successful develop run (same tree, same
+  # workflow file, this repo, event push); when found, the test jobs below are skipped and
+  # deploy-web runs directly. Anything else (other events, a hotfix straight to main, a lookup
+  # error) outputs tested=false and every job runs as usual. See .github/scripts/tested-tree.sh.
+  tested-tree:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      tested: ${{ steps.match.outputs.tested == 'true' }}
+    steps:
+      - uses: actions/checkout@v7
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          persist-credentials: false
+      - name: Look for a develop run that tested this tree
+        id: match
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: .github/scripts/tested-tree.sh HEAD
+
   check:
+    needs: tested-tree
+    if: needs.tested-tree.outputs.tested != 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -36,9 +63,17 @@ jobs:
         run: pnpm validate:content
       - name: Generated corpus is up to date
         run: pnpm corpus:check
+      # Production export; fails if test-only hooks (e2e clock override) leak into it.
+      # (Moved here from the e2e job, which now only builds the e2e export.)
+      - name: Export web build
+        run: pnpm --filter @english-learn/mobile export:web
 
-  web-e2e:
+  # The e2e export (EXPO_PUBLIC_E2E=1, dist-e2e/) is built once and shared with the shards.
+  web-e2e-build:
+    needs: tested-tree
+    if: needs.tested-tree.outputs.tested != 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
@@ -47,18 +82,105 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Install Chromium and WebKit
-        run: pnpm --filter @english-learn/mobile exec playwright install --with-deps chromium webkit
-      # Production export; fails if test-only hooks (e2e clock override) leak into it.
-      - name: Export web build
-        run: pnpm --filter @english-learn/mobile export:web
-      # Builds its own export with EXPO_PUBLIC_E2E=1 (dist-e2e/) and runs Playwright on it.
+      - name: Export e2e web build
+        run: pnpm --filter @english-learn/mobile export:web:e2e
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist-e2e
+          path: apps/mobile/dist-e2e
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  # Playwright on Chromium + WebKit, split in 4 shards. Each shard writes a blob report
+  # (playwright.config.ts) that web-e2e-report merges into one HTML report.
+  # It runs in Playwright's own image, which ships the browsers and their OS libraries, instead
+  # of `playwright install --with-deps`, whose apt step usually took 40 s but once 12 minutes.
+  # The tag must match the @playwright/test version in pnpm-lock.yaml: on a mismatch Playwright
+  # fails at once with "Executable doesn't exist". The same image is the local Linux WebKit repro.
+  web-e2e-shard:
+    name: web-e2e (shard ${{ matrix.shard }}/4)
+    needs: web-e2e-build
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist-e2e
+          path: apps/mobile/dist-e2e
       - name: Web e2e tests
-        run: pnpm --filter @english-learn/mobile e2e:web
+        working-directory: apps/mobile
+        run: pnpm exec playwright test --shard=${{ matrix.shard }}/4
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: blob-report-${{ matrix.shard }}
+          path: apps/mobile/blob-report
+          retention-days: 1
+
+  # One HTML report for the whole suite (artifact playwright-report), also when a shard failed.
+  web-e2e-report:
+    needs: web-e2e-shard
+    if: ${{ !cancelled() && needs.web-e2e-shard.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: blob-report-*
+          path: apps/mobile/all-blob-reports
+          merge-multiple: true
+      - name: Merge shard reports
+        working-directory: apps/mobile
+        run: pnpm exec playwright merge-reports --reporter html ./all-blob-reports
+      - uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: apps/mobile/playwright-report
+          retention-days: 14
+
+  # The single e2e status (the name deploy-web needs, and the one to require in branch
+  # protection): green only when the build and every shard passed. Skipped, like the other test
+  # jobs, when tested-tree found the tree already tested on develop.
+  web-e2e:
+    needs: [tested-tree, web-e2e-build, web-e2e-shard]
+    if: always() && needs.tested-tree.outputs.tested != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Build and every shard passed
+        env:
+          BUILD: ${{ needs.web-e2e-build.result }}
+          SHARDS: ${{ needs.web-e2e-shard.result }}
+        run: |
+          echo "web-e2e-build: $BUILD, web-e2e-shard: $SHARDS"
+          test "$BUILD" = success && test "$SHARDS" = success
 
   # Python API (services/api). Integration tests start PostgreSQL 18 with testcontainers,
   # using the runner's Docker daemon, exactly as they do locally.
   api:
+    needs: tested-tree
+    if: needs.tested-tree.outputs.tested != 'true'
     runs-on: ubuntu-latest
     # testcontainers can occasionally stall on container startup; fail fast instead of hanging.
     timeout-minutes: 15
@@ -87,6 +209,8 @@ jobs:
   # Its own job because regenerating needs both uv/Python and Node; the package's typecheck and
   # tests run in `check`.
   api-client:
+    needs: tested-tree
+    if: needs.tested-tree.outputs.tested != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -104,11 +228,21 @@ jobs:
       - name: API client is up to date
         run: pnpm api-client:check
 
-  # Production deploy to Cloudflare Pages: only from main, only after every check passed.
+  # Production deploy to Cloudflare Pages: only from main, only after every check passed, or
+  # after tested-tree found a successful develop run of this exact tree (checks then skipped).
+  # always() lets it run past skipped needs; the explicit results keep any failure, cancel or
+  # unexplained skip from deploying.
   # public/_headers ships the COOP/COEP headers expo-sqlite needs on the web.
   deploy-web:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [check, web-e2e]
+    if: >-
+      always()
+      && github.event_name == 'push' && github.ref == 'refs/heads/main'
+      && needs.tested-tree.result == 'success'
+      && (needs.check.result == 'success'
+        || (needs.check.result == 'skipped' && needs.tested-tree.outputs.tested == 'true'))
+      && (needs.web-e2e.result == 'success'
+        || (needs.web-e2e.result == 'skipped' && needs.tested-tree.outputs.tested == 'true'))
+    needs: [tested-tree, check, web-e2e]
     runs-on: ubuntu-latest
     environment:
       name: production
