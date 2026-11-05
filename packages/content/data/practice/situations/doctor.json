@@ -1,0 +1,415 @@
+{
+  "items": [
+    {
+      "id": "a2.situations.make-an-appointment",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "make an appointment",
+      "es": "pedir una cita, hacer una cita",
+      "example": {
+        "en": "I'd like to make an appointment with Dr. Pérez.",
+        "es": "Quisiera pedir una cita con el doctor Pérez."
+      }
+    },
+    {
+      "id": "a2.situations.what-seems-to-be-the-problem",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "What seems to be the problem?",
+      "es": "¿Qué le pasa?, ¿cuál es el problema?",
+      "example": {
+        "en": "Come in and sit down. What seems to be the problem?",
+        "es": "Pase y siéntese. ¿Qué le pasa?"
+      }
+    },
+    {
+      "id": "a2.situations.sore-throat",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "sore throat",
+      "es": "dolor de garganta",
+      "example": {
+        "en": "I have a sore throat and a cough.",
+        "es": "Tengo dolor de garganta y tos."
+      }
+    },
+    {
+      "id": "a2.situations.my-back-hurts",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "My (back) hurts.",
+      "es": "Me duele (la espalda).",
+      "example": {
+        "en": "My knee hurts when I walk.",
+        "es": "Me duele la rodilla cuando camino."
+      }
+    },
+    {
+      "id": "a2.situations.prescription",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "word",
+      "term": "prescription",
+      "es": "receta (médica)",
+      "example": {
+        "en": "The doctor gave me a prescription for some antibiotics.",
+        "es": "El médico me dio una receta para unos antibióticos."
+      }
+    },
+    {
+      "id": "a2.situations.twice-a-day",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "twice a day",
+      "es": "dos veces al día",
+      "example": {
+        "en": "Take one pill twice a day.",
+        "es": "Tome una pastilla dos veces al día."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.situations.practice-doctor-visit",
+      "level": "A2",
+      "topics": ["situations"],
+      "title": "At the doctor's office",
+      "text": "Doctor: Hello, Ms. García. What seems to be the problem? Ana: I have a sore throat, and my head hurts. It started three days ago. Doctor: Do you have a fever? Ana: A little, last night. Doctor: Let me take a look. It's an infection. Here's a prescription for some antibiotics. Take one pill twice a day for a week. Ana: Can I go to work tomorrow? Doctor: No, rest at home for two days. If you don't feel better by Friday, make another appointment.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.situations.practice-doctor-vocab-1",
+      "itemIds": ["a2.situations.make-an-appointment"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'make an appointment' mean in 'I called to make an appointment with the dentist.'?",
+      "options": [
+        "cancelar una cita",
+        "pedir una cita",
+        "llegar tarde a una cita",
+        "pagar una cita"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-doctor-choice-1",
+      "itemIds": ["a2.situations.what-seems-to-be-the-problem"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Good morning. What seems to be the problem?",
+      "options": [
+        "Buenos días. ¿Qué le pasa?",
+        "Buenos días. ¿Tiene una cita?",
+        "Buenos días. ¿Ya se siente mejor?",
+        "Buenos días. ¿Qué le parece el problema?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-doctor-cloze-1",
+      "itemIds": ["a2.situations.sore-throat"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I have a sore ___, so it hurts when I eat or drink.",
+      "answers": ["throat"],
+      "distractors": ["back", "foot"],
+      "es": "Tengo dolor de garganta, así que me duele cuando como o bebo."
+    },
+    {
+      "id": "a2.situations.practice-doctor-vocab-2",
+      "itemIds": ["a2.situations.prescription"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'prescription' mean in 'You need a prescription for this medicine.'?",
+      "options": ["un recibo", "una receta de cocina", "una cita", "una receta médica"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.situations.practice-doctor-choice-2",
+      "itemIds": ["a2.situations.twice-a-day"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Take this medicine twice a day, after meals.",
+      "options": [
+        "Tome este medicamento cada dos días, después de comer.",
+        "Tome este medicamento dos veces al día, después de comer.",
+        "Tome dos pastillas de este medicamento antes de comer."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-doctor-reading-1",
+      "itemIds": [
+        "a2.situations.what-seems-to-be-the-problem",
+        "a2.situations.sore-throat",
+        "a2.situations.twice-a-day",
+        "a2.situations.make-an-appointment"
+      ],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.situations.practice-doctor-visit",
+      "questions": [
+        {
+          "prompt": "When did Ana start to feel sick?",
+          "options": ["Last night", "Three days ago", "A week ago"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "How often does she have to take the pills?",
+          "options": ["Once a day", "Twice a week", "Twice a day"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What should she do if she doesn't feel better by Friday?",
+          "options": ["Make another appointment", "Go back to work", "Stop taking the pills"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "a2.situations.practice-doctor-vocab-3",
+      "itemIds": ["a2.situations.my-back-hurts"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'My back hurts.' mean?",
+      "options": [
+        "Le duele la espalda.",
+        "Me duelen los pies.",
+        "Me duele la espalda.",
+        "Tengo la espalda fuerte."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-doctor-cloze-2",
+      "itemIds": ["a2.situations.make-an-appointment"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Hello, I'd like to ___ an appointment for tomorrow morning.",
+      "answers": ["make"],
+      "distractors": ["do", "take"],
+      "es": "Hola, quisiera pedir una cita para mañana en la mañana."
+    },
+    {
+      "id": "a2.situations.practice-doctor-order-1",
+      "itemIds": ["a2.situations.what-seems-to-be-the-problem"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["be", "problem?", "seems", "the", "What", "to"],
+      "accepted": ["What seems to be the problem?"],
+      "es": "¿Qué le pasa?"
+    },
+    {
+      "id": "a2.situations.practice-doctor-write-1",
+      "itemIds": ["a2.situations.sore-throat"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Me duele la garganta.",
+      "accepted": ["I have a sore throat.", "I've got a sore throat.", "My throat {hurts|is sore}."]
+    },
+    {
+      "id": "a2.situations.practice-doctor-choice-3",
+      "itemIds": ["a2.situations.prescription"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Can I buy this without a prescription?",
+      "options": [
+        "¿Puedo comprar esto sin receta?",
+        "¿Puedo comprar esto sin recibo?",
+        "¿Puedo comprar esto sin cita?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-doctor-cloze-3",
+      "itemIds": ["a2.situations.twice-a-day"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Take one pill ___ a day: one in the morning and one at night.",
+      "answers": ["twice"],
+      "distractors": ["two", "double"],
+      "es": "Tome una pastilla dos veces al día: una en la mañana y otra en la noche."
+    },
+    {
+      "id": "a2.situations.practice-doctor-order-2",
+      "itemIds": ["a2.situations.my-back-hurts"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["walk.", "knee", "I", "hurts", "My", "when"],
+      "accepted": ["My knee hurts when I walk."],
+      "es": "Me duele la rodilla cuando camino."
+    },
+    {
+      "id": "a2.situations.practice-doctor-write-2",
+      "itemIds": ["a2.situations.make-an-appointment"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Quisiera pedir una cita con la doctora.",
+      "accepted": ["{I'd|I would} like to {make|book|schedule} an appointment with the doctor."]
+    },
+    {
+      "id": "a2.situations.practice-doctor-vocab-4",
+      "itemIds": ["a2.situations.prescription"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'receta médica'.",
+      "options": ["recipe", "receipt", "prescription", "recital"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-doctor-cloze-4",
+      "itemIds": ["a2.situations.my-back-hurts"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My back ___ when I sit for a long time.",
+      "answers": ["hurts"],
+      "distractors": ["pains", "pain"],
+      "es": "Me duele la espalda cuando estoy sentado mucho tiempo."
+    },
+    {
+      "id": "a2.situations.practice-doctor-choice-4",
+      "itemIds": ["a2.situations.sore-throat"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Doctor, I've had a sore throat for three days.",
+      "options": [
+        "Doctor, tuve dolor de garganta hace tres días.",
+        "Doctor, voy a tener dolor de garganta tres días.",
+        "Doctor, tengo dolor de garganta desde hace tres días."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-doctor-write-3",
+      "itemIds": ["a2.situations.twice-a-day"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Tome una pastilla dos veces al día.",
+      "accepted": ["Take {one|a} {pill|tablet} {twice|two times} a day."]
+    },
+    {
+      "id": "a2.situations.practice-doctor-order-3",
+      "itemIds": ["a2.situations.make-an-appointment"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["an", "Friday", "I", "make", "morning?", "Can", "appointment", "for"],
+      "accepted": ["Can I make an appointment for Friday morning?"],
+      "es": "¿Puedo pedir una cita para el viernes en la mañana?"
+    },
+    {
+      "id": "a2.situations.practice-doctor-cloze-5",
+      "itemIds": ["a2.situations.what-seems-to-be-the-problem"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Hello, Mr. Díaz. What ___ to be the problem?",
+      "answers": ["seems"],
+      "distractors": ["looks", "is"],
+      "es": "Hola, señor Díaz. ¿Qué le pasa?"
+    },
+    {
+      "id": "a2.situations.practice-doctor-vocab-5",
+      "itemIds": ["a2.situations.twice-a-day"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'twice a day' mean in 'Brush your teeth twice a day.'?",
+      "options": ["cada dos días", "dos veces al día", "dos minutos al día", "todo el día"],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.situations.practice-doctor-1",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el médico: frases clave",
+      "exerciseIds": [
+        "a2.situations.practice-doctor-vocab-1",
+        "a2.situations.practice-doctor-choice-1",
+        "a2.situations.practice-doctor-cloze-1",
+        "a2.situations.practice-doctor-vocab-2",
+        "a2.situations.practice-doctor-choice-2",
+        "a2.situations.practice-doctor-reading-1",
+        "a2.situations.practice-doctor-vocab-3"
+      ],
+      "newItemIds": [
+        "a2.situations.make-an-appointment",
+        "a2.situations.what-seems-to-be-the-problem",
+        "a2.situations.sore-throat",
+        "a2.situations.prescription",
+        "a2.situations.twice-a-day"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-doctor-2",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el médico: practícalas",
+      "exerciseIds": [
+        "a2.situations.practice-doctor-cloze-2",
+        "a2.situations.practice-doctor-order-1",
+        "a2.situations.practice-doctor-write-1",
+        "a2.situations.practice-doctor-choice-3",
+        "a2.situations.practice-doctor-cloze-3",
+        "a2.situations.practice-doctor-order-2",
+        "a2.situations.practice-doctor-write-2"
+      ],
+      "newItemIds": [
+        "a2.situations.my-back-hurts",
+        "a2.situations.make-an-appointment",
+        "a2.situations.sore-throat",
+        "a2.situations.prescription",
+        "a2.situations.twice-a-day"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-doctor-3",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el médico: dilo bien",
+      "exerciseIds": [
+        "a2.situations.practice-doctor-vocab-4",
+        "a2.situations.practice-doctor-cloze-4",
+        "a2.situations.practice-doctor-choice-4",
+        "a2.situations.practice-doctor-write-3",
+        "a2.situations.practice-doctor-order-3",
+        "a2.situations.practice-doctor-cloze-5",
+        "a2.situations.practice-doctor-vocab-5"
+      ],
+      "newItemIds": [
+        "a2.situations.prescription",
+        "a2.situations.my-back-hurts",
+        "a2.situations.sore-throat",
+        "a2.situations.twice-a-day",
+        "a2.situations.make-an-appointment"
+      ]
+    }
+  ]
+}

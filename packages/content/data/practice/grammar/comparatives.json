@@ -1,0 +1,460 @@
+{
+  "items": [
+    {
+      "id": "a2.grammar.comparatives-short-er",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "cheaper than, bigger than (short adjectives)",
+      "es": "adjetivo corto + -er + than: más… que",
+      "example": {
+        "en": "Today is colder than yesterday.",
+        "es": "Hoy hace más frío que ayer."
+      }
+    },
+    {
+      "id": "a2.grammar.comparatives-more",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "more + long adjective + than (more expensive than)",
+      "es": "more + adjetivo largo + than: más… que",
+      "example": {
+        "en": "This hotel is more expensive than the other one.",
+        "es": "Este hotel es más caro que el otro."
+      }
+    },
+    {
+      "id": "a2.grammar.comparatives-superlative-est",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "the cheapest, the biggest (short adjectives)",
+      "es": "the + adjetivo + -est: el más…",
+      "example": {
+        "en": "She's the youngest in her family.",
+        "es": "Es la menor de su familia."
+      }
+    },
+    {
+      "id": "a2.grammar.comparatives-most",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "the most + long adjective (the most beautiful)",
+      "es": "the most + adjetivo largo: el más…",
+      "example": {
+        "en": "This is the most important part.",
+        "es": "Esta es la parte más importante."
+      }
+    },
+    {
+      "id": "a2.grammar.comparatives-irregular",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "better / the best, worse / the worst",
+      "es": "comparativos irregulares: mejor, el mejor, peor, el peor",
+      "example": {
+        "en": "My English is better than last year.",
+        "es": "Mi inglés está mejor que el año pasado."
+      }
+    },
+    {
+      "id": "a2.grammar.comparatives-as-as",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "as + adjective + as (as tall as)",
+      "es": "as… as: tan… como",
+      "example": {
+        "en": "My brother is as tall as my dad.",
+        "es": "Mi hermano es tan alto como mi papá."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.grammar.practice-comparatives-vocab-1",
+      "itemIds": ["a2.grammar.comparatives-short-er"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which phrase is correct?",
+      "options": ["more big than", "biger than", "bigger than"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-cloze-1",
+      "itemIds": ["a2.grammar.comparatives-more"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "This hotel is ___ expensive than the other one.",
+      "answers": ["more"],
+      "distractors": ["most", "very"],
+      "es": "Este hotel es más caro que el otro."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-choice-1",
+      "itemIds": ["a2.grammar.comparatives-superlative-est"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "This is the cheapest restaurant in town.",
+      "options": [
+        "Este restaurante es más barato que el otro.",
+        "Este es el restaurante más barato de la ciudad.",
+        "Este es un restaurante muy barato."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-cloze-2",
+      "itemIds": ["a2.grammar.comparatives-most"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's the ___ beautiful beach in the country.",
+      "answers": ["most"],
+      "distractors": ["more", "much"],
+      "es": "Es la playa más bonita del país."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-vocab-2",
+      "itemIds": ["a2.grammar.comparatives-irregular"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What is the comparative of 'good'?",
+      "options": ["gooder", "better", "more good", "best"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-choice-2",
+      "itemIds": ["a2.grammar.comparatives-as-as"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My brother is as tall as my dad.",
+      "options": [
+        "Mi hermano es tan alto como mi papá.",
+        "Mi hermano es más alto que mi papá.",
+        "Mi hermano no es tan alto como mi papá."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-reading-1",
+      "itemIds": [
+        "a2.grammar.comparatives-short-er",
+        "a2.grammar.comparatives-irregular",
+        "a2.grammar.comparatives-as-as"
+      ],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a2.grammar.practice-comparatives-two-cities",
+      "questions": [
+        {
+          "prompt": "Which city is colder in winter?",
+          "options": ["Monterrey", "Toronto", "They are the same."],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What was the worst thing about Toronto?",
+          "options": ["The food", "The lake", "The snow"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What does the writer say about the people?",
+          "options": [
+            "They are friendly in both cities.",
+            "They are friendlier in Toronto.",
+            "They are friendlier in Monterrey."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-order-1",
+      "itemIds": ["a2.grammar.comparatives-short-er"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["yesterday.", "colder", "is", "Today", "than"],
+      "accepted": ["Today is colder than yesterday."],
+      "es": "Hoy hace más frío que ayer."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-write-1",
+      "itemIds": ["a2.grammar.comparatives-more"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Este libro es más interesante que la película.",
+      "accepted": ["This book is more interesting than the {movie|film}."]
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-cloze-3",
+      "itemIds": ["a2.grammar.comparatives-irregular"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My English is ___ than last year.",
+      "answers": ["better"],
+      "distractors": ["more good", "best"],
+      "es": "Mi inglés está mejor que el año pasado."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-order-2",
+      "itemIds": ["a2.grammar.comparatives-superlative-est"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["her", "youngest", "She's", "in", "the", "family."],
+      "accepted": ["She's the youngest in her family."],
+      "es": "Es la menor de su familia."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-write-2",
+      "itemIds": ["a2.grammar.comparatives-most"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Es la ciudad más bonita del país.",
+      "accepted": [
+        "{It's|This is} {the most beautiful|the prettiest|the nicest} city in the country."
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-cloze-4",
+      "itemIds": ["a2.grammar.comparatives-as-as"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The new phone isn't as fast ___ the old one.",
+      "answers": ["as"],
+      "distractors": ["than", "like"],
+      "es": "El teléfono nuevo no es tan rápido como el viejo."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-choice-3",
+      "itemIds": ["a2.grammar.comparatives-irregular"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "That was the worst movie of the year.",
+      "options": [
+        "Fue la mejor película del año.",
+        "Fue la peor película del año.",
+        "Fue una película peor que la del año pasado."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-vocab-3",
+      "itemIds": ["a2.grammar.comparatives-short-er"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "Spanish is more easy than English.",
+        "Spanish is easier than English.",
+        "Spanish is more easier than English."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-cloze-5",
+      "itemIds": ["a2.grammar.comparatives-short-er"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Your bag is heavier ___ mine.",
+      "answers": ["than"],
+      "distractors": ["that", "as"],
+      "es": "Tu bolsa pesa más que la mía."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-choice-4",
+      "itemIds": ["a2.grammar.comparatives-superlative-est", "a2.grammar.comparatives-short-er"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Lucas is taller than Ana, but Pedro is the tallest.",
+      "options": [
+        "Lucas es tan alto como Ana, pero Pedro es más alto.",
+        "Lucas es más bajo que Ana, pero Pedro es el más alto.",
+        "Lucas es más alto que Ana, pero Pedro es el más alto."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-write-3",
+      "itemIds": ["a2.grammar.comparatives-as-as"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No soy tan rápido como tú.",
+      "accepted": ["I'm not {as|so} {fast|quick} as you[ are]."]
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-order-3",
+      "itemIds": ["a2.grammar.comparatives-most"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["important", "is", "most", "This", "part.", "the"],
+      "accepted": ["This is the most important part."],
+      "es": "Esta es la parte más importante."
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-cloze-6",
+      "itemIds": ["a2.grammar.comparatives-irregular"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's the ___ day of my life!",
+      "answers": ["best"],
+      "distractors": ["most good", "better"],
+      "es": "¡Es el mejor día de mi vida!"
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-write-4",
+      "itemIds": ["a2.grammar.comparatives-superlative-est"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Es el edificio más alto de la ciudad.",
+      "accepted": ["{It's|This is} the {tallest|highest} building {in the city|in town}."]
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.grammar.practice-comparatives-two-cities",
+      "level": "A2",
+      "topics": ["grammar"],
+      "title": "Two cities",
+      "text": "Last year I lived in two cities, Monterrey and Toronto. Toronto is bigger than Monterrey, and it's much colder in winter. Monterrey is hotter and sunnier, and the food is cheaper. For me, the best thing about Toronto was the lake. The worst thing was the snow! People in Monterrey are as friendly as people in Toronto. Which city do I like more? That's a difficult question.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.grammar.practice-comparatives-1",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Comparativos y superlativos: conócelos",
+      "exerciseIds": [
+        "a2.grammar.practice-comparatives-vocab-1",
+        "a2.grammar.practice-comparatives-cloze-1",
+        "a2.grammar.practice-comparatives-choice-1",
+        "a2.grammar.practice-comparatives-cloze-2",
+        "a2.grammar.practice-comparatives-vocab-2",
+        "a2.grammar.practice-comparatives-choice-2",
+        "a2.grammar.practice-comparatives-reading-1"
+      ],
+      "newItemIds": [
+        "a2.grammar.comparatives-short-er",
+        "a2.grammar.comparatives-more",
+        "a2.grammar.comparatives-superlative-est",
+        "a2.grammar.comparatives-most",
+        "a2.grammar.comparatives-irregular"
+      ],
+      "deepenCardIds": ["a2.grammar.comparatives"]
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-2",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Comparativos y superlativos: practícalos",
+      "exerciseIds": [
+        "a2.grammar.practice-comparatives-order-1",
+        "a2.grammar.practice-comparatives-write-1",
+        "a2.grammar.practice-comparatives-cloze-3",
+        "a2.grammar.practice-comparatives-order-2",
+        "a2.grammar.practice-comparatives-write-2",
+        "a2.grammar.practice-comparatives-cloze-4",
+        "a2.grammar.practice-comparatives-choice-3"
+      ],
+      "newItemIds": [
+        "a2.grammar.comparatives-short-er",
+        "a2.grammar.comparatives-more",
+        "a2.grammar.comparatives-irregular",
+        "a2.grammar.comparatives-superlative-est",
+        "a2.grammar.comparatives-as-as"
+      ],
+      "deepenCardIds": ["a2.grammar.comparatives"]
+    },
+    {
+      "id": "a2.grammar.practice-comparatives-3",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Comparativos y superlativos: no los confundas",
+      "exerciseIds": [
+        "a2.grammar.practice-comparatives-vocab-3",
+        "a2.grammar.practice-comparatives-cloze-5",
+        "a2.grammar.practice-comparatives-choice-4",
+        "a2.grammar.practice-comparatives-write-3",
+        "a2.grammar.practice-comparatives-order-3",
+        "a2.grammar.practice-comparatives-cloze-6",
+        "a2.grammar.practice-comparatives-write-4"
+      ],
+      "newItemIds": [
+        "a2.grammar.comparatives-short-er",
+        "a2.grammar.comparatives-superlative-est",
+        "a2.grammar.comparatives-as-as",
+        "a2.grammar.comparatives-most",
+        "a2.grammar.comparatives-irregular"
+      ],
+      "deepenCardIds": ["a2.grammar.comparatives"]
+    }
+  ]
+}

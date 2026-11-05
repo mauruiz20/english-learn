@@ -1,0 +1,412 @@
+{
+  "items": [
+    {
+      "id": "b1.tenses.past-simple-finished-time",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "past simple with a finished time (yesterday, in 2019, last week)",
+      "es": "pasado simple con un momento terminado",
+      "example": {
+        "en": "She went to Mexico in 2018.",
+        "es": "Fue a México en 2018."
+      }
+    },
+    {
+      "id": "b1.tenses.present-perfect-no-time",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "present perfect without a specific time (I've lost my keys)",
+      "es": "presente perfecto sin un momento concreto (importa el resultado)",
+      "example": {
+        "en": "Look! Someone has stolen my bike!",
+        "es": "¡Mira! ¡Alguien se robó mi bicicleta!"
+      }
+    },
+    {
+      "id": "b1.tenses.ago",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "word",
+      "term": "ago",
+      "es": "hace (tiempo): three years ago = hace tres años",
+      "example": {
+        "en": "We moved here five years ago.",
+        "es": "Nos mudamos aquí hace cinco años."
+      }
+    },
+    {
+      "id": "b1.tenses.when-did",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "When did…? (When did you arrive?)",
+      "es": "¿cuándo…? siempre con pasado simple",
+      "example": {
+        "en": "When did you buy that jacket?",
+        "es": "¿Cuándo compraste esa chaqueta?"
+      }
+    },
+    {
+      "id": "b1.tenses.been-gone",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "has been / has gone (She's gone to the bank)",
+      "es": "has been: fue y ya volvió · has gone: se fue y todavía no vuelve",
+      "example": {
+        "en": "Tom isn't here. He's gone to the bank.",
+        "es": "Tom no está. Se fue al banco."
+      }
+    },
+    {
+      "id": "b1.tenses.news-then-details",
+      "level": "B1",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "news in present perfect, details in past simple (I've had an accident. It happened…)",
+      "es": "la noticia en presente perfecto, los detalles en pasado simple",
+      "example": {
+        "en": "I've cut my finger. I did it while I was cooking.",
+        "es": "Me corté el dedo. Me pasó mientras cocinaba."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.tenses.practice-perfect-or-past-news",
+      "level": "B1",
+      "topics": ["tenses"],
+      "title": "Big news",
+      "text": "Hi Sara! Guess what? I've found a new job! I saw the ad two weeks ago, and I had the interview last Friday. They called me yesterday and offered me the job. I've never worked for a big company before, so I'm a little nervous. My new boss has already sent me some documents to read. I start on Monday! Love, Leo",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.tenses.practice-perfect-or-past-vocab-1",
+      "itemIds": ["b1.tenses.ago"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'ago' mean in 'I met him three years ago.'?",
+      "options": ["desde", "hace", "durante", "dentro de"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-choice-1",
+      "itemIds": ["b1.tenses.present-perfect-no-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I've lost my keys.",
+      "options": ["Voy a perder mis llaves.", "Perdí mis llaves.", "Encontré mis llaves."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-cloze-1",
+      "itemIds": ["b1.tenses.past-simple-finished-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I ___ my grandparents last weekend.",
+      "answers": ["visited"],
+      "distractors": ["have visited", "visit"],
+      "es": "Visité a mis abuelos el fin de semana pasado."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-cloze-2",
+      "itemIds": ["b1.tenses.when-did"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "When ___ you start your new job?",
+      "answers": ["did"],
+      "distractors": ["have", "has"],
+      "es": "¿Cuándo empezaste tu nuevo trabajo?"
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-vocab-2",
+      "itemIds": ["b1.tenses.been-gone"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "'Ana has gone to the bank.' Where is Ana now?",
+      "options": [
+        "At home: she went and came back.",
+        "We don't know: she never went.",
+        "At the bank or on her way there."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-choice-2",
+      "itemIds": ["b1.tenses.news-then-details"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I've had an accident! I fell off my bike this morning.",
+      "options": [
+        "¡Voy a tener un accidente! Siempre me caigo de la bicicleta.",
+        "¡Casi tengo un accidente! No me caí de la bicicleta por poco.",
+        "¡Tuve un accidente! Me caí de la bicicleta esta mañana."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-cloze-3",
+      "itemIds": ["b1.tenses.present-perfect-no-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Look! Someone ___ my bike!",
+      "answers": ["has stolen"],
+      "distractors": ["has stole", "have stolen"],
+      "es": "¡Mira! ¡Alguien se robó mi bicicleta!"
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-order-1",
+      "itemIds": ["b1.tenses.ago"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["years", "moved", "ago.", "We", "five", "here"],
+      "accepted": ["We moved here five years ago."],
+      "es": "Nos mudamos aquí hace cinco años."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-write-1",
+      "itemIds": ["b1.tenses.when-did"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Cuándo llegaste?",
+      "accepted": ["When did you {arrive|get here|get there}?"]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-cloze-4",
+      "itemIds": ["b1.tenses.past-simple-finished-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "She ___ to Mexico in 2018.",
+      "answers": ["went"],
+      "distractors": ["has gone", "has been"],
+      "es": "Fue a México en 2018."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-choice-3",
+      "itemIds": ["b1.tenses.been-gone"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "My brother has been to Japan twice.",
+      "options": [
+        "Mi hermano está en Japón ahora.",
+        "Mi hermano ha ido a Japón dos veces.",
+        "Mi hermano se fue a vivir a Japón."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-write-2",
+      "itemIds": ["b1.tenses.present-perfect-no-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "He perdido mi teléfono.",
+      "accepted": ["I've lost my {phone|cell phone}.", "I lost my {phone|cell phone}."]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-reading-1",
+      "itemIds": [
+        "b1.tenses.news-then-details",
+        "b1.tenses.ago",
+        "b1.tenses.present-perfect-no-time"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.tenses.practice-perfect-or-past-news",
+      "questions": [
+        {
+          "prompt": "When did Leo see the ad?",
+          "options": ["Last Friday", "Two weeks ago", "Yesterday"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "When did they offer him the job?",
+          "options": ["Two weeks ago", "On Monday", "Yesterday"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What has his new boss already done?",
+          "options": ["Sent him some documents", "Paid him", "Called his mom"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-cloze-5",
+      "itemIds": ["b1.tenses.ago"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I saw that movie a long time ___.",
+      "answers": ["ago"],
+      "distractors": ["since", "for"],
+      "es": "Vi esa película hace mucho tiempo."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-vocab-3",
+      "itemIds": ["b1.tenses.past-simple-finished-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I have seen him yesterday.",
+        "I saw him yesterday.",
+        "I have saw him yesterday."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-cloze-6",
+      "itemIds": ["b1.tenses.news-then-details"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I've cut my finger. I ___ it while I was cooking.",
+      "answers": ["did"],
+      "distractors": ["have done", "do"],
+      "es": "Me corté el dedo. Me pasó mientras cocinaba."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-choice-4",
+      "itemIds": ["b1.tenses.been-gone"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Carlos has gone to Peru.",
+      "options": [
+        "Carlos fue a Perú y ya volvió.",
+        "Carlos se fue a Perú (y todavía está allá).",
+        "Carlos nunca ha ido a Perú."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-order-2",
+      "itemIds": ["b1.tenses.when-did"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["jacket?", "you", "When", "that", "buy", "did"],
+      "accepted": ["When did you buy that jacket?"],
+      "es": "¿Cuándo compraste esa chaqueta?"
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-write-3",
+      "itemIds": ["b1.tenses.ago"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Empecé a estudiar inglés hace dos años.",
+      "accepted": [
+        "I {started|began} {studying|to study} English {two|2} years ago.",
+        "{Two|2} years ago[,] I {started|began} {studying|to study} English."
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-cloze-7",
+      "itemIds": ["b1.tenses.been-gone"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Is Tom here? — No, he's ___ home. He left ten minutes ago.",
+      "answers": ["gone"],
+      "distractors": ["been", "went"],
+      "es": "¿Está Tom? — No, se fue a casa. Salió hace diez minutos."
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-write-4",
+      "itemIds": ["b1.tenses.present-perfect-no-time", "b1.tenses.past-simple-finished-time"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Has visto a Ana? Yo la vi ayer.",
+      "accepted": ["{Have you seen|Did you see} Ana? I saw her yesterday."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.tenses.practice-perfect-or-past-1",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto o pasado: conócelos",
+      "exerciseIds": [
+        "b1.tenses.practice-perfect-or-past-vocab-1",
+        "b1.tenses.practice-perfect-or-past-choice-1",
+        "b1.tenses.practice-perfect-or-past-cloze-1",
+        "b1.tenses.practice-perfect-or-past-cloze-2",
+        "b1.tenses.practice-perfect-or-past-vocab-2",
+        "b1.tenses.practice-perfect-or-past-choice-2",
+        "b1.tenses.practice-perfect-or-past-cloze-3"
+      ],
+      "newItemIds": [
+        "b1.tenses.past-simple-finished-time",
+        "b1.tenses.present-perfect-no-time",
+        "b1.tenses.ago",
+        "b1.tenses.when-did",
+        "b1.tenses.been-gone"
+      ],
+      "deepenCardIds": ["b1.grammar.present-perfect-past-simple"]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-2",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto o pasado: practícalos",
+      "exerciseIds": [
+        "b1.tenses.practice-perfect-or-past-order-1",
+        "b1.tenses.practice-perfect-or-past-write-1",
+        "b1.tenses.practice-perfect-or-past-cloze-4",
+        "b1.tenses.practice-perfect-or-past-choice-3",
+        "b1.tenses.practice-perfect-or-past-write-2",
+        "b1.tenses.practice-perfect-or-past-reading-1",
+        "b1.tenses.practice-perfect-or-past-cloze-5"
+      ],
+      "newItemIds": [
+        "b1.tenses.news-then-details",
+        "b1.tenses.ago",
+        "b1.tenses.when-did",
+        "b1.tenses.past-simple-finished-time",
+        "b1.tenses.been-gone"
+      ]
+    },
+    {
+      "id": "b1.tenses.practice-perfect-or-past-3",
+      "level": "B1",
+      "topic": "tenses",
+      "title": "Presente perfecto o pasado: no los confundas",
+      "exerciseIds": [
+        "b1.tenses.practice-perfect-or-past-vocab-3",
+        "b1.tenses.practice-perfect-or-past-cloze-6",
+        "b1.tenses.practice-perfect-or-past-choice-4",
+        "b1.tenses.practice-perfect-or-past-order-2",
+        "b1.tenses.practice-perfect-or-past-write-3",
+        "b1.tenses.practice-perfect-or-past-cloze-7",
+        "b1.tenses.practice-perfect-or-past-write-4"
+      ],
+      "newItemIds": [
+        "b1.tenses.past-simple-finished-time",
+        "b1.tenses.news-then-details",
+        "b1.tenses.been-gone",
+        "b1.tenses.when-did",
+        "b1.tenses.ago"
+      ]
+    }
+  ]
+}

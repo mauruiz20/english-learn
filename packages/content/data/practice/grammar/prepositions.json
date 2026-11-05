@@ -1,0 +1,455 @@
+{
+  "items": [
+    {
+      "id": "a2.grammar.prepositions-at-time",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "at + clock time and night (at six, at night)",
+      "es": "at + hora (a las seis) y at night (de noche)",
+      "example": {
+        "en": "The movie starts at eight.",
+        "es": "La película empieza a las ocho."
+      }
+    },
+    {
+      "id": "a2.grammar.prepositions-in-period",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "in + month, season or year (in July, in winter)",
+      "es": "in + mes, estación o año",
+      "example": {
+        "en": "My birthday is in July.",
+        "es": "Mi cumpleaños es en julio."
+      }
+    },
+    {
+      "id": "a2.grammar.prepositions-on-date",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "on + date or day part (on my birthday, on Friday night)",
+      "es": "on + fecha o parte de un día concreto",
+      "example": {
+        "en": "We have a party on Friday night.",
+        "es": "Tenemos una fiesta el viernes por la noche."
+      }
+    },
+    {
+      "id": "a2.grammar.prepositions-in-place",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "in + room, city or country (in the kitchen, in Mexico)",
+      "es": "in + espacio cerrado, ciudad o país",
+      "example": {
+        "en": "The keys are in the kitchen.",
+        "es": "Las llaves están en la cocina."
+      }
+    },
+    {
+      "id": "a2.grammar.prepositions-on-surface",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "on + surface or floor (on the table, on the third floor)",
+      "es": "on + superficie o piso de un edificio",
+      "example": {
+        "en": "Your phone is on the table.",
+        "es": "Tu teléfono está sobre la mesa."
+      }
+    },
+    {
+      "id": "a2.grammar.prepositions-at-point",
+      "level": "A2",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "at + point or event (at the bus stop, at a party)",
+      "es": "at + punto concreto o evento",
+      "example": {
+        "en": "I'll wait for you at the bus stop.",
+        "es": "Te espero en la parada del autobús."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.grammar.practice-prepositions-vocab-1",
+      "itemIds": ["a2.grammar.prepositions-at-time"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which phrase is correct?",
+      "options": ["in eight o'clock", "at eight o'clock", "on eight o'clock"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-cloze-1",
+      "itemIds": ["a2.grammar.prepositions-in-period"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My birthday is ___ July.",
+      "answers": ["in"],
+      "distractors": ["on", "at"],
+      "es": "Mi cumpleaños es en julio."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-choice-1",
+      "itemIds": ["a2.grammar.prepositions-on-date"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We have a party on Friday night.",
+      "options": [
+        "Tuvimos una fiesta el viernes por la noche.",
+        "Tenemos una fiesta todos los viernes.",
+        "Tenemos una fiesta el viernes por la noche."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-cloze-2",
+      "itemIds": ["a2.grammar.prepositions-in-place"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The keys are ___ the kitchen.",
+      "answers": ["in"],
+      "distractors": ["on", "to"],
+      "es": "Las llaves están en la cocina."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-vocab-2",
+      "itemIds": ["a2.grammar.prepositions-on-surface"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'on' mean in 'Your phone is on the table.'?",
+      "options": ["debajo de", "al lado de", "sobre, encima de", "dentro de"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-cloze-3",
+      "itemIds": ["a2.grammar.prepositions-at-point"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I'll wait for you ___ the bus stop.",
+      "answers": ["at"],
+      "distractors": ["in", "to"],
+      "es": "Te espero en la parada del autobús."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-reading-1",
+      "itemIds": [
+        "a2.grammar.prepositions-at-time",
+        "a2.grammar.prepositions-in-period",
+        "a2.grammar.prepositions-at-point",
+        "a2.grammar.prepositions-on-surface"
+      ],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a2.grammar.practice-prepositions-saturday",
+      "questions": [
+        {
+          "prompt": "Where did the writer meet Sam?",
+          "options": ["At the bus stop", "At the market", "At a café"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "When did they have lunch?",
+          "options": ["In the morning", "At noon", "At night"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Where did the writer read a book?",
+          "options": ["On the bus", "In the park", "On the sofa"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-order-1",
+      "itemIds": ["a2.grammar.prepositions-at-time"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["nine.", "class", "at", "The", "starts"],
+      "accepted": ["The class starts at nine."],
+      "es": "La clase empieza a las nueve."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-write-1",
+      "itemIds": ["a2.grammar.prepositions-in-period"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Nací en invierno.",
+      "accepted": ["I was born in [the ]winter."]
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-cloze-4",
+      "itemIds": ["a2.grammar.prepositions-on-date"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The store is closed ___ Christmas Day.",
+      "answers": ["on"],
+      "distractors": ["in", "at"],
+      "es": "La tienda está cerrada el día de Navidad."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-choice-2",
+      "itemIds": ["a2.grammar.prepositions-in-place"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She lives in a small town in Mexico.",
+      "options": [
+        "Vive cerca de un pueblo pequeño de México.",
+        "Vive en un pueblo pequeño de México.",
+        "Vivía en un pueblo pequeño de México."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-order-2",
+      "itemIds": ["a2.grammar.prepositions-on-surface"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["floor.", "on", "office", "third", "is", "the", "Our"],
+      "accepted": ["Our office is on the third floor."],
+      "es": "Nuestra oficina está en el tercer piso."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-write-2",
+      "itemIds": ["a2.grammar.prepositions-at-point"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Estamos en el aeropuerto.",
+      "accepted": ["We are {at|in} the airport."]
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-cloze-5",
+      "itemIds": ["a2.grammar.prepositions-at-time"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I never drink coffee ___ night.",
+      "answers": ["at"],
+      "distractors": ["in", "on"],
+      "es": "Nunca tomo café de noche."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-vocab-3",
+      "itemIds": ["a2.grammar.prepositions-on-date"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I'll see you in Monday morning.",
+        "I'll see you on Monday morning.",
+        "I'll see you at Monday morning."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-cloze-6",
+      "itemIds": ["a2.grammar.prepositions-in-period"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We usually go to the beach ___ the summer.",
+      "answers": ["in"],
+      "distractors": ["on", "at"],
+      "es": "Normalmente vamos a la playa en el verano."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-choice-3",
+      "itemIds": ["a2.grammar.prepositions-at-point"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I met her at a party.",
+      "options": [
+        "La invité a una fiesta.",
+        "La conocí antes de una fiesta.",
+        "La conocí en una fiesta."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-write-3",
+      "itemIds": ["a2.grammar.prepositions-on-date"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Te llamo el domingo.",
+      "accepted": [
+        "{I'll|I'm going to} call you on Sunday.",
+        "On Sunday[,] {I'll|I'm going to} call you."
+      ]
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-order-3",
+      "itemIds": ["a2.grammar.prepositions-on-surface"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["a", "on", "wall.", "There's", "picture", "the"],
+      "accepted": ["There's a picture on the wall."],
+      "es": "Hay un cuadro en la pared."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-cloze-7",
+      "itemIds": ["a2.grammar.prepositions-in-place"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My parents are ___ Spain this week.",
+      "answers": ["in"],
+      "distractors": ["at", "on"],
+      "es": "Mis papás están en España esta semana."
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-write-4",
+      "itemIds": ["a2.grammar.prepositions-at-time"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La reunión es a las tres.",
+      "accepted": ["The meeting is at {three|3}[ o'clock| p.m.]"]
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.grammar.practice-prepositions-saturday",
+      "level": "A2",
+      "topics": ["grammar"],
+      "title": "A busy Saturday",
+      "text": "On Saturday I got up at seven. In the morning I met my friend Sam at the bus stop, and we took the bus to the market. The market is in the old part of town. At noon we had lunch at a small café. In the afternoon I went home and read a book on the sofa. At night we went to a concert in the park. It was a long day, but it was fun!",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.grammar.practice-prepositions-1",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Preposiciones de tiempo y lugar: conócelos",
+      "exerciseIds": [
+        "a2.grammar.practice-prepositions-vocab-1",
+        "a2.grammar.practice-prepositions-cloze-1",
+        "a2.grammar.practice-prepositions-choice-1",
+        "a2.grammar.practice-prepositions-cloze-2",
+        "a2.grammar.practice-prepositions-vocab-2",
+        "a2.grammar.practice-prepositions-cloze-3",
+        "a2.grammar.practice-prepositions-reading-1"
+      ],
+      "newItemIds": [
+        "a2.grammar.prepositions-at-time",
+        "a2.grammar.prepositions-in-period",
+        "a2.grammar.prepositions-on-date",
+        "a2.grammar.prepositions-in-place",
+        "a2.grammar.prepositions-on-surface"
+      ],
+      "deepenCardIds": ["a2.grammar.time-prepositions", "a2.grammar.directions"]
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-2",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Preposiciones de tiempo y lugar: practícalos",
+      "exerciseIds": [
+        "a2.grammar.practice-prepositions-order-1",
+        "a2.grammar.practice-prepositions-write-1",
+        "a2.grammar.practice-prepositions-cloze-4",
+        "a2.grammar.practice-prepositions-choice-2",
+        "a2.grammar.practice-prepositions-order-2",
+        "a2.grammar.practice-prepositions-write-2",
+        "a2.grammar.practice-prepositions-cloze-5"
+      ],
+      "newItemIds": [
+        "a2.grammar.prepositions-at-time",
+        "a2.grammar.prepositions-in-period",
+        "a2.grammar.prepositions-on-date",
+        "a2.grammar.prepositions-in-place",
+        "a2.grammar.prepositions-at-point"
+      ],
+      "deepenCardIds": ["a2.grammar.time-prepositions"]
+    },
+    {
+      "id": "a2.grammar.practice-prepositions-3",
+      "level": "A2",
+      "topic": "grammar",
+      "title": "Preposiciones de tiempo y lugar: no los confundas",
+      "exerciseIds": [
+        "a2.grammar.practice-prepositions-vocab-3",
+        "a2.grammar.practice-prepositions-cloze-6",
+        "a2.grammar.practice-prepositions-choice-3",
+        "a2.grammar.practice-prepositions-write-3",
+        "a2.grammar.practice-prepositions-order-3",
+        "a2.grammar.practice-prepositions-cloze-7",
+        "a2.grammar.practice-prepositions-write-4"
+      ],
+      "newItemIds": [
+        "a2.grammar.prepositions-on-date",
+        "a2.grammar.prepositions-in-period",
+        "a2.grammar.prepositions-at-point",
+        "a2.grammar.prepositions-on-surface",
+        "a2.grammar.prepositions-in-place"
+      ],
+      "deepenCardIds": ["a2.grammar.time-prepositions"]
+    }
+  ]
+}

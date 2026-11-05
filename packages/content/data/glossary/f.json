@@ -281,6 +281,34 @@
       ]
     },
     {
+      "id": "glossary.favorite",
+      "headword": "favorite",
+      "kind": "word",
+      "forms": ["favorite", "favorites"],
+      "senses": [
+        {
+          "es": "favorito, preferido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fear",
+      "headword": "fear",
+      "kind": "word",
+      "forms": ["fear", "fears", "feared", "fearing"],
+      "senses": [
+        {
+          "es": "miedo",
+          "pos": "noun"
+        },
+        {
+          "es": "temer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.february",
       "headword": "February",
       "kind": "word",
@@ -289,6 +317,18 @@
         {
           "es": "febrero",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feed",
+      "headword": "feed",
+      "kind": "word",
+      "forms": ["feed", "feeds", "fed", "feeding"],
+      "senses": [
+        {
+          "es": "dar de comer, alimentar",
+          "pos": "verb"
         }
       ]
     },
@@ -565,6 +605,34 @@
       ]
     },
     {
+      "id": "glossary.fine",
+      "headword": "fine",
+      "kind": "word",
+      "forms": ["fine"],
+      "senses": [
+        {
+          "es": "bien (está bien)",
+          "pos": "adjective"
+        },
+        {
+          "es": "multa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.finger",
+      "headword": "finger",
+      "kind": "word",
+      "forms": ["finger", "fingers"],
+      "senses": [
+        {
+          "es": "dedo (de la mano)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.finish",
       "headword": "finish",
       "kind": "word",
@@ -584,6 +652,18 @@
       "senses": [
         {
           "es": "fuego, incendio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.firefighter",
+      "headword": "firefighter",
+      "kind": "word",
+      "forms": ["firefighter", "firefighters"],
+      "senses": [
+        {
+          "es": "bombero, bombera",
           "pos": "noun"
         }
       ]
@@ -621,6 +701,18 @@
       ]
     },
     {
+      "id": "glossary.fish",
+      "headword": "fish",
+      "kind": "word",
+      "forms": ["fish"],
+      "senses": [
+        {
+          "es": "pescado; pez",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fit",
       "headword": "fit",
       "kind": "word",
@@ -633,6 +725,30 @@
         {
           "es": "quedar bien (ropa)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fitting",
+      "headword": "fitting",
+      "kind": "word",
+      "forms": ["fitting"],
+      "senses": [
+        {
+          "es": "prueba de ropa (fitting room: probador)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fitting-room",
+      "headword": "fitting room",
+      "kind": "phrase",
+      "forms": ["fitting room", "fitting rooms"],
+      "senses": [
+        {
+          "es": "probador",
+          "pos": "noun"
         }
       ]
     },
@@ -673,6 +789,18 @@
         {
           "es": "plano",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.flavor",
+      "headword": "flavor",
+      "kind": "word",
+      "forms": ["flavor", "flavors"],
+      "senses": [
+        {
+          "es": "sabor",
+          "pos": "noun"
         }
       ]
     },
@@ -825,6 +953,18 @@
       ]
     },
     {
+      "id": "glossary.footprint",
+      "headword": "footprint",
+      "kind": "word",
+      "forms": ["footprint", "footprints"],
+      "senses": [
+        {
+          "es": "huella (de un pie o una pata)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.for",
       "headword": "for",
       "kind": "word",
@@ -889,6 +1029,18 @@
         {
           "es": "forma",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.formal",
+      "headword": "formal",
+      "kind": "word",
+      "forms": ["formal"],
+      "senses": [
+        {
+          "es": "formal",
+          "pos": "adjective"
         }
       ]
     },
@@ -1084,7 +1236,7 @@
       "id": "glossary.friendly",
       "headword": "friendly",
       "kind": "word",
-      "forms": ["friendly"],
+      "forms": ["friendly", "friendlier", "friendliest"],
       "senses": [
         {
           "es": "amable, simpático",
@@ -1145,6 +1297,34 @@
       ]
     },
     {
+      "id": "glossary.fully",
+      "headword": "fully",
+      "kind": "word",
+      "forms": ["fully"],
+      "senses": [
+        {
+          "es": "completamente, totalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fun",
+      "headword": "fun",
+      "kind": "word",
+      "forms": ["fun"],
+      "senses": [
+        {
+          "es": "diversión (have fun: divertirse)",
+          "pos": "noun"
+        },
+        {
+          "es": "divertido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.funny",
       "headword": "funny",
       "kind": "word",
@@ -1152,6 +1332,18 @@
       "senses": [
         {
           "es": "gracioso, divertido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.furnished",
+      "headword": "furnished",
+      "kind": "word",
+      "forms": ["furnished"],
+      "senses": [
+        {
+          "es": "amueblado",
           "pos": "adjective"
         }
       ]

@@ -1,0 +1,465 @@
+{
+  "items": [
+    {
+      "id": "b1.grammar.gerund-infinitive-avoid-keep",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "avoid, keep, mind, enjoy + -ing (keep trying)",
+      "es": "avoid / keep / mind / enjoy + verbo-ing",
+      "example": {
+        "en": "He kept asking me the same question.",
+        "es": "Me seguía haciendo la misma pregunta."
+      }
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-plan-hope",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "plan, hope, promise + to + verb (promise to call)",
+      "es": "plan / hope / promise + to + verbo",
+      "example": {
+        "en": "They promised to call me.",
+        "es": "Prometieron llamarme."
+      }
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-after-preposition",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "preposition + -ing (good at cooking, without saying)",
+      "es": "preposición + verbo-ing (nunca + infinitivo)",
+      "example": {
+        "en": "She left without saying goodbye.",
+        "es": "Se fue sin despedirse."
+      }
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-subject",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "-ing as the subject (Walking is good for you.)",
+      "es": "verbo-ing como sujeto (en español, el infinitivo)",
+      "example": {
+        "en": "Learning a language takes time.",
+        "es": "Aprender un idioma lleva tiempo."
+      }
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-remember-forget",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "remember / forget + to (not forget to do something)",
+      "es": "remember / forget + to: acordarse de / olvidarse de hacer algo",
+      "example": {
+        "en": "Please remember to turn off the lights.",
+        "es": "Por favor, acuérdate de apagar las luces."
+      }
+    },
+    {
+      "id": "b1.grammar.gerund-infinitive-purpose",
+      "level": "B1",
+      "topics": ["grammar"],
+      "kind": "grammar",
+      "term": "to + verb for purpose (I went out to buy milk.)",
+      "es": "to + verbo: para (finalidad), nunca for to",
+      "example": {
+        "en": "I went to the store to buy some bread.",
+        "es": "Fui a la tienda a comprar pan."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-vocab-1",
+      "itemIds": ["b1.grammar.gerund-infinitive-avoid-keep"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "I've finished to clean the kitchen.",
+        "I've finished cleaning the kitchen.",
+        "I've finished clean the kitchen."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-cloze-1",
+      "itemIds": ["b1.grammar.gerund-infinitive-plan-hope"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We're planning ___ a car next year.",
+      "answers": ["to buy"],
+      "distractors": ["buying", "buy"],
+      "es": "Estamos pensando comprar un auto el año que viene."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-choice-1",
+      "itemIds": ["b1.grammar.gerund-infinitive-after-preposition"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She's very good at cooking.",
+      "options": ["Cocina muy bien.", "Le gusta mucho cocinar.", "Está aprendiendo a cocinar."],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-cloze-2",
+      "itemIds": ["b1.grammar.gerund-infinitive-subject"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ every day is good for your heart.",
+      "answers": ["Walking"],
+      "distractors": ["Walk", "To walking"],
+      "es": "Caminar todos los días es bueno para el corazón."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-vocab-2",
+      "itemIds": ["b1.grammar.gerund-infinitive-remember-forget"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'I forgot to lock the door.' mean?",
+      "options": [
+        "Olvidé que ya había cerrado la puerta con llave.",
+        "No recuerdo haber cerrado la puerta con llave.",
+        "Se me olvidó cerrar la puerta con llave."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-choice-2",
+      "itemIds": ["b1.grammar.gerund-infinitive-purpose"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I went to the store to buy some bread.",
+      "options": [
+        "Compré pan para ir a la tienda.",
+        "Fui a la tienda a comprar pan.",
+        "Fui a la tienda y no compré pan."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-order-1",
+      "itemIds": ["b1.grammar.gerund-infinitive-avoid-keep"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["the", "you", "mind", "window?", "Do", "opening"],
+      "accepted": ["Do you mind opening the window?"],
+      "es": "¿Te molesta abrir la ventana?"
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-cloze-3",
+      "itemIds": ["b1.grammar.gerund-infinitive-avoid-keep"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He kept ___ me the same question.",
+      "answers": ["asking"],
+      "distractors": ["to ask", "ask"],
+      "es": "Me seguía haciendo la misma pregunta."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-write-1",
+      "itemIds": ["b1.grammar.gerund-infinitive-plan-hope"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Espero verte pronto.",
+      "accepted": ["I hope to see you soon.", "I hope {I see|I'll see} you soon."]
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-order-2",
+      "itemIds": ["b1.grammar.gerund-infinitive-after-preposition"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["saying", "without", "She", "goodbye.", "left"],
+      "accepted": ["She left without saying goodbye."],
+      "es": "Se fue sin despedirse."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-reading-1",
+      "itemIds": [
+        "b1.grammar.gerund-infinitive-subject",
+        "b1.grammar.gerund-infinitive-avoid-keep",
+        "b1.grammar.gerund-infinitive-plan-hope",
+        "b1.grammar.gerund-infinitive-purpose"
+      ],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b1.grammar.practice-gerund-infinitive-running",
+      "questions": [
+        {
+          "prompt": "Why did the writer start running?",
+          "options": [
+            "The writer enjoys being outside.",
+            "A doctor said so.",
+            "The writer's friends run."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What was hard at first?",
+          "options": [
+            "Finding friends to run with",
+            "Running for more than five minutes",
+            "Running in the spring"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why does the writer run three times a week?",
+          "options": ["To win races", "To meet people", "To stay healthy"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-cloze-4",
+      "itemIds": ["b1.grammar.gerund-infinitive-purpose"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She called me ___ say happy birthday.",
+      "answers": ["to"],
+      "distractors": ["for", "for to"],
+      "es": "Me llamó para desearme feliz cumpleaños."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-write-2",
+      "itemIds": ["b1.grammar.gerund-infinitive-subject"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Fumar es malo para la salud.",
+      "accepted": ["Smoking is bad for {your|our|} health."]
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-choice-3",
+      "itemIds": ["b1.grammar.gerund-infinitive-remember-forget"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Don't forget to call your mom.",
+      "options": [
+        "No te olvides de llamar a tu mamá.",
+        "No recuerdas haber llamado a tu mamá.",
+        "No hace falta llamar a tu mamá."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-vocab-3",
+      "itemIds": ["b1.grammar.gerund-infinitive-after-preposition"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": ["Thanks for help me.", "Thanks for to help me.", "Thanks for helping me."],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-cloze-5",
+      "itemIds": ["b1.grammar.gerund-infinitive-remember-forget"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Please remember ___ the lights when you leave.",
+      "answers": ["to turn off"],
+      "distractors": ["turning off", "turn off"],
+      "es": "Por favor, acuérdate de apagar las luces cuando te vayas."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-choice-4",
+      "itemIds": ["b1.grammar.gerund-infinitive-subject"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Learning a language takes time.",
+      "options": [
+        "Aprendí un idioma hace tiempo.",
+        "Estoy aprendiendo un idioma con tiempo.",
+        "Aprender un idioma lleva tiempo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-write-3",
+      "itemIds": ["b1.grammar.gerund-infinitive-avoid-keep"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Evito comer tarde.",
+      "accepted": ["I {avoid|try to avoid} eating late."]
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-order-3",
+      "itemIds": ["b1.grammar.gerund-infinitive-plan-hope"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["to", "me.", "promised", "They", "call"],
+      "accepted": ["They promised to call me."],
+      "es": "Prometieron llamarme."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-cloze-6",
+      "itemIds": ["b1.grammar.gerund-infinitive-avoid-keep"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I really enjoy ___ in the rain.",
+      "answers": ["walking"],
+      "distractors": ["to walk", "walk"],
+      "es": "Disfruto mucho caminar bajo la lluvia."
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-write-4",
+      "itemIds": ["b1.grammar.gerund-infinitive-purpose"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Estudio inglés para conseguir un mejor trabajo.",
+      "accepted": [
+        "I {study|am studying} English {to|in order to|so I can|so that I can} {get|find} a better job."
+      ]
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-running",
+      "level": "B1",
+      "topics": ["grammar"],
+      "title": "A new hobby",
+      "text": "Last year I decided to try something new. I've always enjoyed being outside, so I started running. At first, running was hard. I kept stopping after five minutes! But I didn't give up. Now I run three times a week to stay healthy, and I'm planning to do a half marathon in the spring. Running with friends is my favorite part. I hope to finish the race in under two hours.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-1",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Gerundio o infinitivo: conócelos",
+      "exerciseIds": [
+        "b1.grammar.practice-gerund-infinitive-vocab-1",
+        "b1.grammar.practice-gerund-infinitive-cloze-1",
+        "b1.grammar.practice-gerund-infinitive-choice-1",
+        "b1.grammar.practice-gerund-infinitive-cloze-2",
+        "b1.grammar.practice-gerund-infinitive-vocab-2",
+        "b1.grammar.practice-gerund-infinitive-choice-2",
+        "b1.grammar.practice-gerund-infinitive-order-1"
+      ],
+      "newItemIds": [
+        "b1.grammar.gerund-infinitive-avoid-keep",
+        "b1.grammar.gerund-infinitive-plan-hope",
+        "b1.grammar.gerund-infinitive-after-preposition",
+        "b1.grammar.gerund-infinitive-subject",
+        "b1.grammar.gerund-infinitive-remember-forget"
+      ],
+      "deepenCardIds": ["b1.grammar.gerund-infinitive", "a2.grammar.like-ing"]
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-2",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Gerundio o infinitivo: practícalos",
+      "exerciseIds": [
+        "b1.grammar.practice-gerund-infinitive-cloze-3",
+        "b1.grammar.practice-gerund-infinitive-write-1",
+        "b1.grammar.practice-gerund-infinitive-order-2",
+        "b1.grammar.practice-gerund-infinitive-reading-1",
+        "b1.grammar.practice-gerund-infinitive-cloze-4",
+        "b1.grammar.practice-gerund-infinitive-write-2",
+        "b1.grammar.practice-gerund-infinitive-choice-3"
+      ],
+      "newItemIds": [
+        "b1.grammar.gerund-infinitive-avoid-keep",
+        "b1.grammar.gerund-infinitive-plan-hope",
+        "b1.grammar.gerund-infinitive-after-preposition",
+        "b1.grammar.gerund-infinitive-purpose",
+        "b1.grammar.gerund-infinitive-subject"
+      ],
+      "deepenCardIds": ["b1.grammar.gerund-infinitive"]
+    },
+    {
+      "id": "b1.grammar.practice-gerund-infinitive-3",
+      "level": "B1",
+      "topic": "grammar",
+      "title": "Gerundio o infinitivo: no los confundas",
+      "exerciseIds": [
+        "b1.grammar.practice-gerund-infinitive-vocab-3",
+        "b1.grammar.practice-gerund-infinitive-cloze-5",
+        "b1.grammar.practice-gerund-infinitive-choice-4",
+        "b1.grammar.practice-gerund-infinitive-write-3",
+        "b1.grammar.practice-gerund-infinitive-order-3",
+        "b1.grammar.practice-gerund-infinitive-cloze-6",
+        "b1.grammar.practice-gerund-infinitive-write-4"
+      ],
+      "newItemIds": [
+        "b1.grammar.gerund-infinitive-after-preposition",
+        "b1.grammar.gerund-infinitive-remember-forget",
+        "b1.grammar.gerund-infinitive-subject",
+        "b1.grammar.gerund-infinitive-avoid-keep",
+        "b1.grammar.gerund-infinitive-purpose"
+      ],
+      "deepenCardIds": ["b1.grammar.gerund-infinitive", "a2.grammar.like-ing"]
+    }
+  ]
+}

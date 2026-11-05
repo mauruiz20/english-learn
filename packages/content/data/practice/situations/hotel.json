@@ -1,0 +1,481 @@
+{
+  "items": [
+    {
+      "id": "a2.situations.reservation-under",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I have a reservation under (name)",
+      "es": "tengo una reservación a nombre de (nombre)",
+      "example": {
+        "en": "Hi, I have a reservation under García.",
+        "es": "Hola, tengo una reservación a nombre de García."
+      }
+    },
+    {
+      "id": "a2.situations.double-room",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "double room",
+      "es": "habitación doble",
+      "example": {
+        "en": "We'd like a double room for three nights.",
+        "es": "Quisiéramos una habitación doble para tres noches."
+      }
+    },
+    {
+      "id": "a2.situations.front-desk",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "front desk",
+      "es": "recepción (de un hotel)",
+      "example": {
+        "en": "You can leave your bags at the front desk.",
+        "es": "Puedes dejar tus maletas en la recepción."
+      }
+    },
+    {
+      "id": "a2.situations.key-card",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "key card",
+      "es": "tarjeta llave",
+      "example": {
+        "en": "Here is your key card. You're in room 512.",
+        "es": "Aquí tiene su tarjeta llave. Está en la habitación 512."
+      }
+    },
+    {
+      "id": "a2.situations.breakfast-included",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Is breakfast included?",
+      "es": "¿Está incluido el desayuno?",
+      "example": {
+        "en": "Is breakfast included in the price?",
+        "es": "¿El desayuno está incluido en el precio?"
+      }
+    },
+    {
+      "id": "a2.situations.wake-up-call",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "wake-up call",
+      "es": "llamada para despertar",
+      "example": {
+        "en": "Could I have a wake-up call at six, please?",
+        "es": "¿Me podrían llamar para despertarme a las seis, por favor?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.situations.practice-hotel-arrival",
+      "level": "A2",
+      "topics": ["situations"],
+      "title": "Checking in",
+      "text": "Receptionist: Good evening. Welcome to the Lincoln Hotel. Mr. Díaz: Hi, I have a reservation under Díaz. Receptionist: Let me see. Yes, a double room for two nights. Can I see your ID, please? Mr. Díaz: Sure, here you go. Is breakfast included? Receptionist: Yes, it is. Breakfast is from seven to ten on the first floor. Here are your key cards. You're in room 305. Mr. Díaz: Great. And where is the elevator? Receptionist: Just behind you, on the left.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.situations.practice-hotel-vocab-1",
+      "itemIds": ["a2.situations.front-desk"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'front desk' mean in 'Please ask at the front desk.'?",
+      "options": [
+        "la puerta principal",
+        "el restaurante",
+        "la recepción",
+        "el escritorio de tu habitación"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-hotel-choice-1",
+      "itemIds": ["a2.situations.reservation-under"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Good evening. I have a reservation under Díaz.",
+      "options": [
+        "Buenas noches. Tengo una reservación a nombre de Díaz.",
+        "Buenas noches. Quiero hacer una reservación a nombre de Díaz.",
+        "Buenas noches. El señor Díaz canceló su reservación."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-hotel-cloze-1",
+      "itemIds": ["a2.situations.double-room"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We're two people, so we'd like a ___ room, please.",
+      "answers": ["double"],
+      "distractors": ["pair", "twice"],
+      "es": "Somos dos personas, así que quisiéramos una habitación doble, por favor."
+    },
+    {
+      "id": "a2.situations.practice-hotel-vocab-2",
+      "itemIds": ["a2.situations.key-card"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'key card' mean in 'My key card doesn't open the door.'?",
+      "options": [
+        "la tarjeta de crédito",
+        "la tarjeta llave",
+        "la llave del auto",
+        "la tarjeta de presentación"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-hotel-choice-2",
+      "itemIds": ["a2.situations.breakfast-included"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Is breakfast included?",
+      "options": [
+        "¿A qué hora es el desayuno?",
+        "¿Dónde sirven el desayuno?",
+        "¿Cuánto cuesta el desayuno?",
+        "¿Está incluido el desayuno?"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.situations.practice-hotel-reading-1",
+      "itemIds": [
+        "a2.situations.reservation-under",
+        "a2.situations.double-room",
+        "a2.situations.breakfast-included",
+        "a2.situations.key-card"
+      ],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a2.situations.practice-hotel-arrival",
+      "questions": [
+        {
+          "prompt": "How long is Mr. Díaz staying?",
+          "options": ["One night", "Two nights", "Three nights"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Does he have to pay extra for breakfast?",
+          "options": [
+            "No, breakfast is included.",
+            "Yes, it costs ten dollars.",
+            "There is no breakfast."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What room is he in?",
+          "options": ["Room 503", "Room 350", "Room 305"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.situations.practice-hotel-vocab-3",
+      "itemIds": ["a2.situations.wake-up-call"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'wake-up call' mean in 'I asked for a wake-up call at 5:30.'?",
+      "options": [
+        "una alarma de incendio",
+        "una llamada para despertarte",
+        "un desayuno temprano",
+        "un taxi temprano"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-hotel-cloze-2",
+      "itemIds": ["a2.situations.reservation-under"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Hello. I ___ a reservation for two nights.",
+      "answers": ["have"],
+      "distractors": ["do", "am"],
+      "es": "Hola. Tengo una reservación para dos noches."
+    },
+    {
+      "id": "a2.situations.practice-hotel-order-1",
+      "itemIds": ["a2.situations.breakfast-included"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["price?", "included", "breakfast", "the", "Is", "in"],
+      "accepted": ["Is breakfast included in the price?"],
+      "es": "¿El desayuno está incluido en el precio?"
+    },
+    {
+      "id": "a2.situations.practice-hotel-write-1",
+      "itemIds": ["a2.situations.reservation-under"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo una reservación a nombre de Pérez.",
+      "accepted": [
+        "I have a {reservation|booking} under {Pérez|Perez|the name {Pérez|Perez}}.",
+        "I have a {reservation|booking} in the name of {Pérez|Perez}."
+      ]
+    },
+    {
+      "id": "a2.situations.practice-hotel-choice-3",
+      "itemIds": ["a2.situations.key-card"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My key card isn't working. Can you help me?",
+      "options": [
+        "Perdí mi tarjeta llave. ¿Me puede ayudar?",
+        "Mi tarjeta llave no funciona. ¿Me puede ayudar?",
+        "Mi tarjeta de crédito no funciona. ¿Me puede ayudar?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-hotel-cloze-3",
+      "itemIds": ["a2.situations.wake-up-call"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My flight is very early. Could I have a wake-up ___ at five, please?",
+      "answers": ["call"],
+      "distractors": ["phone", "clock"],
+      "es": "Mi vuelo es muy temprano. ¿Me podrían llamar para despertarme a las cinco, por favor?"
+    },
+    {
+      "id": "a2.situations.practice-hotel-order-2",
+      "itemIds": ["a2.situations.front-desk"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["the", "bags", "Can", "desk?", "I", "front", "at", "my", "leave"],
+      "accepted": ["Can I leave my bags at the front desk?"],
+      "es": "¿Puedo dejar mis maletas en la recepción?"
+    },
+    {
+      "id": "a2.situations.practice-hotel-write-2",
+      "itemIds": ["a2.situations.breakfast-included"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Está incluido el desayuno?",
+      "accepted": ["Is breakfast included[ in the price]?", "Does the price include breakfast?"]
+    },
+    {
+      "id": "a2.situations.practice-hotel-vocab-4",
+      "itemIds": ["a2.situations.wake-up-call"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What is the most polite way to ask the front desk for a wake-up call?",
+      "options": [
+        "Could I have a wake-up call at seven, please?",
+        "You call me at seven.",
+        "I want a wake-up call.",
+        "Wake me up at seven."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-hotel-cloze-4",
+      "itemIds": ["a2.situations.reservation-under"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I have a reservation ___ the name García.",
+      "answers": ["under"],
+      "distractors": ["to", "at"],
+      "es": "Tengo una reservación a nombre de García."
+    },
+    {
+      "id": "a2.situations.practice-hotel-choice-4",
+      "itemIds": ["a2.situations.double-room"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We'd like a double room with an ocean view.",
+      "options": [
+        "Quisiéramos una habitación doble con vista al mar.",
+        "Quisiéramos dos habitaciones con vista al mar.",
+        "Quisiéramos una habitación doble lejos del mar."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-hotel-write-3",
+      "itemIds": ["a2.situations.key-card"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi tarjeta llave no funciona.",
+      "accepted": ["My key card {doesn't work|isn't working}."]
+    },
+    {
+      "id": "a2.situations.practice-hotel-order-3",
+      "itemIds": ["a2.situations.breakfast-included"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["day?", "breakfast", "Is", "every", "included"],
+      "accepted": ["Is breakfast included every day?"],
+      "es": "¿El desayuno está incluido todos los días?"
+    },
+    {
+      "id": "a2.situations.practice-hotel-cloze-5",
+      "itemIds": ["a2.situations.front-desk"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If you need anything, please call the front ___.",
+      "answers": ["desk"],
+      "distractors": ["door", "table"],
+      "es": "Si necesita algo, por favor llame a la recepción."
+    },
+    {
+      "id": "a2.situations.practice-hotel-vocab-5",
+      "itemIds": ["a2.situations.double-room"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'double room' mean in 'A double room costs $120 a night.'?",
+      "options": [
+        "una habitación para dos personas",
+        "dos habitaciones juntas",
+        "una habitación que cuesta el doble",
+        "una habitación con dos baños"
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.situations.practice-hotel-1",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el hotel: frases clave",
+      "exerciseIds": [
+        "a2.situations.practice-hotel-vocab-1",
+        "a2.situations.practice-hotel-choice-1",
+        "a2.situations.practice-hotel-cloze-1",
+        "a2.situations.practice-hotel-vocab-2",
+        "a2.situations.practice-hotel-choice-2",
+        "a2.situations.practice-hotel-reading-1",
+        "a2.situations.practice-hotel-vocab-3"
+      ],
+      "newItemIds": [
+        "a2.situations.front-desk",
+        "a2.situations.reservation-under",
+        "a2.situations.double-room",
+        "a2.situations.key-card",
+        "a2.situations.breakfast-included"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-hotel-2",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el hotel: practícalas",
+      "exerciseIds": [
+        "a2.situations.practice-hotel-cloze-2",
+        "a2.situations.practice-hotel-order-1",
+        "a2.situations.practice-hotel-write-1",
+        "a2.situations.practice-hotel-choice-3",
+        "a2.situations.practice-hotel-cloze-3",
+        "a2.situations.practice-hotel-order-2",
+        "a2.situations.practice-hotel-write-2"
+      ],
+      "newItemIds": [
+        "a2.situations.wake-up-call",
+        "a2.situations.reservation-under",
+        "a2.situations.breakfast-included",
+        "a2.situations.key-card",
+        "a2.situations.front-desk"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-hotel-3",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el hotel: dilo bien",
+      "exerciseIds": [
+        "a2.situations.practice-hotel-vocab-4",
+        "a2.situations.practice-hotel-cloze-4",
+        "a2.situations.practice-hotel-choice-4",
+        "a2.situations.practice-hotel-write-3",
+        "a2.situations.practice-hotel-order-3",
+        "a2.situations.practice-hotel-cloze-5",
+        "a2.situations.practice-hotel-vocab-5"
+      ],
+      "newItemIds": [
+        "a2.situations.reservation-under",
+        "a2.situations.wake-up-call",
+        "a2.situations.double-room",
+        "a2.situations.key-card",
+        "a2.situations.breakfast-included"
+      ]
+    }
+  ]
+}

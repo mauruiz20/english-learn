@@ -85,6 +85,21 @@
       ]
     },
     {
+      "id": "glossary.hall",
+      "headword": "hall",
+      "kind": "word",
+      "forms": ["hall", "halls"],
+      "senses": [
+        {
+          "es": "pasillo, vestíbulo; salón",
+          "pos": "noun"
+        },
+        {
+          "es": "(apellido)"
+        }
+      ]
+    },
+    {
       "id": "glossary.hand",
       "headword": "hand",
       "kind": "word",
@@ -492,6 +507,18 @@
       ]
     },
     {
+      "id": "glossary.heart",
+      "headword": "heart",
+      "kind": "word",
+      "forms": ["heart", "hearts"],
+      "senses": [
+        {
+          "es": "corazón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.heat",
       "headword": "heat",
       "kind": "word",
@@ -504,10 +531,22 @@
       ]
     },
     {
+      "id": "glossary.heater",
+      "headword": "heater",
+      "kind": "word",
+      "forms": ["heater", "heaters"],
+      "senses": [
+        {
+          "es": "calefacción, calentador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.heavy",
       "headword": "heavy",
       "kind": "word",
-      "forms": ["heavy"],
+      "forms": ["heavy", "heavier", "heaviest"],
       "senses": [
         {
           "es": "pesado",
@@ -524,6 +563,18 @@
         {
           "es": "hola",
           "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.helmet",
+      "headword": "helmet",
+      "kind": "word",
+      "forms": ["helmet", "helmets"],
+      "senses": [
+        {
+          "es": "casco",
+          "pos": "noun"
         }
       ]
     },
@@ -584,6 +635,30 @@
         {
           "es": "(ella) misma, a sí misma",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hey",
+      "headword": "hey",
+      "kind": "word",
+      "forms": ["hey"],
+      "senses": [
+        {
+          "es": "hola, oye (informal)",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hi",
+      "headword": "hi",
+      "kind": "word",
+      "forms": ["hi"],
+      "senses": [
+        {
+          "es": "hola",
+          "pos": "interjection"
         }
       ]
     },
@@ -764,6 +839,18 @@
       ]
     },
     {
+      "id": "glossary.honest",
+      "headword": "honest",
+      "kind": "word",
+      "forms": ["honest"],
+      "senses": [
+        {
+          "es": "honesto, sincero",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.hope",
       "headword": "hope",
       "kind": "word",
@@ -780,6 +867,30 @@
       ]
     },
     {
+      "id": "glossary.horror",
+      "headword": "horror",
+      "kind": "word",
+      "forms": ["horror"],
+      "senses": [
+        {
+          "es": "horror, terror (horror movie: película de terror)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.horse",
+      "headword": "horse",
+      "kind": "word",
+      "forms": ["horse", "horses"],
+      "senses": [
+        {
+          "es": "caballo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.hospital",
       "headword": "hospital",
       "kind": "word",
@@ -787,6 +898,18 @@
       "senses": [
         {
           "es": "hospital",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.host",
+      "headword": "host",
+      "kind": "word",
+      "forms": ["host", "hosts"],
+      "senses": [
+        {
+          "es": "presentador, anfitrión",
           "pos": "noun"
         }
       ]
@@ -951,6 +1074,18 @@
       "senses": [
         {
           "es": "enorme",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.human",
+      "headword": "human",
+      "kind": "word",
+      "forms": ["human", "humans"],
+      "senses": [
+        {
+          "es": "humano",
           "pos": "adjective"
         }
       ]

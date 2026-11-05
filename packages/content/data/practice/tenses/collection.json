@@ -1,0 +1,121 @@
+{
+  "practice": [
+    {
+      "id": "practice.tenses",
+      "title": "Tiempos verbales",
+      "summary": "Los tiempos del inglés de dos en dos: cómo se forman, cuándo se usan, con qué expresiones de tiempo y qué errores evitar.",
+      "groups": [
+        {
+          "id": "practice.tenses.present",
+          "level": "A2",
+          "title": "Presente simple y continuo",
+          "summary": "Rutinas, cosas que pasan ahora y el error de «I am living here since…».",
+          "lessonIds": [
+            "a2.tenses.practice-present-1",
+            "a2.tenses.practice-present-2",
+            "a2.tenses.practice-present-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.past",
+          "level": "B1",
+          "title": "Pasado simple y continuo",
+          "summary": "Lo que pasó y lo que estaba pasando: when, while y as.",
+          "lessonIds": [
+            "b1.tenses.practice-past-1",
+            "b1.tenses.practice-past-2",
+            "b1.tenses.practice-past-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.present-perfect",
+          "level": "B1",
+          "title": "Presente perfecto",
+          "summary": "Experiencias, tiempo no terminado y just, already, yet.",
+          "lessonIds": [
+            "b1.tenses.practice-present-perfect-1",
+            "b1.tenses.practice-present-perfect-2",
+            "b1.tenses.practice-present-perfect-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.perfect-or-past",
+          "level": "B1",
+          "title": "Presente perfecto o pasado",
+          "summary": "Sin fecha o con fecha: have done o did.",
+          "lessonIds": [
+            "b1.tenses.practice-perfect-or-past-1",
+            "b1.tenses.practice-perfect-or-past-2",
+            "b1.tenses.practice-perfect-or-past-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.perfect-continuous",
+          "level": "B1",
+          "title": "Presente perfecto continuo",
+          "summary": "Algo que empezó antes y sigue: How long have you been…?",
+          "lessonIds": [
+            "b1.tenses.practice-perfect-continuous-1",
+            "b1.tenses.practice-perfect-continuous-2",
+            "b1.tenses.practice-perfect-continuous-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.past-perfect",
+          "level": "B1",
+          "title": "Pasado perfecto",
+          "summary": "Lo que ya había pasado antes de otro momento del pasado.",
+          "lessonIds": [
+            "b1.tenses.practice-past-perfect-1",
+            "b1.tenses.practice-past-perfect-2",
+            "b1.tenses.practice-past-perfect-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.future",
+          "level": "B1",
+          "title": "Formas del futuro",
+          "summary": "Will, going to, presente continuo y presente simple para horarios.",
+          "lessonIds": [
+            "b1.tenses.practice-future-1",
+            "b1.tenses.practice-future-2",
+            "b1.tenses.practice-future-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.future-perfect",
+          "level": "B2",
+          "title": "Futuro continuo y perfecto",
+          "summary": "Lo que estarás haciendo y lo que ya habrás hecho.",
+          "lessonIds": [
+            "b2.tenses.practice-future-perfect-1",
+            "b2.tenses.practice-future-perfect-2",
+            "b2.tenses.practice-future-perfect-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.past-habits",
+          "level": "B2",
+          "title": "Used to y would",
+          "summary": "Hábitos y estados del pasado que ya no existen.",
+          "lessonIds": [
+            "b2.tenses.practice-past-habits-1",
+            "b2.tenses.practice-past-habits-2",
+            "b2.tenses.practice-past-habits-3"
+          ]
+        },
+        {
+          "id": "practice.tenses.stative",
+          "level": "B1",
+          "title": "Verbos de estado",
+          "summary": "Know, want, believe: verbos que casi nunca van en -ing.",
+          "lessonIds": [
+            "b1.tenses.practice-stative-1",
+            "b1.tenses.practice-stative-2",
+            "b1.tenses.practice-stative-3"
+          ]
+        }
+      ]
+    }
+  ]
+}

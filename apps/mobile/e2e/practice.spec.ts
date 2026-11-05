@@ -18,7 +18,7 @@ test("free practice: a phrasal-verbs lesson gets its result, leaves the path alo
   await page.goto(`/?today=${DAY_1}`);
   await expect(page.getByRole("button", { name: FIRST_PATH_LESSON, exact: true })).toBeVisible();
   await page
-    .getByRole("button", { name: "Práctica libre: Phrasal verbs, a tu ritmo", exact: true })
+    .getByRole("button", { name: /^Práctica libre: .*Phrasal verbs.*, a tu ritmo$/ })
     .click();
 
   await expect(page.getByRole("heading", { name: "Práctica libre", exact: true })).toBeVisible();
@@ -58,3 +58,43 @@ test("free practice: a phrasal-verbs lesson gets its result, leaves the path alo
   expect(reviewed).toBeGreaterThan(0);
   expect(problems).toEqual([]);
 });
+
+// The collections added after phrasal verbs: each is listed, opens on its first group and plays
+// its first lesson to the end.
+const NEW_COLLECTIONS = [
+  { title: "Tiempos verbales", group: "Presente simple y continuo", lesson: "conócelos" },
+  { title: "Situaciones", group: "En el aeropuerto", lesson: "frases clave" },
+  { title: "Gramática", group: "Artículos", lesson: "conócelos" },
+] as const;
+
+for (const { title, group, lesson } of NEW_COLLECTIONS) {
+  test(`free practice: the ${title} collection is listed and its first lesson plays`, async ({
+    page,
+  }) => {
+    const problems: string[] = [];
+    page.on("console", (message: ConsoleMessage) => {
+      if (message.type() === "error") problems.push(message.text());
+    });
+    page.on("pageerror", (error) => problems.push(error.message));
+
+    await page.goto(`/?today=${DAY_1}`);
+    await page.getByRole("button", { name: /^Práctica libre: .*, a tu ritmo$/ }).click();
+    await expect(page.getByRole("heading", { name: "Práctica libre", exact: true })).toBeVisible();
+    await page
+      .getByRole("button", { name: new RegExp(`^${title}: \\d+ grupos, \\d+ lecciones$`) })
+      .click();
+
+    await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: `${group}, nivel A2` })).toBeVisible();
+    await page.getByRole("button", { name: `${group}: ${lesson}, nueva`, exact: true }).click();
+
+    const answered = await playSessionCorrectly(page, "¡Lección completada!");
+    expect(answered).toBeGreaterThanOrEqual(6);
+    await page.getByRole("button", { name: `Volver a ${title}`, exact: true }).click();
+    const perfect = `completada sin errores: ${answered} de ${answered} correctas`;
+    await expect(
+      page.getByRole("button", { name: `${group}: ${lesson}, ${perfect}`, exact: true }),
+    ).toBeVisible();
+    expect(problems).toEqual([]);
+  });
+}

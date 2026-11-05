@@ -37,6 +37,18 @@
       ]
     },
     {
+      "id": "glossary.uncountable",
+      "headword": "uncountable",
+      "kind": "word",
+      "forms": ["uncountable"],
+      "senses": [
+        {
+          "es": "incontable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.under",
       "headword": "under",
       "kind": "word",
@@ -85,6 +97,18 @@
       ]
     },
     {
+      "id": "glossary.unfinished",
+      "headword": "unfinished",
+      "kind": "word",
+      "forms": ["unfinished"],
+      "senses": [
+        {
+          "es": "sin terminar, no terminado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.unfortunately",
       "headword": "unfortunately",
       "kind": "word",
@@ -97,6 +121,18 @@
       ]
     },
     {
+      "id": "glossary.unfurnished",
+      "headword": "unfurnished",
+      "kind": "word",
+      "forms": ["unfurnished"],
+      "senses": [
+        {
+          "es": "sin amueblar",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.uniform",
       "headword": "uniform",
       "kind": "word",
@@ -105,6 +141,18 @@
         {
           "es": "uniforme",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unique",
+      "headword": "unique",
+      "kind": "word",
+      "forms": ["unique"],
+      "senses": [
+        {
+          "es": "único",
+          "pos": "adjective"
         }
       ]
     },
@@ -313,6 +361,18 @@
         {
           "es": "normalmente, por lo general",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.utility",
+      "headword": "utility",
+      "kind": "word",
+      "forms": ["utility", "utilities"],
+      "senses": [
+        {
+          "es": "(utilities) servicios: luz, agua, gas",
+          "pos": "noun"
         }
       ]
     }

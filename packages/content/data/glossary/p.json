@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.pack",
+      "headword": "pack",
+      "kind": "word",
+      "forms": ["pack", "packs", "packed", "packing"],
+      "senses": [
+        {
+          "es": "hacer la maleta, empacar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.page",
       "headword": "page",
       "kind": "word",
@@ -49,6 +61,18 @@
       ]
     },
     {
+      "id": "glossary.pain",
+      "headword": "pain",
+      "kind": "word",
+      "forms": ["pain", "pains"],
+      "senses": [
+        {
+          "es": "dolor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.paint",
       "headword": "paint",
       "kind": "word",
@@ -65,6 +89,18 @@
       ]
     },
     {
+      "id": "glossary.pair",
+      "headword": "pair",
+      "kind": "word",
+      "forms": ["pair", "pairs"],
+      "senses": [
+        {
+          "es": "par",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.panic",
       "headword": "panic",
       "kind": "word",
@@ -76,6 +112,18 @@
         },
         {
           "es": "pánico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pants",
+      "headword": "pants",
+      "kind": "word",
+      "forms": ["pants"],
+      "senses": [
+        {
+          "es": "pantalones",
           "pos": "noun"
         }
       ]
@@ -153,6 +201,18 @@
         {
           "es": "estacionar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.parking",
+      "headword": "parking",
+      "kind": "word",
+      "forms": ["parking"],
+      "senses": [
+        {
+          "es": "estacionamiento",
+          "pos": "noun"
         }
       ]
     },
@@ -237,6 +297,18 @@
       ]
     },
     {
+      "id": "glossary.passenger",
+      "headword": "passenger",
+      "kind": "word",
+      "forms": ["passenger", "passengers"],
+      "senses": [
+        {
+          "es": "pasajero, pasajera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.passive",
       "headword": "passive",
       "kind": "word",
@@ -297,6 +369,18 @@
       ]
     },
     {
+      "id": "glossary.pasta",
+      "headword": "pasta",
+      "kind": "word",
+      "forms": ["pasta"],
+      "senses": [
+        {
+          "es": "pasta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.patient",
       "headword": "patient",
       "kind": "word",
@@ -309,6 +393,30 @@
         {
           "es": "paciente",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.paul",
+      "headword": "Paul",
+      "kind": "word",
+      "forms": ["paul"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.paved",
+      "headword": "paved",
+      "kind": "word",
+      "forms": ["paved"],
+      "senses": [
+        {
+          "es": "pavimentado",
+          "pos": "adjective"
         }
       ]
     },
@@ -365,6 +473,17 @@
       ]
     },
     {
+      "id": "glossary.pedro",
+      "headword": "Pedro",
+      "kind": "word",
+      "forms": ["pedro"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
       "id": "glossary.pencil",
       "headword": "pencil",
       "kind": "word",
@@ -397,6 +516,18 @@
         {
           "es": "por ciento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.perez",
+      "headword": "Pérez",
+      "kind": "word",
+      "forms": ["pérez", "perez"],
+      "senses": [
+        {
+          "es": "Pérez (apellido)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -497,6 +628,18 @@
       ]
     },
     {
+      "id": "glossary.pet",
+      "headword": "pet",
+      "kind": "word",
+      "forms": ["pet", "pets"],
+      "senses": [
+        {
+          "es": "mascota",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pharmacy",
       "headword": "pharmacy",
       "kind": "word",
@@ -544,6 +687,18 @@
       "senses": [
         {
           "es": "fotografía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.phrase",
+      "headword": "phrase",
+      "kind": "word",
+      "forms": ["phrase", "phrases"],
+      "senses": [
+        {
+          "es": "frase, expresión",
           "pos": "noun"
         }
       ]
@@ -608,6 +763,54 @@
       "senses": [
         {
           "es": "foto, imagen",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.piece",
+      "headword": "piece",
+      "kind": "word",
+      "forms": ["piece", "pieces"],
+      "senses": [
+        {
+          "es": "pedazo, trozo (a piece of advice: un consejo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pill",
+      "headword": "pill",
+      "kind": "word",
+      "forms": ["pill", "pills"],
+      "senses": [
+        {
+          "es": "pastilla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pilot",
+      "headword": "pilot",
+      "kind": "word",
+      "forms": ["pilot", "pilots"],
+      "senses": [
+        {
+          "es": "piloto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pine",
+      "headword": "pine",
+      "kind": "word",
+      "forms": ["pine", "pines"],
+      "senses": [
+        {
+          "es": "pino",
           "pos": "noun"
         }
       ]
@@ -805,6 +1008,18 @@
       ]
     },
     {
+      "id": "glossary.plural",
+      "headword": "plural",
+      "kind": "word",
+      "forms": ["plural"],
+      "senses": [
+        {
+          "es": "plural",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.point",
       "headword": "point",
       "kind": "word",
@@ -865,6 +1080,18 @@
       ]
     },
     {
+      "id": "glossary.polite",
+      "headword": "polite",
+      "kind": "word",
+      "forms": ["polite", "politely"],
+      "senses": [
+        {
+          "es": "amable, cortés",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.politics",
       "headword": "politics",
       "kind": "word",
@@ -897,6 +1124,30 @@
         {
           "es": "contaminación",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pool",
+      "headword": "pool",
+      "kind": "word",
+      "forms": ["pool", "pools"],
+      "senses": [
+        {
+          "es": "piscina, alberca",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.popular",
+      "headword": "popular",
+      "kind": "word",
+      "forms": ["popular"],
+      "senses": [
+        {
+          "es": "popular, que gusta mucho",
+          "pos": "adjective"
         }
       ]
     },
@@ -941,6 +1192,18 @@
       ]
     },
     {
+      "id": "glossary.possible",
+      "headword": "possible",
+      "kind": "word",
+      "forms": ["possible"],
+      "senses": [
+        {
+          "es": "posible",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.post-office",
       "headword": "post office",
       "kind": "phrase",
@@ -948,6 +1211,18 @@
       "senses": [
         {
           "es": "oficina de correos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.poster",
+      "headword": "poster",
+      "kind": "word",
+      "forms": ["poster", "posters"],
+      "senses": [
+        {
+          "es": "cartel, afiche",
           "pos": "noun"
         }
       ]
@@ -1045,6 +1320,30 @@
       ]
     },
     {
+      "id": "glossary.preposition",
+      "headword": "preposition",
+      "kind": "word",
+      "forms": ["preposition", "prepositions"],
+      "senses": [
+        {
+          "es": "preposición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.prescription",
+      "headword": "prescription",
+      "kind": "word",
+      "forms": ["prescription", "prescriptions"],
+      "senses": [
+        {
+          "es": "receta (médica)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.present",
       "headword": "present",
       "kind": "word",
@@ -1073,10 +1372,34 @@
       ]
     },
     {
+      "id": "glossary.press",
+      "headword": "press",
+      "kind": "word",
+      "forms": ["press", "presses", "pressed", "pressing"],
+      "senses": [
+        {
+          "es": "presionar, apretar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pressure",
+      "headword": "pressure",
+      "kind": "word",
+      "forms": ["pressure"],
+      "senses": [
+        {
+          "es": "presión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pretty",
       "headword": "pretty",
       "kind": "word",
-      "forms": ["pretty"],
+      "forms": ["pretty", "prettiest"],
       "senses": [
         {
           "es": "bastante",
@@ -1213,6 +1536,18 @@
       ]
     },
     {
+      "id": "glossary.process",
+      "headword": "process",
+      "kind": "word",
+      "forms": ["process", "processes"],
+      "senses": [
+        {
+          "es": "proceso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.produce",
       "headword": "produce",
       "kind": "word",
@@ -1221,6 +1556,18 @@
         {
           "es": "producir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.product",
+      "headword": "product",
+      "kind": "word",
+      "forms": ["product", "products"],
+      "senses": [
+        {
+          "es": "producto",
+          "pos": "noun"
         }
       ]
     },
@@ -1256,6 +1603,18 @@
       "senses": [
         {
           "es": "programa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.progress",
+      "headword": "progress",
+      "kind": "word",
+      "forms": ["progress"],
+      "senses": [
+        {
+          "es": "progreso (in progress: en curso)",
           "pos": "noun"
         }
       ]
@@ -1369,6 +1728,18 @@
       ]
     },
     {
+      "id": "glossary.prove",
+      "headword": "prove",
+      "kind": "word",
+      "forms": ["prove", "proves", "proved", "proven", "proving"],
+      "senses": [
+        {
+          "es": "demostrar, comprobar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.provided-that",
       "headword": "provided that",
       "kind": "phrase",
@@ -1437,6 +1808,30 @@
         {
           "es": "jalar, tirar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.purple",
+      "headword": "purple",
+      "kind": "word",
+      "forms": ["purple"],
+      "senses": [
+        {
+          "es": "morado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.purpose",
+      "headword": "purpose",
+      "kind": "word",
+      "forms": ["purpose", "purposes"],
+      "senses": [
+        {
+          "es": "propósito, finalidad",
+          "pos": "noun"
         }
       ]
     },

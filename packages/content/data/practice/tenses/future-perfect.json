@@ -1,0 +1,439 @@
+{
+  "items": [
+    {
+      "id": "b2.tenses.future-continuous",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "future continuous (I'll be working)",
+      "es": "futuro continuo: will be + verbo-ing (lo que estará pasando en un momento del futuro)",
+      "example": {
+        "en": "Don't call me at eight tomorrow. I'll be driving.",
+        "es": "No me llames mañana a las ocho. Voy a estar manejando."
+      }
+    },
+    {
+      "id": "b2.tenses.this-time-tomorrow",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "phrase",
+      "term": "this time tomorrow",
+      "es": "mañana a esta hora",
+      "example": {
+        "en": "This time tomorrow, I'll be flying to Rome.",
+        "es": "Mañana a esta hora voy a estar volando a Roma."
+      }
+    },
+    {
+      "id": "b2.tenses.future-perfect",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "future perfect (I'll have finished)",
+      "es": "futuro perfecto: will have + participio (lo que ya habrá pasado)",
+      "example": {
+        "en": "By the end of the year, we'll have saved enough money.",
+        "es": "Para fin de año, habremos ahorrado suficiente dinero."
+      }
+    },
+    {
+      "id": "b2.tenses.by-deadline",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "by + a deadline (by Friday)",
+      "es": "para, a más tardar (by Friday = para el viernes)",
+      "example": {
+        "en": "Please send me the report by Friday.",
+        "es": "Por favor, mándame el informe para el viernes."
+      }
+    },
+    {
+      "id": "b2.tenses.will-you-be-doing",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "Will you be + -ing? (polite questions about plans)",
+      "es": "pregunta amable sobre los planes de alguien",
+      "example": {
+        "en": "Will you be using the car tonight?",
+        "es": "¿Vas a usar el auto esta noche?"
+      }
+    },
+    {
+      "id": "b2.tenses.future-perfect-continuous",
+      "level": "B2",
+      "topics": ["tenses"],
+      "kind": "grammar",
+      "term": "future perfect continuous (I'll have been working)",
+      "es": "futuro perfecto continuo: cuánto tiempo llevarás haciendo algo",
+      "example": {
+        "en": "By June, she'll have been working here for ten years.",
+        "es": "En junio va a cumplir diez años trabajando aquí."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.tenses.practice-future-perfect-office",
+      "level": "B2",
+      "topics": ["tenses"],
+      "title": "A busy month ahead",
+      "text": "Next month will be busy for the team. On the first Monday, we'll be moving to the new office, so please don't plan any meetings that day. By Wednesday, the technicians will have installed the new computers. Laura will be traveling for most of the month, so she won't be answering emails every day. By the end of the month, we'll have finished the first part of the project, and in December I'll have been working with this team for five years.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.tenses.practice-future-perfect-vocab-1",
+      "itemIds": ["b2.tenses.future-continuous"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence is correct?",
+      "options": [
+        "At nine tomorrow I'll working.",
+        "At nine tomorrow I'll be working.",
+        "At nine tomorrow I'm be working."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-choice-1",
+      "itemIds": ["b2.tenses.this-time-tomorrow"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "This time tomorrow, I'll be flying to Rome.",
+      "options": [
+        "Ayer a esta hora estaba volando a Roma.",
+        "Mañana voy a comprar un boleto a Roma.",
+        "Mañana a esta hora voy a estar volando a Roma."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-cloze-1",
+      "itemIds": ["b2.tenses.future-perfect"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Don't call at six. I won't have ___ work by then.",
+      "answers": ["finished"],
+      "distractors": ["finish", "finishing"],
+      "es": "No llames a las seis. Para entonces todavía no habré terminado de trabajar."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-cloze-2",
+      "itemIds": ["b2.tenses.by-deadline"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Please send me the report ___ Friday at the latest.",
+      "answers": ["by"],
+      "distractors": ["until", "since"],
+      "es": "Por favor, mándame el informe a más tardar el viernes."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-vocab-2",
+      "itemIds": ["b2.tenses.will-you-be-doing"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'Will you be using the car tonight?' mean?",
+      "options": [
+        "¿Usaste el auto anoche?",
+        "¿Vas a usar el auto esta noche? (pregunta amable)",
+        "¡Usa el auto esta noche!"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-choice-2",
+      "itemIds": ["b2.tenses.future-perfect"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "By the end of the year, we'll have saved enough money.",
+      "options": [
+        "Para fin de año, habremos ahorrado suficiente dinero.",
+        "A fin de año, vamos a empezar a ahorrar dinero.",
+        "El año pasado ahorramos suficiente dinero."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-cloze-3",
+      "itemIds": ["b2.tenses.future-perfect-continuous"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "By June, she'll have been ___ here for ten years.",
+      "answers": ["working"],
+      "distractors": ["worked", "work"],
+      "es": "En junio va a cumplir diez años trabajando aquí."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-order-1",
+      "itemIds": ["b2.tenses.future-continuous"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["station.", "be", "I'll", "the", "for", "waiting", "at", "you"],
+      "accepted": ["I'll be waiting for you at the station."],
+      "es": "Te voy a estar esperando en la estación."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-write-1",
+      "itemIds": ["b2.tenses.this-time-tomorrow"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Mañana a esta hora voy a estar trabajando.",
+      "accepted": [
+        "{This|At this} time tomorrow[,] I{'ll| am going to} be working.",
+        "I{'ll| am going to} be working {this|at this} time tomorrow."
+      ]
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-cloze-4",
+      "itemIds": ["b2.tenses.future-perfect"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "By the time you get here, we ___ dinner.",
+      "answers": ["will have finished"],
+      "distractors": ["have finished", "will finishing"],
+      "es": "Para cuando llegues, ya habremos terminado de cenar."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-choice-3",
+      "itemIds": ["b2.tenses.by-deadline"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'll have the documents ready by Monday.",
+      "options": [
+        "Tuve los documentos listos el lunes.",
+        "Voy a tener los documentos listos para el lunes.",
+        "Los documentos están listos desde el lunes."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-write-2",
+      "itemIds": ["b2.tenses.future-perfect-continuous"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "En julio voy a cumplir cinco años viviendo aquí.",
+      "accepted": [
+        "{By|In} July[,] I'll have {been living|lived} here for {five|5} years.",
+        "I'll have {been living|lived} here for {five|5} years {by|in} July."
+      ]
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-reading-1",
+      "itemIds": [
+        "b2.tenses.future-continuous",
+        "b2.tenses.future-perfect",
+        "b2.tenses.future-perfect-continuous"
+      ],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b2.tenses.practice-future-perfect-office",
+      "questions": [
+        {
+          "prompt": "What will happen on the first Monday?",
+          "options": [
+            "The team will move to the new office.",
+            "Laura will start a trip.",
+            "The technicians will finish their work."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Why won't Laura answer emails every day?",
+          "options": [
+            "She'll have finished the project.",
+            "She'll be in meetings all day.",
+            "She'll be traveling."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What will the technicians have done by Wednesday?",
+          "options": [
+            "Moved the office",
+            "Installed the new computers",
+            "Finished the first part of the project"
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-cloze-5",
+      "itemIds": ["b2.tenses.will-you-be-doing"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "___ you be coming to the meeting tomorrow?",
+      "answers": ["Will"],
+      "distractors": ["Are", "Do"],
+      "es": "¿Vas a venir a la reunión mañana?"
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-vocab-3",
+      "itemIds": ["b2.tenses.future-perfect", "b2.tenses.future-continuous"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Which sentence says that the report will be complete at five?",
+      "options": [
+        "At five, I'll be writing the report.",
+        "At five, I'll start the report.",
+        "By five, I'll have written the report."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-cloze-6",
+      "itemIds": ["b2.tenses.by-deadline"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'll be working ___ six, and then I'm going home.",
+      "answers": ["until"],
+      "distractors": ["by", "since"],
+      "es": "Voy a estar trabajando hasta las seis y luego me voy a casa."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-choice-4",
+      "itemIds": ["b2.tenses.future-continuous"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Don't call me at eight tomorrow. I'll be driving.",
+      "options": [
+        "No me llamaste ayer a las ocho. Estaba manejando.",
+        "No me llames mañana a las ocho. Voy a estar manejando.",
+        "No me llames mañana a las ocho. Voy a manejar a las nueve."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-order-2",
+      "itemIds": ["b2.tenses.future-perfect"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["degree", "will", "by", "summer.", "She", "have", "next", "finished", "her"],
+      "accepted": ["She will have finished her degree by next summer."],
+      "es": "Para el próximo verano, ya habrá terminado su carrera."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-write-3",
+      "itemIds": ["b2.tenses.will-you-be-doing"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Vas a usar la computadora esta tarde?",
+      "accepted": [
+        "{Will you be using|Are you going to use|Are you using|Will you use|Are you going to be using} the computer this afternoon?"
+      ]
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-cloze-7",
+      "itemIds": ["b2.tenses.future-perfect-continuous"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "By ten o'clock, I'll have been ___ for twelve hours.",
+      "answers": ["driving"],
+      "distractors": ["drive", "drove"],
+      "es": "A las diez voy a llevar doce horas manejando."
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-write-4",
+      "itemIds": ["b2.tenses.by-deadline", "b2.tenses.future-perfect"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Para el viernes, habré terminado el proyecto.",
+      "accepted": [
+        "By Friday[,] I'll have {finished|completed} the project.",
+        "I'll have {finished|completed} the project by Friday."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.tenses.practice-future-perfect-1",
+      "level": "B2",
+      "topic": "tenses",
+      "title": "Futuro continuo y perfecto: conócelos",
+      "exerciseIds": [
+        "b2.tenses.practice-future-perfect-vocab-1",
+        "b2.tenses.practice-future-perfect-choice-1",
+        "b2.tenses.practice-future-perfect-cloze-1",
+        "b2.tenses.practice-future-perfect-cloze-2",
+        "b2.tenses.practice-future-perfect-vocab-2",
+        "b2.tenses.practice-future-perfect-choice-2",
+        "b2.tenses.practice-future-perfect-cloze-3"
+      ],
+      "newItemIds": [
+        "b2.tenses.future-continuous",
+        "b2.tenses.this-time-tomorrow",
+        "b2.tenses.future-perfect",
+        "b2.tenses.by-deadline",
+        "b2.tenses.will-you-be-doing"
+      ]
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-2",
+      "level": "B2",
+      "topic": "tenses",
+      "title": "Futuro continuo y perfecto: practícalos",
+      "exerciseIds": [
+        "b2.tenses.practice-future-perfect-order-1",
+        "b2.tenses.practice-future-perfect-write-1",
+        "b2.tenses.practice-future-perfect-cloze-4",
+        "b2.tenses.practice-future-perfect-choice-3",
+        "b2.tenses.practice-future-perfect-write-2",
+        "b2.tenses.practice-future-perfect-reading-1",
+        "b2.tenses.practice-future-perfect-cloze-5"
+      ],
+      "newItemIds": [
+        "b2.tenses.future-perfect-continuous",
+        "b2.tenses.future-continuous",
+        "b2.tenses.this-time-tomorrow",
+        "b2.tenses.future-perfect",
+        "b2.tenses.by-deadline"
+      ]
+    },
+    {
+      "id": "b2.tenses.practice-future-perfect-3",
+      "level": "B2",
+      "topic": "tenses",
+      "title": "Futuro continuo y perfecto: no los confundas",
+      "exerciseIds": [
+        "b2.tenses.practice-future-perfect-vocab-3",
+        "b2.tenses.practice-future-perfect-cloze-6",
+        "b2.tenses.practice-future-perfect-choice-4",
+        "b2.tenses.practice-future-perfect-order-2",
+        "b2.tenses.practice-future-perfect-write-3",
+        "b2.tenses.practice-future-perfect-cloze-7",
+        "b2.tenses.practice-future-perfect-write-4"
+      ],
+      "newItemIds": [
+        "b2.tenses.future-perfect",
+        "b2.tenses.future-continuous",
+        "b2.tenses.by-deadline",
+        "b2.tenses.will-you-be-doing",
+        "b2.tenses.future-perfect-continuous"
+      ]
+    }
+  ]
+}

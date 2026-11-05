@@ -133,6 +133,18 @@
       ]
     },
     {
+      "id": "glossary.management",
+      "headword": "management",
+      "kind": "word",
+      "forms": ["management"],
+      "senses": [
+        {
+          "es": "gestión, administración; la dirección",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.manager",
       "headword": "manager",
       "kind": "word",
@@ -173,6 +185,18 @@
       ]
     },
     {
+      "id": "glossary.marathon",
+      "headword": "marathon",
+      "kind": "word",
+      "forms": ["marathon", "marathons"],
+      "senses": [
+        {
+          "es": "maratón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.march",
       "headword": "March",
       "kind": "word",
@@ -197,6 +221,30 @@
       ]
     },
     {
+      "id": "glossary.maria",
+      "headword": "Maria",
+      "kind": "word",
+      "forms": ["maria"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mark",
+      "headword": "Mark",
+      "kind": "word",
+      "forms": ["mark"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.market",
       "headword": "market",
       "kind": "word",
@@ -204,6 +252,18 @@
       "senses": [
         {
           "es": "mercado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.marketing",
+      "headword": "marketing",
+      "kind": "word",
+      "forms": ["marketing"],
+      "senses": [
+        {
+          "es": "mercadotecnia, marketing",
           "pos": "noun"
         }
       ]
@@ -233,6 +293,22 @@
         {
           "es": "Marta (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.master",
+      "headword": "master",
+      "kind": "word",
+      "forms": ["master", "masters", "master's"],
+      "senses": [
+        {
+          "es": "(master's degree) maestría",
+          "pos": "noun"
+        },
+        {
+          "es": "maestro, experto",
+          "pos": "noun"
         }
       ]
     },
@@ -273,6 +349,18 @@
       ]
     },
     {
+      "id": "glossary.max",
+      "headword": "Max",
+      "kind": "word",
+      "forms": ["max"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.may",
       "headword": "may",
       "kind": "word",
@@ -288,6 +376,18 @@
         },
         {
           "es": "(May) mayo",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.maya",
+      "headword": "Maya",
+      "kind": "word",
+      "forms": ["maya"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
           "pos": "proper noun"
         }
       ]
@@ -405,6 +505,18 @@
       ]
     },
     {
+      "id": "glossary.medium",
+      "headword": "medium",
+      "kind": "word",
+      "forms": ["medium"],
+      "senses": [
+        {
+          "es": "mediano; talla mediana",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.meet",
       "headword": "meet",
       "kind": "word",
@@ -493,6 +605,18 @@
       ]
     },
     {
+      "id": "glossary.menu",
+      "headword": "menu",
+      "kind": "word",
+      "forms": ["menu", "menus"],
+      "senses": [
+        {
+          "es": "menú, carta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.mess",
       "headword": "mess",
       "kind": "word",
@@ -561,6 +685,18 @@
         {
           "es": "Mia (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.miami",
+      "headword": "Miami",
+      "kind": "word",
+      "forms": ["miami"],
+      "senses": [
+        {
+          "es": "Miami",
+          "pos": "noun"
         }
       ]
     },
@@ -697,6 +833,18 @@
       ]
     },
     {
+      "id": "glossary.mix",
+      "headword": "mix",
+      "kind": "word",
+      "forms": ["mix", "mixes", "mixed", "mixing"],
+      "senses": [
+        {
+          "es": "mezclar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.mobile",
       "headword": "mobile",
       "kind": "word",
@@ -705,6 +853,18 @@
         {
           "es": "móvil",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.modal",
+      "headword": "modal",
+      "kind": "word",
+      "forms": ["modal", "modals"],
+      "senses": [
+        {
+          "es": "verbo modal (can, must, should…)",
+          "pos": "noun"
         }
       ]
     },
@@ -817,6 +977,18 @@
       ]
     },
     {
+      "id": "glossary.moon",
+      "headword": "moon",
+      "kind": "word",
+      "forms": ["moon"],
+      "senses": [
+        {
+          "es": "luna",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.more",
       "headword": "more",
       "kind": "word",
@@ -900,6 +1072,42 @@
         },
         {
           "es": "(the movies) el cine",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mr",
+      "headword": "Mr",
+      "kind": "word",
+      "forms": ["mr"],
+      "senses": [
+        {
+          "es": "señor (Sr.)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mrs",
+      "headword": "Mrs",
+      "kind": "word",
+      "forms": ["mrs"],
+      "senses": [
+        {
+          "es": "señora (Mrs.)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ms",
+      "headword": "Ms",
+      "kind": "word",
+      "forms": ["ms"],
+      "senses": [
+        {
+          "es": "señora, señorita (Sra.)",
           "pos": "noun"
         }
       ]

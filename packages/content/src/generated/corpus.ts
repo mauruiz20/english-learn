@@ -70,17 +70,54 @@ import file64 from "../../data/placement/a2.json";
 import file65 from "../../data/placement/b1.json";
 import file66 from "../../data/placement/b2.json";
 import file67 from "../../data/placement/c1.json";
-import file68 from "../../data/practice/phrasal-verbs/collection.json";
-import file69 from "../../data/practice/phrasal-verbs/health.json";
-import file70 from "../../data/practice/phrasal-verbs/home.json";
-import file71 from "../../data/practice/phrasal-verbs/money.json";
-import file72 from "../../data/practice/phrasal-verbs/phone.json";
-import file73 from "../../data/practice/phrasal-verbs/plans.json";
-import file74 from "../../data/practice/phrasal-verbs/relationships.json";
-import file75 from "../../data/practice/phrasal-verbs/study.json";
-import file76 from "../../data/practice/phrasal-verbs/technology.json";
-import file77 from "../../data/practice/phrasal-verbs/travel.json";
-import file78 from "../../data/practice/phrasal-verbs/work.json";
+import file68 from "../../data/practice/grammar/articles.json";
+import file69 from "../../data/practice/grammar/collection.json";
+import file70 from "../../data/practice/grammar/comparatives.json";
+import file71 from "../../data/practice/grammar/conditionals.json";
+import file72 from "../../data/practice/grammar/countable.json";
+import file73 from "../../data/practice/grammar/deduction.json";
+import file74 from "../../data/practice/grammar/gerund-infinitive.json";
+import file75 from "../../data/practice/grammar/obligation.json";
+import file76 from "../../data/practice/grammar/passive.json";
+import file77 from "../../data/practice/grammar/prepositions.json";
+import file78 from "../../data/practice/grammar/questions.json";
+import file79 from "../../data/practice/grammar/relative-clauses.json";
+import file80 from "../../data/practice/grammar/reported-speech.json";
+import file81 from "../../data/practice/phrasal-verbs/collection.json";
+import file82 from "../../data/practice/phrasal-verbs/health.json";
+import file83 from "../../data/practice/phrasal-verbs/home.json";
+import file84 from "../../data/practice/phrasal-verbs/money.json";
+import file85 from "../../data/practice/phrasal-verbs/phone.json";
+import file86 from "../../data/practice/phrasal-verbs/plans.json";
+import file87 from "../../data/practice/phrasal-verbs/relationships.json";
+import file88 from "../../data/practice/phrasal-verbs/study.json";
+import file89 from "../../data/practice/phrasal-verbs/technology.json";
+import file90 from "../../data/practice/phrasal-verbs/travel.json";
+import file91 from "../../data/practice/phrasal-verbs/work.json";
+import file92 from "../../data/practice/situations/airport.json";
+import file93 from "../../data/practice/situations/collection.json";
+import file94 from "../../data/practice/situations/complaints.json";
+import file95 from "../../data/practice/situations/directions.json";
+import file96 from "../../data/practice/situations/doctor.json";
+import file97 from "../../data/practice/situations/hotel.json";
+import file98 from "../../data/practice/situations/interview.json";
+import file99 from "../../data/practice/situations/meetings.json";
+import file100 from "../../data/practice/situations/phone.json";
+import file101 from "../../data/practice/situations/renting.json";
+import file102 from "../../data/practice/situations/restaurant.json";
+import file103 from "../../data/practice/situations/shopping.json";
+import file104 from "../../data/practice/situations/small-talk.json";
+import file105 from "../../data/practice/tenses/collection.json";
+import file106 from "../../data/practice/tenses/future-perfect.json";
+import file107 from "../../data/practice/tenses/future.json";
+import file108 from "../../data/practice/tenses/past-habits.json";
+import file109 from "../../data/practice/tenses/past-perfect.json";
+import file110 from "../../data/practice/tenses/past.json";
+import file111 from "../../data/practice/tenses/perfect-continuous.json";
+import file112 from "../../data/practice/tenses/perfect-or-past.json";
+import file113 from "../../data/practice/tenses/present-perfect.json";
+import file114 from "../../data/practice/tenses/present.json";
+import file115 from "../../data/practice/tenses/stative.json";
 
 const files = [
   file0,
@@ -162,6 +199,43 @@ const files = [
   file76,
   file77,
   file78,
+  file79,
+  file80,
+  file81,
+  file82,
+  file83,
+  file84,
+  file85,
+  file86,
+  file87,
+  file88,
+  file89,
+  file90,
+  file91,
+  file92,
+  file93,
+  file94,
+  file95,
+  file96,
+  file97,
+  file98,
+  file99,
+  file100,
+  file101,
+  file102,
+  file103,
+  file104,
+  file105,
+  file106,
+  file107,
+  file108,
+  file109,
+  file110,
+  file111,
+  file112,
+  file113,
+  file114,
+  file115,
 ] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);

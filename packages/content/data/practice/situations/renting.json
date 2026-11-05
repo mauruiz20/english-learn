@@ -1,0 +1,432 @@
+{
+  "items": [
+    {
+      "id": "b1.situations.security-deposit",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "security deposit",
+      "es": "depósito de garantía",
+      "example": {
+        "en": "The security deposit is one month's rent.",
+        "es": "El depósito de garantía es un mes de alquiler."
+      }
+    },
+    {
+      "id": "b1.situations.landlord",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "word",
+      "term": "landlord",
+      "es": "dueño (de la vivienda que alquilas), casero",
+      "example": {
+        "en": "Our landlord fixed the heater the same day.",
+        "es": "El dueño del departamento arregló la calefacción el mismo día."
+      }
+    },
+    {
+      "id": "b1.situations.utilities",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "word",
+      "term": "utilities",
+      "es": "servicios (luz, agua, gas)",
+      "example": {
+        "en": "Are utilities included in the rent?",
+        "es": "¿Los servicios están incluidos en el alquiler?"
+      }
+    },
+    {
+      "id": "b1.situations.furnished",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "word",
+      "term": "furnished",
+      "es": "amueblado",
+      "example": {
+        "en": "We're looking for a furnished apartment downtown.",
+        "es": "Buscamos un departamento amueblado en el centro."
+      }
+    },
+    {
+      "id": "b1.situations.sign-a-lease",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "sign a lease",
+      "es": "firmar un contrato de alquiler",
+      "example": {
+        "en": "We signed a lease for one year.",
+        "es": "Firmamos un contrato de alquiler por un año."
+      }
+    },
+    {
+      "id": "b1.situations.is-it-still-available",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Is it still available?",
+      "es": "¿Todavía está disponible?",
+      "example": {
+        "en": "Hi, I saw your ad. Is it still available?",
+        "es": "Hola, vi tu anuncio. ¿Todavía está disponible?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.situations.practice-renting-pine-street",
+      "level": "B1",
+      "topics": ["situations"],
+      "title": "The apartment on Pine Street",
+      "text": "Agent: Hi, are you calling about the apartment on Pine Street? Leo: Yes. Is it still available? Agent: It is. It's a one-bedroom, and it's furnished. Leo: Great. How much is the rent? Agent: It's eleven hundred dollars a month, and utilities are included. The landlord also asks for a security deposit of one month's rent. Leo: And how long is the lease? Agent: You sign a lease for twelve months. Would you like to see the apartment on Saturday? Leo: Sure, Saturday works for me.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.situations.practice-renting-vocab-1",
+      "itemIds": ["b1.situations.security-deposit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'security deposit' mean in 'The security deposit is one month's rent.'?",
+      "options": [
+        "el primer mes de alquiler",
+        "el depósito de garantía",
+        "el seguro de la casa",
+        "la comisión de la agencia"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-renting-choice-1",
+      "itemIds": ["b1.situations.landlord"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Our landlord lives upstairs.",
+      "options": [
+        "Nuestro vecino vive arriba.",
+        "Nuestro inquilino vive arriba.",
+        "El dueño de nuestro departamento vive arriba."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-renting-cloze-1",
+      "itemIds": ["b1.situations.furnished"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The apartment is ___, so you don't need to buy a bed or a sofa.",
+      "answers": ["furnished"],
+      "distractors": ["unfurnished", "empty"],
+      "es": "El departamento está amueblado, así que no necesitas comprar una cama ni un sofá."
+    },
+    {
+      "id": "b1.situations.practice-renting-vocab-2",
+      "itemIds": ["b1.situations.utilities"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'utilities' mean in 'Are utilities included in the rent?'?",
+      "options": [
+        "los muebles",
+        "las reparaciones",
+        "los impuestos",
+        "los servicios (luz, agua, gas)"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.situations.practice-renting-choice-2",
+      "itemIds": ["b1.situations.sign-a-lease"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We signed a one-year lease yesterday.",
+      "options": [
+        "Ayer pagamos un año de alquiler por adelantado.",
+        "Ayer firmamos un contrato de alquiler por un año.",
+        "Ayer renovamos el seguro por un año."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-renting-vocab-3",
+      "itemIds": ["b1.situations.is-it-still-available"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "You call about an apartment ad. What does 'Is it still available?' mean?",
+      "options": [
+        "¿Todavía está disponible?",
+        "¿Ya está listo?",
+        "¿Sigue siendo barato?",
+        "¿Todavía está sucio?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.situations.practice-renting-choice-3",
+      "itemIds": ["b1.situations.security-deposit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "You'll get the security deposit back when you move out.",
+      "options": [
+        "Tendrás que pagar el depósito de garantía cuando te mudes.",
+        "Te devolverán el primer mes de alquiler cuando te mudes.",
+        "Te devolverán el depósito de garantía cuando te mudes."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-renting-reading-1",
+      "itemIds": [
+        "b1.situations.is-it-still-available",
+        "b1.situations.utilities",
+        "b1.situations.security-deposit"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.situations.practice-renting-pine-street",
+      "questions": [
+        {
+          "prompt": "What does the rent include?",
+          "options": ["Parking", "Utilities", "A cleaning service"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "How long is the lease?",
+          "options": ["Twelve months", "Six months", "One month"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "How much is the security deposit?",
+          "options": ["Two months' rent", "A hundred dollars", "One month's rent"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.situations.practice-renting-cloze-2",
+      "itemIds": ["b1.situations.security-deposit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The landlord kept part of my security ___ because I broke a window.",
+      "answers": ["deposit"],
+      "distractors": ["rent", "lease"],
+      "es": "El dueño se quedó con parte de mi depósito de garantía porque rompí una ventana."
+    },
+    {
+      "id": "b1.situations.practice-renting-order-1",
+      "itemIds": ["b1.situations.is-it-still-available"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["still", "Is", "the", "available?", "apartment"],
+      "accepted": ["Is the apartment still available?"],
+      "es": "¿Todavía está disponible el departamento?"
+    },
+    {
+      "id": "b1.situations.practice-renting-write-1",
+      "itemIds": ["b1.situations.landlord"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "El dueño del departamento no quiere mascotas.",
+      "accepted": [
+        "The {landlord|landlady|owner} {doesn't want|doesn't allow|won't allow} pets.",
+        "The owner of the apartment {doesn't want|doesn't allow|won't allow} pets."
+      ]
+    },
+    {
+      "id": "b1.situations.practice-renting-choice-4",
+      "itemIds": ["b1.situations.furnished"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Is the apartment furnished or unfurnished?",
+      "options": [
+        "¿El departamento está pintado o sin pintar?",
+        "¿El departamento está amueblado o sin amueblar?",
+        "¿El departamento está alquilado o libre?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-renting-cloze-3",
+      "itemIds": ["b1.situations.sign-a-lease"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Before you ___ the lease, read every page carefully.",
+      "answers": ["sign"],
+      "distractors": ["firm", "make"],
+      "es": "Antes de firmar el contrato de alquiler, lee todas las páginas con atención."
+    },
+    {
+      "id": "b1.situations.practice-renting-write-2",
+      "itemIds": ["b1.situations.utilities"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Los servicios están incluidos en el alquiler?",
+      "accepted": [
+        "Are [the ]utilities included in the rent?",
+        "Does the rent include [the ]utilities?"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-renting-vocab-4",
+      "itemIds": ["b1.situations.landlord"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'landlord' mean in 'I pay the rent to my landlord every month.'?",
+      "options": ["inquilino", "agente inmobiliario", "dueño, casero", "vecino"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-renting-choice-5",
+      "itemIds": ["b1.situations.landlord"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "The tenant called the landlord because the heater wasn't working.",
+      "options": [
+        "El dueño llamó al inquilino porque la calefacción no funcionaba.",
+        "El inquilino llamó al dueño porque la calefacción no funcionaba.",
+        "El inquilino llamó al técnico porque la calefacción no funcionaba."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-renting-cloze-4",
+      "itemIds": ["b1.situations.is-it-still-available"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Hi, I saw your ad online. Is the apartment still ___?",
+      "answers": ["available"],
+      "distractors": ["disposable", "possible"],
+      "es": "Hola, vi tu anuncio en internet. ¿Todavía está disponible el departamento?"
+    },
+    {
+      "id": "b1.situations.practice-renting-order-2",
+      "itemIds": ["b1.situations.sign-a-lease"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["for", "sign", "lease", "year.", "We", "have", "one", "a", "to"],
+      "accepted": ["We have to sign a lease for one year."],
+      "es": "Tenemos que firmar un contrato de alquiler por un año."
+    },
+    {
+      "id": "b1.situations.practice-renting-write-3",
+      "itemIds": ["b1.situations.security-deposit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Cuánto es el depósito de garantía?",
+      "accepted": ["How much is the [security ]deposit?"]
+    },
+    {
+      "id": "b1.situations.practice-renting-cloze-5",
+      "itemIds": ["b1.situations.utilities"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The rent doesn't include ___, so you pay for electricity and water separately.",
+      "answers": ["utilities"],
+      "distractors": ["parking", "furniture"],
+      "es": "El alquiler no incluye los servicios, así que pagas la luz y el agua aparte."
+    },
+    {
+      "id": "b1.situations.practice-renting-choice-6",
+      "itemIds": ["b1.situations.furnished"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We're renting a furnished apartment near the beach.",
+      "options": [
+        "Alquilamos un departamento amueblado cerca de la playa.",
+        "Vendemos un departamento amueblado cerca de la playa.",
+        "Buscamos un departamento sin muebles cerca de la playa."
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.situations.practice-renting-1",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Alquilar un departamento: frases clave",
+      "exerciseIds": [
+        "b1.situations.practice-renting-vocab-1",
+        "b1.situations.practice-renting-choice-1",
+        "b1.situations.practice-renting-cloze-1",
+        "b1.situations.practice-renting-vocab-2",
+        "b1.situations.practice-renting-choice-2",
+        "b1.situations.practice-renting-vocab-3",
+        "b1.situations.practice-renting-choice-3"
+      ],
+      "newItemIds": [
+        "b1.situations.security-deposit",
+        "b1.situations.landlord",
+        "b1.situations.furnished",
+        "b1.situations.utilities",
+        "b1.situations.sign-a-lease"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-renting-2",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Alquilar un departamento: practícalas",
+      "exerciseIds": [
+        "b1.situations.practice-renting-reading-1",
+        "b1.situations.practice-renting-cloze-2",
+        "b1.situations.practice-renting-order-1",
+        "b1.situations.practice-renting-write-1",
+        "b1.situations.practice-renting-choice-4",
+        "b1.situations.practice-renting-cloze-3",
+        "b1.situations.practice-renting-write-2"
+      ],
+      "newItemIds": [
+        "b1.situations.is-it-still-available",
+        "b1.situations.security-deposit",
+        "b1.situations.landlord",
+        "b1.situations.furnished",
+        "b1.situations.utilities"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-renting-3",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Alquilar un departamento: dilo bien",
+      "exerciseIds": [
+        "b1.situations.practice-renting-vocab-4",
+        "b1.situations.practice-renting-choice-5",
+        "b1.situations.practice-renting-cloze-4",
+        "b1.situations.practice-renting-order-2",
+        "b1.situations.practice-renting-write-3",
+        "b1.situations.practice-renting-cloze-5",
+        "b1.situations.practice-renting-choice-6"
+      ],
+      "newItemIds": [
+        "b1.situations.landlord",
+        "b1.situations.is-it-still-available",
+        "b1.situations.sign-a-lease",
+        "b1.situations.security-deposit",
+        "b1.situations.utilities"
+      ]
+    }
+  ]
+}

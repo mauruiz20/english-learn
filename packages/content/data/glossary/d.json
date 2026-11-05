@@ -25,6 +25,34 @@
       ]
     },
     {
+      "id": "glossary.damage",
+      "headword": "damage",
+      "kind": "word",
+      "forms": ["damage", "damages", "damaged", "damaging"],
+      "senses": [
+        {
+          "es": "dañar",
+          "pos": "verb"
+        },
+        {
+          "es": "daño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dan",
+      "headword": "Dan",
+      "kind": "word",
+      "forms": ["dan"],
+      "senses": [
+        {
+          "es": "(nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dance",
       "headword": "dance",
       "kind": "word",
@@ -105,6 +133,17 @@
         {
           "es": "cita",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.davis",
+      "headword": "Davis",
+      "kind": "word",
+      "forms": ["davis"],
+      "senses": [
+        {
+          "es": "(apellido)"
         }
       ]
     },
@@ -413,6 +452,30 @@
       ]
     },
     {
+      "id": "glossary.deposit",
+      "headword": "deposit",
+      "kind": "word",
+      "forms": ["deposit", "deposits"],
+      "senses": [
+        {
+          "es": "depósito, garantía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.describe",
+      "headword": "describe",
+      "kind": "word",
+      "forms": ["describe", "describes", "described", "describing"],
+      "senses": [
+        {
+          "es": "describir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.design",
       "headword": "design",
       "kind": "word",
@@ -441,6 +504,18 @@
       ]
     },
     {
+      "id": "glossary.desk",
+      "headword": "desk",
+      "kind": "word",
+      "forms": ["desk", "desks"],
+      "senses": [
+        {
+          "es": "escritorio; mostrador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.despite",
       "headword": "despite",
       "kind": "word",
@@ -453,6 +528,18 @@
       ]
     },
     {
+      "id": "glossary.dessert",
+      "headword": "dessert",
+      "kind": "word",
+      "forms": ["dessert", "desserts"],
+      "senses": [
+        {
+          "es": "postre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.destroy",
       "headword": "destroy",
       "kind": "word",
@@ -461,6 +548,18 @@
         {
           "es": "destruir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.detail",
+      "headword": "detail",
+      "kind": "word",
+      "forms": ["detail", "details"],
+      "senses": [
+        {
+          "es": "detalle",
+          "pos": "noun"
         }
       ]
     },
@@ -497,6 +596,18 @@
         {
           "es": "dispositivo, aparato",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.diaz",
+      "headword": "Díaz",
+      "kind": "word",
+      "forms": ["díaz", "diaz"],
+      "senses": [
+        {
+          "es": "Díaz (apellido)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -625,6 +736,18 @@
       ]
     },
     {
+      "id": "glossary.diploma",
+      "headword": "diploma",
+      "kind": "word",
+      "forms": ["diploma", "diplomas"],
+      "senses": [
+        {
+          "es": "título, diploma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.direct",
       "headword": "direct",
       "kind": "word",
@@ -665,6 +788,18 @@
       ]
     },
     {
+      "id": "glossary.dirty",
+      "headword": "dirty",
+      "kind": "word",
+      "forms": ["dirty", "dirtier", "dirtiest"],
+      "senses": [
+        {
+          "es": "sucio",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.disappear",
       "headword": "disappear",
       "kind": "word",
@@ -673,6 +808,18 @@
         {
           "es": "desaparecer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disaster",
+      "headword": "disaster",
+      "kind": "word",
+      "forms": ["disaster", "disasters"],
+      "senses": [
+        {
+          "es": "desastre",
+          "pos": "noun"
         }
       ]
     },
@@ -713,6 +860,18 @@
       ]
     },
     {
+      "id": "glossary.discuss",
+      "headword": "discuss",
+      "kind": "word",
+      "forms": ["discuss", "discusses", "discussed", "discussing"],
+      "senses": [
+        {
+          "es": "hablar de, conversar sobre (no es discutir)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.dish",
       "headword": "dish",
       "kind": "word",
@@ -725,6 +884,18 @@
         {
           "es": "(do the dishes) lavar los platos",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disposable",
+      "headword": "disposable",
+      "kind": "word",
+      "forms": ["disposable"],
+      "senses": [
+        {
+          "es": "desechable (no es disponible)",
+          "pos": "adjective"
         }
       ]
     },
@@ -853,6 +1024,18 @@
       ]
     },
     {
+      "id": "glossary.doorbell",
+      "headword": "doorbell",
+      "kind": "word",
+      "forms": ["doorbell", "doorbells"],
+      "senses": [
+        {
+          "es": "timbre (de la puerta)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.double",
       "headword": "double",
       "kind": "word",
@@ -893,6 +1076,18 @@
       ]
     },
     {
+      "id": "glossary.downstairs",
+      "headword": "downstairs",
+      "kind": "word",
+      "forms": ["downstairs"],
+      "senses": [
+        {
+          "es": "abajo, en el piso de abajo",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.downtown",
       "headword": "downtown",
       "kind": "word",
@@ -905,6 +1100,18 @@
         {
           "es": "en el centro",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dr",
+      "headword": "Dr",
+      "kind": "word",
+      "forms": ["dr"],
+      "senses": [
+        {
+          "es": "doctor, doctora (Dr., Dra.)",
+          "pos": "noun"
         }
       ]
     },
@@ -989,6 +1196,18 @@
         {
           "es": "soñar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dress",
+      "headword": "dress",
+      "kind": "word",
+      "forms": ["dress", "dresses"],
+      "senses": [
+        {
+          "es": "vestido",
+          "pos": "noun"
         }
       ]
     },

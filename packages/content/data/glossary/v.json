@@ -145,6 +145,18 @@
       ]
     },
     {
+      "id": "glossary.visible",
+      "headword": "visible",
+      "kind": "word",
+      "forms": ["visible"],
+      "senses": [
+        {
+          "es": "visible",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.visit",
       "headword": "visit",
       "kind": "word",

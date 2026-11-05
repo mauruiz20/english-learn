@@ -1,0 +1,436 @@
+{
+  "items": [
+    {
+      "id": "a2.situations.table-for",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "a table for (two)",
+      "es": "una mesa para (dos)",
+      "example": {
+        "en": "Hi, could we have a table for three, please?",
+        "es": "Hola, ¿nos podría dar una mesa para tres, por favor?"
+      }
+    },
+    {
+      "id": "a2.situations.ready-to-order",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Are you ready to order?",
+      "es": "¿Están listos para ordenar?, ¿ya saben qué van a pedir?",
+      "example": {
+        "en": "Are you ready to order, or do you need a few minutes?",
+        "es": "¿Ya saben qué van a pedir o necesitan unos minutos?"
+      }
+    },
+    {
+      "id": "a2.situations.ill-have",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I'll have (the soup)",
+      "es": "para mí (la sopa), voy a pedir (la sopa)",
+      "example": {
+        "en": "I'll have the chicken salad, please.",
+        "es": "Para mí, la ensalada de pollo, por favor."
+      }
+    },
+    {
+      "id": "a2.situations.what-do-you-recommend",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "What do you recommend?",
+      "es": "¿Qué me recomienda?",
+      "example": {
+        "en": "It's my first time here. What do you recommend?",
+        "es": "Es mi primera vez aquí. ¿Qué me recomienda?"
+      }
+    },
+    {
+      "id": "a2.situations.could-we-have-the-check",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Could we have the check, please?",
+      "es": "¿Nos trae la cuenta, por favor?",
+      "example": {
+        "en": "Excuse me, could we have the check, please?",
+        "es": "Disculpe, ¿nos trae la cuenta, por favor?"
+      }
+    },
+    {
+      "id": "a2.situations.for-here-or-to-go",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "for here or to go",
+      "es": "para comer aquí o para llevar",
+      "example": {
+        "en": "Is that for here or to go?",
+        "es": "¿Es para comer aquí o para llevar?"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.situations.practice-restaurant-dinner",
+      "level": "A2",
+      "topics": ["situations"],
+      "title": "Dinner for two",
+      "text": "Server: Good evening! A table for two? Sam: Yes, please. Server: Here are your menus. Are you ready to order? Sam: Almost. What do you recommend? Server: The fish tacos are very popular. Sam: OK, I'll have the fish tacos. Mia: And I'd like the vegetable soup, please. Server: Great. Anything to drink? Mia: Just some water, please. Sam (later): Excuse me, could we have the check, please? Server: Sure, here you go.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.situations.practice-restaurant-vocab-1",
+      "itemIds": ["a2.situations.table-for"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'a table for four' mean in 'We'd like a table for four, please.'?",
+      "options": [
+        "una mesa para cuatro personas",
+        "una mesa a las cuatro",
+        "cuatro mesas",
+        "la mesa número cuatro"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-restaurant-choice-1",
+      "itemIds": ["a2.situations.ready-to-order"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Are you ready to order?",
+      "options": [
+        "¿Ya terminaron de comer?",
+        "¿Ya saben qué van a pedir?",
+        "¿Tienen una reservación?",
+        "¿Quieren ver el menú?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-restaurant-cloze-1",
+      "itemIds": ["a2.situations.ill-have"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'll ___ the chicken salad, please.",
+      "answers": ["have"],
+      "distractors": ["want", "ask"],
+      "es": "Para mí, la ensalada de pollo, por favor."
+    },
+    {
+      "id": "a2.situations.practice-restaurant-vocab-2",
+      "itemIds": ["a2.situations.what-do-you-recommend"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'What do you recommend?' mean?",
+      "options": [
+        "¿Qué está comiendo usted?",
+        "¿Qué me recuerda?",
+        "¿Qué me recomienda?",
+        "¿Qué es lo más barato?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-restaurant-choice-2",
+      "itemIds": ["a2.situations.could-we-have-the-check"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Could we have the check, please?",
+      "options": [
+        "¿Nos trae el menú, por favor?",
+        "¿Podemos pagar con tarjeta, por favor?",
+        "¿Nos trae la cuenta, por favor?",
+        "¿Podemos cambiar de mesa, por favor?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-restaurant-reading-1",
+      "itemIds": [
+        "a2.situations.what-do-you-recommend",
+        "a2.situations.ill-have",
+        "a2.situations.could-we-have-the-check"
+      ],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.situations.practice-restaurant-dinner",
+      "questions": [
+        {
+          "prompt": "What does the server recommend?",
+          "options": ["The vegetable soup", "The fish tacos", "The chicken salad"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does Mia want to drink?",
+          "options": ["Water", "Juice", "Nothing"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What does Sam ask for at the end?",
+          "options": ["The menu", "More water", "The check"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.situations.practice-restaurant-vocab-3",
+      "itemIds": ["a2.situations.for-here-or-to-go"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does the cashier mean by 'For here or to go?'?",
+      "options": [
+        "¿Pagas aquí o en la caja?",
+        "¿Es para comer aquí o para llevar?",
+        "¿Te quedas o te vas?",
+        "¿Es para ti o para otra persona?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-restaurant-cloze-2",
+      "itemIds": ["a2.situations.could-we-have-the-check"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "We're finished. Could we have the ___, please?",
+      "answers": ["check"],
+      "distractors": ["count", "account"],
+      "es": "Ya terminamos. ¿Nos trae la cuenta, por favor?"
+    },
+    {
+      "id": "a2.situations.practice-restaurant-order-1",
+      "itemIds": ["a2.situations.table-for"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["table", "two,", "a", "Could", "for", "please?", "have", "we"],
+      "accepted": ["Could we have a table for two, please?"],
+      "es": "¿Nos podría dar una mesa para dos, por favor?"
+    },
+    {
+      "id": "a2.situations.practice-restaurant-write-1",
+      "itemIds": ["a2.situations.what-do-you-recommend"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Qué me recomienda?",
+      "accepted": ["What do you recommend?", "What would you recommend?", "What do you suggest?"]
+    },
+    {
+      "id": "a2.situations.practice-restaurant-choice-3",
+      "itemIds": ["a2.situations.ill-have"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'll have the fish and a glass of water.",
+      "options": [
+        "Ya comí pescado y tomé un vaso de agua.",
+        "Para mí, el pescado y un vaso de agua.",
+        "Tengo pescado y un vaso de agua en casa."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-restaurant-cloze-3",
+      "itemIds": ["a2.situations.for-here-or-to-go"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "A coffee, please. – For here or to ___? – For here.",
+      "answers": ["go"],
+      "distractors": ["take", "carry"],
+      "es": "Un café, por favor. – ¿Para tomar aquí o para llevar? – Para tomar aquí."
+    },
+    {
+      "id": "a2.situations.practice-restaurant-order-2",
+      "itemIds": ["a2.situations.ready-to-order"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["to", "you", "order?", "Are", "ready"],
+      "accepted": ["Are you ready to order?"],
+      "es": "¿Ya saben qué van a pedir?"
+    },
+    {
+      "id": "a2.situations.practice-restaurant-write-2",
+      "itemIds": ["a2.situations.ill-have"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Para mí, la sopa, por favor.",
+      "accepted": [
+        "I'll have the soup[, please].",
+        "I'd like the soup[, please].",
+        "{Can|Could|May} I {have|get} the soup[, please]?",
+        "The soup for me[, please]."
+      ]
+    },
+    {
+      "id": "a2.situations.practice-restaurant-vocab-4",
+      "itemIds": ["a2.situations.could-we-have-the-check"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What is the most polite way to ask for the check?",
+      "options": [
+        "Give me the check.",
+        "I want the check.",
+        "The check!",
+        "Could we have the check, please?"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.situations.practice-restaurant-cloze-4",
+      "itemIds": ["a2.situations.ill-have"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'll have the pasta, and I'd like ___ water, please.",
+      "answers": ["some"],
+      "distractors": ["any", "many"],
+      "es": "Para mí, la pasta, y quisiera agua, por favor."
+    },
+    {
+      "id": "a2.situations.practice-restaurant-choice-4",
+      "itemIds": ["a2.situations.ready-to-order"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We're not ready to order yet. Could we have a few more minutes?",
+      "options": [
+        "Todavía no sabemos qué pedir. ¿Nos da unos minutos más?",
+        "Ya sabemos qué pedir. ¿Nos lo trae en unos minutos?",
+        "Todavía no nos trajeron la comida. ¿Falta mucho?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-restaurant-write-3",
+      "itemIds": ["a2.situations.table-for"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Una mesa para cuatro, por favor.",
+      "accepted": [
+        "{A table|Table} for {four|4}[, please].",
+        "{Could|Can} we {have|get} a table for {four|4}[, please]?",
+        "We'd like a table for {four|4}[, please]."
+      ]
+    },
+    {
+      "id": "a2.situations.practice-restaurant-order-3",
+      "itemIds": ["a2.situations.ill-have"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["same,", "have", "please.", "the", "I'll"],
+      "accepted": ["I'll have the same, please."],
+      "es": "Para mí, lo mismo, por favor."
+    },
+    {
+      "id": "a2.situations.practice-restaurant-cloze-5",
+      "itemIds": ["a2.situations.what-do-you-recommend"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Everything looks good. What ___ you recommend?",
+      "answers": ["do"],
+      "distractors": ["are", "is"],
+      "es": "Todo se ve rico. ¿Qué me recomienda?"
+    },
+    {
+      "id": "a2.situations.practice-restaurant-vocab-5",
+      "itemIds": ["a2.situations.ill-have"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'I'll have' mean in 'I'll have the chicken, please.'?",
+      "options": ["tengo", "voy a cocinar", "ya comí", "para mí, voy a pedir"],
+      "answerIndex": 3
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.situations.practice-restaurant-1",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el restaurante: frases clave",
+      "exerciseIds": [
+        "a2.situations.practice-restaurant-vocab-1",
+        "a2.situations.practice-restaurant-choice-1",
+        "a2.situations.practice-restaurant-cloze-1",
+        "a2.situations.practice-restaurant-vocab-2",
+        "a2.situations.practice-restaurant-choice-2",
+        "a2.situations.practice-restaurant-reading-1",
+        "a2.situations.practice-restaurant-vocab-3"
+      ],
+      "newItemIds": [
+        "a2.situations.table-for",
+        "a2.situations.ready-to-order",
+        "a2.situations.ill-have",
+        "a2.situations.what-do-you-recommend",
+        "a2.situations.could-we-have-the-check"
+      ],
+      "deepenCardIds": ["a2.grammar.some-any"]
+    },
+    {
+      "id": "a2.situations.practice-restaurant-2",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el restaurante: practícalas",
+      "exerciseIds": [
+        "a2.situations.practice-restaurant-cloze-2",
+        "a2.situations.practice-restaurant-order-1",
+        "a2.situations.practice-restaurant-write-1",
+        "a2.situations.practice-restaurant-choice-3",
+        "a2.situations.practice-restaurant-cloze-3",
+        "a2.situations.practice-restaurant-order-2",
+        "a2.situations.practice-restaurant-write-2"
+      ],
+      "newItemIds": [
+        "a2.situations.for-here-or-to-go",
+        "a2.situations.could-we-have-the-check",
+        "a2.situations.table-for",
+        "a2.situations.ill-have",
+        "a2.situations.ready-to-order"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-restaurant-3",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el restaurante: dilo bien",
+      "exerciseIds": [
+        "a2.situations.practice-restaurant-vocab-4",
+        "a2.situations.practice-restaurant-cloze-4",
+        "a2.situations.practice-restaurant-choice-4",
+        "a2.situations.practice-restaurant-write-3",
+        "a2.situations.practice-restaurant-order-3",
+        "a2.situations.practice-restaurant-cloze-5",
+        "a2.situations.practice-restaurant-vocab-5"
+      ],
+      "newItemIds": [
+        "a2.situations.could-we-have-the-check",
+        "a2.situations.ill-have",
+        "a2.situations.ready-to-order",
+        "a2.situations.table-for",
+        "a2.situations.what-do-you-recommend"
+      ],
+      "deepenCardIds": ["a2.grammar.some-any"]
+    }
+  ]
+}

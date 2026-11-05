@@ -1,6 +1,30 @@
 {
   "glossary": [
     {
+      "id": "glossary.race",
+      "headword": "race",
+      "kind": "word",
+      "forms": ["race", "races"],
+      "senses": [
+        {
+          "es": "carrera (competencia)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.racket",
+      "headword": "racket",
+      "kind": "word",
+      "forms": ["racket", "rackets"],
+      "senses": [
+        {
+          "es": "raqueta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rain",
       "headword": "rain",
       "kind": "word",
@@ -73,6 +97,18 @@
         {
           "es": "(would rather) preferir",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reach",
+      "headword": "reach",
+      "kind": "word",
+      "forms": ["reach", "reaches", "reached", "reaching"],
+      "senses": [
+        {
+          "es": "llegar a, alcanzar",
+          "pos": "verb"
         }
       ]
     },
@@ -213,6 +249,18 @@
       ]
     },
     {
+      "id": "glossary.receptionist",
+      "headword": "receptionist",
+      "kind": "word",
+      "forms": ["receptionist", "receptionists"],
+      "senses": [
+        {
+          "es": "recepcionista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.recommend",
       "headword": "recommend",
       "kind": "word",
@@ -245,6 +293,18 @@
         {
           "es": "reciclaje",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.red",
+      "headword": "red",
+      "kind": "word",
+      "forms": ["red"],
+      "senses": [
+        {
+          "es": "rojo",
+          "pos": "adjective"
         }
       ]
     },
@@ -289,6 +349,30 @@
       ]
     },
     {
+      "id": "glossary.regarding",
+      "headword": "regarding",
+      "kind": "word",
+      "forms": ["regarding"],
+      "senses": [
+        {
+          "es": "con respecto a, en relación con",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.regards",
+      "headword": "regards",
+      "kind": "word",
+      "forms": ["regards"],
+      "senses": [
+        {
+          "es": "saludos (al cerrar un correo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.region",
       "headword": "region",
       "kind": "word",
@@ -309,6 +393,18 @@
         {
           "es": "inscribirse, registrarse",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.regret",
+      "headword": "regret",
+      "kind": "word",
+      "forms": ["regret", "regrets", "regretted", "regretting"],
+      "senses": [
+        {
+          "es": "arrepentimiento; lamentar",
+          "pos": "noun"
         }
       ]
     },
@@ -529,6 +625,22 @@
       ]
     },
     {
+      "id": "glossary.reply",
+      "headword": "reply",
+      "kind": "word",
+      "forms": ["reply", "replies", "replied", "replying"],
+      "senses": [
+        {
+          "es": "respuesta",
+          "pos": "noun"
+        },
+        {
+          "es": "responder",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.report",
       "headword": "report",
       "kind": "word",
@@ -552,6 +664,18 @@
       "senses": [
         {
           "es": "periodista, reportero",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.request",
+      "headword": "request",
+      "kind": "word",
+      "forms": ["request", "requests", "requested", "requesting"],
+      "senses": [
+        {
+          "es": "pedido, solicitud; pedir",
           "pos": "noun"
         }
       ]
@@ -609,6 +733,18 @@
       ]
     },
     {
+      "id": "glossary.reservation",
+      "headword": "reservation",
+      "kind": "word",
+      "forms": ["reservation", "reservations"],
+      "senses": [
+        {
+          "es": "reservación, reserva",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.resign",
       "headword": "resign",
       "kind": "word",
@@ -632,6 +768,18 @@
         },
         {
           "es": "respeto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.response",
+      "headword": "response",
+      "kind": "word",
+      "forms": ["response", "responses"],
+      "senses": [
+        {
+          "es": "respuesta",
           "pos": "noun"
         }
       ]
@@ -676,6 +824,18 @@
       "senses": [
         {
           "es": "restaurante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.restroom",
+      "headword": "restroom",
+      "kind": "word",
+      "forms": ["restroom", "restrooms"],
+      "senses": [
+        {
+          "es": "baño (en un lugar público)",
           "pos": "noun"
         }
       ]
@@ -732,6 +892,18 @@
         },
         {
           "es": "repasar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.revise",
+      "headword": "revise",
+      "kind": "word",
+      "forms": ["revise", "revises", "revised", "revising"],
+      "senses": [
+        {
+          "es": "corregir, modificar (un texto)",
           "pos": "verb"
         }
       ]
@@ -849,6 +1021,18 @@
       ]
     },
     {
+      "id": "glossary.risky",
+      "headword": "risky",
+      "kind": "word",
+      "forms": ["risky"],
+      "senses": [
+        {
+          "es": "arriesgado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.river",
       "headword": "river",
       "kind": "word",
@@ -857,6 +1041,30 @@
         {
           "es": "río",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.road",
+      "headword": "road",
+      "kind": "word",
+      "forms": ["road", "roads"],
+      "senses": [
+        {
+          "es": "camino, carretera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.roast",
+      "headword": "roast",
+      "kind": "word",
+      "forms": ["roast", "roasts", "roasted", "roasting"],
+      "senses": [
+        {
+          "es": "tostar, asar",
+          "pos": "verb"
         }
       ]
     },
@@ -897,6 +1105,29 @@
         {
           "es": "sala",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.roommate",
+      "headword": "roommate",
+      "kind": "word",
+      "forms": ["roommate", "roommates"],
+      "senses": [
+        {
+          "es": "compañero de cuarto, compañero de departamento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ross",
+      "headword": "Ross",
+      "kind": "word",
+      "forms": ["ross"],
+      "senses": [
+        {
+          "es": "(apellido)"
         }
       ]
     },
