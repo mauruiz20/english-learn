@@ -13,7 +13,7 @@ import type { Palette } from "./theme";
 import { useReducedMotion } from "./use-reduced-motion";
 import { useTheme } from "./use-theme";
 
-export type AviMood = "happy" | "cheer" | "sleepy";
+export type AviMood = "happy" | "cheer" | "sleepy" | "sad";
 
 /** What an item's art may draw with: the scheme's ink and highlighters, Avi's eye ink. */
 export type AviArtProps = {
@@ -85,6 +85,8 @@ type AviProps = {
   /** Which way the nose points; "left" mirrors the plane. */
   facing?: "right" | "left";
   delayMs?: number;
+  /** Eyes shut for a moment (a blink), whatever the mood. */
+  blink?: boolean;
   /** What Avi wears; by default the outfit of `AviOutfitContext` (the learner's). */
   outfit?: AviOutfit;
   style?: StyleProp<ViewStyle>;
@@ -107,6 +109,7 @@ export function Avi({
   tilt = -14,
   facing = "right",
   delayMs = 0,
+  blink = false,
   outfit,
   style,
   testID = "avi",
@@ -210,7 +213,7 @@ export function Avi({
         />
         {neck !== undefined && <Worn slot="neck" piece={neck} art={art} />}
         <G testID="avi-face">
-          <Face mood={mood} eye={eye} cheek={colors.highlighters.pink} />
+          <Face mood={mood} blink={blink} eye={eye} cheek={colors.highlighters.pink} />
         </G>
         {eyes !== undefined && <Worn slot="eyes" piece={eyes} art={art} />}
         {head !== undefined && <Worn slot="head" piece={head} art={art} />}
@@ -238,50 +241,56 @@ function Worn({ slot, piece, art }: { slot: AviAnchoredSlot; piece: AviPiece; ar
   );
 }
 
-/** Eyes, mouth and cheek, by mood. */
-function Face({ mood, eye, cheek }: { mood: AviMood; eye: string; cheek: string }) {
+/** Eyes, mouth and cheek, by mood; a blink shuts the eyes. Glasses are drawn over any of them. */
+function Face({
+  mood,
+  blink,
+  eye,
+  cheek,
+}: {
+  mood: AviMood;
+  blink: boolean;
+  eye: string;
+  cheek: string;
+}) {
+  const line = { fill: "none", stroke: eye, strokeWidth: 1.8, strokeLinecap: "round" } as const;
+  const eyes =
+    blink || mood === "sleepy" ? (
+      // Shut: two little arcs, smiling down.
+      <G testID="avi-eyes-closed">
+        <Path d="M40 19 q3 2 6 0" {...line} />
+        <Path d="M47.5 16 q3 2 6 0" {...line} />
+      </G>
+    ) : mood === "sad" ? (
+      // Downcast: the arcs turn over, the outer ends drooping.
+      <G testID="avi-eyes-sad">
+        <Path d="M40 20.4 q3 -2.6 6 -0.2" {...line} strokeWidth={2.2} />
+        <Path d="M47.5 17.6 q3 -2.4 6 0.4" {...line} strokeWidth={2.2} />
+      </G>
+    ) : (
+      <G testID="avi-eyes-open">
+        <Circle cx={43} cy={19} r={2.6} fill={eye} />
+        <Circle cx={50} cy={16} r={2.6} fill={eye} />
+      </G>
+    );
+  const mouth =
+    mood === "cheer" ? (
+      <Path
+        d="M43 23.5 q4 5 8.5 -1.5 z"
+        fill={eye}
+        stroke={eye}
+        strokeWidth={1.2}
+        strokeLinejoin="round"
+      />
+    ) : mood === "sad" ? (
+      <Path testID="avi-mouth-flat" d="M44.4 24.6 l5.4 -1.7" {...line} />
+    ) : (
+      <Path d="M44 24 q3 2.5 6 -1" {...line} />
+    );
   return (
     <>
-      {mood === "sleepy" ? (
-        <>
-          <Path
-            d="M40 19 q3 2 6 0"
-            fill="none"
-            stroke={eye}
-            strokeWidth={1.8}
-            strokeLinecap="round"
-          />
-          <Path
-            d="M47.5 16 q3 2 6 0"
-            fill="none"
-            stroke={eye}
-            strokeWidth={1.8}
-            strokeLinecap="round"
-          />
-        </>
-      ) : (
-        <>
-          <Circle cx={43} cy={19} r={2.6} fill={eye} />
-          <Circle cx={50} cy={16} r={2.6} fill={eye} />
-        </>
-      )}
-      {mood === "cheer" ? (
-        <Path
-          d="M43 23.5 q4 5 8.5 -1.5 z"
-          fill={eye}
-          stroke={eye}
-          strokeWidth={1.2}
-          strokeLinejoin="round"
-        />
-      ) : (
-        <Path
-          d="M44 24 q3 2.5 6 -1"
-          fill="none"
-          stroke={eye}
-          strokeWidth={1.8}
-          strokeLinecap="round"
-        />
-      )}
+      {eyes}
+      {mouth}
       <Circle cx={40} cy={25} r={2} fill={cheek} />
     </>
   );
