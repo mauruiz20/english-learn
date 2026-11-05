@@ -231,7 +231,7 @@
       },
       "type": "vocab",
       "prompt": "What does 'degree' mean in 'She has a degree in economics'?",
-      "options": ["beca", "título universitario", "grado de temperatura", "matrícula"],
+      "options": ["beca", "título universitario", "deuda", "matrícula"],
       "answerIndex": 1
     },
     {
@@ -244,7 +244,7 @@
       "type": "cloze",
       "sentence": "If I had studied harder at school, I ___ a better job now.",
       "answers": ["would have"],
-      "distractors": ["would have had", "will have", "had"],
+      "distractors": ["would had", "will have", "had had"],
       "es": "Si hubiera estudiado más en la escuela, ahora tendría un mejor trabajo."
     },
     {

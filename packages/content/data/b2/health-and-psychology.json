@@ -255,7 +255,7 @@
       "type": "cloze",
       "sentence": "If only I ___ sleep better at night!",
       "answers": ["could"],
-      "distractors": ["can", "will", "am"],
+      "distractors": ["will", "am", "have"],
       "es": "¡Si tan solo pudiera dormir mejor por la noche!"
     },
     {

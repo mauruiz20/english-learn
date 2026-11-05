@@ -249,7 +249,7 @@
       "type": "cloze",
       "sentence": "If the internet hadn't been invented, our lives ___ very different today.",
       "answers": ["would be"],
-      "distractors": ["will be", "would have been", "are"],
+      "distractors": ["will be", "had been", "are"],
       "es": "Si no se hubiera inventado internet, hoy nuestras vidas serían muy diferentes."
     },
     {

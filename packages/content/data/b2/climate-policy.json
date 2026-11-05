@@ -245,7 +245,7 @@
       "type": "cloze",
       "sentence": "Some countries have cut their emissions, ___ others have increased them.",
       "answers": ["whereas"],
-      "distractors": ["despite", "in spite of", "so that"],
+      "distractors": ["despite", "in spite of", "because of"],
       "es": "Algunos países redujeron sus emisiones, mientras que otros las aumentaron."
     },
     {
