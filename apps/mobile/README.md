@@ -266,8 +266,22 @@ placement or new content (until B2 had lessons, a B2 or C1 placement started on 
 learners stay on the B1 they began). From that start the path moves up past every finished level
 to the first one with lessons left (A2 → B1 → B2); with every level done it stays on the last one.
 A new learner is never placed below the placement level. The learner can also pick the level by
-hand (see "Path level" below). A lesson shows as done once every item it practices
+hand (see "Path level, picked by hand" below). A lesson shows as done once every item it practices
 has a review state.
+
+**Path level, picked by hand.** Under "Lecciones de nivel B1" a chip says which level the path
+shows and how: "Nivel B1 · automático" or "Nivel B1 · elegido" (labelled "Nivel del recorrido: B1,
+automático" / "…, elegido a mano", hint "Muestra los niveles para elegir cuál ver"; 44 pt tall, ink
+on the sheet). It opens a short list of radios right under it (`path-level-picker.tsx`):
+"Automático · ahora B1" and every level with lessons with its progress ("B2 · 0 % completado").
+Picking one closes the list and shows that level's path; a level picked by hand stays even once
+every lesson of it is done, and "Automático" goes back to the rule above. Nothing animates but the
+shared press feedback. The choice is a view preference, not progress: no event, stored on the
+device (`SettingsRepository.getPathLevel` / `setPathLevel`, null = automatic; an unreadable
+value reads as automatic) and forgotten with the progress on a sign-out that deletes it
+(`clearPathLevel`). The next lesson, "Siguiente" and Avi on the path follow the level shown.
+Showing another level never draws checks again: the completion memory remembers the done lessons
+of every level.
 
 **Lesson results on the path.** A done lesson also shows its best result, from the fold's
 `lessonResults` (the best `accuracy` of its `session_completed` events; no new event):

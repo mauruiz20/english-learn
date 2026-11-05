@@ -259,6 +259,113 @@ describe("HomeContainer", () => {
     expect(screen.getByText("Tu nivel: A2")).toBeOnTheScreen();
   });
 
+  describe("path level", () => {
+    // A2, two B1 lessons and a B2 one, each with items of its own.
+    const own = (level: "B1" | "B2", n: number): VocabExercise => ({
+      ...vocab,
+      id: `${level.toLowerCase()}.work.vocab-00${n}`,
+      level,
+      itemIds: [`${level.toLowerCase()}.work.item-${n}`],
+    });
+    const exercises = [own("B1", 1), own("B1", 2), own("B2", 3)];
+    const levelsContent = createCorpus([
+      {
+        exercises: [...allExercises, ...exercises],
+        passages: [passage],
+        lessons: [
+          lesson,
+          ...exercises.map((e, i) => ({
+            ...lesson,
+            id: `${e.level.toLowerCase()}.work.lesson-00${i + 1}`,
+            level: e.level,
+            topic: "work",
+            title: `Trabajo ${e.level} ${i + 1}`,
+            exerciseIds: [e.id],
+          })),
+        ],
+      },
+    ]);
+    // Placed at C1 with the first B1 lesson done: the owner's state once B2 shipped.
+    const placedHighWithB1Started = () =>
+      createFakeRepository({
+        placement: { level: "C1", theta: 2 },
+        states: [initialState("b1.work.item-1", TODAY)],
+      });
+    const checkWidth = async (lessonId: string) => {
+      const check = await screen.findByTestId(`check-${lessonId}`, {
+        includeHiddenElements: true,
+      });
+      const clip = check.children[0] as unknown as { props: { style: unknown } };
+      return StyleSheet.flatten(clip.props.style as never)?.width;
+    };
+
+    it("stays on a B1 the learner started, even placed above it", async () => {
+      await renderContainer(placedHighWithB1Started(), undefined, undefined, levelsContent);
+
+      expect(await screen.findByText("Lecciones de nivel B1")).toBeOnTheScreen();
+      expect(
+        screen.getByRole("button", { name: "Nivel del recorrido: B1, automático" }),
+      ).toBeOnTheScreen();
+      expect(screen.getByRole("button", { name: /^Trabajo B1 2/ }).props.accessibilityHint).toBe(
+        "Tu siguiente lección",
+      );
+    });
+
+    it("shows a level picked by hand, remembers it, and goes back to automatic", async () => {
+      withMotion();
+      const settings = createFakeSettingsRepository();
+      const repository = placedHighWithB1Started();
+      const memory = createCompletionMemory();
+      await renderContainer(repository, memory, settings, levelsContent);
+
+      await fireEvent.press(await screen.findByRole("button", { name: /^Nivel del recorrido/ }));
+      await fireEvent.press(screen.getByRole("radio", { name: "B2, 0 % completado" }));
+
+      expect(await screen.findByText("Lecciones de nivel B2")).toBeOnTheScreen();
+      expect(settings.pathLevel()).toBe("B2");
+      // The next lesson, "Siguiente" and Avi follow the level shown.
+      expect(screen.getByRole("button", { name: /^Trabajo B2/ }).props.accessibilityHint).toBe(
+        "Tu siguiente lección",
+      );
+      expect(screen.queryByRole("button", { name: /^Trabajo B1/ })).not.toBeOnTheScreen();
+
+      await fireEvent.press(screen.getByRole("button", { name: /^Nivel del recorrido/ }));
+      await fireEvent.press(screen.getByRole("radio", { name: "B1, 50 % completado" }));
+      expect(
+        await screen.findByRole("button", { name: "Nivel del recorrido: B1, elegido a mano" }),
+      ).toBeOnTheScreen();
+      // Coming back to B1 is not a lesson just completed: its check is not drawn again.
+      expect(await checkWidth("b1.work.lesson-001")).not.toBe(0);
+
+      await renderContainer(repository, memory, settings, levelsContent);
+      expect(
+        await screen.findByRole("button", { name: "Nivel del recorrido: B1, elegido a mano" }),
+      ).toBeOnTheScreen();
+
+      await fireEvent.press(screen.getByRole("button", { name: /^Nivel del recorrido/ }));
+      await fireEvent.press(screen.getByRole("radio", { name: "Automático, ahora B1" }));
+      expect(
+        await screen.findByRole("button", { name: "Nivel del recorrido: B1, automático" }),
+      ).toBeOnTheScreen();
+      expect(settings.pathLevel()).toBeNull();
+    });
+
+    it("keeps a level picked by hand once every lesson of it is done", async () => {
+      await renderContainer(
+        createFakeRepository({
+          placement: { level: "A2", theta: -1 },
+          states: a2ItemIds.map((id) => initialState(id, TODAY)),
+        }),
+        undefined,
+        createFakeSettingsRepository({ pathLevel: "A2" }),
+        levelsContent,
+      );
+
+      expect(await screen.findByText("Lecciones de nivel A2")).toBeOnTheScreen();
+      expect(screen.getByRole("button", { name: "Mi rutina, completada" })).toBeOnTheScreen();
+    });
+  });
+
   it("marks a lesson as done once all its items have review states", async () => {
     await renderContainer(
       createFakeRepository({ states: a2ItemIds.map((id) => initialState(id, TODAY)) }),

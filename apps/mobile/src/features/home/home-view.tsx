@@ -23,6 +23,7 @@ import { Text } from "@/shared/ui/text";
 import { radius, spacing, type HighlighterName } from "@/shared/ui/theme";
 import { XpBar } from "@/shared/ui/xp-bar";
 import { PlumasBalance } from "@/features/rewards/plumas-balance";
+import { PathLevelPicker, type HomePathLevel } from "./path-level-picker";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
@@ -56,7 +57,16 @@ export type HomeLesson = {
   readonly deepen?: readonly HomeDeepenCard[] | undefined;
 };
 
-export type HomeLessons = { readonly level: Level; readonly items: readonly HomeLesson[] };
+export type HomeLessons = {
+  readonly level: Level;
+  readonly items: readonly HomeLesson[];
+  /** The level the path follows on its own (shown as "Automático" in the level picker). */
+  readonly autoLevel?: Level;
+  /** `level` was picked by hand, not the automatic level. */
+  readonly chosen?: boolean;
+  /** The levels the learner can pick, with their progress; fewer than two: no picker. */
+  readonly levels?: readonly HomePathLevel[];
+};
 
 export type HomeViewState =
   | { readonly status: "loading" }
@@ -104,6 +114,8 @@ type HomeViewProps = {
   onOpenWardrobe?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
   onOpenCard?: (cardId: string) => void;
+  /** Shows the path of a level picked by hand; null goes back to the automatic level. */
+  onChoosePathLevel?: (level: Level | null) => void;
   /** News above everything but the greeting (the old web address's move banner). */
   notice?: ReactNode;
   /** The signed-in learner's first name for the greeting; without it, a plain "¡Hola!". */
@@ -715,10 +727,12 @@ function LessonIndex({
   lessons,
   onOpenLesson,
   onOpenCard,
+  onChoosePathLevel,
 }: {
   lessons: HomeLessons;
   onOpenLesson: (id: string) => void;
   onOpenCard?: ((cardId: string) => void) | undefined;
+  onChoosePathLevel?: ((level: Level | null) => void) | undefined;
 }) {
   const styles = useStyles();
   const [width, setWidth] = useState(0);
@@ -732,6 +746,17 @@ function LessonIndex({
         <Text accessibilityRole="header" variant="heading">
           {`Lecciones de nivel ${lessons.level}`}
         </Text>
+        {onChoosePathLevel !== undefined &&
+          lessons.levels !== undefined &&
+          lessons.levels.length > 1 && (
+            <PathLevelPicker
+              level={lessons.level}
+              autoLevel={lessons.autoLevel ?? lessons.level}
+              chosen={lessons.chosen ?? false}
+              levels={lessons.levels}
+              onChoose={onChoosePathLevel}
+            />
+          )}
         {total > 0 && (
           <>
             <ProgressLine value={done} max={total} label={`Progreso del nivel ${lessons.level}`} />
@@ -807,6 +832,7 @@ function ReadyHome({
   state,
   onOpenLesson,
   onOpenCard,
+  onChoosePathLevel,
   onStartPlacement,
   onOpenReview,
   onOpenAbout,
@@ -835,7 +861,12 @@ function ReadyHome({
         </View>
       )}
 
-      <LessonIndex lessons={state.lessons} onOpenLesson={onOpenLesson} onOpenCard={onOpenCard} />
+      <LessonIndex
+        lessons={state.lessons}
+        onOpenLesson={onOpenLesson}
+        onOpenCard={onOpenCard}
+        onChoosePathLevel={onChoosePathLevel}
+      />
 
       <View style={styles.footer}>
         {state.level !== null && (

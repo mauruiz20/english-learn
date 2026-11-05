@@ -8,7 +8,13 @@ import {
 } from "@english-learn/domain";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { isLessonDone, lessonExercises, pathLessons } from "@/features/lesson/model/lesson-catalog";
+import {
+  autoPathLevel,
+  isLessonDone,
+  lessonExercises,
+  pathLessons,
+  pathLevels,
+} from "@/features/lesson/model/lesson-catalog";
 import { lessonScore } from "@/features/lesson/model/lesson-score";
 import { pendingReviewItems } from "@/features/review/model/review-plan";
 import { useSoundPreference } from "@/features/sound/sound-preference";
@@ -45,33 +51,38 @@ function deepenCards(
 }
 
 /**
- * Lessons on the learner's path (their level, A2 by default, moving on to the next level with
- * lessons once every lesson of it is done; see `pathLessons`), each marked done when all its
- * items were reviewed, with its best result from the log and, once done, the cards that go
- * deeper into it (each card once, see `deepenSteps`).
+ * Lessons on the learner's path (the level picked by hand, or else the automatic level; see
+ * `pathLessons` and `autoPathLevel`), each marked done when all its items were reviewed, with its
+ * best result from the log and, once done, the cards that go deeper into it (each card once, see
+ * `deepenSteps`). Also every lesson done on any level, for `markJustCompleted`.
  */
 function homeLessons(
   content: Corpus,
   level: Level | null,
   states: readonly ReviewState[],
   results: readonly LessonResult[],
-): HomeLessons {
+  chosenLevel: Level | null,
+): { lessons: HomeLessons; doneIds: string[] } {
   const reviewed = new Set(states.map((s) => s.itemId));
+  const doneIds = content.lessons
+    .filter((lesson) => isLessonDone(lesson, content.exercisesById, reviewed))
+    .map((lesson) => lesson.id);
+  const doneSet = new Set(doneIds);
+  const isDone = (lesson: { id: string }) => doneSet.has(lesson.id);
   const resultById = new Map(results.map((r) => [r.lessonId, r]));
-  const selection = pathLessons(content.lessons, level, (lesson) =>
-    isLessonDone(lesson, content.exercisesById, reviewed),
-  );
+  const selection = pathLessons(content.lessons, level, isDone, chosenLevel);
+  const levels = pathLevels(content.lessons, isDone);
   const scores = cardScores(content, results);
-  const stops = selection.lessons.map((lesson) => ({
-    lesson,
-    done: isLessonDone(lesson, content.exercisesById, reviewed),
-  }));
+  const stops = selection.lessons.map((lesson) => ({ lesson, done: isDone(lesson) }));
   // Each card once on the path, under the earliest done lesson that links it.
   const steps = deepenSteps(
     stops.map(({ lesson, done }) => ({ id: lesson.id, done, deepenCardIds: lesson.deepenCardIds })),
   );
-  return {
+  const lessons: HomeLessons = {
     level: selection.level,
+    autoLevel: autoPathLevel(content.lessons, level, isDone),
+    chosen: chosenLevel !== null && levels.some((l) => l.level === chosenLevel),
+    levels,
     items: stops.map(({ lesson, done }) => {
       const deepen = deepenCards(steps.get(lesson.id), content, scores);
       return {
@@ -87,11 +98,18 @@ function homeLessons(
       };
     }),
   };
+  return { lessons, doneIds };
 }
 
-/** Marks the lessons done since the index was last seen, so their check is drawn once. */
-function markJustCompleted(lessons: HomeLessons, memory: CompletionMemory): HomeLessons {
-  const fresh = memory.take(lessons.items.filter((l) => l.done).map((l) => l.id));
+/**
+ * Marks the lessons done since the index was last seen, so their check is drawn once. It
+ * remembers the lessons done on every level, so showing another level draws nothing again.
+ */
+function markJustCompleted(
+  { lessons, doneIds }: { lessons: HomeLessons; doneIds: readonly string[] },
+  memory: CompletionMemory,
+): HomeLessons {
+  const fresh = memory.take(doneIds);
   if (fresh.size === 0) return lessons;
   return {
     ...lessons,
@@ -108,7 +126,7 @@ export function HomeContainer({
   /** What the index last showed as done (the app session's, by default). */
   completionMemory?: CompletionMemory;
 }) {
-  const { progressRepository, clock } = useAppServices();
+  const { progressRepository, settingsRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
   // The baseline's plumas grant, for the one-time note: null until there is progress to decide on.
@@ -129,8 +147,10 @@ export function HomeContainer({
       progressRepository.getReviewStates(),
       progressRepository.getLessonResults(),
       progressRepository.getRewards(),
+      // A view preference: unreadable or failing, the path follows the automatic level.
+      settingsRepository.getPathLevel().catch(() => null),
     ]).then(
-      ([streak, xp, placement, states, results, rewards]) => {
+      ([streak, xp, placement, states, results, rewards, chosenLevel]) => {
         if (!active) return;
         // Every event leaves a trace here (a baseline always holds progress), so an empty store
         // (a new device before its first sync pull) decides nothing yet.
@@ -156,7 +176,7 @@ export function HomeContainer({
           plumas: rewards.balance,
           level,
           lessons: markJustCompleted(
-            homeLessons(content, level, states, results),
+            homeLessons(content, level, states, results, chosenLevel),
             completionMemory,
           ),
           album: {
@@ -181,9 +201,19 @@ export function HomeContainer({
     // `progressVersion` is not read, only depended on: a new version (a sync brought progress
     // from another device) makes a new `load`, which `useFocusEffect` runs again.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progressRepository, clock, content, completionMemory, progressVersion]);
+  }, [progressRepository, settingsRepository, clock, content, completionMemory, progressVersion]);
 
   useFocusEffect(load);
+
+  // Shows the picked level's path once the choice is stored (null: the automatic level again).
+  const choosePathLevel = useCallback(
+    (chosen: Level | null) => {
+      settingsRepository.setPathLevel(chosen).then(load, (error: unknown) => {
+        console.error("Failed to save the path level", error);
+      });
+    },
+    [settingsRepository, load],
+  );
 
   return (
     <HomeView
@@ -204,6 +234,7 @@ export function HomeContainer({
       onOpenPractice={() => router.push("/practica")}
       onOpenWardrobe={() => router.push("/armario")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
+      onChoosePathLevel={choosePathLevel}
       notice={
         moveOffer && (
           <MoveBanner
