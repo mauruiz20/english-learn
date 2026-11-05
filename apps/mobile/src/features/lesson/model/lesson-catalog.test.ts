@@ -1,4 +1,5 @@
 import { createCorpus } from "@english-learn/content";
+import { corpus } from "@english-learn/content/corpus";
 import { allExercises, lesson, passage } from "./fixtures";
 import {
   DEFAULT_LEVEL,
@@ -8,6 +9,7 @@ import {
   lessonItemIds,
   lessonsForLevel,
   pathLessons,
+  pathLevels,
 } from "./lesson-catalog";
 
 const content = createCorpus([
@@ -106,6 +108,97 @@ describe("lesson catalog", () => {
     it("uses the default level when there are no lessons at all", () => {
       expect(pathLessons([], "B1", doneIds())).toEqual({ level: "A2", lessons: [] });
     });
+
+    // Production bug: before B2 had lessons, a B2 or C1 placement started the path on B1. Once
+    // B2 lessons shipped, the same placement mapped to B2 and home jumped past a B1 the learner
+    // was a quarter of the way through.
+    it.each(["B2", "C1"] as const)(
+      "keeps a learner placed at %s on a B1 they started and did not finish",
+      (placement) => {
+        const b1Lessons = corpus.lessons.filter((l) => l.level === "B1");
+        const started = b1Lessons.slice(0, Math.round(b1Lessons.length * 0.23)).map((l) => l.id);
+        expect(started.length).toBeGreaterThan(0);
+
+        expect(lessonLevelFor(corpus.lessons, placement)).toBe("B2");
+        expect(pathLessons(corpus.lessons, placement, doneIds(...started)).level).toBe("B1");
+      },
+    );
+  });
+
+  describe("the automatic path level", () => {
+    const two = (level: "A2" | "B1" | "B2") =>
+      [1, 2].map((n) => ({ ...lesson, id: `${level.toLowerCase()}.x.lesson-00${n}`, level }));
+    const [a2a, a2b] = two("A2");
+    const [b1a, b1b] = two("B1");
+    const [b2a] = two("B2");
+    const lessons = [...two("A2"), ...two("B1"), ...two("B2")];
+    const done =
+      (...ids: string[]) =>
+      (l: { id: string }) =>
+        ids.includes(l.id);
+    const levelOf = (placement: Parameters<typeof pathLessons>[1], ...ids: string[]) =>
+      pathLessons(lessons, placement, done(...ids)).level;
+
+    it("starts a new learner on the placement's lesson level", () => {
+      expect(levelOf("B2")).toBe("B2");
+      expect(levelOf("C1")).toBe("B2");
+      expect(levelOf(null)).toBe("A2");
+    });
+
+    it("stays on the level below the placement while it is started and not finished", () => {
+      expect(levelOf("B2", b1a!.id)).toBe("B1");
+      expect(levelOf("C1", b1a!.id, b2a!.id)).toBe("B1");
+      expect(levelOf("B1", a2a!.id)).toBe("A2");
+    });
+
+    it("prefers the started level nearest to the placement", () => {
+      expect(levelOf("B2", a2a!.id, b1a!.id)).toBe("B1");
+    });
+
+    it("moves on once the started level below the placement is finished", () => {
+      expect(levelOf("B2", b1a!.id, b1b!.id)).toBe("B2");
+      expect(levelOf("B1", a2a!.id, a2b!.id)).toBe("B1");
+      expect(levelOf("B1", a2a!.id, a2b!.id, b1a!.id, b1b!.id)).toBe("B2");
+    });
+
+    it("ignores a started level that is not right below the placement", () => {
+      // B1 untouched: the newer placement wins over an old A2 lesson.
+      expect(levelOf("B2", a2a!.id)).toBe("B2");
+      // B1 finished: a leftover A2 lesson does not pull the path back down.
+      expect(levelOf("B2", a2a!.id, b1a!.id, b1b!.id)).toBe("B2");
+    });
+  });
+
+  describe("a level chosen by hand", () => {
+    const b1 = content.lessonsById.get("b1.routine.lesson-001")!;
+    const b2 = { ...lesson, id: "b2.x.lesson-001", level: "B2", title: "B2" } as const;
+    const all = [...content.lessons, b2];
+    const none = () => false;
+
+    it("overrides the automatic level, below or above it", () => {
+      expect(pathLessons(all, "B1", none, "A2")).toEqual({ level: "A2", lessons: [lesson] });
+      expect(pathLessons(all, "B1", none, "B2")).toEqual({ level: "B2", lessons: [b2] });
+    });
+
+    it("stays on the chosen level once it is finished", () => {
+      expect(pathLessons(all, "B1", (l) => l.id === b1.id, "B1").level).toBe("B1");
+    });
+
+    it("falls back to the automatic level when the chosen one has no lessons", () => {
+      expect(pathLessons(all, "B1", none, "C1").level).toBe("B1");
+      expect(pathLessons(all, "B1", none, null).level).toBe("B1");
+    });
+  });
+
+  it("lists each level with lessons and how many of them are done", () => {
+    const b2 = { ...lesson, id: "b2.x.lesson-001", level: "B2" } as const;
+
+    expect(pathLevels([...content.lessons, b2], (l) => l.id === lesson.id)).toEqual([
+      { level: "A2", done: 1, total: 1 },
+      { level: "B1", done: 0, total: 1 },
+      { level: "B2", done: 0, total: 1 },
+    ]);
+    expect(pathLevels([], () => true)).toEqual([]);
   });
 
   it("counts a lesson as done once every item has a review state", () => {
