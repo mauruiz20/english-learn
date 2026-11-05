@@ -71,6 +71,8 @@ bench`, median): saving a 13-event session ≈ 3 ms (was ≈ 240 ms, a full refo
   transferred (the old web address then sends the learner there).
   `getPlumasWelcome()` / `setPlumasWelcome({ plumas, dismissed })` / `clearPlumasWelcome()` keep
   the one-time plumas note (`null` until home decides it; an unreadable value reads as dismissed).
+  `getLastHomeVisit()` / `setLastHomeVisit(date)` keep the date home was last opened on this
+  device, for Avi's "welcome back" (`null` before the first visit or when unreadable).
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

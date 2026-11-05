@@ -2,6 +2,8 @@ import {
   LEVELS,
   type AccountMarker,
   type Level,
+  isValidLocalDate,
+  type LocalDate,
   type PlumasWelcome,
   type SettingsRepository,
   type ThemePreference,
@@ -16,6 +18,7 @@ const THEME_PREFERENCE = "theme_preference";
 const MIGRATED_TO = "migrated_to";
 const PLUMAS_WELCOME = "plumas_welcome";
 const PATH_LEVEL = "path_level";
+const LAST_HOME_VISIT = "last_home_visit";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -69,7 +72,14 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     clearPathLevel: async () => {
       await db.runAsync("DELETE FROM setting WHERE key = ?", [PATH_LEVEL]);
     },
+    getLastHomeVisit: async () => parseLocalDate(await read(LAST_HOME_VISIT)),
+    setLastHomeVisit: (date) => write(LAST_HOME_VISIT, date),
   };
+}
+
+/** An unreadable date counts as no visit yet. */
+function parseLocalDate(value: string | null): LocalDate | null {
+  return value !== null && isValidLocalDate(value) ? value : null;
 }
 
 /** Anything but an explicit light or dark follows the system (the default). */

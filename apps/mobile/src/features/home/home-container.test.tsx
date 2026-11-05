@@ -4,6 +4,7 @@ import {
   localDate,
   review,
   type Clock,
+  type ProgressEvent,
   type ProgressRepository,
   type SettingsRepository,
 } from "@english-learn/domain";
@@ -21,6 +22,7 @@ import { HomeContainer } from "./home-container";
 import { OriginMoveOfferContext, type OriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { AccountContext, type AccountContextValue } from "@/features/account/account-context";
 import { createCompletionMemory, type CompletionMemory } from "./model/completion-memory";
+import { createHomeAviMemory, type HomeAviMemory } from "./model/home-avi";
 import { withMotion } from "@/testing/motion";
 import { StyleSheet } from "react-native";
 import { testRandomBytes } from "@/testing/random-bytes";
@@ -72,8 +74,11 @@ function renderContainer(
   completionMemory: CompletionMemory = createCompletionMemory(),
   settings: SettingsRepository = createFakeSettingsRepository(),
   homeContent: Corpus = content,
+  aviMemory: HomeAviMemory = createHomeAviMemory(),
 ) {
-  return render(renderContainerElement(repository, completionMemory, settings, homeContent));
+  return render(
+    renderContainerElement(repository, completionMemory, settings, homeContent, aviMemory),
+  );
 }
 
 function renderContainerElement(
@@ -81,6 +86,7 @@ function renderContainerElement(
   completionMemory: CompletionMemory = createCompletionMemory(),
   settings: SettingsRepository = createFakeSettingsRepository(),
   homeContent: Corpus = content,
+  aviMemory: HomeAviMemory = createHomeAviMemory(),
 ) {
   return (
     <AppServicesProvider
@@ -96,7 +102,11 @@ function renderContainerElement(
     >
       <SoundPreferenceProvider>
         <ThemePreferenceProvider>
-          <HomeContainer content={homeContent} completionMemory={completionMemory} />
+          <HomeContainer
+            content={homeContent}
+            completionMemory={completionMemory}
+            aviMemory={aviMemory}
+          />
         </ThemePreferenceProvider>
       </SoundPreferenceProvider>
     </AppServicesProvider>
@@ -684,5 +694,102 @@ describe("HomeContainer", () => {
     await view.rerender(tree(1));
 
     expect(await screen.findByText(/^[1-9]\d* XP$/)).toBeOnTheScreen();
+  });
+  describe("Avi beside the greeting", () => {
+    const wardrobeEvent = (n: number, event: Pick<ProgressEvent, "type" | "payload">) =>
+      ({
+        id: `019a0000-0000-7000-8000-00000000000${n}`,
+        deviceId: "test-device",
+        occurredAt: n,
+        localDate: TODAY,
+        ...event,
+      }) as ProgressEvent;
+
+    it("greets a fresh learner, and remembers today's visit", async () => {
+      const settings = createFakeSettingsRepository();
+      await renderContainer(createFakeRepository(), undefined, settings);
+
+      expect(await screen.findByText("¡Hola! Soy Avi. ¿Empezamos?")).toBeOnTheScreen();
+      expect(
+        screen.getByRole("button", { name: "Avi, contento. Abre el armario" }),
+      ).toBeOnTheScreen();
+      await waitFor(() => expect(settings.lastHomeVisit()).toBe(TODAY));
+    });
+
+    it("welcomes the learner back on the first visit of a new day", async () => {
+      const settings = createFakeSettingsRepository({ lastHomeVisit: localDate("2026-10-28") });
+      await renderContainer(
+        createFakeRepository({
+          xp: 10,
+          streak: { current: 2, longest: 2, lastActiveDate: localDate("2026-10-28") },
+        }),
+        undefined,
+        settings,
+      );
+
+      expect(await screen.findByText("¡Qué bueno verte!")).toBeOnTheScreen();
+      await waitFor(() => expect(settings.lastHomeVisit()).toBe(TODAY));
+    });
+
+    it("misses a learner whose streak broke, never naming the days lost", async () => {
+      await renderContainer(
+        createFakeRepository({
+          xp: 10,
+          streak: { current: 6, longest: 6, lastActiveDate: localDate("2026-10-20") },
+        }),
+        undefined,
+        createFakeSettingsRepository({ lastHomeVisit: localDate("2026-10-20") }),
+      );
+
+      expect(
+        await screen.findByText("Te extrañé. Hoy empezamos una racha nueva."),
+      ).toBeOnTheScreen();
+      expect(
+        screen.getByRole("button", { name: "Avi, con ganas de verte. Abre el armario" }),
+      ).toBeOnTheScreen();
+    });
+
+    it("celebrates a lesson completed since home was last seen", async () => {
+      const memory = createCompletionMemory();
+      memory.take([]);
+      await renderContainer(
+        createFakeRepository({ states: a2ItemIds.map((id) => initialState(id, TODAY)) }),
+        memory,
+        createFakeSettingsRepository({ lastHomeVisit: TODAY }),
+        a2Content,
+      );
+
+      expect(await screen.findByText("¡Lo lograste!")).toBeOnTheScreen();
+    });
+
+    it("shows off a new outfit, says what it wears and opens the wardrobe", async () => {
+      const repository = createFakeRepository({ xp: 1, completedLessonIds: ["a", "b", "c"] });
+      const aviMemory = createHomeAviMemory();
+      const settings = createFakeSettingsRepository({ lastHomeVisit: TODAY });
+      const first = await renderContainer(repository, undefined, settings, content, aviMemory);
+      expect(
+        await screen.findByRole("button", { name: "Avi, contento. Abre el armario" }),
+      ).toBeOnTheScreen();
+      await first.unmount();
+
+      await repository.appendEvents([
+        wardrobeEvent(1, {
+          type: "item_purchased",
+          payload: { v: 1, itemId: "estrella", price: 40 },
+        }),
+        wardrobeEvent(2, {
+          type: "item_equipped",
+          payload: { v: 1, slot: "sticker", itemId: "estrella" },
+        }),
+      ]);
+      await renderContainer(repository, undefined, settings, content, aviMemory);
+
+      expect(await screen.findByText("¿Cómo me veo?")).toBeOnTheScreen();
+      const avi = screen.getByRole("button", {
+        name: "Avi, estrenando ropa, con sticker de estrella. Abre el armario",
+      });
+      await fireEvent.press(avi);
+      expect(mockPush).toHaveBeenCalledWith("/armario");
+    });
   });
 });

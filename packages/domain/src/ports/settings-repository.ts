@@ -1,4 +1,5 @@
 import type { Level } from "../cefr";
+import type { LocalDate } from "../local-date";
 
 /**
  * The account this device is signed in to, as remembered across restarts: who, never a token
@@ -62,4 +63,10 @@ export interface SettingsRepository {
   setPathLevel(level: Level | null): Promise<void>;
   /** Forgets it (a sign-out that deletes this device's progress), like `clearPlumasWelcome`. */
   clearPathLevel(): Promise<void>;
+  /**
+   * The date home was last opened on this device, or null before the first visit: Avi says
+   * "welcome back" on the first visit of a new day. Device only, never synced.
+   */
+  getLastHomeVisit(): Promise<LocalDate | null>;
+  setLastHomeVisit(date: LocalDate): Promise<void>;
 }

@@ -49,5 +49,7 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
     getPathLevel: () => repository.getPathLevel(),
     setPathLevel: (level) => track(repository.setPathLevel(level)),
     clearPathLevel: () => track(repository.clearPathLevel()),
+    getLastHomeVisit: () => repository.getLastHomeVisit(),
+    setLastHomeVisit: (date) => track(repository.setLastHomeVisit(date)),
   };
 }
