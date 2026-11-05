@@ -1,3 +1,4 @@
+import type { Level } from "../cefr";
 import type { LocalDate } from "../local-date";
 
 /**
@@ -53,6 +54,15 @@ export interface SettingsRepository {
   setPlumasWelcome(note: PlumasWelcome): Promise<void>;
   /** Forgets it (a sign-out that deletes this device's progress): the next learner decides anew. */
   clearPlumasWelcome(): Promise<void>;
+  /**
+   * The level the home path shows, picked by hand on this device; null follows the automatic
+   * level. A view preference only, never part of the progress.
+   */
+  getPathLevel(): Promise<Level | null>;
+  /** Picks the path's level; null goes back to the automatic one. */
+  setPathLevel(level: Level | null): Promise<void>;
+  /** Forgets it (a sign-out that deletes this device's progress), like `clearPlumasWelcome`. */
+  clearPathLevel(): Promise<void>;
   /**
    * The date home was last opened on this device, or null before the first visit: Avi says
    * "welcome back" on the first visit of a new day. Device only, never synced.
