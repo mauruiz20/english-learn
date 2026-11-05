@@ -81,6 +81,18 @@
       ]
     },
     {
+      "id": "glossary.salesperson",
+      "headword": "salesperson",
+      "kind": "word",
+      "forms": ["salesperson", "salespeople"],
+      "senses": [
+        {
+          "es": "vendedor, vendedora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.salon",
       "headword": "salon",
       "kind": "word",
@@ -417,6 +429,18 @@
       ]
     },
     {
+      "id": "glossary.security",
+      "headword": "security",
+      "kind": "word",
+      "forms": ["security"],
+      "senses": [
+        {
+          "es": "seguridad, garantía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.see",
       "headword": "see",
       "kind": "word",
@@ -537,6 +561,18 @@
       ]
     },
     {
+      "id": "glossary.separately",
+      "headword": "separately",
+      "kind": "word",
+      "forms": ["separately"],
+      "senses": [
+        {
+          "es": "por separado, aparte",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.serious",
       "headword": "serious",
       "kind": "word",
@@ -557,6 +593,34 @@
         {
           "es": "servir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.server",
+      "headword": "server",
+      "kind": "word",
+      "forms": ["server", "servers"],
+      "senses": [
+        {
+          "es": "mesero, mesera",
+          "pos": "noun"
+        },
+        {
+          "es": "servidor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.service",
+      "headword": "service",
+      "kind": "word",
+      "forms": ["service", "services"],
+      "senses": [
+        {
+          "es": "servicio",
+          "pos": "noun"
         }
       ]
     },
@@ -1124,6 +1188,17 @@
       ]
     },
     {
+      "id": "glossary.silva",
+      "headword": "Silva",
+      "kind": "word",
+      "forms": ["silva"],
+      "senses": [
+        {
+          "es": "(apellido)"
+        }
+      ]
+    },
+    {
       "id": "glossary.simple",
       "headword": "simple",
       "kind": "word",
@@ -1559,22 +1634,10 @@
       "id": "glossary.sofia",
       "headword": "Sofía",
       "kind": "word",
-      "forms": ["sofía"],
+      "forms": ["sofía", "sofia"],
       "senses": [
         {
           "es": "Sofía (nombre propio)",
-          "pos": "proper noun"
-        }
-      ]
-    },
-    {
-      "id": "glossary.sofia-2",
-      "headword": "Sofia",
-      "kind": "word",
-      "forms": ["sofia"],
-      "senses": [
-        {
-          "es": "(nombre propio)",
           "pos": "proper noun"
         }
       ]
@@ -1800,6 +1863,22 @@
         {
           "es": "ordenar",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sound",
+      "headword": "sound",
+      "kind": "word",
+      "forms": ["sound", "sounds", "sounded", "sounding"],
+      "senses": [
+        {
+          "es": "sonar, parecer",
+          "pos": "verb"
+        },
+        {
+          "es": "sonido",
+          "pos": "noun"
         }
       ]
     },
@@ -2051,6 +2130,18 @@
         },
         {
           "es": "etapa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stairs",
+      "headword": "stairs",
+      "kind": "word",
+      "forms": ["stairs"],
+      "senses": [
+        {
+          "es": "escaleras",
           "pos": "noun"
         }
       ]
@@ -2340,6 +2431,18 @@
       ]
     },
     {
+      "id": "glossary.stranger",
+      "headword": "stranger",
+      "kind": "word",
+      "forms": ["stranger", "strangers"],
+      "senses": [
+        {
+          "es": "desconocido, desconocida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.street",
       "headword": "street",
       "kind": "word",
@@ -2347,6 +2450,30 @@
       "senses": [
         {
           "es": "calle",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.strength",
+      "headword": "strength",
+      "kind": "word",
+      "forms": ["strength", "strengths"],
+      "senses": [
+        {
+          "es": "fortaleza, punto fuerte; fuerza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.strengths-and-weaknesses",
+      "headword": "strengths and weaknesses",
+      "kind": "phrase",
+      "forms": ["strengths and weaknesses"],
+      "senses": [
+        {
+          "es": "fortalezas y debilidades",
           "pos": "noun"
         }
       ]
@@ -2520,6 +2647,18 @@
         {
           "es": "azúcar",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suggest",
+      "headword": "suggest",
+      "kind": "word",
+      "forms": ["suggest", "suggests", "suggested", "suggesting"],
+      "senses": [
+        {
+          "es": "sugerir",
+          "pos": "verb"
         }
       ]
     },

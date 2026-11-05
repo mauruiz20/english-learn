@@ -133,6 +133,18 @@
       ]
     },
     {
+      "id": "glossary.management",
+      "headword": "management",
+      "kind": "word",
+      "forms": ["management"],
+      "senses": [
+        {
+          "es": "gestión, administración; la dirección",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.manager",
       "headword": "manager",
       "kind": "word",
@@ -233,6 +245,18 @@
       ]
     },
     {
+      "id": "glossary.marketing",
+      "headword": "marketing",
+      "kind": "word",
+      "forms": ["marketing"],
+      "senses": [
+        {
+          "es": "mercadotecnia, marketing",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.married",
       "headword": "married",
       "kind": "word",
@@ -257,6 +281,22 @@
         {
           "es": "Marta (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.master",
+      "headword": "master",
+      "kind": "word",
+      "forms": ["master", "masters", "master's"],
+      "senses": [
+        {
+          "es": "(master's degree) maestría",
+          "pos": "noun"
+        },
+        {
+          "es": "maestro, experto",
+          "pos": "noun"
         }
       ]
     },
@@ -441,6 +481,18 @@
       ]
     },
     {
+      "id": "glossary.medium",
+      "headword": "medium",
+      "kind": "word",
+      "forms": ["medium"],
+      "senses": [
+        {
+          "es": "mediano; talla mediana",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.meet",
       "headword": "meet",
       "kind": "word",
@@ -525,6 +577,18 @@
         {
           "es": "mencionar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.menu",
+      "headword": "menu",
+      "kind": "word",
+      "forms": ["menu", "menus"],
+      "senses": [
+        {
+          "es": "menú, carta",
+          "pos": "noun"
         }
       ]
     },
@@ -936,6 +1000,42 @@
         },
         {
           "es": "(the movies) el cine",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mr",
+      "headword": "Mr",
+      "kind": "word",
+      "forms": ["mr"],
+      "senses": [
+        {
+          "es": "señor (Sr.)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mrs",
+      "headword": "Mrs",
+      "kind": "word",
+      "forms": ["mrs"],
+      "senses": [
+        {
+          "es": "señora (Mrs.)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ms",
+      "headword": "Ms",
+      "kind": "word",
+      "forms": ["ms"],
+      "senses": [
+        {
+          "es": "señora, señorita (Sra.)",
           "pos": "noun"
         }
       ]

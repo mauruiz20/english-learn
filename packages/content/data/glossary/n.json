@@ -29,6 +29,18 @@
       ]
     },
     {
+      "id": "glossary.natural",
+      "headword": "natural",
+      "kind": "word",
+      "forms": ["natural"],
+      "senses": [
+        {
+          "es": "natural",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.nature",
       "headword": "nature",
       "kind": "word",

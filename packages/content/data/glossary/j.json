@@ -77,6 +77,18 @@
       ]
     },
     {
+      "id": "glossary.jeans",
+      "headword": "jeans",
+      "kind": "word",
+      "forms": ["jeans"],
+      "senses": [
+        {
+          "es": "jeans, pantalones de mezclilla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.job",
       "headword": "job",
       "kind": "word",
@@ -108,6 +120,18 @@
       "senses": [
         {
           "es": "periodista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.juice",
+      "headword": "juice",
+      "kind": "word",
+      "forms": ["juice", "juices"],
+      "senses": [
+        {
+          "es": "jugo",
           "pos": "noun"
         }
       ]

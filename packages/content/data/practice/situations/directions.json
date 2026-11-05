@@ -1,0 +1,436 @@
+{
+  "items": [
+    {
+      "id": "a2.situations.how-do-i-get-to",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "How do I get to (the museum)?",
+      "es": "¿Cómo llego a (el museo)?",
+      "example": {
+        "en": "Excuse me, how do I get to the bus station?",
+        "es": "Disculpe, ¿cómo llego a la terminal de autobuses?"
+      }
+    },
+    {
+      "id": "a2.situations.is-it-far",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Is it far from here?",
+      "es": "¿Está lejos de aquí?",
+      "example": {
+        "en": "Is it far from here, or can I walk?",
+        "es": "¿Está lejos de aquí o puedo ir caminando?"
+      }
+    },
+    {
+      "id": "a2.situations.second-on-the-left",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "the second (street) on the left",
+      "es": "la segunda (calle) a la izquierda",
+      "example": {
+        "en": "Take the second street on the left.",
+        "es": "Daniela la segunda calle a la izquierda."
+      }
+    },
+    {
+      "id": "a2.situations.on-your-right",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "It's on your right.",
+      "es": "Está a tu derecha.",
+      "example": {
+        "en": "Walk to the end of the street. The hotel is on your right.",
+        "es": "Camina hasta el final de la calle. El hotel está a tu derecha."
+      }
+    },
+    {
+      "id": "a2.situations.walk-past",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "walk past (something)",
+      "es": "pasar por delante de (algo)",
+      "example": {
+        "en": "You'll walk past a big park.",
+        "es": "Vas a pasar por delante de un parque grande."
+      }
+    },
+    {
+      "id": "a2.situations.five-minute-walk",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "a five-minute walk",
+      "es": "a cinco minutos caminando",
+      "example": {
+        "en": "The beach is a five-minute walk from the hotel.",
+        "es": "La playa está a cinco minutos caminando del hotel."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.situations.practice-directions-museum",
+      "level": "A2",
+      "topics": ["situations"],
+      "title": "The way to the museum",
+      "text": "Daniel: Excuse me, how do I get to the art museum? Woman: The art museum? Go straight down this street and take the second street on the left. Daniel: Is it far from here? Woman: No, it's about a ten-minute walk. You'll walk past a big park and a church. The museum is right after the church, on your right. Daniel: Great, thank you! Woman: You're welcome. Enjoy your visit!",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.situations.practice-directions-vocab-1",
+      "itemIds": ["a2.situations.how-do-i-get-to"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'How do I get to the station?' mean?",
+      "options": [
+        "¿A qué hora sale el tren?",
+        "¿Dónde compro el boleto?",
+        "¿Está lejos la estación?",
+        "¿Cómo llego a la estación?"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.situations.practice-directions-choice-1",
+      "itemIds": ["a2.situations.is-it-far"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Is it far from here? – No, it's very close.",
+      "options": [
+        "¿Está lejos de aquí? – No, está muy cerca.",
+        "¿Está cerca de aquí? – No, está muy lejos.",
+        "¿Es por aquí? – No, es por allá."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-directions-cloze-1",
+      "itemIds": ["a2.situations.second-on-the-left"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Take the second street ___ the left.",
+      "answers": ["on"],
+      "distractors": ["in", "at"],
+      "es": "Daniela la segunda calle a la izquierda."
+    },
+    {
+      "id": "a2.situations.practice-directions-vocab-2",
+      "itemIds": ["a2.situations.on-your-right"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'It's on your right.' mean?",
+      "options": [
+        "Tienes razón.",
+        "Está a tu derecha.",
+        "Sigue todo derecho.",
+        "Gira a la derecha."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-directions-choice-2",
+      "itemIds": ["a2.situations.walk-past"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "You'll walk past a bank and a pharmacy.",
+      "options": [
+        "Vas a entrar a un banco y a una farmacia.",
+        "Vas a caminar hasta un banco y una farmacia.",
+        "Vas a pasar por delante de un banco y una farmacia."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-directions-reading-1",
+      "itemIds": [
+        "a2.situations.second-on-the-left",
+        "a2.situations.walk-past",
+        "a2.situations.on-your-right"
+      ],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.situations.practice-directions-museum",
+      "questions": [
+        {
+          "prompt": "Which street should Daniel take?",
+          "options": [
+            "The first street on the right",
+            "The second street on the left",
+            "The second street on the right"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "How far is the museum?",
+          "options": [
+            "About ten minutes on foot",
+            "About ten minutes by car",
+            "Very far, he needs a bus"
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What is right before the museum?",
+          "options": ["A park", "A bank", "A church"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a2.situations.practice-directions-vocab-3",
+      "itemIds": ["a2.situations.five-minute-walk"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'It's a five-minute walk.' mean?",
+      "options": [
+        "Está a cinco minutos en auto.",
+        "Hay que caminar cinco kilómetros.",
+        "Está a cinco minutos caminando.",
+        "Sale en cinco minutos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-directions-cloze-2",
+      "itemIds": ["a2.situations.how-do-i-get-to"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Excuse me, how do I ___ to the beach from here?",
+      "answers": ["get"],
+      "distractors": ["arrive", "reach"],
+      "es": "Disculpe, ¿cómo llego a la playa desde aquí?"
+    },
+    {
+      "id": "a2.situations.practice-directions-order-1",
+      "itemIds": ["a2.situations.is-it-far"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["far", "it", "here?", "Is", "from"],
+      "accepted": ["Is it far from here?"],
+      "es": "¿Está lejos de aquí?"
+    },
+    {
+      "id": "a2.situations.practice-directions-write-1",
+      "itemIds": ["a2.situations.how-do-i-get-to"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Cómo llego al museo?",
+      "accepted": ["How {do|can} I get to the museum[ from here]?"]
+    },
+    {
+      "id": "a2.situations.practice-directions-choice-3",
+      "itemIds": ["a2.situations.second-on-the-left"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Don't take the first street. Take the second one on the left.",
+      "options": [
+        "No tomes la primera calle. Daniela la segunda a la izquierda.",
+        "No tomes la segunda calle. Daniela la primera a la izquierda.",
+        "Daniela la primera calle y después gira dos veces a la izquierda."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-directions-cloze-3",
+      "itemIds": ["a2.situations.five-minute-walk"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The bank is a ten-___ walk from the hotel.",
+      "answers": ["minute"],
+      "distractors": ["minutes", "time"],
+      "es": "El banco está a diez minutos caminando del hotel."
+    },
+    {
+      "id": "a2.situations.practice-directions-order-2",
+      "itemIds": ["a2.situations.on-your-right"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["on", "is", "right.", "The", "your", "pharmacy"],
+      "accepted": ["The pharmacy is on your right."],
+      "es": "La farmacia está a tu derecha."
+    },
+    {
+      "id": "a2.situations.practice-directions-write-2",
+      "itemIds": ["a2.situations.on-your-right"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Está a tu derecha.",
+      "accepted": ["It's {on|to} your right.", "It's on the right."]
+    },
+    {
+      "id": "a2.situations.practice-directions-vocab-4",
+      "itemIds": ["a2.situations.how-do-i-get-to"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What is the most polite way to ask a stranger for directions?",
+      "options": [
+        "Hey, where's the station?",
+        "Excuse me, could you tell me how to get to the station?",
+        "Tell me where the station is.",
+        "Station. Where?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-directions-cloze-4",
+      "itemIds": ["a2.situations.on-your-right"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Turn left at the corner. The museum is ___ your right.",
+      "answers": ["on"],
+      "distractors": ["in", "at"],
+      "es": "Gira a la izquierda en la esquina. El museo está a tu derecha."
+    },
+    {
+      "id": "a2.situations.practice-directions-choice-4",
+      "itemIds": ["a2.situations.walk-past"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Walk past the church and turn left.",
+      "options": [
+        "Entra en la iglesia y gira a la izquierda.",
+        "Pasa por delante de la iglesia y gira a la izquierda.",
+        "Camina hasta la iglesia y espera ahí."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-directions-write-3",
+      "itemIds": ["a2.situations.five-minute-walk"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Está a cinco minutos caminando.",
+      "accepted": [
+        "It's a five-minute walk[ from here].",
+        "It's five minutes {on foot|away on foot}."
+      ]
+    },
+    {
+      "id": "a2.situations.practice-directions-order-3",
+      "itemIds": ["a2.situations.how-do-i-get-to"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["get", "train", "How", "the", "I", "station?", "to", "do"],
+      "accepted": ["How do I get to the train station?"],
+      "es": "¿Cómo llego a la estación de tren?"
+    },
+    {
+      "id": "a2.situations.practice-directions-cloze-5",
+      "itemIds": ["a2.situations.walk-past"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Walk ___ the supermarket. The bank is right after it.",
+      "answers": ["past"],
+      "distractors": ["passed", "pass"],
+      "es": "Pasa por delante del supermercado. El banco está justo después."
+    },
+    {
+      "id": "a2.situations.practice-directions-vocab-5",
+      "itemIds": ["a2.situations.is-it-far"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'Is it far from here?' mean?",
+      "options": ["¿Está cerca de aquí?", "¿Está lejos de aquí?", "¿Está aquí?", "¿Es por aquí?"],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.situations.practice-directions-1",
+      "level": "A2",
+      "topic": "situations",
+      "title": "Pedir y dar indicaciones: frases clave",
+      "exerciseIds": [
+        "a2.situations.practice-directions-vocab-1",
+        "a2.situations.practice-directions-choice-1",
+        "a2.situations.practice-directions-cloze-1",
+        "a2.situations.practice-directions-vocab-2",
+        "a2.situations.practice-directions-choice-2",
+        "a2.situations.practice-directions-reading-1",
+        "a2.situations.practice-directions-vocab-3"
+      ],
+      "newItemIds": [
+        "a2.situations.how-do-i-get-to",
+        "a2.situations.is-it-far",
+        "a2.situations.second-on-the-left",
+        "a2.situations.on-your-right",
+        "a2.situations.walk-past"
+      ],
+      "deepenCardIds": ["a2.grammar.directions"]
+    },
+    {
+      "id": "a2.situations.practice-directions-2",
+      "level": "A2",
+      "topic": "situations",
+      "title": "Pedir y dar indicaciones: practícalas",
+      "exerciseIds": [
+        "a2.situations.practice-directions-cloze-2",
+        "a2.situations.practice-directions-order-1",
+        "a2.situations.practice-directions-write-1",
+        "a2.situations.practice-directions-choice-3",
+        "a2.situations.practice-directions-cloze-3",
+        "a2.situations.practice-directions-order-2",
+        "a2.situations.practice-directions-write-2"
+      ],
+      "newItemIds": [
+        "a2.situations.five-minute-walk",
+        "a2.situations.how-do-i-get-to",
+        "a2.situations.is-it-far",
+        "a2.situations.second-on-the-left",
+        "a2.situations.on-your-right"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-directions-3",
+      "level": "A2",
+      "topic": "situations",
+      "title": "Pedir y dar indicaciones: dilo bien",
+      "exerciseIds": [
+        "a2.situations.practice-directions-vocab-4",
+        "a2.situations.practice-directions-cloze-4",
+        "a2.situations.practice-directions-choice-4",
+        "a2.situations.practice-directions-write-3",
+        "a2.situations.practice-directions-order-3",
+        "a2.situations.practice-directions-cloze-5",
+        "a2.situations.practice-directions-vocab-5"
+      ],
+      "newItemIds": [
+        "a2.situations.how-do-i-get-to",
+        "a2.situations.on-your-right",
+        "a2.situations.walk-past",
+        "a2.situations.five-minute-walk",
+        "a2.situations.is-it-far"
+      ],
+      "deepenCardIds": ["a2.grammar.directions"]
+    }
+  ]
+}

@@ -81,6 +81,18 @@
       ]
     },
     {
+      "id": "glossary.id",
+      "headword": "ID",
+      "kind": "word",
+      "forms": ["id", "ids"],
+      "senses": [
+        {
+          "es": "identificación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.idea",
       "headword": "idea",
       "kind": "word",
@@ -321,6 +333,18 @@
       ]
     },
     {
+      "id": "glossary.include",
+      "headword": "include",
+      "kind": "word",
+      "forms": ["include", "includes", "included", "including"],
+      "senses": [
+        {
+          "es": "incluir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.increase",
       "headword": "increase",
       "kind": "word",
@@ -356,6 +380,18 @@
       "senses": [
         {
           "es": "individuo, persona",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.infection",
+      "headword": "infection",
+      "kind": "word",
+      "forms": ["infection", "infections"],
+      "senses": [
+        {
+          "es": "infección",
           "pos": "noun"
         }
       ]
@@ -525,6 +561,18 @@
       ]
     },
     {
+      "id": "glossary.interviewer",
+      "headword": "interviewer",
+      "kind": "word",
+      "forms": ["interviewer", "interviewers"],
+      "senses": [
+        {
+          "es": "entrevistador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.into",
       "headword": "into",
       "kind": "word",
@@ -585,6 +633,18 @@
         {
           "es": "invitar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.invoice",
+      "headword": "invoice",
+      "kind": "word",
+      "forms": ["invoice", "invoices"],
+      "senses": [
+        {
+          "es": "factura",
+          "pos": "noun"
         }
       ]
     },

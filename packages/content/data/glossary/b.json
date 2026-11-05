@@ -125,6 +125,18 @@
       ]
     },
     {
+      "id": "glossary.baggage",
+      "headword": "baggage",
+      "kind": "word",
+      "forms": ["baggage"],
+      "senses": [
+        {
+          "es": "equipaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.bakery",
       "headword": "bakery",
       "kind": "word",
@@ -473,6 +485,17 @@
       ]
     },
     {
+      "id": "glossary.ben",
+      "headword": "Ben",
+      "kind": "word",
+      "forms": ["ben"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
       "id": "glossary.best",
       "headword": "best",
       "kind": "word",
@@ -553,6 +576,18 @@
       ]
     },
     {
+      "id": "glossary.bill",
+      "headword": "bill",
+      "kind": "word",
+      "forms": ["bill", "bills"],
+      "senses": [
+        {
+          "es": "cuenta, factura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.bin",
       "headword": "bin",
       "kind": "word",
@@ -613,6 +648,18 @@
       ]
     },
     {
+      "id": "glossary.blender",
+      "headword": "blender",
+      "kind": "word",
+      "forms": ["blender", "blenders"],
+      "senses": [
+        {
+          "es": "licuadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.block",
       "headword": "block",
       "kind": "word",
@@ -624,6 +671,34 @@
         },
         {
           "es": "bloque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.blue",
+      "headword": "blue",
+      "kind": "word",
+      "forms": ["blue"],
+      "senses": [
+        {
+          "es": "azul",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.board",
+      "headword": "board",
+      "kind": "word",
+      "forms": ["board", "boards", "boarded", "boarding"],
+      "senses": [
+        {
+          "es": "abordar, subir (a un avión o un barco)",
+          "pos": "verb"
+        },
+        {
+          "es": "tablero, pizarrón",
           "pos": "noun"
         }
       ]

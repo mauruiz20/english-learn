@@ -161,6 +161,18 @@
       ]
     },
     {
+      "id": "glossary.electricity",
+      "headword": "electricity",
+      "kind": "word",
+      "forms": ["electricity"],
+      "senses": [
+        {
+          "es": "electricidad, luz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.elena",
       "headword": "Elena",
       "kind": "word",
@@ -173,6 +185,18 @@
       ]
     },
     {
+      "id": "glossary.elevator",
+      "headword": "elevator",
+      "kind": "word",
+      "forms": ["elevator", "elevators"],
+      "senses": [
+        {
+          "es": "elevador, ascensor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.eleven",
       "headword": "eleven",
       "kind": "word",
@@ -181,6 +205,18 @@
         {
           "es": "once",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.else",
+      "headword": "else",
+      "kind": "word",
+      "forms": ["else"],
+      "senses": [
+        {
+          "es": "más, otro (something else: otra cosa)",
+          "pos": "adverb"
         }
       ]
     },
@@ -241,6 +277,17 @@
         {
           "es": "emisión",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.emma",
+      "headword": "Emma",
+      "kind": "word",
+      "forms": ["emma"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
         }
       ]
     },
@@ -605,6 +652,22 @@
         {
           "es": "excepto, salvo",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exchange",
+      "headword": "exchange",
+      "kind": "word",
+      "forms": ["exchange", "exchanges", "exchanged", "exchanging"],
+      "senses": [
+        {
+          "es": "cambiar (exchange for: cambiar por)",
+          "pos": "verb"
+        },
+        {
+          "es": "cambio, intercambio",
+          "pos": "noun"
         }
       ]
     },

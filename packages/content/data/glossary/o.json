@@ -417,6 +417,18 @@
       ]
     },
     {
+      "id": "glossary.organized",
+      "headword": "organized",
+      "kind": "word",
+      "forms": ["organized"],
+      "senses": [
+        {
+          "es": "organizado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.original",
       "headword": "original",
       "kind": "word",

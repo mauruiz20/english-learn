@@ -1,0 +1,430 @@
+{
+  "items": [
+    {
+      "id": "a2.situations.boarding-pass",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "boarding pass",
+      "es": "pase de abordar, tarjeta de embarque",
+      "example": {
+        "en": "Can I see your passport and boarding pass, please?",
+        "es": "¿Puedo ver su pasaporte y su pase de abordar, por favor?"
+      }
+    },
+    {
+      "id": "a2.situations.aisle-seat",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "aisle seat",
+      "es": "asiento de pasillo",
+      "example": {
+        "en": "Could I have an aisle seat, please?",
+        "es": "¿Me podría dar un asiento de pasillo, por favor?"
+      }
+    },
+    {
+      "id": "a2.situations.check-a-bag",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "check a bag",
+      "es": "documentar una maleta",
+      "example": {
+        "en": "I'd like to check one bag.",
+        "es": "Quisiera documentar una maleta."
+      }
+    },
+    {
+      "id": "a2.situations.carry-on",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "word",
+      "term": "carry-on (bag)",
+      "es": "equipaje de mano",
+      "example": {
+        "en": "I only have a carry-on.",
+        "es": "Solo llevo equipaje de mano."
+      }
+    },
+    {
+      "id": "a2.situations.gate",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "word",
+      "term": "gate",
+      "es": "puerta (de embarque)",
+      "example": {
+        "en": "Our flight leaves from gate 12.",
+        "es": "Nuestro vuelo sale de la puerta 12."
+      }
+    },
+    {
+      "id": "a2.situations.baggage-claim",
+      "level": "A2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "baggage claim",
+      "es": "recogida de equipaje, banda de equipaje",
+      "example": {
+        "en": "Let's meet at baggage claim.",
+        "es": "Nos vemos en la recogida de equipaje."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a2.situations.practice-airport-check-in",
+      "level": "A2",
+      "topics": ["situations"],
+      "title": "At the check-in desk",
+      "text": "Agent: Good morning. Where are you flying today? Lucía: To Madrid. Here's my passport. Agent: Thank you. Are you checking any bags? Lucía: Yes, I'd like to check one bag. This small one is my carry-on. Agent: OK. Would you like a window seat or an aisle seat? Lucía: An aisle seat, please. Agent: Here's your boarding pass. Your flight leaves from gate 21 at 10:40. Boarding starts at 10:10. Lucía: Thanks a lot!",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.situations.practice-airport-vocab-1",
+      "itemIds": ["a2.situations.boarding-pass"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'boarding pass' mean in 'Please show your boarding pass at the gate.'?",
+      "options": ["pasaporte", "pase de abordar", "boleto de autobús", "equipaje de mano"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-airport-choice-1",
+      "itemIds": ["a2.situations.aisle-seat"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Could I have an aisle seat, please?",
+      "options": [
+        "¿Me podría dar un asiento de ventanilla, por favor?",
+        "¿Me podría dar un asiento de pasillo, por favor?",
+        "¿Me podría cambiar de asiento, por favor?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.situations.practice-airport-cloze-1",
+      "itemIds": ["a2.situations.gate"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Flight 342 to Lima is now boarding at ___ 7.",
+      "answers": ["gate"],
+      "distractors": ["door", "seat"],
+      "es": "El vuelo 342 a Lima está abordando en la puerta 7."
+    },
+    {
+      "id": "a2.situations.practice-airport-vocab-2",
+      "itemIds": ["a2.situations.carry-on"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'carry-on' mean in 'You can take one carry-on on the plane.'?",
+      "options": [
+        "una maleta documentada",
+        "un boleto de avión",
+        "una bolsa de compras",
+        "equipaje de mano"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.situations.practice-airport-choice-2",
+      "itemIds": ["a2.situations.check-a-bag"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Are you checking any bags today?",
+      "options": [
+        "¿Va a documentar alguna maleta hoy?",
+        "¿Va a revisar sus maletas hoy?",
+        "¿Perdió alguna maleta hoy?",
+        "¿Compró alguna maleta hoy?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-airport-reading-1",
+      "itemIds": [
+        "a2.situations.check-a-bag",
+        "a2.situations.aisle-seat",
+        "a2.situations.boarding-pass"
+      ],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "a2.situations.practice-airport-check-in",
+      "questions": [
+        {
+          "prompt": "How many bags is Lucía checking?",
+          "options": ["None", "One", "Two"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What seat does she want?",
+          "options": ["A window seat", "A seat near the gate", "An aisle seat"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "When does boarding start?",
+          "options": ["At 10:10", "At 10:40", "At 12:10"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "a2.situations.practice-airport-vocab-3",
+      "itemIds": ["a2.situations.baggage-claim"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'baggage claim' mean in 'After the flight, go to baggage claim.'?",
+      "options": [
+        "la recogida de equipaje",
+        "la oficina de objetos perdidos",
+        "el control de seguridad",
+        "la sala de espera"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-airport-cloze-2",
+      "itemIds": ["a2.situations.boarding-pass"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "You need your passport and your boarding ___ to get on the plane.",
+      "answers": ["pass"],
+      "distractors": ["card", "seat"],
+      "es": "Necesitas tu pasaporte y tu pase de abordar para subir al avión."
+    },
+    {
+      "id": "a2.situations.practice-airport-order-1",
+      "itemIds": ["a2.situations.check-a-bag"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["check", "like", "two", "to", "I'd", "bags."],
+      "accepted": ["I'd like to check two bags."],
+      "es": "Quisiera documentar dos maletas."
+    },
+    {
+      "id": "a2.situations.practice-airport-write-1",
+      "itemIds": ["a2.situations.aisle-seat"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Me podría dar un asiento de pasillo, por favor?",
+      "accepted": [
+        "{Could|Can|May} I {have|get} an aisle seat[, please]?",
+        "{Could|Can} you give me an aisle seat[, please]?",
+        "I'd like an aisle seat[, please]."
+      ]
+    },
+    {
+      "id": "a2.situations.practice-airport-choice-3",
+      "itemIds": ["a2.situations.baggage-claim"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "My suitcase didn't come out at baggage claim.",
+      "options": [
+        "Mi maleta no cupo en el compartimento de arriba.",
+        "Mi maleta no pasó el control de seguridad.",
+        "Mi maleta no salió en la recogida de equipaje."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-airport-cloze-3",
+      "itemIds": ["a2.situations.carry-on"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'm not checking anything. I only have a ___.",
+      "answers": ["carry-on"],
+      "distractors": ["gate", "baggage claim"],
+      "es": "No voy a documentar nada. Solo llevo equipaje de mano."
+    },
+    {
+      "id": "a2.situations.practice-airport-order-2",
+      "itemIds": ["a2.situations.gate"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["is", "gate", "Excuse", "B6?", "me,", "where"],
+      "accepted": ["Excuse me, where is gate B6?"],
+      "es": "Disculpe, ¿dónde está la puerta B6?"
+    },
+    {
+      "id": "a2.situations.practice-airport-write-2",
+      "itemIds": ["a2.situations.boarding-pass"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Aquí está mi pase de abordar.",
+      "accepted": ["{Here's|Here is} my boarding pass.", "This is my boarding pass."]
+    },
+    {
+      "id": "a2.situations.practice-airport-vocab-4",
+      "itemIds": ["a2.situations.aisle-seat"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What is the most polite way to ask for an aisle seat?",
+      "options": [
+        "Give me an aisle seat.",
+        "I want an aisle seat.",
+        "Could I have an aisle seat, please?",
+        "Aisle seat. Now."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.situations.practice-airport-cloze-4",
+      "itemIds": ["a2.situations.check-a-bag"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "How much does it cost to ___ a bag on this flight?",
+      "answers": ["check"],
+      "distractors": ["revise", "review"],
+      "es": "¿Cuánto cuesta documentar una maleta en este vuelo?"
+    },
+    {
+      "id": "a2.situations.practice-airport-choice-4",
+      "itemIds": ["a2.situations.gate", "a2.situations.boarding-pass"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "The gate number is on your boarding pass.",
+      "options": [
+        "El número de puerta está en tu pase de abordar.",
+        "El número de asiento está en tu pasaporte.",
+        "El número de vuelo está en tu maleta."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.situations.practice-airport-write-3",
+      "itemIds": ["a2.situations.baggage-claim"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Te espero en la recogida de equipaje.",
+      "accepted": [
+        "I'll {wait for you|be waiting for you|meet you|see you} {at|in} [the ]baggage claim."
+      ]
+    },
+    {
+      "id": "a2.situations.practice-airport-order-3",
+      "itemIds": ["a2.situations.carry-on"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["take", "carry-on?", "I", "this", "Can", "as", "a"],
+      "accepted": ["Can I take this as a carry-on?"],
+      "es": "¿Puedo llevar esto como equipaje de mano?"
+    },
+    {
+      "id": "a2.situations.practice-airport-cloze-5",
+      "itemIds": ["a2.situations.aisle-seat"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I like to walk around on long flights, so I always ask for an ___ seat.",
+      "answers": ["aisle"],
+      "distractors": ["window", "hall"],
+      "es": "Me gusta caminar en los vuelos largos, así que siempre pido un asiento de pasillo."
+    },
+    {
+      "id": "a2.situations.practice-airport-vocab-5",
+      "itemIds": ["a2.situations.check-a-bag"],
+      "level": "A2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'check' mean in 'I'd like to check this suitcase.'?",
+      "options": [
+        "revisar la maleta",
+        "documentar la maleta",
+        "abrir la maleta",
+        "pesar la maleta"
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.situations.practice-airport-1",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el aeropuerto: frases clave",
+      "exerciseIds": [
+        "a2.situations.practice-airport-vocab-1",
+        "a2.situations.practice-airport-choice-1",
+        "a2.situations.practice-airport-cloze-1",
+        "a2.situations.practice-airport-vocab-2",
+        "a2.situations.practice-airport-choice-2",
+        "a2.situations.practice-airport-reading-1",
+        "a2.situations.practice-airport-vocab-3"
+      ],
+      "newItemIds": [
+        "a2.situations.boarding-pass",
+        "a2.situations.aisle-seat",
+        "a2.situations.gate",
+        "a2.situations.carry-on",
+        "a2.situations.check-a-bag"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-airport-2",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el aeropuerto: practícalas",
+      "exerciseIds": [
+        "a2.situations.practice-airport-cloze-2",
+        "a2.situations.practice-airport-order-1",
+        "a2.situations.practice-airport-write-1",
+        "a2.situations.practice-airport-choice-3",
+        "a2.situations.practice-airport-cloze-3",
+        "a2.situations.practice-airport-order-2",
+        "a2.situations.practice-airport-write-2"
+      ],
+      "newItemIds": [
+        "a2.situations.baggage-claim",
+        "a2.situations.boarding-pass",
+        "a2.situations.check-a-bag",
+        "a2.situations.aisle-seat",
+        "a2.situations.carry-on"
+      ]
+    },
+    {
+      "id": "a2.situations.practice-airport-3",
+      "level": "A2",
+      "topic": "situations",
+      "title": "En el aeropuerto: dilo bien",
+      "exerciseIds": [
+        "a2.situations.practice-airport-vocab-4",
+        "a2.situations.practice-airport-cloze-4",
+        "a2.situations.practice-airport-choice-4",
+        "a2.situations.practice-airport-write-3",
+        "a2.situations.practice-airport-order-3",
+        "a2.situations.practice-airport-cloze-5",
+        "a2.situations.practice-airport-vocab-5"
+      ],
+      "newItemIds": [
+        "a2.situations.aisle-seat",
+        "a2.situations.check-a-bag",
+        "a2.situations.gate",
+        "a2.situations.baggage-claim",
+        "a2.situations.carry-on"
+      ]
+    }
+  ]
+}

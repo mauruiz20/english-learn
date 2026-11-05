@@ -296,7 +296,7 @@
       "id": "glossary.weakness",
       "headword": "weakness",
       "kind": "word",
-      "forms": ["weakness"],
+      "forms": ["weakness", "weaknesses"],
       "senses": [
         {
           "es": "debilidad",
@@ -409,6 +409,22 @@
         {
           "es": "peso",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.welcome",
+      "headword": "welcome",
+      "kind": "word",
+      "forms": ["welcome", "welcomed"],
+      "senses": [
+        {
+          "es": "bienvenido (you're welcome: de nada)",
+          "pos": "adjective"
+        },
+        {
+          "es": "dar la bienvenida",
+          "pos": "verb"
         }
       ]
     },

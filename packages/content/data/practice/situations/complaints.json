@@ -1,0 +1,452 @@
+{
+  "items": [
+    {
+      "id": "b2.situations.im-afraid",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I'm afraid (that)…",
+      "es": "me temo que…, lamentablemente… (para dar una mala noticia con cortesía)",
+      "example": {
+        "en": "I'm afraid the room isn't ready yet.",
+        "es": "Me temo que la habitación todavía no está lista."
+      }
+    },
+    {
+      "id": "b2.situations.make-a-complaint",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "make a complaint",
+      "es": "presentar una queja, hacer un reclamo",
+      "example": {
+        "en": "I'd like to make a complaint about the service.",
+        "es": "Quisiera presentar una queja sobre el servicio."
+      }
+    },
+    {
+      "id": "b2.situations.there-seems-to-be",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "There seems to be a problem with (something).",
+      "es": "Parece que hay un problema con (algo).",
+      "example": {
+        "en": "There seems to be a problem with my bill.",
+        "es": "Parece que hay un problema con mi factura."
+      }
+    },
+    {
+      "id": "b2.situations.id-appreciate-it-if",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I'd appreciate it if (you could)…",
+      "es": "te agradecería que…",
+      "example": {
+        "en": "I'd appreciate it if you could call me back today.",
+        "es": "Te agradecería que me devolvieras la llamada hoy."
+      }
+    },
+    {
+      "id": "b2.situations.full-refund",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "a full refund",
+      "es": "el reembolso total, la devolución de todo el dinero",
+      "example": {
+        "en": "The flight was canceled, so they gave us a full refund.",
+        "es": "Cancelaron el vuelo, así que nos devolvieron todo el dinero."
+      }
+    },
+    {
+      "id": "b2.situations.i-was-wondering-if",
+      "level": "B2",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I was wondering if…",
+      "es": "me preguntaba si… (para pedir algo con cortesía)",
+      "example": {
+        "en": "I was wondering if I could have a later checkout.",
+        "es": "Me preguntaba si podría dejar la habitación más tarde."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.situations.practice-complaints-noisy-room",
+      "level": "B2",
+      "topics": ["situations"],
+      "title": "A noisy night",
+      "text": "Guest: Excuse me, I'd like to make a complaint. There seems to be a problem with the air conditioning in my room. It's been making a loud noise all night. Manager: I'm so sorry about that. I'm afraid all our other rooms are full tonight, but I can send someone to fix it right away. Guest: I'd appreciate it if you could do that before ten. I have an early meeting tomorrow. Manager: Of course. And we won't charge you for tonight. Guest: Thank you, that's very kind. Manager: Not at all. Again, I apologize for the trouble.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.situations.practice-complaints-vocab-1",
+      "itemIds": ["b2.situations.im-afraid"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'I'm afraid' mean in 'I'm afraid the room isn't ready yet.'?",
+      "options": [
+        "tengo miedo de que",
+        "me temo que, lamentablemente",
+        "estoy seguro de que",
+        "me alegra que"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-complaints-choice-1",
+      "itemIds": ["b2.situations.make-a-complaint"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'd like to make a complaint about the service.",
+      "options": [
+        "Quisiera felicitarlos por el servicio.",
+        "Quisiera contratar el servicio.",
+        "Quisiera presentar una queja sobre el servicio."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-complaints-cloze-1",
+      "itemIds": ["b2.situations.there-seems-to-be"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "There seems to ___ a problem with my bill.",
+      "answers": ["be"],
+      "distractors": ["have", "being"],
+      "es": "Parece que hay un problema con mi factura."
+    },
+    {
+      "id": "b2.situations.practice-complaints-vocab-2",
+      "itemIds": ["b2.situations.id-appreciate-it-if"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'I'd appreciate it if you could call me back.' mean?",
+      "options": [
+        "Te agradezco que me hayas llamado.",
+        "Aprecio mucho tus llamadas.",
+        "Te llamaré cuando pueda.",
+        "Te agradecería que me devolvieras la llamada."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.situations.practice-complaints-choice-2",
+      "itemIds": ["b2.situations.full-refund"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "If the product arrives damaged, you'll get a full refund.",
+      "options": [
+        "Si el producto llega dañado, te darán otro igual.",
+        "Si el producto llega dañado, te devolverán todo el dinero.",
+        "Si el producto llega dañado, te devolverán la mitad del dinero."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-complaints-vocab-3",
+      "itemIds": ["b2.situations.i-was-wondering-if"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What is the most polite way to ask a hotel for a later checkout?",
+      "options": [
+        "I want a later checkout.",
+        "Give me a later checkout.",
+        "I was wondering if I could have a later checkout.",
+        "You must give me a later checkout."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-complaints-choice-3",
+      "itemIds": ["b2.situations.im-afraid"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm afraid we don't have any rooms left.",
+      "options": [
+        "Tengo miedo de que no queden habitaciones.",
+        "Me temo que no nos quedan habitaciones.",
+        "Creo que todavía nos quedan habitaciones."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-complaints-reading-1",
+      "itemIds": [
+        "b2.situations.make-a-complaint",
+        "b2.situations.there-seems-to-be",
+        "b2.situations.im-afraid",
+        "b2.situations.id-appreciate-it-if"
+      ],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b2.situations.practice-complaints-noisy-room",
+      "questions": [
+        {
+          "prompt": "What is the problem?",
+          "options": [
+            "The room is too small.",
+            "The air conditioning is noisy.",
+            "The bill is wrong."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why can't the guest change rooms?",
+          "options": [
+            "The guest prefers to stay.",
+            "The manager doesn't want to help.",
+            "The hotel is full tonight."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What will the hotel do about tonight?",
+          "options": [
+            "It won't charge the guest for it.",
+            "It will give the guest a free breakfast.",
+            "It will move the guest to another hotel."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "b2.situations.practice-complaints-cloze-2",
+      "itemIds": ["b2.situations.id-appreciate-it-if"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'd appreciate ___ if you could reply by Friday.",
+      "answers": ["it"],
+      "distractors": ["so", "them"],
+      "es": "Te agradecería que me respondieras antes del viernes."
+    },
+    {
+      "id": "b2.situations.practice-complaints-order-1",
+      "itemIds": ["b2.situations.i-was-wondering-if"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["could", "wondering", "me.", "I", "if", "help", "you", "was"],
+      "accepted": ["I was wondering if you could help me."],
+      "es": "Me preguntaba si podrías ayudarme."
+    },
+    {
+      "id": "b2.situations.practice-complaints-write-1",
+      "itemIds": ["b2.situations.full-refund"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Quisiera un reembolso total.",
+      "accepted": ["I'd like {a full refund|a complete refund|all my money back}."]
+    },
+    {
+      "id": "b2.situations.practice-complaints-choice-4",
+      "itemIds": ["b2.situations.make-a-complaint"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Several customers have made complaints about the noise.",
+      "options": [
+        "Varios clientes hicieron ruido.",
+        "Varios clientes preguntaron por el ruido.",
+        "Varios clientes se han quejado del ruido."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-complaints-cloze-3",
+      "itemIds": ["b2.situations.im-afraid"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I'm ___ we can't change your ticket.",
+      "answers": ["afraid"],
+      "distractors": ["fear", "feared"],
+      "es": "Me temo que no podemos cambiar tu boleto."
+    },
+    {
+      "id": "b2.situations.practice-complaints-write-2",
+      "itemIds": ["b2.situations.there-seems-to-be"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Parece que hay un problema con mi pedido.",
+      "accepted": [
+        "There {seems|appears} to be a problem with my order.",
+        "It {seems|looks} like there's a problem with my order.",
+        "It seems [that ]there's a problem with my order."
+      ]
+    },
+    {
+      "id": "b2.situations.practice-complaints-vocab-4",
+      "itemIds": ["b2.situations.make-a-complaint"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'Quiero quejarme del ruido'.",
+      "options": [
+        "I want to complain for the noise.",
+        "I want to make complain about the noise.",
+        "I want to complain about the noise.",
+        "I want to complaint about the noise."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-complaints-choice-5",
+      "itemIds": ["b2.situations.im-afraid"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm afraid I can't agree to that.",
+      "options": [
+        "Tengo miedo de no estar de acuerdo con eso.",
+        "Me temo que no puedo aceptar eso.",
+        "Me da miedo aceptar eso."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.situations.practice-complaints-cloze-4",
+      "itemIds": ["b2.situations.full-refund"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The concert was canceled, so they gave us a ___ refund.",
+      "answers": ["full"],
+      "distractors": ["all", "fully"],
+      "es": "Cancelaron el concierto, así que nos devolvieron todo el dinero."
+    },
+    {
+      "id": "b2.situations.practice-complaints-order-2",
+      "itemIds": ["b2.situations.id-appreciate-it-if"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["it", "today.", "appreciate", "if", "you", "fix", "could", "I'd", "it"],
+      "accepted": ["I'd appreciate it if you could fix it today."],
+      "es": "Te agradecería que lo arreglaras hoy."
+    },
+    {
+      "id": "b2.situations.practice-complaints-write-3",
+      "itemIds": ["b2.situations.i-was-wondering-if"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Me preguntaba si podrías ayudarme.",
+      "accepted": ["I {was wondering|wondered} {if|whether} you could help me."]
+    },
+    {
+      "id": "b2.situations.practice-complaints-choice-6",
+      "itemIds": ["b2.situations.there-seems-to-be"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "There seems to be a mistake on the bill.",
+      "options": [
+        "Hay que pagar la cuenta otra vez.",
+        "Seguro que no hay ningún error en la cuenta.",
+        "Parece que hay un error en la cuenta."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.situations.practice-complaints-vocab-5",
+      "itemIds": ["b2.situations.make-a-complaint"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What is the most polite way to start a complaint at a hotel's front desk?",
+      "options": [
+        "This hotel is terrible.",
+        "Excuse me, I'd like to make a complaint about my room.",
+        "I want to speak to someone right now!",
+        "Your service is a joke."
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.situations.practice-complaints-1",
+      "level": "B2",
+      "topic": "situations",
+      "title": "Quejarse con cortesía: frases clave",
+      "exerciseIds": [
+        "b2.situations.practice-complaints-vocab-1",
+        "b2.situations.practice-complaints-choice-1",
+        "b2.situations.practice-complaints-cloze-1",
+        "b2.situations.practice-complaints-vocab-2",
+        "b2.situations.practice-complaints-choice-2",
+        "b2.situations.practice-complaints-vocab-3",
+        "b2.situations.practice-complaints-choice-3"
+      ],
+      "newItemIds": [
+        "b2.situations.im-afraid",
+        "b2.situations.make-a-complaint",
+        "b2.situations.there-seems-to-be",
+        "b2.situations.id-appreciate-it-if",
+        "b2.situations.full-refund"
+      ]
+    },
+    {
+      "id": "b2.situations.practice-complaints-2",
+      "level": "B2",
+      "topic": "situations",
+      "title": "Quejarse con cortesía: practícalas",
+      "exerciseIds": [
+        "b2.situations.practice-complaints-reading-1",
+        "b2.situations.practice-complaints-cloze-2",
+        "b2.situations.practice-complaints-order-1",
+        "b2.situations.practice-complaints-write-1",
+        "b2.situations.practice-complaints-choice-4",
+        "b2.situations.practice-complaints-cloze-3",
+        "b2.situations.practice-complaints-write-2"
+      ],
+      "newItemIds": [
+        "b2.situations.i-was-wondering-if",
+        "b2.situations.id-appreciate-it-if",
+        "b2.situations.full-refund",
+        "b2.situations.make-a-complaint",
+        "b2.situations.there-seems-to-be"
+      ]
+    },
+    {
+      "id": "b2.situations.practice-complaints-3",
+      "level": "B2",
+      "topic": "situations",
+      "title": "Quejarse con cortesía: dilo bien",
+      "exerciseIds": [
+        "b2.situations.practice-complaints-vocab-4",
+        "b2.situations.practice-complaints-choice-5",
+        "b2.situations.practice-complaints-cloze-4",
+        "b2.situations.practice-complaints-order-2",
+        "b2.situations.practice-complaints-write-3",
+        "b2.situations.practice-complaints-choice-6",
+        "b2.situations.practice-complaints-vocab-5"
+      ],
+      "newItemIds": [
+        "b2.situations.make-a-complaint",
+        "b2.situations.im-afraid",
+        "b2.situations.full-refund",
+        "b2.situations.id-appreciate-it-if",
+        "b2.situations.i-was-wondering-if"
+      ]
+    }
+  ]
+}

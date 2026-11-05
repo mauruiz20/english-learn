@@ -109,6 +109,18 @@
       ]
     },
     {
+      "id": "glossary.unfurnished",
+      "headword": "unfurnished",
+      "kind": "word",
+      "forms": ["unfurnished"],
+      "senses": [
+        {
+          "es": "sin amueblar",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.uniform",
       "headword": "uniform",
       "kind": "word",
@@ -325,6 +337,18 @@
         {
           "es": "normalmente, por lo general",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.utility",
+      "headword": "utility",
+      "kind": "word",
+      "forms": ["utility", "utilities"],
+      "senses": [
+        {
+          "es": "(utilities) servicios: luz, agua, gas",
+          "pos": "noun"
         }
       ]
     }

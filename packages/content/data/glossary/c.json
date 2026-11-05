@@ -281,6 +281,18 @@
       ]
     },
     {
+      "id": "glossary.career",
+      "headword": "career",
+      "kind": "word",
+      "forms": ["career", "careers"],
+      "senses": [
+        {
+          "es": "carrera profesional, trayectoria (no la carrera universitaria)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.careful",
       "headword": "careful",
       "kind": "word",
@@ -301,6 +313,17 @@
         {
           "es": "con cuidado, cuidadosamente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.carla",
+      "headword": "Carla",
+      "kind": "word",
+      "forms": ["carla"],
+      "senses": [
+        {
+          "es": "(nombre propio)"
         }
       ]
     },
@@ -377,6 +400,30 @@
         {
           "es": "efectivo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cashier",
+      "headword": "cashier",
+      "kind": "word",
+      "forms": ["cashier", "cashiers"],
+      "senses": [
+        {
+          "es": "cajero, cajera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.casual",
+      "headword": "casual",
+      "kind": "word",
+      "forms": ["casual"],
+      "senses": [
+        {
+          "es": "informal",
+          "pos": "adjective"
         }
       ]
     },
@@ -621,6 +668,18 @@
       ]
     },
     {
+      "id": "glossary.checkout",
+      "headword": "checkout",
+      "kind": "word",
+      "forms": ["checkout", "checkouts"],
+      "senses": [
+        {
+          "es": "salida (del hotel), hora de dejar la habitación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cheer",
       "headword": "cheer",
       "kind": "word",
@@ -854,6 +913,22 @@
       ]
     },
     {
+      "id": "glossary.claim",
+      "headword": "claim",
+      "kind": "word",
+      "forms": ["claim", "claims", "claimed", "claiming"],
+      "senses": [
+        {
+          "es": "reclamar, recoger",
+          "pos": "verb"
+        },
+        {
+          "es": "reclamo (baggage claim: recogida de equipaje)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.class",
       "headword": "class",
       "kind": "word",
@@ -934,6 +1009,18 @@
       ]
     },
     {
+      "id": "glossary.clerk",
+      "headword": "clerk",
+      "kind": "word",
+      "forms": ["clerk", "clerks"],
+      "senses": [
+        {
+          "es": "empleado, dependiente (de una tienda)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.client",
       "headword": "client",
       "kind": "word",
@@ -970,6 +1057,18 @@
         {
           "es": "subir, escalar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.clock",
+      "headword": "clock",
+      "kind": "word",
+      "forms": ["clock", "clocks"],
+      "senses": [
+        {
+          "es": "reloj (de pared o despertador)",
+          "pos": "noun"
         }
       ]
     },
@@ -1270,6 +1369,22 @@
       ]
     },
     {
+      "id": "glossary.comment",
+      "headword": "comment",
+      "kind": "word",
+      "forms": ["comment", "comments", "commented", "commenting"],
+      "senses": [
+        {
+          "es": "comentario",
+          "pos": "noun"
+        },
+        {
+          "es": "comentar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.common",
       "headword": "common",
       "kind": "word",
@@ -1330,6 +1445,18 @@
         {
           "es": "comparar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.complaint",
+      "headword": "complaint",
+      "kind": "word",
+      "forms": ["complaint", "complaints"],
+      "senses": [
+        {
+          "es": "queja, reclamo",
+          "pos": "noun"
         }
       ]
     },

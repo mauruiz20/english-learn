@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.reach",
+      "headword": "reach",
+      "kind": "word",
+      "forms": ["reach", "reaches", "reached", "reaching"],
+      "senses": [
+        {
+          "es": "llegar a, alcanzar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.reaction",
       "headword": "reaction",
       "kind": "word",
@@ -237,6 +249,18 @@
       ]
     },
     {
+      "id": "glossary.receptionist",
+      "headword": "receptionist",
+      "kind": "word",
+      "forms": ["receptionist", "receptionists"],
+      "senses": [
+        {
+          "es": "recepcionista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.recommend",
       "headword": "recommend",
       "kind": "word",
@@ -321,6 +345,30 @@
         {
           "es": "rechazar, negarse a",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.regarding",
+      "headword": "regarding",
+      "kind": "word",
+      "forms": ["regarding"],
+      "senses": [
+        {
+          "es": "con respecto a, en relación con",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.regards",
+      "headword": "regards",
+      "kind": "word",
+      "forms": ["regards"],
+      "senses": [
+        {
+          "es": "saludos (al cerrar un correo)",
+          "pos": "noun"
         }
       ]
     },
@@ -661,6 +709,18 @@
       ]
     },
     {
+      "id": "glossary.reservation",
+      "headword": "reservation",
+      "kind": "word",
+      "forms": ["reservation", "reservations"],
+      "senses": [
+        {
+          "es": "reservación, reserva",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.resign",
       "headword": "resign",
       "kind": "word",
@@ -684,6 +744,18 @@
         },
         {
           "es": "respeto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.response",
+      "headword": "response",
+      "kind": "word",
+      "forms": ["response", "responses"],
+      "senses": [
+        {
+          "es": "respuesta",
           "pos": "noun"
         }
       ]
@@ -784,6 +856,18 @@
         },
         {
           "es": "repasar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.revise",
+      "headword": "revise",
+      "kind": "word",
+      "forms": ["revise", "revises", "revised", "revising"],
+      "senses": [
+        {
+          "es": "corregir, modificar (un texto)",
           "pos": "verb"
         }
       ]
@@ -985,6 +1069,17 @@
         {
           "es": "compañero de cuarto, compañero de departamento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ross",
+      "headword": "Ross",
+      "kind": "word",
+      "forms": ["ross"],
+      "senses": [
+        {
+          "es": "(apellido)"
         }
       ]
     },

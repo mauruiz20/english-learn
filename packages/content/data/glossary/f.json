@@ -281,6 +281,22 @@
       ]
     },
     {
+      "id": "glossary.fear",
+      "headword": "fear",
+      "kind": "word",
+      "forms": ["fear", "fears", "feared", "fearing"],
+      "senses": [
+        {
+          "es": "miedo",
+          "pos": "noun"
+        },
+        {
+          "es": "temer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.february",
       "headword": "February",
       "kind": "word",
@@ -565,6 +581,22 @@
       ]
     },
     {
+      "id": "glossary.fine",
+      "headword": "fine",
+      "kind": "word",
+      "forms": ["fine"],
+      "senses": [
+        {
+          "es": "bien (está bien)",
+          "pos": "adjective"
+        },
+        {
+          "es": "multa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.finger",
       "headword": "finger",
       "kind": "word",
@@ -633,6 +665,18 @@
       ]
     },
     {
+      "id": "glossary.fish",
+      "headword": "fish",
+      "kind": "word",
+      "forms": ["fish"],
+      "senses": [
+        {
+          "es": "pescado; pez",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fit",
       "headword": "fit",
       "kind": "word",
@@ -645,6 +689,30 @@
         {
           "es": "quedar bien (ropa)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fitting",
+      "headword": "fitting",
+      "kind": "word",
+      "forms": ["fitting"],
+      "senses": [
+        {
+          "es": "prueba de ropa (fitting room: probador)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fitting-room",
+      "headword": "fitting room",
+      "kind": "phrase",
+      "forms": ["fitting room", "fitting rooms"],
+      "senses": [
+        {
+          "es": "probador",
+          "pos": "noun"
         }
       ]
     },
@@ -905,6 +973,18 @@
       ]
     },
     {
+      "id": "glossary.formal",
+      "headword": "formal",
+      "kind": "word",
+      "forms": ["formal"],
+      "senses": [
+        {
+          "es": "formal",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.forty",
       "headword": "forty",
       "kind": "word",
@@ -1157,6 +1237,18 @@
       ]
     },
     {
+      "id": "glossary.fully",
+      "headword": "fully",
+      "kind": "word",
+      "forms": ["fully"],
+      "senses": [
+        {
+          "es": "completamente, totalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.funny",
       "headword": "funny",
       "kind": "word",
@@ -1164,6 +1256,18 @@
       "senses": [
         {
           "es": "gracioso, divertido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.furnished",
+      "headword": "furnished",
+      "kind": "word",
+      "forms": ["furnished"],
+      "senses": [
+        {
+          "es": "amueblado",
           "pos": "adjective"
         }
       ]

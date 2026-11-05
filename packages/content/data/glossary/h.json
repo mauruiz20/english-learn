@@ -85,6 +85,21 @@
       ]
     },
     {
+      "id": "glossary.hall",
+      "headword": "hall",
+      "kind": "word",
+      "forms": ["hall", "halls"],
+      "senses": [
+        {
+          "es": "pasillo, vestíbulo; salón",
+          "pos": "noun"
+        },
+        {
+          "es": "(apellido)"
+        }
+      ]
+    },
+    {
       "id": "glossary.hand",
       "headword": "hand",
       "kind": "word",
@@ -504,6 +519,18 @@
       ]
     },
     {
+      "id": "glossary.heater",
+      "headword": "heater",
+      "kind": "word",
+      "forms": ["heater", "heaters"],
+      "senses": [
+        {
+          "es": "calefacción, calentador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.heavy",
       "headword": "heavy",
       "kind": "word",
@@ -584,6 +611,18 @@
         {
           "es": "(ella) misma, a sí misma",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hey",
+      "headword": "hey",
+      "kind": "word",
+      "forms": ["hey"],
+      "senses": [
+        {
+          "es": "hola, oye (informal)",
+          "pos": "interjection"
         }
       ]
     },

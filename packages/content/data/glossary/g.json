@@ -45,6 +45,18 @@
       ]
     },
     {
+      "id": "glossary.garcia",
+      "headword": "García",
+      "kind": "word",
+      "forms": ["garcía", "garcia"],
+      "senses": [
+        {
+          "es": "García (apellido)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.garden",
       "headword": "garden",
       "kind": "word",
@@ -80,6 +92,18 @@
       "senses": [
         {
           "es": "gasolina",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gate",
+      "headword": "gate",
+      "kind": "word",
+      "forms": ["gate", "gates"],
+      "senses": [
+        {
+          "es": "puerta (de embarque); reja, portón",
           "pos": "noun"
         }
       ]

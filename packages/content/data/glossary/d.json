@@ -25,6 +25,22 @@
       ]
     },
     {
+      "id": "glossary.damage",
+      "headword": "damage",
+      "kind": "word",
+      "forms": ["damage", "damages", "damaged", "damaging"],
+      "senses": [
+        {
+          "es": "dañar",
+          "pos": "verb"
+        },
+        {
+          "es": "daño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dan",
       "headword": "Dan",
       "kind": "word",
@@ -117,6 +133,17 @@
         {
           "es": "cita",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.davis",
+      "headword": "Davis",
+      "kind": "word",
+      "forms": ["davis"],
+      "senses": [
+        {
+          "es": "(apellido)"
         }
       ]
     },
@@ -425,6 +452,18 @@
       ]
     },
     {
+      "id": "glossary.deposit",
+      "headword": "deposit",
+      "kind": "word",
+      "forms": ["deposit", "deposits"],
+      "senses": [
+        {
+          "es": "depósito, garantía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.describe",
       "headword": "describe",
       "kind": "word",
@@ -460,6 +499,18 @@
       "senses": [
         {
           "es": "diseñador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.desk",
+      "headword": "desk",
+      "kind": "word",
+      "forms": ["desk", "desks"],
+      "senses": [
+        {
+          "es": "escritorio; mostrador",
           "pos": "noun"
         }
       ]
@@ -533,6 +584,18 @@
         {
           "es": "dispositivo, aparato",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.diaz",
+      "headword": "Díaz",
+      "kind": "word",
+      "forms": ["díaz", "diaz"],
+      "senses": [
+        {
+          "es": "Díaz (apellido)",
+          "pos": "proper noun"
         }
       ]
     },
@@ -773,6 +836,18 @@
       ]
     },
     {
+      "id": "glossary.discuss",
+      "headword": "discuss",
+      "kind": "word",
+      "forms": ["discuss", "discusses", "discussed", "discussing"],
+      "senses": [
+        {
+          "es": "hablar de, conversar sobre (no es discutir)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.dish",
       "headword": "dish",
       "kind": "word",
@@ -785,6 +860,18 @@
         {
           "es": "(do the dishes) lavar los platos",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disposable",
+      "headword": "disposable",
+      "kind": "word",
+      "forms": ["disposable"],
+      "senses": [
+        {
+          "es": "desechable (no es disponible)",
+          "pos": "adjective"
         }
       ]
     },
@@ -981,6 +1068,18 @@
       ]
     },
     {
+      "id": "glossary.dr",
+      "headword": "Dr",
+      "kind": "word",
+      "forms": ["dr"],
+      "senses": [
+        {
+          "es": "doctor, doctora (Dr., Dra.)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.drama",
       "headword": "drama",
       "kind": "word",
@@ -1061,6 +1160,18 @@
         {
           "es": "soñar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dress",
+      "headword": "dress",
+      "kind": "word",
+      "forms": ["dress", "dresses"],
+      "senses": [
+        {
+          "es": "vestido",
+          "pos": "noun"
         }
       ]
     },

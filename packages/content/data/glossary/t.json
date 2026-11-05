@@ -37,6 +37,18 @@
       ]
     },
     {
+      "id": "glossary.taco",
+      "headword": "taco",
+      "kind": "word",
+      "forms": ["taco", "tacos"],
+      "senses": [
+        {
+          "es": "taco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.take",
       "headword": "take",
       "kind": "word",
@@ -381,6 +393,18 @@
       ]
     },
     {
+      "id": "glossary.teeth",
+      "headword": "teeth",
+      "kind": "word",
+      "forms": ["teeth", "tooth"],
+      "senses": [
+        {
+          "es": "dientes (tooth: diente)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tell",
       "headword": "tell",
       "kind": "word",
@@ -429,6 +453,18 @@
         {
           "es": "diez",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tenant",
+      "headword": "tenant",
+      "kind": "word",
+      "forms": ["tenant", "tenants"],
+      "senses": [
+        {
+          "es": "inquilino",
+          "pos": "noun"
         }
       ]
     },
@@ -1064,6 +1100,18 @@
       ]
     },
     {
+      "id": "glossary.title",
+      "headword": "title",
+      "kind": "word",
+      "forms": ["title", "titles"],
+      "senses": [
+        {
+          "es": "título (de un libro, un puesto)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.to",
       "headword": "to",
       "kind": "word",
@@ -1292,6 +1340,18 @@
       ]
     },
     {
+      "id": "glossary.training",
+      "headword": "training",
+      "kind": "word",
+      "forms": ["training"],
+      "senses": [
+        {
+          "es": "capacitación, entrenamiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.translate",
       "headword": "translate",
       "kind": "word",
@@ -1375,6 +1435,18 @@
       "senses": [
         {
           "es": "viaje",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trouble",
+      "headword": "trouble",
+      "kind": "word",
+      "forms": ["trouble", "troubles"],
+      "senses": [
+        {
+          "es": "molestia, problema",
           "pos": "noun"
         }
       ]

@@ -1,0 +1,425 @@
+{
+  "items": [
+    {
+      "id": "b1.situations.just-looking",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "I'm just looking, thanks.",
+      "es": "Solo estoy viendo, gracias.",
+      "example": {
+        "en": "Can I help you? – No, I'm just looking, thanks.",
+        "es": "¿Le puedo ayudar? – No, solo estoy viendo, gracias."
+      }
+    },
+    {
+      "id": "b1.situations.in-a-smaller-size",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "Do you have this in a (smaller) size?",
+      "es": "¿Lo tiene en una talla (más chica)?",
+      "example": {
+        "en": "Do you have this in a smaller size?",
+        "es": "¿Lo tiene en una talla más chica?"
+      }
+    },
+    {
+      "id": "b1.situations.fitting-room",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "fitting room",
+      "es": "probador",
+      "example": {
+        "en": "The fitting rooms are next to the stairs.",
+        "es": "Los probadores están junto a las escaleras."
+      }
+    },
+    {
+      "id": "b1.situations.exchange-for",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "exchange (something) for (something)",
+      "es": "cambiar (algo) por (algo)",
+      "example": {
+        "en": "Can I exchange this shirt for a bigger one?",
+        "es": "¿Puedo cambiar esta camisa por una más grande?"
+      }
+    },
+    {
+      "id": "b1.situations.return-something",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "word",
+      "term": "return (something)",
+      "es": "devolver (algo)",
+      "example": {
+        "en": "I'd like to return these shoes. They don't fit.",
+        "es": "Quisiera devolver estos zapatos. No me quedan."
+      }
+    },
+    {
+      "id": "b1.situations.store-credit",
+      "level": "B1",
+      "topics": ["situations"],
+      "kind": "phrase",
+      "term": "store credit",
+      "es": "saldo a favor (para usar en la tienda)",
+      "example": {
+        "en": "We can't give you cash, but we can give you store credit.",
+        "es": "No podemos darle efectivo, pero podemos darle saldo a favor para la tienda."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "b1.situations.practice-shopping-jacket",
+      "level": "B1",
+      "topics": ["situations"],
+      "title": "The jacket that didn't fit",
+      "text": "Clerk: Hi, can I help you? Marta: Yes, I bought this jacket last week, but it's too small. Can I exchange it for a bigger size? Clerk: Sure. Do you have the receipt? Marta: Here it is. Clerk: Let me check. I'm sorry, we don't have it in a large. Would you like to return it? Marta: Yes. Can I get a refund? Clerk: After seven days, we can only give you store credit. Marta: OK, store credit is fine. I'll look for something else.",
+      "source": { "kind": "original" }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.situations.practice-shopping-vocab-1",
+      "itemIds": ["b1.situations.just-looking"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does the customer mean by 'I'm just looking, thanks.'?",
+      "options": [
+        "Estoy buscando a alguien, gracias.",
+        "Solo estoy viendo, gracias.",
+        "Ya me atendieron, gracias.",
+        "Busco algo barato, gracias."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-shopping-choice-1",
+      "itemIds": ["b1.situations.in-a-smaller-size"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Do you have these jeans in a smaller size?",
+      "options": [
+        "¿Tiene estos jeans en una talla más grande?",
+        "¿Tiene estos jeans en otro color?",
+        "¿Tiene estos jeans en una talla más chica?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-shopping-cloze-1",
+      "itemIds": ["b1.situations.fitting-room"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Excuse me, where's the fitting ___? I'd like to try these on.",
+      "answers": ["room"],
+      "distractors": ["place", "hall"],
+      "es": "Disculpe, ¿dónde está el probador? Quisiera probarme esto."
+    },
+    {
+      "id": "b1.situations.practice-shopping-vocab-2",
+      "itemIds": ["b1.situations.return-something"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'return' mean in 'I want to return these shoes.'?",
+      "options": ["volver", "reparar", "devolver", "regalar"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.situations.practice-shopping-choice-2",
+      "itemIds": ["b1.situations.exchange-for"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Can I exchange this shirt for a blue one?",
+      "options": [
+        "¿Puedo cambiar esta camisa por una azul?",
+        "¿Puedo pagar esta camisa con otra tarjeta?",
+        "¿Puedo comprar esta camisa y una azul?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.situations.practice-shopping-reading-1",
+      "itemIds": [
+        "b1.situations.exchange-for",
+        "b1.situations.return-something",
+        "b1.situations.store-credit"
+      ],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "reading",
+      "passageId": "b1.situations.practice-shopping-jacket",
+      "questions": [
+        {
+          "prompt": "What is the problem with the jacket?",
+          "options": ["It's too big.", "It's too small.", "It's broken."],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why can't Marta exchange it?",
+          "options": [
+            "She doesn't have the receipt.",
+            "The store doesn't have a bigger size.",
+            "She bought it more than a month ago."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does she get in the end?",
+          "options": ["Her money back", "A new jacket", "Store credit"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "b1.situations.practice-shopping-vocab-3",
+      "itemIds": ["b1.situations.store-credit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'store credit' mean in 'We can't give you cash, but we can give you store credit.'?",
+      "options": [
+        "una tarjeta de crédito de la tienda",
+        "un descuento para hoy",
+        "un préstamo de la tienda",
+        "saldo a favor para usar en la tienda"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.situations.practice-shopping-cloze-2",
+      "itemIds": ["b1.situations.exchange-for"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "This shirt is too big. Can I exchange it ___ a medium?",
+      "answers": ["for"],
+      "distractors": ["by", "to"],
+      "es": "Esta camisa me queda grande. ¿Puedo cambiarla por una mediana?"
+    },
+    {
+      "id": "b1.situations.practice-shopping-order-1",
+      "itemIds": ["b1.situations.in-a-smaller-size"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["in", "smaller", "have", "you", "size?", "this", "Do", "a"],
+      "accepted": ["Do you have this in a smaller size?"],
+      "es": "¿Lo tiene en una talla más chica?"
+    },
+    {
+      "id": "b1.situations.practice-shopping-write-1",
+      "itemIds": ["b1.situations.just-looking"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Solo estoy viendo, gracias.",
+      "accepted": [
+        "I'm just looking[, {thanks|thank you}].",
+        "I'm only looking[, {thanks|thank you}]."
+      ]
+    },
+    {
+      "id": "b1.situations.practice-shopping-choice-3",
+      "itemIds": ["b1.situations.fitting-room"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "The fitting rooms are at the back of the store, next to the shoes.",
+      "options": [
+        "Las cajas están al fondo de la tienda, junto a los zapatos.",
+        "Los probadores están al fondo de la tienda, junto a los zapatos.",
+        "Los probadores están en la entrada de la tienda, junto a los zapatos."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-shopping-cloze-3",
+      "itemIds": ["b1.situations.return-something"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "This blender doesn't work. I'd like to ___ it, please.",
+      "answers": ["return"],
+      "distractors": ["come back", "go back"],
+      "es": "Esta licuadora no funciona. Quisiera devolverla, por favor."
+    },
+    {
+      "id": "b1.situations.practice-shopping-order-2",
+      "itemIds": ["b1.situations.exchange-for"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["for", "it", "Can", "one?", "exchange", "a", "I", "bigger"],
+      "accepted": ["Can I exchange it for a bigger one?"],
+      "es": "¿Puedo cambiarlo por uno más grande?"
+    },
+    {
+      "id": "b1.situations.practice-shopping-write-2",
+      "itemIds": ["b1.situations.return-something"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Quisiera devolver estos zapatos.",
+      "accepted": ["{I'd|I would} like to return these shoes."]
+    },
+    {
+      "id": "b1.situations.practice-shopping-vocab-4",
+      "itemIds": ["b1.situations.in-a-smaller-size"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What is the most polite way to ask a salesperson for a different size?",
+      "options": [
+        "Give me a bigger size.",
+        "I want this bigger.",
+        "This is wrong. Bring another one.",
+        "Do you have this in a bigger size?"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.situations.practice-shopping-cloze-4",
+      "itemIds": ["b1.situations.fitting-room"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Can I ___ these pants on in the fitting room?",
+      "answers": ["try"],
+      "distractors": ["prove", "test"],
+      "es": "¿Puedo probarme estos pantalones en el probador?"
+    },
+    {
+      "id": "b1.situations.practice-shopping-choice-4",
+      "itemIds": ["b1.situations.store-credit"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We can't give you a refund, but we can give you store credit.",
+      "options": [
+        "No podemos darle saldo a favor, pero podemos devolverle el dinero.",
+        "No podemos devolverle el dinero, pero podemos darle saldo a favor para la tienda.",
+        "No podemos cambiarlo, pero podemos hacerle un descuento."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.situations.practice-shopping-write-3",
+      "itemIds": ["b1.situations.exchange-for"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Puedo cambiarlo por una talla más grande?",
+      "accepted": ["{Can|Could|May} I {exchange|change} it for a {bigger|larger} size?"]
+    },
+    {
+      "id": "b1.situations.practice-shopping-order-3",
+      "itemIds": ["b1.situations.just-looking"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["just", "thanks.", "looking.", "No,", "I'm"],
+      "accepted": ["No, thanks. I'm just looking."],
+      "es": "No, gracias. Solo estoy viendo."
+    },
+    {
+      "id": "b1.situations.practice-shopping-cloze-5",
+      "itemIds": ["b1.situations.in-a-smaller-size"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I love this dress. Do you have it ___ a smaller size?",
+      "answers": ["in"],
+      "distractors": ["of", "with"],
+      "es": "Me encanta este vestido. ¿Lo tiene en una talla más chica?"
+    },
+    {
+      "id": "b1.situations.practice-shopping-vocab-5",
+      "itemIds": ["b1.situations.return-something"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the English for 'devolver (algo a una tienda)'.",
+      "options": ["come back", "return", "revolve", "give up"],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.situations.practice-shopping-1",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Compras y devoluciones: frases clave",
+      "exerciseIds": [
+        "b1.situations.practice-shopping-vocab-1",
+        "b1.situations.practice-shopping-choice-1",
+        "b1.situations.practice-shopping-cloze-1",
+        "b1.situations.practice-shopping-vocab-2",
+        "b1.situations.practice-shopping-choice-2",
+        "b1.situations.practice-shopping-reading-1",
+        "b1.situations.practice-shopping-vocab-3"
+      ],
+      "newItemIds": [
+        "b1.situations.just-looking",
+        "b1.situations.in-a-smaller-size",
+        "b1.situations.fitting-room",
+        "b1.situations.return-something",
+        "b1.situations.exchange-for"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-shopping-2",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Compras y devoluciones: practícalas",
+      "exerciseIds": [
+        "b1.situations.practice-shopping-cloze-2",
+        "b1.situations.practice-shopping-order-1",
+        "b1.situations.practice-shopping-write-1",
+        "b1.situations.practice-shopping-choice-3",
+        "b1.situations.practice-shopping-cloze-3",
+        "b1.situations.practice-shopping-order-2",
+        "b1.situations.practice-shopping-write-2"
+      ],
+      "newItemIds": [
+        "b1.situations.exchange-for",
+        "b1.situations.in-a-smaller-size",
+        "b1.situations.just-looking",
+        "b1.situations.fitting-room",
+        "b1.situations.return-something"
+      ]
+    },
+    {
+      "id": "b1.situations.practice-shopping-3",
+      "level": "B1",
+      "topic": "situations",
+      "title": "Compras y devoluciones: dilo bien",
+      "exerciseIds": [
+        "b1.situations.practice-shopping-vocab-4",
+        "b1.situations.practice-shopping-cloze-4",
+        "b1.situations.practice-shopping-choice-4",
+        "b1.situations.practice-shopping-write-3",
+        "b1.situations.practice-shopping-order-3",
+        "b1.situations.practice-shopping-cloze-5",
+        "b1.situations.practice-shopping-vocab-5"
+      ],
+      "newItemIds": [
+        "b1.situations.store-credit",
+        "b1.situations.fitting-room",
+        "b1.situations.exchange-for",
+        "b1.situations.just-looking",
+        "b1.situations.return-something"
+      ]
+    }
+  ]
+}

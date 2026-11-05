@@ -481,6 +481,22 @@
       ]
     },
     {
+      "id": "glossary.afraid",
+      "headword": "afraid",
+      "kind": "word",
+      "forms": ["afraid"],
+      "senses": [
+        {
+          "es": "con miedo",
+          "pos": "adjective"
+        },
+        {
+          "es": "(I'm afraid…) me temo que…",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.after",
       "headword": "after",
       "kind": "word",
@@ -545,6 +561,46 @@
       ]
     },
     {
+      "id": "glossary.age",
+      "headword": "age",
+      "kind": "word",
+      "forms": ["age", "ages"],
+      "senses": [
+        {
+          "es": "edad",
+          "pos": "noun"
+        },
+        {
+          "es": "(in ages) en siglos, en mucho tiempo",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.agenda",
+      "headword": "agenda",
+      "kind": "word",
+      "forms": ["agenda", "agendas"],
+      "senses": [
+        {
+          "es": "orden del día (de una reunión)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.agent",
+      "headword": "agent",
+      "kind": "word",
+      "forms": ["agent", "agents"],
+      "senses": [
+        {
+          "es": "agente, empleado (de una aerolínea)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ago",
       "headword": "ago",
       "kind": "word",
@@ -585,6 +641,18 @@
       ]
     },
     {
+      "id": "glossary.air-conditioning",
+      "headword": "air conditioning",
+      "kind": "phrase",
+      "forms": ["air conditioning"],
+      "senses": [
+        {
+          "es": "aire acondicionado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.airline",
       "headword": "airline",
       "kind": "word",
@@ -604,6 +672,18 @@
       "senses": [
         {
           "es": "aeropuerto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aisle",
+      "headword": "aisle",
+      "kind": "word",
+      "forms": ["aisle", "aisles"],
+      "senses": [
+        {
+          "es": "pasillo (de un avión, una tienda o un cine)",
           "pos": "noun"
         }
       ]
@@ -921,6 +1001,18 @@
       ]
     },
     {
+      "id": "glossary.antibiotic",
+      "headword": "antibiotic",
+      "kind": "word",
+      "forms": ["antibiotic", "antibiotics"],
+      "senses": [
+        {
+          "es": "antibiótico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.anxiety",
       "headword": "anxiety",
       "kind": "word",
@@ -1121,6 +1213,30 @@
         {
           "es": "solicitar, postularse a (un trabajo, una beca)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.appointment",
+      "headword": "appointment",
+      "kind": "word",
+      "forms": ["appointment", "appointments"],
+      "senses": [
+        {
+          "es": "cita (con el médico, el dentista, etc.)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.appreciate",
+      "headword": "appreciate",
+      "kind": "word",
+      "forms": ["appreciate", "appreciates", "appreciated", "appreciating"],
+      "senses": [
+        {
+          "es": "agradecer, valorar",
+          "pos": "verb"
         }
       ]
     },
@@ -1465,6 +1581,18 @@
       ]
     },
     {
+      "id": "glossary.attach",
+      "headword": "attach",
+      "kind": "word",
+      "forms": ["attach", "attaches", "attached", "attaching"],
+      "senses": [
+        {
+          "es": "adjuntar (attached: adjunto)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.attend",
       "headword": "attend",
       "kind": "word",
@@ -1533,6 +1661,18 @@
         {
           "es": "automáticamente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.available",
+      "headword": "available",
+      "kind": "word",
+      "forms": ["available"],
+      "senses": [
+        {
+          "es": "disponible",
+          "pos": "adjective"
         }
       ]
     },
