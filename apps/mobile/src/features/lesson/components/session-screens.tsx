@@ -141,6 +141,8 @@ type SummaryProps = {
   onOpenCard?: ((cardId: string) => void) | undefined;
   /** "Repetir lección": runs the lesson again (lessons only). */
   onRedo?: (() => void) | undefined;
+  /** What comes next, above the done button (a review: "Te quedan 25 para otro repaso."). */
+  next?: string | undefined;
 };
 
 /** An album sticker as the summary announces it. */
@@ -187,6 +189,7 @@ export function SessionSummary({
   recap = [],
   onOpenCard,
   onRedo,
+  next,
 }: SummaryProps) {
   const styles = useStyles();
   const { colors } = useTheme();
@@ -307,6 +310,7 @@ export function SessionSummary({
         )}
       </View>
       {recap.length > 0 && <Recap items={recap} onOpenCard={onOpenCard} />}
+      {next !== undefined && <Text variant="bodyStrong">{next}</Text>}
       <Button label={doneLabel} onPress={onGoHome} />
       {onRedo !== undefined && (
         <Button

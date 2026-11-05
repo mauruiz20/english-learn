@@ -23,7 +23,7 @@ import { SessionGlossary } from "@/features/glossary/session-glossary";
 import { topicByExerciseId, topicByItemId } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
-import { pendingReviewItems, pickReviewExercises, restrictToItems } from "./model/review-plan";
+import { planReview, restrictToItems, reviewOutlook } from "./model/review-plan";
 import { ReviewView, type ReviewViewState } from "./review-view";
 import { sessionResults } from "@/features/lesson/model/session-results";
 import { useNewAchievements } from "@/features/achievements/use-new-achievements";
@@ -47,15 +47,11 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
     progressRepository.getReviewStates().then(
       (states) => {
         if (!active) return;
-        const itemIds = pendingReviewItems({
+        // The same plan home counted (`reviewOutlook`): the day's rng picks the exercises.
+        const { itemIds, exercises } = planReview({
           states,
           today: clock.today(),
           exercises: content.exercises,
-        });
-        const exercises = pickReviewExercises({
-          itemIds,
-          exercises: content.exercises,
-          rng: random,
         });
         if (exercises.length === 0) {
           setLoad({ status: "empty" });
@@ -144,11 +140,16 @@ function ReviewSession({
   });
   const { dialog } = useLeaveConfirmation(hasUnsavedAnswers, "¿Salir del repaso?");
   const achievements = useNewAchievements(save.status === "saved", content);
+  const remaining = useRemainingReviews(save.status === "saved", content);
   const viewState = toViewState(session, plan, save, content);
   // The summary also announces the album stickers the review earned.
   const state =
-    viewState.status === "summary" && achievements.length > 0
-      ? { ...viewState, achievements }
+    viewState.status === "summary"
+      ? {
+          ...viewState,
+          ...(achievements.length > 0 ? { achievements } : {}),
+          ...(remaining === null ? {} : { remaining }),
+        }
       : viewState;
 
   return (
@@ -172,6 +173,35 @@ function ReviewSession({
       {dialog}
     </>
   );
+}
+
+/**
+ * Once the review is saved, what today's later reviews will serve (home's count after it), or
+ * `null` until known. A failed read only costs the line.
+ */
+function useRemainingReviews(saved: boolean, content: Corpus): number | null {
+  const { progressRepository, clock } = useAppServices();
+  const [remaining, setRemaining] = useState<number | null>(null);
+  useEffect(() => {
+    if (!saved) return;
+    let active = true;
+    progressRepository.getReviewStates().then(
+      (states) => {
+        if (!active) return;
+        const { next, later } = reviewOutlook({
+          states,
+          today: clock.today(),
+          exercises: content.exercises,
+        });
+        setRemaining(next + later);
+      },
+      (error: unknown) => console.error("Failed to count the remaining reviews", error),
+    );
+    return () => {
+      active = false;
+    };
+  }, [saved, progressRepository, clock, content]);
+  return remaining;
 }
 
 function toViewState(
