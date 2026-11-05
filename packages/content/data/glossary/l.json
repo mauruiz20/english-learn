@@ -101,6 +101,18 @@
       ]
     },
     {
+      "id": "glossary.lawyer",
+      "headword": "lawyer",
+      "kind": "word",
+      "forms": ["lawyer", "lawyers"],
+      "senses": [
+        {
+          "es": "abogado, abogada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.lay",
       "headword": "lay",
       "kind": "word",
@@ -249,6 +261,28 @@
       ]
     },
     {
+      "id": "glossary.let-down",
+      "headword": "let down",
+      "kind": "phrase",
+      "forms": [
+        "let down",
+        "lets down",
+        "letting down",
+        "let me down",
+        "let you down",
+        "let him down",
+        "let her down",
+        "let us down",
+        "let them down"
+      ],
+      "senses": [
+        {
+          "es": "decepcionar, fallarle (a alguien)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.letter",
       "headword": "letter",
       "kind": "word",
@@ -301,6 +335,18 @@
         {
           "es": "mentir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lie-down",
+      "headword": "lie down",
+      "kind": "phrase",
+      "forms": ["lie down", "lies down", "lay down", "lain down", "lying down"],
+      "senses": [
+        {
+          "es": "acostarse, recostarse",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -705,6 +751,18 @@
       ]
     },
     {
+      "id": "glossary.look-up-to",
+      "headword": "look up to",
+      "kind": "phrase",
+      "forms": ["look up to", "looks up to", "looked up to", "looking up to"],
+      "senses": [
+        {
+          "es": "admirar (a alguien)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.lose",
       "headword": "lose",
       "kind": "word",
@@ -760,7 +818,7 @@
       "id": "glossary.loud",
       "headword": "loud",
       "kind": "word",
-      "forms": ["loud"],
+      "forms": ["loud", "louder"],
       "senses": [
         {
           "es": "fuerte (sonido), ruidoso",

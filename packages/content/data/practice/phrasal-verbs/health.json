@@ -1,0 +1,435 @@
+{
+  "items": [
+    {
+      "id": "b1.phrasal-verbs.warm-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "warm up",
+      "es": "calentar (antes de hacer ejercicio)",
+      "example": {
+        "en": "Always warm up before you run.",
+        "es": "Siempre calienta antes de correr."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.pass-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "pass out",
+      "es": "desmayarse",
+      "example": {
+        "en": "It was so hot that a man passed out on the bus.",
+        "es": "Hacía tanto calor que un hombre se desmayó en el autobús."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.come-down-with",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "come down with (something)",
+      "es": "enfermarse de, contagiarse de",
+      "example": {
+        "en": "I think I'm coming down with a cold.",
+        "es": "Creo que me estoy resfriando."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.cut-down-on",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "cut down on (something)",
+      "es": "reducir (el consumo de)",
+      "example": {
+        "en": "My doctor told me to cut down on sugar.",
+        "es": "Mi médico me dijo que redujera el azúcar."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.take-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "take (something) up",
+      "es": "empezar (un deporte o pasatiempo)",
+      "example": {
+        "en": "She took up swimming last year.",
+        "es": "Empezó a nadar el año pasado."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.throw-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "throw up",
+      "es": "vomitar",
+      "example": {
+        "en": "The baby threw up after lunch.",
+        "es": "El bebé vomitó después del almuerzo."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.phrasal-verbs.practice-health-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.warm-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'warm up' mean in 'We always warm up before the game.'?",
+      "options": ["abrigarse", "hacer ejercicios de calentamiento", "descansar", "ducharse"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-choice-1",
+      "itemIds": ["b1.phrasal-verbs.pass-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "It was very hot, and she passed out.",
+      "options": [
+        "Hacía mucho calor, y salió a la calle.",
+        "Hacía mucho calor, y se quejó.",
+        "Hacía mucho calor, y se desmayó."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-vocab-2",
+      "itemIds": ["b1.phrasal-verbs.come-down-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'come down with'.",
+      "options": ["bajar con alguien", "recuperarse de", "venir con", "enfermarse de"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-choice-2",
+      "itemIds": ["b1.phrasal-verbs.cut-down-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I'm trying to cut down on coffee.",
+      "options": [
+        "Estoy tratando de dejar el café por completo.",
+        "Estoy tratando de tomar menos café.",
+        "Estoy tratando de preparar mejor café."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.take-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My dad ___ up running last year, and now he runs every morning.",
+      "answers": ["took"],
+      "distractors": ["gave", "threw"],
+      "es": "Mi papá empezó a correr el año pasado, y ahora corre todas las mañanas."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-vocab-3",
+      "itemIds": ["b1.phrasal-verbs.throw-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'throw up' mean in 'I ate too much and threw up.'?",
+      "options": [
+        "tirar algo a la basura",
+        "lanzar algo hacia arriba",
+        "vomitar",
+        "quedarse dormido"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-choice-3",
+      "itemIds": ["b1.phrasal-verbs.warm-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Don't forget to warm up before you exercise.",
+      "options": [
+        "No olvides calentar antes de hacer ejercicio.",
+        "No olvides abrigarte antes de hacer ejercicio.",
+        "No olvides tomar agua antes de hacer ejercicio."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.throw-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The food was bad, and I ___ up all night.",
+      "answers": ["threw"],
+      "distractors": ["took", "gave"],
+      "es": "La comida estaba mala, y vomité toda la noche."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-order-1",
+      "itemIds": ["b1.phrasal-verbs.take-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["it", "I", "so", "swimming,", "took", "liked", "I", "up."],
+      "accepted": ["I liked swimming, so I took it up."],
+      "es": "Me gustaba nadar, así que empecé a practicarlo."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-write-1",
+      "itemIds": ["b1.phrasal-verbs.cut-down-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Deberías reducir el azúcar.",
+      "accepted": ["You should {cut down on|eat less} sugar."]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-choice-4",
+      "itemIds": ["b1.phrasal-verbs.come-down-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Half of my class came down with a cold.",
+      "options": [
+        "La mitad de mi clase faltó por el frío.",
+        "La mitad de mi clase se resfrió.",
+        "La mitad de mi clase se curó del resfriado."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.pass-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He didn't eat anything all day, and he ___ out at work.",
+      "answers": ["passed"],
+      "distractors": ["threw", "took"],
+      "es": "No comió nada en todo el día, y se desmayó en el trabajo."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-order-2",
+      "itemIds": ["b1.phrasal-verbs.cut-down-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["food.", "down", "fast", "I'm", "on", "cutting"],
+      "accepted": ["I'm cutting down on fast food."],
+      "es": "Estoy comiendo menos comida rápida."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-write-2",
+      "itemIds": ["b1.phrasal-verbs.take-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi hermana empezó a tocar la guitarra.",
+      "accepted": [
+        "My sister {took up the guitar|took the guitar up}.",
+        "My sister {started|began} {playing|to play} the guitar."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-choice-5",
+      "itemIds": ["b1.phrasal-verbs.take-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He gave up soccer and took up swimming.",
+      "options": [
+        "Empezó a jugar fútbol y dejó de nadar.",
+        "Dejó el fútbol y empezó a nadar.",
+        "Dejó el fútbol y también dejó de nadar."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.come-down-with"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I feel terrible. I think I'm coming down ___ something.",
+      "answers": ["with"],
+      "distractors": ["of", "by"],
+      "es": "Me siento muy mal. Creo que me estoy enfermando."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-vocab-4",
+      "itemIds": ["b1.phrasal-verbs.cut-down-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'cut down on' mean in 'I need to cut down on sugar.'?",
+      "options": ["dejar de comer por completo", "cortar en pedazos", "comer menos", "comprar"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-cloze-5",
+      "itemIds": ["b1.phrasal-verbs.warm-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Before you work out, take five minutes to ___ up.",
+      "answers": ["warm"],
+      "distractors": ["work", "pass"],
+      "es": "Antes de hacer ejercicio, tómate cinco minutos para calentar."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-write-3",
+      "itemIds": ["b1.phrasal-verbs.pass-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Hacía tanto calor que casi me desmayo.",
+      "accepted": ["It was so hot [that ]I {almost|nearly} passed out."]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-order-3",
+      "itemIds": ["b1.phrasal-verbs.take-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["Why", "dancing.", "it", "you", "You", "love", "don't", "take", "up?"],
+      "accepted": [
+        "You love dancing. Why don't you take it up?",
+        "Why don't you take it up? You love dancing."
+      ],
+      "es": "Te encanta bailar. ¿Por qué no empiezas a practicarlo?"
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-choice-6",
+      "itemIds": ["b1.phrasal-verbs.throw-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Don't eat that. It will make you throw up.",
+      "options": [
+        "No comas eso. Lo vas a tener que tirar.",
+        "No comas eso. Te va a hacer engordar.",
+        "No comas eso. Te va a hacer vomitar."
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.phrasal-verbs.practice-health-1",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Salud y deporte: conócelos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-health-vocab-1",
+        "b1.phrasal-verbs.practice-health-choice-1",
+        "b1.phrasal-verbs.practice-health-vocab-2",
+        "b1.phrasal-verbs.practice-health-choice-2",
+        "b1.phrasal-verbs.practice-health-cloze-1",
+        "b1.phrasal-verbs.practice-health-vocab-3",
+        "b1.phrasal-verbs.practice-health-choice-3"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.warm-up",
+        "b1.phrasal-verbs.pass-out",
+        "b1.phrasal-verbs.come-down-with",
+        "b1.phrasal-verbs.cut-down-on",
+        "b1.phrasal-verbs.take-up"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-2",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Salud y deporte: practícalos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-health-cloze-2",
+        "b1.phrasal-verbs.practice-health-order-1",
+        "b1.phrasal-verbs.practice-health-write-1",
+        "b1.phrasal-verbs.practice-health-choice-4",
+        "b1.phrasal-verbs.practice-health-cloze-3",
+        "b1.phrasal-verbs.practice-health-order-2",
+        "b1.phrasal-verbs.practice-health-write-2"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.throw-up",
+        "b1.phrasal-verbs.take-up",
+        "b1.phrasal-verbs.cut-down-on",
+        "b1.phrasal-verbs.come-down-with",
+        "b1.phrasal-verbs.pass-out"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-health-3",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Salud y deporte: no los confundas",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-health-choice-5",
+        "b1.phrasal-verbs.practice-health-cloze-4",
+        "b1.phrasal-verbs.practice-health-vocab-4",
+        "b1.phrasal-verbs.practice-health-cloze-5",
+        "b1.phrasal-verbs.practice-health-write-3",
+        "b1.phrasal-verbs.practice-health-order-3",
+        "b1.phrasal-verbs.practice-health-choice-6"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.take-up",
+        "b1.phrasal-verbs.come-down-with",
+        "b1.phrasal-verbs.cut-down-on",
+        "b1.phrasal-verbs.warm-up",
+        "b1.phrasal-verbs.pass-out"
+      ]
+    }
+  ]
+}

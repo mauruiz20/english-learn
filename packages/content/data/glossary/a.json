@@ -1253,6 +1253,18 @@
       ]
     },
     {
+      "id": "glossary.aside",
+      "headword": "aside",
+      "kind": "word",
+      "forms": ["aside"],
+      "senses": [
+        {
+          "es": "a un lado, aparte",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.ask",
       "headword": "ask",
       "kind": "word",

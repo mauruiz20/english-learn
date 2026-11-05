@@ -1,0 +1,447 @@
+{
+  "items": [
+    {
+      "id": "a2.phrasal-verbs.clean-up",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "clean (something) up",
+      "es": "ordenar, limpiar",
+      "example": {
+        "en": "Please clean up your room before dinner.",
+        "es": "Por favor, ordena tu cuarto antes de la cena."
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.put-away",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "put (something) away",
+      "es": "guardar (en su lugar)",
+      "example": {
+        "en": "Put your toys away, please.",
+        "es": "Guarda tus juguetes, por favor."
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.turn-on",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "turn (something) on",
+      "es": "encender, prender",
+      "example": {
+        "en": "Can you turn on the light?",
+        "es": "¿Puedes encender la luz?"
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.turn-up",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "turn (something) up",
+      "es": "subir (el volumen, la calefacción)",
+      "example": {
+        "en": "Turn up the music. I love this song!",
+        "es": "Sube la música. ¡Me encanta esta canción!"
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.take-out",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "take (something) out",
+      "es": "sacar (la basura)",
+      "example": {
+        "en": "It's your turn to take out the trash.",
+        "es": "Te toca sacar la basura."
+      }
+    },
+    {
+      "id": "a2.phrasal-verbs.lie-down",
+      "level": "A2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "lie down",
+      "es": "acostarse, recostarse",
+      "example": {
+        "en": "I'm tired. I'm going to lie down for a while.",
+        "es": "Estoy cansado. Voy a recostarme un rato."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a2.phrasal-verbs.practice-home-vocab-1",
+      "itemIds": ["a2.phrasal-verbs.clean-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'clean up'.",
+      "options": ["despertarse", "lavar la ropa", "ordenar, limpiar", "sacar la basura"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-choice-1",
+      "itemIds": ["a2.phrasal-verbs.put-away"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Put your clothes away, please.",
+      "options": [
+        "Ponte la ropa, por favor.",
+        "Guarda tu ropa, por favor.",
+        "Lava tu ropa, por favor.",
+        "Quítate la ropa, por favor."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-vocab-2",
+      "itemIds": ["a2.phrasal-verbs.turn-on"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'turn on' mean in 'Can you turn on the light?'?",
+      "options": ["apagar", "cambiar", "girar", "encender"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-choice-2",
+      "itemIds": ["a2.phrasal-verbs.turn-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "It's too quiet. Can you turn up the volume?",
+      "options": [
+        "Está muy bajo. ¿Puedes subir el volumen?",
+        "Está muy alto. ¿Puedes bajar el volumen?",
+        "Está muy bajo. ¿Puedes apagar la radio?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-cloze-1",
+      "itemIds": ["a2.phrasal-verbs.take-out"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Can you take ___ the trash? The bag is full.",
+      "answers": ["out"],
+      "distractors": ["off", "on"],
+      "es": "¿Puedes sacar la basura? La bolsa está llena."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-vocab-3",
+      "itemIds": ["a2.phrasal-verbs.lie-down"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'lie down' mean in 'You look tired. Lie down for a while.'?",
+      "options": [
+        "mentir un poco",
+        "acostarse, recostarse",
+        "bajar las escaleras",
+        "sentarse a comer"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-choice-3",
+      "itemIds": ["a2.phrasal-verbs.turn-on"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Turn on the TV, please. The game is starting.",
+      "options": [
+        "Apaga la tele, por favor. El partido está empezando.",
+        "Cambia de canal, por favor. El partido está empezando.",
+        "Enciende la tele, por favor. El partido está empezando."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-cloze-2",
+      "itemIds": ["a2.phrasal-verbs.lie-down"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I don't feel well. I need to lie ___.",
+      "answers": ["down"],
+      "distractors": ["up", "on", "out"],
+      "es": "No me siento bien. Necesito acostarme."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-order-1",
+      "itemIds": ["a2.phrasal-verbs.put-away"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["them", "please?", "you", "away,", "Can", "put"],
+      "accepted": ["Can you put them away, please?"],
+      "es": "¿Puedes guardarlos, por favor?"
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-write-1",
+      "itemIds": ["a2.phrasal-verbs.clean-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Por favor, ordena tu cuarto.",
+      "accepted": [
+        "Please {clean up your room|clean your room up|tidy up your room|tidy your room up|tidy your room}.",
+        "{Clean up your room|Clean your room up|Tidy up your room|Tidy your room up|Tidy your room}, please."
+      ]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-choice-4",
+      "itemIds": ["a2.phrasal-verbs.take-out"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Did you take the trash out last night?",
+      "options": [
+        "¿Compraste bolsas de basura anoche?",
+        "¿Sacaste al perro anoche?",
+        "¿Sacaste la basura anoche?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-cloze-3",
+      "itemIds": ["a2.phrasal-verbs.turn-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The music is very quiet. Can you turn it ___?",
+      "answers": ["up"],
+      "distractors": ["down", "in"],
+      "es": "La música está muy baja. ¿Puedes subirle el volumen?"
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-order-2",
+      "itemIds": ["a2.phrasal-verbs.turn-on"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["dark.", "lights", "We", "it", "on", "the", "because", "turned", "was"],
+      "accepted": [
+        "We turned on the lights because it was dark.",
+        "We turned the lights on because it was dark."
+      ],
+      "es": "Encendimos las luces porque estaba oscuro."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-write-2",
+      "itemIds": ["a2.phrasal-verbs.put-away"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Guardé los platos.",
+      "accepted": ["I put {away the dishes|the dishes away}."]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-cloze-4",
+      "itemIds": ["a2.phrasal-verbs.turn-on", "a2.phrasal-verbs.turn-off"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's dark in here. Can you turn ___ the light?",
+      "answers": ["on"],
+      "distractors": ["off", "down"],
+      "es": "Está oscuro aquí. ¿Puedes encender la luz?"
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-vocab-4",
+      "itemIds": ["a2.phrasal-verbs.turn-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'turn up' mean in 'Turn up the TV. I can't hear it.'?",
+      "options": [
+        "prender la tele",
+        "apagar la tele",
+        "cambiar de canal",
+        "subir el volumen de la tele"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-order-3",
+      "itemIds": ["a2.phrasal-verbs.take-out"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["it", "bag", "so", "The", "full,", "out.", "take", "is"],
+      "accepted": ["The bag is full, so take it out."],
+      "es": "La bolsa está llena, así que sácala."
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-choice-5",
+      "itemIds": ["a2.phrasal-verbs.put-away", "a2.phrasal-verbs.put-on"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I put my winter clothes away in May.",
+      "options": [
+        "Me puse la ropa de invierno en mayo.",
+        "Guardé la ropa de invierno en mayo.",
+        "Saqué la ropa de invierno en mayo.",
+        "Lavé la ropa de invierno en mayo."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-write-3",
+      "itemIds": ["a2.phrasal-verbs.take-out", "a2.phrasal-verbs.take-off"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Quítate los zapatos y saca la basura.",
+      "accepted": [
+        "{Take off your shoes|Take your shoes off} and {take out the trash|take the trash out|take out the garbage|take the garbage out}."
+      ]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-choice-6",
+      "itemIds": ["a2.phrasal-verbs.lie-down"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Lie down and close your eyes.",
+      "options": [
+        "No mientas y cierra los ojos.",
+        "Levántate y cierra los ojos.",
+        "Acuéstate y cierra los ojos.",
+        "Siéntate y cierra los ojos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-write-4",
+      "itemIds": ["a2.phrasal-verbs.turn-up"],
+      "level": "A2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Sube la música, por favor.",
+      "accepted": [
+        "Please {turn up the music|turn the music up|turn up the volume|turn the volume up}.",
+        "{Turn up the music|Turn the music up|Turn up the volume|Turn the volume up}, please."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a2.phrasal-verbs.practice-home-1",
+      "level": "A2",
+      "topic": "phrasal-verbs",
+      "title": "Casa y rutina: conócelos",
+      "exerciseIds": [
+        "a2.phrasal-verbs.practice-home-vocab-1",
+        "a2.phrasal-verbs.practice-home-choice-1",
+        "a2.phrasal-verbs.practice-home-vocab-2",
+        "a2.phrasal-verbs.practice-home-choice-2",
+        "a2.phrasal-verbs.practice-home-cloze-1",
+        "a2.phrasal-verbs.practice-home-vocab-3",
+        "a2.phrasal-verbs.practice-home-choice-3"
+      ],
+      "newItemIds": [
+        "a2.phrasal-verbs.clean-up",
+        "a2.phrasal-verbs.put-away",
+        "a2.phrasal-verbs.turn-on",
+        "a2.phrasal-verbs.turn-up",
+        "a2.phrasal-verbs.take-out"
+      ]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-2",
+      "level": "A2",
+      "topic": "phrasal-verbs",
+      "title": "Casa y rutina: practícalos",
+      "exerciseIds": [
+        "a2.phrasal-verbs.practice-home-cloze-2",
+        "a2.phrasal-verbs.practice-home-order-1",
+        "a2.phrasal-verbs.practice-home-write-1",
+        "a2.phrasal-verbs.practice-home-choice-4",
+        "a2.phrasal-verbs.practice-home-cloze-3",
+        "a2.phrasal-verbs.practice-home-order-2",
+        "a2.phrasal-verbs.practice-home-write-2"
+      ],
+      "newItemIds": [
+        "a2.phrasal-verbs.lie-down",
+        "a2.phrasal-verbs.put-away",
+        "a2.phrasal-verbs.clean-up",
+        "a2.phrasal-verbs.turn-up",
+        "a2.phrasal-verbs.turn-on"
+      ]
+    },
+    {
+      "id": "a2.phrasal-verbs.practice-home-3",
+      "level": "A2",
+      "topic": "phrasal-verbs",
+      "title": "Casa y rutina: no los confundas",
+      "exerciseIds": [
+        "a2.phrasal-verbs.practice-home-cloze-4",
+        "a2.phrasal-verbs.practice-home-vocab-4",
+        "a2.phrasal-verbs.practice-home-order-3",
+        "a2.phrasal-verbs.practice-home-choice-5",
+        "a2.phrasal-verbs.practice-home-write-3",
+        "a2.phrasal-verbs.practice-home-choice-6",
+        "a2.phrasal-verbs.practice-home-write-4"
+      ],
+      "newItemIds": [
+        "a2.phrasal-verbs.turn-on",
+        "a2.phrasal-verbs.turn-off",
+        "a2.phrasal-verbs.turn-up",
+        "a2.phrasal-verbs.take-out",
+        "a2.phrasal-verbs.put-away"
+      ],
+      "deepenCardIds": ["a2.phrasal-verbs.daily-routine"]
+    }
+  ]
+}

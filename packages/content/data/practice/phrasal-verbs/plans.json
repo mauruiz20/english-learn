@@ -1,0 +1,420 @@
+{
+  "items": [
+    {
+      "id": "b2.phrasal-verbs.think-over",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "think (something) over",
+      "es": "pensar bien, considerar (antes de decidir)",
+      "example": {
+        "en": "I need some time to think it over.",
+        "es": "Necesito un poco de tiempo para pensarlo bien."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.go-ahead-with",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "go ahead with (something)",
+      "es": "seguir adelante con, llevar a cabo",
+      "example": {
+        "en": "We decided to go ahead with the trip despite the rain.",
+        "es": "Decidimos seguir adelante con el viaje a pesar de la lluvia."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.carry-on",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "carry on",
+      "es": "continuar, seguir",
+      "example": {
+        "en": "Sorry to interrupt. Please carry on.",
+        "es": "Perdón por interrumpir. Por favor, sigue."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.back-out-of",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "back out of (something)",
+      "es": "echarse para atrás, retirarse de (un plan o un acuerdo)",
+      "example": {
+        "en": "She backed out of the trip at the last minute.",
+        "es": "Ella desistió del viaje a último momento."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.settle-on",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "settle on (something)",
+      "es": "decidirse por, elegir",
+      "example": {
+        "en": "After a long talk, we settled on a name for the baby.",
+        "es": "Después de mucho hablar, nos decidimos por un nombre para el bebé."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.go-through-with",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "go through with (something)",
+      "es": "llevar a cabo (algo difícil o dudoso)",
+      "example": {
+        "en": "She was nervous, but she went through with it.",
+        "es": "Estaba nerviosa, pero lo hizo de todos modos."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.phrasal-verbs.practice-plans-vocab-1",
+      "itemIds": ["b2.phrasal-verbs.think-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'think something over'.",
+      "options": [
+        "olvidar algo",
+        "pensar bien algo antes de decidir",
+        "cambiar de opinión",
+        "pensar en voz alta"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-choice-1",
+      "itemIds": ["b2.phrasal-verbs.go-ahead-with"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "The city will go ahead with the new park.",
+      "options": [
+        "La ciudad cancelará el nuevo parque.",
+        "La ciudad pospondrá el nuevo parque.",
+        "La ciudad seguirá adelante con el nuevo parque."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-vocab-2",
+      "itemIds": ["b2.phrasal-verbs.carry-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'carry on' mean in 'Don't stop. Carry on with your work.'?",
+      "options": ["cargar", "terminar", "continuar", "llevar algo"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-cloze-1",
+      "itemIds": ["b2.phrasal-verbs.back-out-of"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "He promised to help us, but then he backed out ___ the plan.",
+      "answers": ["of"],
+      "distractors": ["to", "with", "at"],
+      "es": "Prometió ayudarnos, pero después se retiró del plan."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-choice-2",
+      "itemIds": ["b2.phrasal-verbs.settle-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "We finally settled on a date for the party.",
+      "options": [
+        "Por fin cambiamos la fecha de la fiesta.",
+        "Por fin nos decidimos por una fecha para la fiesta.",
+        "Por fin cancelamos la fiesta."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-vocab-3",
+      "itemIds": ["b2.phrasal-verbs.go-through-with"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'go through with'.",
+      "options": [
+        "atravesar",
+        "revisar",
+        "pasar por",
+        "llevar a cabo algo difícil a pesar de las dudas"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-choice-3",
+      "itemIds": ["b2.phrasal-verbs.think-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Thanks for the offer. Can I think it over?",
+      "options": [
+        "Gracias por la oferta. ¿Puedo pensarlo?",
+        "Gracias por la oferta. ¿Puedo aceptarla?",
+        "Gracias por la oferta. ¿Puedo rechazarla?"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-write-1",
+      "itemIds": ["b2.phrasal-verbs.go-through-with"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Al final, no siguieron adelante con la boda.",
+      "accepted": [
+        "In the end[,] they {didn't {go through with|go ahead with} the wedding|called off the wedding|called the wedding off|canceled the wedding}.",
+        "They {didn't {go through with|go ahead with} the wedding|called off the wedding|called the wedding off|canceled the wedding} in the end."
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-order-1",
+      "itemIds": ["b2.phrasal-verbs.think-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["over.", "it", "think", "me", "Let"],
+      "accepted": ["Let me think it over."],
+      "es": "Déjame pensarlo bien."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-cloze-2",
+      "itemIds": ["b2.phrasal-verbs.carry-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "They ___ on working after the lights went out.",
+      "answers": ["carried"],
+      "distractors": ["thought", "stepped", "sorted"],
+      "es": "Siguieron trabajando después de que se fue la luz."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-choice-4",
+      "itemIds": ["b2.phrasal-verbs.back-out-of"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Two friends backed out of the trip, so we canceled it.",
+      "options": [
+        "Dos amigos se sumaron al viaje, así que lo cancelamos.",
+        "Dos amigos organizaron el viaje, así que lo cancelamos.",
+        "Dos amigos se retiraron del viaje, así que lo cancelamos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-order-2",
+      "itemIds": ["b2.phrasal-verbs.think-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": [
+        "offer",
+        "she",
+        "think",
+        "decides.",
+        "wants",
+        "over",
+        "the",
+        "before",
+        "to",
+        "She"
+      ],
+      "accepted": [
+        "She wants to think over the offer before she decides.",
+        "She wants to think the offer over before she decides."
+      ],
+      "es": "Quiere pensar bien la oferta antes de decidir."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-write-2",
+      "itemIds": ["b2.phrasal-verbs.settle-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Todavía no nos hemos decidido por un hotel.",
+      "accepted": [
+        "We haven't {settled on|decided on|chosen|picked} a hotel yet.",
+        "We still haven't {settled on|decided on|chosen|picked} a hotel."
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-cloze-3",
+      "itemIds": ["b2.phrasal-verbs.go-ahead-with"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The weather was bad, but they ___ ahead with the concert.",
+      "answers": ["went"],
+      "distractors": ["carried", "settled", "thought"],
+      "es": "Hacía mal tiempo, pero siguieron adelante con el concierto."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-write-3",
+      "itemIds": ["b2.phrasal-verbs.carry-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Sigan con su trabajo, por favor.",
+      "accepted": [
+        "{Please {carry on|continue|go on} with your work|{Carry on|Continue|Go on} with your work, please|Please continue your work|Continue your work, please|Please keep working|Keep working, please}."
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.put-up-with", "b1.phrasal-verbs.put-off"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I can't ___ the noise from my neighbors anymore.",
+      "answers": ["put up with"],
+      "distractors": ["put off", "call off", "put on"],
+      "es": "Ya no aguanto el ruido de mis vecinos."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-choice-5",
+      "itemIds": ["b1.phrasal-verbs.call-off", "b1.phrasal-verbs.put-off"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "They called off the meeting.",
+      "options": ["Pospusieron la reunión.", "Cancelaron la reunión.", "Llamaron a la reunión."],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-cloze-5",
+      "itemIds": ["b1.phrasal-verbs.put-off", "b1.phrasal-verbs.call-off"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "It's raining, so let's ___ the trip until next weekend.",
+      "answers": ["put off"],
+      "distractors": ["put up with", "call off", "settle on"],
+      "es": "Está lloviendo, así que pospongamos el viaje hasta el próximo fin de semana."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-order-3",
+      "itemIds": ["b2.phrasal-verbs.go-through-with"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["it.", "with", "I", "if", "can", "through", "go", "I", "know", "don't"],
+      "accepted": ["I don't know if I can go through with it."],
+      "es": "No sé si puedo llevarlo a cabo."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-choice-6",
+      "itemIds": ["b2.phrasal-verbs.back-out-of", "b2.phrasal-verbs.go-through-with"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She almost backed out, but she went through with it.",
+      "options": [
+        "Casi lo hizo, pero se echó para atrás.",
+        "Se echó para atrás y no lo hizo.",
+        "Casi se echó para atrás, pero lo hizo de todos modos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-cloze-6",
+      "itemIds": ["b2.phrasal-verbs.carry-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Even though it started to rain, we carried ___.",
+      "answers": ["on"],
+      "distractors": ["out", "off", "over"],
+      "es": "Aunque empezó a llover, seguimos."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-write-4",
+      "itemIds": ["b2.phrasal-verbs.back-out-of"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ella se retiró del proyecto.",
+      "accepted": ["She {backed out of|pulled out of|dropped out of|withdrew from} the project."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.phrasal-verbs.practice-plans-1",
+      "level": "B2",
+      "topic": "phrasal-verbs",
+      "title": "Planes y decisiones: conócelos",
+      "exerciseIds": [
+        "b2.phrasal-verbs.practice-plans-vocab-1",
+        "b2.phrasal-verbs.practice-plans-choice-1",
+        "b2.phrasal-verbs.practice-plans-vocab-2",
+        "b2.phrasal-verbs.practice-plans-cloze-1",
+        "b2.phrasal-verbs.practice-plans-choice-2",
+        "b2.phrasal-verbs.practice-plans-vocab-3",
+        "b2.phrasal-verbs.practice-plans-choice-3"
+      ],
+      "newItemIds": [
+        "b2.phrasal-verbs.think-over",
+        "b2.phrasal-verbs.go-ahead-with",
+        "b2.phrasal-verbs.carry-on",
+        "b2.phrasal-verbs.back-out-of",
+        "b2.phrasal-verbs.settle-on"
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-2",
+      "level": "B2",
+      "topic": "phrasal-verbs",
+      "title": "Planes y decisiones: practícalos",
+      "exerciseIds": [
+        "b2.phrasal-verbs.practice-plans-write-1",
+        "b2.phrasal-verbs.practice-plans-order-1",
+        "b2.phrasal-verbs.practice-plans-cloze-2",
+        "b2.phrasal-verbs.practice-plans-choice-4",
+        "b2.phrasal-verbs.practice-plans-order-2",
+        "b2.phrasal-verbs.practice-plans-write-2",
+        "b2.phrasal-verbs.practice-plans-cloze-3",
+        "b2.phrasal-verbs.practice-plans-write-3"
+      ],
+      "newItemIds": [
+        "b2.phrasal-verbs.go-through-with",
+        "b2.phrasal-verbs.think-over",
+        "b2.phrasal-verbs.carry-on"
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-plans-3",
+      "level": "B2",
+      "topic": "phrasal-verbs",
+      "title": "Planes y decisiones: no los confundas",
+      "exerciseIds": [
+        "b2.phrasal-verbs.practice-plans-cloze-4",
+        "b2.phrasal-verbs.practice-plans-choice-5",
+        "b2.phrasal-verbs.practice-plans-cloze-5",
+        "b2.phrasal-verbs.practice-plans-order-3",
+        "b2.phrasal-verbs.practice-plans-choice-6",
+        "b2.phrasal-verbs.practice-plans-cloze-6",
+        "b2.phrasal-verbs.practice-plans-write-4"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.put-up-with",
+        "b1.phrasal-verbs.put-off",
+        "b1.phrasal-verbs.call-off",
+        "b2.phrasal-verbs.go-through-with",
+        "b2.phrasal-verbs.back-out-of"
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.problems", "b1.phrasal-verbs.plans"]
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "items": [
+    {
+      "id": "b1.phrasal-verbs.hang-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "hang up",
+      "es": "colgar (el teléfono)",
+      "example": {
+        "en": "He got angry and hung up.",
+        "es": "Se enojó y colgó."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.call-back",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "call (someone) back",
+      "es": "devolver la llamada, volver a llamar",
+      "example": {
+        "en": "I'm busy right now. Can I call you back later?",
+        "es": "Ahora estoy ocupado. ¿Te puedo devolver la llamada más tarde?"
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.hold-on",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "hold on",
+      "es": "esperar (un momento)",
+      "example": {
+        "en": "Hold on a minute, please. I'll check.",
+        "es": "Espera un momento, por favor. Voy a revisar."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.speak-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "speak up",
+      "es": "hablar más fuerte",
+      "example": {
+        "en": "Could you speak up, please? I can't hear you.",
+        "es": "¿Podrías hablar más fuerte, por favor? No te oigo."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.get-through",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "get through",
+      "es": "lograr comunicarse (por teléfono)",
+      "example": {
+        "en": "I called the bank, but I couldn't get through.",
+        "es": "Llamé al banco, pero no pude comunicarme."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.put-through",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "put (someone) through",
+      "es": "comunicar, pasar la llamada (a alguien)",
+      "example": {
+        "en": "Can you put me through to the manager?",
+        "es": "¿Me puedes comunicar con el gerente?"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.phrasal-verbs.practice-phone-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.hang-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'hang up'.",
+      "options": [
+        "contestar el teléfono",
+        "colgar (el teléfono)",
+        "marcar un número",
+        "cargar el celular"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-choice-1",
+      "itemIds": ["b1.phrasal-verbs.call-back"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Sorry, I'm driving. I'll call you back in ten minutes.",
+      "options": [
+        "Perdón, estoy manejando. Llego en diez minutos.",
+        "Perdón, estoy manejando. Llámame en diez minutos.",
+        "Perdón, estoy manejando. Te devuelvo la llamada en diez minutos."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-vocab-2",
+      "itemIds": ["b1.phrasal-verbs.hold-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'hold on' mean in 'Hold on, let me check.'?",
+      "options": ["esperar un momento", "agarrar fuerte", "colgar", "seguir hablando"],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.speak-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I can't hear you. Can you speak ___, please?",
+      "answers": ["up"],
+      "distractors": ["in", "down", "off"],
+      "es": "No te oigo. ¿Puedes hablar más fuerte, por favor?"
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-choice-2",
+      "itemIds": ["b1.phrasal-verbs.get-through"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I called the bank three times, but I couldn't get through.",
+      "options": [
+        "Llamé al banco tres veces, pero no pude entrar.",
+        "Llamé al banco tres veces, pero no pude comunicarme.",
+        "Llamé al banco tres veces, pero no me devolvieron la llamada.",
+        "Fui al banco tres veces, pero estaba cerrado."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-vocab-3",
+      "itemIds": ["b1.phrasal-verbs.put-through"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'put through' mean in 'Please hold. I'll put you through to the manager.'?",
+      "options": [
+        "presentarle a alguien",
+        "colgarle a alguien",
+        "dejarle un mensaje a alguien",
+        "comunicar con alguien, pasar la llamada"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.call-back"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She isn't here right now. Can she call you ___ later?",
+      "answers": ["back"],
+      "distractors": ["off", "out"],
+      "es": "Ella no está ahora. ¿Te puede devolver la llamada más tarde?"
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-order-1",
+      "itemIds": ["b1.phrasal-verbs.put-through"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["sales", "me", "to", "Can", "department?", "through", "you", "the", "put"],
+      "accepted": ["Can you put me through to the sales department?"],
+      "es": "¿Me puedes comunicar con el departamento de ventas?"
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.hang-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "He was so angry that he hung ___ on me.",
+      "answers": ["up"],
+      "distractors": ["out", "off"],
+      "es": "Estaba tan enojado que me colgó."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-write-1",
+      "itemIds": ["b1.phrasal-verbs.call-back"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Te devuelvo la llamada más tarde.",
+      "accepted": [
+        "I'll {call|phone} you back later.",
+        "I'm going to {call|phone} you back later.",
+        "I'll return your call later."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-choice-3",
+      "itemIds": ["b1.phrasal-verbs.hold-on"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Can you hold on for a minute? I have another call.",
+      "options": [
+        "¿Puedes colgar un minuto? Tengo otra llamada.",
+        "¿Puedes esperar un minuto? Tengo otra llamada.",
+        "¿Puedes llamarme en un minuto? Tengo otra llamada."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-order-2",
+      "itemIds": ["b1.phrasal-verbs.call-back"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["lunch.", "back", "the", "called", "I", "after", "doctor"],
+      "accepted": [
+        "I called the doctor back after lunch.",
+        "I called back the doctor after lunch."
+      ],
+      "es": "Le devolví la llamada al doctor después del almuerzo."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.speak-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My grandpa doesn't hear well, so you have to speak ___.",
+      "answers": ["up"],
+      "distractors": ["in", "over"],
+      "es": "Mi abuelo no oye bien, así que tienes que hablar más fuerte."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-write-2",
+      "itemIds": ["b1.phrasal-verbs.get-through"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Intenté llamarte, pero no pude comunicarme.",
+      "accepted": [
+        "I tried {to call|calling|to phone|phoning} you[,] but I {couldn't|wasn't able to} get through[ to you]."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-cloze-5",
+      "itemIds": ["b1.phrasal-verbs.hang-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Don't hang ___! I'm still here.",
+      "answers": ["up"],
+      "distractors": ["off", "out"],
+      "es": "¡No cuelgues! Todavía estoy aquí."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-choice-4",
+      "itemIds": ["b1.phrasal-verbs.hang-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Hang on a second. Don't hang up!",
+      "options": [
+        "Espera un segundo. ¡No cuelgues!",
+        "Cuelga un segundo. ¡No esperes!",
+        "Espera un segundo. ¡No grites!"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-order-3",
+      "itemIds": ["b1.phrasal-verbs.call-back"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["tonight.", "her", "I'll", "back", "call"],
+      "accepted": ["I'll call her back tonight."],
+      "es": "Le devuelvo la llamada esta noche."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-vocab-4",
+      "itemIds": ["b1.phrasal-verbs.call-back"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'call back' mean in 'Can you call back tomorrow?'?",
+      "options": [
+        "volver mañana",
+        "llamar a alguien para que vuelva",
+        "venir a buscar algo mañana",
+        "volver a llamar mañana"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-cloze-6",
+      "itemIds": ["b1.phrasal-verbs.put-through"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ me through to the manager.",
+      "answers": ["put"],
+      "distractors": ["gave", "made"],
+      "es": "Me comunicó con el gerente."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-write-3",
+      "itemIds": ["b1.phrasal-verbs.speak-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Puedes hablar más fuerte, por favor?",
+      "accepted": [
+        "{Can|Could} you {speak up|speak louder|talk louder}, please?",
+        "{Can|Could} you please {speak up|speak louder|talk louder}?"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-choice-5",
+      "itemIds": ["b1.phrasal-verbs.get-through"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I finally got through to the bank.",
+      "options": [
+        "Por fin terminé con el banco.",
+        "Por fin fui al banco.",
+        "Por fin pude comunicarme con el banco."
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.phrasal-verbs.practice-phone-1",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Comunicación y teléfono: conócelos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-phone-vocab-1",
+        "b1.phrasal-verbs.practice-phone-choice-1",
+        "b1.phrasal-verbs.practice-phone-vocab-2",
+        "b1.phrasal-verbs.practice-phone-cloze-1",
+        "b1.phrasal-verbs.practice-phone-choice-2",
+        "b1.phrasal-verbs.practice-phone-vocab-3",
+        "b1.phrasal-verbs.practice-phone-cloze-2"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.hang-up",
+        "b1.phrasal-verbs.call-back",
+        "b1.phrasal-verbs.hold-on",
+        "b1.phrasal-verbs.speak-up",
+        "b1.phrasal-verbs.get-through"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-2",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Comunicación y teléfono: practícalos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-phone-order-1",
+        "b1.phrasal-verbs.practice-phone-cloze-3",
+        "b1.phrasal-verbs.practice-phone-write-1",
+        "b1.phrasal-verbs.practice-phone-choice-3",
+        "b1.phrasal-verbs.practice-phone-order-2",
+        "b1.phrasal-verbs.practice-phone-cloze-4",
+        "b1.phrasal-verbs.practice-phone-write-2"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.put-through",
+        "b1.phrasal-verbs.call-back",
+        "b1.phrasal-verbs.hang-up",
+        "b1.phrasal-verbs.hold-on",
+        "b1.phrasal-verbs.get-through"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-phone-3",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Comunicación y teléfono: no los confundas",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-phone-cloze-5",
+        "b1.phrasal-verbs.practice-phone-choice-4",
+        "b1.phrasal-verbs.practice-phone-order-3",
+        "b1.phrasal-verbs.practice-phone-vocab-4",
+        "b1.phrasal-verbs.practice-phone-cloze-6",
+        "b1.phrasal-verbs.practice-phone-write-3",
+        "b1.phrasal-verbs.practice-phone-choice-5"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.hang-up",
+        "b1.phrasal-verbs.call-back",
+        "b1.phrasal-verbs.put-through",
+        "b1.phrasal-verbs.get-through",
+        "b1.phrasal-verbs.speak-up"
+      ]
+    }
+  ]
+}

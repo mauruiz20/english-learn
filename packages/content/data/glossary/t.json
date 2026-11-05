@@ -169,6 +169,18 @@
       ]
     },
     {
+      "id": "glossary.take-out",
+      "headword": "take out",
+      "kind": "phrase",
+      "forms": ["take out", "takes out", "took out", "taken out", "taking out"],
+      "senses": [
+        {
+          "es": "sacar (la basura)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.take-over",
       "headword": "take over",
       "kind": "phrase",
@@ -176,6 +188,26 @@
       "senses": [
         {
           "es": "hacerse cargo de, asumir el control de",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.take-up",
+      "headword": "take up",
+      "kind": "phrase",
+      "forms": [
+        "take up",
+        "takes up",
+        "took up",
+        "taken up",
+        "taking up",
+        "take it up",
+        "took it up"
+      ],
+      "senses": [
+        {
+          "es": "empezar (un deporte o pasatiempo)",
           "pos": "phrasal verb"
         }
       ]
@@ -705,6 +737,18 @@
       ]
     },
     {
+      "id": "glossary.think-over",
+      "headword": "think over",
+      "kind": "phrase",
+      "forms": ["think over", "thinks over", "thought over", "thinking over"],
+      "senses": [
+        {
+          "es": "pensar bien, considerar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.third",
       "headword": "third",
       "kind": "word",
@@ -877,6 +921,18 @@
       ]
     },
     {
+      "id": "glossary.throw-up",
+      "headword": "throw up",
+      "kind": "phrase",
+      "forms": ["throw up", "throws up", "threw up", "thrown up", "throwing up"],
+      "senses": [
+        {
+          "es": "vomitar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.thursday",
       "headword": "Thursday",
       "kind": "word",
@@ -897,6 +953,22 @@
         {
           "es": "boleto, entrada",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tidy",
+      "headword": "tidy",
+      "kind": "word",
+      "forms": ["tidy", "tidies", "tidied", "tidying"],
+      "senses": [
+        {
+          "es": "ordenar",
+          "pos": "verb"
+        },
+        {
+          "es": "ordenado",
+          "pos": "adjective"
         }
       ]
     },
@@ -1396,6 +1468,18 @@
       ]
     },
     {
+      "id": "glossary.turn-on",
+      "headword": "turn on",
+      "kind": "phrase",
+      "forms": ["turn on", "turns on", "turned on", "turning on"],
+      "senses": [
+        {
+          "es": "encender, prender",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.turn-out",
       "headword": "turn out",
       "kind": "phrase",
@@ -1416,6 +1500,18 @@
         {
           "es": "girar a la derecha, doblar a la derecha",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-up",
+      "headword": "turn up",
+      "kind": "phrase",
+      "forms": ["turn up", "turns up", "turned up", "turning up"],
+      "senses": [
+        {
+          "es": "subir (el volumen, la calefacción)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -1476,6 +1572,34 @@
         {
           "es": "dos",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.type",
+      "headword": "type",
+      "kind": "word",
+      "forms": ["type", "types", "typed", "typing"],
+      "senses": [
+        {
+          "es": "escribir (con el teclado)",
+          "pos": "verb"
+        },
+        {
+          "es": "tipo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.type-in",
+      "headword": "type in",
+      "kind": "phrase",
+      "forms": ["type in", "types in", "typed in", "typing in"],
+      "senses": [
+        {
+          "es": "escribir, ingresar (con el teclado)",
+          "pos": "phrasal verb"
         }
       ]
     }

@@ -1,0 +1,40 @@
+{
+  "glossary": [
+    {
+      "id": "glossary.zoom",
+      "headword": "zoom",
+      "kind": "word",
+      "forms": ["zoom", "zooms", "zoomed", "zooming"],
+      "senses": [
+        {
+          "es": "hacer zoom",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.zoom-in",
+      "headword": "zoom in",
+      "kind": "phrase",
+      "forms": ["zoom in", "zooms in", "zoomed in", "zooming in"],
+      "senses": [
+        {
+          "es": "acercar la imagen, hacer zoom",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.zoom-out",
+      "headword": "zoom out",
+      "kind": "phrase",
+      "forms": ["zoom out", "zooms out", "zoomed out", "zooming out"],
+      "senses": [
+        {
+          "es": "alejar la imagen",
+          "pos": "phrasal verb"
+        }
+      ]
+    }
+  ]
+}

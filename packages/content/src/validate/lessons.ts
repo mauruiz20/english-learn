@@ -1,5 +1,6 @@
 import { LEVELS, type Exercise, type Level } from "../schema";
 import { duplicateErrors } from "./helpers";
+import { isPracticeFile } from "./practice";
 import type { LoadedFile, Rule, ValidationError } from "./types";
 
 function exercisesById(files: readonly LoadedFile[]): Map<string, Exercise> {
@@ -105,6 +106,8 @@ export const validateTopicDeepenCards: Rule = (files) => {
   const firstLinker = new Map<string, string>();
   const errors: ValidationError[] = [];
   for (const { file, data } of files) {
+    // Practice lessons are not on the path: each one may link the cards it practices.
+    if (isPracticeFile(file)) continue;
     (data.lessons ?? []).forEach((lesson, i) => {
       (lesson.deepenCardIds ?? []).forEach((id, j) => {
         const key = `${lesson.level}|${lesson.topic}|${id}`;

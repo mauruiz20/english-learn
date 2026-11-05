@@ -1,0 +1,398 @@
+{
+  "items": [
+    {
+      "id": "b2.phrasal-verbs.fill-in-for",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "fill in for (someone)",
+      "es": "reemplazar, cubrir (a alguien en el trabajo)",
+      "example": {
+        "en": "Can you fill in for me on Friday?",
+        "es": "¿Puedes cubrirme el viernes?"
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.hand-over",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "hand (something) over",
+      "es": "entregar, traspasar",
+      "example": {
+        "en": "Before I leave, I'll hand over my projects to Elena.",
+        "es": "Antes de irme, le pasaré mis proyectos a Elena."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.follow-up-on",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "follow up on (something)",
+      "es": "dar seguimiento a",
+      "example": {
+        "en": "I'm calling to follow up on my job interview.",
+        "es": "Llamo para dar seguimiento a mi entrevista de trabajo."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.draw-up",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "draw (something) up",
+      "es": "redactar, elaborar (un documento, un plan)",
+      "example": {
+        "en": "Our manager drew up a report on the new project.",
+        "es": "Nuestro gerente elaboró un informe sobre el nuevo proyecto."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.sort-out",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "sort (something) out",
+      "es": "resolver, arreglar; ordenar",
+      "example": {
+        "en": "Don't worry, we'll sort out the problem tomorrow.",
+        "es": "No te preocupes, resolveremos el problema mañana."
+      }
+    },
+    {
+      "id": "b2.phrasal-verbs.step-down",
+      "level": "B2",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "step down",
+      "es": "renunciar (a un cargo), dejar el puesto",
+      "example": {
+        "en": "The director is stepping down next month.",
+        "es": "La directora deja su cargo el próximo mes."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.phrasal-verbs.practice-work-vocab-1",
+      "itemIds": ["b2.phrasal-verbs.fill-in-for"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'fill in for someone'.",
+      "options": [
+        "llenar algo por alguien",
+        "reemplazar a alguien en el trabajo",
+        "pagar por alguien",
+        "esperar a alguien"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-choice-1",
+      "itemIds": ["b2.phrasal-verbs.hand-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "He handed over the project to his new assistant.",
+      "options": [
+        "Le pidió el proyecto a su nuevo asistente.",
+        "Le explicó el proyecto a su nuevo asistente.",
+        "Le entregó el proyecto a su nuevo asistente."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-vocab-2",
+      "itemIds": ["b2.phrasal-verbs.follow-up-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'follow up on' mean in 'I'll follow up on your email tomorrow.'?",
+      "options": ["seguir a alguien", "rechazar", "dar seguimiento a", "subir algo"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-cloze-1",
+      "itemIds": ["b2.phrasal-verbs.draw-up"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "The lawyer will ___ up the contract this week.",
+      "answers": ["draw"],
+      "distractors": ["hand", "sort", "step"],
+      "es": "La abogada redactará el contrato esta semana."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-choice-2",
+      "itemIds": ["b2.phrasal-verbs.sort-out"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Don't worry, I'll sort it out.",
+      "options": [
+        "No te preocupes, yo lo busco.",
+        "No te preocupes, yo lo resuelvo.",
+        "No te preocupes, yo lo pago."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-vocab-3",
+      "itemIds": ["b2.phrasal-verbs.step-down"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'step down'.",
+      "options": [
+        "bajar el precio",
+        "ser despedido",
+        "ascender en el trabajo",
+        "renunciar a un cargo"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-choice-3",
+      "itemIds": ["b2.phrasal-verbs.fill-in-for"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Ana is sick, so Daniel is filling in for her today.",
+      "options": [
+        "Ana está enferma, así que Daniel la está cuidando hoy.",
+        "Ana está enferma, así que Daniel le está llenando los formularios hoy.",
+        "Ana está enferma, así que Daniel la está reemplazando hoy."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-write-1",
+      "itemIds": ["b2.phrasal-verbs.step-down"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "El gerente va a renunciar a su puesto el próximo año.",
+      "accepted": [
+        "The manager {is going to {step down|resign}|will {step down|resign}|is {stepping down|resigning}}[ from his position] next year.",
+        "Next year[,] the manager {is going to {step down|resign}|will {step down|resign}|is {stepping down|resigning}}[ from his position].",
+        "The manager {is going to quit|will quit|is quitting}[ his job] next year.",
+        "Next year[,] the manager {is going to quit|will quit|is quitting}[ his job]."
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-order-1",
+      "itemIds": ["b2.phrasal-verbs.hand-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["over", "the", "manager.", "Please", "them", "new", "to", "hand"],
+      "accepted": ["Please hand them over to the new manager."],
+      "es": "Por favor, entrégaselos al nuevo gerente."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-cloze-2",
+      "itemIds": ["b2.phrasal-verbs.follow-up-on"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I applied for the job two weeks ago, so yesterday I ___ up with a phone call.",
+      "answers": ["followed"],
+      "distractors": ["stepped", "handed", "drew"],
+      "es": "Solicité el empleo hace dos semanas, así que ayer le di seguimiento con una llamada."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-choice-4",
+      "itemIds": ["b2.phrasal-verbs.sort-out"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "It took an hour, but we finally sorted out the problem.",
+      "options": [
+        "Tardamos una hora, pero por fin encontramos el problema.",
+        "Tardamos una hora, pero por fin explicamos el problema.",
+        "Tardamos una hora, pero por fin resolvimos el problema."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-order-2",
+      "itemIds": ["b2.phrasal-verbs.draw-up"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["plan.", "draw", "need", "a", "We", "up", "to", "new"],
+      "accepted": ["We need to draw up a new plan."],
+      "es": "Tenemos que elaborar un plan nuevo."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-write-2",
+      "itemIds": ["b2.phrasal-verbs.sort-out"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "¿Puedes resolver este problema?",
+      "accepted": [
+        "{Can|Could} you {sort out this problem|sort this problem out|work out this problem|work this problem out|solve this problem|fix this problem|deal with this problem}?"
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-cloze-3",
+      "itemIds": ["b2.phrasal-verbs.fill-in-for"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Who is ___ in for Mia while she's on vacation?",
+      "answers": ["filling"],
+      "distractors": ["sorting", "drawing", "giving"],
+      "es": "¿Quién está reemplazando a Mia mientras está de vacaciones?"
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-write-3",
+      "itemIds": ["b2.phrasal-verbs.hand-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Entregó las llaves y se fue.",
+      "accepted": [
+        "{He|She} {handed over the keys|handed the keys over|handed in the keys|handed the keys in|turned in the keys|turned the keys in|gave back the keys|gave the keys back|returned the keys} and left."
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-cloze-4",
+      "itemIds": ["b2.phrasal-verbs.step-down", "b1.phrasal-verbs.take-over"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "When the director stepped down, her assistant ___ over the company.",
+      "answers": ["took"],
+      "distractors": ["stepped", "drew", "laid"],
+      "es": "Cuando la directora renunció, su asistente se hizo cargo de la empresa."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-choice-5",
+      "itemIds": ["b2.phrasal-verbs.step-down", "b1.phrasal-verbs.lay-off"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "He didn't step down; the company laid him off.",
+      "options": [
+        "No lo despidieron; él renunció.",
+        "No renunció; la empresa lo despidió.",
+        "No renunció; la empresa lo ascendió."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-cloze-5",
+      "itemIds": ["b2.phrasal-verbs.fill-in-for"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I can't come to the meeting. Can you fill in ___ me?",
+      "answers": ["for"],
+      "distractors": ["to", "by", "out"],
+      "es": "No puedo ir a la reunión. ¿Puedes reemplazarme?"
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-write-4",
+      "itemIds": ["b1.phrasal-verbs.fill-out", "b2.phrasal-verbs.fill-in-for"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Llena este formulario, por favor.",
+      "accepted": [
+        "{Please {fill out|fill in|complete} this form|Please fill this form {out|in}|{Fill out|Fill in|Complete} this form, please|Fill this form {out|in}, please}."
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-order-3",
+      "itemIds": ["b2.phrasal-verbs.sort-out"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["tomorrow.", "it", "We'll", "out", "sort"],
+      "accepted": ["We'll sort it out tomorrow."],
+      "es": "Lo resolveremos mañana."
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-cloze-6",
+      "itemIds": ["b2.phrasal-verbs.sort-out"],
+      "level": "B2",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My office is a mess. I need to ___ out all these papers.",
+      "answers": ["sort"],
+      "distractors": ["work", "step", "draw"],
+      "es": "Mi oficina es un desastre. Necesito ordenar todos estos papeles."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.phrasal-verbs.practice-work-1",
+      "level": "B2",
+      "topic": "phrasal-verbs",
+      "title": "Trabajo: conócelos",
+      "exerciseIds": [
+        "b2.phrasal-verbs.practice-work-vocab-1",
+        "b2.phrasal-verbs.practice-work-choice-1",
+        "b2.phrasal-verbs.practice-work-vocab-2",
+        "b2.phrasal-verbs.practice-work-cloze-1",
+        "b2.phrasal-verbs.practice-work-choice-2",
+        "b2.phrasal-verbs.practice-work-vocab-3",
+        "b2.phrasal-verbs.practice-work-choice-3"
+      ],
+      "newItemIds": [
+        "b2.phrasal-verbs.fill-in-for",
+        "b2.phrasal-verbs.hand-over",
+        "b2.phrasal-verbs.follow-up-on",
+        "b2.phrasal-verbs.draw-up",
+        "b2.phrasal-verbs.sort-out"
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-2",
+      "level": "B2",
+      "topic": "phrasal-verbs",
+      "title": "Trabajo: practícalos",
+      "exerciseIds": [
+        "b2.phrasal-verbs.practice-work-write-1",
+        "b2.phrasal-verbs.practice-work-order-1",
+        "b2.phrasal-verbs.practice-work-cloze-2",
+        "b2.phrasal-verbs.practice-work-choice-4",
+        "b2.phrasal-verbs.practice-work-order-2",
+        "b2.phrasal-verbs.practice-work-write-2",
+        "b2.phrasal-verbs.practice-work-cloze-3",
+        "b2.phrasal-verbs.practice-work-write-3"
+      ],
+      "newItemIds": [
+        "b2.phrasal-verbs.step-down",
+        "b2.phrasal-verbs.hand-over",
+        "b2.phrasal-verbs.sort-out"
+      ]
+    },
+    {
+      "id": "b2.phrasal-verbs.practice-work-3",
+      "level": "B2",
+      "topic": "phrasal-verbs",
+      "title": "Trabajo: no los confundas",
+      "exerciseIds": [
+        "b2.phrasal-verbs.practice-work-cloze-4",
+        "b2.phrasal-verbs.practice-work-choice-5",
+        "b2.phrasal-verbs.practice-work-cloze-5",
+        "b2.phrasal-verbs.practice-work-write-4",
+        "b2.phrasal-verbs.practice-work-order-3",
+        "b2.phrasal-verbs.practice-work-cloze-6"
+      ],
+      "newItemIds": [
+        "b2.phrasal-verbs.step-down",
+        "b1.phrasal-verbs.take-over",
+        "b1.phrasal-verbs.lay-off",
+        "b2.phrasal-verbs.fill-in-for",
+        "b1.phrasal-verbs.fill-out"
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.jobs", "b1.phrasal-verbs.work-and-study"]
+    }
+  ]
+}

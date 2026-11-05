@@ -100,7 +100,7 @@ describe("main(dir)", () => {
         file: "x.json",
         path: "(root)",
         message:
-          'content files must live in data/<a1|a2|b1|b2|c1|placement|glossary>/; "x.json" is at the root',
+          'content files must live in data/<a1|a2|b1|b2|c1|placement|glossary|practice>/; "x.json" is at the root',
       },
     ]);
   });

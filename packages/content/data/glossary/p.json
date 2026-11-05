@@ -225,6 +225,18 @@
       ]
     },
     {
+      "id": "glossary.pass-out",
+      "headword": "pass out",
+      "kind": "phrase",
+      "forms": ["pass out", "passes out", "passed out", "passing out"],
+      "senses": [
+        {
+          "es": "desmayarse",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.passive",
       "headword": "passive",
       "kind": "word",
@@ -337,6 +349,18 @@
         {
           "es": "pagar en efectivo",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pay-off",
+      "headword": "pay off",
+      "kind": "phrase",
+      "forms": ["pay off", "pays off", "paid off", "paying off"],
+      "senses": [
+        {
+          "es": "terminar de pagar (una deuda)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -549,6 +573,18 @@
         {
           "es": "elegir, escoger",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pick-out",
+      "headword": "pick out",
+      "kind": "phrase",
+      "forms": ["pick out", "picks out", "picked out", "picking out"],
+      "senses": [
+        {
+          "es": "elegir, escoger",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -1077,6 +1113,30 @@
       ]
     },
     {
+      "id": "glossary.print",
+      "headword": "print",
+      "kind": "word",
+      "forms": ["print", "prints", "printed", "printing"],
+      "senses": [
+        {
+          "es": "imprimir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.print-out",
+      "headword": "print out",
+      "kind": "phrase",
+      "forms": ["print out", "prints out", "printed out", "printing out"],
+      "senses": [
+        {
+          "es": "imprimir",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.printing-press",
       "headword": "printing press",
       "kind": "phrase",
@@ -1369,6 +1429,18 @@
       ]
     },
     {
+      "id": "glossary.pull",
+      "headword": "pull",
+      "kind": "word",
+      "forms": ["pull", "pulls", "pulled", "pulling"],
+      "senses": [
+        {
+          "es": "jalar, tirar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.put",
       "headword": "put",
       "kind": "word",
@@ -1381,6 +1453,18 @@
         {
           "es": "(put off) posponer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.put-away",
+      "headword": "put away",
+      "kind": "phrase",
+      "forms": ["put away", "puts away", "putting away"],
+      "senses": [
+        {
+          "es": "guardar (en su lugar)",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -1404,6 +1488,18 @@
       "senses": [
         {
           "es": "ponerse (ropa)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.put-through",
+      "headword": "put through",
+      "kind": "phrase",
+      "forms": ["put through", "puts through", "putting through"],
+      "senses": [
+        {
+          "es": "comunicar, pasar la llamada",
           "pos": "phrasal verb"
         }
       ]

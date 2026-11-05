@@ -57,6 +57,18 @@
       ]
     },
     {
+      "id": "glossary.nearly",
+      "headword": "nearly",
+      "kind": "word",
+      "forms": ["nearly"],
+      "senses": [
+        {
+          "es": "casi",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.need",
       "headword": "need",
       "kind": "word",

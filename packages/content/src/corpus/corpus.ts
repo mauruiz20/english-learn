@@ -9,17 +9,24 @@ import type { Card } from "../schema/card";
 import type { Item, Lesson, Passage } from "../schema/entities";
 import type { Exercise } from "../schema/exercise";
 import type { PlacementQuestion } from "../schema/placement";
+import type { PracticeCollection } from "../schema/practice";
 
 export type Corpus = {
   readonly items: readonly Item[];
   readonly exercises: readonly Exercise[];
   readonly passages: readonly Passage[];
+  /** The learning path's lessons (never the practice lessons). */
   readonly lessons: readonly Lesson[];
   readonly placement: readonly PlacementQuestion[];
   readonly itemsById: ReadonlyMap<string, Item>;
   readonly exercisesById: ReadonlyMap<string, Exercise>;
   readonly passagesById: ReadonlyMap<string, Passage>;
   readonly lessonsById: ReadonlyMap<string, Lesson>;
+  /** "Práctica libre" collections, in file order, with their groups in display order. */
+  readonly practice: readonly PracticeCollection[];
+  /** The lessons the practice groups list: kept apart, so path counts never include them. */
+  readonly practiceLessons: readonly Lesson[];
+  readonly practiceLessonsById: ReadonlyMap<string, Lesson>;
   /** Study cards ("Fichas"), in file order. */
   readonly cards: readonly Card[];
   readonly cardsById: ReadonlyMap<string, Card>;
@@ -38,7 +45,11 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
   const items = files.flatMap((f) => f.items ?? []);
   const exercises = files.flatMap((f) => f.exercises ?? []);
   const passages = files.flatMap((f) => f.passages ?? []);
-  const lessons = files.flatMap((f) => f.lessons ?? []);
+  const practice = files.flatMap((f) => f.practice ?? []);
+  const practiceIds = new Set(practice.flatMap((c) => c.groups.flatMap((g) => g.lessonIds)));
+  const allLessons = files.flatMap((f) => f.lessons ?? []);
+  const lessons = allLessons.filter((l) => !practiceIds.has(l.id));
+  const practiceLessons = allLessons.filter((l) => practiceIds.has(l.id));
   const placement = files.flatMap((f) => f.placement ?? []);
   const cards = files.flatMap((f) => f.cards ?? []);
   const glossary: readonly GlossaryEntry[] = files.flatMap((f) => f.glossary ?? []);
@@ -52,6 +63,9 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
     exercisesById: byId(exercises),
     passagesById: byId(passages),
     lessonsById: byId(lessons),
+    practice,
+    practiceLessons,
+    practiceLessonsById: byId(practiceLessons),
     cards,
     cardsById: byId(cards),
     glossary,

@@ -113,6 +113,18 @@
       ]
     },
     {
+      "id": "glossary.warm-up",
+      "headword": "warm up",
+      "kind": "phrase",
+      "forms": ["warm up", "warms up", "warmed up", "warming up"],
+      "senses": [
+        {
+          "es": "calentar (antes de hacer ejercicio)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.warming",
       "headword": "warming",
       "kind": "word",
@@ -785,6 +797,22 @@
       ]
     },
     {
+      "id": "glossary.withdraw",
+      "headword": "withdraw",
+      "kind": "word",
+      "forms": ["withdraw", "withdraws", "withdrew", "withdrawn", "withdrawing"],
+      "senses": [
+        {
+          "es": "retirarse",
+          "pos": "verb"
+        },
+        {
+          "es": "retirar (dinero)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.within",
       "headword": "within",
       "kind": "word",
@@ -1069,6 +1097,26 @@
         {
           "es": "escribir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.write-down",
+      "headword": "write down",
+      "kind": "phrase",
+      "forms": [
+        "write down",
+        "writes down",
+        "wrote down",
+        "written down",
+        "writing down",
+        "write it down",
+        "wrote it down"
+      ],
+      "senses": [
+        {
+          "es": "anotar, apuntar",
+          "pos": "phrasal verb"
         }
       ]
     },

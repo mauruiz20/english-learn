@@ -1,0 +1,397 @@
+{
+  "items": [
+    {
+      "id": "b1.phrasal-verbs.pay-off",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "pay (something) off",
+      "es": "terminar de pagar (una deuda)",
+      "example": {
+        "en": "It took me five years to pay off my car.",
+        "es": "Me tomó cinco años terminar de pagar mi auto."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.pick-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "pick (something) out",
+      "es": "elegir, escoger",
+      "example": {
+        "en": "Help me pick out a shirt for the party.",
+        "es": "Ayúdame a elegir una camisa para la fiesta."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.shop-around",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "shop around",
+      "es": "comparar precios (en varias tiendas)",
+      "example": {
+        "en": "Shop around before you buy a new phone.",
+        "es": "Compara precios antes de comprar un teléfono nuevo."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.rip-off",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "rip (someone) off",
+      "es": "estafar, cobrar de más",
+      "example": {
+        "en": "That taxi driver ripped us off.",
+        "es": "Ese taxista nos cobró de más."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.set-aside",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "set (something) aside",
+      "es": "apartar, reservar (dinero)",
+      "example": {
+        "en": "I set aside some money every month for my vacation.",
+        "es": "Aparto algo de dinero cada mes para mis vacaciones."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.chip-in",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "chip in",
+      "es": "poner dinero (entre varios)",
+      "example": {
+        "en": "We all chipped in to buy her a present.",
+        "es": "Todos pusimos dinero para comprarle un regalo."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.phrasal-verbs.practice-money-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.pay-off"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'pay off' mean in 'I finally paid off my credit card.'?",
+      "options": ["pagar con tarjeta", "terminar de pagar", "pedir dinero prestado", "cobrar"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-choice-1",
+      "itemIds": ["b1.phrasal-verbs.pick-out"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "She picked out a nice shirt for her dad.",
+      "options": [
+        "Recogió una camisa bonita para su papá.",
+        "Lavó una camisa bonita de su papá.",
+        "Eligió una camisa bonita para su papá."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-vocab-2",
+      "itemIds": ["b1.phrasal-verbs.shop-around"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'shop around'.",
+      "options": [
+        "comparar precios en varias tiendas",
+        "ir de compras con amigos",
+        "comprar cosas sin pensar",
+        "trabajar en una tienda"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-choice-2",
+      "itemIds": ["b1.phrasal-verbs.rip-off"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "Twenty dollars for a coffee? They ripped you off!",
+      "options": [
+        "¿Veinte dólares por un café? ¡Te invitaron!",
+        "¿Veinte dólares por un café? ¡Te cobraron de más!",
+        "¿Veinte dólares por un café? ¡Te devolvieron el dinero!"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-vocab-3",
+      "itemIds": ["b1.phrasal-verbs.set-aside"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'set aside' mean in 'I set aside fifty dollars a week.'?",
+      "options": ["gastar", "pedir prestado", "perder", "apartar, reservar"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.chip-in"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Let's all chip ___ and buy lunch for the team.",
+      "answers": ["in"],
+      "distractors": ["out", "off"],
+      "es": "Pongamos dinero entre todos y compremos el almuerzo para el equipo."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-choice-3",
+      "itemIds": ["b1.phrasal-verbs.chip-in"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "If everyone chips in ten dollars, we can buy her a gift.",
+      "options": [
+        "Si cada uno pone diez dólares, podemos comprarle un regalo.",
+        "Si cada uno ahorra diez dólares, podemos comprarle un regalo.",
+        "Si ella nos da diez dólares, podemos comprarle un regalo."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.chip-in"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "My coworkers ___ in to buy me a birthday cake.",
+      "answers": ["chipped"],
+      "distractors": ["paid", "gave"],
+      "es": "Mis compañeros de trabajo pusieron dinero para comprarme un pastel de cumpleaños."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-order-1",
+      "itemIds": ["b1.phrasal-verbs.pay-off"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["year.", "car", "off", "We", "last", "the", "paid"],
+      "accepted": ["We paid off the car last year.", "We paid the car off last year."],
+      "es": "Terminamos de pagar el auto el año pasado."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-write-1",
+      "itemIds": ["b1.phrasal-verbs.pick-out"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Ayúdame a elegir un regalo para mi mamá.",
+      "accepted": [
+        "Help me [to ]{pick out a {gift|present}|pick a {gift|present} out|pick a {gift|present}|choose a {gift|present}} for my mom."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-choice-4",
+      "itemIds": ["b1.phrasal-verbs.set-aside"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I'm setting aside money for a new car.",
+      "options": [
+        "Estoy gastando dinero en un auto nuevo.",
+        "Estoy apartando dinero para un auto nuevo.",
+        "Estoy pidiendo dinero para un auto nuevo."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-order-2",
+      "itemIds": ["b1.phrasal-verbs.rip-off"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["off.", "think", "ripped", "mechanic", "I", "the", "me"],
+      "accepted": ["I think the mechanic ripped me off."],
+      "es": "Creo que el mecánico me cobró de más."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.shop-around"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "Don't buy the first TV you see. Shop ___ first.",
+      "answers": ["around"],
+      "distractors": ["over", "out"],
+      "es": "No compres la primera tele que veas. Compara precios primero."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-write-2",
+      "itemIds": ["b1.phrasal-verbs.set-aside"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Aparto cien dólares cada mes.",
+      "accepted": [
+        "I {set|put} aside {a hundred|one hundred|100} dollars {every|each|a} month.",
+        "I {set|put} {a hundred|one hundred|100} dollars aside {every|each|a} month.",
+        "I save {a hundred|one hundred|100} dollars {every|each|a} month."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-cloze-4",
+      "itemIds": ["b1.phrasal-verbs.pay-off"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "It took us ten years to pay ___ the house.",
+      "answers": ["off"],
+      "distractors": ["back", "out"],
+      "es": "Nos tomó diez años terminar de pagar la casa."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-vocab-4",
+      "itemIds": ["b1.phrasal-verbs.pick-out"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'pick out' mean in 'Pick out the shoes you like.'?",
+      "options": ["recoger", "probarse", "elegir", "devolver"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-choice-5",
+      "itemIds": ["b1.phrasal-verbs.pick-out", "b1.phrasal-verbs.pick-up"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translation_choice",
+      "sentence": "I picked out a gift, and my brother picked it up from the store.",
+      "options": [
+        "Yo recogí un regalo, y mi hermano lo eligió en la tienda.",
+        "Yo elegí un regalo, y mi hermano lo devolvió a la tienda.",
+        "Yo elegí un regalo, y mi hermano lo recogió en la tienda."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-order-3",
+      "itemIds": ["b1.phrasal-verbs.set-aside"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "word_order",
+      "tokens": ["for", "aside", "trip.", "I", "it", "the", "set"],
+      "accepted": ["I set it aside for the trip."],
+      "es": "Lo aparté para el viaje."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-write-3",
+      "itemIds": ["b1.phrasal-verbs.shop-around"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "translate_write",
+      "es": "Siempre comparo precios antes de comprar algo caro.",
+      "accepted": [
+        "I always {shop around|compare prices} before {buying|I buy} something expensive."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-cloze-5",
+      "itemIds": ["b1.phrasal-verbs.set-aside"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "cloze",
+      "sentence": "I ___ aside a little money every week for emergencies.",
+      "answers": ["set"],
+      "distractors": ["save", "pay"],
+      "es": "Aparto un poco de dinero cada semana para emergencias."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-vocab-5",
+      "itemIds": ["b1.phrasal-verbs.rip-off"],
+      "level": "B1",
+      "source": { "kind": "original" },
+      "type": "vocab",
+      "prompt": "What does 'rip off' mean in 'That hotel really ripped us off.'?",
+      "options": [
+        "romperle algo a alguien",
+        "cobrarle de más a alguien",
+        "atender mal a alguien",
+        "devolverle el dinero a alguien"
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.phrasal-verbs.practice-money-1",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Dinero y compras: conócelos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-money-vocab-1",
+        "b1.phrasal-verbs.practice-money-choice-1",
+        "b1.phrasal-verbs.practice-money-vocab-2",
+        "b1.phrasal-verbs.practice-money-choice-2",
+        "b1.phrasal-verbs.practice-money-vocab-3",
+        "b1.phrasal-verbs.practice-money-cloze-1",
+        "b1.phrasal-verbs.practice-money-choice-3"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.pay-off",
+        "b1.phrasal-verbs.pick-out",
+        "b1.phrasal-verbs.shop-around",
+        "b1.phrasal-verbs.rip-off",
+        "b1.phrasal-verbs.set-aside"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-2",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Dinero y compras: practícalos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-money-cloze-2",
+        "b1.phrasal-verbs.practice-money-order-1",
+        "b1.phrasal-verbs.practice-money-write-1",
+        "b1.phrasal-verbs.practice-money-choice-4",
+        "b1.phrasal-verbs.practice-money-order-2",
+        "b1.phrasal-verbs.practice-money-cloze-3",
+        "b1.phrasal-verbs.practice-money-write-2"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.chip-in",
+        "b1.phrasal-verbs.set-aside",
+        "b1.phrasal-verbs.pay-off",
+        "b1.phrasal-verbs.pick-out",
+        "b1.phrasal-verbs.rip-off"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-money-3",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Dinero y compras: no los confundas",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-money-cloze-4",
+        "b1.phrasal-verbs.practice-money-vocab-4",
+        "b1.phrasal-verbs.practice-money-choice-5",
+        "b1.phrasal-verbs.practice-money-order-3",
+        "b1.phrasal-verbs.practice-money-write-3",
+        "b1.phrasal-verbs.practice-money-cloze-5",
+        "b1.phrasal-verbs.practice-money-vocab-5"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.pay-off",
+        "b1.phrasal-verbs.pick-out",
+        "b1.phrasal-verbs.pick-up",
+        "b1.phrasal-verbs.set-aside",
+        "b1.phrasal-verbs.rip-off"
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.travel"]
+    }
+  ]
+}

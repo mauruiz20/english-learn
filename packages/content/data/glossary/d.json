@@ -145,6 +145,22 @@
       ]
     },
     {
+      "id": "glossary.deal",
+      "headword": "deal",
+      "kind": "word",
+      "forms": ["deal", "deals", "dealt", "dealing"],
+      "senses": [
+        {
+          "es": "ocuparse (deal with: ocuparse de)",
+          "pos": "verb"
+        },
+        {
+          "es": "trato, acuerdo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.deal-with",
       "headword": "deal with",
       "kind": "phrase",
@@ -368,6 +384,30 @@
       "senses": [
         {
           "es": "negar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.department",
+      "headword": "department",
+      "kind": "word",
+      "forms": ["department", "departments"],
+      "senses": [
+        {
+          "es": "departamento, área",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.depend",
+      "headword": "depend",
+      "kind": "word",
+      "forms": ["depend", "depends", "depended", "depending"],
+      "senses": [
+        {
+          "es": "depender",
           "pos": "verb"
         }
       ]
@@ -925,6 +965,18 @@
       ]
     },
     {
+      "id": "glossary.draw-up",
+      "headword": "draw up",
+      "kind": "phrase",
+      "forms": ["draw up", "draws up", "drew up", "drawn up", "drawing up"],
+      "senses": [
+        {
+          "es": "redactar, elaborar (un documento, un plan)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.dream",
       "headword": "dream",
       "kind": "word",
@@ -989,6 +1041,55 @@
         {
           "es": "conductor",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drop",
+      "headword": "drop",
+      "kind": "word",
+      "forms": ["drop", "drops", "dropped", "dropping"],
+      "senses": [
+        {
+          "es": "dejar caer, caerse",
+          "pos": "verb"
+        },
+        {
+          "es": "gota",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drop-off",
+      "headword": "drop off",
+      "kind": "phrase",
+      "forms": ["drop off", "drops off", "dropped off", "dropping off"],
+      "senses": [
+        {
+          "es": "dejar (a alguien o algo en un lugar)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.drop-out-of",
+      "headword": "drop out of",
+      "kind": "phrase",
+      "forms": [
+        "drop out of",
+        "drops out of",
+        "dropped out of",
+        "dropping out of",
+        "drop out",
+        "drops out",
+        "dropped out",
+        "dropping out"
+      ],
+      "senses": [
+        {
+          "es": "abandonar, dejar (los estudios)",
+          "pos": "phrasal verb"
         }
       ]
     },

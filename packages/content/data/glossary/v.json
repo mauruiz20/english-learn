@@ -173,6 +173,18 @@
       ]
     },
     {
+      "id": "glossary.volume",
+      "headword": "volume",
+      "kind": "word",
+      "forms": ["volume"],
+      "senses": [
+        {
+          "es": "volumen",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.vs",
       "headword": "vs",
       "kind": "word",

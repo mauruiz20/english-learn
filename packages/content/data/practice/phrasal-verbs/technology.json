@@ -1,0 +1,452 @@
+{
+  "items": [
+    {
+      "id": "b1.phrasal-verbs.shut-down",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "shut (something) down",
+      "es": "apagar (una computadora o un sistema); cerrar (una empresa)",
+      "example": {
+        "en": "Don't shut down the computer while it's updating.",
+        "es": "No apagues la computadora mientras se está actualizando."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.print-out",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "print (something) out",
+      "es": "imprimir",
+      "example": {
+        "en": "Can you print out the tickets for me?",
+        "es": "¿Me puedes imprimir los boletos?"
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.scroll-down",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "scroll down",
+      "es": "desplazarse hacia abajo (en la pantalla)",
+      "example": {
+        "en": "Scroll down to see the prices.",
+        "es": "Desplázate hacia abajo para ver los precios."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.zoom-in",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "zoom in",
+      "es": "acercar la imagen, hacer zoom",
+      "example": {
+        "en": "Zoom in on the map to see the street names.",
+        "es": "Acerca el mapa para ver los nombres de las calles."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.type-in",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "type (something) in",
+      "es": "escribir, ingresar (con el teclado)",
+      "example": {
+        "en": "Type in your password to continue.",
+        "es": "Escribe tu contraseña para continuar."
+      }
+    },
+    {
+      "id": "b1.phrasal-verbs.free-up",
+      "level": "B1",
+      "topics": ["phrasal-verbs"],
+      "kind": "phrase",
+      "term": "free (something) up",
+      "es": "liberar (espacio, tiempo)",
+      "example": {
+        "en": "I deleted some old videos to free up space on my phone.",
+        "es": "Borré algunos videos viejos para liberar espacio en mi teléfono."
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b1.phrasal-verbs.practice-technology-vocab-1",
+      "itemIds": ["b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'shut down'.",
+      "options": ["cerrar la puerta", "apagar (una computadora)", "bajar el volumen", "reiniciar"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-choice-1",
+      "itemIds": ["b1.phrasal-verbs.print-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Could you print out this page for me?",
+      "options": [
+        "¿Podrías leerme esta página?",
+        "¿Podrías enviarme esta página?",
+        "¿Podrías imprimirme esta página?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-vocab-2",
+      "itemIds": ["b1.phrasal-verbs.scroll-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'scroll down' mean in 'Scroll down to see more photos.'?",
+      "options": [
+        "apagar la pantalla",
+        "subir una foto",
+        "desplazarse hacia abajo en la pantalla",
+        "cerrar la página"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-cloze-1",
+      "itemIds": ["b1.phrasal-verbs.zoom-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The words are too small to read. Zoom ___ on the picture.",
+      "answers": ["in"],
+      "distractors": ["out", "off", "down"],
+      "es": "Las letras son demasiado pequeñas para leerlas. Haz zoom en la imagen."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-choice-2",
+      "itemIds": ["b1.phrasal-verbs.type-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Type in the code we sent to your phone.",
+      "options": [
+        "Lee el código que te enviamos a tu teléfono.",
+        "Escribe el código que te enviamos a tu teléfono.",
+        "Borra el código que te enviamos a tu teléfono."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-vocab-3",
+      "itemIds": ["b1.phrasal-verbs.free-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'free up'.",
+      "options": ["regalar", "descargar gratis", "llenar", "liberar (espacio o tiempo)"],
+      "answerIndex": 3
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-choice-3",
+      "itemIds": ["b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Remember to shut down the computer before you leave.",
+      "options": [
+        "Recuerda apagar la computadora antes de irte.",
+        "Recuerda prender la computadora antes de irte.",
+        "Recuerda limpiar la computadora antes de irte."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-write-1",
+      "itemIds": ["b1.phrasal-verbs.free-up"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Necesito liberar espacio en mi teléfono.",
+      "accepted": [
+        "I need to {free up|clear|make} [some ]space on my [cell ]phone.",
+        "I need to free [some ]space up on my [cell ]phone."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-order-1",
+      "itemIds": ["b1.phrasal-verbs.print-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["out", "yesterday.", "them", "I", "printed"],
+      "accepted": ["I printed them out yesterday."],
+      "es": "Los imprimí ayer."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-cloze-2",
+      "itemIds": ["b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My laptop got too hot and ___ down.",
+      "answers": ["shut"],
+      "distractors": ["took", "turned", "put"],
+      "es": "Mi laptop se calentó demasiado y se apagó."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-choice-4",
+      "itemIds": ["b1.phrasal-verbs.zoom-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If you zoom in, you can see the street names.",
+      "options": [
+        "Si alejas la imagen, puedes ver los nombres de las calles.",
+        "Si acercas la imagen, puedes ver los nombres de las calles.",
+        "Si bajas en la página, puedes ver los nombres de las calles."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-order-2",
+      "itemIds": ["b1.phrasal-verbs.type-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["in", "again.", "type", "Please", "it"],
+      "accepted": ["Please type it in again."],
+      "es": "Por favor, vuelve a escribirla."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-write-2",
+      "itemIds": ["b1.phrasal-verbs.print-out"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Puedes imprimir el informe?",
+      "accepted": [
+        "{Can|Could} you {print out the report|print the report out|print the report}[ for me]?"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-cloze-3",
+      "itemIds": ["b1.phrasal-verbs.scroll-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The prices are at the bottom of the page, so you need to scroll ___.",
+      "answers": ["down"],
+      "distractors": ["up", "in", "out"],
+      "es": "Los precios están al final de la página, así que tienes que desplazarte hacia abajo."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-write-3",
+      "itemIds": ["b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Apaga la computadora antes de irte.",
+      "accepted": [
+        "{Shut down the computer|Shut the computer down|Shut off the computer|Shut the computer off|Turn off the computer|Turn the computer off} before you {leave|go}."
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-cloze-4",
+      "itemIds": ["a2.phrasal-verbs.turn-off", "b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's late. Please ___ the lights in the kitchen.",
+      "answers": ["turn off"],
+      "distractors": ["shut down", "log out of", "type in"],
+      "es": "Es tarde. Por favor, apaga las luces de la cocina."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-choice-5",
+      "itemIds": ["b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The store shut down last year.",
+      "options": [
+        "La tienda se apagó el año pasado.",
+        "La tienda cerró sesión el año pasado.",
+        "La tienda cerró el año pasado."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-order-3",
+      "itemIds": ["b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["it", "down", "you", "shut", "me?", "Can", "for"],
+      "accepted": ["Can you shut it down for me?"],
+      "es": "¿Puedes apagarla por mí?"
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-cloze-5",
+      "itemIds": ["b1.phrasal-verbs.log-out", "b1.phrasal-verbs.shut-down"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "On a shared computer, always ___ of your email.",
+      "answers": ["log out"],
+      "distractors": ["shut down", "turn off", "zoom out"],
+      "es": "En una computadora compartida, cierra siempre la sesión de tu correo."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-choice-6",
+      "itemIds": ["b1.phrasal-verbs.zoom-in"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Zoom out to see the whole map.",
+      "options": [
+        "Aleja la imagen para ver todo el mapa.",
+        "Acerca la imagen para ver todo el mapa.",
+        "Desplázate hacia abajo para ver todo el mapa."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-cloze-6",
+      "itemIds": ["b1.phrasal-verbs.type-in", "b1.phrasal-verbs.sign-up-for"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "To create an account, ___ your name and email address.",
+      "answers": ["type in"],
+      "distractors": ["sign up for", "log out of", "shut down"],
+      "es": "Para crear una cuenta, escribe tu nombre y tu dirección de correo electrónico."
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-write-4",
+      "itemIds": ["b1.phrasal-verbs.sign-up-for"],
+      "level": "B1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me inscribí en un curso de inglés en línea.",
+      "accepted": [
+        "I {signed up for|registered for|enrolled in} an online English {course|class}.",
+        "I {signed up for|registered for|enrolled in} an English {course|class} online."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b1.phrasal-verbs.practice-technology-1",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Tecnología: conócelos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-technology-vocab-1",
+        "b1.phrasal-verbs.practice-technology-choice-1",
+        "b1.phrasal-verbs.practice-technology-vocab-2",
+        "b1.phrasal-verbs.practice-technology-cloze-1",
+        "b1.phrasal-verbs.practice-technology-choice-2",
+        "b1.phrasal-verbs.practice-technology-vocab-3",
+        "b1.phrasal-verbs.practice-technology-choice-3"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.shut-down",
+        "b1.phrasal-verbs.print-out",
+        "b1.phrasal-verbs.scroll-down",
+        "b1.phrasal-verbs.zoom-in",
+        "b1.phrasal-verbs.type-in"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-2",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Tecnología: practícalos",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-technology-write-1",
+        "b1.phrasal-verbs.practice-technology-order-1",
+        "b1.phrasal-verbs.practice-technology-cloze-2",
+        "b1.phrasal-verbs.practice-technology-choice-4",
+        "b1.phrasal-verbs.practice-technology-order-2",
+        "b1.phrasal-verbs.practice-technology-write-2",
+        "b1.phrasal-verbs.practice-technology-cloze-3",
+        "b1.phrasal-verbs.practice-technology-write-3"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.free-up",
+        "b1.phrasal-verbs.print-out",
+        "b1.phrasal-verbs.shut-down",
+        "b1.phrasal-verbs.type-in"
+      ]
+    },
+    {
+      "id": "b1.phrasal-verbs.practice-technology-3",
+      "level": "B1",
+      "topic": "phrasal-verbs",
+      "title": "Tecnología: no los confundas",
+      "exerciseIds": [
+        "b1.phrasal-verbs.practice-technology-cloze-4",
+        "b1.phrasal-verbs.practice-technology-choice-5",
+        "b1.phrasal-verbs.practice-technology-order-3",
+        "b1.phrasal-verbs.practice-technology-cloze-5",
+        "b1.phrasal-verbs.practice-technology-choice-6",
+        "b1.phrasal-verbs.practice-technology-cloze-6",
+        "b1.phrasal-verbs.practice-technology-write-4"
+      ],
+      "newItemIds": [
+        "b1.phrasal-verbs.shut-down",
+        "b1.phrasal-verbs.log-out",
+        "b1.phrasal-verbs.zoom-in",
+        "b1.phrasal-verbs.type-in",
+        "b1.phrasal-verbs.sign-up-for"
+      ],
+      "deepenCardIds": ["b1.phrasal-verbs.technology", "a2.phrasal-verbs.daily-routine"]
+    }
+  ]
+}
