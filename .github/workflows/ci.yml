@@ -94,10 +94,16 @@ jobs:
 
   # Playwright on Chromium + WebKit, split in 4 shards. Each shard writes a blob report
   # (playwright.config.ts) that web-e2e-report merges into one HTML report.
+  # It runs in Playwright's own image, which ships the browsers and their OS libraries, instead
+  # of `playwright install --with-deps`, whose apt step usually took 40 s but once 12 minutes.
+  # The tag must match the @playwright/test version in pnpm-lock.yaml: on a mismatch Playwright
+  # fails at once with "Executable doesn't exist". The same image is the local Linux WebKit repro.
   web-e2e-shard:
     name: web-e2e (shard ${{ matrix.shard }}/4)
     needs: web-e2e-build
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
     timeout-minutes: 20
     strategy:
       fail-fast: false
@@ -111,8 +117,6 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Install Chromium and WebKit
-        run: pnpm --filter @english-learn/mobile exec playwright install --with-deps chromium webkit
       - uses: actions/download-artifact@v8
         with:
           name: dist-e2e
