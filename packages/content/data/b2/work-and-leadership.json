@@ -1,0 +1,413 @@
+{
+  "items": [
+    {
+      "id": "b2.work-and-leadership.delegate",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "kind": "word",
+      "term": "delegate",
+      "es": "delegar",
+      "example": {
+        "en": "A good manager knows when to delegate.",
+        "es": "Un buen jefe sabe cuándo delegar."
+      }
+    },
+    {
+      "id": "b2.work-and-leadership.workload",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "kind": "word",
+      "term": "workload",
+      "es": "carga de trabajo",
+      "example": {
+        "en": "Her workload doubled after the reorganization.",
+        "es": "Su carga de trabajo se duplicó después de la reorganización."
+      }
+    },
+    {
+      "id": "b2.work-and-leadership.staff",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "kind": "word",
+      "term": "staff",
+      "es": "personal, empleados",
+      "example": {
+        "en": "The new manager met every member of staff in her first week.",
+        "es": "La nueva gerente conoció a todos los empleados en su primera semana."
+      }
+    },
+    {
+      "id": "b2.work-and-leadership.feedback",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "kind": "word",
+      "term": "feedback",
+      "es": "comentarios, opinión (sobre un trabajo)",
+      "example": {
+        "en": "Thanks for your feedback on my report.",
+        "es": "Gracias por tus comentarios sobre mi informe."
+      }
+    },
+    {
+      "id": "b2.work-and-leadership.meet-a-deadline",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "kind": "phrase",
+      "term": "meet a deadline",
+      "es": "cumplir con un plazo"
+    },
+    {
+      "id": "b2.work-and-leadership.take-responsibility",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "kind": "phrase",
+      "term": "take responsibility for",
+      "es": "asumir la responsabilidad de"
+    },
+    {
+      "id": "b2.work-and-leadership.in-charge-of",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "kind": "phrase",
+      "term": "be in charge of",
+      "es": "estar a cargo de"
+    }
+  ],
+  "passages": [
+    {
+      "id": "b2.work-and-leadership.new-manager",
+      "level": "B2",
+      "topics": ["work-and-leadership"],
+      "title": "Learning to lead",
+      "text": "When Laura was asked to manage a team of eight designers, she was nervous: she had never been anyone's boss before. In her first month, she tried to do everything herself, and her workload soon became impossible. An older colleague pointed out that a good leader does not do all the work; she makes sure the work gets done. So Laura learned to delegate. She gave each person a clear task and trusted them to carry it out in their own way. She also changed the weekly meeting. Instead of talking for an hour herself, she asked everyone to bring up one problem and one idea. At first the staff were quiet, but soon the meeting became the most useful hour of the week. Laura also learned to give feedback in private and to thank people in public. Six months later, the team was meeting every deadline, and two designers who had planned to leave decided to stay. \"I'm not the smartest person in the room,\" Laura says. \"My job is to help the smartest people do their best work.\"",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "b2.work-and-leadership.vocab-001",
+      "itemIds": ["b2.work-and-leadership.delegate"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'delegate' mean in 'A good manager knows when to delegate'?",
+      "options": ["delatar", "dedicarse", "delegar", "despedir"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.work-and-leadership.cloze-001",
+      "itemIds": ["b2.phrasal-verbs.carry-out"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 253586,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I am determined to carry ___ this plan.",
+      "answers": ["out"],
+      "distractors": ["in", "up", "away"],
+      "es": "Estoy decidido a llevar a cabo este plan."
+    },
+    {
+      "id": "b2.work-and-leadership.order-001",
+      "itemIds": ["b2.phrasal-verbs.point-out"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 290709,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": [
+        "the",
+        "He",
+        "would",
+        "plan",
+        "out",
+        "money.",
+        "pointed",
+        "a",
+        "that",
+        "cost",
+        "of",
+        "lot"
+      ],
+      "accepted": ["He pointed out that the plan would cost a lot of money."],
+      "es": "Señaló que el plan costaría mucho dinero."
+    },
+    {
+      "id": "b2.work-and-leadership.choice-001",
+      "itemIds": ["b2.phrasal-verbs.bring-up"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "She brought up the problem at the end of the meeting.",
+      "options": [
+        "Resolvió el problema al final de la reunión.",
+        "Planteó el problema al final de la reunión.",
+        "Se olvidó del problema al final de la reunión.",
+        "Causó el problema al final de la reunión."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.work-and-leadership.reading-001",
+      "itemIds": [
+        "b2.work-and-leadership.workload",
+        "b2.work-and-leadership.staff",
+        "b2.phrasal-verbs.bring-up"
+      ],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "b2.work-and-leadership.new-manager",
+      "questions": [
+        {
+          "prompt": "Why did Laura's workload become impossible at first?",
+          "options": [
+            "She tried to do everything herself.",
+            "Her team was too small.",
+            "Her boss gave her extra projects."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What did Laura ask everyone to do at the weekly meeting?",
+          "options": [
+            "Talk about their work for an hour",
+            "Thank their colleagues in public",
+            "Bring up one problem and one idea"
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What happened six months later?",
+          "options": [
+            "Two designers left the team.",
+            "The team was meeting every deadline.",
+            "Laura became the boss of the whole company."
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "b2.work-and-leadership.write-001",
+      "itemIds": ["b2.work-and-leadership.workload", "b2.work-and-leadership.delegate"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi carga de trabajo es demasiado grande, así que voy a delegar algunas tareas.",
+      "accepted": [
+        "My workload is too {big|heavy|large}[,] so I{'m going to| will} delegate some {tasks|of my tasks}."
+      ]
+    },
+    {
+      "id": "b2.work-and-leadership.vocab-002",
+      "itemIds": ["b2.work-and-leadership.workload"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'carga de trabajo'.",
+      "options": ["workplace", "workload", "workshop", "overtime"],
+      "answerIndex": 1
+    },
+    {
+      "id": "b2.work-and-leadership.vocab-003",
+      "itemIds": ["b2.work-and-leadership.feedback"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'feedback' mean in 'Thanks for your feedback on my report'?",
+      "options": ["alimento", "regreso", "comentarios, opinión", "aplauso"],
+      "answerIndex": 2
+    },
+    {
+      "id": "b2.work-and-leadership.cloze-002",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 16240,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "You should have ___ the meeting.",
+      "answers": ["attended"],
+      "distractors": ["attend", "attending", "attends"],
+      "es": "Deberías haber asistido a la reunión."
+    },
+    {
+      "id": "b2.work-and-leadership.cloze-003",
+      "itemIds": ["b2.work-and-leadership.take-responsibility"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "As the team leader, she took ___ for the mistake.",
+      "answers": ["responsibility"],
+      "distractors": ["care", "part", "place"],
+      "es": "Como líder del equipo, asumió la responsabilidad del error."
+    },
+    {
+      "id": "b2.work-and-leadership.cloze-004",
+      "itemIds": ["b2.work-and-leadership.in-charge-of"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Who is in ___ of the new project?",
+      "answers": ["charge"],
+      "distractors": ["change", "head", "lead"],
+      "es": "¿Quién está a cargo del nuevo proyecto?"
+    },
+    {
+      "id": "b2.work-and-leadership.order-002",
+      "itemIds": ["b2.grammar.should-have", "b2.work-and-leadership.meet-a-deadline"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "deadline",
+        "have",
+        "We",
+        "a",
+        "shouldn't",
+        "we",
+        "promised",
+        "couldn't",
+        "meet.",
+        "that"
+      ],
+      "accepted": ["We shouldn't have promised a deadline that we couldn't meet."],
+      "es": "No deberíamos haber prometido un plazo que no podíamos cumplir."
+    },
+    {
+      "id": "b2.work-and-leadership.choice-002",
+      "itemIds": ["b2.work-and-leadership.meet-a-deadline"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If we don't get more help, we won't meet the deadline.",
+      "options": [
+        "Si no recibimos más ayuda, no conoceremos la fecha.",
+        "Si recibimos más ayuda, cumpliremos con el plazo.",
+        "Si no recibimos más ayuda, no tendremos la reunión.",
+        "Si no recibimos más ayuda, no cumpliremos con el plazo."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "b2.work-and-leadership.write-002",
+      "itemIds": ["b2.grammar.should-have"],
+      "level": "B2",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 30410,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Debería haberme ido antes.",
+      "accepted": ["I should have {left|gone} {earlier|sooner}."]
+    },
+    {
+      "id": "b2.work-and-leadership.write-003",
+      "itemIds": ["b2.work-and-leadership.take-responsibility", "b2.work-and-leadership.feedback"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La gerente escuchó nuestros comentarios y asumió la responsabilidad del error.",
+      "accepted": [
+        "The manager listened to our feedback and {took|accepted} responsibility for the {mistake|error}."
+      ]
+    },
+    {
+      "id": "b2.work-and-leadership.vocab-004",
+      "itemIds": ["b2.work-and-leadership.staff"],
+      "level": "B2",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'staff' mean in 'The hotel staff were very friendly'?",
+      "options": ["bastón", "personal, empleados", "equipo de fútbol", "clientes"],
+      "answerIndex": 1
+    }
+  ],
+  "lessons": [
+    {
+      "id": "b2.work-and-leadership.lesson-001",
+      "level": "B2",
+      "topic": "work-and-leadership",
+      "title": "Aprender a liderar",
+      "exerciseIds": [
+        "b2.work-and-leadership.vocab-001",
+        "b2.work-and-leadership.cloze-001",
+        "b2.work-and-leadership.order-001",
+        "b2.work-and-leadership.choice-001",
+        "b2.work-and-leadership.reading-001",
+        "b2.work-and-leadership.write-001",
+        "b2.work-and-leadership.vocab-002"
+      ],
+      "newItemIds": [
+        "b2.phrasal-verbs.carry-out",
+        "b2.phrasal-verbs.point-out",
+        "b2.phrasal-verbs.bring-up",
+        "b2.work-and-leadership.delegate",
+        "b2.work-and-leadership.workload"
+      ],
+      "deepenCardIds": ["b2.phrasal-verbs.ideas-and-results"]
+    },
+    {
+      "id": "b2.work-and-leadership.lesson-002",
+      "level": "B2",
+      "topic": "work-and-leadership",
+      "title": "Errores y lecciones",
+      "exerciseIds": [
+        "b2.work-and-leadership.vocab-003",
+        "b2.work-and-leadership.cloze-002",
+        "b2.work-and-leadership.cloze-003",
+        "b2.work-and-leadership.cloze-004",
+        "b2.work-and-leadership.order-002",
+        "b2.work-and-leadership.choice-002",
+        "b2.work-and-leadership.write-002",
+        "b2.work-and-leadership.write-003"
+      ],
+      "newItemIds": [
+        "b2.grammar.should-have",
+        "b2.work-and-leadership.take-responsibility",
+        "b2.work-and-leadership.in-charge-of",
+        "b2.work-and-leadership.meet-a-deadline",
+        "b2.work-and-leadership.feedback"
+      ],
+      "deepenCardIds": ["b2.grammar.should-have"]
+    }
+  ]
+}

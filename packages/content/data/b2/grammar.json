@@ -3,7 +3,7 @@
     {
       "id": "b2.grammar.be-worth",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "travel-and-identity"],
       "kind": "grammar",
       "term": "be worth + -ing",
       "es": "valer la pena + infinitivo"
@@ -11,7 +11,7 @@
     {
       "id": "b2.grammar.be-used-to",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "health-and-psychology"],
       "kind": "grammar",
       "term": "be used to + -ing",
       "es": "estar acostumbrado a"
@@ -19,7 +19,7 @@
     {
       "id": "b2.grammar.get-used-to",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "health-and-psychology", "travel-and-identity"],
       "kind": "grammar",
       "term": "get used to + -ing",
       "es": "acostumbrarse a"
@@ -27,7 +27,7 @@
     {
       "id": "b2.grammar.third-conditional",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "money-and-economy"],
       "kind": "grammar",
       "term": "If I had known, I would have…",
       "es": "tercer condicional (si hubiera…, habría…)"
@@ -35,7 +35,7 @@
     {
       "id": "b2.grammar.mixed-conditionals",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "lifelong-learning", "science-and-ethics"],
       "kind": "grammar",
       "term": "If I had…, I would be… now",
       "es": "condicional mixto (si hubiera…, ahora sería…)"
@@ -43,7 +43,7 @@
     {
       "id": "b2.grammar.wish-if-only",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "health-and-psychology", "lifelong-learning"],
       "kind": "grammar",
       "term": "I wish… / If only…",
       "es": "ojalá…, si tan solo…"
@@ -51,7 +51,7 @@
     {
       "id": "b2.grammar.should-have",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "work-and-leadership"],
       "kind": "grammar",
       "term": "should have done / could have done",
       "es": "debería haber hecho / podría haber hecho"
@@ -59,7 +59,7 @@
     {
       "id": "b2.grammar.past-deduction",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "media-and-misinformation"],
       "kind": "grammar",
       "term": "must have / might have / can't have done",
       "es": "seguramente / quizás / es imposible que (deducción sobre el pasado)"
@@ -67,7 +67,7 @@
     {
       "id": "b2.grammar.reporting-passive",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "science-and-ethics"],
       "kind": "grammar",
       "term": "It is said that… / He is said to…",
       "es": "se dice que…, dicen que…"
@@ -75,7 +75,7 @@
     {
       "id": "b2.grammar.causative",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "money-and-economy"],
       "kind": "grammar",
       "term": "have / get something done",
       "es": "mandar a hacer algo; que te hagan algo"
@@ -83,7 +83,7 @@
     {
       "id": "b2.grammar.despite",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "climate-policy", "travel-and-identity"],
       "kind": "grammar",
       "term": "despite / in spite of",
       "es": "a pesar de"
@@ -91,7 +91,7 @@
     {
       "id": "b2.grammar.whereas",
       "level": "B2",
-      "topics": ["grammar"],
+      "topics": ["grammar", "climate-policy"],
       "kind": "word",
       "term": "whereas",
       "es": "mientras que (contraste)",

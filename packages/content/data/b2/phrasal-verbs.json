@@ -3,7 +3,7 @@
     {
       "id": "b2.phrasal-verbs.carry-out",
       "level": "B2",
-      "topics": ["phrasal-verbs"],
+      "topics": ["phrasal-verbs", "work-and-leadership"],
       "kind": "phrase",
       "term": "carry out",
       "es": "llevar a cabo, realizar"
@@ -11,7 +11,7 @@
     {
       "id": "b2.phrasal-verbs.point-out",
       "level": "B2",
-      "topics": ["phrasal-verbs"],
+      "topics": ["phrasal-verbs", "work-and-leadership"],
       "kind": "phrase",
       "term": "point out",
       "es": "señalar, hacer notar"
@@ -19,7 +19,7 @@
     {
       "id": "b2.phrasal-verbs.rule-out",
       "level": "B2",
-      "topics": ["phrasal-verbs"],
+      "topics": ["phrasal-verbs", "media-and-misinformation"],
       "kind": "phrase",
       "term": "rule out",
       "es": "descartar"
@@ -27,7 +27,7 @@
     {
       "id": "b2.phrasal-verbs.turn-out",
       "level": "B2",
-      "topics": ["phrasal-verbs"],
+      "topics": ["phrasal-verbs", "media-and-misinformation"],
       "kind": "phrase",
       "term": "turn out",
       "es": "resultar"
@@ -35,7 +35,7 @@
     {
       "id": "b2.phrasal-verbs.bring-up",
       "level": "B2",
-      "topics": ["phrasal-verbs"],
+      "topics": ["phrasal-verbs", "work-and-leadership"],
       "kind": "phrase",
       "term": "bring up",
       "es": "sacar (un tema), mencionar"
