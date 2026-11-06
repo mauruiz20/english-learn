@@ -55,6 +55,8 @@ export function ChoiceRow({
       accessibilityRole="radio"
       accessibilityLabel={spokenLabel(label, checked, mark)}
       accessibilityState={{ checked, disabled }}
+      // react-native-web drops `checked` for a radio: the web reads it from here.
+      aria-checked={checked}
       disabled={disabled}
       pressSound={pressSound}
       onPress={onPress}
