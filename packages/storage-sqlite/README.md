@@ -37,8 +37,8 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
     date), an unorderable one, or a review in a session already folded. Either way the cache is
     exactly `foldEvents` of the log (property-tested against a full refold).
   - Cost on `node:sqlite` with a 50k-event log (`pnpm --filter @english-learn/storage-sqlite
-bench`, median): saving a 13-event session ≈ 3 ms (was ≈ 240 ms, a full refold per write);
-    a write that must refold ≈ 240 ms. The snapshot is ≈ 283 KiB (review states plus completed
+bench`, median): saving a 13-event session ≈ 4.5 ms (was ≈ 240 ms, a full refold per write);
+    a write that must refold ≈ 240 ms. The snapshot is ≈ 475 KiB (review states, item histories, completed
     and reviewed session ids).
   - `appendEvents(events)`: inserts local events (malformed ones are refused) and refreshes the
     cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak), so the caller
