@@ -35,7 +35,13 @@
     {
       "id": "b2.grammar.mixed-conditionals",
       "level": "B2",
-      "topics": ["grammar", "lifelong-learning", "science-and-ethics"],
+      "topics": [
+        "grammar",
+        "lifelong-learning",
+        "science-and-ethics",
+        "arts-and-culture",
+        "law-and-ethics"
+      ],
       "kind": "grammar",
       "term": "If I had…, I would be… now",
       "es": "condicional mixto (si hubiera…, ahora sería…)"
@@ -67,7 +73,7 @@
     {
       "id": "b2.grammar.reporting-passive",
       "level": "B2",
-      "topics": ["grammar", "science-and-ethics"],
+      "topics": ["grammar", "science-and-ethics", "science-and-society"],
       "kind": "grammar",
       "term": "It is said that… / He is said to…",
       "es": "se dice que…, dicen que…"
@@ -83,7 +89,7 @@
     {
       "id": "b2.grammar.despite",
       "level": "B2",
-      "topics": ["grammar", "climate-policy", "travel-and-identity"],
+      "topics": ["grammar", "climate-policy", "travel-and-identity", "global-issues"],
       "kind": "grammar",
       "term": "despite / in spite of",
       "es": "a pesar de"
