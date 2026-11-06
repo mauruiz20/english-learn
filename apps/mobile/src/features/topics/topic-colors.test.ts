@@ -38,6 +38,41 @@ describe("topicHighlighter", () => {
     },
   );
 
+  // Topics whose lessons may not be bundled yet, in index (file) order: they get their color
+  // ahead of time, so the content needs no app change.
+  it.each([
+    [
+      "A1",
+      [
+        "greetings",
+        "to-be-and-questions",
+        "numbers-and-age",
+        "my-family",
+        "colors-and-clothes",
+        "food-and-drinks",
+        "days-and-time",
+        "my-house",
+      ],
+    ],
+    [
+      "C1",
+      [
+        "arts-and-culture",
+        "global-issues",
+        "language-and-communication",
+        "law-and-ethics",
+        "politics-and-media",
+        "psychology-and-behaviour",
+        "science-and-society",
+        "work-and-negotiation",
+      ],
+    ],
+  ])("colors every %s topic by hand, never twice in a row", (_level, topics) => {
+    expect(topics.filter((topic) => !(topic in TOPIC_HIGHLIGHTERS))).toEqual([]);
+    const colors = topics.map(topicHighlighter);
+    colors.slice(1).forEach((color, i) => expect(color).not.toBe(colors[i]));
+  });
+
   it("is deterministic for unknown topics", () => {
     expect(topicHighlighter("space")).toBe(topicHighlighter("space"));
   });
