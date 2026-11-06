@@ -383,7 +383,30 @@
         "b2.work-and-leadership.delegate",
         "b2.work-and-leadership.workload"
       ],
-      "deepenCardIds": ["b2.phrasal-verbs.ideas-and-results"]
+      "deepenCardIds": ["b2.phrasal-verbs.ideas-and-results"],
+      "intro": {
+        "points": [
+          "«carry out» es llevar a cabo: «carry out a plan».",
+          "«point out» es señalar o hacer notar: «He pointed out that the plan was expensive».",
+          "«bring up» es sacar un tema: «She brought up the problem at the meeting».",
+          "«delegate» es delegar tareas cuando la «workload» (carga de trabajo) es demasiada."
+        ],
+        "examples": [
+          {
+            "en": "She brought up the problem at the end of the meeting.",
+            "es": "Mencionó el problema al final de la reunión."
+          },
+          {
+            "en": "My workload is too heavy, so I'm going to delegate some tasks.",
+            "es": "Tengo demasiado trabajo, así que voy a delegar algunas tareas."
+          }
+        ],
+        "mistake": {
+          "wrong": "I'm going to bring up it at the meeting.",
+          "right": "I'm going to bring it up at the meeting.",
+          "note": "Con un pronombre, el phrasal verb se separa: «bring it up», «point it out»."
+        }
+      }
     },
     {
       "id": "b2.work-and-leadership.lesson-002",
@@ -407,7 +430,27 @@
         "b2.work-and-leadership.meet-a-deadline",
         "b2.work-and-leadership.feedback"
       ],
-      "deepenCardIds": ["b2.grammar.should-have"]
+      "deepenCardIds": ["b2.grammar.should-have"],
+      "intro": {
+        "points": [
+          "«should have» + participio critica o lamenta algo del pasado: «I should have left earlier».",
+          "«could have» + participio habla de algo posible que no pasó: «We could have won».",
+          "«be in charge of» es estar a cargo de; «meet a deadline», cumplir con un plazo.",
+          "«feedback» es incontable: «some feedback», nunca con -s."
+        ],
+        "examples": [
+          { "en": "I should have left earlier.", "es": "Debería haber salido más temprano." },
+          {
+            "en": "We shouldn't have promised a deadline that we couldn't meet.",
+            "es": "No deberíamos haber prometido un plazo que no podíamos cumplir."
+          }
+        ],
+        "mistake": {
+          "wrong": "She took responsibility of the mistake.",
+          "right": "She took responsibility for the mistake.",
+          "note": "“Responsabilidad de” algo se dice «responsibility for»."
+        }
+      }
     }
   ]
 }

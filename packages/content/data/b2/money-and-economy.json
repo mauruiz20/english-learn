@@ -386,7 +386,30 @@
         "b2.money-and-economy.make-ends-meet",
         "b2.money-and-economy.cost-of-living"
       ],
-      "deepenCardIds": ["b2.grammar.causative"]
+      "deepenCardIds": ["b2.grammar.causative"],
+      "intro": {
+        "points": [
+          "«have» + objeto + participio: otra persona lo hace por ti: «I had my car repaired».",
+          "«get» funciona igual y es más informal: «I need to get my computer repaired».",
+          "«afford» es poder pagar algo: «We can't afford a vacation this year».",
+          "«make ends meet» es llegar a fin de mes."
+        ],
+        "examples": [
+          {
+            "en": "She has her hair cut every two months.",
+            "es": "Se corta el pelo cada dos meses."
+          },
+          {
+            "en": "We can't afford a vacation this year.",
+            "es": "Este año no podemos pagarnos unas vacaciones."
+          }
+        ],
+        "mistake": {
+          "wrong": "I cut my hair yesterday.",
+          "right": "I had my hair cut yesterday.",
+          "note": "“Me corté el pelo” en la peluquería: si te lo hizo otra persona, usa «have» + objeto + participio."
+        }
+      }
     },
     {
       "id": "b2.money-and-economy.lesson-002",
@@ -409,7 +432,29 @@
         "b2.money-and-economy.inflation",
         "b2.money-and-economy.invest"
       ],
-      "deepenCardIds": ["b2.grammar.third-conditional"]
+      "deepenCardIds": ["b2.grammar.third-conditional"],
+      "intro": {
+        "points": [
+          "Tercer condicional, para imaginar un pasado distinto: «if» + «had» + participio, «would have» + participio.",
+          "Sirve para lamentos y reproches: «If I had known, I would have told you».",
+          "«loan» es un préstamo y «debt», una deuda; pedir un préstamo es «take out a loan»."
+        ],
+        "examples": [
+          {
+            "en": "If I had known about it, I would have told you.",
+            "es": "Si lo hubiera sabido, te lo habría dicho."
+          },
+          {
+            "en": "If they hadn't taken out that loan, they wouldn't have lost their house.",
+            "es": "Si no hubieran pedido ese préstamo, no habrían perdido su casa."
+          }
+        ],
+        "mistake": {
+          "wrong": "If I would have known, I would have told you.",
+          "right": "If I had known, I would have told you.",
+          "note": "En la parte del «if» va «had» + participio, nunca «would have»."
+        }
+      }
     }
   ]
 }
