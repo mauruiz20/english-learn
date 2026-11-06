@@ -346,16 +346,34 @@ B2 collocations, and the topic vocabulary of the B2 lessons (`workload`, `make e
 
 ## Level coverage
 
-| Level | Topics | Lessons | Notes                                                |
-| ----- | ------ | ------- | ---------------------------------------------------- |
-| A1    | —      | —       | Placement only; A1 learners start on the A2 path.    |
-| A2    | 10     | 20      | Default path without a placement.                    |
-| B1    | 11     | 22      |                                                      |
-| B2    | 8      | 16      | C1 learners start here (nearest level with lessons). |
-| C1    | —      | —       | Placement only.                                      |
+| Level | Topics | Lessons | Notes                                                                  |
+| ----- | ------ | ------- | ---------------------------------------------------------------------- |
+| A1    | 8      | 16      | True beginners; 4 grammar cards (to be, a / an, plurals, this / that). |
+| A2    | 10     | 20      | Default path without a placement.                                      |
+| B1    | 11     | 22      |                                                                        |
+| B2    | 8      | 16      | C1 learners start here while C1 has no lessons.                        |
+| C1    | —      | —       | Placement only for now; lessons are content only (see below).          |
 
 The app moves a learner's path on to the next level with lessons once every lesson of the
-current one is done.
+current one is done (A1 → A2 → B1 → B2 → C1). A level shows up on the path, in the level picker
+and in the album as soon as it has lessons: adding the C1 lessons needs no app change, as long as
+their topics are the ones the app names (`apps/mobile/README.md`, "Topic names and colors":
+`work-and-negotiation`, `science-and-society`, `arts-and-culture`, `politics-and-media`,
+`psychology-and-behaviour`, `global-issues`, `language-and-communication`, `law-and-ethics`).
+Content files carry no topic title, so a new topic slug needs its Spanish name and color in the
+app.
+
+**A1** (`data/a1/`): greetings, the verb to be and basic questions, numbers and age, family,
+colors and clothes, food and drinks, days and time, my house. Very short sentences, A1 grammar
+only (to be, have / have got, present simple basics, this / that, plurals, a / an, can), Spanish
+on every cloze and word order, and one tiny dialogue per topic (speaker labels inline). Its topic
+files carry a two-digit prefix (`01-greetings.json` … `08-my-house.json`) because the path
+follows corpus order, which is file path order: greetings and to be come first, not
+alphabetically. Ids and `topic` use the slug without the prefix (`a1.greetings.hello`). The
+cards' items are practiced in the lessons directly (they carry the lesson topic too, like B2), and
+each card is linked from the one lesson that teaches it: `to-be` from "Soy, eres, es", `plurals`
+from "Hijos y abuelos", `this-that` from "Mi ropa", `a-an` from "Me gusta, no me gusta". No A2+
+card is linked from A1 (rule 21).
 
 B2 lessons practice the B2 card items directly (the item gets the lesson topic too, like
 `b1.travel.check-in` gets `phrasal-verbs`), so a card item never has a duplicate lesson item.
@@ -411,8 +429,9 @@ pnpm --filter @english-learn/content disputed-answers [events.json]  # disputed 
 
 ## Authoring
 
-- One file per topic and level (`data/a2/food.json`); placement questions live in one file per
-  level (`data/placement/a1.json` … `c1.json`).
+- One file per topic and level (`data/a2/food.json`; A1 files carry an order prefix, see
+  [Level coverage](#level-coverage)); placement questions live in one file per level
+  (`data/placement/a1.json` … `c1.json`).
 - Each topic teaches 8–15 items (a B2 file holds fewer, because its lessons also practice the B2
   card items), has at least one passage, and lessons of 6–8 exercises that together cover all six
   exercise types. Lesson titles are in Spanish; Spanish text is neutral (no voseo).

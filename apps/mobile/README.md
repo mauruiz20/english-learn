@@ -259,13 +259,17 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
 
 Home lists the lessons of one level, the path's level (`autoPathLevel` in
 `model/lesson-catalog.ts`). It starts at the level nearest to the placement level that has lessons
-(ties go to the lower level; with the bundled content A1 → A2 and C1 → B2), or A2 without a
-placement. If the learner started the nearest lower level with lessons (at least one lesson done)
-and has not finished it, the path starts there instead: progress counts more than a newer
-placement or new content (until B2 had lessons, a B2 or C1 placement started on B1, so those
-learners stay on the B1 they began). From that start the path moves up past every finished level
-to the first one with lessons left (A2 → B1 → B2); with every level done it stays on the last one.
-A new learner is never placed below the placement level. The learner can also pick the level by
+(ties go to the lower level: C1 → B2 while C1 has no lessons), or A2 without a placement. The
+placement test estimates A1 to C1 (there is no C2 level; its top result is C1), and A1 and C1
+learners start on their own level once it has lessons. If the learner started the nearest lower
+level with lessons (at least one lesson done) and has not finished it, the path starts there
+instead: progress counts more than a newer placement or new content (until B2 had lessons, a B2
+or C1 placement started on B1, so those learners stay on the B1 they began). Otherwise, if they
+did nothing of the start level but started the next level up, the path starts there (until A1
+had lessons, an A1 placement started on A2, so those learners stay on the A2 they began). From
+that start the path moves up past every finished level to the first one with lessons left
+(A1 → A2 → B1 → B2 → C1); with every level done it stays on the last one. A new learner is never
+placed below the placement level. The learner can also pick the level by
 hand (see "Path level, picked by hand" below). A lesson shows as done once every item it practices
 has a review state.
 
@@ -273,7 +277,9 @@ has a review state.
 shows and how: "Nivel B1 · automático" or "Nivel B1 · elegido" (labelled "Nivel del recorrido: B1,
 automático" / "…, elegido a mano", hint "Muestra los niveles para elegir cuál ver"; 44 pt tall, ink
 on the sheet). It opens a short list of radios right under it (`path-level-picker.tsx`):
-"Automático · ahora B1" and every level with lessons with its progress ("B2 · 0 % completado").
+"Automático · ahora B1" and every level with lessons with its progress ("B2 · 0 % completado"),
+from `pathLevels`: a level shows up once the content has lessons for it (C1 as soon as its
+lessons are bundled, with no app change).
 Picking one closes the list and shows that level's path; a level picked by hand stays even once
 every lesson of it is done, and "Automático" goes back to the rule above. Nothing animates but the
 shared press feedback. The choice is a view preference, not progress: no event, stored on the
@@ -306,6 +312,28 @@ that links it (`model/deepen-steps.ts`), even if content links it from lessons o
 title wraps, never the marker: when both don't fit on one line the marker goes under the title,
 and on a narrow phone the cards take the room right of the pencil line. Only the shared press feedback moves, and not with reduced
 motion. Lessons not done yet show nothing.
+
+**Topic names and colors** (`src/features/topics/`). A lesson's `topic` slug gets its Spanish
+name from `topic-labels.ts` and its highlighter from `topic-colors.ts`, both keyed by slug, by
+hand. Tests fail if a bundled topic has no name (the slug fallback, "New topic") or no color, or
+if two neighboring topics of a level's index share a color. Content files have no topic title,
+so names live in the app; to let C1 content merge without app changes, the C1 topics are listed
+ahead of their lessons, in index (file) order:
+
+| C1 topic slug                | Name                    | Color  |
+| ---------------------------- | ----------------------- | ------ |
+| `arts-and-culture`           | Arte y cultura          | pink   |
+| `global-issues`              | Problemas globales      | green  |
+| `language-and-communication` | Lenguaje y comunicación | sky    |
+| `law-and-ethics`             | Derecho y ética         | orange |
+| `politics-and-media`         | Política y medios       | lilac  |
+| `psychology-and-behaviour`   | Psicología y conducta   | green  |
+| `science-and-society`        | Ciencia y sociedad      | sky    |
+| `work-and-negotiation`       | Trabajo y negociación   | orange |
+
+C1 lessons must use exactly these slugs (ids `c1.<slug>.…`); a C1 topic outside this list needs
+its name and color added here. If the C1 files sort in another order, check the neighbor-color
+test.
 
 ## Word lookup (`src/features/glossary/`)
 
@@ -606,7 +634,7 @@ paper, the prompt and the teacher's marking.
   dark text (≥ 4.5:1, tested). Yellow means "correct" (answers, streak, the lesson to do next) and
   nothing else. The others carry meaning, never decoration (`features/topics/topic-colors.ts`):
   each topic has a hand-picked color (neighbors in a level's index never share one; unknown
-  topics fall back to a stable hash), used for the topic labels and won stickers on the home
+  topics fall back to a stable hash; see "Topic names and colors" below), used for the topic labels and won stickers on the home
   path, the lesson's progress label and summary sticker, and the small tabs on the summary's
   "Para repasar"; each CEFR level has one (placement result); the review sticky note changes paper
   daily among pink, green, orange and sky. Ink stays the structural color (text, buttons, links);
@@ -650,9 +678,12 @@ paper, the prompt and the teacher's marking.
   the next sticker (`model/guide-heading.ts`): from a stop on the left it faces right, nose
   tilted down, on the sticker's top left; from a stop on the right it is mirrored onto its top
   right (`Avi` `tilt` / `facing`; it glides in from the side it faces).
-- **Album** (`features/achievements/`, route `/album`): nineteen achievements derived from the
+- **Album** (`features/achievements/`, route `/album`): achievements derived from the
   stored progress only (lessons, whole topics, whole levels, the longest streak, XP, placement,
-  words practiced, study cards; `model/achievements.ts`), so they need no storage and follow sync. Won ones are
+  words practiced, study cards; `model/achievements.ts`), so they need no storage and follow sync.
+  There is a level sticker for every level ("Nivel A1 completo" … "Nivel C1 completo"), but the
+  album and home's count only show those of levels with lessons (`albumAchievements`): with A1
+  to B2 bundled, 20 of the 21 stickers; "Nivel C1 completo" appears with the C1 lessons. Won ones are
   stickers (rare ones get a holographic rim), the others dashed slots that say how to win them.
   `useNewAchievements` compares what the progress unlocks when a lesson or review starts and once
   it is saved; the summary announces the difference.
