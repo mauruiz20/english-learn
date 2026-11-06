@@ -749,6 +749,18 @@
       ]
     },
     {
+      "id": "glossary.overheat",
+      "headword": "overheat",
+      "kind": "word",
+      "forms": ["overheat", "overheats", "overheated", "overheating"],
+      "senses": [
+        {
+          "es": "sobrecalentarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.overstate",
       "headword": "overstate",
       "kind": "word",

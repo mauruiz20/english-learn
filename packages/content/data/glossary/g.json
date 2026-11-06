@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.gallon",
+      "headword": "gallon",
+      "kind": "word",
+      "forms": ["gallon", "gallons"],
+      "senses": [
+        {
+          "es": "galón (unos 3,8 litros)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.game",
       "headword": "game",
       "kind": "word",
@@ -177,6 +189,18 @@
         {
           "es": "auténtico, genuino",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.genuinely",
+      "headword": "genuinely",
+      "kind": "word",
+      "forms": ["genuinely"],
+      "senses": [
+        {
+          "es": "de verdad, sinceramente",
+          "pos": "adverb"
         }
       ]
     },

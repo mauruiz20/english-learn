@@ -61,6 +61,18 @@
       ]
     },
     {
+      "id": "glossary.vegetarian",
+      "headword": "vegetarian",
+      "kind": "word",
+      "forms": ["vegetarian", "vegetarians"],
+      "senses": [
+        {
+          "es": "vegetariano",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.verb",
       "headword": "verb",
       "kind": "word",

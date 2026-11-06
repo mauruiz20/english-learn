@@ -1,0 +1,210 @@
+{
+  "dialogues": [
+    {
+      "id": "a1.dialogues.time-and-day",
+      "level": "A1",
+      "title": "Preguntar la hora y el día",
+      "setting": "Esperas el autobús en Chicago. Tu teléfono no tiene batería y no sabes qué hora es. Tienes clase de inglés a las diez y media. Un chico espera a tu lado.",
+      "characters": [
+        {
+          "id": "ben",
+          "name": "Ben",
+          "role": "un chico en la parada"
+        }
+      ],
+      "start": "cold",
+      "nodes": [
+        {
+          "id": "cold",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Wow, it's cold today!",
+          "es": "¡Uf, hoy hace frío!",
+          "next": "time"
+        },
+        {
+          "id": "time",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Yes, it is! Excuse me, what time is it?",
+              "rating": "good",
+              "feedback": "Respondes a su comentario y preguntas con «Excuse me»: muy amable.",
+              "next": "ten-fifteen"
+            },
+            {
+              "en": "What time is it?",
+              "rating": "ok",
+              "feedback": "Correcto, pero sin «Excuse me» suena un poco brusco con un desconocido.",
+              "next": "ten-fifteen"
+            },
+            {
+              "en": "Give me the time.",
+              "rating": "wrong",
+              "feedback": "Suena a orden y es poco amable con un desconocido. Para preguntar la hora: «Excuse me, what time is it?».",
+              "next": "ten-fifteen-cold"
+            }
+          ]
+        },
+        {
+          "id": "ten-fifteen",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "It's ten fifteen.",
+          "es": "Son las diez y cuarto.",
+          "next": "day"
+        },
+        {
+          "id": "ten-fifteen-cold",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Um... it's ten fifteen.",
+          "es": "Eh... son las diez y cuarto.",
+          "next": "day"
+        },
+        {
+          "id": "day",
+          "kind": "write",
+          "prompt": "Pregúntale qué día es hoy.",
+          "accepted": [
+            "What day is {it[ today]|today}?",
+            "{Excuse me|Sorry}, what day is {it[ today]|today}?"
+          ],
+          "tip": "Para preguntar el día: «What day is it today?»",
+          "next": "tuesday",
+          "wrongNext": "tuesday-check"
+        },
+        {
+          "id": "tuesday",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "It's Tuesday.",
+          "es": "Es martes.",
+          "next": "react"
+        },
+        {
+          "id": "tuesday-check",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Sorry? Oh, the day? It's Tuesday.",
+          "es": "¿Perdón? ¿Ah, el día? Es martes.",
+          "next": "react"
+        },
+        {
+          "id": "react",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Thank you! Oh no, I have class today!",
+              "rating": "good",
+              "feedback": "Das las gracias y reaccionas con naturalidad.",
+              "next": "class-time"
+            },
+            {
+              "en": "Oh. Okay.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero no le das las gracias.",
+              "next": "class-time"
+            },
+            {
+              "en": "Thank you! Good night!",
+              "rating": "wrong",
+              "feedback": "«Good night» se usa solo de noche, para despedirse. Es de mañana: «Good morning» o «Thank you!» bastan.",
+              "next": "class-time-night"
+            }
+          ]
+        },
+        {
+          "id": "class-time",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Oh! What time is your class?",
+          "es": "¡Ah! ¿A qué hora es tu clase?",
+          "next": "half-past"
+        },
+        {
+          "id": "class-time-night",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Good night? It's ten in the morning! Ha! What time is your class?",
+          "es": "¿Buenas noches? ¡Son las diez de la mañana! ¡Ja! ¿A qué hora es tu clase?",
+          "next": "half-past"
+        },
+        {
+          "id": "half-past",
+          "kind": "write",
+          "prompt": "Dile que tu clase es a las diez y media.",
+          "accepted": [
+            "{It's|My class is} at {ten thirty|half past ten}.",
+            "At {ten thirty|half past ten}."
+          ],
+          "tip": "La hora va con «at»: «at ten thirty» o «at half past ten».",
+          "next": "bus",
+          "wrongNext": "bus-check"
+        },
+        {
+          "id": "bus",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Ten thirty? Okay, you have time. Look, here's the bus!",
+          "es": "¿A las diez y media? Bueno, tienes tiempo. ¡Mira, ahí viene el autobús!",
+          "next": "thanks"
+        },
+        {
+          "id": "bus-check",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Sorry? At ten thirty? Okay, you have time. Look, here's the bus!",
+          "es": "¿Perdón? ¿A las diez y media? Bueno, tienes tiempo. ¡Mira, ahí viene el autobús!",
+          "next": "thanks"
+        },
+        {
+          "id": "thanks",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Great! Thank you so much. Have a nice day!",
+              "rating": "good",
+              "feedback": "Agradeces y te despides con amabilidad.",
+              "next": "bye"
+            },
+            {
+              "en": "Okay. Bye.",
+              "rating": "ok",
+              "feedback": "Correcto, pero un poco seco después de su ayuda.",
+              "next": "bye"
+            },
+            {
+              "en": "You're welcome!",
+              "rating": "wrong",
+              "feedback": "Malentendido: «You're welcome» es «de nada». Aquí tú das las gracias: «Thank you!».",
+              "next": "bye-joke"
+            }
+          ]
+        },
+        {
+          "id": "bye",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "You're welcome. Have a nice day!",
+          "es": "De nada. ¡Que tengas un buen día!",
+          "next": "end"
+        },
+        {
+          "id": "bye-joke",
+          "kind": "npc",
+          "speaker": "ben",
+          "en": "Ha! You mean \"thank you\"? You're welcome. Have a nice day!",
+          "es": "¡Ja! ¿Quieres decir «gracias»? De nada. ¡Que tengas un buen día!",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Supiste la hora y el día, y llegaste a tiempo a tu clase."
+        }
+      ],
+      "cardIds": ["a1.grammar.to-be"]
+    }
+  ]
+}

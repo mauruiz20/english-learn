@@ -6,6 +6,17 @@
       "summary": "Conversaciones que cambian según lo que respondas: elige o escribe tu respuesta y mira cómo reacciona la otra persona.",
       "groups": [
         {
+          "id": "practice.dialogues.first-steps",
+          "level": "A1",
+          "title": "Primeros pasos",
+          "summary": "Presentarte, pedir un café y preguntar la hora.",
+          "dialogueIds": [
+            "a1.dialogues.introducing-yourself",
+            "a1.dialogues.buying-coffee",
+            "a1.dialogues.time-and-day"
+          ]
+        },
+        {
           "id": "practice.dialogues.everyday",
           "level": "A2",
           "title": "Fuera de casa",
@@ -15,6 +26,17 @@
             "a2.dialogues.restaurant-order",
             "a2.dialogues.doctor-visit",
             "a2.dialogues.asking-directions"
+          ]
+        },
+        {
+          "id": "practice.dialogues.errands",
+          "level": "A2",
+          "title": "Compras y recados",
+          "summary": "En el supermercado, la farmacia y al reservar por teléfono.",
+          "dialogueIds": [
+            "a2.dialogues.supermarket-checkout",
+            "a2.dialogues.booking-a-table",
+            "a2.dialogues.at-the-pharmacy"
           ]
         },
         {
@@ -29,15 +51,37 @@
           ]
         },
         {
+          "id": "practice.dialogues.sorting-things-out",
+          "level": "B1",
+          "title": "Resolver cosas",
+          "summary": "Regatear, dividir la cuenta, llamar a soporte técnico y hablar con un vecino.",
+          "dialogueIds": [
+            "b1.dialogues.market-bargaining",
+            "b1.dialogues.splitting-the-bill",
+            "b1.dialogues.internet-support",
+            "b1.dialogues.noisy-neighbor"
+          ]
+        },
+        {
           "id": "practice.dialogues.with-tact",
           "level": "B2",
           "title": "Con tacto",
-          "summary": "Entrevistas, quejas y reuniones: firme, pero con cortesía.",
+          "summary": "Entrevistas, quejas, reuniones, feedback y vendedores insistentes: firme, pero con cortesía.",
           "dialogueIds": [
             "b2.dialogues.job-interview",
             "b2.dialogues.hotel-complaint",
-            "b2.dialogues.meeting-disagreement"
+            "b2.dialogues.meeting-disagreement",
+            "b2.dialogues.billing-dispute",
+            "b2.dialogues.giving-feedback",
+            "b2.dialogues.car-rental"
           ]
+        },
+        {
+          "id": "practice.dialogues.high-stakes",
+          "level": "C1",
+          "title": "Mucho en juego",
+          "summary": "Negociar tu salario y defender una decisión en una reunión tensa, con diplomacia.",
+          "dialogueIds": ["c1.dialogues.salary-negotiation", "c1.dialogues.defending-a-decision"]
         }
       ]
     }

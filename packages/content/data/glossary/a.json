@@ -205,6 +205,18 @@
       ]
     },
     {
+      "id": "glossary.absolutely",
+      "headword": "absolutely",
+      "kind": "word",
+      "forms": ["absolutely"],
+      "senses": [
+        {
+          "es": "por supuesto, totalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.abstract",
       "headword": "abstract",
       "kind": "word",
@@ -1001,6 +1013,18 @@
       ]
     },
     {
+      "id": "glossary.ah",
+      "headword": "ah",
+      "kind": "word",
+      "forms": ["ah"],
+      "senses": [
+        {
+          "es": "ah",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.ahead",
       "headword": "ahead",
       "kind": "word",
@@ -1273,6 +1297,18 @@
       ]
     },
     {
+      "id": "glossary.altogether",
+      "headword": "altogether",
+      "kind": "word",
+      "forms": ["altogether"],
+      "senses": [
+        {
+          "es": "en total",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.always",
       "headword": "always",
       "kind": "word",
@@ -1353,6 +1389,18 @@
         {
           "es": "Ana (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.analysis",
+      "headword": "analysis",
+      "kind": "word",
+      "forms": ["analysis", "analyses"],
+      "senses": [
+        {
+          "es": "análisis",
+          "pos": "noun"
         }
       ]
     },
@@ -2297,6 +2345,18 @@
         {
           "es": "el hecho de evitar algo; (tax avoidance) elusión fiscal",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.awake",
+      "headword": "awake",
+      "kind": "word",
+      "forms": ["awake"],
+      "senses": [
+        {
+          "es": "despierto",
+          "pos": "adjective"
         }
       ]
     },

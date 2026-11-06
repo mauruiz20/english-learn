@@ -1,0 +1,251 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.market-bargaining",
+      "level": "B1",
+      "title": "Regatear en un mercado",
+      "setting": "En un mercado de pulgas ves una lámpara antigua que te encanta. Cuesta 60 dólares, pero no quieres pagar más de 45. Llevas efectivo.",
+      "characters": [
+        {
+          "id": "seller",
+          "name": "Ray",
+          "role": "vendedor del puesto"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "That lamp's a beauty, isn't it? It's about seventy years old.",
+          "es": "Esa lámpara es una belleza, ¿no? Tiene unos setenta años.",
+          "next": "price"
+        },
+        {
+          "id": "price",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "It's lovely. How much are you asking for it?",
+              "rating": "good",
+              "feedback": "Muestras interés con amabilidad antes de hablar de precio.",
+              "next": "sixty"
+            },
+            {
+              "en": "How much?",
+              "rating": "ok",
+              "feedback": "Se entiende, pero es muy seco para empezar una negociación.",
+              "next": "sixty"
+            },
+            {
+              "en": "It's old and ugly. I'll give you ten dollars.",
+              "rating": "wrong",
+              "feedback": "Despreciar el producto y ofrecer muy poco ofende al vendedor: así se negocia peor.",
+              "next": "sixty-offended"
+            }
+          ]
+        },
+        {
+          "id": "sixty",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Sixty dollars. It works perfectly.",
+          "es": "Sesenta dólares. Funciona perfecto.",
+          "next": "cheaper"
+        },
+        {
+          "id": "sixty-offended",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Ugly? Ten dollars? No way. It's sixty, and it works perfectly.",
+          "es": "¿Fea? ¿Diez dólares? Ni loco. Son sesenta, y funciona perfecto.",
+          "next": "cheaper"
+        },
+        {
+          "id": "cheaper",
+          "kind": "write",
+          "itemIds": ["a2.grammar.comparatives-short-er"],
+          "prompt": "Pregúntale con amabilidad si te la puede dejar más barata.",
+          "accepted": [
+            "{Could|Can} you {do it|make it|let me have it} {a little |a bit |}cheaper?",
+            "{Could|Can} you {give me|do} a {better|lower} price?",
+            "{Could|Can} you go {any |a little |a bit |}lower?",
+            "Is there any way you could {lower the price|do it for less}?"
+          ],
+          "tip": "Para pedir un descuento con tacto: «Could you do it a bit cheaper?» o «Could you go a little lower?»",
+          "next": "fifty-five",
+          "wrongNext": "fifty-five-check"
+        },
+        {
+          "id": "fifty-five",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Hmm. I could do fifty-five.",
+          "es": "Mmm. Te la dejo en cincuenta y cinco.",
+          "next": "offer"
+        },
+        {
+          "id": "fifty-five-check",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "You want a better price? Hmm. I could do fifty-five.",
+          "es": "¿Quieres un mejor precio? Mmm. Te la dejo en cincuenta y cinco.",
+          "next": "offer"
+        },
+        {
+          "id": "offer",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I was thinking more like forty. I can pay cash right now.",
+              "rating": "good",
+              "feedback": "Haces una oferta concreta y le das un motivo para aceptar.",
+              "next": "fifty"
+            },
+            {
+              "en": "Forty. That's it.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena cortante: no deja espacio para negociar.",
+              "next": "fifty"
+            },
+            {
+              "en": "Fifty-five is too cheap.",
+              "rating": "wrong",
+              "feedback": "Malentendido: «too cheap» es «demasiado barato»; querías decir «too expensive».",
+              "next": "fifty-joke"
+            }
+          ]
+        },
+        {
+          "id": "fifty",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Forty? Come on, it's worth more than that. Fifty is my best price.",
+          "es": "¿Cuarenta? Vamos, vale más que eso. Cincuenta es mi mejor precio.",
+          "next": "meet"
+        },
+        {
+          "id": "fifty-joke",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Too cheap? Ha! Then you can pay sixty! Okay, seriously: fifty is my best price.",
+          "es": "¿Demasiado barata? ¡Ja! ¡Entonces paga sesenta! Bueno, en serio: cincuenta es mi mejor precio.",
+          "next": "meet"
+        },
+        {
+          "id": "meet",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "How about forty-five, and I'll take it right now?",
+              "rating": "good",
+              "feedback": "Propones un punto medio y cierras rápido: así se negocia bien.",
+              "next": "deal"
+            },
+            {
+              "en": "Forty-five or I'm leaving.",
+              "rating": "ok",
+              "feedback": "Puede funcionar, pero suena a amenaza.",
+              "next": "deal-cool"
+            },
+            {
+              "en": "You're ripping me off!",
+              "rating": "wrong",
+              "feedback": "Acusarlo de estafador es ofensivo, y menos después de que ya bajó el precio.",
+              "next": "deal-offended"
+            }
+          ]
+        },
+        {
+          "id": "deal",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Forty-five... Okay, deal. You drive a hard bargain!",
+          "es": "Cuarenta y cinco... Bueno, trato hecho. ¡Sabes negociar!",
+          "next": "check"
+        },
+        {
+          "id": "deal-cool",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "No need to be like that. Fine, forty-five.",
+          "es": "No hace falta ponerse así. Está bien, cuarenta y cinco.",
+          "next": "check"
+        },
+        {
+          "id": "deal-offended",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "I'm not ripping anyone off! Look, forty-five, and that's final.",
+          "es": "¡Yo no le robo a nadie! Mira, cuarenta y cinco, y es mi última palabra.",
+          "next": "check"
+        },
+        {
+          "id": "check",
+          "kind": "write",
+          "prompt": "Antes de pagar, pregúntale si puedes comprobar que funciona.",
+          "accepted": [
+            "{Can|Could} I {check|see|test} {that|if} it works[ first]?",
+            "{Can|Could} you {plug it in|turn it on} so I can see {that|if} it works?",
+            "Does it {really |}work?"
+          ],
+          "tip": "«Can I check that it works?» es una pregunta normal antes de comprar algo usado.",
+          "next": "works",
+          "wrongNext": "works-check"
+        },
+        {
+          "id": "works",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Sure, let me plug it in. See? Works perfectly.",
+          "es": "Claro, déjame enchufarla. ¿Ves? Funciona perfecto.",
+          "next": "wrap"
+        },
+        {
+          "id": "works-check",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "You want to see it work? Sure, let me plug it in. See? Works perfectly.",
+          "es": "¿Quieres verla funcionar? Claro, déjame enchufarla. ¿Ves? Funciona perfecto.",
+          "next": "wrap"
+        },
+        {
+          "id": "wrap",
+          "kind": "write",
+          "prompt": "Págale y pídele que te la envuelva para que no se rompa.",
+          "accepted": [
+            "Here you go. {Could|Can} you wrap it[ up][ for me][, please]?",
+            "{Could|Can} you wrap it[ up][ for me][, please]?",
+            "Here's forty-five. {Could|Can} you wrap it[ up][ for me][, please]?"
+          ],
+          "tip": "«Wrap it up» es envolverlo: «Could you wrap it for me, please?»",
+          "next": "bye",
+          "wrongNext": "bye-check"
+        },
+        {
+          "id": "bye",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Of course. I'll wrap it in some newspaper. Enjoy your lamp!",
+          "es": "Claro. Te la envuelvo en papel de periódico. ¡Que disfrutes tu lámpara!",
+          "next": "end"
+        },
+        {
+          "id": "bye-check",
+          "kind": "npc",
+          "speaker": "seller",
+          "en": "Sorry? Oh, wrap it? Of course. I'll use some newspaper. Enjoy your lamp!",
+          "es": "¿Perdón? Ah, ¿envolverla? Claro. Uso papel de periódico. ¡Que disfrutes tu lámpara!",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Compraste la lámpara por 45 dólares en vez de 60."
+        }
+      ],
+      "cardIds": ["a2.grammar.comparatives"]
+    }
+  ]
+}

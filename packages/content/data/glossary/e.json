@@ -269,6 +269,18 @@
       ]
     },
     {
+      "id": "glossary.eighty",
+      "headword": "eighty",
+      "kind": "word",
+      "forms": ["eighty"],
+      "senses": [
+        {
+          "es": "ochenta",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.either",
       "headword": "either",
       "kind": "word",
@@ -1040,6 +1052,18 @@
         {
           "es": "ejemplo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.excellent",
+      "headword": "excellent",
+      "kind": "word",
+      "forms": ["excellent"],
+      "senses": [
+        {
+          "es": "excelente",
+          "pos": "adjective"
         }
       ]
     },

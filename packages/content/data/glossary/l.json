@@ -320,7 +320,7 @@
       "id": "glossary.lead",
       "headword": "lead",
       "kind": "word",
-      "forms": ["lead", "leads", "leading"],
+      "forms": ["lead", "leads", "leading", "led"],
       "senses": [
         {
           "es": "dirigir, liderar",
@@ -713,6 +713,18 @@
       "senses": [
         {
           "es": "Lincoln (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.linda",
+      "headword": "Linda",
+      "kind": "word",
+      "forms": ["linda"],
+      "senses": [
+        {
+          "es": "Linda (nombre propio)",
           "pos": "proper noun"
         }
       ]
@@ -1186,6 +1198,18 @@
         {
           "es": "amor",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lovely",
+      "headword": "lovely",
+      "kind": "word",
+      "forms": ["lovely"],
+      "senses": [
+        {
+          "es": "precioso, encantador",
+          "pos": "adjective"
         }
       ]
     },

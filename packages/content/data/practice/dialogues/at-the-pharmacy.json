@@ -1,0 +1,228 @@
+{
+  "dialogues": [
+    {
+      "id": "a2.dialogues.at-the-pharmacy",
+      "level": "A2",
+      "title": "En la farmacia",
+      "setting": "Desde hace dos días te duele la garganta y tienes tos. No tienes fiebre. Entras a una farmacia a pedir algo.",
+      "characters": [
+        {
+          "id": "pharmacist",
+          "name": "Dana",
+          "role": "farmacéutica"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "Hi, can I help you?",
+          "es": "Hola, ¿le puedo ayudar?",
+          "next": "symptoms"
+        },
+        {
+          "id": "symptoms",
+          "kind": "write",
+          "itemIds": ["a2.situations.sore-throat"],
+          "prompt": "Dile que te duele la garganta y que tienes tos.",
+          "accepted": [
+            "{I have|I've got} a sore throat and a cough.",
+            "{I have|I've got} a cough and a sore throat.",
+            "My throat {hurts|is sore}, and I have a cough."
+          ],
+          "tip": "«A sore throat» es dolor de garganta y «a cough», tos.",
+          "next": "how-long",
+          "wrongNext": "how-long-check"
+        },
+        {
+          "id": "how-long",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "I'm sorry to hear that. How long have you had it?",
+          "es": "Lamento oír eso. ¿Desde hace cuánto lo tiene?",
+          "next": "days"
+        },
+        {
+          "id": "how-long-check",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "Sorry, your throat? And a cough? I'm sorry to hear that. How long have you had it?",
+          "es": "Perdón, ¿la garganta? ¿Y tos? Lamento oír eso. ¿Desde hace cuánto lo tiene?",
+          "next": "days"
+        },
+        {
+          "id": "days",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "For two days.",
+              "rating": "good",
+              "feedback": "Correcto: con un período de tiempo se usa «for».",
+              "next": "fever"
+            },
+            {
+              "en": "Since two days.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero es un error común: con un período se usa «for» («for two days»); «since» va con un momento («since Monday»).",
+              "next": "fever"
+            },
+            {
+              "en": "Yes, I have.",
+              "rating": "wrong",
+              "feedback": "Malentendido: te pregunta cuánto tiempo, no si lo tienes.",
+              "next": "fever-clarify"
+            }
+          ]
+        },
+        {
+          "id": "fever",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "Okay. Do you have a fever?",
+          "es": "Bien. ¿Tiene fiebre?",
+          "next": "no-fever"
+        },
+        {
+          "id": "fever-clarify",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "I mean, how many days? Two days? Okay. Do you have a fever?",
+          "es": "Me refiero a cuántos días. ¿Dos días? Bien. ¿Tiene fiebre?",
+          "next": "no-fever"
+        },
+        {
+          "id": "no-fever",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "No, I don't think so.",
+              "rating": "good",
+              "feedback": "Respuesta natural y completa.",
+              "next": "syrup"
+            },
+            {
+              "en": "No fever.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena telegráfico.",
+              "next": "syrup"
+            }
+          ]
+        },
+        {
+          "id": "syrup",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "Then you can try this cough syrup and these cough drops for your throat.",
+          "es": "Entonces puede probar este jarabe para la tos y estas pastillas para la garganta.",
+          "next": "how-often"
+        },
+        {
+          "id": "how-often",
+          "kind": "write",
+          "prompt": "Pregunta cada cuánto tienes que tomar el jarabe.",
+          "accepted": [
+            "How often {do|should} I take {it|the syrup|the cough syrup}?",
+            "How many times a day {do|should} I take {it|the syrup|the cough syrup}?"
+          ],
+          "tip": "«How often…?» pregunta con qué frecuencia.",
+          "next": "twice",
+          "wrongNext": "twice-check"
+        },
+        {
+          "id": "twice",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "Twice a day, after meals. And if you don't feel better in three days, you should see a doctor.",
+          "es": "Dos veces al día, después de comer. Y si en tres días no se siente mejor, debería ver a un médico.",
+          "next": "advice"
+        },
+        {
+          "id": "twice-check",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "How often? Twice a day, after meals. And if you don't feel better in three days, you should see a doctor.",
+          "es": "¿Cada cuánto? Dos veces al día, después de comer. Y si en tres días no se siente mejor, debería ver a un médico.",
+          "next": "advice"
+        },
+        {
+          "id": "advice",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Okay, I will. Thanks for the advice.",
+              "rating": "good",
+              "feedback": "Aceptas el consejo y das las gracias.",
+              "next": "pay-npc"
+            },
+            {
+              "en": "Okay.",
+              "rating": "ok",
+              "feedback": "Correcto, pero un poco seco.",
+              "next": "pay-npc"
+            },
+            {
+              "en": "No, I don't like doctors.",
+              "rating": "wrong",
+              "feedback": "Suena poco amable con alguien que te aconseja por tu salud.",
+              "next": "pay-npc-insist"
+            }
+          ]
+        },
+        {
+          "id": "pay-npc",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "You're welcome. Anything else?",
+          "es": "De nada. ¿Algo más?",
+          "next": "price"
+        },
+        {
+          "id": "pay-npc-insist",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "Well, it's just in case. I hope you feel better soon. Anything else?",
+          "es": "Bueno, es solo por si acaso. Espero que se mejore pronto. ¿Algo más?",
+          "next": "price"
+        },
+        {
+          "id": "price",
+          "kind": "write",
+          "prompt": "Dile que no, y pregunta cuánto es en total.",
+          "accepted": [
+            "No, thanks. How much is {it|that|everything}[ altogether| in total]?",
+            "No, that's all. How much is {it|that|everything}[ altogether| in total]?",
+            "How much is {it|that|everything}[ altogether| in total]?",
+            "[No, thanks. ]How much do I owe you?"
+          ],
+          "tip": "«How much is it?» es la forma más común de preguntar el precio.",
+          "next": "total",
+          "wrongNext": "total-check"
+        },
+        {
+          "id": "total",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "That's twelve dollars. Feel better!",
+          "es": "Son doce dólares. ¡Que se mejore!",
+          "next": "end"
+        },
+        {
+          "id": "total-check",
+          "kind": "npc",
+          "speaker": "pharmacist",
+          "en": "The price? That's twelve dollars. Feel better!",
+          "es": "¿El precio? Son doce dólares. ¡Que se mejore!",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Compraste jarabe y pastillas para la garganta, y sabes cómo tomarlos."
+        }
+      ],
+      "cardIds": ["a2.grammar.for-since", "a2.grammar.should"]
+    }
+  ]
+}

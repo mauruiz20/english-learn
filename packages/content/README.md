@@ -390,11 +390,17 @@ character speaks and the learner replies by choosing or by writing. A dialogue g
   work like a practice lesson's.
 - Every reply that is not `good` is clearly worse for a reason the feedback names; the app
   shows the turn's first good reply after it ("Mejor: …").
-- **Bundled**: ten dialogues in three groups, building on the Situaciones themes. A2 "Fuera de
-  casa": `airport-check-in`, `restaurant-order` (the server brings the wrong dish),
-  `doctor-visit`, `asking-directions`; B1 "Del día a día": `returning-headphones`,
-  `coworker-small-talk`, `reschedule-appointment`; B2 "Con tacto": `job-interview`,
-  `hotel-complaint`, `meeting-disagreement` (two characters). Each has 5–7 learner turns.
+- **Bundled**: 25 dialogues in seven groups, building on the Situaciones themes. A1 "Primeros
+  pasos": `introducing-yourself`, `buying-coffee`, `time-and-day` (very short lines, Spanish
+  prompts and tips); A2 "Fuera de casa": `airport-check-in`, `restaurant-order` (the server
+  brings the wrong dish), `doctor-visit`, `asking-directions`; A2 "Compras y recados":
+  `supermarket-checkout`, `booking-a-table`, `at-the-pharmacy`; B1 "Del día a día":
+  `returning-headphones`, `coworker-small-talk`, `reschedule-appointment`; B1 "Resolver cosas":
+  `market-bargaining`, `splitting-the-bill` (two friends), `internet-support`, `noisy-neighbor`;
+  B2 "Con tacto": `job-interview`, `hotel-complaint`, `meeting-disagreement` (two characters),
+  `billing-dispute`, `giving-feedback`, `car-rental` (accepting the upsell leads to its own
+  ending); C1 "Mucho en juego": `salary-negotiation`, `defending-a-decision` (two characters).
+  Each has 5–7 learner turns.
 
 ## Card gaps (next card pack)
 

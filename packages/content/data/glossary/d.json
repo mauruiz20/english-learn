@@ -220,6 +220,18 @@
       ]
     },
     {
+      "id": "glossary.deaf",
+      "headword": "deaf",
+      "kind": "word",
+      "forms": ["deaf"],
+      "senses": [
+        {
+          "es": "sordo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.deal",
       "headword": "deal",
       "kind": "word",
@@ -380,6 +392,18 @@
         {
           "es": "disminuir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.deductible",
+      "headword": "deductible",
+      "kind": "word",
+      "forms": ["deductible", "deductibles"],
+      "senses": [
+        {
+          "es": "deducible (lo que paga el asegurado)",
+          "pos": "noun"
         }
       ]
     },

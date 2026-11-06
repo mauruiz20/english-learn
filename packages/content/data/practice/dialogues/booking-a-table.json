@@ -1,0 +1,240 @@
+{
+  "dialogues": [
+    {
+      "id": "a2.dialogues.booking-a-table",
+      "level": "A2",
+      "title": "Reservar una mesa por teléfono",
+      "setting": "Llamas a un restaurante italiano para reservar una mesa para cuatro el sábado a las ocho. Una de tus amigas es vegetariana.",
+      "characters": [
+        {
+          "id": "host",
+          "name": "Anna",
+          "role": "recepcionista del restaurante"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Good afternoon, thank you for calling. How can I help you?",
+          "es": "Buenas tardes, gracias por llamar. ¿En qué le puedo ayudar?",
+          "next": "book"
+        },
+        {
+          "id": "book",
+          "kind": "write",
+          "itemIds": ["a2.situations.table-for"],
+          "prompt": "Di que quieres reservar una mesa para cuatro el sábado.",
+          "accepted": [
+            "I'd like to {book|reserve} a table for four[ people] {on |for |}Saturday[, please].",
+            "{Can|Could} I {book|reserve} a table for four[ people] {on |for |}Saturday[, please]?",
+            "I'd like {to make a reservation|a table} for four[ people] {on |for |}Saturday[, please]."
+          ],
+          "tip": "Para reservar: «I'd like to book a table for four on Saturday.»",
+          "next": "time",
+          "wrongNext": "time-check"
+        },
+        {
+          "id": "time",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Of course. What time would you like?",
+          "es": "Por supuesto. ¿A qué hora le gustaría?",
+          "next": "eight"
+        },
+        {
+          "id": "time-check",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Sorry, a table? For how many? Four, okay. And for Saturday. What time would you like?",
+          "es": "Perdón, ¿una mesa? ¿Para cuántos? Cuatro, muy bien. Y para el sábado. ¿A qué hora le gustaría?",
+          "next": "eight"
+        },
+        {
+          "id": "eight",
+          "kind": "choose",
+          "itemIds": ["a2.grammar.prepositions-at-time"],
+          "options": [
+            {
+              "en": "At eight, if possible.",
+              "rating": "good",
+              "feedback": "«At» con la hora y «if possible» lo hace más amable.",
+              "next": "full"
+            },
+            {
+              "en": "Eight.",
+              "rating": "ok",
+              "feedback": "Correcto, pero suena cortante.",
+              "next": "full"
+            },
+            {
+              "en": "For two hours.",
+              "rating": "wrong",
+              "feedback": "Malentendido: te pregunta a qué hora llegan, no cuánto tiempo se quedan.",
+              "next": "full-confused"
+            }
+          ]
+        },
+        {
+          "id": "full",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "I'm sorry, we're full at eight. We have a table at seven thirty or at nine.",
+          "es": "Lo siento, a las ocho estamos llenos. Tenemos una mesa a las siete y media o a las nueve.",
+          "next": "choose-time"
+        },
+        {
+          "id": "full-confused",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Oh, I mean what time do you want to come? At eight? I'm sorry, we're full at eight. We have a table at seven thirty or at nine.",
+          "es": "Ah, me refiero a qué hora quieren venir. ¿A las ocho? Lo siento, a las ocho estamos llenos. Tenemos una mesa a las siete y media o a las nueve.",
+          "next": "choose-time"
+        },
+        {
+          "id": "choose-time",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Seven thirty is perfect, thanks.",
+              "rating": "good",
+              "feedback": "Eliges una de las opciones y das las gracias.",
+              "next": "name"
+            },
+            {
+              "en": "Seven thirty, then.",
+              "rating": "ok",
+              "feedback": "Correcto, pero un poco seco.",
+              "next": "name"
+            },
+            {
+              "en": "Eight is fine.",
+              "rating": "wrong",
+              "feedback": "No escuchaste: a las ocho no hay mesas. Elige entre «seven thirty» y «nine».",
+              "next": "name-again"
+            }
+          ]
+        },
+        {
+          "id": "name",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Great. Can I have your name, please?",
+          "es": "Perfecto. ¿Me da su nombre, por favor?",
+          "next": "give-name"
+        },
+        {
+          "id": "name-again",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Sorry, eight is full. Seven thirty, then? Okay, seven thirty. Can I have your name, please?",
+          "es": "Perdón, a las ocho no hay lugar. ¿A las siete y media, entonces? Muy bien, a las siete y media. ¿Me da su nombre, por favor?",
+          "next": "give-name"
+        },
+        {
+          "id": "give-name",
+          "kind": "write",
+          "prompt": "Dile tu nombre y apellido: Alex Ruiz.",
+          "accepted": ["{It's|My name is} Alex Ruiz.", "Alex Ruiz.", "It's under Alex Ruiz."],
+          "tip": "«It's Alex Ruiz» o «My name is Alex Ruiz».",
+          "next": "anything",
+          "wrongNext": "anything-check"
+        },
+        {
+          "id": "anything",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Thank you, Alex. So that's a table for four on Saturday at seven thirty. Anything else?",
+          "es": "Gracias, Alex. Entonces, una mesa para cuatro el sábado a las siete y media. ¿Algo más?",
+          "next": "vegetarian"
+        },
+        {
+          "id": "anything-check",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Sorry, could you repeat that? Alex Ruiz? Thank you. So that's a table for four on Saturday at seven thirty. Anything else?",
+          "es": "Perdón, ¿me lo repite? ¿Alex Ruiz? Gracias. Entonces, una mesa para cuatro el sábado a las siete y media. ¿Algo más?",
+          "next": "vegetarian"
+        },
+        {
+          "id": "vegetarian",
+          "kind": "write",
+          "prompt": "Pregunta si tienen platos vegetarianos: una amiga es vegetariana.",
+          "accepted": [
+            "Do you have {any |}vegetarian {dishes|options}? {My friend|One of my friends} is {vegetarian|a vegetarian}.",
+            "{My friend|One of my friends} is {vegetarian|a vegetarian}. Do you have {any |}vegetarian {dishes|options}?",
+            "Do you have {any |}vegetarian {dishes|options}?",
+            "Is there anything vegetarian on the menu?"
+          ],
+          "tip": "«Do you have any vegetarian dishes?» En las preguntas se usa «any».",
+          "next": "veg",
+          "wrongNext": "veg-check"
+        },
+        {
+          "id": "veg",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Yes, we have a few vegetarian pastas and pizzas. See you on Saturday!",
+          "es": "Sí, tenemos varias pastas y pizzas vegetarianas. ¡Los esperamos el sábado!",
+          "next": "bye"
+        },
+        {
+          "id": "veg-check",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Vegetarian food? Yes, we have a few vegetarian pastas and pizzas. See you on Saturday!",
+          "es": "¿Comida vegetariana? Sí, tenemos varias pastas y pizzas vegetarianas. ¡Los esperamos el sábado!",
+          "next": "bye"
+        },
+        {
+          "id": "bye",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Perfect, thank you. See you on Saturday!",
+              "rating": "good",
+              "feedback": "Agradeces y repites el día: cierre claro y amable.",
+              "next": "end-npc"
+            },
+            {
+              "en": "Okay, bye.",
+              "rating": "ok",
+              "feedback": "Correcto, pero un poco seco.",
+              "next": "end-npc"
+            },
+            {
+              "en": "See you tomorrow!",
+              "rating": "wrong",
+              "feedback": "Confuso: la reserva es el sábado, no mañana.",
+              "next": "end-npc-confused"
+            }
+          ]
+        },
+        {
+          "id": "end-npc",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Thank you. Bye!",
+          "es": "Gracias. ¡Adiós!",
+          "next": "end"
+        },
+        {
+          "id": "end-npc-confused",
+          "kind": "npc",
+          "speaker": "host",
+          "en": "Saturday, not tomorrow! See you on Saturday. Bye!",
+          "es": "¡El sábado, no mañana! Los esperamos el sábado. ¡Adiós!",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Reservaste una mesa para cuatro el sábado a las siete y media, con opciones vegetarianas."
+        }
+      ],
+      "cardIds": ["a2.grammar.time-prepositions", "a2.grammar.some-any"]
+    }
+  ]
+}

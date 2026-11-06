@@ -1,0 +1,251 @@
+{
+  "dialogues": [
+    {
+      "id": "b2.dialogues.giving-feedback",
+      "level": "B2",
+      "title": "Dar feedback a un colega",
+      "setting": "Coordinas un proyecto. Ryan, que entró al equipo hace tres meses, entregó un informe con un buen análisis, pero con cifras sin revisar, y el cliente lo notó. Quieres decírselo sin desanimarlo.",
+      "characters": [
+        {
+          "id": "ryan",
+          "name": "Ryan",
+          "role": "tu colega nuevo"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Hey, you wanted to see me?",
+          "es": "Hola, ¿querías verme?",
+          "next": "open"
+        },
+        {
+          "id": "open",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Yes, thanks for coming. Do you have a few minutes to talk about the sales report?",
+              "rating": "good",
+              "feedback": "Agradeces y anuncias el tema con calma: Ryan llega tranquilo a la conversación.",
+              "next": "open-calm"
+            },
+            {
+              "en": "Yes. We need to talk about your report.",
+              "rating": "ok",
+              "feedback": "Correcto, pero suena alarmante y lo pone nervioso.",
+              "next": "open-worried"
+            },
+            {
+              "en": "Yes. Your report was a disaster.",
+              "rating": "wrong",
+              "feedback": "Empezar con una crítica tan dura lo pone a la defensiva antes de hablar.",
+              "next": "open-hurt"
+            }
+          ]
+        },
+        {
+          "id": "open-calm",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Sure. Is everything okay with it?",
+          "es": "Claro. ¿Está todo bien con el informe?",
+          "next": "positive"
+        },
+        {
+          "id": "open-worried",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Oh no. That doesn't sound good. What's wrong?",
+          "es": "Ay, no. Eso no suena bien. ¿Qué pasa?",
+          "next": "positive"
+        },
+        {
+          "id": "open-hurt",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Oh. Wow. Okay... what was wrong with it?",
+          "es": "Ah. Vaya. Bueno... ¿qué tenía de malo?",
+          "next": "positive"
+        },
+        {
+          "id": "positive",
+          "kind": "write",
+          "prompt": "Empieza por lo positivo: dile que su análisis estuvo muy bien.",
+          "accepted": [
+            "{First of all, |}I {really |}liked your analysis.",
+            "Your analysis was {really |very |}{good|strong|useful|clear}.",
+            "{First of all, |}the analysis was {really |}{good|great|excellent}.",
+            "I thought your analysis was {really |very |}{good|strong|useful}."
+          ],
+          "tip": "Empezar con algo positivo y concreto («I really liked your analysis») hace que la crítica se escuche mejor.",
+          "next": "worked-hard",
+          "wrongNext": "worked-hard-unsure"
+        },
+        {
+          "id": "worked-hard",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Thanks, I worked hard on it.",
+          "es": "Gracias, le dediqué mucho trabajo.",
+          "next": "numbers"
+        },
+        {
+          "id": "worked-hard-unsure",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Sorry, you mean the analysis? Oh, thanks. I worked hard on it.",
+          "es": "Perdón, ¿te refieres al análisis? Ah, gracias. Le dediqué mucho trabajo.",
+          "next": "numbers"
+        },
+        {
+          "id": "numbers",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "It shows. The only thing is that some numbers hadn't been checked, and the client noticed.",
+              "rating": "good",
+              "feedback": "Describes el hecho y su consecuencia, sin juzgar a la persona.",
+              "next": "own-it"
+            },
+            {
+              "en": "But the numbers were wrong, and the client noticed.",
+              "rating": "ok",
+              "feedback": "Es verdad, pero «But» borra el elogio anterior y suena a acusación.",
+              "next": "own-it"
+            },
+            {
+              "en": "You should have checked the numbers. That's basic.",
+              "rating": "wrong",
+              "feedback": "«That's basic» es condescendiente: lo humilla en vez de ayudarlo a mejorar.",
+              "next": "defensive"
+            }
+          ]
+        },
+        {
+          "id": "own-it",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Oh no. You're right, I should have double-checked them. I was rushing to meet the deadline.",
+          "es": "Ay, no. Tienes razón, debí haberlas revisado dos veces. Estaba apurado por llegar a la fecha de entrega.",
+          "next": "wondering"
+        },
+        {
+          "id": "defensive",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Well, I was rushing because the deadline was impossible.",
+          "es": "Bueno, estaba apurado porque la fecha de entrega era imposible.",
+          "next": "wondering"
+        },
+        {
+          "id": "wondering",
+          "kind": "write",
+          "itemIds": ["b2.situations.i-was-wondering-if"],
+          "prompt": "Pregúntale con tacto si le ayudaría tener más tiempo la próxima vez (usa «I was wondering if…»).",
+          "accepted": [
+            "I was wondering if {it would help|it'd help} to have more time next time.",
+            "I was wondering if {more time|a longer deadline} would help next time.",
+            "I was wondering if you'd like more time next time."
+          ],
+          "tip": "«I was wondering if…» suaviza una pregunta y la hace muy amable.",
+          "next": "honest",
+          "wrongNext": "honest-check"
+        },
+        {
+          "id": "honest",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Honestly, yes. I didn't want to ask, because I'm new.",
+          "es": "La verdad, sí. No quería pedirlo porque soy nuevo.",
+          "next": "ask"
+        },
+        {
+          "id": "honest-check",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "More time? Honestly, yes. I didn't want to ask, because I'm new.",
+          "es": "¿Más tiempo? La verdad, sí. No quería pedirlo porque soy nuevo.",
+          "next": "ask"
+        },
+        {
+          "id": "ask",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "You can always ask. I'd much rather wait a day than send the client mistakes.",
+              "rating": "good",
+              "feedback": "Le das permiso para pedir ayuda y explicas tu prioridad: lo motiva.",
+              "next": "relieved"
+            },
+            {
+              "en": "Next time, just ask.",
+              "rating": "ok",
+              "feedback": "El mensaje es bueno, pero suena seco.",
+              "next": "relieved"
+            },
+            {
+              "en": "Being new is no excuse.",
+              "rating": "wrong",
+              "feedback": "Es innecesariamente duro: él ya reconoció el error.",
+              "next": "deflated"
+            }
+          ]
+        },
+        {
+          "id": "relieved",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "That's good to know. Thanks for being so understanding.",
+          "es": "Es bueno saberlo. Gracias por tu comprensión.",
+          "next": "friday"
+        },
+        {
+          "id": "deflated",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Right. Sorry.",
+          "es": "Claro. Perdón.",
+          "next": "friday"
+        },
+        {
+          "id": "friday",
+          "kind": "write",
+          "itemIds": ["b1.phrasal-verbs.go-over"],
+          "prompt": "Propón revisar juntos el próximo informe el viernes.",
+          "accepted": [
+            "{Let's|We could} {go over|look at|review} the next report together on Friday.",
+            "{Why don't we|Shall we|How about we} {go over|look at|review} the next report together on Friday?"
+          ],
+          "tip": "«Go over» es revisar algo con atención: «Let's go over the next report together.»",
+          "next": "great",
+          "wrongNext": "great-check"
+        },
+        {
+          "id": "great",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Sounds great. Thanks again.",
+          "es": "Me parece genial. Gracias de nuevo.",
+          "next": "end"
+        },
+        {
+          "id": "great-check",
+          "kind": "npc",
+          "speaker": "ryan",
+          "en": "Sorry, on Friday? Sure, that sounds great. Thanks again.",
+          "es": "Perdón, ¿el viernes? Claro, me parece genial. Gracias de nuevo.",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Le diste a Ryan una crítica clara y amable, y van a revisar juntos el próximo informe."
+        }
+      ],
+      "cardIds": ["b2.grammar.should-have"]
+    }
+  ]
+}

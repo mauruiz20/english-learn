@@ -653,6 +653,18 @@
       ]
     },
     {
+      "id": "glossary.inform",
+      "headword": "inform",
+      "kind": "word",
+      "forms": ["inform", "informs", "informed", "informing"],
+      "senses": [
+        {
+          "es": "informar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.information",
       "headword": "information",
       "kind": "word",
@@ -672,6 +684,22 @@
       "senses": [
         {
           "es": "(-ing) terminación del gerundio (reading = leer, leyendo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.initial",
+      "headword": "initial",
+      "kind": "word",
+      "forms": ["initial", "initials", "initialed", "initialing"],
+      "senses": [
+        {
+          "es": "poner las iniciales",
+          "pos": "verb"
+        },
+        {
+          "es": "inicial",
           "pos": "noun"
         }
       ]
@@ -817,6 +845,30 @@
       ]
     },
     {
+      "id": "glossary.insulting",
+      "headword": "insulting",
+      "kind": "word",
+      "forms": ["insulting"],
+      "senses": [
+        {
+          "es": "insultante, ofensivo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.insurance",
+      "headword": "insurance",
+      "kind": "word",
+      "forms": ["insurance"],
+      "senses": [
+        {
+          "es": "seguro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.intend",
       "headword": "intend",
       "kind": "word",
@@ -825,6 +877,18 @@
         {
           "es": "tener la intención de",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.intention",
+      "headword": "intention",
+      "kind": "word",
+      "forms": ["intention", "intentions"],
+      "senses": [
+        {
+          "es": "intención",
+          "pos": "noun"
         }
       ]
     },
@@ -873,6 +937,18 @@
         {
           "es": "curiosamente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.international",
+      "headword": "international",
+      "kind": "word",
+      "forms": ["international"],
+      "senses": [
+        {
+          "es": "internacional",
+          "pos": "adjective"
         }
       ]
     },
@@ -1053,6 +1129,18 @@
       ]
     },
     {
+      "id": "glossary.involve",
+      "headword": "involve",
+      "kind": "word",
+      "forms": ["involve", "involves", "involved", "involving"],
+      "senses": [
+        {
+          "es": "hacer participar, involucrar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.iron",
       "headword": "iron",
       "kind": "word",
@@ -1181,6 +1269,18 @@
         {
           "es": "(IT) informática, TI",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.itd",
+      "headword": "it'd",
+      "kind": "word",
+      "forms": ["it'd"],
+      "senses": [
+        {
+          "es": "(it would / it had) sería, habría",
+          "pos": "expression"
         }
       ]
     },

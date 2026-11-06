@@ -1,0 +1,225 @@
+{
+  "dialogues": [
+    {
+      "id": "a1.dialogues.introducing-yourself",
+      "level": "A1",
+      "title": "Presentarte",
+      "setting": "Es tu primer día en una clase de inglés en Toronto. Una compañera se sienta a tu lado y te saluda. En este diálogo te llamas Alex y eres de México.",
+      "characters": [
+        {
+          "id": "emma",
+          "name": "Emma",
+          "role": "compañera de clase"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Hi! I'm Emma. What's your name?",
+          "es": "¡Hola! Soy Emma. ¿Cómo te llamas?",
+          "next": "name"
+        },
+        {
+          "id": "name",
+          "kind": "write",
+          "prompt": "Saluda y dile que te llamas Alex.",
+          "accepted": [
+            "{Hi|Hello}, I'm Alex.",
+            "{Hi|Hello}, my name is Alex.",
+            "{I'm|My name is} Alex."
+          ],
+          "tip": "Para decir tu nombre: «I'm Alex» o «My name is Alex».",
+          "next": "from",
+          "wrongNext": "from-again"
+        },
+        {
+          "id": "from",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Nice to meet you, Alex! Where are you from?",
+          "es": "¡Mucho gusto, Alex! ¿De dónde eres?",
+          "next": "answer-from"
+        },
+        {
+          "id": "from-again",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Sorry? Oh, Alex! Nice to meet you. Where are you from?",
+          "es": "¿Perdón? ¡Ah, Alex! Mucho gusto. ¿De dónde eres?",
+          "next": "answer-from"
+        },
+        {
+          "id": "answer-from",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I'm from Mexico. And you?",
+              "rating": "good",
+              "feedback": "Dices de dónde eres y le devuelves la pregunta: natural y amable.",
+              "next": "canada"
+            },
+            {
+              "en": "Mexico.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero una sola palabra suena seca. Di la frase completa: «I'm from Mexico».",
+              "next": "canada"
+            },
+            {
+              "en": "I'm Mexico.",
+              "rating": "wrong",
+              "feedback": "Falta «from»: «I'm Mexico» quiere decir «Soy México». Para el origen se dice «I'm from…».",
+              "next": "canada-joke"
+            }
+          ]
+        },
+        {
+          "id": "canada",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Cool! I'm from Canada. Are you a student?",
+          "es": "¡Qué bien! Yo soy de Canadá. ¿Eres estudiante?",
+          "next": "job"
+        },
+        {
+          "id": "canada-joke",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Ha! You're Mexico? Oh, you're from Mexico! I'm from Canada. Are you a student?",
+          "es": "¡Ja! ¿Eres México? ¡Ah, eres de México! Yo soy de Canadá. ¿Eres estudiante?",
+          "next": "job"
+        },
+        {
+          "id": "job",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "No, I'm an engineer.",
+              "rating": "good",
+              "feedback": "Respuesta clara, con «an» antes de un sonido de vocal: «an engineer».",
+              "next": "first-class"
+            },
+            {
+              "en": "No, I'm engineer.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero falta el artículo: en inglés, las profesiones llevan «a» o «an» («I'm an engineer»).",
+              "next": "first-class"
+            },
+            {
+              "en": "I'm twenty-five.",
+              "rating": "wrong",
+              "feedback": "No respondes la pregunta: Emma pregunta si eres estudiante, no tu edad.",
+              "next": "first-class-age"
+            }
+          ]
+        },
+        {
+          "id": "first-class",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "An engineer! Great. I'm a student. This is my first class.",
+          "es": "¡Ingeniero! Qué bien. Yo soy estudiante. Esta es mi primera clase.",
+          "next": "too"
+        },
+        {
+          "id": "first-class-age",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Oh, okay! I'm twenty. I'm a student. This is my first class.",
+          "es": "¡Ah, bueno! Yo tengo veinte. Soy estudiante. Esta es mi primera clase.",
+          "next": "too"
+        },
+        {
+          "id": "too",
+          "kind": "write",
+          "prompt": "Dile que también es tu primera clase.",
+          "accepted": [
+            "{It's|This is} my first class too.",
+            "{It's|This is} also my first class.",
+            "Mine too."
+          ],
+          "tip": "«Too» va al final de la frase: «It's my first class too.»",
+          "next": "coffee",
+          "wrongNext": "coffee-check"
+        },
+        {
+          "id": "coffee",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Really? Great! Do you want a coffee after class?",
+          "es": "¿En serio? ¡Qué bien! ¿Quieres un café después de clase?",
+          "next": "answer-coffee"
+        },
+        {
+          "id": "coffee-check",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Sorry? Oh, your first class too? Great! Do you want a coffee after class?",
+          "es": "¿Perdón? ¿Ah, también es tu primera clase? ¡Qué bien! ¿Quieres un café después de clase?",
+          "next": "answer-coffee"
+        },
+        {
+          "id": "answer-coffee",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Yes, sure! Thank you.",
+              "rating": "good",
+              "feedback": "Aceptas con entusiasmo y das las gracias.",
+              "next": "teacher"
+            },
+            {
+              "en": "Okay.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena frío ante una invitación.",
+              "next": "teacher"
+            },
+            {
+              "en": "No. Goodbye.",
+              "rating": "wrong",
+              "feedback": "Suena muy cortante: rechazas la invitación y te despides de golpe.",
+              "next": "teacher-sad"
+            }
+          ]
+        },
+        {
+          "id": "teacher",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Great! Oh, look, the teacher is here.",
+          "es": "¡Genial! Ah, mira, llegó la profesora.",
+          "next": "bye"
+        },
+        {
+          "id": "teacher-sad",
+          "kind": "npc",
+          "speaker": "emma",
+          "en": "Oh... okay. Maybe another day. Look, the teacher is here.",
+          "es": "Ah... bueno. Tal vez otro día. Mira, llegó la profesora.",
+          "next": "bye"
+        },
+        {
+          "id": "bye",
+          "kind": "write",
+          "prompt": "La clase empieza. Dile a Emma «hasta luego».",
+          "accepted": [
+            "See you later[, Emma]!",
+            "{Bye|Goodbye}[, Emma]. See you {later|after class}!",
+            "See you after class[, Emma]!",
+            "Talk to you later[, Emma]!"
+          ],
+          "tip": "«See you later!» es la forma más común de decir «hasta luego».",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Conociste a Emma: le dijiste tu nombre, de dónde eres y a qué te dedicas."
+        }
+      ],
+      "cardIds": ["a1.grammar.to-be", "a1.grammar.a-an"]
+    }
+  ]
+}

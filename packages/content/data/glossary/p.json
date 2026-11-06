@@ -49,6 +49,18 @@
       ]
     },
     {
+      "id": "glossary.package",
+      "headword": "package",
+      "kind": "word",
+      "forms": ["package", "packages"],
+      "senses": [
+        {
+          "es": "paquete (de condiciones)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.page",
       "headword": "page",
       "kind": "word",
@@ -432,7 +444,7 @@
       "id": "glossary.pasta",
       "headword": "pasta",
       "kind": "word",
-      "forms": ["pasta"],
+      "forms": ["pasta", "pastas"],
       "senses": [
         {
           "es": "pasta",
@@ -1015,6 +1027,18 @@
       "senses": [
         {
           "es": "pino",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pizza",
+      "headword": "pizza",
+      "kind": "word",
+      "forms": ["pizza", "pizzas"],
+      "senses": [
+        {
+          "es": "pizza",
           "pos": "noun"
         }
       ]

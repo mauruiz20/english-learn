@@ -1,0 +1,241 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.noisy-neighbor",
+      "level": "B1",
+      "title": "Pedirle al vecino que baje el ruido",
+      "setting": "Son las once y media de la noche de un martes. Tu vecino de arriba tiene la música muy fuerte y mañana te levantas a las seis. Subes y tocas su puerta.",
+      "characters": [
+        {
+          "id": "neighbor",
+          "name": "Tyler",
+          "role": "tu vecino de arriba"
+        }
+      ],
+      "start": "door",
+      "nodes": [
+        {
+          "id": "door",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Oh, hey! What's up?",
+          "es": "¡Ah, hola! ¿Qué tal?",
+          "next": "intro"
+        },
+        {
+          "id": "intro",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Hi, sorry to bother you. I live downstairs.",
+              "rating": "good",
+              "feedback": "Te disculpas por la hora y te presentas: buen comienzo para pedir algo.",
+              "next": "friendly"
+            },
+            {
+              "en": "Your music is really loud.",
+              "rating": "ok",
+              "feedback": "Es verdad, pero empezar con la queja, sin saludar, pone al otro a la defensiva.",
+              "next": "defensive"
+            },
+            {
+              "en": "Are you deaf? Turn that music off!",
+              "rating": "wrong",
+              "feedback": "Insultar y gritar órdenes convierte un pedido simple en una pelea.",
+              "next": "angry"
+            }
+          ]
+        },
+        {
+          "id": "friendly",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Oh, hi! Nice to meet you. Is everything okay?",
+          "es": "¡Ah, hola! Mucho gusto. ¿Está todo bien?",
+          "next": "explain"
+        },
+        {
+          "id": "defensive",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Oh. Is it a problem?",
+          "es": "Ah. ¿Es un problema?",
+          "next": "explain"
+        },
+        {
+          "id": "angry",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Whoa, relax! There's no need to shout. What's the problem?",
+          "es": "¡Eh, calma! No hace falta gritar. ¿Cuál es el problema?",
+          "next": "explain"
+        },
+        {
+          "id": "explain",
+          "kind": "write",
+          "itemIds": ["b1.grammar.obligation-have-to-external"],
+          "prompt": "Explícale que mañana tienes que levantarte a las seis y que no puedes dormir por la música.",
+          "accepted": [
+            "I {have to|need to} {get up|wake up} at six tomorrow, and I can't sleep {because of|with} the music.",
+            "I can't sleep {because of|with} the music, and I {have to|need to} {get up|wake up} at six tomorrow.",
+            "The music is keeping me {up|awake}, and I {have to|need to} {get up|wake up} at six tomorrow."
+          ],
+          "tip": "Para una obligación: «I have to get up at six.» «Because of» va antes de un sustantivo: «because of the music».",
+          "next": "birthday",
+          "wrongNext": "birthday-loud"
+        },
+        {
+          "id": "birthday",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Oh, I'm sorry, I didn't realize it was that loud. It's my birthday, and a few friends are here.",
+          "es": "Ay, perdón, no me di cuenta de que estaba tan fuerte. Es mi cumpleaños y vinieron unos amigos.",
+          "next": "turn-down"
+        },
+        {
+          "id": "birthday-loud",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Sorry, I can't hear you very well with the music. You can't sleep? Oh, I'm sorry. It's my birthday, and a few friends are here.",
+          "es": "Perdón, no te escucho bien con la música. ¿No puedes dormir? Ay, perdón. Es mi cumpleaños y vinieron unos amigos.",
+          "next": "turn-down"
+        },
+        {
+          "id": "turn-down",
+          "kind": "choose",
+          "itemIds": ["b1.grammar.gerund-infinitive-avoid-keep"],
+          "options": [
+            {
+              "en": "Oh, happy birthday! Would you mind turning it down a little?",
+              "rating": "good",
+              "feedback": "Lo felicitas y pides con «Would you mind + -ing»: muy educado.",
+              "next": "sure"
+            },
+            {
+              "en": "Would you mind to turn it down?",
+              "rating": "ok",
+              "feedback": "Se entiende, pero después de «mind» va -ing: «Would you mind turning it down?».",
+              "next": "sure"
+            },
+            {
+              "en": "Happy birthday. Turn it down, please.",
+              "rating": "ok",
+              "feedback": "Con «please», pero el imperativo suena a orden.",
+              "next": "sure"
+            },
+            {
+              "en": "I don't care about your birthday. Stop the party now.",
+              "rating": "wrong",
+              "feedback": "Despreciar su cumpleaños y exigir que termine la fiesta es grosero y exagerado.",
+              "next": "sure-cold"
+            }
+          ]
+        },
+        {
+          "id": "sure",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Sure, no problem. I'll turn it down right now.",
+          "es": "Claro, no hay problema. La bajo ahora mismo.",
+          "next": "how-late"
+        },
+        {
+          "id": "sure-cold",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Wow. Okay, I'll turn it down, but you could be a bit nicer about it.",
+          "es": "Vaya. Bueno, la bajo, pero podrías decirlo de mejor manera.",
+          "next": "how-late"
+        },
+        {
+          "id": "how-late",
+          "kind": "write",
+          "prompt": "Pregúntale hasta qué hora va a durar la fiesta.",
+          "accepted": [
+            "How {long|late} will {the party|it} {last|go on}?",
+            "How {long|late} is {the party|it} going to {last|go on}?",
+            "{When|What time} will {the party|it} {end|finish}?",
+            "{When|What time} is {the party|it} going to {end|finish}?",
+            "{When|What time} does {the party|it} {end|finish}?"
+          ],
+          "tip": "«How late will it go on?» pregunta hasta qué hora sigue algo.",
+          "next": "midnight",
+          "wrongNext": "midnight-check"
+        },
+        {
+          "id": "midnight",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Everyone's leaving around midnight. Is that okay?",
+          "es": "Todos se van a eso de la medianoche. ¿Está bien?",
+          "next": "okay"
+        },
+        {
+          "id": "midnight-check",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Sorry, until when? Oh, everyone's leaving around midnight. Is that okay?",
+          "es": "Perdón, ¿hasta cuándo? Ah, todos se van a eso de la medianoche. ¿Está bien?",
+          "next": "okay"
+        },
+        {
+          "id": "okay",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "That's fine. Thanks for understanding. Enjoy the party!",
+              "rating": "good",
+              "feedback": "Aceptas, agradeces y terminas en buenos términos con tu vecino.",
+              "next": "next-time"
+            },
+            {
+              "en": "Fine, I guess.",
+              "rating": "ok",
+              "feedback": "Aceptas, pero suena a reproche.",
+              "next": "next-time"
+            },
+            {
+              "en": "No, it isn't. I'm calling the police.",
+              "rating": "wrong",
+              "feedback": "Amenazar con la policía cuando ya aceptó bajar la música es una reacción exagerada.",
+              "next": "next-time-upset"
+            }
+          ]
+        },
+        {
+          "id": "next-time",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Thanks. And next time, I'll let you know before I have a party.",
+          "es": "Gracias. Y la próxima vez te aviso antes de hacer una fiesta.",
+          "next": "helpful"
+        },
+        {
+          "id": "next-time-upset",
+          "kind": "npc",
+          "speaker": "neighbor",
+          "en": "Hey, there's no need for that. Okay, we'll end it now. And next time, I'll let you know before I have a party.",
+          "es": "Oye, no hace falta. Bueno, terminamos ahora. Y la próxima vez te aviso antes de hacer una fiesta.",
+          "next": "helpful"
+        },
+        {
+          "id": "helpful",
+          "kind": "write",
+          "prompt": "Agradécele y dile que eso sería de gran ayuda.",
+          "accepted": [
+            "{Thanks|Thank you}[ so much], that would {be {really |very |}helpful|help a lot|be great}.",
+            "That would be {really |very |}helpful[, thanks]."
+          ],
+          "tip": "«That would be really helpful» es una forma amable de agradecer una propuesta.",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Hablaste con tu vecino, bajó la música y quedaron en que te avisará antes de otra fiesta."
+        }
+      ],
+      "cardIds": ["b1.grammar.gerund-infinitive"]
+    }
+  ]
+}
