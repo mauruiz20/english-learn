@@ -1,0 +1,274 @@
+{
+  "cards": [
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions",
+      "level": "C1",
+      "topic": "phrasal-verbs",
+      "kind": "phrasal_verbs",
+      "title": "Phrasal verbs: causas, cambios y soluciones",
+      "summary": "Cinco phrasal verbs muy usados en debates, informes y negociaciones para explicar causas, provocar cambios, restar importancia, resolver problemas y sopesar opciones.",
+      "form": "verbo + partícula; en los separables, un pronombre va en el medio: play it down, iron them out, weigh them up",
+      "uses": [
+        "Account for: explicar la causa de algo o representar una proporción (account for half of…).",
+        "Bring about: provocar un cambio, sobre todo en textos formales.",
+        "Play down, iron out y weigh up son separables: play it down, iron them out, weigh them up."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "The minister played down it.",
+          "right": "The minister played it down.",
+          "why": "Con un pronombre, el phrasal verb separable lo lleva en el medio."
+        },
+        {
+          "wrong": "Stress explains for many of these problems.",
+          "right": "Stress accounts for many of these problems.",
+          "why": "Explain no lleva for; account sí: account for."
+        },
+        {
+          "wrong": "The new law brought about to many changes.",
+          "right": "The new law brought about many changes.",
+          "why": "Bring about va seguido directamente del objeto, sin to."
+        }
+      ],
+      "entries": [
+        {
+          "verb": "account for",
+          "es": "explicar, ser la causa de",
+          "separable": false,
+          "example": {
+            "en": "Stress accounts for many of these problems.",
+            "es": "El estrés explica muchos de estos problemas."
+          }
+        },
+        {
+          "verb": "bring about",
+          "es": "provocar, ocasionar",
+          "separable": true,
+          "example": {
+            "en": "The internet has brought about huge changes.",
+            "es": "Internet ha provocado enormes cambios."
+          }
+        },
+        {
+          "verb": "play down",
+          "es": "restar importancia a",
+          "separable": true,
+          "example": {
+            "en": "She tried to play down her role in the project.",
+            "es": "Intentó restarle importancia a su papel en el proyecto."
+          }
+        },
+        {
+          "verb": "iron out",
+          "es": "resolver, limar (problemas, diferencias)",
+          "separable": true,
+          "example": {
+            "en": "We need to iron out a few details.",
+            "es": "Tenemos que resolver algunos detalles."
+          }
+        },
+        {
+          "verb": "weigh up",
+          "es": "sopesar",
+          "separable": true,
+          "example": {
+            "en": "She weighed up the options before deciding.",
+            "es": "Sopesó las opciones antes de decidir."
+          }
+        }
+      ],
+      "examples": [
+        {
+          "en": "Young people account for half of all users.",
+          "es": "Los jóvenes representan la mitad de todos los usuarios."
+        },
+        {
+          "en": "The reform brought about a fall in unemployment.",
+          "es": "La reforma provocó una caída del desempleo."
+        },
+        {
+          "en": "The company played down the risks of the new product.",
+          "es": "La empresa les restó importancia a los riesgos del nuevo producto."
+        },
+        {
+          "en": "Both sides met to iron out their differences.",
+          "es": "Ambas partes se reunieron para limar sus diferencias."
+        },
+        {
+          "en": "Let's weigh up the pros and cons before we decide.",
+          "es": "Sopesemos los pros y los contras antes de decidir."
+        },
+        {
+          "en": "Don't play it down: it's a serious problem.",
+          "es": "No le restes importancia: es un problema grave."
+        }
+      ],
+      "itemIds": [
+        "c1.phrasal-verbs.account-for",
+        "c1.phrasal-verbs.bring-about",
+        "c1.phrasal-verbs.play-down",
+        "c1.phrasal-verbs.iron-out",
+        "c1.phrasal-verbs.weigh-up"
+      ],
+      "exerciseIds": [
+        "c1.phrasal-verbs.causes-and-solutions-cloze-1",
+        "c1.phrasal-verbs.causes-and-solutions-cloze-2",
+        "c1.phrasal-verbs.causes-and-solutions-cloze-3",
+        "c1.phrasal-verbs.causes-and-solutions-vocab-1",
+        "c1.phrasal-verbs.causes-and-solutions-choice-1",
+        "c1.phrasal-verbs.causes-and-solutions-order-1",
+        "c1.phrasal-verbs.causes-and-solutions-write-1",
+        "c1.phrasal-verbs.causes-and-solutions-write-2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "c1.phrasal-verbs.account-for",
+      "level": "C1",
+      "topics": ["phrasal-verbs", "psychology-and-behaviour"],
+      "kind": "phrase",
+      "term": "account for",
+      "es": "explicar, ser la causa de; representar (una proporción)"
+    },
+    {
+      "id": "c1.phrasal-verbs.bring-about",
+      "level": "C1",
+      "topics": ["phrasal-verbs", "psychology-and-behaviour"],
+      "kind": "phrase",
+      "term": "bring (something) about",
+      "es": "provocar, ocasionar"
+    },
+    {
+      "id": "c1.phrasal-verbs.play-down",
+      "level": "C1",
+      "topics": ["phrasal-verbs", "psychology-and-behaviour"],
+      "kind": "phrase",
+      "term": "play (something) down",
+      "es": "restar importancia a"
+    },
+    {
+      "id": "c1.phrasal-verbs.iron-out",
+      "level": "C1",
+      "topics": ["phrasal-verbs", "work-and-negotiation"],
+      "kind": "phrase",
+      "term": "iron (something) out",
+      "es": "resolver, limar (problemas, diferencias)"
+    },
+    {
+      "id": "c1.phrasal-verbs.weigh-up",
+      "level": "C1",
+      "topics": ["phrasal-verbs", "psychology-and-behaviour"],
+      "kind": "phrase",
+      "term": "weigh (something) up",
+      "es": "sopesar"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-cloze-1",
+      "itemIds": ["c1.phrasal-verbs.account-for"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Rising costs account ___ most of the price increase.",
+      "answers": ["for"],
+      "distractors": ["of", "to", "with"],
+      "es": "El aumento de los costos explica la mayor parte de la subida de precios."
+    },
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-cloze-2",
+      "itemIds": ["c1.phrasal-verbs.play-down"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The minister tried to play ___ the crisis.",
+      "answers": ["down"],
+      "distractors": ["off", "out", "over"],
+      "es": "El ministro intentó restarle importancia a la crisis."
+    },
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-cloze-3",
+      "itemIds": ["c1.phrasal-verbs.iron-out"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We still have a few problems to iron ___.",
+      "answers": ["out"],
+      "distractors": ["up", "off", "down"],
+      "es": "Todavía tenemos que resolver algunos problemas."
+    },
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-vocab-1",
+      "itemIds": ["c1.phrasal-verbs.bring-about"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'bring about' mean in 'The new law brought about real change'?",
+      "options": ["traer de vuelta", "acercar", "provocar, ocasionar", "criar"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-choice-1",
+      "itemIds": ["c1.phrasal-verbs.weigh-up"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "You should weigh up the risks before you invest.",
+      "options": [
+        "Deberías pesar tus ahorros antes de invertir.",
+        "Deberías sopesar los riesgos antes de invertir.",
+        "Deberías olvidarte de los riesgos antes de invertir.",
+        "Deberías invertir antes de que aumenten los riesgos."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-order-1",
+      "itemIds": ["c1.phrasal-verbs.play-down"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["at", "The", "played", "minister", "it", "first.", "down"],
+      "accepted": ["The minister played it down at first."],
+      "es": "Al principio, el ministro le restó importancia."
+    },
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-write-1",
+      "itemIds": ["c1.phrasal-verbs.weigh-up"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Necesitamos sopesar las ventajas y las desventajas.",
+      "accepted": [
+        "We need to weigh up the {pros and cons|advantages and disadvantages}.",
+        "We need to weigh the {pros and cons|advantages and disadvantages}[ up]."
+      ]
+    },
+    {
+      "id": "c1.phrasal-verbs.causes-and-solutions-write-2",
+      "itemIds": ["c1.phrasal-verbs.account-for"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Qué explica la diferencia?",
+      "accepted": ["What {accounts for|explains} the difference?"]
+    }
+  ]
+}
