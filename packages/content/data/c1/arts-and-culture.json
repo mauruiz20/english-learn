@@ -1,0 +1,439 @@
+{
+  "items": [
+    {
+      "id": "c1.arts-and-culture.masterpiece",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "kind": "word",
+      "term": "masterpiece",
+      "es": "obra maestra",
+      "example": {
+        "en": "Many critics consider the novel a masterpiece.",
+        "es": "Muchos críticos consideran la novela una obra maestra."
+      }
+    },
+    {
+      "id": "c1.arts-and-culture.thought-provoking",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "kind": "word",
+      "term": "thought-provoking",
+      "es": "que invita a reflexionar",
+      "example": {
+        "en": "It was a thought-provoking documentary.",
+        "es": "Fue un documental que invitaba a reflexionar."
+      }
+    },
+    {
+      "id": "c1.arts-and-culture.acquired-taste",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "kind": "phrase",
+      "term": "an acquired taste",
+      "es": "algo que se aprende a apreciar con el tiempo",
+      "example": {
+        "en": "Jazz is an acquired taste.",
+        "es": "El jazz es algo que se aprende a apreciar con el tiempo."
+      }
+    },
+    {
+      "id": "c1.arts-and-culture.stand-the-test-of-time",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "kind": "phrase",
+      "term": "stand the test of time",
+      "es": "resistir el paso del tiempo",
+      "example": {
+        "en": "Good design stands the test of time.",
+        "es": "El buen diseño resiste el paso del tiempo."
+      }
+    },
+    {
+      "id": "c1.arts-and-culture.cultural-heritage",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "kind": "phrase",
+      "term": "cultural heritage",
+      "es": "patrimonio cultural",
+      "example": {
+        "en": "The city is proud of its cultural heritage.",
+        "es": "La ciudad está orgullosa de su patrimonio cultural."
+      }
+    },
+    {
+      "id": "c1.arts-and-culture.critically-acclaimed",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "kind": "phrase",
+      "term": "critically acclaimed",
+      "es": "aclamado por la crítica",
+      "example": {
+        "en": "Her first novel was critically acclaimed.",
+        "es": "Su primera novela fue aclamada por la crítica."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.arts-and-culture.what-makes-a-masterpiece",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "title": "What makes a masterpiece?",
+      "text": "What makes a work of art a masterpiece? It is tempting to answer that it is simply a question of talent, but the history of art suggests otherwise. Many paintings that are now considered masterpieces were ignored or even ridiculed when they were first shown. What changed was not the paintings themselves but the way people looked at them. Critics, collectors and museums all play a role in deciding which works are remembered and which are forgotten. That said, a work does not become a classic by accident. The pieces that stand the test of time tend to share certain qualities: they are thought-provoking, they reward a second or third look, and they speak to experiences that every generation recognizes. It is this ability to stay relevant, rather than technical perfection, that distinguishes a great work from a merely good one. Some masterpieces are also an acquired taste. A first encounter with abstract painting or experimental music can be confusing, even irritating. What many people discover, however, is that the confusion is part of the experience, and that understanding comes with time.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.arts-and-culture.who-owns-culture",
+      "level": "C1",
+      "topics": ["arts-and-culture"],
+      "title": "Who owns culture?",
+      "text": "Should museums return objects that were taken from other countries during the colonial era? For decades, the answer from most major institutions was a firm no. They argued that these collections were part of a shared world heritage and that the objects were better protected in their galleries than they would have been elsewhere. In recent years, however, that position has become harder to defend. Not only have governments formally requested the return of specific pieces, but researchers have also shown the way in which many of them were acquired: often by force, or for a fraction of their value. Critics point out that if these objects had stayed where they were made, local communities would now have direct access to their own cultural heritage. Some museums have begun to respond. A number of critically acclaimed exhibitions have been organized jointly with the countries of origin, and several institutions have returned items permanently. Others prefer long-term loans, which allow the objects to travel without settling the question of ownership. Whatever the solution, it is clear that the debate will not go away.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.arts-and-culture.vocab-001",
+      "itemIds": ["c1.arts-and-culture.masterpiece"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'obra maestra'.",
+      "options": ["master's degree", "masterpiece", "headmaster", "mastermind"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.arts-and-culture.cloze-001",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "What I love about this novel ___ the way it ends.",
+      "answers": ["is"],
+      "distractors": ["it is", "are", "has"],
+      "es": "Lo que me encanta de esta novela es cómo termina."
+    },
+    {
+      "id": "c1.arts-and-culture.order-001",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["humor.", "film", "sense", "special", "of", "this", "makes", "its", "What", "is"],
+      "accepted": ["What makes this film special is its sense of humor."],
+      "es": "Lo que hace especial a esta película es su sentido del humor."
+    },
+    {
+      "id": "c1.arts-and-culture.choice-001",
+      "itemIds": ["c1.arts-and-culture.thought-provoking"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The play was thought-provoking rather than entertaining.",
+      "options": [
+        "La obra era entretenida, pero poco profunda.",
+        "La obra provocaba miedo más que entretenimiento.",
+        "La obra invitaba a reflexionar más que a entretener.",
+        "La obra fue muy criticada por el público."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.arts-and-culture.reading-001",
+      "itemIds": [
+        "c1.arts-and-culture.masterpiece",
+        "c1.arts-and-culture.stand-the-test-of-time",
+        "c1.arts-and-culture.acquired-taste"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.arts-and-culture.what-makes-a-masterpiece",
+      "questions": [
+        {
+          "prompt": "According to the text, what happened to many paintings that are now considered masterpieces?",
+          "options": [
+            "They were ignored or ridiculed at first.",
+            "They were sold to collectors for high prices.",
+            "They were kept in museums from the start."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What distinguishes a great work from a merely good one, according to the writer?",
+          "options": [
+            "Technical perfection",
+            "Its ability to stay relevant",
+            "The opinion of collectors"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What does the writer say about abstract painting?",
+          "options": [
+            "It is easy to understand at first.",
+            "It is less important than classical art.",
+            "It can be confusing at first."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.arts-and-culture.write-001",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Lo que no entiendo es por qué cerró el museo.",
+      "accepted": [
+        "What I {don't|can't} understand is why the museum {closed|has closed|shut down|closed down|shut|was closed}.",
+        "The thing I {don't|can't} understand is why the museum {closed|has closed|shut down|closed down|shut|was closed}."
+      ]
+    },
+    {
+      "id": "c1.arts-and-culture.cloze-002",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It was the ending ___ divided the critics.",
+      "answers": ["that", "which"],
+      "distractors": ["what", "when", "where"],
+      "es": "Fue el final lo que dividió a la crítica."
+    },
+    {
+      "id": "c1.arts-and-culture.vocab-002",
+      "itemIds": ["c1.arts-and-culture.acquired-taste"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'an acquired taste' mean in 'Jazz is an acquired taste'?",
+      "options": [
+        "un sabor artificial",
+        "algo que todos aprecian desde el principio",
+        "un gusto que se compra",
+        "algo que se aprende a apreciar con el tiempo"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.arts-and-culture.vocab-003",
+      "itemIds": ["c1.arts-and-culture.cultural-heritage"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'cultural heritage' mean in 'The city is proud of its cultural heritage'?",
+      "options": ["herencia familiar", "centro cultural", "patrimonio cultural", "culto religioso"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.arts-and-culture.cloze-003",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 30824,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "If I had bought the painting then, I ___ be rich now.",
+      "answers": ["would"],
+      "distractors": ["will", "had", "am"],
+      "es": "Si hubiera comprado el cuadro en ese momento, ahora sería rico."
+    },
+    {
+      "id": "c1.arts-and-culture.cloze-004",
+      "itemIds": ["c1.arts-and-culture.stand-the-test-of-time"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Her novels have stood the test of ___.",
+      "answers": ["time"],
+      "distractors": ["years", "history", "age"],
+      "es": "Sus novelas han resistido el paso del tiempo."
+    },
+    {
+      "id": "c1.arts-and-culture.order-002",
+      "itemIds": ["c1.arts-and-culture.critically-acclaimed"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "film",
+        "critically",
+        "acclaimed",
+        "office.",
+        "failed",
+        "box",
+        "The",
+        "but",
+        "was",
+        "the",
+        "at"
+      ],
+      "accepted": ["The film was critically acclaimed but failed at the box office."],
+      "es": "La película fue aclamada por la crítica, pero fracasó en taquilla."
+    },
+    {
+      "id": "c1.arts-and-culture.choice-002",
+      "itemIds": ["b2.grammar.mixed-conditionals", "c1.arts-and-culture.cultural-heritage"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If the museum had kept the statue, we wouldn't be able to see it here today.",
+      "options": [
+        "Si el museo se queda con la estatua, no podremos verla aquí.",
+        "Si el museo se hubiera quedado con la estatua, hoy no podríamos verla aquí.",
+        "Como el museo se quedó con la estatua, hoy no podemos verla aquí.",
+        "Si el museo se hubiera quedado con la estatua, ayer no la habríamos visto aquí."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.arts-and-culture.reading-002",
+      "itemIds": [
+        "c1.arts-and-culture.cultural-heritage",
+        "c1.arts-and-culture.critically-acclaimed",
+        "b2.grammar.mixed-conditionals"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.arts-and-culture.who-owns-culture",
+      "questions": [
+        {
+          "prompt": "What was the traditional position of most major museums?",
+          "options": [
+            "They refused to return the objects.",
+            "They returned objects to their countries of origin.",
+            "They organized exhibitions with other countries."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "According to the text, how were many of the objects acquired?",
+          "options": [
+            "They were bought at a fair price.",
+            "They were given as gifts by local communities.",
+            "They were often taken by force or bought very cheaply."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What is the advantage of long-term loans for some museums?",
+          "options": [
+            "They let the objects travel without deciding who owns them.",
+            "They settle the question of ownership.",
+            "They are cheaper than permanent returns."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "c1.arts-and-culture.write-002",
+      "itemIds": ["b2.grammar.mixed-conditionals"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si hubiera estudiado arte, ahora sería pintor.",
+      "accepted": [
+        "If I had studied art, I would {be a painter now|now be a painter|be a painter today}.",
+        "Had I studied art, I would {be a painter now|now be a painter|be a painter today}.",
+        "I would be a painter {now|today} if I had studied art."
+      ]
+    },
+    {
+      "id": "c1.arts-and-culture.write-003",
+      "itemIds": ["c1.arts-and-culture.cultural-heritage"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Estos objetos forman parte de nuestro patrimonio cultural.",
+      "accepted": ["These {objects|items|pieces} {are|form} part of our cultural heritage."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.arts-and-culture.lesson-001",
+      "level": "C1",
+      "topic": "arts-and-culture",
+      "title": "¿Qué hace grande una obra?",
+      "exerciseIds": [
+        "c1.arts-and-culture.vocab-001",
+        "c1.arts-and-culture.cloze-001",
+        "c1.arts-and-culture.order-001",
+        "c1.arts-and-culture.choice-001",
+        "c1.arts-and-culture.reading-001",
+        "c1.arts-and-culture.write-001",
+        "c1.arts-and-culture.cloze-002",
+        "c1.arts-and-culture.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.grammar.cleft-sentences",
+        "c1.arts-and-culture.masterpiece",
+        "c1.arts-and-culture.thought-provoking",
+        "c1.arts-and-culture.acquired-taste"
+      ],
+      "deepenCardIds": ["c1.grammar.cleft-sentences"]
+    },
+    {
+      "id": "c1.arts-and-culture.lesson-002",
+      "level": "C1",
+      "topic": "arts-and-culture",
+      "title": "¿De quién es la cultura?",
+      "exerciseIds": [
+        "c1.arts-and-culture.vocab-003",
+        "c1.arts-and-culture.cloze-003",
+        "c1.arts-and-culture.cloze-004",
+        "c1.arts-and-culture.order-002",
+        "c1.arts-and-culture.choice-002",
+        "c1.arts-and-culture.reading-002",
+        "c1.arts-and-culture.write-002",
+        "c1.arts-and-culture.write-003"
+      ],
+      "newItemIds": [
+        "c1.arts-and-culture.cultural-heritage",
+        "c1.arts-and-culture.critically-acclaimed",
+        "c1.arts-and-culture.stand-the-test-of-time"
+      ],
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+    }
+  ]
+}

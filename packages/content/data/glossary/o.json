@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.object",
+      "headword": "object",
+      "kind": "word",
+      "forms": ["object", "objects"],
+      "senses": [
+        {
+          "es": "objeto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.obligation",
       "headword": "obligation",
       "kind": "word",
@@ -105,6 +117,18 @@
         {
           "es": "oficina",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.official",
+      "headword": "official",
+      "kind": "word",
+      "forms": ["official"],
+      "senses": [
+        {
+          "es": "oficial",
+          "pos": "adjective"
         }
       ]
     },
@@ -269,6 +293,18 @@
       ]
     },
     {
+      "id": "glossary.one-sided",
+      "headword": "one-sided",
+      "kind": "word",
+      "forms": ["one-sided"],
+      "senses": [
+        {
+          "es": "desequilibrado, unilateral",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.online",
       "headword": "online",
       "kind": "word",
@@ -337,6 +373,18 @@
       ]
     },
     {
+      "id": "glossary.operate",
+      "headword": "operate",
+      "kind": "word",
+      "forms": ["operate", "operates", "operated", "operating"],
+      "senses": [
+        {
+          "es": "operar, funcionar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.operation",
       "headword": "operation",
       "kind": "word",
@@ -344,6 +392,18 @@
       "senses": [
         {
           "es": "operación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.opinion",
+      "headword": "opinion",
+      "kind": "word",
+      "forms": ["opinion", "opinions"],
+      "senses": [
+        {
+          "es": "opinión",
           "pos": "noun"
         }
       ]
@@ -373,6 +433,18 @@
         {
           "es": "enfrente de",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.option",
+      "headword": "option",
+      "kind": "word",
+      "forms": ["option", "options"],
+      "senses": [
+        {
+          "es": "opción",
+          "pos": "noun"
         }
       ]
     },
@@ -445,6 +517,18 @@
       ]
     },
     {
+      "id": "glossary.organization",
+      "headword": "organization",
+      "kind": "word",
+      "forms": ["organization", "organizations"],
+      "senses": [
+        {
+          "es": "organización",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.organized",
       "headword": "organized",
       "kind": "word",
@@ -453,6 +537,18 @@
         {
           "es": "organizado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.origin",
+      "headword": "origin",
+      "kind": "word",
+      "forms": ["origin", "origins"],
+      "senses": [
+        {
+          "es": "origen",
+          "pos": "noun"
         }
       ]
     },
@@ -469,6 +565,18 @@
       ]
     },
     {
+      "id": "glossary.originate",
+      "headword": "originate",
+      "kind": "word",
+      "forms": ["originate", "originates", "originated"],
+      "senses": [
+        {
+          "es": "originarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.other",
       "headword": "other",
       "kind": "word",
@@ -481,6 +589,18 @@
         {
           "es": "(each other) el uno al otro",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.otherwise",
+      "headword": "otherwise",
+      "kind": "word",
+      "forms": ["otherwise"],
+      "senses": [
+        {
+          "es": "de otro modo, lo contrario",
+          "pos": "adverb"
         }
       ]
     },
@@ -549,6 +669,18 @@
       ]
     },
     {
+      "id": "glossary.outlet",
+      "headword": "outlet",
+      "kind": "word",
+      "forms": ["outlet", "outlets"],
+      "senses": [
+        {
+          "es": "medio (de comunicación)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.outside",
       "headword": "outside",
       "kind": "word",
@@ -593,6 +725,30 @@
       ]
     },
     {
+      "id": "glossary.overcrowded",
+      "headword": "overcrowded",
+      "kind": "word",
+      "forms": ["overcrowded"],
+      "senses": [
+        {
+          "es": "superpoblado, abarrotado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.overstate",
+      "headword": "overstate",
+      "kind": "word",
+      "forms": ["overstate", "overstates", "overstated", "overstating"],
+      "senses": [
+        {
+          "es": "exagerar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.owe",
       "headword": "owe",
       "kind": "word",
@@ -624,6 +780,18 @@
       "senses": [
         {
           "es": "dueño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ownership",
+      "headword": "ownership",
+      "kind": "word",
+      "forms": ["ownership"],
+      "senses": [
+        {
+          "es": "propiedad",
           "pos": "noun"
         }
       ]

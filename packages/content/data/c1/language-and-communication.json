@@ -1,0 +1,479 @@
+{
+  "items": [
+    {
+      "id": "c1.language-and-communication.be-grateful-if",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "phrase",
+      "term": "I would be grateful if you could…",
+      "es": "le agradecería que…",
+      "example": {
+        "en": "I would be grateful if you could reply by Friday.",
+        "es": "Le agradecería que respondiera antes del viernes."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.blunt",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "word",
+      "term": "blunt",
+      "es": "directo, brusco",
+      "example": {
+        "en": "Her feedback was honest but rather blunt.",
+        "es": "Sus comentarios fueron sinceros, pero bastante bruscos."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.tactful",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "word",
+      "term": "tactful",
+      "es": "con tacto, diplomático",
+      "example": {
+        "en": "She gave a tactful answer.",
+        "es": "Dio una respuesta diplomática."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.beat-around-the-bush",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "phrase",
+      "term": "beat around the bush",
+      "es": "andarse con rodeos",
+      "example": {
+        "en": "Don't beat around the bush.",
+        "es": "No te andes con rodeos."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.read-between-the-lines",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "phrase",
+      "term": "read between the lines",
+      "es": "leer entre líneas",
+      "example": {
+        "en": "You have to read between the lines.",
+        "es": "Hay que leer entre líneas."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.jargon",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "word",
+      "term": "jargon",
+      "es": "jerga técnica",
+      "example": {
+        "en": "The report was full of legal jargon.",
+        "es": "El informe estaba lleno de jerga jurídica."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.plain-language",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "phrase",
+      "term": "plain language",
+      "es": "lenguaje claro y sencillo",
+      "example": {
+        "en": "The instructions are written in plain language.",
+        "es": "Las instrucciones están redactadas en un lenguaje claro y sencillo."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.get-your-point-across",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "phrase",
+      "term": "get (your point) across",
+      "es": "transmitir (una idea), hacerse entender",
+      "example": {
+        "en": "He finds it hard to get his point across.",
+        "es": "Le cuesta transmitir sus ideas."
+      }
+    },
+    {
+      "id": "c1.language-and-communication.lost-in-translation",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "kind": "phrase",
+      "term": "lost in translation",
+      "es": "perdido en la traducción",
+      "example": {
+        "en": "Some jokes get lost in translation.",
+        "es": "Algunos chistes se pierden en la traducción."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.language-and-communication.direct-or-diplomatic",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "title": "Direct or diplomatic?",
+      "text": "In some cultures, people say exactly what they mean. In others, the most important part of a message is what is left unsaid. A manager from one tradition may consider it perfectly normal to tell a colleague that a report is poor, whereas a colleague from another might express the same view by asking whether the report could be developed further. Neither style is better than the other, but misunderstandings arise when people from different traditions work together. To someone used to directness, a tactful comment can seem like beating around the bush; to someone used to subtlety, a blunt remark can sound rude, even aggressive. Register adds another layer of complexity. The same request can be made in very different ways: \"Send me the file\" is acceptable between close colleagues, but \"Would you mind sending me the file?\" is safer with a client, and \"I would be grateful if you could forward the document\" belongs in a formal letter. Learners of English often master grammar long before they master these social rules. What experienced communicators do is read between the lines, notice how others speak and adapt their own style accordingly.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.language-and-communication.the-case-for-plain-language",
+      "level": "C1",
+      "topics": ["language-and-communication"],
+      "title": "The case for plain language",
+      "text": "Why do so many official documents seem designed to be misunderstood? Part of the answer lies in jargon. Every profession develops its own vocabulary, and within a group of experts, technical terms allow people to communicate quickly and precisely. The problem arises when the same language is used with people outside that group. A patient who is told that a test result is \"unremarkable\" may assume the worst, when in fact it means that nothing is wrong. Another problem is the excessive use of nominalization. A sentence such as \"The implementation of the reduction of costs will be the responsibility of the department\" is grammatically correct, yet it hides who is supposed to do what. \"The department will cut costs\" says the same thing in five words. Campaigners for plain language argue that clarity is not the same as simplification. Complex ideas can be expressed clearly, and readers should not need a dictionary to understand a letter from their bank. Some governments now require public documents to be tested on ordinary readers before they are published. If you cannot get your point across to a non-expert, the argument goes, perhaps the point itself is not as clear as you think.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.language-and-communication.vocab-001",
+      "itemIds": ["c1.language-and-communication.blunt"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'blunt' mean in 'Her feedback was honest but rather blunt'?",
+      "options": ["borroso", "aburrido", "amable", "directo, brusco"],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.language-and-communication.cloze-001",
+      "itemIds": ["c1.language-and-communication.beat-around-the-bush"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Stop beating around the ___ and tell me what happened.",
+      "answers": ["bush"],
+      "distractors": ["tree", "garden", "house"],
+      "es": "Deja de andarte con rodeos y dime qué pasó."
+    },
+    {
+      "id": "c1.language-and-communication.order-001",
+      "itemIds": ["c1.language-and-communication.tactful"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "be",
+        "at",
+        "It",
+        "years",
+        "how",
+        "the",
+        "honest",
+        "same",
+        "and",
+        "to",
+        "learn",
+        "tactful",
+        "time.",
+        "to",
+        "takes"
+      ],
+      "accepted": [
+        "It takes years to learn how to be honest and tactful at the same time.",
+        "It takes years to learn how to be tactful and honest at the same time."
+      ],
+      "es": "Se necesitan años para aprender a ser sincero y diplomático a la vez."
+    },
+    {
+      "id": "c1.language-and-communication.choice-001",
+      "itemIds": ["c1.language-and-communication.read-between-the-lines"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "If you read between the lines, the email is actually a complaint.",
+      "options": [
+        "Si lees entre líneas, el correo es en realidad una queja.",
+        "Si lees el correo con atención, verás que actualmente es una queja.",
+        "Si lees solo las primeras líneas, el correo parece una queja.",
+        "Si lees entre líneas, el correo es en realidad un agradecimiento."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "c1.language-and-communication.reading-001",
+      "itemIds": [
+        "c1.language-and-communication.blunt",
+        "c1.language-and-communication.tactful",
+        "c1.language-and-communication.beat-around-the-bush",
+        "c1.language-and-communication.be-grateful-if"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.language-and-communication.direct-or-diplomatic",
+      "questions": [
+        {
+          "prompt": "When do misunderstandings arise, according to the text?",
+          "options": [
+            "When managers write poor reports",
+            "When people from different communication traditions work together",
+            "When learners make grammar mistakes"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "How might someone used to subtlety react to a blunt remark?",
+          "options": [
+            "They might find it refreshing.",
+            "They might not notice it.",
+            "They might find it rude."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Which request does the text say belongs in a formal letter?",
+          "options": [
+            "Send me the file.",
+            "Would you mind sending me the file?",
+            "I would be grateful if you could forward the document."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.language-and-communication.write-001",
+      "itemIds": ["c1.language-and-communication.be-grateful-if", "c1.vocabulary.regarding"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Le agradecería que me enviara más información sobre el curso.",
+      "accepted": [
+        "I would {be grateful|appreciate it} if you {could|would} send me {more|further|additional} information {about|on|regarding|concerning} the course."
+      ]
+    },
+    {
+      "id": "c1.language-and-communication.cloze-002",
+      "itemIds": ["c1.language-and-communication.be-grateful-if"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I would be ___ if you could send me the document.",
+      "answers": ["grateful"],
+      "distractors": ["gratitude", "thanks", "pleasing"],
+      "es": "Le agradecería que me enviara el documento."
+    },
+    {
+      "id": "c1.language-and-communication.vocab-002",
+      "itemIds": ["c1.language-and-communication.tactful"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'con tacto, diplomático'.",
+      "options": ["tactile", "tactical", "tactful", "touchy"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.language-and-communication.vocab-003",
+      "itemIds": ["c1.language-and-communication.jargon"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'jargon' mean in 'The report was full of legal jargon'?",
+      "options": ["jardín", "errores", "jerga técnica", "chistes"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.language-and-communication.cloze-003",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The ___ of the new rules has been delayed.",
+      "answers": ["implementation", "introduction"],
+      "distractors": ["implement", "implemented", "implements"],
+      "es": "La aplicación de las nuevas normas se ha retrasado."
+    },
+    {
+      "id": "c1.language-and-communication.cloze-004",
+      "itemIds": ["c1.language-and-communication.get-your-point-across"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She struggled to get her point ___ in English.",
+      "answers": ["across"],
+      "distractors": ["along", "off", "out"],
+      "es": "Le costaba transmitir sus ideas en inglés."
+    },
+    {
+      "id": "c1.language-and-communication.order-002",
+      "itemIds": ["c1.language-and-communication.plain-language"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["letters", "plain", "written", "Official", "be", "language.", "should", "in"],
+      "accepted": ["Official letters should be written in plain language."],
+      "es": "Las cartas oficiales deberían redactarse en un lenguaje claro y sencillo."
+    },
+    {
+      "id": "c1.language-and-communication.choice-002",
+      "itemIds": ["c1.language-and-communication.lost-in-translation"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Much of the humor in the novel gets lost in translation.",
+      "options": [
+        "La novela tiene mucho humor gracias a la traducción.",
+        "Gran parte del humor de la novela se pierde en la traducción.",
+        "Gran parte del humor de la novela se perdió antes de traducirla.",
+        "Gran parte de la novela trata sobre el humor y la traducción."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.language-and-communication.reading-002",
+      "itemIds": [
+        "c1.language-and-communication.jargon",
+        "c1.language-and-communication.plain-language",
+        "c1.grammar.nominalization",
+        "c1.language-and-communication.get-your-point-across"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.language-and-communication.the-case-for-plain-language",
+      "questions": [
+        {
+          "prompt": "When does jargon become a problem, according to the text?",
+          "options": [
+            "When experts use it among themselves",
+            "When it is used with people outside the profession",
+            "When it is translated into other languages"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What is wrong with the sentence about the reduction of costs?",
+          "options": [
+            "It is grammatically incorrect.",
+            "It is too short to be clear.",
+            "It hides who is supposed to do what."
+          ],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What do campaigners for plain language argue?",
+          "options": [
+            "Clarity is not the same as simplification.",
+            "Complex ideas should be avoided.",
+            "Official documents should be written by experts."
+          ],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "c1.language-and-communication.write-002",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La reducción de costos fue un error.",
+      "accepted": [
+        "{The reduction of costs|The reduction in costs|The cost reduction|Cutting costs|Reducing costs} was a mistake."
+      ]
+    },
+    {
+      "id": "c1.language-and-communication.write-003",
+      "itemIds": ["c1.language-and-communication.get-your-point-across"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me cuesta transmitir mis ideas en inglés.",
+      "accepted": [
+        "{I find it {hard|difficult}|It's {hard|difficult} for me|I struggle} to {get my {ideas|point} across|express my ideas|communicate my ideas} in English.",
+        "I have {trouble|difficulty} {getting my {ideas|point} across|expressing my ideas} in English."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.language-and-communication.lesson-001",
+      "level": "C1",
+      "topic": "language-and-communication",
+      "title": "¿Directo o diplomático?",
+      "exerciseIds": [
+        "c1.language-and-communication.vocab-001",
+        "c1.language-and-communication.cloze-001",
+        "c1.language-and-communication.order-001",
+        "c1.language-and-communication.choice-001",
+        "c1.language-and-communication.reading-001",
+        "c1.language-and-communication.write-001",
+        "c1.language-and-communication.cloze-002",
+        "c1.language-and-communication.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.language-and-communication.be-grateful-if",
+        "c1.language-and-communication.blunt",
+        "c1.language-and-communication.tactful",
+        "c1.language-and-communication.beat-around-the-bush",
+        "c1.language-and-communication.read-between-the-lines"
+      ],
+      "deepenCardIds": ["c1.vocabulary.register"]
+    },
+    {
+      "id": "c1.language-and-communication.lesson-002",
+      "level": "C1",
+      "topic": "language-and-communication",
+      "title": "Hablar claro",
+      "exerciseIds": [
+        "c1.language-and-communication.vocab-003",
+        "c1.language-and-communication.cloze-003",
+        "c1.language-and-communication.cloze-004",
+        "c1.language-and-communication.order-002",
+        "c1.language-and-communication.choice-002",
+        "c1.language-and-communication.reading-002",
+        "c1.language-and-communication.write-002",
+        "c1.language-and-communication.write-003"
+      ],
+      "newItemIds": [
+        "c1.grammar.nominalization",
+        "c1.language-and-communication.jargon",
+        "c1.language-and-communication.plain-language",
+        "c1.language-and-communication.get-your-point-across",
+        "c1.language-and-communication.lost-in-translation"
+      ],
+      "deepenCardIds": ["c1.grammar.nominalization"]
+    }
+  ]
+}

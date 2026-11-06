@@ -141,6 +141,46 @@
       ]
     },
     {
+      "id": "glossary.camp",
+      "headword": "camp",
+      "kind": "word",
+      "forms": ["camp", "camps"],
+      "senses": [
+        {
+          "es": "campamento",
+          "pos": "noun"
+        },
+        {
+          "es": "bando (en un debate)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.campaign",
+      "headword": "campaign",
+      "kind": "word",
+      "forms": ["campaign", "campaigns"],
+      "senses": [
+        {
+          "es": "campaña",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.campaigner",
+      "headword": "campaigner",
+      "kind": "word",
+      "forms": ["campaigner", "campaigners"],
+      "senses": [
+        {
+          "es": "activista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.can",
       "headword": "can",
       "kind": "word",
@@ -508,6 +548,54 @@
       ]
     },
     {
+      "id": "glossary.caution",
+      "headword": "caution",
+      "kind": "word",
+      "forms": ["caution"],
+      "senses": [
+        {
+          "es": "cautela, prudencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cautious",
+      "headword": "cautious",
+      "kind": "word",
+      "forms": ["cautious"],
+      "senses": [
+        {
+          "es": "cauteloso, prudente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.celebrate",
+      "headword": "celebrate",
+      "kind": "word",
+      "forms": ["celebrate", "celebrates", "celebrated", "celebrating"],
+      "senses": [
+        {
+          "es": "celebrar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.celebrity",
+      "headword": "celebrity",
+      "kind": "word",
+      "forms": ["celebrity", "celebrities"],
+      "senses": [
+        {
+          "es": "famoso, celebridad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cell",
       "headword": "cell",
       "kind": "word",
@@ -556,6 +644,30 @@
       ]
     },
     {
+      "id": "glossary.century",
+      "headword": "century",
+      "kind": "word",
+      "forms": ["century", "centuries"],
+      "senses": [
+        {
+          "es": "siglo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.certain",
+      "headword": "certain",
+      "kind": "word",
+      "forms": ["certain"],
+      "senses": [
+        {
+          "es": "cierto, determinado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.chair",
       "headword": "chair",
       "kind": "word",
@@ -563,6 +675,34 @@
       "senses": [
         {
           "es": "silla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.challenge",
+      "headword": "challenge",
+      "kind": "word",
+      "forms": ["challenge", "challenges"],
+      "senses": [
+        {
+          "es": "desafío, reto",
+          "pos": "noun"
+        },
+        {
+          "es": "cuestionar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chamber",
+      "headword": "chamber",
+      "kind": "word",
+      "forms": ["chamber", "chambers"],
+      "senses": [
+        {
+          "es": "cámara",
           "pos": "noun"
         }
       ]
@@ -636,6 +776,18 @@
         {
           "es": "barato",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cheaply",
+      "headword": "cheaply",
+      "kind": "word",
+      "forms": ["cheaply"],
+      "senses": [
+        {
+          "es": "a bajo precio",
+          "pos": "adverb"
         }
       ]
     },
@@ -741,6 +893,18 @@
         {
           "es": "animarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cheerful",
+      "headword": "cheerful",
+      "kind": "word",
+      "forms": ["cheerful"],
+      "senses": [
+        {
+          "es": "alegre",
+          "pos": "adjective"
         }
       ]
     },
@@ -949,6 +1113,30 @@
       ]
     },
     {
+      "id": "glossary.circumstance",
+      "headword": "circumstance",
+      "kind": "word",
+      "forms": ["circumstance", "circumstances"],
+      "senses": [
+        {
+          "es": "circunstancia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.citizen",
+      "headword": "citizen",
+      "kind": "word",
+      "forms": ["citizen", "citizens"],
+      "senses": [
+        {
+          "es": "ciudadano",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.city",
       "headword": "city",
       "kind": "word",
@@ -989,6 +1177,18 @@
       ]
     },
     {
+      "id": "glossary.clarity",
+      "headword": "clarity",
+      "kind": "word",
+      "forms": ["clarity"],
+      "senses": [
+        {
+          "es": "claridad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.class",
       "headword": "class",
       "kind": "word",
@@ -997,6 +1197,30 @@
         {
           "es": "clase",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.classic",
+      "headword": "classic",
+      "kind": "word",
+      "forms": ["classic", "classics"],
+      "senses": [
+        {
+          "es": "clásico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.classical",
+      "headword": "classical",
+      "kind": "word",
+      "forms": ["classical"],
+      "senses": [
+        {
+          "es": "clásico",
+          "pos": "adjective"
         }
       ]
     },
@@ -1065,6 +1289,18 @@
         {
           "es": "claro",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.clearly",
+      "headword": "clearly",
+      "kind": "word",
+      "forms": ["clearly"],
+      "senses": [
+        {
+          "es": "claramente",
+          "pos": "adverb"
         }
       ]
     },
@@ -1233,6 +1469,18 @@
       ]
     },
     {
+      "id": "glossary.coastal",
+      "headword": "coastal",
+      "kind": "word",
+      "forms": ["coastal"],
+      "senses": [
+        {
+          "es": "costero",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.coat",
       "headword": "coat",
       "kind": "word",
@@ -1325,6 +1573,30 @@
       ]
     },
     {
+      "id": "glossary.collection",
+      "headword": "collection",
+      "kind": "word",
+      "forms": ["collection", "collections"],
+      "senses": [
+        {
+          "es": "colección",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.collector",
+      "headword": "collector",
+      "kind": "word",
+      "forms": ["collector", "collectors"],
+      "senses": [
+        {
+          "es": "coleccionista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.college",
       "headword": "college",
       "kind": "word",
@@ -1345,6 +1617,18 @@
         {
           "es": "Colombia",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.colonial",
+      "headword": "colonial",
+      "kind": "word",
+      "forms": ["colonial"],
+      "senses": [
+        {
+          "es": "colonial",
+          "pos": "adjective"
         }
       ]
     },
@@ -1417,6 +1701,30 @@
       ]
     },
     {
+      "id": "glossary.comfort",
+      "headword": "comfort",
+      "kind": "word",
+      "forms": ["comfort"],
+      "senses": [
+        {
+          "es": "comodidad, consuelo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.comfort-zone",
+      "headword": "comfort zone",
+      "kind": "phrase",
+      "forms": ["comfort zone", "comfort zones"],
+      "senses": [
+        {
+          "es": "zona de confort",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.comfortable",
       "headword": "comfortable",
       "kind": "word",
@@ -1477,6 +1785,66 @@
         {
           "es": "común",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.common-ground",
+      "headword": "common ground",
+      "kind": "phrase",
+      "forms": ["common ground"],
+      "senses": [
+        {
+          "es": "puntos en común",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.communicate",
+      "headword": "communicate",
+      "kind": "word",
+      "forms": ["communicate", "communicates", "communicated", "communicating"],
+      "senses": [
+        {
+          "es": "comunicar, comunicarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.communication",
+      "headword": "communication",
+      "kind": "word",
+      "forms": ["communication", "communications"],
+      "senses": [
+        {
+          "es": "comunicación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.communicator",
+      "headword": "communicator",
+      "kind": "word",
+      "forms": ["communicator", "communicators"],
+      "senses": [
+        {
+          "es": "comunicador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.community",
+      "headword": "community",
+      "kind": "word",
+      "forms": ["community", "communities"],
+      "senses": [
+        {
+          "es": "comunidad",
+          "pos": "noun"
         }
       ]
     },
@@ -1545,6 +1913,30 @@
       ]
     },
     {
+      "id": "glossary.complacent",
+      "headword": "complacent",
+      "kind": "word",
+      "forms": ["complacent"],
+      "senses": [
+        {
+          "es": "demasiado confiado, conformista",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.complain",
+      "headword": "complain",
+      "kind": "word",
+      "forms": ["complain", "complains", "complained", "complaining"],
+      "senses": [
+        {
+          "es": "quejarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.complaint",
       "headword": "complaint",
       "kind": "word",
@@ -1585,6 +1977,58 @@
       ]
     },
     {
+      "id": "glossary.complex",
+      "headword": "complex",
+      "kind": "word",
+      "forms": ["complex"],
+      "senses": [
+        {
+          "es": "complejo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.complexity",
+      "headword": "complexity",
+      "kind": "word",
+      "forms": ["complexity"],
+      "senses": [
+        {
+          "es": "complejidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.comply",
+      "headword": "comply",
+      "kind": "word",
+      "forms": ["comply", "complies", "complied", "complying"],
+      "senses": [
+        {
+          "es": "cumplir (comply with: cumplir con)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.compromise",
+      "headword": "compromise",
+      "kind": "word",
+      "forms": ["compromise", "compromises"],
+      "senses": [
+        {
+          "es": "acuerdo con concesiones mutuas",
+          "pos": "noun"
+        },
+        {
+          "es": "transigir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.computer",
       "headword": "computer",
       "kind": "word",
@@ -1605,6 +2049,18 @@
         {
           "es": "concentrarse",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.concentration",
+      "headword": "concentration",
+      "kind": "word",
+      "forms": ["concentration"],
+      "senses": [
+        {
+          "es": "concentración",
+          "pos": "noun"
         }
       ]
     },
@@ -1649,6 +2105,18 @@
       ]
     },
     {
+      "id": "glossary.concession",
+      "headword": "concession",
+      "kind": "word",
+      "forms": ["concession", "concessions"],
+      "senses": [
+        {
+          "es": "concesión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.conclude",
       "headword": "conclude",
       "kind": "word",
@@ -1657,6 +2125,30 @@
         {
           "es": "concluir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conclusion",
+      "headword": "conclusion",
+      "kind": "word",
+      "forms": ["conclusion", "conclusions"],
+      "senses": [
+        {
+          "es": "conclusión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conclusive",
+      "headword": "conclusive",
+      "kind": "word",
+      "forms": ["conclusive"],
+      "senses": [
+        {
+          "es": "concluyente",
+          "pos": "adjective"
         }
       ]
     },
@@ -1685,6 +2177,66 @@
       ]
     },
     {
+      "id": "glossary.confidential",
+      "headword": "confidential",
+      "kind": "word",
+      "forms": ["confidential"],
+      "senses": [
+        {
+          "es": "confidencial",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.confirm",
+      "headword": "confirm",
+      "kind": "word",
+      "forms": ["confirm", "confirms"],
+      "senses": [
+        {
+          "es": "confirmar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.conflict",
+      "headword": "conflict",
+      "kind": "word",
+      "forms": ["conflict", "conflicts"],
+      "senses": [
+        {
+          "es": "conflicto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.confusing",
+      "headword": "confusing",
+      "kind": "word",
+      "forms": ["confusing"],
+      "senses": [
+        {
+          "es": "confuso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.confusion",
+      "headword": "confusion",
+      "kind": "word",
+      "forms": ["confusion"],
+      "senses": [
+        {
+          "es": "confusión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.connected",
       "headword": "connected",
       "kind": "word",
@@ -1697,6 +2249,42 @@
       ]
     },
     {
+      "id": "glossary.cons",
+      "headword": "cons",
+      "kind": "word",
+      "forms": ["cons"],
+      "senses": [
+        {
+          "es": "contras, desventajas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.consensus",
+      "headword": "consensus",
+      "kind": "word",
+      "forms": ["consensus"],
+      "senses": [
+        {
+          "es": "consenso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.consequence",
+      "headword": "consequence",
+      "kind": "word",
+      "forms": ["consequence", "consequences"],
+      "senses": [
+        {
+          "es": "consecuencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.conserve",
       "headword": "conserve",
       "kind": "word",
@@ -1705,6 +2293,70 @@
         {
           "es": "conservar, ahorrar (energía, agua)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.consider",
+      "headword": "consider",
+      "kind": "word",
+      "forms": ["consider", "considers", "considered", "considering"],
+      "senses": [
+        {
+          "es": "considerar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.constant",
+      "headword": "constant",
+      "kind": "word",
+      "forms": ["constant"],
+      "senses": [
+        {
+          "es": "constante",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.contact",
+      "headword": "contact",
+      "kind": "word",
+      "forms": ["contact", "contacts"],
+      "senses": [
+        {
+          "es": "ponerse en contacto con",
+          "pos": "verb"
+        },
+        {
+          "es": "contacto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.contain",
+      "headword": "contain",
+      "kind": "word",
+      "forms": ["contain", "contains", "contained", "containing"],
+      "senses": [
+        {
+          "es": "contener",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.content",
+      "headword": "content",
+      "kind": "word",
+      "forms": ["content"],
+      "senses": [
+        {
+          "es": "contenido",
+          "pos": "noun"
         }
       ]
     },
@@ -1745,6 +2397,42 @@
       ]
     },
     {
+      "id": "glossary.contradict",
+      "headword": "contradict",
+      "kind": "word",
+      "forms": ["contradict", "contradicts", "contradicted"],
+      "senses": [
+        {
+          "es": "contradecir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.contrary",
+      "headword": "contrary",
+      "kind": "word",
+      "forms": ["contrary"],
+      "senses": [
+        {
+          "es": "contrario (contrary to: al contrario de)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.contrast",
+      "headword": "contrast",
+      "kind": "word",
+      "forms": ["contrast"],
+      "senses": [
+        {
+          "es": "contraste (by contrast: en cambio)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.control",
       "headword": "control",
       "kind": "word",
@@ -1765,6 +2453,18 @@
         {
           "es": "conversación",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.convincing",
+      "headword": "convincing",
+      "kind": "word",
+      "forms": ["convincing"],
+      "senses": [
+        {
+          "es": "convincente",
+          "pos": "adjective"
         }
       ]
     },
@@ -1809,6 +2509,30 @@
         {
           "es": "fresco",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cooperation",
+      "headword": "cooperation",
+      "kind": "word",
+      "forms": ["cooperation"],
+      "senses": [
+        {
+          "es": "cooperación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cope",
+      "headword": "cope",
+      "kind": "word",
+      "forms": ["cope", "copes", "coped", "coping"],
+      "senses": [
+        {
+          "es": "arreglárselas, sobrellevar",
+          "pos": "verb"
         }
       ]
     },
@@ -1865,6 +2589,18 @@
       ]
     },
     {
+      "id": "glossary.corruption",
+      "headword": "corruption",
+      "kind": "word",
+      "forms": ["corruption"],
+      "senses": [
+        {
+          "es": "corrupción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cost",
       "headword": "cost",
       "kind": "word",
@@ -1889,6 +2625,18 @@
         {
           "es": "costo de vida",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.costly",
+      "headword": "costly",
+      "kind": "word",
+      "forms": ["costly"],
+      "senses": [
+        {
+          "es": "costoso",
+          "pos": "adjective"
         }
       ]
     },
@@ -1977,6 +2725,18 @@
       ]
     },
     {
+      "id": "glossary.countable",
+      "headword": "countable",
+      "kind": "word",
+      "forms": ["countable"],
+      "senses": [
+        {
+          "es": "contable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.country",
       "headword": "country",
       "kind": "word",
@@ -2012,6 +2772,18 @@
         },
         {
           "es": "pareja",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.courage",
+      "headword": "courage",
+      "kind": "word",
+      "forms": ["courage"],
+      "senses": [
+        {
+          "es": "valentía",
           "pos": "noun"
         }
       ]
@@ -2069,6 +2841,18 @@
       ]
     },
     {
+      "id": "glossary.cowardice",
+      "headword": "cowardice",
+      "kind": "word",
+      "forms": ["cowardice"],
+      "senses": [
+        {
+          "es": "cobardía",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.coworker",
       "headword": "coworker",
       "kind": "word",
@@ -2117,14 +2901,50 @@
       ]
     },
     {
+      "id": "glossary.crime",
+      "headword": "crime",
+      "kind": "word",
+      "forms": ["crime", "crimes"],
+      "senses": [
+        {
+          "es": "delito",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.crisis",
       "headword": "crisis",
       "kind": "word",
-      "forms": ["crisis"],
+      "forms": ["crisis", "crises"],
       "senses": [
         {
           "es": "crisis",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.critic",
+      "headword": "critic",
+      "kind": "word",
+      "forms": ["critic", "critics"],
+      "senses": [
+        {
+          "es": "crítico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.critically",
+      "headword": "critically",
+      "kind": "word",
+      "forms": ["critically"],
+      "senses": [
+        {
+          "es": "(critically acclaimed) aclamado por la crítica; de forma crítica",
+          "pos": "adverb"
         }
       ]
     },
@@ -2137,6 +2957,18 @@
         {
           "es": "críticas, crítica",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.criticize",
+      "headword": "criticize",
+      "kind": "word",
+      "forms": ["criticize", "criticizes", "criticized", "criticizing"],
+      "senses": [
+        {
+          "es": "criticar",
+          "pos": "verb"
         }
       ]
     },
@@ -2201,6 +3033,18 @@
       ]
     },
     {
+      "id": "glossary.cultural",
+      "headword": "cultural",
+      "kind": "word",
+      "forms": ["cultural"],
+      "senses": [
+        {
+          "es": "cultural",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.culture",
       "headword": "culture",
       "kind": "word",
@@ -2232,6 +3076,22 @@
       "senses": [
         {
           "es": "taza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cure",
+      "headword": "cure",
+      "kind": "word",
+      "forms": ["cure", "cures", "cured", "curing"],
+      "senses": [
+        {
+          "es": "curar",
+          "pos": "verb"
+        },
+        {
+          "es": "cura",
           "pos": "noun"
         }
       ]

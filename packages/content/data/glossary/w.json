@@ -113,6 +113,18 @@
       ]
     },
     {
+      "id": "glossary.war",
+      "headword": "war",
+      "kind": "word",
+      "forms": ["war", "wars"],
+      "senses": [
+        {
+          "es": "guerra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.warm",
       "headword": "warm",
       "kind": "word",
@@ -145,6 +157,18 @@
         {
           "es": "(global warming) calentamiento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.warn",
+      "headword": "warn",
+      "kind": "word",
+      "forms": ["warn", "warns", "warned"],
+      "senses": [
+        {
+          "es": "advertir",
+          "pos": "verb"
         }
       ]
     },
@@ -201,6 +225,18 @@
       ]
     },
     {
+      "id": "glossary.wasteful",
+      "headword": "wasteful",
+      "kind": "word",
+      "forms": ["wasteful"],
+      "senses": [
+        {
+          "es": "derrochador, ineficiente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.watch",
       "headword": "watch",
       "kind": "word",
@@ -225,6 +261,18 @@
         {
           "es": "ver una película",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.watchdog",
+      "headword": "watchdog",
+      "kind": "word",
+      "forms": ["watchdog", "watchdogs"],
+      "senses": [
+        {
+          "es": "organismo de control, perro guardián",
+          "pos": "noun"
         }
       ]
     },
@@ -305,6 +353,18 @@
       ]
     },
     {
+      "id": "glossary.weak",
+      "headword": "weak",
+      "kind": "word",
+      "forms": ["weak"],
+      "senses": [
+        {
+          "es": "débil",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.weakness",
       "headword": "weakness",
       "kind": "word",
@@ -313,6 +373,18 @@
         {
           "es": "debilidad",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wealthy",
+      "headword": "wealthy",
+      "kind": "word",
+      "forms": ["wealthy"],
+      "senses": [
+        {
+          "es": "rico, adinerado",
+          "pos": "adjective"
         }
       ]
     },
@@ -409,6 +481,30 @@
         {
           "es": "semanal",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.weigh",
+      "headword": "weigh",
+      "kind": "word",
+      "forms": ["weigh", "weighs", "weighed", "weighing"],
+      "senses": [
+        {
+          "es": "pesar; sopesar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.weigh-up",
+      "headword": "weigh up",
+      "kind": "phrase",
+      "forms": ["weigh up", "weighs up", "weighed up", "weighing up"],
+      "senses": [
+        {
+          "es": "sopesar",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -553,6 +649,18 @@
       ]
     },
     {
+      "id": "glossary.whatever",
+      "headword": "whatever",
+      "kind": "word",
+      "forms": ["whatever"],
+      "senses": [
+        {
+          "es": "sea cual sea, lo que sea",
+          "pos": "determiner"
+        }
+      ]
+    },
+    {
       "id": "glossary.when",
       "headword": "when",
       "kind": "word",
@@ -649,6 +757,18 @@
       ]
     },
     {
+      "id": "glossary.whistleblower",
+      "headword": "whistleblower",
+      "kind": "word",
+      "forms": ["whistleblower", "whistleblowers"],
+      "senses": [
+        {
+          "es": "denunciante, informante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.white",
       "headword": "white",
       "kind": "word",
@@ -689,6 +809,18 @@
       ]
     },
     {
+      "id": "glossary.whom",
+      "headword": "whom",
+      "kind": "word",
+      "forms": ["whom"],
+      "senses": [
+        {
+          "es": "a quien",
+          "pos": "pronoun"
+        }
+      ]
+    },
+    {
       "id": "glossary.whose",
       "headword": "whose",
       "kind": "word",
@@ -712,6 +844,18 @@
       "senses": [
         {
           "es": "por qué",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.widely",
+      "headword": "widely",
+      "kind": "word",
+      "forms": ["widely"],
+      "senses": [
+        {
+          "es": "ampliamente",
           "pos": "adverb"
         }
       ]
@@ -753,6 +897,30 @@
       ]
     },
     {
+      "id": "glossary.willing",
+      "headword": "willing",
+      "kind": "word",
+      "forms": ["willing"],
+      "senses": [
+        {
+          "es": "dispuesto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.willingness",
+      "headword": "willingness",
+      "kind": "word",
+      "forms": ["willingness"],
+      "senses": [
+        {
+          "es": "disposición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.win",
       "headword": "win",
       "kind": "word",
@@ -761,6 +929,18 @@
         {
           "es": "ganar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.win-win",
+      "headword": "win-win",
+      "kind": "word",
+      "forms": ["win-win"],
+      "senses": [
+        {
+          "es": "beneficioso para ambas partes",
+          "pos": "adjective"
         }
       ]
     },
@@ -1213,6 +1393,18 @@
         {
           "es": "(be wrong) estar equivocado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wrongdoing",
+      "headword": "wrongdoing",
+      "kind": "word",
+      "forms": ["wrongdoing"],
+      "senses": [
+        {
+          "es": "irregularidades, conducta indebida",
+          "pos": "noun"
         }
       ]
     }

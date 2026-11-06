@@ -1,0 +1,475 @@
+{
+  "items": [
+    {
+      "id": "c1.global-issues.tackle",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "word",
+      "term": "tackle",
+      "es": "hacer frente a, abordar (un problema)",
+      "example": {
+        "en": "We need to tackle poverty at its roots.",
+        "es": "Tenemos que hacer frente a la pobreza desde sus raíces."
+      }
+    },
+    {
+      "id": "c1.global-issues.inequality",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "word",
+      "term": "inequality",
+      "es": "desigualdad",
+      "example": {
+        "en": "Inequality has grown in many countries.",
+        "es": "La desigualdad ha aumentado en muchos países."
+      }
+    },
+    {
+      "id": "c1.global-issues.tip-of-the-iceberg",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "phrase",
+      "term": "the tip of the iceberg",
+      "es": "la punta del iceberg",
+      "example": {
+        "en": "These cases are just the tip of the iceberg.",
+        "es": "Estos casos son solo la punta del iceberg."
+      }
+    },
+    {
+      "id": "c1.global-issues.drop-in-the-bucket",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "phrase",
+      "term": "a drop in the bucket",
+      "es": "una gota en el océano",
+      "example": {
+        "en": "The donation is a drop in the bucket.",
+        "es": "La donación es una gota en el océano."
+      }
+    },
+    {
+      "id": "c1.global-issues.displaced",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "word",
+      "term": "displaced",
+      "es": "desplazado, obligado a dejar su hogar",
+      "example": {
+        "en": "Thousands of families were displaced by the floods.",
+        "es": "Miles de familias tuvieron que dejar sus hogares por las inundaciones."
+      }
+    },
+    {
+      "id": "c1.global-issues.admittedly",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "word",
+      "term": "admittedly",
+      "es": "hay que reconocer que, es cierto que",
+      "example": {
+        "en": "Admittedly, the plan is not perfect.",
+        "es": "Hay que reconocer que el plan no es perfecto."
+      }
+    },
+    {
+      "id": "c1.global-issues.much-as",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "phrase",
+      "term": "much as",
+      "es": "por mucho que, aunque",
+      "example": {
+        "en": "Much as I like the idea, it is too expensive.",
+        "es": "Por mucho que me guste la idea, es demasiado cara."
+      }
+    },
+    {
+      "id": "c1.global-issues.even-so",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "kind": "phrase",
+      "term": "even so",
+      "es": "aun así",
+      "example": {
+        "en": "It was raining. Even so, we went out.",
+        "es": "Estaba lloviendo. Aun así, salimos."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.global-issues.a-problem-without-borders",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "title": "A problem without borders",
+      "text": "Water scarcity is often seen as a problem for dry countries alone. In reality, it poses a threat to the economy and stability of entire regions. Not only does a lack of clean water damage public health, but it also forces farmers to abandon their land and move to cities that are already overcrowded. In some areas, millions of people have been displaced by droughts that lasted several years. The crisis we see in the headlines is just the tip of the iceberg. Behind it lie decades of poor planning, wasteful irrigation and unequal access to resources. Within the same country, wealthy neighborhoods may have swimming pools while poorer districts receive water for only a few hours a day. Tackling the problem requires cooperation across borders, since rivers rarely respect political boundaries. Campaigns to raise awareness have had some success, and new technologies have made it cheaper to recycle water. Yet without investment on a much larger scale, these efforts will remain a drop in the bucket. Only when governments treat water as a shared resource rather than a national possession will lasting solutions be found.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.global-issues.is-the-world-getting-better",
+      "level": "C1",
+      "topics": ["global-issues"],
+      "title": "Is the world getting better?",
+      "text": "Admittedly, the news rarely gives us reasons to be cheerful. Wars, natural disasters and economic crises dominate the headlines, and the number of people displaced by conflict has reached record levels. Even so, some researchers insist that, by many measures, the world is getting better. Over the last few decades, extreme poverty has fallen sharply, fewer children die before their fifth birthday and more girls than ever attend school. Whereas a century ago most adults could not read, today the vast majority can. Much as these figures deserve to be celebrated, they can also be misleading. Global averages hide enormous differences between and within countries, and inequality has grown in many places even as average incomes have risen. Progress, moreover, is not guaranteed: a single pandemic or a long war can undo years of improvement. Critics also point out that focusing on good news may make people complacent. Nevertheless, there is a strong argument for reporting progress as well as problems. People who believe that nothing ever changes are less likely to support the policies that have actually worked. Hope, in other words, is not naive; it is a precondition for action.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.global-issues.vocab-001",
+      "itemIds": ["c1.global-issues.tackle"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'tackle' mean in 'We need to tackle poverty at its roots'?",
+      "options": ["ignorar", "hacer frente a, abordar", "aumentar", "calcular"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.global-issues.cloze-001",
+      "itemIds": ["c1.vocabulary.pose-a-threat"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "In dry regions, the risk ___ by long droughts is enormous.",
+      "answers": ["posed"],
+      "distractors": ["made", "put", "done"],
+      "es": "En las regiones secas, el riesgo que representan las largas sequías es enorme."
+    },
+    {
+      "id": "c1.global-issues.order-001",
+      "itemIds": ["c1.vocabulary.raise-awareness"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "used",
+        "raise",
+        "have",
+        "celebrities",
+        "Several",
+        "to",
+        "their",
+        "the",
+        "awareness",
+        "of",
+        "crisis.",
+        "fame"
+      ],
+      "accepted": ["Several celebrities have used their fame to raise awareness of the crisis."],
+      "es": "Varios famosos han usado su fama para crear conciencia sobre la crisis."
+    },
+    {
+      "id": "c1.global-issues.choice-001",
+      "itemIds": ["c1.global-issues.drop-in-the-bucket"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The money they raised is just a drop in the bucket.",
+      "options": [
+        "El dinero que recaudaron llenó todos los cubos.",
+        "El dinero que recaudaron es más que suficiente.",
+        "El dinero que recaudaron es solo una gota en el océano.",
+        "El dinero que recaudaron se perdió por completo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.global-issues.reading-001",
+      "itemIds": [
+        "c1.global-issues.tip-of-the-iceberg",
+        "c1.global-issues.displaced",
+        "c1.global-issues.tackle",
+        "c1.vocabulary.pose-a-threat"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.global-issues.a-problem-without-borders",
+      "questions": [
+        {
+          "prompt": "What does the text say about water scarcity?",
+          "options": [
+            "It only affects dry countries.",
+            "It threatens the economy and stability of entire regions.",
+            "It has been solved by new technologies."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What lies behind the crisis we see in the headlines?",
+          "options": [
+            "Decades of poor planning and unequal access to resources",
+            "A sudden increase in population",
+            "The use of swimming pools in rich countries"
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "According to the writer, when will lasting solutions be found?",
+          "options": [
+            "When campaigns raise more awareness",
+            "When water becomes cheaper to recycle",
+            "When governments treat water as a shared resource"
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.global-issues.write-001",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No solo es un problema ambiental, sino también económico.",
+      "accepted": [
+        "Not only is it an environmental {problem|issue}, but [it is ]also an economic one.",
+        "It is not {only|just} an environmental {problem|issue}[,] but also an economic one."
+      ]
+    },
+    {
+      "id": "c1.global-issues.cloze-002",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Not only ___ the drought destroy crops, but it also forced thousands to leave.",
+      "answers": ["did"],
+      "distractors": ["was", "has", "had"],
+      "es": "La sequía no solo destruyó los cultivos, sino que además obligó a miles de personas a irse."
+    },
+    {
+      "id": "c1.global-issues.vocab-002",
+      "itemIds": ["c1.global-issues.inequality"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'desigualdad'.",
+      "options": ["unequal", "equality", "inequality", "iniquity"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.global-issues.vocab-003",
+      "itemIds": ["c1.global-issues.displaced"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'displaced' mean in 'Thousands of families were displaced by the floods'?",
+      "options": ["despedidas", "obligadas a dejar su hogar", "desaparecidas", "decepcionadas"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.global-issues.cloze-003",
+      "itemIds": ["c1.global-issues.much-as"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ as I admire their work, I can't support this campaign.",
+      "answers": ["Much"],
+      "distractors": ["Many", "So", "Very"],
+      "es": "Por mucho que admire su trabajo, no puedo apoyar esta campaña."
+    },
+    {
+      "id": "c1.global-issues.cloze-004",
+      "itemIds": ["c1.global-issues.tip-of-the-iceberg"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "These reports of corruption are just the tip of the ___.",
+      "answers": ["iceberg"],
+      "distractors": ["mountain", "island", "ocean"],
+      "es": "Estas denuncias de corrupción son solo la punta del iceberg."
+    },
+    {
+      "id": "c1.global-issues.order-002",
+      "itemIds": ["c1.global-issues.even-so"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "sides",
+        "agreed",
+        "talks",
+        "both",
+        "so,",
+        "again.",
+        "meet",
+        "failed;",
+        "The",
+        "to",
+        "even"
+      ],
+      "accepted": ["The talks failed; even so, both sides agreed to meet again."],
+      "es": "Las negociaciones fracasaron; aun así, ambas partes acordaron volver a reunirse."
+    },
+    {
+      "id": "c1.global-issues.choice-002",
+      "itemIds": ["c1.global-issues.admittedly"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Admittedly, the policy has not worked as well as we hoped.",
+      "options": [
+        "Por suerte, la política ha funcionado mejor de lo que esperábamos.",
+        "Al parecer, la política todavía no se ha aplicado.",
+        "Hay que reconocer que la política ha funcionado mejor de lo esperado.",
+        "Hay que reconocer que la política no ha funcionado tan bien como esperábamos."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.global-issues.reading-002",
+      "itemIds": [
+        "c1.global-issues.admittedly",
+        "c1.global-issues.even-so",
+        "c1.global-issues.displaced",
+        "c1.global-issues.inequality"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.global-issues.is-the-world-getting-better",
+      "questions": [
+        {
+          "prompt": "What do some researchers insist, despite the bad news?",
+          "options": [
+            "That the world is getting better by many measures",
+            "That the news exaggerates natural disasters",
+            "That poverty has grown everywhere"
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Why can global figures be misleading?",
+          "options": [
+            "They are based on old data.",
+            "They hide large differences between and within countries.",
+            "They only include rich countries."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why does the writer think it is important to report progress?",
+          "options": [
+            "Good news sells more newspapers.",
+            "It makes people complacent.",
+            "People who think nothing changes are less likely to support policies that work."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.global-issues.write-002",
+      "itemIds": ["c1.global-issues.inequality"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Aunque la pobreza extrema ha disminuido, la desigualdad sigue creciendo.",
+      "accepted": [
+        "{Although|Even though|Though|While} extreme poverty has {fallen|decreased|declined|gone down|dropped}, inequality {is still growing|continues to grow|keeps growing|is still rising|continues to rise|keeps rising}."
+      ]
+    },
+    {
+      "id": "c1.global-issues.write-003",
+      "itemIds": ["b2.grammar.despite"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "A pesar de los avances, queda mucho por hacer.",
+      "accepted": [
+        "{Despite|In spite of} the {progress|advances}[ made], there is still {a lot|much} {left to do|to be done|to do}.",
+        "{Although|Even though} progress has been made, there is still {a lot|much} {left to do|to be done|to do}.",
+        "{Despite|In spite of} the {progress|advances}[ made], {much remains to be done|there is still a long way to go}."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.global-issues.lesson-001",
+      "level": "C1",
+      "topic": "global-issues",
+      "title": "Un problema sin fronteras",
+      "exerciseIds": [
+        "c1.global-issues.vocab-001",
+        "c1.global-issues.cloze-001",
+        "c1.global-issues.order-001",
+        "c1.global-issues.choice-001",
+        "c1.global-issues.reading-001",
+        "c1.global-issues.write-001",
+        "c1.global-issues.cloze-002",
+        "c1.global-issues.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.grammar.inversion",
+        "c1.vocabulary.pose-a-threat",
+        "c1.vocabulary.raise-awareness",
+        "c1.global-issues.tackle",
+        "c1.global-issues.tip-of-the-iceberg"
+      ],
+      "deepenCardIds": ["c1.grammar.inversion", "c1.vocabulary.collocations"]
+    },
+    {
+      "id": "c1.global-issues.lesson-002",
+      "level": "C1",
+      "topic": "global-issues",
+      "title": "¿Vamos a mejor?",
+      "exerciseIds": [
+        "c1.global-issues.vocab-003",
+        "c1.global-issues.cloze-003",
+        "c1.global-issues.cloze-004",
+        "c1.global-issues.order-002",
+        "c1.global-issues.choice-002",
+        "c1.global-issues.reading-002",
+        "c1.global-issues.write-002",
+        "c1.global-issues.write-003"
+      ],
+      "newItemIds": [
+        "c1.global-issues.much-as",
+        "c1.global-issues.admittedly",
+        "c1.global-issues.even-so",
+        "c1.global-issues.displaced",
+        "c1.global-issues.inequality"
+      ],
+      "deepenCardIds": ["b2.grammar.despite"]
+    }
+  ]
+}

@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.madam",
+      "headword": "madam",
+      "kind": "word",
+      "forms": ["madam"],
+      "senses": [
+        {
+          "es": "señora (Dear Sir or Madam: Estimado/a señor/a)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.madrid",
       "headword": "Madrid",
       "kind": "word",
@@ -49,6 +61,18 @@
       ]
     },
     {
+      "id": "glossary.mainly",
+      "headword": "mainly",
+      "kind": "word",
+      "forms": ["mainly"],
+      "senses": [
+        {
+          "es": "principalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.major",
       "headword": "major",
       "kind": "word",
@@ -57,6 +81,18 @@
         {
           "es": "importante, grande",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.majority",
+      "headword": "majority",
+      "kind": "word",
+      "forms": ["majority"],
+      "senses": [
+        {
+          "es": "mayoría",
+          "pos": "noun"
         }
       ]
     },
@@ -233,6 +269,18 @@
       ]
     },
     {
+      "id": "glossary.marine",
+      "headword": "marine",
+      "kind": "word",
+      "forms": ["marine"],
+      "senses": [
+        {
+          "es": "marino",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.mark",
       "headword": "Mark",
       "kind": "word",
@@ -308,6 +356,18 @@
         },
         {
           "es": "maestro, experto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.masterpiece",
+      "headword": "masterpiece",
+      "kind": "word",
+      "forms": ["masterpiece", "masterpieces"],
+      "senses": [
+        {
+          "es": "obra maestra",
           "pos": "noun"
         }
       ]
@@ -453,6 +513,22 @@
       ]
     },
     {
+      "id": "glossary.measure",
+      "headword": "measure",
+      "kind": "word",
+      "forms": ["measure", "measures", "measured", "measuring"],
+      "senses": [
+        {
+          "es": "medir",
+          "pos": "verb"
+        },
+        {
+          "es": "medida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.meat",
       "headword": "meat",
       "kind": "word",
@@ -477,6 +553,18 @@
       ]
     },
     {
+      "id": "glossary.mechanism",
+      "headword": "mechanism",
+      "kind": "word",
+      "forms": ["mechanism"],
+      "senses": [
+        {
+          "es": "mecanismo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.media",
       "headword": "media",
       "kind": "word",
@@ -489,6 +577,18 @@
         {
           "es": "(social media) redes sociales",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.medical",
+      "headword": "medical",
+      "kind": "word",
+      "forms": ["medical"],
+      "senses": [
+        {
+          "es": "médico",
+          "pos": "adjective"
         }
       ]
     },
@@ -581,6 +681,18 @@
       ]
     },
     {
+      "id": "glossary.memory",
+      "headword": "memory",
+      "kind": "word",
+      "forms": ["memory", "memories"],
+      "senses": [
+        {
+          "es": "memoria, recuerdo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.mental-health",
       "headword": "mental health",
       "kind": "phrase",
@@ -613,6 +725,18 @@
         {
           "es": "menú, carta",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.merely",
+      "headword": "merely",
+      "kind": "word",
+      "forms": ["merely"],
+      "senses": [
+        {
+          "es": "simplemente, meramente",
+          "pos": "adverb"
         }
       ]
     },
@@ -777,6 +901,18 @@
       ]
     },
     {
+      "id": "glossary.minister",
+      "headword": "minister",
+      "kind": "word",
+      "forms": ["minister", "ministers"],
+      "senses": [
+        {
+          "es": "ministro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.minute",
       "headword": "minute",
       "kind": "word",
@@ -833,6 +969,30 @@
       ]
     },
     {
+      "id": "glossary.misunderstand",
+      "headword": "misunderstand",
+      "kind": "word",
+      "forms": ["misunderstand", "misunderstands", "misunderstood"],
+      "senses": [
+        {
+          "es": "malinterpretar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.misunderstanding",
+      "headword": "misunderstanding",
+      "kind": "word",
+      "forms": ["misunderstanding", "misunderstandings"],
+      "senses": [
+        {
+          "es": "malentendido",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.mix",
       "headword": "mix",
       "kind": "word",
@@ -857,6 +1017,18 @@
       ]
     },
     {
+      "id": "glossary.mock",
+      "headword": "mock",
+      "kind": "word",
+      "forms": ["mock", "mocks", "mocked", "mocking"],
+      "senses": [
+        {
+          "es": "burlarse de",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.modal",
       "headword": "modal",
       "kind": "word",
@@ -864,6 +1036,18 @@
       "senses": [
         {
           "es": "verbo modal (can, must, should…)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.model",
+      "headword": "model",
+      "kind": "word",
+      "forms": ["model", "models"],
+      "senses": [
+        {
+          "es": "modelo",
           "pos": "noun"
         }
       ]
@@ -1005,6 +1189,18 @@
       ]
     },
     {
+      "id": "glossary.moreover",
+      "headword": "moreover",
+      "kind": "word",
+      "forms": ["moreover"],
+      "senses": [
+        {
+          "es": "además",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.morning",
       "headword": "morning",
       "kind": "word",
@@ -1040,6 +1236,30 @@
       "senses": [
         {
           "es": "madre, mamá",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.motivate",
+      "headword": "motivate",
+      "kind": "word",
+      "forms": ["motivate", "motivates"],
+      "senses": [
+        {
+          "es": "motivar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mountain",
+      "headword": "mountain",
+      "kind": "word",
+      "forms": ["mountain", "mountains"],
+      "senses": [
+        {
+          "es": "montaña",
           "pos": "noun"
         }
       ]

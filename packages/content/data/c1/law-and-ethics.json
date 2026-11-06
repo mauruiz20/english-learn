@@ -1,0 +1,471 @@
+{
+  "items": [
+    {
+      "id": "c1.law-and-ethics.loophole",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "word",
+      "term": "loophole",
+      "es": "vacío legal, laguna",
+      "example": {
+        "en": "The company used a loophole to avoid paying tax.",
+        "es": "La empresa aprovechó un vacío legal para no pagar impuestos."
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.liable",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "word",
+      "term": "liable (for)",
+      "es": "legalmente responsable (de)",
+      "example": {
+        "en": "The landlord is liable for any damage to the building.",
+        "es": "El propietario es legalmente responsable de cualquier daño en el edificio."
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.comply-with",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "phrase",
+      "term": "comply with",
+      "es": "cumplir (con) (una norma, una ley)",
+      "example": {
+        "en": "All products must comply with safety rules.",
+        "es": "Todos los productos deben cumplir con las normas de seguridad."
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.gray-area",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "phrase",
+      "term": "a gray area",
+      "es": "una zona gris",
+      "example": {
+        "en": "Online privacy is still a gray area.",
+        "es": "La privacidad en internet sigue siendo una zona gris."
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.whistleblower",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "word",
+      "term": "whistleblower",
+      "es": "denunciante, informante",
+      "example": {
+        "en": "The whistleblower revealed the scandal to the press.",
+        "es": "La denunciante reveló el escándalo a la prensa."
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.turn-a-blind-eye",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "phrase",
+      "term": "turn a blind eye (to)",
+      "es": "hacer la vista gorda (ante)",
+      "example": {
+        "en": "The school turned a blind eye to the problem.",
+        "es": "La escuela hizo la vista gorda ante el problema."
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.speak-out",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "phrase",
+      "term": "speak out (against)",
+      "es": "alzar la voz, denunciar públicamente",
+      "example": {
+        "en": "She spoke out against corruption.",
+        "es": "Alzó la voz contra la corrupción."
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.ethical-dilemma",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "kind": "phrase",
+      "term": "ethical dilemma",
+      "es": "dilema ético",
+      "example": {
+        "en": "Doctors often face ethical dilemmas.",
+        "es": "Los médicos se enfrentan a menudo a dilemas éticos."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.law-and-ethics.legal-but-wrong",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "title": "Legal but wrong?",
+      "text": "Not everything that is legal is ethical, and not everything that is ethical is legal. Tax avoidance is a well-known example. Under no circumstances may a company hide income from the authorities; that would be tax evasion, a crime. However, there is nothing illegal about moving profits to a country with lower taxes, provided that the company complies with the relevant rules. Critics argue that such practices exploit loopholes that lawmakers never intended to create. Defenders reply that companies have a duty to their shareholders and cannot be expected to pay more than the law requires. Between these positions lies a large gray area. Lawyers tend to focus on the letter of the law, while the public is more concerned with its spirit. When the two diverge, trust in institutions suffers. Only when loopholes are closed can the debate move on, but closing them is far from easy. Laws are written in one country, whereas global companies operate in dozens. Moreover, a rule that is too broad may make innocent businesses liable for practices that are perfectly reasonable.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.law-and-ethics.the-whistleblowers-dilemma",
+      "level": "C1",
+      "topics": ["law-and-ethics"],
+      "title": "The whistleblower's dilemma",
+      "text": "Imagine discovering that your employer is putting the public at risk. Perhaps the company is hiding safety problems with a product, or falsifying the results of environmental tests. Do you speak out, knowing that you could lose your job, or do you turn a blind eye and hope that someone else will act? This is the ethical dilemma faced by every whistleblower. Some of the most important scandals of recent decades came to light only because an employee was willing to take that risk. Had they stayed silent, the problems would still be hidden today, and many more people might have been harmed. Yet the personal cost can be enormous. Whistleblowers are frequently isolated by colleagues, attacked in the press and forced into long legal battles. Many say they would do the same again; others admit that, if they had known what was coming, they would have kept quiet. In response, a number of countries have passed laws to protect people who report wrongdoing in good faith. Critics argue that these protections are still too weak. If people are expected to put the public interest before their own careers, the law must make that choice a little less costly.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.law-and-ethics.vocab-001",
+      "itemIds": ["c1.law-and-ethics.loophole"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'loophole' mean in 'The company used a loophole to avoid paying tax'?",
+      "options": ["agujero en la pared", "vacío legal", "bucle", "multa"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.law-and-ethics.cloze-001",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Under no circumstances ___ employees share confidential information.",
+      "answers": ["should", "may", "must", "can"],
+      "distractors": ["do not", "they", "are"],
+      "es": "Los empleados no deben compartir información confidencial bajo ninguna circunstancia."
+    },
+    {
+      "id": "c1.law-and-ethics.order-001",
+      "itemIds": ["c1.grammar.inversion", "c1.law-and-ethics.loophole"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "will",
+        "Only",
+        "closed",
+        "loophole",
+        "disappear.",
+        "is",
+        "problem",
+        "the",
+        "when",
+        "the"
+      ],
+      "accepted": ["Only when the loophole is closed will the problem disappear."],
+      "es": "Solo cuando se cierre el vacío legal desaparecerá el problema."
+    },
+    {
+      "id": "c1.law-and-ethics.choice-001",
+      "itemIds": ["c1.law-and-ethics.gray-area"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Using someone's photo without permission is a legal gray area.",
+      "options": [
+        "Usar la foto de alguien sin permiso está totalmente prohibido.",
+        "Usar una foto en blanco y negro sin permiso es ilegal.",
+        "Usar la foto de alguien con permiso es una zona gris desde el punto de vista legal.",
+        "Usar la foto de alguien sin permiso es una zona gris desde el punto de vista legal."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.law-and-ethics.reading-001",
+      "itemIds": [
+        "c1.law-and-ethics.loophole",
+        "c1.law-and-ethics.gray-area",
+        "c1.law-and-ethics.comply-with",
+        "c1.law-and-ethics.liable"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.law-and-ethics.legal-but-wrong",
+      "questions": [
+        {
+          "prompt": "What is the difference between tax avoidance and tax evasion, according to the text?",
+          "options": [
+            "Tax evasion is a crime, whereas tax avoidance can be legal.",
+            "Tax avoidance is a crime, whereas tax evasion is legal.",
+            "There is no difference between them."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What do defenders of tax avoidance argue?",
+          "options": [
+            "Lawmakers created loopholes on purpose.",
+            "Companies cannot be expected to pay more than the law requires.",
+            "The public should focus on the letter of the law."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why is closing loopholes difficult?",
+          "options": [
+            "Lawyers refuse to change the law.",
+            "Most companies already pay too much tax.",
+            "Laws are national, but companies operate in many countries."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.law-and-ethics.write-001",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Bajo ninguna circunstancia debes firmar ese contrato.",
+      "accepted": [
+        "Under no circumstances {should|must} you sign {that|the} contract.",
+        "{You {shouldn't|mustn't}|Don't} sign {that|the} contract under any circumstances."
+      ]
+    },
+    {
+      "id": "c1.law-and-ethics.cloze-002",
+      "itemIds": ["c1.law-and-ethics.comply-with"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "All companies must comply ___ the new regulations.",
+      "answers": ["with"],
+      "distractors": ["to", "for", "at"],
+      "es": "Todas las empresas deben cumplir con la nueva normativa."
+    },
+    {
+      "id": "c1.law-and-ethics.vocab-002",
+      "itemIds": ["c1.law-and-ethics.liable"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'legalmente responsable'.",
+      "options": ["reliable", "likeable", "liable", "lovable"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.law-and-ethics.vocab-003",
+      "itemIds": ["c1.law-and-ethics.whistleblower"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'whistleblower' mean in 'The whistleblower revealed the scandal to the press'?",
+      "options": ["árbitro", "silbato", "periodista", "denunciante, informante"],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.law-and-ethics.cloze-003",
+      "itemIds": ["c1.law-and-ethics.turn-a-blind-eye"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The managers knew about the problem but turned a blind ___.",
+      "answers": ["eye"],
+      "distractors": ["hand", "ear", "face"],
+      "es": "Los gerentes sabían del problema, pero hicieron la vista gorda."
+    },
+    {
+      "id": "c1.law-and-ethics.cloze-004",
+      "itemIds": ["b2.grammar.mixed-conditionals", "c1.law-and-ethics.speak-out"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "If she hadn't spoken out, the problem ___ still be hidden today.",
+      "answers": ["would"],
+      "distractors": ["will", "had", "did"],
+      "es": "Si ella no hubiera alzado la voz, el problema seguiría oculto hoy."
+    },
+    {
+      "id": "c1.law-and-ethics.order-002",
+      "itemIds": ["c1.law-and-ethics.ethical-dilemma"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "face",
+        "ethical",
+        "an",
+        "at",
+        "point.",
+        "dilemma",
+        "will",
+        "some",
+        "doctor",
+        "Every"
+      ],
+      "accepted": ["Every doctor will face an ethical dilemma at some point."],
+      "es": "Todo médico se enfrentará en algún momento a un dilema ético."
+    },
+    {
+      "id": "c1.law-and-ethics.choice-002",
+      "itemIds": ["c1.law-and-ethics.speak-out"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Few employees dare to speak out against their bosses.",
+      "options": [
+        "Pocos empleados se atreven a hablar en voz alta con sus jefes.",
+        "Muchos empleados se atreven a criticar a sus jefes.",
+        "Pocos empleados se atreven a alzar la voz contra sus jefes.",
+        "Pocos empleados salen con sus jefes."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.law-and-ethics.reading-002",
+      "itemIds": [
+        "c1.law-and-ethics.whistleblower",
+        "c1.law-and-ethics.ethical-dilemma",
+        "c1.law-and-ethics.speak-out",
+        "b2.grammar.mixed-conditionals"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.law-and-ethics.the-whistleblowers-dilemma",
+      "questions": [
+        {
+          "prompt": "What dilemma does a whistleblower face?",
+          "options": [
+            "Whether to report wrongdoing or stay silent",
+            "Whether to change jobs or stay",
+            "Whether to work for the government or a private company"
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What would have happened if some whistleblowers had stayed silent?",
+          "options": [
+            "Their employers would have closed.",
+            "The problems would still be hidden.",
+            "They would have been promoted."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What do critics say about the laws that protect whistleblowers?",
+          "options": [
+            "They are too strict.",
+            "They have stopped all scandals.",
+            "They are still too weak."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.law-and-ethics.write-002",
+      "itemIds": ["b2.grammar.mixed-conditionals", "c1.law-and-ethics.speak-out"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si ella no hubiera alzado la voz, el escándalo seguiría oculto.",
+      "accepted": [
+        "If she hadn't {spoken out|spoken up}, the scandal would {still be|remain} {hidden|secret|unknown}.",
+        "Had she not {spoken out|spoken up}, the scandal would {still be|remain} {hidden|secret|unknown}."
+      ]
+    },
+    {
+      "id": "c1.law-and-ethics.write-003",
+      "itemIds": ["c1.law-and-ethics.turn-a-blind-eye"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Muchas personas prefieren hacer la vista gorda.",
+      "accepted": [
+        "{Many|A lot of|Lots of} people {prefer to|would rather} {turn a blind eye|look the other way}.",
+        "{Many|A lot of|Lots of} people prefer {turning a blind eye|looking the other way}."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.law-and-ethics.lesson-001",
+      "level": "C1",
+      "topic": "law-and-ethics",
+      "title": "Legal, pero ¿justo?",
+      "exerciseIds": [
+        "c1.law-and-ethics.vocab-001",
+        "c1.law-and-ethics.cloze-001",
+        "c1.law-and-ethics.order-001",
+        "c1.law-and-ethics.choice-001",
+        "c1.law-and-ethics.reading-001",
+        "c1.law-and-ethics.write-001",
+        "c1.law-and-ethics.cloze-002",
+        "c1.law-and-ethics.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.grammar.inversion",
+        "c1.law-and-ethics.loophole",
+        "c1.law-and-ethics.comply-with",
+        "c1.law-and-ethics.gray-area",
+        "c1.law-and-ethics.liable"
+      ],
+      "deepenCardIds": ["c1.grammar.inversion"]
+    },
+    {
+      "id": "c1.law-and-ethics.lesson-002",
+      "level": "C1",
+      "topic": "law-and-ethics",
+      "title": "Denunciar o callar",
+      "exerciseIds": [
+        "c1.law-and-ethics.vocab-003",
+        "c1.law-and-ethics.cloze-003",
+        "c1.law-and-ethics.cloze-004",
+        "c1.law-and-ethics.order-002",
+        "c1.law-and-ethics.choice-002",
+        "c1.law-and-ethics.reading-002",
+        "c1.law-and-ethics.write-002",
+        "c1.law-and-ethics.write-003"
+      ],
+      "newItemIds": [
+        "c1.law-and-ethics.whistleblower",
+        "c1.law-and-ethics.speak-out",
+        "c1.law-and-ethics.turn-a-blind-eye",
+        "c1.law-and-ethics.ethical-dilemma"
+      ],
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+    }
+  ]
+}

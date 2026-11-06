@@ -13,8 +13,8 @@ pnpm --filter @english-learn/content-pipeline verify                   # check e
 pnpm --filter @english-learn/content-pipeline test                     # unit tests (fixtures only, no network)
 ```
 
-`candidates` options: `--level A2|B1|B2` (default `A2`), `--limit N` per topic (default 60). Topic
-keyword lists (the A2 topics, reused for B1, and the B2 topics) live in `src/topics.ts`.
+`candidates` options: `--level A2|B1|B2|C1` (default `A2`), `--limit N` per topic (default 60). Topic
+keyword lists (the A2 topics, reused for B1, the B2 topics and the C1 topics) live in `src/topics.ts`.
 
 ## Sources
 
@@ -50,7 +50,7 @@ the same format.
 ## Filters
 
 `src/filter.ts` keeps a pair only when the English sentence has an author, is 3–14 words (A2),
-6–20 words (B1) or 8–24 words (B2), contains no digits, no unusual characters, no likely proper names (non-initial
+6–20 words (B1), 8–24 words (B2) or 10–30 words (C1), contains no digits, no unusual characters, no likely proper names (non-initial
 capitals other than `I`, days, months and a few allowed words; plus frequent Tatoeba first names such
 as Tom and Mary), and no word from a small blocklist (violence, alcohol, insults, etc.). At least
 one attributed, clean Spanish translation must remain. The shortlist is a starting point: an author

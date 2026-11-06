@@ -1,0 +1,835 @@
+{
+  "cards": [
+    {
+      "id": "c1.grammar.inversion",
+      "level": "C1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "La inversión negativa",
+      "summary": "En un registro formal, algunas expresiones negativas o restrictivas (never, rarely, not only, no sooner) van al principio de la oración y el auxiliar se coloca antes del sujeto, como en una pregunta.",
+      "form": "expresión negativa + auxiliar + sujeto + verbo: Never have I seen… · Not only did she…, but she also… · No sooner had I… than…",
+      "uses": [
+        "Dar énfasis en discursos, informes y textos argumentativos.",
+        "Con never, rarely, seldom y little: Rarely do we see such talent.",
+        "Not only… but also: Not only did he apologize, but he also paid for the damage.",
+        "Condicionales formales sin if: Had I known, I would have called."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Never I have seen such a mess.",
+          "right": "Never have I seen such a mess.",
+          "why": "Después de la expresión negativa, el auxiliar va antes del sujeto."
+        },
+        {
+          "wrong": "Not only she apologized, but she also paid.",
+          "right": "Not only did she apologize, but she also paid.",
+          "why": "En presente y pasado simple se añade do, does o did, como en una pregunta."
+        },
+        {
+          "wrong": "No sooner had I arrived when it started to rain.",
+          "right": "No sooner had I arrived than it started to rain.",
+          "why": "No sooner va con than, no con when."
+        },
+        {
+          "wrong": "If had I known, I would have called.",
+          "right": "Had I known, I would have called.",
+          "why": "En la condicional invertida desaparece if."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Rarely do we get a second chance like this.",
+          "es": "Pocas veces tenemos una segunda oportunidad como esta."
+        },
+        {
+          "en": "Not only did the plan fail, but it also cost a fortune.",
+          "es": "El plan no solo fracasó, sino que además costó una fortuna."
+        },
+        {
+          "en": "No sooner had we sat down than the lights went out.",
+          "es": "Apenas nos habíamos sentado cuando se apagaron las luces."
+        },
+        {
+          "en": "Under no circumstances should you share your password.",
+          "es": "Bajo ninguna circunstancia debes compartir tu contraseña."
+        },
+        {
+          "en": "Had I known about the meeting, I would have attended.",
+          "es": "Si hubiera sabido lo de la reunión, habría asistido."
+        },
+        {
+          "en": "Little did they know that the company was about to close.",
+          "es": "No tenían ni idea de que la empresa estaba a punto de cerrar."
+        }
+      ],
+      "itemIds": ["c1.grammar.inversion"],
+      "exerciseIds": [
+        "c1.grammar.inversion-cloze-1",
+        "c1.grammar.inversion-cloze-2",
+        "c1.grammar.inversion-cloze-3",
+        "c1.grammar.inversion-cloze-4",
+        "c1.grammar.inversion-choice-1",
+        "c1.grammar.inversion-order-1",
+        "c1.grammar.inversion-vocab-1",
+        "c1.grammar.inversion-write-1"
+      ]
+    },
+    {
+      "id": "c1.grammar.cleft-sentences",
+      "level": "C1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Cleft sentences: What I need is…",
+      "summary": "Para destacar una parte de la oración, el inglés la separa con What… is… o It is / It was… that…, como el español «lo que necesito es…» o «fue ella quien…».",
+      "form": "What + sujeto + verbo + is / was + lo destacado · It is / It was + lo destacado + that / who…",
+      "uses": [
+        "Destacar una información: What I need is more time.",
+        "Corregir o contrastar: It was the price, not the quality, that worried customers.",
+        "Con all, «lo único que»: All I want is a quiet weekend.",
+        "It was not until… that…: It was not until I moved abroad that I understood my own culture."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "What I need it is more time.",
+          "right": "What I need is more time.",
+          "why": "La parte con what ya es el sujeto: no se repite con it."
+        },
+        {
+          "wrong": "It was my sister who she called.",
+          "right": "It was my sister who called.",
+          "why": "Después de who o that no se repite el sujeto."
+        },
+        {
+          "wrong": "The thing what I need is time.",
+          "right": "The thing I need is time.",
+          "why": "Después de un sustantivo se usa that, which o nada, nunca what."
+        },
+        {
+          "wrong": "It were the students who complained.",
+          "right": "It was the students who complained.",
+          "why": "En It is / It was, el verbo va siempre en singular."
+        }
+      ],
+      "examples": [
+        {
+          "en": "What surprised me was how calm she remained.",
+          "es": "Lo que me sorprendió fue lo tranquila que se mantuvo."
+        },
+        {
+          "en": "It was the price, not the quality, that worried customers.",
+          "es": "Fue el precio, y no la calidad, lo que preocupó a los clientes."
+        },
+        {
+          "en": "It was not until I moved abroad that I understood my own culture.",
+          "es": "No entendí mi propia cultura hasta que me mudé al extranjero."
+        },
+        {
+          "en": "All I want is a quiet weekend.",
+          "es": "Lo único que quiero es un fin de semana tranquilo."
+        },
+        {
+          "en": "What we should do is ask for a second opinion.",
+          "es": "Lo que deberíamos hacer es pedir una segunda opinión."
+        },
+        {
+          "en": "It was her teacher who encouraged her to write.",
+          "es": "Fue su profesora quien la animó a escribir."
+        }
+      ],
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "exerciseIds": [
+        "c1.grammar.cleft-sentences-cloze-1",
+        "c1.grammar.cleft-sentences-cloze-2",
+        "c1.grammar.cleft-sentences-cloze-3",
+        "c1.grammar.cleft-sentences-cloze-4",
+        "c1.grammar.cleft-sentences-choice-1",
+        "c1.grammar.cleft-sentences-order-1",
+        "c1.grammar.cleft-sentences-vocab-1",
+        "c1.grammar.cleft-sentences-write-1"
+      ]
+    },
+    {
+      "id": "c1.grammar.hedging",
+      "level": "C1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "Hedging: suavizar afirmaciones",
+      "summary": "En textos académicos y argumentativos, el inglés suaviza las afirmaciones para no sonar demasiado categórico: seem, appear, tend to, may, it could be argued that.",
+      "form": "It could be argued that… · seem / appear + to + verbo · tend to + verbo · may (well) + verbo · be likely to + verbo",
+      "uses": [
+        "Presentar una opinión con prudencia: It could be argued that…",
+        "Indicar una tendencia, no una regla: People tend to…",
+        "Expresar probabilidad: The results are likely to change.",
+        "Distanciarse de una afirmación: The policy appears to have failed."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "It could be argue that the law is unfair.",
+          "right": "It could be argued that the law is unfair.",
+          "why": "Es una pasiva: could be + participio (argued)."
+        },
+        {
+          "wrong": "People tend to forgetting names.",
+          "right": "People tend to forget names.",
+          "why": "Tend to va seguido del infinitivo, sin -ing."
+        },
+        {
+          "wrong": "The plan seems that it has failed.",
+          "right": "The plan seems to have failed.",
+          "why": "Con el sujeto real se usa seem to; con that, el sujeto es it (It seems that…)."
+        },
+        {
+          "wrong": "Prices are probable to rise.",
+          "right": "Prices are likely to rise.",
+          "why": "Probable no admite be + to + verbo: se usa likely."
+        }
+      ],
+      "examples": [
+        {
+          "en": "It could be argued that the reform came too late.",
+          "es": "Se podría argumentar que la reforma llegó demasiado tarde."
+        },
+        {
+          "en": "Young people tend to share more information online.",
+          "es": "Los jóvenes suelen compartir más información en internet."
+        },
+        {
+          "en": "The new policy appears to have reduced traffic.",
+          "es": "La nueva política parece haber reducido el tráfico."
+        },
+        {
+          "en": "The results may well change once more data is available.",
+          "es": "Es muy posible que los resultados cambien cuando haya más datos."
+        },
+        {
+          "en": "Prices are likely to rise again next year.",
+          "es": "Es probable que los precios vuelvan a subir el año que viene."
+        },
+        {
+          "en": "There seems to be some confusion about the rules.",
+          "es": "Parece haber cierta confusión sobre las normas."
+        }
+      ],
+      "itemIds": ["c1.grammar.hedging"],
+      "exerciseIds": [
+        "c1.grammar.hedging-cloze-1",
+        "c1.grammar.hedging-cloze-2",
+        "c1.grammar.hedging-cloze-3",
+        "c1.grammar.hedging-cloze-4",
+        "c1.grammar.hedging-choice-1",
+        "c1.grammar.hedging-order-1",
+        "c1.grammar.hedging-vocab-1",
+        "c1.grammar.hedging-write-1"
+      ]
+    },
+    {
+      "id": "c1.grammar.nominalization",
+      "level": "C1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "La nominalización",
+      "summary": "El inglés formal convierte verbos y adjetivos en sustantivos (decide → decision, fail → failure) para condensar ideas y dar un tono más objetivo.",
+      "form": "verbo / adjetivo → sustantivo: decide → decision, fail → failure, grow → growth, able → ability · the + sustantivo + of: the introduction of the law",
+      "uses": [
+        "Condensar ideas: The government's decision to raise taxes…",
+        "Dar un tono impersonal y académico: The failure of the talks surprised everyone.",
+        "Sufijos frecuentes: -tion, -ment, -ance / -ence, -ity, -ness, -al.",
+        "Suele ir con of o con un posesivo: the growth of cities, the city's growth."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "The government's decide surprised everyone.",
+          "right": "The government's decision surprised everyone.",
+          "why": "Después de un posesivo va un sustantivo (decision), no el verbo (decide)."
+        },
+        {
+          "wrong": "The fail of the project was expensive.",
+          "right": "The failure of the project was expensive.",
+          "why": "El sustantivo de fail es failure."
+        },
+        {
+          "wrong": "The grow of the city has been fast.",
+          "right": "The growth of the city has been fast.",
+          "why": "El sustantivo de grow es growth."
+        },
+        {
+          "wrong": "There has been an increase of prices.",
+          "right": "There has been an increase in prices.",
+          "why": "Increase, rise y fall van con in para indicar lo que aumenta o baja."
+        }
+      ],
+      "examples": [
+        {
+          "en": "The introduction of the new law caused a lot of debate.",
+          "es": "La aprobación de la nueva ley generó mucho debate."
+        },
+        {
+          "en": "The failure of the talks surprised everyone.",
+          "es": "El fracaso de las negociaciones sorprendió a todos."
+        },
+        {
+          "en": "There has been a sharp increase in unemployment.",
+          "es": "Ha habido un fuerte aumento del desempleo."
+        },
+        {
+          "en": "Her refusal to comment only made things worse.",
+          "es": "Su negativa a hacer comentarios solo empeoró las cosas."
+        },
+        {
+          "en": "The rapid growth of cities puts pressure on housing.",
+          "es": "El rápido crecimiento de las ciudades ejerce presión sobre la vivienda."
+        },
+        {
+          "en": "Their ability to adapt is remarkable.",
+          "es": "Su capacidad de adaptación es extraordinaria."
+        }
+      ],
+      "itemIds": ["c1.grammar.nominalization"],
+      "exerciseIds": [
+        "c1.grammar.nominalization-cloze-1",
+        "c1.grammar.nominalization-cloze-2",
+        "c1.grammar.nominalization-cloze-3",
+        "c1.grammar.nominalization-cloze-4",
+        "c1.grammar.nominalization-choice-1",
+        "c1.grammar.nominalization-order-1",
+        "c1.grammar.nominalization-vocab-1",
+        "c1.grammar.nominalization-write-1"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "c1.grammar.inversion",
+      "level": "C1",
+      "topics": ["grammar", "politics-and-media", "global-issues", "law-and-ethics"],
+      "kind": "grammar",
+      "term": "Never have I… / Not only did… but also…",
+      "es": "inversión negativa: nunca he…, no solo…, sino que también…"
+    },
+    {
+      "id": "c1.grammar.cleft-sentences",
+      "level": "C1",
+      "topics": ["grammar", "arts-and-culture", "psychology-and-behaviour"],
+      "kind": "grammar",
+      "term": "What I need is… / It was… that…",
+      "es": "oraciones escindidas: lo que necesito es…, fue… quien / lo que…"
+    },
+    {
+      "id": "c1.grammar.hedging",
+      "level": "C1",
+      "topics": ["grammar", "science-and-society", "politics-and-media"],
+      "kind": "grammar",
+      "term": "It could be argued that… / tend to / appear to",
+      "es": "suavizar afirmaciones: se podría argumentar que…, suele…, parece…"
+    },
+    {
+      "id": "c1.grammar.nominalization",
+      "level": "C1",
+      "topics": ["grammar", "science-and-society", "language-and-communication"],
+      "kind": "grammar",
+      "term": "nominalization (decide → decision, fail → failure)",
+      "es": "nominalización: convertir verbos y adjetivos en sustantivos"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.grammar.inversion-cloze-1",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 279337,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "No sooner had I hung up ___ the phone started ringing again.",
+      "answers": ["than"],
+      "distractors": ["when", "then", "that"],
+      "es": "Apenas había colgado cuando el teléfono volvió a sonar."
+    },
+    {
+      "id": "c1.grammar.inversion-cloze-2",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Rarely ___ we see such talent in someone so young.",
+      "answers": ["do"],
+      "distractors": ["are", "does", "is"],
+      "es": "Pocas veces vemos tanto talento en alguien tan joven."
+    },
+    {
+      "id": "c1.grammar.inversion-cloze-3",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Little ___ they know that the company was about to close.",
+      "answers": ["did"],
+      "distractors": ["do", "had", "were"],
+      "es": "No tenían ni idea de que la empresa estaba a punto de cerrar."
+    },
+    {
+      "id": "c1.grammar.inversion-cloze-4",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ I known about the problem, I would have helped.",
+      "answers": ["Had"],
+      "distractors": ["If", "Have", "Did"],
+      "es": "Si hubiera sabido lo del problema, habría ayudado."
+    },
+    {
+      "id": "c1.grammar.inversion-choice-1",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Not only were we hungry, but we were also very thirsty.",
+      "options": [
+        "No teníamos hambre, pero sí teníamos mucha sed.",
+        "Solo teníamos hambre, no sed.",
+        "No solo teníamos hambre, sino que además teníamos mucha sed.",
+        "Teníamos hambre porque no habíamos bebido nada."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.grammar.inversion-order-1",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "damage.",
+        "but",
+        "only",
+        "did",
+        "for",
+        "she",
+        "the",
+        "paid",
+        "she",
+        "Not",
+        "also",
+        "apologize,"
+      ],
+      "accepted": ["Not only did she apologize, but she also paid for the damage."],
+      "es": "No solo se disculpó, sino que también pagó los daños."
+    },
+    {
+      "id": "c1.grammar.inversion-vocab-1",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'bajo ninguna circunstancia debes hacerlo'.",
+      "options": [
+        "Under no circumstances you should do it.",
+        "Under no circumstances should you do it.",
+        "In no circumstances you must do it.",
+        "Under any circumstances should you do it."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.grammar.inversion-write-1",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 16968,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translate_write",
+      "es": "Si hubiera sabido tu número de teléfono, te habría llamado.",
+      "accepted": [
+        "{Had I known|If I had known} your {telephone |phone |}number, I would have called you.",
+        "I would have called you if I had known your {telephone |phone |}number."
+      ]
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-cloze-1",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 274541,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "It was not until then ___ I realized my mistake.",
+      "answers": ["that"],
+      "distractors": ["when", "what", "which"],
+      "es": "No me di cuenta de mi error hasta entonces."
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-cloze-2",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "What I need ___ some peace and quiet.",
+      "answers": ["is"],
+      "distractors": ["it is", "are", "has"],
+      "es": "Lo que necesito es un poco de paz y tranquilidad."
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-cloze-3",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It was my brother ___ told me the news.",
+      "answers": ["who", "that"],
+      "distractors": ["what", "which", "whom"],
+      "es": "Fue mi hermano quien me dio la noticia."
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-cloze-4",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 2014224,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "___ I want is a chance to help.",
+      "answers": ["All", "What"],
+      "distractors": ["That", "Which", "It"],
+      "es": "Lo único que quiero es una oportunidad de ayudar."
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-choice-1",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "It was not what he said, but the way he said it, that made me suspicious.",
+      "options": [
+        "No sospeché de él porque dijo la verdad.",
+        "Lo que me hizo sospechar no fue lo que dijo, sino cómo lo dijo.",
+        "Lo que dijo me hizo sospechar, pero no cómo lo dijo.",
+        "No entendí lo que dijo ni cómo lo dijo."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-order-1",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 6864925,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "word_order",
+      "tokens": ["is", "need", "coffee.", "another", "I", "of", "What", "cup"],
+      "accepted": ["What I need is another cup of coffee."],
+      "es": "Lo que necesito es otra taza de café."
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-vocab-1",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'lo que más me gusta es su voz'.",
+      "options": [
+        "That I like most is her voice.",
+        "What I like most it is her voice.",
+        "The thing what I like most is her voice.",
+        "What I like most is her voice."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.grammar.cleft-sentences-write-1",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Fue la directora quien encontró la solución.",
+      "accepted": [
+        "It was the {director|manager} {who|that} {found|came up with} the solution.",
+        "The {director|manager} was the one who {found|came up with} the solution."
+      ]
+    },
+    {
+      "id": "c1.grammar.hedging-cloze-1",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 1304523,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "People ___ to raise their voices when they get excited.",
+      "answers": ["tend"],
+      "distractors": ["tends", "trend", "tending"],
+      "es": "La gente suele levantar la voz cuando se exalta."
+    },
+    {
+      "id": "c1.grammar.hedging-cloze-2",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The new policy appears ___ reduced crime in the city.",
+      "answers": ["to have"],
+      "distractors": ["having", "that it", "to"],
+      "es": "La nueva política parece haber reducido la delincuencia en la ciudad."
+    },
+    {
+      "id": "c1.grammar.hedging-cloze-3",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It could be ___ that the government acted too slowly.",
+      "answers": ["argued", "said", "claimed", "suggested"],
+      "distractors": ["argue", "arguing", "argument"],
+      "es": "Se podría argumentar que el gobierno actuó con demasiada lentitud."
+    },
+    {
+      "id": "c1.grammar.hedging-cloze-4",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Prices are ___ to rise again next year.",
+      "answers": ["likely"],
+      "distractors": ["probable", "possible", "probably"],
+      "es": "Es probable que los precios vuelvan a subir el año que viene."
+    },
+    {
+      "id": "c1.grammar.hedging-choice-1",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 67182,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "translation_choice",
+      "sentence": "I agree with what you say to some extent.",
+      "options": [
+        "Estoy totalmente de acuerdo con todo lo que dices.",
+        "No estoy de acuerdo con nada de lo que dices.",
+        "Hasta cierto punto, estoy de acuerdo con lo que dices.",
+        "Estoy de acuerdo en que lo digas."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.grammar.hedging-order-1",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "rules.",
+        "the",
+        "seems",
+        "new",
+        "There",
+        "confusion",
+        "some",
+        "be",
+        "to",
+        "about"
+      ],
+      "accepted": ["There seems to be some confusion about the new rules."],
+      "es": "Parece haber cierta confusión sobre las nuevas normas."
+    },
+    {
+      "id": "c1.grammar.hedging-vocab-1",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the best meaning of 'it could be argued that…'.",
+      "options": [
+        "está demostrado que…",
+        "se podría argumentar que…",
+        "nadie discute que…",
+        "se ha discutido mucho que…"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.grammar.hedging-write-1",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Parece que el estudio tiene algunos errores.",
+      "accepted": [
+        "The study {seems|appears} to have some {errors|mistakes|flaws}.",
+        "It {seems|appears} [that ]the study has some {errors|mistakes|flaws}.",
+        "It {seems|looks} {like|as if|as though} the study has some {errors|mistakes|flaws}."
+      ]
+    },
+    {
+      "id": "c1.grammar.nominalization-cloze-1",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The ___ of the project surprised everyone.",
+      "answers": ["failure"],
+      "distractors": ["fail", "failed", "fails"],
+      "es": "El fracaso del proyecto sorprendió a todos."
+    },
+    {
+      "id": "c1.grammar.nominalization-cloze-2",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There has been a sharp ___ in unemployment.",
+      "answers": ["increase", "rise"],
+      "distractors": ["increased", "rising", "rose"],
+      "es": "Ha habido un fuerte aumento del desempleo."
+    },
+    {
+      "id": "c1.grammar.nominalization-cloze-3",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The rapid ___ of cities puts pressure on housing.",
+      "answers": ["growth"],
+      "distractors": ["grow", "grown", "grew"],
+      "es": "El rápido crecimiento de las ciudades ejerce presión sobre la vivienda."
+    },
+    {
+      "id": "c1.grammar.nominalization-cloze-4",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Her ___ to comment only made things worse.",
+      "answers": ["refusal"],
+      "distractors": ["refuse", "refused", "refuses"],
+      "es": "Su negativa a hacer comentarios solo empeoró las cosas."
+    },
+    {
+      "id": "c1.grammar.nominalization-choice-1",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The introduction of the new law caused a great deal of debate.",
+      "options": [
+        "La nueva ley se introdujo sin ningún debate.",
+        "El debate sobre la nueva ley terminó con su introducción.",
+        "La introducción de la ley fue un gran acuerdo.",
+        "La aprobación de la nueva ley generó mucho debate."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.grammar.nominalization-order-1",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "taxes",
+        "The",
+        "to",
+        "criticized.",
+        "government's",
+        "widely",
+        "raise",
+        "was",
+        "decision"
+      ],
+      "accepted": ["The government's decision to raise taxes was widely criticized."],
+      "es": "La decisión del gobierno de subir los impuestos fue muy criticada."
+    },
+    {
+      "id": "c1.grammar.nominalization-vocab-1",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'el fracaso'.",
+      "options": ["the fail", "the fault", "the failure", "the failing"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.grammar.nominalization-write-1",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La decisión del gobierno sorprendió a todos.",
+      "accepted": [
+        "The government's decision surprised {everyone|everybody}.",
+        "The decision of the government surprised {everyone|everybody}."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,461 @@
+{
+  "items": [
+    {
+      "id": "c1.politics-and-media.bias",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "kind": "word",
+      "term": "bias",
+      "es": "sesgo, parcialidad",
+      "example": {
+        "en": "The report shows a clear political bias.",
+        "es": "El informe muestra un claro sesgo político."
+      }
+    },
+    {
+      "id": "c1.politics-and-media.echo-chamber",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "kind": "phrase",
+      "term": "echo chamber",
+      "es": "cámara de eco",
+      "example": {
+        "en": "Social media can turn into an echo chamber.",
+        "es": "Las redes sociales pueden convertirse en una cámara de eco."
+      }
+    },
+    {
+      "id": "c1.politics-and-media.polarized",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "kind": "word",
+      "term": "polarized",
+      "es": "polarizado",
+      "example": {
+        "en": "The country has become deeply polarized.",
+        "es": "El país se ha polarizado profundamente."
+      }
+    },
+    {
+      "id": "c1.politics-and-media.hold-accountable",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "kind": "phrase",
+      "term": "hold (someone) accountable",
+      "es": "pedir cuentas a, hacer responsable a",
+      "example": {
+        "en": "Voters should hold politicians accountable.",
+        "es": "Los votantes deberían pedir cuentas a los políticos."
+      }
+    },
+    {
+      "id": "c1.politics-and-media.sit-on-the-fence",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "kind": "phrase",
+      "term": "sit on the fence",
+      "es": "no tomar partido, nadar entre dos aguas",
+      "example": {
+        "en": "On this issue, many politicians prefer to sit on the fence.",
+        "es": "En este tema, muchos políticos prefieren no posicionarse."
+      }
+    },
+    {
+      "id": "c1.politics-and-media.scrutiny",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "kind": "word",
+      "term": "scrutiny",
+      "es": "examen minucioso, escrutinio (público)",
+      "example": {
+        "en": "The minister's decisions are under public scrutiny.",
+        "es": "Las decisiones del ministro están bajo el escrutinio público."
+      }
+    },
+    {
+      "id": "c1.politics-and-media.be-alleged-to",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "kind": "phrase",
+      "term": "be alleged to (have done)",
+      "es": "presuntamente (haber hecho)",
+      "example": {
+        "en": "The company is alleged to have hidden its losses.",
+        "es": "Presuntamente, la empresa ocultó sus pérdidas."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.politics-and-media.inside-the-echo-chamber",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "title": "Inside the echo chamber",
+      "text": "Never before have citizens had access to so much information, and rarely have they agreed so little about what is true. Social media platforms show each user the content they are most likely to engage with, which often means content that confirms what they already believe. Over time, many people end up in an echo chamber, where opposing views are either absent or presented only to be mocked. The consequences for democracy are serious. Not only does constant exposure to one side of a debate harden people's opinions, but it also makes compromise look like betrayal. Politicians, aware of this, are increasingly tempted to speak only to their own supporters. The result is a polarized society in which the two sides no longer share even a basic set of facts. Little did the founders of these platforms imagine that their tools would one day shape elections. Some experts believe that stricter regulation is the answer; others argue that it would give governments too much control over speech. What most agree on is that media literacy, the ability to recognize bias and check sources, has never been more important.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.politics-and-media.watchdogs",
+      "level": "C1",
+      "topics": ["politics-and-media"],
+      "title": "Watchdogs",
+      "text": "A free press is often described as the watchdog of democracy. Its role is not merely to report what those in power say, but to hold them accountable for what they do. Investigative journalists spend months, sometimes years, examining documents and interviewing sources before a story is published. When a transport minister was alleged to have awarded contracts to a friend's company, it was a small local newspaper, not a national broadcaster, that first revealed the story. The minister denied any wrongdoing, but the public scrutiny that followed eventually forced him to resign. Such cases appear to show that journalism still works. Yet the economic model that supports it is under pressure. As advertising has moved online, many local newspapers have closed, and those that remain tend to have fewer reporters. It could be argued that this leaves whole regions without anyone to ask difficult questions. Editors face a further dilemma. Readers increasingly expect publications to take sides, and outlets that try to sit on the fence risk being accused of cowardice by both camps. Balancing fairness and courage has always been hard; it is unlikely to get easier.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.politics-and-media.vocab-001",
+      "itemIds": ["c1.politics-and-media.bias"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'bias' mean in 'The report shows a clear political bias'?",
+      "options": ["base", "presupuesto", "sesgo, parcialidad", "basura"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.politics-and-media.cloze-001",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Never before ___ so many people voted in a local election.",
+      "answers": ["have", "had"],
+      "distractors": ["has", "did", "were"],
+      "es": "Nunca antes tanta gente ha votado en una elección local."
+    },
+    {
+      "id": "c1.politics-and-media.order-001",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "resign,",
+        "also",
+        "refuse",
+        "press.",
+        "but",
+        "he",
+        "to",
+        "only",
+        "blamed",
+        "did",
+        "minister",
+        "the",
+        "the",
+        "Not"
+      ],
+      "accepted": [
+        "Not only did the minister refuse to resign, but he also blamed the press.",
+        "Not only did he refuse to resign, but the minister also blamed the press."
+      ],
+      "es": "El ministro no solo se negó a dimitir, sino que además culpó a la prensa."
+    },
+    {
+      "id": "c1.politics-and-media.choice-001",
+      "itemIds": ["c1.politics-and-media.echo-chamber"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Many voters live in an echo chamber without realizing it.",
+      "options": [
+        "Muchos votantes cambian de opinión sin darse cuenta.",
+        "Muchos votantes se dan cuenta de que viven aislados.",
+        "Muchos votantes viven en una sala de conciertos sin saberlo.",
+        "Muchos votantes viven en una cámara de eco sin darse cuenta."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.politics-and-media.reading-001",
+      "itemIds": [
+        "c1.politics-and-media.echo-chamber",
+        "c1.politics-and-media.polarized",
+        "c1.politics-and-media.bias",
+        "c1.grammar.inversion"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.politics-and-media.inside-the-echo-chamber",
+      "questions": [
+        {
+          "prompt": "Why do many social media users end up in an echo chamber?",
+          "options": [
+            "They are shown content that confirms what they already believe.",
+            "They choose to follow people who disagree with them.",
+            "Governments control what they can read."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "According to the text, how does constant exposure to one side of a debate affect people?",
+          "options": [
+            "It makes them more open to compromise.",
+            "It hardens their opinions.",
+            "It makes them stop voting."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What do most experts agree on?",
+          "options": [
+            "Stricter regulation is the only answer.",
+            "Politicians should speak only to their supporters.",
+            "Media literacy is more important than ever."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.politics-and-media.write-001",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Nunca antes ha estado el país tan dividido.",
+      "accepted": [
+        "Never [before ]has the country been {so|this} divided.",
+        "The country has never been {so|this} divided[ before]."
+      ]
+    },
+    {
+      "id": "c1.politics-and-media.cloze-002",
+      "itemIds": ["c1.grammar.inversion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Rarely ___ politicians admit their mistakes in public.",
+      "answers": ["do"],
+      "distractors": ["does", "are", "have"],
+      "es": "Los políticos rara vez admiten sus errores en público."
+    },
+    {
+      "id": "c1.politics-and-media.vocab-002",
+      "itemIds": ["c1.politics-and-media.polarized"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'polarizado'.",
+      "options": ["polished", "polarized", "polite", "popular"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.politics-and-media.vocab-003",
+      "itemIds": ["c1.politics-and-media.scrutiny"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'scrutiny' mean in 'The minister's decisions are under public scrutiny'?",
+      "options": ["recuento de votos", "escritura", "examen minucioso", "desconfianza"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.politics-and-media.cloze-003",
+      "itemIds": ["c1.politics-and-media.hold-accountable"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Voters must hold their leaders ___ for their decisions.",
+      "answers": ["accountable"],
+      "distractors": ["account", "countable", "accounting"],
+      "es": "Los votantes deben pedir cuentas a sus líderes por sus decisiones."
+    },
+    {
+      "id": "c1.politics-and-media.cloze-004",
+      "itemIds": ["c1.politics-and-media.be-alleged-to"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The senator is alleged ___ accepted money from a private company.",
+      "answers": ["to have"],
+      "distractors": ["that he", "having", "to"],
+      "es": "Presuntamente, el senador aceptó dinero de una empresa privada."
+    },
+    {
+      "id": "c1.politics-and-media.order-002",
+      "itemIds": ["c1.politics-and-media.sit-on-the-fence"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "this",
+        "decided",
+        "the",
+        "sit",
+        "fence.",
+        "the",
+        "on",
+        "party",
+        "On",
+        "issue,",
+        "to",
+        "has"
+      ],
+      "accepted": ["On this issue, the party has decided to sit on the fence."],
+      "es": "En este tema, el partido ha decidido no posicionarse."
+    },
+    {
+      "id": "c1.politics-and-media.choice-002",
+      "itemIds": ["c1.politics-and-media.hold-accountable"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The press exists to hold the powerful accountable.",
+      "options": [
+        "La prensa existe para proteger a los poderosos.",
+        "La prensa existe para pedir cuentas a los poderosos.",
+        "La prensa existe para contar el dinero de los poderosos.",
+        "Los poderosos existen para controlar la prensa."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.politics-and-media.reading-002",
+      "itemIds": [
+        "c1.politics-and-media.hold-accountable",
+        "c1.politics-and-media.scrutiny",
+        "c1.politics-and-media.sit-on-the-fence",
+        "c1.grammar.hedging"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.politics-and-media.watchdogs",
+      "questions": [
+        {
+          "prompt": "Who first revealed the story about the transport minister?",
+          "options": ["A national broadcaster", "A small local newspaper", "The minister's friend"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why are many local newspapers under pressure?",
+          "options": [
+            "Advertising has moved online.",
+            "Readers no longer trust journalists.",
+            "Governments have closed them."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What risk do outlets that try to sit on the fence face?",
+          "options": [
+            "They lose their advertisers.",
+            "They are forced to close.",
+            "They are accused of cowardice by both sides."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.politics-and-media.write-002",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Parece que la campaña ha fracasado.",
+      "accepted": [
+        "The campaign {seems|appears} to have failed.",
+        "It {seems|appears} [that ]the campaign has failed.",
+        "It {seems|looks} {like|as if|as though} the campaign has failed."
+      ]
+    },
+    {
+      "id": "c1.politics-and-media.write-003",
+      "itemIds": ["c1.politics-and-media.sit-on-the-fence"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No puedes nadar entre dos aguas para siempre.",
+      "accepted": ["You can't {sit|stay|keep sitting} on the fence forever."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.politics-and-media.lesson-001",
+      "level": "C1",
+      "topic": "politics-and-media",
+      "title": "Noticias a la medida",
+      "exerciseIds": [
+        "c1.politics-and-media.vocab-001",
+        "c1.politics-and-media.cloze-001",
+        "c1.politics-and-media.order-001",
+        "c1.politics-and-media.choice-001",
+        "c1.politics-and-media.reading-001",
+        "c1.politics-and-media.write-001",
+        "c1.politics-and-media.cloze-002",
+        "c1.politics-and-media.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.grammar.inversion",
+        "c1.politics-and-media.bias",
+        "c1.politics-and-media.echo-chamber",
+        "c1.politics-and-media.polarized"
+      ],
+      "deepenCardIds": ["c1.grammar.inversion"]
+    },
+    {
+      "id": "c1.politics-and-media.lesson-002",
+      "level": "C1",
+      "topic": "politics-and-media",
+      "title": "El poder de la prensa",
+      "exerciseIds": [
+        "c1.politics-and-media.vocab-003",
+        "c1.politics-and-media.cloze-003",
+        "c1.politics-and-media.cloze-004",
+        "c1.politics-and-media.order-002",
+        "c1.politics-and-media.choice-002",
+        "c1.politics-and-media.reading-002",
+        "c1.politics-and-media.write-002",
+        "c1.politics-and-media.write-003"
+      ],
+      "newItemIds": [
+        "c1.politics-and-media.be-alleged-to",
+        "c1.politics-and-media.hold-accountable",
+        "c1.politics-and-media.scrutiny",
+        "c1.politics-and-media.sit-on-the-fence"
+      ],
+      "deepenCardIds": ["c1.grammar.hedging", "b2.grammar.reporting-passive"]
+    }
+  ]
+}

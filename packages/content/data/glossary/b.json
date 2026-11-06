@@ -53,6 +53,18 @@
       ]
     },
     {
+      "id": "glossary.backfire",
+      "headword": "backfire",
+      "kind": "word",
+      "forms": ["backfire", "backfires", "backfired"],
+      "senses": [
+        {
+          "es": "salir el tiro por la culata",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.background",
       "headword": "background",
       "kind": "word",
@@ -144,6 +156,22 @@
       "senses": [
         {
           "es": "panadería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.balance",
+      "headword": "balance",
+      "kind": "word",
+      "forms": ["balance", "balances", "balancing"],
+      "senses": [
+        {
+          "es": "equilibrar",
+          "pos": "verb"
+        },
+        {
+          "es": "equilibrio",
           "pos": "noun"
         }
       ]
@@ -252,10 +280,38 @@
       "id": "glossary.base",
       "headword": "base",
       "kind": "word",
-      "forms": ["base"],
+      "forms": ["base", "based"],
       "senses": [
         {
           "es": "base",
+          "pos": "noun"
+        },
+        {
+          "es": "basado (based on: basado en)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.basic",
+      "headword": "basic",
+      "kind": "word",
+      "forms": ["basic"],
+      "senses": [
+        {
+          "es": "básico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bat",
+      "headword": "bat",
+      "kind": "word",
+      "forms": ["bat", "bats"],
+      "senses": [
+        {
+          "es": "murciélago",
           "pos": "noun"
         }
       ]
@@ -280,6 +336,18 @@
       "senses": [
         {
           "es": "batería, pila",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.battle",
+      "headword": "battle",
+      "kind": "word",
+      "forms": ["battle", "battles"],
+      "senses": [
+        {
+          "es": "batalla",
           "pos": "noun"
         }
       ]
@@ -353,6 +421,30 @@
         {
           "es": "oso",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.beat",
+      "headword": "beat",
+      "kind": "word",
+      "forms": ["beat", "beats", "beating", "beaten"],
+      "senses": [
+        {
+          "es": "vencer, golpear",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.beat-around-the-bush",
+      "headword": "beat around the bush",
+      "kind": "phrase",
+      "forms": ["beat around the bush", "beating around the bush", "beats around the bush"],
+      "senses": [
+        {
+          "es": "andarse con rodeos",
+          "pos": "expression"
         }
       ]
     },
@@ -449,6 +541,18 @@
       ]
     },
     {
+      "id": "glossary.beg",
+      "headword": "beg",
+      "kind": "word",
+      "forms": ["beg", "begs", "begged", "begging"],
+      "senses": [
+        {
+          "es": "rogar, suplicar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.begin",
       "headword": "begin",
       "kind": "word",
@@ -468,6 +572,18 @@
       "senses": [
         {
           "es": "principiante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.behavior",
+      "headword": "behavior",
+      "kind": "word",
+      "forms": ["behavior", "behaviors"],
+      "senses": [
+        {
+          "es": "comportamiento, conducta",
           "pos": "noun"
         }
       ]
@@ -544,6 +660,22 @@
       ]
     },
     {
+      "id": "glossary.benefit",
+      "headword": "benefit",
+      "kind": "word",
+      "forms": ["benefit", "benefits"],
+      "senses": [
+        {
+          "es": "beneficio",
+          "pos": "noun"
+        },
+        {
+          "es": "beneficiar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.best",
       "headword": "best",
       "kind": "word",
@@ -556,6 +688,18 @@
         {
           "es": "mejor",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.betrayal",
+      "headword": "betrayal",
+      "kind": "word",
+      "forms": ["betrayal"],
+      "senses": [
+        {
+          "es": "traición",
+          "pos": "noun"
         }
       ]
     },
@@ -584,6 +728,18 @@
         {
           "es": "entre",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bias",
+      "headword": "bias",
+      "kind": "word",
+      "forms": ["bias", "biases"],
+      "senses": [
+        {
+          "es": "sesgo, parcialidad",
+          "pos": "noun"
         }
       ]
     },
@@ -696,6 +852,18 @@
       ]
     },
     {
+      "id": "glossary.blame",
+      "headword": "blame",
+      "kind": "word",
+      "forms": ["blame", "blames", "blamed", "blaming"],
+      "senses": [
+        {
+          "es": "culpar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.blender",
       "headword": "blender",
       "kind": "word",
@@ -704,6 +872,18 @@
         {
           "es": "licuadora",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.blind",
+      "headword": "blind",
+      "kind": "word",
+      "forms": ["blind"],
+      "senses": [
+        {
+          "es": "ciego",
+          "pos": "adjective"
         }
       ]
     },
@@ -731,6 +911,18 @@
       "senses": [
         {
           "es": "azul",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.blunt",
+      "headword": "blunt",
+      "kind": "word",
+      "forms": ["blunt"],
+      "senses": [
+        {
+          "es": "directo, brusco",
           "pos": "adjective"
         }
       ]
@@ -823,6 +1015,18 @@
       "senses": [
         {
           "es": "librería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.border",
+      "headword": "border",
+      "kind": "word",
+      "forms": ["border", "borders"],
+      "senses": [
+        {
+          "es": "frontera",
           "pos": "noun"
         }
       ]
@@ -988,6 +1192,18 @@
       ]
     },
     {
+      "id": "glossary.boundary",
+      "headword": "boundary",
+      "kind": "word",
+      "forms": ["boundary", "boundaries"],
+      "senses": [
+        {
+          "es": "límite, frontera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.box",
       "headword": "box",
       "kind": "word",
@@ -1100,6 +1316,18 @@
       ]
     },
     {
+      "id": "glossary.breakdown",
+      "headword": "breakdown",
+      "kind": "word",
+      "forms": ["breakdown"],
+      "senses": [
+        {
+          "es": "avería, colapso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.breakfast",
       "headword": "breakfast",
       "kind": "word",
@@ -1184,6 +1412,18 @@
       ]
     },
     {
+      "id": "glossary.bring-about",
+      "headword": "bring about",
+      "kind": "phrase",
+      "forms": ["bring about", "brings about", "brought about", "bringing about"],
+      "senses": [
+        {
+          "es": "provocar, ocasionar",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.bring-up",
       "headword": "bring up",
       "kind": "phrase",
@@ -1196,6 +1436,30 @@
         {
           "es": "criar",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.broad",
+      "headword": "broad",
+      "kind": "word",
+      "forms": ["broad"],
+      "senses": [
+        {
+          "es": "amplio",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.broadcaster",
+      "headword": "broadcaster",
+      "kind": "word",
+      "forms": ["broadcaster", "broadcasters"],
+      "senses": [
+        {
+          "es": "cadena de radio o televisión",
+          "pos": "noun"
         }
       ]
     },
@@ -1252,6 +1516,18 @@
         {
           "es": "repasar, refrescar",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bucket",
+      "headword": "bucket",
+      "kind": "word",
+      "forms": ["bucket", "buckets"],
+      "senses": [
+        {
+          "es": "balde, cubo",
+          "pos": "noun"
         }
       ]
     },
@@ -1320,6 +1596,18 @@
       ]
     },
     {
+      "id": "glossary.bush",
+      "headword": "bush",
+      "kind": "word",
+      "forms": ["bush", "bushes"],
+      "senses": [
+        {
+          "es": "arbusto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.business",
       "headword": "business",
       "kind": "word",
@@ -1380,6 +1668,18 @@
         {
           "es": "comprar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.buyer",
+      "headword": "buyer",
+      "kind": "word",
+      "forms": ["buyer", "buyers"],
+      "senses": [
+        {
+          "es": "comprador",
+          "pos": "noun"
         }
       ]
     },

@@ -340,8 +340,8 @@ prepositions), possessive `'s`, `look like` / `What is… like?`, `like` + -ing,
 | B1 Obligaciones y cambios          | `deadline`, `quit` (the job phrasal-verb card is linked to "Mi primer trabajo") |
 
 Every B2 card is linked from a B2 lesson (see [Level coverage](#level-coverage)); no B2 card is
-left unlinked. B2 points still without a card: inversion (`Never have I…`), participle clauses,
-B2 collocations, and the topic vocabulary of the B2 lessons (`workload`, `make ends meet`,
+left unlinked. B2 points still without a card: participle clauses, B2 collocations (inversion
+and C1 collocations have C1 cards), and the topic vocabulary of the B2 lessons (`workload`, `make ends meet`,
 `carbon footprint`, `culture shock`).
 
 ## Level coverage
@@ -351,17 +351,16 @@ B2 collocations, and the topic vocabulary of the B2 lessons (`workload`, `make e
 | A1    | 8      | 16      | True beginners; 4 grammar cards (to be, a / an, plurals, this / that). |
 | A2    | 10     | 20      | Default path without a placement.                                      |
 | B1    | 11     | 22      |                                                                        |
-| B2    | 8      | 16      | C1 learners start here while C1 has no lessons.                        |
-| C1    | —      | —       | Placement only for now; lessons are content only (see below).          |
+| B2    | 8      | 16      |                                                                        |
+| C1    | 8      | 16      | 7 cards; plus placement questions.                                     |
 
 The app moves a learner's path on to the next level with lessons once every lesson of the
 current one is done (A1 → A2 → B1 → B2 → C1). A level shows up on the path, in the level picker
-and in the album as soon as it has lessons: adding the C1 lessons needs no app change, as long as
-their topics are the ones the app names (`apps/mobile/README.md`, "Topic names and colors":
-`work-and-negotiation`, `science-and-society`, `arts-and-culture`, `politics-and-media`,
-`psychology-and-behaviour`, `global-issues`, `language-and-communication`, `law-and-ethics`).
-Content files carry no topic title, so a new topic slug needs its Spanish name and color in the
-app.
+and in the album as soon as it has lessons. Content files carry no topic title, so every topic
+slug needs its Spanish name and color in the app (`apps/mobile/README.md`, "Topic names and
+colors"); the C1 topics (`work-and-negotiation`, `science-and-society`, `arts-and-culture`,
+`politics-and-media`, `psychology-and-behaviour`, `global-issues`, `language-and-communication`,
+`law-and-ethics`) are named there.
 
 **A1** (`data/a1/`): greetings, the verb to be and basic questions, numbers and age, family,
 colors and clothes, food and drinks, days and time, my house. Very short sentences, A1 grammar
@@ -392,6 +391,28 @@ Each card is linked from the lesson that teaches it, once per topic (rule 22):
 
 B2 Tatoeba sentences were shortlisted with `candidates --level B2` (see
 `tools/content-pipeline`).
+
+C1 lessons follow the same model with abstract, argumentative passages (one per lesson), formal
+and informal register, hedging, inversion, cleft sentences, nominalization, mixed conditionals,
+concession and idioms. Seven C1 cards (`c1.grammar.inversion`, `cleft-sentences`, `hedging`,
+`nominalization`; `c1.vocabulary.collocations`, `register`; `c1.phrasal-verbs.causes-and-solutions`)
+plus three B2 cards are linked once per topic (rule 22). The B2 items `mixed-conditionals`,
+`reporting-passive` and `despite` carry the C1 topics that practice them.
+
+| Topic                        | Lesson 1 (cards)                                             | Lesson 2 (cards)                                                 |
+| ---------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `arts-and-culture`           | ¿Qué hace grande una obra? (`cleft-sentences`)               | ¿De quién es la cultura? (B2 `mixed-conditionals`)               |
+| `global-issues`              | Un problema sin fronteras (`inversion`, `collocations`)      | ¿Vamos a mejor? (B2 `despite`)                                   |
+| `language-and-communication` | ¿Directo o diplomático? (`register`)                         | Hablar claro (`nominalization`)                                  |
+| `law-and-ethics`             | Legal, pero ¿justo? (`inversion`)                            | Denunciar o callar (B2 `mixed-conditionals`)                     |
+| `politics-and-media`         | Noticias a la medida (`inversion`)                           | El poder de la prensa (`hedging`, B2 `reporting-passive`)        |
+| `psychology-and-behaviour`   | ¿Por qué lo dejamos para mañana? (`causes-and-solutions`)    | Salir de la zona de confort (`cleft-sentences`)                  |
+| `science-and-society`        | Lo que dicen los datos (`hedging`)                           | Un arma de doble filo (`nominalization`, B2 `reporting-passive`) |
+| `work-and-negotiation`       | El arte de negociar (`collocations`, `causes-and-solutions`) | Una respuesta formal (`register`)                                |
+
+C1 Tatoeba sentences were shortlisted with `candidates --level C1` (10–30 words) and with
+structure keywords (`not only`, `no sooner`, `what I need is`, `tend to`); most C1 sentences are
+original, since Tatoeba has few natural examples of these structures.
 
 ## Attribution
 
