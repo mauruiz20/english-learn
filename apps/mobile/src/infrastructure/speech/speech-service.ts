@@ -61,4 +61,12 @@ export const unsupportedSpeech: SpeechService = {
 /** The two speeds a learner can pick. */
 export type SpeechRateName = "normal" | "slow";
 
+/**
+ * `utterance.rate` for each speed. WebKit (iOS, macOS Safari) maps a rate below 1 linearly onto
+ * `AVSpeechUtterance.rate` (`rate × AVSpeechUtteranceDefaultSpeechRate`: 0.7 is 70 % of the
+ * voice's normal speed), as Chrome does, so the same values work everywhere.
+ */
 export const SPEECH_RATES: Readonly<Record<SpeechRateName, number>> = { normal: 1, slow: 0.7 };
+
+/** "Más lento": one clear step below the learner's speed (normal → 0.7, slow → 0.5). */
+export const SLOWER_RATES: Readonly<Record<SpeechRateName, number>> = { normal: 0.7, slow: 0.5 };

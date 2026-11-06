@@ -12,6 +12,7 @@ import {
 } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import {
+  SLOWER_RATES,
   SPEECH_RATES,
   unsupportedSpeech,
   type SpeechService,
@@ -30,10 +31,20 @@ export type Pronunciation = {
   readonly rate: SpeechRate;
   /** Which speaker is speaking now (its key), or null. */
   readonly speakingKey: string | null;
-  /** Speaks `text` (cancelling anything else) at `rate`, or the learner's speed. */
-  readonly speak: (text: string, key: string, rate?: SpeechRate) => void;
+  /**
+   * Speaks `text` (cancelling anything else) at the learner's speed, or one step slower
+   * (`slower`, "Más lento"), with the learner's voice or the one given (`voice`, "Probar").
+   */
+  readonly speak: (text: string, key: string, options?: SpeakChoice) => void;
   readonly setEnabled: (enabled: boolean) => void;
   readonly setRate: (rate: SpeechRate) => void;
+};
+
+export type SpeakChoice = {
+  /** One step slower than the learner's speed (`SLOWER_RATES`). */
+  readonly slower?: boolean;
+  /** A voice id to try instead of the learner's. */
+  readonly voice?: string;
 };
 
 const PronunciationContext = createContext<Pronunciation | null>(null);
@@ -111,9 +122,13 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
 
   const available = snapshot.available && enabled;
   const speak = useCallback(
-    (text: string, key: string, at?: SpeechRate) => {
+    (text: string, key: string, choice: SpeakChoice = {}) => {
       if (!available) return;
-      speech.speak(text, { key, rate: SPEECH_RATES[at ?? rate] });
+      speech.speak(text, {
+        key,
+        rate: choice.slower === true ? SLOWER_RATES[rate] : SPEECH_RATES[rate],
+        voice: choice.voice,
+      });
     },
     [available, rate, speech],
   );

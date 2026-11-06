@@ -95,28 +95,24 @@ describe("SpeakButton", () => {
     ]);
   });
 
-  it("plays slowly on a second tap, then normal again", async () => {
+  it("plays every tap at the learner's speed (no hidden speed toggle)", async () => {
     const { speech } = await renderWith(<SpeakButton text="Hello." />);
     const button = await screen.findByRole("button", { name: "Escuchar: Hello." });
+    expect(button.props.accessibilityHint).toBeUndefined();
     await fireEvent.press(button);
     await fireEvent.press(button);
     await fireEvent.press(button);
-    expect(speech?.spoken.map((s) => s.rate)).toEqual([1, 0.7, 1]);
+    expect(speech?.spoken.map((s) => s.rate)).toEqual([1, 1, 1]);
   });
 
-  it("starts slow when the learner picked slow, and the second tap is normal", async () => {
+  it("plays every tap slowly when the learner picked Lenta, never faster", async () => {
     const { speech } = await renderWith(<SpeakButton text="Hello." />, {
       settings: createFakeSettingsRepository({ speechRate: "slow" }),
     });
     const button = await screen.findByRole("button", { name: "Escuchar: Hello." });
-    await waitFor(() =>
-      expect(button.props.accessibilityHint).toBe(
-        "Toca otra vez para escucharlo a velocidad normal",
-      ),
-    );
     await fireEvent.press(button);
     await fireEvent.press(button);
-    expect(speech?.spoken.map((s) => s.rate)).toEqual([0.7, 1]);
+    expect(speech?.spoken.map((s) => s.rate)).toEqual([0.7, 0.7]);
   });
 
   it("shows that it is speaking until the speech ends", async () => {

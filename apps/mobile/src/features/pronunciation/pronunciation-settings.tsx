@@ -83,7 +83,7 @@ export function PronunciationDialog({
           </Text>
           <Text>
             Toca el altavoz junto a una palabra o frase en inglés para escucharla con la voz de tu
-            dispositivo. Toca otra vez para oírla a la otra velocidad.
+            dispositivo, a la velocidad que elijas aquí.
           </Text>
           <Pressable
             accessibilityRole="switch"

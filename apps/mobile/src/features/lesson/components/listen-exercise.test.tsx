@@ -40,14 +40,19 @@ describe("ListenExerciseView", () => {
 
     await fireEvent.press(screen.getByRole("button", { name: "Escuchar la frase" }));
     await fireEvent.press(screen.getByRole("button", { name: "Escuchar más lento" }));
+    // Each button keeps its speed: tapping again never switches it.
+    await fireEvent.press(screen.getByRole("button", { name: "Escuchar más lento" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Escuchar la frase" }));
 
     expect(speech.spoken.map((s) => [s.text, s.rate])).toEqual([
       [dictation.sentence, 1],
       [dictation.sentence, 0.7],
+      [dictation.sentence, 0.7],
+      [dictation.sentence, 1],
     ]);
   });
 
-  it("plays at the learner's slow speed when they picked it", async () => {
+  it("with the learner's slow speed, Escuchar is slow and Más lento slower still", async () => {
     const { speech } = await renderWithPronunciation(
       <ListenExerciseView
         prepared={{ type: "listen", exercise: dictation, options: [] }}
@@ -57,7 +62,24 @@ describe("ListenExerciseView", () => {
       { settings: createFakeSettingsRepository({ speechRate: "slow" }) },
     );
     await fireEvent.press(screen.getByRole("button", { name: "Escuchar la frase" }));
-    expect(speech.spoken[0]?.rate).toBe(0.7);
+    await fireEvent.press(screen.getByRole("button", { name: "Escuchar más lento" }));
+    expect(speech.spoken.map((s) => s.rate)).toEqual([0.7, 0.5]);
+  });
+
+  it("shows Más lento with a tortoise sticker", async () => {
+    await renderWithPronunciation(
+      <ListenExerciseView
+        prepared={{ type: "listen", exercise: dictation, options: [] }}
+        disabled={false}
+        onSubmit={onSubmit}
+      />,
+    );
+    // Decorative: hidden from screen readers (the button says "Escuchar más lento").
+    expect(
+      screen.getByTestId("listen-slower-tortoise", { includeHiddenElements: true }),
+    ).toBeOnTheScreen();
+    expect(screen.getByText("Más lento")).toBeOnTheScreen();
+    expect(screen.getByText("Escuchar")).toBeOnTheScreen();
   });
 
   it("sends what the learner wrote", async () => {

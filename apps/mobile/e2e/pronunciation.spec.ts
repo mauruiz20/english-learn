@@ -31,7 +31,7 @@ async function openCard(page: Page) {
 
 const speakers = (page: Page) => page.getByRole("button", { name: /^Escuchar: / });
 
-test("a speaker says its English with an English voice, slower on a second tap", async ({
+test("a speaker says its English with an English voice, at the same speed every tap", async ({
   page,
 }) => {
   const problems = collectProblems(page);
@@ -50,8 +50,10 @@ test("a speaker says its English with an English voice, slower on a second tap",
     lang: "en-US",
     rate: 1,
   });
+  // A second tap says it again at the learner's speed (no hidden toggle to the other speed).
   await speaker.click();
-  await expect.poll(async () => (await spoken(page)).at(-1)?.rate).toBe(0.7);
+  await expect.poll(async () => (await spoken(page)).length).toBe(2);
+  expect((await spoken(page)).map((u) => u.rate)).toEqual([1, 1]);
 
   // The word lookup card says its headword.
   const weekend = page.getByRole("button", { name: "weekend, ver traducción" }).first();
@@ -129,8 +131,18 @@ test("a review can include a sentence to hear, answered like any exercise", asyn
     if (isListeningExercise(id)) {
       heard += 1;
       await expect(page.getByText(/^Escucha y (escribe|elige)$/)).toBeVisible();
+      const before = (await spoken(page)).length;
       await page.getByRole("button", { name: "Escuchar la frase", exact: true }).click();
-      await expect.poll(async () => (await spoken(page)).at(-1)?.text).toBe(listeningSentence(id));
+      await expect.poll(async () => (await spoken(page)).length).toBe(before + 1);
+      // "Más lento" is clearly slower than "Escuchar", every time it is tapped.
+      await page.getByRole("button", { name: "Escuchar más lento", exact: true }).click();
+      await expect.poll(async () => (await spoken(page)).length).toBe(before + 2);
+      await page.getByRole("button", { name: "Escuchar más lento", exact: true }).click();
+      await expect.poll(async () => (await spoken(page)).length).toBe(before + 3);
+      const [normal, slower, again] = (await spoken(page)).slice(before);
+      expect(normal).toMatchObject({ text: listeningSentence(id), rate: 1 });
+      expect(slower).toMatchObject({ text: listeningSentence(id), rate: 0.7 });
+      expect(again?.rate).toBe(0.7);
     }
     await answerCorrectly(page, "Comprobar");
     await expect(page.getByRole("alert")).toHaveText("Correcto");
