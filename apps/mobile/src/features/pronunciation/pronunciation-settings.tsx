@@ -89,6 +89,8 @@ export function PronunciationDialog({
             accessibilityRole="switch"
             accessibilityLabel="Pronunciación"
             accessibilityState={{ checked: enabled }}
+            // react-native-web drops `checked` for a switch: the web reads it from here.
+            aria-checked={enabled}
             onPress={() => {
               onToggle();
               click();
