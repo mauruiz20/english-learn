@@ -6,11 +6,7 @@ export const PRACTICE_COLLECTION_ID_REGEX = /^practice\.[a-z0-9-]+$/;
 /** Group ids are `practice.<collection slug>.<group slug>` (`practice.phrasal-verbs.travel`). */
 export const PRACTICE_GROUP_ID_REGEX = /^practice\.[a-z0-9-]+\.[a-z0-9-]+$/;
 
-/**
- * A group of "Práctica libre": 2 or 3 lessons on one theme. The level is a label only (nothing
- * is locked); every lesson of the group has it.
- */
-export const PracticeGroupSchema = z.strictObject({
+const groupBase = {
   id: z
     .string()
     .regex(PRACTICE_GROUP_ID_REGEX, "group id must look like practice.<collection>.<group>"),
@@ -19,8 +15,30 @@ export const PracticeGroupSchema = z.strictObject({
   title: NonEmptyString,
   /** Spanish, one line. */
   summary: NonEmptyString,
+};
+
+/**
+ * A group of "Práctica libre": 2 or 3 lessons on one theme. The level is a label only (nothing
+ * is locked); every lesson of the group has it.
+ */
+export const PracticeLessonGroupSchema = z.strictObject({
+  ...groupBase,
   lessonIds: z.array(IdSchema).min(2).max(3),
 });
+export type PracticeLessonGroup = z.infer<typeof PracticeLessonGroupSchema>;
+
+/** A group of the "Diálogos" collection: 1 to 6 dialogues, each at the group's level. */
+export const PracticeDialogueGroupSchema = z.strictObject({
+  ...groupBase,
+  dialogueIds: z.array(IdSchema).min(1).max(6),
+});
+export type PracticeDialogueGroup = z.infer<typeof PracticeDialogueGroupSchema>;
+
+/** A group lists lessons or dialogues, never both. */
+export const PracticeGroupSchema = z.union([
+  PracticeLessonGroupSchema,
+  PracticeDialogueGroupSchema,
+]);
 export type PracticeGroup = z.infer<typeof PracticeGroupSchema>;
 
 /**

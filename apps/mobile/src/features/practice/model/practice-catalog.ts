@@ -1,4 +1,4 @@
-import type { Corpus, Level, PracticeCollection } from "@english-learn/content";
+import type { Corpus, Level, PracticeCollection, PracticeGroup } from "@english-learn/content";
 import type { LessonResult } from "@english-learn/domain";
 import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
 import { lessonScore, type LessonScore } from "@/features/lesson/model/lesson-score";
@@ -56,6 +56,10 @@ export function shortLessonTitle(lessonTitle: string, groupTitle: string): strin
   return rest.charAt(0).toUpperCase() + rest.slice(1);
 }
 
+/** The lessons a group lists (a group of dialogues lists none). */
+const groupLessonIds = (group: PracticeGroup): readonly string[] =>
+  "lessonIds" in group ? group.lessonIds : [];
+
 const resultsById = (results: readonly LessonResult[]) =>
   new Map(results.map((r) => [r.lessonId, r]));
 
@@ -65,7 +69,7 @@ export function practiceCollectionRows(
 ): PracticeCollectionRow[] {
   const byId = resultsById(results);
   return content.practice.map((collection) => {
-    const lessonIds = collection.groups.flatMap((g) => g.lessonIds);
+    const lessonIds = collection.groups.flatMap(groupLessonIds);
     return {
       slug: practiceSlug(collection.id),
       title: collection.title,
@@ -91,7 +95,7 @@ export function practiceGroupRows(
 ): PracticeGroupRow[] {
   const byId = resultsById(results);
   return collection.groups.map((group) => {
-    const lessons = group.lessonIds.flatMap((id) => {
+    const lessons = groupLessonIds(group).flatMap((id) => {
       const lesson = content.practiceLessonsById.get(id);
       return lesson === undefined ? [] : [lesson];
     });
@@ -135,7 +139,7 @@ export function practiceLessonPlace(
   lessonId: string,
 ): PracticeLessonPlace | undefined {
   for (const collection of content.practice) {
-    const group = collection.groups.find((g) => g.lessonIds.includes(lessonId));
+    const group = collection.groups.find((g) => groupLessonIds(g).includes(lessonId));
     if (group !== undefined) {
       return {
         slug: practiceSlug(collection.id),
