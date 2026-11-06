@@ -1,6 +1,6 @@
 {
   "name": "@english-learn/mobile",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "expo-router/entry",
   "dependencies": {

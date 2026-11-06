@@ -1,21 +1,22 @@
 # English Learn
 
 An offline-first English course for Spanish speakers, for **web and Android from one TypeScript
-codebase**. No accounts, no network and no AI at runtime: content is static, validated in CI and
-bundled with the app.
+codebase**. No network and no AI needed at runtime: content is static, validated in CI and bundled
+with the app, and an account is optional (only to sync progress).
 
 [![CI](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mauruiz20/english-learn/actions/workflows/ci.yml)
 
 **Live demo:** <https://english.maumar.com.ar> (deployed from `main` to Cloudflare Pages after
-every check passes; installable and usable offline; progress is stored in your browser only).
+every check passes; installable and usable offline; progress stays in your browser unless you
+sign in to sync it).
 
 | At a glance  |                                                                                   |
 | ------------ | --------------------------------------------------------------------------------- |
 | Stack        | Expo SDK 58 · React Native 0.88 · React 19 · TypeScript · expo-router · SQLite    |
 | Architecture | pnpm monorepo · hexagonal (ports & adapters) · screaming architecture             |
-| Quality      | TDD · 592 unit/integration tests · 12 Playwright e2e specs on Chromium + WebKit   |
+| Quality      | TDD · 2,227 unit/integration tests · 27 Playwright e2e specs on Chromium + WebKit |
 | Delivery     | GitFlow · Conventional Commits · GitHub Actions (format, lint, types, tests, e2e) |
-| Version      | 0.2.0, see [CHANGELOG](CHANGELOG.md)                                              |
+| Version      | 0.3.0, see [CHANGELOG](CHANGELOG.md)                                              |
 
 ## Contents
 
@@ -49,9 +50,16 @@ every check passes; installable and usable offline; progress is stored in your b
 - **A path through the levels**: home starts at the placement level and moves on to the next
   level once every lesson of the current one is done (A1 → A2 → B1 → B2 → C1); the learner can
   also pick a level by hand.
-- **Fully offline**: progress lives in SQLite on the device (WebAssembly + OPFS on web).
-- **Content**: A1, A2, B1, B2 and C1 courses, plus a placement bank covering A1 to C1. Every A1,
-  B2 and C1 study card is linked from the lesson that teaches it.
+- **Práctica libre**: free practice outside the path in four collections (Phrasal verbs, Tiempos
+  verbales, Situaciones and Gramática): 44 themed groups, 132 lessons, nothing locked.
+- **Pronunciation** (web): speaker buttons read words, examples, answers and reading passages with
+  an English voice on the device, at normal or slow speed, and daily reviews mix in up to two
+  listening exercises (dictation and "Escucha y elige"). It can be turned off.
+- **Fully offline**: progress lives in SQLite on the device (WebAssembly + OPFS on web); an
+  optional Google sign-in (web) syncs it across devices.
+- **Content**: A1, A2, B1, B2 and C1 courses, 75 study cards, four practice collections and a
+  placement bank covering A1 to C1. Every A1, B2 and C1 study card is linked from the lesson that
+  teaches it.
 
 | Content                | A1  | A2  | B1  | B2  | C1  | Total |
 | ---------------------- | --- | --- | --- | --- | --- | ----- |
@@ -62,7 +70,9 @@ every check passes; installable and usable offline; progress is stored in your b
 | Reading passages       | 8   | 10  | 12  | 8   | 16  | 54    |
 
 A1, B2 and C1 lessons also practice the items of the study cards they link (A1: 4 more, B2: 19
-more).
+more, C1: 18 more).
+
+Práctica libre: 4 collections, 44 groups, 132 lessons and 927 exercises.
 
 Placement bank: 65 questions, 13 per level from A1 to C1.
 
@@ -90,7 +100,7 @@ graph TD
 | [`packages/storage-sqlite`](packages/storage-sqlite/README.md) | SQLite implementation of the domain's `ProgressRepository` port, with migrations.        |
 | [`apps/mobile`](apps/mobile/README.md)                         | Expo app (Android + web): routes, feature screens, infrastructure wiring.                |
 | [`tools/content-pipeline`](tools/content-pipeline/README.md)   | Authoring-time CLI: shortlists Tatoeba sentences and verifies attributions. Never ships. |
-| [`services/api`](services/api/README.md)                       | Optional Python API (FastAPI, PostgreSQL): Google sign-in now, progress sync next.       |
+| [`services/api`](services/api/README.md)                       | Optional Python API (FastAPI, PostgreSQL): Google sign-in and progress sync.             |
 
 **Hexagonal.** The domain owns the ports (`Clock`, `ProgressRepository`) and never touches I/O;
 time and randomness are always injected. `storage-sqlite` and the app's `infrastructure/` are the
@@ -124,16 +134,17 @@ Package READMEs hold the details (algorithms, rules, error handling).
 
 ## Testing
 
-Written test-first (TDD). Numbers from `pnpm test` and `playwright test --list` at v0.1.0:
+Written test-first (TDD). Numbers from `pnpm test` and `playwright test --list` at v0.3.0:
 
-| Package                   | Runner                                 | Tests                                     |
-| ------------------------- | -------------------------------------- | ----------------------------------------- |
-| `packages/domain`         | Vitest                                 | 231                                       |
-| `packages/content`        | Vitest                                 | 123                                       |
-| `packages/storage-sqlite` | Vitest (real SQLite via `node:sqlite`) | 25                                        |
-| `tools/content-pipeline`  | Vitest (fixtures, no network)          | 20                                        |
-| `apps/mobile`             | Jest + React Native Testing Library    | 193                                       |
-| `apps/mobile` e2e         | Playwright on Chromium + WebKit        | 12 specs (24 runs) against the web export |
+| Package                   | Runner                                 | Tests                                      |
+| ------------------------- | -------------------------------------- | ------------------------------------------ |
+| `packages/domain`         | Vitest                                 | 414                                        |
+| `packages/content`        | Vitest                                 | 277                                        |
+| `packages/storage-sqlite` | Vitest (real SQLite via `node:sqlite`) | 78                                         |
+| `packages/api-client`     | Vitest                                 | 15                                         |
+| `tools/content-pipeline`  | Vitest (fixtures, no network)          | 23                                         |
+| `apps/mobile`             | Jest + React Native Testing Library    | 1420                                       |
+| `apps/mobile` e2e         | Playwright on Chromium + WebKit        | 27 specs (124 runs) against the web export |
 
 CI (`.github/workflows/ci.yml`) runs on pushes and pull requests to `main` and `develop`:
 format, lint, typecheck, unit tests, content validation, corpus freshness, production web export
@@ -161,8 +172,8 @@ format, lint, typecheck, unit tests, content validation, corpus freshness, produ
 [`services/api`](services/api/README.md) is a FastAPI + PostgreSQL service (Python 3.14, uv,
 SQLAlchemy async, Alembic) with the same hexagonal and screaming layout. It adds optional Google
 sign-in for the web app: Google ID token in, a 15-minute JWT access token and a rotating refresh
-token (reuse detection revokes the whole family) out. Progress sync will exchange the domain's
-event log; the server stores events opaquely and never folds them. Its CI job runs Ruff, strict
+token (reuse detection revokes the whole family) out. Progress sync exchanges the domain's event
+log; the server stores events opaquely and never folds them. Its CI job runs Ruff, strict
 mypy and pytest against a real PostgreSQL 18 (testcontainers).
 
 It is deployed with Docker Compose to a Raspberry Pi 5 behind a Cloudflare Tunnel, with nightly
@@ -209,13 +220,11 @@ Android APK/AAB builds (EAS or local Gradle) and web hosting headers are covered
 
 **Phase 1.5: listening and speaking (still offline)**
 
-- Text-to-speech for prompts and sentences, dictation and listening exercises.
 - Dialogues and guided writing.
 - Speaking practice through the device's native speech recognition.
 
 **Phase 2: optional backend**
 
-- FastAPI + PostgreSQL to sync progress across devices.
 - Downloadable content packs.
 - Calibrate placement item difficulties (IRT) from real response data.
 
