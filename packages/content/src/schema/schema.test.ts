@@ -188,6 +188,22 @@ describe("PassageSchema / LessonSchema", () => {
     expect(PassageSchema.safeParse(fx.passage()).success).toBe(true);
     expect(LessonSchema.safeParse(fx.lesson()).success).toBe(true);
   });
+  it("lesson accepts an optional intro with 2–4 short points and 1–2 examples", () => {
+    const intro = {
+      points: ["Usa «although» para contrastar.", "Va al principio o en medio."],
+      examples: [{ en: "Although it rained, we went.", es: "Aunque llovió, fuimos." }],
+      mistake: { wrong: "He said me.", right: "He told me.", note: "Tell lleva persona." },
+    };
+    expect(LessonSchema.safeParse(fx.lesson({ intro })).success).toBe(true);
+    const bad = [
+      { ...intro, points: ["solo uno"] },
+      { ...intro, points: ["x".repeat(141), "y"] },
+      { ...intro, examples: [] },
+      { ...intro, mistake: { ...intro.mistake, note: "x".repeat(121) } },
+    ];
+    for (const b of bad)
+      expect(LessonSchema.safeParse(fx.lesson({ intro: b })).success).toBe(false);
+  });
   it("lesson needs at least 5 exercises", () => {
     const ids = fx.lesson().exerciseIds.slice(0, 4);
     expect(LessonSchema.safeParse(fx.lesson({ exerciseIds: ids })).success).toBe(false);

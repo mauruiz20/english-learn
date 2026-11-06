@@ -1473,6 +1473,18 @@
       ]
     },
     {
+      "id": "glossary.fraud",
+      "headword": "fraud",
+      "kind": "word",
+      "forms": ["fraud", "frauds"],
+      "senses": [
+        {
+          "es": "fraude",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.free",
       "headword": "free",
       "kind": "word",

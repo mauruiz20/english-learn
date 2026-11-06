@@ -360,7 +360,29 @@
         "b1.environment.pollution",
         "b1.environment.global-warming"
       ],
-      "deepenCardIds": ["b1.grammar.first-conditional"]
+      "deepenCardIds": ["b1.grammar.first-conditional"],
+      "intro": {
+        "points": [
+          "Primer condicional, para situaciones reales o probables: «if» + presente, «will» + verbo.",
+          "Después de «if» va el presente aunque hables del futuro: «If we don't recycle, …».",
+          "«pollution» y «waste» son incontables: «a lot of pollution», «less waste»."
+        ],
+        "examples": [
+          {
+            "en": "If we don't recycle, there will be more trash.",
+            "es": "Si no reciclamos, habrá más basura."
+          },
+          {
+            "en": "Are you worried about global warming?",
+            "es": "¿Te preocupa el calentamiento global?"
+          }
+        ],
+        "mistake": {
+          "wrong": "If it will rain, we will stay home.",
+          "right": "If it rains, we will stay home.",
+          "note": "Después de «if» no va «will»: usa el presente simple."
+        }
+      }
     },
     {
       "id": "b1.environment.lesson-002",
@@ -382,7 +404,29 @@
         "b1.environment.energy",
         "b1.environment.climate"
       ],
-      "deepenCardIds": ["b1.grammar.unless"]
+      "deepenCardIds": ["b1.grammar.unless"],
+      "intro": {
+        "points": [
+          "«unless» significa a menos que: «unless we protect them» = «if we don't protect them».",
+          "«throw away» es tirar a la basura; con pronombre va en medio: «throw it away».",
+          "«climate» es el clima a largo plazo; el de cada día es «weather»."
+        ],
+        "examples": [
+          {
+            "en": "We will lose these forests unless we protect them.",
+            "es": "Perderemos estos bosques a menos que los protejamos."
+          },
+          {
+            "en": "Don't throw it away. You can recycle it.",
+            "es": "No lo tires. Puedes reciclarlo."
+          }
+        ],
+        "mistake": {
+          "wrong": "Unless we don't act now, it will be too late.",
+          "right": "Unless we act now, it will be too late.",
+          "note": "«unless» ya es negativo (“si no”): no le agregues «don't»."
+        }
+      }
     }
   ]
 }

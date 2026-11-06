@@ -308,8 +308,7 @@ intro?: {
   first uses, first example and first pitfall. Lessons with neither show no intro.
 - Practice lessons and dialogues need none.
 - **Coverage**: `src/validate/intro-coverage.test.ts` requires an intro on every path lesson of
-  the levels in `LEVELS_WITH_INTROS` (A1 and A2 for now) and a `level.json` for each. When a
-  level's intros are written, add it to that list.
+  every level (A1 to C1) and a `level.json` for each.
 
 **Level intro** (`data/<level>/level.json`, a bare object, not a content file):
 

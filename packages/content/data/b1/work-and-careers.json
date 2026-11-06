@@ -377,7 +377,23 @@
         "b1.work-and-careers.dont-have-to-mustnt",
         "b1.work-and-careers.get-promoted"
       ],
-      "deepenCardIds": ["a2.grammar.for-since", "b1.grammar.have-to-must", "b1.phrasal-verbs.jobs"]
+      "deepenCardIds": ["a2.grammar.for-since", "b1.grammar.have-to-must", "b1.phrasal-verbs.jobs"],
+      "intro": {
+        "points": [
+          "Para algo que empezó antes y sigue: presente perfecto + «for» (período) o «since» (inicio).",
+          "«don't have to» significa que no es necesario; «mustn't», que está prohibido.",
+          "«apply for» es postularse a un trabajo o a una beca: «He applied for the job»."
+        ],
+        "examples": [
+          { "en": "I've lived here for thirty years.", "es": "Vivo aquí desde hace treinta años." },
+          { "en": "You don't have to work today.", "es": "Hoy no tienes que trabajar." }
+        ],
+        "mistake": {
+          "wrong": "I live here since 2020.",
+          "right": "I have lived here since 2020.",
+          "note": "“Vivo aquí desde…” va en presente perfecto en inglés, no en presente."
+        }
+      }
     },
     {
       "id": "b1.work-and-careers.lesson-002",
@@ -397,7 +413,27 @@
         "b1.work-and-careers.deadline",
         "b1.work-and-careers.turn-down",
         "b1.work-and-careers.quit"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«deadline» es la fecha límite: «The deadline is Friday».",
+          "«turn down» es rechazar una oferta o una propuesta; con pronombre: «turn it down».",
+          "«quit» es renunciar a un trabajo o dejar un hábito; su pasado también es «quit».",
+          "Repasa: «You don't have to wear a tie» (no es obligatorio) frente a «mustn't» (prohibido)."
+        ],
+        "examples": [
+          {
+            "en": "Our boss turned down our proposal.",
+            "es": "Nuestro jefe rechazó nuestra propuesta."
+          },
+          { "en": "I've decided to quit my job.", "es": "Decidí renunciar a mi trabajo." }
+        ],
+        "mistake": {
+          "wrong": "I renounced my job.",
+          "right": "I quit my job.",
+          "note": "«renounce» es renunciar a un derecho o a una creencia; dejar un trabajo es «quit»."
+        }
+      }
     }
   ]
 }

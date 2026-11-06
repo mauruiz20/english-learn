@@ -370,7 +370,29 @@
         "b1.city-life.move",
         "b1.city-life.traffic-jam"
       ],
-      "deepenCardIds": ["b1.vocabulary.commute"]
+      "deepenCardIds": ["b1.vocabulary.commute"],
+      "intro": {
+        "points": [
+          "«be going to» + verbo habla de planes ya decididos y de lo que ves venir: «They're going to build a new line».",
+          "«commute» es el trayecto diario al trabajo o a la escuela; también es verbo: «I commute by bus».",
+          "Mudarse a otra ciudad es «move to»: «We moved to Chicago»."
+        ],
+        "examples": [
+          {
+            "en": "They're going to build a new subway line next year.",
+            "es": "Van a construir una nueva línea de metro el próximo año."
+          },
+          {
+            "en": "The bus was late because of the traffic jam.",
+            "es": "El autobús llegó tarde por el embotellamiento."
+          }
+        ],
+        "mistake": {
+          "wrong": "I go to my work in bus.",
+          "right": "I go to work by bus.",
+          "note": "El medio de transporte va con «by»: «by bus», «by subway». Y se dice «go to work», sin «my»."
+        }
+      }
     },
     {
       "id": "b1.city-life.lesson-002",
@@ -392,7 +414,30 @@
         "b1.city-life.present-continuous-future",
         "b1.city-life.noisy"
       ],
-      "deepenCardIds": ["b1.grammar.future-forms"]
+      "deepenCardIds": ["b1.grammar.future-forms"],
+      "intro": {
+        "points": [
+          "«will» + verbo para decisiones del momento y promesas: «I'll help you».",
+          "«be going to» + verbo para planes que ya decidiste: «We're going to move».",
+          "Presente continuo para citas y planes acordados: «I'm meeting my friends tonight».",
+          "«rent» es el alquiler y también el verbo alquilar: «The rent is too high»."
+        ],
+        "examples": [
+          {
+            "en": "Don't worry, I'll help you carry the boxes.",
+            "es": "No te preocupes, te ayudo a llevar las cajas."
+          },
+          {
+            "en": "I'm meeting my friends downtown tonight.",
+            "es": "Esta noche me voy a ver con mis amigos en el centro."
+          }
+        ],
+        "mistake": {
+          "wrong": "Tomorrow I go to the dentist.",
+          "right": "Tomorrow I'm going to the dentist.",
+          "note": "En español el presente sirve para el futuro; en inglés, un plan acordado va en presente continuo."
+        }
+      }
     }
   ]
 }

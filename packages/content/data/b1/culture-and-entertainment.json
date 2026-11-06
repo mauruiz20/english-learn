@@ -410,7 +410,29 @@
         "b1.grammar.look-forward-to",
         "b1.grammar.relative-clauses",
         "b1.grammar.deduction"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«who» se refiere a personas y «where» a lugares: «the place where my father was born».",
+          "Para deducir: «must» (seguro que sí), «can't» (seguro que no) y «might» (puede que).",
+          "«look forward to» va con un sustantivo o con un verbo en -ing: «I look forward to seeing you»."
+        ],
+        "examples": [
+          {
+            "en": "We went to an exhibition of modern art.",
+            "es": "Fuimos a una exposición de arte moderno."
+          },
+          {
+            "en": "She must be tired after a long walk.",
+            "es": "Debe de estar cansada después de una larga caminata."
+          }
+        ],
+        "mistake": {
+          "wrong": "I look forward to see you.",
+          "right": "I look forward to seeing you.",
+          "note": "Aquí «to» es una preposición, no parte del infinitivo: después va el verbo con -ing."
+        }
+      }
     },
     {
       "id": "b1.culture-and-entertainment.lesson-002",
@@ -430,7 +452,26 @@
         "b1.culture-and-entertainment.sold-out",
         "b1.culture-and-entertainment.director",
         "b1.culture-and-entertainment.worth"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«sold out» significa agotado: ya no quedan entradas.",
+          "«be worth» + -ing es valer la pena: «That movie is worth seeing».",
+          "Repasa la deducción: «Everyone is laughing. The movie must be funny»."
+        ],
+        "examples": [
+          { "en": "That movie is worth seeing.", "es": "Vale la pena ver esa película." },
+          {
+            "en": "The concert was sold out, so we stayed home.",
+            "es": "Las entradas del concierto estaban agotadas, así que nos quedamos en casa."
+          }
+        ],
+        "mistake": {
+          "wrong": "That movie is worth to see.",
+          "right": "That movie is worth seeing.",
+          "note": "Después de «worth» va el verbo con -ing, nunca «to» + verbo."
+        }
+      }
     }
   ]
 }

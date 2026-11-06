@@ -445,7 +445,29 @@
         "c1.global-issues.tackle",
         "c1.global-issues.tip-of-the-iceberg"
       ],
-      "deepenCardIds": ["c1.grammar.inversion", "c1.vocabulary.collocations"]
+      "deepenCardIds": ["c1.grammar.inversion", "c1.vocabulary.collocations"],
+      "intro": {
+        "points": [
+          "Inversión negativa: con «Never» o «Not only» al inicio, el auxiliar va antes del sujeto.",
+          "«Not only did the drought destroy crops, but it also…» suena formal y enfático.",
+          "Las colocaciones son combinaciones fijas: «pose a threat», «raise awareness», «tackle a problem»."
+        ],
+        "examples": [
+          {
+            "en": "Not only is it an environmental problem, but it is also an economic one.",
+            "es": "No solo es un problema ambiental, sino también económico."
+          },
+          {
+            "en": "Several celebrities have used their fame to raise awareness of the crisis.",
+            "es": "Varios famosos han usado su fama para crear conciencia sobre la crisis."
+          }
+        ],
+        "mistake": {
+          "wrong": "Not only the drought destroyed crops, but it also forced thousands to leave.",
+          "right": "Not only did the drought destroy crops, but it also forced thousands to leave.",
+          "note": "Con «Not only» al inicio, invierte como en una pregunta: auxiliar + sujeto + verbo."
+        }
+      }
     },
     {
       "id": "c1.global-issues.lesson-002",
@@ -469,7 +491,30 @@
         "c1.global-issues.displaced",
         "c1.global-issues.inequality"
       ],
-      "deepenCardIds": ["b2.grammar.despite"]
+      "deepenCardIds": ["b2.grammar.despite"],
+      "intro": {
+        "points": [
+          "«Much as» + oración es por mucho que: «Much as I admire their work, I can't support it».",
+          "«Admittedly» reconoce un punto en contra antes de argumentar: hay que reconocer que…",
+          "«Even so» significa aun así: retomas tu postura después de esa concesión.",
+          "Son conectores de un argumento con matices, más formales que «but» o «although»."
+        ],
+        "examples": [
+          {
+            "en": "Admittedly, the policy has not worked as well as we hoped.",
+            "es": "Hay que reconocer que la política no ha funcionado tan bien como esperábamos."
+          },
+          {
+            "en": "The talks failed; even so, both sides agreed to meet again.",
+            "es": "Las negociaciones fracasaron; aun así, ambas partes acordaron volver a reunirse."
+          }
+        ],
+        "mistake": {
+          "wrong": "For much that I admire them, I disagree.",
+          "right": "Much as I admire them, I disagree.",
+          "note": "“Por mucho que” no se traduce palabra por palabra: usa «Much as» + sujeto + verbo."
+        }
+      }
     }
   ]
 }

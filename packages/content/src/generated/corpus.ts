@@ -32,140 +32,143 @@ import file26 from "../../data/b1/education.json";
 import file27 from "../../data/b1/environment.json";
 import file28 from "../../data/b1/grammar.json";
 import file29 from "../../data/b1/health-and-lifestyle.json";
-import file30 from "../../data/b1/media-and-news.json";
-import file31 from "../../data/b1/money-and-shopping.json";
-import file32 from "../../data/b1/phrasal-verbs.json";
-import file33 from "../../data/b1/relationships.json";
-import file34 from "../../data/b1/technology.json";
-import file35 from "../../data/b1/travel.json";
-import file36 from "../../data/b1/vocabulary.json";
-import file37 from "../../data/b1/work-and-careers.json";
-import file38 from "../../data/b2/climate-policy.json";
-import file39 from "../../data/b2/grammar.json";
-import file40 from "../../data/b2/health-and-psychology.json";
-import file41 from "../../data/b2/lifelong-learning.json";
-import file42 from "../../data/b2/media-and-misinformation.json";
-import file43 from "../../data/b2/money-and-economy.json";
-import file44 from "../../data/b2/phrasal-verbs.json";
-import file45 from "../../data/b2/science-and-ethics.json";
-import file46 from "../../data/b2/travel-and-identity.json";
-import file47 from "../../data/b2/vocabulary.json";
-import file48 from "../../data/b2/work-and-leadership.json";
-import file49 from "../../data/c1/arts-and-culture.json";
-import file50 from "../../data/c1/global-issues.json";
-import file51 from "../../data/c1/grammar.json";
-import file52 from "../../data/c1/language-and-communication.json";
-import file53 from "../../data/c1/law-and-ethics.json";
-import file54 from "../../data/c1/phrasal-verbs.json";
-import file55 from "../../data/c1/politics-and-media.json";
-import file56 from "../../data/c1/psychology-and-behaviour.json";
-import file57 from "../../data/c1/science-and-society.json";
-import file58 from "../../data/c1/vocabulary.json";
-import file59 from "../../data/c1/work-and-negotiation.json";
-import file60 from "../../data/glossary/a.json";
-import file61 from "../../data/glossary/b.json";
-import file62 from "../../data/glossary/c.json";
-import file63 from "../../data/glossary/d.json";
-import file64 from "../../data/glossary/e.json";
-import file65 from "../../data/glossary/f.json";
-import file66 from "../../data/glossary/g.json";
-import file67 from "../../data/glossary/h.json";
-import file68 from "../../data/glossary/i.json";
-import file69 from "../../data/glossary/j.json";
-import file70 from "../../data/glossary/k.json";
-import file71 from "../../data/glossary/l.json";
-import file72 from "../../data/glossary/m.json";
-import file73 from "../../data/glossary/n.json";
-import file74 from "../../data/glossary/o.json";
-import file75 from "../../data/glossary/p.json";
-import file76 from "../../data/glossary/q.json";
-import file77 from "../../data/glossary/r.json";
-import file78 from "../../data/glossary/s.json";
-import file79 from "../../data/glossary/t.json";
-import file80 from "../../data/glossary/u.json";
-import file81 from "../../data/glossary/v.json";
-import file82 from "../../data/glossary/w.json";
-import file83 from "../../data/glossary/y.json";
-import file84 from "../../data/glossary/z.json";
-import file85 from "../../data/placement/a1.json";
-import file86 from "../../data/placement/a2.json";
-import file87 from "../../data/placement/b1.json";
-import file88 from "../../data/placement/b2.json";
-import file89 from "../../data/placement/c1.json";
-import file90 from "../../data/practice/dialogues/airport-check-in.json";
-import file91 from "../../data/practice/dialogues/asking-directions.json";
-import file92 from "../../data/practice/dialogues/at-the-pharmacy.json";
-import file93 from "../../data/practice/dialogues/billing-dispute.json";
-import file94 from "../../data/practice/dialogues/booking-a-table.json";
-import file95 from "../../data/practice/dialogues/buying-coffee.json";
-import file96 from "../../data/practice/dialogues/car-rental.json";
-import file97 from "../../data/practice/dialogues/collection.json";
-import file98 from "../../data/practice/dialogues/coworker-small-talk.json";
-import file99 from "../../data/practice/dialogues/defending-a-decision.json";
-import file100 from "../../data/practice/dialogues/doctor-visit.json";
-import file101 from "../../data/practice/dialogues/giving-feedback.json";
-import file102 from "../../data/practice/dialogues/hotel-complaint.json";
-import file103 from "../../data/practice/dialogues/internet-support.json";
-import file104 from "../../data/practice/dialogues/introducing-yourself.json";
-import file105 from "../../data/practice/dialogues/job-interview.json";
-import file106 from "../../data/practice/dialogues/market-bargaining.json";
-import file107 from "../../data/practice/dialogues/meeting-disagreement.json";
-import file108 from "../../data/practice/dialogues/noisy-neighbor.json";
-import file109 from "../../data/practice/dialogues/reschedule-appointment.json";
-import file110 from "../../data/practice/dialogues/restaurant-order.json";
-import file111 from "../../data/practice/dialogues/returning-headphones.json";
-import file112 from "../../data/practice/dialogues/salary-negotiation.json";
-import file113 from "../../data/practice/dialogues/splitting-the-bill.json";
-import file114 from "../../data/practice/dialogues/supermarket-checkout.json";
-import file115 from "../../data/practice/dialogues/time-and-day.json";
-import file116 from "../../data/practice/grammar/articles.json";
-import file117 from "../../data/practice/grammar/collection.json";
-import file118 from "../../data/practice/grammar/comparatives.json";
-import file119 from "../../data/practice/grammar/conditionals.json";
-import file120 from "../../data/practice/grammar/countable.json";
-import file121 from "../../data/practice/grammar/deduction.json";
-import file122 from "../../data/practice/grammar/gerund-infinitive.json";
-import file123 from "../../data/practice/grammar/obligation.json";
-import file124 from "../../data/practice/grammar/passive.json";
-import file125 from "../../data/practice/grammar/prepositions.json";
-import file126 from "../../data/practice/grammar/questions.json";
-import file127 from "../../data/practice/grammar/relative-clauses.json";
-import file128 from "../../data/practice/grammar/reported-speech.json";
-import file129 from "../../data/practice/phrasal-verbs/collection.json";
-import file130 from "../../data/practice/phrasal-verbs/health.json";
-import file131 from "../../data/practice/phrasal-verbs/home.json";
-import file132 from "../../data/practice/phrasal-verbs/money.json";
-import file133 from "../../data/practice/phrasal-verbs/phone.json";
-import file134 from "../../data/practice/phrasal-verbs/plans.json";
-import file135 from "../../data/practice/phrasal-verbs/relationships.json";
-import file136 from "../../data/practice/phrasal-verbs/study.json";
-import file137 from "../../data/practice/phrasal-verbs/technology.json";
-import file138 from "../../data/practice/phrasal-verbs/travel.json";
-import file139 from "../../data/practice/phrasal-verbs/work.json";
-import file140 from "../../data/practice/situations/airport.json";
-import file141 from "../../data/practice/situations/collection.json";
-import file142 from "../../data/practice/situations/complaints.json";
-import file143 from "../../data/practice/situations/directions.json";
-import file144 from "../../data/practice/situations/doctor.json";
-import file145 from "../../data/practice/situations/hotel.json";
-import file146 from "../../data/practice/situations/interview.json";
-import file147 from "../../data/practice/situations/meetings.json";
-import file148 from "../../data/practice/situations/phone.json";
-import file149 from "../../data/practice/situations/renting.json";
-import file150 from "../../data/practice/situations/restaurant.json";
-import file151 from "../../data/practice/situations/shopping.json";
-import file152 from "../../data/practice/situations/small-talk.json";
-import file153 from "../../data/practice/tenses/collection.json";
-import file154 from "../../data/practice/tenses/future-perfect.json";
-import file155 from "../../data/practice/tenses/future.json";
-import file156 from "../../data/practice/tenses/past-habits.json";
-import file157 from "../../data/practice/tenses/past-perfect.json";
-import file158 from "../../data/practice/tenses/past.json";
-import file159 from "../../data/practice/tenses/perfect-continuous.json";
-import file160 from "../../data/practice/tenses/perfect-or-past.json";
-import file161 from "../../data/practice/tenses/present-perfect.json";
-import file162 from "../../data/practice/tenses/present.json";
-import file163 from "../../data/practice/tenses/stative.json";
+import file30 from "../../data/b1/level.json";
+import file31 from "../../data/b1/media-and-news.json";
+import file32 from "../../data/b1/money-and-shopping.json";
+import file33 from "../../data/b1/phrasal-verbs.json";
+import file34 from "../../data/b1/relationships.json";
+import file35 from "../../data/b1/technology.json";
+import file36 from "../../data/b1/travel.json";
+import file37 from "../../data/b1/vocabulary.json";
+import file38 from "../../data/b1/work-and-careers.json";
+import file39 from "../../data/b2/climate-policy.json";
+import file40 from "../../data/b2/grammar.json";
+import file41 from "../../data/b2/health-and-psychology.json";
+import file42 from "../../data/b2/level.json";
+import file43 from "../../data/b2/lifelong-learning.json";
+import file44 from "../../data/b2/media-and-misinformation.json";
+import file45 from "../../data/b2/money-and-economy.json";
+import file46 from "../../data/b2/phrasal-verbs.json";
+import file47 from "../../data/b2/science-and-ethics.json";
+import file48 from "../../data/b2/travel-and-identity.json";
+import file49 from "../../data/b2/vocabulary.json";
+import file50 from "../../data/b2/work-and-leadership.json";
+import file51 from "../../data/c1/arts-and-culture.json";
+import file52 from "../../data/c1/global-issues.json";
+import file53 from "../../data/c1/grammar.json";
+import file54 from "../../data/c1/language-and-communication.json";
+import file55 from "../../data/c1/law-and-ethics.json";
+import file56 from "../../data/c1/level.json";
+import file57 from "../../data/c1/phrasal-verbs.json";
+import file58 from "../../data/c1/politics-and-media.json";
+import file59 from "../../data/c1/psychology-and-behaviour.json";
+import file60 from "../../data/c1/science-and-society.json";
+import file61 from "../../data/c1/vocabulary.json";
+import file62 from "../../data/c1/work-and-negotiation.json";
+import file63 from "../../data/glossary/a.json";
+import file64 from "../../data/glossary/b.json";
+import file65 from "../../data/glossary/c.json";
+import file66 from "../../data/glossary/d.json";
+import file67 from "../../data/glossary/e.json";
+import file68 from "../../data/glossary/f.json";
+import file69 from "../../data/glossary/g.json";
+import file70 from "../../data/glossary/h.json";
+import file71 from "../../data/glossary/i.json";
+import file72 from "../../data/glossary/j.json";
+import file73 from "../../data/glossary/k.json";
+import file74 from "../../data/glossary/l.json";
+import file75 from "../../data/glossary/m.json";
+import file76 from "../../data/glossary/n.json";
+import file77 from "../../data/glossary/o.json";
+import file78 from "../../data/glossary/p.json";
+import file79 from "../../data/glossary/q.json";
+import file80 from "../../data/glossary/r.json";
+import file81 from "../../data/glossary/s.json";
+import file82 from "../../data/glossary/t.json";
+import file83 from "../../data/glossary/u.json";
+import file84 from "../../data/glossary/v.json";
+import file85 from "../../data/glossary/w.json";
+import file86 from "../../data/glossary/y.json";
+import file87 from "../../data/glossary/z.json";
+import file88 from "../../data/placement/a1.json";
+import file89 from "../../data/placement/a2.json";
+import file90 from "../../data/placement/b1.json";
+import file91 from "../../data/placement/b2.json";
+import file92 from "../../data/placement/c1.json";
+import file93 from "../../data/practice/dialogues/airport-check-in.json";
+import file94 from "../../data/practice/dialogues/asking-directions.json";
+import file95 from "../../data/practice/dialogues/at-the-pharmacy.json";
+import file96 from "../../data/practice/dialogues/billing-dispute.json";
+import file97 from "../../data/practice/dialogues/booking-a-table.json";
+import file98 from "../../data/practice/dialogues/buying-coffee.json";
+import file99 from "../../data/practice/dialogues/car-rental.json";
+import file100 from "../../data/practice/dialogues/collection.json";
+import file101 from "../../data/practice/dialogues/coworker-small-talk.json";
+import file102 from "../../data/practice/dialogues/defending-a-decision.json";
+import file103 from "../../data/practice/dialogues/doctor-visit.json";
+import file104 from "../../data/practice/dialogues/giving-feedback.json";
+import file105 from "../../data/practice/dialogues/hotel-complaint.json";
+import file106 from "../../data/practice/dialogues/internet-support.json";
+import file107 from "../../data/practice/dialogues/introducing-yourself.json";
+import file108 from "../../data/practice/dialogues/job-interview.json";
+import file109 from "../../data/practice/dialogues/market-bargaining.json";
+import file110 from "../../data/practice/dialogues/meeting-disagreement.json";
+import file111 from "../../data/practice/dialogues/noisy-neighbor.json";
+import file112 from "../../data/practice/dialogues/reschedule-appointment.json";
+import file113 from "../../data/practice/dialogues/restaurant-order.json";
+import file114 from "../../data/practice/dialogues/returning-headphones.json";
+import file115 from "../../data/practice/dialogues/salary-negotiation.json";
+import file116 from "../../data/practice/dialogues/splitting-the-bill.json";
+import file117 from "../../data/practice/dialogues/supermarket-checkout.json";
+import file118 from "../../data/practice/dialogues/time-and-day.json";
+import file119 from "../../data/practice/grammar/articles.json";
+import file120 from "../../data/practice/grammar/collection.json";
+import file121 from "../../data/practice/grammar/comparatives.json";
+import file122 from "../../data/practice/grammar/conditionals.json";
+import file123 from "../../data/practice/grammar/countable.json";
+import file124 from "../../data/practice/grammar/deduction.json";
+import file125 from "../../data/practice/grammar/gerund-infinitive.json";
+import file126 from "../../data/practice/grammar/obligation.json";
+import file127 from "../../data/practice/grammar/passive.json";
+import file128 from "../../data/practice/grammar/prepositions.json";
+import file129 from "../../data/practice/grammar/questions.json";
+import file130 from "../../data/practice/grammar/relative-clauses.json";
+import file131 from "../../data/practice/grammar/reported-speech.json";
+import file132 from "../../data/practice/phrasal-verbs/collection.json";
+import file133 from "../../data/practice/phrasal-verbs/health.json";
+import file134 from "../../data/practice/phrasal-verbs/home.json";
+import file135 from "../../data/practice/phrasal-verbs/money.json";
+import file136 from "../../data/practice/phrasal-verbs/phone.json";
+import file137 from "../../data/practice/phrasal-verbs/plans.json";
+import file138 from "../../data/practice/phrasal-verbs/relationships.json";
+import file139 from "../../data/practice/phrasal-verbs/study.json";
+import file140 from "../../data/practice/phrasal-verbs/technology.json";
+import file141 from "../../data/practice/phrasal-verbs/travel.json";
+import file142 from "../../data/practice/phrasal-verbs/work.json";
+import file143 from "../../data/practice/situations/airport.json";
+import file144 from "../../data/practice/situations/collection.json";
+import file145 from "../../data/practice/situations/complaints.json";
+import file146 from "../../data/practice/situations/directions.json";
+import file147 from "../../data/practice/situations/doctor.json";
+import file148 from "../../data/practice/situations/hotel.json";
+import file149 from "../../data/practice/situations/interview.json";
+import file150 from "../../data/practice/situations/meetings.json";
+import file151 from "../../data/practice/situations/phone.json";
+import file152 from "../../data/practice/situations/renting.json";
+import file153 from "../../data/practice/situations/restaurant.json";
+import file154 from "../../data/practice/situations/shopping.json";
+import file155 from "../../data/practice/situations/small-talk.json";
+import file156 from "../../data/practice/tenses/collection.json";
+import file157 from "../../data/practice/tenses/future-perfect.json";
+import file158 from "../../data/practice/tenses/future.json";
+import file159 from "../../data/practice/tenses/past-habits.json";
+import file160 from "../../data/practice/tenses/past-perfect.json";
+import file161 from "../../data/practice/tenses/past.json";
+import file162 from "../../data/practice/tenses/perfect-continuous.json";
+import file163 from "../../data/practice/tenses/perfect-or-past.json";
+import file164 from "../../data/practice/tenses/present-perfect.json";
+import file165 from "../../data/practice/tenses/present.json";
+import file166 from "../../data/practice/tenses/stative.json";
 
 const files = [
   file0,
@@ -198,7 +201,7 @@ const files = [
   file27,
   file28,
   file29,
-  file30,
+  { levelIntro: file30 },
   file31,
   file32,
   file33,
@@ -210,7 +213,7 @@ const files = [
   file39,
   file40,
   file41,
-  file42,
+  { levelIntro: file42 },
   file43,
   file44,
   file45,
@@ -224,7 +227,7 @@ const files = [
   file53,
   file54,
   file55,
-  file56,
+  { levelIntro: file56 },
   file57,
   file58,
   file59,
@@ -332,6 +335,9 @@ const files = [
   file161,
   file162,
   file163,
+  file164,
+  file165,
+  file166,
 ] as unknown as readonly ContentFile[];
 
 export const corpus: Corpus = createCorpus(files);

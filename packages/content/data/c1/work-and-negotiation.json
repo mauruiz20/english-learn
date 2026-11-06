@@ -445,7 +445,29 @@
         "c1.work-and-negotiation.concession",
         "c1.work-and-negotiation.leverage"
       ],
-      "deepenCardIds": ["c1.vocabulary.collocations", "c1.phrasal-verbs.causes-and-solutions"]
+      "deepenCardIds": ["c1.vocabulary.collocations", "c1.phrasal-verbs.causes-and-solutions"],
+      "intro": {
+        "points": [
+          "Colocaciones de negociación: «reach an agreement», «make concessions», «find common ground».",
+          "«iron out» es limar detalles o diferencias: «We still need to iron out a few details».",
+          "«leverage» es tu poder de negociación: lo que te da ventaja."
+        ],
+        "examples": [
+          {
+            "en": "After three days of talks, the two companies finally reached an agreement.",
+            "es": "Después de tres días de conversaciones, las dos empresas por fin llegaron a un acuerdo."
+          },
+          {
+            "en": "Both sides had to make painful concessions to save the deal.",
+            "es": "Ambas partes tuvieron que hacer concesiones dolorosas para salvar el acuerdo."
+          }
+        ],
+        "mistake": {
+          "wrong": "They arrived to an agreement.",
+          "right": "They reached an agreement.",
+          "note": "“Llegar a un acuerdo” es «reach an agreement» o «come to an agreement», nunca «arrive»."
+        }
+      }
     },
     {
       "id": "c1.work-and-negotiation.lesson-002",
@@ -469,7 +491,30 @@
         "c1.work-and-negotiation.deal-breaker",
         "c1.work-and-negotiation.win-win"
       ],
-      "deepenCardIds": ["c1.vocabulary.register"]
+      "deepenCardIds": ["c1.vocabulary.register"],
+      "intro": {
+        "points": [
+          "En correos formales cambia el vocabulario: «ask for» → «request», «buy» → «purchase».",
+          "«regarding» o «concerning» reemplazan a «about»: «I am writing regarding your proposal».",
+          "Un «deal-breaker» es una condición sin la que no hay trato; «win-win», bueno para ambos.",
+          "Con colegas de confianza, el registro informal está bien: adapta el tono a quien te lee."
+        ],
+        "examples": [
+          {
+            "en": "I am writing regarding your proposal.",
+            "es": "Le escribo en relación con su propuesta."
+          },
+          {
+            "en": "We would like to request a meeting to discuss the contract.",
+            "es": "Nos gustaría solicitar una reunión para hablar del contrato."
+          }
+        ],
+        "mistake": {
+          "wrong": "We would like to ask a meeting.",
+          "right": "We would like to request a meeting.",
+          "note": "«ask» necesita «for»: «ask for a meeting»; en un correo formal, mejor «request»."
+        }
+      }
     }
   ]
 }

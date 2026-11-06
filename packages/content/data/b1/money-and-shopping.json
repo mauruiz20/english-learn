@@ -373,7 +373,29 @@
         "b1.money-and-shopping.lend",
         "b1.money-and-shopping.borrow"
       ],
-      "deepenCardIds": ["b1.grammar.second-conditional", "b1.vocabulary.borrow-lend"]
+      "deepenCardIds": ["b1.grammar.second-conditional", "b1.vocabulary.borrow-lend"],
+      "intro": {
+        "points": [
+          "Segundo condicional, para lo hipotético: «if» + pasado, «would» + verbo.",
+          "«lend» es prestar (das tú); «borrow» es pedir prestado (recibes tú).",
+          "«pay back» es devolver dinero: «I'll pay you back»; «save up for» es ahorrar para algo."
+        ],
+        "examples": [
+          {
+            "en": "If I won the lottery, I'd buy a new car.",
+            "es": "Si ganara la lotería, me compraría un auto nuevo."
+          },
+          {
+            "en": "Can I borrow your bike? I'll give it back tomorrow.",
+            "es": "¿Me prestas tu bicicleta? Te la devuelvo mañana."
+          }
+        ],
+        "mistake": {
+          "wrong": "Can you borrow me ten dollars?",
+          "right": "Can you lend me ten dollars?",
+          "note": "Pide con «Can you lend me…?» o con «Can I borrow…?»; «borrow me» no existe."
+        }
+      }
     },
     {
       "id": "b1.money-and-shopping.lesson-002",
@@ -393,7 +415,27 @@
         "b1.money-and-shopping.bargain",
         "b1.money-and-shopping.credit-card",
         "b1.money-and-shopping.refund"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«bargain» es una ganga, algo bueno y barato: «It was a real bargain».",
+          "Se paga «by credit card» o «in cash»: «Can I pay by credit card?».",
+          "«refund» es la devolución del dinero: «I'd like a refund, please».",
+          "Repasa: «If I had more money, I would travel»: después de «if», pasado."
+        ],
+        "examples": [
+          { "en": "Can I pay by credit card?", "es": "¿Puedo pagar con tarjeta de crédito?" },
+          {
+            "en": "These shoes don't fit. I'd like a refund, please.",
+            "es": "Estos zapatos no me quedan. Quisiera un reembolso, por favor."
+          }
+        ],
+        "mistake": {
+          "wrong": "If I would have more money, I would travel.",
+          "right": "If I had more money, I would travel.",
+          "note": "Después de «if» va el pasado simple, no «would»."
+        }
+      }
     }
   ]
 }

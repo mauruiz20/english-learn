@@ -429,7 +429,29 @@
         "c1.politics-and-media.echo-chamber",
         "c1.politics-and-media.polarized"
       ],
-      "deepenCardIds": ["c1.grammar.inversion"]
+      "deepenCardIds": ["c1.grammar.inversion"],
+      "intro": {
+        "points": [
+          "La inversión da énfasis y suena formal: es típica de discursos y artículos de opinión.",
+          "«Never before has…», «Rarely do…», «Not only did…, but…»: auxiliar + sujeto.",
+          "«bias» es sesgo; «echo chamber», un espacio donde solo oyes opiniones como la tuya."
+        ],
+        "examples": [
+          {
+            "en": "Never before has the country been so divided.",
+            "es": "Nunca antes ha estado el país tan dividido."
+          },
+          {
+            "en": "Rarely do politicians admit their mistakes in public.",
+            "es": "Rara vez los políticos admiten sus errores en público."
+          }
+        ],
+        "mistake": {
+          "wrong": "Rarely politicians admit their mistakes.",
+          "right": "Rarely do politicians admit their mistakes.",
+          "note": "Con «Rarely» al inicio, agrega «do», «does» o «did» antes del sujeto."
+        }
+      }
     },
     {
       "id": "c1.politics-and-media.lesson-002",
@@ -452,7 +474,26 @@
         "c1.politics-and-media.scrutiny",
         "c1.politics-and-media.sit-on-the-fence"
       ],
-      "deepenCardIds": ["c1.grammar.hedging", "b2.grammar.reporting-passive"]
+      "deepenCardIds": ["c1.grammar.hedging", "b2.grammar.reporting-passive"],
+      "intro": {
+        "points": [
+          "«be alleged to have» + participio es presuntamente: no se afirma que sea cierto.",
+          "El hedging suaviza: «seems to», «appears to» o «may» evitan presentar algo como un hecho.",
+          "«hold someone accountable» es pedirle cuentas; «sit on the fence», no tomar partido."
+        ],
+        "examples": [
+          {
+            "en": "The senator is alleged to have accepted money from a private company.",
+            "es": "Presuntamente, el senador aceptó dinero de una empresa privada."
+          },
+          { "en": "The campaign seems to have failed.", "es": "Parece que la campaña fracasó." }
+        ],
+        "mistake": {
+          "wrong": "The senator is alleged that he accepted money.",
+          "right": "The senator is alleged to have accepted money.",
+          "note": "Con un sujeto de persona, usa «to have» + participio, no «that»."
+        }
+      }
     }
   ]
 }

@@ -366,7 +366,30 @@
         "b2.lifelong-learning.online-course",
         "b2.lifelong-learning.retire"
       ],
-      "deepenCardIds": ["b2.grammar.wish-if-only"]
+      "deepenCardIds": ["b2.grammar.wish-if-only"],
+      "intro": {
+        "points": [
+          "«pick up» es aprender algo sin estudiarlo formalmente: «She picked up some French».",
+          "«brush up on» es repasar algo que ya sabías: «brush up on my English».",
+          "«fluent» es el adjetivo; para decir cómo hablas, usa «fluently».",
+          "Repasa «wish»: «I wish I spoke English fluently» (hoy), «I wish I had learned…» (antes)."
+        ],
+        "examples": [
+          {
+            "en": "I need to brush up on my English before the trip.",
+            "es": "Necesito repasar mi inglés antes del viaje."
+          },
+          {
+            "en": "I wish I had learned to play an instrument as a child.",
+            "es": "Ojalá hubiera aprendido a tocar un instrumento de niño."
+          }
+        ],
+        "mistake": {
+          "wrong": "I speak English fluent.",
+          "right": "I speak English fluently.",
+          "note": "Con un verbo va el adverbio «fluently»; «fluent» va con «be»: «I'm fluent in English»."
+        }
+      }
     },
     {
       "id": "b2.lifelong-learning.lesson-002",
@@ -387,7 +410,29 @@
         "b2.lifelong-learning.degree",
         "b2.lifelong-learning.skill"
       ],
-      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"],
+      "intro": {
+        "points": [
+          "Condicional mixto: un pasado distinto con efecto hoy: «if» + «had» + participio, «would» + verbo.",
+          "«If I had studied harder, I would have a better job now»: el estudio fue antes; el trabajo es hoy.",
+          "«skill» es una habilidad concreta; «degree», un título universitario."
+        ],
+        "examples": [
+          {
+            "en": "If she hadn't moved abroad, she wouldn't speak three languages now.",
+            "es": "Si no se hubiera mudado al extranjero, ahora no hablaría tres idiomas."
+          },
+          {
+            "en": "Learning to code is a useful skill for almost any job.",
+            "es": "Aprender a programar es una habilidad útil para casi cualquier trabajo."
+          }
+        ],
+        "mistake": {
+          "wrong": "I have a title in economics.",
+          "right": "I have a degree in economics.",
+          "note": "«title» es el título de un libro o un cargo; el título universitario es «degree»."
+        }
+      }
     }
   ]
 }
