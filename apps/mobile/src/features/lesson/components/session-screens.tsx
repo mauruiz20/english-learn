@@ -141,6 +141,13 @@ type SummaryProps = {
   onRedo?: (() => void) | undefined;
   /** What comes next, above the done button (a review: "Te quedan 25 para otro repaso."). */
   next?: string | undefined;
+  /** Shown under the sticker, before the results (a dialogue: how it ended, its best result). */
+  header?: ReactNode;
+  /** The first result line ("Aciertos: 5 de 6" by default). */
+  correctLabel?: string | undefined;
+  /** The redo button ("Repetir lección" by default) and what it redoes ("la lección"). */
+  redoLabel?: string | undefined;
+  redoNoun?: string | undefined;
 };
 
 /** An album sticker as the summary announces it. */
@@ -187,6 +194,10 @@ export function SessionSummary({
   onOpenCard,
   onRedo,
   next,
+  header,
+  correctLabel,
+  redoLabel = "Repetir lección",
+  redoNoun = "la lección",
 }: SummaryProps) {
   const styles = useStyles();
   const { colors } = useTheme();
@@ -236,9 +247,10 @@ export function SessionSummary({
           )}
         </View>
       </View>
+      {header}
       <View style={styles.results}>
         <ResultRow mark={<MiniSticker color="green" glyph="check" />}>
-          <Text variant="title">{`Aciertos: ${correct} de ${total}`}</Text>
+          <Text variant="title">{correctLabel ?? `Aciertos: ${correct} de ${total}`}</Text>
         </ResultRow>
         <ResultRow mark={<MiniSticker color="yellow" glyph="star" />}>
           <Text variant="title" accessibilityLabel={`XP ganada: ${xpEarned}`}>
@@ -293,10 +305,12 @@ export function SessionSummary({
       <Button label={doneLabel} onPress={onGoHome} />
       {onRedo !== undefined && (
         <Button
-          label="Repetir lección"
+          label={redoLabel}
           variant={perfect ? "text" : "secondary"}
           accessibilityHint={
-            perfect ? "Vuelve a hacer la lección" : "Vuelve a hacer la lección para sacar todo bien"
+            perfect
+              ? `Vuelve a hacer ${redoNoun}`
+              : `Vuelve a hacer ${redoNoun} para sacar todo bien`
           }
           onPress={onRedo}
         />

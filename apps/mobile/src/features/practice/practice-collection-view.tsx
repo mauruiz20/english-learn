@@ -1,6 +1,10 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { PerfectBadge } from "@/features/lesson/components/perfect-badge";
 import { scoreDescription, scoreText } from "@/features/lesson/model/lesson-score";
+import {
+  dialogueScoreDescription,
+  dialogueScoreText,
+} from "@/features/dialogues/model/dialogue-catalog";
 import { levelHighlighter, topicHighlighter } from "@/features/topics/topic-colors";
 import { HandCheck } from "@/shared/ui/hand-check";
 import { Highlight } from "@/shared/ui/highlight";
@@ -112,11 +116,34 @@ function LessonRow({
   const { colors } = useTheme();
   const { score } = lesson;
   const done = score !== undefined;
-  const hint = done && !score.perfect ? "Repítela para sacar todo bien" : "Abre la lección";
+  // A dialogue is masculine: "nuevo", "Perfecto · 6/6", "Repítelo".
+  const dialogue = lesson.kind === "dialogue";
+  const hint =
+    done && !score.perfect
+      ? dialogue
+        ? "Repítelo para sacar todo bien"
+        : "Repítela para sacar todo bien"
+      : dialogue
+        ? "Abre el diálogo"
+        : "Abre la lección";
+  const description = !done
+    ? dialogue
+      ? "nuevo"
+      : "nueva"
+    : dialogue
+      ? dialogueScoreDescription(score)
+      : scoreDescription(score);
+  const marker = !done
+    ? dialogue
+      ? "Nuevo"
+      : "Nueva"
+    : dialogue
+      ? dialogueScoreText(score)
+      : scoreText(score);
   return (
     <PressableScale
       accessibilityRole="button"
-      accessibilityLabel={`${lesson.fullTitle}, ${done ? scoreDescription(score) : "nueva"}`}
+      accessibilityLabel={`${lesson.fullTitle}, ${description}`}
       accessibilityHint={hint}
       onPress={onPress}
       style={({ pressed }) => [styles.row, pressed && styles.pressed]}
@@ -142,7 +169,7 @@ function LessonRow({
       <View style={styles.rowText}>
         <Text variant="bodyStrong">{lesson.title}</Text>
         <Text variant="smallStrong" tone={done ? "success" : "muted"}>
-          {done ? scoreText(score) : "Nueva"}
+          {marker}
         </Text>
       </View>
       <Chevron />
