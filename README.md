@@ -220,13 +220,11 @@ Android APK/AAB builds (EAS or local Gradle) and web hosting headers are covered
 
 **Phase 1.5: listening and speaking (still offline)**
 
-- Pronunciation on Android (text-to-speech is web only for now).
 - Dialogues and guided writing.
 - Speaking practice through the device's native speech recognition.
 
 **Phase 2: optional backend**
 
-- Progress sync on Android (sync is web only for now).
 - Downloadable content packs.
 - Calibrate placement item difficulties (IRT) from real response data.
 

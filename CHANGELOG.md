@@ -53,16 +53,6 @@ listening in reviews, plus a personal home with Avi.
 - **CI**: web e2e runs in four shards inside the Playwright image, and a release merge to `main`
   whose tree `develop` already tested skips the test jobs and deploys directly.
 
-### Removed
-
-- **Plumas and Avi's wardrobe**: the plumas currency (summary row, home balance, one-time note),
-  the `/armario` wardrobe and shop, and Avi's outfits. Avi stays on home with its moods, speech
-  bubble, moments, hover and blink, now as decoration (no button, hidden from screen readers; the
-  bubble carries its state), without the "new outfit" state. Wardrobe events (`item_purchased`,
-  `item_equipped`) already in a log or on the sync server are still accepted and ignored. The
-  fold snapshot format goes to version 3 (every store refolds once), and migration 7 drops the
-  `rewards` cache table and the plumas note setting.
-
 ### Fixed
 
 - **iOS web app after Google sign-in**: the database is released before every intentional
