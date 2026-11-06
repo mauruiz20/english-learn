@@ -129,6 +129,8 @@ export function IntroToggle({ intro }: { intro: LessonIntro }) {
         accessibilityRole="button"
         accessibilityLabel="Repasar la teoría"
         accessibilityState={{ expanded: open }}
+        // React Native Web maps no accessibilityState to ARIA: say it to the web too.
+        aria-expanded={open}
         onPress={() => setOpen((was) => !was)}
         wrapperStyle={styles.toggleWrapper}
         style={({ pressed }) => [styles.toggle, pressed && styles.togglePressed]}
