@@ -55,6 +55,8 @@ export type ReviewViewState =
       readonly toReview: readonly ReviewNote[];
       /** Album stickers the session earned. */
       readonly achievements?: readonly EarnedSticker[];
+      /** Exercises later reviews will serve today (absent: not known yet). */
+      readonly remaining?: number;
     };
 
 type ReviewViewProps = {
@@ -69,6 +71,14 @@ type ReviewViewProps = {
 };
 
 const TITLE = "Repaso";
+
+/** "Te quedan 25 para otro repaso.": more were due than one review holds. */
+function remainingText(remaining: number | undefined): string | undefined {
+  if (remaining === undefined || remaining <= 0) return undefined;
+  return remaining === 1
+    ? "Te queda 1 para otro repaso."
+    : `Te quedan ${remaining} para otro repaso.`;
+}
 
 export function ReviewView({
   state,
@@ -114,7 +124,14 @@ export function ReviewView({
         />
       );
     case "summary":
-      return <SessionSummary title="¡Repaso completado!" {...state} onGoHome={onGoHome} />;
+      return (
+        <SessionSummary
+          title="¡Repaso completado!"
+          {...state}
+          next={remainingText(state.remaining)}
+          onGoHome={onGoHome}
+        />
+      );
     case "exercise":
       return (
         <ScreenContainer

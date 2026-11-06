@@ -393,8 +393,18 @@ only a reading practiced got a review-only `vocab` exercise. For each due
 item, in priority order, it picks one exercise that practices it, preferring a different type
 than the previous pick, chosen with the injected rng; an exercise covering several due items
 reviews all of them. Only the due items are saved (an exercise may also practice items that are
-not due; those are untouched). XP is answer XP only, no completion bonus. Home shows a sticky note
-"Repaso, N pendientes" (same plan) with a "Repasar" button, or "Nada para repasar hoy".
+not due; those are untouched). XP is answer XP only, no completion bonus.
+
+**Home counts exactly what the review serves** (`planReview`, `reviewOutlook` in
+`model/review-plan.ts`). The exercises are picked with the day's rng (`reviewPlanRng(today)`,
+seeded by the date), so home and `/review` plan the same session from the same states. Home shows
+a sticky note "Repaso, N pendientes" where N is the next review's number of EXERCISES (what
+"Ejercicio 1 de N" shows; one exercise may review several due items), plus "y M más después" when
+more is due today than one review holds (M: what the later reviews of the day will serve; a
+reviewed item is never due again the same day), with a "Repasar" button, or "Nada para repasar
+hoy". The review's summary says "Te quedan M para otro repaso." in that case. Before this, home
+counted due ITEMS capped at 20: after a 20-item review with a big backlog it still said "20
+pendientes" (it looked unsaved) and the review then served 18 exercises.
 
 ## Study cards, "Fichas" (`src/features/cards/`)
 

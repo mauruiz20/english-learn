@@ -72,8 +72,10 @@ export type HomeViewState =
   | { readonly status: "error" }
   | {
       readonly status: "ready";
-      /** Items the daily review would practice today. */
+      /** Exercises the next daily review serves (`reviewOutlook(...).next`). */
       readonly pendingReviews: number;
+      /** Exercises later reviews will serve today, once the next one is done (absent: none). */
+      readonly laterReviews?: number;
       /** Paper of today's review sticky note. */
       readonly reviewNoteColor: HighlighterName;
       readonly streakDays: number;
@@ -380,10 +382,12 @@ function AlbumLink({
 
 function ReviewNote({
   pending,
+  later,
   color,
   onOpenReview,
 }: {
   pending: number;
+  later: number;
   color: HighlighterName;
   onOpenReview: () => void;
 }) {
@@ -403,6 +407,7 @@ function ReviewNote({
           <View style={styles.stickyText}>
             <Text variant="title">Repaso</Text>
             <Text>{`${pending} ${pending === 1 ? "pendiente" : "pendientes"}`}</Text>
+            {later > 0 && <Text tone="muted">{`y ${later} más después`}</Text>}
           </View>
           <Button label="Repasar" onPress={onOpenReview} />
         </View>
@@ -835,6 +840,7 @@ function ReadyHome({
     <>
       <ReviewNote
         pending={state.pendingReviews}
+        later={state.laterReviews ?? 0}
         color={state.reviewNoteColor}
         onOpenReview={onOpenReview}
       />

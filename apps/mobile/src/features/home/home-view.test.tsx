@@ -201,6 +201,19 @@ describe("HomeView", () => {
     expect(handlers.onOpenReview).toHaveBeenCalledTimes(1);
   });
 
+  it("says how many more reviews wait after the next one", async () => {
+    await renderView({ ...ready, pendingReviews: 18, laterReviews: 25 });
+
+    expect(screen.getByText("18 pendientes")).toBeOnTheScreen();
+    expect(screen.getByText("y 25 más después")).toBeOnTheScreen();
+  });
+
+  it("says nothing more when the next review holds everything due", async () => {
+    await renderView({ ...ready, pendingReviews: 18, laterReviews: 0 });
+
+    expect(screen.queryByText(/más después/)).not.toBeOnTheScreen();
+  });
+
   it("shows no sticky note when there is nothing to review", async () => {
     await renderView(ready);
 
