@@ -570,6 +570,40 @@ Free practice by topic, apart from the path and its levels (content: `corpus.pra
   and the transfer preview count exactly what they counted before
   (`practice-path-separation.test.tsx` completes every practice lesson and compares the path).
 
+## Tu progreso and "Mis palabras difíciles" (`src/features/hard-words/`)
+
+Built on the SRS data the fold already has: review states plus each item's answer history
+(`ProgressRepository.getItemHistories()`; buckets and score are the domain's `difficulty`
+module, see `@english-learn/domain`, "Difficulty").
+
+- **Home**: "Tu progreso · Dominadas, en proceso y difíciles", last row of the progress card
+  (after Práctica libre), opens `/progreso`.
+- **`/progreso`** (`ProgressContainer`, reloaded on focus): the reviewed words the content knows
+  in three buckets, **Dominadas / En proceso / Difíciles**, as one bar split in proportion (ink
+  outline and a 2 pt paper gap between segments, so it stands out in both themes; static, so
+  reduced motion needs nothing) with each count written in its legend (color is never the only
+  cue; the bar's label reads "13 palabras: 4 dominadas, 7 en proceso, 2 difíciles"). Then "Mis
+  palabras difíciles", hardest first: term, Spanish, "Olvidada N veces · X % de aciertos
+  recientes", a `SpeakButton` (the term without notation, hidden without a voice) and "Ver ficha:
+  <título>" when a card teaches it. "Practicar mis palabras difíciles" shows when some
+  non-reading exercise practices them.
+- **`/progreso/practicar`** (`HardPracticeContainer`): up to 10 exercises over the difficult
+  items, hardest first, picked with the review's `pickReviewExercises` (one exercise per item,
+  varied types; the injected rng), played with the review screen and saved **like a review**
+  (`session_completed` kind `review`, answer XP only, streak; no new event, no new XP rule).
+  It saves the difficult items its exercises cover; other items an exercise also practices are
+  left untouched, as in the review.
+- **Scheduling of words that are not due**: every practiced difficult word gets its
+  `item_reviewed`, and the fold's existing `applyReview` decides: a due word is reviewed (SM-2
+  moves it ahead); a word not due yet that is answered right keeps its state and due date
+  (practice must not inflate intervals: SM-2 grows them from recall at the scheduled time), but
+  the answer enters its history, so it can leave Difíciles; a word not due that is missed again
+  lapses (due tomorrow), exactly like a lesson replay. Home's count stays the next review's size,
+  since home and `/review` still plan from the same states (`reviewOutlook`).
+- **Summary**: "¡Práctica completada!", the results and "N de M palabras difíciles avanzaron a
+  En proceso." (practiced difficult words that are no longer difficult, compared before/after),
+  then "Volver a mi progreso".
+
 ## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)
 
 Optional, **web only, on `https://english.maumar.com.ar`** (and `http://localhost` for

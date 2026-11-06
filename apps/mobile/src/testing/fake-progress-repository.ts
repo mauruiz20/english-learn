@@ -34,10 +34,13 @@ export function createFakeRepository(
     placement?: PlacementResult | null;
     states?: readonly ReviewState[];
     completedLessonIds?: readonly string[];
+    /** Events logged after the seed baseline (e.g. reviews that give items an answer history). */
+    events?: readonly ProgressEvent[];
   } = {},
 ): FakeProgressRepository {
   const log: ProgressEvent[] = [];
-  const seeded = Object.values(initial).some((v) => v !== undefined && v !== null);
+  const { events: seedEvents = [], ...seed } = initial;
+  const seeded = Object.values(seed).some((v) => v !== undefined && v !== null);
   if (seeded) {
     log.push({
       id: "00000000-0000-7000-8000-000000000000",
@@ -55,6 +58,7 @@ export function createFakeRepository(
       },
     });
   }
+  log.push(...seedEvents);
   const progress = () => foldEvents(log);
   const totals = () => {
     const { xp, streak } = progress();
