@@ -1,8 +1,28 @@
 /**
  * Spanish names of the content topics (the `topic` slug of a lesson or a study card), for the
- * lesson index and the "Fichas".
+ * lesson index and the "Fichas". The C1 topics are listed ahead of their lessons, so the C1
+ * content needs no app change; a new topic slug needs its name here (a test fails otherwise).
  */
 const TOPIC_LABELS: Readonly<Record<string, string>> = {
+  // A1, in index order.
+  greetings: "Saludos y presentaciones",
+  "to-be-and-questions": "To be y preguntas",
+  "numbers-and-age": "Números y edad",
+  "my-family": "Mi familia",
+  "colors-and-clothes": "Colores y ropa",
+  "food-and-drinks": "Comidas y bebidas",
+  "days-and-time": "Días y horas",
+  "my-house": "Mi casa",
+  // C1, in index order.
+  "arts-and-culture": "Arte y cultura",
+  "global-issues": "Problemas globales",
+  "language-and-communication": "Lenguaje y comunicación",
+  "law-and-ethics": "Derecho y ética",
+  "politics-and-media": "Política y medios",
+  "psychology-and-behaviour": "Psicología y conducta",
+  "science-and-society": "Ciencia y sociedad",
+  "work-and-negotiation": "Trabajo y negociación",
+  // A2 to B2 and the study cards.
   "city-life": "Vida en la ciudad",
   "climate-policy": "Clima y medio ambiente",
   "culture-and-entertainment": "Cultura y ocio",

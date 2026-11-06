@@ -1,16 +1,20 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
 import { AlbumView } from "./album-view";
-import { ACHIEVEMENTS } from "./model/achievements";
+import { ACHIEVEMENTS, type Achievement } from "./model/achievements";
 
 describe("AlbumView", () => {
   it("shows a loading indicator", async () => {
-    await render(<AlbumView state={{ status: "loading" }} onGoHome={jest.fn()} />);
+    await render(
+      <AlbumView state={{ status: "loading" }} achievements={ACHIEVEMENTS} onGoHome={jest.fn()} />,
+    );
 
     expect(screen.getByLabelText("Cargando tu álbum")).toBeOnTheScreen();
   });
 
   it("says when the album could not be loaded", async () => {
-    await render(<AlbumView state={{ status: "error" }} onGoHome={jest.fn()} />);
+    await render(
+      <AlbumView state={{ status: "error" }} achievements={ACHIEVEMENTS} onGoHome={jest.fn()} />,
+    );
 
     expect(screen.getByRole("alert")).toHaveTextContent("No pudimos cargar tu álbum.");
   });
@@ -19,6 +23,7 @@ describe("AlbumView", () => {
     await render(
       <AlbumView
         state={{ status: "ready", unlocked: ["first-lesson", "xp-100"] }}
+        achievements={ACHIEVEMENTS}
         onGoHome={jest.fn()}
       />,
     );
@@ -29,7 +34,11 @@ describe("AlbumView", () => {
 
   it("names every sticker, won or still to win, with how to win it", async () => {
     await render(
-      <AlbumView state={{ status: "ready", unlocked: ["first-lesson"] }} onGoHome={jest.fn()} />,
+      <AlbumView
+        state={{ status: "ready", unlocked: ["first-lesson"] }}
+        achievements={ACHIEVEMENTS}
+        onGoHome={jest.fn()}
+      />,
     );
 
     expect(screen.getByLabelText("Primer sticker, conseguida")).toBeOnTheScreen();
@@ -41,9 +50,34 @@ describe("AlbumView", () => {
     );
   });
 
+  it("shows only the stickers it is given, and counts out of them", async () => {
+    const shown: readonly Achievement[] = ACHIEVEMENTS.filter((a) => a.id !== "level-c1");
+    await render(
+      <AlbumView
+        state={{ status: "ready", unlocked: ["first-lesson"] }}
+        achievements={shown}
+        onGoHome={jest.fn()}
+      />,
+    );
+
+    expect(screen.getByText(`1 de ${shown.length} insignias`)).toBeOnTheScreen();
+    expect(screen.queryByLabelText(/^Nivel C1 completo/)).toBeNull();
+    expect(
+      screen.getByLabelText(
+        "Nivel A1 completo, por conseguir. Completa todas las lecciones de A1.",
+      ),
+    ).toBeOnTheScreen();
+  });
+
   it("goes back home", async () => {
     const onGoHome = jest.fn();
-    await render(<AlbumView state={{ status: "ready", unlocked: [] }} onGoHome={onGoHome} />);
+    await render(
+      <AlbumView
+        state={{ status: "ready", unlocked: [] }}
+        achievements={ACHIEVEMENTS}
+        onGoHome={onGoHome}
+      />,
+    );
 
     await fireEvent.press(screen.getByRole("button", { name: "Seguir aprendiendo" }));
     expect(onGoHome).toHaveBeenCalledTimes(1);

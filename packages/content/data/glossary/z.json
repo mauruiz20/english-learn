@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.zone",
+      "headword": "zone",
+      "kind": "word",
+      "forms": ["zone", "zones"],
+      "senses": [
+        {
+          "es": "zona",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.zoom",
       "headword": "zoom",
       "kind": "word",

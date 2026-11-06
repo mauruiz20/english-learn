@@ -1,0 +1,674 @@
+{
+  "items": [
+    {
+      "id": "a1.grammar.to-be",
+      "level": "A1",
+      "topics": ["grammar", "to-be-and-questions"],
+      "kind": "grammar",
+      "term": "to be (am / is / are)",
+      "es": "ser / estar (am / is / are)"
+    },
+    {
+      "id": "a1.grammar.a-an",
+      "level": "A1",
+      "topics": ["grammar", "food-and-drinks"],
+      "kind": "grammar",
+      "term": "a / an",
+      "es": "un, una (a + sonido de consonante, an + sonido de vocal)"
+    },
+    {
+      "id": "a1.grammar.plurals",
+      "level": "A1",
+      "topics": ["grammar", "my-family"],
+      "kind": "grammar",
+      "term": "plural nouns (books, boxes, children)",
+      "es": "plural de los sustantivos (-s, -es e irregulares)"
+    },
+    {
+      "id": "a1.grammar.this-that",
+      "level": "A1",
+      "topics": ["grammar", "colors-and-clothes"],
+      "kind": "grammar",
+      "term": "this / that / these / those",
+      "es": "este, ese / estos, esos"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.grammar.to-be-cloze-1",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "They ___ my friends.",
+      "answers": ["are"],
+      "distractors": ["is", "am"],
+      "es": "Ellos son mis amigos."
+    },
+    {
+      "id": "a1.grammar.to-be-cloze-2",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ it cold today?",
+      "answers": ["Is"],
+      "distractors": ["Are", "Am"],
+      "es": "¿Hace frío hoy?"
+    },
+    {
+      "id": "a1.grammar.to-be-cloze-3",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My brother ___ ten years old.",
+      "answers": ["is"],
+      "distractors": ["has", "have"],
+      "es": "Mi hermano tiene diez años."
+    },
+    {
+      "id": "a1.grammar.to-be-vocab-1",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'No estoy cansado'.",
+      "options": ["I don't tired.", "I no am tired.", "I'm not tired.", "I haven't tired."],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.grammar.to-be-choice-1",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Are they at school?",
+      "options": [
+        "¿Ella está en la escuela?",
+        "¿Están en la escuela?",
+        "¿Están en casa?",
+        "¿Estaban en la escuela?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.grammar.to-be-order-1",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["doctor?", "sister", "a", "Is", "your"],
+      "accepted": ["Is your sister a doctor?"],
+      "es": "¿Tu hermana es doctora?"
+    },
+    {
+      "id": "a1.grammar.to-be-write-1",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo veinte años.",
+      "accepted": ["I'm {twenty|20}[ years old]."]
+    },
+    {
+      "id": "a1.grammar.a-an-cloze-1",
+      "itemIds": ["a1.grammar.a-an"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My father is ___ doctor.",
+      "answers": ["a"],
+      "distractors": ["an", "two"],
+      "es": "Mi padre es doctor."
+    },
+    {
+      "id": "a1.grammar.a-an-cloze-2",
+      "itemIds": ["a1.grammar.a-an"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I have ___ orange and a banana.",
+      "answers": ["an"],
+      "distractors": ["a", "two"],
+      "es": "Tengo una naranja y un plátano."
+    },
+    {
+      "id": "a1.grammar.a-an-cloze-3",
+      "itemIds": ["a1.grammar.a-an"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's ___ old car.",
+      "answers": ["an"],
+      "distractors": ["a", "two"],
+      "es": "Es un auto viejo."
+    },
+    {
+      "id": "a1.grammar.a-an-vocab-1",
+      "itemIds": ["a1.grammar.a-an"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Which one is correct?",
+      "options": ["a hour", "an house", "an hour", "a apple"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.grammar.a-an-choice-1",
+      "itemIds": ["a1.grammar.a-an"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "He is an artist.",
+      "options": ["Ella es artista.", "Ellos son artistas.", "Él es arquitecto.", "Él es artista."],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.grammar.a-an-order-1",
+      "itemIds": ["a1.grammar.a-an"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["for", "egg", "eat", "an", "breakfast.", "I"],
+      "accepted": ["I eat an egg for breakfast."],
+      "es": "Como un huevo en el desayuno."
+    },
+    {
+      "id": "a1.grammar.a-an-write-1",
+      "itemIds": ["a1.grammar.a-an"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi madre es maestra.",
+      "accepted": ["My {mother|mom} is a teacher."]
+    },
+    {
+      "id": "a1.grammar.plurals-cloze-1",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My aunt has two ___.",
+      "answers": ["babies"],
+      "distractors": ["baby", "child"],
+      "es": "Mi tía tiene dos bebés."
+    },
+    {
+      "id": "a1.grammar.plurals-cloze-2",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There are two ___ in the photo.",
+      "answers": ["men"],
+      "distractors": ["man", "person"],
+      "es": "Hay dos hombres en la foto."
+    },
+    {
+      "id": "a1.grammar.plurals-vocab-1",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What is the plural of 'woman'?",
+      "options": ["womans", "women", "woman", "womens"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.grammar.plurals-vocab-2",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What is the plural of 'box'?",
+      "options": ["boxs", "box", "boxes", "boxies"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.grammar.plurals-choice-1",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The children are at home.",
+      "options": [
+        "El niño está en casa.",
+        "Las niñas están en la escuela.",
+        "Los niños no están en casa.",
+        "Los niños están en casa."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.grammar.plurals-order-1",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["are", "sisters", "teachers.", "My", "two"],
+      "accepted": ["My two sisters are teachers."],
+      "es": "Mis dos hermanas son maestras."
+    },
+    {
+      "id": "a1.grammar.plurals-write-1",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo tres hermanos.",
+      "accepted": ["I {have|have got} {three|3} {brothers|siblings}."]
+    },
+    {
+      "id": "a1.grammar.this-that-cloze-1",
+      "itemIds": ["a1.grammar.this-that"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ are my parents over there.",
+      "answers": ["Those"],
+      "distractors": ["That", "This"],
+      "es": "Esos de allá son mis padres."
+    },
+    {
+      "id": "a1.grammar.this-that-cloze-2",
+      "itemIds": ["a1.grammar.this-that"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I like ___ shoes.",
+      "answers": ["these"],
+      "distractors": ["this", "that"],
+      "es": "Me gustan estos zapatos."
+    },
+    {
+      "id": "a1.grammar.this-that-cloze-3",
+      "itemIds": ["a1.grammar.this-that"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ is my sister, Ana.",
+      "answers": ["This"],
+      "distractors": ["These", "Those"],
+      "es": "Esta es mi hermana, Ana."
+    },
+    {
+      "id": "a1.grammar.this-that-vocab-1",
+      "itemIds": ["a1.grammar.this-that"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'esos libros'.",
+      "options": ["these books", "those books", "that books", "those book"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.grammar.this-that-choice-1",
+      "itemIds": ["a1.grammar.this-that"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "That car is very old.",
+      "options": [
+        "Este auto es muy viejo.",
+        "Esos autos son muy viejos.",
+        "Ese auto es muy viejo.",
+        "Ese auto es muy nuevo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.grammar.this-that-order-1",
+      "itemIds": ["a1.grammar.this-that"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["keys?", "these", "your", "Are"],
+      "accepted": ["Are these your keys?"],
+      "es": "¿Estas son tus llaves?"
+    },
+    {
+      "id": "a1.grammar.this-that-write-1",
+      "itemIds": ["a1.grammar.this-that"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Esos zapatos son negros.",
+      "accepted": ["Those shoes are black."]
+    }
+  ],
+  "cards": [
+    {
+      "id": "a1.grammar.to-be",
+      "level": "A1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "El verbo to be",
+      "summary": "To be significa ser y estar. En presente tiene tres formas: am, is y are.",
+      "form": "I am · he / she / it is · you / we / they are (negativo: is not / isn't; pregunta: Are you...?)",
+      "uses": [
+        "Para decir quién eres, de dónde eres o a qué te dedicas: I'm Ana. I'm from Peru. I'm a student.",
+        "Para decir cómo estás o dónde estás: I'm tired. She's at home.",
+        "Para la edad: I'm ten years old (no I have ten years).",
+        "Contracciones frecuentes: I'm, you're, he's, she's, it's, we're, they're; isn't, aren't."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "Is very cold.",
+          "right": "It is very cold.",
+          "why": "En inglés el sujeto es obligatorio; si no hay otro, se usa it."
+        },
+        {
+          "wrong": "I have twenty years.",
+          "right": "I am twenty years old.",
+          "why": "La edad se dice con to be, no con have."
+        },
+        {
+          "wrong": "She no is my sister.",
+          "right": "She isn't my sister.",
+          "why": "La negación va después de to be: is not o isn't."
+        },
+        {
+          "wrong": "You are a student?",
+          "right": "Are you a student?",
+          "why": "En las preguntas, am, is o are van antes del sujeto."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I am a student.",
+          "es": "Soy estudiante."
+        },
+        {
+          "en": "She is my teacher.",
+          "es": "Ella es mi maestra."
+        },
+        {
+          "en": "We are from Mexico.",
+          "es": "Somos de México."
+        },
+        {
+          "en": "It is cold today.",
+          "es": "Hoy hace frío."
+        },
+        {
+          "en": "He isn't at home.",
+          "es": "Él no está en casa."
+        },
+        {
+          "en": "Are you happy?",
+          "es": "¿Estás contento?"
+        }
+      ],
+      "itemIds": ["a1.grammar.to-be"],
+      "exerciseIds": [
+        "a1.grammar.to-be-cloze-1",
+        "a1.grammar.to-be-cloze-2",
+        "a1.grammar.to-be-cloze-3",
+        "a1.grammar.to-be-vocab-1",
+        "a1.grammar.to-be-choice-1",
+        "a1.grammar.to-be-order-1",
+        "a1.grammar.to-be-write-1"
+      ]
+    },
+    {
+      "id": "a1.grammar.a-an",
+      "level": "A1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "A o an",
+      "summary": "A y an significan un o una. Se usa a antes de un sonido de consonante y an antes de un sonido de vocal.",
+      "form": "a + sonido de consonante (a book, a car) · an + sonido de vocal (an apple, an egg)",
+      "uses": [
+        "Con una sola cosa o persona: a book, an apple.",
+        "Para decir la profesión de alguien: She's a doctor. He's an artist.",
+        "Cuenta el sonido, no la letra: an hour (la h no suena), a university (suena como «iu»)."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "She is doctor.",
+          "right": "She is a doctor.",
+          "why": "Con una profesión en singular, el inglés usa a o an; el español no lleva artículo."
+        },
+        {
+          "wrong": "I have a apple.",
+          "right": "I have an apple.",
+          "why": "Apple empieza con sonido de vocal, así que va an."
+        },
+        {
+          "wrong": "I have a books.",
+          "right": "I have books.",
+          "why": "A y an son solo para una cosa; con un plural no se usan."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I have a dog.",
+          "es": "Tengo un perro."
+        },
+        {
+          "en": "She eats an apple every day.",
+          "es": "Ella come una manzana todos los días."
+        },
+        {
+          "en": "My mom is a teacher.",
+          "es": "Mi mamá es maestra."
+        },
+        {
+          "en": "He is an artist.",
+          "es": "Él es artista."
+        },
+        {
+          "en": "It's an old house.",
+          "es": "Es una casa vieja."
+        },
+        {
+          "en": "I need an umbrella.",
+          "es": "Necesito un paraguas."
+        }
+      ],
+      "itemIds": ["a1.grammar.a-an"],
+      "exerciseIds": [
+        "a1.grammar.a-an-cloze-1",
+        "a1.grammar.a-an-cloze-2",
+        "a1.grammar.a-an-cloze-3",
+        "a1.grammar.a-an-vocab-1",
+        "a1.grammar.a-an-choice-1",
+        "a1.grammar.a-an-order-1",
+        "a1.grammar.a-an-write-1"
+      ]
+    },
+    {
+      "id": "a1.grammar.plurals",
+      "level": "A1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "El plural",
+      "summary": "Para hablar de más de una cosa, casi siempre se agrega -s. Algunas palabras agregan -es y otras cambian por completo.",
+      "form": "book → books · box → boxes · baby → babies · child → children",
+      "uses": [
+        "La mayoría agrega -s: car → cars, sister → sisters.",
+        "Después de s, x, ch o sh se agrega -es: bus → buses, box → boxes, watch → watches.",
+        "Consonante + y cambia a -ies: baby → babies, city → cities.",
+        "Irregulares frecuentes: man → men, woman → women, child → children, person → people."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I have two childs.",
+          "right": "I have two children.",
+          "why": "Child tiene un plural irregular: children."
+        },
+        {
+          "wrong": "They are bigs houses.",
+          "right": "They are big houses.",
+          "why": "Los adjetivos en inglés no tienen plural: big houses."
+        },
+        {
+          "wrong": "The people is nice.",
+          "right": "The people are nice.",
+          "why": "People ya es plural, así que va con are."
+        }
+      ],
+      "examples": [
+        {
+          "en": "I have two brothers.",
+          "es": "Tengo dos hermanos."
+        },
+        {
+          "en": "There are three boxes on the table.",
+          "es": "Hay tres cajas sobre la mesa."
+        },
+        {
+          "en": "My sister has two babies.",
+          "es": "Mi hermana tiene dos bebés."
+        },
+        {
+          "en": "The children are at school.",
+          "es": "Los niños están en la escuela."
+        },
+        {
+          "en": "Those women are teachers.",
+          "es": "Esas mujeres son maestras."
+        },
+        {
+          "en": "These people are my friends.",
+          "es": "Estas personas son mis amigos."
+        }
+      ],
+      "itemIds": ["a1.grammar.plurals"],
+      "exerciseIds": [
+        "a1.grammar.plurals-cloze-1",
+        "a1.grammar.plurals-cloze-2",
+        "a1.grammar.plurals-vocab-1",
+        "a1.grammar.plurals-vocab-2",
+        "a1.grammar.plurals-choice-1",
+        "a1.grammar.plurals-order-1",
+        "a1.grammar.plurals-write-1"
+      ]
+    },
+    {
+      "id": "a1.grammar.this-that",
+      "level": "A1",
+      "topic": "grammar",
+      "kind": "grammar",
+      "title": "This, that, these, those",
+      "summary": "Sirven para señalar cosas y personas. This y these son para lo que está cerca; that y those, para lo que está lejos.",
+      "form": "cerca: this (singular) · these (plural) — lejos: that (singular) · those (plural)",
+      "uses": [
+        "This o that + singular: this shirt, that car.",
+        "These o those + plural: these shoes, those books.",
+        "Para presentar a alguien: This is my sister, Ana.",
+        "Solos, sin sustantivo: What's that? Is this your bag?"
+      ],
+      "pitfalls": [
+        {
+          "wrong": "This shoes are new.",
+          "right": "These shoes are new.",
+          "why": "Con un plural se usa these (cerca) o those (lejos), no this."
+        },
+        {
+          "wrong": "Those is my car.",
+          "right": "That is my car.",
+          "why": "That es para una sola cosa; those es para varias."
+        },
+        {
+          "wrong": "This are my friends.",
+          "right": "These are my friends.",
+          "why": "Con are y un plural, se usa these."
+        }
+      ],
+      "examples": [
+        {
+          "en": "This is my brother, Tom.",
+          "es": "Este es mi hermano, Tom."
+        },
+        {
+          "en": "That house is very big.",
+          "es": "Esa casa es muy grande."
+        },
+        {
+          "en": "These apples are green.",
+          "es": "Estas manzanas son verdes."
+        },
+        {
+          "en": "Those children are my cousins.",
+          "es": "Esos niños son mis primos."
+        },
+        {
+          "en": "Is this your phone?",
+          "es": "¿Este es tu teléfono?"
+        },
+        {
+          "en": "What's that?",
+          "es": "¿Qué es eso?"
+        }
+      ],
+      "itemIds": ["a1.grammar.this-that"],
+      "exerciseIds": [
+        "a1.grammar.this-that-cloze-1",
+        "a1.grammar.this-that-cloze-2",
+        "a1.grammar.this-that-cloze-3",
+        "a1.grammar.this-that-vocab-1",
+        "a1.grammar.this-that-choice-1",
+        "a1.grammar.this-that-order-1",
+        "a1.grammar.this-that-write-1"
+      ]
+    }
+  ]
+}

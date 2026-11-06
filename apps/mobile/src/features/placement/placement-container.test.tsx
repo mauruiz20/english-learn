@@ -25,8 +25,19 @@ jest.mock("expo-router", () => ({
 const TODAY = localDate("2026-10-29");
 const b1Lesson = { ...lesson, id: "b1.routine.lesson-001", level: "B1" } as const;
 const content = createCorpus([{ lessons: [lesson, b1Lesson], placement: placementBank(5) }]);
+/** Lessons at every level, A1 and C1 included. */
+const allLevels = createCorpus([
+  {
+    lessons: (["A1", "A2", "B1", "B2", "C1"] as const).map((level) => ({
+      ...lesson,
+      id: `${level.toLowerCase()}.routine.lesson-001`,
+      level,
+    })),
+    placement: placementBank(5),
+  },
+]);
 
-function renderPlacement(repository: FakeProgressRepository) {
+function renderPlacement(repository: FakeProgressRepository, bank = content) {
   return render(
     <AppServicesProvider
       services={{
@@ -39,7 +50,7 @@ function renderPlacement(repository: FakeProgressRepository) {
         sounds,
       }}
     >
-      <PlacementContainer content={content} />
+      <PlacementContainer content={bank} />
     </AppServicesProvider>,
   );
 }
@@ -133,6 +144,26 @@ describe("PlacementContainer", () => {
 
     expect(await screen.findByLabelText("Tu nivel estimado: A1")).toBeOnTheScreen();
     expect(screen.getByText(/Te recomendamos las de nivel A2/)).toBeOnTheScreen();
+  });
+
+  it("shows the A1 lessons when the estimate is A1 and A1 has lessons", async () => {
+    await renderPlacement(createFakeRepository(), allLevels);
+
+    await fireEvent.press(screen.getByRole("button", { name: "Empezar" }));
+    await answerAll("no");
+
+    expect(await screen.findByLabelText("Tu nivel estimado: A1")).toBeOnTheScreen();
+    expect(screen.getByText("Te mostraremos las lecciones de nivel A1.")).toBeOnTheScreen();
+  });
+
+  it("shows the C1 lessons when the estimate is C1 and C1 has lessons", async () => {
+    await renderPlacement(createFakeRepository(), allLevels);
+
+    await fireEvent.press(screen.getByRole("button", { name: "Empezar" }));
+    await answerAll("ok");
+
+    expect(await screen.findByLabelText("Tu nivel estimado: C1")).toBeOnTheScreen();
+    expect(screen.getByText("Te mostraremos las lecciones de nivel C1.")).toBeOnTheScreen();
   });
 
   it("overwrites a previous result when the test is retaken", async () => {

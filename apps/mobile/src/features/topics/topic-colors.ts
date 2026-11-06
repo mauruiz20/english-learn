@@ -19,6 +19,15 @@ export type TopicHighlighter = (typeof TOPIC_PALETTE)[number];
  * corpus); a topic missing here falls back to a stable hash of its slug.
  */
 export const TOPIC_HIGHLIGHTERS: Readonly<Record<string, TopicHighlighter>> = {
+  // A1, in index order.
+  greetings: "sky",
+  "to-be-and-questions": "lilac",
+  "numbers-and-age": "orange",
+  "my-family": "pink",
+  "colors-and-clothes": "green",
+  "food-and-drinks": "orange",
+  "days-and-time": "sky",
+  "my-house": "lilac",
   // A2, in index order.
   "daily-routine": "sky",
   directions: "lilac",
@@ -51,6 +60,15 @@ export const TOPIC_HIGHLIGHTERS: Readonly<Record<string, TopicHighlighter>> = {
   "science-and-ethics": "sky",
   "travel-and-identity": "orange",
   "work-and-leadership": "lilac",
+  // C1, in index order (listed ahead of their lessons, like their names).
+  "arts-and-culture": "pink",
+  "global-issues": "green",
+  "language-and-communication": "sky",
+  "law-and-ethics": "orange",
+  "politics-and-media": "lilac",
+  "psychology-and-behaviour": "green",
+  "science-and-society": "sky",
+  "work-and-negotiation": "orange",
   // Study cards ("Fichas"), in the order of their list.
   grammar: "lilac",
   "phrasal-verbs": "orange",

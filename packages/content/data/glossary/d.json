@@ -93,6 +93,18 @@
       ]
     },
     {
+      "id": "glossary.dare",
+      "headword": "dare",
+      "kind": "word",
+      "forms": ["dare", "dares", "dared"],
+      "senses": [
+        {
+          "es": "atreverse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.dark",
       "headword": "dark",
       "kind": "word",
@@ -132,6 +144,18 @@
         },
         {
           "es": "cita",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.daughter",
+      "headword": "daughter",
+      "kind": "word",
+      "forms": ["daughter", "daughters"],
+      "senses": [
+        {
+          "es": "hija",
           "pos": "noun"
         }
       ]
@@ -212,6 +236,18 @@
       ]
     },
     {
+      "id": "glossary.deal-breaker",
+      "headword": "deal-breaker",
+      "kind": "word",
+      "forms": ["deal-breaker"],
+      "senses": [
+        {
+          "es": "condición innegociable",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dealer",
       "headword": "dealer",
       "kind": "word",
@@ -220,6 +256,18 @@
         {
           "es": "concesionario, vendedor",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dear",
+      "headword": "dear",
+      "kind": "word",
+      "forms": ["dear"],
+      "senses": [
+        {
+          "es": "querido; estimado (en cartas)",
+          "pos": "adjective"
         }
       ]
     },
@@ -247,6 +295,18 @@
       "senses": [
         {
           "es": "deuda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.decade",
+      "headword": "decade",
+      "kind": "word",
+      "forms": ["decade", "decades"],
+      "senses": [
+        {
+          "es": "década",
           "pos": "noun"
         }
       ]
@@ -300,6 +360,18 @@
       ]
     },
     {
+      "id": "glossary.decrease",
+      "headword": "decrease",
+      "kind": "word",
+      "forms": ["decrease", "decreases", "decreased", "decreasing"],
+      "senses": [
+        {
+          "es": "disminuir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.deduction",
       "headword": "deduction",
       "kind": "word",
@@ -307,6 +379,42 @@
       "senses": [
         {
           "es": "deducción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.deeply",
+      "headword": "deeply",
+      "kind": "word",
+      "forms": ["deeply"],
+      "senses": [
+        {
+          "es": "profundamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.defend",
+      "headword": "defend",
+      "kind": "word",
+      "forms": ["defend", "defends", "defended", "defending"],
+      "senses": [
+        {
+          "es": "defender",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.defender",
+      "headword": "defender",
+      "kind": "word",
+      "forms": ["defender", "defenders"],
+      "senses": [
+        {
+          "es": "defensor",
           "pos": "noun"
         }
       ]
@@ -404,6 +512,42 @@
       ]
     },
     {
+      "id": "glossary.delivery",
+      "headword": "delivery",
+      "kind": "word",
+      "forms": ["delivery", "deliveries"],
+      "senses": [
+        {
+          "es": "entrega",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.demand",
+      "headword": "demand",
+      "kind": "word",
+      "forms": ["demand", "demands"],
+      "senses": [
+        {
+          "es": "exigencia, demanda",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.democracy",
+      "headword": "democracy",
+      "kind": "word",
+      "forms": ["democracy"],
+      "senses": [
+        {
+          "es": "democracia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dentist",
       "headword": "dentist",
       "kind": "word",
@@ -476,6 +620,18 @@
       ]
     },
     {
+      "id": "glossary.deserve",
+      "headword": "deserve",
+      "kind": "word",
+      "forms": ["deserve", "deserves", "deserved"],
+      "senses": [
+        {
+          "es": "merecer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.design",
       "headword": "design",
       "kind": "word",
@@ -500,6 +656,18 @@
         {
           "es": "diseñador",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.desirable",
+      "headword": "desirable",
+      "kind": "word",
+      "forms": ["desirable"],
+      "senses": [
+        {
+          "es": "deseable",
+          "pos": "adjective"
         }
       ]
     },
@@ -564,6 +732,30 @@
       ]
     },
     {
+      "id": "glossary.detailed",
+      "headword": "detailed",
+      "kind": "word",
+      "forms": ["detailed"],
+      "senses": [
+        {
+          "es": "detallado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.detect",
+      "headword": "detect",
+      "kind": "word",
+      "forms": ["detect", "detects", "detected", "detecting"],
+      "senses": [
+        {
+          "es": "detectar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.determined",
       "headword": "determined",
       "kind": "word",
@@ -584,6 +776,18 @@
         {
           "es": "desarrollar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.development",
+      "headword": "development",
+      "kind": "word",
+      "forms": ["development", "developments"],
+      "senses": [
+        {
+          "es": "desarrollo",
+          "pos": "noun"
         }
       ]
     },
@@ -724,6 +928,18 @@
       ]
     },
     {
+      "id": "glossary.dilemma",
+      "headword": "dilemma",
+      "kind": "word",
+      "forms": ["dilemma", "dilemmas"],
+      "senses": [
+        {
+          "es": "dilema",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dinner",
       "headword": "dinner",
       "kind": "word",
@@ -744,6 +960,18 @@
         {
           "es": "título, diploma",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.diplomatic",
+      "headword": "diplomatic",
+      "kind": "word",
+      "forms": ["diplomatic"],
+      "senses": [
+        {
+          "es": "diplomático",
+          "pos": "adjective"
         }
       ]
     },
@@ -776,6 +1004,18 @@
       ]
     },
     {
+      "id": "glossary.directness",
+      "headword": "directness",
+      "kind": "word",
+      "forms": ["directness"],
+      "senses": [
+        {
+          "es": "franqueza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.director",
       "headword": "director",
       "kind": "word",
@@ -796,6 +1036,42 @@
         {
           "es": "sucio",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disadvantage",
+      "headword": "disadvantage",
+      "kind": "word",
+      "forms": ["disadvantage", "disadvantages"],
+      "senses": [
+        {
+          "es": "desventaja",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disagree",
+      "headword": "disagree",
+      "kind": "word",
+      "forms": ["disagree", "disagrees", "disagreed"],
+      "senses": [
+        {
+          "es": "no estar de acuerdo",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disagreement",
+      "headword": "disagreement",
+      "kind": "word",
+      "forms": ["disagreement", "disagreements"],
+      "senses": [
+        {
+          "es": "desacuerdo",
+          "pos": "noun"
         }
       ]
     },
@@ -872,6 +1148,30 @@
       ]
     },
     {
+      "id": "glossary.discussion",
+      "headword": "discussion",
+      "kind": "word",
+      "forms": ["discussion", "discussions"],
+      "senses": [
+        {
+          "es": "conversación, debate",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.disease",
+      "headword": "disease",
+      "kind": "word",
+      "forms": ["disease", "diseases"],
+      "senses": [
+        {
+          "es": "enfermedad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.dish",
       "headword": "dish",
       "kind": "word",
@@ -888,6 +1188,18 @@
       ]
     },
     {
+      "id": "glossary.displaced",
+      "headword": "displaced",
+      "kind": "word",
+      "forms": ["displaced"],
+      "senses": [
+        {
+          "es": "desplazado (obligado a dejar su hogar)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.disposable",
       "headword": "disposable",
       "kind": "word",
@@ -896,6 +1208,54 @@
         {
           "es": "desechable (no es disponible)",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.distinguish",
+      "headword": "distinguish",
+      "kind": "word",
+      "forms": ["distinguish", "distinguishes", "distinguished"],
+      "senses": [
+        {
+          "es": "distinguir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.district",
+      "headword": "district",
+      "kind": "word",
+      "forms": ["district", "districts"],
+      "senses": [
+        {
+          "es": "distrito, barrio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.diverge",
+      "headword": "diverge",
+      "kind": "word",
+      "forms": ["diverge", "diverges", "diverged"],
+      "senses": [
+        {
+          "es": "separarse, no coincidir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.divide",
+      "headword": "divide",
+      "kind": "word",
+      "forms": ["divide", "divides", "divided", "dividing"],
+      "senses": [
+        {
+          "es": "dividir",
+          "pos": "verb"
         }
       ]
     },
@@ -964,6 +1324,18 @@
       ]
     },
     {
+      "id": "glossary.documentary",
+      "headword": "documentary",
+      "kind": "word",
+      "forms": ["documentary", "documentaries"],
+      "senses": [
+        {
+          "es": "documental",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.doesn-t",
       "headword": "doesn't",
       "kind": "word",
@@ -1000,6 +1372,18 @@
       ]
     },
     {
+      "id": "glossary.dominate",
+      "headword": "dominate",
+      "kind": "word",
+      "forms": ["dominate", "dominates", "dominated"],
+      "senses": [
+        {
+          "es": "dominar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.don-t",
       "headword": "don't",
       "kind": "word",
@@ -1008,6 +1392,18 @@
         {
           "es": "no (presente: I don't = yo no)",
           "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.donation",
+      "headword": "donation",
+      "kind": "word",
+      "forms": ["donation", "donations"],
+      "senses": [
+        {
+          "es": "donación, donativo",
+          "pos": "noun"
         }
       ]
     },
@@ -1047,6 +1443,18 @@
         },
         {
           "es": "doble",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.double-edged",
+      "headword": "double-edged",
+      "kind": "word",
+      "forms": ["double-edged"],
+      "senses": [
+        {
+          "es": "de doble filo",
           "pos": "adjective"
         }
       ]
@@ -1100,6 +1508,18 @@
         {
           "es": "en el centro",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.dozen",
+      "headword": "dozen",
+      "kind": "word",
+      "forms": ["dozen", "dozens"],
+      "senses": [
+        {
+          "es": "docena (dozens: decenas)",
+          "pos": "noun"
         }
       ]
     },
@@ -1353,6 +1773,18 @@
       ]
     },
     {
+      "id": "glossary.dry",
+      "headword": "dry",
+      "kind": "word",
+      "forms": ["dry"],
+      "senses": [
+        {
+          "es": "seco",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.due",
       "headword": "due",
       "kind": "word",
@@ -1389,6 +1821,18 @@
         {
           "es": "durante",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.duty",
+      "headword": "duty",
+      "kind": "word",
+      "forms": ["duty", "duties"],
+      "senses": [
+        {
+          "es": "deber, obligación",
+          "pos": "noun"
         }
       ]
     }

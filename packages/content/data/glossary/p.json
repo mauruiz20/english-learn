@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.pace",
+      "headword": "pace",
+      "kind": "word",
+      "forms": ["pace"],
+      "senses": [
+        {
+          "es": "ritmo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pack",
       "headword": "pack",
       "kind": "word",
@@ -73,10 +85,22 @@
       ]
     },
     {
+      "id": "glossary.painful",
+      "headword": "painful",
+      "kind": "word",
+      "forms": ["painful"],
+      "senses": [
+        {
+          "es": "doloroso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.paint",
       "headword": "paint",
       "kind": "word",
-      "forms": ["paint", "paints", "painted", "painting"],
+      "forms": ["paint", "paints", "painted", "painting", "paintings"],
       "senses": [
         {
           "es": "pintar",
@@ -89,6 +113,18 @@
       ]
     },
     {
+      "id": "glossary.painter",
+      "headword": "painter",
+      "kind": "word",
+      "forms": ["painter", "painters"],
+      "senses": [
+        {
+          "es": "pintor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pair",
       "headword": "pair",
       "kind": "word",
@@ -96,6 +132,18 @@
       "senses": [
         {
           "es": "par",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pandemic",
+      "headword": "pandemic",
+      "kind": "word",
+      "forms": ["pandemic"],
+      "senses": [
+        {
+          "es": "pandemia",
           "pos": "noun"
         }
       ]
@@ -253,6 +301,18 @@
         {
           "es": "participio",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.particularly",
+      "headword": "particularly",
+      "kind": "word",
+      "forms": ["particularly"],
+      "senses": [
+        {
+          "es": "especialmente",
+          "pos": "adverb"
         }
       ]
     },
@@ -473,6 +533,18 @@
       ]
     },
     {
+      "id": "glossary.peace",
+      "headword": "peace",
+      "kind": "word",
+      "forms": ["peace"],
+      "senses": [
+        {
+          "es": "paz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pedro",
       "headword": "Pedro",
       "kind": "word",
@@ -480,6 +552,42 @@
       "senses": [
         {
           "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
+      "id": "glossary.peer",
+      "headword": "peer",
+      "kind": "word",
+      "forms": ["peer", "peers"],
+      "senses": [
+        {
+          "es": "par, igual",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.peer-pressure",
+      "headword": "peer pressure",
+      "kind": "phrase",
+      "forms": ["peer pressure"],
+      "senses": [
+        {
+          "es": "presión de grupo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.peer-review",
+      "headword": "peer review",
+      "kind": "phrase",
+      "forms": ["peer review"],
+      "senses": [
+        {
+          "es": "revisión por pares",
+          "pos": "noun"
         }
       ]
     },
@@ -548,6 +656,30 @@
       ]
     },
     {
+      "id": "glossary.perfection",
+      "headword": "perfection",
+      "kind": "word",
+      "forms": ["perfection"],
+      "senses": [
+        {
+          "es": "perfección",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.perfectly",
+      "headword": "perfectly",
+      "kind": "word",
+      "forms": ["perfectly"],
+      "senses": [
+        {
+          "es": "perfectamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.performance",
       "headword": "performance",
       "kind": "word",
@@ -576,6 +708,42 @@
       ]
     },
     {
+      "id": "glossary.permanent",
+      "headword": "permanent",
+      "kind": "word",
+      "forms": ["permanent"],
+      "senses": [
+        {
+          "es": "permanente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.permanently",
+      "headword": "permanently",
+      "kind": "word",
+      "forms": ["permanently"],
+      "senses": [
+        {
+          "es": "de forma permanente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.permission",
+      "headword": "permission",
+      "kind": "word",
+      "forms": ["permission"],
+      "senses": [
+        {
+          "es": "permiso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.permit",
       "headword": "permit",
       "kind": "word",
@@ -599,6 +767,30 @@
       "senses": [
         {
           "es": "persona",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.personal",
+      "headword": "personal",
+      "kind": "word",
+      "forms": ["personal"],
+      "senses": [
+        {
+          "es": "personal",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.personality",
+      "headword": "personality",
+      "kind": "word",
+      "forms": ["personality", "personalities"],
+      "senses": [
+        {
+          "es": "personalidad",
           "pos": "noun"
         }
       ]
@@ -828,6 +1020,18 @@
       ]
     },
     {
+      "id": "glossary.plain",
+      "headword": "plain",
+      "kind": "word",
+      "forms": ["plain"],
+      "senses": [
+        {
+          "es": "claro, sencillo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.plan",
       "headword": "plan",
       "kind": "word",
@@ -900,6 +1104,18 @@
       ]
     },
     {
+      "id": "glossary.platform",
+      "headword": "platform",
+      "kind": "word",
+      "forms": ["platform", "platforms"],
+      "senses": [
+        {
+          "es": "plataforma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.play",
       "headword": "play",
       "kind": "word",
@@ -916,6 +1132,18 @@
         {
           "es": "tocar (un instrumento)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.play-down",
+      "headword": "play down",
+      "kind": "phrase",
+      "forms": ["play down", "plays down", "played down", "playing down"],
+      "senses": [
+        {
+          "es": "restar importancia a",
+          "pos": "phrasal verb"
         }
       ]
     },
@@ -952,6 +1180,30 @@
         {
           "es": "por favor",
           "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pleased",
+      "headword": "pleased",
+      "kind": "word",
+      "forms": ["pleased"],
+      "senses": [
+        {
+          "es": "contento, encantado (pleased to meet you: mucho gusto)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pleasing",
+      "headword": "pleasing",
+      "kind": "word",
+      "forms": ["pleasing"],
+      "senses": [
+        {
+          "es": "agradable",
+          "pos": "adjective"
         }
       ]
     },
@@ -1020,6 +1272,18 @@
       ]
     },
     {
+      "id": "glossary.plus",
+      "headword": "plus",
+      "kind": "word",
+      "forms": ["plus"],
+      "senses": [
+        {
+          "es": "más (en una suma)",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
       "id": "glossary.point",
       "headword": "point",
       "kind": "word",
@@ -1056,6 +1320,18 @@
       ]
     },
     {
+      "id": "glossary.polarized",
+      "headword": "polarized",
+      "kind": "word",
+      "forms": ["polarized"],
+      "senses": [
+        {
+          "es": "polarizado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.police",
       "headword": "police",
       "kind": "word",
@@ -1088,6 +1364,30 @@
         {
           "es": "amable, cortés",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.political",
+      "headword": "political",
+      "kind": "word",
+      "forms": ["political"],
+      "senses": [
+        {
+          "es": "político",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.politician",
+      "headword": "politician",
+      "kind": "word",
+      "forms": ["politician", "politicians"],
+      "senses": [
+        {
+          "es": "político",
+          "pos": "noun"
         }
       ]
     },
@@ -1140,6 +1440,18 @@
       ]
     },
     {
+      "id": "glossary.poor",
+      "headword": "poor",
+      "kind": "word",
+      "forms": ["poor", "poorer", "poorest"],
+      "senses": [
+        {
+          "es": "pobre; deficiente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.popular",
       "headword": "popular",
       "kind": "word",
@@ -1148,6 +1460,18 @@
         {
           "es": "popular, que gusta mucho",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.population",
+      "headword": "population",
+      "kind": "word",
+      "forms": ["population"],
+      "senses": [
+        {
+          "es": "población",
+          "pos": "noun"
         }
       ]
     },
@@ -1164,6 +1488,18 @@
       ]
     },
     {
+      "id": "glossary.pose",
+      "headword": "pose",
+      "kind": "word",
+      "forms": ["pose", "poses", "posed", "posing"],
+      "senses": [
+        {
+          "es": "representar, plantear (pose a threat)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.position",
       "headword": "position",
       "kind": "word",
@@ -1175,6 +1511,18 @@
         },
         {
           "es": "posición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.possession",
+      "headword": "possession",
+      "kind": "word",
+      "forms": ["possession"],
+      "senses": [
+        {
+          "es": "posesión",
           "pos": "noun"
         }
       ]
@@ -1228,6 +1576,18 @@
       ]
     },
     {
+      "id": "glossary.posting",
+      "headword": "posting",
+      "kind": "word",
+      "forms": ["posting", "postings"],
+      "senses": [
+        {
+          "es": "anuncio (job posting: oferta de empleo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pound",
       "headword": "pound",
       "kind": "word",
@@ -1235,6 +1595,18 @@
       "senses": [
         {
           "es": "libra (peso: 0.45 kg; moneda)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.poverty",
+      "headword": "poverty",
+      "kind": "word",
+      "forms": ["poverty"],
+      "senses": [
+        {
+          "es": "pobreza",
           "pos": "noun"
         }
       ]
@@ -1256,6 +1628,18 @@
       ]
     },
     {
+      "id": "glossary.powerful",
+      "headword": "powerful",
+      "kind": "word",
+      "forms": ["powerful"],
+      "senses": [
+        {
+          "es": "poderoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.practice",
       "headword": "practice",
       "kind": "word",
@@ -1267,6 +1651,30 @@
         },
         {
           "es": "práctica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.precisely",
+      "headword": "precisely",
+      "kind": "word",
+      "forms": ["precisely"],
+      "senses": [
+        {
+          "es": "con precisión",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.precondition",
+      "headword": "precondition",
+      "kind": "word",
+      "forms": ["precondition"],
+      "senses": [
+        {
+          "es": "condición previa",
           "pos": "noun"
         }
       ]
@@ -1292,6 +1700,18 @@
         {
           "es": "preferir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.preference",
+      "headword": "preference",
+      "kind": "word",
+      "forms": ["preference"],
+      "senses": [
+        {
+          "es": "preferencia",
+          "pos": "noun"
         }
       ]
     },
@@ -1347,7 +1767,7 @@
       "id": "glossary.present",
       "headword": "present",
       "kind": "word",
-      "forms": ["present"],
+      "forms": ["present", "presented", "presents"],
       "senses": [
         {
           "es": "presente (tiempo verbal)",
@@ -1356,6 +1776,10 @@
         {
           "es": "regalo",
           "pos": "noun"
+        },
+        {
+          "es": "presentar",
+          "pos": "verb"
         }
       ]
     },
@@ -1392,6 +1816,18 @@
         {
           "es": "presión",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pretend",
+      "headword": "pretend",
+      "kind": "word",
+      "forms": ["pretend", "pretends", "pretended"],
+      "senses": [
+        {
+          "es": "fingir",
+          "pos": "verb"
         }
       ]
     },
@@ -1512,6 +1948,18 @@
       ]
     },
     {
+      "id": "glossary.probable",
+      "headword": "probable",
+      "kind": "word",
+      "forms": ["probable"],
+      "senses": [
+        {
+          "es": "probable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.probably",
       "headword": "probably",
       "kind": "word",
@@ -1543,6 +1991,30 @@
       "senses": [
         {
           "es": "proceso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.procrastinate",
+      "headword": "procrastinate",
+      "kind": "word",
+      "forms": ["procrastinate", "procrastinates"],
+      "senses": [
+        {
+          "es": "dejar las cosas para más tarde, procrastinar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.procrastination",
+      "headword": "procrastination",
+      "kind": "word",
+      "forms": ["procrastination"],
+      "senses": [
+        {
+          "es": "procrastinación",
           "pos": "noun"
         }
       ]
@@ -1584,6 +2056,30 @@
       ]
     },
     {
+      "id": "glossary.productivity",
+      "headword": "productivity",
+      "kind": "word",
+      "forms": ["productivity"],
+      "senses": [
+        {
+          "es": "productividad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.profession",
+      "headword": "profession",
+      "kind": "word",
+      "forms": ["profession", "professions"],
+      "senses": [
+        {
+          "es": "profesión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.professor",
       "headword": "professor",
       "kind": "word",
@@ -1591,6 +2087,18 @@
       "senses": [
         {
           "es": "profesor, profesora (universitario)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.profit",
+      "headword": "profit",
+      "kind": "word",
+      "forms": ["profit", "profits"],
+      "senses": [
+        {
+          "es": "ganancia, beneficio",
           "pos": "noun"
         }
       ]
@@ -1676,6 +2184,18 @@
       ]
     },
     {
+      "id": "glossary.properly",
+      "headword": "properly",
+      "kind": "word",
+      "forms": ["properly"],
+      "senses": [
+        {
+          "es": "correctamente, como es debido",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.proposal",
       "headword": "proposal",
       "kind": "word",
@@ -1688,6 +2208,30 @@
       ]
     },
     {
+      "id": "glossary.pros",
+      "headword": "pros",
+      "kind": "word",
+      "forms": ["pros"],
+      "senses": [
+        {
+          "es": "pros, ventajas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pros-and-cons",
+      "headword": "pros and cons",
+      "kind": "phrase",
+      "forms": ["pros and cons"],
+      "senses": [
+        {
+          "es": "los pros y los contras",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.protect",
       "headword": "protect",
       "kind": "word",
@@ -1696,6 +2240,18 @@
         {
           "es": "proteger",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.protection",
+      "headword": "protection",
+      "kind": "word",
+      "forms": ["protection", "protections"],
+      "senses": [
+        {
+          "es": "protección",
+          "pos": "noun"
         }
       ]
     },
@@ -1788,6 +2344,18 @@
       ]
     },
     {
+      "id": "glossary.publication",
+      "headword": "publication",
+      "kind": "word",
+      "forms": ["publication", "publications"],
+      "senses": [
+        {
+          "es": "publicación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.publish",
       "headword": "publish",
       "kind": "word",
@@ -1808,6 +2376,22 @@
         {
           "es": "jalar, tirar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.purchase",
+      "headword": "purchase",
+      "kind": "word",
+      "forms": ["purchase", "purchases", "purchased", "purchasing"],
+      "senses": [
+        {
+          "es": "comprar, adquirir",
+          "pos": "verb"
+        },
+        {
+          "es": "compra",
+          "pos": "noun"
         }
       ]
     },

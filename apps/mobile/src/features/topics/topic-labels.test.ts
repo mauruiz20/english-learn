@@ -25,6 +25,34 @@ describe("topicLabel", () => {
     expect(topicLabel("media-and-misinformation")).toBe("Medios y desinformación");
   });
 
+  it.each([
+    ["greetings", "Saludos y presentaciones"],
+    ["to-be-and-questions", "To be y preguntas"],
+    ["numbers-and-age", "Números y edad"],
+    ["my-family", "Mi familia"],
+    ["colors-and-clothes", "Colores y ropa"],
+    ["food-and-drinks", "Comidas y bebidas"],
+    ["days-and-time", "Días y horas"],
+    ["my-house", "Mi casa"],
+  ])("names the A1 topic %s", (topic, label) => {
+    expect(topicLabel(topic)).toBe(label);
+  });
+
+  // The C1 lessons are written apart from the app: their topics are named here ahead of time,
+  // so that content needs no app change (see the app README, "Topic names and colors").
+  it.each([
+    ["arts-and-culture", "Arte y cultura"],
+    ["global-issues", "Problemas globales"],
+    ["language-and-communication", "Lenguaje y comunicación"],
+    ["law-and-ethics", "Derecho y ética"],
+    ["politics-and-media", "Política y medios"],
+    ["psychology-and-behaviour", "Psicología y conducta"],
+    ["science-and-society", "Ciencia y sociedad"],
+    ["work-and-negotiation", "Trabajo y negociación"],
+  ])("names the C1 topic %s", (topic, label) => {
+    expect(topicLabel(topic)).toBe(label);
+  });
+
   it("names the study cards' topics", () => {
     expect(topicLabel("grammar")).toBe("Gramática");
     expect(topicLabel("phrasal-verbs")).toBe("Phrasal verbs");

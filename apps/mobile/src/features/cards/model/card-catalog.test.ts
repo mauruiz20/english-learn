@@ -50,7 +50,7 @@ describe("cardGroups", () => {
 
     expect(groups.map((g) => g.label)).toEqual(["Gramática", "Phrasal verbs", "Vocabulario"]);
     expect(groups.map((g) => g.topic)).toEqual(["grammar", "phrasal-verbs", "vocabulary"]);
-    expect(groups[0]!.levels.map((l) => l.level)).toEqual(["A2", "B1", "B2"]);
+    expect(groups[0]!.levels.slice(0, 4).map((l) => l.level)).toEqual(["A1", "A2", "B1", "B2"]);
     const rows = groups.flatMap((g) => g.levels.flatMap((l) => l.cards));
     expect(rows).toHaveLength(corpus.cards.length);
     expect(rows.find((r) => r.id === card.id)).toEqual({

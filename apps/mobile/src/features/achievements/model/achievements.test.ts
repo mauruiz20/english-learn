@@ -1,8 +1,11 @@
+import { createCorpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
+import { lesson } from "@/features/lesson/model/fixtures";
 import { EMPTY_STREAK, initialState, localDate, type ReviewState } from "@english-learn/domain";
 import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
 import {
   ACHIEVEMENTS,
+  albumAchievements,
   achievementFacts,
   newlyUnlocked,
   unlockedAchievements,
@@ -59,6 +62,8 @@ describe("unlockedAchievements", () => {
     expect(unlockedAchievements({ ...none, topicsDone: 1 })).toEqual(["first-topic"]);
     expect(unlockedAchievements({ ...none, levelsDone: ["B1"] })).toEqual(["level-b1"]);
     expect(unlockedAchievements({ ...none, levelsDone: ["B2"] })).toEqual(["level-b2"]);
+    expect(unlockedAchievements({ ...none, levelsDone: ["A1"] })).toEqual(["level-a1"]);
+    expect(unlockedAchievements({ ...none, levelsDone: ["C1"] })).toEqual(["level-c1"]);
     expect(unlockedAchievements({ ...none, wordsPracticed: 50 })).toEqual(["words-50"]);
   });
 
@@ -73,13 +78,71 @@ describe("unlockedAchievements", () => {
       longestStreak: 100,
       lessonsDone: 99,
       topicsDone: 99,
-      levelsDone: ["A2", "B1", "B2"],
+      levelsDone: ["A1", "A2", "B1", "B2", "C1"],
       placed: true,
       wordsPracticed: 999,
       cardsStudied: 28,
       grammarLevelsDone: ["A2"],
     });
     expect(all).toEqual(ACHIEVEMENTS.map((a) => a.id));
+  });
+});
+
+describe("ACHIEVEMENTS: level stickers", () => {
+  it("has one per level, A1 to C1, in level order", () => {
+    const levels = ACHIEVEMENTS.filter((a) => a.id.startsWith("level-"));
+    expect(levels.map((a) => [a.id, a.title, a.howTo])).toEqual([
+      ["level-a1", "Nivel A1 completo", "Completa todas las lecciones de A1."],
+      ["level-a2", "Nivel A2 completo", "Completa todas las lecciones de A2."],
+      ["level-b1", "Nivel B1 completo", "Completa todas las lecciones de B1."],
+      ["level-b2", "Nivel B2 completo", "Completa todas las lecciones de B2."],
+      ["level-c1", "Nivel C1 completo", "Completa todas las lecciones de C1."],
+    ]);
+    expect(levels.every((a) => a.rare === true && a.color === "yellow")).toBe(true);
+  });
+});
+
+describe("albumAchievements", () => {
+  const ofLevels = (...levels: ("A1" | "A2" | "B1" | "B2" | "C1")[]) =>
+    createCorpus([
+      {
+        lessons: levels.map((level) => ({
+          ...lesson,
+          id: `${level.toLowerCase()}.x.lesson-001`,
+          level,
+        })),
+      },
+    ]);
+  const levelIds = (content: ReturnType<typeof ofLevels>) =>
+    albumAchievements(content)
+      .map((a) => a.id)
+      .filter((id) => id.startsWith("level-"));
+
+  it("shows a level's sticker only when that level has lessons", () => {
+    expect(levelIds(ofLevels("A2", "B1", "B2"))).toEqual(["level-a2", "level-b1", "level-b2"]);
+    expect(levelIds(ofLevels("A1", "A2", "B1", "B2", "C1"))).toEqual([
+      "level-a1",
+      "level-a2",
+      "level-b1",
+      "level-b2",
+      "level-c1",
+    ]);
+  });
+
+  it("keeps every other sticker, in album order", () => {
+    const shown = albumAchievements(ofLevels("A2"));
+    expect(shown.map((a) => a.id)).toEqual(
+      ACHIEVEMENTS.filter((a) => !a.id.startsWith("level-") || a.id === "level-a2").map(
+        (a) => a.id,
+      ),
+    );
+  });
+
+  it("matches the levels of the bundled content", () => {
+    const bundled = new Set(corpus.lessons.map((l) => l.level.toLowerCase()));
+    expect(levelIds(corpus)).toEqual(
+      ["a1", "a2", "b1", "b2", "c1"].filter((l) => bundled.has(l)).map((l) => `level-${l}`),
+    );
   });
 });
 

@@ -1,10 +1,11 @@
 import type { Corpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import { useFocusEffect, useRouter } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useProgressVersion } from "@/features/account/account-context";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { AlbumView, type AlbumViewState } from "./album-view";
+import { albumAchievements } from "./model/achievements";
 import { loadUnlocked } from "./use-new-achievements";
 
 /** Loads the album from the stored progress every time the screen gains focus. */
@@ -13,6 +14,7 @@ export function AlbumContainer({ content = corpus }: { content?: Corpus }) {
   const router = useRouter();
   const [state, setState] = useState<AlbumViewState>({ status: "loading" });
   const progressVersion = useProgressVersion();
+  const achievements = useMemo(() => albumAchievements(content), [content]);
 
   const load = useCallback(() => {
     let active = true;
@@ -36,6 +38,7 @@ export function AlbumContainer({ content = corpus }: { content?: Corpus }) {
   return (
     <AlbumView
       state={state}
+      achievements={achievements}
       onGoHome={() => (router.canDismiss() ? router.dismissAll() : router.replace("/"))}
     />
   );

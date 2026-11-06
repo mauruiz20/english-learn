@@ -236,6 +236,34 @@
       ]
     },
     {
+      "id": "glossary.harden",
+      "headword": "harden",
+      "kind": "word",
+      "forms": ["harden", "hardens", "hardened"],
+      "senses": [
+        {
+          "es": "endurecer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.harm",
+      "headword": "harm",
+      "kind": "word",
+      "forms": ["harm", "harms", "harmed", "harming"],
+      "senses": [
+        {
+          "es": "dañar, perjudicar",
+          "pos": "verb"
+        },
+        {
+          "es": "daño",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.has",
       "headword": "has",
       "kind": "word",
@@ -627,6 +655,18 @@
       ]
     },
     {
+      "id": "glossary.heritage",
+      "headword": "heritage",
+      "kind": "word",
+      "forms": ["heritage"],
+      "senses": [
+        {
+          "es": "patrimonio, herencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.herself",
       "headword": "herself",
       "kind": "word",
@@ -635,6 +675,18 @@
         {
           "es": "(ella) misma, a sí misma",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hesitate",
+      "headword": "hesitate",
+      "kind": "word",
+      "forms": ["hesitate", "hesitates", "hesitated"],
+      "senses": [
+        {
+          "es": "dudar, vacilar",
+          "pos": "verb"
         }
       ]
     },
@@ -659,6 +711,22 @@
         {
           "es": "hola",
           "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hide",
+      "headword": "hide",
+      "kind": "word",
+      "forms": ["hide", "hides", "hid", "hidden", "hiding"],
+      "senses": [
+        {
+          "es": "ocultar, esconder",
+          "pos": "verb"
+        },
+        {
+          "es": "oculto (hidden)",
+          "pos": "adjective"
         }
       ]
     },
@@ -851,6 +919,22 @@
       ]
     },
     {
+      "id": "glossary.honor",
+      "headword": "honor",
+      "kind": "word",
+      "forms": ["honor", "honors", "honored"],
+      "senses": [
+        {
+          "es": "cumplir (un acuerdo), honrar",
+          "pos": "verb"
+        },
+        {
+          "es": "honor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.hope",
       "headword": "hope",
       "kind": "word",
@@ -974,6 +1058,18 @@
       "senses": [
         {
           "es": "casa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.housing",
+      "headword": "housing",
+      "kind": "word",
+      "forms": ["housing"],
+      "senses": [
+        {
+          "es": "vivienda",
           "pos": "noun"
         }
       ]

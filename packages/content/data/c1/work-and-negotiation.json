@@ -1,0 +1,475 @@
+{
+  "items": [
+    {
+      "id": "c1.work-and-negotiation.leverage",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "kind": "word",
+      "term": "leverage",
+      "es": "poder de negociación, ventaja",
+      "example": {
+        "en": "A buyer with several suppliers has more leverage.",
+        "es": "Un comprador con varios proveedores tiene más poder de negociación."
+      }
+    },
+    {
+      "id": "c1.work-and-negotiation.concession",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "kind": "word",
+      "term": "concession",
+      "es": "concesión",
+      "example": {
+        "en": "Both sides had to make painful concessions.",
+        "es": "Ambas partes tuvieron que hacer concesiones dolorosas."
+      }
+    },
+    {
+      "id": "c1.work-and-negotiation.find-common-ground",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "kind": "phrase",
+      "term": "find common ground",
+      "es": "encontrar puntos en común",
+      "example": {
+        "en": "Despite their differences, the two unions found common ground.",
+        "es": "A pesar de sus diferencias, los dos sindicatos encontraron puntos en común."
+      }
+    },
+    {
+      "id": "c1.work-and-negotiation.the-bottom-line",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "kind": "phrase",
+      "term": "the bottom line",
+      "es": "lo esencial, lo fundamental",
+      "example": {
+        "en": "The bottom line is that we need more customers.",
+        "es": "Lo esencial es que necesitamos más clientes."
+      }
+    },
+    {
+      "id": "c1.work-and-negotiation.win-win",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "kind": "word",
+      "term": "win-win",
+      "es": "beneficioso para ambas partes",
+      "example": {
+        "en": "We want to find a win-win solution.",
+        "es": "Queremos encontrar una solución beneficiosa para ambas partes."
+      }
+    },
+    {
+      "id": "c1.work-and-negotiation.deal-breaker",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "kind": "word",
+      "term": "deal-breaker",
+      "es": "condición innegociable, motivo de ruptura",
+      "example": {
+        "en": "For me, a long commute is a deal-breaker.",
+        "es": "Para mí, un trayecto largo al trabajo es motivo suficiente para decir que no."
+      }
+    },
+    {
+      "id": "c1.work-and-negotiation.stand-firm",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "kind": "phrase",
+      "term": "stand firm (on)",
+      "es": "mantenerse firme (en)",
+      "example": {
+        "en": "The union stood firm on its demands.",
+        "es": "El sindicato se mantuvo firme en sus exigencias."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.work-and-negotiation.getting-to-yes",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "title": "Getting to yes",
+      "text": "It is often assumed that a successful negotiation ends with one winner and one loser. Experienced negotiators, however, would argue the opposite. What matters most is not how much you win, but whether both sides leave the table willing to work together again. The first step is to find common ground: shared interests that neither party is prepared to sacrifice. Once these have been identified, concessions become far easier to make, since each side can see what it stands to gain. Leverage still plays a role, of course. A buyer with several alternative suppliers is in a stronger position than one with none, and it would be naive to pretend otherwise. Yet using that leverage aggressively tends to backfire: the other party may agree to a deal today only to look for a way out of it tomorrow. Not only does a one-sided agreement damage trust, but it also makes future negotiations slower and more expensive. The most effective negotiators therefore treat disagreements as problems to be ironed out rather than battles to be won. Rarely do they reach an agreement in a single meeting, but when they do, it is one that both sides are willing to honor.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.work-and-negotiation.a-formal-reply",
+      "level": "C1",
+      "topics": ["work-and-negotiation"],
+      "title": "A formal reply",
+      "text": "Thank you for your proposal regarding the new supply contract, which our team has now reviewed in detail. While we appreciate the effort that has gone into it, we are unable to accept the terms in their current form. The bottom line is that a price increase of this size would make the contract unprofitable for us, and we cannot see how it would benefit either party in the long run. That said, we remain keen to find a win-win solution. We would therefore like to request a meeting to discuss two possible alternatives: a longer contract at the current price, or a smaller increase in exchange for larger orders. We should also point out that the delivery schedule is a deal-breaker for us. Much as we value our relationship, we must stand firm on this point, as late deliveries would affect our own customers. Should you wish to purchase additional services, we would be happy to include them in the discussion. Please do not hesitate to contact me if you require any further information. We look forward to hearing from you.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.work-and-negotiation.vocab-001",
+      "itemIds": ["c1.work-and-negotiation.leverage"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'leverage' mean in 'A buyer with several suppliers has more leverage'?",
+      "options": [
+        "palanca de cambios",
+        "poder de negociación",
+        "préstamo bancario",
+        "nivel de estudios"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.work-and-negotiation.cloze-001",
+      "itemIds": ["c1.vocabulary.reach-an-agreement"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "After three days of talks, the two companies finally ___ an agreement.",
+      "answers": ["reached"],
+      "distractors": ["arrived", "took", "came"],
+      "es": "Después de tres días de conversaciones, las dos empresas finalmente llegaron a un acuerdo."
+    },
+    {
+      "id": "c1.work-and-negotiation.order-001",
+      "itemIds": ["c1.work-and-negotiation.find-common-ground"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "common",
+        "first",
+        "find",
+        "step",
+        "other",
+        "ground",
+        "The",
+        "to",
+        "side.",
+        "with",
+        "is",
+        "the"
+      ],
+      "accepted": ["The first step is to find common ground with the other side."],
+      "es": "El primer paso es encontrar puntos en común con la otra parte."
+    },
+    {
+      "id": "c1.work-and-negotiation.choice-001",
+      "itemIds": ["c1.work-and-negotiation.concession"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Both sides had to make painful concessions to save the deal.",
+      "options": [
+        "Ambas partes se negaron a hacer concesiones para salvar el acuerdo.",
+        "Una de las partes tuvo que hacer concesiones para romper el acuerdo.",
+        "Ambas partes tuvieron que hacer concesiones dolorosas para salvar el acuerdo.",
+        "Ambas partes tuvieron que pagar multas dolorosas para salvar el acuerdo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.work-and-negotiation.reading-001",
+      "itemIds": [
+        "c1.work-and-negotiation.concession",
+        "c1.work-and-negotiation.leverage",
+        "c1.work-and-negotiation.find-common-ground"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.work-and-negotiation.getting-to-yes",
+      "questions": [
+        {
+          "prompt": "According to the text, what matters most in a negotiation?",
+          "options": [
+            "Winning as much as possible",
+            "Both sides being willing to work together again",
+            "Ending the talks quickly"
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Why does the text say that concessions become easier to make?",
+          "options": [
+            "Each side can see what it stands to gain.",
+            "The buyer has several alternative suppliers.",
+            "The other party is looking for a way out."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What can happen if a negotiator uses leverage aggressively?",
+          "options": [
+            "The talks always end in a single meeting.",
+            "Both sides find common ground more easily.",
+            "The other party may later try to get out of the deal."
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.work-and-negotiation.write-001",
+      "itemIds": ["c1.work-and-negotiation.concession", "c1.vocabulary.reach-an-agreement"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ninguna de las partes quería hacer concesiones, así que no llegaron a un acuerdo.",
+      "accepted": [
+        "Neither {side|party|of the parties} {wanted|was willing} to make [any ]concessions, so they {didn't|couldn't|failed to} {reach|come to} an agreement."
+      ]
+    },
+    {
+      "id": "c1.work-and-negotiation.cloze-002",
+      "itemIds": ["c1.phrasal-verbs.iron-out"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We still need to iron ___ a few details before we sign.",
+      "answers": ["out"],
+      "distractors": ["off", "up", "down"],
+      "es": "Todavía tenemos que resolver algunos detalles antes de firmar."
+    },
+    {
+      "id": "c1.work-and-negotiation.vocab-002",
+      "itemIds": ["c1.work-and-negotiation.find-common-ground"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'encontrar puntos en común'.",
+      "options": [
+        "take common ground",
+        "make common sense",
+        "find common ground",
+        "find a common place"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.work-and-negotiation.vocab-003",
+      "itemIds": ["c1.work-and-negotiation.win-win"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'win-win' mean in 'We want to find a win-win solution'?",
+      "options": [
+        "ganado por poco",
+        "que gana dos veces",
+        "arriesgado",
+        "beneficioso para ambas partes"
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.work-and-negotiation.cloze-003",
+      "itemIds": ["c1.vocabulary.request"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "We would like to ___ a meeting to discuss the contract.",
+      "answers": ["request"],
+      "distractors": ["ask", "inquire", "wonder"],
+      "es": "Quisiéramos solicitar una reunión para hablar del contrato."
+    },
+    {
+      "id": "c1.work-and-negotiation.cloze-004",
+      "itemIds": ["c1.work-and-negotiation.deal-breaker"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "For us, the delivery date is a ___: without it, there is no contract.",
+      "answers": ["deal-breaker"],
+      "distractors": ["breakthrough", "breakdown", "bargain"],
+      "es": "Para nosotros, la fecha de entrega es innegociable: sin ella, no hay contrato."
+    },
+    {
+      "id": "c1.work-and-negotiation.order-002",
+      "itemIds": ["c1.work-and-negotiation.stand-firm"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "we",
+        "firm",
+        "value",
+        "Much",
+        "as",
+        "your",
+        "on",
+        "we",
+        "stand",
+        "business,",
+        "must",
+        "point.",
+        "this"
+      ],
+      "accepted": ["Much as we value your business, we must stand firm on this point."],
+      "es": "Por mucho que valoremos su negocio, debemos mantenernos firmes en este punto."
+    },
+    {
+      "id": "c1.work-and-negotiation.choice-002",
+      "itemIds": ["c1.work-and-negotiation.the-bottom-line"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "The bottom line is that we can't afford to lose this client.",
+      "options": [
+        "La última línea dice que no podemos perder a este cliente.",
+        "Al final, este cliente no puede pagarnos.",
+        "Lo esencial es que no queremos trabajar con este cliente.",
+        "Lo esencial es que no podemos permitirnos perder a este cliente."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.work-and-negotiation.reading-002",
+      "itemIds": [
+        "c1.work-and-negotiation.the-bottom-line",
+        "c1.work-and-negotiation.deal-breaker",
+        "c1.work-and-negotiation.stand-firm"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.work-and-negotiation.a-formal-reply",
+      "questions": [
+        {
+          "prompt": "Why can't the company accept the proposal in its current form?",
+          "options": [
+            "The price increase would make the contract unprofitable.",
+            "The team has not reviewed it yet.",
+            "The other company wants to purchase additional services."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What does the writer say about the delivery schedule?",
+          "options": [
+            "It can be changed at the meeting.",
+            "It is a point the company will not give up.",
+            "It is less important than the price."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What is the main purpose of the email?",
+          "options": [
+            "To end the business relationship",
+            "To accept the new contract",
+            "To request a meeting to discuss alternatives"
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.work-and-negotiation.write-002",
+      "itemIds": ["c1.vocabulary.purchase"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Si desea adquirir servicios adicionales, no dude en ponerse en contacto con nosotros.",
+      "accepted": [
+        "{If you {wish|would like}|Should you wish} to purchase {additional|extra|further} services, [please ]{don't hesitate to|feel free to} {contact us|get in touch with us}."
+      ]
+    },
+    {
+      "id": "c1.work-and-negotiation.write-003",
+      "itemIds": ["c1.vocabulary.regarding"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Le escribo en relación con su propuesta.",
+      "accepted": [
+        "I am writing[ to you] {regarding|concerning|in regard to|with regard to|in relation to|with reference to|in reference to|about} your proposal."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.work-and-negotiation.lesson-001",
+      "level": "C1",
+      "topic": "work-and-negotiation",
+      "title": "El arte de negociar",
+      "exerciseIds": [
+        "c1.work-and-negotiation.vocab-001",
+        "c1.work-and-negotiation.cloze-001",
+        "c1.work-and-negotiation.order-001",
+        "c1.work-and-negotiation.choice-001",
+        "c1.work-and-negotiation.reading-001",
+        "c1.work-and-negotiation.write-001",
+        "c1.work-and-negotiation.cloze-002",
+        "c1.work-and-negotiation.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.vocabulary.reach-an-agreement",
+        "c1.phrasal-verbs.iron-out",
+        "c1.work-and-negotiation.find-common-ground",
+        "c1.work-and-negotiation.concession",
+        "c1.work-and-negotiation.leverage"
+      ],
+      "deepenCardIds": ["c1.vocabulary.collocations", "c1.phrasal-verbs.causes-and-solutions"]
+    },
+    {
+      "id": "c1.work-and-negotiation.lesson-002",
+      "level": "C1",
+      "topic": "work-and-negotiation",
+      "title": "Una respuesta formal",
+      "exerciseIds": [
+        "c1.work-and-negotiation.vocab-003",
+        "c1.work-and-negotiation.cloze-003",
+        "c1.work-and-negotiation.cloze-004",
+        "c1.work-and-negotiation.order-002",
+        "c1.work-and-negotiation.choice-002",
+        "c1.work-and-negotiation.reading-002",
+        "c1.work-and-negotiation.write-002",
+        "c1.work-and-negotiation.write-003"
+      ],
+      "newItemIds": [
+        "c1.vocabulary.request",
+        "c1.vocabulary.purchase",
+        "c1.vocabulary.regarding",
+        "c1.work-and-negotiation.deal-breaker",
+        "c1.work-and-negotiation.win-win"
+      ],
+      "deepenCardIds": ["c1.vocabulary.register"]
+    }
+  ]
+}

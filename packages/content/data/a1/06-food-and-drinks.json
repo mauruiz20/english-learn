@@ -1,0 +1,361 @@
+{
+  "items": [
+    {
+      "id": "a1.food-and-drinks.apple",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "apple",
+      "es": "manzana"
+    },
+    {
+      "id": "a1.food-and-drinks.egg",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "egg",
+      "es": "huevo"
+    },
+    {
+      "id": "a1.food-and-drinks.banana",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "banana",
+      "es": "plátano, banana"
+    },
+    {
+      "id": "a1.food-and-drinks.cheese",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "cheese",
+      "es": "queso"
+    },
+    {
+      "id": "a1.food-and-drinks.like-dont-like",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "grammar",
+      "term": "I like / I don't like",
+      "es": "me gusta / no me gusta"
+    },
+    {
+      "id": "a1.food-and-drinks.water",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "water",
+      "es": "agua"
+    },
+    {
+      "id": "a1.food-and-drinks.milk",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "milk",
+      "es": "leche"
+    },
+    {
+      "id": "a1.food-and-drinks.coffee",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "coffee",
+      "es": "café"
+    },
+    {
+      "id": "a1.food-and-drinks.tea",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "tea",
+      "es": "té"
+    },
+    {
+      "id": "a1.food-and-drinks.juice",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "word",
+      "term": "juice",
+      "es": "jugo",
+      "example": {
+        "en": "I like orange juice.",
+        "es": "Me gusta el jugo de naranja."
+      }
+    },
+    {
+      "id": "a1.food-and-drinks.can-i-have",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "kind": "phrase",
+      "term": "Can I have...?",
+      "es": "¿Me das...? / ¿Me puede dar...?"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.food-and-drinks.at-the-coffee-shop",
+      "level": "A1",
+      "topics": ["food-and-drinks"],
+      "title": "At the coffee shop",
+      "text": "Waiter: Hello! Can I help you? Sofía: Yes. Can I have a coffee, please? Waiter: Sure. With milk? Sofía: No, thanks. I don't like milk. Waiter: OK. Anything to eat? Sofía: Yes, a cheese sandwich, please.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.food-and-drinks.cloze-001",
+      "itemIds": ["a1.grammar.a-an", "a1.food-and-drinks.egg"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I eat ___ egg every morning.",
+      "answers": ["an"],
+      "distractors": ["a", "two"],
+      "es": "Como un huevo todas las mañanas."
+    },
+    {
+      "id": "a1.food-and-drinks.vocab-001",
+      "itemIds": ["a1.food-and-drinks.apple"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'apple' mean?",
+      "options": ["naranja", "plátano", "manzana", "pera"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.food-and-drinks.cloze-002",
+      "itemIds": ["a1.grammar.a-an", "a1.food-and-drinks.banana"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I have ___ banana in my bag.",
+      "answers": ["a"],
+      "distractors": ["an", "two"],
+      "es": "Tengo un plátano en mi bolsa."
+    },
+    {
+      "id": "a1.food-and-drinks.choice-001",
+      "itemIds": ["a1.food-and-drinks.like-dont-like", "a1.food-and-drinks.cheese"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I don't like cheese.",
+      "options": [
+        "Me gusta el queso.",
+        "No me gusta la leche.",
+        "No le gusta el queso.",
+        "No me gusta el queso."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.food-and-drinks.order-001",
+      "itemIds": ["a1.food-and-drinks.like-dont-like", "a1.food-and-drinks.apple"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["like", "apples?", "you", "Do"],
+      "accepted": ["Do you like apples?"],
+      "es": "¿Te gustan las manzanas?"
+    },
+    {
+      "id": "a1.food-and-drinks.write-001",
+      "itemIds": ["a1.grammar.a-an", "a1.food-and-drinks.apple"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Quiero una manzana.",
+      "accepted": ["I want an apple.", "I'd like an apple."]
+    },
+    {
+      "id": "a1.food-and-drinks.vocab-002",
+      "itemIds": ["a1.food-and-drinks.cheese"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'queso'.",
+      "options": ["butter", "bread", "cheese", "cake"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.food-and-drinks.vocab-003",
+      "itemIds": ["a1.food-and-drinks.juice"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'juice' mean?",
+      "options": ["leche", "jugo", "agua", "té"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.food-and-drinks.cloze-003",
+      "itemIds": ["a1.food-and-drinks.can-i-have", "a1.food-and-drinks.water"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ I have some water, please?",
+      "answers": ["Can"],
+      "distractors": ["Do", "Am", "Have"],
+      "es": "¿Me das un poco de agua, por favor?"
+    },
+    {
+      "id": "a1.food-and-drinks.cloze-004",
+      "itemIds": ["a1.food-and-drinks.milk", "a1.food-and-drinks.like-dont-like"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My brother doesn't ___ milk.",
+      "answers": ["like"],
+      "distractors": ["likes", "liking"],
+      "es": "A mi hermano no le gusta la leche."
+    },
+    {
+      "id": "a1.food-and-drinks.order-002",
+      "itemIds": ["a1.food-and-drinks.tea"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["every", "tea", "drink", "day.", "I"],
+      "accepted": ["I drink tea every day."],
+      "es": "Tomo té todos los días."
+    },
+    {
+      "id": "a1.food-and-drinks.reading-001",
+      "itemIds": [
+        "a1.food-and-drinks.coffee",
+        "a1.food-and-drinks.can-i-have",
+        "a1.food-and-drinks.like-dont-like",
+        "a1.food-and-drinks.cheese"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.food-and-drinks.at-the-coffee-shop",
+      "questions": [
+        {
+          "prompt": "What does Sofía want to drink?",
+          "options": ["Tea", "Coffee", "Juice"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Does Sofía like milk?",
+          "options": ["No, she doesn't.", "Yes, she does.", "Yes, with coffee."],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What does Sofía want to eat?",
+          "options": ["An egg sandwich", "An apple", "A cheese sandwich"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a1.food-and-drinks.choice-002",
+      "itemIds": ["a1.food-and-drinks.coffee"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Is the coffee hot?",
+      "options": [
+        "¿El café está frío?",
+        "¿El té está caliente?",
+        "¿El café está caliente?",
+        "¿El café es caro?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.food-and-drinks.write-002",
+      "itemIds": ["a1.food-and-drinks.can-i-have", "a1.food-and-drinks.water"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "¿Me das un vaso de agua, por favor?",
+      "accepted": [
+        "{Can|Could|May} I have a glass of water[[,] please]?",
+        "{Can|Could} I get a glass of water[[,] please]?",
+        "A glass of water[,] please."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.food-and-drinks.lesson-001",
+      "level": "A1",
+      "topic": "food-and-drinks",
+      "title": "Me gusta, no me gusta",
+      "exerciseIds": [
+        "a1.food-and-drinks.cloze-001",
+        "a1.food-and-drinks.vocab-001",
+        "a1.food-and-drinks.cloze-002",
+        "a1.food-and-drinks.choice-001",
+        "a1.food-and-drinks.order-001",
+        "a1.food-and-drinks.write-001",
+        "a1.food-and-drinks.vocab-002"
+      ],
+      "newItemIds": [
+        "a1.grammar.a-an",
+        "a1.food-and-drinks.egg",
+        "a1.food-and-drinks.apple",
+        "a1.food-and-drinks.banana",
+        "a1.food-and-drinks.like-dont-like"
+      ],
+      "deepenCardIds": ["a1.grammar.a-an"]
+    },
+    {
+      "id": "a1.food-and-drinks.lesson-002",
+      "level": "A1",
+      "topic": "food-and-drinks",
+      "title": "Algo para tomar",
+      "exerciseIds": [
+        "a1.food-and-drinks.vocab-003",
+        "a1.food-and-drinks.cloze-003",
+        "a1.food-and-drinks.cloze-004",
+        "a1.food-and-drinks.order-002",
+        "a1.food-and-drinks.reading-001",
+        "a1.food-and-drinks.choice-002",
+        "a1.food-and-drinks.write-002"
+      ],
+      "newItemIds": [
+        "a1.food-and-drinks.juice",
+        "a1.food-and-drinks.can-i-have",
+        "a1.food-and-drinks.water",
+        "a1.food-and-drinks.milk",
+        "a1.food-and-drinks.tea"
+      ]
+    }
+  ]
+}

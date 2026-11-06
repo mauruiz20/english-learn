@@ -1,0 +1,477 @@
+{
+  "cards": [
+    {
+      "id": "c1.vocabulary.collocations",
+      "level": "C1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Colocaciones: reach an agreement, raise awareness",
+      "summary": "Muchos sustantivos van con un verbo fijo que no coincide con el español: se «llega» a un acuerdo con reach y se «saca» una conclusión con draw.",
+      "form": "verbo + sustantivo fijo: reach an agreement, draw a conclusion, raise awareness, pose a threat",
+      "uses": [
+        "Reach / come to an agreement: llegar a un acuerdo (sin arrive).",
+        "Draw a conclusion: sacar una conclusión (no take).",
+        "Raise awareness of / about: crear conciencia sobre algo.",
+        "Pose a threat / a risk to: representar una amenaza o un riesgo para algo."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "We finally arrived to an agreement.",
+          "right": "We finally reached an agreement.",
+          "why": "Con agreement se usa reach (sin preposición) o come to, nunca arrive."
+        },
+        {
+          "wrong": "It's too early to take conclusions.",
+          "right": "It's too early to draw conclusions.",
+          "why": "Sacar conclusiones es draw conclusions."
+        },
+        {
+          "wrong": "Plastic waste makes a threat to marine life.",
+          "right": "Plastic waste poses a threat to marine life.",
+          "why": "Con threat y risk se usa pose."
+        },
+        {
+          "wrong": "The campaign wants to rise awareness of the problem.",
+          "right": "The campaign wants to raise awareness of the problem.",
+          "why": "Raise lleva objeto (awareness); rise no."
+        }
+      ],
+      "examples": [
+        {
+          "en": "After hours of talks, the two sides reached an agreement.",
+          "es": "Tras horas de conversaciones, las dos partes llegaron a un acuerdo."
+        },
+        {
+          "en": "We shouldn't draw conclusions from a single study.",
+          "es": "No deberíamos sacar conclusiones de un solo estudio."
+        },
+        {
+          "en": "The campaign aims to raise awareness of mental health.",
+          "es": "La campaña busca crear conciencia sobre la salud mental."
+        },
+        {
+          "en": "Rising sea levels pose a threat to coastal cities.",
+          "es": "La subida del nivel del mar representa una amenaza para las ciudades costeras."
+        },
+        {
+          "en": "Social media plays a key role in modern politics.",
+          "es": "Las redes sociales desempeñan un papel clave en la política actual."
+        },
+        {
+          "en": "Both sides had to make concessions.",
+          "es": "Ambas partes tuvieron que hacer concesiones."
+        }
+      ],
+      "collocations": [
+        {
+          "en": "reach an agreement",
+          "es": "llegar a un acuerdo"
+        },
+        {
+          "en": "come to an agreement",
+          "es": "llegar a un acuerdo"
+        },
+        {
+          "en": "draw a conclusion",
+          "es": "sacar una conclusión"
+        },
+        {
+          "en": "raise awareness",
+          "es": "crear conciencia"
+        },
+        {
+          "en": "pose a threat",
+          "es": "representar una amenaza"
+        },
+        {
+          "en": "pose a risk",
+          "es": "suponer un riesgo"
+        },
+        {
+          "en": "play a role",
+          "es": "desempeñar un papel"
+        },
+        {
+          "en": "make a concession",
+          "es": "hacer una concesión"
+        }
+      ],
+      "itemIds": [
+        "c1.vocabulary.reach-an-agreement",
+        "c1.vocabulary.draw-a-conclusion",
+        "c1.vocabulary.raise-awareness",
+        "c1.vocabulary.pose-a-threat"
+      ],
+      "exerciseIds": [
+        "c1.vocabulary.collocations-cloze-1",
+        "c1.vocabulary.collocations-cloze-2",
+        "c1.vocabulary.collocations-cloze-3",
+        "c1.vocabulary.collocations-cloze-4",
+        "c1.vocabulary.collocations-choice-1",
+        "c1.vocabulary.collocations-order-1",
+        "c1.vocabulary.collocations-vocab-1",
+        "c1.vocabulary.collocations-write-1"
+      ]
+    },
+    {
+      "id": "c1.vocabulary.register",
+      "level": "C1",
+      "topic": "vocabulary",
+      "kind": "vocabulary",
+      "title": "Registro formal e informal",
+      "summary": "El inglés tiene a menudo dos palabras para lo mismo: una formal, de origen latino (purchase, request), y otra informal, muchas veces un phrasal verb (buy, ask for). Elegir bien depende del contexto.",
+      "form": "informal → formal: buy → purchase, ask for → request, about → regarding, help → assistance, but → however",
+      "uses": [
+        "Correos de trabajo, cartas y textos académicos: registro formal.",
+        "Conversaciones, mensajes y redes sociales: registro informal.",
+        "Los phrasal verbs suelen sonar más informales que su equivalente de origen latino.",
+        "Mezclar registros suena raro: no se abre un correo formal con Hi o Hey."
+      ],
+      "pitfalls": [
+        {
+          "wrong": "I am writing regarding to your application.",
+          "right": "I am writing regarding your application.",
+          "why": "Regarding va seguido directamente del sustantivo, sin to."
+        },
+        {
+          "wrong": "I would like to request for more information.",
+          "right": "I would like to request more information.",
+          "why": "El verbo request no lleva for (request something); ask sí (ask for something)."
+        },
+        {
+          "wrong": "Hey, thanks a lot for the info about the job!",
+          "right": "Thank you for the information about the position.",
+          "why": "En un correo formal se evitan los saludos informales, las abreviaturas (info) y las exclamaciones."
+        },
+        {
+          "wrong": "Could you assist me to complete the form?",
+          "right": "Could you assist me in completing the form?",
+          "why": "Assist va con in + -ing o con with + sustantivo, no con to."
+        }
+      ],
+      "examples": [
+        {
+          "en": "Tickets can be purchased online.",
+          "es": "Las entradas pueden comprarse en línea."
+        },
+        {
+          "en": "I am writing regarding your recent order.",
+          "es": "Le escribo en relación con su pedido reciente."
+        },
+        {
+          "en": "You may request a copy of the report.",
+          "es": "Puede solicitar una copia del informe."
+        },
+        {
+          "en": "Please do not hesitate to contact us.",
+          "es": "No dude en ponerse en contacto con nosotros."
+        },
+        {
+          "en": "Thank you for your assistance.",
+          "es": "Gracias por su ayuda."
+        },
+        {
+          "en": "However, the results were not conclusive.",
+          "es": "Sin embargo, los resultados no fueron concluyentes."
+        }
+      ],
+      "itemIds": ["c1.vocabulary.purchase", "c1.vocabulary.request", "c1.vocabulary.regarding"],
+      "exerciseIds": [
+        "c1.vocabulary.register-cloze-1",
+        "c1.vocabulary.register-cloze-2",
+        "c1.vocabulary.register-cloze-3",
+        "c1.vocabulary.register-choice-1",
+        "c1.vocabulary.register-order-1",
+        "c1.vocabulary.register-vocab-1",
+        "c1.vocabulary.register-write-1"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "c1.vocabulary.reach-an-agreement",
+      "level": "C1",
+      "topics": ["vocabulary", "work-and-negotiation"],
+      "kind": "phrase",
+      "term": "reach an agreement",
+      "es": "llegar a un acuerdo"
+    },
+    {
+      "id": "c1.vocabulary.draw-a-conclusion",
+      "level": "C1",
+      "topics": ["vocabulary"],
+      "kind": "phrase",
+      "term": "draw a conclusion",
+      "es": "sacar una conclusión"
+    },
+    {
+      "id": "c1.vocabulary.raise-awareness",
+      "level": "C1",
+      "topics": ["vocabulary", "global-issues"],
+      "kind": "phrase",
+      "term": "raise awareness (of)",
+      "es": "crear conciencia (sobre)"
+    },
+    {
+      "id": "c1.vocabulary.pose-a-threat",
+      "level": "C1",
+      "topics": ["vocabulary", "global-issues"],
+      "kind": "phrase",
+      "term": "pose a threat (to)",
+      "es": "representar una amenaza (para)"
+    },
+    {
+      "id": "c1.vocabulary.purchase",
+      "level": "C1",
+      "topics": ["vocabulary", "work-and-negotiation"],
+      "kind": "word",
+      "term": "purchase",
+      "es": "comprar, adquirir (formal); compra"
+    },
+    {
+      "id": "c1.vocabulary.request",
+      "level": "C1",
+      "topics": ["vocabulary", "work-and-negotiation"],
+      "kind": "word",
+      "term": "request",
+      "es": "solicitar, pedir (formal); solicitud"
+    },
+    {
+      "id": "c1.vocabulary.regarding",
+      "level": "C1",
+      "topics": ["vocabulary", "work-and-negotiation", "language-and-communication"],
+      "kind": "word",
+      "term": "regarding",
+      "es": "en relación con, con respecto a (formal)"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.vocabulary.collocations-cloze-1",
+      "itemIds": ["c1.vocabulary.reach-an-agreement"],
+      "level": "C1",
+      "source": {
+        "kind": "tatoeba",
+        "sentenceId": 903886,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
+      },
+      "type": "cloze",
+      "sentence": "I think it's time for us to ___ to an agreement.",
+      "answers": ["come"],
+      "distractors": ["arrive", "reach", "make"],
+      "es": "Creo que es hora de que lleguemos a un acuerdo."
+    },
+    {
+      "id": "c1.vocabulary.collocations-cloze-2",
+      "itemIds": ["c1.vocabulary.draw-a-conclusion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's too early to ___ any conclusions from these results.",
+      "answers": ["draw"],
+      "distractors": ["take", "get", "pull"],
+      "es": "Es demasiado pronto para sacar conclusiones de estos resultados."
+    },
+    {
+      "id": "c1.vocabulary.collocations-cloze-3",
+      "itemIds": ["c1.vocabulary.raise-awareness"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The campaign aims to ___ awareness of mental health.",
+      "answers": ["raise"],
+      "distractors": ["rise", "arise", "lift"],
+      "es": "La campaña busca crear conciencia sobre la salud mental."
+    },
+    {
+      "id": "c1.vocabulary.collocations-cloze-4",
+      "itemIds": ["c1.vocabulary.pose-a-threat"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Plastic waste ___ a serious threat to marine life.",
+      "answers": ["poses"],
+      "distractors": ["makes", "does", "puts"],
+      "es": "Los residuos plásticos representan una grave amenaza para la vida marina."
+    },
+    {
+      "id": "c1.vocabulary.collocations-choice-1",
+      "itemIds": ["c1.vocabulary.reach-an-agreement"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "After months of talks, the two sides finally reached an agreement.",
+      "options": [
+        "Tras meses de conversaciones, las dos partes finalmente rompieron el acuerdo.",
+        "Tras meses de conversaciones, las dos partes siguen sin ponerse de acuerdo.",
+        "Tras meses de viaje, las dos partes finalmente llegaron a su destino.",
+        "Tras meses de conversaciones, las dos partes finalmente llegaron a un acuerdo."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.vocabulary.collocations-order-1",
+      "itemIds": ["c1.vocabulary.pose-a-threat"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "pose",
+        "many",
+        "sea",
+        "Rising",
+        "a",
+        "to",
+        "levels",
+        "threat",
+        "cities.",
+        "coastal"
+      ],
+      "accepted": ["Rising sea levels pose a threat to many coastal cities."],
+      "es": "La subida del nivel del mar representa una amenaza para muchas ciudades costeras."
+    },
+    {
+      "id": "c1.vocabulary.collocations-vocab-1",
+      "itemIds": ["c1.vocabulary.draw-a-conclusion"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'sacar una conclusión'.",
+      "options": [
+        "take a conclusion",
+        "draw a conclusion",
+        "pull out a conclusion",
+        "make out a conclusion"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.vocabulary.collocations-write-1",
+      "itemIds": ["c1.vocabulary.raise-awareness"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "La campaña quiere crear conciencia sobre el problema.",
+      "accepted": [
+        "The campaign {wants|aims|seeks|is trying} to raise awareness {of|about} the {problem|issue}."
+      ]
+    },
+    {
+      "id": "c1.vocabulary.register-cloze-1",
+      "itemIds": ["c1.vocabulary.purchase"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Tickets can be ___ online or at the box office.",
+      "answers": ["purchased", "bought"],
+      "distractors": ["purchase", "purchasing", "purchases"],
+      "es": "Las entradas se pueden comprar en línea o en taquilla."
+    },
+    {
+      "id": "c1.vocabulary.register-cloze-2",
+      "itemIds": ["c1.vocabulary.regarding"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I am writing ___ your job posting.",
+      "answers": ["regarding", "concerning", "about"],
+      "distractors": ["regarding to", "according", "referring"],
+      "es": "Le escribo en relación con su anuncio de empleo."
+    },
+    {
+      "id": "c1.vocabulary.register-cloze-3",
+      "itemIds": ["c1.vocabulary.request"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Customers may ___ a refund within thirty days.",
+      "answers": ["request"],
+      "distractors": ["ask", "apply", "inquire"],
+      "es": "Los clientes pueden solicitar un reembolso en un plazo de treinta días."
+    },
+    {
+      "id": "c1.vocabulary.register-choice-1",
+      "itemIds": ["c1.vocabulary.regarding", "c1.vocabulary.purchase"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Please contact us if you have any questions regarding your purchase.",
+      "options": [
+        "Póngase en contacto con nosotros para devolver su compra.",
+        "Póngase en contacto con nosotros si tiene alguna pregunta sobre su compra.",
+        "Pregúntenos cómo pagar su compra.",
+        "No se ponga en contacto con nosotros después de la compra."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.vocabulary.register-order-1",
+      "itemIds": ["c1.vocabulary.request"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "course.",
+        "would",
+        "about",
+        "to",
+        "further",
+        "request",
+        "We",
+        "information",
+        "the",
+        "like"
+      ],
+      "accepted": ["We would like to request further information about the course."],
+      "es": "Quisiéramos solicitar más información sobre el curso."
+    },
+    {
+      "id": "c1.vocabulary.register-vocab-1",
+      "itemIds": ["c1.vocabulary.purchase"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the more formal word for 'buy'.",
+      "options": ["get", "grab", "purchase", "pick up"],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.vocabulary.register-write-1",
+      "itemIds": ["c1.vocabulary.request"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Quisiera solicitar una reunión con el director.",
+      "accepted": ["I would like to {request|ask for} a meeting with the {director|manager}."]
+    }
+  ]
+}

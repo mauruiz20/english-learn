@@ -1,0 +1,369 @@
+{
+  "items": [
+    {
+      "id": "a1.my-family.mother",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "mother",
+      "es": "madre"
+    },
+    {
+      "id": "a1.my-family.father",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "father",
+      "es": "padre"
+    },
+    {
+      "id": "a1.my-family.brother",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "brother",
+      "es": "hermano"
+    },
+    {
+      "id": "a1.my-family.sister",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "sister",
+      "es": "hermana"
+    },
+    {
+      "id": "a1.my-family.son",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "son",
+      "es": "hijo"
+    },
+    {
+      "id": "a1.my-family.daughter",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "daughter",
+      "es": "hija"
+    },
+    {
+      "id": "a1.my-family.husband",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "husband",
+      "es": "esposo"
+    },
+    {
+      "id": "a1.my-family.wife",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "wife",
+      "es": "esposa"
+    },
+    {
+      "id": "a1.my-family.grandfather",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "word",
+      "term": "grandfather",
+      "es": "abuelo"
+    },
+    {
+      "id": "a1.my-family.have-has",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "grammar",
+      "term": "have / has (I have, she has)",
+      "es": "tener (yo tengo, ella tiene)"
+    },
+    {
+      "id": "a1.my-family.his-her",
+      "level": "A1",
+      "topics": ["my-family"],
+      "kind": "grammar",
+      "term": "his / her",
+      "es": "su (de él) / su (de ella)"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.my-family.family-photo",
+      "level": "A1",
+      "topics": ["my-family"],
+      "title": "Is this your family?",
+      "text": "Ana: Is this your family? Ben: Yes, it is. This is my mom and this is my dad. Ana: Who is the girl? Ben: She's my sister. Her name is Sara. Ana: Do you have a brother? Ben: No, I don't. I have two sisters.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.my-family.vocab-001",
+      "itemIds": ["a1.my-family.brother"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'brother' mean?",
+      "options": ["hermana", "hermano", "primo", "padre"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.my-family.cloze-001",
+      "itemIds": ["a1.my-family.have-has", "a1.my-family.sister"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ two sisters.",
+      "answers": ["have"],
+      "distractors": ["has", "am"],
+      "es": "Tengo dos hermanas."
+    },
+    {
+      "id": "a1.my-family.cloze-002",
+      "itemIds": ["a1.my-family.have-has", "a1.my-family.brother"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My mom ___ three brothers.",
+      "answers": ["has"],
+      "distractors": ["have", "is", "are"],
+      "es": "Mi mamá tiene tres hermanos."
+    },
+    {
+      "id": "a1.my-family.choice-001",
+      "itemIds": ["a1.my-family.father"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My father is a teacher.",
+      "options": [
+        "Mi madre es maestra.",
+        "Mi padre es estudiante.",
+        "Mis padres son maestros.",
+        "Mi padre es maestro."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.my-family.order-001",
+      "itemIds": ["a1.my-family.mother"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["Chile.", "from", "is", "mother", "My"],
+      "accepted": ["My mother is from Chile."],
+      "es": "Mi madre es de Chile."
+    },
+    {
+      "id": "a1.my-family.reading-001",
+      "itemIds": ["a1.my-family.sister", "a1.my-family.have-has", "a1.my-family.brother"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.my-family.family-photo",
+      "questions": [
+        {
+          "prompt": "What is the girl's name?",
+          "options": ["Ana", "Sara", "Ben"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Does Ben have a brother?",
+          "options": ["No, he doesn't.", "Yes, he does.", "Yes, two brothers."],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "How many sisters does Ben have?",
+          "options": ["Three", "One", "Two"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a1.my-family.write-001",
+      "itemIds": ["a1.my-family.mother", "a1.my-family.father"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi mamá y mi papá están en casa.",
+      "accepted": [
+        "My {mom|mother} and {my |}{dad|father} are {at home|home}.",
+        "My parents are {at home|home}."
+      ]
+    },
+    {
+      "id": "a1.my-family.cloze-003",
+      "itemIds": ["a1.grammar.plurals"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "They have two ___: a boy and a girl.",
+      "answers": ["children"],
+      "distractors": ["child", "sons"],
+      "es": "Tienen dos hijos: un niño y una niña."
+    },
+    {
+      "id": "a1.my-family.vocab-002",
+      "itemIds": ["a1.my-family.daughter"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'hija'.",
+      "options": ["son", "sister", "daughter", "wife"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.my-family.cloze-004",
+      "itemIds": ["a1.my-family.his-her", "a1.my-family.wife"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Mr. Lee is my teacher. ___ wife is a doctor.",
+      "answers": ["His"],
+      "distractors": ["Her", "He", "She"],
+      "es": "El señor Lee es mi maestro. Su esposa es doctora."
+    },
+    {
+      "id": "a1.my-family.order-002",
+      "itemIds": ["a1.my-family.husband"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["husband", "Canada.", "is", "from", "Her"],
+      "accepted": ["Her husband is from Canada."],
+      "es": "Su esposo es de Canadá."
+    },
+    {
+      "id": "a1.my-family.choice-002",
+      "itemIds": ["a1.my-family.son"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Our son is eight years old.",
+      "options": [
+        "Nuestra hija tiene ocho años.",
+        "Nuestro hijo tiene dieciocho años.",
+        "Nuestro hijo tiene ocho años.",
+        "Su hijo tiene ocho años."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.my-family.choice-003",
+      "itemIds": ["a1.my-family.grandfather"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My grandfather lives with us.",
+      "options": [
+        "Mi abuela vive con nosotros.",
+        "Mi abuelo vive con nosotros.",
+        "Mi abuelo vive con ellos.",
+        "Mi tío vive con nosotros."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.my-family.write-002",
+      "itemIds": ["a1.grammar.plurals", "a1.my-family.daughter"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo dos hijas.",
+      "accepted": ["I {have|have got} {two|2} daughters."]
+    },
+    {
+      "id": "a1.my-family.vocab-003",
+      "itemIds": ["a1.my-family.wife"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'wife' mean?",
+      "options": ["esposo", "hija", "esposa", "hermana"],
+      "answerIndex": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.my-family.lesson-001",
+      "level": "A1",
+      "topic": "my-family",
+      "title": "Mamá, papá y hermanos",
+      "exerciseIds": [
+        "a1.my-family.vocab-001",
+        "a1.my-family.cloze-001",
+        "a1.my-family.cloze-002",
+        "a1.my-family.choice-001",
+        "a1.my-family.order-001",
+        "a1.my-family.reading-001",
+        "a1.my-family.write-001"
+      ],
+      "newItemIds": [
+        "a1.my-family.brother",
+        "a1.my-family.have-has",
+        "a1.my-family.sister",
+        "a1.my-family.father",
+        "a1.my-family.mother"
+      ]
+    },
+    {
+      "id": "a1.my-family.lesson-002",
+      "level": "A1",
+      "topic": "my-family",
+      "title": "Hijos y abuelos",
+      "exerciseIds": [
+        "a1.my-family.cloze-003",
+        "a1.my-family.vocab-002",
+        "a1.my-family.cloze-004",
+        "a1.my-family.order-002",
+        "a1.my-family.choice-002",
+        "a1.my-family.choice-003",
+        "a1.my-family.write-002",
+        "a1.my-family.vocab-003"
+      ],
+      "newItemIds": [
+        "a1.grammar.plurals",
+        "a1.my-family.daughter",
+        "a1.my-family.his-her",
+        "a1.my-family.wife",
+        "a1.my-family.husband"
+      ],
+      "deepenCardIds": ["a1.grammar.plurals"]
+    }
+  ]
+}
