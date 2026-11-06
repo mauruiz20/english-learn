@@ -33,6 +33,32 @@ const recap = [
 ];
 
 describe("SessionSummary", () => {
+  describe("daily goal", () => {
+    it("adds today's count against the goal to the results", async () => {
+      await render(
+        <SessionSummary {...base} dailyGoal={{ kind: "on", done: 18, target: 20, met: false }} />,
+      );
+
+      expect(screen.getByText("Meta diaria: 18 / 20")).toBeOnTheScreen();
+    });
+
+    it("says the goal is met, once it is", async () => {
+      await render(
+        <SessionSummary {...base} dailyGoal={{ kind: "on", done: 21, target: 20, met: true }} />,
+      );
+
+      expect(screen.getByText("¡Cumpliste tu meta de hoy!")).toBeOnTheScreen();
+    });
+
+    it("says nothing about a goal without one, or when the count is unknown", async () => {
+      const view = await render(<SessionSummary {...base} dailyGoal={{ kind: "off" }} />);
+      expect(screen.queryByText(/meta/i)).toBeNull();
+
+      await view.rerender(<SessionSummary {...base} />);
+      expect(screen.queryByText(/meta/i)).toBeNull();
+    });
+  });
+
   describe("Lo nuevo de hoy", () => {
     it("lists the lesson's new items: a card link, or the meaning and an example", async () => {
       const onOpenCard = jest.fn();

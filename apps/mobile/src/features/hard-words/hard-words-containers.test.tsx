@@ -198,7 +198,7 @@ describe("HardPracticeContainer", () => {
       "item_reviewed",
       "session_completed",
     ]);
-    expect(written[2]?.payload).toMatchObject({ kind: "review", answerXp: 20 });
+    expect(written[2]?.payload).toMatchObject({ kind: "review", answerXp: 20, exercises: 2 });
     // Home's count is still the next review's size: nothing is due any more today.
     expect(
       reviewOutlook({ states: after.states, today: TODAY, exercises: content.exercises }),

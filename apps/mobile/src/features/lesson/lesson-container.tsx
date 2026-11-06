@@ -206,6 +206,7 @@ function toViewState(
       xpEarned: save.xpEarned,
       streakDays: save.streakDays,
       streakIncreased: save.streakIncreased,
+      dailyGoal: save.dailyGoal,
       toReview: itemsToReview(itemOutcomes, content.itemsById, { topics: topicByItemId(content) }),
       topic,
       recap,

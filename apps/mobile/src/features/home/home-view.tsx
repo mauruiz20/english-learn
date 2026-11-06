@@ -1,4 +1,4 @@
-import type { Level } from "@english-learn/domain";
+import type { DailyGoal, DailyGoalStatus, Level } from "@english-learn/domain";
 import { useState, type ReactNode } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Svg, { Line, Path } from "react-native-svg";
@@ -11,6 +11,8 @@ import { SoundToggleButton } from "@/shared/ui/sound-toggle-button";
 import { ThemeToggleButton } from "@/shared/ui/theme-toggle-button";
 import type { ThemePreference } from "@/shared/ui/theme-preference";
 import { AccountLink } from "@/features/account/account-link";
+import { DailyGoalMeter } from "@/features/daily-goal/daily-goal-meter";
+import { DailyGoalPrompt } from "@/features/daily-goal/daily-goal-prompt";
 import { PressableScale } from "@/shared/ui/pressable-scale";
 import { ProgressLine } from "@/shared/ui/progress-line";
 import { Avi } from "@/shared/ui/mascot";
@@ -89,7 +91,17 @@ export type HomeViewState =
       readonly cards?: { readonly total: number; readonly studied: number };
       /** Titles of the "Práctica libre" collections (none: no link). */
       readonly practiceTopics?: readonly string[];
+      /** The daily goal and today's count against it (absent: not shown). */
+      readonly dailyGoal?: HomeDailyGoal;
     };
+
+/** The daily goal as home shows it, under the streak. */
+export type HomeDailyGoal = {
+  readonly goal: DailyGoal;
+  readonly status: DailyGoalStatus;
+  /** The one-time note offering to pick a goal is still open. */
+  readonly askToPick: boolean;
+};
 
 type HomeViewProps = {
   state: HomeViewState;
@@ -117,6 +129,10 @@ type HomeViewProps = {
   onOpenCard?: (cardId: string) => void;
   /** Shows the path of a level picked by hand; null goes back to the automatic level. */
   onChoosePathLevel?: (level: Level | null) => void;
+  /** Stores a daily goal picked on the progress card or the one-time note. */
+  onChooseDailyGoal?: (goal: DailyGoal) => void;
+  /** Closes the one-time daily goal note ("Ahora no"). */
+  onDismissDailyGoalPrompt?: () => void;
   /** News above everything but the greeting (the old web address's move banner). */
   notice?: ReactNode;
   /** The signed-in learner's first name for the greeting; without it, a plain "¡Hola!". */
@@ -141,12 +157,13 @@ function groupByTopic(lessons: readonly HomeLesson[]) {
 
 /**
  * The top of the page: the streak as a chain of paperclips with the number of days, the sound
- * and account controls, and the XP as sheets of stickers.
+ * and account controls, the daily goal, and the XP as sheets of stickers.
  */
 function ProgressCard({
   days,
   xp,
   controls,
+  goal,
   album,
   onOpenAlbum,
   cards,
@@ -159,6 +176,8 @@ function ProgressCard({
   days: number | null;
   xp: number | null;
   controls: ReactNode;
+  /** The daily goal under the streak (absent while loading). */
+  goal?: ReactNode;
   album?: { readonly unlocked: number; readonly total: number } | undefined;
   onOpenAlbum?: (() => void) | undefined;
   cards?: { readonly total: number; readonly studied: number } | undefined;
@@ -194,6 +213,7 @@ function ProgressCard({
         </View>
         <View style={styles.controls}>{controls}</View>
       </View>
+      {goal}
       {xp !== null && <XpBar xp={xp} />}
       {album !== undefined && onOpenAlbum !== undefined && (
         <AlbumLink album={album} onPress={onOpenAlbum} />
@@ -960,11 +980,14 @@ export function HomeView({
   onOpenCards,
   onOpenPractice,
   onOpenProgress,
+  onChooseDailyGoal,
+  onDismissDailyGoalPrompt,
   notice,
   greetingName,
   avi,
   ...handlers
 }: HomeViewProps) {
+  const dailyGoal = state.status === "ready" ? state.dailyGoal : undefined;
   const { colors } = useTheme();
   const controls = (
     <>
@@ -989,7 +1012,22 @@ export function HomeView({
         practiceTopics={state.status === "ready" ? state.practiceTopics : undefined}
         onOpenPractice={onOpenPractice}
         onOpenProgress={state.status === "ready" ? onOpenProgress : undefined}
+        goal={
+          dailyGoal !== undefined &&
+          onChooseDailyGoal !== undefined && (
+            <DailyGoalMeter
+              goal={dailyGoal.goal}
+              status={dailyGoal.status}
+              onChoose={onChooseDailyGoal}
+            />
+          )
+        }
       />
+      {dailyGoal?.askToPick === true &&
+        onChooseDailyGoal !== undefined &&
+        onDismissDailyGoalPrompt !== undefined && (
+          <DailyGoalPrompt onChoose={onChooseDailyGoal} onDismiss={onDismissDailyGoalPrompt} />
+        )}
       {state.status === "loading" && (
         <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />
       )}

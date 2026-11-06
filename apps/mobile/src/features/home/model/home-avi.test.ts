@@ -60,6 +60,30 @@ describe("homeAviState", () => {
     expect(state).toMatchObject({ kind: "celebrate", moment: "loop" });
   });
 
+  it("cheers once the daily goal is met, with a hop", () => {
+    const state = homeAviState({
+      ...base,
+      streak: streak(TODAY),
+      news: { ...NO_NEWS, goalMet: true },
+    });
+
+    expect(state).toEqual({
+      kind: "celebrate",
+      mood: "cheer",
+      bubble: "¡Meta cumplida!",
+      moment: "hop",
+    });
+  });
+
+  it("keeps the lesson's cheer when the goal is met by that lesson", () => {
+    const state = homeAviState({
+      ...base,
+      news: { ...NO_NEWS, lessonDone: true, goalMet: true },
+    });
+
+    expect(state).toMatchObject({ kind: "celebrate", bubble: "¡Lo lograste!", moment: "hop" });
+  });
+
   it("misses a learner whose streak broke, without guilt or numbers", () => {
     const state = homeAviState({
       ...base,
@@ -155,7 +179,7 @@ describe("homeAviState", () => {
 });
 
 describe("createHomeAviMemory", () => {
-  const seen = { badges: ["first-lesson"] };
+  const seen = { badges: ["first-lesson"], goalMet: false };
 
   it("finds nothing new on the first look of the session", () => {
     expect(createHomeAviMemory().take(seen)).toEqual(NO_NEWS);
@@ -165,8 +189,22 @@ describe("createHomeAviMemory", () => {
     const memory = createHomeAviMemory();
     memory.take(seen);
 
-    const next = { badges: ["first-lesson", "streak-3"] };
-    expect(memory.take(next)).toEqual({ lessonDone: false, badge: true });
+    const next = { badges: ["first-lesson", "streak-3"], goalMet: false };
+    expect(memory.take(next)).toEqual({ ...NO_NEWS, badge: true });
     expect(memory.take(next)).toEqual(NO_NEWS);
+  });
+
+  it("reports the daily goal met once, never on the first look (a reload cheers nothing)", () => {
+    const met = { badges: ["first-lesson"], goalMet: true };
+    const reloaded = createHomeAviMemory();
+    expect(reloaded.take(met)).toEqual(NO_NEWS);
+
+    const memory = createHomeAviMemory();
+    memory.take(seen);
+    expect(memory.take(met)).toEqual({ ...NO_NEWS, goalMet: true });
+    expect(memory.take(met)).toEqual(NO_NEWS);
+    // A new day starts unmet; meeting it again cheers again.
+    memory.take(seen);
+    expect(memory.take(met)).toEqual({ ...NO_NEWS, goalMet: true });
   });
 });
