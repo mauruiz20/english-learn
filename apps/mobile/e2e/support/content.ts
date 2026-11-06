@@ -16,6 +16,7 @@ type ExerciseData =
 type ContentFile = {
   exercises?: ({ id: string } & ExerciseData)[];
   placement?: { id: string; exercise: ExerciseData }[];
+  lessons?: { id: string; level: string; title: string }[];
 };
 
 const DATA_DIR = resolve(__dirname, "../../../../packages/content/data");
@@ -38,6 +39,25 @@ const exercisesById: ReadonlyMap<string, ExerciseData> = new Map(
     ];
   }),
 );
+
+/**
+ * The path's lessons (practice lessons excluded) in path order: like the generated corpus, files
+ * sorted by path, lessons in file order.
+ */
+const pathLessons = jsonFiles(DATA_DIR)
+  .filter((path) => !path.includes(`${DATA_DIR}/practice/`))
+  .sort()
+  .flatMap((path) => (JSON.parse(readFileSync(path, "utf8")) as ContentFile).lessons ?? []);
+
+/** The lessons of a level, in path order. */
+export function lessonsOfLevel(level: string): { id: string; title: string }[] {
+  return pathLessons.filter((lesson) => lesson.level === level);
+}
+
+/** The levels with lessons, in CEFR order (what the path's level picker lists). */
+export function levelsWithLessons(): string[] {
+  return ["A1", "A2", "B1", "B2", "C1"].filter((level) => lessonsOfLevel(level).length > 0);
+}
 
 const EXERCISE = '[data-testid^="exercise-"]';
 
@@ -98,15 +118,17 @@ const LEVELS = ["a1", "a2", "b1", "b2", "c1"] as const;
 
 /**
  * Answers the placement question on screen as a learner at `level` would: right up to that
- * level (from its `placement.<level>.` id), wrong above it, then presses "Siguiente".
+ * level (from its `placement.<level>.` id), wrong above it, then presses "Siguiente". A true
+ * beginner (`"beginner"`) answers everything wrong, which the test places at A1.
  */
 export async function answerPlacementAs(
   page: Page,
-  level: (typeof LEVELS)[number],
+  level: (typeof LEVELS)[number] | "beginner",
 ): Promise<string> {
   const id = await currentExerciseId(page);
   const questionLevel = /^placement\.([a-c][12])\./.exec(id)?.[1] ?? "";
-  if (LEVELS.indexOf(questionLevel as (typeof LEVELS)[number]) <= LEVELS.indexOf(level)) {
+  const known = level === "beginner" ? -1 : LEVELS.indexOf(level);
+  if (LEVELS.indexOf(questionLevel as (typeof LEVELS)[number]) <= known) {
     return answerCorrectly(page, "Siguiente");
   }
   const exercise = exercisesById.get(id);
