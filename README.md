@@ -15,7 +15,7 @@ every check passes; installable and usable offline; progress is stored in your b
 | Architecture | pnpm monorepo · hexagonal (ports & adapters) · screaming architecture             |
 | Quality      | TDD · 592 unit/integration tests · 12 Playwright e2e specs on Chromium + WebKit   |
 | Delivery     | GitFlow · Conventional Commits · GitHub Actions (format, lint, types, tests, e2e) |
-| Version      | 0.2.0, see [CHANGELOG](CHANGELOG.md)                                              |
+| Version      | 0.3.0, see [CHANGELOG](CHANGELOG.md)                                              |
 
 ## Contents
 
