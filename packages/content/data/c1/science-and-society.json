@@ -416,7 +416,29 @@
         "c1.science-and-society.peer-review",
         "c1.science-and-society.consensus"
       ],
-      "deepenCardIds": ["c1.grammar.hedging"]
+      "deepenCardIds": ["c1.grammar.hedging"],
+      "intro": {
+        "points": [
+          "En ciencia se evita afirmar de más: «appears to», «seems to», «tend to» y «may» suavizan.",
+          "«It could be argued that…» presenta una idea sin hacerla del todo tuya.",
+          "«skeptical of» es escéptico ante algo; «consensus», el acuerdo general de los expertos."
+        ],
+        "examples": [
+          {
+            "en": "The new drug appears to reduce the risk of heart disease.",
+            "es": "El nuevo medicamento parece reducir el riesgo de enfermedades cardíacas."
+          },
+          {
+            "en": "Younger people tend to trust experts less.",
+            "es": "Los jóvenes suelen confiar menos en los expertos."
+          }
+        ],
+        "mistake": {
+          "wrong": "Young people use to trust experts less.",
+          "right": "Young people tend to trust experts less.",
+          "note": "“Soler” en presente no es «use to»: usa «tend to» o «usually»."
+        }
+      }
     },
     {
       "id": "c1.science-and-society.lesson-002",
@@ -439,7 +461,30 @@
         "c1.science-and-society.shed-light-on",
         "c1.science-and-society.double-edged-sword"
       ],
-      "deepenCardIds": ["c1.grammar.nominalization", "b2.grammar.reporting-passive"]
+      "deepenCardIds": ["c1.grammar.nominalization", "b2.grammar.reporting-passive"],
+      "intro": {
+        "points": [
+          "Nominalización: «develop» → «the development of»; da un tono objetivo y formal.",
+          "«shed light on» es aclarar algo: «The study sheds light on how memory works».",
+          "«a double-edged sword» es algo con ventajas y riesgos a la vez.",
+          "Repasa la pasiva de opinión: «The virus is believed to have originated in bats»."
+        ],
+        "examples": [
+          {
+            "en": "The development of the new vaccine took less than a year.",
+            "es": "El desarrollo de la nueva vacuna llevó menos de un año."
+          },
+          {
+            "en": "Social media is a double-edged sword for scientists.",
+            "es": "Las redes sociales son un arma de doble filo para los científicos."
+          }
+        ],
+        "mistake": {
+          "wrong": "The study gives light on how memory works.",
+          "right": "The study sheds light on how memory works.",
+          "note": "“Arrojar luz sobre” es «shed light on»; «give light on» no se usa."
+        }
+      }
     }
   ]
 }

@@ -411,7 +411,30 @@
         "c1.arts-and-culture.thought-provoking",
         "c1.arts-and-culture.acquired-taste"
       ],
-      "deepenCardIds": ["c1.grammar.cleft-sentences"]
+      "deepenCardIds": ["c1.grammar.cleft-sentences"],
+      "intro": {
+        "points": [
+          "Las cleft sentences destacan una parte de la idea, como “lo que…” o “fue… lo que…” en español.",
+          "«What» + sujeto + verbo + «is»: «What makes this film special is its sense of humor».",
+          "«It was» + lo destacado + «that» o «who»: «It was the ending that divided the critics».",
+          "«an acquired taste» es algo que aprendes a disfrutar con el tiempo."
+        ],
+        "examples": [
+          {
+            "en": "What I love about this novel is the way it ends.",
+            "es": "Lo que me encanta de esta novela es cómo termina."
+          },
+          {
+            "en": "It was the ending that divided the critics.",
+            "es": "Fue el final lo que dividió a la crítica."
+          }
+        ],
+        "mistake": {
+          "wrong": "What I need it is a vacation.",
+          "right": "What I need is a vacation.",
+          "note": "«What I need» ya es el sujeto: no agregues «it» antes de «is»."
+        }
+      }
     },
     {
       "id": "c1.arts-and-culture.lesson-002",
@@ -433,7 +456,29 @@
         "c1.arts-and-culture.critically-acclaimed",
         "c1.arts-and-culture.stand-the-test-of-time"
       ],
-      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"],
+      "intro": {
+        "points": [
+          "«critically acclaimed» es aclamado por la crítica; suena a reseña, no a charla casual.",
+          "«stand the test of time» es resistir el paso del tiempo: «Her novels have stood the test of time».",
+          "Repasa el condicional mixto: «If I had bought the painting then, I would be rich now»."
+        ],
+        "examples": [
+          {
+            "en": "The film was critically acclaimed but failed at the box office.",
+            "es": "La película fue aclamada por la crítica, pero fracasó en taquilla."
+          },
+          {
+            "en": "These objects are part of our cultural heritage.",
+            "es": "Estos objetos forman parte de nuestro patrimonio cultural."
+          }
+        ],
+        "mistake": {
+          "wrong": "Her novels have resisted the pass of time.",
+          "right": "Her novels have stood the test of time.",
+          "note": "Es una expresión fija: la traducción literal de “resistir el paso del tiempo” no funciona."
+        }
+      }
     }
   ]
 }
