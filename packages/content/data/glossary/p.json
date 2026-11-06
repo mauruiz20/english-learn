@@ -432,7 +432,7 @@
       "id": "glossary.pasta",
       "headword": "pasta",
       "kind": "word",
-      "forms": ["pasta"],
+      "forms": ["pasta", "pastas"],
       "senses": [
         {
           "es": "pasta",
@@ -1015,6 +1015,18 @@
       "senses": [
         {
           "es": "pino",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.pizza",
+      "headword": "pizza",
+      "kind": "word",
+      "forms": ["pizza", "pizzas"],
+      "senses": [
+        {
+          "es": "pizza",
           "pos": "noun"
         }
       ]

@@ -660,6 +660,18 @@
       ]
     },
     {
+      "id": "glossary.cent",
+      "headword": "cent",
+      "kind": "word",
+      "forms": ["cent", "cents"],
+      "senses": [
+        {
+          "es": "centavo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.center",
       "headword": "center",
       "kind": "word",

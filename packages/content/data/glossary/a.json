@@ -1273,6 +1273,18 @@
       ]
     },
     {
+      "id": "glossary.altogether",
+      "headword": "altogether",
+      "kind": "word",
+      "forms": ["altogether"],
+      "senses": [
+        {
+          "es": "en total",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.always",
       "headword": "always",
       "kind": "word",

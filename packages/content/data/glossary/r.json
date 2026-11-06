@@ -1081,6 +1081,18 @@
       ]
     },
     {
+      "id": "glossary.reserve",
+      "headword": "reserve",
+      "kind": "word",
+      "forms": ["reserve", "reserves", "reserved", "reserving"],
+      "senses": [
+        {
+          "es": "reservar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.resign",
       "headword": "resign",
       "kind": "word",
@@ -1640,6 +1652,18 @@
         {
           "es": "grosero, maleducado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ruiz",
+      "headword": "Ruiz",
+      "kind": "word",
+      "forms": ["ruiz"],
+      "senses": [
+        {
+          "es": "Ruiz (apellido)",
+          "pos": "proper noun"
         }
       ]
     },

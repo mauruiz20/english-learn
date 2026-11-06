@@ -29,6 +29,17 @@
           ]
         },
         {
+          "id": "practice.dialogues.errands",
+          "level": "A2",
+          "title": "Compras y recados",
+          "summary": "En el supermercado, la farmacia y al reservar por teléfono.",
+          "dialogueIds": [
+            "a2.dialogues.supermarket-checkout",
+            "a2.dialogues.booking-a-table",
+            "a2.dialogues.at-the-pharmacy"
+          ]
+        },
+        {
           "id": "practice.dialogues.day-to-day",
           "level": "B1",
           "title": "Del día a día",

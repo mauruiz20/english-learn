@@ -1,0 +1,244 @@
+{
+  "dialogues": [
+    {
+      "id": "a2.dialogues.supermarket-checkout",
+      "level": "A2",
+      "title": "En la caja del supermercado",
+      "setting": "Pagas tus compras en la caja de un supermercado en Estados Unidos. Buscaste huevos y no los encontraste, y no trajiste bolsas.",
+      "characters": [
+        {
+          "id": "cashier",
+          "name": "Mike",
+          "role": "cajero"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Hi there! Did you find everything you were looking for?",
+          "es": "¡Hola! ¿Encontró todo lo que buscaba?",
+          "next": "eggs"
+        },
+        {
+          "id": "eggs",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Almost. Do you have any eggs? I couldn't find them.",
+              "rating": "good",
+              "feedback": "Respondes y preguntas con «any», como se hace en las preguntas.",
+              "next": "no-eggs"
+            },
+            {
+              "en": "Where are the eggs?",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena brusco: no respondes su pregunta.",
+              "next": "no-eggs"
+            },
+            {
+              "en": "Yes, I have some eggs.",
+              "rating": "wrong",
+              "feedback": "Malentendido: dices que ya tienes huevos, pero no encontraste ninguno.",
+              "next": "no-eggs-confused"
+            }
+          ]
+        },
+        {
+          "id": "no-eggs",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Sorry, we don't have any eggs today. We're getting more tomorrow. Do you need any bags? They're ten cents each.",
+          "es": "Lo siento, hoy no tenemos huevos. Mañana nos llegan más. ¿Necesita bolsas? Cuestan diez centavos cada una.",
+          "next": "bags"
+        },
+        {
+          "id": "no-eggs-confused",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Oh, but I don't see any eggs here. Do you want some? Sorry, we don't have any today. Do you need any bags? They're ten cents each.",
+          "es": "Ah, pero no veo huevos aquí. ¿Quiere? Lo siento, hoy no tenemos. ¿Necesita bolsas? Cuestan diez centavos cada una.",
+          "next": "bags"
+        },
+        {
+          "id": "bags",
+          "kind": "write",
+          "prompt": "Dile que sí, que quieres dos bolsas, por favor.",
+          "accepted": [
+            "Yes, two[ bags], please.",
+            "Yes, {can|could} I have two[ bags][, please]?",
+            "Yes, I'd like two[ bags][, please].",
+            "Yes, I need two[ bags][, please].",
+            "Two[ bags], please."
+          ],
+          "tip": "«Two bags, please» o «Can I have two bags, please?»",
+          "next": "scan",
+          "wrongNext": "scan-check"
+        },
+        {
+          "id": "scan",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Sure. Okay, bread, milk, apples, bananas, bananas... That's twenty-four fifty.",
+          "es": "Claro. A ver: pan, leche, manzanas, bananas, bananas... Son veinticuatro cincuenta.",
+          "next": "twice"
+        },
+        {
+          "id": "scan-check",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Sorry, how many? Two? Okay. Bread, milk, apples, bananas, bananas... That's twenty-four fifty.",
+          "es": "Perdón, ¿cuántas? ¿Dos? Muy bien. Pan, leche, manzanas, bananas, bananas... Son veinticuatro cincuenta.",
+          "next": "twice"
+        },
+        {
+          "id": "twice",
+          "kind": "write",
+          "prompt": "Te cobró las bananas dos veces. Díselo con amabilidad.",
+          "accepted": [
+            "{Excuse me|Sorry}, I think you {scanned|charged me for} the bananas twice.",
+            "{Excuse me|Sorry}, you {scanned|charged me for} the bananas twice.",
+            "I think you {scanned|charged me for} the bananas twice.",
+            "{Excuse me|Sorry}, I only have one bag of bananas."
+          ],
+          "tip": "Para corregir con amabilidad: «Sorry, I think you scanned the bananas twice.» «Twice» es «dos veces».",
+          "next": "fixed",
+          "wrongNext": "fixed-late"
+        },
+        {
+          "id": "fixed",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Oh, you're right! Sorry about that. So that's twenty-two fifty. Do you have a rewards card?",
+          "es": "¡Ay, tiene razón! Disculpe. Entonces son veintidós cincuenta. ¿Tiene tarjeta de cliente?",
+          "next": "rewards"
+        },
+        {
+          "id": "fixed-late",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Sorry? The bananas? Let me see... Oh, they're on here twice! Sorry about that. So that's twenty-two fifty. Do you have a rewards card?",
+          "es": "¿Perdón? ¿Las bananas? A ver... ¡Ay, están dos veces! Disculpe. Entonces son veintidós cincuenta. ¿Tiene tarjeta de cliente?",
+          "next": "rewards"
+        },
+        {
+          "id": "rewards",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "No, I don't. Thanks.",
+              "rating": "good",
+              "feedback": "Respuesta corta y amable.",
+              "next": "cash-or-card"
+            },
+            {
+              "en": "No.",
+              "rating": "ok",
+              "feedback": "Correcto, pero un poco seco.",
+              "next": "cash-or-card"
+            },
+            {
+              "en": "Yes, here's my credit card.",
+              "rating": "wrong",
+              "feedback": "Malentendido: «rewards card» es la tarjeta de puntos de la tienda, no tu tarjeta de crédito.",
+              "next": "cash-or-card-explain"
+            }
+          ]
+        },
+        {
+          "id": "cash-or-card",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "No problem. Cash or card?",
+          "es": "No hay problema. ¿Efectivo o tarjeta?",
+          "next": "pay"
+        },
+        {
+          "id": "cash-or-card-explain",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Oh, I mean our store card, for points. No problem. So, cash or card?",
+          "es": "Ah, me refiero a nuestra tarjeta de la tienda, para sumar puntos. No hay problema. Entonces, ¿efectivo o tarjeta?",
+          "next": "pay"
+        },
+        {
+          "id": "pay",
+          "kind": "write",
+          "prompt": "Paga en efectivo con un billete de cincuenta dólares.",
+          "accepted": [
+            "Cash[, please]. Here's {fifty[ dollars]|a fifty}.",
+            "I'll pay {in|with} cash[. Here's {fifty[ dollars]|a fifty}].",
+            "Here's {fifty[ dollars]|a fifty}."
+          ],
+          "tip": "«Cash» es efectivo: «Cash, please. Here's fifty.»",
+          "next": "receipt",
+          "wrongNext": "receipt-check"
+        },
+        {
+          "id": "receipt",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Thanks. Here's your change, twenty-seven fifty. Do you want your receipt?",
+          "es": "Gracias. Aquí tiene su cambio, veintisiete cincuenta. ¿Quiere su recibo?",
+          "next": "answer-receipt"
+        },
+        {
+          "id": "receipt-check",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Sorry, cash? Okay. Here's your change, twenty-seven fifty. Do you want your receipt?",
+          "es": "Perdón, ¿efectivo? Muy bien. Aquí tiene su cambio, veintisiete cincuenta. ¿Quiere su recibo?",
+          "next": "answer-receipt"
+        },
+        {
+          "id": "answer-receipt",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "No, thanks. Have a nice day!",
+              "rating": "good",
+              "feedback": "Amable y natural para terminar.",
+              "next": "bye"
+            },
+            {
+              "en": "Receipt no.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero el orden es del español; en inglés: «No, thanks» o «No receipt, thanks».",
+              "next": "bye"
+            },
+            {
+              "en": "Yes, keep it.",
+              "rating": "wrong",
+              "feedback": "Confuso: dices que sí lo quieres y a la vez que se lo quede.",
+              "next": "bye-confused"
+            }
+          ]
+        },
+        {
+          "id": "bye",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "You too! Have a good one.",
+          "es": "¡Igualmente! Que le vaya bien.",
+          "next": "end"
+        },
+        {
+          "id": "bye-confused",
+          "kind": "npc",
+          "speaker": "cashier",
+          "en": "Um, okay, I'll put it in your bag. Have a good one!",
+          "es": "Eh, bueno, se lo pongo en la bolsa. ¡Que le vaya bien!",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Pagaste tus compras y el cajero corrigió el error de las bananas."
+        }
+      ],
+      "cardIds": ["a2.grammar.some-any"]
+    }
+  ]
+}

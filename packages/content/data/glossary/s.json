@@ -316,7 +316,7 @@
       "id": "glossary.scan",
       "headword": "scan",
       "kind": "word",
-      "forms": ["scan", "scans"],
+      "forms": ["scan", "scans", "scanned", "scanning"],
       "senses": [
         {
           "es": "exploración (médica), escáner",
@@ -3655,6 +3655,18 @@
       "senses": [
         {
           "es": "síntoma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.syrup",
+      "headword": "syrup",
+      "kind": "word",
+      "forms": ["syrup", "syrups"],
+      "senses": [
+        {
+          "es": "jarabe",
           "pos": "noun"
         }
       ]
