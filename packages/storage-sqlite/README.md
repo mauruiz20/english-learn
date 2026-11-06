@@ -66,6 +66,8 @@ bench`, median): saving a 13-event session ≈ 3 ms (was ≈ 240 ms, a full refo
     `insertRemoteEvents` / `importEvents` and refused by `appendEvents`, like an unorderable one.
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
+  `getPronunciationEnabled()` likewise for the pronunciation buttons, and `getSpeechRate()` is
+  `"normal"` unless the learner picked `"slow"` (no migration: new keys of the same table);
   `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).
   `getAccount()` / `setAccount({ userId, email, givenName? })` / `clearAccount()` remember who is
   signed in and their first name for the home greeting (never a token; an unreadable value reads

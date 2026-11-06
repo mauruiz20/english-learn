@@ -19,11 +19,20 @@ export type AccountMarker = {
 /** The app's look: follow the device's light/dark setting, or always one of them. */
 export type ThemePreference = "system" | "light" | "dark";
 
+/** How fast English is spoken by the pronunciation buttons: the voice's normal speed, or slow. */
+export type SpeechRate = "normal" | "slow";
+
 /** The learner's app preferences, kept on the device. Implemented by the app layer. */
 export interface SettingsRepository {
   /** Whether interaction sounds play; on until the learner turns them off. */
   getSoundEnabled(): Promise<boolean>;
   setSoundEnabled(enabled: boolean): Promise<void>;
+  /** Whether the "Escuchar" pronunciation buttons show; on until the learner turns them off. */
+  getPronunciationEnabled(): Promise<boolean>;
+  setPronunciationEnabled(enabled: boolean): Promise<void>;
+  /** The speed pronunciation plays at; normal until the learner picks slow. */
+  getSpeechRate(): Promise<SpeechRate>;
+  setSpeechRate(rate: SpeechRate): Promise<void>;
   /** Whether the learner dismissed the one-time "tap a word" hint of the word lookup. */
   getLookupHintDismissed(): Promise<boolean>;
   setLookupHintDismissed(): Promise<void>;

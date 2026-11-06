@@ -34,6 +34,27 @@ describe("createSqliteSettingsRepository", () => {
     expect(await settings.getSoundEnabled()).toBe(true);
   });
 
+  it("has pronunciation on at normal speed by default", async () => {
+    expect(await settings.getPronunciationEnabled()).toBe(true);
+    expect(await settings.getSpeechRate()).toBe("normal");
+  });
+
+  it("remembers that pronunciation was turned off, and back on", async () => {
+    await settings.setPronunciationEnabled(false);
+    expect(await createSqliteSettingsRepository(db).getPronunciationEnabled()).toBe(false);
+
+    await settings.setPronunciationEnabled(true);
+    expect(await settings.getPronunciationEnabled()).toBe(true);
+  });
+
+  it("remembers the speech rate, and reads an unknown one as normal", async () => {
+    await settings.setSpeechRate("slow");
+    expect(await createSqliteSettingsRepository(db).getSpeechRate()).toBe("slow");
+
+    await db.runAsync("UPDATE setting SET value = 'turbo' WHERE key = 'speech_rate'", []);
+    expect(await settings.getSpeechRate()).toBe("normal");
+  });
+
   it("has not dismissed the word lookup hint by default", async () => {
     expect(await settings.getLookupHintDismissed()).toBe(false);
   });
