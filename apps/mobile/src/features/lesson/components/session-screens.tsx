@@ -12,6 +12,8 @@ import Animated, {
 import Svg, { Path } from "react-native-svg";
 import { GlossaryText } from "@/features/glossary/glossary-text";
 import { lookupEnabled } from "@/features/lesson/model/lookup-policy";
+import { speakableTerm } from "@/features/pronunciation/model/speakable-text";
+import { WithSpeaker } from "@/features/pronunciation/with-speaker";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 import { Button } from "@/shared/ui/button";
@@ -328,14 +330,16 @@ function Recap({
       <View>
         {items.map((item) => (
           <View key={item.id} style={[styles.line, styles.recapItem]}>
-            <View style={styles.note}>
-              <GlossaryText
-                variant="bodyStrong"
-                text={item.term}
-                enabled={lookupEnabled("summary.terms", true)}
-              />
-              <Text tone="muted">{item.es}</Text>
-            </View>
+            <WithSpeaker text={speakableTerm(item.term)}>
+              <View style={styles.note}>
+                <GlossaryText
+                  variant="bodyStrong"
+                  text={item.term}
+                  enabled={lookupEnabled("summary.terms", true)}
+                />
+                <Text tone="muted">{item.es}</Text>
+              </View>
+            </WithSpeaker>
             {item.card !== undefined && onOpenCard !== undefined ? (
               <Button
                 label={`Ver ficha: ${item.card.title}`}
@@ -344,17 +348,19 @@ function Recap({
               />
             ) : (
               item.example !== undefined && (
-                <View style={styles.example}>
-                  <GlossaryText
-                    text={item.example.en}
-                    enabled={lookupEnabled("summary.terms", true)}
-                  />
-                  {item.example.es !== undefined && (
-                    <Text variant="small" tone="muted">
-                      {item.example.es}
-                    </Text>
-                  )}
-                </View>
+                <WithSpeaker text={item.example.en}>
+                  <View style={styles.example}>
+                    <GlossaryText
+                      text={item.example.en}
+                      enabled={lookupEnabled("summary.terms", true)}
+                    />
+                    {item.example.es !== undefined && (
+                      <Text variant="small" tone="muted">
+                        {item.example.es}
+                      </Text>
+                    )}
+                  </View>
+                </WithSpeaker>
               )
             )}
           </View>

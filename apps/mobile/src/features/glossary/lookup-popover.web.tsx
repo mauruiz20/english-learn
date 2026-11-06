@@ -111,7 +111,7 @@ function AnchoredCard({
         opacity: height === null ? 0 : 1,
       }}
     >
-      <LookupCard entry={lookup.entry} tint={tint} />
+      <LookupCard entry={lookup.entry} tint={tint} speakable={dialog} />
     </View>
   );
 }

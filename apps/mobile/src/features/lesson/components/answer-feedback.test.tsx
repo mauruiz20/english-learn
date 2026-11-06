@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react-native";
 import { StyleSheet } from "react-native";
 import { diffAnswer } from "@english-learn/domain";
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
+import { renderWithPronunciation } from "@/testing/render-with-pronunciation";
 import { renderWithSounds } from "@/testing/render-with-sounds";
 import { AnswerFeedback } from "./answer-feedback";
 
@@ -30,6 +31,38 @@ describe("AnswerFeedback", () => {
 
     expect(sounds.played).toEqual(["press"]);
     expect(onContinue).toHaveBeenCalledTimes(2);
+  });
+
+  it("offers to hear the right answer, after a right or a wrong answer", async () => {
+    const { speech, rerender } = await renderWithPronunciation(
+      <AnswerFeedback
+        verdict="wrong"
+        given="I wake up usually"
+        correctAnswer="I usually wake up"
+        speakText="I usually wake up"
+        onContinue={onContinue}
+      />,
+    );
+    await fireEvent.press(screen.getByRole("button", { name: "Escuchar: I usually wake up" }));
+    expect(speech.spoken.map((s) => s.text)).toEqual(["I usually wake up"]);
+
+    await rerender(
+      <AnswerFeedback
+        verdict="correct"
+        given="I usually wake up"
+        correctAnswer="I usually wake up"
+        speakText="I usually wake up"
+        onContinue={onContinue}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "Escuchar: I usually wake up" })).toBeOnTheScreen();
+  });
+
+  it("has no speaker when the answer is not English", async () => {
+    await renderWithPronunciation(
+      <AnswerFeedback verdict="correct" given="sí" correctAnswer="sí" onContinue={onContinue} />,
+    );
+    expect(screen.queryByRole("button", { name: /^Escuchar/u })).toBeNull();
   });
 
   it("announces a correct answer plainly, without repeating it", async () => {

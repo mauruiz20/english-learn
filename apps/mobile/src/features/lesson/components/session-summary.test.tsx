@@ -1,5 +1,6 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react-native";
 import { withMotion } from "@/testing/motion";
+import { renderWithPronunciation } from "@/testing/render-with-pronunciation";
 import { STREAK_SOUND_DELAY_MS } from "../use-session-sounds";
 import { SessionSummary } from "./session-screens";
 
@@ -55,6 +56,21 @@ describe("SessionSummary", () => {
 
       expect(screen.getByText("despertarse")).toBeOnTheScreen();
       expect(screen.queryByRole("button", { name: /^Ver ficha/ })).not.toBeOnTheScreen();
+    });
+
+    it("offers to hear each term and each example", async () => {
+      const { speech } = await renderWithPronunciation(
+        <SessionSummary {...base} recap={recap} onOpenCard={jest.fn()} />,
+      );
+      const section = screen.getByTestId("summary-recap");
+
+      await fireEvent.press(within(section).getByRole("button", { name: "Escuchar: wake up" }));
+      expect(speech.spoken.at(-1)?.text).toBe("wake up");
+      expect(within(section).getByRole("button", { name: "Escuchar: usually" })).toBeOnTheScreen();
+      await fireEvent.press(
+        within(section).getByRole("button", { name: "Escuchar: I usually wake up at six." }),
+      );
+      expect(speech.spoken.at(-1)?.text).toBe("I usually wake up at six.");
     });
 
     it("is absent without new items (a review, a card practice)", async () => {

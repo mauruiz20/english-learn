@@ -9,6 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 import { GlossaryRuns } from "@/features/glossary/glossary-text";
+import { WithSpeaker } from "@/features/pronunciation/with-speaker";
 import { Button } from "@/shared/ui/button";
 import { Highlight } from "@/shared/ui/highlight";
 import { MarginNote } from "@/shared/ui/margin-note";
@@ -32,6 +33,8 @@ type AnswerFeedbackProps = {
   hint?: string | undefined;
   /** The correct answer is English: its words can be looked up in the margin note. */
   lookupAnswer?: boolean | undefined;
+  /** The English to hear with the right answer (its speaker); absent: no speaker. */
+  speakText?: string | null | undefined;
   /** The learner marked this answer as correct (`verdict` is then "correct"). */
   disputed?: boolean | undefined;
   /** Offers "Mi respuesta también es correcta" (translate_write answers graded wrong or almost). */
@@ -128,6 +131,7 @@ export function AnswerFeedback({
   diff,
   hint,
   lookupAnswer = false,
+  speakText,
   disputed = false,
   onDispute,
   inARow = 0,
@@ -162,30 +166,32 @@ export function AnswerFeedback({
         )}
         {points > 0 && <PopBadge label={`+${points}`} style={styles.badge} />}
       </View>
-      <View style={styles.marking}>
-        {verdict === "correct" ? (
-          <View {...hidden} style={styles.marking}>
-            <Highlight animate variant="title" style={styles.answer}>
-              {shown}
-            </Highlight>
-          </View>
-        ) : (
-          <>
-            <StruckAnswer marks={markings(shown, diff)} />
-            <TeacherNote>
-              <MarginNote {...(hideNote ? hidden : {})} style={styles.note}>
-                {verdict === "almost" ? "Casi. Fíjate: " : "Era: "}
-                <GlossaryRuns text={correctAnswer} enabled={lookupAnswer} />
-              </MarginNote>
-              {hint !== undefined && (
-                <Text testID="feedback-hint" style={styles.hint}>
-                  {hint}
-                </Text>
-              )}
-            </TeacherNote>
-          </>
-        )}
-      </View>
+      <WithSpeaker text={speakText ?? ""}>
+        <View style={styles.marking}>
+          {verdict === "correct" ? (
+            <View {...hidden} style={styles.marking}>
+              <Highlight animate variant="title" style={styles.answer}>
+                {shown}
+              </Highlight>
+            </View>
+          ) : (
+            <>
+              <StruckAnswer marks={markings(shown, diff)} />
+              <TeacherNote>
+                <MarginNote {...(hideNote ? hidden : {})} style={styles.note}>
+                  {verdict === "almost" ? "Casi. Fíjate: " : "Era: "}
+                  <GlossaryRuns text={correctAnswer} enabled={lookupAnswer} />
+                </MarginNote>
+                {hint !== undefined && (
+                  <Text testID="feedback-hint" style={styles.hint}>
+                    {hint}
+                  </Text>
+                )}
+              </TeacherNote>
+            </>
+          )}
+        </View>
+      </WithSpeaker>
       <Button label="Continuar" pressSound={!finishes} onPress={onContinue} />
       {onDispute !== undefined && verdict !== "correct" && (
         <Button label="Mi respuesta también es correcta" variant="text" onPress={onDispute} />
