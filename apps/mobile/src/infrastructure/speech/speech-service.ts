@@ -4,13 +4,27 @@ export type SpeechSnapshot = {
   readonly available: boolean;
   /** The key of what is being spoken (one speaker button), or null. */
   readonly speakingKey: string | null;
+  /** The English voices the learner can pick from, best first (`rankEnglishVoices`). */
+  readonly voices: readonly SpeechVoice[];
+  /** The voice speaking now: the learner's pick when it is on the device, else the best one. */
+  readonly voiceId: string | null;
+};
+
+/** One English voice of the device, as the voice picker shows it. */
+export type SpeechVoice = {
+  /** The voice's `voiceURI`: stable on a device, what the learner's pick stores. */
+  readonly id: string;
+  readonly name: string;
+  readonly lang: string;
 };
 
 export type SpeakOptions = {
-  /** 1 is the voice's normal speed; 0.7 is slow. */
+  /** 1 is the voice's normal speed; below 1 is slower (see `SPEECH_RATES`). */
   readonly rate: number;
   /** Who asked (a speaker button): `speakingKey` while it speaks. */
   readonly key: string;
+  /** Speak with this voice (`SpeechVoice.id`) once, e.g. to try it, instead of the one in use. */
+  readonly voice?: string | undefined;
 };
 
 /**
@@ -24,9 +38,16 @@ export interface SpeechService {
   subscribe(listener: () => void): () => void;
   speak(text: string, options: SpeakOptions): void;
   cancel(): void;
+  /** The learner's voice (`SpeechVoice.id`), or null for the automatic one. */
+  setVoice(id: string | null): void;
 }
 
-const UNAVAILABLE: SpeechSnapshot = { available: false, speakingKey: null };
+const UNAVAILABLE: SpeechSnapshot = {
+  available: false,
+  speakingKey: null,
+  voices: [],
+  voiceId: null,
+};
 
 /** No speech at all (native, tests, browsers without an English voice): no speaker buttons. */
 export const unsupportedSpeech: SpeechService = {
@@ -34,6 +55,7 @@ export const unsupportedSpeech: SpeechService = {
   subscribe: () => () => {},
   speak: () => {},
   cancel: () => {},
+  setVoice: () => {},
 };
 
 /** The two speeds a learner can pick. */
