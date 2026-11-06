@@ -40,6 +40,7 @@ function setup() {
   const store = { resetSyncState: jest.fn(async () => {}), clearProgress: jest.fn(async () => {}) };
   const settings = {
     clearPathLevel: jest.fn(async () => {}),
+    clearSeenLevelIntros: jest.fn(async () => {}),
   };
   const deleteAccount = jest.fn(async () => {});
   const onProgressChanged = jest.fn();
@@ -169,6 +170,8 @@ describe("createAccountController", () => {
     expect(store.clearProgress).toHaveBeenCalled();
     // The path follows the automatic level again.
     expect(settings.clearPathLevel).toHaveBeenCalled();
+    // The next learner sees each level's intro again.
+    expect(settings.clearSeenLevelIntros).toHaveBeenCalled();
     expect(onProgressChanged).toHaveBeenCalled();
   });
 
@@ -178,6 +181,7 @@ describe("createAccountController", () => {
     await controller.signOut({ keepLocalProgress: true });
 
     expect(settings.clearPathLevel).not.toHaveBeenCalled();
+    expect(settings.clearSeenLevelIntros).not.toHaveBeenCalled();
   });
 
   it("deletes the account and forgets the session, keeping local progress", async () => {
@@ -291,7 +295,7 @@ describe("signing out while a sync is in flight", () => {
       session,
       coordinator,
       store,
-      settings: { clearPathLevel: async () => {} },
+      settings: { clearPathLevel: async () => {}, clearSeenLevelIntros: async () => {} },
       deleteAccount: async () => {},
       pending: createPendingSignInStore(memoryStorage(), () => 1_000),
       randomBytes: createTestRandomBytes(),
