@@ -661,6 +661,18 @@
       ]
     },
     {
+      "id": "glossary.seemingly",
+      "headword": "seemingly",
+      "kind": "word",
+      "forms": ["seemingly"],
+      "senses": [
+        {
+          "es": "aparentemente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.self-criticism",
       "headword": "self-criticism",
       "kind": "word",
