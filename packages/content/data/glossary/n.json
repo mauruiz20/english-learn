@@ -293,6 +293,18 @@
       ]
     },
     {
+      "id": "glossary.nice-to-meet-you",
+      "headword": "nice to meet you",
+      "kind": "phrase",
+      "forms": ["nice to meet you"],
+      "senses": [
+        {
+          "es": "mucho gusto, encantado de conocerte",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.night",
       "headword": "night",
       "kind": "word",

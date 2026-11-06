@@ -513,6 +513,18 @@
       ]
     },
     {
+      "id": "glossary.see-you-later",
+      "headword": "see you later",
+      "kind": "phrase",
+      "forms": ["see you later"],
+      "senses": [
+        {
+          "es": "hasta luego",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.seem",
       "headword": "seem",
       "kind": "word",
@@ -1104,6 +1116,18 @@
         {
           "es": "tímido",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sibling",
+      "headword": "sibling",
+      "kind": "word",
+      "forms": ["sibling", "siblings"],
+      "senses": [
+        {
+          "es": "hermano o hermana",
+          "pos": "noun"
         }
       ]
     },

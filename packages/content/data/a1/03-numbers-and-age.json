@@ -1,0 +1,354 @@
+{
+  "items": [
+    {
+      "id": "a1.numbers-and-age.eleven",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "word",
+      "term": "eleven",
+      "es": "once"
+    },
+    {
+      "id": "a1.numbers-and-age.twelve",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "word",
+      "term": "twelve",
+      "es": "doce",
+      "example": {
+        "en": "I'm twelve years old.",
+        "es": "Tengo doce años."
+      }
+    },
+    {
+      "id": "a1.numbers-and-age.thirteen",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "word",
+      "term": "thirteen",
+      "es": "trece",
+      "example": {
+        "en": "My sister is thirteen.",
+        "es": "Mi hermana tiene trece años."
+      }
+    },
+    {
+      "id": "a1.numbers-and-age.fifteen",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "word",
+      "term": "fifteen",
+      "es": "quince"
+    },
+    {
+      "id": "a1.numbers-and-age.twenty",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "word",
+      "term": "twenty",
+      "es": "veinte"
+    },
+    {
+      "id": "a1.numbers-and-age.thirty",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "word",
+      "term": "thirty",
+      "es": "treinta"
+    },
+    {
+      "id": "a1.numbers-and-age.how-old-are-you",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "phrase",
+      "term": "How old are you?",
+      "es": "¿Cuántos años tienes?"
+    },
+    {
+      "id": "a1.numbers-and-age.years-old",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "phrase",
+      "term": "years old (I'm ten years old)",
+      "es": "años de edad (tengo diez años)"
+    },
+    {
+      "id": "a1.numbers-and-age.phone-number",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "phrase",
+      "term": "phone number",
+      "es": "número de teléfono"
+    },
+    {
+      "id": "a1.numbers-and-age.birthday",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "kind": "word",
+      "term": "birthday",
+      "es": "cumpleaños",
+      "example": {
+        "en": "Today is my birthday.",
+        "es": "Hoy es mi cumpleaños."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.numbers-and-age.happy-birthday",
+      "level": "A1",
+      "topics": ["numbers-and-age"],
+      "title": "Happy birthday!",
+      "text": "Sam: Happy birthday, Emma! How old are you today? Emma: I'm twelve. How old are you? Sam: I'm thirteen. My sister is twelve too. Emma: Cool! What's your phone number? Sam: It's 555-0147. What's your number? Emma: It's 555-0193.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.numbers-and-age.vocab-001",
+      "itemIds": ["a1.numbers-and-age.twelve"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'twelve' mean?",
+      "options": ["dos", "veinte", "doce", "diez"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.numbers-and-age.vocab-002",
+      "itemIds": ["a1.numbers-and-age.thirteen"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'trece'.",
+      "options": ["thirty", "thirteen", "three", "third"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.numbers-and-age.cloze-001",
+      "itemIds": ["a1.numbers-and-age.fifteen"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Ten plus five is ___.",
+      "answers": ["fifteen"],
+      "distractors": ["fifty", "five", "fourteen"],
+      "es": "Diez más cinco son quince."
+    },
+    {
+      "id": "a1.numbers-and-age.choice-001",
+      "itemIds": ["a1.numbers-and-age.twenty"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I have twenty books.",
+      "options": [
+        "Tengo doce libros.",
+        "Tengo dos libros.",
+        "Tengo treinta libros.",
+        "Tengo veinte libros."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.numbers-and-age.cloze-002",
+      "itemIds": ["a1.numbers-and-age.thirty"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Twenty plus ten is ___.",
+      "answers": ["thirty"],
+      "distractors": ["thirteen", "three"],
+      "es": "Veinte más diez son treinta."
+    },
+    {
+      "id": "a1.numbers-and-age.order-001",
+      "itemIds": ["a1.numbers-and-age.thirty"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["thirty", "class", "students.", "has", "My"],
+      "accepted": ["My class has thirty students."],
+      "es": "Mi clase tiene treinta estudiantes."
+    },
+    {
+      "id": "a1.numbers-and-age.write-001",
+      "itemIds": ["a1.numbers-and-age.eleven"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo once libros.",
+      "accepted": ["I {have|have got} {eleven|11} books."]
+    },
+    {
+      "id": "a1.numbers-and-age.vocab-003",
+      "itemIds": ["a1.numbers-and-age.birthday"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'birthday' mean?",
+      "options": ["fiesta", "cumpleaños", "regalo", "año"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.numbers-and-age.cloze-003",
+      "itemIds": ["a1.numbers-and-age.years-old"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My brother is ten years ___.",
+      "answers": ["old"],
+      "distractors": ["age", "has"],
+      "es": "Mi hermano tiene diez años."
+    },
+    {
+      "id": "a1.numbers-and-age.cloze-004",
+      "itemIds": ["a1.numbers-and-age.how-old-are-you"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "How ___ are you?",
+      "answers": ["old"],
+      "distractors": ["years", "age", "have"],
+      "es": "¿Cuántos años tienes?"
+    },
+    {
+      "id": "a1.numbers-and-age.order-002",
+      "itemIds": ["a1.numbers-and-age.years-old"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["years", "nine", "old.", "I'm"],
+      "accepted": ["I'm nine years old."],
+      "es": "Tengo nueve años."
+    },
+    {
+      "id": "a1.numbers-and-age.reading-001",
+      "itemIds": [
+        "a1.numbers-and-age.how-old-are-you",
+        "a1.numbers-and-age.thirteen",
+        "a1.numbers-and-age.phone-number"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.numbers-and-age.happy-birthday",
+      "questions": [
+        {
+          "prompt": "How old is Emma?",
+          "options": ["Eleven", "Twelve", "Thirteen"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Who is thirteen?",
+          "options": ["Sam", "Emma", "Sam's sister"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What is Sam's phone number?",
+          "options": ["555-0193", "555-0174", "555-0147"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a1.numbers-and-age.choice-002",
+      "itemIds": ["a1.numbers-and-age.phone-number"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "What's your phone number?",
+      "options": [
+        "¿Tienes teléfono?",
+        "¿Cuántos años tienes?",
+        "¿Cuál es tu número de teléfono?",
+        "¿Cuál es tu nombre?"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.numbers-and-age.write-002",
+      "itemIds": ["a1.numbers-and-age.years-old", "a1.numbers-and-age.fifteen"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi hermana tiene quince años.",
+      "accepted": ["My sister is {fifteen|15}[ years old]."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.numbers-and-age.lesson-001",
+      "level": "A1",
+      "topic": "numbers-and-age",
+      "title": "Los números",
+      "exerciseIds": [
+        "a1.numbers-and-age.vocab-001",
+        "a1.numbers-and-age.vocab-002",
+        "a1.numbers-and-age.cloze-001",
+        "a1.numbers-and-age.choice-001",
+        "a1.numbers-and-age.cloze-002",
+        "a1.numbers-and-age.order-001",
+        "a1.numbers-and-age.write-001"
+      ],
+      "newItemIds": [
+        "a1.numbers-and-age.twelve",
+        "a1.numbers-and-age.thirteen",
+        "a1.numbers-and-age.fifteen",
+        "a1.numbers-and-age.twenty",
+        "a1.numbers-and-age.thirty"
+      ]
+    },
+    {
+      "id": "a1.numbers-and-age.lesson-002",
+      "level": "A1",
+      "topic": "numbers-and-age",
+      "title": "¿Cuántos años tienes?",
+      "exerciseIds": [
+        "a1.numbers-and-age.vocab-003",
+        "a1.numbers-and-age.cloze-003",
+        "a1.numbers-and-age.cloze-004",
+        "a1.numbers-and-age.order-002",
+        "a1.numbers-and-age.reading-001",
+        "a1.numbers-and-age.choice-002",
+        "a1.numbers-and-age.write-002"
+      ],
+      "newItemIds": [
+        "a1.numbers-and-age.birthday",
+        "a1.numbers-and-age.years-old",
+        "a1.numbers-and-age.how-old-are-you",
+        "a1.numbers-and-age.phone-number"
+      ]
+    }
+  ]
+}

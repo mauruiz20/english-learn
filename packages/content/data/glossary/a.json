@@ -1385,6 +1385,18 @@
       ]
     },
     {
+      "id": "glossary.artist",
+      "headword": "artist",
+      "kind": "word",
+      "forms": ["artist", "artists"],
+      "senses": [
+        {
+          "es": "artista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.as",
       "headword": "as",
       "kind": "word",

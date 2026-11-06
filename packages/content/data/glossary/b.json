@@ -177,6 +177,18 @@
       ]
     },
     {
+      "id": "glossary.banana",
+      "headword": "banana",
+      "kind": "word",
+      "forms": ["banana", "bananas"],
+      "senses": [
+        {
+          "es": "plátano, banana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.band",
       "headword": "band",
       "kind": "word",
@@ -1400,6 +1412,18 @@
         {
           "es": "para cuando",
           "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bye",
+      "headword": "bye",
+      "kind": "word",
+      "forms": ["bye"],
+      "senses": [
+        {
+          "es": "adiós, chao",
+          "pos": "interjection"
         }
       ]
     }

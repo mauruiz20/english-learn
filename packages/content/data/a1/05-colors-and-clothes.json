@@ -1,0 +1,368 @@
+{
+  "items": [
+    {
+      "id": "a1.colors-and-clothes.red",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "red",
+      "es": "rojo",
+      "example": {
+        "en": "My jacket is red.",
+        "es": "Mi chaqueta es roja."
+      }
+    },
+    {
+      "id": "a1.colors-and-clothes.blue",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "blue",
+      "es": "azul"
+    },
+    {
+      "id": "a1.colors-and-clothes.black",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "black",
+      "es": "negro"
+    },
+    {
+      "id": "a1.colors-and-clothes.white",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "white",
+      "es": "blanco"
+    },
+    {
+      "id": "a1.colors-and-clothes.green",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "green",
+      "es": "verde"
+    },
+    {
+      "id": "a1.colors-and-clothes.what-color",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "phrase",
+      "term": "What color is...?",
+      "es": "¿De qué color es...?"
+    },
+    {
+      "id": "a1.colors-and-clothes.adjective-noun",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "grammar",
+      "term": "adjective + noun (a red shirt)",
+      "es": "adjetivo antes del sustantivo (una camisa roja)"
+    },
+    {
+      "id": "a1.colors-and-clothes.shirt",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "shirt",
+      "es": "camisa"
+    },
+    {
+      "id": "a1.colors-and-clothes.shoes",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "shoes",
+      "es": "zapatos"
+    },
+    {
+      "id": "a1.colors-and-clothes.dress",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "dress",
+      "es": "vestido"
+    },
+    {
+      "id": "a1.colors-and-clothes.jacket",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "jacket",
+      "es": "chaqueta, chamarra"
+    },
+    {
+      "id": "a1.colors-and-clothes.pants",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "kind": "word",
+      "term": "pants",
+      "es": "pantalones"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.colors-and-clothes.new-clothes",
+      "level": "A1",
+      "topics": ["colors-and-clothes"],
+      "title": "New clothes",
+      "text": "Emma: What color is your new jacket, Max? Max: It's black. And my new shoes are white. Emma: Nice! My jacket is red. Max: Is your dress red too? Emma: No, it isn't. It's blue. Blue is my favorite color.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.colors-and-clothes.vocab-001",
+      "itemIds": ["a1.colors-and-clothes.red"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'red' mean?",
+      "options": ["verde", "azul", "negro", "rojo"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.colors-and-clothes.cloze-001",
+      "itemIds": ["a1.colors-and-clothes.adjective-noun"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's a ___.",
+      "answers": ["white shirt"],
+      "distractors": ["shirt white", "white shirts"],
+      "es": "Es una camisa blanca."
+    },
+    {
+      "id": "a1.colors-and-clothes.cloze-002",
+      "itemIds": ["a1.colors-and-clothes.black"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My shoes are ___.",
+      "answers": ["black"],
+      "distractors": ["a black", "black color"],
+      "es": "Mis zapatos son negros."
+    },
+    {
+      "id": "a1.colors-and-clothes.choice-001",
+      "itemIds": ["a1.colors-and-clothes.green"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "I have a green bag.",
+      "options": [
+        "Tengo una bolsa gris.",
+        "Tengo una bolsa verde.",
+        "Tengo dos bolsas verdes.",
+        "Tienes una bolsa verde."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.colors-and-clothes.order-001",
+      "itemIds": ["a1.colors-and-clothes.what-color"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["your", "car?", "is", "What", "color"],
+      "accepted": ["What color is your car?"],
+      "es": "¿De qué color es tu auto?"
+    },
+    {
+      "id": "a1.colors-and-clothes.write-001",
+      "itemIds": ["a1.colors-and-clothes.white", "a1.colors-and-clothes.adjective-noun"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Tengo un perro blanco.",
+      "accepted": ["I {have|have got} a white dog."]
+    },
+    {
+      "id": "a1.colors-and-clothes.vocab-002",
+      "itemIds": ["a1.colors-and-clothes.blue"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'azul'.",
+      "options": ["black", "blue", "brown", "green"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.colors-and-clothes.cloze-003",
+      "itemIds": ["a1.grammar.this-that", "a1.colors-and-clothes.shoes"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ shoes are new.",
+      "answers": ["These"],
+      "distractors": ["This", "That"],
+      "es": "Estos zapatos son nuevos."
+    },
+    {
+      "id": "a1.colors-and-clothes.vocab-003",
+      "itemIds": ["a1.colors-and-clothes.shirt"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'shirt' mean?",
+      "options": ["falda", "camisa", "chaqueta", "pantalones"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.colors-and-clothes.cloze-004",
+      "itemIds": ["a1.grammar.this-that", "a1.colors-and-clothes.jacket"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Look at ___ jacket over there. It's very nice.",
+      "answers": ["that"],
+      "distractors": ["these", "those"],
+      "es": "Mira esa chaqueta de allá. Es muy bonita."
+    },
+    {
+      "id": "a1.colors-and-clothes.order-002",
+      "itemIds": ["a1.colors-and-clothes.pants"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["black", "your", "pants.", "like", "I"],
+      "accepted": ["I like your black pants."],
+      "es": "Me gustan tus pantalones negros."
+    },
+    {
+      "id": "a1.colors-and-clothes.reading-001",
+      "itemIds": [
+        "a1.colors-and-clothes.jacket",
+        "a1.colors-and-clothes.shoes",
+        "a1.colors-and-clothes.what-color"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.colors-and-clothes.new-clothes",
+      "questions": [
+        {
+          "prompt": "What color is Max's jacket?",
+          "options": ["Black", "White", "Red"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What color are Max's shoes?",
+          "options": ["Black", "Blue", "White"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "What is Emma's favorite color?",
+          "options": ["Red", "Blue", "Black"],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "a1.colors-and-clothes.choice-002",
+      "itemIds": ["a1.grammar.this-that", "a1.colors-and-clothes.dress"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "This dress is very pretty.",
+      "options": [
+        "Ese vestido es muy bonito.",
+        "Este vestido es muy bonito.",
+        "Estos vestidos son muy bonitos.",
+        "Este vestido es muy caro."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.colors-and-clothes.write-002",
+      "itemIds": [
+        "a1.grammar.this-that",
+        "a1.colors-and-clothes.shirt",
+        "a1.colors-and-clothes.blue"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Esta camisa es azul.",
+      "accepted": ["This shirt is blue."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.colors-and-clothes.lesson-001",
+      "level": "A1",
+      "topic": "colors-and-clothes",
+      "title": "Los colores",
+      "exerciseIds": [
+        "a1.colors-and-clothes.vocab-001",
+        "a1.colors-and-clothes.cloze-001",
+        "a1.colors-and-clothes.cloze-002",
+        "a1.colors-and-clothes.choice-001",
+        "a1.colors-and-clothes.order-001",
+        "a1.colors-and-clothes.write-001",
+        "a1.colors-and-clothes.vocab-002"
+      ],
+      "newItemIds": [
+        "a1.colors-and-clothes.red",
+        "a1.colors-and-clothes.adjective-noun",
+        "a1.colors-and-clothes.black",
+        "a1.colors-and-clothes.green",
+        "a1.colors-and-clothes.what-color"
+      ]
+    },
+    {
+      "id": "a1.colors-and-clothes.lesson-002",
+      "level": "A1",
+      "topic": "colors-and-clothes",
+      "title": "Mi ropa",
+      "exerciseIds": [
+        "a1.colors-and-clothes.cloze-003",
+        "a1.colors-and-clothes.vocab-003",
+        "a1.colors-and-clothes.cloze-004",
+        "a1.colors-and-clothes.order-002",
+        "a1.colors-and-clothes.reading-001",
+        "a1.colors-and-clothes.choice-002",
+        "a1.colors-and-clothes.write-002"
+      ],
+      "newItemIds": [
+        "a1.grammar.this-that",
+        "a1.colors-and-clothes.shoes",
+        "a1.colors-and-clothes.shirt",
+        "a1.colors-and-clothes.jacket",
+        "a1.colors-and-clothes.pants"
+      ],
+      "deepenCardIds": ["a1.grammar.this-that"]
+    }
+  ]
+}

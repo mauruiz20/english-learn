@@ -1,0 +1,330 @@
+{
+  "items": [
+    {
+      "id": "a1.my-house.room",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "room",
+      "es": "cuarto, habitación"
+    },
+    {
+      "id": "a1.my-house.bed",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "bed",
+      "es": "cama"
+    },
+    {
+      "id": "a1.my-house.table",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "table",
+      "es": "mesa"
+    },
+    {
+      "id": "a1.my-house.chair",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "chair",
+      "es": "silla"
+    },
+    {
+      "id": "a1.my-house.sofa",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "sofa",
+      "es": "sofá"
+    },
+    {
+      "id": "a1.my-house.lamp",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "lamp",
+      "es": "lámpara"
+    },
+    {
+      "id": "a1.my-house.big",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "big",
+      "es": "grande"
+    },
+    {
+      "id": "a1.my-house.small",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "word",
+      "term": "small",
+      "es": "pequeño, chico"
+    },
+    {
+      "id": "a1.my-house.in-on-under",
+      "level": "A1",
+      "topics": ["my-house"],
+      "kind": "grammar",
+      "term": "in / on / under",
+      "es": "en, dentro de / sobre, encima de / debajo de"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.my-house.where-is-my-bag",
+      "level": "A1",
+      "topics": ["my-house"],
+      "title": "Where is my bag?",
+      "text": "Tom: Mom, where is my bag? Mom: Is it on your bed? Tom: No, it isn't. Mom: Look under the table. Tom: Yes! It's under the table. Thanks, Mom! Mom: And your shoes are on the sofa, Tom!",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.my-house.vocab-001",
+      "itemIds": ["a1.my-house.bed"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'bed' mean?",
+      "options": ["mesa", "silla", "cama", "cuarto"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.my-house.cloze-001",
+      "itemIds": ["a1.my-house.small", "a1.my-house.room"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My house is big, but my room is ___.",
+      "answers": ["small"],
+      "distractors": ["big", "a small"],
+      "es": "Mi casa es grande, pero mi cuarto es pequeño."
+    },
+    {
+      "id": "a1.my-house.choice-001",
+      "itemIds": ["a1.my-house.big"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We have a big table.",
+      "options": [
+        "Tenemos una mesa grande.",
+        "Tenemos una mesa pequeña.",
+        "Tenemos una silla grande.",
+        "Tienen una mesa grande."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a1.my-house.order-001",
+      "itemIds": ["a1.my-house.lamp"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["room.", "a", "is", "lamp", "There", "my", "in"],
+      "accepted": ["There is a lamp in my room."],
+      "es": "Hay una lámpara en mi cuarto."
+    },
+    {
+      "id": "a1.my-house.cloze-002",
+      "itemIds": ["a1.my-house.chair"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "There are four ___ in the kitchen.",
+      "answers": ["chairs"],
+      "distractors": ["chair", "a chair"],
+      "es": "Hay cuatro sillas en la cocina."
+    },
+    {
+      "id": "a1.my-house.write-001",
+      "itemIds": ["a1.my-house.room", "a1.my-house.big"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi cuarto es grande.",
+      "accepted": ["My {room|bedroom} is {big|large}."]
+    },
+    {
+      "id": "a1.my-house.vocab-002",
+      "itemIds": ["a1.my-house.lamp"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'lámpara'.",
+      "options": ["clock", "chair", "bed", "lamp"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.my-house.cloze-003",
+      "itemIds": ["a1.my-house.in-on-under", "a1.my-house.table"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The cat is ___ the table, not on it.",
+      "answers": ["under"],
+      "distractors": ["on", "in"],
+      "es": "El gato está debajo de la mesa, no encima."
+    },
+    {
+      "id": "a1.my-house.vocab-003",
+      "itemIds": ["a1.my-house.sofa"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'sofa' mean?",
+      "options": ["cama", "sofá", "silla", "alfombra"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.my-house.cloze-004",
+      "itemIds": ["a1.my-house.in-on-under"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The milk is ___ the fridge.",
+      "answers": ["in"],
+      "distractors": ["at", "into"],
+      "es": "La leche está en el refrigerador."
+    },
+    {
+      "id": "a1.my-house.order-002",
+      "itemIds": ["a1.my-house.in-on-under", "a1.my-house.sofa"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["the", "sofa.", "is", "dog", "on", "The"],
+      "accepted": ["The dog is on the sofa."],
+      "es": "El perro está en el sofá."
+    },
+    {
+      "id": "a1.my-house.reading-001",
+      "itemIds": [
+        "a1.my-house.in-on-under",
+        "a1.my-house.bed",
+        "a1.my-house.sofa",
+        "a1.my-house.table"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.my-house.where-is-my-bag",
+      "questions": [
+        {
+          "prompt": "Where is Tom's bag?",
+          "options": ["On his bed", "Under the table", "On the sofa"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Where are Tom's shoes?",
+          "options": ["On the sofa", "Under the bed", "In his bag"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Who says 'Thanks, Mom'?",
+          "options": ["Mom", "Mom and Tom", "Tom"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a1.my-house.choice-002",
+      "itemIds": ["a1.my-house.table"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Your keys are on the table.",
+      "options": [
+        "Tus llaves están debajo de la mesa.",
+        "Tus libros están en la mesa.",
+        "Mis llaves están en la mesa.",
+        "Tus llaves están en la mesa."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.my-house.write-002",
+      "itemIds": ["a1.my-house.in-on-under", "a1.my-house.bed"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Mi gato está debajo de la cama.",
+      "accepted": ["My cat is under the bed."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.my-house.lesson-001",
+      "level": "A1",
+      "topic": "my-house",
+      "title": "Mi cuarto",
+      "exerciseIds": [
+        "a1.my-house.vocab-001",
+        "a1.my-house.cloze-001",
+        "a1.my-house.choice-001",
+        "a1.my-house.order-001",
+        "a1.my-house.cloze-002",
+        "a1.my-house.write-001",
+        "a1.my-house.vocab-002"
+      ],
+      "newItemIds": [
+        "a1.my-house.bed",
+        "a1.my-house.small",
+        "a1.my-house.room",
+        "a1.my-house.big",
+        "a1.my-house.lamp"
+      ]
+    },
+    {
+      "id": "a1.my-house.lesson-002",
+      "level": "A1",
+      "topic": "my-house",
+      "title": "¿Dónde está?",
+      "exerciseIds": [
+        "a1.my-house.cloze-003",
+        "a1.my-house.vocab-003",
+        "a1.my-house.cloze-004",
+        "a1.my-house.order-002",
+        "a1.my-house.reading-001",
+        "a1.my-house.choice-002",
+        "a1.my-house.write-002"
+      ],
+      "newItemIds": ["a1.my-house.in-on-under", "a1.my-house.table", "a1.my-house.sofa"]
+    }
+  ]
+}

@@ -956,6 +956,18 @@
       ]
     },
     {
+      "id": "glossary.pleased",
+      "headword": "pleased",
+      "kind": "word",
+      "forms": ["pleased"],
+      "senses": [
+        {
+          "es": "contento, encantado (pleased to meet you: mucho gusto)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.pleasure",
       "headword": "pleasure",
       "kind": "word",
@@ -1016,6 +1028,18 @@
         {
           "es": "plural",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.plus",
+      "headword": "plus",
+      "kind": "word",
+      "forms": ["plus"],
+      "senses": [
+        {
+          "es": "más (en una suma)",
+          "pos": "preposition"
         }
       ]
     },

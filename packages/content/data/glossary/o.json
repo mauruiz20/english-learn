@@ -401,6 +401,22 @@
       ]
     },
     {
+      "id": "glossary.orange",
+      "headword": "orange",
+      "kind": "word",
+      "forms": ["orange", "oranges"],
+      "senses": [
+        {
+          "es": "naranja (la fruta)",
+          "pos": "noun"
+        },
+        {
+          "es": "anaranjado, naranja (el color)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.order",
       "headword": "order",
       "kind": "word",

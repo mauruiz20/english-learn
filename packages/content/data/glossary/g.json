@@ -686,6 +686,30 @@
       ]
     },
     {
+      "id": "glossary.good-morning",
+      "headword": "good morning",
+      "kind": "phrase",
+      "forms": ["good morning"],
+      "senses": [
+        {
+          "es": "buenos días",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.good-night",
+      "headword": "good night",
+      "kind": "phrase",
+      "forms": ["good night"],
+      "senses": [
+        {
+          "es": "buenas noches (al despedirse)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.goodbye",
       "headword": "goodbye",
       "kind": "word",

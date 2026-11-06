@@ -868,6 +868,18 @@
       ]
     },
     {
+      "id": "glossary.thirteen",
+      "headword": "thirteen",
+      "kind": "word",
+      "forms": ["thirteen"],
+      "senses": [
+        {
+          "es": "trece",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.thirty",
       "headword": "thirty",
       "kind": "word",

@@ -1797,6 +1797,22 @@
       ]
     },
     {
+      "id": "glossary.cool",
+      "headword": "cool",
+      "kind": "word",
+      "forms": ["cool", "cooler", "coolest"],
+      "senses": [
+        {
+          "es": "genial (informal)",
+          "pos": "adjective"
+        },
+        {
+          "es": "fresco",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.cope-with",
       "headword": "cope with",
       "kind": "phrase",

@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.lamp",
+      "headword": "lamp",
+      "kind": "word",
+      "forms": ["lamp", "lamps"],
+      "senses": [
+        {
+          "es": "lámpara",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.land",
       "headword": "land",
       "kind": "word",
