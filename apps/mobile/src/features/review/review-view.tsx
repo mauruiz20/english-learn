@@ -11,6 +11,7 @@ import {
 import { cardLink, type ExerciseCard, type ShownFeedback } from "@/features/lesson/lesson-view";
 import type { ReviewNote } from "@/features/lesson/model/items-to-review";
 import { answerIsEnglish } from "@/features/lesson/model/lookup-policy";
+import { spokenAnswer } from "@/features/lesson/model/spoken-answer";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
 import { Button } from "@/shared/ui/button";
@@ -157,6 +158,7 @@ export function ReviewView({
                     disputed={state.feedback.disputed}
                     onDispute={state.feedback.disputable ? onDispute : undefined}
                     lookupAnswer={answerIsEnglish(state.prepared)}
+                    speakText={spokenAnswer(state.prepared, state.feedback.correctAnswer)}
                     inARow={correctInARow(state.results ?? [])}
                     card={cardLink(state.card, onOpenCard)}
                     finishes={state.position === state.total}

@@ -8,6 +8,7 @@ import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { testRandomBytes } from "@/testing/random-bytes";
+import { renderWithPronunciation } from "@/testing/render-with-pronunciation";
 import { CardView, type CardViewProps } from "./card-view";
 
 const grammar = corpus.cardsById.get("b1.grammar.look-forward-to")!;
@@ -155,5 +156,59 @@ describe("CardView", () => {
     expect(screen.queryByRole("button", { name: "Practicar" })).not.toBeOnTheScreen();
     await fireEvent.press(screen.getByRole("button", { name: "Volver al ejercicio" }));
     expect(handlers.onBack).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("CardView pronunciation", () => {
+  function renderSpeaking(card: Card) {
+    return renderWithPronunciation(
+      <GlossaryProvider index={corpus.glossaryIndex}>
+        <CardView card={card} status="new" fromSession={false} {...handlers} />
+      </GlossaryProvider>,
+    );
+  }
+
+  it("offers to hear every example, the corrections and the phrasal verbs", async () => {
+    const { speech } = await renderSpeaking(phrasal);
+    const card = phrasal as Extract<Card, { kind: "phrasal_verbs" }>;
+
+    for (const example of card.examples) {
+      expect(screen.getByRole("button", { name: `Escuchar: ${example.en}` })).toBeOnTheScreen();
+    }
+    const entry = card.entries[0]!;
+    await fireEvent.press(screen.getByRole("button", { name: `Escuchar: ${entry.verb}` }));
+    expect(speech.spoken.at(-1)?.text).toBe(entry.verb);
+    expect(screen.getByRole("button", { name: `Escuchar: ${entry.example.en}` })).toBeOnTheScreen();
+  });
+
+  it("offers to hear a correction, never the mistake", async () => {
+    await renderSpeaking(grammar);
+    const pitfalls = (grammar as { pitfalls?: { wrong: string; right: string }[] }).pitfalls ?? [];
+    expect(pitfalls.length).toBeGreaterThan(0);
+    for (const pitfall of pitfalls) {
+      // (A correction may also be one of the examples.)
+      expect(
+        screen.getAllByRole("button", { name: `Escuchar: ${pitfall.right}` }).length,
+      ).toBeGreaterThan(0);
+      expect(screen.queryByRole("button", { name: `Escuchar: ${pitfall.wrong}` })).toBeNull();
+    }
+  });
+
+  it("offers to hear the false friend and the collocations", async () => {
+    await renderSpeaking(vocabulary);
+    const card = vocabulary as Extract<Card, { kind: "vocabulary" }>;
+    if (card.falseFriend !== undefined) {
+      expect(
+        screen.getByRole("button", { name: `Escuchar: ${card.falseFriend.en}` }),
+      ).toBeOnTheScreen();
+    }
+    for (const c of card.collocations ?? []) {
+      expect(screen.getByRole("button", { name: `Escuchar: ${c.en}` })).toBeOnTheScreen();
+    }
+  });
+
+  it("shows no speaker without pronunciation", async () => {
+    await renderCard(phrasal);
+    expect(screen.queryByRole("button", { name: /^Escuchar/u })).toBeNull();
   });
 });

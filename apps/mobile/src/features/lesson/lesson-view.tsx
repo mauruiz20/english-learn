@@ -12,6 +12,7 @@ import {
 } from "./components/session-screens";
 import type { GradeResult } from "./model/grade-exercise";
 import { answerIsEnglish } from "./model/lookup-policy";
+import { spokenAnswer } from "./model/spoken-answer";
 import type { ReviewNote } from "./model/items-to-review";
 import type { RecapItem } from "./model/lesson-recap";
 import type { PreparedExercise } from "./model/prepare-exercise";
@@ -164,6 +165,7 @@ export function LessonView({
                     diff={state.feedback.diff}
                     hint={state.feedback.hint}
                     lookupAnswer={answerIsEnglish(state.prepared)}
+                    speakText={spokenAnswer(state.prepared, state.feedback.correctAnswer)}
                     disputed={state.feedback.disputed}
                     onDispute={state.feedback.disputable ? onDispute : undefined}
                     inARow={correctInARow(state.results ?? [])}

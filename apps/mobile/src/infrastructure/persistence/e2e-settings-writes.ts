@@ -31,6 +31,10 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
   return {
     getSoundEnabled: () => repository.getSoundEnabled(),
     setSoundEnabled: (enabled) => track(repository.setSoundEnabled(enabled)),
+    getPronunciationEnabled: () => repository.getPronunciationEnabled(),
+    setPronunciationEnabled: (enabled) => track(repository.setPronunciationEnabled(enabled)),
+    getSpeechRate: () => repository.getSpeechRate(),
+    setSpeechRate: (rate) => track(repository.setSpeechRate(rate)),
     getLookupHintDismissed: () => repository.getLookupHintDismissed(),
     setLookupHintDismissed: () => track(repository.setLookupHintDismissed()),
     getAccount: () => repository.getAccount(),

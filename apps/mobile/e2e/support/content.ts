@@ -83,14 +83,39 @@ export async function currentExerciseId(page: Page): Promise<string> {
   return testId.slice("exercise-".length);
 }
 
+/** A listening exercise's id: its source exercise's id and this suffix (made by the app). */
+const LISTEN_SUFFIX = "~listen";
+
+export const isListeningExercise = (id: string) => id.endsWith(LISTEN_SUFFIX);
+
+/**
+ * The sentence a listening exercise says: its source's word_order sentence or translate_write
+ * reference answer (the app's `listenSource`).
+ */
+export function listeningSentence(id: string): string {
+  const source = exercisesById.get(id.slice(0, -LISTEN_SUFFIX.length));
+  if (source?.type === "word_order") return source.accepted[0] ?? "";
+  if (source?.type === "translate_write") return expandAccepted(source.accepted)[0] ?? "";
+  throw new Error(`No sentence to hear for "${id}"`);
+}
+
 /** Answers the exercise on screen correctly and presses `submit` ("Comprobar" or "Siguiente"). */
 export async function answerCorrectly(page: Page, submit: string): Promise<string> {
   const id = await currentExerciseId(page);
-  const exercise = exercisesById.get(id);
-  if (exercise === undefined) throw new Error(`Unknown exercise "${id}"`);
   const scope = page.getByTestId(`exercise-${id}`);
   const choose = (option: string) =>
     scope.getByRole("radio", { name: option, exact: true }).click();
+  // Heard instead of read (reviews, when the browser can speak English): write or pick it.
+  if (isListeningExercise(id)) {
+    const sentence = listeningSentence(id);
+    const input = scope.getByLabel("Lo que escuchaste, en inglés");
+    if (await input.isVisible()) await input.fill(sentence);
+    else await choose(sentence);
+    await scope.getByRole("button", { name: submit, exact: true }).click();
+    return id;
+  }
+  const exercise = exercisesById.get(id);
+  if (exercise === undefined) throw new Error(`Unknown exercise "${id}"`);
 
   switch (exercise.type) {
     case "vocab":

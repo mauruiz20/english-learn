@@ -98,9 +98,22 @@ export function pickReviewExercises({
  * still vary from day to day.
  */
 export function reviewPlanRng(today: LocalDate): Rng {
+  return seededRng(today);
+}
+
+/**
+ * The rng that picks which of a day's review exercises are heard instead (`mixListening`): seeded
+ * by the date like the plan, but apart from it, so the plan (home's count) never depends on it.
+ */
+export function listeningRng(today: LocalDate): Rng {
+  return seededRng(`listen:${today}`);
+}
+
+/** Mulberry32 seeded with an FNV-1a hash of `text`. */
+function seededRng(text: string): Rng {
   let seed = 0x811c9dc5;
-  for (let i = 0; i < today.length; i++) {
-    seed = Math.imul(seed ^ today.charCodeAt(i), 0x01000193) >>> 0;
+  for (let i = 0; i < text.length; i++) {
+    seed = Math.imul(seed ^ text.charCodeAt(i), 0x01000193) >>> 0;
   }
   let a = seed;
   return () => {

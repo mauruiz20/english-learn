@@ -15,6 +15,8 @@ import { corpus } from "@english-learn/content/corpus";
 import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
 import { reviewOutlook } from "./model/review-plan";
 import { testRandomBytes } from "@/testing/random-bytes";
+import { createFakeSpeech, type FakeSpeech } from "@/testing/fake-speech";
+import { renderWithPronunciation } from "@/testing/render-with-pronunciation";
 
 const mockRouter = {
   canDismiss: jest.fn(() => true),
@@ -257,5 +259,75 @@ describe("ReviewContainer", () => {
     await renderReview(repository);
 
     expect(await screen.findByRole("alert")).toHaveTextContent("No pudimos cargar tu repaso.");
+  });
+});
+
+describe("ReviewContainer listening", () => {
+  function renderListening(
+    repository: FakeProgressRepository,
+    {
+      speech = createFakeSpeech(),
+      settings = createFakeSettingsRepository(),
+    }: { speech?: FakeSpeech; settings?: ReturnType<typeof createFakeSettingsRepository> } = {},
+  ) {
+    return renderWithPronunciation(
+      <ReviewContainer
+        content={createCorpus([{ items, exercises: [wordOrder], cards: [card] }])}
+      />,
+      {
+        speech,
+        settings,
+        services: {
+          progressRepository: repository,
+          clock: { today: () => TODAY, nowMs: () => 0 },
+          random: () => 0,
+          randomBytes: testRandomBytes,
+          deviceId: "test-device",
+          sounds,
+        },
+      },
+    );
+  }
+
+  it("can serve a sentence to hear and write, answered like any exercise and saved", async () => {
+    const repository = createFakeRepository({
+      states: [learnedYesterday("a2.routine.usually"), learnedYesterday("a2.routine.wake-up")],
+    });
+    const { speech } = await renderListening(repository);
+
+    expect(await screen.findByText("Escucha y escribe")).toBeOnTheScreen();
+    // The same count home shows: the listening exercise stands in for the word order.
+    expect(screen.getByText("Ejercicio 1 de 1")).toBeOnTheScreen();
+    await answer("Escuchar la frase", "button");
+    expect(speech.spoken.at(-1)?.text).toBe("I usually wake up");
+    await fireEvent.changeText(
+      screen.getByLabelText("Lo que escuchaste, en inglés"),
+      "i usually wake up",
+    );
+    await answer("Comprobar", "button");
+    expect(screen.getByRole("alert")).toHaveTextContent("Correcto");
+    await answer("Continuar", "button");
+
+    expect(await screen.findByText("¡Repaso completado!")).toBeOnTheScreen();
+    const saved = repository.snapshot();
+    expect(saved.states.every((s) => s.reps === 2 && s.intervalDays === 6)).toBe(true);
+  });
+
+  it("serves none when pronunciation is off", async () => {
+    await renderListening(
+      createFakeRepository({ states: [learnedYesterday("a2.routine.usually")] }),
+      { settings: createFakeSettingsRepository({ pronunciationEnabled: false }) },
+    );
+    expect(await screen.findByText("Ejercicio 1 de 1")).toBeOnTheScreen();
+    expect(screen.queryByText("Escucha y escribe")).toBeNull();
+  });
+
+  it("serves none when the device cannot speak English", async () => {
+    await renderListening(
+      createFakeRepository({ states: [learnedYesterday("a2.routine.usually")] }),
+      { speech: createFakeSpeech({ available: false }) },
+    );
+    expect(await screen.findByText("Ejercicio 1 de 1")).toBeOnTheScreen();
+    expect(screen.queryByText("Escucha y escribe")).toBeNull();
   });
 });

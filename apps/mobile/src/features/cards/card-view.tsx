@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { GlossaryText } from "@/features/glossary/glossary-text";
+import { WithSpeaker } from "@/features/pronunciation/with-speaker";
 import { levelHighlighter, topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 import { Button } from "@/shared/ui/button";
@@ -109,10 +110,12 @@ export function CardView({ card, status, score, fromSession, onPractice, onBack 
                   {pitfall.wrong}
                 </Text>
               </View>
-              <View style={styles.markRow}>
-                <Mark kind="right" />
-                <GlossaryText variant="bodyStrong" style={styles.markText} text={pitfall.right} />
-              </View>
+              <WithSpeaker text={pitfall.right}>
+                <View style={styles.markRow}>
+                  <Mark kind="right" />
+                  <GlossaryText variant="bodyStrong" style={styles.markText} text={pitfall.right} />
+                </View>
+              </WithSpeaker>
               <Text variant="small" tone="muted" style={styles.why}>
                 {pitfall.why}
               </Text>
@@ -130,16 +133,18 @@ export function CardView({ card, status, score, fromSession, onPractice, onBack 
           )}
           {card.entries.map((entry) => (
             <View key={entry.verb} style={styles.entry}>
-              <View style={styles.entryHead}>
-                <GlossaryText variant="title" tone="ink" text={entry.verb} />
-                {entry.separable && (
-                  <View style={styles.chip}>
-                    <Text variant="smallStrong" tone="ink">
-                      separable
-                    </Text>
-                  </View>
-                )}
-              </View>
+              <WithSpeaker text={entry.verb}>
+                <View style={styles.entryHead}>
+                  <GlossaryText variant="title" tone="ink" text={entry.verb} />
+                  {entry.separable && (
+                    <View style={styles.chip}>
+                      <Text variant="smallStrong" tone="ink">
+                        separable
+                      </Text>
+                    </View>
+                  )}
+                </View>
+              </WithSpeaker>
               <Text tone="muted">{entry.es}</Text>
               <Example example={entry.example} />
             </View>
@@ -160,7 +165,9 @@ export function CardView({ card, status, score, fromSession, onPractice, onBack 
           <Text variant="smallStrong" tone="redPen">
             Falso amigo
           </Text>
-          <GlossaryText variant="heading" text={card.falseFriend.en} />
+          <WithSpeaker text={card.falseFriend.en}>
+            <GlossaryText variant="heading" text={card.falseFriend.en} />
+          </WithSpeaker>
           <Text>{`Parece: ${card.falseFriend.looksLike}`}</Text>
           <Text variant="bodyStrong">{`Significa: ${card.falseFriend.actually}`}</Text>
         </View>
@@ -256,12 +263,14 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 function Example({ example }: { example: CardExample }) {
   const styles = useStyles();
   return (
-    <View style={styles.example}>
-      <GlossaryText text={example.en} />
-      <Text variant="small" tone="muted">
-        {example.es}
-      </Text>
-    </View>
+    <WithSpeaker text={example.en}>
+      <View style={styles.example}>
+        <GlossaryText text={example.en} />
+        <Text variant="small" tone="muted">
+          {example.es}
+        </Text>
+      </View>
+    </WithSpeaker>
   );
 }
 

@@ -3,6 +3,7 @@ import type {
   Level,
   LocalDate,
   SettingsRepository,
+  SpeechRate,
   ThemePreference,
 } from "@english-learn/domain";
 
@@ -10,6 +11,8 @@ import type {
 export function createFakeSettingsRepository(
   initial: {
     soundEnabled?: boolean;
+    pronunciationEnabled?: boolean;
+    speechRate?: SpeechRate;
     lookupHintDismissed?: boolean;
     account?: AccountMarker | null;
     saveProgressSuggestionDismissed?: boolean;
@@ -20,6 +23,8 @@ export function createFakeSettingsRepository(
   } = {},
 ): SettingsRepository & {
   readonly soundEnabled: () => boolean;
+  readonly pronunciationEnabled: () => boolean;
+  readonly speechRate: () => SpeechRate;
   readonly lookupHintDismissed: () => boolean;
   readonly account: () => AccountMarker | null;
   readonly saveProgressSuggestionDismissed: () => boolean;
@@ -29,6 +34,8 @@ export function createFakeSettingsRepository(
   readonly lastHomeVisit: () => LocalDate | null;
 } {
   let soundEnabled = initial.soundEnabled ?? true;
+  let pronunciationEnabled = initial.pronunciationEnabled ?? true;
+  let speechRate = initial.speechRate ?? "normal";
   let lookupHintDismissed = initial.lookupHintDismissed ?? false;
   let account = initial.account ?? null;
   let saveProgressSuggestionDismissed = initial.saveProgressSuggestionDismissed ?? false;
@@ -53,6 +60,16 @@ export function createFakeSettingsRepository(
     migratedTo: () => migratedTo,
     themePreference: () => themePreference,
     soundEnabled: () => soundEnabled,
+    pronunciationEnabled: () => pronunciationEnabled,
+    speechRate: () => speechRate,
+    getPronunciationEnabled: async () => pronunciationEnabled,
+    setPronunciationEnabled: async (next) => {
+      pronunciationEnabled = next;
+    },
+    getSpeechRate: async () => speechRate,
+    setSpeechRate: async (next) => {
+      speechRate = next;
+    },
     lookupHintDismissed: () => lookupHintDismissed,
     account: () => account,
     saveProgressSuggestionDismissed: () => saveProgressSuggestionDismissed,

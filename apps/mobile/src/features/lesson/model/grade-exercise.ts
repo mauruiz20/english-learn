@@ -1,4 +1,3 @@
-import type { Exercise } from "@english-learn/content";
 import {
   calqueHint,
   diffAnswer,
@@ -8,6 +7,7 @@ import {
   type Verdict,
   type WordDiffOp,
 } from "@english-learn/domain";
+import type { SessionExercise } from "./listen-exercise";
 import type { ExerciseResponse } from "./response";
 
 export type GradeResult = {
@@ -24,7 +24,7 @@ export type GradeResult = {
   readonly hint?: string;
 };
 
-function mismatch(exercise: Exercise, response: ExerciseResponse): never {
+function mismatch(exercise: SessionExercise, response: ExerciseResponse): never {
   throw new TypeError(`A "${response.kind}" response cannot answer a ${exercise.type} exercise`);
 }
 
@@ -46,9 +46,31 @@ const verdictOf = (ok: boolean): Verdict => (ok ? "correct" : "wrong");
  * - translate_write: `matchPatternAnswer` verdict (correct / almost / wrong) against every
  *   sentence the accepted patterns stand for; a wrong answer shows the first one. The word diff
  *   against the shown answer and a calque hint (when one applies) come along.
+ * - listen: a dictation is matched like translate-write against the sentence's accepted variants
+ *   (case, punctuation and contractions tolerated; a typo is almost); a wrong one shows the
+ *   sentence heard. A choice is correct when the sentence heard was picked.
  */
-export function gradeExercise(exercise: Exercise, response: ExerciseResponse): GradeResult {
+export function gradeExercise(exercise: SessionExercise, response: ExerciseResponse): GradeResult {
   switch (exercise.type) {
+    case "listen": {
+      if (exercise.mode === "choose") {
+        if (response.kind !== "choice") return mismatch(exercise, response);
+        return {
+          verdict: verdictOf(response.option === exercise.sentence),
+          correctAnswer: exercise.sentence,
+        };
+      }
+      if (response.kind !== "text") return mismatch(exercise, response);
+      const match = matchAnswer(response.text, exercise.answers);
+      if (match.verdict !== "wrong") {
+        return { verdict: match.verdict, correctAnswer: match.closest, diff: match.diff };
+      }
+      return {
+        verdict: "wrong",
+        correctAnswer: exercise.sentence,
+        diff: diffAnswer(response.text, exercise.sentence),
+      };
+    }
     case "vocab":
     case "translation_choice": {
       if (response.kind !== "choice") return mismatch(exercise, response);
