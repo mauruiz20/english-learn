@@ -340,19 +340,19 @@ prepositions), possessive `'s`, `look like` / `What is… like?`, `like` + -ing,
 | B1 Obligaciones y cambios          | `deadline`, `quit` (the job phrasal-verb card is linked to "Mi primer trabajo") |
 
 Every B2 card is linked from a B2 lesson (see [Level coverage](#level-coverage)); no B2 card is
-left unlinked. B2 points still without a card: inversion (`Never have I…`), participle clauses,
-B2 collocations, and the topic vocabulary of the B2 lessons (`workload`, `make ends meet`,
+left unlinked. B2 points still without a card: participle clauses, B2 collocations (inversion
+and C1 collocations have C1 cards), and the topic vocabulary of the B2 lessons (`workload`, `make ends meet`,
 `carbon footprint`, `culture shock`).
 
 ## Level coverage
 
-| Level | Topics | Lessons | Notes                                                |
-| ----- | ------ | ------- | ---------------------------------------------------- |
-| A1    | —      | —       | Placement only; A1 learners start on the A2 path.    |
-| A2    | 10     | 20      | Default path without a placement.                    |
-| B1    | 11     | 22      |                                                      |
-| B2    | 8      | 16      | C1 learners start here (nearest level with lessons). |
-| C1    | —      | —       | Placement only.                                      |
+| Level | Topics | Lessons | Notes                                             |
+| ----- | ------ | ------- | ------------------------------------------------- |
+| A1    | —      | —       | Placement only; A1 learners start on the A2 path. |
+| A2    | 10     | 20      | Default path without a placement.                 |
+| B1    | 11     | 22      |                                                   |
+| B2    | 8      | 16      |                                                   |
+| C1    | 8      | 16      | Plus placement questions.                         |
 
 The app moves a learner's path on to the next level with lessons once every lesson of the
 current one is done.
@@ -374,6 +374,28 @@ Each card is linked from the lesson that teaches it, once per topic (rule 22):
 
 B2 Tatoeba sentences were shortlisted with `candidates --level B2` (see
 `tools/content-pipeline`).
+
+C1 lessons follow the same model with abstract, argumentative passages (one per lesson), formal
+and informal register, hedging, inversion, cleft sentences, nominalization, mixed conditionals,
+concession and idioms. Seven C1 cards (`c1.grammar.inversion`, `cleft-sentences`, `hedging`,
+`nominalization`; `c1.vocabulary.collocations`, `register`; `c1.phrasal-verbs.causes-and-solutions`)
+plus three B2 cards are linked once per topic (rule 22). The B2 items `mixed-conditionals`,
+`reporting-passive` and `despite` carry the C1 topics that practice them.
+
+| Topic                        | Lesson 1 (cards)                                             | Lesson 2 (cards)                                                 |
+| ---------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `arts-and-culture`           | ¿Qué hace grande una obra? (`cleft-sentences`)               | ¿De quién es la cultura? (B2 `mixed-conditionals`)               |
+| `global-issues`              | Un problema sin fronteras (`inversion`, `collocations`)      | ¿Vamos a mejor? (B2 `despite`)                                   |
+| `language-and-communication` | ¿Directo o diplomático? (`register`)                         | Hablar claro (`nominalization`)                                  |
+| `law-and-ethics`             | Legal, pero ¿justo? (`inversion`)                            | Denunciar o callar (B2 `mixed-conditionals`)                     |
+| `politics-and-media`         | Noticias a la medida (`inversion`)                           | El poder de la prensa (`hedging`, B2 `reporting-passive`)        |
+| `psychology-and-behaviour`   | ¿Por qué lo dejamos para mañana? (`causes-and-solutions`)    | Salir de la zona de confort (`cleft-sentences`)                  |
+| `science-and-society`        | Lo que dicen los datos (`hedging`)                           | Un arma de doble filo (`nominalization`, B2 `reporting-passive`) |
+| `work-and-negotiation`       | El arte de negociar (`collocations`, `causes-and-solutions`) | Una respuesta formal (`register`)                                |
+
+C1 Tatoeba sentences were shortlisted with `candidates --level C1` (10–30 words) and with
+structure keywords (`not only`, `no sooner`, `what I need is`, `tend to`); most C1 sentences are
+original, since Tatoeba has few natural examples of these structures.
 
 ## Attribution
 
