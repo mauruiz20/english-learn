@@ -7,6 +7,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Removed
+
+- **Plumas and Avi's wardrobe**: the plumas currency (summary row, home balance, one-time note),
+  the `/armario` wardrobe and shop, and Avi's outfits. Avi stays on home with its moods, speech
+  bubble, moments, hover and blink, now as decoration (no button, hidden from screen readers; the
+  bubble carries its state), without the "new outfit" state. Wardrobe events (`item_purchased`,
+  `item_equipped`) already in a log or on the sync server are still accepted and ignored. The
+  fold snapshot format goes to version 3 (every store refolds once), and migration 7 drops the
+  `rewards` cache table and the plumas note setting.
+
 ## [0.2.0] - 2026-11-03
 
 Accounts and sync, a self-hosted API, an installable offline web app on its own domain, the sticker
