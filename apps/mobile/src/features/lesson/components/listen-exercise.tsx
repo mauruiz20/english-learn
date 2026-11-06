@@ -1,9 +1,10 @@
-import type { SpeechRate } from "@english-learn/domain";
 import { useId, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
+import Svg, { Circle, Path } from "react-native-svg";
 import { usePronunciation } from "@/features/pronunciation/pronunciation";
 import { SpeakerGlyph } from "@/features/pronunciation/speak-button";
 import { PressableScale } from "@/shared/ui/pressable-scale";
+import { Sticker } from "@/shared/ui/sticker";
 import { Text } from "@/shared/ui/text";
 import { RULED_LINE_HEIGHT, fonts, radius, spacing } from "@/shared/ui/theme";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
@@ -13,7 +14,9 @@ import type { ExerciseProps } from "./types";
 
 /**
  * "Escucha y escribe" / "Escucha y elige": the sentence is never shown before the check; two
- * ink buttons play it at the learner's speed ("Escuchar") and slowly ("Más lento"). Nothing plays
+ * ink buttons play it at the learner's speed ("Escuchar", a speaker) and one step slower ("Más
+ * lento", a tortoise sticker: 0.7, or 0.5 when the learner already picked "Lenta"). Each button
+ * always plays at its own speed, however often it is tapped. Nothing plays
  * on its own: iOS speaks only from a tap. If it cannot be heard (pronunciation switched off or no
  * voice since the session started), the sentence is shown instead, so the exercise still works.
  */
@@ -52,7 +55,7 @@ export function ListenExerciseView({
             sentence={exercise.sentence}
             label="Más lento"
             a11y="Escuchar más lento"
-            rate="slow"
+            slower
           />
         </View>
       ) : (
@@ -90,17 +93,20 @@ export function ListenExerciseView({
   );
 }
 
-/** A round ink button with a speaker and its word under it; filled while it speaks. */
+/**
+ * A round ink button with its picture and word under it; filled while it speaks. "Escuchar"
+ * shows a speaker; "Más lento" (`slower`) a tortoise sticker.
+ */
 function PlayButton({
   sentence,
   label,
   a11y,
-  rate,
+  slower = false,
 }: {
   sentence: string;
   label: string;
   a11y: string;
-  rate?: SpeechRate;
+  slower?: boolean;
 }) {
   const { speak, speakingKey } = usePronunciation();
   const key = useId();
@@ -113,14 +119,52 @@ function PlayButton({
       accessibilityLabel={a11y}
       accessibilityState={{ busy: speaking }}
       pressSound={false}
-      onPress={() => speak(sentence, key, rate)}
+      // Called inside the tap: iOS speaks only from a user gesture.
+      onPress={() => speak(sentence, key, { slower })}
       style={({ pressed }) => [styles.play, (speaking || pressed) && styles.playActive]}
     >
-      <SpeakerGlyph color={speaking ? colors.onInk : colors.ink} size={28} />
+      {slower ? (
+        <Sticker color="green" size={40} tilt={-6} testID="listen-slower-tortoise">
+          <TortoiseGlyph color={colors.onHighlighter} />
+        </Sticker>
+      ) : (
+        <SpeakerGlyph color={speaking ? colors.onInk : colors.ink} size={28} />
+      )}
       <Text variant="smallStrong" style={{ color: speaking ? colors.onInk : colors.ink }}>
         {label}
       </Text>
     </PressableScale>
+  );
+}
+
+/** A pen-drawn tortoise walking right: the slow one (decorative). */
+function TortoiseGlyph({ color }: { color: string }) {
+  return (
+    <Svg width={28} height={28} viewBox="0 0 28 28">
+      <Path
+        d="M5 17c0-5 3.6-8.5 8.5-8.5S22 12 22 17z"
+        fill="none"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M9.5 10.5 13.5 17M17.5 10.5 13.5 17M5.5 17h16.5"
+        fill="none"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      <Path
+        d="M22 15.5c1.2-2.4 4-2.2 4 .2 0 1.4-1.3 2-2.6 1.6M8 17v3M19 17v3M5 16.5 3 18"
+        fill="none"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Circle cx={24.6} cy={15.2} r={0.7} fill={color} />
+    </Svg>
   );
 }
 

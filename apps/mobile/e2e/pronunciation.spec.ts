@@ -31,7 +31,7 @@ async function openCard(page: Page) {
 
 const speakers = (page: Page) => page.getByRole("button", { name: /^Escuchar: / });
 
-test("a speaker says its English with an English voice, slower on a second tap", async ({
+test("a speaker says its English with an English voice, at the same speed every tap", async ({
   page,
 }) => {
   const problems = collectProblems(page);
@@ -50,8 +50,10 @@ test("a speaker says its English with an English voice, slower on a second tap",
     lang: "en-US",
     rate: 1,
   });
+  // A second tap says it again at the learner's speed (no hidden toggle to the other speed).
   await speaker.click();
-  await expect.poll(async () => (await spoken(page)).at(-1)?.rate).toBe(0.7);
+  await expect.poll(async () => (await spoken(page)).length).toBe(2);
+  expect((await spoken(page)).map((u) => u.rate)).toEqual([1, 1]);
 
   // The word lookup card says its headword.
   const weekend = page.getByRole("button", { name: "weekend, ver traducción" }).first();
@@ -87,6 +89,49 @@ test("the Pronunciación switch hides every speaker, and is remembered", async (
   await openCard(page);
   await expect(page.getByRole("button", { name: "Pronunciación", exact: true })).toBeVisible();
   await expect(speakers(page)).toHaveCount(0);
+  expect(problems).toEqual([]);
+});
+
+test("the voice picked under Voz is used, tried with Probar, and remembered", async ({ page }) => {
+  const problems = collectProblems(page);
+  await stubSpeech(page);
+  await openCard(page);
+  await expect(speakers(page).first()).toBeVisible();
+
+  await page.getByRole("button", { name: "Pronunciación", exact: true }).click();
+  const automatic = page.getByRole("radio", { name: "Automática (Test English)", exact: true });
+  await expect(automatic).toBeChecked();
+  // Only local English voices are offered.
+  await expect(page.getByRole("radio", { name: /Test Español|network/u })).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Probar la voz Test English UK", exact: true }).click();
+  await expect.poll(async () => (await spoken(page)).at(-1)?.voiceName).toBe("Test English UK");
+  await expect(automatic).toBeChecked();
+
+  const uk = page.getByRole("radio", { name: "Test English UK, Reino Unido", exact: true });
+  await uk.click();
+  await expect(uk).toBeChecked();
+  await page.getByRole("button", { name: "Listo", exact: true }).click();
+
+  const before = (await spoken(page)).length;
+  await speakers(page).first().click();
+  await expect.poll(async () => (await spoken(page)).length).toBe(before + 1);
+  expect((await spoken(page)).at(-1)).toMatchObject({
+    voiceName: "Test English UK",
+    lang: "en-GB",
+  });
+
+  await page.evaluate(() =>
+    (
+      window as unknown as { __e2e: { settingsWritesSettled: () => Promise<void> } }
+    ).__e2e.settingsWritesSettled(),
+  );
+  await openCard(page);
+  await expect(speakers(page).first()).toBeVisible();
+  const count = (await spoken(page)).length;
+  await speakers(page).first().click();
+  await expect.poll(async () => (await spoken(page)).length).toBe(count + 1);
+  expect((await spoken(page)).at(-1)?.voiceName).toBe("Test English UK");
   expect(problems).toEqual([]);
 });
 
@@ -129,8 +174,18 @@ test("a review can include a sentence to hear, answered like any exercise", asyn
     if (isListeningExercise(id)) {
       heard += 1;
       await expect(page.getByText(/^Escucha y (escribe|elige)$/)).toBeVisible();
+      const before = (await spoken(page)).length;
       await page.getByRole("button", { name: "Escuchar la frase", exact: true }).click();
-      await expect.poll(async () => (await spoken(page)).at(-1)?.text).toBe(listeningSentence(id));
+      await expect.poll(async () => (await spoken(page)).length).toBe(before + 1);
+      // "Más lento" is clearly slower than "Escuchar", every time it is tapped.
+      await page.getByRole("button", { name: "Escuchar más lento", exact: true }).click();
+      await expect.poll(async () => (await spoken(page)).length).toBe(before + 2);
+      await page.getByRole("button", { name: "Escuchar más lento", exact: true }).click();
+      await expect.poll(async () => (await spoken(page)).length).toBe(before + 3);
+      const [normal, slower, again] = (await spoken(page)).slice(before);
+      expect(normal).toMatchObject({ text: listeningSentence(id), rate: 1 });
+      expect(slower).toMatchObject({ text: listeningSentence(id), rate: 0.7 });
+      expect(again?.rate).toBe(0.7);
     }
     await answerCorrectly(page, "Comprobar");
     await expect(page.getByRole("alert")).toHaveText("Correcto");
