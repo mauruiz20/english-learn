@@ -53,14 +53,11 @@ describe("awaitPendingWrites", () => {
     // e.g. the learner pressed browser back mid-save and home loads its data.
     const xp = repository.getXp();
     const streak = repository.getStreak();
-    const rewards = repository.getRewards();
     slow.commit();
 
     await expect(saved).resolves.toMatchObject({ after: { xp: 10 } });
     await expect(xp).resolves.toBe(10);
     await expect(streak).resolves.toMatchObject({ current: 1 });
-    // Día de estudio + Repaso del día.
-    await expect(rewards).resolves.toMatchObject({ balance: 10 });
   });
 
   it("still lets reads run after a failed save", async () => {

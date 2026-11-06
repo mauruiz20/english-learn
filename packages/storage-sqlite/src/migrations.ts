@@ -86,6 +86,12 @@ const MIGRATIONS: readonly string[] = [
     data TEXT NOT NULL
   );
   `,
+  // 6 → 7: plumas and Avi's wardrobe were withdrawn. Their cache (a pure derivation of the event
+  // log, nothing else reads it) and the one-time plumas note go; the events stay in the log.
+  `
+  DROP TABLE IF EXISTS rewards;
+  DELETE FROM setting WHERE key = 'plumas_welcome';
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */

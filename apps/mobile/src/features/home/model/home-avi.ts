@@ -1,12 +1,4 @@
-import {
-  WARDROBE_SLOTS,
-  catalogItem,
-  isStreakAlive,
-  type LocalDate,
-  type Outfit,
-  type Streak,
-  type WardrobeSlot,
-} from "@english-learn/domain";
+import { isStreakAlive, type LocalDate, type Streak } from "@english-learn/domain";
 import type { AviMood } from "@/shared/ui/mascot";
 
 /**
@@ -14,11 +6,10 @@ import type { AviMood } from "@/shared/ui/mascot";
  * and does when home gains focus. Positive only: a broken streak is never named in numbers, and
  * nothing is offered to fix it.
  */
-export type HomeAviKind =
-  "celebrate" | "new-outfit" | "missed-you" | "welcome-back" | "resting" | "idle";
+export type HomeAviKind = "celebrate" | "missed-you" | "welcome-back" | "resting" | "idle";
 
 /** The one moment Avi plays when it enters a state (none with reduced motion). */
-export type HomeAviMoment = "hop" | "loop" | "twirl" | "droop" | "wave";
+export type HomeAviMoment = "hop" | "loop" | "droop" | "wave";
 
 export type HomeAviState = {
   readonly kind: HomeAviKind;
@@ -34,18 +25,9 @@ export type HomeAviNews = {
   readonly lessonDone: boolean;
   /** A new album badge. */
   readonly badge: boolean;
-  /** A newly bought item. */
-  readonly item: boolean;
-  /** Avi's clothes changed (back from the wardrobe). */
-  readonly outfitChanged: boolean;
 };
 
-export const NO_NEWS: HomeAviNews = {
-  lessonDone: false,
-  badge: false,
-  item: false,
-  outfitChanged: false,
-};
+export const NO_NEWS: HomeAviNews = { lessonDone: false, badge: false };
 
 export type HomeAviInput = {
   readonly today: LocalDate;
@@ -75,9 +57,6 @@ export function homeAviState(input: HomeAviInput): HomeAviState {
       bubble: "¡Lo lograste!",
       moment: news.badge ? "loop" : "hop",
     };
-  }
-  if (news.outfitChanged || news.item) {
-    return { kind: "new-outfit", mood: "cheer", bubble: "¿Cómo me veo?", moment: "twirl" };
   }
   if (!isStreakAlive(streak, today) && streak.longest > 0 && !studiedToday) {
     return {
@@ -112,8 +91,6 @@ export function homeAviState(input: HomeAviInput): HomeAviState {
 /** What home last showed, to tell what is new. */
 export type HomeAviSnapshot = {
   readonly badges: readonly string[];
-  readonly owned: readonly string[];
-  readonly outfit: Outfit;
 };
 
 export type HomeAviMemory = {
@@ -121,11 +98,9 @@ export type HomeAviMemory = {
   take(now: HomeAviSnapshot): HomeAviNews;
 };
 
-const outfitKey = (outfit: Outfit) => WARDROBE_SLOTS.map((slot) => outfit[slot] ?? "").join("|");
-
 /**
- * Remembers, in memory, the badges, items and outfit home last showed. Like the completion
- * memory, the first look of a session finds nothing new (a reload celebrates nothing).
+ * Remembers, in memory, the badges home last showed. Like the completion memory, the first look
+ * of a session finds nothing new (a reload celebrates nothing).
  */
 export function createHomeAviMemory(): HomeAviMemory {
   let seen: HomeAviSnapshot | null = null;
@@ -134,48 +109,10 @@ export function createHomeAviMemory(): HomeAviMemory {
       const before = seen;
       seen = now;
       if (before === null) return NO_NEWS;
-      const isNew = (ids: readonly string[], old: readonly string[]) =>
-        ids.some((id) => !old.includes(id));
-      return {
-        lessonDone: false,
-        badge: isNew(now.badges, before.badges),
-        item: isNew(now.owned, before.owned),
-        outfitChanged: outfitKey(now.outfit) !== outfitKey(before.outfit),
-      };
+      return { lessonDone: false, badge: now.badges.some((id) => !before.badges.includes(id)) };
     },
   };
 }
 
 /** The app session's memory. */
 export const sessionHomeAviMemory = createHomeAviMemory();
-
-const SLOT_ORDER: readonly WardrobeSlot[] = ["head", "neck", "eyes", "paper", "sticker"];
-
-/** "con gorra, bufanda de rayas y sticker de estrella"; empty when Avi wears nothing known. */
-export function outfitDescription(outfit: Outfit): string {
-  const names = SLOT_ORDER.flatMap((slot) => {
-    const id = outfit[slot];
-    const item = id === undefined ? undefined : catalogItem(id);
-    if (item === undefined) return [];
-    const name = item.name.charAt(0).toLowerCase() + item.name.slice(1);
-    return [slot === "sticker" ? `sticker de ${name}` : name];
-  });
-  if (names.length === 0) return "";
-  const last = names.pop()!;
-  return `con ${names.length === 0 ? last : `${names.join(", ")} y ${last}`}`;
-}
-
-const FEELINGS: Readonly<Record<HomeAviKind, string>> = {
-  celebrate: "celebrando",
-  "new-outfit": "estrenando ropa",
-  "missed-you": "con ganas de verte",
-  "welcome-back": "contento de verte",
-  resting: "con sueño",
-  idle: "contento",
-};
-
-/** The hero button's name: "Avi, contento, con gorra y bufanda de rayas. Abre el armario". */
-export function homeAviLabel(state: HomeAviState, outfit: Outfit): string {
-  const worn = outfitDescription(outfit);
-  return `Avi, ${FEELINGS[state.kind]}${worn === "" ? "" : `, ${worn}`}. Abre el armario`;
-}

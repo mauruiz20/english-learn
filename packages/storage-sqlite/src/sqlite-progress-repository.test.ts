@@ -1,12 +1,11 @@
 import {
-  EMPTY_REWARDS,
   EMPTY_STREAK,
+  RETIRED_EVENT_TYPES,
   addDays,
   foldEvents,
   foldRulesFingerprint,
   foldSnapshot,
   localDate,
-  plumasTotals,
   type BaselineImportedEvent,
   type Grade,
   type LocalDate,
@@ -62,11 +61,13 @@ function lessonDone(
   };
 }
 
-function purchased(day: LocalDate, itemId: string, price: number): ProgressEvent {
+/** A purchase in Avi's withdrawn wardrobe, as an older app wrote it (a retired type). */
+function purchased(day: LocalDate, itemId: string, price: number): StoredEvent {
   return { ...envelope(day), type: "item_purchased", payload: { v: 1, itemId, price } };
 }
 
-function equipped(day: LocalDate, slot: string, itemId: string | null): ProgressEvent {
+/** An equip in Avi's withdrawn wardrobe, as an older app wrote it (a retired type). */
+function equipped(day: LocalDate, slot: string, itemId: string | null): StoredEvent {
   return { ...envelope(day), type: "item_equipped", payload: { v: 1, slot, itemId } };
 }
 
@@ -123,7 +124,6 @@ async function cacheOf(repo: SqliteProgressRepository) {
     streak: await repo.getStreak(),
     placement: await repo.getPlacementResult(),
     lessonResults: await repo.getLessonResults(),
-    rewards: await repo.getRewards(),
   };
 }
 
@@ -147,8 +147,8 @@ async function storedEvents(db: Db): Promise<StoredEvent[]> {
 }
 
 function foldedCache(events: readonly StoredEvent[]) {
-  const { states, xp, streak, placement, lessonResults, rewards } = foldEvents(events);
-  return { states, xp, streak, placement, lessonResults, rewards };
+  const { states, xp, streak, placement, lessonResults } = foldEvents(events);
+  return { states, xp, streak, placement, lessonResults };
 }
 
 /** Creates the version 2 schema (before the event log) the way older app versions left it. */
@@ -194,7 +194,6 @@ describe("createSqliteProgressRepository", () => {
       streak: EMPTY_STREAK,
       placement: null,
       lessonResults: [],
-      rewards: EMPTY_REWARDS,
     });
   });
 
@@ -215,12 +214,8 @@ describe("createSqliteProgressRepository", () => {
       const replay = await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 10));
 
       expect(first).toEqual({
-        before: { xp: 0, streak: EMPTY_STREAK, plumas: plumasTotals(EMPTY_REWARDS) },
-        after: {
-          xp: 30,
-          streak: { current: 1, longest: 1, lastActiveDate: DAY },
-          plumas: plumasTotals(foldEvents(await storedEvents(db)).rewards),
-        },
+        before: { xp: 0, streak: EMPTY_STREAK },
+        after: { xp: 30, streak: { current: 1, longest: 1, lastActiveDate: DAY } },
       });
       expect(replay.after.xp - replay.before.xp).toBe(10);
       expect(await repo.getXp()).toBe(40);
@@ -298,45 +293,26 @@ describe("createSqliteProgressRepository", () => {
     });
   });
 
-  describe("plumas", () => {
-    it("caches the rewards and reports the plumas a write earned in its totals", async () => {
-      const first = await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 10));
-      // Día de estudio + Lección nueva + Página perfecta.
-      expect(first.after.plumas.earned - first.before.plumas.earned).toBe(20);
-      expect(first.after.plumas.earnedBySource).toMatchObject({
-        study_day: 5,
-        new_lesson: 5,
-        perfect_page: 10,
-      });
-
-      // A perfect replay the same day earns nothing.
-      const replay = await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 10));
-      expect(replay.after.plumas).toEqual(replay.before.plumas);
-
-      await repo.appendEvents([
+  describe("retired wardrobe events", () => {
+    it("stores synced item_purchased / item_equipped events and ignores them in the fold", async () => {
+      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 10));
+      const before = await cacheOf(repo);
+      const retired = [
         purchased(NEXT_DAY, "estrella", 40),
         equipped(NEXT_DAY, "sticker", "estrella"),
-      ]);
-      expect(await repo.getRewards()).toMatchObject({
-        earned: 20,
-        spent: 40,
-        balance: -20,
-        ownedItemIds: ["estrella"],
-        equipped: { sticker: "estrella" },
-      });
-      expect(await cacheOf(repo)).toEqual(foldedCache(await storedEvents(db)));
-    });
+      ];
 
-    it("reads no rewards when the cached row is unreadable", async () => {
-      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 10));
-      await db.runAsync("UPDATE rewards SET data = 'not json'", []);
-      expect(await repo.getRewards()).toEqual(EMPTY_REWARDS);
-    });
+      expect(await repo.insertRemoteEvents(retired)).toBe(2);
+      await repo.appendEvents(lesson(NEXT_DAY, "l2", { b: 5 }, 10));
 
-    it("clears them with the rest of the progress", async () => {
-      await repo.appendEvents(lesson(DAY, "l1", { a: 5 }, 10));
-      await repo.clearProgress();
-      expect(await repo.getRewards()).toEqual(EMPTY_REWARDS);
+      const events = await storedEvents(db);
+      expect(events.map((e) => e.type)).toContain("item_purchased");
+      expect(await cacheOf(repo)).toEqual(foldedCache(events));
+      expect(await cacheOf(repo)).toEqual(
+        foldedCache(events.filter((e) => !RETIRED_EVENT_TYPES.includes(e.type))),
+      );
+      expect((await cacheOf(repo)).xp).toBeGreaterThan(before.xp);
+      expect(foldEvents(events).anomalies).toEqual([]);
     });
   });
 
@@ -442,7 +418,7 @@ describe("createSqliteProgressRepository", () => {
       repo = await upgradedRepo();
       const before = await cacheOf(repo);
       const progress = { states, xp: 345, streak, placement: { level: "B1", theta: 0.3 } };
-      expect(before).toEqual({ ...progress, lessonResults: [], rewards: EMPTY_REWARDS });
+      expect(before).toEqual({ ...progress, lessonResults: [] });
       const seen: unknown[] = [];
 
       const written = await repo.ensureBaseline((cache) => {
@@ -455,10 +431,7 @@ describe("createSqliteProgressRepository", () => {
       expect(written).toBe(true);
       expect(again).toBe(false);
       expect(seen).toEqual([progress]);
-      // Progress is unchanged; the lessons done before the event log earn their plumas once.
-      const after = await cacheOf(repo);
-      expect({ ...after, rewards: EMPTY_REWARDS }).toEqual(before);
-      expect(after.rewards).toMatchObject({ earned: 5, earnedBySource: { welcome: 5 } });
+      expect(await cacheOf(repo)).toEqual(before);
       const events = await storedEvents(db);
       expect(events.map((e) => e.type)).toEqual(["baseline_imported"]);
       expect(events[0]?.payload).toMatchObject({ completedLessonIds: ["l1"], xp: 345 });
@@ -891,7 +864,7 @@ describe("createSqliteProgressRepository", () => {
         fc.record({ kind: fc.constant("import" as const), day: fc.nat(6), items: fc.nat(3) }),
         fc.record({ kind: fc.constant("redeliver" as const), pick: fc.nat(40) }),
         fc.record({
-          kind: fc.constant("purchase" as const),
+          kind: fc.constant("retired" as const),
           day: fc.nat(6),
           item: fc.constantFrom("gorra", "estrella"),
         }),
@@ -905,7 +878,7 @@ describe("createSqliteProgressRepository", () => {
               if (write.kind === "redeliver") {
                 const event = written[write.pick % (written.length || 1)];
                 if (event !== undefined) await store.repo.insertRemoteEvents([event]);
-              } else if (write.kind === "purchase") {
+              } else if (write.kind === "retired") {
                 const event = purchased(day(write.day), write.item, 40 + write.day);
                 written.push(event);
                 await store.repo.insertRemoteEvents([event]);

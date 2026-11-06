@@ -9,27 +9,24 @@ export function greetingText(name: string | undefined): string {
   return name === undefined ? "¡Hola!" : `Hola, ${name}`;
 }
 
-/** Avi beside the greeting: its state, its button's name, and whether home is focused. */
+/** Avi beside the greeting: its state, and whether home is focused. */
 export type HomeGreetingAvi = {
   readonly state: HomeAviState;
-  readonly label: string;
   readonly active: boolean;
 };
 
 /**
  * The first line of home: a heading written in ink at the top of the notebook page, like a
  * name on the cover. One line: a long name is cut at the end with an ellipsis, while screen
- * readers get it whole. Beside it, Avi in the learner's outfit, with its line in a speech
- * bubble under the heading; tapping Avi opens the wardrobe.
+ * readers get it whole. Beside it, Avi (decorative), with its line in a speech bubble under the
+ * heading.
  */
 export function HomeGreeting({
   name,
   avi,
-  onOpenWardrobe,
 }: {
   name?: string | undefined;
   avi?: HomeGreetingAvi | undefined;
-  onOpenWardrobe?: (() => void) | undefined;
 }) {
   const text = greetingText(name);
   const heading = (
@@ -46,10 +43,10 @@ export function HomeGreeting({
   );
   return (
     <View style={styles.wrapper}>
-      {avi === undefined || onOpenWardrobe === undefined ? (
+      {avi === undefined ? (
         heading
       ) : (
-        <HomeAvi state={avi.state} label={avi.label} active={avi.active} onPress={onOpenWardrobe}>
+        <HomeAvi state={avi.state} active={avi.active}>
           {heading}
         </HomeAvi>
       )}

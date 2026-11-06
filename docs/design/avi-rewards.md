@@ -1,9 +1,19 @@
 # Design: Avi's rewards, wardrobe and home presence
 
-Status: approved, slices 1 to 3 implemented (see [Slice 2 as built](#71-slice-2-as-built) and
-[Slice 3 as built](#72-slice-3-as-built)) ·
-The owner took the five recommended answers in
-[Open questions](#8-open-questions)
+Status: **withdrawn (2026-11-05): plumas and wardrobe removed; Avi on home kept.** Kept as
+history. Before that: approved, slices 1 to 3 implemented (see
+[Slice 2 as built](#71-slice-2-as-built) and [Slice 3 as built](#72-slice-3-as-built)); the
+owner took the five recommended answers in [Open questions](#8-open-questions).
+
+> **Withdrawal (2026-11-05).** The owner judged that plumas and the wardrobe would not be used.
+> Removed: the plumas rules and ledger, the catalogue, `ProgressState.rewards`, the summary row,
+> the home balance, the one-time note, `/armario`, the item art and Avi's outfits. Kept: Avi on
+> home (section 5 and 7.2) with its moods, bubble, moments, hover and blink, but decorative (no
+> button, hidden from screen readers, the bubble carries the state) and without the "new outfit"
+> state or the twirl. Compatibility: `item_purchased` / `item_equipped` are retired event types
+> the fold accepts with any payload and ignores, with no anomaly; the API is unchanged.
+> `FOLD_SNAPSHOT_VERSION` went to 3 and SQLite migration 7 drops the `rewards` cache table and
+> the `plumas_welcome` setting. The rest of this document describes the design as it was.
 
 Learners earn **plumas** for studying well and on time, and spend them dressing **Avi**, the
 paper-plane mascot (`apps/mobile/src/shared/ui/mascot.tsx`). Album badges unlock exclusive items.

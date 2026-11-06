@@ -96,9 +96,6 @@ describe("CardPracticeContainer", () => {
     expect(await screen.findByText("¡Práctica completada!")).toBeOnTheScreen();
     // Answer XP (2 × 10) plus the first-time completion bonus, like a lesson.
     expect(screen.getByText("XP ganada: 40")).toBeOnTheScreen();
-    expect(
-      screen.getByText("Día de estudio +5 · Ficha nueva +5 · Página perfecta +10"),
-    ).toBeOnTheScreen();
     const session = repository.events().find((e) => e.type === "session_completed");
     expect(session?.payload).toMatchObject({ kind: "lesson", lessonId: card.id });
     // Its items enter spaced repetition like a lesson's.

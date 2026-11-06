@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react-native";
+import { act, render, screen } from "@testing-library/react-native";
 import { AppState, StyleSheet, type AppStateStatus } from "react-native";
 import { withMotion } from "@/testing/motion";
 import { BLINK_EVERY_MS, HomeAvi } from "./home-avi";
@@ -14,15 +14,8 @@ const missed: HomeAviState = {
   moment: "droop",
 };
 
-function renderAvi(state: HomeAviState, props: { active?: boolean; onPress?: () => void } = {}) {
-  return render(
-    <HomeAvi
-      state={state}
-      label="Avi, contento, con gorra. Abre el armario"
-      onPress={props.onPress ?? jest.fn()}
-      active={props.active ?? true}
-    />,
-  );
+function renderAvi(state: HomeAviState, props: { active?: boolean } = {}) {
+  return render(<HomeAvi state={state} active={props.active ?? true} />);
 }
 
 function appState(initial: AppStateStatus) {
@@ -51,24 +44,14 @@ afterEach(() => {
 });
 
 describe("HomeAvi", () => {
-  it("is a button that says how Avi is and what it wears, and opens the wardrobe", async () => {
-    const onPress = jest.fn();
-    await renderAvi(idle, { onPress });
+  it("is decorative: no button, hidden from screen readers", async () => {
+    await renderAvi(missed);
 
-    const button = screen.getByRole("button", {
-      name: "Avi, contento, con gorra. Abre el armario",
-    });
-    await fireEvent.press(button);
-
-    expect(onPress).toHaveBeenCalledTimes(1);
-  });
-
-  it("is at least 44 pt in both directions", async () => {
-    await renderAvi(idle);
-
-    const style = StyleSheet.flatten(screen.getByTestId("home-avi").props.style);
-    expect(style.minWidth).toBeGreaterThanOrEqual(44);
-    expect(style.minHeight).toBeGreaterThanOrEqual(44);
+    expect(screen.queryByRole("button")).toBeNull();
+    expect(screen.queryByTestId("avi-hero")).toBeNull();
+    expect(screen.getByTestId("avi-hero", HIDDEN)).toBeTruthy();
+    // The bubble still carries the state for everyone.
+    expect(screen.getByText("Te extrañé. Hoy empezamos una racha nueva.")).toBeOnTheScreen();
   });
 
   it("says its line in a speech bubble, announced politely", async () => {

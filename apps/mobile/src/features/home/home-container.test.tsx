@@ -4,8 +4,8 @@ import {
   localDate,
   review,
   type Clock,
-  type ProgressEvent,
   type ProgressRepository,
+  type ReviewState,
   type SettingsRepository,
 } from "@english-learn/domain";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
@@ -27,6 +27,9 @@ import { createHomeAviMemory, type HomeAviMemory } from "./model/home-avi";
 import { withMotion } from "@/testing/motion";
 import { StyleSheet } from "react-native";
 import { testRandomBytes } from "@/testing/random-bytes";
+import { corpus } from "@english-learn/content/corpus";
+import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
+import { planReview, reviewOutlook } from "@/features/review/model/review-plan";
 
 const mockPush = jest.fn();
 
@@ -39,6 +42,21 @@ jest.mock("expo-router", () => {
 });
 
 const TODAY = localDate("2026-10-29");
+
+/** States due on `TODAY` for the first `n` reviewable items of the bundled lessons. */
+function realCorpusDueStates(n: number): ReviewState[] {
+  const yesterday = localDate("2026-10-28");
+  const ids = new Set<string>();
+  for (const l of corpus.lessons) {
+    for (const id of lessonItemIds(l, corpus.exercisesById)) {
+      const reviewable = corpus.exercises.some(
+        (e) => e.type !== "reading" && e.itemIds.includes(id),
+      );
+      if (ids.size < n && reviewable) ids.add(id);
+    }
+  }
+  return [...ids].map((id) => review(initialState(id, yesterday), 5, yesterday));
+}
 const fixedClock: Clock = { today: () => TODAY, nowMs: () => 0 };
 
 const b1Lesson = {
@@ -137,42 +155,12 @@ describe("HomeContainer", () => {
     expect(offer.skip).toHaveBeenCalledTimes(1);
   });
 
-  it("shows the plumas balance and, for study done before plumas, the one-time note", async () => {
-    // Two lessons a baseline completed (before the event log): 5 plumas each.
+  it("shows no plumas balance nor note, even for study done before the event log", async () => {
     await renderContainer(createFakeRepository({ xp: 120, completedLessonIds: ["l1", "l2"] }));
 
-    expect(await screen.findByLabelText("Tienes 10 plumas")).toBeOnTheScreen();
-    expect(
-      await screen.findByText("Avi te guardó 10 plumas por lo que ya estudiaste."),
-    ).toBeOnTheScreen();
-  });
-
-  it("decides nothing on an empty store (a new device before its first sync pull)", async () => {
-    const settings = createFakeSettingsRepository();
-    await renderContainer(createFakeRepository(), undefined, settings);
-
-    expect(await screen.findByLabelText("Tienes 0 plumas")).toBeOnTheScreen();
-    expect(screen.queryByText(/Avi te guardó/)).toBeNull();
-    expect(settings.plumasWelcome()).toBeNull();
-  });
-
-  it("never tells a learner who started with plumas about past study, even after a lesson", async () => {
-    const repository = createFakeRepository();
-    await completeSession({
-      repository,
-      today: TODAY,
-      nowMs: 0,
-      randomBytes: testRandomBytes,
-      deviceId: "test-device",
-      kind: "lesson",
-      summary: { lessonId: lesson.id, verdicts: [], accuracy: 1, answerXp: 0, itemOutcomes: [] },
-    });
-    const settings = createFakeSettingsRepository();
-    await renderContainer(repository, undefined, settings);
-
-    expect(await screen.findByLabelText("Tienes 20 plumas")).toBeOnTheScreen();
-    await waitFor(() => expect(settings.plumasWelcome()).toEqual({ plumas: 0, dismissed: true }));
-    expect(screen.queryByText(/Avi te guardó/)).toBeNull();
+    expect(await screen.findByLabelText("Racha: 0 días")).toBeOnTheScreen();
+    expect(screen.queryByText(/plumas/i)).toBeNull();
+    expect(screen.queryByLabelText(/plumas/i)).toBeNull();
   });
 
   it("shows no move banner anywhere else", async () => {
@@ -671,6 +659,22 @@ describe("HomeContainer", () => {
     expect(mockPush).toHaveBeenCalledWith("/review");
   });
 
+  it.each([5, 20, 45])(
+    "with %i due items, counts exactly the exercises the next review serves",
+    async (n) => {
+      const states = realCorpusDueStates(n);
+      const input = { states, today: TODAY, exercises: corpus.exercises };
+      const { next, later } = reviewOutlook(input);
+      expect(next).toBe(planReview(input).exercises.length);
+
+      await renderContainer(createFakeRepository({ states }), undefined, undefined, corpus);
+
+      expect(await screen.findByText(`${next} pendientes`)).toBeOnTheScreen();
+      if (later > 0) expect(screen.getByText(`y ${later} más después`)).toBeOnTheScreen();
+      else expect(screen.queryByText(/más después/)).not.toBeOnTheScreen();
+    },
+  );
+
   it("opens a lesson", async () => {
     await renderContainer(createFakeRepository());
 
@@ -789,23 +793,13 @@ describe("HomeContainer", () => {
     expect(await screen.findByText(/^[1-9]\d* XP$/)).toBeOnTheScreen();
   });
   describe("Avi beside the greeting", () => {
-    const wardrobeEvent = (n: number, event: Pick<ProgressEvent, "type" | "payload">) =>
-      ({
-        id: `019a0000-0000-7000-8000-00000000000${n}`,
-        deviceId: "test-device",
-        occurredAt: n,
-        localDate: TODAY,
-        ...event,
-      }) as ProgressEvent;
-
     it("greets a fresh learner, and remembers today's visit", async () => {
       const settings = createFakeSettingsRepository();
       await renderContainer(createFakeRepository(), undefined, settings);
 
       expect(await screen.findByText("¡Hola! Soy Avi. ¿Empezamos?")).toBeOnTheScreen();
-      expect(
-        screen.getByRole("button", { name: "Avi, contento. Abre el armario" }),
-      ).toBeOnTheScreen();
+      // Decorative: Avi is no button and opens nothing; the bubble says it all.
+      expect(screen.queryByRole("button", { name: /Avi/ })).toBeNull();
       await waitFor(() => expect(settings.lastHomeVisit()).toBe(TODAY));
     });
 
@@ -837,9 +831,6 @@ describe("HomeContainer", () => {
       expect(
         await screen.findByText("Te extrañé. Hoy empezamos una racha nueva."),
       ).toBeOnTheScreen();
-      expect(
-        screen.getByRole("button", { name: "Avi, con ganas de verte. Abre el armario" }),
-      ).toBeOnTheScreen();
     });
 
     it("celebrates a lesson completed since home was last seen", async () => {
@@ -853,36 +844,6 @@ describe("HomeContainer", () => {
       );
 
       expect(await screen.findByText("¡Lo lograste!")).toBeOnTheScreen();
-    });
-
-    it("shows off a new outfit, says what it wears and opens the wardrobe", async () => {
-      const repository = createFakeRepository({ xp: 1, completedLessonIds: ["a", "b", "c"] });
-      const aviMemory = createHomeAviMemory();
-      const settings = createFakeSettingsRepository({ lastHomeVisit: TODAY });
-      const first = await renderContainer(repository, undefined, settings, content, aviMemory);
-      expect(
-        await screen.findByRole("button", { name: "Avi, contento. Abre el armario" }),
-      ).toBeOnTheScreen();
-      await first.unmount();
-
-      await repository.appendEvents([
-        wardrobeEvent(1, {
-          type: "item_purchased",
-          payload: { v: 1, itemId: "estrella", price: 40 },
-        }),
-        wardrobeEvent(2, {
-          type: "item_equipped",
-          payload: { v: 1, slot: "sticker", itemId: "estrella" },
-        }),
-      ]);
-      await renderContainer(repository, undefined, settings, content, aviMemory);
-
-      expect(await screen.findByText("¿Cómo me veo?")).toBeOnTheScreen();
-      const avi = screen.getByRole("button", {
-        name: "Avi, estrenando ropa, con sticker de estrella. Abre el armario",
-      });
-      await fireEvent.press(avi);
-      expect(mockPush).toHaveBeenCalledWith("/armario");
     });
   });
 });

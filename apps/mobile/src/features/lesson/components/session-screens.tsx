@@ -12,8 +12,6 @@ import Animated, {
 import Svg, { Path } from "react-native-svg";
 import { GlossaryText } from "@/features/glossary/glossary-text";
 import { lookupEnabled } from "@/features/lesson/model/lookup-policy";
-import { FEATHER_PATH, PLUMAS_COLOR } from "@/features/rewards/feather";
-import type { SessionPlumas } from "@/features/rewards/model/plumas-copy";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
 import { Button } from "@/shared/ui/button";
@@ -121,8 +119,6 @@ type SummaryProps = {
   correct: number;
   total: number;
   xpEarned: number;
-  /** Plumas the session earned and why; without it, no plumas row. */
-  plumas?: SessionPlumas | undefined;
   streakDays: number;
   /** This session extended the streak (the number rolls to its new value, with the sound). */
   streakIncreased?: boolean;
@@ -141,6 +137,8 @@ type SummaryProps = {
   onOpenCard?: ((cardId: string) => void) | undefined;
   /** "Repetir lección": runs the lesson again (lessons only). */
   onRedo?: (() => void) | undefined;
+  /** What comes next, above the done button (a review: "Te quedan 25 para otro repaso."). */
+  next?: string | undefined;
 };
 
 /** An album sticker as the summary announces it. */
@@ -176,7 +174,6 @@ export function SessionSummary({
   correct,
   total,
   xpEarned,
-  plumas,
   streakDays,
   streakIncreased = false,
   toReview,
@@ -187,14 +184,12 @@ export function SessionSummary({
   recap = [],
   onOpenCard,
   onRedo,
+  next,
 }: SummaryProps) {
   const styles = useStyles();
   const { colors } = useTheme();
   const perfect = total > 0 && correct === total;
   const xp = useCountUp(xpEarned);
-  // Never negative, whatever a refold made of the totals (see `sessionPlumas`).
-  const plumasTotal = Math.max(0, plumas?.total ?? 0);
-  const plumasCount = useCountUp(plumasTotal);
   return (
     <ScreenContainer
       title={title}
@@ -248,21 +243,6 @@ export function SessionSummary({
             {`XP ganada: ${xp}`}
           </Text>
         </ResultRow>
-        {plumas !== undefined && (
-          <ResultRow
-            testID="summary-plumas"
-            mark={<MiniSticker color={PLUMAS_COLOR} glyph="feather" />}
-          >
-            <Text variant="title" accessibilityLabel={`Plumas ganadas: ${plumasTotal}`}>
-              {plumasTotal > 0 ? `Plumas: +${plumasCount}` : "Plumas: 0"}
-            </Text>
-            {plumas.detail !== "" && (
-              <Text variant="small" tone="muted">
-                {plumas.detail}
-              </Text>
-            )}
-          </ResultRow>
-        )}
         <ResultRow
           last
           mark={
@@ -307,6 +287,7 @@ export function SessionSummary({
         )}
       </View>
       {recap.length > 0 && <Recap items={recap} onOpenCard={onOpenCard} />}
+      {next !== undefined && <Text variant="bodyStrong">{next}</Text>}
       <Button label={doneLabel} onPress={onGoHome} />
       {onRedo !== undefined && (
         <Button
@@ -464,10 +445,9 @@ function ResultRow({
 const GLYPHS = {
   check: "M5 12.5 10 17 19 7",
   star: "M12 3 14.6 9 21 9.6 16.2 13.8 17.6 20.2 12 16.9 6.4 20.2 7.8 13.8 3 9.6 9.4 9Z",
-  feather: FEATHER_PATH,
 } as const;
 
-/** A small round sticker with a check, a star or a feather (plumas), beside a result. */
+/** A small round sticker with a check or a star, beside a result. */
 function MiniSticker({ color, glyph }: { color: HighlighterName; glyph: keyof typeof GLYPHS }) {
   const { colors } = useTheme();
   return (
@@ -477,7 +457,7 @@ function MiniSticker({ color, glyph }: { color: HighlighterName; glyph: keyof ty
           d={GLYPHS[glyph]}
           fill={glyph === "star" ? colors.onHighlighter : "none"}
           stroke={colors.onHighlighter}
-          strokeWidth={glyph === "star" ? 1.5 : glyph === "feather" ? 2.4 : 3.2}
+          strokeWidth={glyph === "star" ? 1.5 : 3.2}
           strokeLinecap="round"
           strokeLinejoin="round"
         />

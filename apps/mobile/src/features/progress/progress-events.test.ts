@@ -2,8 +2,6 @@ import { foldEvents, localDate } from "@english-learn/domain";
 import { createTestRandomBytes } from "@/testing/random-bytes";
 import {
   baselineImportedEvent,
-  itemEquippedEvent,
-  itemPurchasedEvent,
   itemReviewedEvent,
   newEventId,
   placementCompletedEvent,
@@ -67,34 +65,5 @@ describe("progress events", () => {
     expect(progress.placement).toEqual({ level: "B1", theta: 0.4 });
     expect(progress.completedLessonIds).toEqual(["l0", "l1"]);
     expect(events[2]?.payload).not.toHaveProperty("lessonId");
-  });
-
-  it("builds the wardrobe's purchase and equip events, which the fold charges and wears", () => {
-    const events = [
-      baselineImportedEvent(stamp, {
-        states: [],
-        xp: 0,
-        streak: { current: 0, longest: 0, lastActiveDate: null },
-        placement: null,
-        completedLessonIds: ["l1", "l2"],
-      }),
-      itemPurchasedEvent(stamp, "estrella", 40),
-      itemEquippedEvent(stamp, "sticker", "estrella"),
-      itemEquippedEvent(stamp, "head", null),
-    ];
-
-    expect(events[1]).toMatchObject({
-      type: "item_purchased",
-      payload: { v: 1, itemId: "estrella", price: 40 },
-    });
-    expect(events[3]).toMatchObject({
-      type: "item_equipped",
-      payload: { v: 1, slot: "head", itemId: null },
-    });
-    const { anomalies, rewards } = foldEvents(events);
-    expect(anomalies).toEqual([]);
-    expect(rewards.balance).toBe(10 - 40);
-    expect(rewards.ownedItemIds).toEqual(["estrella"]);
-    expect(rewards.equipped).toEqual({ head: null, sticker: "estrella" });
   });
 });

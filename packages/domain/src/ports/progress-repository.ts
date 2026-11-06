@@ -1,7 +1,6 @@
 import type { Level } from "../cefr";
 import type { ProgressEvent, StoredEvent } from "../progress-log/events";
 import type { LessonResult } from "../progress-log/fold";
-import type { PlumasTotals, Rewards } from "../rewards";
 import type { ReviewState } from "../srs";
 import type { Streak } from "../streak";
 
@@ -14,8 +13,6 @@ export type PlacementResult = {
 export type ProgressTotals = {
   readonly xp: number;
   readonly streak: Streak;
-  /** Plumas earned (per source, and what the daily cap held back), spent and the balance. */
-  readonly plumas: PlumasTotals;
 };
 
 /** Totals read in the same transaction as an append: just before it and after the refold. */
@@ -38,8 +35,6 @@ export interface ProgressRepository {
   getPlacementResult(): Promise<PlacementResult | null>;
   /** The cached best result of every lesson completed in the log (sorted by lessonId). */
   getLessonResults(): Promise<readonly LessonResult[]>;
-  /** The cached plumas, purchases and equips (`ProgressState.rewards`). */
-  getRewards(): Promise<Rewards>;
 
   /** Stable id of this install; every event it writes carries it as `deviceId`. */
   getDeviceId(): Promise<string>;

@@ -39,23 +39,17 @@ function save(
   });
 }
 
-const sources = (earned: { bySource: readonly { source: string; plumas: number }[] }) =>
-  Object.fromEntries(earned.bySource.map(({ source, plumas }) => [source, plumas]));
-
-describe("a practice lesson's XP and plumas (once per lesson id, like any lesson)", () => {
-  it("pays the first completion, then the first perfect page, then only answer XP", async () => {
+describe("a practice lesson's XP (the bonus once per lesson id, like any lesson)", () => {
+  it("pays the first completion's bonus, then only answer XP, perfect or not", async () => {
     const repository = createFakeRepository();
 
     const first = await save(repository, (exercises.length - 1) / exercises.length, 1);
-    expect(sources(first.plumas)).toEqual({ study_day: 5, new_lesson: 5 });
     expect(first.xpEarned).toBeGreaterThan((exercises.length - 1) * 10);
 
     const perfect = await save(repository, 1, 2);
-    expect(sources(perfect.plumas)).toEqual({ perfect_page: 10 });
     expect(perfect.xpEarned).toBe(exercises.length * 10);
 
     const redo = await save(repository, 1, 3);
-    expect(redo.plumas.total).toBe(0);
     expect(redo.xpEarned).toBe(exercises.length * 10);
 
     expect(await repository.getLessonResults()).toEqual([
