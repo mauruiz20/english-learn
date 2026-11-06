@@ -7,15 +7,62 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Removed
+## [0.3.0] - 2026-11-06
 
-- **Plumas and Avi's wardrobe**: the plumas currency (summary row, home balance, one-time note),
-  the `/armario` wardrobe and shop, and Avi's outfits. Avi stays on home with its moods, speech
-  bubble, moments, hover and blink, now as decoration (no button, hidden from screen readers; the
-  bubble carries its state), without the "new outfit" state. Wardrobe events (`item_purchased`,
-  `item_equipped`) already in a log or on the sync server are still accepted and ignored. The
-  fold snapshot format goes to version 3 (every store refolds once), and migration 7 drops the
-  `rewards` cache table and the plumas note setting.
+The full path from A1 to C1, free practice by topic, pronunciation with the device's voice and
+listening in reviews, plus a personal home with Avi.
+
+### Added
+
+- **A1, B2 and C1 courses**: eight topics and sixteen lessons per level, with their glossary
+  entries and study cards (four A1 grammar cards, B2 conditionals, wishes, deduction and the
+  passive, and C1 inversion, cleft sentences, hedging, nominalization, collocations, register and
+  phrasal verbs). Each card is linked from the lesson that teaches it.
+- **Level progression**: the path runs automatically from A1 to C1, moving on to the next level
+  once every lesson of the current one is done. A chip under the path heading lets the learner
+  pick the level shown by hand ("Automático" or any level with its progress); the choice is
+  remembered on the device. Album stickers for completing A1, B2 and C1.
+- **Práctica libre** (`/practica`): free practice outside the path in four collections (Phrasal
+  verbs, Tiempos verbales, Situaciones and Gramática), 44 themed groups and 132 lessons, nothing
+  locked. Each lesson shows its best result and new words come back in reviews.
+- **Pronunciation**: speaker buttons read word lookups, "Lo nuevo de hoy", card examples, the
+  right answer after feedback and reading passages aloud with an English voice on the device
+  (no recordings, no network voices). A second tap plays it slower. A "Pronunciación" setting
+  turns it off and sets the voice speed (Normal / Lenta). Web only for now.
+- **Listening in reviews**: daily reviews swap up to two exercises for "Escucha y escribe"
+  (dictation) or "Escucha y elige", built from existing sentences, when a voice is available.
+- **Home greeting**: after Google sign-in the app lands on home and greets the learner by first
+  name. The name stays on the device and is never sent to the API.
+- **Avi on home**: the mascot sits beside the greeting with a speech bubble, and its mood
+  (including a new sad face and a blink) follows progress, the time of day and what is new since
+  the last visit.
+- **Card pack 3**: A2 and B1 cards for the remaining gaps (directions, possessive 's, look like,
+  like + -ing, although, each other, get + adjective and phrasal verbs for work) and nine B2 cards.
+- **Press click**: a soft synthesized click on buttons, path nodes and card rows, silent when
+  sound is off. Checking an answer or picking an option keeps its own sound.
+
+### Changed
+
+- **Daily review count**: the review is planned once per day, so home shows exactly the
+  exercises the next review serves and how many more are waiting, and the summary says how many
+  remain.
+- **Path level**: a learner partway through a level stays on it instead of jumping to a higher
+  placement level.
+- **Content**: linguistic review of the A1, B2 and C1 lessons and cards and of the practice
+  collections (distractors, answer patterns, word order, translations and neutral Spanish).
+- **CI**: web e2e runs in four shards inside the Playwright image, and a release merge to `main`
+  whose tree `develop` already tested skips the test jobs and deploys directly.
+
+### Fixed
+
+- **iOS web app after Google sign-in**: the database is released before every intentional
+  navigation or reload and when the page is hidden, so a page frozen in the back/forward cache no
+  longer keeps the storage files locked until a reboot. The busy-storage screen can go back to the
+  previous screen.
+- Home said "20 pendientes" again after a review with a large backlog, as if it had not been
+  saved.
+- Each "Profundiza" card appears once on the path, linked to the one lesson of its topic that
+  teaches it, and its marker stays on one line.
 
 ## [0.2.0] - 2026-11-03
 
@@ -133,6 +180,7 @@ one Expo codebase.
 - Clear error screens when the database cannot open (another tab, newer schema, storage
   unavailable).
 
-[Unreleased]: https://github.com/mauruiz20/english-learn/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/mauruiz20/english-learn/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/mauruiz20/english-learn/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mauruiz20/english-learn/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mauruiz20/english-learn/releases/tag/v0.1.0
