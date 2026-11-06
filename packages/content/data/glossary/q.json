@@ -77,6 +77,22 @@
       ]
     },
     {
+      "id": "glossary.quite",
+      "headword": "quite",
+      "kind": "word",
+      "forms": ["quite"],
+      "senses": [
+        {
+          "es": "bastante",
+          "pos": "adverb"
+        },
+        {
+          "es": "del todo (not quite = no del todo)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.quiz",
       "headword": "quiz",
       "kind": "word",

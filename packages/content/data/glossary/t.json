@@ -441,6 +441,18 @@
       ]
     },
     {
+      "id": "glossary.tech-support",
+      "headword": "tech support",
+      "kind": "phrase",
+      "forms": ["tech support"],
+      "senses": [
+        {
+          "es": "soporte técnico",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.technical",
       "headword": "technical",
       "kind": "word",
@@ -2228,6 +2240,18 @@
         {
           "es": "escribir, ingresar (con el teclado)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.typical",
+      "headword": "typical",
+      "kind": "word",
+      "forms": ["typical"],
+      "senses": [
+        {
+          "es": "típico, normal",
+          "pos": "adjective"
         }
       ]
     }

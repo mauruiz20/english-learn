@@ -1544,6 +1544,22 @@
       ]
     },
     {
+      "id": "glossary.bug",
+      "headword": "bug",
+      "kind": "word",
+      "forms": ["bug", "bugs"],
+      "senses": [
+        {
+          "es": "error (de un programa), falla",
+          "pos": "noun"
+        },
+        {
+          "es": "insecto, bicho",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.build",
       "headword": "build",
       "kind": "word",

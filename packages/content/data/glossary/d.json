@@ -196,6 +196,18 @@
       ]
     },
     {
+      "id": "glossary.dead",
+      "headword": "dead",
+      "kind": "word",
+      "forms": ["dead"],
+      "senses": [
+        {
+          "es": "muerto; que no funciona (un aparato)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.deadline",
       "headword": "deadline",
       "kind": "word",
@@ -548,6 +560,18 @@
       ]
     },
     {
+      "id": "glossary.dental",
+      "headword": "dental",
+      "kind": "word",
+      "forms": ["dental"],
+      "senses": [
+        {
+          "es": "dental",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.dentist",
       "headword": "dentist",
       "kind": "word",
@@ -703,6 +727,18 @@
       "senses": [
         {
           "es": "postre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.destination",
+      "headword": "destination",
+      "kind": "word",
+      "forms": ["destination", "destinations"],
+      "senses": [
+        {
+          "es": "destino",
           "pos": "noun"
         }
       ]

@@ -1356,6 +1356,18 @@
       ]
     },
     {
+      "id": "glossary.extremely",
+      "headword": "extremely",
+      "kind": "word",
+      "forms": ["extremely"],
+      "senses": [
+        {
+          "es": "extremadamente, sumamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.eye",
       "headword": "eye",
       "kind": "word",

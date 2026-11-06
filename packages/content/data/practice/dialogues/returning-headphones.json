@@ -1,0 +1,247 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.returning-headphones",
+      "level": "B1",
+      "title": "Devolver unos audífonos",
+      "setting": "La semana pasada compraste unos audífonos y el lado izquierdo no suena. Vuelves a la tienda con el recibo.",
+      "characters": [
+        {
+          "id": "clerk",
+          "name": "Sam",
+          "role": "empleado de la tienda"
+        }
+      ],
+      "start": "help",
+      "nodes": [
+        {
+          "id": "help",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Hi there! How can I help you?",
+          "es": "¡Hola! ¿En qué le puedo ayudar?",
+          "next": "return"
+        },
+        {
+          "id": "return",
+          "kind": "write",
+          "itemIds": ["b1.situations.return-something"],
+          "prompt": "Di que quieres devolver estos audífonos.",
+          "accepted": [
+            "I'd like to return these headphones[, please].",
+            "{Hi|Hello}, I'd like to return these headphones[, please].",
+            "I {want|need} to return these headphones[, please].",
+            "{Hi|Hello}, I {want|need} to return these headphones[, please].",
+            "{Can|Could} I return these headphones[, please]?",
+            "{Hi|Hello}, {can|could} I return these headphones[, please]?"
+          ],
+          "tip": "«Return» es devolver algo a la tienda: «I'd like to return these headphones.»",
+          "next": "problem",
+          "wrongNext": "problem-check"
+        },
+        {
+          "id": "problem",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Sure. What's wrong with them?",
+          "es": "Claro. ¿Qué problema tienen?",
+          "next": "explain"
+        },
+        {
+          "id": "problem-check",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "You want to return them? Sure. What's wrong with them?",
+          "es": "¿Los quiere devolver? Claro. ¿Qué problema tienen?",
+          "next": "explain"
+        },
+        {
+          "id": "explain",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "The left side doesn't work. There's no sound at all.",
+              "rating": "good",
+              "feedback": "Explicas el problema con claridad.",
+              "next": "receipt"
+            },
+            {
+              "en": "They're broken.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero es vago: conviene decir qué falla.",
+              "next": "receipt-test"
+            },
+            {
+              "en": "They don't sound the left.",
+              "rating": "wrong",
+              "feedback": "Calco de «no suena»: se dice «The left side doesn't work» o «There's no sound».",
+              "next": "receipt-test"
+            }
+          ]
+        },
+        {
+          "id": "receipt",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Oh, that's annoying. Do you have the receipt?",
+          "es": "Uy, qué fastidio. ¿Tiene el recibo?",
+          "next": "give-receipt"
+        },
+        {
+          "id": "receipt-test",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Let me test them... Yes, the left side is dead. Do you have the receipt?",
+          "es": "Déjeme probarlos... Sí, el lado izquierdo no funciona. ¿Tiene el recibo?",
+          "next": "give-receipt"
+        },
+        {
+          "id": "give-receipt",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Yes, here it is. I bought them last Saturday.",
+              "rating": "good",
+              "feedback": "Das el recibo y la fecha: todo lo que necesita.",
+              "next": "options"
+            },
+            {
+              "en": "Yes, take it.",
+              "rating": "ok",
+              "feedback": "Correcto, pero «take it» suena brusco; «here it is» es más amable.",
+              "next": "options"
+            },
+            {
+              "en": "Yes, here is the ticket.",
+              "rating": "wrong",
+              "feedback": "En una tienda es «receipt»; «ticket» es una entrada o un boleto.",
+              "next": "options-receipt"
+            }
+          ]
+        },
+        {
+          "id": "options",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Thanks. Would you like to exchange them for a new pair?",
+          "es": "Gracias. ¿Quiere cambiarlos por unos nuevos?",
+          "next": "exchange"
+        },
+        {
+          "id": "options-receipt",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "The receipt? Thanks. Would you like to exchange them for a new pair?",
+          "es": "¿El recibo? Gracias. ¿Quiere cambiarlos por unos nuevos?",
+          "next": "exchange"
+        },
+        {
+          "id": "exchange",
+          "kind": "choose",
+          "itemIds": ["b1.situations.exchange-for"],
+          "options": [
+            {
+              "en": "Yes, I'd like to exchange them for a new pair, please.",
+              "rating": "good",
+              "feedback": "Claro y amable.",
+              "next": "no-stock"
+            },
+            {
+              "en": "Yes, change them.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena a orden; además, en una tienda se dice «exchange».",
+              "next": "no-stock"
+            },
+            {
+              "en": "Whatever, I don't care.",
+              "rating": "wrong",
+              "feedback": "Suena maleducado: el empleado te está ayudando.",
+              "next": "no-stock-cold"
+            }
+          ]
+        },
+        {
+          "id": "no-stock",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Let me check... I'm afraid we don't have that model right now. We can give you store credit or a full refund.",
+          "es": "Déjeme ver... Me temo que ahora no tenemos ese modelo. Le podemos dar saldo a favor en la tienda o devolverle todo el dinero.",
+          "next": "refund"
+        },
+        {
+          "id": "no-stock-cold",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Okay, no need to be rude. I'm afraid we don't have that model right now. We can give you store credit or a full refund.",
+          "es": "Bueno, no hace falta ser grosero. Me temo que ahora no tenemos ese modelo. Le podemos dar saldo a favor en la tienda o devolverle todo el dinero.",
+          "next": "refund"
+        },
+        {
+          "id": "refund",
+          "kind": "write",
+          "prompt": "Di que prefieres que te devuelvan el dinero.",
+          "accepted": [
+            "I'd {prefer|like} a [full ]refund[, please].",
+            "{A refund|A full refund}, please.",
+            "I'll take the [full ]refund[, please].",
+            "{Can|Could} I {have|get} a [full ]refund[, please]?",
+            "I'd rather {have|get} a [full ]refund[, please]."
+          ],
+          "tip": "«Refund» es la devolución del dinero: «I'd prefer a refund, please.»",
+          "next": "card",
+          "wrongNext": "card-check"
+        },
+        {
+          "id": "card",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Of course. The money will be back on your card in three to five days.",
+          "es": "Por supuesto. El dinero vuelve a su tarjeta en tres a cinco días.",
+          "next": "goodbye"
+        },
+        {
+          "id": "card-check",
+          "kind": "npc",
+          "speaker": "clerk",
+          "en": "Sorry, was that a refund? Okay. The money will be back on your card in three to five days.",
+          "es": "Perdón, ¿era la devolución del dinero? Bien. El dinero vuelve a su tarjeta en tres a cinco días.",
+          "next": "goodbye"
+        },
+        {
+          "id": "goodbye",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Great, thanks for your help.",
+              "rating": "good",
+              "feedback": "Cierras agradeciendo la ayuda.",
+              "next": "end"
+            },
+            {
+              "en": "Okay.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena seco.",
+              "next": "end"
+            },
+            {
+              "en": "Five days? That's too slow.",
+              "rating": "wrong",
+              "feedback": "Quejarte de algo que no depende del empleado suena grosero.",
+              "next": "end-cold"
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Devolviste los audífonos y te van a devolver el dinero."
+        },
+        {
+          "id": "end-cold",
+          "kind": "end",
+          "text": "Te van a devolver el dinero, pero el empleado se quedó molesto con tu despedida."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.reschedule-appointment",
+      "level": "B1",
+      "title": "Cambiar una cita por teléfono",
+      "setting": "Te llamas Alex Rivera y tienes cita con el dentista el jueves a las diez, pero ese día tienes que trabajar. Llamas al consultorio para cambiarla.",
+      "characters": [
+        {
+          "id": "receptionist",
+          "name": "Recepción",
+          "role": "recepcionista del consultorio dental"
+        }
+      ],
+      "start": "answer",
+      "nodes": [
+        {
+          "id": "answer",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Good morning, Bright Smile Dental. How can I help you?",
+          "es": "Buenos días, consultorio dental Bright Smile. ¿En qué le puedo ayudar?",
+          "next": "reason"
+        },
+        {
+          "id": "reason",
+          "kind": "choose",
+          "itemIds": ["b1.situations.im-calling-about"],
+          "options": [
+            {
+              "en": "Hi, I'm calling about my appointment on Thursday. I need to reschedule it.",
+              "rating": "good",
+              "feedback": "Dices por qué llamas y qué necesitas: perfecto.",
+              "next": "name"
+            },
+            {
+              "en": "I can't come on Thursday.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero conviene decir primero por qué llamas.",
+              "next": "name"
+            },
+            {
+              "en": "Hello, who is this?",
+              "rating": "wrong",
+              "feedback": "Quien llama eres tú: no preguntes quién es; di por qué llamas.",
+              "next": "name-confused"
+            }
+          ]
+        },
+        {
+          "id": "name",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Of course. Can I have your name, please?",
+          "es": "Por supuesto. ¿Me da su nombre, por favor?",
+          "next": "say-name"
+        },
+        {
+          "id": "name-confused",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "This is Bright Smile Dental. Are you calling about an appointment? Can I have your name, please?",
+          "es": "Habla el consultorio dental Bright Smile. ¿Llama por una cita? ¿Me da su nombre, por favor?",
+          "next": "say-name"
+        },
+        {
+          "id": "say-name",
+          "kind": "write",
+          "itemIds": ["b1.situations.this-is-on-the-phone"],
+          "prompt": "Di tu nombre como se hace al teléfono: «Habla Alex Rivera».",
+          "accepted": [
+            "This is Alex Rivera.",
+            "{Sure|Yes}, this is Alex Rivera.",
+            "{It's|My name is|I'm} Alex Rivera.",
+            "{Sure|Yes}, {it's|my name is|I'm} Alex Rivera."
+          ],
+          "tip": "Al teléfono, para decir quién habla se usa «This is…».",
+          "next": "booked",
+          "wrongNext": "booked-breaking"
+        },
+        {
+          "id": "booked",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Thank you, Alex. I see you're booked for Thursday at ten. When would you like to come in instead?",
+          "es": "Gracias, Alex. Veo que tiene cita el jueves a las diez. ¿Cuándo prefiere venir?",
+          "next": "when"
+        },
+        {
+          "id": "booked-breaking",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Sorry, you're breaking up. Did you say Alex Rivera? Okay, I see you're booked for Thursday at ten. When would you like to come in instead?",
+          "es": "Perdón, se corta la llamada. ¿Dijo Alex Rivera? Bien, veo que tiene cita el jueves a las diez. ¿Cuándo prefiere venir?",
+          "next": "when"
+        },
+        {
+          "id": "when",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Do you have anything on Friday morning?",
+              "rating": "good",
+              "feedback": "Preguntas por disponibilidad de forma natural.",
+              "next": "slots"
+            },
+            {
+              "en": "Friday.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena cortante.",
+              "next": "slots"
+            },
+            {
+              "en": "Whenever. You decide.",
+              "rating": "wrong",
+              "feedback": "Suena desinteresado: la recepcionista necesita saber qué te sirve a ti.",
+              "next": "slots-suggest"
+            }
+          ]
+        },
+        {
+          "id": "slots",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Let me check... I have Friday at nine or at eleven thirty.",
+          "es": "Déjeme ver... Tengo el viernes a las nueve o a las once y media.",
+          "next": "pick"
+        },
+        {
+          "id": "slots-suggest",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Well, it has to work for you. How about Friday? I have nine or eleven thirty.",
+          "es": "Bueno, tiene que servirle a usted. ¿Qué le parece el viernes? Tengo a las nueve o a las once y media.",
+          "next": "pick"
+        },
+        {
+          "id": "pick",
+          "kind": "write",
+          "prompt": "Elige las once y media.",
+          "accepted": [
+            "{Eleven thirty|11:30} {would be|is} {great|perfect|fine|good}[, thanks| thank you].",
+            "{Eleven thirty|11:30}, please.",
+            "{I'll take|I'd like} {eleven thirty|11:30|the eleven thirty one}[, please].",
+            "{Could|Can} I have {eleven thirty|11:30}[, please]?"
+          ],
+          "tip": "Para elegir una opción: «Eleven thirty would be great.»",
+          "next": "number",
+          "wrongNext": "number-check"
+        },
+        {
+          "id": "number",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Perfect. So that's Friday at eleven thirty. Is this the best number to reach you?",
+          "es": "Perfecto. Entonces queda el viernes a las once y media. ¿Este es el mejor número para comunicarnos con usted?",
+          "next": "phone"
+        },
+        {
+          "id": "number-check",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Sorry, was that nine or eleven thirty? Eleven thirty, okay. Is this the best number to reach you?",
+          "es": "Perdón, ¿a las nueve o a las once y media? Once y media, de acuerdo. ¿Este es el mejor número para comunicarnos con usted?",
+          "next": "phone"
+        },
+        {
+          "id": "phone",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Yes, it is. Thank you for your help.",
+              "rating": "good",
+              "feedback": "Confirmas y agradeces.",
+              "next": "see-you"
+            },
+            {
+              "en": "Yes.",
+              "rating": "ok",
+              "feedback": "Correcto, aunque agradecer queda mejor.",
+              "next": "see-you"
+            },
+            {
+              "en": "Yes, I am the best number.",
+              "rating": "wrong",
+              "feedback": "Malentendido: te pregunta si este número de teléfono es el mejor, no por ti.",
+              "next": "see-you-joke"
+            }
+          ]
+        },
+        {
+          "id": "see-you",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "You're welcome. See you on Friday!",
+          "es": "De nada. ¡Nos vemos el viernes!",
+          "next": "goodbye"
+        },
+        {
+          "id": "see-you-joke",
+          "kind": "npc",
+          "speaker": "receptionist",
+          "en": "Ha, I mean this phone number. Okay, great. See you on Friday!",
+          "es": "Ja, me refiero a este número de teléfono. Bien, perfecto. ¡Nos vemos el viernes!",
+          "next": "goodbye"
+        },
+        {
+          "id": "goodbye",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Great, see you then. Bye!",
+              "rating": "good",
+              "feedback": "Cierre amable y natural.",
+              "next": "end"
+            },
+            {
+              "en": "Bye.",
+              "rating": "ok",
+              "feedback": "Correcto, aunque un poco seco.",
+              "next": "end"
+            },
+            {
+              "en": "See you on Thursday!",
+              "rating": "wrong",
+              "feedback": "Cuidado: la cita ahora es el viernes, no el jueves.",
+              "next": "end-doubt"
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Cambiaste tu cita al viernes a las 11:30."
+        },
+        {
+          "id": "end-doubt",
+          "kind": "end",
+          "text": "Cambiaste tu cita al viernes, pero la recepcionista se quedó con la duda de si lo entendiste."
+        }
+      ]
+    }
+  ]
+}

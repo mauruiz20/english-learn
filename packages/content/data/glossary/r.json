@@ -345,6 +345,18 @@
       ]
     },
     {
+      "id": "glossary.recipe",
+      "headword": "recipe",
+      "kind": "word",
+      "forms": ["recipe", "recipes"],
+      "senses": [
+        {
+          "es": "receta (de cocina)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.recognize",
       "headword": "recognize",
       "kind": "word",
@@ -1005,6 +1017,18 @@
       ]
     },
     {
+      "id": "glossary.reschedule",
+      "headword": "reschedule",
+      "kind": "word",
+      "forms": ["reschedule", "reschedules", "rescheduled", "rescheduling"],
+      "senses": [
+        {
+          "es": "cambiar la fecha o la hora de (una cita)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.research",
       "headword": "research",
       "kind": "word",
@@ -1457,6 +1481,18 @@
         {
           "es": "río",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rivera",
+      "headword": "Rivera",
+      "kind": "word",
+      "forms": ["rivera"],
+      "senses": [
+        {
+          "es": "Rivera (apellido)",
+          "pos": "proper noun"
         }
       ]
     },

@@ -390,6 +390,11 @@ character speaks and the learner replies by choosing or by writing. A dialogue g
   work like a practice lesson's.
 - Every reply that is not `good` is clearly worse for a reason the feedback names; the app
   shows the turn's first good reply after it ("Mejor: …").
+- **Bundled**: ten dialogues in three groups, building on the Situaciones themes. A2 "Fuera de
+  casa": `airport-check-in`, `restaurant-order` (the server brings the wrong dish),
+  `doctor-visit`, `asking-directions`; B1 "Del día a día": `returning-headphones`,
+  `coworker-small-talk`, `reschedule-appointment`; B2 "Con tacto": `job-interview`,
+  `hotel-complaint`, `meeting-disagreement` (two characters). Each has 5–7 learner turns.
 
 ## Card gaps (next card pack)
 

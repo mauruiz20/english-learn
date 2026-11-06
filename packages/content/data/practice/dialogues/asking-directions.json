@@ -1,0 +1,198 @@
+{
+  "dialogues": [
+    {
+      "id": "a2.dialogues.asking-directions",
+      "level": "A2",
+      "title": "¿Cómo llego al museo?",
+      "setting": "Estás de visita en una ciudad y buscas el museo de arte. Le preguntas a una mujer en la calle.",
+      "characters": [
+        {
+          "id": "local",
+          "name": "Paula",
+          "role": "vecina del barrio"
+        }
+      ],
+      "start": "ask",
+      "nodes": [
+        {
+          "id": "ask",
+          "kind": "choose",
+          "itemIds": ["a2.situations.how-do-i-get-to"],
+          "options": [
+            {
+              "en": "Excuse me, how do I get to the art museum?",
+              "rating": "good",
+              "feedback": "«Excuse me» para llamar la atención y una pregunta clara: perfecto.",
+              "next": "way"
+            },
+            {
+              "en": "Where is the art museum?",
+              "rating": "ok",
+              "feedback": "Se entiende, pero sin «Excuse me» suena brusco con alguien que no conoces.",
+              "next": "way"
+            },
+            {
+              "en": "Hey! Where is museum?",
+              "rating": "wrong",
+              "feedback": "«Hey!» suena brusco con alguien que no conoces, y falta «the»: «Where is the museum?».",
+              "next": "way-unsure"
+            }
+          ]
+        },
+        {
+          "id": "way",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "Sure! Go straight down this street and take the second left.",
+          "es": "¡Claro! Siga derecho por esta calle y tome la segunda a la izquierda.",
+          "next": "confirm-left"
+        },
+        {
+          "id": "way-unsure",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "Um... the museum? Okay. Go straight down this street and take the second left.",
+          "es": "Eh... ¿el museo? Bueno. Siga derecho por esta calle y tome la segunda a la izquierda.",
+          "next": "confirm-left"
+        },
+        {
+          "id": "confirm-left",
+          "kind": "write",
+          "itemIds": ["a2.situations.second-on-the-left"],
+          "prompt": "Repite para confirmar: «¿La segunda a la izquierda?».",
+          "accepted": [
+            "{The second|Second} {left|on the left|street on the left}?",
+            "{Okay|So}, the second {left|on the left|street on the left}?",
+            "{Okay|So}, I take the second {left|street on the left}?",
+            "{Okay|So}, I go straight and take the second {left|street on the left}?"
+          ],
+          "tip": "Repetir la indicación es una buena forma de confirmar: «The second left?».",
+          "next": "bank",
+          "wrongNext": "bank-correct"
+        },
+        {
+          "id": "bank",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "Yes, exactly. Then walk past the bank, and the museum is on your right.",
+          "es": "Sí, exacto. Después pase por delante del banco, y el museo está a su derecha.",
+          "next": "far"
+        },
+        {
+          "id": "bank-correct",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "No, the second on the left. Then walk past the bank, and the museum is on your right.",
+          "es": "No, la segunda a la izquierda. Después pase por delante del banco, y el museo está a su derecha.",
+          "next": "far"
+        },
+        {
+          "id": "far",
+          "kind": "choose",
+          "itemIds": ["a2.situations.is-it-far"],
+          "options": [
+            {
+              "en": "Great. Is it far from here?",
+              "rating": "good",
+              "feedback": "Pregunta útil y natural.",
+              "next": "walk"
+            },
+            {
+              "en": "Far?",
+              "rating": "ok",
+              "feedback": "Se entiende, pero una sola palabra suena brusca.",
+              "next": "walk"
+            },
+            {
+              "en": "Is it near from here?",
+              "rating": "wrong",
+              "feedback": "Con «near» no va «from»: se dice «Is it near here?» o «Is it far from here?».",
+              "next": "walk-near"
+            }
+          ]
+        },
+        {
+          "id": "walk",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "No, it's about a five-minute walk.",
+          "es": "No, está a unos cinco minutos caminando.",
+          "next": "closing-time"
+        },
+        {
+          "id": "walk-near",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "Near here? Yes, it's about a five-minute walk.",
+          "es": "¿Cerca de aquí? Sí, está a unos cinco minutos caminando.",
+          "next": "closing-time"
+        },
+        {
+          "id": "closing-time",
+          "kind": "write",
+          "prompt": "Pregúntale a qué hora cierra el museo.",
+          "accepted": [
+            "{What time|When} does the museum close?",
+            "Do you know {what time|when} the museum closes?",
+            "{What time|When} does it close?",
+            "Do you know {what time|when} it closes?"
+          ],
+          "tip": "Recuerda el auxiliar: «What time does it close?».",
+          "next": "six",
+          "wrongNext": "six-guess"
+        },
+        {
+          "id": "six",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "I think it closes at six, so you have plenty of time.",
+          "es": "Creo que cierra a las seis, así que tiene tiempo de sobra.",
+          "next": "thank"
+        },
+        {
+          "id": "six-guess",
+          "kind": "npc",
+          "speaker": "local",
+          "en": "Sorry? Oh, what time it closes? At six, I think, so you have plenty of time.",
+          "es": "¿Perdón? Ah, ¿a qué hora cierra? A las seis, creo, así que tiene tiempo de sobra.",
+          "next": "thank"
+        },
+        {
+          "id": "thank",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Thank you so much for your help!",
+              "rating": "good",
+              "feedback": "Agradecer la ayuda de alguien que no conoces es lo natural.",
+              "next": "end"
+            },
+            {
+              "en": "Okay. Bye.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero no le agradeces la ayuda.",
+              "next": "end"
+            },
+            {
+              "en": "Thanks! I'll follow you.",
+              "rating": "wrong",
+              "feedback": "Malentendido: «I'll follow you» significa que vas a caminar detrás de ella.",
+              "next": "end-follow"
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Llegaste al museo en cinco minutos, con tiempo de sobra."
+        },
+        {
+          "id": "end-follow",
+          "kind": "end",
+          "text": "Paula se rio y te explicó que ella no iba para allá. Igual llegaste al museo."
+        }
+      ],
+      "cardIds": ["a2.grammar.directions"]
+    }
+  ]
+}

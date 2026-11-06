@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.um",
+      "headword": "um",
+      "kind": "word",
+      "forms": ["um"],
+      "senses": [
+        {
+          "es": "eh…, este… (al dudar)",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.umbrella",
       "headword": "umbrella",
       "kind": "word",

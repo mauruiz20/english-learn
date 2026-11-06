@@ -13,6 +13,22 @@
       ]
     },
     {
+      "id": "glossary.cabin",
+      "headword": "cabin",
+      "kind": "word",
+      "forms": ["cabin", "cabins"],
+      "senses": [
+        {
+          "es": "cabina (de un avión)",
+          "pos": "noun"
+        },
+        {
+          "es": "cabaña",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cacao",
       "headword": "cacao",
       "kind": "word",
@@ -56,6 +72,18 @@
       "senses": [
         {
           "es": "pastel, torta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.calendar",
+      "headword": "calendar",
+      "kind": "word",
+      "forms": ["calendar", "calendars"],
+      "senses": [
+        {
+          "es": "calendario, agenda",
           "pos": "noun"
         }
       ]
@@ -763,6 +791,22 @@
       "senses": [
         {
           "es": "cargador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.chat",
+      "headword": "chat",
+      "kind": "word",
+      "forms": ["chat", "chats", "chatted", "chatting"],
+      "senses": [
+        {
+          "es": "charlar, platicar",
+          "pos": "verb"
+        },
+        {
+          "es": "charla",
           "pos": "noun"
         }
       ]
@@ -1913,6 +1957,18 @@
       ]
     },
     {
+      "id": "glossary.competitor",
+      "headword": "competitor",
+      "kind": "word",
+      "forms": ["competitor", "competitors"],
+      "senses": [
+        {
+          "es": "competidor, la competencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.complacent",
       "headword": "complacent",
       "kind": "word",
@@ -2316,6 +2372,18 @@
       "senses": [
         {
           "es": "constante",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.constructive",
+      "headword": "constructive",
+      "kind": "word",
+      "forms": ["constructive"],
+      "senses": [
+        {
+          "es": "constructivo",
           "pos": "adjective"
         }
       ]
@@ -2861,6 +2929,22 @@
         {
           "es": "compañero de trabajo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.crash",
+      "headword": "crash",
+      "kind": "word",
+      "forms": ["crash", "crashes", "crashed", "crashing"],
+      "senses": [
+        {
+          "es": "cerrarse sola (una app), colgarse",
+          "pos": "verb"
+        },
+        {
+          "es": "chocar",
+          "pos": "verb"
         }
       ]
     },

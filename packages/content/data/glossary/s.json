@@ -133,6 +133,18 @@
       ]
     },
     {
+      "id": "glossary.salmon",
+      "headword": "salmon",
+      "kind": "word",
+      "forms": ["salmon"],
+      "senses": [
+        {
+          "es": "salmón",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.salon",
       "headword": "salon",
       "kind": "word",
@@ -997,6 +1009,18 @@
         {
           "es": "sombra",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shall",
+      "headword": "shall",
+      "kind": "word",
+      "forms": ["shall"],
+      "senses": [
+        {
+          "es": "(para ofrecerse) Shall I…? = ¿quieres que…?",
+          "pos": "auxiliary"
         }
       ]
     },
@@ -2055,6 +2079,18 @@
       ]
     },
     {
+      "id": "glossary.software",
+      "headword": "software",
+      "kind": "word",
+      "forms": ["software"],
+      "senses": [
+        {
+          "es": "software, programas",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.solar-power",
       "headword": "solar power",
       "kind": "phrase",
@@ -2816,6 +2852,18 @@
       ]
     },
     {
+      "id": "glossary.steak",
+      "headword": "steak",
+      "kind": "word",
+      "forms": ["steak", "steaks"],
+      "senses": [
+        {
+          "es": "bistec, filete",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.steal",
       "headword": "steal",
       "kind": "word",
@@ -3108,6 +3156,18 @@
       ]
     },
     {
+      "id": "glossary.stupid",
+      "headword": "stupid",
+      "kind": "word",
+      "forms": ["stupid"],
+      "senses": [
+        {
+          "es": "tonto, estúpido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.style",
       "headword": "style",
       "kind": "word",
@@ -3291,6 +3351,18 @@
       "senses": [
         {
           "es": "maleta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.summary",
+      "headword": "summary",
+      "kind": "word",
+      "forms": ["summary", "summaries"],
+      "senses": [
+        {
+          "es": "resumen",
           "pos": "noun"
         }
       ]

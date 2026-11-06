@@ -205,6 +205,22 @@
       ]
     },
     {
+      "id": "glossary.launch",
+      "headword": "launch",
+      "kind": "word",
+      "forms": ["launch", "launches", "launched", "launching"],
+      "senses": [
+        {
+          "es": "lanzar (un producto)",
+          "pos": "verb"
+        },
+        {
+          "es": "lanzamiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.laura",
       "headword": "Laura",
       "kind": "word",
