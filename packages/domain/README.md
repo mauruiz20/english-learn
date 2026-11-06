@@ -10,6 +10,7 @@ It does not import `@english-learn/content`; the app layer maps content into the
 | ----------------- | -------------------------------------------------------------------------------------------------------- |
 | `answer-matching` | Grades free-text answers: `correct` / `almost` / `wrong`                                                 |
 | `srs`             | SM-2 scheduling, outcome → grade mapping, session selection                                              |
+| `difficulty`      | "Mis palabras difíciles": per-item difficulty score and buckets from review states and history           |
 | `scoring`         | XP per answer, lesson completion bonus, accuracy                                                         |
 | `streak`          | Daily streak (current / longest)                                                                         |
 | `progress`        | Per-level seen / mastered counts                                                                         |
@@ -94,6 +95,37 @@ after a wrong answer.
   - grade < 3 → SM-2 lapse; due → `review`.
 - `selectSession`: due items (`dueDate ≤ today`) by dueDate asc, lapses desc, itemId; then unseen new items.
 
+## Difficulty ("Mis palabras difíciles")
+
+`itemDifficulty(state, history)` derives, per reviewed item, `lapses`, `ease`, `intervalDays`
+(from its `ReviewState`), `recentAccuracy`, `recentFails`, `lastFailed`, `lastSeen` and
+`lastLapse` (from the fold's item history, see below), a `score` and a bucket. Pure and
+clock-free: the same state and history always give the same result.
+
+| Bucket                      | Rule (checked in this order)                                                                                                                                                     |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Difíciles** (`hard`)      | any of: the latest answer failed (grade < 3); ≥ `HARD_RECENT_FAILS` (2) failing answers among the latest 5; ease ≤ `HARD_EASE` (1.7) **and** a failing answer among the latest 5 |
+| **Dominadas** (`mastered`)  | interval ≥ `MASTERED_INTERVAL_DAYS` (21, the mastery interval of `levelProgress`)                                                                                                |
+| **En proceso** (`learning`) | everything else                                                                                                                                                                  |
+
+- **Recent answers, not lifetime lapses**: `lapses` never goes down, so "≥ 2 lapses" would keep
+  an item difficult forever however well it is answered now. A lapse counts while it is among the
+  latest 5 answers (two of them) or is the latest one.
+- **Ease 1.7, not 2.0**: one lapse from the default ease leaves 1.96, so a 2.0 threshold would
+  mark every item missed once until a perfect due review; 1.7 is about two lapses' worth.
+- **Every miss counts as a failing answer**, a lesson's first sight included (it is not a
+  lapse for SM-2, but a word missed and not yet answered right is one the learner finds hard).
+- **Low ease never alone**: SM-2 ease only rises with perfect (grade 5) due answers; "almost"
+  (grade 3) lowers it and correct-but-slow (grade 4) keeps it. An item lapsed twice long ago and
+  then answered right 8 times (ease 1.62, interval 110 days), or never missed but "almost" 7
+  times (ease 1.52), would stay difficult forever. Low ease marks a chronically hard item only
+  while a miss is still among its latest 5 answers; it also raises the score.
+- **Score** (orders the list, higher is harder): 3 if the latest answer failed, + 2 per recent
+  fail, + 2 for low ease, + 1 per lapse (at most 5). `hardItems` sorts by score, then most
+  recently seen, then itemId.
+- `classifyItems(states, histories)`, `bucketCounts`, and `hardPracticeProgress(before, after,
+practicedIds)`: of the practiced items that were difficult, how many left Difíciles.
+
 ## Progress event log
 
 Learner progress is an **append-only log of immutable events**; every number the app shows (review
@@ -137,19 +169,20 @@ session carry the same `localDate` (the day it was completed), as the app used o
    malformed fields → `invalid_event`; a retired type → skipped silently. The fold never throws;
    skipped events are listed in `anomalies`.
 
-| Data             | Rule                                                                                                                                                              |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Review states    | `item_reviewed` → `applyReview(state, itemId, grade, event.localDate)`; a second review of the same item in the same session is skipped                           |
-| XP               | Σ `answerXp` + Σ baseline `xp` + the lesson bonus; a repeated `sessionId` is skipped (never paid twice)                                                           |
-| Lesson bonus     | The FIRST `session_completed` for a `lessonId` in fold order gets `xpForLessonCompletion(accuracy)`; later ones (any device) and baseline-completed lessons get 0 |
-| Streak           | `recordActivity` replayed over the sorted unique `localDate`s of `session_completed`, starting from the merged baseline streak                                    |
-| `activeDates`    | Sorted unique `localDate`s of `session_completed`                                                                                                                 |
-| Lesson results   | Per `lessonId` of a lesson `session_completed`: `bestAccuracy` = max `accuracy`, `completions` = distinct sessions; baseline lessons have none                    |
-| Placement        | The last `placement_completed` or non-null baseline placement in fold order                                                                                       |
-| Disputed answers | `answer_disputed` is a known no-op: no state, no anomaly (content feedback for the owner; the session's own events carry the regrade)                             |
-| Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                               |
-| Baseline streaks | `longest` = max; `current` and `lastActiveDate` from the most recent `lastActiveDate` (larger `current` on a tie)                                                 |
-| Baseline lessons | `completedLessonIds` are unioned (no bonus for them later)                                                                                                        |
+| Data             | Rule                                                                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Review states    | `item_reviewed` → `applyReview(state, itemId, grade, event.localDate)`; a second review of the same item in the same session is skipped                                                                                                                                                                                                                                |
+| XP               | Σ `answerXp` + Σ baseline `xp` + the lesson bonus; a repeated `sessionId` is skipped (never paid twice)                                                                                                                                                                                                                                                                |
+| Lesson bonus     | The FIRST `session_completed` for a `lessonId` in fold order gets `xpForLessonCompletion(accuracy)`; later ones (any device) and baseline-completed lessons get 0                                                                                                                                                                                                      |
+| Streak           | `recordActivity` replayed over the sorted unique `localDate`s of `session_completed`, starting from the merged baseline streak                                                                                                                                                                                                                                         |
+| `activeDates`    | Sorted unique `localDate`s of `session_completed`                                                                                                                                                                                                                                                                                                                      |
+| Lesson results   | Per `lessonId` of a lesson `session_completed`: `bestAccuracy` = max `accuracy`, `completions` = distinct sessions; baseline lessons have none                                                                                                                                                                                                                         |
+| Placement        | The last `placement_completed` or non-null baseline placement in fold order                                                                                                                                                                                                                                                                                            |
+| Item history     | Per item with an applied `item_reviewed` (same duplicate rule as its state): `lastSeen` (its date), `lastLapse` (date of a grade < 3 on an item that already had a state, the review that increments `lapses`), `recentGrades` (latest `RECENT_GRADES` = 5, oldest first). Practice of a not-due item counts though its state does not move; baseline states have none |
+| Disputed answers | `answer_disputed` is a known no-op: no state, no anomaly (content feedback for the owner; the session's own events carry the regrade)                                                                                                                                                                                                                                  |
+| Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                                                                                                                                                                                                                                    |
+| Baseline streaks | `longest` = max; `current` and `lastActiveDate` from the most recent `lastActiveDate` (larger `current` on a tie)                                                                                                                                                                                                                                                      |
+| Baseline lessons | `completedLessonIds` are unioned (no bonus for them later)                                                                                                                                                                                                                                                                                                             |
 
 Property tests (fast-check) check permutation invariance, idempotence under duplication, union
 convergence of two devices, a single bonus per lesson across devices, and an oracle: replaying
@@ -163,7 +196,7 @@ store apply only the new events:
 
 - `foldSnapshot(events)`: the fold's full state as plain JSON-safe data (`FoldSnapshot`, format
   `FOLD_SNAPSHOT_VERSION`): review states, XP, merged baseline streak, placement, active dates,
-  completed lessons, lesson results, the ids of completed and of reviewed sessions, the
+  completed lessons, lesson results, item histories, the ids of completed and of reviewed sessions, the
   anomalies, and a **cursor**: the position `(localDate, occurredAt, id, canonical content)` of the last
   orderable event in fold order. Arrays are sorted, so equal folds give equal snapshots.
 - `advanceFold(snapshot, events)`: applies `events` on top, giving exactly `foldSnapshot` of the

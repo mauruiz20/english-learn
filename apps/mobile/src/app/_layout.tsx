@@ -159,6 +159,14 @@ export default function RootLayout() {
                       options={{ title: "Práctica libre", ...homeFallback }}
                     />
                     <Stack.Screen name="dialogo/[id]" options={{ title: "Diálogo", headerRight }} />
+                    <Stack.Screen
+                      name="progreso/index"
+                      options={{ title: "Tu progreso", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="progreso/practicar"
+                      options={{ title: "Palabras difíciles", headerRight }}
+                    />
                     <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
                     <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
                     <Stack.Screen

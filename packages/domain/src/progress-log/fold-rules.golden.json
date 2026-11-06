@@ -1,8 +1,8 @@
 {
-  "version": 3,
-  "fingerprint": "v3-ffeb61fa",
+  "version": 4,
+  "fingerprint": "v4-50c5c70b",
   "snapshot": {
-    "v": 3,
+    "v": 4,
     "cursor": {
       "localDate": "2026-01-10",
       "occurredAt": 1000,
@@ -78,6 +78,38 @@
         "lessonId": "L2",
         "bestAccuracy": 0.5,
         "completions": 1
+      }
+    ],
+    "itemHistory": [
+      {
+        "itemId": "i1",
+        "lastSeen": "2026-01-05",
+        "lastLapse": "2026-01-05",
+        "recentGrades": [5, 2]
+      },
+      {
+        "itemId": "i2",
+        "lastSeen": "2026-01-09",
+        "lastLapse": null,
+        "recentGrades": [3, 4, 5]
+      },
+      {
+        "itemId": "i3",
+        "lastSeen": "2026-01-05",
+        "lastLapse": null,
+        "recentGrades": [1, 5]
+      },
+      {
+        "itemId": "i4",
+        "lastSeen": "2026-01-05",
+        "lastLapse": null,
+        "recentGrades": [5]
+      },
+      {
+        "itemId": "i5",
+        "lastSeen": "2026-01-09",
+        "lastLapse": null,
+        "recentGrades": [4]
       }
     ],
     "completedSessionIds": ["s1", "s2", "s3", "s4", "s7"],

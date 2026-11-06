@@ -111,6 +111,8 @@ type HomeViewProps = {
   onOpenCards?: () => void;
   /** "Práctica libre", under the study cards. */
   onOpenPractice?: () => void;
+  /** "Tu progreso" (`/progreso`): the word buckets and the difficult words. */
+  onOpenProgress?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
   onOpenCard?: (cardId: string) => void;
   /** Shows the path of a level picked by hand; null goes back to the automatic level. */
@@ -151,6 +153,7 @@ function ProgressCard({
   onOpenCards,
   practiceTopics,
   onOpenPractice,
+  onOpenProgress,
 }: {
   /** `null` while the progress loads: a dash, never a "0 días" that then jumps. */
   days: number | null;
@@ -162,6 +165,8 @@ function ProgressCard({
   onOpenCards?: (() => void) | undefined;
   practiceTopics?: readonly string[] | undefined;
   onOpenPractice?: (() => void) | undefined;
+  /** Absent while the progress loads. */
+  onOpenProgress?: (() => void) | undefined;
 }) {
   const styles = useStyles();
   const known = days !== null;
@@ -201,6 +206,7 @@ function ProgressCard({
         onOpenPractice !== undefined && (
           <PracticeLink topics={practiceTopics} onPress={onOpenPractice} />
         )}
+      {onOpenProgress !== undefined && <ProgressLink onPress={onOpenProgress} />}
     </View>
   );
 }
@@ -319,6 +325,64 @@ function PracticeLink({ topics, onPress }: { topics: readonly string[]; onPress:
       <View style={styles.albumText}>
         <Text variant="bodyStrong" tone="ink">
           Práctica libre
+        </Text>
+        <Text variant="small" tone="muted">
+          {subtitle}
+        </Text>
+      </View>
+      <Svg width={20} height={20} viewBox="0 0 24 24" aria-hidden>
+        <Path
+          d="M9 5l7 7-7 7"
+          fill="none"
+          stroke={colors.ink}
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </PressableScale>
+  );
+}
+
+/** "Tu progreso · Dominadas, en proceso y difíciles", last in the card: the way to `/progreso`. */
+function ProgressLink({ onPress }: { onPress: () => void }) {
+  const styles = useStyles();
+  const { colors } = useTheme();
+  const subtitle = "Dominadas, en proceso y difíciles";
+  return (
+    <PressableScale
+      accessibilityRole="button"
+      accessibilityLabel={`Tu progreso: ${subtitle.toLowerCase()}`}
+      onPress={onPress}
+      style={({ pressed }) => [styles.albumLink, pressed && styles.stopPressed]}
+    >
+      {/* Three hand-drawn bars of different heights (decorative). */}
+      <View style={styles.albumStickers}>
+        <Svg width={44} height={34} viewBox="0 0 44 34" aria-hidden>
+          <Path
+            d="M8 30 v-14 h7 v14 z"
+            fill={colors.highlighters.green}
+            stroke={colors.ink}
+            strokeWidth={2}
+          />
+          <Path
+            d="M19 30 v-22 h7 v22 z"
+            fill={colors.highlighters.sky}
+            stroke={colors.ink}
+            strokeWidth={2}
+          />
+          <Path
+            d="M30 30 v-9 h7 v9 z"
+            fill={colors.highlighters.orange}
+            stroke={colors.ink}
+            strokeWidth={2}
+          />
+          <Path d="M4 31 h36" stroke={colors.ink} strokeWidth={2} strokeLinecap="round" />
+        </Svg>
+      </View>
+      <View style={styles.albumText}>
+        <Text variant="bodyStrong" tone="ink">
+          Tu progreso
         </Text>
         <Text variant="small" tone="muted">
           {subtitle}
@@ -895,6 +959,7 @@ export function HomeView({
   onOpenAlbum,
   onOpenCards,
   onOpenPractice,
+  onOpenProgress,
   notice,
   greetingName,
   avi,
@@ -923,6 +988,7 @@ export function HomeView({
         onOpenCards={onOpenCards}
         practiceTopics={state.status === "ready" ? state.practiceTopics : undefined}
         onOpenPractice={onOpenPractice}
+        onOpenProgress={state.status === "ready" ? onOpenProgress : undefined}
       />
       {state.status === "loading" && (
         <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />

@@ -283,6 +283,7 @@ export function HomeContainer({
       onOpenAlbum={() => router.push("/album")}
       onOpenCards={() => router.push("/fichas")}
       onOpenPractice={() => router.push("/practica")}
+      onOpenProgress={() => router.push("/progreso")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       onChoosePathLevel={choosePathLevel}
       notice={

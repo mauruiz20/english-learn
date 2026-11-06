@@ -58,6 +58,8 @@ export type ReviewViewState =
       readonly achievements?: readonly EarnedSticker[];
       /** Exercises later reviews will serve today (absent: not known yet). */
       readonly remaining?: number;
+      /** A line under the results instead of the remaining reviews (another session's words). */
+      readonly note?: string;
     };
 
 type ReviewViewProps = {
@@ -69,9 +71,29 @@ type ReviewViewProps = {
   onRetrySave: () => void;
   /** Opens a study card on top of the review ("Ver ficha"). */
   onOpenCard?: ((cardId: string) => void) | undefined;
+  /** The words of another session played like a review (the hard-words practice). */
+  copy?: ReviewCopy;
 };
 
-const TITLE = "Repaso";
+/** What a review-like session calls itself. */
+export type ReviewCopy = {
+  readonly title: string;
+  readonly loading: string;
+  readonly loadError: string;
+  readonly emptyTitle: string;
+  readonly emptyText: string;
+  readonly summaryTitle: string;
+  readonly doneLabel?: string;
+};
+
+const REVIEW_COPY: ReviewCopy = {
+  title: "Repaso",
+  loading: "Cargando tu repaso",
+  loadError: "No pudimos cargar tu repaso.",
+  emptyTitle: "Nada para repasar hoy",
+  emptyText: "Las palabras que aprendes en las lecciones vuelven aquí cuando toca repasarlas.",
+  summaryTitle: "¡Repaso completado!",
+};
 
 /** "Te quedan 25 para otro repaso.": more were due than one review holds. */
 function remainingText(remaining: number | undefined): string | undefined {
@@ -89,28 +111,26 @@ export function ReviewView({
   onGoHome,
   onRetrySave,
   onOpenCard,
+  copy = REVIEW_COPY,
 }: ReviewViewProps) {
   const { colors } = useTheme();
+  const TITLE = copy.title;
   switch (state.status) {
     case "loading":
       return (
         <ScreenContainer title={TITLE}>
-          <ActivityIndicator accessibilityLabel="Cargando tu repaso" color={colors.ink} />
+          <ActivityIndicator accessibilityLabel={copy.loading} color={colors.ink} />
         </ScreenContainer>
       );
     case "load-error":
-      return (
-        <SessionMessage title={TITLE} text="No pudimos cargar tu repaso." onGoHome={onGoHome} />
-      );
+      return <SessionMessage title={TITLE} text={copy.loadError} onGoHome={onGoHome} />;
     case "empty":
       return (
         <ScreenContainer title={TITLE}>
           <Doodle name="rest" />
-          <Text variant="title">Nada para repasar hoy</Text>
-          <Text tone="muted">
-            Las palabras que aprendes en las lecciones vuelven aquí cuando toca repasarlas.
-          </Text>
-          <Button label="Volver al inicio" onPress={onGoHome} />
+          <Text variant="title">{copy.emptyTitle}</Text>
+          <Text tone="muted">{copy.emptyText}</Text>
+          <Button label={copy.doneLabel ?? "Volver al inicio"} onPress={onGoHome} />
         </ScreenContainer>
       );
     case "saving":
@@ -127,9 +147,10 @@ export function ReviewView({
     case "summary":
       return (
         <SessionSummary
-          title="¡Repaso completado!"
+          title={copy.summaryTitle}
           {...state}
-          next={remainingText(state.remaining)}
+          {...(copy.doneLabel === undefined ? {} : { doneLabel: copy.doneLabel })}
+          next={state.note ?? remainingText(state.remaining)}
           onGoHome={onGoHome}
         />
       );
