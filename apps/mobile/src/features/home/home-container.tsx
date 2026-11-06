@@ -40,8 +40,8 @@ import {
   type HomeAviState,
 } from "./model/home-avi";
 import {
-  ACHIEVEMENTS,
   achievementFacts,
+  albumAchievements,
   unlockedAchievements,
 } from "@/features/achievements/model/achievements";
 
@@ -235,7 +235,7 @@ export function HomeContainer({
           lessons,
           album: {
             unlocked: badges.length,
-            total: ACHIEVEMENTS.length,
+            total: albumAchievements(content).length,
           },
           cards: cardsSummary(content.cards, states),
           practiceTopics: content.practice.map((c) => c.title),

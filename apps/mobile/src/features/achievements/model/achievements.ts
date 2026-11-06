@@ -39,10 +39,29 @@ export type Achievement = {
   readonly color: HighlighterName;
   /** A rare sticker shines (holographic) in the album. */
   readonly rare?: boolean;
+  /** A whole-level sticker: the album shows it only when that level has lessons. */
+  readonly level?: Level;
   readonly earned: (facts: AchievementFacts) => boolean;
 };
 
-/** The album, in order. Original names; every one can be earned with the bundled content. */
+/** "Nivel B1 completo": every lesson of the level done. */
+function levelAchievement(level: Level): Achievement {
+  return {
+    id: `level-${level.toLowerCase()}`,
+    title: `Nivel ${level} completo`,
+    howTo: `Completa todas las lecciones de ${level}.`,
+    color: "yellow",
+    rare: true,
+    level,
+    earned: (f) => f.levelsDone.includes(level),
+  };
+}
+
+/**
+ * Every sticker, in album order. Original names. A level's sticker exists for every level, but
+ * the album only shows those whose level has lessons (`albumAchievements`), so every sticker
+ * shown can be earned with the bundled content.
+ */
 export const ACHIEVEMENTS: readonly Achievement[] = [
   {
     id: "first-lesson",
@@ -79,30 +98,7 @@ export const ACHIEVEMENTS: readonly Achievement[] = [
     color: "pink",
     earned: (f) => f.topicsDone >= 5,
   },
-  {
-    id: "level-a2",
-    title: "Nivel A2 completo",
-    howTo: "Completa todas las lecciones de A2.",
-    color: "yellow",
-    rare: true,
-    earned: (f) => f.levelsDone.includes("A2"),
-  },
-  {
-    id: "level-b1",
-    title: "Nivel B1 completo",
-    howTo: "Completa todas las lecciones de B1.",
-    color: "yellow",
-    rare: true,
-    earned: (f) => f.levelsDone.includes("B1"),
-  },
-  {
-    id: "level-b2",
-    title: "Nivel B2 completo",
-    howTo: "Completa todas las lecciones de B2.",
-    color: "yellow",
-    rare: true,
-    earned: (f) => f.levelsDone.includes("B2"),
-  },
+  ...LEVELS.map(levelAchievement),
   {
     id: "streak-3",
     title: "Tres clips",
@@ -185,6 +181,12 @@ export const ACHIEVEMENTS: readonly Achievement[] = [
 ];
 
 const ORDER = new Map(ACHIEVEMENTS.map((a, i) => [a.id, i]));
+
+/** The stickers the album shows: all but the level stickers of levels without lessons. */
+export function albumAchievements(content: Corpus): readonly Achievement[] {
+  const withLessons = new Set(content.lessons.map((l) => l.level));
+  return ACHIEVEMENTS.filter((a) => a.level === undefined || withLessons.has(a.level));
+}
 
 /** Ids of the stickers the facts earn, in album order. */
 export function unlockedAchievements(facts: AchievementFacts): string[] {

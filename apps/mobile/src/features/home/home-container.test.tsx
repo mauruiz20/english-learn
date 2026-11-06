@@ -18,6 +18,7 @@ import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
 import { completeSession } from "@/features/lesson/application/complete-session";
+import { ACHIEVEMENTS } from "@/features/achievements/model/achievements";
 import { HomeContainer } from "./home-container";
 import { OriginMoveOfferContext, type OriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { AccountContext, type AccountContextValue } from "@/features/account/account-context";
@@ -360,6 +361,88 @@ describe("HomeContainer", () => {
       expect(settings.pathLevel()).toBeNull();
     });
 
+    // A1 and C1 lessons, each with an item of its own, around the A2 to B2 ones.
+    const ends = (level: "A1" | "C1") => {
+      const exercise: VocabExercise = {
+        ...vocab,
+        id: `${level.toLowerCase()}.work.vocab-001`,
+        level,
+        itemIds: [`${level.toLowerCase()}.work.item-1`],
+      };
+      const endLesson = {
+        ...lesson,
+        id: `${level.toLowerCase()}.work.lesson-001`,
+        level,
+        topic: "work",
+        title: `Trabajo ${level}`,
+        exerciseIds: [exercise.id],
+      };
+      return { exercises: [exercise], lessons: [endLesson] };
+    };
+    const withEnds = (...levels: ("A1" | "C1")[]) =>
+      createCorpus([
+        {
+          exercises: [...levelsContent.exercises, ...levels.flatMap((l) => ends(l).exercises)],
+          passages: [...levelsContent.passages],
+          lessons: [...levels.flatMap((l) => ends(l).lessons), ...levelsContent.lessons],
+        },
+      ]);
+    const pickerLevels = () =>
+      screen.getAllByRole("radio").map((radio) => radio.props.accessibilityLabel as string);
+
+    it("starts a learner placed at A1 on A1, and lists only the levels with lessons", async () => {
+      await renderContainer(
+        createFakeRepository({ placement: { level: "A1", theta: -2 } }),
+        undefined,
+        undefined,
+        withEnds("A1"),
+      );
+
+      expect(await screen.findByText("Lecciones de nivel A1")).toBeOnTheScreen();
+      expect(screen.getByRole("button", { name: /^Trabajo A1/ }).props.accessibilityHint).toBe(
+        "Tu siguiente lección",
+      );
+      await fireEvent.press(screen.getByRole("button", { name: /^Nivel del recorrido/ }));
+      expect(pickerLevels()).toEqual([
+        "Automático, ahora A1",
+        "A1, 0 % completado",
+        "A2, 0 % completado",
+        "B1, 0 % completado",
+        "B2, 0 % completado",
+      ]);
+    });
+
+    it("starts a learner placed at C1 on C1 once C1 has lessons, and lists it", async () => {
+      await renderContainer(
+        createFakeRepository({ placement: { level: "C1", theta: 2 } }),
+        undefined,
+        undefined,
+        withEnds("A1", "C1"),
+      );
+
+      expect(await screen.findByText("Lecciones de nivel C1")).toBeOnTheScreen();
+      await fireEvent.press(screen.getByRole("button", { name: /^Nivel del recorrido/ }));
+      expect(pickerLevels()).toEqual([
+        "Automático, ahora C1",
+        "A1, 0 % completado",
+        "A2, 0 % completado",
+        "B1, 0 % completado",
+        "B2, 0 % completado",
+        "C1, 0 % completado",
+      ]);
+    });
+
+    it("keeps a learner placed at C1 on B2 while C1 has no lessons", async () => {
+      await renderContainer(
+        createFakeRepository({ placement: { level: "C1", theta: 2 } }),
+        undefined,
+        undefined,
+        withEnds("A1"),
+      );
+
+      expect(await screen.findByText("Lecciones de nivel B2")).toBeOnTheScreen();
+    });
+
     it("keeps a level picked by hand once every lesson of it is done", async () => {
       await renderContainer(
         createFakeRepository({
@@ -455,6 +538,16 @@ describe("HomeContainer", () => {
       await screen.findByRole("button", { name: /^Mi álbum: 1 de \d+ insignias$/ }),
     );
     expect(mockPush).toHaveBeenCalledWith("/album");
+  });
+
+  it("counts out of the stickers the album shows: no sticker for a level without lessons", async () => {
+    // A2 and B1 lessons only: the A1, B2 and C1 level stickers are not in the album.
+    const shown = ACHIEVEMENTS.length - 3;
+    await renderContainer(createFakeRepository({ xp: 150 }));
+
+    expect(
+      await screen.findByRole("button", { name: `Mi álbum: 1 de ${shown} insignias` }),
+    ).toBeOnTheScreen();
   });
 
   it("counts the study cards studied and opens them", async () => {
