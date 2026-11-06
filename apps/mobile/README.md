@@ -1016,8 +1016,8 @@ console errors, or if progress loaded from the database is not rendered.
   device's: iOS ships compact voices, and better ones ("Enhanced", "Premium") must be downloaded
   in Settings → Accessibility → Spoken Content. Desktop Chrome's Google voices are network voices
   and are never used: with only those, there are no speaker buttons. The speakers appear once the
-  voices load, on iOS sometimes only after the first tap. iOS Web Speech follows the silent
-  switch on some versions. Native has no pronunciation (no expo-speech).
+  voices load, on iOS sometimes only after the first tap. Native has no pronunciation (no
+  expo-speech).
 
 - **Word lookup on native is not verified on a device yet.** RNTL covers the native card;
   e2e covers web (Chromium and WebKit). Android draws the lookup underline solid and in the text
