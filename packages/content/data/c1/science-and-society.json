@@ -118,7 +118,7 @@
       "type": "cloze",
       "sentence": "The study ___ to show that the drug works, but the sample was very small.",
       "answers": ["seems", "appears"],
-      "distractors": ["seem", "seeming", "looks"],
+      "distractors": ["seem", "seeming", "seemingly"],
       "es": "El estudio parece demostrar que el medicamento funciona, pero la muestra era muy pequeña."
     },
     {

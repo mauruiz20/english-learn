@@ -157,11 +157,8 @@
         "the",
         "Not"
       ],
-      "accepted": [
-        "Not only did the minister refuse to resign, but he also blamed the press.",
-        "Not only did he refuse to resign, but the minister also blamed the press."
-      ],
-      "es": "El ministro no solo se negó a dimitir, sino que además culpó a la prensa."
+      "accepted": ["Not only did the minister refuse to resign, but he also blamed the press."],
+      "es": "El ministro no solo se negó a renunciar, sino que además culpó a la prensa."
     },
     {
       "id": "c1.politics-and-media.choice-001",

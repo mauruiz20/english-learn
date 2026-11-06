@@ -405,7 +405,7 @@
       "type": "translate_write",
       "es": "Si desea adquirir servicios adicionales, no dude en ponerse en contacto con nosotros.",
       "accepted": [
-        "{If you {wish|would like}|Should you wish} to purchase {additional|extra|further} services, [please ]{don't hesitate to|feel free to} {contact us|get in touch with us}."
+        "{If you {wish|would like}|Should you wish} to {purchase|buy} {additional|extra|further} services, [please ]{don't hesitate to|feel free to} {contact us|get in touch with us}."
       ]
     },
     {
