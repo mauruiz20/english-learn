@@ -1,5 +1,6 @@
 export * from "./answer-matching";
 export * from "./cefr";
+export * from "./difficulty";
 export * from "./glossary";
 export * from "./local-date";
 export * from "./placement";

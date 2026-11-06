@@ -705,6 +705,39 @@ describe("HomeView free practice", () => {
   });
 });
 
+describe("HomeView progress link", () => {
+  it("opens Tu progreso from the progress card", async () => {
+    const onOpenProgress = jest.fn();
+    await render(
+      <HomeView
+        state={ready}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenProgress={onOpenProgress}
+      />,
+    );
+
+    await fireEvent.press(
+      screen.getByRole("button", { name: "Tu progreso: dominadas, en proceso y difíciles" }),
+    );
+    expect(onOpenProgress).toHaveBeenCalledTimes(1);
+  });
+
+  it("is hidden while the progress loads", async () => {
+    await render(
+      <HomeView
+        state={{ status: "loading" }}
+        soundEnabled
+        themePreference="system"
+        {...handlers}
+        onOpenProgress={jest.fn()}
+      />,
+    );
+    expect(screen.queryByRole("button", { name: /^Tu progreso/ })).toBeNull();
+  });
+});
+
 describe("HomeView nothing to review", () => {
   it("shows Avi napping, invisible to screen readers, only when there is nothing to review", async () => {
     await renderView(ready);

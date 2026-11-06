@@ -31,6 +31,7 @@ describe("migrate", () => {
     expect(await tableNames(db)).toEqual([
       "event",
       "fold_snapshot",
+      "item_history",
       "lesson_result",
       "placement_result",
       "review_state",
@@ -116,6 +117,20 @@ describe("migrate", () => {
     ]);
   });
 
+  it("adds the item history cache at version 8", async () => {
+    await migrate(db);
+    const columns = await db.getAllAsync<{ name: string; type: string; notnull: number }>(
+      "SELECT name, type, \"notnull\" FROM pragma_table_info('item_history') ORDER BY cid",
+      [],
+    );
+    expect(columns).toEqual([
+      { name: "item_id", type: "TEXT", notnull: 1 },
+      { name: "last_seen", type: "TEXT", notnull: 1 },
+      { name: "last_lapse", type: "TEXT", notnull: 0 },
+      { name: "recent_grades", type: "TEXT", notnull: 1 },
+    ]);
+  });
+
   it("drops the plumas cache and the plumas note at version 7, keeping the rest", async () => {
     await migrate(db);
     // A version 6 database, as the app with Avi's wardrobe left it.
@@ -125,6 +140,7 @@ describe("migrate", () => {
       INSERT INTO setting (key, value) VALUES ('plumas_welcome', '{"plumas":135,"dismissed":true}');
       INSERT INTO setting (key, value) VALUES ('sound_enabled', 'false');
       INSERT INTO xp (id, total) VALUES (1, 42);
+      DROP TABLE item_history;
       PRAGMA user_version = 6;
     `);
 

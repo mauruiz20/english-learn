@@ -28,6 +28,7 @@ describe("foldEvents", () => {
       activeDates: [],
       completedLessonIds: [],
       lessonResults: [],
+      itemHistory: [],
       anomalies: [],
     });
   });

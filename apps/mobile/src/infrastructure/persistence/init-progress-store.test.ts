@@ -169,15 +169,36 @@ describe("initProgressStore (upgrade to the event log)", () => {
       kind: "lesson",
     });
     // As an app version before the lesson result cache left it: schema 3, no lesson_result (nor
-    // the later fold_snapshot).
+    // the later fold_snapshot and item_history).
     await db.execAsync(
-      "DROP TABLE lesson_result; DROP TABLE fold_snapshot; PRAGMA user_version = 3;",
+      "DROP TABLE lesson_result; DROP TABLE fold_snapshot; DROP TABLE item_history; PRAGMA user_version = 3;",
     );
 
     const upgraded = await initProgressStore(db, options);
 
     expect(await upgraded.getLessonResults()).toEqual([
       { lessonId: doneLesson.id, bestAccuracy: 1, completions: 1 },
+    ]);
+  });
+
+  it("fills the item history of a log from before it was cached", async () => {
+    const repo = await initProgressStore(db, options);
+    await completeSession({
+      repository: repo,
+      today: TODAY,
+      nowMs: clock.nowMs(),
+      randomBytes: options.randomBytes,
+      deviceId: await repo.getDeviceId(),
+      summary: lessonSummary(doneLesson.id, ["a2.daily-routine.wake-up"]),
+      kind: "lesson",
+    });
+    // As the previous app version left it: schema 7, no item_history.
+    await db.execAsync("DROP TABLE item_history; PRAGMA user_version = 7;");
+
+    const upgraded = await initProgressStore(db, options);
+
+    expect(await upgraded.getItemHistories()).toEqual([
+      expect.objectContaining({ itemId: "a2.daily-routine.wake-up", lastSeen: TODAY }),
     ]);
   });
 
