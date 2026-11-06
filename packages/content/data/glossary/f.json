@@ -589,6 +589,18 @@
       ]
     },
     {
+      "id": "glossary.fifteenth",
+      "headword": "fifteenth",
+      "kind": "word",
+      "forms": ["fifteenth"],
+      "senses": [
+        {
+          "es": "decimoquinto, (día) quince",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.fifth",
       "headword": "fifth",
       "kind": "word",
@@ -997,6 +1009,30 @@
       ]
     },
     {
+      "id": "glossary.flexibility",
+      "headword": "flexibility",
+      "kind": "word",
+      "forms": ["flexibility"],
+      "senses": [
+        {
+          "es": "flexibilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.flexible",
+      "headword": "flexible",
+      "kind": "word",
+      "forms": ["flexible"],
+      "senses": [
+        {
+          "es": "flexible",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.flight",
       "headword": "flight",
       "kind": "word",
@@ -1128,6 +1164,18 @@
       "senses": [
         {
           "es": "comida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fool",
+      "headword": "fool",
+      "kind": "word",
+      "forms": ["fool", "fools"],
+      "senses": [
+        {
+          "es": "tonto, idiota",
           "pos": "noun"
         }
       ]
@@ -1413,6 +1461,18 @@
       ]
     },
     {
+      "id": "glossary.frankly",
+      "headword": "frankly",
+      "kind": "word",
+      "forms": ["frankly"],
+      "senses": [
+        {
+          "es": "francamente, sinceramente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.free",
       "headword": "free",
       "kind": "word",
@@ -1585,6 +1645,18 @@
         {
           "es": "frustrado, molesto",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.frustration",
+      "headword": "frustration",
+      "kind": "word",
+      "forms": ["frustration"],
+      "senses": [
+        {
+          "es": "frustración",
+          "pos": "noun"
         }
       ]
     },

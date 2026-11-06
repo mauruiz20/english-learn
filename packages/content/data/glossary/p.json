@@ -49,6 +49,18 @@
       ]
     },
     {
+      "id": "glossary.package",
+      "headword": "package",
+      "kind": "word",
+      "forms": ["package", "packages"],
+      "senses": [
+        {
+          "es": "paquete (de condiciones)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.page",
       "headword": "page",
       "kind": "word",

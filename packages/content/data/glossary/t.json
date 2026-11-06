@@ -1352,6 +1352,18 @@
       ]
     },
     {
+      "id": "glossary.tight",
+      "headword": "tight",
+      "kind": "word",
+      "forms": ["tight"],
+      "senses": [
+        {
+          "es": "ajustado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.time",
       "headword": "time",
       "kind": "word",

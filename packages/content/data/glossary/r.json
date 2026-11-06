@@ -109,6 +109,18 @@
       ]
     },
     {
+      "id": "glossary.rate",
+      "headword": "rate",
+      "kind": "word",
+      "forms": ["rate", "rates"],
+      "senses": [
+        {
+          "es": "tarifa, precio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rather",
       "headword": "rather",
       "kind": "word",
@@ -292,6 +304,30 @@
       "senses": [
         {
           "es": "razonable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reasoning",
+      "headword": "reasoning",
+      "kind": "word",
+      "forms": ["reasoning"],
+      "senses": [
+        {
+          "es": "razonamiento, motivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reassuring",
+      "headword": "reassuring",
+      "kind": "word",
+      "forms": ["reassuring"],
+      "senses": [
+        {
+          "es": "tranquilizador",
           "pos": "adjective"
         }
       ]
@@ -1177,6 +1213,18 @@
         {
           "es": "respeto",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.respectful",
+      "headword": "respectful",
+      "kind": "word",
+      "forms": ["respectful"],
+      "senses": [
+        {
+          "es": "respetuoso",
+          "pos": "adjective"
         }
       ]
     },

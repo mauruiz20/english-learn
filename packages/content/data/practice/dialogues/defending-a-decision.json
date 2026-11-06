@@ -1,0 +1,311 @@
+{
+  "dialogues": [
+    {
+      "id": "c1.dialogues.defending-a-decision",
+      "level": "C1",
+      "title": "Defender una decisión",
+      "setting": "Decidiste retrasar un mes el lanzamiento de un producto porque las pruebas de seguridad detectaron que la batería puede sobrecalentarse. Paul, de ventas, está furioso: les había prometido la fecha a clientes importantes. Diane, la directora, convocó una reunión.",
+      "characters": [
+        {
+          "id": "diane",
+          "name": "Diane",
+          "role": "directora"
+        },
+        {
+          "id": "paul",
+          "name": "Paul",
+          "role": "jefe de ventas"
+        }
+      ],
+      "start": "open",
+      "nodes": [
+        {
+          "id": "open",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "Thanks for coming, everyone. Paul, you wanted to raise something?",
+          "es": "Gracias por venir. Paul, ¿querías plantear algo?",
+          "next": "paul-angry"
+        },
+        {
+          "id": "paul-angry",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "Yes. Frankly, delaying the launch was a huge mistake. I promised our biggest clients that date, and now I look like a fool.",
+          "es": "Sí. Sinceramente, retrasar el lanzamiento fue un error enorme. Les prometí esa fecha a nuestros clientes más importantes y ahora quedo como un tonto.",
+          "next": "acknowledge"
+        },
+        {
+          "id": "acknowledge",
+          "kind": "choose",
+          "itemIds": ["b2.phrasal-verbs.go-ahead-with"],
+          "options": [
+            {
+              "en": "I completely understand your frustration, Paul, and I'm sorry it's put you in a difficult position. Could I explain why we didn't go ahead with the original date?",
+              "rating": "good",
+              "feedback": "Reconoces su frustración antes de defenderte: baja la tensión y te deja explicar.",
+              "next": "go-ahead"
+            },
+            {
+              "en": "It wasn't a mistake. It was the right call.",
+              "rating": "ok",
+              "feedback": "Puede ser cierto, pero contradecirlo de frente suena a la defensiva.",
+              "next": "skeptical"
+            },
+            {
+              "en": "Maybe you shouldn't have promised a date that wasn't confirmed.",
+              "rating": "wrong",
+              "feedback": "Aunque tenga algo de razón, culparlo delante de la directora vuelve personal el conflicto.",
+              "next": "not-personal"
+            }
+          ]
+        },
+        {
+          "id": "go-ahead",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "Please, go ahead.",
+          "es": "Adelante, por favor.",
+          "next": "cause"
+        },
+        {
+          "id": "skeptical",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "Was it? I'd like to hear why.",
+          "es": "¿Ah, sí? Me gustaría saber por qué.",
+          "next": "cause"
+        },
+        {
+          "id": "not-personal",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "Let's not make this personal. Please, just explain the reasoning.",
+          "es": "No lo hagamos personal. Por favor, explica el motivo.",
+          "next": "cause"
+        },
+        {
+          "id": "cause",
+          "kind": "write",
+          "prompt": "Explica con una cleft sentence que lo que provocó el retraso fue un problema detectado en las pruebas de seguridad.",
+          "accepted": [
+            "What {led to|caused} the delay was a problem {in|with} the safety tests.",
+            "What {led to|caused} the delay was a problem {that came up|we found} in the safety tests.",
+            "It was a problem {in|with} the safety tests that {led to|caused} the delay."
+          ],
+          "tip": "Con «What caused the delay was…» pones el foco en la causa, no en las personas.",
+          "next": "serious",
+          "wrongNext": "serious-clarify"
+        },
+        {
+          "id": "serious",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "How serious was it, though? Couldn't we have launched and fixed it later?",
+          "es": "¿Pero tan grave era? ¿No podíamos lanzarlo y arreglarlo después?",
+          "next": "risk"
+        },
+        {
+          "id": "serious-clarify",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "So, if I understand correctly, the safety tests found a problem?",
+          "es": "Entonces, si entiendo bien, ¿las pruebas de seguridad encontraron un problema?",
+          "next": "serious"
+        },
+        {
+          "id": "risk",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "It's hard to say for certain, but in the worst case, the battery could overheat. I didn't feel we could take that risk.",
+              "rating": "good",
+              "feedback": "Matizas lo incierto («It's hard to say for certain») y eres claro con el riesgo: convincente y honesto.",
+              "next": "update"
+            },
+            {
+              "en": "No. That's out of the question.",
+              "rating": "ok",
+              "feedback": "Puede que tengas razón, pero cerrar así la discusión suena autoritario.",
+              "next": "extreme"
+            },
+            {
+              "en": "That's a pretty naive question, Paul.",
+              "rating": "wrong",
+              "feedback": "Tratar de ingenua su pregunta es condescendiente y aviva el conflicto.",
+              "next": "respectful"
+            }
+          ]
+        },
+        {
+          "id": "update",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "Overheating isn't something we can fix later with an update, Paul.",
+          "es": "El sobrecalentamiento no es algo que podamos arreglar después con una actualización, Paul.",
+          "next": "clients"
+        },
+        {
+          "id": "extreme",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "Out of the question? That seems a bit extreme.",
+          "es": "¿Ni hablar? Me parece un poco exagerado.",
+          "next": "extreme-diane"
+        },
+        {
+          "id": "extreme-diane",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "The battery could overheat, Paul. That isn't something we can fix later with an update.",
+          "es": "La batería podría sobrecalentarse, Paul. No es algo que podamos arreglar después con una actualización.",
+          "next": "clients"
+        },
+        {
+          "id": "respectful",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "Let's keep this respectful. The issue is that the battery could overheat, and we can't fix that later with an update.",
+          "es": "Mantengamos el respeto. El problema es que la batería podría sobrecalentarse, y eso no se arregla después con una actualización.",
+          "next": "clients"
+        },
+        {
+          "id": "clients",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "Fine. But what am I supposed to tell my clients?",
+          "es": "Está bien. ¿Pero qué se supone que les digo a mis clientes?",
+          "next": "call"
+        },
+        {
+          "id": "call",
+          "kind": "write",
+          "prompt": "Ofrécele ayuda: propón llamar juntos a los clientes más importantes para explicarles el retraso.",
+          "accepted": [
+            "{Why don't we|How about we|Shall we} call the {biggest|most important|key} clients together and explain the delay?",
+            "{I could|I'd be happy to|Let me} call the {biggest|most important|key} clients with you and explain the delay.",
+            "{We could|Let's} call the {biggest|most important|key} clients together {and|to} explain the delay."
+          ],
+          "tip": "Proponer una solución conjunta («Why don't we… together?») convierte el conflicto en colaboración.",
+          "next": "help",
+          "wrongNext": "help-check"
+        },
+        {
+          "id": "help",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "That would actually help. They trust engineering more than sales on things like this.",
+          "es": "Eso sí ayudaría. En estos temas confían más en ingeniería que en ventas.",
+          "next": "date"
+        },
+        {
+          "id": "help-check",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "Sorry, you'd call them with me? That would actually help. They trust engineering more than sales on things like this.",
+          "es": "Perdón, ¿los llamarías conmigo? Eso sí ayudaría. En estos temas confían más en ingeniería que en ventas.",
+          "next": "date"
+        },
+        {
+          "id": "date",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "Good. And what's the new date? I don't want to move it twice.",
+          "es": "Bien. ¿Y cuál es la nueva fecha? No quiero moverla dos veces.",
+          "next": "commit"
+        },
+        {
+          "id": "commit",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Barring any further issues, we're confident we can launch on the fifteenth of next month.",
+              "rating": "good",
+              "feedback": "Das una fecha concreta y matizas solo lo justo («Barring any further issues»): transmite seguridad.",
+              "next": "holds"
+            },
+            {
+              "en": "The fifteenth. Probably.",
+              "rating": "ok",
+              "feedback": "Das una fecha, pero «Probably» suelto suena inseguro y poco profesional.",
+              "next": "probably"
+            },
+            {
+              "en": "I'd rather not commit to a date yet.",
+              "rating": "wrong",
+              "feedback": "Evadir una pregunta directa de la directora resta credibilidad a tu decisión.",
+              "next": "press"
+            }
+          ]
+        },
+        {
+          "id": "holds",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "Good. Let's make sure that date holds.",
+          "es": "Bien. Asegurémonos de que esa fecha se mantenga.",
+          "next": "process"
+        },
+        {
+          "id": "probably",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "\"Probably\" isn't very reassuring. Let's make sure that date holds.",
+          "es": "«Probablemente» no da mucha tranquilidad. Asegurémonos de que esa fecha se mantenga.",
+          "next": "process"
+        },
+        {
+          "id": "press",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "I'm afraid we need a date today. Let's say the fifteenth of next month, and make sure it holds.",
+          "es": "Me temo que necesitamos una fecha hoy. Digamos el quince del mes que viene, y asegurémonos de que se mantenga.",
+          "next": "process"
+        },
+        {
+          "id": "process",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "All right. I still wish we'd talked about it before the decision was made.",
+          "es": "De acuerdo. Igual me hubiera gustado que lo habláramos antes de tomar la decisión.",
+          "next": "fair"
+        },
+        {
+          "id": "fair",
+          "kind": "write",
+          "prompt": "Reconoce que debiste avisarle antes y comprométete a consultar a ventas la próxima vez.",
+          "accepted": [
+            "{That's fair|You're right}. I should have {told you|let you know|kept you informed} {earlier|sooner}.",
+            "{That's fair|You're right}. {Next time|In the future}, I'll {involve|consult} sales before {making|we make} a decision like this.",
+            "I should have {told you|let you know} {earlier|sooner}. {Next time|In the future}, I'll {involve|consult} sales {earlier|from the start}."
+          ],
+          "tip": "Reconocer un error concreto («I should have told you sooner») refuerza tu credibilidad.",
+          "next": "close",
+          "wrongNext": "close-check"
+        },
+        {
+          "id": "close",
+          "kind": "npc",
+          "speaker": "paul",
+          "en": "I appreciate that. Okay, let's set up those calls.",
+          "es": "Te lo agradezco. Bueno, organicemos esas llamadas.",
+          "next": "end"
+        },
+        {
+          "id": "close-check",
+          "kind": "npc",
+          "speaker": "diane",
+          "en": "I think what you're saying is that sales should be involved earlier, which is fair. Okay, let's set up those calls.",
+          "es": "Creo que lo que dices es que ventas debería participar antes, y es justo. Bueno, organicemos esas llamadas.",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Defendiste el retraso sin romper la relación con ventas, y la nueva fecha quedó clara."
+        }
+      ],
+      "cardIds": ["c1.grammar.cleft-sentences", "c1.grammar.hedging"]
+    }
+  ]
+}

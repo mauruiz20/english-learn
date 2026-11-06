@@ -269,6 +269,18 @@
       ]
     },
     {
+      "id": "glossary.eighty",
+      "headword": "eighty",
+      "kind": "word",
+      "forms": ["eighty"],
+      "senses": [
+        {
+          "es": "ochenta",
+          "pos": "number"
+        }
+      ]
+    },
+    {
       "id": "glossary.either",
       "headword": "either",
       "kind": "word",

@@ -75,6 +75,13 @@
             "b2.dialogues.giving-feedback",
             "b2.dialogues.car-rental"
           ]
+        },
+        {
+          "id": "practice.dialogues.high-stakes",
+          "level": "C1",
+          "title": "Mucho en juego",
+          "summary": "Negociar tu salario y defender una decisión en una reunión tensa, con diplomacia.",
+          "dialogueIds": ["c1.dialogues.salary-negotiation", "c1.dialogues.defending-a-decision"]
         }
       ]
     }

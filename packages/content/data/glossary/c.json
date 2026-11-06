@@ -732,6 +732,18 @@
       ]
     },
     {
+      "id": "glossary.certainly",
+      "headword": "certainly",
+      "kind": "word",
+      "forms": ["certainly"],
+      "senses": [
+        {
+          "es": "sin duda, desde luego",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.chair",
       "headword": "chair",
       "kind": "word",
@@ -1857,6 +1869,18 @@
       ]
     },
     {
+      "id": "glossary.commit",
+      "headword": "commit",
+      "kind": "word",
+      "forms": ["commit", "commits", "committed", "committing"],
+      "senses": [
+        {
+          "es": "comprometerse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.common",
       "headword": "common",
       "kind": "word",
@@ -2281,6 +2305,18 @@
       ]
     },
     {
+      "id": "glossary.confident",
+      "headword": "confident",
+      "kind": "word",
+      "forms": ["confident"],
+      "senses": [
+        {
+          "es": "seguro, confiado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.confidential",
       "headword": "confidential",
       "kind": "word",
@@ -2469,6 +2505,18 @@
         {
           "es": "constructivo",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.consult",
+      "headword": "consult",
+      "kind": "word",
+      "forms": ["consult", "consults", "consulted", "consulting"],
+      "senses": [
+        {
+          "es": "consultar",
+          "pos": "verb"
         }
       ]
     },

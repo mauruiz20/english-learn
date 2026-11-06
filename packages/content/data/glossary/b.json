@@ -277,6 +277,18 @@
       ]
     },
     {
+      "id": "glossary.barring",
+      "headword": "barring",
+      "kind": "word",
+      "forms": ["barring"],
+      "senses": [
+        {
+          "es": "salvo, a menos que haya",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
       "id": "glossary.base",
       "headword": "base",
       "kind": "word",

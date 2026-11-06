@@ -653,6 +653,18 @@
       ]
     },
     {
+      "id": "glossary.inform",
+      "headword": "inform",
+      "kind": "word",
+      "forms": ["inform", "informs", "informed", "informing"],
+      "senses": [
+        {
+          "es": "informar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.information",
       "headword": "information",
       "kind": "word",
@@ -833,6 +845,18 @@
       ]
     },
     {
+      "id": "glossary.insulting",
+      "headword": "insulting",
+      "kind": "word",
+      "forms": ["insulting"],
+      "senses": [
+        {
+          "es": "insultante, ofensivo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.insurance",
       "headword": "insurance",
       "kind": "word",
@@ -853,6 +877,18 @@
         {
           "es": "tener la intención de",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.intention",
+      "headword": "intention",
+      "kind": "word",
+      "forms": ["intention", "intentions"],
+      "senses": [
+        {
+          "es": "intención",
+          "pos": "noun"
         }
       ]
     },
@@ -1089,6 +1125,18 @@
         {
           "es": "factura",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.involve",
+      "headword": "involve",
+      "kind": "word",
+      "forms": ["involve", "involves", "involved", "involving"],
+      "senses": [
+        {
+          "es": "hacer participar, involucrar",
+          "pos": "verb"
         }
       ]
     },

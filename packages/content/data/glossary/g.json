@@ -193,6 +193,18 @@
       ]
     },
     {
+      "id": "glossary.genuinely",
+      "headword": "genuinely",
+      "kind": "word",
+      "forms": ["genuinely"],
+      "senses": [
+        {
+          "es": "de verdad, sinceramente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.gerund",
       "headword": "gerund",
       "kind": "word",
