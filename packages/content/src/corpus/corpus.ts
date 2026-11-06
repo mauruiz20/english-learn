@@ -8,6 +8,8 @@ import type { ContentFile } from "../schema/content-file";
 import type { Card } from "../schema/card";
 import type { Dialogue } from "../schema/dialogue";
 import type { Item, Lesson, Passage } from "../schema/entities";
+import type { Level } from "../schema/common";
+import type { LevelIntro } from "../schema/intro";
 import type { Exercise } from "../schema/exercise";
 import type { PlacementQuestion } from "../schema/placement";
 import type { PracticeCollection } from "../schema/practice";
@@ -36,6 +38,9 @@ export type Corpus = {
   readonly cardsById: ReadonlyMap<string, Card>;
   readonly glossary: readonly GlossaryEntry[];
   readonly glossaryById: ReadonlyMap<string, GlossaryEntry>;
+  /** Level intros (`data/<level>/level.json`), in file order. */
+  readonly levelIntros: readonly LevelIntro[];
+  readonly levelIntrosByLevel: ReadonlyMap<Level, LevelIntro>;
   /** Ready-made lookup for `annotateText` (hover / tap translations). */
   readonly glossaryIndex: GlossaryIndex;
 };
@@ -59,6 +64,7 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
   const placement = files.flatMap((f) => f.placement ?? []);
   const cards = files.flatMap((f) => f.cards ?? []);
   const dialogues = files.flatMap((f) => f.dialogues ?? []);
+  const levelIntros = files.flatMap((f) => (f.levelIntro === undefined ? [] : [f.levelIntro]));
   const glossary: readonly GlossaryEntry[] = files.flatMap((f) => f.glossary ?? []);
   return {
     items,
@@ -80,5 +86,7 @@ export function createCorpus(files: readonly ContentFile[]): Corpus {
     glossary,
     glossaryById: byId(glossary),
     glossaryIndex: buildGlossaryIndex(glossary),
+    levelIntros,
+    levelIntrosByLevel: new Map(levelIntros.map((intro) => [intro.level, intro])),
   };
 }

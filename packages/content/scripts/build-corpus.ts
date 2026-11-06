@@ -12,7 +12,7 @@ import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { format, resolveConfig } from "prettier";
 import { formatErrors, listJsonFiles, main as validate } from "./validate";
-import type { ValidationError } from "../src/validate";
+import { LEVEL_INTRO_FILE, type ValidationError } from "../src/validate";
 
 const PACKAGE_DIR = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DEFAULT_DATA_DIR = join(PACKAGE_DIR, "data");
@@ -30,7 +30,10 @@ export async function renderCorpusModule(
 ): Promise<string> {
   const sorted = [...files].map(toPosix).sort();
   const imports = sorted.map((file, i) => `import file${i} from "${dataImportPath}/${file}";`);
-  const names = sorted.map((_, i) => `file${i}`).join(", ");
+  // A level's `level.json` is a bare level intro: it joins the corpus as `{ levelIntro }`.
+  const names = sorted
+    .map((file, i) => (LEVEL_INTRO_FILE.test(file) ? `{ levelIntro: file${i} }` : `file${i}`))
+    .join(", ");
   const source = [
     HEADER,
     `import type { ContentFile } from "../schema/content-file";`,

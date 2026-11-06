@@ -8,6 +8,7 @@ import {
   validateGlossaryForms,
 } from "./glossary";
 import { validateListDuplicates } from "./duplicates";
+import { validateIntros } from "./intros";
 import { validateLayout } from "./layout";
 import {
   validateLessonDeepenCards,
@@ -42,6 +43,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateCards,
   validatePracticeCollections,
   validateDialogues,
+  validateIntros,
 ];
 
 /** Rules that need the whole corpus (ids, references, levels across files). */
