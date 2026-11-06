@@ -1,4 +1,4 @@
-import type { Verdict } from "@english-learn/domain";
+import type { DailyGoalStatus, Verdict } from "@english-learn/domain";
 import { ActivityIndicator } from "react-native";
 import { AnswerFeedback } from "@/features/lesson/components/answer-feedback";
 import { ExerciseBody } from "@/features/lesson/components/exercise-body";
@@ -58,6 +58,8 @@ export type ReviewViewState =
       readonly achievements?: readonly EarnedSticker[];
       /** Exercises later reviews will serve today (absent: not known yet). */
       readonly remaining?: number;
+      /** Today's count against the daily goal (absent: unknown). */
+      readonly dailyGoal?: DailyGoalStatus | undefined;
       /** A line under the results instead of the remaining reviews (another session's words). */
       readonly note?: string;
     };

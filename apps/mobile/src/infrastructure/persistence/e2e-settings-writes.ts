@@ -52,5 +52,9 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
     clearPathLevel: () => track(repository.clearPathLevel()),
     getLastHomeVisit: () => repository.getLastHomeVisit(),
     setLastHomeVisit: (date) => track(repository.setLastHomeVisit(date)),
+    getDailyGoal: () => repository.getDailyGoal(),
+    setDailyGoal: (goal) => track(repository.setDailyGoal(goal)),
+    getDailyGoalPromptDismissed: () => repository.getDailyGoalPromptDismissed(),
+    setDailyGoalPromptDismissed: () => track(repository.setDailyGoalPromptDismissed()),
   };
 }

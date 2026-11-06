@@ -59,14 +59,19 @@ const content = createCorpus([
   },
 ]);
 
-function renderLesson(repository: FakeProgressRepository, lessonId = lesson.id, clock?: Clock) {
+function renderLesson(
+  repository: FakeProgressRepository,
+  lessonId = lesson.id,
+  clock?: Clock,
+  settingsRepository = createFakeSettingsRepository(),
+) {
   const services = {
     progressRepository: repository,
     clock: clock ?? { today: () => TODAY, nowMs: () => 0 },
     random: sequenceRng([0.3, 0.8, 0.1, 0.6]),
     randomBytes: testRandomBytes,
     deviceId: "test-device",
-    settingsRepository: createFakeSettingsRepository(),
+    settingsRepository,
     sounds,
   };
   return render(
@@ -128,6 +133,58 @@ beforeEach(() => {
 });
 
 describe("LessonContainer", () => {
+  describe("daily goal on the summary", () => {
+    it("counts the lesson's exercises toward today's goal", async () => {
+      await renderLesson(createFakeRepository());
+      await playCorrectly();
+
+      expect(await screen.findByText("Meta diaria: 6 / 20")).toBeOnTheScreen();
+    });
+
+    it("says the goal is met when the lesson reaches it, earlier sessions today included", async () => {
+      const repository = createFakeRepository();
+      await repository.appendEvents([
+        {
+          id: "0190000-earlier",
+          deviceId: "test-device",
+          occurredAt: 0,
+          localDate: TODAY,
+          type: "session_completed",
+          payload: {
+            v: 1,
+            sessionId: "earlier",
+            kind: "review",
+            answerXp: 0,
+            accuracy: 1,
+            exercises: 4,
+          },
+        },
+      ]);
+      await renderLesson(
+        repository,
+        lesson.id,
+        undefined,
+        createFakeSettingsRepository({ dailyGoal: "light" }),
+      );
+      await playCorrectly();
+
+      expect(await screen.findByText("¡Cumpliste tu meta de hoy!")).toBeOnTheScreen();
+    });
+
+    it("says nothing about a goal without one", async () => {
+      await renderLesson(
+        createFakeRepository(),
+        lesson.id,
+        undefined,
+        createFakeSettingsRepository({ dailyGoal: "off" }),
+      );
+      await playCorrectly();
+
+      expect(await screen.findByText("¡Lección completada!")).toBeOnTheScreen();
+      expect(screen.queryByText(/Meta diaria|meta de hoy/)).toBeNull();
+    });
+  });
+
   it("plays the lesson, persists the results and shows the summary", async () => {
     const repository = createFakeRepository();
     await renderLesson(repository);

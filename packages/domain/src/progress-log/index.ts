@@ -21,6 +21,7 @@ export {
   snapshotProgress,
 } from "./fold";
 export type {
+  DailyExercises,
   FoldAnomaly,
   FoldAnomalyKind,
   FoldPosition,

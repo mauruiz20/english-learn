@@ -98,6 +98,8 @@ describe("DialogueContainer", () => {
     expect(screen.getByText("Respuestas buenas: 5 de 5")).toBeOnTheScreen();
     expect(await screen.findByText("Perfecto · 5/5")).toBeOnTheScreen();
     expect(screen.getByText("Lo nuevo de hoy")).toBeOnTheScreen();
+    // Every turn answered counts toward the daily goal.
+    expect(screen.getByText("Meta diaria: 5 / 20")).toBeOnTheScreen();
 
     const sessions = repository.events().filter((e) => e.type === "session_completed");
     expect(sessions).toHaveLength(1);
@@ -106,6 +108,7 @@ describe("DialogueContainer", () => {
       lessonId: DIALOGUE_ID,
       accuracy: 1,
       answerXp: 50,
+      exercises: 5,
     });
     const reviewed = repository
       .events()

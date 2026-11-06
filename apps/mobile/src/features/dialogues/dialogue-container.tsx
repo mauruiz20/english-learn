@@ -1,3 +1,5 @@
+import type { DailyGoalStatus } from "@english-learn/domain";
+import { sessionDailyGoal } from "@/features/daily-goal/session-goal";
 import type { Corpus, Dialogue } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
@@ -35,6 +37,8 @@ type SaveState =
       readonly xpEarned: number;
       readonly streakDays: number;
       readonly streakIncreased: boolean;
+      /** Today's count against the daily goal (absent: unknown). */
+      readonly dailyGoal?: DailyGoalStatus | undefined;
       readonly best: LessonScore | undefined;
     };
 
@@ -75,7 +79,7 @@ function DialogueRun({
 }) {
   const router = useRouter();
   const services = useAppServices();
-  const { progressRepository, clock, random, randomBytes, deviceId } = services;
+  const { progressRepository, settingsRepository, clock, random, randomBytes, deviceId } = services;
   const sounds = useSessionSounds();
   const pronunciation = usePronunciation();
   const [run, setRun] = useState<DialogueRunState | null>(() =>
@@ -106,7 +110,7 @@ function DialogueRun({
       deviceId,
       kind: "lesson",
     })
-      .then(async ({ xpEarned, streak, streakIncreased }) => {
+      .then(async ({ xpEarned, streak, streakIncreased, exercisesToday }) => {
         // The best result, this session included (a failed read only hides the marker).
         const best = await progressRepository.getLessonResults().then(
           (results) =>
@@ -116,7 +120,16 @@ function DialogueRun({
             ),
           () => undefined,
         );
-        setSave({ status: "saved", xpEarned, streakDays: streak.current, streakIncreased, best });
+        // Each turn answered is one exercise toward the daily goal.
+        const dailyGoal = await sessionDailyGoal(settingsRepository, exercisesToday);
+        setSave({
+          status: "saved",
+          xpEarned,
+          streakDays: streak.current,
+          streakIncreased,
+          best,
+          dailyGoal,
+        });
         sounds.completed(streakIncreased);
       })
       .catch((error: unknown) => {
@@ -248,6 +261,7 @@ function toViewState(
         streakDays: save.streakDays,
         streakIncreased: save.streakIncreased,
         best: save.best,
+        dailyGoal: save.dailyGoal,
         toReview: itemsToReview(summary.itemOutcomes, content.itemsById, {
           topics: topicByItemId(content),
         }),

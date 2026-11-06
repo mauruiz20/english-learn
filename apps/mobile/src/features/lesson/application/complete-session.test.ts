@@ -46,6 +46,17 @@ function input(
 }
 
 describe("completeSession", () => {
+  it("reports the exercises answered today, the day's earlier sessions included", async () => {
+    const repository = createFakeRepository();
+    await completeSession(input(repository, { today: localDate("2026-10-28") }));
+
+    const first = await completeSession(input(repository));
+    const second = await completeSession(input(repository, { kind: "review" }));
+
+    expect(first.exercisesToday).toBe(3);
+    expect(second.exercisesToday).toBe(6);
+  });
+
   it("appends one item_reviewed per item with its final grade and one session_completed", async () => {
     const repository = createFakeRepository();
 
@@ -69,6 +80,7 @@ describe("completeSession", () => {
       lessonId: "a2.routine.lesson-001",
       answerXp: 20,
       accuracy: 2 / 3,
+      exercises: 3,
     });
     for (const event of events) {
       expect(event).toMatchObject({ deviceId: "test-device", occurredAt: NOW, localDate: today });
@@ -91,6 +103,7 @@ describe("completeSession", () => {
       xpEarned: 30,
       streak: { current: 3, longest: 5, lastActiveDate: today },
       streakIncreased: true,
+      exercisesToday: 3,
     });
     const progress = foldEvents(repository.events());
     expect(progress.xp).toBe(result.xp);
@@ -176,6 +189,17 @@ describe("completeSession", () => {
 
     expect(append).toHaveBeenCalledTimes(1);
     return saving;
+  });
+
+  it("still resolves when reading today's count fails after the save (no second save)", async () => {
+    const repository = createFakeRepository();
+    jest.spyOn(console, "error").mockImplementation(() => {});
+    repository.getDailyExercises = () => Promise.reject(new Error("busy"));
+
+    const result = await completeSession(input(repository));
+
+    expect(result.exercisesToday).toBeNull();
+    expect(repository.events().filter((e) => e.type === "session_completed")).toHaveLength(1);
   });
 
   it("propagates repository failures", async () => {

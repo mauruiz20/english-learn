@@ -1,3 +1,4 @@
+import type { DailyGoalStatus } from "@english-learn/domain";
 import type { DialogueCharacter, DialogueRating, Level } from "@english-learn/content";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
@@ -64,6 +65,8 @@ export type DialogueViewState =
       readonly streakIncreased?: boolean;
       /** The best result so far (this one included); none if it could not be read. */
       readonly best?: LessonScore | undefined;
+      /** Today's count against the daily goal (absent: unknown). */
+      readonly dailyGoal?: DailyGoalStatus | undefined;
       readonly toReview: readonly ReviewNote[];
       readonly recap: readonly RecapItem[];
       readonly achievements?: readonly EarnedSticker[];
@@ -147,6 +150,7 @@ export function DialogueView(props: DialogueViewProps) {
           redoLabel="Repetir diálogo"
           redoNoun="el diálogo"
           header={<Ending ending={state.ending} best={state.best} />}
+          dailyGoal={state.dailyGoal}
         />
       );
   }
