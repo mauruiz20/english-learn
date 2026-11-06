@@ -345,7 +345,7 @@
       "type": "translate_write",
       "es": "La gerente escuchó nuestros comentarios y asumió la responsabilidad del error.",
       "accepted": [
-        "The manager listened to our feedback and {took|accepted} responsibility for the {mistake|error}."
+        "The manager listened to our {feedback|comments} and {took|accepted} responsibility for the {mistake|error}."
       ]
     },
     {

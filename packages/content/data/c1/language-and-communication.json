@@ -310,7 +310,7 @@
       "sentence": "The ___ of the new rules has been delayed.",
       "answers": ["implementation", "introduction"],
       "distractors": ["implement", "implemented", "implements"],
-      "es": "La aplicación de las nuevas normas se ha retrasado."
+      "es": "La puesta en marcha de las nuevas normas se ha retrasado."
     },
     {
       "id": "c1.language-and-communication.cloze-004",
