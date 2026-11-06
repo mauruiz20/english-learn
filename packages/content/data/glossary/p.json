@@ -668,6 +668,18 @@
       ]
     },
     {
+      "id": "glossary.perfectionist",
+      "headword": "perfectionist",
+      "kind": "word",
+      "forms": ["perfectionist", "perfectionists"],
+      "senses": [
+        {
+          "es": "perfeccionista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.perfectly",
       "headword": "perfectly",
       "kind": "word",
@@ -1767,7 +1779,7 @@
       "id": "glossary.present",
       "headword": "present",
       "kind": "word",
-      "forms": ["present", "presented", "presents"],
+      "forms": ["present", "presented", "presents", "presenting"],
       "senses": [
         {
           "es": "presente (tiempo verbal)",
@@ -2076,6 +2088,18 @@
         {
           "es": "profesión",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.professionally",
+      "headword": "professionally",
+      "kind": "word",
+      "forms": ["professionally"],
+      "senses": [
+        {
+          "es": "en lo profesional, profesionalmente",
+          "pos": "adverb"
         }
       ]
     },

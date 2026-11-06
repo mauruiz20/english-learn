@@ -1,0 +1,45 @@
+{
+  "practice": [
+    {
+      "id": "practice.dialogues",
+      "title": "Diálogos",
+      "summary": "Conversaciones que cambian según lo que respondas: elige o escribe tu respuesta y mira cómo reacciona la otra persona.",
+      "groups": [
+        {
+          "id": "practice.dialogues.everyday",
+          "level": "A2",
+          "title": "Fuera de casa",
+          "summary": "En el aeropuerto, el restaurante, el médico y la calle.",
+          "dialogueIds": [
+            "a2.dialogues.airport-check-in",
+            "a2.dialogues.restaurant-order",
+            "a2.dialogues.doctor-visit",
+            "a2.dialogues.asking-directions"
+          ]
+        },
+        {
+          "id": "practice.dialogues.day-to-day",
+          "level": "B1",
+          "title": "Del día a día",
+          "summary": "Devoluciones, charlas en el trabajo y llamadas.",
+          "dialogueIds": [
+            "b1.dialogues.returning-headphones",
+            "b1.dialogues.coworker-small-talk",
+            "b1.dialogues.reschedule-appointment"
+          ]
+        },
+        {
+          "id": "practice.dialogues.with-tact",
+          "level": "B2",
+          "title": "Con tacto",
+          "summary": "Entrevistas, quejas y reuniones: firme, pero con cortesía.",
+          "dialogueIds": [
+            "b2.dialogues.job-interview",
+            "b2.dialogues.hotel-complaint",
+            "b2.dialogues.meeting-disagreement"
+          ]
+        }
+      ]
+    }
+  ]
+}

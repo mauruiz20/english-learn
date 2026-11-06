@@ -10,3 +10,8 @@ export function practiceCollectionPath(slug: string): string {
 export function practiceLessonPath(lessonId: string): string {
   return `/lesson/${encodeURIComponent(lessonId)}`;
 }
+
+/** Dialogues ("Diálogos") play on their own chat screen. */
+export function dialoguePath(dialogueId: string): string {
+  return `/dialogo/${encodeURIComponent(dialogueId)}`;
+}

@@ -1,0 +1,225 @@
+{
+  "dialogues": [
+    {
+      "id": "a2.dialogues.airport-check-in",
+      "level": "A2",
+      "title": "En el mostrador del aeropuerto",
+      "setting": "Vas a volar a Chicago. Llegas al mostrador de la aerolínea con una maleta grande y una mochila.",
+      "characters": [
+        {
+          "id": "agent",
+          "name": "Megan",
+          "role": "agente de la aerolínea"
+        }
+      ],
+      "start": "greet",
+      "nodes": [
+        {
+          "id": "greet",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Good morning! Where are you flying to today?",
+          "es": "¡Buenos días! ¿A dónde vuela hoy?",
+          "next": "destination"
+        },
+        {
+          "id": "destination",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Good morning! I'm flying to Chicago.",
+              "rating": "good",
+              "feedback": "Saludas y respondes justo lo que te pregunta.",
+              "next": "passport"
+            },
+            {
+              "en": "Chicago.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero sin saludo suena seco.",
+              "next": "passport"
+            },
+            {
+              "en": "I'm fine, thank you.",
+              "rating": "wrong",
+              "feedback": "Malentendido: no te preguntó cómo estás, sino a dónde vuelas.",
+              "next": "passport-again"
+            }
+          ]
+        },
+        {
+          "id": "passport",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Great. Can I see your passport, please?",
+          "es": "Perfecto. ¿Me permite su pasaporte, por favor?",
+          "next": "hand-passport"
+        },
+        {
+          "id": "passport-again",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sorry, I meant your destination. Oh, Chicago, I see it here. Can I see your passport, please?",
+          "es": "Perdón, me refería a su destino. Ah, Chicago, aquí lo veo. ¿Me permite su pasaporte, por favor?",
+          "next": "hand-passport"
+        },
+        {
+          "id": "hand-passport",
+          "kind": "write",
+          "prompt": "Dale el pasaporte: «Sí, aquí tiene».",
+          "accepted": [
+            "{Sure|Yes|Of course}, here {you are|it is|you go}.",
+            "{Sure|Yes|Of course} here {you are|it is|you go}.",
+            "Here {you are|it is|you go}.",
+            "{Sure|Yes|Of course}, here's my passport.",
+            "Here's my passport."
+          ],
+          "tip": "Para dar algo se dice «Here you are» o «Here it is».",
+          "next": "bags"
+        },
+        {
+          "id": "bags",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Thank you. Are you checking any bags today?",
+          "es": "Gracias. ¿Va a documentar maletas hoy?",
+          "next": "check-bag"
+        },
+        {
+          "id": "check-bag",
+          "kind": "choose",
+          "itemIds": ["a2.situations.check-a-bag", "a2.situations.carry-on"],
+          "options": [
+            {
+              "en": "Yes, I'd like to check this bag. The backpack is my carry-on.",
+              "rating": "good",
+              "feedback": "Claro: dices qué maleta documentas y cuál llevas contigo.",
+              "next": "seat"
+            },
+            {
+              "en": "Yes. Take this bag.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero «Take this bag» suena a orden.",
+              "next": "seat"
+            },
+            {
+              "en": "Yes, I want to check my bag in the cabin.",
+              "rating": "wrong",
+              "feedback": "Contradicción: documentar (check) es mandar la maleta a la bodega, no llevarla en la cabina.",
+              "next": "seat-confused"
+            }
+          ]
+        },
+        {
+          "id": "seat",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Perfect. Please put it on the scale. Would you like a window or an aisle seat?",
+          "es": "Perfecto. Póngala en la báscula, por favor. ¿Prefiere ventana o pasillo?",
+          "next": "aisle"
+        },
+        {
+          "id": "seat-confused",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "So the big bag goes in the hold, and the backpack stays with you, right? Please put the big one on the scale. Window or aisle?",
+          "es": "Entonces la maleta grande va a la bodega y la mochila se queda con usted, ¿verdad? Ponga la grande en la báscula, por favor. ¿Ventana o pasillo?",
+          "next": "aisle"
+        },
+        {
+          "id": "aisle",
+          "kind": "write",
+          "itemIds": ["a2.situations.aisle-seat"],
+          "prompt": "Pide un asiento de pasillo, con cortesía.",
+          "accepted": [
+            "{An aisle seat|Aisle seat|Aisle}, please.",
+            "{I'd like|I'd prefer} {an aisle seat|the aisle}[, please].",
+            "{Could|Can} I {have|get} an aisle seat[, please]?"
+          ],
+          "tip": "«An aisle seat, please» o «I'd like an aisle seat» suenan amables y naturales.",
+          "next": "gate",
+          "wrongNext": "gate-window"
+        },
+        {
+          "id": "gate",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "No problem. You're in 14C, an aisle seat. Boarding starts at 9:40 at gate B12.",
+          "es": "Sin problema. Tiene el 14C, de pasillo. El embarque empieza a las 9:40 en la puerta B12.",
+          "next": "confirm-gate"
+        },
+        {
+          "id": "gate-window",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sorry, I didn't quite catch that. I'll put you in 14A, by the window. Boarding starts at 9:40 at gate B12.",
+          "es": "Perdón, no le entendí bien. Le doy el 14A, junto a la ventana. El embarque empieza a las 9:40 en la puerta B12.",
+          "next": "confirm-gate"
+        },
+        {
+          "id": "confirm-gate",
+          "kind": "choose",
+          "itemIds": ["a2.situations.gate"],
+          "options": [
+            {
+              "en": "Sorry, was that gate B12?",
+              "rating": "good",
+              "feedback": "Confirmar el dato es buena idea, y lo haces con cortesía.",
+              "next": "boarding-pass"
+            },
+            {
+              "en": "Gate?",
+              "rating": "ok",
+              "feedback": "Se entiende, pero una sola palabra suena brusca.",
+              "next": "boarding-pass"
+            },
+            {
+              "en": "Where is the boarding?",
+              "rating": "wrong",
+              "feedback": "«Boarding» es el embarque, no un lugar: para preguntar dónde se embarca se habla de la puerta («gate»).",
+              "next": "boarding-pass-repeat"
+            }
+          ]
+        },
+        {
+          "id": "boarding-pass",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Yes, gate B12. Here's your boarding pass. Have a good flight!",
+          "es": "Sí, puerta B12. Aquí tiene su pase de abordar. ¡Buen vuelo!",
+          "next": "goodbye"
+        },
+        {
+          "id": "boarding-pass-repeat",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "You board at gate B12. Here's your boarding pass. Have a good flight!",
+          "es": "Embarca en la puerta B12. Aquí tiene su pase de abordar. ¡Buen vuelo!",
+          "next": "goodbye"
+        },
+        {
+          "id": "goodbye",
+          "kind": "write",
+          "prompt": "Despídete: dale las gracias y deséale un buen día.",
+          "accepted": [
+            "{Thank you|Thanks}[ so much| very much| a lot]! Have a {good|nice|great} day.",
+            "{Thank you|Thanks}[ so much| very much| a lot], have a {good|nice|great} day.",
+            "{Thank you|Thanks}[ so much| very much| a lot]. Have a {good|nice|great} day."
+          ],
+          "tip": "«Have a nice day» es la despedida amable más común.",
+          "next": "end",
+          "wrongNext": "end-cold"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Documentaste tu maleta y tienes tu pase de abordar. ¡Buen viaje!"
+        },
+        {
+          "id": "end-cold",
+          "kind": "end",
+          "text": "Tienes tu pase de abordar, aunque la despedida quedó un poco fría."
+        }
+      ]
+    }
+  ]
+}

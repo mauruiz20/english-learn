@@ -6,6 +6,7 @@ import {
   type GlossaryIndex,
 } from "@english-learn/domain";
 import type { Card, GlossaryEntry } from "../schema";
+import { dialogueTexts } from "./dialogues";
 import type { AnyExercise } from "./helpers";
 import type { LoadedFile, Rule, ValidationError } from "./types";
 
@@ -194,6 +195,7 @@ export function glossaryTexts(files: readonly LoadedFile[]): GlossaryText[] {
       exerciseTexts(q.exercise, `placement[${i}].exercise`).forEach(add),
     );
     (data.cards ?? []).forEach((card, i) => cardTexts(card, `cards[${i}]`).forEach(add));
+    (data.dialogues ?? []).forEach((d, i) => dialogueTexts(d, `dialogues[${i}]`).forEach(add));
   }
   return out;
 }

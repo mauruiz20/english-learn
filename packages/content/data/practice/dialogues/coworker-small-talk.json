@@ -1,0 +1,253 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.coworker-small-talk",
+      "level": "B1",
+      "title": "Charla en la oficina",
+      "setting": "Es lunes. En la cocina de la oficina te encuentras con Dan, un compañero de otro equipo, mientras preparas café. Empezaste a trabajar ahí hace un mes.",
+      "characters": [
+        {
+          "id": "coworker",
+          "name": "Dan",
+          "role": "compañero de trabajo"
+        }
+      ],
+      "start": "hey",
+      "nodes": [
+        {
+          "id": "hey",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Hey! How's it going?",
+          "es": "¡Hola! ¿Qué tal?",
+          "next": "how"
+        },
+        {
+          "id": "how",
+          "kind": "choose",
+          "itemIds": ["b1.situations.hows-it-going"],
+          "options": [
+            {
+              "en": "Pretty good, thanks. How about you?",
+              "rating": "good",
+              "feedback": "Respondes y devuelves la pregunta: así sigue la charla.",
+              "next": "weekend"
+            },
+            {
+              "en": "Good.",
+              "rating": "ok",
+              "feedback": "Correcto, pero si no devuelves la pregunta la charla se corta.",
+              "next": "weekend-short"
+            },
+            {
+              "en": "It's going to the kitchen.",
+              "rating": "wrong",
+              "feedback": "Malentendido: «How's it going?» es «¿qué tal?», no pregunta adónde vas.",
+              "next": "weekend-confused"
+            }
+          ]
+        },
+        {
+          "id": "weekend",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Not bad. Did you do anything fun this weekend?",
+          "es": "Nada mal. ¿Hiciste algo divertido el fin de semana?",
+          "next": "beach"
+        },
+        {
+          "id": "weekend-short",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Good to hear. Did you do anything fun this weekend?",
+          "es": "Me alegro. ¿Hiciste algo divertido el fin de semana?",
+          "next": "beach"
+        },
+        {
+          "id": "weekend-confused",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Ha, I mean, how are you? Anyway, did you do anything fun this weekend?",
+          "es": "Ja, digo, ¿cómo estás? En fin, ¿hiciste algo divertido el fin de semana?",
+          "next": "beach"
+        },
+        {
+          "id": "beach",
+          "kind": "write",
+          "prompt": "Cuéntale que fuiste a la playa con tu familia.",
+          "accepted": [
+            "I went to the beach with my family.",
+            "{Yes|Yeah}, I went to the beach with my family.",
+            "{My|Yes, my|Yeah, my} family and I went to the beach.",
+            "{I|Yes, I|Yeah, I} spent the weekend at the beach with my family.",
+            "{We|Yes, we|Yeah, we} went to the beach."
+          ],
+          "tip": "Para el fin de semana que ya pasó, usa el pasado: «I went to the beach.»",
+          "next": "job",
+          "wrongNext": "job-check"
+        },
+        {
+          "id": "job",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Nice! The weather was perfect for it. So, what do you do here? I don't think we've met properly.",
+          "es": "¡Qué bien! El clima estuvo perfecto. Oye, ¿a qué te dedicas aquí? Creo que no nos hemos presentado bien.",
+          "next": "what-i-do"
+        },
+        {
+          "id": "job-check",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Sorry, where did you go? Oh, the beach! Nice. So, what do you do here? I don't think we've met properly.",
+          "es": "Perdón, ¿adónde fuiste? ¡Ah, a la playa! Qué bien. Oye, ¿a qué te dedicas aquí? Creo que no nos hemos presentado bien.",
+          "next": "what-i-do"
+        },
+        {
+          "id": "what-i-do",
+          "kind": "choose",
+          "itemIds": ["b1.situations.what-do-you-do"],
+          "options": [
+            {
+              "en": "I'm in marketing. I joined the team last month.",
+              "rating": "good",
+              "feedback": "Dices tu área y agregas un dato para seguir hablando.",
+              "next": "tech"
+            },
+            {
+              "en": "Marketing.",
+              "rating": "ok",
+              "feedback": "Correcto, pero muy corto: agrega algo para seguir la charla.",
+              "next": "tech"
+            },
+            {
+              "en": "I'm making coffee.",
+              "rating": "wrong",
+              "feedback": "Malentendido: «What do you do?» pregunta por tu trabajo, no por lo que haces ahora.",
+              "next": "tech-joke"
+            }
+          ]
+        },
+        {
+          "id": "tech",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Oh, cool! I'm in tech support, so if your laptop ever gives you trouble, you know where to find me.",
+          "es": "¡Qué bien! Yo estoy en soporte técnico, así que si tu laptop te da problemas, ya sabes dónde encontrarme.",
+          "next": "offer"
+        },
+        {
+          "id": "tech-joke",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Ha, me too! I meant your job, but never mind. I'm in tech support, so if your laptop ever gives you trouble, you know where to find me.",
+          "es": "¡Ja, yo también! Me refería a tu trabajo, pero no importa. Yo estoy en soporte técnico, así que si tu laptop te da problemas, ya sabes dónde encontrarme.",
+          "next": "offer"
+        },
+        {
+          "id": "offer",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "That's good to know! Thanks.",
+              "rating": "good",
+              "feedback": "Natural y amable.",
+              "next": "meeting"
+            },
+            {
+              "en": "Okay.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena seco: muestra interés.",
+              "next": "meeting"
+            },
+            {
+              "en": "Great, can you fix my laptop now?",
+              "rating": "wrong",
+              "feedback": "Pedir un favor de inmediato en una charla casual suena aprovechado.",
+              "next": "meeting-later"
+            }
+          ]
+        },
+        {
+          "id": "meeting",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Well, I've got a meeting in five minutes. I should go.",
+          "es": "Bueno, tengo una reunión en cinco minutos. Me tengo que ir.",
+          "next": "nice-talking"
+        },
+        {
+          "id": "meeting-later",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Ha, not right now! I've got a meeting in five minutes. I should go.",
+          "es": "¡Ja, ahora no! Tengo una reunión en cinco minutos. Me tengo que ir.",
+          "next": "nice-talking"
+        },
+        {
+          "id": "nice-talking",
+          "kind": "write",
+          "itemIds": ["b1.situations.nice-talking-to-you"],
+          "prompt": "Despídete: dile que fue un gusto hablar con él.",
+          "accepted": [
+            "It was {nice|great|good} {talking|chatting} {to|with} you[. See you around].",
+            "{Okay|Sure}, it was {nice|great|good} {talking|chatting} {to|with} you[. See you around].",
+            "{Nice|Great|Good} {talking|chatting} {to|with} you[. See you around]."
+          ],
+          "tip": "«It was nice talking to you» es la despedida típica después de una charla.",
+          "next": "welcome",
+          "wrongNext": "welcome-check"
+        },
+        {
+          "id": "welcome",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "You too! Oh, and welcome to the team, by the way.",
+          "es": "¡Igualmente! Ah, y te doy la bienvenida al equipo, por cierto.",
+          "next": "bye"
+        },
+        {
+          "id": "welcome-check",
+          "kind": "npc",
+          "speaker": "coworker",
+          "en": "Sorry? Oh, okay, see you later! And welcome to the team, by the way.",
+          "es": "¿Perdón? Ah, bueno, ¡nos vemos! Y te doy la bienvenida al equipo, por cierto.",
+          "next": "bye"
+        },
+        {
+          "id": "bye",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Thanks! See you around.",
+              "rating": "good",
+              "feedback": "Natural para cerrar una charla informal.",
+              "next": "end"
+            },
+            {
+              "en": "Thanks.",
+              "rating": "ok",
+              "feedback": "Correcto, aunque un poco seco.",
+              "next": "end"
+            },
+            {
+              "en": "Thanks, you too!",
+              "rating": "wrong",
+              "feedback": "«You too» no encaja: Dan no es nuevo en el equipo.",
+              "next": "end-odd"
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Conociste a Dan y ya sabes a quién pedirle ayuda con tu laptop."
+        },
+        {
+          "id": "end-odd",
+          "kind": "end",
+          "text": "Conociste a Dan, aunque tu despedida lo dejó un poco confundido."
+        }
+      ]
+    }
+  ]
+}

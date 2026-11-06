@@ -1,0 +1,245 @@
+{
+  "dialogues": [
+    {
+      "id": "b2.dialogues.job-interview",
+      "level": "B2",
+      "title": "La entrevista de trabajo",
+      "setting": "Tienes una entrevista para coordinar proyectos en una empresa de software. Llevas cinco años en gestión de proyectos.",
+      "characters": [
+        {
+          "id": "interviewer",
+          "name": "Karen",
+          "role": "gerente de recursos humanos"
+        }
+      ],
+      "start": "start",
+      "nodes": [
+        {
+          "id": "start",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Thanks for coming in today. Let's start with an easy one: tell me about yourself.",
+          "es": "Gracias por venir hoy. Empecemos con algo fácil: hábleme de usted.",
+          "next": "about"
+        },
+        {
+          "id": "about",
+          "kind": "choose",
+          "itemIds": ["b2.situations.have-experience-in"],
+          "options": [
+            {
+              "en": "Sure. I've worked in project management for five years, mostly at software companies.",
+              "rating": "good",
+              "feedback": "Vas directo a tu experiencia profesional, que es lo que buscan.",
+              "next": "strength"
+            },
+            {
+              "en": "I'm a project manager.",
+              "rating": "ok",
+              "feedback": "Correcto, pero demasiado breve para una entrevista.",
+              "next": "strength"
+            },
+            {
+              "en": "Well, I was born in a small town, and I have two brothers.",
+              "rating": "wrong",
+              "feedback": "Fuera de tema: en una entrevista esperan tu perfil profesional, no tu vida personal.",
+              "next": "strength-redirect"
+            }
+          ]
+        },
+        {
+          "id": "strength",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Great. What would you say is your biggest strength?",
+          "es": "Muy bien. ¿Cuál diría que es su mayor fortaleza?",
+          "next": "organized"
+        },
+        {
+          "id": "strength-redirect",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "I see. And professionally? I see you've worked in project management for five years. What would you say is your biggest strength?",
+          "es": "Ya veo. ¿Y en lo profesional? Veo que trabajó cinco años en gestión de proyectos. ¿Cuál diría que es su mayor fortaleza?",
+          "next": "organized"
+        },
+        {
+          "id": "organized",
+          "kind": "write",
+          "itemIds": ["b2.situations.strengths-and-weaknesses"],
+          "prompt": "Di que tu mayor fortaleza es que eres muy organizado (o muy organizada).",
+          "accepted": [
+            "My {biggest|greatest|main} strength is {that I'm very organized|being very organized|organization}.",
+            "I'm {very|really|extremely} organized[. That's my {biggest|greatest|main} strength].",
+            "I'd say {my {biggest|greatest|main} strength is {that I'm very organized|being very organized|organization}|I'm very organized}."
+          ],
+          "tip": "En inglés americano se escribe «organized», con z.",
+          "next": "example",
+          "wrongNext": "example-repeat"
+        },
+        {
+          "id": "example",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "That's important in this role. Can you give me an example?",
+          "es": "Eso es importante en este puesto. ¿Me puede dar un ejemplo?",
+          "next": "in-charge"
+        },
+        {
+          "id": "example-repeat",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Sorry, could you say that again? Organization, okay. That's important in this role. Can you give me an example?",
+          "es": "Perdón, ¿lo puede repetir? La organización, de acuerdo. Eso es importante en este puesto. ¿Me puede dar un ejemplo?",
+          "next": "in-charge"
+        },
+        {
+          "id": "in-charge",
+          "kind": "choose",
+          "itemIds": ["b2.situations.be-in-charge-of"],
+          "options": [
+            {
+              "en": "In my last job, I was in charge of a team of six, and we always delivered on time.",
+              "rating": "good",
+              "feedback": "Un ejemplo concreto y con resultados: justo lo que piden.",
+              "next": "weakness"
+            },
+            {
+              "en": "I have a very organized calendar.",
+              "rating": "ok",
+              "feedback": "Correcto, pero es un ejemplo débil: falta un logro concreto.",
+              "next": "weakness"
+            },
+            {
+              "en": "I am in charge of organize everything.",
+              "rating": "wrong",
+              "feedback": "Error de gramática: después de «in charge of» va un sustantivo o un verbo en -ing («in charge of organizing»).",
+              "next": "weakness-flat"
+            }
+          ]
+        },
+        {
+          "id": "weakness",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Impressive. Now, what about weaknesses? What's one area you're working on?",
+          "es": "Impresionante. ¿Y las debilidades? ¿En qué aspecto está trabajando?",
+          "next": "weak-point"
+        },
+        {
+          "id": "weakness-flat",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Okay, so you organize things. Now, what about weaknesses? What's one area you're working on?",
+          "es": "Bien, entonces usted organiza las cosas. ¿Y las debilidades? ¿En qué aspecto está trabajando?",
+          "next": "weak-point"
+        },
+        {
+          "id": "weak-point",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I used to find it hard to delegate, but I've learned to trust my team more.",
+              "rating": "good",
+              "feedback": "Admites una debilidad real y muestras cómo mejoraste.",
+              "next": "questions"
+            },
+            {
+              "en": "I'm a perfectionist.",
+              "rating": "ok",
+              "feedback": "Gramaticalmente bien, pero es un cliché que los entrevistadores escuchan a diario.",
+              "next": "questions"
+            },
+            {
+              "en": "I don't have any weaknesses.",
+              "rating": "wrong",
+              "feedback": "Suena arrogante y poco creíble en una entrevista.",
+              "next": "questions-cool"
+            }
+          ]
+        },
+        {
+          "id": "questions",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "That's a very honest answer. Do you have any questions for us?",
+          "es": "Es una respuesta muy honesta. ¿Tiene alguna pregunta para nosotros?",
+          "next": "typical-day"
+        },
+        {
+          "id": "questions-cool",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Everyone has some, but okay. Do you have any questions for us?",
+          "es": "Todos tenemos alguna, pero bueno. ¿Tiene alguna pregunta para nosotros?",
+          "next": "typical-day"
+        },
+        {
+          "id": "typical-day",
+          "kind": "write",
+          "prompt": "Pregunta cómo es un día típico en este puesto.",
+          "accepted": [
+            "What does a typical day look like in this {role|position|job}?",
+            "What's a typical day like in this {role|position|job}?",
+            "{Could|Can} you tell me what a typical day {looks|is} like in this {role|position|job}?",
+            "What would a typical day {look|be} like in this {role|position|job}?"
+          ],
+          "tip": "Para preguntar cómo es algo: «What is it like?» o «What does it look like?».",
+          "next": "answer",
+          "wrongNext": "answer-check"
+        },
+        {
+          "id": "answer",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Good question. Mostly meetings with clients and planning with the team.",
+          "es": "Buena pregunta. Sobre todo reuniones con clientes y planificación con el equipo.",
+          "next": "close"
+        },
+        {
+          "id": "answer-check",
+          "kind": "npc",
+          "speaker": "interviewer",
+          "en": "Sorry, do you mean what you'd do day to day? Mostly meetings with clients and planning with the team.",
+          "es": "Perdón, ¿se refiere a qué haría en el día a día? Sobre todo reuniones con clientes y planificación con el equipo.",
+          "next": "close"
+        },
+        {
+          "id": "close",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "That sounds great. Thank you for your time.",
+              "rating": "good",
+              "feedback": "Cierras con interés y agradeces su tiempo.",
+              "next": "end"
+            },
+            {
+              "en": "Cool, thanks. Bye!",
+              "rating": "ok",
+              "feedback": "Correcto, pero demasiado informal para cerrar una entrevista.",
+              "next": "end"
+            },
+            {
+              "en": "Okay. So, how much is the salary?",
+              "rating": "wrong",
+              "feedback": "Preguntar el sueldo de golpe, como lo único que importa, suena brusco en una primera entrevista.",
+              "next": "end-cold"
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Cerraste la entrevista con buena impresión. Te van a llamar la próxima semana."
+        },
+        {
+          "id": "end-cold",
+          "kind": "end",
+          "text": "La entrevista terminó, pero la última pregunta dejó una impresión algo fría."
+        }
+      ],
+      "cardIds": ["b2.grammar.used-to"]
+    }
+  ]
+}

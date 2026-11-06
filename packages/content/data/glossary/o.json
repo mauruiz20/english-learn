@@ -529,6 +529,18 @@
       ]
     },
     {
+      "id": "glossary.organize",
+      "headword": "organize",
+      "kind": "word",
+      "forms": ["organize", "organizes", "organizing"],
+      "senses": [
+        {
+          "es": "organizar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.organized",
       "headword": "organized",
       "kind": "word",

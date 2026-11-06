@@ -1,0 +1,249 @@
+{
+  "dialogues": [
+    {
+      "id": "b2.dialogues.meeting-disagreement",
+      "level": "B2",
+      "title": "No estar de acuerdo en una reunión",
+      "setting": "En la reunión semanal, tu jefa Laura y tu colega Tom hablan de cuándo lanzar la nueva app. Tom quiere lanzarla el mes que viene; tú crees que todavía falla demasiado.",
+      "characters": [
+        {
+          "id": "laura",
+          "name": "Laura",
+          "role": "tu jefa"
+        },
+        {
+          "id": "tom",
+          "name": "Tom",
+          "role": "tu colega"
+        }
+      ],
+      "start": "open",
+      "nodes": [
+        {
+          "id": "open",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "So, Tom thinks we should launch the app next month. What do you all think?",
+          "es": "Bueno, Tom cree que deberíamos lanzar la app el mes que viene. ¿Qué opinan?",
+          "next": "tom-ready"
+        },
+        {
+          "id": "tom-ready",
+          "kind": "npc",
+          "speaker": "tom",
+          "en": "I really think it's ready. Our competitors are moving fast.",
+          "es": "De verdad creo que está lista. La competencia avanza rápido.",
+          "next": "disagree"
+        },
+        {
+          "id": "disagree",
+          "kind": "choose",
+          "itemIds": ["b2.situations.not-sure-i-agree"],
+          "options": [
+            {
+              "en": "I see your point, Tom, but I'm not sure I agree. We still have some serious bugs.",
+              "rating": "good",
+              "feedback": "Reconoces su idea y luego discrepas con un argumento: muy diplomático.",
+              "next": "tom-bugs"
+            },
+            {
+              "en": "I disagree. It's not ready.",
+              "rating": "ok",
+              "feedback": "Claro, pero demasiado directo para una reunión; suavízalo con «I'm not sure I agree».",
+              "next": "tom-defensive"
+            },
+            {
+              "en": "That's a stupid idea.",
+              "rating": "wrong",
+              "feedback": "Descalificar la idea de un colega es poco profesional.",
+              "next": "tom-defensive"
+            }
+          ]
+        },
+        {
+          "id": "tom-bugs",
+          "kind": "npc",
+          "speaker": "tom",
+          "en": "Bugs? Which ones?",
+          "es": "¿Errores? ¿Cuáles?",
+          "next": "crashes"
+        },
+        {
+          "id": "tom-defensive",
+          "kind": "npc",
+          "speaker": "tom",
+          "en": "Well, that's a bit harsh. Why do you say that?",
+          "es": "Bueno, eso es un poco duro. ¿Por qué lo dices?",
+          "next": "crashes"
+        },
+        {
+          "id": "crashes",
+          "kind": "write",
+          "prompt": "Explica que la app todavía se cierra sola en algunos teléfonos.",
+          "accepted": [
+            "The app still crashes on some {phones|devices}.",
+            "The app {is still crashing|keeps crashing} on some {phones|devices}.",
+            "It still crashes on some {phones|devices}.",
+            "It {is still crashing|keeps crashing} on some {phones|devices}."
+          ],
+          "tip": "«Crash» es el verbo para cuando una app se cierra sola.",
+          "next": "laura-fair",
+          "wrongNext": "laura-check"
+        },
+        {
+          "id": "laura-fair",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "That's a fair point. Tom, how long would it take to fix that?",
+          "es": "Es un buen punto. Tom, ¿cuánto tardaríamos en arreglarlo?",
+          "next": "tom-weeks"
+        },
+        {
+          "id": "laura-check",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "Sorry, do you mean the app still crashes? That's a fair point. Tom, how long would it take to fix that?",
+          "es": "Perdón, ¿quieres decir que la app todavía se cierra? Es un buen punto. Tom, ¿cuánto tardaríamos en arreglarlo?",
+          "next": "tom-weeks"
+        },
+        {
+          "id": "tom-weeks",
+          "kind": "npc",
+          "speaker": "tom",
+          "en": "Maybe two weeks, but then we'd miss the launch date.",
+          "es": "Quizás dos semanas, pero entonces no llegaríamos a la fecha de lanzamiento.",
+          "next": "propose"
+        },
+        {
+          "id": "propose",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "What if we launched two weeks later, with fewer features but no crashes?",
+              "rating": "good",
+              "feedback": "Propones una solución intermedia en lugar de solo criticar.",
+              "next": "laura-idea"
+            },
+            {
+              "en": "Then we should wait.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero no propones nada concreto.",
+              "next": "laura-idea"
+            },
+            {
+              "en": "Sorry to interrupt, but that's your problem, Tom.",
+              "rating": "wrong",
+              "feedback": "«Sorry to interrupt» no compensa culpar a Tom: suena agresivo.",
+              "next": "laura-constructive"
+            }
+          ]
+        },
+        {
+          "id": "laura-idea",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "Interesting. Tom, could we move the launch back two weeks?",
+          "es": "Interesante. Tom, ¿podríamos atrasar el lanzamiento dos semanas?",
+          "next": "tom-agrees"
+        },
+        {
+          "id": "laura-constructive",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "Let's keep this constructive, please. Tom, could we move the launch back two weeks?",
+          "es": "Mantengamos esto constructivo, por favor. Tom, ¿podríamos atrasar el lanzamiento dos semanas?",
+          "next": "tom-agrees"
+        },
+        {
+          "id": "tom-agrees",
+          "kind": "npc",
+          "speaker": "tom",
+          "en": "I guess so, if marketing agrees.",
+          "es": "Supongo que sí, si marketing está de acuerdo.",
+          "next": "marketing"
+        },
+        {
+          "id": "marketing",
+          "kind": "write",
+          "prompt": "Ofrécete a hablar tú con el equipo de marketing.",
+          "accepted": [
+            "I {can|could} {talk|speak} to {the marketing team|marketing}[ {today|this afternoon}].",
+            "I'll {talk|speak} to {the marketing team|marketing}[ {today|this afternoon}].",
+            "{Shall|Should} I {talk|speak} to {the marketing team|marketing}?",
+            "I'm happy to {talk|speak} to {the marketing team|marketing}[ {today|this afternoon}].",
+            "Let me {talk|speak} to {the marketing team|marketing}[ {today|this afternoon}]."
+          ],
+          "tip": "Para ofrecerte: «I can talk to…» o «I'll talk to…».",
+          "next": "summary",
+          "wrongNext": "summary-check"
+        },
+        {
+          "id": "summary",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "Great, thanks. Before we move on, could you send everyone a short summary after the meeting?",
+          "es": "Genial, gracias. Antes de seguir, ¿podrías mandarnos a todos un resumen breve después de la reunión?",
+          "next": "send"
+        },
+        {
+          "id": "summary-check",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "Sorry, you'll talk to marketing? Great, thanks. Before we move on, could you send everyone a short summary after the meeting?",
+          "es": "Perdón, ¿vas a hablar tú con marketing? Genial, gracias. Antes de seguir, ¿podrías mandarnos a todos un resumen breve después de la reunión?",
+          "next": "send"
+        },
+        {
+          "id": "send",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Sure, I'll send it this afternoon.",
+              "rating": "good",
+              "feedback": "Aceptas y dices cuándo: claro y profesional.",
+              "next": "budget"
+            },
+            {
+              "en": "Okay.",
+              "rating": "ok",
+              "feedback": "Correcto, pero di cuándo lo vas a mandar.",
+              "next": "budget"
+            },
+            {
+              "en": "Why me? Tom can do it.",
+              "rating": "wrong",
+              "feedback": "Rechazar una tarea delante de todos y pasársela a otro suena poco colaborativo.",
+              "next": "budget-tense"
+            }
+          ]
+        },
+        {
+          "id": "budget",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "Perfect. Let's move on to the budget, then.",
+          "es": "Perfecto. Entonces pasemos al presupuesto.",
+          "next": "end"
+        },
+        {
+          "id": "budget-tense",
+          "kind": "npc",
+          "speaker": "laura",
+          "en": "Tom is presenting the budget, so it would really help if you did it. Okay, let's move on to the budget.",
+          "es": "Tom presenta el presupuesto, así que ayudaría mucho que lo hicieras tú. Bueno, pasemos al presupuesto.",
+          "next": "end-tense"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Convenciste al equipo de mover el lanzamiento dos semanas, sin crear tensión."
+        },
+        {
+          "id": "end-tense",
+          "kind": "end",
+          "text": "El lanzamiento se mueve dos semanas, pero la reunión terminó con algo de tensión."
+        }
+      ]
+    }
+  ]
+}

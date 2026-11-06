@@ -217,6 +217,18 @@
       ]
     },
     {
+      "id": "glossary.ac",
+      "headword": "AC",
+      "kind": "word",
+      "forms": ["ac"],
+      "senses": [
+        {
+          "es": "aire acondicionado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.accent",
       "headword": "accent",
       "kind": "word",
@@ -1017,6 +1029,18 @@
       ]
     },
     {
+      "id": "glossary.air-conditioner",
+      "headword": "air conditioner",
+      "kind": "phrase",
+      "forms": ["air conditioner", "air conditioners"],
+      "senses": [
+        {
+          "es": "aparato de aire acondicionado",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.air-conditioning",
       "headword": "air conditioning",
       "kind": "phrase",
@@ -1073,6 +1097,18 @@
         {
           "es": "alarma, despertador",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.alex",
+      "headword": "Alex",
+      "kind": "word",
+      "forms": ["alex"],
+      "senses": [
+        {
+          "es": "Alex (nombre propio)",
+          "pos": "proper noun"
         }
       ]
     },

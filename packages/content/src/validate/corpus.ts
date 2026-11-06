@@ -1,6 +1,7 @@
 import { validateAnswerPatterns } from "./answer-patterns";
 import { validateCardReferences, validateCards } from "./cards";
 import { validateClozes } from "./cloze";
+import { validateDialogueReferences, validateDialogues } from "./dialogues";
 import {
   validateGlossaryCoverage,
   validateGlossaryEntries,
@@ -40,6 +41,7 @@ const LOCAL_RULES: readonly Rule[] = [
   validateGlossaryEntries,
   validateCards,
   validatePracticeCollections,
+  validateDialogues,
 ];
 
 /** Rules that need the whole corpus (ids, references, levels across files). */
@@ -54,6 +56,7 @@ const CROSS_FILE_RULES: readonly Rule[] = [
   validateTopicDeepenCards,
   validateReviewableLessonItems,
   validatePracticeLessons,
+  validateDialogueReferences,
   validateGlossaryForms,
   validateGlossaryCoverage,
 ];

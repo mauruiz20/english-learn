@@ -149,5 +149,25 @@ describe("createCorpus practice", () => {
 
     expect(corpus.practice).toEqual([]);
     expect(corpus.practiceLessons).toEqual([]);
+    expect(corpus.dialogues).toEqual([]);
+  });
+});
+
+describe("createCorpus dialogues", () => {
+  it("lists the dialogues by id, and their collection with the others", () => {
+    const files = [...fx.practiceFiles(), ...fx.dialogueFiles()].map((f) => f.data);
+    const corpus = createCorpus([fx.validFile(), ...files]);
+
+    expect(corpus.dialogues.map((d) => d.id)).toEqual([fx.DIALOGUE_ID]);
+    expect(corpus.dialoguesById.get(fx.DIALOGUE_ID)?.title).toBe("Un viaje corto");
+    expect(corpus.practice.map((c) => c.id)).toEqual([
+      "practice.phrasal-verbs",
+      "practice.dialogues",
+    ]);
+    // A dialogue group lists no lessons.
+    expect(corpus.practiceLessons.map((l) => l.id)).toEqual([
+      "b1.phrasal-verbs.practice-travel-1",
+      "b1.phrasal-verbs.practice-travel-2",
+    ]);
   });
 });

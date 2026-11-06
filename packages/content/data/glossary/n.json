@@ -253,6 +253,18 @@
       ]
     },
     {
+      "id": "glossary.never-mind",
+      "headword": "never mind",
+      "kind": "phrase",
+      "forms": ["never mind"],
+      "senses": [
+        {
+          "es": "no importa, olvídalo",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.nevertheless",
       "headword": "nevertheless",
       "kind": "word",

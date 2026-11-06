@@ -1,0 +1,242 @@
+{
+  "dialogues": [
+    {
+      "id": "b2.dialogues.hotel-complaint",
+      "level": "B2",
+      "title": "Quejarse de la habitación",
+      "setting": "Llegas a tu habitación de hotel, la 512, y el aire acondicionado no funciona. Hace mucho calor. Bajas a recepción.",
+      "characters": [
+        {
+          "id": "reception",
+          "name": "Recepción",
+          "role": "recepcionista del hotel"
+        }
+      ],
+      "start": "evening",
+      "nodes": [
+        {
+          "id": "evening",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "Good evening. How can I help you?",
+          "es": "Buenas noches. ¿En qué le puedo ayudar?",
+          "next": "complain"
+        },
+        {
+          "id": "complain",
+          "kind": "choose",
+          "itemIds": ["b2.situations.there-seems-to-be"],
+          "options": [
+            {
+              "en": "Hi, I'm in room 512. There seems to be a problem with the air conditioning.",
+              "rating": "good",
+              "feedback": "Das tu habitación y planteas el problema con tacto.",
+              "next": "what"
+            },
+            {
+              "en": "My air conditioning is broken.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena directo; «There seems to be a problem with…» es más diplomático.",
+              "next": "what"
+            },
+            {
+              "en": "Your hotel is a disaster. Nothing works!",
+              "rating": "wrong",
+              "feedback": "Exageras y atacas: así cuesta más que te ayuden con ganas.",
+              "next": "what-defensive"
+            }
+          ]
+        },
+        {
+          "id": "what",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "I'm sorry to hear that. What's the problem exactly?",
+          "es": "Lamento oír eso. ¿Cuál es exactamente el problema?",
+          "next": "explain"
+        },
+        {
+          "id": "what-defensive",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "I'm sorry you feel that way. Could you tell me exactly what isn't working?",
+          "es": "Lamento que lo vea así. ¿Me podría decir exactamente qué no funciona?",
+          "next": "explain"
+        },
+        {
+          "id": "explain",
+          "kind": "write",
+          "prompt": "Explica que el aire acondicionado no funciona y que hace mucho calor.",
+          "accepted": [
+            "The {air conditioning|AC|air conditioner} {isn't working|doesn't work}, and it's {really|very|too} hot[ in the room].",
+            "The {air conditioning|AC|air conditioner} {isn't working|doesn't work} and it's {really|very|too} hot[ in the room].",
+            "The {air conditioning|AC|air conditioner} {isn't working|doesn't work}. It's {really|very|too} hot[ in the room]."
+          ],
+          "tip": "Con «air conditioning» se usa «isn't working» o «doesn't work».",
+          "next": "fan",
+          "wrongNext": "fan-check"
+        },
+        {
+          "id": "fan",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "I'm afraid our technician has gone home for the day. Would you like a fan for tonight?",
+          "es": "Me temo que nuestro técnico ya se fue por hoy. ¿Quiere un ventilador para esta noche?",
+          "next": "ask-room"
+        },
+        {
+          "id": "fan-check",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "Sorry, is it the heating? Oh, the AC, I see. I'm afraid our technician has gone home for the day. Would you like a fan for tonight?",
+          "es": "Perdón, ¿es la calefacción? Ah, el aire acondicionado, ya veo. Me temo que nuestro técnico ya se fue por hoy. ¿Quiere un ventilador para esta noche?",
+          "next": "ask-room"
+        },
+        {
+          "id": "ask-room",
+          "kind": "choose",
+          "itemIds": ["b2.situations.i-was-wondering-if"],
+          "options": [
+            {
+              "en": "I was wondering if I could move to another room instead.",
+              "rating": "good",
+              "feedback": "«I was wondering if…» es una de las formas más corteses de pedir algo.",
+              "next": "room"
+            },
+            {
+              "en": "No. I want another room.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero «I want» suena exigente; «I was wondering if…» suaviza el pedido.",
+              "next": "room"
+            },
+            {
+              "en": "A fan? Are you joking?",
+              "rating": "wrong",
+              "feedback": "Sarcasmo y tono agresivo: el recepcionista no tiene la culpa.",
+              "next": "room-calm"
+            }
+          ]
+        },
+        {
+          "id": "room",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "Let me check... I can move you to room 304. It's a little smaller, but it's quiet and the AC works.",
+          "es": "Déjeme ver... Lo puedo cambiar a la habitación 304. Es un poco más pequeña, pero es tranquila y el aire acondicionado funciona.",
+          "next": "accept-room"
+        },
+        {
+          "id": "room-calm",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "I understand you're frustrated. Let me see what I can do... I can move you to room 304. It's a little smaller, but it's quiet and the AC works.",
+          "es": "Entiendo que esté molesto. Déjeme ver qué puedo hacer... Lo puedo cambiar a la habitación 304. Es un poco más pequeña, pero es tranquila y el aire acondicionado funciona.",
+          "next": "accept-room"
+        },
+        {
+          "id": "accept-room",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "That would be great, thank you. Does it face the street?",
+              "rating": "good",
+              "feedback": "Agradeces y preguntas por el ruido antes de aceptar.",
+              "next": "garden"
+            },
+            {
+              "en": "Okay, fine.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena resignado y seco.",
+              "next": "garden"
+            },
+            {
+              "en": "Smaller? I'm not paying the full price for that.",
+              "rating": "wrong",
+              "feedback": "Tono de reclamo innecesario: te están dando una solución.",
+              "next": "garden-price"
+            }
+          ]
+        },
+        {
+          "id": "garden",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "No, it faces the garden, so it's very quiet.",
+          "es": "No, da al jardín, así que es muy tranquila.",
+          "next": "luggage"
+        },
+        {
+          "id": "garden-price",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "I'll see what I can do about the price, but I can't promise anything. The room faces the garden, so it's very quiet.",
+          "es": "Voy a ver qué puedo hacer con el precio, pero no le prometo nada. La habitación da al jardín, así que es muy tranquila.",
+          "next": "luggage"
+        },
+        {
+          "id": "luggage",
+          "kind": "write",
+          "itemIds": ["b2.situations.id-appreciate-it-if"],
+          "prompt": "Pide con cortesía que te ayuden con las maletas, empezando con «Le agradecería que…».",
+          "accepted": [
+            "I'd [really ]appreciate it if {someone|you} could {help me with|help me carry|carry} my {bags|luggage|suitcases}.",
+            "I'd [really ]appreciate it if {someone|you} could help with my {bags|luggage|suitcases}."
+          ],
+          "tip": "«I'd appreciate it if you could…» es muy cortés; no olvides el «it».",
+          "next": "send-up",
+          "wrongNext": "send-up-check"
+        },
+        {
+          "id": "send-up",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "Of course. I'll send someone up for your bags in five minutes. Again, I'm very sorry about the trouble.",
+          "es": "Por supuesto. En cinco minutos alguien sube por sus maletas. De nuevo, lamento mucho las molestias.",
+          "next": "close"
+        },
+        {
+          "id": "send-up-check",
+          "kind": "npc",
+          "speaker": "reception",
+          "en": "Sorry, you need help with your luggage? Of course. I'll send someone up in five minutes. Again, I'm very sorry about the trouble.",
+          "es": "Perdón, ¿necesita ayuda con el equipaje? Por supuesto. En cinco minutos alguien sube. De nuevo, lamento mucho las molestias.",
+          "next": "close"
+        },
+        {
+          "id": "close",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "No worries. Thanks for sorting it out so quickly.",
+              "rating": "good",
+              "feedback": "Cierras con amabilidad y reconoces la ayuda.",
+              "next": "end"
+            },
+            {
+              "en": "Okay.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena seco.",
+              "next": "end"
+            },
+            {
+              "en": "You should be. I'm going to write a bad review.",
+              "rating": "wrong",
+              "feedback": "Amenazar con una mala reseña después de que te resolvieron el problema suena hostil.",
+              "next": "end-tense"
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Te cambiaron a una habitación tranquila y con aire acondicionado. Problema resuelto."
+        },
+        {
+          "id": "end-tense",
+          "kind": "end",
+          "text": "Tienes una habitación nueva, pero el trato con la recepción quedó tenso."
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.ha",
+      "headword": "ha",
+      "kind": "word",
+      "forms": ["ha"],
+      "senses": [
+        {
+          "es": "¡ja!",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.habit",
       "headword": "habit",
       "kind": "word",
@@ -264,6 +276,18 @@
       ]
     },
     {
+      "id": "glossary.harsh",
+      "headword": "harsh",
+      "kind": "word",
+      "forms": ["harsh"],
+      "senses": [
+        {
+          "es": "duro, severo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.has",
       "headword": "has",
       "kind": "word",
@@ -495,6 +519,18 @@
       ]
     },
     {
+      "id": "glossary.headphones",
+      "headword": "headphones",
+      "kind": "word",
+      "forms": ["headphones"],
+      "senses": [
+        {
+          "es": "audífonos, auriculares",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.health",
       "headword": "health",
       "kind": "word",
@@ -566,6 +602,18 @@
       "senses": [
         {
           "es": "calefacción, calentador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.heating",
+      "headword": "heating",
+      "kind": "word",
+      "forms": ["heating"],
+      "senses": [
+        {
+          "es": "calefacción",
           "pos": "noun"
         }
       ]
@@ -879,6 +927,18 @@
         {
           "es": "a casa",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.homemade",
+      "headword": "homemade",
+      "kind": "word",
+      "forms": ["homemade"],
+      "senses": [
+        {
+          "es": "casero, hecho en casa",
+          "pos": "adjective"
         }
       ]
     },

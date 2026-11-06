@@ -5,4 +5,5 @@ export * from "./placement";
 export * from "./glossary";
 export * from "./card";
 export * from "./practice";
+export * from "./dialogue";
 export * from "./content-file";

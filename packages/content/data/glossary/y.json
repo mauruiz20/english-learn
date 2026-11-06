@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.yeah",
+      "headword": "yeah",
+      "kind": "word",
+      "forms": ["yeah"],
+      "senses": [
+        {
+          "es": "sí (informal)",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.year",
       "headword": "year",
       "kind": "word",
@@ -73,6 +85,22 @@
         {
           "es": "te, lo, la, les",
           "pos": "pronoun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.you-d",
+      "headword": "you'd",
+      "kind": "word",
+      "forms": ["you'd"],
+      "senses": [
+        {
+          "es": "tú (you would) -rías: you'd do = harías",
+          "pos": "expression"
+        },
+        {
+          "es": "tú habías (you had)",
+          "pos": "expression"
         }
       ]
     },

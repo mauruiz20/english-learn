@@ -158,6 +158,7 @@ export default function RootLayout() {
                       name="practica/[collection]"
                       options={{ title: "Práctica libre", ...homeFallback }}
                     />
+                    <Stack.Screen name="dialogo/[id]" options={{ title: "Diálogo", headerRight }} />
                     <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
                     <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
                     <Stack.Screen
