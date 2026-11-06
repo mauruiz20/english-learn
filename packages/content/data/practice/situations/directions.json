@@ -33,7 +33,7 @@
       "es": "la segunda (calle) a la izquierda",
       "example": {
         "en": "Take the second street on the left.",
-        "es": "Daniela la segunda calle a la izquierda."
+        "es": "Toma la segunda calle a la izquierda."
       }
     },
     {
@@ -122,7 +122,7 @@
       "sentence": "Take the second street ___ the left.",
       "answers": ["on"],
       "distractors": ["in", "at"],
-      "es": "Daniela la segunda calle a la izquierda."
+      "es": "Toma la segunda calle a la izquierda."
     },
     {
       "id": "a2.situations.practice-directions-vocab-2",
@@ -243,9 +243,9 @@
       "type": "translation_choice",
       "sentence": "Don't take the first street. Take the second one on the left.",
       "options": [
-        "No tomes la primera calle. Daniela la segunda a la izquierda.",
-        "No tomes la segunda calle. Daniela la primera a la izquierda.",
-        "Daniela la primera calle y después gira dos veces a la izquierda."
+        "No tomes la primera calle. Toma la segunda a la izquierda.",
+        "No tomes la segunda calle. Toma la primera a la izquierda.",
+        "Toma la primera calle y después gira dos veces a la izquierda."
       ],
       "answerIndex": 0
     },
