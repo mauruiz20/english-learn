@@ -1,11 +1,12 @@
-import type { Exercise, Lesson } from "@english-learn/content";
+import type { Lesson } from "@english-learn/content";
 import { accuracy, xpForAnswer, type Verdict } from "@english-learn/domain";
 import { gradeExercise, type GradeResult } from "./grade-exercise";
+import type { SessionExercise } from "./listen-exercise";
 import type { ExerciseResponse } from "./response";
 
 export type ItemOutcome = {
   readonly itemId: string;
-  readonly exerciseType: Exercise["type"];
+  readonly exerciseType: SessionExercise["type"];
   readonly verdict: Verdict;
   readonly responseMs: number;
   /**
@@ -60,7 +61,7 @@ export type SessionInfo = Pick<Lesson, "id" | "title">;
 
 type InProgress = {
   readonly lesson: SessionInfo;
-  readonly exercises: readonly Exercise[];
+  readonly exercises: readonly SessionExercise[];
   readonly index: number;
   readonly answered: readonly Answered[];
   /** Items whose word the learner looked up so far in the session, in lookup order. */
@@ -87,14 +88,14 @@ export type LessonSessionAction =
 
 export function startLesson(
   lesson: SessionInfo,
-  exercises: readonly Exercise[],
+  exercises: readonly SessionExercise[],
 ): LessonSessionState {
   if (exercises.length === 0) throw new RangeError(`Lesson ${lesson.id} has no exercises`);
   return { status: "answering", lesson, exercises, index: 0, answered: [], lookedUp: [] };
 }
 
 /** The exercise being answered or reviewed, or null once the lesson is finished. */
-export function currentExercise(state: LessonSessionState): Exercise | null {
+export function currentExercise(state: LessonSessionState): SessionExercise | null {
   return state.status === "finished" ? null : (state.exercises[state.index] ?? null);
 }
 

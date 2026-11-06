@@ -3,9 +3,9 @@ import type { PreparedExercise } from "./prepare-exercise";
 
 /**
  * The English the feedback's speaker says once the answer is checked, or null when there is
- * none: the right sentence (word order, translate-write, listening), the cloze sentence with its
+ * none: the right sentence (word order, translate-write), the cloze sentence with its
  * gap filled, the English sentence of a translation choice (its answer is Spanish), an English
- * vocab answer. Reading has a speaker on its passage instead.
+ * vocab answer, the sentence a listening exercise said. Reading has a speaker on its passage instead.
  */
 export function spokenAnswer(prepared: PreparedExercise, correctAnswer: string): string | null {
   switch (prepared.type) {
@@ -20,5 +20,7 @@ export function spokenAnswer(prepared: PreparedExercise, correctAnswer: string):
       return correctAnswer;
     case "reading":
       return null;
+    case "listen":
+      return prepared.exercise.sentence;
   }
 }
