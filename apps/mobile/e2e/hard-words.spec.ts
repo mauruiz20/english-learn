@@ -13,11 +13,13 @@ async function bucketCount(page: Page, bucket: "mastered" | "learning" | "hard")
   return Number(await page.getByTestId(`bucket-count-${bucket}`).textContent());
 }
 
-/** Home's "N pendientes" (0 when nothing is due). */
+/**
+ * Home's "N pendientes", waiting for it: right after a save the page may still show what it
+ * loaded before, so never read "nothing due" as a count.
+ */
 async function pendingOnHome(page: Page): Promise<number> {
   const pending = page.getByText(/^\d+ pendientes?$/);
-  await expect(pending.or(page.getByText("Nada para repasar hoy"))).toBeVisible();
-  if (!(await pending.isVisible())) return 0;
+  await expect(pending).toBeVisible();
   return Number((await pending.textContent())?.match(/\d+/)?.[0]);
 }
 
@@ -35,6 +37,8 @@ test("hard words: missed review words show under Difíciles, can be practiced an
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
   await playSessionCorrectly(page, "¡Lección completada!");
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
+  // Home reloads on focus: its XP shows the lesson was saved.
+  await expect(page.getByText(/^[1-9]\d* XP$/)).toBeVisible();
 
   // Two days later: miss the first exercises of the review (lapses), get the rest right.
   await page.goto(`/?today=${DAY_3}`);
@@ -84,7 +88,7 @@ test("hard words: missed review words show under Difíciles, can be practiced an
   // Practicing words that were not due did not move their review: still nothing today, and
   // tomorrow home counts exactly what the review serves.
   await page.goto(`/?today=${DAY_3}`);
-  expect(await pendingOnHome(page)).toBe(0);
+  await expect(page.getByText("Nada para repasar hoy")).toBeVisible();
   await page.goto(`/?today=${DAY_4}`);
   const tomorrow = await pendingOnHome(page);
   expect(tomorrow).toBeGreaterThan(0);
