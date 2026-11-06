@@ -18,10 +18,10 @@
       "topics": ["situations"],
       "kind": "phrase",
       "term": "Do you have this in a (smaller) size?",
-      "es": "¿Lo tiene en una talla (más chica)?",
+      "es": "¿Lo tiene en una talla (más pequeña)?",
       "example": {
         "en": "Do you have this in a smaller size?",
-        "es": "¿Lo tiene en una talla más chica?"
+        "es": "¿Lo tiene en una talla más pequeña?"
       }
     },
     {
@@ -109,7 +109,7 @@
       "options": [
         "¿Tiene estos jeans en una talla más grande?",
         "¿Tiene estos jeans en otro color?",
-        "¿Tiene estos jeans en una talla más chica?"
+        "¿Tiene estos jeans en una talla más pequeña?"
       ],
       "answerIndex": 2
     },
@@ -215,7 +215,7 @@
       "type": "word_order",
       "tokens": ["in", "smaller", "have", "you", "size?", "this", "Do", "a"],
       "accepted": ["Do you have this in a smaller size?"],
-      "es": "¿Lo tiene en una talla más chica?"
+      "es": "¿Lo tiene en una talla más pequeña?"
     },
     {
       "id": "b1.situations.practice-shopping-write-1",
@@ -341,7 +341,7 @@
       "sentence": "I love this dress. Do you have it ___ a smaller size?",
       "answers": ["in"],
       "distractors": ["of", "with"],
-      "es": "Me encanta este vestido. ¿Lo tiene en una talla más chica?"
+      "es": "Me encanta este vestido. ¿Lo tiene en una talla más pequeña?"
     },
     {
       "id": "b1.situations.practice-shopping-vocab-5",

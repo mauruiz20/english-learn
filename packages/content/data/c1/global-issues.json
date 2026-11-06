@@ -241,8 +241,8 @@
       "type": "translate_write",
       "es": "No solo es un problema ambiental, sino también económico.",
       "accepted": [
-        "Not only is it an environmental {problem|issue}, but [it is ]also an economic one.",
-        "It is not {only|just} an environmental {problem|issue}[,] but also an economic one."
+        "Not only is it an environmental {problem|issue}, but [it is ]also an economic {one|problem|issue}.",
+        "It is not {only|just} an environmental {problem|issue}[,] but also an economic {one|problem|issue}."
       ]
     },
     {
@@ -403,7 +403,7 @@
       "type": "translate_write",
       "es": "Aunque la pobreza extrema ha disminuido, la desigualdad sigue creciendo.",
       "accepted": [
-        "{Although|Even though|Though|While} extreme poverty has {fallen|decreased|declined|gone down|dropped}, inequality {is still growing|continues to grow|keeps growing|is still rising|continues to rise|keeps rising}."
+        "{Although|Even though|Though|While} extreme poverty has {fallen|decreased|declined|gone down|dropped}, inequality {is still growing|continues to grow|keeps growing|is still rising|continues to rise|keeps rising|is still increasing|continues to increase|keeps increasing}."
       ]
     },
     {

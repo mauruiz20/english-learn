@@ -387,8 +387,8 @@
       "type": "translate_write",
       "es": "Si lo hubiera sabido, te habría llamado.",
       "accepted": [
-        "If I had known, I would have {called|phoned} you.",
-        "I would have {called|phoned} you if I had known."
+        "If I had known[ about it], I would have {called|phoned} you.",
+        "I would have {called|phoned} you if I had known[ about it]."
       ]
     },
     {
@@ -723,7 +723,7 @@
       },
       "type": "translate_write",
       "es": "Debería haber estudiado más.",
-      "accepted": ["{I|He|She} {should|ought to} have studied {more|harder}."]
+      "accepted": ["{I|He|She|You} {should|ought to} have studied {more|harder}."]
     },
     {
       "id": "b2.grammar.should-have-write-2",
@@ -938,9 +938,9 @@
       "type": "translate_write",
       "es": "Dicen que es muy rico.",
       "accepted": [
-        "{He|She} is said to be {very|really} rich.",
-        "It is said [that ]{he|she} is {very|really} rich.",
-        "{They|People} say [that ]{he|she} is {very|really} rich."
+        "He is said to be {very|really} rich.",
+        "It is said [that ]he is {very|really} rich.",
+        "{They|People} say [that ]he is {very|really} rich."
       ]
     },
     {

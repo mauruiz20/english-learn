@@ -301,7 +301,7 @@
       "type": "cloze",
       "sentence": "It's Sunday, so I ___ get up early.",
       "answers": ["don't have to"],
-      "distractors": ["mustn't to", "haven't to"],
+      "distractors": ["mustn't", "haven't to"],
       "es": "Es domingo, así que no tengo que levantarme temprano."
     },
     {

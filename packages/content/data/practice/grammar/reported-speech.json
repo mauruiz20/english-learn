@@ -54,7 +54,7 @@
       "topics": ["grammar"],
       "kind": "grammar",
       "term": "reported requests (asked me to…)",
-      "es": "pedidos en estilo indirecto: me pidió que…",
+      "es": "peticiones en estilo indirecto: me pidió que…",
       "example": {
         "en": "My mom asked me to buy some bread.",
         "es": "Mi mamá me pidió que comprara pan."

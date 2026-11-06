@@ -56,7 +56,7 @@
       "term": "better / the best, worse / the worst",
       "es": "comparativos irregulares: mejor, el mejor, peor, el peor",
       "example": {
-        "en": "My English is better than last year.",
+        "en": "My English is better than it was last year.",
         "es": "Mi inglés está mejor que el año pasado."
       }
     },
@@ -222,7 +222,7 @@
         "kind": "original"
       },
       "type": "cloze",
-      "sentence": "My English is ___ than last year.",
+      "sentence": "My English is ___ than it was last year.",
       "answers": ["better"],
       "distractors": ["more good", "best"],
       "es": "Mi inglés está mejor que el año pasado."

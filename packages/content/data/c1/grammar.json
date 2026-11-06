@@ -261,7 +261,7 @@
       "examples": [
         {
           "en": "The introduction of the new law caused a lot of debate.",
-          "es": "La aprobación de la nueva ley generó mucho debate."
+          "es": "La entrada en vigor de la nueva ley generó mucho debate."
         },
         {
           "en": "The failure of the talks surprised everyone.",
@@ -586,8 +586,8 @@
       "type": "translate_write",
       "es": "Fue la directora quien encontró la solución.",
       "accepted": [
-        "It was the {director|manager} {who|that} {found|came up with} the solution.",
-        "The {director|manager} was the one who {found|came up with} the solution."
+        "It was the {director|manager|principal} {who|that} {found|came up with} the solution.",
+        "The {director|manager|principal} was the one who {found|came up with} the solution."
       ]
     },
     {
@@ -785,7 +785,7 @@
         "La nueva ley se introdujo sin ningún debate.",
         "El debate sobre la nueva ley terminó con su introducción.",
         "La introducción de la ley fue un gran acuerdo.",
-        "La aprobación de la nueva ley generó mucho debate."
+        "La entrada en vigor de la nueva ley generó mucho debate."
       ],
       "answerIndex": 3
     },

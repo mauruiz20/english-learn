@@ -268,7 +268,7 @@
       "sentence": "Hello, Mrs. Hall? ___ is Laura from the dentist's office.",
       "answers": ["This"],
       "distractors": ["I", "Here"],
-      "es": "¿Hola, señora Hall? Habla Laura, del consultorio del dentista."
+      "es": "Hola, ¿señora Hall? Habla Laura, del consultorio del dentista."
     },
     {
       "id": "b1.situations.practice-phone-write-2",
@@ -313,7 +313,7 @@
       "sentence": "I'm sorry, Mr. Davis is out of the office. Can I ___ a message?",
       "answers": ["take"],
       "distractors": ["leave", "do"],
-      "es": "Lo siento, el señor Davis no está en la oficina. ¿Quieres dejarle un mensaje?"
+      "es": "Lo siento, el señor Davis no está en la oficina. ¿Quieres que le pase un mensaje?"
     },
     {
       "id": "b1.situations.practice-phone-order-2",
@@ -322,7 +322,10 @@
       "source": { "kind": "original" },
       "type": "word_order",
       "tokens": ["You're", "can't", "Sorry,", "up.", "hear", "breaking", "you.", "I"],
-      "accepted": ["Sorry, I can't hear you. You're breaking up."],
+      "accepted": [
+        "Sorry, I can't hear you. You're breaking up.",
+        "You're breaking up. Sorry, I can't hear you."
+      ],
       "es": "Perdón, no te escucho. Se corta la llamada."
     },
     {

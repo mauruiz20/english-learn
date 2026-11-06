@@ -193,7 +193,10 @@
       },
       "type": "translate_write",
       "es": "El gobierno subió los impuestos a la gasolina.",
-      "accepted": ["The government {raised|increased} {[the ]taxes|the tax} on {gasoline|gas}."]
+      "accepted": [
+        "The government {raised|increased} {[the ]taxes|the tax} on {gasoline|gas}.",
+        "The government {raised|increased} the {gasoline|gas} {tax|taxes}."
+      ]
     },
     {
       "id": "b2.climate-policy.vocab-002",
