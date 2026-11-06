@@ -675,6 +675,18 @@
       ]
     },
     {
+      "id": "glossary.helpful",
+      "headword": "helpful",
+      "kind": "word",
+      "forms": ["helpful"],
+      "senses": [
+        {
+          "es": "útil, de gran ayuda",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.her",
       "headword": "her",
       "kind": "word",
@@ -875,6 +887,18 @@
         {
           "es": "historia",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.hmm",
+      "headword": "hmm",
+      "kind": "word",
+      "forms": ["hmm"],
+      "senses": [
+        {
+          "es": "mmm (duda)",
+          "pos": "interjection"
         }
       ]
     },

@@ -1190,6 +1190,18 @@
       ]
     },
     {
+      "id": "glossary.lovely",
+      "headword": "lovely",
+      "kind": "word",
+      "forms": ["lovely"],
+      "senses": [
+        {
+          "es": "precioso, encantador",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.low",
       "headword": "low",
       "kind": "word",

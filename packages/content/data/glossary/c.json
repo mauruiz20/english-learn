@@ -281,6 +281,18 @@
       ]
     },
     {
+      "id": "glossary.cancellation",
+      "headword": "cancellation",
+      "kind": "word",
+      "forms": ["cancellation", "cancellations"],
+      "senses": [
+        {
+          "es": "cancelación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.cancer",
       "headword": "cancer",
       "kind": "word",
@@ -2313,6 +2325,18 @@
         {
           "es": "conectado, unido",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.connection",
+      "headword": "connection",
+      "kind": "word",
+      "forms": ["connection", "connections"],
+      "senses": [
+        {
+          "es": "conexión",
+          "pos": "noun"
         }
       ]
     },

@@ -90,6 +90,18 @@
       ]
     },
     {
+      "id": "glossary.kevin",
+      "headword": "Kevin",
+      "kind": "word",
+      "forms": ["kevin"],
+      "senses": [
+        {
+          "es": "Kevin (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.key",
       "headword": "key",
       "kind": "word",

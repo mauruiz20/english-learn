@@ -297,6 +297,18 @@
       ]
     },
     {
+      "id": "glossary.reboot",
+      "headword": "reboot",
+      "kind": "word",
+      "forms": ["reboot", "reboots", "rebooted", "rebooting"],
+      "senses": [
+        {
+          "es": "reiniciar (un aparato)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.receipt",
       "headword": "receipt",
       "kind": "word",
@@ -1213,6 +1225,18 @@
       ]
     },
     {
+      "id": "glossary.restart",
+      "headword": "restart",
+      "kind": "word",
+      "forms": ["restart", "restarts", "restarted", "restarting"],
+      "senses": [
+        {
+          "es": "reiniciar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.restaurant",
       "headword": "restaurant",
       "kind": "word",
@@ -1616,6 +1640,18 @@
       "senses": [
         {
           "es": "(apellido)"
+        }
+      ]
+    },
+    {
+      "id": "glossary.router",
+      "headword": "router",
+      "kind": "word",
+      "forms": ["router", "routers"],
+      "senses": [
+        {
+          "es": "router, módem",
+          "pos": "noun"
         }
       ]
     },

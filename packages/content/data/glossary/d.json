@@ -220,6 +220,18 @@
       ]
     },
     {
+      "id": "glossary.deaf",
+      "headword": "deaf",
+      "kind": "word",
+      "forms": ["deaf"],
+      "senses": [
+        {
+          "es": "sordo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.deal",
       "headword": "deal",
       "kind": "word",

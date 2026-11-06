@@ -1,0 +1,243 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.internet-support",
+      "level": "B1",
+      "title": "Llamar al soporte técnico",
+      "setting": "Desde ayer no tienes internet en casa y trabajas desde casa. Llamas al servicio de atención de tu proveedor.",
+      "characters": [
+        {
+          "id": "agent",
+          "name": "Kevin",
+          "role": "agente de soporte técnico"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Thank you for calling customer support. This is Kevin. How can I help you today?",
+          "es": "Gracias por llamar al servicio de atención al cliente. Habla Kevin. ¿En qué le puedo ayudar hoy?",
+          "next": "problem"
+        },
+        {
+          "id": "problem",
+          "kind": "write",
+          "itemIds": ["b1.situations.im-calling-about"],
+          "prompt": "Explica que llamas porque no tienes internet desde ayer.",
+          "accepted": [
+            "I'm calling because my internet {hasn't been working|hasn't worked|has been down} since yesterday.",
+            "I'm calling about my internet. It {hasn't been working|hasn't worked|has been down} since yesterday.",
+            "My internet {hasn't been working|hasn't worked|has been down} since yesterday.",
+            "I haven't had internet since yesterday."
+          ],
+          "tip": "Con «since yesterday» se usa el presente perfecto: «It hasn't been working since yesterday.»",
+          "next": "hold",
+          "wrongNext": "hold-check"
+        },
+        {
+          "id": "hold",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "I'm sorry to hear that. Let me check your connection. Could you hold on a moment?",
+          "es": "Lamento oír eso. Déjeme revisar su conexión. ¿Puede esperar un momento?",
+          "next": "answer-hold"
+        },
+        {
+          "id": "hold-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sorry, your internet isn't working? Let me check your connection. Could you hold on a moment?",
+          "es": "Perdón, ¿no le funciona internet? Déjeme revisar su conexión. ¿Puede esperar un momento?",
+          "next": "answer-hold"
+        },
+        {
+          "id": "answer-hold",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Sure, no problem.",
+              "rating": "good",
+              "feedback": "Respuesta amable y natural.",
+              "next": "router"
+            },
+            {
+              "en": "Fine, but please be quick.",
+              "rating": "ok",
+              "feedback": "Se entiende tu urgencia, pero suena impaciente.",
+              "next": "router"
+            },
+            {
+              "en": "No, I'm at home.",
+              "rating": "wrong",
+              "feedback": "Malentendido: «hold on» es «esperar en la línea», no «estar afuera».",
+              "next": "router-explain"
+            }
+          ]
+        },
+        {
+          "id": "router",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Thanks for waiting. I don't see any problem in your area. Is the light on your router green or red?",
+          "es": "Gracias por esperar. No veo problemas en su zona. ¿La luz de su router está verde o roja?",
+          "next": "light"
+        },
+        {
+          "id": "router-explain",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sorry, I mean can you wait on the line for a moment? ... Thanks for waiting. I don't see any problem in your area. Is the light on your router green or red?",
+          "es": "Perdón, me refiero a si puede esperar en la línea un momento. ... Gracias por esperar. No veo problemas en su zona. ¿La luz de su router está verde o roja?",
+          "next": "light"
+        },
+        {
+          "id": "light",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "It's red, and it's blinking.",
+              "rating": "good",
+              "feedback": "Das el color y un detalle útil para el técnico.",
+              "next": "restart"
+            },
+            {
+              "en": "Red.",
+              "rating": "ok",
+              "feedback": "Correcto, aunque muy breve.",
+              "next": "restart"
+            },
+            {
+              "en": "It's in the living room.",
+              "rating": "wrong",
+              "feedback": "Malentendido: te pregunta el color de la luz, no dónde está el router.",
+              "next": "restart-color"
+            }
+          ]
+        },
+        {
+          "id": "restart",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Okay. Let's restart it. Turn it off, wait thirty seconds, and turn it back on.",
+          "es": "Bien. Vamos a reiniciarlo. Apáguelo, espere treinta segundos y vuelva a encenderlo.",
+          "next": "restarted"
+        },
+        {
+          "id": "restart-color",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Ha, I mean the color of the light. Red? Okay. Let's restart it. Turn it off, wait thirty seconds, and turn it back on.",
+          "es": "Ja, me refiero al color de la luz. ¿Roja? Bien. Vamos a reiniciarlo. Apáguelo, espere treinta segundos y vuelva a encenderlo.",
+          "next": "restarted"
+        },
+        {
+          "id": "restarted",
+          "kind": "write",
+          "itemIds": ["a2.phrasal-verbs.turn-on"],
+          "prompt": "Ya lo hiciste. Dile que lo apagaste y lo volviste a encender, pero la luz sigue roja.",
+          "accepted": [
+            "I turned it off and {on again|back on}, but the light is still red.",
+            "I {restarted|rebooted} it, but the light is still red.",
+            "I did that, but the light is still red."
+          ],
+          "tip": "«Turn off» es apagar y «turn on», encender: «I turned it off and back on.»",
+          "next": "technician",
+          "wrongNext": "technician-check"
+        },
+        {
+          "id": "technician",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Then I need to send a technician. The earliest I have is Thursday morning.",
+          "es": "Entonces tengo que mandarle un técnico. Lo más pronto que tengo es el jueves por la mañana.",
+          "next": "sooner"
+        },
+        {
+          "id": "technician-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Still red? Then I need to send a technician. The earliest I have is Thursday morning.",
+          "es": "¿Sigue roja? Entonces tengo que mandarle un técnico. Lo más pronto que tengo es el jueves por la mañana.",
+          "next": "sooner"
+        },
+        {
+          "id": "sooner",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Is there any way someone could come sooner? I work from home.",
+              "rating": "good",
+              "feedback": "Pides algo mejor con cortesía y das un buen motivo.",
+              "next": "tomorrow"
+            },
+            {
+              "en": "Thursday? That's too late.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero solo te quejas sin pedir nada concreto.",
+              "next": "tomorrow"
+            },
+            {
+              "en": "Thursday is fine. I'll bring the router to your office.",
+              "rating": "wrong",
+              "feedback": "Malentendido: el técnico va a tu casa; no tienes que llevar nada.",
+              "next": "tomorrow-explain"
+            }
+          ]
+        },
+        {
+          "id": "tomorrow",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Let me check... Actually, I have a cancellation tomorrow at two. Would that work?",
+          "es": "Déjeme ver... De hecho, se canceló una cita mañana a las dos. ¿Le sirve?",
+          "next": "discount"
+        },
+        {
+          "id": "tomorrow-explain",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Oh, no need. The technician comes to your home. And actually, I have a cancellation tomorrow at two. Would that work?",
+          "es": "Ah, no hace falta. El técnico va a su casa. Y de hecho, se canceló una cita mañana a las dos. ¿Le sirve?",
+          "next": "discount"
+        },
+        {
+          "id": "discount",
+          "kind": "write",
+          "prompt": "Acepta la cita de mañana y pregunta si te van a descontar los días sin internet.",
+          "accepted": [
+            "{Yes, that|That} {works|would work|is perfect}[ for me]. {Will|Can|Could} I get a discount for the days without internet?",
+            "{Yes, that|That} {works|would work|is perfect}[ for me]. Do I get {a discount|money back} for the days without internet?"
+          ],
+          "tip": "«Will I get a discount…?» es una forma clara y educada de pedirlo.",
+          "next": "credit",
+          "wrongNext": "credit-check"
+        },
+        {
+          "id": "credit",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Yes, you'll get a credit on your next bill. The technician will see you tomorrow at two.",
+          "es": "Sí, le aparecerá un descuento en su próxima factura. El técnico lo visitará mañana a las dos.",
+          "next": "end"
+        },
+        {
+          "id": "credit-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "So tomorrow at two works? Great. And yes, you'll get a credit on your next bill.",
+          "es": "Entonces, ¿mañana a las dos le sirve? Perfecto. Y sí, le aparecerá un descuento en su próxima factura.",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Conseguiste un técnico para mañana y un descuento por los días sin internet."
+        }
+      ],
+      "cardIds": ["b1.phrasal-verbs.technology", "b1.grammar.present-perfect-past-simple"]
+    }
+  ]
+}

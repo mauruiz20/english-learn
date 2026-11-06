@@ -2313,6 +2313,18 @@
       ]
     },
     {
+      "id": "glossary.awake",
+      "headword": "awake",
+      "kind": "word",
+      "forms": ["awake"],
+      "senses": [
+        {
+          "es": "despierto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.award",
       "headword": "award",
       "kind": "word",

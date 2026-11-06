@@ -1,0 +1,275 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.splitting-the-bill",
+      "level": "B1",
+      "title": "Dividir la cuenta",
+      "setting": "Cenas con tus amigos Jess y Marco. Ellos pidieron vino y postre; tú, solo una ensalada y agua. Ahora toca pagar.",
+      "characters": [
+        {
+          "id": "jess",
+          "name": "Jess",
+          "role": "tu amiga"
+        },
+        {
+          "id": "marco",
+          "name": "Marco",
+          "role": "tu amigo"
+        }
+      ],
+      "start": "full",
+      "nodes": [
+        {
+          "id": "full",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "That was amazing! I'm so full.",
+          "es": "¡Estuvo buenísimo! Estoy llena.",
+          "next": "check-q"
+        },
+        {
+          "id": "check-q",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Me too. Should we get the check?",
+          "es": "Yo también. ¿Pedimos la cuenta?",
+          "next": "check"
+        },
+        {
+          "id": "check",
+          "kind": "write",
+          "itemIds": ["a2.situations.could-we-have-the-check"],
+          "prompt": "El mesero pasa cerca. Pídele la cuenta con cortesía.",
+          "accepted": [
+            "Excuse me, {could|can} we {have|get} the {check|bill}[, please]?",
+            "{Could|Can} we {have|get} the {check|bill}[, please]?",
+            "Excuse me, {could|can} you bring us the {check|bill}[, please]?"
+          ],
+          "tip": "«Could we have the check, please?» es la forma más común en Estados Unidos.",
+          "next": "forty",
+          "wrongNext": "forty-late"
+        },
+        {
+          "id": "forty",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "Okay, here it is. A hundred and twenty dollars. So, forty each?",
+          "es": "Bueno, aquí está. Ciento veinte dólares. ¿Cuarenta cada uno, entonces?",
+          "next": "share"
+        },
+        {
+          "id": "forty-late",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "I think the server didn't hear you. Oh, never mind, he's bringing it. A hundred and twenty dollars. So, forty each?",
+          "es": "Creo que el mesero no te escuchó. Ah, no importa, ya la trae. Ciento veinte dólares. ¿Cuarenta cada uno, entonces?",
+          "next": "share"
+        },
+        {
+          "id": "share",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Actually, I only had a salad and water. Would you mind if I just paid for mine?",
+              "rating": "good",
+              "feedback": "Explicas el motivo y lo pides con «Would you mind if…?»: claro y nada incómodo.",
+              "next": "fair"
+            },
+            {
+              "en": "No. I only had a salad.",
+              "rating": "ok",
+              "feedback": "Tienes razón, pero el «No» seco suena brusco entre amigos.",
+              "next": "fair-awkward"
+            },
+            {
+              "en": "Forty? No way. I'm not paying for your wine.",
+              "rating": "wrong",
+              "feedback": "Tienes un buen motivo, pero lo dices de forma agresiva y haces sentir mal a tus amigos.",
+              "next": "fair-hurt"
+            }
+          ]
+        },
+        {
+          "id": "fair",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Oh, of course! That's totally fair. So how much was yours?",
+          "es": "¡Ah, claro! Es totalmente justo. ¿Y cuánto fue lo tuyo?",
+          "next": "mine"
+        },
+        {
+          "id": "fair-awkward",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Oh... sure, that's fair, I guess. So how much was yours?",
+          "es": "Ah... claro, supongo que es justo. ¿Y cuánto fue lo tuyo?",
+          "next": "mine"
+        },
+        {
+          "id": "fair-hurt",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "Whoa, okay. You could say that more nicely. Fine, how much was yours?",
+          "es": "Uy, bueno. Podrías decirlo de otra forma. Está bien, ¿cuánto fue lo tuyo?",
+          "next": "mine"
+        },
+        {
+          "id": "mine",
+          "kind": "write",
+          "prompt": "Dile que lo tuyo son unos veintidós dólares con la propina.",
+          "accepted": [
+            "{Mine|My part|My share} is {about|around} twenty-two dollars with the tip.",
+            "{Mine|My part|My share} comes to {about|around} twenty-two dollars with the tip.",
+            "{It's|That's} {about|around} twenty-two dollars with the tip.",
+            "{About|Around} twenty-two dollars with the tip."
+          ],
+          "tip": "«Mine» reemplaza a «my part»: «Mine is about twenty-two dollars with the tip.»",
+          "next": "cash",
+          "wrongNext": "cash-check"
+        },
+        {
+          "id": "cash",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Perfect. Oh no, I don't have my card with me. Can I pay you back tomorrow?",
+          "es": "Perfecto. Ay, no, no traje mi tarjeta. ¿Te lo devuelvo mañana?",
+          "next": "pay-back"
+        },
+        {
+          "id": "cash-check",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Twenty-two? Perfect. Oh no, I don't have my card with me. Can I pay you back tomorrow?",
+          "es": "¿Veintidós? Perfecto. Ay, no, no traje mi tarjeta. ¿Te lo devuelvo mañana?",
+          "next": "pay-back"
+        },
+        {
+          "id": "pay-back",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Sure, no problem. I'll pay for you now.",
+              "rating": "good",
+              "feedback": "Ayudas a tu amigo sin hacerlo sentir mal.",
+              "next": "tip"
+            },
+            {
+              "en": "Okay, but don't forget.",
+              "rating": "ok",
+              "feedback": "Aceptas, pero suena desconfiado.",
+              "next": "tip"
+            },
+            {
+              "en": "No. You always forget.",
+              "rating": "wrong",
+              "feedback": "Suena muy duro y lo avergüenzas delante de Jess.",
+              "next": "tip-hurt"
+            }
+          ]
+        },
+        {
+          "id": "tip",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "Thanks! Hey, the service was great. Should we leave a good tip?",
+          "es": "¡Gracias! Oye, la atención fue excelente. ¿Dejamos una buena propina?",
+          "next": "chip-in"
+        },
+        {
+          "id": "tip-hurt",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Hey, that was one time! I'll pay you back tonight, I promise.",
+          "es": "¡Oye, fue una sola vez! Te lo devuelvo esta noche, lo prometo.",
+          "next": "tip-hurt-jess"
+        },
+        {
+          "id": "tip-hurt-jess",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "Okay, okay. The service was great. Should we leave a good tip?",
+          "es": "Bueno, bueno. La atención fue excelente. ¿Dejamos una buena propina?",
+          "next": "chip-in"
+        },
+        {
+          "id": "chip-in",
+          "kind": "choose",
+          "itemIds": ["b1.phrasal-verbs.chip-in"],
+          "options": [
+            {
+              "en": "Definitely. Let's all chip in for a twenty percent tip.",
+              "rating": "good",
+              "feedback": "«Chip in» es poner dinero entre todos: perfecto para la propina.",
+              "next": "next-time"
+            },
+            {
+              "en": "I guess so.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena poco entusiasta.",
+              "next": "next-time"
+            },
+            {
+              "en": "No, tips aren't necessary.",
+              "rating": "wrong",
+              "feedback": "En Estados Unidos la propina es parte del sueldo de los meseros; no dejarla queda muy mal.",
+              "next": "next-time-tip"
+            }
+          ]
+        },
+        {
+          "id": "next-time",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Great. This was fun. We should do it again soon!",
+          "es": "Genial. Lo pasamos muy bien. ¡Tenemos que repetirlo pronto!",
+          "next": "again"
+        },
+        {
+          "id": "next-time-tip",
+          "kind": "npc",
+          "speaker": "marco",
+          "en": "Servers here really count on tips. Let's leave twenty percent. Anyway, this was fun. We should do it again soon!",
+          "es": "Los meseros aquí dependen mucho de las propinas. Dejemos el veinte por ciento. En fin, lo pasamos muy bien. ¡Tenemos que repetirlo pronto!",
+          "next": "again"
+        },
+        {
+          "id": "again",
+          "kind": "write",
+          "prompt": "Propón volver a salir el próximo viernes.",
+          "accepted": [
+            "{Let's|We could} do it again next Friday.",
+            "How about next Friday?",
+            "{Why don't we|Shall we} do it again next Friday?",
+            "{Let's|We could} {go out|have dinner} again next Friday.",
+            "{Why don't we|Shall we} {go out|have dinner} again next Friday?"
+          ],
+          "tip": "Para proponer un plan: «Let's…», «How about…?» o «Why don't we…?»",
+          "next": "friday",
+          "wrongNext": "friday-check"
+        },
+        {
+          "id": "friday",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "Next Friday works for me!",
+          "es": "¡El viernes que viene me viene bien!",
+          "next": "end"
+        },
+        {
+          "id": "friday-check",
+          "kind": "npc",
+          "speaker": "jess",
+          "en": "Sorry, next Friday? Sure, that works for me!",
+          "es": "Perdón, ¿el viernes que viene? ¡Claro, me viene bien!",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Pagaste solo lo tuyo, ayudaste a Marco y ya tienen plan para el viernes."
+        }
+      ],
+      "cardIds": ["b1.grammar.gerund-infinitive"]
+    }
+  ]
+}

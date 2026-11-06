@@ -1612,6 +1612,18 @@
       ]
     },
     {
+      "id": "glossary.totally",
+      "headword": "totally",
+      "kind": "word",
+      "forms": ["totally"],
+      "senses": [
+        {
+          "es": "totalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.touch",
       "headword": "touch",
       "kind": "word",

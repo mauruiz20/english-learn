@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.ugly",
+      "headword": "ugly",
+      "kind": "word",
+      "forms": ["ugly", "uglier", "ugliest"],
+      "senses": [
+        {
+          "es": "feo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.um",
       "headword": "um",
       "kind": "word",

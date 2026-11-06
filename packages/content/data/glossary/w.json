@@ -825,6 +825,18 @@
       ]
     },
     {
+      "id": "glossary.whoa",
+      "headword": "whoa",
+      "kind": "word",
+      "forms": ["whoa"],
+      "senses": [
+        {
+          "es": "¡epa!, ¡uy!",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.whole",
       "headword": "whole",
       "kind": "word",
@@ -1005,6 +1017,18 @@
         {
           "es": "con viento, ventoso",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wine",
+      "headword": "wine",
+      "kind": "word",
+      "forms": ["wine", "wines"],
+      "senses": [
+        {
+          "es": "vino",
+          "pos": "noun"
         }
       ]
     },
@@ -1369,6 +1393,18 @@
         {
           "es": "¡guau!, ¡vaya!",
           "pos": "interjection"
+        }
+      ]
+    },
+    {
+      "id": "glossary.wrap",
+      "headword": "wrap",
+      "kind": "word",
+      "forms": ["wrap", "wraps", "wrapped", "wrapping"],
+      "senses": [
+        {
+          "es": "envolver",
+          "pos": "verb"
         }
       ]
     },

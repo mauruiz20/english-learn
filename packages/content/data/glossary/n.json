@@ -344,7 +344,7 @@
       "id": "glossary.nice",
       "headword": "nice",
       "kind": "word",
-      "forms": ["nice", "nicest"],
+      "forms": ["nice", "nicest", "nicer"],
       "senses": [
         {
           "es": "lindo, agradable",
@@ -365,6 +365,18 @@
         {
           "es": "mucho gusto, encantado de conocerte",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nicely",
+      "headword": "nicely",
+      "kind": "word",
+      "forms": ["nicely"],
+      "senses": [
+        {
+          "es": "amablemente, bien",
+          "pos": "adverb"
         }
       ]
     },

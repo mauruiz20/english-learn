@@ -51,6 +51,18 @@
           ]
         },
         {
+          "id": "practice.dialogues.sorting-things-out",
+          "level": "B1",
+          "title": "Resolver cosas",
+          "summary": "Regatear, dividir la cuenta, llamar a soporte técnico y hablar con un vecino.",
+          "dialogueIds": [
+            "b1.dialogues.market-bargaining",
+            "b1.dialogues.splitting-the-bill",
+            "b1.dialogues.internet-support",
+            "b1.dialogues.noisy-neighbor"
+          ]
+        },
+        {
           "id": "practice.dialogues.with-tact",
           "level": "B2",
           "title": "Con tacto",

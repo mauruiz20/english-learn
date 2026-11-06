@@ -461,6 +461,18 @@
       ]
     },
     {
+      "id": "glossary.beauty",
+      "headword": "beauty",
+      "kind": "word",
+      "forms": ["beauty", "beauties"],
+      "senses": [
+        {
+          "es": "belleza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.because",
       "headword": "because",
       "kind": "word",
@@ -888,6 +900,18 @@
       ]
     },
     {
+      "id": "glossary.blink",
+      "headword": "blink",
+      "kind": "word",
+      "forms": ["blink", "blinks", "blinked", "blinking"],
+      "senses": [
+        {
+          "es": "parpadear",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.block",
       "headword": "block",
       "kind": "word",
@@ -1140,6 +1164,18 @@
         {
           "es": "ambos, los dos",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bother",
+      "headword": "bother",
+      "kind": "word",
+      "forms": ["bother", "bothers", "bothered", "bothering"],
+      "senses": [
+        {
+          "es": "molestar",
+          "pos": "verb"
         }
       ]
     },
