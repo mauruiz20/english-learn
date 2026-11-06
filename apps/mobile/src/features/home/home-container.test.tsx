@@ -549,6 +549,17 @@ describe("HomeContainer", () => {
     expect(mockPush).toHaveBeenCalledWith("/fichas");
   });
 
+  it("opens Tu progreso", async () => {
+    await renderContainer(createFakeRepository());
+
+    await fireEvent.press(
+      await screen.findByRole("button", {
+        name: "Tu progreso: dominadas, en proceso y difíciles",
+      }),
+    );
+    expect(mockPush).toHaveBeenCalledWith("/progreso");
+  });
+
   describe("deepen steps", () => {
     const linkedContent = createCorpus([
       {
