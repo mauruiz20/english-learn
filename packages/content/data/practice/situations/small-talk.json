@@ -327,7 +327,7 @@
       "source": { "kind": "original" },
       "type": "word_order",
       "tokens": ["talking", "really", "was", "to", "nice", "you.", "It"],
-      "accepted": ["It was really nice talking to you."],
+      "accepted": ["It was really nice talking to you.", "It really was nice talking to you."],
       "es": "Fue un verdadero gusto hablar contigo."
     },
     {

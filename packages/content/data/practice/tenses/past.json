@@ -221,9 +221,7 @@
       "source": { "kind": "original" },
       "type": "translate_write",
       "es": "Estaba manejando cuando vi el accidente.",
-      "accepted": [
-        "{I was driving when I|He was driving when he|She was driving when she} saw the accident."
-      ]
+      "accepted": ["I was driving when I saw the accident."]
     },
     {
       "id": "b1.tenses.practice-past-reading-1",

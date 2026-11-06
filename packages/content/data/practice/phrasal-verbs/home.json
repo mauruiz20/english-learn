@@ -212,8 +212,8 @@
       "type": "translate_write",
       "es": "Por favor, ordena tu cuarto.",
       "accepted": [
-        "Please {clean up your room|clean your room up|tidy up your room|tidy your room up|tidy your room}.",
-        "{Clean up your room|Clean your room up|Tidy up your room|Tidy your room up|Tidy your room}, please."
+        "Please {clean up your room|clean your room up|clean your room|tidy up your room|tidy your room up|tidy your room}.",
+        "{Clean up your room|Clean your room up|Clean your room|Tidy up your room|Tidy your room up|Tidy your room}, please."
       ]
     },
     {
