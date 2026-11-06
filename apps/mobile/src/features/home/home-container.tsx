@@ -4,12 +4,10 @@ import {
   isStreakAlive,
   type LessonResult,
   type Level,
-  type Outfit,
   type ReviewState,
 } from "@english-learn/domain";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { wardrobeFromRewards } from "@/features/wardrobe/model/wardrobe";
 import {
   autoPathLevel,
   isLessonDone,
@@ -28,12 +26,10 @@ import { cardScores, cardsSummary } from "@/features/cards/model/card-catalog";
 import { cardPath } from "@/features/cards/card-routes";
 import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
-import { PlumasWelcomeNote } from "@/features/rewards/plumas-welcome-note";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import { deepenSteps } from "./model/deepen-steps";
 import {
-  homeAviLabel,
   homeAviState,
   sessionHomeAviMemory,
   type HomeAviMemory,
@@ -127,9 +123,11 @@ function markJustCompleted(
 }
 
 const QUIET_AVI = {
-  state: { kind: "idle", mood: "happy", bubble: null, moment: null },
-  outfit: {},
-} as const satisfies { state: HomeAviState; outfit: Outfit };
+  kind: "idle",
+  mood: "happy",
+  bubble: null,
+  moment: null,
+} as const satisfies HomeAviState;
 
 /** Loads the learner's progress from the repository every time the screen gains focus. */
 export function HomeContainer({
@@ -140,16 +138,14 @@ export function HomeContainer({
   content?: Corpus;
   /** What the index last showed as done (the app session's, by default). */
   completionMemory?: CompletionMemory;
-  /** The badges, items and outfit home last showed (the app session's, by default). */
+  /** The badges home last showed (the app session's, by default). */
   aviMemory?: HomeAviMemory;
 }) {
   const { progressRepository, settingsRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
-  // The baseline's plumas grant, for the one-time note: null until there is progress to decide on.
-  const [welcome, setWelcome] = useState<number | null>(null);
   // Avi beside the greeting: idle and quiet until the progress says more.
-  const [avi, setAvi] = useState<{ state: HomeAviState; outfit: Outfit }>(QUIET_AVI);
+  const [avi, setAvi] = useState<HomeAviState>(QUIET_AVI);
   // Home is the focused screen (Avi's bob and blink pause under another screen).
   const [focused, setFocused] = useState(true);
   const sound = useSoundPreference();
@@ -167,13 +163,12 @@ export function HomeContainer({
       progressRepository.getPlacementResult(),
       progressRepository.getReviewStates(),
       progressRepository.getLessonResults(),
-      progressRepository.getRewards(),
       // A view preference: unreadable or failing, the path follows the automatic level.
       settingsRepository.getPathLevel().catch(() => null),
       // A settings read that fails only costs Avi's "welcome back".
       settingsRepository.getLastHomeVisit().catch(() => null),
     ]).then(
-      ([streak, xp, placement, states, results, rewards, chosenLevel, lastHomeVisit]) => {
+      ([streak, xp, placement, states, results, chosenLevel, lastHomeVisit]) => {
         if (!active) return;
         // Every event leaves a trace here (a baseline always holds progress), so an empty store
         // (a new device before its first sync pull) decides nothing yet.
@@ -182,11 +177,7 @@ export function HomeContainer({
           xp > 0 ||
           placement !== null ||
           streak.lastActiveDate !== null ||
-          results.length > 0 ||
-          rewards.earned > 0 ||
-          rewards.spent > 0 ||
-          Object.keys(rewards.equipped).length > 0;
-        setWelcome(hasProgress ? rewards.earnedBySource.welcome : null);
+          results.length > 0;
         const level = placement?.level ?? null;
         const today = clock.today();
         const pendingReviews = pendingReviewItems({
@@ -201,14 +192,9 @@ export function HomeContainer({
         const badges = unlockedAchievements(
           achievementFacts(content, { states, xp, streak, placement }),
         );
-        const { outfit } = wardrobeFromRewards(rewards);
-        const news = aviMemory.take({
-          badges,
-          owned: rewards.ownedItemIds,
-          outfit,
-        });
-        setAvi({
-          state: homeAviState({
+        const news = aviMemory.take({ badges });
+        setAvi(
+          homeAviState({
             today,
             hour: new Date(clock.nowMs()).getHours(),
             streak,
@@ -217,8 +203,7 @@ export function HomeContainer({
             hasProgress,
             news: { ...news, lessonDone: lessons.items.some((l) => l.justCompleted === true) },
           }),
-          outfit,
-        });
+        );
         if (lastHomeVisit !== today) {
           settingsRepository.setLastHomeVisit(today).catch((error: unknown) => {
             console.error("Failed to remember the home visit", error);
@@ -230,7 +215,6 @@ export function HomeContainer({
           reviewNoteColor: stickyNoteHighlighter(today),
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,
-          plumas: rewards.balance,
           level,
           lessons,
           album: {
@@ -285,12 +269,7 @@ export function HomeContainer({
     <HomeView
       state={state}
       greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
-      avi={{
-        state: avi.state,
-        label: homeAviLabel(avi.state, avi.outfit),
-        active: focused,
-      }}
-      plumasNote={<PlumasWelcomeNote welcome={welcome} />}
+      avi={{ state: avi, active: focused }}
       soundEnabled={sound.enabled}
       onToggleSound={sound.toggle}
       themePreference={theme.preference}
@@ -303,7 +282,6 @@ export function HomeContainer({
       onOpenAlbum={() => router.push("/album")}
       onOpenCards={() => router.push("/fichas")}
       onOpenPractice={() => router.push("/practica")}
-      onOpenWardrobe={() => router.push("/armario")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       onChoosePathLevel={choosePathLevel}
       notice={

@@ -61,8 +61,8 @@ export function createAccountController({
   session: Pick<AuthSession, "signIn" | "signOut" | "forget" | "authorized" | "getState">;
   coordinator: Pick<SyncCoordinator, "request" | "stop" | "resume">;
   store: { resetSyncState(): Promise<void>; clearProgress(): Promise<void> };
-  /** Device notes tied to the progress (the plumas welcome, the path level), forgotten with it. */
-  settings: Pick<SettingsRepository, "clearPlumasWelcome" | "clearPathLevel">;
+  /** Device notes tied to the progress (the path level), forgotten with it. */
+  settings: Pick<SettingsRepository, "clearPathLevel">;
   /** `DELETE /v1/account` with the current access token. */
   deleteAccount: () => Promise<void>;
   pending: PendingSignInStore;
@@ -164,7 +164,6 @@ export function createAccountController({
         if (keepLocalProgress) await store.resetSyncState();
         else {
           await store.clearProgress();
-          await settings.clearPlumasWelcome();
           await settings.clearPathLevel();
         }
       } catch (error) {

@@ -5,8 +5,6 @@ import {
   type BaselineImportedEvent,
   type EventId,
   type Grade,
-  type ItemEquippedEvent,
-  type ItemPurchasedEvent,
   type ItemReviewedEvent,
   type Level,
   type LocalDate,
@@ -102,22 +100,4 @@ export function answerDisputedEvent(
       accepted: false,
     },
   };
-}
-
-/** The learner bought an item for Avi at the price the wardrobe showed. */
-export function itemPurchasedEvent(
-  stamp: EventStamp,
-  itemId: string,
-  price: number,
-): ItemPurchasedEvent {
-  return { ...envelope(stamp), type: "item_purchased", payload: { v: 1, itemId, price } };
-}
-
-/** Avi put on `itemId` in `slot`, or took the slot off (`null`). */
-export function itemEquippedEvent(
-  stamp: EventStamp,
-  slot: string,
-  itemId: string | null,
-): ItemEquippedEvent {
-  return { ...envelope(stamp), type: "item_equipped", payload: { v: 1, slot, itemId } };
 }

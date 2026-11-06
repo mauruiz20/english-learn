@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { localDate } from "../local-date";
-import { EMPTY_REWARDS } from "../rewards";
 import { applyReview, initialState, review, type ReviewState } from "../srs";
 import { EMPTY_STREAK, recordActivity } from "../streak";
 import {
@@ -29,7 +28,6 @@ describe("foldEvents", () => {
       activeDates: [],
       completedLessonIds: [],
       lessonResults: [],
-      rewards: EMPTY_REWARDS,
       anomalies: [],
     });
   });
@@ -286,6 +284,38 @@ describe("foldEvents", () => {
         { kind: "invalid_event", eventId: "x3", detail: "answer_disputed payload" },
         { kind: "invalid_event", eventId: "x4", detail: "answer_disputed payload" },
       ]);
+    });
+  });
+
+  describe("retired wardrobe events (item_purchased, item_equipped)", () => {
+    const purchase = (id: string, payload: unknown): StoredEvent => ({
+      id,
+      deviceId: "A",
+      occurredAt: 5,
+      localDate: d1,
+      type: "item_purchased",
+      payload,
+    });
+    const equip = (id: string, payload: unknown): StoredEvent => ({
+      ...purchase(id, payload),
+      type: "item_equipped",
+    });
+    const retired = [
+      purchase("w1", { v: 1, itemId: "gorra", price: 80 }),
+      equip("w2", { v: 1, slot: "head", itemId: "gorra" }),
+      equip("w3", { v: 1, slot: "head", itemId: null }),
+      // Malformed or newer copies are ignored as well: the types are retired, not validated.
+      purchase("w4", { v: 2 }),
+      equip("w5", null),
+    ];
+
+    it("folds a log that contains them, ignoring them without anomalies", () => {
+      const progress = [
+        lessonCompleted({ id: "e1", localDate: d1, occurredAt: 1 }, "s1", "L1", 30, 1),
+        itemReviewed({ id: "e2", localDate: d1, occurredAt: 2 }, "s1", "a", 5),
+      ];
+      expect(foldEvents([...retired, ...progress])).toEqual(foldEvents(progress));
+      expect(foldEvents(retired)).toEqual(EMPTY_PROGRESS);
     });
   });
 

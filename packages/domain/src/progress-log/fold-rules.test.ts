@@ -1,8 +1,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { isDeepStrictEqual } from "node:util";
 import { describe, expect, it } from "vitest";
-import { PLUMAS_SOURCES } from "../rewards";
-import { FOLD_SNAPSHOT_VERSION, foldSnapshot, snapshotProgress } from "./fold";
+import { FOLD_SNAPSHOT_VERSION, foldSnapshot } from "./fold";
 import { FOLD_RULES_CORPUS, foldRulesFingerprint } from "./fold-rules";
 
 const GOLDEN = new URL("./fold-rules.golden.json", import.meta.url);
@@ -80,14 +79,19 @@ describe("fold rules golden (stored snapshots depend on them)", () => {
     expect(snapshot.states.length).toBeGreaterThan(3);
   });
 
-  it("exercises every plumas rule: each source, the cap, a repeat purchase, a negative balance", () => {
-    const { rewards } = snapshotProgress(foldSnapshot(FOLD_RULES_CORPUS));
-    for (const source of PLUMAS_SOURCES) expect(rewards.earnedBySource[source]).toBeGreaterThan(0);
-    expect(rewards.overCap).toBeGreaterThan(0);
-    expect(rewards.spent).toBe(290);
-    expect(rewards.balance).toBeLessThan(0);
-    expect(rewards.ownedItemIds).toEqual(["corona-de-papel", "estrella"]);
-    expect(rewards.equipped).toEqual({ future_slot: "gafas-3d", head: "gorra", sticker: null });
+  it("ignores the retired wardrobe types, well-formed or not, without reporting them", () => {
+    const snapshot = foldSnapshot(FOLD_RULES_CORPUS);
+    const retiredIds = FOLD_RULES_CORPUS.filter((event) =>
+      ["item_purchased", "item_equipped"].includes(event.type),
+    ).map((event) => event.id);
+    expect(retiredIds.length).toBeGreaterThanOrEqual(3);
+    const reported = [...snapshot.envelopeAnomalies, ...snapshot.anomalies].map((a) => a.eventId);
+    for (const id of retiredIds) expect(reported).not.toContain(id);
+    const withoutRetired = FOLD_RULES_CORPUS.filter((event) => !retiredIds.includes(event.id));
+    expect({ ...snapshot, cursor: null }).toEqual({
+      ...foldSnapshot(withoutRetired),
+      cursor: null,
+    });
   });
 
   it("has a fingerprint naming the version and hashing the corpus output", () => {

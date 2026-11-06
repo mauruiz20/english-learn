@@ -6,16 +6,18 @@ import type { Streak } from "../streak";
 import {
   EVENT_PAYLOAD_VERSION,
   MAX_DISPUTED_ANSWER_LENGTH,
-  MAX_ITEM_ID_LENGTH,
-  MAX_ITEM_PRICE,
-  MAX_SLOT_LENGTH,
+  RETIRED_EVENT_TYPES,
   type ProgressEvent,
   type StoredEvent,
 } from "./events";
 
-/** Result of reading a stored event: a typed event, or why it must be skipped. */
+/**
+ * Result of reading a stored event: a typed event, a retired type to ignore silently
+ * (`RETIRED_EVENT_TYPES`), or why it must be skipped.
+ */
 export type Parsed =
   | { readonly ok: true; readonly event: ProgressEvent }
+  | { readonly ok: false; readonly kind: "retired_event" }
   | {
       readonly ok: false;
       readonly kind: "unsupported_event" | "invalid_event";
@@ -29,8 +31,6 @@ const isText = (v: unknown): v is string => typeof v === "string" && v.length > 
 const isNonNegInt = (v: unknown): v is number => Number.isInteger(v) && (v as number) >= 0;
 const isFiniteNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
 const isDate = (v: unknown): boolean => typeof v === "string" && isValidLocalDate(v);
-const isItemId = (v: unknown): v is string => isText(v) && v.length <= MAX_ITEM_ID_LENGTH;
-const SLOT = new RegExp(`^[a-z][a-z0-9_]{0,${MAX_SLOT_LENGTH - 1}}$`);
 
 /** Envelope fields needed to order an event at all. */
 export function validEnvelope(e: StoredEvent): boolean {
@@ -100,23 +100,18 @@ const VALIDATORS: Readonly<Record<ProgressEvent["type"], (p: Obj) => boolean>> =
     typeof p.answer === "string" &&
     p.answer.length <= MAX_DISPUTED_ANSWER_LENGTH &&
     p.accepted === false,
-  item_purchased: (p) =>
-    isItemId(p.itemId) &&
-    Number.isInteger(p.price) &&
-    (p.price as number) >= 1 &&
-    (p.price as number) <= MAX_ITEM_PRICE,
-  item_equipped: (p) =>
-    typeof p.slot === "string" && SLOT.test(p.slot) && (p.itemId === null || isItemId(p.itemId)),
 };
 
 const isKnownType = (t: string): t is ProgressEvent["type"] => Object.hasOwn(VALIDATORS, t);
 
 /**
  * Checks a stored event (whose envelope is already valid) against the known schemas.
- * Unknown `type` or payload `v` → `unsupported_event` (written by a newer app);
+ * A retired type → `retired_event`, whatever its payload (ignored, never reported);
+ * unknown `type` or payload `v` → `unsupported_event` (written by a newer app);
  * a known type and version with bad fields → `invalid_event`.
  */
 export function parseEvent(e: StoredEvent): Parsed {
+  if (RETIRED_EVENT_TYPES.includes(e.type)) return { ok: false, kind: "retired_event" };
   if (!isKnownType(e.type)) return { ok: false, kind: "unsupported_event", detail: e.type };
   if (!isObj(e.payload)) return { ok: false, kind: "invalid_event", detail: `${e.type} payload` };
   if (e.payload.v !== EVENT_PAYLOAD_VERSION) {

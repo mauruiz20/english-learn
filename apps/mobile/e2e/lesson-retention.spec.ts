@@ -55,9 +55,6 @@ test("a lesson recaps its new items, shows its best result on the path and can b
   await withMistakes.click();
   await playSessionCorrectly(page, "¡Lección completada!");
   await expect(page.getByText("XP ganada: 60")).toBeVisible();
-  // The same day: only the first perfect page pays (no new day, no new lesson).
-  await expect(page.getByText("Plumas: +10", { exact: true })).toBeVisible();
-  await expect(page.getByText("Página perfecta +10", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
   await expect(
     page.getByRole("button", {

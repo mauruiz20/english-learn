@@ -6,11 +6,10 @@ import type { Grade, ReviewState } from "../srs";
 import { EMPTY_STREAK, type Streak } from "../streak";
 import {
   baselineImported,
-  itemEquipped,
-  itemPurchased,
   itemReviewed,
   lessonCompleted,
   placementCompleted,
+  retiredWardrobeEvent,
   reviewCompleted,
   type Meta,
 } from "./progress-events";
@@ -28,9 +27,6 @@ export const levelArb = fc.constantFrom(...LEVELS);
 export const thetaArb = fc.double({ min: -4, max: 4, noNaN: true });
 export const accuracyArb = fc.integer({ min: 0, max: 20 }).map((n) => n / 20);
 export const answerXpArb = fc.integer({ min: 0, max: 200 });
-export const wardrobeItemArb = fc.constantFrom("gorra", "panuelo", "estrella", "zz-future");
-export const priceArb = fc.integer({ min: 1, max: 250 });
-export const slotArb = fc.constantFrom("head", "neck", "paper", "future_slot");
 
 export const reviewStateArb: fc.Arbitrary<ReviewState> = fc.record({
   itemId: itemIdArb,
@@ -99,20 +95,22 @@ const bodyArb: fc.Arbitrary<Body> = fc.oneof(
       .map((payload) => (m: Meta) => baselineImported(m, payload)),
   },
   {
+    // Retired types an older app wrote (Avi's withdrawn wardrobe): the fold ignores them.
     weight: 1,
-    arbitrary: fc.tuple(wardrobeItemArb, priceArb).map(
-      ([item, price]) =>
-        (m: Meta) =>
-          itemPurchased(m, item, price),
-    ),
-  },
-  {
-    weight: 1,
-    arbitrary: fc.tuple(slotArb, fc.option(wardrobeItemArb, { nil: null })).map(
-      ([slot, item]) =>
-        (m: Meta) =>
-          itemEquipped(m, slot, item),
-    ),
+    arbitrary: fc
+      .tuple(
+        fc.constantFrom("item_purchased" as const, "item_equipped" as const),
+        fc.constantFrom<unknown>(
+          { v: 1, itemId: "gorra", price: 80 },
+          { v: 1, slot: "head", itemId: null },
+          { v: 2 },
+        ),
+      )
+      .map(
+        ([type, payload]) =>
+          (m: Meta) =>
+            retiredWardrobeEvent(m, type, payload),
+      ),
   },
   {
     // Forward compatibility: a newer app's event type or payload version.
@@ -162,8 +160,8 @@ export function permutationArb<T>(items: readonly T[]): fc.Arbitrary<T[]> {
 
 /**
  * A dense study history: many sessions over a few weeks, mostly on consecutive days, with
- * frequent perfect pages and reviews of items that are due, so that the plumas rules (daily cap,
- * study weeks, first perfect, on-time reviews) all fire. One device; ids `<deviceId>-<n>`.
+ * frequent perfect pages and reviews of items that are due: same-day sessions, consecutive days
+ * and redone lessons all occur. One device; ids `<deviceId>-<n>`.
  */
 export function studyHistoryArb(deviceId = "A", maxSessions = 40): fc.Arbitrary<StoredEvent[]> {
   const sessionArb = fc.record({

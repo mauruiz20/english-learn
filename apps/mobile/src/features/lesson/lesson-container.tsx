@@ -3,7 +3,6 @@ import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { useAppServices } from "@/infrastructure/services/app-services";
-import { sessionPlumas, type PlumasSessionKind } from "@/features/rewards/model/plumas-copy";
 import { cardPath } from "@/features/cards/card-routes";
 import { cardByExerciseId } from "@/features/cards/model/card-catalog";
 import { SessionGlossary } from "@/features/glossary/session-glossary";
@@ -89,8 +88,6 @@ export type PracticeUnit = {
   readonly exercises: readonly Exercise[];
   /** "Lo nuevo de hoy" on the summary (lessons only). */
   readonly recap?: readonly RecapItem[] | undefined;
-  /** A study card's practice (the plumas line says "Ficha nueva"); a lesson by default. */
-  readonly kind?: "lesson" | "card";
 };
 
 /**
@@ -162,15 +159,7 @@ export function PracticeSession({
       <SessionGlossary content={content} topic={topic} onLookupItems={onLookup}>
         <LessonView
           state={withAchievements(
-            toViewState(
-              session,
-              initial?.prepared ?? [],
-              save,
-              content,
-              topic,
-              unit?.recap,
-              unit?.kind ?? "lesson",
-            ),
+            toViewState(session, initial?.prepared ?? [], save, content, topic, unit?.recap),
             achievements,
           )}
           copy={copy}
@@ -204,7 +193,6 @@ function toViewState(
   content: Corpus,
   topic: string | undefined,
   recap: readonly RecapItem[] | undefined,
-  kind: PlumasSessionKind,
 ): LessonViewState {
   if (session === null) return { status: "not-found" };
   if (session.status === "finished") {
@@ -216,7 +204,6 @@ function toViewState(
       correct: verdicts.filter((v) => v === "correct").length,
       total: verdicts.length,
       xpEarned: save.xpEarned,
-      plumas: sessionPlumas(save.plumas, kind),
       streakDays: save.streakDays,
       streakIncreased: save.streakIncreased,
       toReview: itemsToReview(itemOutcomes, content.itemsById, { topics: topicByItemId(content) }),

@@ -134,32 +134,6 @@ describe("createSqliteSettingsRepository", () => {
     );
   });
 
-  it("remembers the plumas welcome note and its dismissal", async () => {
-    expect(await settings.getPlumasWelcome()).toBeNull();
-
-    await settings.setPlumasWelcome({ plumas: 135, dismissed: false });
-    expect(await createSqliteSettingsRepository(db).getPlumasWelcome()).toEqual({
-      plumas: 135,
-      dismissed: false,
-    });
-
-    await settings.setPlumasWelcome({ plumas: 135, dismissed: true });
-    expect(await settings.getPlumasWelcome()).toEqual({ plumas: 135, dismissed: true });
-  });
-
-  it("forgets the plumas welcome note (a sign-out that deletes this device's progress)", async () => {
-    await settings.setPlumasWelcome({ plumas: 135, dismissed: true });
-
-    await settings.clearPlumasWelcome();
-
-    expect(await createSqliteSettingsRepository(db).getPlumasWelcome()).toBeNull();
-  });
-
-  it("treats an unreadable plumas welcome note as dismissed (never shown twice)", async () => {
-    await db.runAsync("INSERT INTO setting (key, value) VALUES ('plumas_welcome', '{')", []);
-
-    expect(await settings.getPlumasWelcome()).toEqual({ plumas: 0, dismissed: true });
-  });
   it("follows the automatic path level until the learner picks one", async () => {
     expect(await settings.getPathLevel()).toBeNull();
 
