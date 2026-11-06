@@ -570,6 +570,40 @@ Free practice by topic, apart from the path and its levels (content: `corpus.pra
   and the transfer preview count exactly what they counted before
   (`practice-path-separation.test.tsx` completes every practice lesson and compares the path).
 
+## Diálogos (`src/features/dialogues/`)
+
+Branching conversations, the "Diálogos" collection of Práctica libre (content:
+`corpus.dialogues`; see `@english-learn/content`, "Diálogos").
+
+- **List**: `/practica/dialogues` shows the groups with their dialogues, "Nuevo" or the best
+  result in the masculine ("Perfecto · 6/6", "Completado · 5/6"; labelled "…, completado sin
+  errores: 6 de 6 respuestas buenas"). The collection card counts "3 grupos · 10 diálogos".
+- **Runner** (`model/dialogue-runner.ts`, pure): `startDialogue(dialogue, rng)` shuffles every
+  choose turn once; `dialogueReducer` handles `begin` (the NPC lines up to the first turn),
+  `choose` (by the reply's text), `write` (graded like translate-write with `matchAnswer` over the
+  answer patterns, ignoring commas: correct → good, almost → ok, wrong → wrong and the turn's
+  `wrongNext`), `continue` (the reaction of the branch taken) and `lookup` (grade cap, like
+  lessons). Feedback carries the reply's Spanish explanation, "Mejor: …" (the turn's first good
+  reply or the model answer) and a write turn's tip. An `end` finishes it with good replies out of
+  the turns.
+- **Screen** `/dialogo/[id]` (`dialogue-container.tsx`, `dialogue-view.tsx`): an intro (setting,
+  characters, "Empezar"); then a chat on notebook paper: the character's lines on paper slips at
+  the left (name, English with word lookup, a speaker, "Ver en español"), the learner's replies on
+  the right tinted by rating, the replies to choose or a Spanish prompt to answer in writing; the
+  feedback band ("¡Bien dicho!", "Se puede mejorar", "No del todo") with "Mejor: …" and its
+  speaker; the page follows the end of the chat (`ScreenContainer followEnd`). The summary is the
+  lessons' (`SessionSummary` with `header`, `correctLabel` and `redoLabel`): how it ended, "Tu
+  mejor resultado" (read back from the fold after the save), "Respuestas buenas: 5 de 6", XP,
+  streak, "Para repasar", "Lo nuevo de hoy" (the turns' items with the reply that used them, and
+  the linked cards) and "Repetir diálogo". Leaving mid-dialogue asks first.
+- **Read aloud** (intro switch, off by default, only with pronunciation available): the new
+  character lines are spoken inside the learner's tap ("Empezar", "Continuar"), never on their
+  own (iOS speaks only from a gesture).
+- **Saving**: `completeSession` with `kind: "lesson"` and the dialogue id as `lessonId`, so the
+  fold pays the completion bonus once per dialogue and keeps its best accuracy; each turn's
+  `itemIds` get an `item_reviewed` with the reply's grade (choose as a translation choice, write
+  as translate-write). No new event, no fold change.
+
 ## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)
 
 Optional, **web only, on `https://english.maumar.com.ar`** (and `http://localhost` for
