@@ -105,6 +105,18 @@
       ]
     },
     {
+      "id": "glossary.necessarily",
+      "headword": "necessarily",
+      "kind": "word",
+      "forms": ["necessarily"],
+      "senses": [
+        {
+          "es": "necesariamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.necessary",
       "headword": "necessary",
       "kind": "word",
@@ -241,6 +253,18 @@
       ]
     },
     {
+      "id": "glossary.network",
+      "headword": "network",
+      "kind": "word",
+      "forms": ["network", "networks"],
+      "senses": [
+        {
+          "es": "red",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.never",
       "headword": "never",
       "kind": "word",
@@ -344,7 +368,7 @@
       "id": "glossary.nice",
       "headword": "nice",
       "kind": "word",
-      "forms": ["nice", "nicest"],
+      "forms": ["nice", "nicest", "nicer"],
       "senses": [
         {
           "es": "lindo, agradable",
@@ -365,6 +389,18 @@
         {
           "es": "mucho gusto, encantado de conocerte",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.nicely",
+      "headword": "nicely",
+      "kind": "word",
+      "forms": ["nicely"],
+      "senses": [
+        {
+          "es": "amablemente, bien",
+          "pos": "adverb"
         }
       ]
     },

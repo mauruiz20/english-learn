@@ -316,7 +316,7 @@
       "id": "glossary.scan",
       "headword": "scan",
       "kind": "word",
-      "forms": ["scan", "scans"],
+      "forms": ["scan", "scans", "scanned", "scanning"],
       "senses": [
         {
           "es": "exploración (médica), escáner",
@@ -560,7 +560,7 @@
       "id": "glossary.second",
       "headword": "second",
       "kind": "word",
-      "forms": ["second"],
+      "forms": ["second", "seconds"],
       "senses": [
         {
           "es": "segundo",
@@ -829,6 +829,18 @@
       ]
     },
     {
+      "id": "glossary.seriously",
+      "headword": "seriously",
+      "kind": "word",
+      "forms": ["seriously"],
+      "senses": [
+        {
+          "es": "en serio",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.serve",
       "headword": "serve",
       "kind": "word",
@@ -949,6 +961,18 @@
       ]
     },
     {
+      "id": "glossary.settings",
+      "headword": "settings",
+      "kind": "word",
+      "forms": ["settings"],
+      "senses": [
+        {
+          "es": "configuración, ajustes",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.settle",
       "headword": "settle",
       "kind": "word",
@@ -984,6 +1008,18 @@
       "senses": [
         {
           "es": "siete",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.seventy",
+      "headword": "seventy",
+      "kind": "word",
+      "forms": ["seventy"],
+      "senses": [
+        {
+          "es": "setenta",
           "pos": "number"
         }
       ]
@@ -1264,6 +1300,18 @@
         {
           "es": "no debería",
           "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.shout",
+      "headword": "shout",
+      "kind": "word",
+      "forms": ["shout", "shouts", "shouted", "shouting"],
+      "senses": [
+        {
+          "es": "gritar",
+          "pos": "verb"
         }
       ]
     },
@@ -3600,6 +3648,18 @@
       ]
     },
     {
+      "id": "glossary.suv",
+      "headword": "SUV",
+      "kind": "word",
+      "forms": ["suv", "suvs"],
+      "senses": [
+        {
+          "es": "camioneta, SUV",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sweater",
       "headword": "sweater",
       "kind": "word",
@@ -3655,6 +3715,18 @@
       "senses": [
         {
           "es": "síntoma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.syrup",
+      "headword": "syrup",
+      "kind": "word",
+      "forms": ["syrup", "syrups"],
+      "senses": [
+        {
+          "es": "jarabe",
           "pos": "noun"
         }
       ]

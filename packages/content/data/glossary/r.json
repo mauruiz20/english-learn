@@ -109,6 +109,18 @@
       ]
     },
     {
+      "id": "glossary.rate",
+      "headword": "rate",
+      "kind": "word",
+      "forms": ["rate", "rates"],
+      "senses": [
+        {
+          "es": "tarifa, precio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rather",
       "headword": "rather",
       "kind": "word",
@@ -293,6 +305,42 @@
         {
           "es": "razonable",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reasoning",
+      "headword": "reasoning",
+      "kind": "word",
+      "forms": ["reasoning"],
+      "senses": [
+        {
+          "es": "razonamiento, motivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reassuring",
+      "headword": "reassuring",
+      "kind": "word",
+      "forms": ["reassuring"],
+      "senses": [
+        {
+          "es": "tranquilizador",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reboot",
+      "headword": "reboot",
+      "kind": "word",
+      "forms": ["reboot", "reboots", "rebooted", "rebooting"],
+      "senses": [
+        {
+          "es": "reiniciar (un aparato)",
+          "pos": "verb"
         }
       ]
     },
@@ -869,6 +917,18 @@
       ]
     },
     {
+      "id": "glossary.remove",
+      "headword": "remove",
+      "kind": "word",
+      "forms": ["remove", "removes", "removed", "removing"],
+      "senses": [
+        {
+          "es": "quitar, eliminar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.renewable-energy",
       "headword": "renewable energy",
       "kind": "phrase",
@@ -1081,6 +1141,18 @@
       ]
     },
     {
+      "id": "glossary.reserve",
+      "headword": "reserve",
+      "kind": "word",
+      "forms": ["reserve", "reserves", "reserved", "reserving"],
+      "senses": [
+        {
+          "es": "reservar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.resign",
       "headword": "resign",
       "kind": "word",
@@ -1145,6 +1217,18 @@
       ]
     },
     {
+      "id": "glossary.respectful",
+      "headword": "respectful",
+      "kind": "word",
+      "forms": ["respectful"],
+      "senses": [
+        {
+          "es": "respetuoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.respond",
       "headword": "respond",
       "kind": "word",
@@ -1197,6 +1281,18 @@
         {
           "es": "(the rest) el resto",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.restart",
+      "headword": "restart",
+      "kind": "word",
+      "forms": ["restart", "restarts", "restarted", "restarting"],
+      "senses": [
+        {
+          "es": "reiniciar",
+          "pos": "verb"
         }
       ]
     },
@@ -1509,6 +1605,18 @@
       ]
     },
     {
+      "id": "glossary.roaming",
+      "headword": "roaming",
+      "kind": "word",
+      "forms": ["roaming"],
+      "senses": [
+        {
+          "es": "roaming, itinerancia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.roast",
       "headword": "roast",
       "kind": "word",
@@ -1608,6 +1716,18 @@
       ]
     },
     {
+      "id": "glossary.router",
+      "headword": "router",
+      "kind": "word",
+      "forms": ["router", "routers"],
+      "senses": [
+        {
+          "es": "router, módem",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.routine",
       "headword": "routine",
       "kind": "word",
@@ -1640,6 +1760,18 @@
         {
           "es": "grosero, maleducado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ruiz",
+      "headword": "Ruiz",
+      "kind": "word",
+      "forms": ["ruiz"],
+      "senses": [
+        {
+          "es": "Ruiz (apellido)",
+          "pos": "proper noun"
         }
       ]
     },

@@ -577,7 +577,7 @@ Branching conversations, the "Diálogos" collection of Práctica libre (content:
 
 - **List**: `/practica/dialogues` shows the groups with their dialogues, "Nuevo" or the best
   result in the masculine ("Perfecto · 6/6", "Completado · 5/6"; labelled "…, completado sin
-  errores: 6 de 6 respuestas buenas"). The collection card counts "3 grupos · 10 diálogos".
+  errores: 6 de 6 respuestas buenas"). The collection card counts "7 grupos · 25 diálogos".
 - **Runner** (`model/dialogue-runner.ts`, pure): `startDialogue(dialogue, rng)` shuffles every
   choose turn once; `dialogueReducer` handles `begin` (the NPC lines up to the first turn),
   `choose` (by the reply's text), `write` (graded like translate-write with `matchAnswer` over the

@@ -269,6 +269,18 @@
       ]
     },
     {
+      "id": "glossary.canadian",
+      "headword": "Canadian",
+      "kind": "word",
+      "forms": ["canadian", "canadians"],
+      "senses": [
+        {
+          "es": "canadiense",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.cancel",
       "headword": "cancel",
       "kind": "word",
@@ -277,6 +289,18 @@
         {
           "es": "cancelar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.cancellation",
+      "headword": "cancellation",
+      "kind": "word",
+      "forms": ["cancellation", "cancellations"],
+      "senses": [
+        {
+          "es": "cancelación",
+          "pos": "noun"
         }
       ]
     },
@@ -660,6 +684,18 @@
       ]
     },
     {
+      "id": "glossary.cent",
+      "headword": "cent",
+      "kind": "word",
+      "forms": ["cent", "cents"],
+      "senses": [
+        {
+          "es": "centavo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.center",
       "headword": "center",
       "kind": "word",
@@ -692,6 +728,18 @@
         {
           "es": "cierto, determinado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.certainly",
+      "headword": "certainly",
+      "kind": "word",
+      "forms": ["certainly"],
+      "senses": [
+        {
+          "es": "sin duda, desde luego",
+          "pos": "adverb"
         }
       ]
     },
@@ -1821,6 +1869,18 @@
       ]
     },
     {
+      "id": "glossary.commit",
+      "headword": "commit",
+      "kind": "word",
+      "forms": ["commit", "commits", "committed", "committing"],
+      "senses": [
+        {
+          "es": "comprometerse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.common",
       "headword": "common",
       "kind": "word",
@@ -1917,6 +1977,18 @@
         {
           "es": "persona que viaja a diario al trabajo o a la escuela",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.compact",
+      "headword": "compact",
+      "kind": "word",
+      "forms": ["compact", "compacts"],
+      "senses": [
+        {
+          "es": "compacto",
+          "pos": "adjective"
         }
       ]
     },
@@ -2233,6 +2305,18 @@
       ]
     },
     {
+      "id": "glossary.confident",
+      "headword": "confident",
+      "kind": "word",
+      "forms": ["confident"],
+      "senses": [
+        {
+          "es": "seguro, confiado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.confidential",
       "headword": "confidential",
       "kind": "word",
@@ -2248,11 +2332,23 @@
       "id": "glossary.confirm",
       "headword": "confirm",
       "kind": "word",
-      "forms": ["confirm", "confirms"],
+      "forms": ["confirm", "confirms", "confirmed", "confirming"],
       "senses": [
         {
           "es": "confirmar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.confirmation",
+      "headword": "confirmation",
+      "kind": "word",
+      "forms": ["confirmation"],
+      "senses": [
+        {
+          "es": "confirmación",
+          "pos": "noun"
         }
       ]
     },
@@ -2293,6 +2389,18 @@
       ]
     },
     {
+      "id": "glossary.connect",
+      "headword": "connect",
+      "kind": "word",
+      "forms": ["connect", "connects", "connecting"],
+      "senses": [
+        {
+          "es": "conectar(se)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.connected",
       "headword": "connected",
       "kind": "word",
@@ -2301,6 +2409,18 @@
         {
           "es": "conectado, unido",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.connection",
+      "headword": "connection",
+      "kind": "word",
+      "forms": ["connection", "connections"],
+      "senses": [
+        {
+          "es": "conexión",
+          "pos": "noun"
         }
       ]
     },
@@ -2385,6 +2505,18 @@
         {
           "es": "constructivo",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.consult",
+      "headword": "consult",
+      "kind": "word",
+      "forms": ["consult", "consults", "consulted", "consulting"],
+      "senses": [
+        {
+          "es": "consultar",
+          "pos": "verb"
         }
       ]
     },

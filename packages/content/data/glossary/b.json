@@ -277,6 +277,18 @@
       ]
     },
     {
+      "id": "glossary.barring",
+      "headword": "barring",
+      "kind": "word",
+      "forms": ["barring"],
+      "senses": [
+        {
+          "es": "salvo, a menos que haya",
+          "pos": "preposition"
+        }
+      ]
+    },
+    {
       "id": "glossary.base",
       "headword": "base",
       "kind": "word",
@@ -457,6 +469,18 @@
         {
           "es": "hermoso, precioso",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.beauty",
+      "headword": "beauty",
+      "kind": "word",
+      "forms": ["beauty", "beauties"],
+      "senses": [
+        {
+          "es": "belleza",
+          "pos": "noun"
         }
       ]
     },
@@ -792,6 +816,18 @@
       ]
     },
     {
+      "id": "glossary.billing",
+      "headword": "billing",
+      "kind": "word",
+      "forms": ["billing"],
+      "senses": [
+        {
+          "es": "facturación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.bin",
       "headword": "bin",
       "kind": "word",
@@ -884,6 +920,18 @@
         {
           "es": "ciego",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.blink",
+      "headword": "blink",
+      "kind": "word",
+      "forms": ["blink", "blinks", "blinked", "blinking"],
+      "senses": [
+        {
+          "es": "parpadear",
+          "pos": "verb"
         }
       ]
     },
@@ -1140,6 +1188,18 @@
         {
           "es": "ambos, los dos",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.bother",
+      "headword": "bother",
+      "kind": "word",
+      "forms": ["bother", "bothers", "bothered", "bothering"],
+      "senses": [
+        {
+          "es": "molestar",
+          "pos": "verb"
         }
       ]
     },

@@ -309,6 +309,18 @@
       ]
     },
     {
+      "id": "glossary.tank",
+      "headword": "tank",
+      "kind": "word",
+      "forms": ["tank", "tanks"],
+      "senses": [
+        {
+          "es": "tanque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.task",
       "headword": "task",
       "kind": "word",
@@ -1340,6 +1352,18 @@
       ]
     },
     {
+      "id": "glossary.tight",
+      "headword": "tight",
+      "kind": "word",
+      "forms": ["tight"],
+      "senses": [
+        {
+          "es": "ajustado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.time",
       "headword": "time",
       "kind": "word",
@@ -1608,6 +1632,18 @@
         {
           "es": "total",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.totally",
+      "headword": "totally",
+      "kind": "word",
+      "forms": ["totally"],
+      "senses": [
+        {
+          "es": "totalmente",
+          "pos": "adverb"
         }
       ]
     },

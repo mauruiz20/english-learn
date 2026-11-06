@@ -1,0 +1,257 @@
+{
+  "dialogues": [
+    {
+      "id": "c1.dialogues.salary-negotiation",
+      "level": "C1",
+      "title": "Negociar el salario",
+      "setting": "Te ofrecieron un puesto de jefe de proyecto con un salario de 85 000 dólares al año. Por tu experiencia y lo que paga el mercado, esperabas unos 95 000. Hoy hablas con Karen, de Recursos Humanos, para cerrar el acuerdo.",
+      "characters": [
+        {
+          "id": "hr",
+          "name": "Karen",
+          "role": "directora de Recursos Humanos"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "We're really excited to have you on board. Have you had a chance to look over the offer?",
+          "es": "Estamos muy contentos de que te sumes al equipo. ¿Pudiste revisar la oferta?",
+          "next": "open"
+        },
+        {
+          "id": "open",
+          "kind": "choose",
+          "itemIds": ["b2.situations.i-was-wondering-if"],
+          "options": [
+            {
+              "en": "I have, and I'm genuinely excited about the role. I was wondering if we could talk about the base salary, though.",
+              "rating": "good",
+              "feedback": "Muestras entusiasmo y abres el tema con «I was wondering if…»: firme y diplomático.",
+              "next": "figure"
+            },
+            {
+              "en": "Yes. The salary is too low.",
+              "rating": "ok",
+              "feedback": "Es tu posición, pero dicha así suena brusca y cierra la conversación.",
+              "next": "figure-cool"
+            },
+            {
+              "en": "Yes, and frankly, it's a bit insulting.",
+              "rating": "wrong",
+              "feedback": "Calificar la oferta de insultante pone a la otra parte a la defensiva desde el principio.",
+              "next": "figure-taken-aback"
+            }
+          ]
+        },
+        {
+          "id": "figure",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "Of course. What did you have in mind?",
+          "es": "Por supuesto. ¿Qué cifra tenías en mente?",
+          "next": "justify"
+        },
+        {
+          "id": "figure-cool",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "I see. What figure did you have in mind?",
+          "es": "Ya veo. ¿Qué cifra tenías en mente?",
+          "next": "justify"
+        },
+        {
+          "id": "figure-taken-aback",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "Insulting? That certainly wasn't our intention. What figure did you have in mind?",
+          "es": "¿Insultante? Desde luego no era nuestra intención. ¿Qué cifra tenías en mente?",
+          "next": "justify"
+        },
+        {
+          "id": "justify",
+          "kind": "write",
+          "prompt": "Justifica con tacto que, por tu experiencia y lo que paga el mercado, esperabas algo más cerca de 95 000.",
+          "accepted": [
+            "{Given|Considering|Based on} my experience and {current market rates|what the market is paying}, I was {expecting|hoping for} something {closer to|around|in the region of} {ninety-five thousand|95,000}.",
+            "{With|Given} my experience, I was {expecting|hoping for} something {closer to|around} {ninety-five thousand|95,000}, which is more in line with the market rate."
+          ],
+          "tip": "Para pedir más sin sonar exigente, justifica con datos y suaviza: «I was hoping for something closer to…».",
+          "next": "budget",
+          "wrongNext": "budget-check"
+        },
+        {
+          "id": "budget",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "I understand. To be honest, our budget for this position is quite tight. The most I could probably do is eighty-eight.",
+          "es": "Entiendo. Para serte sincera, el presupuesto para este puesto es bastante ajustado. Lo máximo que podría ofrecer es ochenta y ocho.",
+          "next": "package"
+        },
+        {
+          "id": "budget-check",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "So you were thinking of ninety-five? I understand. To be honest, our budget for this position is quite tight. The most I could probably do is eighty-eight.",
+          "es": "¿O sea que pensabas en noventa y cinco? Entiendo. Para serte sincera, el presupuesto para este puesto es bastante ajustado. Lo máximo que podría ofrecer es ochenta y ocho.",
+          "next": "package"
+        },
+        {
+          "id": "package",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I appreciate that. Would there be any flexibility if we looked at the whole package, say, extra vacation or a salary review after six months?",
+              "rating": "good",
+              "feedback": "Reconoces su límite y amplías la negociación a otros beneficios: así ganan los dos.",
+              "next": "offer"
+            },
+            {
+              "en": "Eighty-eight isn't enough.",
+              "rating": "ok",
+              "feedback": "Es claro, pero no propones nada y la conversación se estanca.",
+              "next": "offer-firm"
+            },
+            {
+              "en": "Then I'll have to accept another offer I have.",
+              "rating": "wrong",
+              "feedback": "Un ultimátum (sobre todo si es un farol) daña la confianza y puede costarte el puesto.",
+              "next": "offer-ultimatum"
+            }
+          ]
+        },
+        {
+          "id": "offer",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "That's a possibility. We could offer a salary review after six months and an extra week of vacation.",
+          "es": "Es una posibilidad. Podríamos ofrecer una revisión salarial a los seis meses y una semana más de vacaciones.",
+          "next": "writing"
+        },
+        {
+          "id": "offer-firm",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "I'm afraid I can't go much higher. What I can do is offer a salary review after six months and an extra week of vacation.",
+          "es": "Me temo que no puedo subir mucho más. Lo que sí puedo hacer es ofrecer una revisión salarial a los seis meses y una semana más de vacaciones.",
+          "next": "writing"
+        },
+        {
+          "id": "offer-ultimatum",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "I'd hate to lose you, but I can't go higher just because of another offer. What I can do is offer a salary review after six months and an extra week of vacation.",
+          "es": "No me gustaría perderte, pero no puedo subir la cifra solo porque tengas otra oferta. Lo que sí puedo hacer es ofrecer una revisión salarial a los seis meses y una semana más de vacaciones.",
+          "next": "writing"
+        },
+        {
+          "id": "writing",
+          "kind": "write",
+          "prompt": "Usa una cleft sentence («What… is…») para decir que lo que más te importa es tener la revisión por escrito.",
+          "accepted": [
+            "What {matters most|is most important} to me is {having|getting} the review in writing.",
+            "What I'd {really |}{need|like} is to {have|get} the review in writing.",
+            "What I'd {really |}like is for the review to be in writing."
+          ],
+          "tip": "Una cleft sentence pone el foco en lo importante: «What matters most to me is having the review in writing.»",
+          "next": "deal",
+          "wrongNext": "deal-check"
+        },
+        {
+          "id": "deal",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "That's reasonable. I'll put it in the contract. So: eighty-eight thousand, a review after six months and an extra week of vacation. Does that work for you?",
+          "es": "Es razonable. Lo pongo en el contrato. Entonces: ochenta y ocho mil, una revisión a los seis meses y una semana más de vacaciones. ¿Te sirve?",
+          "next": "accept"
+        },
+        {
+          "id": "deal-check",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "Sorry, you'd like the review in writing? That's reasonable. I'll put it in the contract. So: eighty-eight thousand, a review after six months and an extra week of vacation. Does that work for you?",
+          "es": "Perdón, ¿quieres la revisión por escrito? Es razonable. Lo pongo en el contrato. Entonces: ochenta y ocho mil, una revisión a los seis meses y una semana más de vacaciones. ¿Te sirve?",
+          "next": "accept"
+        },
+        {
+          "id": "accept",
+          "kind": "choose",
+          "itemIds": ["b2.phrasal-verbs.think-over"],
+          "options": [
+            {
+              "en": "That sounds like a fair compromise. Could I think it over tonight and get back to you tomorrow?",
+              "rating": "good",
+              "feedback": "Valoras el acuerdo y pides un plazo corto y concreto para pensarlo: profesional.",
+              "next": "updated"
+            },
+            {
+              "en": "Okay, deal.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero aceptas sin leer el contrato y suena precipitado.",
+              "next": "updated"
+            },
+            {
+              "en": "Can I think about it for a few weeks?",
+              "rating": "wrong",
+              "feedback": "Pedir semanas pone en riesgo la oferta: la empresa necesita cubrir el puesto.",
+              "next": "updated-friday"
+            }
+          ]
+        },
+        {
+          "id": "updated",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "Of course. I'll send you the updated offer this afternoon.",
+          "es": "Por supuesto. Te mando la oferta actualizada esta tarde.",
+          "next": "thanks"
+        },
+        {
+          "id": "updated-friday",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "A few weeks is a bit long; we need to fill the position soon. Could you let me know by Friday? I'll send you the updated offer this afternoon.",
+          "es": "Unas semanas es demasiado; necesitamos cubrir el puesto pronto. ¿Me avisas antes del viernes? Te mando la oferta actualizada esta tarde.",
+          "next": "thanks"
+        },
+        {
+          "id": "thanks",
+          "kind": "write",
+          "prompt": "Agradécele su flexibilidad, en un registro formal.",
+          "accepted": [
+            "{Thank you|Thanks} {so much |very much |}for {being so flexible|your flexibility}.",
+            "I {really |}appreciate your flexibility."
+          ],
+          "tip": "«I really appreciate your flexibility» es formal y cálido a la vez.",
+          "next": "bye",
+          "wrongNext": "bye-check"
+        },
+        {
+          "id": "bye",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "My pleasure. I'm looking forward to working with you.",
+          "es": "Un placer. Tengo muchas ganas de trabajar contigo.",
+          "next": "end"
+        },
+        {
+          "id": "bye-check",
+          "kind": "npc",
+          "speaker": "hr",
+          "en": "Not at all. I'm looking forward to working with you.",
+          "es": "No hay de qué. Tengo muchas ganas de trabajar contigo.",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Mejoraste la oferta: más salario, una semana extra de vacaciones y una revisión por escrito."
+        }
+      ],
+      "cardIds": ["c1.grammar.hedging", "c1.grammar.cleft-sentences"]
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "dialogues": [
+    {
+      "id": "b2.dialogues.car-rental",
+      "level": "B2",
+      "title": "Alquilar un auto",
+      "setting": "Llegas al mostrador de una agencia de alquiler de autos en el aeropuerto. Reservaste por internet un auto compacto por cinco días a nombre de Alex Ruiz. Tu tarjeta de crédito ya incluye un seguro, pero el empleado va a intentar venderte extras.",
+      "characters": [
+        {
+          "id": "agent",
+          "name": "Greg",
+          "role": "empleado de la agencia"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Welcome! Do you have a reservation with us?",
+          "es": "¡Le damos la bienvenida! ¿Tiene una reserva con nosotros?",
+          "next": "reservation"
+        },
+        {
+          "id": "reservation",
+          "kind": "write",
+          "itemIds": ["a2.situations.reservation-under"],
+          "prompt": "Dile que sí, que tienes una reserva a nombre de Alex Ruiz.",
+          "accepted": [
+            "Yes, I have a reservation under {Alex Ruiz|Ruiz}.",
+            "Yes, it's under {Alex Ruiz|Ruiz}.",
+            "Yes, I booked a {compact |}car under {Alex Ruiz|Ruiz}."
+          ],
+          "tip": "«I have a reservation under Ruiz» es la forma habitual de dar el nombre de la reserva.",
+          "next": "upgrade",
+          "wrongNext": "upgrade-check"
+        },
+        {
+          "id": "upgrade",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Let me see... Yes, a compact car for five days. I can upgrade you to an SUV for just twenty dollars more a day.",
+          "es": "A ver... Sí, un auto compacto por cinco días. Puedo pasarlo a una camioneta por solo veinte dólares más por día.",
+          "next": "no-upgrade"
+        },
+        {
+          "id": "upgrade-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sorry, could you repeat the name? Ruiz, got it. A compact car for five days. I can upgrade you to an SUV for just twenty dollars more a day.",
+          "es": "Perdón, ¿me repite el nombre? Ruiz, perfecto. Un auto compacto por cinco días. Puedo pasarlo a una camioneta por solo veinte dólares más por día.",
+          "next": "no-upgrade"
+        },
+        {
+          "id": "no-upgrade",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Thanks, but the compact will be fine. It's just me.",
+              "rating": "good",
+              "feedback": "Rechazas con cortesía y das un motivo: así no insiste.",
+              "next": "insurance"
+            },
+            {
+              "en": "No.",
+              "rating": "ok",
+              "feedback": "Correcto, pero muy seco con alguien que te atiende.",
+              "next": "insurance"
+            },
+            {
+              "en": "Twenty dollars? Okay, that's not much in total.",
+              "rating": "wrong",
+              "feedback": "Malentendido: son veinte dólares por día, cien más en total.",
+              "next": "insurance-per-day"
+            }
+          ]
+        },
+        {
+          "id": "insurance",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sure. And would you like our full insurance? It's thirty-five dollars a day.",
+          "es": "Claro. ¿Y quiere nuestro seguro completo? Son treinta y cinco dólares por día.",
+          "next": "covered"
+        },
+        {
+          "id": "insurance-per-day",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Just to be clear, it's twenty a day, so a hundred more in total. Should I leave it as a compact? Okay. And would you like our full insurance? It's thirty-five dollars a day.",
+          "es": "Para que quede claro, son veinte por día, o sea cien más en total. ¿Lo dejo en compacto? Bien. ¿Y quiere nuestro seguro completo? Son treinta y cinco dólares por día.",
+          "next": "covered"
+        },
+        {
+          "id": "covered",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I think my credit card already covers that. What does yours include that mine doesn't?",
+              "rating": "good",
+              "feedback": "Dices lo que ya tienes y pides información concreta antes de decidir.",
+              "next": "explains"
+            },
+            {
+              "en": "No insurance.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena cortante y no te informas.",
+              "next": "explains"
+            },
+            {
+              "en": "I don't need insurance. I'm a very good driver.",
+              "rating": "wrong",
+              "feedback": "Mal argumento: el seguro cubre robos y daños que no dependen de cómo manejas.",
+              "next": "pressure"
+            }
+          ]
+        },
+        {
+          "id": "explains",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Ours covers everything, with no deductible. If something happens, you just give us the keys and walk away.",
+          "es": "El nuestro cubre todo, sin deducible. Si pasa algo, nos devuelve las llaves y listo.",
+          "next": "what-if"
+        },
+        {
+          "id": "pressure",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Even good drivers have accidents, and cars get stolen. Ours covers everything, with no deductible.",
+          "es": "Hasta los buenos conductores tienen accidentes, y los autos se roban. El nuestro cubre todo, sin deducible.",
+          "next": "what-if"
+        },
+        {
+          "id": "what-if",
+          "kind": "write",
+          "itemIds": ["b2.grammar.conditionals-second"],
+          "prompt": "Pregúntale qué pasaría si tuvieras un accidente sin su seguro.",
+          "accepted": [
+            "What would happen if I had an accident without your insurance?",
+            "If I had an accident without your insurance, what would happen?",
+            "What would happen if I {got into an accident without your insurance|had an accident and didn't have your insurance}?"
+          ],
+          "tip": "Para una situación hipotética: «What would happen if I had…?»",
+          "next": "claim",
+          "wrongNext": "claim-check"
+        },
+        {
+          "id": "claim",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Your card would probably cover it, but you'd have to pay first and claim the money back later.",
+          "es": "Probablemente su tarjeta lo cubriría, pero tendría que pagar primero y reclamar el dinero después.",
+          "next": "decide"
+        },
+        {
+          "id": "claim-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Without our insurance, you mean? Your card would probably cover it, but you'd have to pay first and claim the money back later.",
+          "es": "¿Sin nuestro seguro, quiere decir? Probablemente su tarjeta lo cubriría, pero tendría que pagar primero y reclamar el dinero después.",
+          "next": "decide"
+        },
+        {
+          "id": "decide",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I see. I don't think it's worth it for five days, so I'll pass, thanks.",
+              "rating": "good",
+              "feedback": "Decides con un argumento claro y rechazas con amabilidad.",
+              "next": "initial"
+            },
+            {
+              "en": "Hmm. No, thanks.",
+              "rating": "ok",
+              "feedback": "Está bien, aunque no explicas nada.",
+              "next": "initial"
+            },
+            {
+              "en": "Okay, I'll take everything.",
+              "rating": "wrong",
+              "feedback": "Aceptas sin pensar: pagarías 175 dólares por algo que tu tarjeta ya cubre.",
+              "next": "initial-insured"
+            }
+          ]
+        },
+        {
+          "id": "initial",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "No problem. Just initial here and here, please.",
+          "es": "No hay problema. Ponga sus iniciales aquí y aquí, por favor.",
+          "next": "tank"
+        },
+        {
+          "id": "initial-insured",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Great choice! I've added the full insurance. Just initial here and here, please.",
+          "es": "¡Excelente elección! Le agregué el seguro completo. Ponga sus iniciales aquí y aquí, por favor.",
+          "next": "tank-insured"
+        },
+        {
+          "id": "tank",
+          "kind": "write",
+          "prompt": "Pregunta si tienes que devolver el auto con el tanque lleno.",
+          "accepted": [
+            "Do I {have|need} to {return|bring back} the car with a full tank?",
+            "{Should|Do} I return the car with a full tank?",
+            "Do I {have|need} to fill {it|the tank} up before I {return it|bring it back}?"
+          ],
+          "tip": "«Do I need to return the car with a full tank?» es la pregunta clave antes de irte.",
+          "next": "keys",
+          "wrongNext": "keys-check"
+        },
+        {
+          "id": "tank-insured",
+          "kind": "write",
+          "prompt": "Pregunta si tienes que devolver el auto con el tanque lleno.",
+          "accepted": [
+            "Do I {have|need} to {return|bring back} the car with a full tank?",
+            "{Should|Do} I return the car with a full tank?",
+            "Do I {have|need} to fill {it|the tank} up before I {return it|bring it back}?"
+          ],
+          "tip": "«Do I need to return the car with a full tank?» es la pregunta clave antes de irte.",
+          "next": "keys-insured"
+        },
+        {
+          "id": "keys",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Yes, please, or we charge nine dollars a gallon. Here are your keys. Have a great trip!",
+          "es": "Sí, por favor, o le cobramos nueve dólares el galón. Aquí tiene las llaves. ¡Buen viaje!",
+          "next": "end"
+        },
+        {
+          "id": "keys-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "With a full tank? Yes, please, or we charge nine dollars a gallon. Here are your keys. Have a great trip!",
+          "es": "¿Con el tanque lleno? Sí, por favor, o le cobramos nueve dólares el galón. Aquí tiene las llaves. ¡Buen viaje!",
+          "next": "end"
+        },
+        {
+          "id": "keys-insured",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Yes, please, or we charge nine dollars a gallon. Here are your keys. With the full insurance, you're all set!",
+          "es": "Sí, por favor, o le cobramos nueve dólares el galón. Aquí tiene las llaves. ¡Con el seguro completo, no le falta nada!",
+          "next": "end-insured"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Te llevaste el auto compacto que reservaste, sin pagar extras que no necesitabas."
+        },
+        {
+          "id": "end-insured",
+          "kind": "end",
+          "text": "Te llevaste el auto, pero pagaste un seguro que tu tarjeta ya cubría."
+        }
+      ],
+      "cardIds": ["b2.grammar.be-worth", "b1.grammar.second-conditional"]
+    }
+  ]
+}

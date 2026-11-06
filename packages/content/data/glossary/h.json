@@ -675,6 +675,18 @@
       ]
     },
     {
+      "id": "glossary.helpful",
+      "headword": "helpful",
+      "kind": "word",
+      "forms": ["helpful"],
+      "senses": [
+        {
+          "es": "útil, de gran ayuda",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.her",
       "headword": "her",
       "kind": "word",
@@ -879,6 +891,18 @@
       ]
     },
     {
+      "id": "glossary.hmm",
+      "headword": "hmm",
+      "kind": "word",
+      "forms": ["hmm"],
+      "senses": [
+        {
+          "es": "mmm (duda)",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.hobby",
       "headword": "hobby",
       "kind": "word",
@@ -975,6 +999,18 @@
         {
           "es": "honesto, sincero",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.honestly",
+      "headword": "honestly",
+      "kind": "word",
+      "forms": ["honestly"],
+      "senses": [
+        {
+          "es": "la verdad, sinceramente",
+          "pos": "adverb"
         }
       ]
     },
