@@ -11,7 +11,8 @@
       "uses": [
         "Account for: explicar la causa de algo o representar una proporción (account for half of…).",
         "Bring about: provocar un cambio, sobre todo en textos formales.",
-        "Play down, iron out y weigh up son separables: play it down, iron them out, weigh them up."
+        "Play down, iron out y weigh up son separables: play it down, iron them out, weigh them up.",
+        "Weigh up es más frecuente en inglés británico; en Estados Unidos también se dice weigh (weigh the options)."
       ],
       "pitfalls": [
         {
@@ -255,8 +256,8 @@
       "type": "translate_write",
       "es": "Necesitamos sopesar las ventajas y las desventajas.",
       "accepted": [
-        "We need to weigh up the {pros and cons|advantages and disadvantages}.",
-        "We need to weigh the {pros and cons|advantages and disadvantages}[ up]."
+        "We need to weigh up the {pros and cons|advantages and [the ]disadvantages}.",
+        "We need to weigh the {pros and cons|advantages and [the ]disadvantages}[ up]."
       ]
     },
     {

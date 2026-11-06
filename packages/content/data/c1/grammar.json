@@ -261,7 +261,7 @@
       "examples": [
         {
           "en": "The introduction of the new law caused a lot of debate.",
-          "es": "La introducción de la nueva ley generó mucho debate."
+          "es": "La aprobación de la nueva ley generó mucho debate."
         },
         {
           "en": "The failure of the talks surprised everyone.",
@@ -392,13 +392,10 @@
       "itemIds": ["c1.grammar.inversion"],
       "level": "C1",
       "source": {
-        "kind": "tatoeba",
-        "sentenceId": 64029,
-        "author": "CK",
-        "license": "CC BY 2.0 FR"
+        "kind": "original"
       },
       "type": "translation_choice",
-      "sentence": "Not only were we hungry, but we were also suffering from thirst.",
+      "sentence": "Not only were we hungry, but we were also very thirsty.",
       "options": [
         "No teníamos hambre, pero sí teníamos mucha sed.",
         "Solo teníamos hambre, no sed.",
@@ -462,7 +459,8 @@
       "type": "translate_write",
       "es": "Si hubiera sabido tu número de teléfono, te habría llamado.",
       "accepted": [
-        "{Had I known|If I had known} your {telephone|phone} number, I would have called you."
+        "{Had I known|If I had known} your {telephone |phone |}number, I would have called you.",
+        "I would have called you if I had known your {telephone |phone |}number."
       ]
     },
     {
@@ -528,13 +526,10 @@
       "itemIds": ["c1.grammar.cleft-sentences"],
       "level": "C1",
       "source": {
-        "kind": "tatoeba",
-        "sentenceId": 20040,
-        "author": "CK",
-        "license": "CC BY 2.0 FR"
+        "kind": "original"
       },
       "type": "translation_choice",
-      "sentence": "It was not what he said, but the way he said it that made me suspicious.",
+      "sentence": "It was not what he said, but the way he said it, that made me suspicious.",
       "options": [
         "No sospeché de él porque dijo la verdad.",
         "Lo que me hizo sospechar no fue lo que dijo, sino cómo lo dijo.",
@@ -585,8 +580,8 @@
       "type": "translate_write",
       "es": "Fue la directora quien encontró la solución.",
       "accepted": [
-        "It was the {director|manager} {who|that} found the solution.",
-        "The {director|manager} was the one who found the solution."
+        "It was the {director|manager} {who|that} {found|came up with} the solution.",
+        "The {director|manager} was the one who {found|came up with} the solution."
       ]
     },
     {
@@ -626,10 +621,10 @@
         "kind": "original"
       },
       "type": "cloze",
-      "sentence": "It could be ___ that the experiment was badly designed.",
+      "sentence": "It could be ___ that the government acted too slowly.",
       "answers": ["argued", "said", "claimed", "suggested"],
       "distractors": ["argue", "arguing", "argument"],
-      "es": "Se podría argumentar que el experimento estaba mal diseñado."
+      "es": "Se podría argumentar que el gobierno actuó con demasiada lentitud."
     },
     {
       "id": "c1.grammar.hedging-cloze-4",
@@ -784,7 +779,7 @@
         "La nueva ley se introdujo sin ningún debate.",
         "El debate sobre la nueva ley terminó con su introducción.",
         "La introducción de la ley fue un gran acuerdo.",
-        "La introducción de la nueva ley generó mucho debate."
+        "La aprobación de la nueva ley generó mucho debate."
       ],
       "answerIndex": 3
     },

@@ -793,6 +793,18 @@
       ]
     },
     {
+      "id": "glossary.instructions",
+      "headword": "instructions",
+      "kind": "word",
+      "forms": ["instructions"],
+      "senses": [
+        {
+          "es": "instrucciones",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.instrument",
       "headword": "instrument",
       "kind": "word",

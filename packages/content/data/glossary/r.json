@@ -453,6 +453,18 @@
       ]
     },
     {
+      "id": "glossary.reference",
+      "headword": "reference",
+      "kind": "word",
+      "forms": ["reference", "references"],
+      "senses": [
+        {
+          "es": "referencia (with reference to: en relación con)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.reform",
       "headword": "reform",
       "kind": "word",

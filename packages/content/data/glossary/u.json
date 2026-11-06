@@ -229,6 +229,18 @@
       ]
     },
     {
+      "id": "glossary.union",
+      "headword": "union",
+      "kind": "word",
+      "forms": ["union", "unions"],
+      "senses": [
+        {
+          "es": "sindicato",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.unique",
       "headword": "unique",
       "kind": "word",

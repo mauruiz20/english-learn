@@ -1588,6 +1588,22 @@
       ]
     },
     {
+      "id": "glossary.touch",
+      "headword": "touch",
+      "kind": "word",
+      "forms": ["touch"],
+      "senses": [
+        {
+          "es": "tacto, contacto",
+          "pos": "noun"
+        },
+        {
+          "es": "tocar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.tour",
       "headword": "tour",
       "kind": "word",

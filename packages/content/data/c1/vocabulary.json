@@ -140,7 +140,7 @@
         },
         {
           "wrong": "Hey, thanks a lot for the info about the job!",
-          "right": "Dear Sir or Madam, thank you for the information about the position.",
+          "right": "Thank you for the information about the position.",
           "why": "En un correo formal se evitan los saludos informales, las abreviaturas (info) y las exclamaciones."
         },
         {
@@ -392,7 +392,7 @@
         "kind": "original"
       },
       "type": "cloze",
-      "sentence": "I am writing ___ your job advertisement.",
+      "sentence": "I am writing ___ your job posting.",
       "answers": ["regarding", "concerning", "about"],
       "distractors": ["regarding to", "according", "referring"],
       "es": "Le escribo en relación con su anuncio de empleo."

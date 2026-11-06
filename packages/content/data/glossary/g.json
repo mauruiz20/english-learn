@@ -270,6 +270,18 @@
       ]
     },
     {
+      "id": "glossary.get-in-touch",
+      "headword": "get in touch",
+      "kind": "phrase",
+      "forms": ["get in touch", "gets in touch", "got in touch", "getting in touch"],
+      "senses": [
+        {
+          "es": "ponerse en contacto",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.get-lost",
       "headword": "get lost",
       "kind": "phrase",

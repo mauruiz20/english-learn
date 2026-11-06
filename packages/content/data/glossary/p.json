@@ -1552,6 +1552,18 @@
       ]
     },
     {
+      "id": "glossary.posting",
+      "headword": "posting",
+      "kind": "word",
+      "forms": ["posting", "postings"],
+      "senses": [
+        {
+          "es": "anuncio (job posting: oferta de empleo)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.pound",
       "headword": "pound",
       "kind": "word",
@@ -1731,7 +1743,7 @@
       "id": "glossary.present",
       "headword": "present",
       "kind": "word",
-      "forms": ["present", "presented"],
+      "forms": ["present", "presented", "presents"],
       "senses": [
         {
           "es": "presente (tiempo verbal)",

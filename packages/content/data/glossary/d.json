@@ -372,6 +372,18 @@
       ]
     },
     {
+      "id": "glossary.deeply",
+      "headword": "deeply",
+      "kind": "word",
+      "forms": ["deeply"],
+      "senses": [
+        {
+          "es": "profundamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.defend",
       "headword": "defend",
       "kind": "word",
@@ -495,6 +507,18 @@
       "senses": [
         {
           "es": "entrega",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.demand",
+      "headword": "demand",
+      "kind": "word",
+      "forms": ["demand", "demands"],
+      "senses": [
+        {
+          "es": "exigencia, demanda",
           "pos": "noun"
         }
       ]
@@ -1288,6 +1312,18 @@
       ]
     },
     {
+      "id": "glossary.documentary",
+      "headword": "documentary",
+      "kind": "word",
+      "forms": ["documentary", "documentaries"],
+      "senses": [
+        {
+          "es": "documental",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.doesn-t",
       "headword": "doesn't",
       "kind": "word",
@@ -1344,6 +1380,18 @@
         {
           "es": "no (presente: I don't = yo no)",
           "pos": "auxiliary"
+        }
+      ]
+    },
+    {
+      "id": "glossary.donation",
+      "headword": "donation",
+      "kind": "word",
+      "forms": ["donation", "donations"],
+      "senses": [
+        {
+          "es": "donación, donativo",
+          "pos": "noun"
         }
       ]
     },

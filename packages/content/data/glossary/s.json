@@ -181,6 +181,18 @@
       ]
     },
     {
+      "id": "glossary.sample",
+      "headword": "sample",
+      "kind": "word",
+      "forms": ["sample", "samples"],
+      "senses": [
+        {
+          "es": "muestra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sandwich",
       "headword": "sandwich",
       "kind": "word",
