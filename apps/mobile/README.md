@@ -402,42 +402,67 @@ Learners hear English with the device's own speech synthesis: no recordings, no 
 
 - **Speech service** (`web-speech-service.ts`, over `window.speechSynthesis`; `device-speech.web.ts`
   wires it, `device-speech.ts` makes native unsupported since expo-speech is not a dependency).
-  `speak(text, { rate, key })` cancels whatever was being said first, queues long texts in
-  sentence chunks (≤ 200 characters) and publishes `{ available, speakingKey }` for
-  `useSyncExternalStore`. It never throws or blocks. **Voice** (`voice-choice.ts`,
-  `pickEnglishVoice`): only voices on the device (`localService`; a network voice would send the
-  text to a server), `en-US` first, then other English, then "Premium / Enhanced / Neural /
-  Natural / Siri" voices, then the default, then the name, so the pick is deterministic.
+  `speak(text, { rate, key, voice? })` stops whatever was being said first, queues long texts in
+  sentence chunks (≤ 200 characters) and publishes `{ available, speakingKey, voices, voiceId }`
+  for `useSyncExternalStore`. It never throws or blocks.
+- **Voice** (`voice-choice.ts`, `rankEnglishVoices` / `pickEnglishVoice`): only English voices on
+  the device (`localService`; a network voice would send the text to a server). Never Apple's
+  novelty voices (Albert, Bad News, Bahh, Bells, Boing, Bubbles, Cellos, Good News, Jester,
+  Organ, Superstar, Trinoids, Whisper, Wobble, Zarvox; matched by name and by their
+  `com.apple.speech.synthesis.voice.*` URI, which keeps old ids such as `Hysterical` for Jester)
+  nor Eloquence voices (Eddy, Flo, Grandma, Grandpa, Reed, Rocko, Sandy, Shelley;
+  `com.apple.eloquence.*`). iOS 17+ lists all of them as ordinary local en-US voices and WebKit
+  marks every voice `default`, so the old "default, then name" order picked "Albert" on an
+  iPhone. Ranking: Premium (URI or name), then Enhanced / Neural / Natural / Siri, then known good
+  voices (Samantha, Ava, Allison, Susan, Tom, Alex, Nicky, Zoe, Evan, Nathan, Joelle), then the
+  system default for en-US (only where `default` means something, i.e. not WebKit), then other
+  en-US, then other English, and the old compact Fred, Junior, Kathy and Ralph last; `en-US` first
+  within a tier, a super-compact voice after its compact one, then name and URI, so it is
+  deterministic.
 - **WebKit / iOS**: voices arrive late, so it listens to `voiceschanged` and also looks again
   after 0.25, 1 and 3 s; the first tap anywhere (`pointerdown` / `touchend` / `keydown`) speaks
-  one empty, silent utterance to unlock the engine and reads the voices again; `speak` always runs
-  inside the tap (iOS speaks only from a gesture; nothing autoplays); hiding the page
+  one empty, silent utterance to unlock the engine and reads the voices again; `speak` runs
+  inside the tap (iOS speaks only from a gesture; nothing autoplays). An idle engine is never
+  cancelled (the text is spoken at once, inside the tap); a busy one is cancelled and the text
+  spoken 100 ms later (`CANCEL_SETTLE_MS`) with fresh utterances: before Safari 27, WebKit's late
+  `cancel()` callback could drop the utterances queued right after it
+  ([bug 191745](https://bugs.webkit.org/show_bug.cgi?id=191745)). Hiding the page
   (`visibilitychange`, `pagehide`) cancels, since iOS stops without an end event; a watchdog
   clears a speaking state whose end never comes; a paused engine is resumed first.
+- **Speed**: normal 1.0, slow 0.7 (`SPEECH_RATES`); "Más lento" is one step below the learner's
+  speed (`SLOWER_RATES`: 0.7, or 0.5 when the learner picked "Lenta"). WebKit maps a rate below 1
+  linearly onto `AVSpeechUtterance.rate` (`rate × AVSpeechUtteranceDefaultSpeechRate`), like
+  Chrome, so iOS needs no different values.
 - **Speaker button** (`SpeakButton`, `WithSpeaker`): 44 pt, a pen-drawn speaker, labelled
-  "Escuchar: <texto>" (a passage: "Escuchar el texto") with the hint "Toca otra vez para
-  escucharlo más lento". A tap plays at the learner's speed and the next tap on the same speaker at
-  the other one (normal 1.0, slow 0.7), alternating. While it speaks it is filled with ink (a state
-  change, no animation, so reduced motion needs nothing); no press click (the voice is the
-  feedback). Hidden when pronunciation is off, the device has no English voice, or there is nothing
-  to say. Where: the word lookup card (dialog only: a hover tooltip cannot be pressed; the
-  headword without notation, `speakableTerm`), "Lo nuevo de hoy" (each term and example), study
-  cards (examples, collocations, corrections but never the mistake, phrasal verbs and the false
+  "Escuchar: <texto>" (a passage: "Escuchar el texto"). Every tap plays at the learner's speed.
+  There is no hidden second-tap toggle any more: it alternated with the other speed, so with
+  "Lenta" every second tap played faster. While it speaks it is filled with ink (a state change,
+  no animation, so reduced motion needs nothing); no press click (the voice is the feedback).
+  Hidden when pronunciation is off, the device has no English voice, or there is nothing to say.
+  Where: the word lookup card (dialog only: a hover tooltip cannot be pressed; the headword
+  without notation, `speakableTerm`), "Lo nuevo de hoy" (each term and example), study cards
+  (examples, collocations, corrections but never the mistake, phrasal verbs and the false
   friend), the feedback's right answer (`spokenAnswer`: the sentence, the cloze sentence filled,
   the English sentence of a translation choice, an English vocab answer; none for reading) and the
   reading passage (one speaker for title and text).
 - **Settings** (`PronunciationProvider`, `PronunciationSettingsButton`): a speech bubble next to
   the sound switch (home, the exercise headers and the study card's) opens "Pronunciación" with
-  an on/off switch (on by default) and "Velocidad de la voz" (Normal / Lenta). Stored in SQLite
-  (`SettingsRepository.getPronunciationEnabled` / `getSpeechRate`); turning it off stops any
-  speech. Not shown at all without an English voice.
+  an on/off switch (on by default), "Velocidad de la voz" (Normal / Lenta) and "Voz":
+  "Automática (<best voice>)" (the ranking above, the default) or one of the device's English
+  voices, best first, each with a "Probar" button that says a short sample with it at the
+  learner's speed without picking it. A picked voice that is not on the device falls back to the
+  automatic one. Stored in SQLite on the device (`SettingsRepository.getPronunciationEnabled` /
+  `getSpeechRate` / `getSpeechVoice`, the voice's `voiceURI`); turning it off stops any speech.
+  Not shown at all without an English voice.
 
 ### Listening in reviews (`features/lesson/model/listen-exercise.ts`)
 
 "Escucha y escribe" (dictation) and "Escucha y elige" are derived, never authored: from a
 word_order sentence or a translate_write reference answer of 3–14 words without digits (digits
-are spoken as words). The sentence is never shown before the check; "Escuchar" and "Más lento"
-play it. A dictation is matched like translate-write against every sentence the source accepts
+are spoken as words). The sentence is never shown before the check; two explicit buttons play
+it, each always at its own speed however often it is tapped: "Escuchar" (a speaker, the
+learner's speed) and "Más lento" (a tortoise sticker, one step slower: 0.7, or 0.5 with
+"Lenta"). A dictation is matched like translate-write against every sentence the source accepts
 (case, punctuation and contractions tolerated, a typo is "almost"); a choice offers the sentence
 and two others of the same level and length (from word_order sentences, translate_write answers
 and card examples).
