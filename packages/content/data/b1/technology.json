@@ -354,7 +354,26 @@
         "b1.technology.log-in",
         "b1.technology.passive-present"
       ],
-      "deepenCardIds": ["b1.phrasal-verbs.technology"]
+      "deepenCardIds": ["b1.phrasal-verbs.technology"],
+      "intro": {
+        "points": [
+          "Pasiva en presente: «is / are» + participio: «English is used all over the world».",
+          "«log in to» es iniciar sesión en: «I can't log in to my account».",
+          "«back up» es hacer una copia de seguridad: «back up your files», «back them up»."
+        ],
+        "examples": [
+          { "en": "I can't log in to my account.", "es": "No puedo iniciar sesión en mi cuenta." },
+          {
+            "en": "English is used all over the world.",
+            "es": "El inglés se usa en todo el mundo."
+          }
+        ],
+        "mistake": {
+          "wrong": "Here is spoken English.",
+          "right": "English is spoken here.",
+          "note": "“Se habla inglés” es pasiva, y el sujeto va delante: «English is spoken»."
+        }
+      }
     },
     {
       "id": "b1.technology.lesson-002",
@@ -375,7 +394,26 @@
         "b1.technology.relative-that-which",
         "b1.technology.passive-present"
       ],
-      "deepenCardIds": ["b1.grammar.relative-clauses", "b1.grammar.passive"]
+      "deepenCardIds": ["b1.grammar.relative-clauses", "b1.grammar.passive"],
+      "intro": {
+        "points": [
+          "Para cosas usa «that» o «which»: «the app that helps me»; para personas, «who».",
+          "Pasiva en presente y en pasado: «These phones are made in Korea», «It was designed in California».",
+          "«device» es cualquier aparato: teléfono, tableta o computadora."
+        ],
+        "examples": [
+          {
+            "en": "This is the app that helps me learn new words.",
+            "es": "Esta es la aplicación que me ayuda a aprender palabras nuevas."
+          },
+          { "en": "These phones are made in Korea.", "es": "Estos teléfonos se fabrican en Corea." }
+        ],
+        "mistake": {
+          "wrong": "This is the app who helps me.",
+          "right": "This is the app that helps me.",
+          "note": "«who» es solo para personas; para cosas usa «that» o «which»."
+        }
+      }
     }
   ]
 }
