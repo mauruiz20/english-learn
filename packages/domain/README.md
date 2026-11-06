@@ -113,6 +113,8 @@ clock-free: the same state and history always give the same result.
   latest 5 answers (two of them) or is the latest one.
 - **Ease 1.7, not 2.0**: one lapse from the default ease leaves 1.96, so a 2.0 threshold would
   mark every item missed once until a perfect due review; 1.7 is about two lapses' worth.
+- **Every miss counts as a failing answer**, a lesson's first sight included (it is not a
+  lapse for SM-2, but a word missed and not yet answered right is one the learner finds hard).
 - **Low ease never alone**: SM-2 ease only rises with perfect (grade 5) due answers; "almost"
   (grade 3) lowers it and correct-but-slow (grade 4) keeps it. An item lapsed twice long ago and
   then answered right 8 times (ease 1.62, interval 110 days), or never missed but "almost" 7

@@ -118,7 +118,8 @@ export function hardPracticeNote({
 }): string | undefined {
   if (practiced === 0) return undefined;
   if (movedOut === 0) return "Tus palabras siguen en Difíciles: vuelve a practicarlas pronto.";
-  const words = practiced === 1 ? "palabra difícil" : "palabras difíciles";
-  const verb = movedOut === 1 ? "avanzó" : "avanzaron";
-  return `${movedOut} de ${practiced} ${words} ${verb} a En proceso.`;
+  // "Salieron de Difíciles": true whether they went to En proceso or Dominadas.
+  const words = practiced === 1 ? "palabra" : "palabras";
+  const verb = movedOut === 1 ? "salió" : "salieron";
+  return `${movedOut} de ${practiced} ${words} ${verb} de Difíciles.`;
 }

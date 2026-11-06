@@ -82,7 +82,8 @@ function session(day: LocalDate, at: number, grades: Record<string, Grade>): Pro
 
 /**
  * "wake up": learned yesterday, missed in today's review, so difficult and due tomorrow.
- * "have breakfast": an old item whose ease sank (difficult) and due today.
+ * "have breakfast": an old item whose ease sank, missed yesterday ahead of time (a lapse), so
+ * difficult and due today.
  */
 function seeded(): FakeProgressRepository {
   const breakfast: ReviewState = {
@@ -95,7 +96,7 @@ function seeded(): FakeProgressRepository {
   return createFakeRepository({
     states: [breakfast],
     events: [
-      ...session(YESTERDAY, 1, { "a2.routine.wake-up": 5 }),
+      ...session(YESTERDAY, 1, { "a2.routine.wake-up": 5, "a2.routine.breakfast": 1 }),
       ...session(TODAY, 2, { "a2.routine.wake-up": 1 }),
     ],
   });
@@ -133,7 +134,7 @@ describe("ProgressContainer", () => {
       await screen.findByLabelText("2 palabras: 0 dominadas, 0 en proceso, 2 difíciles"),
     ).toBeOnTheScreen();
     const terms = screen.getAllByText(/^(wake up|have breakfast)$/).map((t) => t.props.children);
-    expect(terms).toEqual(["wake up", "have breakfast"]);
+    expect(terms).toEqual(["have breakfast", "wake up"]);
   });
 
   it("opens the practice and the study card", async () => {
@@ -158,6 +159,9 @@ describe("HardPracticeContainer", () => {
   it("says so when nothing is difficult", async () => {
     await renderWith(createFakeRepository(), <HardPracticeContainer content={content} />);
     expect(await screen.findByText("No tienes palabras difíciles")).toBeOnTheScreen();
+    expect(
+      screen.getByText("Las palabras que fallas aparecen aquí para practicarlas."),
+    ).toBeOnTheScreen();
     await press("Volver a mi progreso");
     expect(mockRouter.back).toHaveBeenCalled();
   });
@@ -168,19 +172,17 @@ describe("HardPracticeContainer", () => {
     const wakeUpBefore = before.states.find((s) => s.itemId === "a2.routine.wake-up")!;
     await renderWith(repository, <HardPracticeContainer content={content} />);
 
-    // Hardest first: "wake up" (missed today), then "have breakfast" (low ease).
+    // Hardest first: "have breakfast" (missed, low ease, lapses), then "wake up" (missed today).
     expect(await screen.findByText("Ejercicio 1 de 2")).toBeOnTheScreen();
-    await press("despertarse", "radio");
+    await press("have", "radio");
     await press("Comprobar");
     await press("Continuar");
-    await press("have", "radio");
+    await press("despertarse", "radio");
     await press("Comprobar");
     await press("Continuar");
 
     expect(await screen.findByText("¡Práctica completada!")).toBeOnTheScreen();
-    expect(
-      await screen.findByText("1 de 2 palabras difíciles avanzó a En proceso."),
-    ).toBeOnTheScreen();
+    expect(await screen.findByText("1 de 2 palabras salió de Difíciles.")).toBeOnTheScreen();
     expect(screen.getByText("XP ganada: 20")).toBeOnTheScreen();
 
     const after = repository.snapshot();
@@ -211,10 +213,10 @@ describe("HardPracticeContainer", () => {
     await renderWith(repository, <HardPracticeContainer content={content} />);
 
     await screen.findByText("Ejercicio 1 de 2");
-    await press("dormirse", "radio");
+    await press("have", "radio");
     await press("Comprobar");
     await press("Continuar");
-    await press("have", "radio");
+    await press("dormirse", "radio");
     await press("Comprobar");
     await press("Continuar");
 

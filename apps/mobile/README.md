@@ -600,8 +600,9 @@ module, see `@english-learn/domain`, "Difficulty").
   the answer enters its history, so it can leave Difíciles; a word not due that is missed again
   lapses (due tomorrow), exactly like a lesson replay. Home's count stays the next review's size,
   since home and `/review` still plan from the same states (`reviewOutlook`).
-- **Summary**: "¡Práctica completada!", the results and "N de M palabras difíciles avanzaron a
-  En proceso." (practiced difficult words that are no longer difficult, compared before/after),
+- **Summary**: "¡Práctica completada!", the results and "N de M palabras salieron de
+  Difíciles." (practiced difficult words that are no longer difficult, compared before/after,
+  whether they went to En proceso or Dominadas),
   then "Volver a mi progreso".
 
 ## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)

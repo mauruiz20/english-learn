@@ -119,7 +119,7 @@ function ReadyProgress({
         ) : (
           <>
             <Text tone="muted">
-              Las que fallaste hace poco o te cuestan más. Practícalas y vuelven a tus repasos.
+              Las que fallaste hace poco o te cuestan más. Practícalas para sacarlas de Difíciles.
             </Text>
             {state.canPractice && (
               <Button label="Practicar mis palabras difíciles" onPress={onPractice} />

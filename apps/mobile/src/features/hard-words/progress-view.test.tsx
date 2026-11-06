@@ -59,6 +59,11 @@ describe("ProgressView", () => {
   it("lists the difficult words with their meaning and a link to their card", async () => {
     const { onOpenCard } = await renderView(ready);
     expect(screen.getByText("Mis palabras difíciles")).toBeOnTheScreen();
+    expect(
+      screen.getByText(
+        "Las que fallaste hace poco o te cuestan más. Practícalas para sacarlas de Difíciles.",
+      ),
+    ).toBeOnTheScreen();
     expect(screen.getByText("go to bed")).toBeOnTheScreen();
     expect(screen.getByText("acostarse")).toBeOnTheScreen();
     expect(screen.getByText("Olvidada 3 veces · 40 % de aciertos recientes")).toBeOnTheScreen();

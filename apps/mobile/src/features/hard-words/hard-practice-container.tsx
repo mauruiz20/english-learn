@@ -39,7 +39,7 @@ const COPY: ReviewCopy = {
   loading: "Cargando tus palabras difíciles",
   loadError: "No pudimos cargar tus palabras difíciles.",
   emptyTitle: "No tienes palabras difíciles",
-  emptyText: "Las palabras que fallas en tus repasos aparecen aquí para practicarlas.",
+  emptyText: "Las palabras que fallas aparecen aquí para practicarlas.",
   summaryTitle: "¡Práctica completada!",
   doneLabel: "Volver a mi progreso",
 };
@@ -209,7 +209,7 @@ function HardPracticeSession({
 
 /**
  * Once saved, how many of the practiced difficult words left Difíciles ("2 de 5 palabras
- * difíciles avanzaron a En proceso."), or `undefined` until known. A failed read only costs the
+ * salieron de Difíciles."), or `undefined` until known. A failed read only costs the
  * line.
  */
 function useProgressNote(saved: boolean, plan: Plan, content: Corpus): string | undefined {

@@ -105,7 +105,7 @@ describe("progressOverview", () => {
   it("says terms without their notation", () => {
     const overview = progressOverview({
       states: [state("a2.routine.commute", { ease: 1.3 })],
-      histories: [],
+      histories: [history("a2.routine.commute", [1])],
       content,
     });
     expect(overview.hardWords[0]?.speakText).toBe("commute");
@@ -159,15 +159,15 @@ describe("planHardPractice", () => {
 });
 
 describe("hardPracticeNote", () => {
-  it("says how many difficult words left Difíciles", () => {
+  it("says how many difficult words left Difíciles, wherever they went", () => {
     expect(hardPracticeNote({ practiced: 5, movedOut: 3 })).toBe(
-      "3 de 5 palabras difíciles avanzaron a En proceso.",
+      "3 de 5 palabras salieron de Difíciles.",
     );
     expect(hardPracticeNote({ practiced: 1, movedOut: 1 })).toBe(
-      "1 de 1 palabra difícil avanzó a En proceso.",
+      "1 de 1 palabra salió de Difíciles.",
     );
     expect(hardPracticeNote({ practiced: 4, movedOut: 1 })).toBe(
-      "1 de 4 palabras difíciles avanzó a En proceso.",
+      "1 de 4 palabras salió de Difíciles.",
     );
     expect(hardPracticeNote({ practiced: 2, movedOut: 0 })).toBe(
       "Tus palabras siguen en Difíciles: vuelve a practicarlas pronto.",

@@ -70,8 +70,8 @@ test("hard words: missed review words show under Difíciles, can be practiced an
   await expect(
     page.getByText(
       hard === 1
-        ? "1 de 1 palabra difícil avanzó a En proceso."
-        : `${hard} de ${hard} palabras difíciles avanzaron a En proceso.`,
+        ? "1 de 1 palabra salió de Difíciles."
+        : `${hard} de ${hard} palabras salieron de Difíciles.`,
     ),
   ).toBeVisible();
   await page.getByRole("button", { name: "Volver a mi progreso", exact: true }).click();
