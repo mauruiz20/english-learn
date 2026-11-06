@@ -105,6 +105,18 @@
       ]
     },
     {
+      "id": "glossary.necessarily",
+      "headword": "necessarily",
+      "kind": "word",
+      "forms": ["necessarily"],
+      "senses": [
+        {
+          "es": "necesariamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.necessary",
       "headword": "necessary",
       "kind": "word",
@@ -237,6 +249,18 @@
         {
           "es": "nervioso",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.network",
+      "headword": "network",
+      "kind": "word",
+      "forms": ["network", "networks"],
+      "senses": [
+        {
+          "es": "red",
+          "pos": "noun"
         }
       ]
     },

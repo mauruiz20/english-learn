@@ -881,6 +881,18 @@
       ]
     },
     {
+      "id": "glossary.remove",
+      "headword": "remove",
+      "kind": "word",
+      "forms": ["remove", "removes", "removed", "removing"],
+      "senses": [
+        {
+          "es": "quitar, eliminar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.renewable-energy",
       "headword": "renewable energy",
       "kind": "phrase",
@@ -1540,6 +1552,18 @@
       "senses": [
         {
           "es": "camino, carretera",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.roaming",
+      "headword": "roaming",
+      "kind": "word",
+      "forms": ["roaming"],
+      "senses": [
+        {
+          "es": "roaming, itinerancia",
           "pos": "noun"
         }
       ]

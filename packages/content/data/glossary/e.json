@@ -1044,6 +1044,18 @@
       ]
     },
     {
+      "id": "glossary.excellent",
+      "headword": "excellent",
+      "kind": "word",
+      "forms": ["excellent"],
+      "senses": [
+        {
+          "es": "excelente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.except",
       "headword": "except",
       "kind": "word",

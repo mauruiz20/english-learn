@@ -1003,6 +1003,18 @@
       ]
     },
     {
+      "id": "glossary.honestly",
+      "headword": "honestly",
+      "kind": "word",
+      "forms": ["honestly"],
+      "senses": [
+        {
+          "es": "la verdad, sinceramente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.honor",
       "headword": "honor",
       "kind": "word",

@@ -309,6 +309,18 @@
       ]
     },
     {
+      "id": "glossary.tank",
+      "headword": "tank",
+      "kind": "word",
+      "forms": ["tank", "tanks"],
+      "senses": [
+        {
+          "es": "tanque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.task",
       "headword": "task",
       "kind": "word",

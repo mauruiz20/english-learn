@@ -677,6 +677,22 @@
       ]
     },
     {
+      "id": "glossary.initial",
+      "headword": "initial",
+      "kind": "word",
+      "forms": ["initial", "initials", "initialed", "initialing"],
+      "senses": [
+        {
+          "es": "poner las iniciales",
+          "pos": "verb"
+        },
+        {
+          "es": "inicial",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.innocent",
       "headword": "innocent",
       "kind": "word",
@@ -817,6 +833,18 @@
       ]
     },
     {
+      "id": "glossary.insurance",
+      "headword": "insurance",
+      "kind": "word",
+      "forms": ["insurance"],
+      "senses": [
+        {
+          "es": "seguro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.intend",
       "headword": "intend",
       "kind": "word",
@@ -873,6 +901,18 @@
         {
           "es": "curiosamente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.international",
+      "headword": "international",
+      "kind": "word",
+      "forms": ["international"],
+      "senses": [
+        {
+          "es": "internacional",
+          "pos": "adjective"
         }
       ]
     },
@@ -1181,6 +1221,18 @@
         {
           "es": "(IT) informática, TI",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.itd",
+      "headword": "it'd",
+      "kind": "word",
+      "forms": ["it'd"],
+      "senses": [
+        {
+          "es": "(it would / it had) sería, habría",
+          "pos": "expression"
         }
       ]
     },

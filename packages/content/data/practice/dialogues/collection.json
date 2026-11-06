@@ -66,11 +66,14 @@
           "id": "practice.dialogues.with-tact",
           "level": "B2",
           "title": "Con tacto",
-          "summary": "Entrevistas, quejas y reuniones: firme, pero con cortesía.",
+          "summary": "Entrevistas, quejas, reuniones, feedback y vendedores insistentes: firme, pero con cortesía.",
           "dialogueIds": [
             "b2.dialogues.job-interview",
             "b2.dialogues.hotel-complaint",
-            "b2.dialogues.meeting-disagreement"
+            "b2.dialogues.meeting-disagreement",
+            "b2.dialogues.billing-dispute",
+            "b2.dialogues.giving-feedback",
+            "b2.dialogues.car-rental"
           ]
         }
       ]

@@ -961,6 +961,18 @@
       ]
     },
     {
+      "id": "glossary.settings",
+      "headword": "settings",
+      "kind": "word",
+      "forms": ["settings"],
+      "senses": [
+        {
+          "es": "configuración, ajustes",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.settle",
       "headword": "settle",
       "kind": "word",
@@ -3632,6 +3644,18 @@
         {
           "es": "sospechoso; desconfiado",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.suv",
+      "headword": "SUV",
+      "kind": "word",
+      "forms": ["suv", "suvs"],
+      "senses": [
+        {
+          "es": "camioneta, SUV",
+          "pos": "noun"
         }
       ]
     },

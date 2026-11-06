@@ -1,0 +1,267 @@
+{
+  "dialogues": [
+    {
+      "id": "b2.dialogues.billing-dispute",
+      "level": "B2",
+      "title": "Reclamar un cargo en la factura",
+      "setting": "Tu factura del celular de este mes es de 95 dólares en vez de los 45 de siempre: hay un cargo de 50 por «roaming internacional», pero no saliste del país. Un fin de semana estuviste cerca de la frontera con Canadá. Llamas a la compañía.",
+      "characters": [
+        {
+          "id": "agent",
+          "name": "Linda",
+          "role": "agente de facturación"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Good morning, this is Linda in billing. How can I help you?",
+          "es": "Buenos días, habla Linda, del área de facturación. ¿En qué le puedo ayudar?",
+          "next": "mistake"
+        },
+        {
+          "id": "mistake",
+          "kind": "write",
+          "itemIds": ["b2.situations.there-seems-to-be"],
+          "prompt": "Explica que parece haber un error en tu última factura.",
+          "accepted": [
+            "There seems to be {a mistake|an error|a problem} {on|with} my {last|latest} bill.",
+            "I think there's {a mistake|an error} on my {last|latest} bill.",
+            "I'm calling because there's {a mistake|an error} on my {last|latest} bill."
+          ],
+          "tip": "«There seems to be a mistake on my bill» suena firme pero educado.",
+          "next": "details",
+          "wrongNext": "details-check"
+        },
+        {
+          "id": "details",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "I'm sorry to hear that. Could you tell me what the issue is?",
+          "es": "Lamento oír eso. ¿Me podría decir cuál es el problema?",
+          "next": "charge"
+        },
+        {
+          "id": "details-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sorry, is this about your bill? Okay. Could you tell me what the issue is?",
+          "es": "Perdón, ¿es sobre su factura? Bien. ¿Me podría decir cuál es el problema?",
+          "next": "charge"
+        },
+        {
+          "id": "charge",
+          "kind": "choose",
+          "itemIds": ["b2.situations.make-a-complaint"],
+          "options": [
+            {
+              "en": "There's a fifty-dollar charge for international roaming, but I haven't left the country.",
+              "rating": "good",
+              "feedback": "Describes el cargo exacto y por qué no corresponde: claro y sin acusar.",
+              "next": "look"
+            },
+            {
+              "en": "You charged me fifty dollars for nothing.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena a acusación y no explica el problema.",
+              "next": "look-calm"
+            },
+            {
+              "en": "Your company is stealing from me.",
+              "rating": "wrong",
+              "feedback": "Acusar de robo a la persona que te va a ayudar solo complica la conversación.",
+              "next": "look-firm"
+            }
+          ]
+        },
+        {
+          "id": "look",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "I see. Let me take a look at your account.",
+          "es": "Entiendo. Déjeme revisar su cuenta.",
+          "next": "canada"
+        },
+        {
+          "id": "look-calm",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "I understand you're upset. Let me take a look at your account.",
+          "es": "Entiendo su molestia. Déjeme revisar su cuenta.",
+          "next": "canada"
+        },
+        {
+          "id": "look-firm",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "I understand you're frustrated, but nobody is stealing anything. Let me take a look at your account.",
+          "es": "Entiendo su frustración, pero nadie le está robando nada. Déjeme revisar su cuenta.",
+          "next": "canada"
+        },
+        {
+          "id": "canada",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Okay, I can see the charge. It says your phone connected to a network in Canada on the fifth.",
+          "es": "Bien, veo el cargo. Dice que su teléfono se conectó a una red de Canadá el día cinco.",
+          "next": "border"
+        },
+        {
+          "id": "border",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "That's strange. I was near the border that weekend, but I never crossed it.",
+              "rating": "good",
+              "feedback": "Aportas un dato útil que explica lo que pasó.",
+              "next": "explains"
+            },
+            {
+              "en": "That's impossible.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero cierras la conversación sin dar información.",
+              "next": "explains-ask"
+            },
+            {
+              "en": "Oh, so I have to pay it. Okay.",
+              "rating": "wrong",
+              "feedback": "Malentendido: ella no dijo que tengas que pagar; te rindes antes de explicar tu caso.",
+              "next": "explains-ask"
+            }
+          ]
+        },
+        {
+          "id": "explains",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Ah, that explains it. Phones near the border sometimes connect to Canadian networks by mistake.",
+          "es": "Ah, eso lo explica. A veces los teléfonos cerca de la frontera se conectan por error a redes canadienses.",
+          "next": "remove"
+        },
+        {
+          "id": "explains-ask",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Well, not necessarily. Were you near the border that day? You were? Then that explains it. Phones near the border sometimes connect to Canadian networks by mistake.",
+          "es": "Bueno, no necesariamente. ¿Estaba cerca de la frontera ese día? ¿Sí? Entonces eso lo explica. A veces los teléfonos cerca de la frontera se conectan por error a redes canadienses.",
+          "next": "remove"
+        },
+        {
+          "id": "remove",
+          "kind": "write",
+          "itemIds": ["b2.situations.id-appreciate-it-if"],
+          "prompt": "Pide con cortesía que te quiten el cargo (usa «I'd appreciate it if…»).",
+          "accepted": [
+            "I'd appreciate it if you could {remove|cancel} {the|that} charge.",
+            "I'd appreciate it if you could take {the|that} charge off my bill.",
+            "{Could|Would} you {remove|cancel} {the|that} charge, please?"
+          ],
+          "tip": "«I'd appreciate it if you could…» es un pedido firme y muy educado.",
+          "next": "credit",
+          "wrongNext": "credit-check"
+        },
+        {
+          "id": "credit",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Of course. I've removed the charge, and you'll see a fifty-dollar credit on your next bill.",
+          "es": "Por supuesto. Ya quité el cargo y verá un crédito de cincuenta dólares en su próxima factura.",
+          "next": "again"
+        },
+        {
+          "id": "credit-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Sorry, you'd like me to remove it? Of course. I've removed the charge, and you'll see a fifty-dollar credit on your next bill.",
+          "es": "Perdón, ¿quiere que lo quite? Por supuesto. Ya quité el cargo y verá un crédito de cincuenta dólares en su próxima factura.",
+          "next": "again"
+        },
+        {
+          "id": "again",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Thank you. Is there anything I can do to stop this from happening again?",
+              "rating": "good",
+              "feedback": "Agradeces y buscas evitar el problema en el futuro.",
+              "next": "settings"
+            },
+            {
+              "en": "Fine. Just make sure it doesn't happen again.",
+              "rating": "ok",
+              "feedback": "Tiene sentido, pero el tono es exigente con quien acaba de resolverlo.",
+              "next": "settings-cool"
+            },
+            {
+              "en": "Great, so I don't have to pay anything this month.",
+              "rating": "wrong",
+              "feedback": "Malentendido: solo te quitan los 50 dólares del roaming; el resto de la factura se paga igual.",
+              "next": "settings-explain"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Absolutely. You can turn off roaming in your phone settings when you're near the border.",
+          "es": "Claro. Puede desactivar el roaming en la configuración del teléfono cuando esté cerca de la frontera.",
+          "next": "email"
+        },
+        {
+          "id": "settings-cool",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "I understand. To be safe, you can turn off roaming in your phone settings when you're near the border.",
+          "es": "Entiendo. Para evitarlo, puede desactivar el roaming en la configuración del teléfono cuando esté cerca de la frontera.",
+          "next": "email"
+        },
+        {
+          "id": "settings-explain",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Not quite. You still need to pay your usual forty-five dollars, just not the fifty. And to avoid this, you can turn off roaming in your phone settings.",
+          "es": "No exactamente. Igual tiene que pagar sus cuarenta y cinco dólares de siempre, pero no los cincuenta. Y para evitarlo, puede desactivar el roaming en la configuración del teléfono.",
+          "next": "email"
+        },
+        {
+          "id": "email",
+          "kind": "write",
+          "prompt": "Pide que te manden un correo que confirme el crédito.",
+          "accepted": [
+            "{Could|Can|Would} you send me {an email|a confirmation email} {confirming|to confirm} {that|this|the credit}[, please]?",
+            "{Could|Can|Would} you confirm {that|this|the credit} {by|in an} email[, please]?"
+          ],
+          "tip": "«Could you send me an email confirming that?» deja todo por escrito.",
+          "next": "bye",
+          "wrongNext": "bye-check"
+        },
+        {
+          "id": "bye",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "Absolutely. You'll get it within the hour. Is there anything else I can help you with?",
+          "es": "Por supuesto. Le llegará en menos de una hora. ¿Hay algo más en lo que le pueda ayudar?",
+          "next": "end"
+        },
+        {
+          "id": "bye-check",
+          "kind": "npc",
+          "speaker": "agent",
+          "en": "An email? Sure. You'll get it within the hour. Is there anything else I can help you with?",
+          "es": "¿Un correo? Claro. Le llegará en menos de una hora. ¿Hay algo más en lo que le pueda ayudar?",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Te quitaron el cargo de 50 dólares y tendrás la confirmación por escrito."
+        }
+      ],
+      "cardIds": ["b1.grammar.present-perfect-past-simple"]
+    }
+  ]
+}

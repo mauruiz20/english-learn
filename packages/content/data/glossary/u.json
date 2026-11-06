@@ -421,6 +421,30 @@
       ]
     },
     {
+      "id": "glossary.upgrade",
+      "headword": "upgrade",
+      "kind": "word",
+      "forms": ["upgrade", "upgrades", "upgraded", "upgrading"],
+      "senses": [
+        {
+          "es": "mejorar, pasar a una categoría superior",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.upset",
+      "headword": "upset",
+      "kind": "word",
+      "forms": ["upset"],
+      "senses": [
+        {
+          "es": "molesto, disgustado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.upstairs",
       "headword": "upstairs",
       "kind": "word",

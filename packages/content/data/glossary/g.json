@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.gallon",
+      "headword": "gallon",
+      "kind": "word",
+      "forms": ["gallon", "gallons"],
+      "senses": [
+        {
+          "es": "galón (unos 3,8 litros)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.game",
       "headword": "game",
       "kind": "word",

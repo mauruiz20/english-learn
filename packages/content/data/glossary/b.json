@@ -804,6 +804,18 @@
       ]
     },
     {
+      "id": "glossary.billing",
+      "headword": "billing",
+      "kind": "word",
+      "forms": ["billing"],
+      "senses": [
+        {
+          "es": "facturación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.bin",
       "headword": "bin",
       "kind": "word",

@@ -269,6 +269,18 @@
       ]
     },
     {
+      "id": "glossary.canadian",
+      "headword": "Canadian",
+      "kind": "word",
+      "forms": ["canadian", "canadians"],
+      "senses": [
+        {
+          "es": "canadiense",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.cancel",
       "headword": "cancel",
       "kind": "word",
@@ -1945,6 +1957,18 @@
       ]
     },
     {
+      "id": "glossary.compact",
+      "headword": "compact",
+      "kind": "word",
+      "forms": ["compact", "compacts"],
+      "senses": [
+        {
+          "es": "compacto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.company",
       "headword": "company",
       "kind": "word",
@@ -2272,11 +2296,23 @@
       "id": "glossary.confirm",
       "headword": "confirm",
       "kind": "word",
-      "forms": ["confirm", "confirms"],
+      "forms": ["confirm", "confirms", "confirmed", "confirming"],
       "senses": [
         {
           "es": "confirmar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.confirmation",
+      "headword": "confirmation",
+      "kind": "word",
+      "forms": ["confirmation"],
+      "senses": [
+        {
+          "es": "confirmación",
+          "pos": "noun"
         }
       ]
     },
@@ -2313,6 +2349,18 @@
         {
           "es": "confusión",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.connect",
+      "headword": "connect",
+      "kind": "word",
+      "forms": ["connect", "connects", "connecting"],
+      "senses": [
+        {
+          "es": "conectar(se)",
+          "pos": "verb"
         }
       ]
     },

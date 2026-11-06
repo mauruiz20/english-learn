@@ -718,6 +718,18 @@
       ]
     },
     {
+      "id": "glossary.linda",
+      "headword": "Linda",
+      "kind": "word",
+      "forms": ["linda"],
+      "senses": [
+        {
+          "es": "Linda (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.line",
       "headword": "line",
       "kind": "word",
