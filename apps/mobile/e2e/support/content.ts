@@ -154,6 +154,54 @@ export async function answerCorrectly(page: Page, submit: string): Promise<strin
   return id;
 }
 
+/** Answers the (non-reading) exercise on screen wrongly and presses `submit`. */
+export async function answerWrongly(page: Page, submit: string): Promise<string> {
+  const id = await currentExerciseId(page);
+  const scope = page.getByTestId(`exercise-${id}`);
+  const choose = (option: string) =>
+    scope.getByRole("radio", { name: option, exact: true }).click();
+  const write = (label: string) => scope.getByLabel(label).fill("zzz qqq");
+  if (isListeningExercise(id)) {
+    const input = scope.getByLabel("Lo que escuchaste, en inglés");
+    if (await input.isVisible()) await input.fill("zzz qqq");
+    else {
+      const sentence = listeningSentence(id);
+      const options = await scope.getByRole("radio").allTextContents();
+      await choose(options.find((o) => o.trim() !== sentence) ?? "");
+    }
+    await scope.getByRole("button", { name: submit, exact: true }).click();
+    return id;
+  }
+  const exercise = exercisesById.get(id);
+  if (exercise === undefined) throw new Error(`Unknown exercise "${id}"`);
+  switch (exercise.type) {
+    case "vocab":
+    case "translation_choice":
+      await choose(exercise.options.find((_, i) => i !== exercise.answerIndex) ?? "");
+      break;
+    case "cloze":
+      await choose(exercise.distractors[0] ?? "");
+      break;
+    case "word_order":
+      // The words in reverse order: never an accepted sentence.
+      for (const token of (exercise.accepted[0] ?? "").split(" ").reverse()) {
+        await scope
+          .getByLabel("Palabras disponibles")
+          .getByRole("button", { name: token, exact: true })
+          .first()
+          .click();
+      }
+      break;
+    case "translate_write":
+      await write("Tu traducción en inglés");
+      break;
+    case "reading":
+      throw new Error(`Reading "${id}" is never reviewed`);
+  }
+  await scope.getByRole("button", { name: submit, exact: true }).click();
+  return id;
+}
+
 const LEVELS = ["a1", "a2", "b1", "b2", "c1"] as const;
 
 /**
