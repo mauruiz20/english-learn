@@ -169,9 +169,9 @@ describe("initProgressStore (upgrade to the event log)", () => {
       kind: "lesson",
     });
     // As an app version before the lesson result cache left it: schema 3, no lesson_result (nor
-    // the later fold_snapshot and rewards).
+    // the later fold_snapshot).
     await db.execAsync(
-      "DROP TABLE lesson_result; DROP TABLE fold_snapshot; DROP TABLE rewards; PRAGMA user_version = 3;",
+      "DROP TABLE lesson_result; DROP TABLE fold_snapshot; PRAGMA user_version = 3;",
     );
 
     const upgraded = await initProgressStore(db, options);
@@ -179,8 +179,6 @@ describe("initProgressStore (upgrade to the event log)", () => {
     expect(await upgraded.getLessonResults()).toEqual([
       { lessonId: doneLesson.id, bestAccuracy: 1, completions: 1 },
     ]);
-    // The rewards cache is filled by the same refold.
-    expect((await upgraded.getRewards()).earned).toBeGreaterThan(0);
   });
 
   it("writes no baseline on a fresh install, only the device id", async () => {

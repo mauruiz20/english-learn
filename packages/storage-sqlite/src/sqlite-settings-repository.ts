@@ -4,7 +4,6 @@ import {
   type Level,
   isValidLocalDate,
   type LocalDate,
-  type PlumasWelcome,
   type SettingsRepository,
   type ThemePreference,
 } from "@english-learn/domain";
@@ -16,7 +15,6 @@ const ACCOUNT = "account";
 const SAVE_PROGRESS_SUGGESTION_DISMISSED = "save_progress_suggestion_dismissed";
 const THEME_PREFERENCE = "theme_preference";
 const MIGRATED_TO = "migrated_to";
-const PLUMAS_WELCOME = "plumas_welcome";
 const PATH_LEVEL = "path_level";
 const LAST_HOME_VISIT = "last_home_visit";
 
@@ -58,12 +56,6 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     setThemePreference: (preference) => write(THEME_PREFERENCE, preference),
     getMigratedTo: () => read(MIGRATED_TO),
     setMigratedTo: (origin) => write(MIGRATED_TO, origin),
-    getPlumasWelcome: async () => parsePlumasWelcome(await read(PLUMAS_WELCOME)),
-    setPlumasWelcome: ({ plumas, dismissed }) =>
-      write(PLUMAS_WELCOME, JSON.stringify({ plumas, dismissed })),
-    clearPlumasWelcome: async () => {
-      await db.runAsync("DELETE FROM setting WHERE key = ?", [PLUMAS_WELCOME]);
-    },
     getPathLevel: async () => parseLevel(await read(PATH_LEVEL)),
     setPathLevel: async (level) => {
       if (level === null) await db.runAsync("DELETE FROM setting WHERE key = ?", [PATH_LEVEL]);
@@ -90,20 +82,6 @@ function parseThemePreference(value: string | null): ThemePreference {
 /** Anything but a CEFR level follows the automatic path level. */
 function parseLevel(value: string | null): Level | null {
   return LEVELS.find((level) => level === value) ?? null;
-}
-
-/** An unreadable value counts as dismissed: a one-time note never shows twice. */
-function parsePlumasWelcome(value: string | null): PlumasWelcome | null {
-  if (value === null) return null;
-  try {
-    const { plumas, dismissed } = JSON.parse(value) as Record<string, unknown>;
-    if (Number.isInteger(plumas) && typeof dismissed === "boolean") {
-      return { plumas: plumas as number, dismissed };
-    }
-  } catch {
-    // Falls through to dismissed.
-  }
-  return { plumas: 0, dismissed: true };
 }
 
 /** An unreadable value counts as signed out: the learner signs in again. */

@@ -13,7 +13,6 @@ import Animated, {
 import Svg, { Path } from "react-native-svg";
 import { Avi } from "@/shared/ui/mascot";
 import { SLAP_SPRING } from "@/shared/ui/motion";
-import { PressableScale } from "@/shared/ui/pressable-scale";
 import { WIDE_BREAKPOINT } from "@/shared/ui/screen-container";
 import { Text } from "@/shared/ui/text";
 import { radius, spacing } from "@/shared/ui/theme";
@@ -34,8 +33,6 @@ export const HOME_AVI_MOTION = {
   hopUp: 180,
   /** Celebrate a badge: one 360° roll along an arc. */
   loop: 900,
-  /** New outfit: turns around (`scaleX` 1 → −1 → 1). */
-  twirl: 700,
   /** Missed you: tilts 12° nose down, 4 pt lower, and stays. */
   droop: 400,
   /** Leaving "missed you": back to the default pose. */
@@ -60,9 +57,6 @@ function heroSize(width: number): number {
 
 type HomeAviProps = {
   state: HomeAviState;
-  /** The button's name: Avi's state, its outfit and where it leads. */
-  label: string;
-  onPress: () => void;
   /** Home is the focused screen: ambient motion (bob, blink) pauses while it is not. */
   active: boolean;
   /** What sits above the bubble, beside Avi (the greeting). */
@@ -70,12 +64,11 @@ type HomeAviProps = {
 };
 
 /**
- * Avi beside the home greeting, dressed in the learner's outfit (from `AviOutfitContext`), with
- * a line in a speech bubble. Tapping it opens the wardrobe. It plays its state's moment once,
- * hovers gently and blinks while home is on screen and visible, and keeps still with reduced
- * motion.
+ * Avi beside the home greeting, with a line in a speech bubble. Decorative: Avi is hidden from
+ * screen readers and the bubble carries the state. It plays its state's moment once, hovers
+ * gently and blinks while home is on screen and visible, and keeps still with reduced motion.
  */
-export function HomeAvi({ state, label, onPress, active, children }: HomeAviProps) {
+export function HomeAvi({ state, active, children }: HomeAviProps) {
   const styles = useStyles();
   const size = heroSize(useWindowDimensions().width);
   const reduced = useReducedMotion();
@@ -89,22 +82,11 @@ export function HomeAvi({ state, label, onPress, active, children }: HomeAviProp
         {children}
         {state.bubble !== null && <Bubble text={state.bubble} />}
       </View>
-      <PressableScale
-        testID="home-avi"
-        accessibilityRole="button"
-        accessibilityLabel={label}
-        onPress={onPress}
-        hitSlop={spacing.xs}
-        style={({ pressed }) => [
-          styles.button,
-          { minWidth: Math.max(48, size), minHeight: Math.max(48, size) },
-          pressed && styles.pressed,
-        ]}
-      >
+      <View testID="home-avi" style={[styles.avi, { minWidth: size, minHeight: size }]}>
         <Animated.View testID="home-avi-pose" style={pose}>
           <Avi testID="avi-hero" mood={state.mood} size={size} tilt={-8} blink={blink} />
         </Animated.View>
-      </PressableScale>
+      </View>
     </View>
   );
 }
@@ -153,7 +135,6 @@ function usePose(state: HomeAviState, reduced: boolean, ambient: boolean) {
   const tilt = useSharedValue(drooping && reduced ? DROOP.tilt : 0);
   const lift = useSharedValue(drooping && reduced ? DROOP.drop : 0);
   const spin = useSharedValue(0);
-  const turn = useSharedValue(1);
   const bob = useSharedValue(0);
   const played = useRef<string | null>(null);
 
@@ -161,9 +142,8 @@ function usePose(state: HomeAviState, reduced: boolean, ambient: boolean) {
     const key = `${state.kind}:${state.moment ?? ""}`;
     if (played.current === key) return;
     played.current = key;
-    [tilt, lift, spin, turn].forEach((value) => cancelAnimation(value));
+    [tilt, lift, spin].forEach((value) => cancelAnimation(value));
     spin.set(0);
-    turn.set(1);
     if (reduced) {
       tilt.set(drooping ? DROOP.tilt : 0);
       lift.set(drooping ? DROOP.drop : 0);
@@ -212,18 +192,10 @@ function usePose(state: HomeAviState, reduced: boolean, ambient: boolean) {
           ),
         );
         break;
-      case "twirl":
-        turn.set(
-          withSequence(
-            withTiming(-1, { duration: HOME_AVI_MOTION.twirl / 2, ...ease }),
-            withTiming(1, { duration: HOME_AVI_MOTION.twirl / 2, ...ease }),
-          ),
-        );
-        break;
       case null:
         break;
     }
-  }, [state.kind, state.moment, drooping, reduced, tilt, lift, spin, turn]);
+  }, [state.kind, state.moment, drooping, reduced, tilt, lift, spin]);
 
   // The idle hover runs only while home is on screen and visible: it stops (and costs nothing)
   // in a hidden tab, a backgrounded app or under another screen.
@@ -242,8 +214,8 @@ function usePose(state: HomeAviState, reduced: boolean, ambient: boolean) {
     transform: [
       { translateY: lift.value + bob.value },
       // Mirrored, so Avi faces its bubble and the page; mirrored before turning, so a positive
-      // tilt still points the nose down. A twirl turns it around and back.
-      { scaleX: -turn.value },
+      // tilt still points the nose down.
+      { scaleX: -1 },
       { rotate: `${tilt.value}deg` },
       { rotate: `${spin.value}deg` },
     ],
@@ -254,8 +226,7 @@ const useStyles = themedStyles(({ colors }) =>
   StyleSheet.create({
     row: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
     words: { flex: 1, gap: spacing.sm, minWidth: 0 },
-    button: { alignItems: "center", justifyContent: "center", borderRadius: radius.lg },
-    pressed: { backgroundColor: colors.rule },
+    avi: { alignItems: "center", justifyContent: "center" },
     bubble: {
       // Next to Avi, whose nose points at it.
       alignSelf: "flex-end",

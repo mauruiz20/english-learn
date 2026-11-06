@@ -1,10 +1,4 @@
-import {
-  plumasEarned,
-  type LocalDate,
-  type PlumasEarned,
-  type ProgressRepository,
-  type Streak,
-} from "@english-learn/domain";
+import type { LocalDate, ProgressRepository, Streak } from "@english-learn/domain";
 import {
   answerDisputedEvent,
   itemReviewedEvent,
@@ -41,8 +35,6 @@ export type CompleteSessionResult = {
   readonly streak: Streak;
   /** This session extended the streak (the first session of a day; celebrated with a sound). */
   readonly streakIncreased: boolean;
-  /** Plumas this session earned, per source, as the fold decided them (totals after − before). */
-  readonly plumas: PlumasEarned;
 };
 
 /**
@@ -81,6 +73,5 @@ export async function completeSession({
     xpEarned: after.xp - before.xp,
     streak: after.streak,
     streakIncreased: after.streak.current > before.streak.current,
-    plumas: plumasEarned(before.plumas, after.plumas),
   };
 }

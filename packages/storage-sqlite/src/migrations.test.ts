@@ -34,7 +34,6 @@ describe("migrate", () => {
       "lesson_result",
       "placement_result",
       "review_state",
-      "rewards",
       "setting",
       "streak",
       "sync_state",
@@ -115,6 +114,28 @@ describe("migrate", () => {
       { name: "best_accuracy", type: "REAL", notnull: 1 },
       { name: "completions", type: "INTEGER", notnull: 1 },
     ]);
+  });
+
+  it("drops the plumas cache and the plumas note at version 7, keeping the rest", async () => {
+    await migrate(db);
+    // A version 6 database, as the app with Avi's wardrobe left it.
+    await db.execAsync(`
+      CREATE TABLE rewards (id INTEGER PRIMARY KEY CHECK (id = 1), data TEXT NOT NULL);
+      INSERT INTO rewards (id, data) VALUES (1, '{"balance":135}');
+      INSERT INTO setting (key, value) VALUES ('plumas_welcome', '{"plumas":135,"dismissed":true}');
+      INSERT INTO setting (key, value) VALUES ('sound_enabled', 'false');
+      INSERT INTO xp (id, total) VALUES (1, 42);
+      PRAGMA user_version = 6;
+    `);
+
+    expect(await migrate(db)).toBe(6);
+
+    expect(await userVersion(db)).toBe(SCHEMA_VERSION);
+    expect(await tableNames(db)).not.toContain("rewards");
+    const settings = await db.getAllAsync<{ key: string }>("SELECT key FROM setting", []);
+    expect(settings.map((row) => row.key)).toEqual(["sound_enabled"]);
+    const row = await db.getFirstAsync<{ total: number }>("SELECT total FROM xp", []);
+    expect(row?.total).toBe(42);
   });
 
   it("refuses a database created by a newer app version", async () => {

@@ -35,7 +35,6 @@ export function CardPracticeContainer({
           info: { id: card.id, title: card.title },
           topic: card.topic,
           exercises: cardExercises(card, content.exercisesById),
-          kind: "card" as const,
         };
   return (
     <PracticeSession

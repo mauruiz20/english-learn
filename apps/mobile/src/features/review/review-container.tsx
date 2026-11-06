@@ -2,7 +2,6 @@ import type { Corpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import { Stack, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { sessionPlumas } from "@/features/rewards/model/plumas-copy";
 import { completeSession } from "@/features/lesson/application/complete-session";
 import { cardPath } from "@/features/cards/card-routes";
 import { itemsToReview } from "@/features/lesson/model/items-to-review";
@@ -190,7 +189,6 @@ function toViewState(
       correct: verdicts.filter((v) => v === "correct").length,
       total: verdicts.length,
       xpEarned: save.xpEarned,
-      plumas: sessionPlumas(save.plumas, "review"),
       streakDays: save.streakDays,
       streakIncreased: save.streakIncreased,
       // Only the due items, like the saved results.

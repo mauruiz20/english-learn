@@ -1,12 +1,5 @@
 import { localDate, type Streak } from "@english-learn/domain";
-import {
-  NO_NEWS,
-  createHomeAviMemory,
-  homeAviLabel,
-  homeAviState,
-  outfitDescription,
-  type HomeAviInput,
-} from "./home-avi";
+import { NO_NEWS, createHomeAviMemory, homeAviState, type HomeAviInput } from "./home-avi";
 
 const TODAY = localDate("2026-11-05");
 const YESTERDAY = localDate("2026-11-04");
@@ -65,29 +58,6 @@ describe("homeAviState", () => {
     const state = homeAviState({ ...base, news: { ...NO_NEWS, lessonDone: true, badge: true } });
 
     expect(state).toMatchObject({ kind: "celebrate", moment: "loop" });
-  });
-
-  it.each([
-    ["changed clothes", { outfitChanged: true }],
-    ["bought an item", { item: true }],
-  ])("twirls in a new outfit when the learner %s", (_, news) => {
-    const state = homeAviState({ ...base, news: { ...NO_NEWS, ...news } });
-
-    expect(state).toEqual({
-      kind: "new-outfit",
-      mood: "cheer",
-      bubble: "¿Cómo me veo?",
-      moment: "twirl",
-    });
-  });
-
-  it("puts a celebration before a new outfit", () => {
-    const state = homeAviState({
-      ...base,
-      news: { lessonDone: true, badge: false, item: true, outfitChanged: true },
-    });
-
-    expect(state.kind).toBe("celebrate");
   });
 
   it("misses a learner whose streak broke, without guilt or numbers", () => {
@@ -185,82 +155,18 @@ describe("homeAviState", () => {
 });
 
 describe("createHomeAviMemory", () => {
-  const seen = { badges: ["first-lesson"], owned: ["gorra"], outfit: { head: "gorra" } };
+  const seen = { badges: ["first-lesson"] };
 
   it("finds nothing new on the first look of the session", () => {
     expect(createHomeAviMemory().take(seen)).toEqual(NO_NEWS);
   });
 
-  it("reports new badges, new items and a changed outfit once", () => {
+  it("reports a new badge once", () => {
     const memory = createHomeAviMemory();
     memory.take(seen);
 
-    const next = {
-      badges: ["first-lesson", "streak-3"],
-      owned: ["gorra", "estrella"],
-      outfit: { head: "gorra", sticker: "estrella" },
-    };
-    expect(memory.take(next)).toEqual({
-      lessonDone: false,
-      badge: true,
-      item: true,
-      outfitChanged: true,
-    });
+    const next = { badges: ["first-lesson", "streak-3"] };
+    expect(memory.take(next)).toEqual({ lessonDone: false, badge: true });
     expect(memory.take(next)).toEqual(NO_NEWS);
-  });
-
-  it("notices taking an item off", () => {
-    const memory = createHomeAviMemory();
-    memory.take(seen);
-
-    expect(memory.take({ ...seen, outfit: {} }).outfitChanged).toBe(true);
-  });
-});
-
-describe("outfitDescription", () => {
-  it("names what Avi wears, in slot order", () => {
-    expect(
-      outfitDescription({
-        sticker: "estrella",
-        neck: "bufanda-de-rayas",
-        head: "gorra",
-        paper: "papel-cielo",
-        eyes: "gafas-redondas",
-      }),
-    ).toBe("con gorra, bufanda de rayas, gafas redondas, papel cielo y sticker de estrella");
-  });
-
-  it("joins two items with y", () => {
-    expect(outfitDescription({ head: "gorra", neck: "bufanda-de-rayas" })).toBe(
-      "con gorra y bufanda de rayas",
-    );
-  });
-
-  it("is empty for no outfit, skipping unknown items", () => {
-    expect(outfitDescription({})).toBe("");
-    expect(outfitDescription({ head: "sombrero-del-futuro" })).toBe("");
-  });
-});
-
-describe("homeAviLabel", () => {
-  it("says how Avi is, what it wears and where it leads", () => {
-    const state = homeAviState(base);
-
-    expect(homeAviLabel(state, { head: "gorra", neck: "bufanda-de-rayas" })).toBe(
-      "Avi, contento, con gorra y bufanda de rayas. Abre el armario",
-    );
-  });
-
-  it.each([
-    [{ ...base, news: { ...NO_NEWS, lessonDone: true } }, "Avi, celebrando. Abre el armario"],
-    [
-      { ...base, news: { ...NO_NEWS, outfitChanged: true } },
-      "Avi, estrenando ropa. Abre el armario",
-    ],
-    [{ ...base, streak: streak(LAST_WEEK) }, "Avi, con ganas de verte. Abre el armario"],
-    [{ ...base, lastHomeVisit: YESTERDAY }, "Avi, contento de verte. Abre el armario"],
-    [{ ...base, streak: streak(TODAY) }, "Avi, con sueño. Abre el armario"],
-  ])("describes each state (%#)", (input, label) => {
-    expect(homeAviLabel(homeAviState(input), {})).toBe(label);
   });
 });

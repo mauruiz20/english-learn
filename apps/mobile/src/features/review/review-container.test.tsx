@@ -121,11 +121,6 @@ describe("ReviewContainer", () => {
     ]);
     await waitFor(() => expect(sounds.played.slice(-1)).toEqual(["streak"]));
     expect(screen.getByText("XP ganada: 20")).toBeOnTheScreen();
-    // A new study day, the daily review passed, and both due items recalled on time.
-    expect(screen.getByText("Plumas: +12")).toBeOnTheScreen();
-    expect(
-      screen.getByText("Día de estudio +5 · Repasos a tiempo +2 · Repaso del día +5"),
-    ).toBeOnTheScreen();
     expect(screen.getByText("Racha: 2 días")).toBeOnTheScreen();
     const saved = repository.snapshot();
     expect(saved.xp).toBe(120);

@@ -8,12 +8,16 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
   transaction per migration. Refuses databases created by a newer schema. Resolves to the
   version it found: after an upgrade the caller refolds (`rebuildFromEvents`), since a cache
   table a migration adds starts empty (the app's `initProgressStore` does).
+  Migration 6 → 7 drops the `rewards` cache (migration 6: the fold's plumas, purchases and
+  equips) and the `plumas_welcome` setting: plumas and Avi's wardrobe were withdrawn
+  (`docs/design/avi-rewards.md`). Dropping is safe: the table was a pure derivation of the event
+  log that only this app read, an older app refuses the newer schema anyway, and the
+  `item_purchased` / `item_equipped` events stay in the log (the fold ignores them).
 - `createSqliteProgressRepository(db, { now? })`: progress as an **append-only event log**
   (migration 3: `event` table, see `@english-learn/domain` "Progress event log"). The
   `review_state`, `xp`, `streak`, `placement_result` and `lesson_result` (migration 4: each
-  lesson's best accuracy and completions, `getLessonResults()`) and `rewards` (migration 6: the
-  fold's plumas, purchases and equips as JSON, `getRewards()`; an unreadable row reads as none)
-  tables are a cache of `foldEvents` over
+  lesson's best accuracy and completions, `getLessonResults()`) tables are a cache of
+  `foldEvents` over
   the whole log, so reads stay fast; every write updates them in the same transaction and writes
   only the review states and lesson results that changed.
   - **Incremental fold** (migration 5: `fold_snapshot`). One row holds the domain's `FoldSnapshot`
@@ -31,9 +35,9 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
   - Cost on `node:sqlite` with a 50k-event log (`pnpm --filter @english-learn/storage-sqlite
 bench`, median): saving a 13-event session ≈ 3 ms (was ≈ 240 ms, a full refold per write);
     a write that must refold ≈ 240 ms. The snapshot is ≈ 283 KiB (review states plus completed
-    and reviewed session ids; the plumas ledger adds a few hundred bytes).
+    and reviewed session ids).
   - `appendEvents(events)`: inserts local events (malformed ones are refused) and refreshes the
-    cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak, plumas), so the caller
+    cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak), so the caller
     shows exactly what the fold paid. All or nothing, so a failed save can be retried.
     (expo-sqlite's `withTransactionAsync` caveat applies: unrelated queries issued concurrently on
     the same connection may land inside the transaction; the app issues none while saving.)
@@ -69,8 +73,6 @@ bench`, median): saving a 13-event session ≈ 3 ms (was ≈ 240 ms, a full refo
   `getSaveProgressSuggestionDismissed()` the one-time "save your progress" card.
   `getMigratedTo()` / `setMigratedTo(origin)` remember where this device's progress was
   transferred (the old web address then sends the learner there).
-  `getPlumasWelcome()` / `setPlumasWelcome({ plumas, dismissed })` / `clearPlumasWelcome()` keep
-  the one-time plumas note (`null` until home decides it; an unreadable value reads as dismissed).
   `getLastHomeVisit()` / `setLastHomeVisit(date)` keep the date home was last opened on this
   device, for Avi's "welcome back" (`null` before the first visit or when unreadable).
 

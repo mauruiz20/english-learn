@@ -2,11 +2,10 @@ import type { LocalDate } from "../local-date";
 import type {
   AnswerDisputedEvent,
   BaselineImportedEvent,
-  ItemEquippedEvent,
-  ItemPurchasedEvent,
   ItemReviewedEvent,
   PlacementCompletedEvent,
   SessionCompletedEvent,
+  StoredEvent,
 } from "../progress-log/events";
 import type { Grade } from "../srs";
 
@@ -95,10 +94,14 @@ export function answerDisputed(
   } as AnswerDisputedEvent;
 }
 
-export function itemPurchased(meta: Meta, itemId: string, price: number): ItemPurchasedEvent {
-  return { ...envelope(meta), type: "item_purchased", payload: { v: 1, itemId, price } };
-}
-
-export function itemEquipped(meta: Meta, slot: string, itemId: string | null): ItemEquippedEvent {
-  return { ...envelope(meta), type: "item_equipped", payload: { v: 1, slot, itemId } };
+/**
+ * An event of a retired type (`RETIRED_EVENT_TYPES`), as an older app wrote it: a purchase or an
+ * equip of Avi's withdrawn wardrobe. The fold must ignore it.
+ */
+export function retiredWardrobeEvent(
+  meta: Meta,
+  type: "item_purchased" | "item_equipped",
+  payload: unknown,
+): StoredEvent {
+  return { ...envelope(meta), type, payload };
 }

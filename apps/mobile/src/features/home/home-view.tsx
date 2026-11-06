@@ -22,7 +22,6 @@ import { StickyNote } from "@/shared/ui/sticky-note";
 import { Text } from "@/shared/ui/text";
 import { radius, spacing, type HighlighterName } from "@/shared/ui/theme";
 import { XpBar } from "@/shared/ui/xp-bar";
-import { PlumasBalance } from "@/features/rewards/plumas-balance";
 import { PathLevelPicker, type HomePathLevel } from "./path-level-picker";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { topicHighlighter } from "@/features/topics/topic-colors";
@@ -79,8 +78,6 @@ export type HomeViewState =
       readonly reviewNoteColor: HighlighterName;
       readonly streakDays: number;
       readonly xp: number;
-      /** The plumas balance (negative after concurrent offline purchases). */
-      readonly plumas?: number;
       readonly level: Level | null;
       /** Lessons of the learner's level (or the default level). */
       readonly lessons: HomeLessons;
@@ -110,8 +107,6 @@ type HomeViewProps = {
   onOpenCards?: () => void;
   /** "Práctica libre", under the study cards. */
   onOpenPractice?: () => void;
-  /** Makes the plumas balance the way into Avi's wardrobe. */
-  onOpenWardrobe?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
   onOpenCard?: (cardId: string) => void;
   /** Shows the path of a level picked by hand; null goes back to the automatic level. */
@@ -120,9 +115,7 @@ type HomeViewProps = {
   notice?: ReactNode;
   /** The signed-in learner's first name for the greeting; without it, a plain "¡Hola!". */
   greetingName?: string | undefined;
-  /** The one-time plumas note, under the progress card. */
-  plumasNote?: ReactNode;
-  /** Avi beside the greeting (with `onOpenWardrobe`, which tapping it opens). */
+  /** Avi beside the greeting. */
   avi?: HomeGreetingAvi | undefined;
 };
 
@@ -142,13 +135,11 @@ function groupByTopic(lessons: readonly HomeLesson[]) {
 
 /**
  * The top of the page: the streak as a chain of paperclips with the number of days, the sound
- * and account controls, the XP as sheets of stickers and the plumas balance.
+ * and account controls, and the XP as sheets of stickers.
  */
 function ProgressCard({
   days,
   xp,
-  plumas,
-  onOpenWardrobe,
   controls,
   album,
   onOpenAlbum,
@@ -160,8 +151,6 @@ function ProgressCard({
   /** `null` while the progress loads: a dash, never a "0 días" that then jumps. */
   days: number | null;
   xp: number | null;
-  plumas?: number | undefined;
-  onOpenWardrobe?: (() => void) | undefined;
   controls: ReactNode;
   album?: { readonly unlocked: number; readonly total: number } | undefined;
   onOpenAlbum?: (() => void) | undefined;
@@ -197,7 +186,6 @@ function ProgressCard({
         <View style={styles.controls}>{controls}</View>
       </View>
       {xp !== null && <XpBar xp={xp} />}
-      {plumas !== undefined && <PlumasBalance balance={plumas} onPress={onOpenWardrobe} />}
       {album !== undefined && onOpenAlbum !== undefined && (
         <AlbumLink album={album} onPress={onOpenAlbum} />
       )}
@@ -898,10 +886,8 @@ export function HomeView({
   onOpenAlbum,
   onOpenCards,
   onOpenPractice,
-  onOpenWardrobe,
   notice,
   greetingName,
-  plumasNote,
   avi,
   ...handlers
 }: HomeViewProps) {
@@ -915,13 +901,11 @@ export function HomeView({
   );
   return (
     <ScreenContainer insetTop>
-      <HomeGreeting name={greetingName} avi={avi} onOpenWardrobe={onOpenWardrobe} />
+      <HomeGreeting name={greetingName} avi={avi} />
       {notice}
       <ProgressCard
         days={state.status === "ready" ? state.streakDays : null}
         xp={state.status === "ready" ? state.xp : null}
-        plumas={state.status === "ready" ? state.plumas : undefined}
-        onOpenWardrobe={onOpenWardrobe}
         controls={controls}
         album={state.status === "ready" ? state.album : undefined}
         onOpenAlbum={onOpenAlbum}
@@ -930,7 +914,6 @@ export function HomeView({
         practiceTopics={state.status === "ready" ? state.practiceTopics : undefined}
         onOpenPractice={onOpenPractice}
       />
-      {plumasNote}
       {state.status === "loading" && (
         <ActivityIndicator accessibilityLabel="Cargando tu progreso" color={colors.ink} />
       )}
