@@ -4,7 +4,12 @@ import { render, screen } from "@testing-library/react-native";
 import type React from "react";
 import { completeSession } from "@/features/lesson/application/complete-session";
 import { achievementFacts } from "@/features/achievements/model/achievements";
-import { isLessonDone, lessonExercises, pathLessons } from "@/features/lesson/model/lesson-catalog";
+import {
+  DEFAULT_LEVEL,
+  isLessonDone,
+  lessonExercises,
+  pathLessons,
+} from "@/features/lesson/model/lesson-catalog";
 import { HomeContainer } from "@/features/home/home-container";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
@@ -75,7 +80,9 @@ async function pathOnHome(repository: ProgressRepository) {
       </SoundPreferenceProvider>
     </AppServicesProvider>,
   );
-  const next = await screen.findByRole("button", { name: corpus.lessons[0]!.title });
+  // No placement: home shows the default level, so its first lesson is the next one.
+  const first = corpus.lessons.find((l) => l.level === DEFAULT_LEVEL)!;
+  const next = await screen.findByRole("button", { name: first.title });
   const titles = new Set(corpus.lessons.map((l) => l.title));
   const stops = screen
     .getAllByRole("button")
@@ -99,7 +106,8 @@ describe("Práctica libre and the learning path", () => {
     expect(after).toEqual(before);
     expect(after.next).toBe("Tu siguiente lección");
     expect(after.stops.some((label) => label.includes("completada"))).toBe(false);
-  });
+    // It saves every practice lesson and renders home twice: slow under a loaded runner.
+  }, 60_000);
 
   it("never lets practice move the path to the next level or complete a level", async () => {
     const empty = createFakeRepository();
@@ -115,7 +123,7 @@ describe("Práctica libre and the learning path", () => {
     const after = await progress(repository);
     const practiceIds = new Set(corpus.practiceLessons.map((l) => l.id));
 
-    for (const level of [null, "A2", "B1", "B2"] as const) {
+    for (const level of [null, "A1", "A2", "B1", "B2", "C1"] as const) {
       const reviewed = new Set(after.states.map((s) => s.itemId));
       const path = pathLessons(corpus.lessons, level, (lesson) =>
         isLessonDone(lesson, corpus.exercisesById, reviewed),
