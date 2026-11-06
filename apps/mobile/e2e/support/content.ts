@@ -146,6 +146,28 @@ export async function answerPlacementAs(
   if (LEVELS.indexOf(questionLevel as (typeof LEVELS)[number]) <= known) {
     return answerCorrectly(page, "Siguiente");
   }
+  return answerPlacementWrongly(page, id);
+}
+
+/**
+ * A placement taker the test estimates exactly at `level`: right below it, every other
+ * question of `level` right (starting with the first), wrong above it. (Right on every question
+ * up to B2 estimates C1; this pattern estimates B2 every time, checked against the CAT.)
+ */
+export function placementTakerAt(level: (typeof LEVELS)[number]): (page: Page) => Promise<string> {
+  let atLevel = 0;
+  return async (page) => {
+    const id = await currentExerciseId(page);
+    const questionLevel = /^placement\.([a-c][12])\./.exec(id)?.[1] ?? "";
+    const rank = LEVELS.indexOf(questionLevel as (typeof LEVELS)[number]);
+    const target = LEVELS.indexOf(level);
+    const right = rank < target || (rank === target && atLevel++ % 2 === 0);
+    return right ? answerCorrectly(page, "Siguiente") : answerPlacementWrongly(page, id);
+  };
+}
+
+/** Picks a wrong option of the placement question `id` on screen and presses "Siguiente". */
+async function answerPlacementWrongly(page: Page, id: string): Promise<string> {
   const exercise = exercisesById.get(id);
   if (exercise === undefined) throw new Error(`Unknown exercise "${id}"`);
   const scope = page.getByTestId(`exercise-${id}`);
