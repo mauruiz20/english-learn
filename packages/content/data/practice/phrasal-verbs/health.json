@@ -210,7 +210,7 @@
       },
       "type": "translate_write",
       "es": "Deberías reducir el azúcar.",
-      "accepted": ["You should {cut down on|eat less} sugar."]
+      "accepted": ["You should {cut down on|cut back on|eat less} sugar."]
     },
     {
       "id": "b1.phrasal-verbs.practice-health-choice-4",
@@ -263,7 +263,7 @@
       "type": "translate_write",
       "es": "Mi hermana empezó a tocar la guitarra.",
       "accepted": [
-        "My sister {took up the guitar|took the guitar up}.",
+        "My sister {took up the guitar|took the guitar up|took up playing the guitar}.",
         "My sister {started|began} {playing|to play} the guitar."
       ]
     },
