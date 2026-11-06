@@ -136,7 +136,10 @@
       },
       "type": "word_order",
       "tokens": ["French", "She", "a", "from", "picked", "her", "little", "up", "neighbors."],
-      "accepted": ["She picked up a little French from her neighbors."],
+      "accepted": [
+        "She picked up a little French from her neighbors.",
+        "She picked a little French up from her neighbors."
+      ],
       "es": "Aprendió un poco de francés de sus vecinos."
     },
     {
@@ -311,8 +314,8 @@
       "type": "translate_write",
       "es": "Si hubiera aprendido inglés de niño, ahora hablaría con fluidez.",
       "accepted": [
-        "If I had learned English {as a child|when I was a child|when I was little}, I would {speak fluently|speak it fluently|be fluent} now.",
-        "If I had learned English {as a child|when I was a child|when I was little}, I would now {speak fluently|speak it fluently|be fluent}."
+        "If I had learned English {as a child|when I was a child|when I was little}, I would {speak fluently|speak it fluently|speak English fluently|be fluent} now.",
+        "If I had learned English {as a child|when I was a child|when I was little}, I would now {speak fluently|speak it fluently|speak English fluently|be fluent}."
       ]
     },
     {
