@@ -102,17 +102,22 @@ after a wrong answer.
 `lastLapse` (from the fold's item history, see below), a `score` and a bucket. Pure and
 clock-free: the same state and history always give the same result.
 
-| Bucket                      | Rule (checked in this order)                                                                                                         |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| **Difíciles** (`hard`)      | any of: the latest answer failed (grade < 3); ≥ `HARD_RECENT_FAILS` (2) failing answers among the latest 5; ease ≤ `HARD_EASE` (1.7) |
-| **Dominadas** (`mastered`)  | interval ≥ `MASTERED_INTERVAL_DAYS` (21, the mastery interval of `levelProgress`)                                                    |
-| **En proceso** (`learning`) | everything else                                                                                                                      |
+| Bucket                      | Rule (checked in this order)                                                                                                                                                     |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Difíciles** (`hard`)      | any of: the latest answer failed (grade < 3); ≥ `HARD_RECENT_FAILS` (2) failing answers among the latest 5; ease ≤ `HARD_EASE` (1.7) **and** a failing answer among the latest 5 |
+| **Dominadas** (`mastered`)  | interval ≥ `MASTERED_INTERVAL_DAYS` (21, the mastery interval of `levelProgress`)                                                                                                |
+| **En proceso** (`learning`) | everything else                                                                                                                                                                  |
 
 - **Recent answers, not lifetime lapses**: `lapses` never goes down, so "≥ 2 lapses" would keep
   an item difficult forever however well it is answered now. A lapse counts while it is among the
   latest 5 answers (two of them) or is the latest one.
 - **Ease 1.7, not 2.0**: one lapse from the default ease leaves 1.96, so a 2.0 threshold would
   mark every item missed once until a perfect due review; 1.7 is about two lapses' worth.
+- **Low ease never alone**: SM-2 ease only rises with perfect (grade 5) due answers; "almost"
+  (grade 3) lowers it and correct-but-slow (grade 4) keeps it. An item lapsed twice long ago and
+  then answered right 8 times (ease 1.62, interval 110 days), or never missed but "almost" 7
+  times (ease 1.52), would stay difficult forever. Low ease marks a chronically hard item only
+  while a miss is still among its latest 5 answers; it also raises the score.
 - **Score** (orders the list, higher is harder): 3 if the latest answer failed, + 2 per recent
   fail, + 2 for low ease, + 1 per lapse (at most 5). `hardItems` sorts by score, then most
   recently seen, then itemId.

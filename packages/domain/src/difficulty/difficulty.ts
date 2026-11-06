@@ -9,8 +9,11 @@ export type DifficultyBucket = "mastered" | "learning" | "hard";
 /** Difíciles: this many failing answers (grade < 3) among the latest ones, or more. */
 export const HARD_RECENT_FAILS = 2;
 /**
- * Difíciles: an SM-2 ease at most this. One lapse from the default ease leaves 1.96 and a correct
- * due review gives back 0.1, so 1.7 means the item lost about two lapses' worth of ease.
+ * Difíciles: an SM-2 ease at most this, together with a failing answer among the latest. One
+ * lapse from the default ease leaves 1.96 and a correct due review gives back 0.1, so 1.7 means
+ * the item lost about two lapses' worth of ease. Never on its own: ease only rises with perfect
+ * (grade 5) due answers, so an item answered right but slowly or "almost" would stay difficult
+ * forever.
  */
 export const HARD_EASE = 1.7;
 /** Dominadas: the interval of a mastered item, as in `levelProgress` and the study cards. */
@@ -46,7 +49,8 @@ export type ItemDifficulty = {
  * Classifies one reviewed item (pure, no clock: only its state and its answers count):
  *
  * - **Difíciles** if any: its latest answer failed; at least `HARD_RECENT_FAILS` (2) failing
- *   answers among the latest `RECENT_GRADES` (5); ease ≤ `HARD_EASE` (1.7).
+ *   answers among the latest `RECENT_GRADES` (5); ease ≤ `HARD_EASE` (1.7) with at least one
+ *   failing answer among the latest 5 (a chronically hard item missed again).
  * - **Dominadas**: not difficult and an interval of `MASTERED_INTERVAL_DAYS` (21) days or more.
  * - **En proceso**: everything else.
  *
@@ -62,7 +66,7 @@ export function itemDifficulty(
   const last = grades[grades.length - 1];
   const lastFailed = last !== undefined && last < 3;
   const lowEase = state.ease <= HARD_EASE;
-  const hard = lastFailed || recentFails >= HARD_RECENT_FAILS || lowEase;
+  const hard = lastFailed || recentFails >= HARD_RECENT_FAILS || (lowEase && recentFails >= 1);
   return {
     itemId: state.itemId,
     lapses: state.lapses,

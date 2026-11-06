@@ -2,7 +2,7 @@ import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 import { localDate } from "../local-date";
 import { foldEvents, type ItemHistory } from "../progress-log";
-import { DEFAULT_EASE, type Grade, type ReviewState } from "../srs";
+import { DEFAULT_EASE, applyReview, type Grade, type ReviewState } from "../srs";
 import {
   eventsWithConflictsArb,
   gradeArb,
@@ -34,6 +34,20 @@ function state(overrides: Partial<ReviewState> = {}): ReviewState {
     dueDate: day,
     ...overrides,
   };
+}
+
+/** An item answered with `grades`, each on the day it was due, as the fold would see it. */
+function replay(grades: readonly Grade[]): { state: ReviewState; history: ItemHistory } {
+  const events = [];
+  let current: ReviewState | undefined;
+  let date = day;
+  for (const [k, grade] of grades.entries()) {
+    events.push(itemReviewed({ id: `r${k}`, localDate: date, occurredAt: k }, `s${k}`, "a", grade));
+    current = applyReview(current, "a", grade, date);
+    date = current.dueDate;
+  }
+  const fold = foldEvents(events);
+  return { state: fold.states[0]!, history: fold.itemHistory[0]! };
 }
 
 function history(recentGrades: readonly Grade[], overrides: Partial<ItemHistory> = {}) {
@@ -81,10 +95,29 @@ describe("itemDifficulty", () => {
       expect(itemDifficulty(state(), history([1, 5, 5])).bucket).toBe("learning");
     });
 
-    it(`ease at most ${HARD_EASE}`, () => {
+    it(`ease at most ${HARD_EASE} with a failing answer among the latest`, () => {
       expect(HARD_EASE).toBe(1.7);
-      expect(itemDifficulty(state({ ease: 1.7 }), undefined).bucket).toBe("hard");
-      expect(itemDifficulty(state({ ease: 1.71 }), undefined).bucket).toBe("learning");
+      expect(itemDifficulty(state({ ease: 1.7 }), history([1, 5, 5])).bucket).toBe("hard");
+      expect(itemDifficulty(state({ ease: 1.71 }), history([1, 5, 5])).bucket).toBe("learning");
+    });
+
+    it("never for low ease alone: it only rises with perfect due answers", () => {
+      expect(itemDifficulty(state({ ease: 1.3 }), undefined).bucket).toBe("learning");
+      expect(itemDifficulty(state({ ease: 1.3 }), history([4, 4, 3, 5, 4])).bucket).toBe(
+        "learning",
+      );
+    });
+
+    it("lets an item that lost ease long ago leave once it is answered right", () => {
+      // Two old lapses, then 8 correct but slow answers (grade 4 keeps the ease).
+      const lapsedTwice = replay([5, 1, 5, 1, 4, 4, 4, 4, 4, 4, 4, 4]);
+      expect(lapsedTwice.state.ease).toBeCloseTo(1.62);
+      expect(lapsedTwice.state.intervalDays).toBe(110);
+      expect(itemDifficulty(lapsedTwice.state, lapsedTwice.history).bucket).toBe("mastered");
+      // Never wrong, always "almost" (grade 3 lowers the ease).
+      const almostAlways = replay([3, 3, 3, 3, 3, 3, 3]);
+      expect(almostAlways.state.ease).toBeCloseTo(1.52);
+      expect(itemDifficulty(almostAlways.state, almostAlways.history).bucket).toBe("mastered");
     });
 
     it("wins over a long interval", () => {
@@ -116,6 +149,7 @@ describe("classifyItems / bucketCounts / hardItems", () => {
     state({ itemId: "h3", ease: 1.5 }),
   ];
   const histories: ItemHistory[] = [
+    history([1, 5, 5], { itemId: "h3", lastSeen: day }),
     history([5, 1], { itemId: "h1", lastSeen: later }),
     history([1, 1], { itemId: "h2", lastSeen: day }),
   ];
@@ -136,7 +170,7 @@ describe("classifyItems / bucketCounts / hardItems", () => {
     expect(hardItems(classifyItems(states, histories)).map((d) => d.itemId)).toEqual([
       "h2", // 3 + 4 + 2 lapses
       "h1", // 3 + 2 + 1 lapse
-      "h3", // low ease
+      "h3", // 2 (one recent fail) + 2 (low ease)
     ]);
   });
 });
@@ -206,7 +240,9 @@ describe("difficulty properties", () => {
         const d: ItemDifficulty = itemDifficulty(s, h);
         if (d.bucket === "mastered") expect(d.intervalDays).toBeGreaterThanOrEqual(21);
         const matchesRule =
-          d.lastFailed || d.recentFails >= HARD_RECENT_FAILS || d.ease <= HARD_EASE;
+          d.lastFailed ||
+          d.recentFails >= HARD_RECENT_FAILS ||
+          (d.ease <= HARD_EASE && d.recentFails >= 1);
         expect(d.bucket === "hard").toBe(matchesRule);
       }),
       { numRuns: 500 },
