@@ -2650,7 +2650,12 @@
       "id": "glossary.stand-the-test-of-time",
       "headword": "stand the test of time",
       "kind": "phrase",
-      "forms": ["stand the test of time", "stood the test of time"],
+      "forms": [
+        "stand the test of time",
+        "stood the test of time",
+        "stands the test of time",
+        "standing the test of time"
+      ],
       "senses": [
         {
           "es": "resistir el paso del tiempo",
