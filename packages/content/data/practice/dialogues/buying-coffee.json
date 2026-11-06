@@ -1,0 +1,243 @@
+{
+  "dialogues": [
+    {
+      "id": "a1.dialogues.buying-coffee",
+      "level": "A1",
+      "title": "Pedir un café",
+      "setting": "Estás en una cafetería en Nueva York. Quieres un café con leche mediano, para tomar ahí, y un muffin de chocolate.",
+      "characters": [
+        {
+          "id": "barista",
+          "name": "Mia",
+          "role": "barista"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Hi! What can I get you?",
+          "es": "¡Hola! ¿Qué te sirvo?",
+          "next": "order"
+        },
+        {
+          "id": "order",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Hi! A coffee with milk, please.",
+              "rating": "good",
+              "feedback": "Saludas y pides con «please»: natural y amable.",
+              "next": "size"
+            },
+            {
+              "en": "Coffee.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero una sola palabra, sin «please», suena seca.",
+              "next": "size"
+            },
+            {
+              "en": "Give me a coffee.",
+              "rating": "wrong",
+              "feedback": "«Give me…» suena a orden y es poco amable. Para pedir: «A coffee, please» o «Can I have a coffee?».",
+              "next": "size-cold"
+            }
+          ]
+        },
+        {
+          "id": "size",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Sure! What size? Small, medium or large?",
+          "es": "¡Claro! ¿De qué tamaño? ¿Chico, mediano o grande?",
+          "next": "medium"
+        },
+        {
+          "id": "size-cold",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Um... okay. What size?",
+          "es": "Eh... bueno. ¿De qué tamaño?",
+          "next": "medium"
+        },
+        {
+          "id": "medium",
+          "kind": "write",
+          "prompt": "Dile que lo quieres mediano.",
+          "accepted": [
+            "Medium, please.",
+            "A medium[ coffee][, please].",
+            "{I'd like|Can I have} a medium[ coffee][, please]."
+          ],
+          "tip": "Basta con el tamaño y «please»: «Medium, please.»",
+          "next": "here",
+          "wrongNext": "here-check"
+        },
+        {
+          "id": "here",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Great. For here or to go?",
+          "es": "Perfecto. ¿Para tomar aquí o para llevar?",
+          "next": "for-here"
+        },
+        {
+          "id": "here-check",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Medium? Okay. For here or to go?",
+          "es": "¿Mediano? Muy bien. ¿Para tomar aquí o para llevar?",
+          "next": "for-here"
+        },
+        {
+          "id": "for-here",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "For here, please.",
+              "rating": "good",
+              "feedback": "Respuesta corta y correcta: «for here» es para tomar ahí.",
+              "next": "else"
+            },
+            {
+              "en": "Here.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena seco; mejor «For here, please».",
+              "next": "else"
+            },
+            {
+              "en": "Yes, please.",
+              "rating": "wrong",
+              "feedback": "Malentendido: la pregunta no es de sí o no. Tienes que elegir: «for here» (aquí) o «to go» (para llevar).",
+              "next": "else-again"
+            }
+          ]
+        },
+        {
+          "id": "else",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Okay. Anything else?",
+          "es": "Muy bien. ¿Algo más?",
+          "next": "muffin"
+        },
+        {
+          "id": "else-again",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Yes... for here, or to go? Oh, for here. Okay. Anything else?",
+          "es": "Sí... ¿para aquí o para llevar? Ah, para aquí. Muy bien. ¿Algo más?",
+          "next": "muffin"
+        },
+        {
+          "id": "muffin",
+          "kind": "write",
+          "prompt": "Pide también un muffin de chocolate (chocolate muffin).",
+          "accepted": [
+            "[Yes, ]a chocolate muffin, please.",
+            "[Yes, ]{can|could} I have a chocolate muffin[, please]?",
+            "[Yes, ]I'd like a chocolate muffin[, please].",
+            "And a chocolate muffin[, please]."
+          ],
+          "tip": "«A chocolate muffin, please» o «Can I have a chocolate muffin?»",
+          "next": "name",
+          "wrongNext": "name-check"
+        },
+        {
+          "id": "name",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Sure. Can I have your name for the cup?",
+          "es": "Claro. ¿Me dices tu nombre para el vaso?",
+          "next": "give-name"
+        },
+        {
+          "id": "name-check",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "A muffin? The chocolate one? Okay. Can I have your name for the cup?",
+          "es": "¿Un muffin? ¿El de chocolate? Muy bien. ¿Me dices tu nombre para el vaso?",
+          "next": "give-name"
+        },
+        {
+          "id": "give-name",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Sure, it's Alex.",
+              "rating": "good",
+              "feedback": "Das tu nombre con amabilidad.",
+              "next": "total"
+            },
+            {
+              "en": "Alex.",
+              "rating": "ok",
+              "feedback": "Correcto, aunque un poco seco.",
+              "next": "total"
+            },
+            {
+              "en": "No, thank you.",
+              "rating": "wrong",
+              "feedback": "Malentendido: no te ofrece nada, te pide tu nombre para escribirlo en el vaso.",
+              "next": "total-no-name"
+            }
+          ]
+        },
+        {
+          "id": "total",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Thanks, Alex. That's seven fifty.",
+          "es": "Gracias, Alex. Son siete cincuenta.",
+          "next": "pay"
+        },
+        {
+          "id": "total-no-name",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Oh, it's just for the cup! No problem. That's seven fifty.",
+          "es": "¡Ah, es solo para el vaso! No hay problema. Son siete cincuenta.",
+          "next": "pay"
+        },
+        {
+          "id": "pay",
+          "kind": "write",
+          "prompt": "Pregunta si puedes pagar con tarjeta.",
+          "accepted": [
+            "Can I pay {by|with} card[, please]?",
+            "Could I pay {by|with} card[, please]?",
+            "Is card okay?",
+            "Do you take cards?"
+          ],
+          "tip": "«Can I pay by card?» es la pregunta más común.",
+          "next": "bye",
+          "wrongNext": "bye-check"
+        },
+        {
+          "id": "bye",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Sure! Here you go. Have a nice day!",
+          "es": "¡Claro! Aquí tienes. ¡Que tengas un buen día!",
+          "next": "end"
+        },
+        {
+          "id": "bye-check",
+          "kind": "npc",
+          "speaker": "barista",
+          "en": "Sorry? Oh, card? Sure! Here you go. Have a nice day!",
+          "es": "¿Perdón? ¿Ah, con tarjeta? ¡Claro! Aquí tienes. ¡Que tengas un buen día!",
+          "next": "end"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Pediste tu café mediano y tu muffin, y pagaste con tarjeta."
+        }
+      ],
+      "cardIds": ["a1.grammar.a-an"]
+    }
+  ]
+}

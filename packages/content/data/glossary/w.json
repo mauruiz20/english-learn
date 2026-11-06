@@ -1361,6 +1361,18 @@
       ]
     },
     {
+      "id": "glossary.wow",
+      "headword": "wow",
+      "kind": "word",
+      "forms": ["wow"],
+      "senses": [
+        {
+          "es": "¡guau!, ¡vaya!",
+          "pos": "interjection"
+        }
+      ]
+    },
+    {
       "id": "glossary.write",
       "headword": "write",
       "kind": "word",

@@ -1365,6 +1365,18 @@
       ]
     },
     {
+      "id": "glossary.muffin",
+      "headword": "muffin",
+      "kind": "word",
+      "forms": ["muffin", "muffins"],
+      "senses": [
+        {
+          "es": "muffin, panquecito",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.museum",
       "headword": "museum",
       "kind": "word",

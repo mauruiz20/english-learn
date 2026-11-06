@@ -6,6 +6,17 @@
       "summary": "Conversaciones que cambian según lo que respondas: elige o escribe tu respuesta y mira cómo reacciona la otra persona.",
       "groups": [
         {
+          "id": "practice.dialogues.first-steps",
+          "level": "A1",
+          "title": "Primeros pasos",
+          "summary": "Presentarte, pedir un café y preguntar la hora.",
+          "dialogueIds": [
+            "a1.dialogues.introducing-yourself",
+            "a1.dialogues.buying-coffee",
+            "a1.dialogues.time-and-day"
+          ]
+        },
+        {
           "id": "practice.dialogues.everyday",
           "level": "A2",
           "title": "Fuera de casa",
