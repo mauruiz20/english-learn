@@ -257,7 +257,7 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
 
 Home lists the lessons of one level, the path's level (`autoPathLevel` in
 `model/lesson-catalog.ts`). It starts at the level nearest to the placement level that has lessons
-(ties go to the lower level: C1 → B2 while C1 has no lessons), or A2 without a placement. The
+(ties go to the lower level: with no C1 lessons, C1 would map to B2), or A2 without a placement. The
 placement test estimates A1 to C1 (there is no C2 level; its top result is C1), and A1 and C1
 learners start on their own level once it has lessons. If the learner started the nearest lower
 level with lessons (at least one lesson done) and has not finished it, the path starts there
@@ -315,8 +315,8 @@ motion. Lessons not done yet show nothing.
 name from `topic-labels.ts` and its highlighter from `topic-colors.ts`, both keyed by slug, by
 hand. Tests fail if a bundled topic has no name (the slug fallback, "New topic") or no color, or
 if two neighboring topics of a level's index share a color. Content files have no topic title,
-so names live in the app; to let C1 content merge without app changes, the C1 topics are listed
-ahead of their lessons, in index (file) order:
+so names live in the app; the C1 topics were listed ahead of their lessons, so the C1 content
+merged without app changes. In index (file) order:
 
 | C1 topic slug                | Name                    | Color  |
 | ---------------------------- | ----------------------- | ------ |
@@ -655,7 +655,7 @@ paper, the prompt and the teacher's marking.
   words practiced, study cards; `model/achievements.ts`), so they need no storage and follow sync.
   There is a level sticker for every level ("Nivel A1 completo" … "Nivel C1 completo"), but the
   album and home's count only show those of levels with lessons (`albumAchievements`): with A1
-  to B2 bundled, 20 of the 21 stickers; "Nivel C1 completo" appears with the C1 lessons. Won ones are
+  to C1 bundled, all 21 stickers. Won ones are
   stickers (rare ones get a holographic rim), the others dashed slots that say how to win them.
   `useNewAchievements` compares what the progress unlocks when a lesson or review starts and once
   it is saved; the summary announces the difference.

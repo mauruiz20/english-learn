@@ -47,22 +47,22 @@ every check passes; installable and usable offline; progress is stored in your b
   lessons), all derived from
   the stored progress.
 - **A path through the levels**: home starts at the placement level and moves on to the next
-  level once every lesson of the current one is done (A1 → A2 → B1 → B2, and C1 once its lessons
-  ship); the learner can also pick a level by hand.
+  level once every lesson of the current one is done (A1 → A2 → B1 → B2 → C1); the learner can
+  also pick a level by hand.
 - **Fully offline**: progress lives in SQLite on the device (WebAssembly + OPFS on web).
-- **Content**: A1, A2, B1 and B2 courses, plus a placement bank covering A1 to C1. Every A1 and
-  B2 study card is linked from the lesson that teaches it.
+- **Content**: A1, A2, B1, B2 and C1 courses, plus a placement bank covering A1 to C1. Every A1,
+  B2 and C1 study card is linked from the lesson that teaches it.
 
-| Content                | A1  | A2  | B1  | B2  | Total |
-| ---------------------- | --- | --- | --- | --- | ----- |
-| Topics                 | 8   | 10  | 11  | 8   | 37    |
-| Lessons                | 16  | 20  | 22  | 16  | 74    |
-| Exercises              | 114 | 143 | 159 | 119 | 535   |
-| Items (words, phrases) | 87  | 115 | 133 | 64  | 399   |
-| Reading passages       | 8   | 10  | 12  | 8   | 38    |
+| Content                | A1  | A2  | B1  | B2  | C1  | Total |
+| ---------------------- | --- | --- | --- | --- | --- | ----- |
+| Topics                 | 8   | 10  | 11  | 8   | 8   | 45    |
+| Lessons                | 16  | 20  | 22  | 16  | 16  | 90    |
+| Exercises              | 114 | 143 | 159 | 119 | 128 | 663   |
+| Items (words, phrases) | 87  | 115 | 133 | 64  | 57  | 456   |
+| Reading passages       | 8   | 10  | 12  | 8   | 16  | 54    |
 
-A1 and B2 lessons also practice the items of the study cards they link (4 and 19 more). C1
-lessons are content only: the app already names their topics and shows the level once they ship.
+A1, B2 and C1 lessons also practice the items of the study cards they link (A1: 4 more, B2: 19
+more).
 
 Placement bank: 65 questions, 13 per level from A1 to C1.
 
@@ -172,7 +172,7 @@ backups and a monthly restore drill: see [docs/deploy.md](docs/deploy.md).
 
 - **Original content** is written for this project. No copyrighted word lists or textbook
   material are copied.
-- **Tatoeba sentences** (138 of 535 lesson exercises) are used under
+- **Tatoeba sentences** (139 of 663 lesson exercises) are used under
   [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Each one records the sentence
   id and author in its `source` field, a pipeline check verifies the English text matches the
   attributed sentence exactly, and the app's About screen credits Tatoeba with the license.
