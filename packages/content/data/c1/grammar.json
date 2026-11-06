@@ -392,10 +392,13 @@
       "itemIds": ["c1.grammar.inversion"],
       "level": "C1",
       "source": {
-        "kind": "original"
+        "kind": "tatoeba",
+        "sentenceId": 64029,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
       },
       "type": "translation_choice",
-      "sentence": "Not only were we hungry, but we were also very thirsty.",
+      "sentence": "Not only were we hungry, but we were also suffering from thirst.",
       "options": [
         "No teníamos hambre, pero sí teníamos mucha sed.",
         "Solo teníamos hambre, no sed.",
@@ -526,10 +529,13 @@
       "itemIds": ["c1.grammar.cleft-sentences"],
       "level": "C1",
       "source": {
-        "kind": "original"
+        "kind": "tatoeba",
+        "sentenceId": 20040,
+        "author": "CK",
+        "license": "CC BY 2.0 FR"
       },
       "type": "translation_choice",
-      "sentence": "It was not what he said, but the way he said it, that made me suspicious.",
+      "sentence": "It was not what he said, but the way he said it that made me suspicious.",
       "options": [
         "No sospeché de él porque dijo la verdad.",
         "Lo que me hizo sospechar no fue lo que dijo, sino cómo lo dijo.",
