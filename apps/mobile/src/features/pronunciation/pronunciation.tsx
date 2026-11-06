@@ -24,6 +24,8 @@ export type Pronunciation = {
   readonly enabled: boolean;
   /** Speaker buttons show: supported and switched on. */
   readonly available: boolean;
+  /** The stored switch and speed were read (or could not be): `available` is final for now. */
+  readonly ready: boolean;
   /** The learner's speed. */
   readonly rate: SpeechRate;
   /** Which speaker is speaking now (its key), or null. */
@@ -43,6 +45,7 @@ const UNAVAILABLE: Pronunciation = {
   supported: false,
   enabled: false,
   available: false,
+  ready: true,
   rate: "normal",
   speakingKey: null,
   speak: noop,
@@ -62,6 +65,7 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
   const snapshot = useSyncExternalStore(speech.subscribe, speech.getSnapshot, speech.getSnapshot);
   const [enabled, setEnabledState] = useState(true);
   const [rate, setRateState] = useState<SpeechRate>("normal");
+  const [ready, setReady] = useState(false);
   // A choice made before the stored one is read wins over it.
   const touched = useRef({ enabled: false, rate: false });
 
@@ -73,7 +77,10 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
         if (!touched.current.enabled) setEnabledState(storedEnabled);
         if (!touched.current.rate) setRateState(storedRate);
       })
-      .catch((error: unknown) => console.warn("Failed to read the pronunciation settings", error));
+      .catch((error: unknown) => console.warn("Failed to read the pronunciation settings", error))
+      .finally(() => {
+        if (active) setReady(true);
+      });
     return () => {
       active = false;
     };
@@ -116,13 +123,14 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
       supported: snapshot.available,
       enabled,
       available,
+      ready,
       rate,
       speakingKey: snapshot.speakingKey,
       speak,
       setEnabled,
       setRate,
     }),
-    [snapshot, enabled, available, rate, speak, setEnabled, setRate],
+    [snapshot, enabled, available, ready, rate, speak, setEnabled, setRate],
   );
 
   return <PronunciationContext value={value}>{children}</PronunciationContext>;

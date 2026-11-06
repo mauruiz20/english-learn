@@ -71,9 +71,9 @@ export function SpeakButton({ text, label, style }: SpeakButtonProps) {
 }
 
 /** A pen-drawn speaker with two sound waves (decorative). */
-function SpeakerGlyph({ color }: { color: string }) {
+export function SpeakerGlyph({ color, size = 22 }: { color: string; size?: number }) {
   return (
-    <Svg width={22} height={22} viewBox="0 0 24 24">
+    <Svg width={size} height={size} viewBox="0 0 24 24">
       <Path
         d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"
         fill="none"

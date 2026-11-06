@@ -37,6 +37,11 @@ function Probe() {
   return <Text testID="probe">{`${p.available}|${p.enabled}|${p.rate}`}</Text>;
 }
 
+function ReadyProbe() {
+  const p = usePronunciation();
+  return <Text testID="ready">{p.ready ? `true|${p.available}` : "false"}</Text>;
+}
+
 describe("PronunciationProvider", () => {
   it("is on at normal speed by default when the device can speak English", async () => {
     await renderWith(<Probe />);
@@ -48,6 +53,16 @@ describe("PronunciationProvider", () => {
       settings: createFakeSettingsRepository({ pronunciationEnabled: false, speechRate: "slow" }),
     });
     await waitFor(() => expect(screen.getByTestId("probe")).toHaveTextContent("false|false|slow"));
+  });
+
+  it("is ready once the stored switch is known (sessions plan listening after that)", async () => {
+    let resolve: (enabled: boolean) => void = () => {};
+    const settings = createFakeSettingsRepository();
+    settings.getPronunciationEnabled = () => new Promise((r) => (resolve = r));
+    await renderWith(<ReadyProbe />, { settings });
+    expect(screen.getByTestId("ready")).toHaveTextContent("false");
+    await act(async () => resolve(false));
+    expect(screen.getByTestId("ready")).toHaveTextContent("true|false");
   });
 
   it("is unavailable without a speech service (native) or an English voice", async () => {
