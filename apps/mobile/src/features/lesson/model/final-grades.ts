@@ -1,4 +1,4 @@
-import type { Exercise } from "@english-learn/content";
+import type { SessionExercise } from "./listen-exercise";
 import { gradeFromOutcome, type Grade } from "@english-learn/domain";
 import type { LessonSummary } from "./lesson-session";
 
@@ -12,14 +12,16 @@ import type { LessonSummary } from "./lesson-session";
  * - word_order 20 s: tap 3-10 tokens in order.
  * - translate_write 30 s: type a whole sentence on a phone keyboard.
  * - reading 60 s: read a short passage and answer every question.
+ * - listen 20 s: hear a sentence (maybe twice) and type it or pick it.
  */
-export const EXPECTED_MS: Readonly<Record<Exercise["type"], number>> = {
+export const EXPECTED_MS: Readonly<Record<SessionExercise["type"], number>> = {
   vocab: 8_000,
   cloze: 10_000,
   translation_choice: 12_000,
   word_order: 20_000,
   translate_write: 30_000,
   reading: 60_000,
+  listen: 20_000,
 };
 
 /** Best review grade for an item looked up before answering: "almost". */

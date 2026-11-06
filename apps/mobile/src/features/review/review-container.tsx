@@ -10,7 +10,14 @@ import {
   startLesson,
   type LessonSessionState,
 } from "@/features/lesson/model/lesson-session";
+import {
+  contentExerciseId,
+  listeningPool,
+  mixListening,
+  type SessionExercise,
+} from "@/features/lesson/model/listen-exercise";
 import { prepareExercise } from "@/features/lesson/model/prepare-exercise";
+import { usePronunciation } from "@/features/pronunciation/pronunciation";
 import { responseText } from "@/features/lesson/model/response";
 import {
   useExerciseSession,
@@ -22,7 +29,7 @@ import { SessionGlossary } from "@/features/glossary/session-glossary";
 import { topicByExerciseId, topicByItemId } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
-import { planReview, restrictToItems, reviewOutlook } from "./model/review-plan";
+import { listeningRng, planReview, restrictToItems, reviewOutlook } from "./model/review-plan";
 import { ReviewView, type ReviewViewState } from "./review-view";
 import { sessionResults } from "@/features/lesson/model/session-results";
 import { useNewAchievements } from "@/features/achievements/use-new-achievements";
@@ -40,18 +47,31 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
   const { progressRepository, clock, random } = useAppServices();
   const router = useRouter();
   const [load, setLoad] = useState<Load>({ status: "loading" });
+  // Read when the review is planned (once the stored switch is known): listening only when it
+  // can be heard and is switched on.
+  const { available: canListen, ready } = usePronunciation();
 
   useEffect(() => {
+    if (!ready) return;
     let active = true;
     progressRepository.getReviewStates().then(
       (states) => {
         if (!active) return;
         // The same plan home counted (`reviewOutlook`): the day's rng picks the exercises.
-        const { itemIds, exercises } = planReview({
+        const today = clock.today();
+        const { itemIds, exercises: planned } = planReview({
           states,
-          today: clock.today(),
+          today,
           exercises: content.exercises,
         });
+        // Up to two of them are heard instead of read (same items, same count: see
+        // `mixListening`); the day's own rng, so it is the same all day.
+        const exercises: readonly SessionExercise[] = canListen
+          ? mixListening(planned, {
+              pool: listeningPool({ exercises: content.exercises, cards: content.cards }),
+              rng: listeningRng(today),
+            })
+          : planned;
         if (exercises.length === 0) {
           setLoad({ status: "empty" });
           return;
@@ -76,9 +96,10 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
     return () => {
       active = false;
     };
-    // Planned once per mount: re-planning mid-session would reshuffle the exercises.
+    // Planned once per mount (`ready` only turns true once): re-planning mid-session would
+    // reshuffle the exercises.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ready]);
 
   const goHome = () => (router.canDismiss() ? router.dismissAll() : router.replace("/"));
 
@@ -235,7 +256,7 @@ function toViewState(
     status: "exercise",
     position: session.index + 1,
     total: session.exercises.length,
-    topic: topicByExerciseId(content).get(prepared.exercise.id),
+    topic: topicByExerciseId(content).get(contentExerciseId(prepared.exercise)),
     prepared,
     feedback:
       session.status === "feedback"
@@ -246,6 +267,6 @@ function toViewState(
           }
         : null,
     results: sessionResults(session),
-    card: cardByExerciseId(content).get(prepared.exercise.id),
+    card: cardByExerciseId(content).get(contentExerciseId(prepared.exercise)),
   };
 }

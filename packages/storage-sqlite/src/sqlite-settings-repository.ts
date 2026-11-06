@@ -5,6 +5,7 @@ import {
   isValidLocalDate,
   type LocalDate,
   type SettingsRepository,
+  type SpeechRate,
   type ThemePreference,
 } from "@english-learn/domain";
 import type { SqlDatabase } from "./sql-database";
@@ -17,6 +18,8 @@ const THEME_PREFERENCE = "theme_preference";
 const MIGRATED_TO = "migrated_to";
 const PATH_LEVEL = "path_level";
 const LAST_HOME_VISIT = "last_home_visit";
+const PRONUNCIATION_ENABLED = "pronunciation_enabled";
+const SPEECH_RATE = "speech_rate";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -40,6 +43,12 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     // Anything but an explicit "off" keeps the default (on).
     getSoundEnabled: async () => (await read(SOUND_ENABLED)) !== "0",
     setSoundEnabled: (enabled) => write(SOUND_ENABLED, enabled ? "1" : "0"),
+    getPronunciationEnabled: async () => (await read(PRONUNCIATION_ENABLED)) !== "0",
+    setPronunciationEnabled: (enabled) => write(PRONUNCIATION_ENABLED, enabled ? "1" : "0"),
+    // Anything but an explicit "slow" is the normal speed.
+    getSpeechRate: async (): Promise<SpeechRate> =>
+      (await read(SPEECH_RATE)) === "slow" ? "slow" : "normal",
+    setSpeechRate: (rate) => write(SPEECH_RATE, rate),
     getLookupHintDismissed: async () => (await read(LOOKUP_HINT_DISMISSED)) === "1",
     setLookupHintDismissed: () => write(LOOKUP_HINT_DISMISSED, "1"),
     getAccount: async () => parseAccount(await read(ACCOUNT)),

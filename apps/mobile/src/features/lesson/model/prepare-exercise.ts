@@ -1,6 +1,5 @@
 import type {
   ClozeExercise,
-  Exercise,
   ReadingExercise,
   TranslateWriteExercise,
   TranslationChoiceExercise,
@@ -8,6 +7,7 @@ import type {
   WordOrderExercise,
 } from "@english-learn/content";
 import { scrambleTokens, shuffle, shuffleChoices, type Rng } from "@english-learn/domain";
+import type { ListenExercise, SessionExercise } from "./listen-exercise";
 
 export type PreparedQuestion = { readonly prompt: string; readonly options: readonly string[] };
 
@@ -38,11 +38,19 @@ export type PreparedExercise =
       readonly exercise: ReadingExercise;
       readonly questions: readonly PreparedQuestion[];
     }
-  | { readonly type: "translate_write"; readonly exercise: TranslateWriteExercise };
+  | { readonly type: "translate_write"; readonly exercise: TranslateWriteExercise }
+  | {
+      readonly type: "listen";
+      readonly exercise: ListenExercise;
+      /** choose: the sentences, shuffled; write: none. */
+      readonly options: readonly string[];
+    };
 
 /** Shuffles options and scrambles tokens so data order never leaks the answer. */
-export function prepareExercise(exercise: Exercise, rng: Rng): PreparedExercise {
+export function prepareExercise(exercise: SessionExercise, rng: Rng): PreparedExercise {
   switch (exercise.type) {
+    case "listen":
+      return { type: "listen", exercise, options: shuffle(exercise.options, rng) };
     case "vocab":
     case "translation_choice": {
       const { options } = shuffleChoices(exercise, rng);

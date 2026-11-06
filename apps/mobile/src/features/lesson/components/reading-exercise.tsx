@@ -2,6 +2,7 @@ import type { Passage } from "@english-learn/content";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { GlossaryRuns, GlossaryText } from "@/features/glossary/glossary-text";
+import { WithSpeaker } from "@/features/pronunciation/with-speaker";
 import { Text } from "@/shared/ui/text";
 import { spacing } from "@/shared/ui/theme";
 import { themedStyles } from "@/shared/ui/use-theme";
@@ -43,12 +44,18 @@ export function ReadingExercise({
           <Text tone="muted">Texto no disponible.</Text>
         ) : (
           <>
-            <GlossaryText
-              accessibilityRole="header"
-              variant="title"
-              text={passage.title}
-              enabled={lookupEnabled("reading.passage", reveal)}
-            />
+            {/* One speaker for the whole passage (queued sentence by sentence). */}
+            <WithSpeaker
+              text={`${passage.title}${/[.!?]$/u.test(passage.title) ? "" : "."} ${passage.text}`}
+              label="Escuchar el texto"
+            >
+              <GlossaryText
+                accessibilityRole="header"
+                variant="title"
+                text={passage.title}
+                enabled={lookupEnabled("reading.passage", reveal)}
+              />
+            </WithSpeaker>
             <GlossaryText
               style={styles.text}
               text={passage.text}

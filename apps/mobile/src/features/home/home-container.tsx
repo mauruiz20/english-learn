@@ -17,6 +17,7 @@ import {
 } from "@/features/lesson/model/lesson-catalog";
 import { lessonScore } from "@/features/lesson/model/lesson-score";
 import { reviewOutlook } from "@/features/review/model/review-plan";
+import { PronunciationSettingsButton } from "@/features/pronunciation/pronunciation-settings";
 import { useSoundPreference } from "@/features/sound/sound-preference";
 import { useThemePreference } from "@/features/theme/theme-preference";
 import { stickyNoteHighlighter } from "@/features/topics/topic-colors";
@@ -273,6 +274,7 @@ export function HomeContainer({
       onToggleSound={sound.toggle}
       themePreference={theme.preference}
       onCycleTheme={theme.cycle}
+      pronunciationControl={<PronunciationSettingsButton />}
       onOpenLesson={(lessonId) => router.push(`/lesson/${lessonId}`)}
       onStartPlacement={() => router.push("/placement")}
       onOpenReview={() => router.push("/review")}

@@ -1,5 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react-native";
 import { passage, reading } from "../model/fixtures";
+import { renderWithPronunciation } from "@/testing/render-with-pronunciation";
 import { ReadingExercise } from "./reading-exercise";
 
 const onSubmit = jest.fn();
@@ -15,6 +16,21 @@ const prepared = {
 } as const;
 
 describe("ReadingExercise", () => {
+  it("offers to hear the whole passage, title first", async () => {
+    const { speech } = await renderWithPronunciation(
+      <ReadingExercise
+        prepared={prepared}
+        passage={passage}
+        disabled={false}
+        onSubmit={onSubmit}
+      />,
+    );
+
+    await fireEvent.press(screen.getByRole("button", { name: "Escuchar el texto" }));
+
+    expect(speech.spoken.map((s) => s.text)).toEqual([`My day. ${passage.text}`]);
+  });
+
   it("shows the passage and every question", async () => {
     await render(
       <ReadingExercise

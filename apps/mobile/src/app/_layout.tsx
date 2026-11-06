@@ -8,10 +8,12 @@ import { Slot, Stack, router } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { Platform } from "react-native";
+import { Platform, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AccountProvider } from "@/features/account/account-provider";
 import { UpdateBanner } from "@/features/app-update/update-banner";
+import { PronunciationProvider } from "@/features/pronunciation/pronunciation";
+import { PronunciationSettingsButton } from "@/features/pronunciation/pronunciation-settings";
 import { SoundPreferenceProvider } from "@/features/sound/sound-preference";
 import { SoundToggle } from "@/features/sound/sound-toggle";
 import { ThemePreferenceProvider } from "@/features/theme/theme-preference";
@@ -28,7 +30,13 @@ import { useWebDocumentTheme, useWebGlobalStyles } from "@/shared/ui/web-global-
 // Keep the splash screen up until the bundled fonts are ready (they ship with the app: offline).
 void SplashScreen.preventAutoHideAsync();
 
-const headerRight = () => <SoundToggle />;
+// Exercise headers (and the study card's) keep the pronunciation settings and the sound switch.
+const headerRight = () => (
+  <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <PronunciationSettingsButton />
+    <SoundToggle />
+  </View>
+);
 // Native headers: a back button even without history (web gets it from `headerBack`).
 const homeFallback = Platform.OS === "web" ? {} : { headerLeft: () => <BackOrHomeButton /> };
 
@@ -82,89 +90,92 @@ export default function RootLayout() {
         {/* The app's old web address: straight to the new one, or offer to take progress along. */}
         <OriginMoveGate>
           <SoundPreferenceProvider>
-            {/* The learner's Sistema / Claro / Oscuro choice, read before the screens show. */}
-            <ThemePreferenceProvider>
-              {/* Dark icons on light paper and light icons on night paper, whatever the system. */}
-              <StatusBar style={scheme === "dark" ? "light" : "dark"} />
-              {/* Optional Google account and progress sync (web, on the app's own site). */}
-              <AccountProvider>
-                <Stack
-                  screenOptions={{
-                    headerStyle: { backgroundColor: colors.paper },
-                    headerTintColor: colors.ink,
-                    headerTitleStyle: { fontFamily: fonts.headingMedium, color: colors.ink },
-                    headerShadowVisible: false,
-                    contentStyle: { backgroundColor: colors.paper },
-                    // On web the header lines up with the page's reading column; native keeps its own.
-                    ...(Platform.OS === "web" && {
-                      header: ({ back, options, route, navigation }) => {
-                        const backAction = headerBack(route.name, back);
-                        return (
-                          <NotebookHeader
-                            title={options.title ?? route.name}
-                            backTitle={backAction.title}
-                            showBack={backAction.show && options.headerBackVisible !== false}
-                            onBack={
-                              backAction.target === "home"
-                                ? () => router.replace("/")
-                                : navigation.goBack
-                            }
-                            right={options.headerRight?.({
-                              tintColor: colors.ink,
-                              canGoBack: back !== undefined,
-                            })}
-                          />
-                        );
-                      },
-                    }),
-                  }}
-                >
-                  <Stack.Screen name="index" options={{ title: "Inicio", headerShown: false }} />
-                  {/* Exercise screens keep the sound switch at hand, in the header. */}
-                  <Stack.Screen
-                    name="placement"
-                    options={{ title: "Test de nivel", headerRight }}
-                  />
-                  <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
-                  <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
-                  <Stack.Screen name="album" options={{ title: "Álbum", ...homeFallback }} />
-                  <Stack.Screen
-                    name="fichas/index"
-                    options={{ title: "Fichas", ...homeFallback }}
-                  />
-                  <Stack.Screen
-                    name="fichas/[id]/index"
-                    options={{ title: "Ficha", ...homeFallback }}
-                  />
-                  <Stack.Screen
-                    name="fichas/[id]/practicar"
-                    options={{ title: "Práctica", headerRight }}
-                  />
-                  <Stack.Screen
-                    name="practica/index"
-                    options={{ title: "Práctica libre", ...homeFallback }}
-                  />
-                  <Stack.Screen
-                    name="practica/[collection]"
-                    options={{ title: "Práctica libre", ...homeFallback }}
-                  />
-                  <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
-                  <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
-                  <Stack.Screen
-                    name="privacidad"
-                    options={{ title: "Privacidad", ...homeFallback }}
-                  />
-                  <Stack.Screen
-                    name="auth/completar"
-                    options={{ title: "Cuenta", headerBackVisible: false }}
-                  />
-                  <Stack.Screen
-                    name="importar"
-                    options={{ title: "Importar progreso", headerBackVisible: false }}
-                  />
-                </Stack>
-              </AccountProvider>
-            </ThemePreferenceProvider>
+            {/* "Pronunciación": the switch, the voice speed and the device's English voice. */}
+            <PronunciationProvider>
+              {/* The learner's Sistema / Claro / Oscuro choice, read before the screens show. */}
+              <ThemePreferenceProvider>
+                {/* Dark icons on light paper and light icons on night paper, whatever the system. */}
+                <StatusBar style={scheme === "dark" ? "light" : "dark"} />
+                {/* Optional Google account and progress sync (web, on the app's own site). */}
+                <AccountProvider>
+                  <Stack
+                    screenOptions={{
+                      headerStyle: { backgroundColor: colors.paper },
+                      headerTintColor: colors.ink,
+                      headerTitleStyle: { fontFamily: fonts.headingMedium, color: colors.ink },
+                      headerShadowVisible: false,
+                      contentStyle: { backgroundColor: colors.paper },
+                      // On web the header lines up with the page's reading column; native keeps its own.
+                      ...(Platform.OS === "web" && {
+                        header: ({ back, options, route, navigation }) => {
+                          const backAction = headerBack(route.name, back);
+                          return (
+                            <NotebookHeader
+                              title={options.title ?? route.name}
+                              backTitle={backAction.title}
+                              showBack={backAction.show && options.headerBackVisible !== false}
+                              onBack={
+                                backAction.target === "home"
+                                  ? () => router.replace("/")
+                                  : navigation.goBack
+                              }
+                              right={options.headerRight?.({
+                                tintColor: colors.ink,
+                                canGoBack: back !== undefined,
+                              })}
+                            />
+                          );
+                        },
+                      }),
+                    }}
+                  >
+                    <Stack.Screen name="index" options={{ title: "Inicio", headerShown: false }} />
+                    {/* Exercise screens keep the sound switch at hand, in the header. */}
+                    <Stack.Screen
+                      name="placement"
+                      options={{ title: "Test de nivel", headerRight }}
+                    />
+                    <Stack.Screen name="lesson/[id]" options={{ title: "Lección", headerRight }} />
+                    <Stack.Screen name="review" options={{ title: "Repaso", headerRight }} />
+                    <Stack.Screen name="album" options={{ title: "Álbum", ...homeFallback }} />
+                    <Stack.Screen
+                      name="fichas/index"
+                      options={{ title: "Fichas", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="fichas/[id]/index"
+                      options={{ title: "Ficha", headerRight, ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="fichas/[id]/practicar"
+                      options={{ title: "Práctica", headerRight }}
+                    />
+                    <Stack.Screen
+                      name="practica/index"
+                      options={{ title: "Práctica libre", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="practica/[collection]"
+                      options={{ title: "Práctica libre", ...homeFallback }}
+                    />
+                    <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
+                    <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
+                    <Stack.Screen
+                      name="privacidad"
+                      options={{ title: "Privacidad", ...homeFallback }}
+                    />
+                    <Stack.Screen
+                      name="auth/completar"
+                      options={{ title: "Cuenta", headerBackVisible: false }}
+                    />
+                    <Stack.Screen
+                      name="importar"
+                      options={{ title: "Importar progreso", headerBackVisible: false }}
+                    />
+                  </Stack>
+                </AccountProvider>
+              </ThemePreferenceProvider>
+            </PronunciationProvider>
           </SoundPreferenceProvider>
         </OriginMoveGate>
       </SqliteAppServicesProvider>

@@ -8,6 +8,7 @@ import type {
 import { createContext, use, type ReactNode } from "react";
 import type { RandomBytes } from "@/features/progress/progress-events";
 import { silentSoundPlayer, type SoundPlayer } from "../sound/sound-player";
+import type { SpeechService } from "../speech/speech-service";
 import type { SyncStore } from "../sync/sync-engine";
 import type { ChangeSignal } from "../sync/sync-triggers";
 
@@ -25,6 +26,8 @@ export type AppServices = {
   readonly settingsRepository: SettingsRepository;
   /** Interaction sounds and haptics. */
   readonly sounds: SoundPlayer;
+  /** English pronunciation (the device's speech synthesis); absent: no speaker buttons. */
+  readonly speech?: SpeechService;
   /** The event log as the optional account's sync needs it; absent in tests that do not sync. */
   readonly account?: AccountStorage;
   /** The whole event log, to carry it between web addresses; absent in tests that do not. */

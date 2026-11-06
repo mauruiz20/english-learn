@@ -71,6 +71,7 @@ describe("finalGrades", () => {
   it("documents an expected time for every exercise type", () => {
     expect(Object.keys(EXPECTED_MS).sort()).toEqual([
       "cloze",
+      "listen",
       "reading",
       "translate_write",
       "translation_choice",

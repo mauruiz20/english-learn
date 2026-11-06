@@ -51,6 +51,7 @@ export function LookupPopover({ lookup, tint, onClose }: LookupPopoverProps) {
             <LookupCard
               entry={lookup.entry}
               tint={tint}
+              speakable
               footer={
                 <View style={styles.close}>
                   <Button label="Cerrar" variant="text" onPress={onClose} />

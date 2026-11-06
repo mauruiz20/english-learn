@@ -92,6 +92,7 @@ export function answerIsEnglish(prepared: PreparedExercise): boolean {
     case "word_order":
     case "reading":
     case "translate_write":
+    case "listen":
       return true;
   }
 }
@@ -105,6 +106,8 @@ export function hasLookups(prepared: PreparedExercise, answered: boolean): boole
       return true;
     case "translation_choice":
     case "word_order":
+    // A listening exercise shows no English before the check (the sentences are what it asks).
+    case "listen":
       return answered;
     case "translate_write":
       return false;

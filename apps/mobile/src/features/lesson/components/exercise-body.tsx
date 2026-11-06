@@ -6,6 +6,7 @@ import { hasLookups } from "../model/lookup-policy";
 import type { PreparedExercise } from "../model/prepare-exercise";
 import type { ExerciseResponse } from "../model/response";
 import { ClozeExercise } from "./cloze-exercise";
+import { ListenExerciseView } from "./listen-exercise";
 import { ReadingExercise } from "./reading-exercise";
 import { TranslateWriteExercise } from "./translate-write-exercise";
 import { TranslationChoiceExercise } from "./translation-choice-exercise";
@@ -55,6 +56,8 @@ export function ExerciseBody({
             return <ReadingExercise prepared={prepared} passage={passage} {...common} />;
           case "translate_write":
             return <TranslateWriteExercise prepared={prepared} {...common} />;
+          case "listen":
+            return <ListenExerciseView prepared={prepared} {...choice} />;
         }
       })()}
     </View>
