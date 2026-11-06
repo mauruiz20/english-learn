@@ -1,4 +1,4 @@
-import { useContext, type ReactNode } from "react";
+import { useContext, useRef, type ComponentRef, type ReactNode } from "react";
 import { ScrollView, StyleSheet, View, useWindowDimensions } from "react-native";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
 import { Text } from "./text";
@@ -22,6 +22,8 @@ type ScreenContainerProps = {
   footerTone?: "correct" | "almost" | "wrong" | undefined;
   /** The screen has no navigation header: keep clear of the status bar / notch. */
   insetTop?: boolean;
+  /** Keeps the end of the page in view as it grows (a chat): scrolls down when content is added. */
+  followEnd?: boolean;
 };
 
 /**
@@ -36,7 +38,9 @@ export function ScreenContainer({
   footer,
   footerTone,
   insetTop = false,
+  followEnd = false,
 }: ScreenContainerProps) {
+  const scroll = useRef<ComponentRef<typeof ScrollView>>(null);
   const styles = useStyles();
   const { colors } = useTheme();
   const band = footerTone === undefined ? undefined : colors.feedback[footerTone];
@@ -46,6 +50,10 @@ export function ScreenContainer({
   return (
     <View style={styles.page}>
       <ScrollView
+        ref={scroll}
+        {...(followEnd
+          ? { onContentSizeChange: () => scroll.current?.scrollToEnd({ animated: false }) }
+          : {})}
         style={styles.scroll}
         contentContainerStyle={[
           styles.content,

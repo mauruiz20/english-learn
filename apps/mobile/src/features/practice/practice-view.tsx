@@ -16,14 +16,24 @@ export type PracticeViewState =
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 
-/** "10 grupos · 30 lecciones · 2 hechas" (the done count only once something is done). */
+/**
+ * "10 grupos · 30 lecciones · 2 hechas" (the done count only once something is done); a
+ * collection of dialogues says "3 grupos · 10 diálogos · 2 hechos".
+ */
 export function practiceCount({
   groups,
   lessons,
   done,
-}: Pick<PracticeCollectionRow, "groups" | "lessons" | "done">): string {
-  const parts = [plural(groups, "grupo", "grupos"), plural(lessons, "lección", "lecciones")];
-  if (done > 0) parts.push(plural(done, "hecha", "hechas"));
+  kind,
+}: Pick<PracticeCollectionRow, "groups" | "lessons" | "done" | "kind">): string {
+  const dialogues = kind === "dialogues";
+  const parts = [
+    plural(groups, "grupo", "grupos"),
+    dialogues ? plural(lessons, "diálogo", "diálogos") : plural(lessons, "lección", "lecciones"),
+  ];
+  if (done > 0) {
+    parts.push(dialogues ? plural(done, "hecho", "hechos") : plural(done, "hecha", "hechas"));
+  }
   return parts.join(" · ");
 }
 

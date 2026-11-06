@@ -1,0 +1,248 @@
+{
+  "dialogues": [
+    {
+      "id": "a2.dialogues.doctor-visit",
+      "level": "A2",
+      "title": "En el consultorio",
+      "setting": "Hace tres días que te duele la garganta. Vas al médico.",
+      "characters": [
+        {
+          "id": "doctor",
+          "name": "Dra. Patel",
+          "role": "médica"
+        }
+      ],
+      "start": "problem",
+      "nodes": [
+        {
+          "id": "problem",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "Hello, come in and have a seat. What seems to be the problem?",
+          "es": "Hola, pase y siéntese. ¿Qué le pasa?",
+          "next": "throat"
+        },
+        {
+          "id": "throat",
+          "kind": "write",
+          "itemIds": ["a2.situations.sore-throat"],
+          "prompt": "Dile que te duele la garganta.",
+          "accepted": [
+            "I have a sore throat.",
+            "I've got a sore throat.",
+            "My throat {hurts|is sore}.",
+            "{Hi|Hello}, I have a sore throat.",
+            "{Hi|Hello}, my throat {hurts|is sore}."
+          ],
+          "tip": "En inglés se dice «I have a sore throat», con «a».",
+          "next": "how-long",
+          "wrongNext": "how-long-check"
+        },
+        {
+          "id": "how-long",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "I see. How long have you had it?",
+          "es": "Entiendo. ¿Desde hace cuánto lo tiene?",
+          "next": "duration"
+        },
+        {
+          "id": "how-long-check",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "Your throat? I see. How long have you had it?",
+          "es": "¿La garganta? Entiendo. ¿Desde hace cuánto lo tiene?",
+          "next": "duration"
+        },
+        {
+          "id": "duration",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "For three days.",
+              "rating": "good",
+              "feedback": "Correcto: «for» más la duración.",
+              "next": "fever"
+            },
+            {
+              "en": "Three days ago.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero «ago» dice cuándo empezó; para «¿desde hace cuánto?» lo natural es «For three days».",
+              "next": "fever"
+            },
+            {
+              "en": "Since three days.",
+              "rating": "wrong",
+              "feedback": "Calco de «desde hace»: con una duración se usa «for», nunca «since».",
+              "next": "fever-correct"
+            }
+          ]
+        },
+        {
+          "id": "fever",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "Do you have a fever?",
+          "es": "¿Tiene fiebre?",
+          "next": "symptoms"
+        },
+        {
+          "id": "fever-correct",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "For three days, okay. Do you have a fever?",
+          "es": "Tres días, de acuerdo. ¿Tiene fiebre?",
+          "next": "symptoms"
+        },
+        {
+          "id": "symptoms",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "No, but I have a headache.",
+              "rating": "good",
+              "feedback": "Respondes y agregas un síntoma útil.",
+              "next": "look"
+            },
+            {
+              "en": "No.",
+              "rating": "ok",
+              "feedback": "Correcto, aunque contar otros síntomas ayuda a la médica.",
+              "next": "look"
+            },
+            {
+              "en": "No, but I have a head pain.",
+              "rating": "wrong",
+              "feedback": "«Head pain» no es natural: se dice «a headache».",
+              "next": "look-headache"
+            }
+          ]
+        },
+        {
+          "id": "look",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "Okay. Let me take a look. Your throat is a little red, but it's nothing serious. I'm going to give you a prescription.",
+          "es": "Bien. Déjeme ver. Tiene la garganta un poco roja, pero no es nada grave. Le voy a dar una receta.",
+          "next": "prescription"
+        },
+        {
+          "id": "look-headache",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "A headache, okay. Let me take a look. Your throat is a little red, but it's nothing serious. I'm going to give you a prescription.",
+          "es": "Dolor de cabeza, de acuerdo. Déjeme ver. Tiene la garganta un poco roja, pero no es nada grave. Le voy a dar una receta.",
+          "next": "prescription"
+        },
+        {
+          "id": "prescription",
+          "kind": "choose",
+          "itemIds": ["a2.situations.prescription"],
+          "options": [
+            {
+              "en": "Thank you. How often should I take it?",
+              "rating": "good",
+              "feedback": "Preguntas justo lo importante: cada cuánto tomarlo.",
+              "next": "dose"
+            },
+            {
+              "en": "How often?",
+              "rating": "ok",
+              "feedback": "Se entiende, pero sin agradecer ni hacer una frase completa suena brusco.",
+              "next": "dose"
+            },
+            {
+              "en": "Thank you. Is the recipe expensive?",
+              "rating": "wrong",
+              "feedback": "Falso amigo: «recipe» es una receta de cocina; la del médico es «prescription».",
+              "next": "dose-recipe"
+            }
+          ]
+        },
+        {
+          "id": "dose",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "Take one pill twice a day, after meals, for five days.",
+          "es": "Tome una pastilla dos veces al día, después de las comidas, durante cinco días.",
+          "next": "repeat-dose"
+        },
+        {
+          "id": "dose-recipe",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "The recipe? Ha, you mean the prescription! It's not expensive. Take one pill twice a day, after meals, for five days.",
+          "es": "¿La receta de cocina? ¡Ja, quiere decir la receta médica! No es cara. Tome una pastilla dos veces al día, después de las comidas, durante cinco días.",
+          "next": "repeat-dose"
+        },
+        {
+          "id": "repeat-dose",
+          "kind": "write",
+          "itemIds": ["a2.situations.twice-a-day"],
+          "prompt": "Repite para confirmar: una pastilla dos veces al día.",
+          "accepted": [
+            "One pill{|,} twice a day[, after meals].",
+            "{Okay|So}, one pill twice a day[, after meals].",
+            "{Okay|So}, I take one pill twice a day[, after meals].",
+            "{Okay|So}, I {should|have to} take one pill twice a day[, after meals].",
+            "I {take|should take|have to take} one pill twice a day[, after meals]."
+          ],
+          "tip": "«Twice a day» es «dos veces al día»; «two times a day» también se entiende, pero suena menos natural.",
+          "next": "water",
+          "wrongNext": "water-repeat"
+        },
+        {
+          "id": "water",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "That's right. And drink lots of water.",
+          "es": "Así es. Y tome mucha agua.",
+          "next": "thanks"
+        },
+        {
+          "id": "water-repeat",
+          "kind": "npc",
+          "speaker": "doctor",
+          "en": "Not quite: one pill, twice a day, after meals. And drink lots of water.",
+          "es": "No exactamente: una pastilla, dos veces al día, después de comer. Y tome mucha agua.",
+          "next": "thanks"
+        },
+        {
+          "id": "thanks",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I will. Thank you, doctor.",
+              "rating": "good",
+              "feedback": "Amable y natural para despedirte.",
+              "next": "end"
+            },
+            {
+              "en": "Okay, bye.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena seco al final de la consulta.",
+              "next": "end"
+            },
+            {
+              "en": "You're welcome, doctor.",
+              "rating": "wrong",
+              "feedback": "«You're welcome» es «de nada»: lo dice quien recibe las gracias, no quien agradece.",
+              "next": "end-confused"
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Saliste con tu receta y sabes cómo tomar el medicamento. ¡Que te mejores!"
+        },
+        {
+          "id": "end-confused",
+          "kind": "end",
+          "text": "Tienes tu receta, aunque la médica se quedó extrañada con tu despedida."
+        }
+      ],
+      "cardIds": ["a2.grammar.should"]
+    }
+  ]
+}

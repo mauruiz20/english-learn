@@ -8,6 +8,8 @@ import type {
   Card,
   ClozeExercise,
   ContentFile,
+  Dialogue,
+  DialogueNode,
   GlossaryEntry,
   Item,
   Lesson,
@@ -416,5 +418,125 @@ export function practiceFiles(): LoadedFile[] {
         lessons: [practiceLesson(1), practiceLesson(2)],
       },
     },
+  ];
+}
+
+export const DIALOGUE_ID = "b1.dialogues.trip";
+
+const npc = (id: string, en: string, es: string, next: string): DialogueNode => ({
+  id,
+  kind: "npc",
+  speaker: "ana",
+  en,
+  es,
+  next,
+});
+
+/**
+ * A valid B1 dialogue (its English uses the words of `glossaryFiles()`): five learner turns
+ * (three `choose`, two `write`) on every path, four of them branching to a different NPC
+ * reaction that joins the main line again, and two endings. Turn `t3` practices the item of
+ * `practiceFiles()` (`go out`).
+ */
+export function dialogue(o: Partial<Dialogue> = {}): Dialogue {
+  return {
+    id: DIALOGUE_ID,
+    level: "B1",
+    title: "Un viaje corto",
+    setting: "Ana te pregunta por el viaje de unos amigos.",
+    characters: [{ id: "ana", name: "Ana", role: "tu amiga" }],
+    start: "n1",
+    nodes: [
+      npc("n1", "Where did they go last summer?", "¿Adónde fueron el verano pasado?", "t1"),
+      {
+        id: "t1",
+        kind: "choose",
+        options: [
+          { en: "They went to Lisbon.", rating: "good", feedback: "Claro y completo.", next: "n2" },
+          { en: "Lisbon.", rating: "ok", feedback: "Se entiende, pero es muy seco.", next: "n2" },
+          {
+            en: "Because it was late.",
+            rating: "wrong",
+            feedback: "No responde a la pregunta.",
+            next: "n2b",
+          },
+        ],
+      },
+      npc("n2", "Was it a short trip?", "¿Fue un viaje corto?", "t2"),
+      npc("n2b", "Where did they go? Was it a short trip?", "¿Adónde fueron? ¿Fue corto?", "t2"),
+      {
+        id: "t2",
+        kind: "write",
+        prompt: "Di que fue un viaje corto.",
+        accepted: ["It was a short trip."],
+        next: "n3",
+        wrongNext: "n3b",
+      },
+      npc("n3", "Did they go out?", "¿Salieron?", "t3"),
+      npc("n3b", "A short trip? Did they go out?", "¿Un viaje corto? ¿Salieron?", "t3"),
+      {
+        id: "t3",
+        kind: "choose",
+        itemIds: ["b1.phrasal-verbs.go-out"],
+        options: [
+          { en: "Madrid.", rating: "wrong", feedback: "No tiene sentido aquí.", next: "n4b" },
+          { en: "They went out.", rating: "good", feedback: "Bien dicho.", next: "n4" },
+        ],
+      },
+      npc("n4", "Was he tired?", "¿Estaba cansado?", "t4"),
+      npc("n4b", "Madrid? Was he tired?", "¿Madrid? ¿Estaba cansado?", "t4"),
+      {
+        id: "t4",
+        kind: "write",
+        prompt: "Di que estaba cansado, pero siguió caminando.",
+        accepted: ["Although he was tired, he kept walking."],
+        tip: "Usa although para unir las dos ideas.",
+        next: "n5",
+      },
+      npc("n5", "Did it rain?", "¿Llovió?", "t5"),
+      {
+        id: "t5",
+        kind: "choose",
+        options: [
+          { en: "It rained.", rating: "good", feedback: "Correcto.", next: "end" },
+          { en: "Paris.", rating: "wrong", feedback: "No responde a la pregunta.", next: "end-b" },
+        ],
+      },
+      { id: "end", kind: "end", text: "Ana sabe todo sobre el viaje." },
+      { id: "end-b", kind: "end", text: "Ana se queda con dudas." },
+    ],
+    ...o,
+  };
+}
+
+/** The "Diálogos" collection with one B1 group listing `dialogueIds`. */
+export function dialogueCollection(dialogueIds: string[] = [DIALOGUE_ID]): PracticeCollection {
+  return {
+    id: "practice.dialogues",
+    title: "Diálogos",
+    summary: "Conversaciones con respuestas a elegir o escribir.",
+    groups: [
+      {
+        id: "practice.dialogues.b1",
+        level: "B1",
+        title: "Charlas",
+        summary: "Conversaciones del día a día.",
+        dialogueIds,
+      },
+    ],
+  };
+}
+
+/**
+ * Valid `practice/dialogues/` files: the collection and the dialogue `d` (by default
+ * `dialogue()`). Use them with `practiceFiles()`, whose item turn `t3` practices.
+ */
+export function dialogueFiles(d: Dialogue = dialogue()): LoadedFile[] {
+  return [
+    {
+      file: "practice/dialogues/collection.json",
+      data: { practice: [dialogueCollection([d.id])] },
+    },
+    { file: "practice/dialogues/trip.json", data: { dialogues: [d] } },
   ];
 }

@@ -13,6 +13,18 @@
       ]
     },
     {
+      "id": "glossary.jake",
+      "headword": "Jake",
+      "kind": "word",
+      "forms": ["jake"],
+      "senses": [
+        {
+          "es": "Jake (nombre propio)",
+          "pos": "proper noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.jam",
       "headword": "jam",
       "kind": "word",
@@ -125,6 +137,18 @@
       ]
     },
     {
+      "id": "glossary.join",
+      "headword": "join",
+      "kind": "word",
+      "forms": ["join", "joins", "joined", "joining"],
+      "senses": [
+        {
+          "es": "unirse a, entrar en (un equipo, un grupo)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.jointly",
       "headword": "jointly",
       "kind": "word",
@@ -140,11 +164,15 @@
       "id": "glossary.joke",
       "headword": "joke",
       "kind": "word",
-      "forms": ["joke", "jokes"],
+      "forms": ["joke", "jokes", "joked", "joking"],
       "senses": [
         {
           "es": "broma, chiste",
           "pos": "noun"
+        },
+        {
+          "es": "bromear",
+          "pos": "verb"
         }
       ]
     },

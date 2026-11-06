@@ -47,9 +47,21 @@ export const validatePracticeCollections: Rule = (files) => {
             message: `group id must start with "${collection.id}."`,
           });
         }
-        errors.push(
-          ...duplicateErrors(group.lessonIds, "exact", "lesson id", file, `${base}.lessonIds`),
-        );
+        if ("lessonIds" in group) {
+          errors.push(
+            ...duplicateErrors(group.lessonIds, "exact", "lesson id", file, `${base}.lessonIds`),
+          );
+        } else {
+          errors.push(
+            ...duplicateErrors(
+              group.dialogueIds,
+              "exact",
+              "dialogue id",
+              file,
+              `${base}.dialogueIds`,
+            ),
+          );
+        }
       });
     });
   }
@@ -108,6 +120,7 @@ export const validatePracticeLessons: Rule = (files) => {
           errors.push({ file, path: `${base}.id`, message: `duplicate group id "${group.id}"` });
         }
         groupIds.add(group.id);
+        if (!("lessonIds" in group)) return;
         group.lessonIds.forEach((id, l) => {
           const path = `${base}.lessonIds[${l}]`;
           const located = lessons.get(id);

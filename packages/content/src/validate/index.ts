@@ -8,7 +8,13 @@ export { validateWordOrders } from "./word-order";
 export { validateTextPunctuation } from "./punctuation";
 export { findVoseo, validateNeutralSpanish, type VoseoOptions } from "./voseo";
 export { validateListDuplicates } from "./duplicates";
-export { validateAnswerPatterns } from "./answer-patterns";
+export { answerPatternErrors, validateAnswerPatterns } from "./answer-patterns";
+export {
+  DIALOGUE_TURNS,
+  MIN_BRANCHING_TURNS,
+  validateDialogueReferences,
+  validateDialogues,
+} from "./dialogues";
 export { validateLevels } from "./levels";
 export { validateLayout } from "./layout";
 export { validateTopics, validateExerciseTopics } from "./topics";

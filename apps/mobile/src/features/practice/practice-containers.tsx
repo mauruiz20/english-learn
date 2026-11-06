@@ -14,7 +14,7 @@ import {
   PracticeCollectionView,
   type PracticeCollectionViewState,
 } from "./practice-collection-view";
-import { practiceCollectionPath, practiceLessonPath } from "./practice-routes";
+import { dialoguePath, practiceCollectionPath, practiceLessonPath } from "./practice-routes";
 import { PracticeView, type PracticeViewState } from "./practice-view";
 
 /** Loads the lesson results every time the screen gains focus (and after a sync). */
@@ -62,7 +62,7 @@ export function PracticeContainer({ content = corpus }: { content?: Corpus }) {
   );
 }
 
-/** `/practica/[collection]`: its groups, and each lesson's best result. */
+/** `/practica/[collection]`: its groups, and each lesson's (or dialogue's) best result. */
 export function PracticeCollectionContainer({
   slug,
   content = corpus,
@@ -96,7 +96,9 @@ export function PracticeCollectionContainer({
   return (
     <PracticeCollectionView
       state={state}
-      onOpenLesson={(lessonId) => router.push(practiceLessonPath(lessonId))}
+      onOpenLesson={(id) =>
+        router.push(content.dialoguesById.has(id) ? dialoguePath(id) : practiceLessonPath(id))
+      }
     />
   );
 }

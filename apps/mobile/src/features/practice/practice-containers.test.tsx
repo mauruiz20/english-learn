@@ -10,6 +10,7 @@ import {
 import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
 import { testRandomBytes } from "@/testing/random-bytes";
+import { dialogueContent } from "@/features/dialogues/model/fixtures";
 import { practiceContent } from "./model/fixtures";
 import { PracticeCollectionContainer, PracticeContainer } from "./practice-containers";
 
@@ -89,6 +90,18 @@ describe("PracticeCollectionContainer", () => {
       screen.getByRole("button", { name: "Casa y rutina: practícalos, nueva" }),
     );
     expect(mockRouter.push).toHaveBeenCalledWith("/lesson/a2.phrasal-verbs.practice-home-2");
+  });
+
+  it("plays a dialogue of the Diálogos collection on the dialogue screen", async () => {
+    await render(
+      withServices(
+        createFakeRepository(),
+        <PracticeCollectionContainer slug="dialogues" content={dialogueContent} />,
+      ),
+    );
+
+    await fireEvent.press(await screen.findByRole("button", { name: "En la cafetería, nuevo" }));
+    expect(mockRouter.push).toHaveBeenCalledWith("/dialogo/a2.dialogues.cafe");
   });
 
   it("says when the collection does not exist", async () => {

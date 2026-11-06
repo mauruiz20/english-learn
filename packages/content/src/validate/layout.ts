@@ -13,7 +13,8 @@ const ENTITY_KINDS = ["items", "exercises", "passages", "lessons", "cards"] as c
  * - `placement/` holds only `placement` entries; level dirs never hold them.
  * - `glossary/` holds only `glossary` entries; no other directory holds them.
  * - `practice/<collection>/` holds practice collections (`practice`, only there) and their
- *   items, exercises, passages and lessons, never cards or placement entries.
+ *   items, exercises, passages, lessons and dialogues (only there), never cards or placement
+ *   entries.
  * - Every entity under `<level>/` has that level.
  * - An id's level prefix matches the entity's `level` field.
  */
@@ -101,6 +102,13 @@ export const validateLayout: Rule = (files: readonly LoadedFile[]) => {
           message: `practice collections belong in ${PRACTICE_DIR}/<collection>/, not ${dir}/`,
         }),
       );
+      (data.dialogues ?? []).forEach((_, i) =>
+        errors.push({
+          file,
+          path: `dialogues[${i}]`,
+          message: `dialogues belong in ${PRACTICE_DIR}/<collection>/, not ${dir}/`,
+        }),
+      );
     }
 
     if (DIRS.includes(dir) && dir !== GLOSSARY_DIR) {
@@ -113,7 +121,7 @@ export const validateLayout: Rule = (files: readonly LoadedFile[]) => {
       );
     }
 
-    for (const kind of ENTITY_KINDS) {
+    for (const kind of [...ENTITY_KINDS, "dialogues"] as const) {
       (data[kind] ?? []).forEach((entity, i) => {
         const prefix = `${entity.level.toLowerCase()}.`;
         if (!entity.id.startsWith(prefix)) {

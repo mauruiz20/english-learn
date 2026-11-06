@@ -1229,6 +1229,18 @@
       ]
     },
     {
+      "id": "glossary.mostly",
+      "headword": "mostly",
+      "kind": "word",
+      "forms": ["mostly"],
+      "senses": [
+        {
+          "es": "sobre todo, principalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.mother",
       "headword": "mother",
       "kind": "word",
@@ -1360,6 +1372,18 @@
       "senses": [
         {
           "es": "museo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.mushroom",
+      "headword": "mushroom",
+      "kind": "word",
+      "forms": ["mushroom", "mushrooms"],
+      "senses": [
+        {
+          "es": "hongo, champiñón",
           "pos": "noun"
         }
       ]

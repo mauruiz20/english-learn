@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
+import { dialogueContent } from "@/features/dialogues/model/fixtures";
 import { practiceContent } from "./model/fixtures";
 import { practiceCollectionRows, practiceGroupRows } from "./model/practice-catalog";
 import { PracticeCollectionView } from "./practice-collection-view";
@@ -104,5 +105,50 @@ describe("PracticeCollectionView", () => {
       }).props.accessibilityHint,
     ).toBe("Repítela para sacar todo bien");
     expect(screen.queryByText("Nueva")).toBeNull();
+  });
+});
+
+describe("Práctica libre with dialogues", () => {
+  const DIALOGUE = "a2.dialogues.cafe";
+
+  it("counts a collection of dialogues in dialogues", () => {
+    expect(practiceCount({ groups: 3, lessons: 10, done: 0, kind: "dialogues" })).toBe(
+      "3 grupos · 10 diálogos",
+    );
+    expect(practiceCount({ groups: 1, lessons: 1, done: 1, kind: "dialogues" })).toBe(
+      "1 grupo · 1 diálogo · 1 hecho",
+    );
+  });
+
+  it("lists dialogues as new, then with their masculine best result, and opens one", async () => {
+    const dialogues = dialogueContent.practice[0]!;
+    const fresh = practiceGroupRows(dialogues, dialogueContent, []);
+    await render(
+      <PracticeCollectionView
+        state={{ status: "ready", title: "Diálogos", summary: "Conversaciones.", groups: fresh }}
+        onOpenLesson={onOpen}
+      />,
+    );
+    const row = screen.getByRole("button", { name: "En la cafetería, nuevo" });
+    expect(row.props.accessibilityHint).toBe("Abre el diálogo");
+    expect(screen.getByText("Nuevo")).toBeOnTheScreen();
+    await fireEvent.press(row);
+    expect(onOpen).toHaveBeenCalledWith(DIALOGUE);
+
+    const played = practiceGroupRows(dialogues, dialogueContent, [
+      { lessonId: DIALOGUE, bestAccuracy: 0.8, completions: 1 },
+    ]);
+    await render(
+      <PracticeCollectionView
+        state={{ status: "ready", title: "Diálogos", summary: "Conversaciones.", groups: played }}
+        onOpenLesson={onOpen}
+      />,
+    );
+    expect(screen.getByText("Completado · 4/5")).toBeOnTheScreen();
+    expect(
+      screen.getByRole("button", {
+        name: "En la cafetería, completado con errores: 4 de 5 respuestas buenas",
+      }).props.accessibilityHint,
+    ).toBe("Repítelo para sacar todo bien");
   });
 });

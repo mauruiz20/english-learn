@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { CardSchema } from "./card";
+import { DialogueSchema } from "./dialogue";
 import { ExerciseSchema } from "./exercise";
 import { GlossaryEntrySchema } from "./glossary";
 import { ItemSchema, LessonSchema, PassageSchema } from "./entities";
@@ -17,5 +18,7 @@ export const ContentFileSchema = z.strictObject({
   cards: z.array(CardSchema).optional(),
   /** "Práctica libre" collections (only under `data/practice/`). */
   practice: z.array(PracticeCollectionSchema).optional(),
+  /** Interactive dialogues (only under `data/practice/<collection>/`). */
+  dialogues: z.array(DialogueSchema).optional(),
 });
 export type ContentFile = z.infer<typeof ContentFileSchema>;

@@ -289,6 +289,22 @@
       ]
     },
     {
+      "id": "glossary.fan",
+      "headword": "fan",
+      "kind": "word",
+      "forms": ["fan", "fans"],
+      "senses": [
+        {
+          "es": "ventilador",
+          "pos": "noun"
+        },
+        {
+          "es": "aficionado, fan",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.far",
       "headword": "far",
       "kind": "word",
@@ -417,6 +433,18 @@
         {
           "es": "temer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.feature",
+      "headword": "feature",
+      "kind": "word",
+      "forms": ["feature", "features"],
+      "senses": [
+        {
+          "es": "función, característica",
+          "pos": "noun"
         }
       ]
     },
@@ -1545,6 +1573,18 @@
         {
           "es": "fruta",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.frustrated",
+      "headword": "frustrated",
+      "kind": "word",
+      "forms": ["frustrated"],
+      "senses": [
+        {
+          "es": "frustrado, molesto",
+          "pos": "adjective"
         }
       ]
     },

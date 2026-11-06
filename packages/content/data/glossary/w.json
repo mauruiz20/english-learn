@@ -317,6 +317,22 @@
       ]
     },
     {
+      "id": "glossary.we-d",
+      "headword": "we'd",
+      "kind": "word",
+      "forms": ["we'd"],
+      "senses": [
+        {
+          "es": "nosotros (we would) -ríamos: we'd miss = no llegaríamos",
+          "pos": "expression"
+        },
+        {
+          "es": "nosotros habíamos (we had)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.we-ll",
       "headword": "we'll",
       "kind": "word",
@@ -673,6 +689,18 @@
         {
           "es": "cuando",
           "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.whenever",
+      "headword": "whenever",
+      "kind": "word",
+      "forms": ["whenever"],
+      "senses": [
+        {
+          "es": "cuando sea, cuando quieras",
+          "pos": "adverb"
         }
       ]
     },

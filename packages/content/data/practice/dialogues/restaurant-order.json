@@ -1,0 +1,295 @@
+{
+  "dialogues": [
+    {
+      "id": "a2.dialogues.restaurant-order",
+      "level": "A2",
+      "title": "Pedir en un restaurante",
+      "setting": "Cenas con una amiga en un restaurante. Ya tienen mesa y el mesero se acerca. Más tarde, te trae un plato que no pediste.",
+      "characters": [
+        {
+          "id": "server",
+          "name": "Jake",
+          "role": "mesero"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Hi, I'm Jake, and I'll be your server tonight. Are you ready to order?",
+          "es": "Hola, soy Jake y hoy los voy a atender. ¿Ya saben qué van a pedir?",
+          "next": "ready"
+        },
+        {
+          "id": "ready",
+          "kind": "choose",
+          "itemIds": ["a2.situations.what-do-you-recommend"],
+          "options": [
+            {
+              "en": "Almost. What do you recommend?",
+              "rating": "good",
+              "feedback": "Pedir una recomendación es natural y amable.",
+              "next": "specials"
+            },
+            {
+              "en": "No. Wait.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena cortante.",
+              "next": "specials-wait"
+            },
+            {
+              "en": "Yes, I recommend the fish.",
+              "rating": "wrong",
+              "feedback": "Confundes los papeles: el mesero recomienda; tú preguntas «What do you recommend?».",
+              "next": "specials-confused"
+            }
+          ]
+        },
+        {
+          "id": "specials",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "The salmon is really good tonight, and the mushroom soup is homemade.",
+          "es": "El salmón está muy bueno hoy, y la sopa de hongos es casera.",
+          "next": "starter"
+        },
+        {
+          "id": "specials-wait",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Sure, take your time. By the way, the salmon is really good tonight, and the mushroom soup is homemade.",
+          "es": "Claro, tómense su tiempo. Por cierto, el salmón está muy bueno hoy, y la sopa de hongos es casera.",
+          "next": "starter"
+        },
+        {
+          "id": "specials-confused",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Ha, I'm the one who's supposed to recommend! The salmon is really good tonight, and the mushroom soup is homemade.",
+          "es": "¡Ja, se supone que el que recomienda soy yo! El salmón está muy bueno hoy, y la sopa de hongos es casera.",
+          "next": "starter"
+        },
+        {
+          "id": "starter",
+          "kind": "write",
+          "itemIds": ["a2.situations.ill-have"],
+          "prompt": "Pide la sopa de hongos para empezar.",
+          "accepted": [
+            "I'll have the mushroom soup[ to start| first][, please].",
+            "I'd like the mushroom soup[ to start| first][, please].",
+            "{Can|Could} I {have|get} the mushroom soup[ to start| first][, please]?",
+            "The mushroom soup[ to start| first], please.",
+            "{I'll|I'd like to} start with the mushroom soup[, please]."
+          ],
+          "tip": "«I'll have…» o «Could I have…, please?» son las formas más comunes de pedir.",
+          "next": "main",
+          "wrongNext": "main-check"
+        },
+        {
+          "id": "main",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Good choice. And for your main course?",
+          "es": "Buena elección. ¿Y de plato principal?",
+          "next": "order-main"
+        },
+        {
+          "id": "main-check",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Sorry, the mushroom soup? Sure. And for your main course?",
+          "es": "Perdón, ¿la sopa de hongos? Claro. ¿Y de plato principal?",
+          "next": "order-main"
+        },
+        {
+          "id": "order-main",
+          "kind": "choose",
+          "itemIds": ["a2.situations.ill-have"],
+          "options": [
+            {
+              "en": "I'll have the salmon, please.",
+              "rating": "good",
+              "feedback": "Claro y amable.",
+              "next": "drinks"
+            },
+            {
+              "en": "I want the salmon.",
+              "rating": "ok",
+              "feedback": "Correcto, pero «I want» suena exigente con un mesero.",
+              "next": "drinks"
+            },
+            {
+              "en": "I'll have the menu, please.",
+              "rating": "wrong",
+              "feedback": "Malentendido: «the menu» es la carta, no un plato; estarías pidiendo la carta otra vez.",
+              "next": "drinks-menu"
+            }
+          ]
+        },
+        {
+          "id": "drinks",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Perfect. Anything to drink?",
+          "es": "Perfecto. ¿Algo de tomar?",
+          "next": "order-drink"
+        },
+        {
+          "id": "drinks-menu",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "The menu? You already have one! Oh, do you mean the salmon? Okay. Anything to drink?",
+          "es": "¿La carta? ¡Ya tiene una! Ah, ¿quiere decir el salmón? Muy bien. ¿Algo de tomar?",
+          "next": "order-drink"
+        },
+        {
+          "id": "order-drink",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Just water for me, please.",
+              "rating": "good",
+              "feedback": "Natural y amable.",
+              "next": "food"
+            },
+            {
+              "en": "Water.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero una sola palabra suena seca.",
+              "next": "food"
+            },
+            {
+              "en": "Yes, I drink.",
+              "rating": "wrong",
+              "feedback": "Suena raro: «Anything to drink?» te pide que digas qué quieres tomar, no si bebes.",
+              "next": "food-water"
+            }
+          ]
+        },
+        {
+          "id": "food-water",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Okay... I'll bring you some water, then.",
+          "es": "Bueno... entonces le traigo agua.",
+          "next": "food"
+        },
+        {
+          "id": "food",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Here's your main course: the steak.",
+          "es": "Aquí tiene su plato principal: el bistec.",
+          "next": "mistake"
+        },
+        {
+          "id": "mistake",
+          "kind": "write",
+          "prompt": "El mesero se equivocó. Dile con amabilidad que pediste el salmón, no el bistec.",
+          "accepted": [
+            "{Sorry|Excuse me|I'm sorry}, I ordered the salmon[, not the steak].",
+            "{Sorry|Excuse me|I'm sorry}, but I ordered the salmon[, not the steak].",
+            "{Sorry|Excuse me|I'm sorry}, I think there's {a|been a} mistake. I ordered the salmon[, not the steak].",
+            "I think I ordered the salmon[, not the steak].",
+            "{Sorry|Excuse me|I'm sorry}, I didn't order the steak. I ordered the salmon."
+          ],
+          "tip": "Para corregir con cortesía: «Sorry, I think there's a mistake. I ordered the salmon.»",
+          "next": "apology",
+          "wrongNext": "apology-late"
+        },
+        {
+          "id": "apology",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Oh, I'm so sorry! I'll get your salmon right away.",
+          "es": "¡Uy, cuánto lo siento! Le traigo su salmón enseguida.",
+          "next": "accept-apology"
+        },
+        {
+          "id": "apology-late",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Is something wrong with the steak? Oh, you ordered the salmon! I'm so sorry, I'll get it right away.",
+          "es": "¿Algún problema con el bistec? ¡Ah, pidió el salmón! Cuánto lo siento, se lo traigo enseguida.",
+          "next": "accept-apology"
+        },
+        {
+          "id": "accept-apology",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "No problem, thank you.",
+              "rating": "good",
+              "feedback": "Amable: le quitas importancia a un error pequeño.",
+              "next": "salmon"
+            },
+            {
+              "en": "Okay.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero suena frío.",
+              "next": "salmon"
+            },
+            {
+              "en": "This is terrible service.",
+              "rating": "wrong",
+              "feedback": "Demasiado agresivo para un error pequeño que ya se está corrigiendo.",
+              "next": "salmon-cold"
+            }
+          ]
+        },
+        {
+          "id": "salmon",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "Here's your salmon. Enjoy!",
+          "es": "Aquí tiene su salmón. ¡Que lo disfrute!",
+          "next": "later"
+        },
+        {
+          "id": "salmon-cold",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "I understand. Here's your salmon.",
+          "es": "Entiendo. Aquí tiene su salmón.",
+          "next": "later"
+        },
+        {
+          "id": "later",
+          "kind": "npc",
+          "speaker": "server",
+          "en": "How was everything? Can I get you anything else?",
+          "es": "¿Qué tal estuvo todo? ¿Le traigo algo más?",
+          "next": "check"
+        },
+        {
+          "id": "check",
+          "kind": "write",
+          "itemIds": ["a2.situations.could-we-have-the-check"],
+          "prompt": "Ya terminaron de comer. Pide la cuenta con cortesía.",
+          "accepted": [
+            "{Could|Can} {we|I} {have|get} the {check|bill}[, please]?",
+            "{The check|The bill|Check}, please.",
+            "{We'd|I'd} like the {check|bill}[, please].",
+            "{Could|Can} you bring {us|me} the {check|bill}[, please]?"
+          ],
+          "tip": "En Estados Unidos la cuenta es «the check»: «Could we have the check, please?»",
+          "next": "end",
+          "wrongNext": "end-slow"
+        },
+        {
+          "id": "end",
+          "kind": "end",
+          "text": "Comiste tu salmón y pagaste la cuenta. El error se resolvió sin problemas."
+        },
+        {
+          "id": "end-slow",
+          "kind": "end",
+          "text": "Comiste tu salmón, aunque el mesero tardó en entender que querías la cuenta."
+        }
+      ],
+      "cardIds": ["a2.grammar.some-any"]
+    }
+  ]
+}
