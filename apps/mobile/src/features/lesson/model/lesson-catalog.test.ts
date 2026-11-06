@@ -2,6 +2,7 @@ import { createCorpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import { allExercises, lesson, passage } from "./fixtures";
 import {
+  autoPathLevel,
   DEFAULT_LEVEL,
   isLessonDone,
   lessonExercises,
@@ -111,18 +112,15 @@ describe("lesson catalog", () => {
 
     // Production bug: before B2 had lessons, a B2 or C1 placement started the path on B1. Once
     // B2 lessons shipped, the same placement mapped to B2 and home jumped past a B1 the learner
-    // was a quarter of the way through.
-    it.each(["B2", "C1"] as const)(
-      "keeps a learner placed at %s on a B1 they started and did not finish",
-      (placement) => {
-        const b1Lessons = corpus.lessons.filter((l) => l.level === "B1");
-        const started = b1Lessons.slice(0, Math.round(b1Lessons.length * 0.23)).map((l) => l.id);
-        expect(started.length).toBeGreaterThan(0);
+    // was a quarter of the way through. (Only B2 here: C1 maps to C1 once C1 has lessons.)
+    it("keeps a learner placed at B2 on a B1 they started and did not finish", () => {
+      const b1Lessons = corpus.lessons.filter((l) => l.level === "B1");
+      const started = b1Lessons.slice(0, Math.round(b1Lessons.length * 0.23)).map((l) => l.id);
+      expect(started.length).toBeGreaterThan(0);
 
-        expect(lessonLevelFor(corpus.lessons, placement)).toBe("B2");
-        expect(pathLessons(corpus.lessons, placement, doneIds(...started)).level).toBe("B1");
-      },
-    );
+      expect(lessonLevelFor(corpus.lessons, "B2")).toBe("B2");
+      expect(pathLessons(corpus.lessons, "B2", doneIds(...started)).level).toBe("B1");
+    });
   });
 
   describe("the automatic path level", () => {
@@ -166,6 +164,75 @@ describe("lesson catalog", () => {
       expect(levelOf("B2", a2a!.id)).toBe("B2");
       // B1 finished: a leftover A2 lesson does not pull the path back down.
       expect(levelOf("B2", a2a!.id, b1a!.id, b1b!.id)).toBe("B2");
+    });
+  });
+
+  describe("from A1 to C1", () => {
+    const LEVEL_IDS = ["A1", "A2", "B1", "B2", "C1"] as const;
+    type PathLevel = (typeof LEVEL_IDS)[number];
+    const two = (level: PathLevel) =>
+      [1, 2].map((n) => ({ ...lesson, id: `${level.toLowerCase()}.x.lesson-00${n}`, level }));
+    const all = LEVEL_IDS.flatMap(two);
+    const idsOf = (...levels: PathLevel[]) =>
+      all.filter((l) => levels.includes(l.level as PathLevel)).map((l) => l.id);
+    const levelOf = (
+      placement: Parameters<typeof pathLessons>[1],
+      done: readonly string[],
+      lessons: readonly (typeof all)[number][] = all,
+    ) => autoPathLevel(lessons, placement, (l) => done.includes(l.id));
+
+    it("maps A1 and C1 placements to their own levels once they have lessons", () => {
+      expect(lessonLevelFor(all, "A1")).toBe("A1");
+      expect(lessonLevelFor(all, "C1")).toBe("C1");
+      expect(lessonsForLevel(all, "A1").lessons.map((l) => l.id)).toEqual(idsOf("A1"));
+      expect(lessonsForLevel(all, "C1").lessons.map((l) => l.id)).toEqual(idsOf("C1"));
+    });
+
+    it("maps them to the nearest level with lessons while theirs has none", () => {
+      const withoutEnds = all.filter((l) => l.level !== "A1" && l.level !== "C1");
+      expect(lessonLevelFor(withoutEnds, "A1")).toBe("A2");
+      expect(lessonLevelFor(withoutEnds, "C1")).toBe("B2");
+    });
+
+    it("keeps a learner with no placement on A2", () => {
+      expect(levelOf(null, [])).toBe("A2");
+    });
+
+    it("walks A1 → A2 → B1 → B2 → C1 as each level is finished, and stays on C1", () => {
+      expect(levelOf("A1", [])).toBe("A1");
+      expect(levelOf("A1", idsOf("A1"))).toBe("A2");
+      expect(levelOf("A1", idsOf("A1", "A2"))).toBe("B1");
+      expect(levelOf("A1", idsOf("A1", "A2", "B1"))).toBe("B2");
+      expect(levelOf("A1", idsOf("A1", "A2", "B1", "B2"))).toBe("C1");
+      expect(levelOf("A1", idsOf("A1", "A2", "B1", "B2", "C1"))).toBe("C1");
+    });
+
+    it("starts a new C1 learner on C1, never below", () => {
+      expect(levelOf("C1", [])).toBe("C1");
+    });
+
+    it("keeps a C1 learner on a B2 they started and did not finish", () => {
+      const [b2a] = idsOf("B2");
+      expect(levelOf("C1", [b2a!])).toBe("B2");
+      expect(levelOf("C1", idsOf("B2"))).toBe("C1");
+    });
+
+    it("keeps an A2 learner on an A1 they started and did not finish", () => {
+      const [a1a] = idsOf("A1");
+      expect(levelOf("A2", [a1a!])).toBe("A1");
+      expect(levelOf("A2", idsOf("A1"))).toBe("A2");
+    });
+
+    // Before A1 had lessons an A1 placement started on A2. Once A1 lessons ship, the same
+    // placement maps to A1: a learner who began A2 stays on it instead of going back down.
+    it("keeps an A1 learner on the A2 they started before A1 had lessons", () => {
+      const [a2a] = idsOf("A2");
+      expect(levelOf("A1", [a2a!])).toBe("A2");
+      expect(levelOf("A1", idsOf("A2"))).toBe("B1");
+    });
+
+    it("lists every level with lessons, A1 and C1 included", () => {
+      expect(pathLevels(all, () => false).map((l) => l.level)).toEqual([...LEVEL_IDS]);
     });
   });
 

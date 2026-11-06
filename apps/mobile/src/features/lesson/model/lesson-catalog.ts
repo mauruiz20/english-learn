@@ -2,8 +2,8 @@ import type { Exercise, Lesson, Level } from "@english-learn/content";
 import { LEVELS } from "@english-learn/domain";
 
 /**
- * Level used when the learner has no placement result, or when their level has no lessons
- * yet. The bundled content covers A2, B1 and B2.
+ * Level used when the learner has no placement result, or when there are no lessons at all.
+ * A learner with no placement starts on A2, as before A1 had lessons.
  */
 export const DEFAULT_LEVEL: Level = "A2";
 
@@ -28,7 +28,8 @@ export function lessonItemIds(
 
 /**
  * The level whose lessons a learner at `level` should take: the nearest level that has
- * lessons, preferring the lower one on a tie (with the bundled content: A1 → A2, C1 → B2).
+ * lessons, preferring the lower one on a tie (A1 → A2 while A1 has no lessons, C1 → B2 while
+ * C1 has none).
  * No level yet, or no lessons at all → `DEFAULT_LEVEL`.
  */
 export function lessonLevelFor(lessons: readonly Lesson[], level: Level | null): Level {
@@ -59,8 +60,10 @@ export function lessonsForLevel(
  * 2. If the learner started the nearest lower level with lessons (at least one lesson done)
  *    and has not finished it, it starts there instead: their progress counts more than a newer
  *    placement or new content (a B2 or C1 placement mapped to B1 until B2 had lessons).
+ *    Otherwise, if they have done nothing of that level but started the next one up, it starts
+ *    there (an A1 placement mapped to A2 until A1 had lessons: they stay on the A2 they began).
  * 3. From there it moves up past every finished level to the first one with lessons left
- *    (A2 → B1 → B2); with every level done it stays on the last one.
+ *    (A1 → A2 → B1 → B2 → C1); with every level done it stays on the last one.
  *
  * A new learner (nothing done) is never placed below their placement.
  */
@@ -73,7 +76,9 @@ export function autoPathLevel(
   let index = levels.findIndex((l) => l.level === lessonLevelFor(lessons, level));
   if (index === -1) return DEFAULT_LEVEL;
   const below = levels[index - 1];
+  const above = levels[index + 1];
   if (below !== undefined && below.done > 0 && below.done < below.total) index -= 1;
+  else if (levels[index]!.done === 0 && above !== undefined && above.done > 0) index += 1;
   while (index < levels.length - 1 && levels[index]!.done === levels[index]!.total) index += 1;
   return levels[index]!.level;
 }
