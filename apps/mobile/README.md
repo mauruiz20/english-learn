@@ -34,7 +34,8 @@ come from that cache. The app only builds events (`src/features/progress/progres
 UUIDv7 ids from `clock.nowMs()` and `randomBytes`, stamped with the install's device id):
 
 - a finished lesson or review → one `item_reviewed` per item with its final grade and one
-  `session_completed`, sharing a session id and the save's `today`;
+  `session_completed` (with `exercises`, the number answered, for the daily goal), sharing a
+  session id and the save's `today`;
 - a finished placement test → `placement_completed`.
 
 Avi's withdrawn wardrobe wrote `item_purchased` / `item_equipped`; logs and other devices may
@@ -604,6 +605,39 @@ Branching conversations, the "Diálogos" collection of Práctica libre (content:
   `itemIds` get an `item_reviewed` with the reply's grade (choose as a translation choice, write
   as translate-write). No new event, no fold change.
 
+## Daily goal (`src/features/daily-goal/`)
+
+The learner picks how many exercises to answer per day: "Suave · 10", "Normal · 20" (the
+default), "Intensa · 40" or "Sin meta" (`DailyGoal` in `@english-learn/domain`, "Daily goal"). It
+complements the streak and never pressures: no notification, no reminder, no loss; missing it
+changes nothing else.
+
+- **The count** is the fold's per-day exercises (`ProgressRepository.getDailyExercises`, read for
+  `clock.today()` with `exercisesOn`): every exercise answered in a lesson, review, card practice,
+  Práctica libre, dialogue (one per turn) or hard-words practice, since they all save through
+  `completeSession`, which writes `exercises` (the session's verdicts). A session counts on the
+  day it is saved (the date its events carry), so each day starts from zero. Sessions saved before
+  this version carry no count.
+- **Where it is stored**: a device setting (`SettingsRepository.getDailyGoal` /
+  `setDailyGoal`, `daily_goal`; unreadable → "Normal · 20"), not progress, so it does not sync.
+- **Home**: in the progress card, under the streak, `DailyGoalMeter`: a ring (`goal-ring.tsx`,
+  ink over a pale rule; a met goal is a full yellow ring with a check) with "Meta diaria" and
+  "12 / 20 hoy", read as one progress bar "Meta diaria: 12 de 20 ejercicios hoy". Met: "¡Meta
+  cumplida!" and a small yellow star sticker (labelled "¡Meta cumplida! 22 de 20 ejercicios hoy").
+  Beside it a chip ("Normal · 20", 44 pt, labelled "Meta diaria: Normal · 20") opens the four
+  goals as radios right under it; picking one stores it and closes the list. With "Sin meta" only
+  the chip stays ("Meta diaria: Sin meta"). Nothing animates.
+- **First time**: under the progress card, a dashed note "¿Cuánto quieres practicar cada día?"
+  offers the four goals as buttons and "Ahora no" (`DailyGoalPrompt`). It blocks nothing (the
+  default goal already counts); answering or closing it stores
+  `setDailyGoalPromptDismissed()` and it never shows again. Picking on the chip answers it too.
+- **Avi on home** cheers once the goal is met since home was last seen (see "Avi on home":
+  `celebrate`, "¡Meta cumplida!", the hop; a finished lesson or new badge keeps "¡Lo lograste!").
+- **Session summaries** (lesson, review, card practice, Práctica libre, dialogue, hard-words
+  practice): one more line in the results card, "Meta diaria: 18 / 20" with a small ring, or
+  "¡Cumpliste tu meta de hoy!" once met; none with "Sin meta". The count is read back after the
+  save; if that read fails the line is left out (the save itself never fails over it).
+
 ## Tu progreso and "Mis palabras difíciles" (`src/features/hard-words/`)
 
 Built on the SRS data the fold already has: review states plus each item's answer history
@@ -772,15 +806,16 @@ paper, the prompt and the teacher's marking.
   page, with one line in a speech bubble under the heading. Avi is decorative (hidden from
   screen readers, not a button); the bubble carries the state and is a polite live region.
   `homeAviState` picks the state on each home focus, first match wins: celebrate ("¡Lo
-  lograste!", a lesson done or a new badge since home was last seen), missed you (sad, "Te extrañé. Hoy empezamos una racha nueva.", the streak broke and nothing was
+  lograste!", a lesson done or a new badge since home was last seen; "¡Meta cumplida!" when only
+  the daily goal was met since then), missed you (sad, "Te extrañé. Hoy empezamos una racha nueva.", the streak broke and nothing was
   studied today; no numbers), welcome back ("¡Qué bueno verte!", first visit of a
   new day, from `SettingsRepository.getLastHomeVisit`, per device), resting (sleepy, "Todo listo
   por hoy." when today's study is done and nothing is due, or "Ya es tarde. ¡Que descanses!" from
   22:00 to 05:59) and idle ("¡Hola! Soy Avi. ¿Empezamos?" for a fresh learner, "¿Repasamos un
   poco?" with reviews due, otherwise quiet). What is new is kept in memory for the app session
   (`createHomeAviMemory`, like the completion memory), so a reload celebrates nothing. Then
-  a progress card (clip chain and days, sound and account, the XP
-  sheet, the link to the album with its count), the review sticky note (Avi naps when there is
+  a progress card (clip chain and days, sound and account, the daily goal, the XP
+  sheet, the link to the album with its count; see "Daily goal"), the one-time daily goal note, the review sticky note (Avi naps when there is
   nothing to review), the placement invitation, then the level's lessons as a path drawn in
   pencil, grouped by topic: won lessons are tilted stickers with a check, the first lesson not done
   is a big yellow sticker where Avi lands ("Siguiente", hint "Tu siguiente lección"), the rest are
@@ -827,7 +862,8 @@ paper, the prompt and the teacher's marking.
   review) slapped on the page with Avi cheering and confetti, the teacher's cheer by accuracy
   ("¡Muy bien!", "¡Bien hecho!", "¡A seguir practicando!"; a perfect page gets her "¡Excelente!"
   stamp instead) and her red Caveat grade,
-  a results card (aciertos, XP, streak with its clip chain), the stickers earned for the album,
+  a results card (aciertos, XP, streak with its clip chain, the daily goal), the stickers earned
+  for the album,
   then "Para repasar": up to six missed items (wrong or almost) with their Spanish gloss
   (`model/items-to-review.ts`), or a short line when everything was right.
 - **Sounds** (`src/infrastructure/sound/`): eight short sounds synthesized by

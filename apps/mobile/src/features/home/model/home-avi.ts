@@ -25,9 +25,11 @@ export type HomeAviNews = {
   readonly lessonDone: boolean;
   /** A new album badge. */
   readonly badge: boolean;
+  /** Today's daily goal was met (it was not when home was last seen). */
+  readonly goalMet: boolean;
 };
 
-export const NO_NEWS: HomeAviNews = { lessonDone: false, badge: false };
+export const NO_NEWS: HomeAviNews = { lessonDone: false, badge: false, goalMet: false };
 
 export type HomeAviInput = {
   readonly today: LocalDate;
@@ -50,11 +52,12 @@ const isNight = (hour: number) => hour >= 22 || hour < 6;
 export function homeAviState(input: HomeAviInput): HomeAviState {
   const { today, streak, news } = input;
   const studiedToday = streak.lastActiveDate === today;
-  if (news.lessonDone || news.badge) {
+  if (news.lessonDone || news.badge || news.goalMet) {
     return {
       kind: "celebrate",
       mood: "cheer",
-      bubble: "¡Lo lograste!",
+      // The lesson or badge is the bigger news; the goal alone gets its own line.
+      bubble: news.lessonDone || news.badge ? "¡Lo lograste!" : "¡Meta cumplida!",
       moment: news.badge ? "loop" : "hop",
     };
   }
@@ -91,6 +94,8 @@ export function homeAviState(input: HomeAviInput): HomeAviState {
 /** What home last showed, to tell what is new. */
 export type HomeAviSnapshot = {
   readonly badges: readonly string[];
+  /** Today's daily goal is met (false without a goal). */
+  readonly goalMet: boolean;
 };
 
 export type HomeAviMemory = {
@@ -99,7 +104,7 @@ export type HomeAviMemory = {
 };
 
 /**
- * Remembers, in memory, the badges home last showed. Like the completion memory, the first look
+ * Remembers, in memory, the badges and the daily goal home last showed. Like the completion memory, the first look
  * of a session finds nothing new (a reload celebrates nothing).
  */
 export function createHomeAviMemory(): HomeAviMemory {
@@ -109,7 +114,11 @@ export function createHomeAviMemory(): HomeAviMemory {
       const before = seen;
       seen = now;
       if (before === null) return NO_NEWS;
-      return { lessonDone: false, badge: now.badges.some((id) => !before.badges.includes(id)) };
+      return {
+        lessonDone: false,
+        badge: now.badges.some((id) => !before.badges.includes(id)),
+        goalMet: now.goalMet && !before.goalMet,
+      };
     },
   };
 }

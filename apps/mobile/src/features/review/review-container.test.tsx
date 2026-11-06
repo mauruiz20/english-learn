@@ -130,6 +130,7 @@ describe("ReviewContainer", () => {
     await waitFor(() => expect(sounds.played.slice(-1)).toEqual(["streak"]));
     expect(screen.getByText("XP ganada: 20")).toBeOnTheScreen();
     expect(screen.getByText("Racha: 2 días")).toBeOnTheScreen();
+    expect(screen.getByText("Meta diaria: 2 / 20")).toBeOnTheScreen();
     const saved = repository.snapshot();
     expect(saved.xp).toBe(120);
     expect(saved.states.every((s) => s.reps === 2 && s.intervalDays === 6)).toBe(true);

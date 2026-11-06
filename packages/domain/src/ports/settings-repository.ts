@@ -1,4 +1,5 @@
 import type { Level } from "../cefr";
+import type { DailyGoal } from "../daily-goal";
 import type { LocalDate } from "../local-date";
 
 /**
@@ -67,4 +68,13 @@ export interface SettingsRepository {
    */
   getLastHomeVisit(): Promise<LocalDate | null>;
   setLastHomeVisit(date: LocalDate): Promise<void>;
+  /**
+   * How many exercises a day the learner aims for; "normal" (20) until they pick another (an
+   * unreadable value reads as the default). Device only, never part of the progress.
+   */
+  getDailyGoal(): Promise<DailyGoal>;
+  setDailyGoal(goal: DailyGoal): Promise<void>;
+  /** Whether the one-time "pick your daily goal" note on home was answered or closed. */
+  getDailyGoalPromptDismissed(): Promise<boolean>;
+  setDailyGoalPromptDismissed(): Promise<void>;
 }

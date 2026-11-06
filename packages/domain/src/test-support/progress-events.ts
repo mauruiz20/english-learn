@@ -45,11 +45,20 @@ export function lessonCompleted(
   lessonId: string,
   answerXp: number,
   accuracy: number,
+  exercises?: number,
 ): SessionCompletedEvent {
   return {
     ...envelope(meta),
     type: "session_completed",
-    payload: { v: 1, sessionId, kind: "lesson", lessonId, answerXp, accuracy },
+    payload: {
+      v: 1,
+      sessionId,
+      kind: "lesson",
+      lessonId,
+      answerXp,
+      accuracy,
+      ...(exercises === undefined ? {} : { exercises }),
+    },
   };
 }
 
@@ -58,11 +67,19 @@ export function reviewCompleted(
   sessionId: string,
   answerXp: number,
   accuracy: number,
+  exercises?: number,
 ): SessionCompletedEvent {
   return {
     ...envelope(meta),
     type: "session_completed",
-    payload: { v: 1, sessionId, kind: "review", answerXp, accuracy },
+    payload: {
+      v: 1,
+      sessionId,
+      kind: "review",
+      answerXp,
+      accuracy,
+      ...(exercises === undefined ? {} : { exercises }),
+    },
   };
 }
 

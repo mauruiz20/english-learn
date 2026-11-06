@@ -1,7 +1,11 @@
 import type { Corpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import {
+  DEFAULT_DAILY_GOAL,
+  dailyGoalStatus,
+  exercisesOn,
   isStreakAlive,
+  type DailyGoal,
   type LessonResult,
   type Level,
   type ReviewState,
@@ -168,8 +172,23 @@ export function HomeContainer({
       settingsRepository.getPathLevel().catch(() => null),
       // A settings read that fails only costs Avi's "welcome back".
       settingsRepository.getLastHomeVisit().catch(() => null),
+      progressRepository.getDailyExercises(),
+      // Device preferences: unreadable, the default goal counts and the note stays closed.
+      settingsRepository.getDailyGoal().catch(() => DEFAULT_DAILY_GOAL),
+      settingsRepository.getDailyGoalPromptDismissed().catch(() => true),
     ]).then(
-      ([streak, xp, placement, states, results, chosenLevel, lastHomeVisit]) => {
+      ([
+        streak,
+        xp,
+        placement,
+        states,
+        results,
+        chosenLevel,
+        lastHomeVisit,
+        dailyExercises,
+        goal,
+        goalPromptDismissed,
+      ]) => {
         if (!active) return;
         // Every event leaves a trace here (a baseline always holds progress), so an empty store
         // (a new device before its first sync pull) decides nothing yet.
@@ -191,7 +210,12 @@ export function HomeContainer({
         const badges = unlockedAchievements(
           achievementFacts(content, { states, xp, streak, placement }),
         );
-        const news = aviMemory.take({ badges });
+        // Each day counts from zero: only today's exercises (by the date the sessions carry).
+        const goalStatus = dailyGoalStatus(goal, exercisesOn(dailyExercises, today));
+        const news = aviMemory.take({
+          badges,
+          goalMet: goalStatus.kind === "on" && goalStatus.met,
+        });
         setAvi(
           homeAviState({
             today,
@@ -223,6 +247,7 @@ export function HomeContainer({
           },
           cards: cardsSummary(content.cards, states),
           practiceTopics: content.practice.map((c) => c.title),
+          dailyGoal: { goal, status: goalStatus, askToPick: !goalPromptDismissed },
         });
       },
       (error: unknown) => {
@@ -265,6 +290,25 @@ export function HomeContainer({
     [settingsRepository, load],
   );
 
+  // A goal picked on the card or the one-time note: it also answers the note.
+  const chooseDailyGoal = useCallback(
+    (goal: DailyGoal) => {
+      Promise.all([
+        settingsRepository.setDailyGoal(goal),
+        settingsRepository.setDailyGoalPromptDismissed(),
+      ]).then(load, (error: unknown) => {
+        console.error("Failed to save the daily goal", error);
+      });
+    },
+    [settingsRepository, load],
+  );
+
+  const dismissDailyGoalPrompt = useCallback(() => {
+    settingsRepository.setDailyGoalPromptDismissed().then(load, (error: unknown) => {
+      console.error("Failed to close the daily goal note", error);
+    });
+  }, [settingsRepository, load]);
+
   return (
     <HomeView
       state={state}
@@ -286,6 +330,8 @@ export function HomeContainer({
       onOpenProgress={() => router.push("/progreso")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       onChoosePathLevel={choosePathLevel}
+      onChooseDailyGoal={chooseDailyGoal}
+      onDismissDailyGoalPrompt={dismissDailyGoalPrompt}
       notice={
         moveOffer && (
           <MoveBanner

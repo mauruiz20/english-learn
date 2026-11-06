@@ -82,7 +82,8 @@ const VALIDATORS: Readonly<Record<ProgressEvent["type"], (p: Obj) => boolean>> =
     isNonNegInt(p.answerXp) &&
     isFiniteNum(p.accuracy) &&
     p.accuracy >= 0 &&
-    p.accuracy <= 1,
+    p.accuracy <= 1 &&
+    (p.exercises === undefined || isNonNegInt(p.exercises)),
   placement_completed: (p) => isPlacement(p),
   baseline_imported: (p) =>
     Array.isArray(p.states) &&

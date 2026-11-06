@@ -1,4 +1,6 @@
+import type { DailyGoalStatus } from "@english-learn/domain";
 import { useRef, useState } from "react";
+import { sessionDailyGoal } from "@/features/daily-goal/session-goal";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import type { CompleteSessionResult } from "./application/complete-session";
 import {
@@ -18,6 +20,8 @@ export type SaveState =
       readonly streakDays: number;
       /** This session extended the streak. */
       readonly streakIncreased: boolean;
+      /** Today's count against the daily goal, this session included (absent: unknown). */
+      readonly dailyGoal?: DailyGoalStatus | undefined;
     };
 
 export type ExerciseSession = {
@@ -38,7 +42,7 @@ export function useExerciseSession({
   initial: ExerciseSession | null;
   complete: (summary: LessonSummary) => Promise<CompleteSessionResult>;
 }) {
-  const { clock } = useAppServices();
+  const { clock, settingsRepository } = useAppServices();
   const sounds = useSessionSounds();
   const [session, setSession] = useState<LessonSessionState | null>(initial?.state ?? null);
   const [save, setSave] = useState<SaveState>({ status: "idle" });
@@ -52,8 +56,16 @@ export function useExerciseSession({
     saving.current = true;
     setSave({ status: "saving" });
     complete(summary)
-      .then(({ xpEarned, streak, streakIncreased }) => {
-        setSave({ status: "saved", xpEarned, streakDays: streak.current, streakIncreased });
+      .then(async ({ xpEarned, streak, streakIncreased, exercisesToday }) => {
+        // Never fails: an unreadable goal is the default one.
+        const dailyGoal = await sessionDailyGoal(settingsRepository, exercisesToday);
+        setSave({
+          status: "saved",
+          xpEarned,
+          streakDays: streak.current,
+          streakIncreased,
+          dailyGoal,
+        });
         sounds.completed(streakIncreased);
       })
       .catch((error: unknown) => {

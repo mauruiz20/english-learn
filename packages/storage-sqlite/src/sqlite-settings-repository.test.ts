@@ -194,4 +194,28 @@ describe("createSqliteSettingsRepository", () => {
 
     expect(await settings.getLastHomeVisit()).toBeNull();
   });
+
+  it("aims for the normal daily goal until the learner picks another", async () => {
+    expect(await settings.getDailyGoal()).toBe("normal");
+
+    await settings.setDailyGoal("intense");
+    expect(await createSqliteSettingsRepository(db).getDailyGoal()).toBe("intense");
+
+    await settings.setDailyGoal("off");
+    expect(await createSqliteSettingsRepository(db).getDailyGoal()).toBe("off");
+  });
+
+  it("treats an unreadable daily goal as the default", async () => {
+    await db.runAsync("INSERT INTO setting (key, value) VALUES ('daily_goal', '20')", []);
+
+    expect(await settings.getDailyGoal()).toBe("normal");
+  });
+
+  it("remembers that the daily goal note was answered", async () => {
+    expect(await settings.getDailyGoalPromptDismissed()).toBe(false);
+
+    await settings.setDailyGoalPromptDismissed();
+
+    expect(await createSqliteSettingsRepository(db).getDailyGoalPromptDismissed()).toBe(true);
+  });
 });

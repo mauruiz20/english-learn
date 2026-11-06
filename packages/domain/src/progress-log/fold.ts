@@ -55,6 +55,13 @@ export type ItemHistory = {
   readonly recentGrades: readonly Grade[];
 };
 
+/** How many exercises the learner answered on one local date (the daily goal's count). */
+export type DailyExercises = {
+  readonly localDate: LocalDate;
+  /** Σ `exercises` of the day's completed sessions; always > 0. */
+  readonly exercises: number;
+};
+
 /** The learner's progress, derived entirely from the event log. */
 export type ProgressState = {
   /** One state per reviewed item, sorted by itemId. */
@@ -73,6 +80,11 @@ export type ProgressState = {
   readonly lessonResults: readonly LessonResult[];
   /** One history per item with an applied `item_reviewed`, sorted by itemId. */
   readonly itemHistory: readonly ItemHistory[];
+  /**
+   * Exercises answered per local date (the `exercises` of each applied `session_completed`, by
+   * the date its events carry), sorted by date; only dates with at least one.
+   */
+  readonly dailyExercises: readonly DailyExercises[];
   /** Events that were skipped, in fold order. Never thrown. */
   readonly anomalies: readonly FoldAnomaly[];
 };
@@ -86,6 +98,7 @@ export const EMPTY_PROGRESS: ProgressState = {
   completedLessonIds: [],
   lessonResults: [],
   itemHistory: [],
+  dailyExercises: [],
   anomalies: [],
 };
 
@@ -156,7 +169,7 @@ function mergeStreaks(a: Streak, b: Streak): Streak {
 }
 
 /** The snapshot format; a stored snapshot of another version is discarded (refold). */
-export const FOLD_SNAPSHOT_VERSION = 4;
+export const FOLD_SNAPSHOT_VERSION = 5;
 
 /**
  * Everything the fold knows after the events it applied, as plain JSON-safe data, so later
@@ -177,6 +190,7 @@ export type FoldSnapshot = {
   readonly completedLessonIds: readonly string[];
   readonly lessonResults: readonly LessonResult[];
   readonly itemHistory: readonly ItemHistory[];
+  readonly dailyExercises: readonly DailyExercises[];
   /** Sessions with a `session_completed` applied (a later one is a `duplicate_session`). */
   readonly completedSessionIds: readonly string[];
   /** Sessions with an `item_reviewed` applied (a later review of one needs a refold). */
@@ -198,6 +212,7 @@ export const EMPTY_FOLD_SNAPSHOT: FoldSnapshot = {
   completedLessonIds: [],
   lessonResults: [],
   itemHistory: [],
+  dailyExercises: [],
   completedSessionIds: [],
   reviewedSessionIds: [],
   envelopeAnomalies: [],
@@ -216,6 +231,7 @@ class Folder {
   readonly results: Map<string, LessonResult>;
   readonly history: Map<string, ItemHistory>;
   readonly activeDates: Set<LocalDate>;
+  readonly daily: Map<LocalDate, number>;
   readonly envelopeAnomalies: FoldAnomaly[];
   readonly anomalies: FoldAnomaly[];
   xp: number;
@@ -231,6 +247,7 @@ class Folder {
     this.results = new Map(from.lessonResults.map((r) => [r.lessonId, r]));
     this.history = new Map(from.itemHistory.map((h) => [h.itemId, h]));
     this.activeDates = new Set(from.activeDates);
+    this.daily = new Map(from.dailyExercises.map((d) => [d.localDate, d.exercises]));
     this.envelopeAnomalies = [...from.envelopeAnomalies];
     this.anomalies = [...from.anomalies];
     this.xp = from.xp;
@@ -253,13 +270,17 @@ class Folder {
         return;
       }
       case "session_completed": {
-        const { sessionId, kind, lessonId, answerXp, accuracy } = event.payload;
+        const { sessionId, kind, lessonId, answerXp, accuracy, exercises } = event.payload;
         if (this.sessions.has(sessionId)) {
           return this.report("duplicate_session", event.id, sessionId);
         }
         this.sessions.add(sessionId);
         this.activeDates.add(event.localDate);
         this.xp += answerXp;
+        // A sum per date: independent of the fold order.
+        if (exercises !== undefined && exercises > 0) {
+          this.daily.set(event.localDate, (this.daily.get(event.localDate) ?? 0) + exercises);
+        }
         if (kind !== "lesson" || lessonId === undefined) return;
         this.recordResult(lessonId, accuracy);
         if (!this.completed.has(lessonId)) {
@@ -350,6 +371,9 @@ class Folder {
       completedLessonIds: sortedText(this.completed),
       lessonResults: [...this.results.values()].sort((a, b) => byText(a.lessonId, b.lessonId)),
       itemHistory: [...this.history.values()].sort((a, b) => byText(a.itemId, b.itemId)),
+      dailyExercises: [...this.daily]
+        .sort(([a], [b]) => compareLocalDate(a, b))
+        .map(([localDate, exercises]) => ({ localDate, exercises })),
       completedSessionIds: sortedText(this.sessions),
       reviewedSessionIds: sortedText(this.reviewedSessions),
       envelopeAnomalies: this.envelopeAnomalies,
@@ -442,6 +466,7 @@ export function snapshotProgress(snapshot: FoldSnapshot): ProgressState {
     completedLessonIds: snapshot.completedLessonIds,
     lessonResults: snapshot.lessonResults,
     itemHistory: snapshot.itemHistory,
+    dailyExercises: snapshot.dailyExercises,
     anomalies: [...snapshot.envelopeAnomalies, ...snapshot.anomalies],
   };
 }

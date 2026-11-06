@@ -1,4 +1,4 @@
-import { LESSON_BONUS_THRESHOLD, type Verdict } from "@english-learn/domain";
+import { LESSON_BONUS_THRESHOLD, type DailyGoalStatus, type Verdict } from "@english-learn/domain";
 import { useEffect, type ReactNode } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Animated, {
@@ -10,6 +10,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
+import { GoalRing } from "@/features/daily-goal/goal-ring";
+import { goalSummaryLine } from "@/features/daily-goal/model/daily-goal-copy";
 import { GlossaryText } from "@/features/glossary/glossary-text";
 import { lookupEnabled } from "@/features/lesson/model/lookup-policy";
 import { speakableTerm } from "@/features/pronunciation/model/speakable-text";
@@ -148,6 +150,8 @@ type SummaryProps = {
   /** The redo button ("Repetir lección" by default) and what it redoes ("la lección"). */
   redoLabel?: string | undefined;
   redoNoun?: string | undefined;
+  /** Today's count against the daily goal, this session included (absent or off: no line). */
+  dailyGoal?: DailyGoalStatus | undefined;
 };
 
 /** An album sticker as the summary announces it. */
@@ -198,10 +202,12 @@ export function SessionSummary({
   correctLabel,
   redoLabel = "Repetir lección",
   redoNoun = "la lección",
+  dailyGoal,
 }: SummaryProps) {
   const styles = useStyles();
   const { colors } = useTheme();
   const perfect = total > 0 && correct === total;
+  const goalLine = dailyGoal === undefined ? null : goalSummaryLine(dailyGoal);
   const xp = useCountUp(xpEarned);
   return (
     <ScreenContainer
@@ -258,7 +264,7 @@ export function SessionSummary({
           </Text>
         </ResultRow>
         <ResultRow
-          last
+          last={goalLine === null}
           mark={
             <View style={styles.chain}>
               <ClipChainMark
@@ -271,6 +277,15 @@ export function SessionSummary({
         >
           <StreakLine days={streakDays} increased={streakIncreased} />
         </ResultRow>
+        {goalLine !== null && dailyGoal?.kind === "on" && (
+          <ResultRow
+            last
+            testID="summary-daily-goal"
+            mark={<GoalRing done={dailyGoal.done} target={dailyGoal.target} size={34} />}
+          >
+            <Text variant="title">{goalLine}</Text>
+          </ResultRow>
+        )}
       </View>
       {achievements.map((a, i) => (
         <EarnedCard key={a.id} sticker={a} index={i} />

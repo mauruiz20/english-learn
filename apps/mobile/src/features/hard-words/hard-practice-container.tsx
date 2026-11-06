@@ -251,6 +251,7 @@ function toViewState(
       xpEarned: save.xpEarned,
       streakDays: save.streakDays,
       streakIncreased: save.streakIncreased,
+      dailyGoal: save.dailyGoal,
       toReview: itemsToReview(
         restrictToItems(session.summary, plan.itemIds).itemOutcomes,
         content.itemsById,

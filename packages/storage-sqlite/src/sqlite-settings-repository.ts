@@ -1,5 +1,8 @@
 import {
+  DEFAULT_DAILY_GOAL,
   LEVELS,
+  isDailyGoal,
+  type DailyGoal,
   type AccountMarker,
   type Level,
   isValidLocalDate,
@@ -20,6 +23,8 @@ const PATH_LEVEL = "path_level";
 const LAST_HOME_VISIT = "last_home_visit";
 const PRONUNCIATION_ENABLED = "pronunciation_enabled";
 const SPEECH_RATE = "speech_rate";
+const DAILY_GOAL = "daily_goal";
+const DAILY_GOAL_PROMPT_DISMISSED = "daily_goal_prompt_dismissed";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -75,7 +80,16 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     },
     getLastHomeVisit: async () => parseLocalDate(await read(LAST_HOME_VISIT)),
     setLastHomeVisit: (date) => write(LAST_HOME_VISIT, date),
+    getDailyGoal: async () => parseDailyGoal(await read(DAILY_GOAL)),
+    setDailyGoal: (goal) => write(DAILY_GOAL, goal),
+    getDailyGoalPromptDismissed: async () => (await read(DAILY_GOAL_PROMPT_DISMISSED)) === "1",
+    setDailyGoalPromptDismissed: () => write(DAILY_GOAL_PROMPT_DISMISSED, "1"),
   };
+}
+
+/** Anything but a known goal aims for the default one. */
+function parseDailyGoal(value: string | null): DailyGoal {
+  return isDailyGoal(value) ? value : DEFAULT_DAILY_GOAL;
 }
 
 /** An unreadable date counts as no visit yet. */

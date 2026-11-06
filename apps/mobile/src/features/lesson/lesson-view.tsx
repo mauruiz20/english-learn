@@ -1,4 +1,4 @@
-import type { Verdict } from "@english-learn/domain";
+import type { DailyGoalStatus, Verdict } from "@english-learn/domain";
 import type { Passage } from "@english-learn/content";
 import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
@@ -86,6 +86,8 @@ export type LessonViewState =
       readonly topic?: string | undefined;
       /** "Lo nuevo de hoy": the lesson's new items (lessons only). */
       readonly recap?: readonly RecapItem[] | undefined;
+      /** Today's count against the daily goal (absent: unknown). */
+      readonly dailyGoal?: DailyGoalStatus | undefined;
     };
 
 type LessonViewProps = {

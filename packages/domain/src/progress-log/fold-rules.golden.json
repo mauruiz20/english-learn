@@ -1,8 +1,8 @@
 {
-  "version": 4,
-  "fingerprint": "v4-50c5c70b",
+  "version": 5,
+  "fingerprint": "v5-a54e78b5",
   "snapshot": {
-    "v": 4,
+    "v": 5,
     "cursor": {
       "localDate": "2026-01-10",
       "occurredAt": 1000,
@@ -112,6 +112,16 @@
         "recentGrades": [4]
       }
     ],
+    "dailyExercises": [
+      {
+        "localDate": "2026-01-05",
+        "exercises": 8
+      },
+      {
+        "localDate": "2026-01-09",
+        "exercises": 8
+      }
+    ],
     "completedSessionIds": ["s1", "s2", "s3", "s4", "s7"],
     "reviewedSessionIds": ["s1", "s2", "s3", "s4", "s7"],
     "envelopeAnomalies": [
@@ -156,6 +166,11 @@
         "kind": "conflicting_duplicate",
         "eventId": "r01",
         "detail": ""
+      },
+      {
+        "kind": "invalid_event",
+        "eventId": "r25",
+        "detail": "session_completed payload"
       }
     ]
   }

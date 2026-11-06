@@ -13,6 +13,7 @@ It does not import `@english-learn/content`; the app layer maps content into the
 | `difficulty`      | "Mis palabras difíciles": per-item difficulty score and buckets from review states and history           |
 | `scoring`         | XP per answer, lesson completion bonus, accuracy                                                         |
 | `streak`          | Daily streak (current / longest)                                                                         |
+| `daily-goal`      | Daily goal (exercises per day: 10 / 20 / 40 / none) and where today stands against it                    |
 | `progress`        | Per-level seen / mastered counts                                                                         |
 | `progress-log`    | Append-only progress events, UUIDv7 ids, deterministic `foldEvents`, incremental `advanceFold`           |
 | `placement`       | Adaptive placement test (CAT) → CEFR level                                                               |
@@ -140,13 +141,13 @@ Envelope: `{ id, deviceId, occurredAt, localDate, type, payload }`. `id` is a UU
 (`uuidv7(nowMs, random)`, RFC 9562: 48-bit ms timestamp, version 7, variant `10`, 74 random bits;
 ids from different milliseconds sort by time). Every payload carries `v: 1`.
 
-| `type`                | Payload                                                                | Written                                   |
-| --------------------- | ---------------------------------------------------------------------- | ----------------------------------------- |
-| `item_reviewed`       | `sessionId, itemId, grade`                                             | once per item per session, FINAL grade    |
-| `session_completed`   | `sessionId, kind: "lesson" \| "review", lessonId?, answerXp, accuracy` | when a session is saved                   |
-| `placement_completed` | `level, theta`                                                         | when the placement test ends              |
-| `baseline_imported`   | `states, xp, streak, placement, completedLessonIds?`                   | once per device, migrating pre-event data |
-| `answer_disputed`     | `exerciseId, itemIds, answer (trimmed, ≤ 200 chars), accepted: false`  | with a session, per self-regraded answer  |
+| `type`                | Payload                                                                            | Written                                   |
+| --------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------- |
+| `item_reviewed`       | `sessionId, itemId, grade`                                                         | once per item per session, FINAL grade    |
+| `session_completed`   | `sessionId, kind: "lesson" \| "review", lessonId?, answerXp, accuracy, exercises?` | when a session is saved                   |
+| `placement_completed` | `level, theta`                                                                     | when the placement test ends              |
+| `baseline_imported`   | `states, xp, streak, placement, completedLessonIds?`                               | once per device, migrating pre-event data |
+| `answer_disputed`     | `exerciseId, itemIds, answer (trimmed, ≤ 200 chars), accepted: false`              | with a session, per self-regraded answer  |
 
 **Retired types** (`RETIRED_EVENT_TYPES`): `item_purchased` and `item_equipped`, written by the
 withdrawn plumas wardrobe (`docs/design/avi-rewards.md`). Logs and the sync server may still hold
@@ -179,6 +180,7 @@ session carry the same `localDate` (the day it was completed), as the app used o
 | Lesson results   | Per `lessonId` of a lesson `session_completed`: `bestAccuracy` = max `accuracy`, `completions` = distinct sessions; baseline lessons have none                                                                                                                                                                                                                         |
 | Placement        | The last `placement_completed` or non-null baseline placement in fold order                                                                                                                                                                                                                                                                                            |
 | Item history     | Per item with an applied `item_reviewed` (same duplicate rule as its state): `lastSeen` (its date), `lastLapse` (date of a grade < 3 on an item that already had a state, the review that increments `lapses`), `recentGrades` (latest `RECENT_GRADES` = 5, oldest first). Practice of a not-due item counts though its state does not move; baseline states have none |
+| Daily exercises  | Per `localDate`: Σ `exercises` of the applied `session_completed` events (a repeated `sessionId` counts once); only dates with at least one. Sessions written before the daily goal carry no `exercises` and count none                                                                                                                                                |
 | Disputed answers | `answer_disputed` is a known no-op: no state, no anomaly (content feedback for the owner; the session's own events carry the regrade)                                                                                                                                                                                                                                  |
 | Baseline states  | Per item, keep the state with the latest `dueDate`, then the most `reps` (the state already folded wins a full tie)                                                                                                                                                                                                                                                    |
 | Baseline streaks | `longest` = max; `current` and `lastActiveDate` from the most recent `lastActiveDate` (larger `current` on a tie)                                                                                                                                                                                                                                                      |
@@ -196,7 +198,7 @@ store apply only the new events:
 
 - `foldSnapshot(events)`: the fold's full state as plain JSON-safe data (`FoldSnapshot`, format
   `FOLD_SNAPSHOT_VERSION`): review states, XP, merged baseline streak, placement, active dates,
-  completed lessons, lesson results, item histories, the ids of completed and of reviewed sessions, the
+  completed lessons, lesson results, item histories, daily exercises, the ids of completed and of reviewed sessions, the
   anomalies, and a **cursor**: the position `(localDate, occurredAt, id, canonical content)` of the last
   orderable event in fold order. Arrays are sorted, so equal folds give equal snapshots.
 - `advanceFold(snapshot, events)`: applies `events` on top, giving exactly `foldSnapshot` of the
@@ -256,6 +258,24 @@ already had.
 - Ids from the same millisecond have no monotonic counter; order there falls back to the random
   bits (still deterministic, since the id is part of the event).
 - A device whose calendar is wrong writes events on the wrong date; the fold cannot detect that.
+
+## Daily goal
+
+The learner picks how many exercises a day to aim for (`DailyGoal`): `light` (10), `normal` (20,
+the default), `intense` (40) or `off`. It is a device setting (`SettingsRepository.getDailyGoal`),
+never progress: missing it changes nothing else (no streak, XP or event depends on it).
+
+- **The count** is the fold's `dailyExercises`: every saved session's `session_completed` carries
+  `exercises`, the number of exercises answered in it (lessons, reviews, card practice, Práctica
+  libre, dialogue turns, hard-words practice: they all save through the same event), summed per
+  `localDate`. A session counts on the date its events carry, which is the day it was saved: one
+  started before midnight and finished after counts for the new day. Older events have no
+  `exercises` (`item_reviewed` is per item, not per exercise, so it cannot stand in) and count
+  none; the field is optional in payload `v: 1`, so older apps read the new events unchanged.
+- `exercisesOn(dailyExercises, date)`: that day's count, 0 for a day without any (each day starts
+  from zero). `dailyGoalStatus(goal, done)`: `{ kind: "off" }`, or `{ kind: "on", done, target,
+met }` (`met` once `done ≥ target`). `dailyGoalTarget`, `isDailyGoal`, `DAILY_GOALS` (picker
+  order) and `DEFAULT_DAILY_GOAL`.
 
 ## Glossary
 

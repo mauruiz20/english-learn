@@ -1,4 +1,9 @@
-import type { LocalDate, ProgressRepository, Streak } from "@english-learn/domain";
+import {
+  exercisesOn,
+  type LocalDate,
+  type ProgressRepository,
+  type Streak,
+} from "@english-learn/domain";
 import {
   answerDisputedEvent,
   itemReviewedEvent,
@@ -35,14 +40,20 @@ export type CompleteSessionResult = {
   readonly streak: Streak;
   /** This session extended the streak (the first session of a day; celebrated with a sound). */
   readonly streakIncreased: boolean;
+  /**
+   * Exercises answered today with this session (the daily goal's count), or null when reading it
+   * back failed (the session is saved all the same).
+   */
+  readonly exercisesToday: number | null;
 };
 
 /**
  * Persists a finished lesson or review as events, in one transaction: one `item_reviewed` per
  * practiced item with its final grade (worst grade wins, looked-up cap) and one
- * `session_completed`, all sharing a new session id and `today`, plus one `answer_disputed` per
- * answer the learner marked as correct. Review states, XP, bonus and
- * streak are what the fold of the whole log makes of them.
+ * `session_completed` (with the number of exercises answered, for the daily goal), all sharing a
+ * new session id and `today`, plus one `answer_disputed` per answer the learner marked as
+ * correct. Review states, XP, bonus, streak and today's exercises are what the fold of the whole
+ * log makes of them.
  */
 export async function completeSession({
   repository,
@@ -64,6 +75,7 @@ export async function completeSession({
     ...(kind === "lesson" ? { lessonId: summary.lessonId } : {}),
     answerXp: summary.answerXp,
     accuracy: summary.accuracy,
+    exercises: summary.verdicts.length,
   });
   // Content feedback for the owner; the fold ignores them (the grades above already count them).
   const disputes = (summary.disputes ?? []).map((dispute) => answerDisputedEvent(stamp, dispute));
@@ -73,5 +85,22 @@ export async function completeSession({
     xpEarned: after.xp - before.xp,
     streak: after.streak,
     streakIncreased: after.streak.current > before.streak.current,
+    exercisesToday: await readExercisesToday(repository, today),
   };
+}
+
+/**
+ * Today's count once the session is saved. A failed read must not fail the save: retrying it
+ * would write the session twice.
+ */
+async function readExercisesToday(
+  repository: ProgressRepository,
+  today: LocalDate,
+): Promise<number | null> {
+  try {
+    return exercisesOn(await repository.getDailyExercises(), today);
+  } catch (error: unknown) {
+    console.error("Failed to read today's exercises", error);
+    return null;
+  }
 }

@@ -4,7 +4,9 @@ import {
   localDate,
   review,
   type Clock,
+  type LocalDate,
   type ProgressRepository,
+  type SessionCompletedEvent,
   type ReviewState,
   type SettingsRepository,
 } from "@english-learn/domain";
@@ -23,7 +25,7 @@ import { HomeContainer } from "./home-container";
 import { OriginMoveOfferContext, type OriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { AccountContext, type AccountContextValue } from "@/features/account/account-context";
 import { createCompletionMemory, type CompletionMemory } from "./model/completion-memory";
-import { createHomeAviMemory, type HomeAviMemory } from "./model/home-avi";
+import { NO_NEWS, createHomeAviMemory, type HomeAviMemory } from "./model/home-avi";
 import { withMotion } from "@/testing/motion";
 import { StyleSheet } from "react-native";
 import { testRandomBytes } from "@/testing/random-bytes";
@@ -58,6 +60,21 @@ function realCorpusDueStates(n: number): ReviewState[] {
   return [...ids].map((id) => review(initialState(id, yesterday), 5, yesterday));
 }
 const fixedClock: Clock = { today: () => TODAY, nowMs: () => 0 };
+
+let sessionSeq = 0;
+/** A review saved on `day` with `exercises` answered (only the daily goal reads them). */
+function sessionOn(day: LocalDate, exercises: number): SessionCompletedEvent {
+  sessionSeq += 1;
+  const id = `0190000-goal-${sessionSeq}`;
+  return {
+    id,
+    deviceId: "test-device",
+    occurredAt: sessionSeq,
+    localDate: day,
+    type: "session_completed",
+    payload: { v: 1, sessionId: id, kind: "review", answerXp: 0, accuracy: 1, exercises },
+  };
+}
 
 const b1Lesson = {
   ...lesson,
@@ -803,6 +820,137 @@ describe("HomeContainer", () => {
 
     expect(await screen.findByText(/^[1-9]\d* XP$/)).toBeOnTheScreen();
   });
+  describe("daily goal", () => {
+    const answered = (...sessions: [LocalDate, number][]) =>
+      createFakeRepository({ events: sessions.map(([day, n]) => sessionOn(day, n)) });
+
+    it("counts today's exercises against the goal, never yesterday's", async () => {
+      await renderContainer(
+        answered([localDate("2026-10-28"), 30], [TODAY, 5], [TODAY, 7]),
+        undefined,
+        createFakeSettingsRepository({ dailyGoalPromptDismissed: true }),
+      );
+
+      expect(
+        await screen.findByRole("progressbar", { name: "Meta diaria: 12 de 20 ejercicios hoy" }),
+      ).toBeOnTheScreen();
+      expect(screen.getByText("12 / 20 hoy")).toBeOnTheScreen();
+    });
+
+    it("starts each day from zero", async () => {
+      await renderContainer(
+        answered([localDate("2026-10-28"), 30]),
+        undefined,
+        createFakeSettingsRepository({ dailyGoalPromptDismissed: true }),
+      );
+
+      expect(await screen.findByText("0 / 20 hoy")).toBeOnTheScreen();
+    });
+
+    it("says the goal is met once today's count reaches it", async () => {
+      await renderContainer(
+        answered([TODAY, 12]),
+        undefined,
+        createFakeSettingsRepository({ dailyGoal: "light", dailyGoalPromptDismissed: true }),
+      );
+
+      expect(await screen.findByText("¡Meta cumplida!")).toBeOnTheScreen();
+    });
+
+    it("hides the count without a goal", async () => {
+      await renderContainer(
+        answered([TODAY, 12]),
+        undefined,
+        createFakeSettingsRepository({ dailyGoal: "off", dailyGoalPromptDismissed: true }),
+      );
+
+      expect(
+        await screen.findByRole("button", { name: "Meta diaria: Sin meta" }),
+      ).toBeOnTheScreen();
+      expect(screen.queryByRole("progressbar", { name: /Meta diaria/ })).toBeNull();
+      expect(screen.queryByText(/\/ \d+ hoy/)).toBeNull();
+    });
+
+    it("stores a goal picked from the progress card and counts against it", async () => {
+      const settings = createFakeSettingsRepository({ dailyGoalPromptDismissed: true });
+      await renderContainer(answered([TODAY, 12]), undefined, settings);
+
+      await fireEvent.press(
+        await screen.findByRole("button", { name: "Meta diaria: Normal · 20" }),
+      );
+      await fireEvent.press(screen.getByRole("radio", { name: "Suave · 10" }));
+
+      expect(
+        await screen.findByRole("progressbar", {
+          name: "¡Meta cumplida! 12 de 10 ejercicios hoy",
+        }),
+      ).toBeOnTheScreen();
+      // Met since home was last seen: Avi cheers too.
+      expect(screen.getAllByText("¡Meta cumplida!")).toHaveLength(2);
+      expect(settings.dailyGoal()).toBe("light");
+    });
+
+    it("asks once to pick a goal, without blocking home, and remembers the answer", async () => {
+      const settings = createFakeSettingsRepository();
+      await renderContainer(answered([TODAY, 3]), undefined, settings);
+
+      expect(await screen.findByText("¿Cuánto quieres practicar cada día?")).toBeOnTheScreen();
+      // The default goal already counts behind it, and the path is right there.
+      expect(screen.getByText("3 / 20 hoy")).toBeOnTheScreen();
+      expect(screen.getByText("Lecciones de nivel A2")).toBeOnTheScreen();
+
+      await fireEvent.press(screen.getByRole("button", { name: "Intensa · 40" }));
+
+      expect(await screen.findByText("3 / 40 hoy")).toBeOnTheScreen();
+      expect(screen.queryByText("¿Cuánto quieres practicar cada día?")).toBeNull();
+      expect(settings.dailyGoal()).toBe("intense");
+      expect(settings.dailyGoalPromptDismissed()).toBe(true);
+    });
+
+    it("closes the note with 'Ahora no', keeping the default goal", async () => {
+      const settings = createFakeSettingsRepository();
+      await renderContainer(answered([TODAY, 3]), undefined, settings);
+
+      await fireEvent.press(await screen.findByRole("button", { name: "Ahora no" }));
+
+      await waitFor(() =>
+        expect(screen.queryByText("¿Cuánto quieres practicar cada día?")).toBeNull(),
+      );
+      expect(settings.dailyGoalPromptDismissed()).toBe(true);
+      expect(settings.dailyGoal()).toBe("normal");
+      expect(screen.getByText("3 / 20 hoy")).toBeOnTheScreen();
+    });
+
+    it("lets Avi cheer once the goal is met since home was last seen", async () => {
+      const take = jest.fn(() => ({ ...NO_NEWS, goalMet: true }));
+      await renderContainer(
+        answered([TODAY, 20]),
+        undefined,
+        createFakeSettingsRepository({ lastHomeVisit: TODAY, dailyGoalPromptDismissed: true }),
+        content,
+        { take },
+      );
+
+      // The bubble beside the greeting, and the progress card.
+      expect(await screen.findAllByText("¡Meta cumplida!")).toHaveLength(2);
+      expect(take).toHaveBeenCalledWith(expect.objectContaining({ goalMet: true }));
+    });
+
+    it("tells Avi no goal is met without a goal", async () => {
+      const take = jest.fn(() => NO_NEWS);
+      await renderContainer(
+        answered([TODAY, 50]),
+        undefined,
+        createFakeSettingsRepository({ dailyGoal: "off", dailyGoalPromptDismissed: true }),
+        content,
+        { take },
+      );
+
+      await screen.findByRole("button", { name: "Meta diaria: Sin meta" });
+      expect(take).toHaveBeenCalledWith(expect.objectContaining({ goalMet: false }));
+    });
+  });
+
   describe("Avi beside the greeting", () => {
     it("greets a fresh learner, and remembers today's visit", async () => {
       const settings = createFakeSettingsRepository();

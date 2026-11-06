@@ -27,6 +27,8 @@ export const levelArb = fc.constantFrom(...LEVELS);
 export const thetaArb = fc.double({ min: -4, max: 4, noNaN: true });
 export const accuracyArb = fc.integer({ min: 0, max: 20 }).map((n) => n / 20);
 export const answerXpArb = fc.integer({ min: 0, max: 200 });
+/** Exercises answered in a session; absent as an older app wrote it. */
+export const exercisesArb = fc.option(fc.integer({ min: 0, max: 40 }), { nil: undefined });
 
 export const reviewStateArb: fc.Arbitrary<ReviewState> = fc.record({
   itemId: itemIdArb,
@@ -60,18 +62,18 @@ const bodyArb: fc.Arbitrary<Body> = fc.oneof(
   },
   {
     weight: 3,
-    arbitrary: fc.tuple(sessionIdArb, lessonIdArb, answerXpArb, accuracyArb).map(
-      ([s, l, xp, acc]) =>
+    arbitrary: fc.tuple(sessionIdArb, lessonIdArb, answerXpArb, accuracyArb, exercisesArb).map(
+      ([s, l, xp, acc, n]) =>
         (m: Meta) =>
-          lessonCompleted(m, s, l, xp, acc),
+          lessonCompleted(m, s, l, xp, acc, n),
     ),
   },
   {
     weight: 2,
-    arbitrary: fc.tuple(sessionIdArb, answerXpArb, accuracyArb).map(
-      ([s, xp, acc]) =>
+    arbitrary: fc.tuple(sessionIdArb, answerXpArb, accuracyArb, exercisesArb).map(
+      ([s, xp, acc, n]) =>
         (m: Meta) =>
-          reviewCompleted(m, s, xp, acc),
+          reviewCompleted(m, s, xp, acc, n),
     ),
   },
   {

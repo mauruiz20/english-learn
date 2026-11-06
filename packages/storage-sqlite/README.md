@@ -16,6 +16,9 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
   Migration 7 → 8 adds the `item_history` cache (the fold's `itemHistory`: per item its last
   answer date, last lapse date and latest grades as JSON), read with `getItemHistories()` for
   "Mis palabras difíciles"; the refold after the upgrade fills it.
+  Migration 8 → 9 adds the `daily_exercises` cache (the fold's `dailyExercises`: exercises
+  answered per local date, one row per active day), read with `getDailyExercises()` for the daily
+  goal; the refold after the upgrade fills it, and a write rewrites only the days that changed.
 - `createSqliteProgressRepository(db, { now? })`: progress as an **append-only event log**
   (migration 3: `event` table, see `@english-learn/domain` "Progress event log"). The
   `review_state`, `xp`, `streak`, `placement_result` and `lesson_result` (migration 4: each
@@ -81,6 +84,9 @@ bench`, median): saving a 13-event session ≈ 4.5 ms (was ≈ 240 ms, a full re
   transferred (the old web address then sends the learner there).
   `getLastHomeVisit()` / `setLastHomeVisit(date)` keep the date home was last opened on this
   device, for Avi's "welcome back" (`null` before the first visit or when unreadable).
+  `getDailyGoal()` / `setDailyGoal(goal)` keep the daily goal (`"normal"` until the learner picks
+  another; an unreadable value reads as `"normal"`), and `getDailyGoalPromptDismissed()` the
+  one-time note on home that offers to pick it.
 
 Tests run against a real SQLite through Node's built-in `node:sqlite` (`src/testing/`), with no
 native npm dependencies.

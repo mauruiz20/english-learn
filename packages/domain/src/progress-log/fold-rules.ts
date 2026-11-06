@@ -23,16 +23,37 @@ const lesson = (
   lessonId: string,
   answerXp: number,
   accuracy: number,
+  exercises?: number,
 ): StoredEvent => ({
   ...e,
   type: "session_completed",
-  payload: { v: 1, sessionId, kind: "lesson", lessonId, answerXp, accuracy },
+  payload: {
+    v: 1,
+    sessionId,
+    kind: "lesson",
+    lessonId,
+    answerXp,
+    accuracy,
+    ...(exercises === undefined ? {} : { exercises }),
+  },
 });
 
-const reviewSession = (e: Envelope, sessionId: string, answerXp: number): StoredEvent => ({
+const reviewSession = (
+  e: Envelope,
+  sessionId: string,
+  answerXp: number,
+  exercises?: number,
+): StoredEvent => ({
   ...e,
   type: "session_completed",
-  payload: { v: 1, sessionId, kind: "review", answerXp, accuracy: 0.5 },
+  payload: {
+    v: 1,
+    sessionId,
+    kind: "review",
+    answerXp,
+    accuracy: 0.5,
+    ...(exercises === undefined ? {} : { exercises }),
+  },
 });
 
 /** An event of a retired type (`RETIRED_EVENT_TYPES`). */
@@ -44,7 +65,8 @@ const retired = (e: Envelope, type: string, payload: unknown): StoredEvent => ({
 
 /**
  * A fixed log that exercises every fold rule (SM-2 reviews and lapses, answer XP, the lesson
- * bonus, baselines, streak, placement, lesson results, retired types and every anomaly). Its fold is pinned by a golden test, and
+ * bonus, baselines, streak, placement, lesson results, daily exercises, retired types and every
+ * anomaly). Its fold is pinned by a golden test, and
  * `foldRulesFingerprint` hashes it.
  */
 export const FOLD_RULES_CORPUS: readonly StoredEvent[] = [
@@ -98,10 +120,11 @@ export const FOLD_RULES_CORPUS: readonly StoredEvent[] = [
   },
   review(at("r09", "2026-01-05"), "s3", "i1", 2),
   review(at("r10", "2026-01-05"), "s3", "i3", 5),
-  reviewSession(at("r11", "2026-01-05"), "s3", 20),
-  reviewSession(at("r12", "2026-01-05", 2_000), "s3", 99),
+  reviewSession(at("r11", "2026-01-05"), "s3", 20, 2),
+  // A repeated session: its XP and exercises count once.
+  reviewSession(at("r12", "2026-01-05", 2_000), "s3", 99, 9),
   review(at("r13", "2026-01-05", 3_000), "s4", "i4", 5),
-  lesson(at("r14", "2026-01-05", 3_000), "s4", "L1", 25, 1),
+  lesson(at("r14", "2026-01-05", 3_000), "s4", "L1", 25, 1, 6),
   {
     ...at("r15", "2026-01-06"),
     type: "placement_completed",
@@ -125,7 +148,9 @@ export const FOLD_RULES_CORPUS: readonly StoredEvent[] = [
   review(at("r21", "2026-13-40"), "s6", "i1", 5),
   review(at("r22", "2026-01-09"), "s7", "i2", 5),
   review(at("r23", "2026-01-09"), "s7", "i5", 4),
-  lesson(at("r24", "2026-01-09"), "s7", "L2", 40, 0.5),
+  lesson(at("r24", "2026-01-09"), "s7", "L2", 40, 0.5, 8),
+  // An exercise count that is not a non-negative integer: invalid.
+  lesson(at("r25", "2026-01-09"), "s8", "L3", 10, 1, -2),
   // Retired types (Avi's withdrawn wardrobe), as an older app wrote them, plus a malformed copy:
   // ignored, never reported.
   retired(at("w01", "2026-01-10"), "item_purchased", { v: 1, itemId: "gorra", price: 80 }),
