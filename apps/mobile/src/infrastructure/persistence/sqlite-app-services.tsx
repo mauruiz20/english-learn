@@ -23,6 +23,7 @@ import { cryptoRandomBytes } from "../ids/crypto-random-bytes";
 import { AppErrorBoundary } from "../errors/app-error-boundary";
 import { AppServicesProvider, type AppServices } from "../services/app-services";
 import { createExpoSoundPlayer } from "../sound/expo-sound-player";
+import { createDeviceSpeech } from "../speech/device-speech";
 import { appPageRelease, leavePage } from "./app-page-release";
 import { previousScreenOfTheApp, type NavigationHistory } from "./back-to-previous-screen";
 import { awaitPendingWrites, createWriteTracker, trackWrites } from "./await-pending-writes";
@@ -198,6 +199,8 @@ function SqliteServices({
   }, [drainRef, writes]);
   // Sounds are loaded once and kept for the app's lifetime.
   const [sounds] = useState(createExpoSoundPlayer);
+  // The device's English voice (web: speechSynthesis), set up once like the sounds.
+  const [speech] = useState(createDeviceSpeech);
   const [progressRepository] = useState(() => createSqliteProgressRepository(db));
   const [settingsRepository] = useState(() => createSettingsRepository(db));
   // "Progress was saved here": the account's sync uploads it (see AccountProvider).
@@ -229,13 +232,14 @@ function SqliteServices({
             deviceId,
             settingsRepository,
             sounds,
+            speech,
             account: {
               syncStore: trackWrites(progressRepository, writes, SYNC_WRITES),
               localChanges,
             },
             transfer: trackWrites(progressRepository, writes, ["importEvents"]),
           },
-    [progressRepository, settingsRepository, clock, deviceId, sounds, localChanges, writes],
+    [progressRepository, settingsRepository, clock, deviceId, sounds, speech, localChanges, writes],
   );
   if (services === null) return null;
   return <AppServicesProvider services={services}>{children}</AppServicesProvider>;

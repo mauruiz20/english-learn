@@ -99,6 +99,8 @@ type HomeViewProps = {
   /** The theme switch beside it (home only: exercise headers keep just the sound one). */
   themePreference: ThemePreference;
   onCycleTheme: () => void;
+  /** The "Pronunciación" settings, next to the sound switch (absent: none). */
+  pronunciationControl?: ReactNode;
   onOpenLesson: (lessonId: string) => void;
   onStartPlacement: () => void;
   onOpenReview: () => void;
@@ -888,6 +890,7 @@ export function HomeView({
   onToggleSound,
   themePreference,
   onCycleTheme,
+  pronunciationControl,
   onOpenAccount,
   onOpenAlbum,
   onOpenCards,
@@ -902,6 +905,7 @@ export function HomeView({
     <>
       {onOpenAccount !== undefined && <AccountLink onPress={onOpenAccount} />}
       <ThemeToggleButton preference={themePreference} onCycle={onCycleTheme} />
+      {pronunciationControl}
       <SoundToggleButton enabled={soundEnabled} onToggle={onToggleSound} />
     </>
   );
