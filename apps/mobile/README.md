@@ -17,7 +17,8 @@ and `e2e/` with the content package's `findVoseo` and fails on the common voseo 
 | `e2e/`                | Playwright tests against the exported web build                                       |
 
 Features read `ProgressRepository`, `SettingsRepository`, `Clock`, `random` (an `Rng`),
-`randomBytes` (for event ids) and `sounds` (a `SoundPlayer`) from `useAppServices()`. The root
+`randomBytes` (for event ids), `sounds` (a `SoundPlayer`) and the optional `speech` (a
+`SpeechService`, see "Pronunciation") from `useAppServices()`. The root
 layout provides the SQLite-backed repositories (`@english-learn/storage-sqlite`, prepared in
 `onInit` by `initProgressStore`), the system clock, `Math.random`, expo-crypto's
 `getRandomValues` and the sound player (expo-audio on native, Web Audio on web); tests wrap
@@ -395,6 +396,72 @@ Learners look up the Spanish of English words and phrases from the static glossa
   with a polite live region and a "Cerrar" button. The feedback's margin note stays readable by
   screen readers when its answer links.
 
+## Pronunciation (`src/features/pronunciation/`, `src/infrastructure/speech/`)
+
+Learners hear English with the device's own speech synthesis: no recordings, no network.
+
+- **Speech service** (`web-speech-service.ts`, over `window.speechSynthesis`; `device-speech.web.ts`
+  wires it, `device-speech.ts` makes native unsupported since expo-speech is not a dependency).
+  `speak(text, { rate, key })` cancels whatever was being said first, queues long texts in
+  sentence chunks (≤ 200 characters) and publishes `{ available, speakingKey }` for
+  `useSyncExternalStore`. It never throws or blocks. **Voice** (`voice-choice.ts`,
+  `pickEnglishVoice`): only voices on the device (`localService`; a network voice would send the
+  text to a server), `en-US` first, then other English, then "Premium / Enhanced / Neural /
+  Natural / Siri" voices, then the default, then the name, so the pick is deterministic.
+- **WebKit / iOS**: voices arrive late, so it listens to `voiceschanged` and also looks again
+  after 0.25, 1 and 3 s; the first tap anywhere (`pointerdown` / `touchend` / `keydown`) speaks
+  one empty, silent utterance to unlock the engine and reads the voices again; `speak` always runs
+  inside the tap (iOS speaks only from a gesture; nothing autoplays); hiding the page
+  (`visibilitychange`, `pagehide`) cancels, since iOS stops without an end event; a watchdog
+  clears a speaking state whose end never comes; a paused engine is resumed first.
+- **Speaker button** (`SpeakButton`, `WithSpeaker`): 44 pt, a pen-drawn speaker, labelled
+  "Escuchar: <texto>" (a passage: "Escuchar el texto") with the hint "Toca otra vez para
+  escucharlo más lento". A tap plays at the learner's speed and the next tap on the same speaker at
+  the other one (normal 1.0, slow 0.7), alternating. While it speaks it is filled with ink (a state
+  change, no animation, so reduced motion needs nothing); no press click (the voice is the
+  feedback). Hidden when pronunciation is off, the device has no English voice, or there is nothing
+  to say. Where: the word lookup card (dialog only: a hover tooltip cannot be pressed; the
+  headword without notation, `speakableTerm`), "Lo nuevo de hoy" (each term and example), study
+  cards (examples, collocations, corrections but never the mistake, phrasal verbs and the false
+  friend), the feedback's right answer (`spokenAnswer`: the sentence, the cloze sentence filled,
+  the English sentence of a translation choice, an English vocab answer; none for reading) and the
+  reading passage (one speaker for title and text).
+- **Settings** (`PronunciationProvider`, `PronunciationSettingsButton`): a speech bubble next to
+  the sound switch (home, the exercise headers and the study card's) opens "Pronunciación" with
+  an on/off switch (on by default) and "Velocidad de la voz" (Normal / Lenta). Stored in SQLite
+  (`SettingsRepository.getPronunciationEnabled` / `getSpeechRate`); turning it off stops any
+  speech. Not shown at all without an English voice.
+
+### Listening in reviews (`features/lesson/model/listen-exercise.ts`)
+
+"Escucha y escribe" (dictation) and "Escucha y elige" are derived, never authored: from a
+word_order sentence or a translate_write reference answer of 3–14 words without digits (digits
+are spoken as words). The sentence is never shown before the check; "Escuchar" and "Más lento"
+play it. A dictation is matched like translate-write against every sentence the source accepts
+(case, punctuation and contractions tolerated, a typo is "almost"); a choice offers the sentence
+and two others of the same level and length (from word_order sentences, translate_write answers
+and card examples).
+
+- **Reviews only, as stand-ins.** `mixListening` replaces up to two of the planned exercises
+  (one in reviews under 6 exercises; never the first) with listening made from them, the first a
+  dictation, the second a choice, picked with the day's own rng (`listeningRng(today)`), and only
+  when an English voice exists and pronunciation is on (decided once the stored switch is read).
+  The listening exercise keeps its source's `itemIds`, so each due item is still practiced exactly
+  once, graded like any exercise (expected time 20 s), and the review keeps the count home showed
+  ("Repaso, N pendientes" = "Ejercicio 1 de N"). Its id is `<source id>~listen`; the study card
+  and topic come from the source; it cannot be marked "también es correcta" (disputes name real
+  content ids).
+- **Not in lessons**: a lesson's result is its best accuracy times its content exercise count
+  ("Perfecta · 6/6"), and its first completion pays a bonus; an extra or swapped exercise would
+  change that count's meaning and the items a lesson introduces. Reviews keep no per-lesson
+  result, so a stand-in changes nothing but the presentation.
+- If the voice goes away mid-review (switch turned off), the exercise shows its sentence instead
+  of the play buttons, so it can still be answered.
+- E2E (`e2e/pronunciation.spec.ts`): `e2e/support/speech-stub.ts` replaces `speechSynthesis`
+  (voices loaded late, a network and a Spanish voice besides the local English one) and logs what
+  was said. `answerCorrectly` also answers listening exercises (from their source's sentence), so
+  other specs pass whether the browser has English voices or not.
+
 ## Placement test (`src/features/placement/`)
 
 `/placement`: intro, then the adaptive test from the domain (`createPlacementSession` /
@@ -421,7 +488,9 @@ only a reading practiced got a review-only `vocab` exercise. For each due
 item, in priority order, it picks one exercise that practices it, preferring a different type
 than the previous pick, chosen with the injected rng; an exercise covering several due items
 reviews all of them. Only the due items are saved (an exercise may also practice items that are
-not due; those are untouched). XP is answer XP only, no completion bonus.
+not due; those are untouched). XP is answer XP only, no completion bonus. With pronunciation on
+and an English voice, up to two of the planned exercises are heard instead of read (see
+"Listening in reviews" under "Pronunciation").
 
 **Home counts exactly what the review serves** (`planReview`, `reviewOutlook` in
 `model/review-plan.ts`). The exercises are picked with the day's rng (`reviewPlanRng(today)`,
@@ -940,6 +1009,15 @@ The Playwright smoke test fails if the page is not cross-origin isolated, if SQL
 console errors, or if progress loaded from the database is not rendered.
 
 ## Known limitations
+
+- **Pronunciation depends on the device's voices and is not verified on an iPhone yet.** Unit
+  tests drive the service with a fake `speechSynthesis` and e2e stubs it on Chromium and WebKit;
+  real iOS still needs a manual check (Home Screen app included). The voice and its quality are the
+  device's: iOS ships compact voices, and better ones ("Enhanced", "Premium") must be downloaded
+  in Settings → Accessibility → Spoken Content. Desktop Chrome's Google voices are network voices
+  and are never used: with only those, there are no speaker buttons. The speakers appear once the
+  voices load, on iOS sometimes only after the first tap. iOS Web Speech follows the silent
+  switch on some versions. Native has no pronunciation (no expo-speech).
 
 - **Word lookup on native is not verified on a device yet.** RNTL covers the native card;
   e2e covers web (Chromium and WebKit). Android draws the lookup underline solid and in the text
