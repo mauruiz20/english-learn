@@ -77,6 +77,9 @@ describe("fold rules golden (stored snapshots depend on them)", () => {
     );
     expect(snapshot.lessonResults.length).toBeGreaterThan(1);
     expect(snapshot.states.length).toBeGreaterThan(3);
+    // Item history: a dated lapse, and an answer whose state did not move (not due yet).
+    expect(snapshot.itemHistory.some((h) => h.lastLapse !== null)).toBe(true);
+    expect(snapshot.itemHistory.some((h) => h.recentGrades.length > 1)).toBe(true);
   });
 
   it("ignores the retired wardrobe types, well-formed or not, without reporting them", () => {

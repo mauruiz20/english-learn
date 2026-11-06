@@ -14,6 +14,7 @@ export {
   EMPTY_FOLD_SNAPSHOT,
   EMPTY_PROGRESS,
   FOLD_SNAPSHOT_VERSION,
+  RECENT_GRADES,
   advanceFold,
   foldEvents,
   foldSnapshot,
@@ -24,6 +25,7 @@ export type {
   FoldAnomalyKind,
   FoldPosition,
   FoldSnapshot,
+  ItemHistory,
   LessonResult,
   ProgressState,
 } from "./fold";

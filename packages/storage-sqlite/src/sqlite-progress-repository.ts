@@ -12,6 +12,8 @@ import {
   type AppendedEvents,
   type BaselineImportedEvent,
   type FoldSnapshot,
+  type Grade,
+  type ItemHistory,
   type LessonResult,
   type Level,
   type PlacementResult,
@@ -39,6 +41,13 @@ type StreakRow = { current: number; longest: number; last_active_date: string | 
 type PlacementRow = { level: string; theta: number };
 
 type LessonResultRow = { lesson_id: string; best_accuracy: number; completions: number };
+
+type ItemHistoryRow = {
+  item_id: string;
+  last_seen: string;
+  last_lapse: string | null;
+  recent_grades: string;
+};
 
 type EventRow = {
   id: string;
@@ -102,6 +111,8 @@ const MAX_IDS_PER_QUERY = 500;
 const STATES_PER_INSERT = 80;
 /** Lesson results per multi-row insert (3 parameters each). */
 const RESULTS_PER_INSERT = 150;
+/** Item histories per multi-row upsert (4 parameters each). */
+const HISTORIES_PER_INSERT = 120;
 
 const DEVICE_ID = "device_id";
 const SERVER_CURSOR = "server_cursor";
@@ -176,6 +187,27 @@ function sameLessonResult(a: LessonResult, b: LessonResult): boolean {
   return a.bestAccuracy === b.bestAccuracy && a.completions === b.completions;
 }
 
+function sameHistory(a: ItemHistory, b: ItemHistory): boolean {
+  return (
+    a.lastSeen === b.lastSeen &&
+    a.lastLapse === b.lastLapse &&
+    a.recentGrades.length === b.recentGrades.length &&
+    a.recentGrades.every((grade, i) => grade === b.recentGrades[i])
+  );
+}
+
+/** Stored grades, as JSON; anything unreadable reads as none (the next refold rewrites it). */
+function parseGrades(text: string): Grade[] {
+  try {
+    const value = JSON.parse(text) as unknown;
+    return Array.isArray(value)
+      ? value.filter((g): g is Grade => Number.isInteger(g) && g >= 0 && g <= 5)
+      : [];
+  } catch {
+    return [];
+  }
+}
+
 /** A stored `FoldSnapshot`, or `null` when it cannot be used (unreadable, other version). */
 function parseSnapshot(text: string): FoldSnapshot | null {
   try {
@@ -240,8 +272,8 @@ function isStorable(event: StoredEvent): boolean {
 
 /**
  * `ProgressRepository` (plus the sync store) backed by SQLite: an append-only `event` table is
- * the source of truth, and `review_state`, `xp`, `streak`, `placement_result` and `lesson_result`
- * cache its fold.
+ * the source of truth, and `review_state`, `xp`, `streak`, `placement_result`, `lesson_result`
+ * and `item_history` cache its fold.
  * Every write applies only its new events to a stored fold snapshot (`advanceFold`), refolding the
  * whole log only when they do not go after it, in the same transaction, and writes only what
  * changed.
@@ -308,6 +340,49 @@ export function createSqliteProgressRepository(
       bestAccuracy: row.best_accuracy,
       completions: row.completions,
     }));
+  }
+
+  async function readItemHistories(): Promise<ItemHistory[]> {
+    const rows = await db.getAllAsync<ItemHistoryRow>(
+      "SELECT item_id, last_seen, last_lapse, recent_grades FROM item_history ORDER BY item_id",
+      [],
+    );
+    return rows.map((row) => ({
+      itemId: row.item_id,
+      lastSeen: localDate(row.last_seen),
+      lastLapse: row.last_lapse === null ? null : localDate(row.last_lapse),
+      recentGrades: parseGrades(row.recent_grades),
+    }));
+  }
+
+  /** Makes `item_history` equal to `histories`, given what it holds now (`cached`). */
+  async function writeItemHistories(
+    histories: readonly ItemHistory[],
+    cached: readonly ItemHistory[],
+  ): Promise<void> {
+    const stale = new Map(cached.map((h) => [h.itemId, h]));
+    const changed = histories.filter((h) => {
+      const current = stale.get(h.itemId);
+      stale.delete(h.itemId);
+      return current === undefined || !sameHistory(current, h);
+    });
+    for (const chunk of chunks([...stale.keys()], MAX_IDS_PER_QUERY)) {
+      await db.runAsync(
+        `DELETE FROM item_history WHERE item_id IN (${chunk.map(() => "?").join(", ")})`,
+        chunk,
+      );
+    }
+    for (const chunk of chunks(changed, HISTORIES_PER_INSERT)) {
+      await db.runAsync(
+        `INSERT INTO item_history (item_id, last_seen, last_lapse, recent_grades)
+         VALUES ${chunk.map(() => "(?, ?, ?, ?)").join(", ")}
+         ON CONFLICT (item_id) DO UPDATE SET
+           last_seen = excluded.last_seen,
+           last_lapse = excluded.last_lapse,
+           recent_grades = excluded.recent_grades`,
+        chunk.flatMap((h) => [h.itemId, h.lastSeen, h.lastLapse, JSON.stringify(h.recentGrades)]),
+      );
+    }
   }
 
   /** Makes `lesson_result` equal to `results`, given what it holds now (`cached`). */
@@ -471,6 +546,10 @@ export function createSqliteProgressRepository(
       progress.lessonResults,
       cachedProgress?.lessonResults ?? (await readLessonResults()),
     );
+    await writeItemHistories(
+      progress.itemHistory,
+      cachedProgress?.itemHistory ?? (await readItemHistories()),
+    );
     if (progress.placement === null) {
       await db.runAsync("DELETE FROM placement_result", []);
     } else {
@@ -557,6 +636,7 @@ export function createSqliteProgressRepository(
     getXp: readXp,
     getPlacementResult: readPlacement,
     getLessonResults: readLessonResults,
+    getItemHistories: readItemHistories,
 
     async getDeviceId() {
       const id = await readSyncState(DEVICE_ID);

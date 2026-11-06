@@ -13,10 +13,14 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
   (`docs/design/avi-rewards.md`). Dropping is safe: the table was a pure derivation of the event
   log that only this app read, an older app refuses the newer schema anyway, and the
   `item_purchased` / `item_equipped` events stay in the log (the fold ignores them).
+  Migration 7 → 8 adds the `item_history` cache (the fold's `itemHistory`: per item its last
+  answer date, last lapse date and latest grades as JSON), read with `getItemHistories()` for
+  "Mis palabras difíciles"; the refold after the upgrade fills it.
 - `createSqliteProgressRepository(db, { now? })`: progress as an **append-only event log**
   (migration 3: `event` table, see `@english-learn/domain` "Progress event log"). The
   `review_state`, `xp`, `streak`, `placement_result` and `lesson_result` (migration 4: each
-  lesson's best accuracy and completions, `getLessonResults()`) tables are a cache of
+  lesson's best accuracy and completions, `getLessonResults()`) and `item_history`
+  (`getItemHistories()`) tables are a cache of
   `foldEvents` over
   the whole log, so reads stay fast; every write updates them in the same transaction and writes
   only the review states and lesson results that changed.

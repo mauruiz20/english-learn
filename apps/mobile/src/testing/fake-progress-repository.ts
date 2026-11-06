@@ -68,6 +68,7 @@ export function createFakeRepository(
     getXp: async () => progress().xp,
     getPlacementResult: async () => progress().placement,
     getLessonResults: async () => progress().lessonResults,
+    getItemHistories: async () => progress().itemHistory,
     getDeviceId: async () => FAKE_DEVICE_ID,
     // Mirrors the SQLite all-or-nothing contract: validate before writing anything.
     appendEvents: async (events) => {

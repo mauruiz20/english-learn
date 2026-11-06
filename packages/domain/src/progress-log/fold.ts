@@ -1,7 +1,7 @@
 import { compareLocalDate, type LocalDate } from "../local-date";
 import type { PlacementResult } from "../ports";
 import { xpForLessonCompletion } from "../scoring";
-import { applyReview, type ReviewState } from "../srs";
+import { applyReview, type Grade, type ReviewState } from "../srs";
 import { EMPTY_STREAK, recordActivity, type Streak } from "../streak";
 import { canonicalJson } from "./canonical";
 import type { BaselineImportedEvent, ProgressEvent, StoredEvent } from "./events";
@@ -34,6 +34,27 @@ export type LessonResult = {
   readonly completions: number;
 };
 
+/** How many of an item's latest grades its history keeps. */
+export const RECENT_GRADES = 5;
+
+/**
+ * How one item was answered, from its applied `item_reviewed` events (baseline states have
+ * none: pre-event storage kept no answers). Every applied review counts, also the practice of an
+ * item that is not due yet, whose state does not move.
+ */
+export type ItemHistory = {
+  readonly itemId: string;
+  /** Local date of its latest applied review. */
+  readonly lastSeen: LocalDate;
+  /**
+   * Local date of its latest lapse: a failing grade (< 3) on an item that already had a state
+   * (what increments `lapses`; first sight is not forgetting). `null` if none.
+   */
+  readonly lastLapse: LocalDate | null;
+  /** Its latest grades in fold order, oldest first, at most `RECENT_GRADES`. */
+  readonly recentGrades: readonly Grade[];
+};
+
 /** The learner's progress, derived entirely from the event log. */
 export type ProgressState = {
   /** One state per reviewed item, sorted by itemId. */
@@ -50,6 +71,8 @@ export type ProgressState = {
    * baseline lists have none: pre-event storage kept no score).
    */
   readonly lessonResults: readonly LessonResult[];
+  /** One history per item with an applied `item_reviewed`, sorted by itemId. */
+  readonly itemHistory: readonly ItemHistory[];
   /** Events that were skipped, in fold order. Never thrown. */
   readonly anomalies: readonly FoldAnomaly[];
 };
@@ -62,6 +85,7 @@ export const EMPTY_PROGRESS: ProgressState = {
   activeDates: [],
   completedLessonIds: [],
   lessonResults: [],
+  itemHistory: [],
   anomalies: [],
 };
 
@@ -132,7 +156,7 @@ function mergeStreaks(a: Streak, b: Streak): Streak {
 }
 
 /** The snapshot format; a stored snapshot of another version is discarded (refold). */
-export const FOLD_SNAPSHOT_VERSION = 3;
+export const FOLD_SNAPSHOT_VERSION = 4;
 
 /**
  * Everything the fold knows after the events it applied, as plain JSON-safe data, so later
@@ -152,6 +176,7 @@ export type FoldSnapshot = {
   readonly activeDates: readonly LocalDate[];
   readonly completedLessonIds: readonly string[];
   readonly lessonResults: readonly LessonResult[];
+  readonly itemHistory: readonly ItemHistory[];
   /** Sessions with a `session_completed` applied (a later one is a `duplicate_session`). */
   readonly completedSessionIds: readonly string[];
   /** Sessions with an `item_reviewed` applied (a later review of one needs a refold). */
@@ -172,6 +197,7 @@ export const EMPTY_FOLD_SNAPSHOT: FoldSnapshot = {
   activeDates: [],
   completedLessonIds: [],
   lessonResults: [],
+  itemHistory: [],
   completedSessionIds: [],
   reviewedSessionIds: [],
   envelopeAnomalies: [],
@@ -188,6 +214,7 @@ class Folder {
   readonly sessions: Set<string>;
   readonly completed: Set<string>;
   readonly results: Map<string, LessonResult>;
+  readonly history: Map<string, ItemHistory>;
   readonly activeDates: Set<LocalDate>;
   readonly envelopeAnomalies: FoldAnomaly[];
   readonly anomalies: FoldAnomaly[];
@@ -202,6 +229,7 @@ class Folder {
     this.sessions = new Set(from.completedSessionIds);
     this.completed = new Set(from.completedLessonIds);
     this.results = new Map(from.lessonResults.map((r) => [r.lessonId, r]));
+    this.history = new Map(from.itemHistory.map((h) => [h.itemId, h]));
     this.activeDates = new Set(from.activeDates);
     this.envelopeAnomalies = [...from.envelopeAnomalies];
     this.anomalies = [...from.anomalies];
@@ -221,6 +249,7 @@ class Folder {
         this.reviewedSessions.add(sessionId);
         const previous = this.states.get(itemId);
         this.states.set(itemId, applyReview(previous, itemId, grade, event.localDate));
+        this.recordAnswer(itemId, grade, event.localDate, previous !== undefined && grade < 3);
         return;
       }
       case "session_completed": {
@@ -270,6 +299,17 @@ class Folder {
     });
   }
 
+  /** Adds one applied review to the item's history; `lapse`: it counted as a lapse. */
+  recordAnswer(itemId: string, grade: Grade, day: LocalDate, lapse: boolean): void {
+    const current = this.history.get(itemId);
+    this.history.set(itemId, {
+      itemId,
+      lastSeen: day,
+      lastLapse: lapse ? day : (current?.lastLapse ?? null),
+      recentGrades: [...(current?.recentGrades ?? []), grade].slice(-RECENT_GRADES),
+    });
+  }
+
   report(kind: FoldAnomalyKind, eventId: string, detail: string): void {
     this.anomalies.push({ kind, eventId, detail });
   }
@@ -309,6 +349,7 @@ class Folder {
       activeDates: [...this.activeDates].sort(compareLocalDate),
       completedLessonIds: sortedText(this.completed),
       lessonResults: [...this.results.values()].sort((a, b) => byText(a.lessonId, b.lessonId)),
+      itemHistory: [...this.history.values()].sort((a, b) => byText(a.itemId, b.itemId)),
       completedSessionIds: sortedText(this.sessions),
       reviewedSessionIds: sortedText(this.reviewedSessions),
       envelopeAnomalies: this.envelopeAnomalies,
@@ -400,6 +441,7 @@ export function snapshotProgress(snapshot: FoldSnapshot): ProgressState {
     activeDates: snapshot.activeDates,
     completedLessonIds: snapshot.completedLessonIds,
     lessonResults: snapshot.lessonResults,
+    itemHistory: snapshot.itemHistory,
     anomalies: [...snapshot.envelopeAnomalies, ...snapshot.anomalies],
   };
 }

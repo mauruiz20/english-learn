@@ -92,6 +92,17 @@ const MIGRATIONS: readonly string[] = [
   DROP TABLE IF EXISTS rewards;
   DELETE FROM setting WHERE key = 'plumas_welcome';
   `,
+  // 7 → 8: cache of each item's answer history (the fold's `itemHistory`: last seen, last lapse,
+  // latest grades as JSON) for "Mis palabras difíciles". It starts empty: the refold after an
+  // upgrade fills it.
+  `
+  CREATE TABLE item_history (
+    item_id TEXT PRIMARY KEY NOT NULL,
+    last_seen TEXT NOT NULL,
+    last_lapse TEXT,
+    recent_grades TEXT NOT NULL
+  );
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */
