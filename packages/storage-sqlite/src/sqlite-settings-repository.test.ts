@@ -55,6 +55,18 @@ describe("createSqliteSettingsRepository", () => {
     expect(await settings.getSpeechRate()).toBe("normal");
   });
 
+  it("speaks with the automatic voice by default, remembers a picked one and forgets it", async () => {
+    expect(await settings.getSpeechVoice()).toBeNull();
+
+    await settings.setSpeechVoice("com.apple.voice.compact.en-US.Samantha");
+    expect(await createSqliteSettingsRepository(db).getSpeechVoice()).toBe(
+      "com.apple.voice.compact.en-US.Samantha",
+    );
+
+    await settings.setSpeechVoice(null);
+    expect(await createSqliteSettingsRepository(db).getSpeechVoice()).toBeNull();
+  });
+
   it("has not dismissed the word lookup hint by default", async () => {
     expect(await settings.getLookupHintDismissed()).toBe(false);
   });

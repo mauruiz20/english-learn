@@ -71,7 +71,9 @@ bench`, median): saving a 13-event session ≈ 4.5 ms (was ≈ 240 ms, a full re
 - `createSqliteSettingsRepository(db)`: app preferences in a `setting` key/value table
   (migration 2). `getSoundEnabled()` is `true` unless the learner turned sounds off;
   `getPronunciationEnabled()` likewise for the pronunciation buttons, and `getSpeechRate()` is
-  `"normal"` unless the learner picked `"slow"` (no migration: new keys of the same table);
+  `"normal"` unless the learner picked `"slow"`, and `getSpeechVoice()` is the picked voice's
+  `voiceURI` or `null` for the automatic one (`setSpeechVoice(null)` deletes the row; no
+  migration: new keys of the same table);
   `getLookupHintDismissed()` is `false` until `setLookupHintDismissed()` (the word-lookup hint).
   `getAccount()` / `setAccount({ userId, email, givenName? })` / `clearAccount()` remember who is
   signed in and their first name for the home greeting (never a token; an unreadable value reads

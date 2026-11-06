@@ -92,6 +92,49 @@ test("the Pronunciación switch hides every speaker, and is remembered", async (
   expect(problems).toEqual([]);
 });
 
+test("the voice picked under Voz is used, tried with Probar, and remembered", async ({ page }) => {
+  const problems = collectProblems(page);
+  await stubSpeech(page);
+  await openCard(page);
+  await expect(speakers(page).first()).toBeVisible();
+
+  await page.getByRole("button", { name: "Pronunciación", exact: true }).click();
+  const automatic = page.getByRole("radio", { name: "Automática (Test English)", exact: true });
+  await expect(automatic).toBeChecked();
+  // Only local English voices are offered.
+  await expect(page.getByRole("radio", { name: /Test Español|network/u })).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Probar la voz Test English UK", exact: true }).click();
+  await expect.poll(async () => (await spoken(page)).at(-1)?.voiceName).toBe("Test English UK");
+  await expect(automatic).toBeChecked();
+
+  const uk = page.getByRole("radio", { name: "Test English UK, Reino Unido", exact: true });
+  await uk.click();
+  await expect(uk).toBeChecked();
+  await page.getByRole("button", { name: "Listo", exact: true }).click();
+
+  const before = (await spoken(page)).length;
+  await speakers(page).first().click();
+  await expect.poll(async () => (await spoken(page)).length).toBe(before + 1);
+  expect((await spoken(page)).at(-1)).toMatchObject({
+    voiceName: "Test English UK",
+    lang: "en-GB",
+  });
+
+  await page.evaluate(() =>
+    (
+      window as unknown as { __e2e: { settingsWritesSettled: () => Promise<void> } }
+    ).__e2e.settingsWritesSettled(),
+  );
+  await openCard(page);
+  await expect(speakers(page).first()).toBeVisible();
+  const count = (await spoken(page)).length;
+  await speakers(page).first().click();
+  await expect.poll(async () => (await spoken(page)).length).toBe(count + 1);
+  expect((await spoken(page)).at(-1)?.voiceName).toBe("Test English UK");
+  expect(problems).toEqual([]);
+});
+
 test("without an English voice on the device nothing about pronunciation shows", async ({
   page,
 }) => {

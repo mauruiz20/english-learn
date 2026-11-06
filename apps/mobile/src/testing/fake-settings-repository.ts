@@ -13,6 +13,7 @@ export function createFakeSettingsRepository(
     soundEnabled?: boolean;
     pronunciationEnabled?: boolean;
     speechRate?: SpeechRate;
+    speechVoice?: string | null;
     lookupHintDismissed?: boolean;
     account?: AccountMarker | null;
     saveProgressSuggestionDismissed?: boolean;
@@ -25,6 +26,7 @@ export function createFakeSettingsRepository(
   readonly soundEnabled: () => boolean;
   readonly pronunciationEnabled: () => boolean;
   readonly speechRate: () => SpeechRate;
+  readonly speechVoice: () => string | null;
   readonly lookupHintDismissed: () => boolean;
   readonly account: () => AccountMarker | null;
   readonly saveProgressSuggestionDismissed: () => boolean;
@@ -36,6 +38,7 @@ export function createFakeSettingsRepository(
   let soundEnabled = initial.soundEnabled ?? true;
   let pronunciationEnabled = initial.pronunciationEnabled ?? true;
   let speechRate = initial.speechRate ?? "normal";
+  let speechVoice = initial.speechVoice ?? null;
   let lookupHintDismissed = initial.lookupHintDismissed ?? false;
   let account = initial.account ?? null;
   let saveProgressSuggestionDismissed = initial.saveProgressSuggestionDismissed ?? false;
@@ -69,6 +72,11 @@ export function createFakeSettingsRepository(
     getSpeechRate: async () => speechRate,
     setSpeechRate: async (next) => {
       speechRate = next;
+    },
+    speechVoice: () => speechVoice,
+    getSpeechVoice: async () => speechVoice,
+    setSpeechVoice: async (next) => {
+      speechVoice = next;
     },
     lookupHintDismissed: () => lookupHintDismissed,
     account: () => account,

@@ -20,6 +20,7 @@ const PATH_LEVEL = "path_level";
 const LAST_HOME_VISIT = "last_home_visit";
 const PRONUNCIATION_ENABLED = "pronunciation_enabled";
 const SPEECH_RATE = "speech_rate";
+const SPEECH_VOICE = "speech_voice";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -49,6 +50,14 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     getSpeechRate: async (): Promise<SpeechRate> =>
       (await read(SPEECH_RATE)) === "slow" ? "slow" : "normal",
     setSpeechRate: (rate) => write(SPEECH_RATE, rate),
+    getSpeechVoice: async () => {
+      const voiceId = await read(SPEECH_VOICE);
+      return voiceId === null || voiceId === "" ? null : voiceId;
+    },
+    setSpeechVoice: async (voiceId) => {
+      if (voiceId === null) await db.runAsync("DELETE FROM setting WHERE key = ?", [SPEECH_VOICE]);
+      else await write(SPEECH_VOICE, voiceId);
+    },
     getLookupHintDismissed: async () => (await read(LOOKUP_HINT_DISMISSED)) === "1",
     setLookupHintDismissed: () => write(LOOKUP_HINT_DISMISSED, "1"),
     getAccount: async () => parseAccount(await read(ACCOUNT)),

@@ -33,6 +33,13 @@ export interface SettingsRepository {
   /** The speed pronunciation plays at; normal until the learner picks slow. */
   getSpeechRate(): Promise<SpeechRate>;
   setSpeechRate(rate: SpeechRate): Promise<void>;
+  /**
+   * The English voice picked on this device (its `voiceURI`), or null for the automatic one.
+   * Device only: voices differ between devices.
+   */
+  getSpeechVoice(): Promise<string | null>;
+  /** Picks the voice; null goes back to the automatic one. */
+  setSpeechVoice(voiceId: string | null): Promise<void>;
   /** Whether the learner dismissed the one-time "tap a word" hint of the word lookup. */
   getLookupHintDismissed(): Promise<boolean>;
   setLookupHintDismissed(): Promise<void>;

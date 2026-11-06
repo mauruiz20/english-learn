@@ -16,6 +16,7 @@ import {
   SPEECH_RATES,
   unsupportedSpeech,
   type SpeechService,
+  type SpeechVoice,
 } from "@/infrastructure/speech/speech-service";
 
 export type Pronunciation = {
@@ -38,6 +39,12 @@ export type Pronunciation = {
   readonly speak: (text: string, key: string, options?: SpeakChoice) => void;
   readonly setEnabled: (enabled: boolean) => void;
   readonly setRate: (rate: SpeechRate) => void;
+  /** The device's English voices the learner can pick from, best first. */
+  readonly voices: readonly SpeechVoice[];
+  /** The learner's voice (`SpeechVoice.id`), or null for "Automática". */
+  readonly voice: string | null;
+  /** Picks the voice for this device; null goes back to "Automática". */
+  readonly setVoice: (voice: string | null) => void;
 };
 
 export type SpeakChoice = {
@@ -62,11 +69,14 @@ const UNAVAILABLE: Pronunciation = {
   speak: noop,
   setEnabled: noop,
   setRate: noop,
+  voices: [],
+  voice: null,
+  setVoice: noop,
 };
 
 /**
- * Holds the learner's pronunciation choices for the whole app (the "Pronunciación" switch and the
- * voice speed): reads them once from the settings repository and saves every change, and
+ * Holds the learner's pronunciation choices for the whole app (the "Pronunciación" switch, the
+ * voice speed and the voice): reads them once from the settings repository and saves every change, and
  * combines them with what the device's speech service can do. Switching it off stops any speech.
  */
 export function PronunciationProvider({ children }: { children: ReactNode }) {
@@ -76,9 +86,10 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
   const snapshot = useSyncExternalStore(speech.subscribe, speech.getSnapshot, speech.getSnapshot);
   const [enabled, setEnabledState] = useState(true);
   const [rate, setRateState] = useState<SpeechRate>("normal");
+  const [voice, setVoiceState] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   // A choice made before the stored one is read wins over it.
-  const touched = useRef({ enabled: false, rate: false });
+  const touched = useRef({ enabled: false, rate: false, voice: false });
 
   useEffect(() => {
     let active = true;
@@ -96,6 +107,22 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
       active = false;
     };
   }, [settingsRepository]);
+
+  // The voice is read on its own: failing to read it never holds back the switch.
+  useEffect(() => {
+    let active = true;
+    settingsRepository
+      .getSpeechVoice()
+      .then((stored) => {
+        if (!active || touched.current.voice) return;
+        setVoiceState(stored);
+        speech.setVoice(stored);
+      })
+      .catch((error: unknown) => console.warn("Failed to read the speech voice", error));
+    return () => {
+      active = false;
+    };
+  }, [settingsRepository, speech]);
 
   const setEnabled = useCallback(
     (next: boolean) => {
@@ -118,6 +145,18 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
         .catch((error: unknown) => console.warn("Failed to save the speech rate", error));
     },
     [settingsRepository],
+  );
+
+  const setVoice = useCallback(
+    (next: string | null) => {
+      touched.current.voice = true;
+      setVoiceState(next);
+      speech.setVoice(next);
+      settingsRepository
+        .setSpeechVoice(next)
+        .catch((error: unknown) => console.warn("Failed to save the speech voice", error));
+    },
+    [settingsRepository, speech],
   );
 
   const available = snapshot.available && enabled;
@@ -144,8 +183,11 @@ export function PronunciationProvider({ children }: { children: ReactNode }) {
       speak,
       setEnabled,
       setRate,
+      voices: snapshot.voices,
+      voice,
+      setVoice,
     }),
-    [snapshot, enabled, available, ready, rate, speak, setEnabled, setRate],
+    [snapshot, enabled, available, ready, rate, speak, setEnabled, setRate, voice, setVoice],
   );
 
   return <PronunciationContext value={value}>{children}</PronunciationContext>;
