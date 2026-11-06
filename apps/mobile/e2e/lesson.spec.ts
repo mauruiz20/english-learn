@@ -1,4 +1,5 @@
 import { expect, test, type ConsoleMessage, type Page } from "./support/test";
+import { skipLessonIntro } from "./support/content";
 
 async function choose(page: Page, option: string) {
   await page.getByRole("radio", { name: option, exact: true }).click();
@@ -22,6 +23,7 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
   await expect(page.getByText("Lecciones de nivel A2")).toBeVisible();
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
 
+  await skipLessonIntro(page);
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
   await choose(page, "despertarse");
   await checkAndContinue(page, "Correcto");

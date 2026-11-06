@@ -1,5 +1,5 @@
 import { expect, test, type ConsoleMessage } from "./support/test";
-import { playSessionCorrectly } from "./support/content";
+import { playSessionCorrectly, skipLessonIntro } from "./support/content";
 
 // `?today=` is a test-only clock override, compiled in only with EXPO_PUBLIC_E2E=1.
 const DAY_1 = "2030-01-01";
@@ -18,6 +18,7 @@ test("a lesson recaps its new items, shows its best result on the path and can b
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
 
   // One mistake on the first exercise, then everything right: 5 of 6.
+  await skipLessonIntro(page);
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
   await page.getByRole("radio", { name: "dormirse", exact: true }).click();
   await page.getByRole("button", { name: "Comprobar", exact: true }).click();
