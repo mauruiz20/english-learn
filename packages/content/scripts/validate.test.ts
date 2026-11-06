@@ -110,6 +110,26 @@ describe("main(dir)", () => {
     expect(main(dir)).toHaveLength(1);
   });
 
+  it("validates a level intro file against its own schema and directory", () => {
+    write("b1/travel.json", fx.validFile());
+    writeGlossary();
+    const intro = { level: "B1", title: "Intermedio", canDo: ["a", "b", "c"], topics: ["Viajes"] };
+    write("b1/level.json", intro);
+    expect(main(dir)).toEqual([]);
+    write("b1/level.json", { ...intro, level: "B2" });
+    expect(main(dir)).toContainEqual(
+      expect.objectContaining({ file: "b1/level.json", path: "level" }),
+    );
+    write("b1/level.json", { ...intro, canDo: ["a"] });
+    expect(main(dir)).toContainEqual(
+      expect.objectContaining({ file: "b1/level.json", path: "canDo" }),
+    );
+    write("b1/level.json", { ...intro, title: "Podés" });
+    expect(main(dir)).toContainEqual(
+      expect.objectContaining({ file: "b1/level.json", path: "title" }),
+    );
+  });
+
   it("validates references across files", () => {
     const f = fx.validFile();
     write("b1/items.json", { items: f.items });

@@ -65,6 +65,20 @@ describe("buildCorpus", () => {
     });
   });
 
+  it("leaves level intro files out of the corpus module", async () => {
+    write("b1/travel.json", fx.validFile());
+    write("b1/level.json", {
+      level: "B1",
+      title: "Intermedio",
+      canDo: ["a", "b", "c"],
+      topics: ["x"],
+    });
+    writeGlossary();
+
+    expect(await buildCorpus({ dataDir, outFile, mode: "write" })).toEqual({ status: "written" });
+    expect(readFileSync(outFile, "utf8")).not.toContain("level.json");
+  });
+
   it("detects a stale module when a data file is added", async () => {
     write("b1/travel.json", fx.validFile());
     writeGlossary();

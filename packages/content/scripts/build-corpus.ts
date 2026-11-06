@@ -12,7 +12,7 @@ import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { format, resolveConfig } from "prettier";
 import { formatErrors, listJsonFiles, main as validate } from "./validate";
-import type { ValidationError } from "../src/validate";
+import { isLevelIntroFile, type ValidationError } from "../src/validate";
 
 const PACKAGE_DIR = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DEFAULT_DATA_DIR = join(PACKAGE_DIR, "data");
@@ -67,7 +67,9 @@ export async function buildCorpus({
   if (errors.length > 0) return { status: "invalid", errors };
 
   const dataImportPath = toPosix(relative(dirname(outFile), dataDir));
-  const expected = await renderCorpusModule(listJsonFiles(dataDir), dataImportPath);
+  // Level intros (`<level>/level.json`) are not content files.
+  const files = listJsonFiles(dataDir).filter((file) => !isLevelIntroFile(file));
+  const expected = await renderCorpusModule(files, dataImportPath);
   const current = existsSync(outFile) ? readFileSync(outFile, "utf8") : null;
 
   if (mode === "check") return { status: current === expected ? "up-to-date" : "stale" };

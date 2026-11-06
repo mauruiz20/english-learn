@@ -27,6 +27,29 @@ export const PassageSchema = z.strictObject({
 });
 export type Passage = z.infer<typeof PassageSchema>;
 
+/**
+ * A short explanation shown before a lesson starts (30–60 seconds of reading): 2–4 Spanish
+ * points (English in «»), 1–2 examples and, optionally, the typical Spanish-speaker mistake.
+ */
+export const LessonIntroSchema = z.strictObject({
+  points: z
+    .array(NonEmptyString.pipe(z.string().max(140)))
+    .min(2)
+    .max(4),
+  examples: z
+    .array(z.strictObject({ en: NonEmptyString, es: NonEmptyString }))
+    .min(1)
+    .max(2),
+  mistake: z
+    .strictObject({
+      wrong: NonEmptyString,
+      right: NonEmptyString,
+      note: NonEmptyString.pipe(z.string().max(120)),
+    })
+    .optional(),
+});
+export type LessonIntro = z.infer<typeof LessonIntroSchema>;
+
 export const LessonSchema = z.strictObject({
   id: IdSchema,
   level: LevelSchema,
@@ -46,5 +69,7 @@ export const LessonSchema = z.strictObject({
    * recap items they teach to them. Optional.
    */
   deepenCardIds: z.array(IdSchema).min(1).max(3).optional(),
+  /** What the lesson teaches, shown before it starts. Optional. */
+  intro: LessonIntroSchema.optional(),
 });
 export type Lesson = z.infer<typeof LessonSchema>;

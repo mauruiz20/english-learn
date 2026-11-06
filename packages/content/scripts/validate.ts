@@ -12,7 +12,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   findDuplicateKeys,
   glossaryReport,
+  isLevelIntroFile,
   validateCorpus,
+  validateLevelIntro,
   validateLocal,
   validateSchema,
   type LoadedFile,
@@ -72,6 +74,11 @@ export function load(dir: string = DEFAULT_DATA_DIR): {
         path,
         message: `duplicate key "${key}" (JSON.parse keeps only the last value)`,
       });
+    }
+    // A level intro has its own schema and is not part of the content corpus.
+    if (isLevelIntroFile(file)) {
+      errors.push(...validateLevelIntro(file, json));
+      continue;
     }
     const result = validateSchema(file, json);
     errors.push(...result.errors);
