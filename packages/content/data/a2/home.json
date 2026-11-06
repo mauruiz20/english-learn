@@ -362,7 +362,29 @@
         "a2.home.do-the-dishes",
         "a2.home.living-room"
       ],
-      "deepenCardIds": ["a2.grammar.there-is-are"]
+      "deepenCardIds": ["a2.grammar.there-is-are"],
+      "intro": {
+        "points": [
+          "«There is» es hay con una cosa y «there are», con varias: «There are two bathrooms».",
+          "Al hablar se dice «there's». Para preguntar: «Is there…?», «Are there…?»",
+          "Partes de la casa: «bedroom», «bathroom», «living room»."
+        ],
+        "examples": [
+          {
+            "en": "There are two bathrooms in our house.",
+            "es": "Hay dos baños en nuestra casa."
+          },
+          {
+            "en": "There's a big yard behind our house.",
+            "es": "Hay un patio grande detrás de nuestra casa."
+          }
+        ],
+        "mistake": {
+          "wrong": "There is two bathrooms in our house.",
+          "right": "There are two bathrooms in our house.",
+          "note": "Con un plural se usa «there are», no «there is»."
+        }
+      }
     },
     {
       "id": "a2.home.lesson-002",
@@ -385,7 +407,29 @@
         "a2.home.door",
         "a2.home.house"
       ],
-      "deepenCardIds": ["a2.vocabulary.make-do", "a2.grammar.have-to"]
+      "deepenCardIds": ["a2.vocabulary.make-do", "a2.grammar.have-to"],
+      "intro": {
+        "points": [
+          "«Have to» es tener que: «We have to clean the kitchen». Con «he» o «she»: «has to».",
+          "«Don't have to» significa que no hace falta; no es una prohibición.",
+          "Muchas tareas van con «do»: «do the dishes», «do the laundry»; pero «make the bed»."
+        ],
+        "examples": [
+          {
+            "en": "We have to clean the kitchen today.",
+            "es": "Hoy tenemos que limpiar la cocina."
+          },
+          {
+            "en": "I usually do the dishes.",
+            "es": "Normalmente lavo los platos."
+          }
+        ],
+        "mistake": {
+          "wrong": "I usually make the dishes.",
+          "right": "I usually do the dishes.",
+          "note": "Lavar los platos es «do the dishes», no «make the dishes»."
+        }
+      }
     }
   ]
 }

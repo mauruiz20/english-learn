@@ -333,7 +333,29 @@
         "a1.to-be-and-questions.happy",
         "a1.to-be-and-questions.friend"
       ],
-      "deepenCardIds": ["a1.grammar.to-be"]
+      "deepenCardIds": ["a1.grammar.to-be"],
+      "intro": {
+        "points": [
+          "«To be» es ser y estar a la vez: «I am», «you are», «he / she / it is», «we / they are».",
+          "En inglés el sujeto siempre aparece: «She is my teacher», nunca solo «is my teacher».",
+          "Al hablar se contrae: «I'm», «you're», «she's», «we're», «they're»."
+        ],
+        "examples": [
+          {
+            "en": "I am a student.",
+            "es": "Soy estudiante."
+          },
+          {
+            "en": "We are very happy today.",
+            "es": "Hoy estamos muy contentos."
+          }
+        ],
+        "mistake": {
+          "wrong": "I am student.",
+          "right": "I am a student.",
+          "note": "Con profesiones y roles va «a»: «soy estudiante» es «I am a student»."
+        }
+      }
     },
     {
       "id": "a1.to-be-and-questions.lesson-002",
@@ -355,7 +377,29 @@
         "a1.to-be-and-questions.yes-no-questions",
         "a1.to-be-and-questions.where-are-you-from",
         "a1.to-be-and-questions.im-from"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "Para negar, agrega «not» después de «to be»: «I'm not», «she isn't», «they aren't».",
+          "Para preguntar, invierte el orden: «You are…» pasa a «Are you…?» y «She is…», a «Is she…?».",
+          "Para hablar del origen: «Where are you from?», «I'm from Peru.»"
+        ],
+        "examples": [
+          {
+            "en": "Where are you from?",
+            "es": "¿De dónde eres?"
+          },
+          {
+            "en": "I'm not from Mexico. I'm from Peru.",
+            "es": "No soy de México. Soy de Perú."
+          }
+        ],
+        "mistake": {
+          "wrong": "You are a student?",
+          "right": "Are you a student?",
+          "note": "En la pregunta, «are» va antes del sujeto; la entonación sola no basta."
+        }
+      }
     }
   ]
 }

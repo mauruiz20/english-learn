@@ -329,7 +329,29 @@
         "a1.days-and-time.tomorrow",
         "a1.days-and-time.sunday",
         "a1.days-and-time.saturday"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "Los días se escriben con mayúscula: «Monday», «Friday», «Sunday».",
+          "Con los días se usa «on»: «on Saturday», «on Sunday».",
+          "«Today» es hoy y «tomorrow», mañana (el día siguiente)."
+        ],
+        "examples": [
+          {
+            "en": "My party is on Saturday.",
+            "es": "Mi fiesta es el sábado."
+          },
+          {
+            "en": "We don't work on Sunday.",
+            "es": "No trabajamos el domingo."
+          }
+        ],
+        "mistake": {
+          "wrong": "My party is in Saturday.",
+          "right": "My party is on Saturday.",
+          "note": "Con los días de la semana se usa «on», no «in»."
+        }
+      }
     },
     {
       "id": "a1.days-and-time.lesson-002",
@@ -349,7 +371,29 @@
         "a1.days-and-time.oclock",
         "a1.days-and-time.what-time-is-it",
         "a1.days-and-time.in-the-morning"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "Para preguntar la hora: «What time is it?». La respuesta empieza con «It's»: «It's six o'clock».",
+          "«O'clock» es en punto y solo va con horas exactas: «It's three o'clock».",
+          "Para decir cuándo pasa algo: «at nine», «in the morning», «in the evening»."
+        ],
+        "examples": [
+          {
+            "en": "What time is it?",
+            "es": "¿Qué hora es?"
+          },
+          {
+            "en": "My class is at nine o'clock in the morning.",
+            "es": "Mi clase es a las nueve de la mañana."
+          }
+        ],
+        "mistake": {
+          "wrong": "Are three o'clock.",
+          "right": "It's three o'clock.",
+          "note": "La hora siempre empieza con «it's»: «son las tres» es «it's three o'clock»."
+        }
+      }
     }
   ]
 }
