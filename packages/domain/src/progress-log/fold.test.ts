@@ -29,6 +29,7 @@ describe("foldEvents", () => {
       completedLessonIds: [],
       lessonResults: [],
       itemHistory: [],
+      dailyExercises: [],
       anomalies: [],
     });
   });
@@ -63,6 +64,65 @@ describe("foldEvents", () => {
       expect(result.states).toEqual([applyReview(undefined, "a", 5, d1)]);
       expect(result.anomalies).toEqual([
         { kind: "duplicate_item_review", eventId: "e2", detail: "s1/a" },
+      ]);
+    });
+  });
+
+  describe("daily exercises (session_completed `exercises`)", () => {
+    it("sums the exercises answered per local date, sorted by date", () => {
+      const result = foldEvents([
+        reviewCompleted({ id: "e3", localDate: d2 }, "s3", 10, 1, 7),
+        lessonCompleted({ id: "e1", localDate: d1 }, "s1", "L1", 50, 0.9, 6),
+        lessonCompleted({ id: "e2", localDate: d1, occurredAt: 5 }, "s2", "L2", 30, 0.5, 8),
+      ]);
+      expect(result.dailyExercises).toEqual([
+        { localDate: d1, exercises: 14 },
+        { localDate: d2, exercises: 7 },
+      ]);
+    });
+
+    it("counts a session that spans midnight on the date its events carry (the save's)", () => {
+      // Started at 23:50 on d1, saved at 00:10 on d2: every event of the save carries d2.
+      const savedAt = Date.parse("2026-10-28T00:10:00");
+      const result = foldEvents([
+        itemReviewed({ id: "e1", localDate: d2, occurredAt: savedAt }, "s1", "a", 5),
+        lessonCompleted({ id: "e2", localDate: d2, occurredAt: savedAt }, "s1", "L1", 20, 1, 4),
+      ]);
+      expect(result.dailyExercises).toEqual([{ localDate: d2, exercises: 4 }]);
+    });
+
+    it("counts a repeated session once and skips sessions without the count (older apps)", () => {
+      const result = foldEvents([
+        reviewCompleted({ id: "e1", localDate: d1 }, "s1", 10, 1, 5),
+        reviewCompleted({ id: "e2", localDate: d1, occurredAt: 3 }, "s1", 10, 1, 5),
+        reviewCompleted({ id: "e3", localDate: d2 }, "s2", 10, 1),
+        reviewCompleted({ id: "e4", localDate: d3 }, "s3", 10, 1, 0),
+      ]);
+      expect(result.dailyExercises).toEqual([{ localDate: d1, exercises: 5 }]);
+      expect(result.activeDates).toEqual([d1, d2, d3]);
+    });
+
+    it("refuses a count that is not a non-negative integer", () => {
+      const result = foldEvents([
+        reviewCompleted({ id: "x1", localDate: d1 }, "s1", 10, 1, -1),
+        reviewCompleted({ id: "x2", localDate: d1 }, "s2", 10, 1, 2.5),
+        {
+          ...reviewCompleted({ id: "x3", localDate: d1 }, "s3", 10, 1),
+          payload: {
+            v: 1,
+            sessionId: "s3",
+            kind: "review",
+            answerXp: 1,
+            accuracy: 1,
+            exercises: "4",
+          },
+        },
+      ]);
+      expect(result.dailyExercises).toEqual([]);
+      expect(result.anomalies.map((a) => [a.kind, a.eventId])).toEqual([
+        ["invalid_event", "x1"],
+        ["invalid_event", "x2"],
+        ["invalid_event", "x3"],
       ]);
     });
   });

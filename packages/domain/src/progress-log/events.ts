@@ -50,6 +50,11 @@ export type SessionCompletedEvent = EventEnvelope<
     readonly answerXp: number;
     /** Share of fully correct answers, 0..1. */
     readonly accuracy: number;
+    /**
+     * Exercises answered in the session (the daily goal counts them per `localDate`). Absent in
+     * events written before the daily goal existed: they count no exercises.
+     */
+    readonly exercises?: number;
   }
 >;
 

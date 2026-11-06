@@ -1,6 +1,6 @@
 import type { Level } from "../cefr";
 import type { ProgressEvent, StoredEvent } from "../progress-log/events";
-import type { ItemHistory, LessonResult } from "../progress-log/fold";
+import type { DailyExercises, ItemHistory, LessonResult } from "../progress-log/fold";
 import type { ReviewState } from "../srs";
 import type { Streak } from "../streak";
 
@@ -37,6 +37,11 @@ export interface ProgressRepository {
   getLessonResults(): Promise<readonly LessonResult[]>;
   /** The cached answer history of every reviewed item (sorted by itemId). */
   getItemHistories(): Promise<readonly ItemHistory[]>;
+  /**
+   * The cached exercises answered per local date (the fold's `dailyExercises`, sorted by date;
+   * one row per active day). `exercisesOn` reads one day from it.
+   */
+  getDailyExercises(): Promise<readonly DailyExercises[]>;
 
   /** Stable id of this install; every event it writes carries it as `deviceId`. */
   getDeviceId(): Promise<string>;

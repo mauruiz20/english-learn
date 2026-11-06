@@ -76,6 +76,11 @@ describe("fold rules golden (stored snapshots depend on them)", () => {
       ]),
     );
     expect(snapshot.lessonResults.length).toBeGreaterThan(1);
+    // Daily exercises: summed per date, a repeated session counted once, an older app's none.
+    expect(snapshot.dailyExercises).toEqual([
+      { localDate: "2026-01-05", exercises: 8 },
+      { localDate: "2026-01-09", exercises: 8 },
+    ]);
     expect(snapshot.states.length).toBeGreaterThan(3);
     // Item history: a dated lapse, and an answer whose state did not move (not due yet).
     expect(snapshot.itemHistory.some((h) => h.lastLapse !== null)).toBe(true);

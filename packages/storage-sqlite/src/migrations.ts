@@ -103,6 +103,14 @@ const MIGRATIONS: readonly string[] = [
     recent_grades TEXT NOT NULL
   );
   `,
+  // 8 → 9: cache of the exercises answered per local date (the fold's `dailyExercises`) for the
+  // daily goal. It starts empty: the refold after an upgrade fills it.
+  `
+  CREATE TABLE daily_exercises (
+    local_date TEXT PRIMARY KEY NOT NULL,
+    exercises INTEGER NOT NULL
+  );
+  `,
 ];
 
 /** The schema version `migrate` brings a database to (stored in `PRAGMA user_version`). */

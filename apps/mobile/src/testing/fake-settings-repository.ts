@@ -1,5 +1,6 @@
 import type {
   AccountMarker,
+  DailyGoal,
   Level,
   LocalDate,
   SettingsRepository,
@@ -20,6 +21,8 @@ export function createFakeSettingsRepository(
     migratedTo?: string | null;
     pathLevel?: Level | null;
     lastHomeVisit?: LocalDate | null;
+    dailyGoal?: DailyGoal;
+    dailyGoalPromptDismissed?: boolean;
   } = {},
 ): SettingsRepository & {
   readonly soundEnabled: () => boolean;
@@ -32,6 +35,8 @@ export function createFakeSettingsRepository(
   readonly migratedTo: () => string | null;
   readonly pathLevel: () => Level | null;
   readonly lastHomeVisit: () => LocalDate | null;
+  readonly dailyGoal: () => DailyGoal;
+  readonly dailyGoalPromptDismissed: () => boolean;
 } {
   let soundEnabled = initial.soundEnabled ?? true;
   let pronunciationEnabled = initial.pronunciationEnabled ?? true;
@@ -43,7 +48,19 @@ export function createFakeSettingsRepository(
   let migratedTo = initial.migratedTo ?? null;
   let pathLevel = initial.pathLevel ?? null;
   let lastHomeVisit = initial.lastHomeVisit ?? null;
+  let dailyGoal = initial.dailyGoal ?? "normal";
+  let dailyGoalPromptDismissed = initial.dailyGoalPromptDismissed ?? false;
   return {
+    dailyGoal: () => dailyGoal,
+    getDailyGoal: async () => dailyGoal,
+    setDailyGoal: async (goal) => {
+      dailyGoal = goal;
+    },
+    dailyGoalPromptDismissed: () => dailyGoalPromptDismissed,
+    getDailyGoalPromptDismissed: async () => dailyGoalPromptDismissed,
+    setDailyGoalPromptDismissed: async () => {
+      dailyGoalPromptDismissed = true;
+    },
     pathLevel: () => pathLevel,
     getPathLevel: async () => pathLevel,
     setPathLevel: async (level) => {

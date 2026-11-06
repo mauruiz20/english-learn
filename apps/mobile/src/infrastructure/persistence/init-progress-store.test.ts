@@ -171,7 +171,7 @@ describe("initProgressStore (upgrade to the event log)", () => {
     // As an app version before the lesson result cache left it: schema 3, no lesson_result (nor
     // the later fold_snapshot and item_history).
     await db.execAsync(
-      "DROP TABLE lesson_result; DROP TABLE fold_snapshot; DROP TABLE item_history; PRAGMA user_version = 3;",
+      "DROP TABLE lesson_result; DROP TABLE fold_snapshot; DROP TABLE item_history; DROP TABLE daily_exercises; PRAGMA user_version = 3;",
     );
 
     const upgraded = await initProgressStore(db, options);
@@ -193,7 +193,9 @@ describe("initProgressStore (upgrade to the event log)", () => {
       kind: "lesson",
     });
     // As the previous app version left it: schema 7, no item_history.
-    await db.execAsync("DROP TABLE item_history; PRAGMA user_version = 7;");
+    await db.execAsync(
+      "DROP TABLE item_history; DROP TABLE daily_exercises; PRAGMA user_version = 7;",
+    );
 
     const upgraded = await initProgressStore(db, options);
 

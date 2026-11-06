@@ -71,11 +71,23 @@ function equipped(day: LocalDate, slot: string, itemId: string | null): StoredEv
   return { ...envelope(day), type: "item_equipped", payload: { v: 1, slot, itemId } };
 }
 
-function reviewDone(day: LocalDate, sessionId: string, answerXp: number): ProgressEvent {
+function reviewDone(
+  day: LocalDate,
+  sessionId: string,
+  answerXp: number,
+  exercises?: number,
+): ProgressEvent {
   return {
     ...envelope(day),
     type: "session_completed",
-    payload: { v: 1, sessionId, kind: "review", answerXp, accuracy: 1 },
+    payload: {
+      v: 1,
+      sessionId,
+      kind: "review",
+      answerXp,
+      accuracy: 1,
+      ...(exercises === undefined ? {} : { exercises }),
+    },
   };
 }
 
@@ -125,6 +137,7 @@ async function cacheOf(repo: SqliteProgressRepository) {
     placement: await repo.getPlacementResult(),
     lessonResults: await repo.getLessonResults(),
     itemHistory: await repo.getItemHistories(),
+    dailyExercises: await repo.getDailyExercises(),
   };
 }
 
@@ -148,8 +161,9 @@ async function storedEvents(db: Db): Promise<StoredEvent[]> {
 }
 
 function foldedCache(events: readonly StoredEvent[]) {
-  const { states, xp, streak, placement, lessonResults, itemHistory } = foldEvents(events);
-  return { states, xp, streak, placement, lessonResults, itemHistory };
+  const { states, xp, streak, placement, lessonResults, itemHistory, dailyExercises } =
+    foldEvents(events);
+  return { states, xp, streak, placement, lessonResults, itemHistory, dailyExercises };
 }
 
 /** Creates the version 2 schema (before the event log) the way older app versions left it. */
@@ -196,6 +210,7 @@ describe("createSqliteProgressRepository", () => {
       placement: null,
       lessonResults: [],
       itemHistory: [],
+      dailyExercises: [],
     });
   });
 
@@ -387,6 +402,40 @@ describe("createSqliteProgressRepository", () => {
     });
   });
 
+  describe("daily exercises", () => {
+    it("caches the exercises answered per day and refreshes only the days that changed", async () => {
+      await repo.appendEvents([reviewDone(DAY, "s1", 10, 6)]);
+      expect(await repo.getDailyExercises()).toEqual([{ localDate: DAY, exercises: 6 }]);
+
+      await repo.appendEvents([reviewDone(DAY, "s2", 10, 4), reviewDone(NEXT_DAY, "s3", 10, 9)]);
+      expect(await repo.getDailyExercises()).toEqual([
+        { localDate: DAY, exercises: 10 },
+        { localDate: NEXT_DAY, exercises: 9 },
+      ]);
+    });
+
+    it("refuses a session whose exercise count is malformed", async () => {
+      await expect(repo.appendEvents([reviewDone(DAY, "s1", 10, -1)])).rejects.toThrow();
+      expect(await repo.getDailyExercises()).toEqual([]);
+    });
+
+    it("fills the cache of a log written before daily exercises were cached", async () => {
+      await repo.appendEvents([reviewDone(DAY, "s1", 10, 6)]);
+      await db.runAsync("DELETE FROM daily_exercises", []);
+      expect(await repo.getDailyExercises()).toEqual([]);
+
+      await repo.rebuildFromEvents();
+
+      expect(await repo.getDailyExercises()).toEqual([{ localDate: DAY, exercises: 6 }]);
+    });
+
+    it("clears them with the rest of the progress", async () => {
+      await repo.appendEvents([reviewDone(DAY, "s1", 10, 6)]);
+      await repo.clearProgress();
+      expect(await repo.getDailyExercises()).toEqual([]);
+    });
+  });
+
   describe("rebuildFromEvents", () => {
     it("recomputes a wiped or stale cache from the event log", async () => {
       const events = [
@@ -453,7 +502,12 @@ describe("createSqliteProgressRepository", () => {
       repo = await upgradedRepo();
       const before = await cacheOf(repo);
       const progress = { states, xp: 345, streak, placement: { level: "B1", theta: 0.3 } };
-      expect(before).toEqual({ ...progress, lessonResults: [], itemHistory: [] });
+      expect(before).toEqual({
+        ...progress,
+        lessonResults: [],
+        itemHistory: [],
+        dailyExercises: [],
+      });
       const seen: unknown[] = [];
 
       const written = await repo.ensureBaseline((cache) => {

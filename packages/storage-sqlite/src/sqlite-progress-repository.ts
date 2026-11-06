@@ -11,6 +11,7 @@ import {
   snapshotProgress,
   type AppendedEvents,
   type BaselineImportedEvent,
+  type DailyExercises,
   type FoldSnapshot,
   type Grade,
   type ItemHistory,
@@ -41,6 +42,7 @@ type StreakRow = { current: number; longest: number; last_active_date: string | 
 type PlacementRow = { level: string; theta: number };
 
 type LessonResultRow = { lesson_id: string; best_accuracy: number; completions: number };
+type DailyExercisesRow = { local_date: string; exercises: number };
 
 type ItemHistoryRow = {
   item_id: string;
@@ -272,8 +274,8 @@ function isStorable(event: StoredEvent): boolean {
 
 /**
  * `ProgressRepository` (plus the sync store) backed by SQLite: an append-only `event` table is
- * the source of truth, and `review_state`, `xp`, `streak`, `placement_result`, `lesson_result`
- * and `item_history` cache its fold.
+ * the source of truth, and `review_state`, `xp`, `streak`, `placement_result`, `lesson_result`,
+ * `item_history` and `daily_exercises` cache its fold.
  * Every write applies only its new events to a stored fold snapshot (`advanceFold`), refolding the
  * whole log only when they do not go after it, in the same transaction, and writes only what
  * changed.
@@ -353,6 +355,44 @@ export function createSqliteProgressRepository(
       lastLapse: row.last_lapse === null ? null : localDate(row.last_lapse),
       recentGrades: parseGrades(row.recent_grades),
     }));
+  }
+
+  async function readDailyExercises(): Promise<DailyExercises[]> {
+    const rows = await db.getAllAsync<DailyExercisesRow>(
+      "SELECT local_date, exercises FROM daily_exercises ORDER BY local_date",
+      [],
+    );
+    return rows.map((row) => ({ localDate: localDate(row.local_date), exercises: row.exercises }));
+  }
+
+  /**
+   * Makes `daily_exercises` equal to `daily`, given what it holds now (`cached`): a session
+   * changes one day, so a write touches one row.
+   */
+  async function writeDailyExercises(
+    daily: readonly DailyExercises[],
+    cached: readonly DailyExercises[],
+  ): Promise<void> {
+    const stale = new Map<string, number>(cached.map((d) => [d.localDate, d.exercises]));
+    const changed = daily.filter((d) => {
+      const current = stale.get(d.localDate);
+      stale.delete(d.localDate);
+      return current !== d.exercises;
+    });
+    for (const chunk of chunks([...stale.keys()], MAX_IDS_PER_QUERY)) {
+      await db.runAsync(
+        `DELETE FROM daily_exercises WHERE local_date IN (${chunk.map(() => "?").join(", ")})`,
+        chunk,
+      );
+    }
+    for (const chunk of chunks(changed, RESULTS_PER_INSERT)) {
+      await db.runAsync(
+        `INSERT INTO daily_exercises (local_date, exercises)
+         VALUES ${chunk.map(() => "(?, ?)").join(", ")}
+         ON CONFLICT (local_date) DO UPDATE SET exercises = excluded.exercises`,
+        chunk.flatMap((d) => [d.localDate, d.exercises]),
+      );
+    }
   }
 
   /** Makes `item_history` equal to `histories`, given what it holds now (`cached`). */
@@ -550,6 +590,10 @@ export function createSqliteProgressRepository(
       progress.itemHistory,
       cachedProgress?.itemHistory ?? (await readItemHistories()),
     );
+    await writeDailyExercises(
+      progress.dailyExercises,
+      cachedProgress?.dailyExercises ?? (await readDailyExercises()),
+    );
     if (progress.placement === null) {
       await db.runAsync("DELETE FROM placement_result", []);
     } else {
@@ -637,6 +681,7 @@ export function createSqliteProgressRepository(
     getPlacementResult: readPlacement,
     getLessonResults: readLessonResults,
     getItemHistories: readItemHistories,
+    getDailyExercises: readDailyExercises,
 
     async getDeviceId() {
       const id = await readSyncState(DEVICE_ID);
