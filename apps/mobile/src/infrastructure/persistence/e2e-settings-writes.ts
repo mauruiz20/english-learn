@@ -35,6 +35,8 @@ export function exposeSettingsWrites(repository: SettingsRepository): SettingsRe
     setPronunciationEnabled: (enabled) => track(repository.setPronunciationEnabled(enabled)),
     getSpeechRate: () => repository.getSpeechRate(),
     setSpeechRate: (rate) => track(repository.setSpeechRate(rate)),
+    getSpeechVoice: () => repository.getSpeechVoice(),
+    setSpeechVoice: (voiceId) => track(repository.setSpeechVoice(voiceId)),
     getLookupHintDismissed: () => repository.getLookupHintDismissed(),
     setLookupHintDismissed: () => track(repository.setLookupHintDismissed()),
     getAccount: () => repository.getAccount(),

@@ -1,5 +1,4 @@
-import type { SpeechRate } from "@english-learn/domain";
-import { useId, useRef } from "react";
+import { useId } from "react";
 import { StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { PressableScale } from "@/shared/ui/pressable-scale";
@@ -15,27 +14,18 @@ type SpeakButtonProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-const other = (rate: SpeechRate): SpeechRate => (rate === "normal" ? "slow" : "normal");
-
-/** What the next tap does, for the hint. */
-function hintFor(rate: SpeechRate): string {
-  return rate === "normal"
-    ? "Toca otra vez para escucharlo más lento"
-    : "Toca otra vez para escucharlo a velocidad normal";
-}
-
 /**
- * A small speaker next to English text: a tap says it with the device's English voice at the
- * learner's speed, the next tap on the same speaker says it at the other speed (slow, after a
- * normal one), and so on. While it speaks, the speaker is filled with ink (no animation, so
- * reduced motion needs nothing). Hidden when pronunciation is off, the device has no English
- * voice, or there is nothing to say. 44 pt, labelled "Escuchar: <text>". No press click: the
- * speech is the feedback.
+ * A small speaker next to English text: every tap says it with the device's English voice at the
+ * learner's speed ("Velocidad de la voz"). No hidden speed toggle: a second tap that played at
+ * the other speed made "Lenta" sound faster on the next tap; the listening exercises have an
+ * explicit "Más lento" button instead. While it speaks, the speaker is filled with ink (no
+ * animation, so reduced motion needs nothing). Hidden when pronunciation is off, the device has
+ * no English voice, or there is nothing to say. 44 pt, labelled "Escuchar: <text>". No press
+ * click: the speech is the feedback.
  */
 export function SpeakButton({ text, label, style }: SpeakButtonProps) {
-  const { available, speak, speakingKey, rate } = usePronunciation();
+  const { available, speak, speakingKey } = usePronunciation();
   const key = useId();
-  const presses = useRef(0);
   const styles = useStyles();
   const { colors } = useTheme();
   const trimmed = text.trim();
@@ -45,17 +35,11 @@ export function SpeakButton({ text, label, style }: SpeakButtonProps) {
     <PressableScale
       accessibilityRole="button"
       accessibilityLabel={label ?? `Escuchar: ${trimmed}`}
-      accessibilityHint={hintFor(rate)}
       accessibilityState={{ busy: speaking }}
       pressSound={false}
       hitSlop={4}
-      onPress={() => {
-        // Every other tap on this speaker plays at the other speed.
-        const at = presses.current % 2 === 0 ? rate : other(rate);
-        // Called inside the tap: iOS speaks only from a user gesture.
-        speak(trimmed, key, at);
-        presses.current += 1;
-      }}
+      // Called inside the tap: iOS speaks only from a user gesture.
+      onPress={() => speak(trimmed, key)}
       wrapperStyle={[styles.wrapper, style]}
       style={({ pressed }) => [
         styles.button,

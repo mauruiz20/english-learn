@@ -17,6 +17,7 @@ const ENGLISH_AND_SPANISH: StubVoice[] = [
   { name: "Test Español", lang: "es-ES" },
   { name: "Test English (network)", lang: "en-US", localService: false },
   { name: "Test English", lang: "en-US" },
+  { name: "Test English UK", lang: "en-GB" },
 ];
 
 /**

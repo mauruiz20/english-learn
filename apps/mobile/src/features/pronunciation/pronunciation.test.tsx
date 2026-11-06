@@ -4,7 +4,7 @@ import { Text } from "react-native";
 import { AppServicesProvider, type AppServices } from "@/infrastructure/services/app-services";
 import { createFakeSettingsRepository } from "@/testing/fake-settings-repository";
 import { createFakeSoundPlayer } from "@/testing/fake-sound-player";
-import { createFakeSpeech, type FakeSpeech } from "@/testing/fake-speech";
+import { FAKE_VOICES, createFakeSpeech, type FakeSpeech } from "@/testing/fake-speech";
 import { PronunciationProvider, usePronunciation } from "./pronunciation";
 import { PronunciationSettingsButton } from "./pronunciation-settings";
 import { SpeakButton } from "./speak-button";
@@ -32,6 +32,9 @@ async function renderWith(
   return { speech: speech ?? undefined, settings };
 }
 
+const SAMANTHA = FAKE_VOICES[0]!.id;
+const DANIEL = FAKE_VOICES[1]!.id;
+
 function Probe() {
   const p = usePronunciation();
   return <Text testID="probe">{`${p.available}|${p.enabled}|${p.rate}`}</Text>;
@@ -53,6 +56,16 @@ describe("PronunciationProvider", () => {
       settings: createFakeSettingsRepository({ pronunciationEnabled: false, speechRate: "slow" }),
     });
     await waitFor(() => expect(screen.getByTestId("probe")).toHaveTextContent("false|false|slow"));
+  });
+
+  it("gives the stored voice to the speech service", async () => {
+    const speech = createFakeSpeech();
+    await renderWith(<Probe />, {
+      speech,
+      settings: createFakeSettingsRepository({ speechVoice: DANIEL }),
+    });
+    await waitFor(() => expect(speech.preferredVoice()).toBe(DANIEL));
+    expect(speech.getSnapshot().voiceId).toBe(DANIEL);
   });
 
   it("is ready once the stored switch is known (sessions plan listening after that)", async () => {
@@ -95,28 +108,24 @@ describe("SpeakButton", () => {
     ]);
   });
 
-  it("plays slowly on a second tap, then normal again", async () => {
+  it("plays every tap at the learner's speed (no hidden speed toggle)", async () => {
     const { speech } = await renderWith(<SpeakButton text="Hello." />);
     const button = await screen.findByRole("button", { name: "Escuchar: Hello." });
+    expect(button.props.accessibilityHint).toBeUndefined();
     await fireEvent.press(button);
     await fireEvent.press(button);
     await fireEvent.press(button);
-    expect(speech?.spoken.map((s) => s.rate)).toEqual([1, 0.7, 1]);
+    expect(speech?.spoken.map((s) => s.rate)).toEqual([1, 1, 1]);
   });
 
-  it("starts slow when the learner picked slow, and the second tap is normal", async () => {
+  it("plays every tap slowly when the learner picked Lenta, never faster", async () => {
     const { speech } = await renderWith(<SpeakButton text="Hello." />, {
       settings: createFakeSettingsRepository({ speechRate: "slow" }),
     });
     const button = await screen.findByRole("button", { name: "Escuchar: Hello." });
-    await waitFor(() =>
-      expect(button.props.accessibilityHint).toBe(
-        "Toca otra vez para escucharlo a velocidad normal",
-      ),
-    );
     await fireEvent.press(button);
     await fireEvent.press(button);
-    expect(speech?.spoken.map((s) => s.rate)).toEqual([0.7, 1]);
+    expect(speech?.spoken.map((s) => s.rate)).toEqual([0.7, 0.7]);
   });
 
   it("shows that it is speaking until the speech ends", async () => {
@@ -209,6 +218,53 @@ describe("PronunciationSettingsButton", () => {
 
     await fireEvent.press(screen.getByRole("button", { name: "Escuchar: Hello." }));
     expect(speech?.spoken.at(-1)?.rate).toBe(0.7);
+  });
+
+  it("lists the English voices under Voz, Automática first and checked by default", async () => {
+    await renderWith(<PronunciationSettingsButton />);
+    await fireEvent.press(await screen.findByRole("button", { name: "Pronunciación" }));
+    expect(screen.getByLabelText("Voz")).toBeOnTheScreen();
+    const radios = screen
+      .getAllByRole("radio")
+      .map((r) => r.props.accessibilityLabel as string)
+      .filter((label) => label !== "Normal" && label !== "Lenta");
+    expect(radios).toEqual(["Automática (Samantha)", "Samantha, EE. UU.", "Daniel, Reino Unido"]);
+    expect(screen.getByRole("radio", { name: "Automática (Samantha)" })).toBeChecked();
+  });
+
+  it("picks a voice, saves it on the device and speaks with it; Automática goes back", async () => {
+    const { settings, speech } = await renderWith(
+      <>
+        <PronunciationSettingsButton />
+        <SpeakButton text="Hello." />
+      </>,
+    );
+    await fireEvent.press(await screen.findByRole("button", { name: "Pronunciación" }));
+    await fireEvent.press(screen.getByRole("radio", { name: "Daniel, Reino Unido" }));
+    expect(screen.getByRole("radio", { name: "Daniel, Reino Unido" })).toBeChecked();
+    await waitFor(() => expect(settings.speechVoice()).toBe(DANIEL));
+    expect(speech?.preferredVoice()).toBe(DANIEL);
+    await fireEvent.press(screen.getByRole("button", { name: "Listo" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Escuchar: Hello." }));
+    expect(speech?.spoken.at(-1)?.voice).toBe(DANIEL);
+
+    await fireEvent.press(screen.getByRole("button", { name: "Pronunciación" }));
+    await fireEvent.press(screen.getByRole("radio", { name: "Automática (Samantha)" }));
+    await waitFor(() => expect(settings.speechVoice()).toBeNull());
+    expect(speech?.preferredVoice()).toBeNull();
+  });
+
+  it("tries a voice with Probar at the learner's speed, without picking it", async () => {
+    const { settings, speech } = await renderWith(<PronunciationSettingsButton />, {
+      settings: createFakeSettingsRepository({ speechRate: "slow" }),
+    });
+    await fireEvent.press(await screen.findByRole("button", { name: "Pronunciación" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Probar la voz Daniel" }));
+    expect(speech?.spoken.at(-1)).toMatchObject({ voice: DANIEL, rate: 0.7 });
+    expect(speech?.spoken.at(-1)?.text).toMatch(/[A-Za-z]/u);
+    expect(settings.speechVoice()).toBeNull();
+    expect(screen.getByRole("radio", { name: "Automática (Samantha)" })).toBeChecked();
+    expect(speech?.getSnapshot().voiceId).toBe(SAMANTHA);
   });
 
   it("is not shown when the device cannot speak English", async () => {
