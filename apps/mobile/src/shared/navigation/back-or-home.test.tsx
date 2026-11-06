@@ -46,7 +46,6 @@ describe("headerBack (web header)", () => {
     "privacidad",
     "about",
     "album",
-    "armario",
     "fichas/index",
     "fichas/[id]/index",
     "practica/index",

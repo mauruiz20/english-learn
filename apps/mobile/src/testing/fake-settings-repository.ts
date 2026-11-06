@@ -2,7 +2,6 @@ import type {
   AccountMarker,
   Level,
   LocalDate,
-  PlumasWelcome,
   SettingsRepository,
   ThemePreference,
 } from "@english-learn/domain";
@@ -16,7 +15,6 @@ export function createFakeSettingsRepository(
     saveProgressSuggestionDismissed?: boolean;
     themePreference?: ThemePreference;
     migratedTo?: string | null;
-    plumasWelcome?: PlumasWelcome | null;
     pathLevel?: Level | null;
     lastHomeVisit?: LocalDate | null;
   } = {},
@@ -27,7 +25,6 @@ export function createFakeSettingsRepository(
   readonly saveProgressSuggestionDismissed: () => boolean;
   readonly themePreference: () => ThemePreference;
   readonly migratedTo: () => string | null;
-  readonly plumasWelcome: () => PlumasWelcome | null;
   readonly pathLevel: () => Level | null;
   readonly lastHomeVisit: () => LocalDate | null;
 } {
@@ -37,7 +34,6 @@ export function createFakeSettingsRepository(
   let saveProgressSuggestionDismissed = initial.saveProgressSuggestionDismissed ?? false;
   let themePreference = initial.themePreference ?? "system";
   let migratedTo = initial.migratedTo ?? null;
-  let plumasWelcome = initial.plumasWelcome ?? null;
   let pathLevel = initial.pathLevel ?? null;
   let lastHomeVisit = initial.lastHomeVisit ?? null;
   return {
@@ -53,14 +49,6 @@ export function createFakeSettingsRepository(
     getLastHomeVisit: async () => lastHomeVisit,
     setLastHomeVisit: async (date) => {
       lastHomeVisit = date;
-    },
-    plumasWelcome: () => plumasWelcome,
-    getPlumasWelcome: async () => plumasWelcome,
-    setPlumasWelcome: async (note) => {
-      plumasWelcome = note;
-    },
-    clearPlumasWelcome: async () => {
-      plumasWelcome = null;
     },
     migratedTo: () => migratedTo,
     themePreference: () => themePreference,

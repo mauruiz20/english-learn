@@ -39,7 +39,6 @@ function setup() {
   };
   const store = { resetSyncState: jest.fn(async () => {}), clearProgress: jest.fn(async () => {}) };
   const settings = {
-    clearPlumasWelcome: jest.fn(async () => {}),
     clearPathLevel: jest.fn(async () => {}),
   };
   const deleteAccount = jest.fn(async () => {});
@@ -168,19 +167,16 @@ describe("createAccountController", () => {
     await controller.signOut({ keepLocalProgress: false });
 
     expect(store.clearProgress).toHaveBeenCalled();
-    // The next learner on this device decides the plumas note afresh.
-    expect(settings.clearPlumasWelcome).toHaveBeenCalled();
-    // And the path follows the automatic level again.
+    // The path follows the automatic level again.
     expect(settings.clearPathLevel).toHaveBeenCalled();
     expect(onProgressChanged).toHaveBeenCalled();
   });
 
-  it("keeps the plumas note decision when the local progress stays", async () => {
+  it("keeps the path level when the local progress stays", async () => {
     const { controller, settings } = setup();
 
     await controller.signOut({ keepLocalProgress: true });
 
-    expect(settings.clearPlumasWelcome).not.toHaveBeenCalled();
     expect(settings.clearPathLevel).not.toHaveBeenCalled();
   });
 
@@ -295,7 +291,7 @@ describe("signing out while a sync is in flight", () => {
       session,
       coordinator,
       store,
-      settings: { clearPlumasWelcome: async () => {}, clearPathLevel: async () => {} },
+      settings: { clearPathLevel: async () => {} },
       deleteAccount: async () => {},
       pending: createPendingSignInStore(memoryStorage(), () => 1_000),
       randomBytes: createTestRandomBytes(),

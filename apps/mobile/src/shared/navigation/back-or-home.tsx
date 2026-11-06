@@ -10,7 +10,6 @@ export const HOME_FALLBACK_ROUTES: ReadonlySet<string> = new Set([
   "privacidad",
   "about",
   "album",
-  "armario",
   "fichas/index",
   "fichas/[id]/index",
   "practica/index",

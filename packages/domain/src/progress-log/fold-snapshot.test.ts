@@ -151,7 +151,7 @@ describe("incremental fold (advanceFold)", () => {
     expect(totals.refolds).toBeGreaterThan(0);
   });
 
-  it("keeps plumas exact: dense study histories, saved in order and synced late", () => {
+  it("stays exact for dense study histories, saved in order and synced late", () => {
     fc.assert(
       fc.property(
         studyHistoryArb("A"),
@@ -159,8 +159,8 @@ describe("incremental fold (advanceFold)", () => {
         fc.array(fc.nat(200), { maxLength: 12 }),
         fc.array(fc.nat(60), { maxLength: 4 }),
         (a, b, cutsA, cutsB) => {
-          // Device A saves session by session (the incremental path: same day, day after day,
-          // the daily cap and study weeks), then device B's history arrives by sync.
+          // Device A saves session by session (the incremental path: same day, day after day),
+          // then device B's history arrives by sync.
           replay([...split(a, cutsA), ...split(b, cutsB)]);
         },
       ),

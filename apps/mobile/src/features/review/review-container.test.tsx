@@ -1,4 +1,4 @@
-import { createCorpus, type Exercise, type Item } from "@english-learn/content";
+import { createCorpus, type Corpus, type Exercise, type Item } from "@english-learn/content";
 import { addDays, initialState, localDate, review, type ReviewState } from "@english-learn/domain";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react-native";
 import { card, cloze, vocab, wordOrder } from "@/features/lesson/model/fixtures";
@@ -11,6 +11,9 @@ import { createFakeSettingsRepository } from "@/testing/fake-settings-repository
 import { createFakeSoundPlayer, type FakeSoundPlayer } from "@/testing/fake-sound-player";
 import { createPreventRemoveMock } from "@/testing/prevent-remove";
 import { ReviewContainer } from "./review-container";
+import { corpus } from "@english-learn/content/corpus";
+import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
+import { reviewOutlook } from "./model/review-plan";
 import { testRandomBytes } from "@/testing/random-bytes";
 
 const mockRouter = {
@@ -54,7 +57,10 @@ const items = [
 ];
 
 function renderReview(repository: FakeProgressRepository, exercises: Exercise[] = [vocab, cloze]) {
-  const content = createCorpus([{ items, exercises, cards: [card] }]);
+  return renderReviewOf(repository, createCorpus([{ items, exercises, cards: [card] }]));
+}
+
+function renderReviewOf(repository: FakeProgressRepository, content: Corpus) {
   return render(
     <AppServicesProvider
       services={{
@@ -121,11 +127,6 @@ describe("ReviewContainer", () => {
     ]);
     await waitFor(() => expect(sounds.played.slice(-1)).toEqual(["streak"]));
     expect(screen.getByText("XP ganada: 20")).toBeOnTheScreen();
-    // A new study day, the daily review passed, and both due items recalled on time.
-    expect(screen.getByText("Plumas: +12")).toBeOnTheScreen();
-    expect(
-      screen.getByText("Día de estudio +5 · Repasos a tiempo +2 · Repaso del día +5"),
-    ).toBeOnTheScreen();
     expect(screen.getByText("Racha: 2 días")).toBeOnTheScreen();
     const saved = repository.snapshot();
     expect(saved.xp).toBe(120);
@@ -199,6 +200,54 @@ describe("ReviewContainer", () => {
     await answer("Salir", "button");
     expect(repeat).toHaveBeenCalledTimes(1);
     expect(repository.snapshot().xp).toBe(0);
+  });
+
+  it.each([5, 20, 45])(
+    "with %i due items, serves exactly the exercises home counted",
+    async (n) => {
+      const ids = new Set<string>();
+      for (const l of corpus.lessons) {
+        for (const id of lessonItemIds(l, corpus.exercisesById)) {
+          const reviewable = corpus.exercises.some(
+            (e) => e.type !== "reading" && e.itemIds.includes(id),
+          );
+          if (ids.size < n && reviewable) ids.add(id);
+        }
+      }
+      const states = [...ids].map(learnedYesterday);
+      const { next } = reviewOutlook({ states, today: TODAY, exercises: corpus.exercises });
+
+      await renderReviewOf(createFakeRepository({ states }), corpus);
+
+      expect(await screen.findByText(`Ejercicio 1 de ${next}`)).toBeOnTheScreen();
+    },
+  );
+
+  it("says on the summary how many wait for another review", async () => {
+    // 21 due items, one exercise each: the review serves 20 and leaves one for later.
+    const many = Array.from(
+      { length: 21 },
+      (_, i) => `a2.routine.extra-${String(i).padStart(2, "0")}`,
+    );
+    const exercises: Exercise[] = many.map((id, i) => ({
+      ...vocab,
+      id: `a2.routine.vocab-x${i}`,
+      itemIds: [id],
+    }));
+    const content = createCorpus([
+      { items: [...items, ...many.map((id) => item(id, id, id))], exercises, cards: [card] },
+    ]);
+    await renderReviewOf(createFakeRepository({ states: many.map(learnedYesterday) }), content);
+
+    expect(await screen.findByText("Ejercicio 1 de 20")).toBeOnTheScreen();
+    for (let i = 0; i < 20; i++) {
+      await answer("despertarse");
+      await answer("Comprobar", "button");
+      await answer("Continuar", "button");
+    }
+
+    expect(await screen.findByText("¡Repaso completado!")).toBeOnTheScreen();
+    expect(await screen.findByText("Te queda 1 para otro repaso.")).toBeOnTheScreen();
   });
 
   it("explains when the review cannot be loaded", async () => {

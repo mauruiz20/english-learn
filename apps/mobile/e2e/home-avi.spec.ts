@@ -1,10 +1,9 @@
 import { playSessionCorrectly } from "./support/content";
 import { expect, test, type Page } from "./support/test";
 
-// Avi beside the home greeting (`docs/design/avi-rewards.md`, section 5): dressed in the
-// learner's outfit, saying a line for its state, and the way into the wardrobe. `?today=` is the
-// test-only date override (EXPO_PUBLIC_E2E); the system time is pinned to noon so Avi is never
-// sleepy for the night.
+// Avi beside the home greeting (`docs/design/avi-rewards.md`, section 5): decorative, saying a
+// line for its state in a speech bubble. `?today=` is the test-only date override
+// (EXPO_PUBLIC_E2E); the system time is pinned to noon so Avi is never sleepy for the night.
 
 const hero = (page: Page) => page.getByTestId("home-avi");
 
@@ -48,13 +47,11 @@ test.describe("Avi on home", () => {
   }) => {
     await page.goto("/?today=2026-11-02");
     await expect(page.getByText("¡Hola! Soy Avi. ¿Empezamos?")).toBeVisible();
-    await expect(hero(page)).toHaveAccessibleName("Avi, contento. Abre el armario");
 
     await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
     await playSessionCorrectly(page, "¡Lección completada!");
     await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
     await expect(page.getByText("¡Lo lograste!")).toBeVisible();
-    await expect(hero(page)).toHaveAccessibleName("Avi, celebrando. Abre el armario");
 
     // A reload starts a new app session: nothing to celebrate, today's study is done.
     await page.reload();
@@ -66,36 +63,24 @@ test.describe("Avi on home", () => {
     // Days away break the streak: Avi missed the learner, never naming what was lost.
     await page.goto("/?today=2026-11-10");
     await expect(page.getByText("Te extrañé. Hoy empezamos una racha nueva.")).toBeVisible();
-    await expect(hero(page)).toHaveAccessibleName("Avi, con ganas de verte. Abre el armario");
   });
 
-  test("wears the learner's outfit and opens the wardrobe when tapped", async ({ page }) => {
+  test("is decorative: no button, nothing to open, its bubble readable", async ({ page }) => {
     await lessonOn(page, "2026-11-02", "Mi rutina diaria");
-    await lessonOn(page, "2026-11-03", "Mi casa");
-    await expect(page.getByLabel("Tienes 40 plumas")).toBeVisible();
+    await expect(page.getByText("¡Lo lograste!")).toBeVisible();
 
+    await expect(page.getByRole("button", { name: /Avi/ })).toHaveCount(0);
+    // Hidden from screen readers: the bubble carries the state.
+    await expect(hero(page).getByTestId("avi-hero")).toHaveAttribute("aria-hidden", "true");
+    // Plain white paper: nothing worn.
+    await expect(page.locator('[data-testid^="avi-item-"]')).toHaveCount(0);
+    const home = page.url();
     await hero(page).click();
-    await expect(page).toHaveURL(/\/armario$/);
-    await page.getByRole("tab", { name: "Stickers" }).click();
-    await page.getByRole("button", { name: "Estrella, 40 plumas", exact: true }).click();
-    await page.getByRole("button", { name: "Comprar por 40 plumas", exact: true }).click();
-    await page.getByRole("button", { name: "Comprar", exact: true }).click();
-    await page.getByRole("button", { name: "Ponérselo", exact: true }).click();
-    await expect(
-      page.getByRole("button", { name: "Estrella, 40 plumas, comprado, puesto", exact: true }),
-    ).toBeVisible();
+    expect(page.url()).toBe(home);
+    await expect(page.getByText("¡Lo lograste!")).toBeVisible();
 
-    await page.getByRole("button", { name: /^Volver/ }).click();
-    await expect(page.getByText("¿Cómo me veo?")).toBeVisible();
-    await expect(hero(page)).toHaveAccessibleName(
-      "Avi, estrenando ropa, con sticker de estrella. Abre el armario",
-    );
-    await expect(hero(page).getByTestId("avi-item-estrella")).toBeVisible();
-
-    await page.reload();
-    await expect(hero(page).getByTestId("avi-item-estrella")).toBeVisible();
-    await hero(page).click();
-    await expect(page.getByRole("heading", { name: "El armario de Avi" })).toBeVisible();
+    await page.goto("/armario");
+    await expect(page.getByRole("heading", { name: "El armario de Avi" })).toHaveCount(0);
   });
 
   test("hovers and blinks with motion, and keeps still with reduced motion", async ({ page }) => {

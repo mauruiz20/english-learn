@@ -34,11 +34,10 @@ UUIDv7 ids from `clock.nowMs()` and `randomBytes`, stamped with the install's de
 
 - a finished lesson or review → one `item_reviewed` per item with its final grade and one
   `session_completed`, sharing a session id and the save's `today`;
-- a finished placement test → `placement_completed`;
-- in Avi's wardrobe (`/armario`, `src/features/wardrobe/`) a confirmed purchase →
-  `item_purchased` with the catalogue price, and "Ponérselo" / "Quitárselo" → one
-  `item_equipped` for that slot. `WardrobeOutfitProvider` (root layout) dresses every `Avi` in
-  the outfit the fold derives (`resolveOutfit`), and reloads it after a sync.
+- a finished placement test → `placement_completed`.
+
+Avi's withdrawn wardrobe wrote `item_purchased` / `item_equipped`; logs and other devices may
+still hold them, and the fold ignores them (`@english-learn/domain`, "Retired types").
 
 `initProgressStore` (`src/infrastructure/persistence/`) runs on every start: migrations, the
 device id (generated once), and for learners upgrading from before the event log ONE
@@ -224,8 +223,7 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   `ProgressRepository.appendEvents` (ONE transaction, all or nothing). XP = sum of `xpForAnswer`,
   plus the lesson completion bonus the first time a `lessonId` is completed (decided by the fold;
   before the event log it was "some item had no state yet"); replays and reviews earn answer XP
-  only. The summary shows the XP, streak and plumas the fold produced (totals after minus
-  before; see "Plumas").
+  only. The summary shows the XP and streak the fold produced (totals after minus before).
 - `use-exercise-session.ts`: hook shared by lesson and review (answer → feedback → next →
   save). Saving is guarded against double submission; a failed save shows "Reintentar"; the
   header back button and swipe gesture are disabled while saving. The browser back button is
@@ -395,8 +393,18 @@ only a reading practiced got a review-only `vocab` exercise. For each due
 item, in priority order, it picks one exercise that practices it, preferring a different type
 than the previous pick, chosen with the injected rng; an exercise covering several due items
 reviews all of them. Only the due items are saved (an exercise may also practice items that are
-not due; those are untouched). XP is answer XP only, no completion bonus. Home shows a sticky note
-"Repaso, N pendientes" (same plan) with a "Repasar" button, or "Nada para repasar hoy".
+not due; those are untouched). XP is answer XP only, no completion bonus.
+
+**Home counts exactly what the review serves** (`planReview`, `reviewOutlook` in
+`model/review-plan.ts`). The exercises are picked with the day's rng (`reviewPlanRng(today)`,
+seeded by the date), so home and `/review` plan the same session from the same states. Home shows
+a sticky note "Repaso, N pendientes" where N is the next review's number of EXERCISES (what
+"Ejercicio 1 de N" shows; one exercise may review several due items), plus "y M más después" when
+more is due today than one review holds (M: what the later reviews of the day will serve; a
+reviewed item is never due again the same day), with a "Repasar" button, or "Nada para repasar
+hoy". The review's summary says "Te quedan M para otro repaso." in that case. Before this, home
+counted due ITEMS capped at 20: after a 20-item review with a big backlog it still said "20
+pendientes" (it looked unsaved) and the review then served 18 exercises.
 
 ## Study cards, "Fichas" (`src/features/cards/`)
 
@@ -455,49 +463,15 @@ Free practice by topic, apart from the path and its levels (content: `corpus.pra
   "Repítela para sacar todo bien"), labelled "<título>, nueva" or "<título>, completada sin
   errores: 7 de 7 correctas". Rows are ≥ 56 pt; only the shared press feedback moves.
 - **Lessons** play on `/lesson/[id]` (`LessonContainer` finds practice lessons in
-  `practiceLessonsById`): the same exercises, feedback, lookups, sounds, summary with XP and
-  plumas, "Lo nuevo de hoy" (cards linked with `deepenCardIds`) and "Repetir lección". They are
+  `practiceLessonsById`): the same exercises, feedback, lookups, sounds, summary with XP,
+  "Lo nuevo de hoy" (cards linked with `deepenCardIds`) and "Repetir lección". They are
   saved as lessons with their own id (`session_completed` kind `lesson`; no new event, no fold
-  change), so the fold pays the completion bonus and "Lección nueva" once per lesson id,
-  "Página perfecta" once, and their items enter spaced repetition like any lesson's. The summary
+  change), so the fold pays the completion bonus once per lesson id, and their items enter spaced repetition like any lesson's. The summary
   button reads "Volver a Phrasal verbs" and goes back to the collection.
 - **Never path progress**: the corpus keeps practice lessons out of `lessons`, and content rule
   24 keeps their items apart from the path's, so home, the next lesson, the level move, the album
   and the transfer preview count exactly what they counted before
   (`practice-path-separation.test.tsx` completes every practice lesson and compares the path).
-
-## Plumas (`src/features/rewards/`)
-
-Plumas are Avi's currency (`docs/design/avi-rewards.md`, phase 1). The fold derives them from the
-events the app already writes (`@english-learn/domain`, "Plumas"): nothing new is written, so the
-whole history earns them once, and every device shows the same balance. Spending them (the
-wardrobe) comes in phase 2; the fold already reads purchases and equips.
-
-- **Summary row** (lessons, reviews and card practice, `SessionSummary`): "Plumas: +17" counts up
-  with the XP (`useCountUp`, at once with reduced motion), labelled "Plumas ganadas: 17", with a
-  muted line saying why: "Día de estudio +5 · Lección nueva +5 · Repasos a tiempo +7" ("Ficha
-  nueva" for a card). It is `plumasEarned(before, after)` of the save (`completeSession`) turned
-  into words by `model/plumas-copy.ts`. Nothing earned: "Repetir no da plumas, pero te ayuda a
-  recordar." (a review: "Este repaso no sumó plumas, …"); the daily cap held some back: "Ya
-  ganaste las 40 plumas de hoy. Tu práctica sigue contando para tu repaso." The reasons always
-  add up to the total: when a save refolds (it sorts before a synced session of the same day)
-  and plumas move between sources, only the total shows (never below 0). The mark is a small
-  pink sticker with a feather (`feather.ts`, strokes only, no letters).
-- **Home balance** (`plumas-balance.tsx`), in the progress card under the XP: a feather sticker
-  and "135 plumas", read as "Tienes 135 plumas" ("Debes 30 plumas" when two offline devices
-  overspent). A button into the wardrobe, like Avi beside the greeting.
-- **One-time note** (`plumas-welcome-note.tsx`): "Avi te guardó 135 plumas por lo que ya
-  estudiaste." on a pink sticky note under the progress card, with a paper-key "Entendido"
-  (≥ 44 pt; ink on white, since ink on a highlighter is below 4.5:1). N is the baseline's
-  "Bienvenida" grant (`earnedBySource.welcome`: lessons done before the event log), never the
-  balance, so a learner who started with the event log is never told about past study, even
-  after a first lesson. The first home visit that has progress decides (`plumasWelcome`); an
-  empty store (a new device before its first sync pull) decides nothing. With a grant, the note
-  keeps that amount until it is dismissed; without, it never shows. "Entendido" is final: a read
-  already under way cannot bring the note back. Stored per device with
-  `SettingsRepository.get/setPlumasWelcome` (`{ plumas, dismissed }`; an unreadable value reads as
-  dismissed) and forgotten (`clearPlumasWelcome`) by a sign-out that deletes this device's
-  progress.
 
 ## Account and sync (`src/features/account/`, `src/infrastructure/auth/`, `src/infrastructure/sync/`)
 
@@ -629,13 +603,11 @@ paper, the prompt and the teacher's marking.
   heading in ink (AA in both schemes), one line with an ellipsis for long names. Beside it, **Avi
   on home** (`home-avi.tsx`, `model/home-avi.ts`; `docs/design/avi-rewards.md`, section 5 and
   "Slice 3 as built"): Avi at 76 pt (96 pt on wide screens) on the right, mirrored to face the
-  page, in the learner's outfit, with one line in a speech bubble under the heading. It is a
-  button that opens `/armario`, named after its state and outfit ("Avi, contento, con gorra y
-  bufanda de rayas. Abre el armario"); the bubble is a polite live region. `homeAviState` picks
-  the state on each home focus, first match wins: celebrate ("¡Lo lograste!", a lesson done or a
-  new badge since home was last seen), new outfit ("¿Cómo me veo?", bought or changed clothes),
-  missed you (sad, "Te extrañé. Hoy empezamos una racha nueva.", the streak broke and nothing was
-  studied today; no numbers, nothing to buy), welcome back ("¡Qué bueno verte!", first visit of a
+  page, with one line in a speech bubble under the heading. Avi is decorative (hidden from
+  screen readers, not a button); the bubble carries the state and is a polite live region.
+  `homeAviState` picks the state on each home focus, first match wins: celebrate ("¡Lo
+  lograste!", a lesson done or a new badge since home was last seen), missed you (sad, "Te extrañé. Hoy empezamos una racha nueva.", the streak broke and nothing was
+  studied today; no numbers), welcome back ("¡Qué bueno verte!", first visit of a
   new day, from `SettingsRepository.getLastHomeVisit`, per device), resting (sleepy, "Todo listo
   por hoy." when today's study is done and nothing is due, or "Ya es tarde. ¡Que descanses!" from
   22:00 to 05:59) and idle ("¡Hola! Soy Avi. ¿Empezamos?" for a fresh learner, "¿Repasamos un
@@ -726,18 +698,18 @@ paper, the prompt and the teacher's marking.
   (Reanimated reads it at startup, `AccessibilityInfo` keeps it current); with it on, every
   animation below shows its end state at once.
 
-  | Where                             | What                                                                                                                                                                                                          | Duration                               |
-  | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-  | Feedback, correct                 | highlighter swipe over the answer (`Highlight animate`)                                                                                                                                                       | 250 ms                                 |
-  | Feedback, wrong / almost          | red-pen strike drawn left → right over the off words, then the margin note fades/settles in                                                                                                                   | 250 ms + 150 ms                        |
-  | Choice rows, buttons, index rows  | press-in scale to 0.97 (`PressableScale`), no hover                                                                                                                                                           | 90 ms                                  |
-  | Next exercise                     | page turn: the new page comes in from the right (`PageTurn`)                                                                                                                                                  | 220 ms                                 |
-  | Word order                        | strips dragged from the bank to the line, reordered, or off it back to the bank; lift while dragging, spring settle, `tap` sound + light haptic on drop                                                       | spring                                 |
-  | Feedback, points                  | the "+10" / "+5" sticker pops in with a bounce and settles a little higher; the answered progress step pops once                                                                                              | ≈ 650 / 250 ms                         |
-  | Summary                           | the sticker is slapped on, Avi glides in, confetti falls; perfect page: the stamp lands; XP counts up; a grown streak rolls and hooks a new clip; earned album stickers rise in, with the `achievement` sound | ≈ 1.4 s in all                         |
-  | Home path                         | a lesson completed since home was last seen gets its sticker slapped on and its check drawn once (`model/completion-memory.ts`); Avi glides to the next lesson                                                | ≈ 900 / 700 ms                         |
-  | Home Avi, entering a state        | wave (welcome back, ±6° twice), hop (a lesson, 10 pt with `SLAP_SPRING`), loop (a badge, one 360° roll on an arc), twirl (new outfit, turns around), droop (missed you, 12° and 4 pt down, stays), perk up    | 600 / ≈ 500 / 900 / 700 / 400 / 250 ms |
-  | Home Avi, while home is on screen | a gentle hover (2.5 pt) and a blink; only while home is focused and the app or tab is visible (`useAppVisible`), none at all with reduced motion                                                              | 1.4 s each way / 150 ms every 4 s      |
+  | Where                             | What                                                                                                                                                                                                          | Duration                          |
+  | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+  | Feedback, correct                 | highlighter swipe over the answer (`Highlight animate`)                                                                                                                                                       | 250 ms                            |
+  | Feedback, wrong / almost          | red-pen strike drawn left → right over the off words, then the margin note fades/settles in                                                                                                                   | 250 ms + 150 ms                   |
+  | Choice rows, buttons, index rows  | press-in scale to 0.97 (`PressableScale`), no hover                                                                                                                                                           | 90 ms                             |
+  | Next exercise                     | page turn: the new page comes in from the right (`PageTurn`)                                                                                                                                                  | 220 ms                            |
+  | Word order                        | strips dragged from the bank to the line, reordered, or off it back to the bank; lift while dragging, spring settle, `tap` sound + light haptic on drop                                                       | spring                            |
+  | Feedback, points                  | the "+10" / "+5" sticker pops in with a bounce and settles a little higher; the answered progress step pops once                                                                                              | ≈ 650 / 250 ms                    |
+  | Summary                           | the sticker is slapped on, Avi glides in, confetti falls; perfect page: the stamp lands; XP counts up; a grown streak rolls and hooks a new clip; earned album stickers rise in, with the `achievement` sound | ≈ 1.4 s in all                    |
+  | Home path                         | a lesson completed since home was last seen gets its sticker slapped on and its check drawn once (`model/completion-memory.ts`); Avi glides to the next lesson                                                | ≈ 900 / 700 ms                    |
+  | Home Avi, entering a state        | wave (welcome back, ±6° twice), hop (a lesson, 10 pt with `SLAP_SPRING`), loop (a badge, one 360° roll on an arc), droop (missed you, 12° and 4 pt down, stays), perk up                                      | 600 / ≈ 500 / 900 / 400 / 250 ms  |
+  | Home Avi, while home is on screen | a gentle hover (2.5 pt) and a blink; only while home is focused and the app or tab is visible (`useAppVisible`), none at all with reduced motion                                                              | 1.4 s each way / 150 ms every 4 s |
 
   Pen strokes (highlighter, strike, check) share one hand: `usePenStroke` + `StrokeClip`, a
   clipped copy revealed left to right. Word order stays fully usable by tap, and placed words

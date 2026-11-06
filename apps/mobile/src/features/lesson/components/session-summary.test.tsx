@@ -108,59 +108,11 @@ describe("SessionSummary", () => {
     });
   });
 
-  describe("plumas", () => {
-    const plumas = { total: 20, detail: "Lección nueva +10 · Página perfecta +10" };
+  it("shows the results without any currency row (plumas were withdrawn)", async () => {
+    await render(<SessionSummary {...base} />);
 
-    it("shows the plumas the session earned and why", async () => {
-      await render(<SessionSummary {...base} plumas={plumas} />);
-
-      const row = screen.getByTestId("summary-plumas");
-      expect(within(row).getByText("Plumas: +20")).toBeOnTheScreen();
-      expect(within(row).getByText("Lección nueva +10 · Página perfecta +10")).toBeOnTheScreen();
-      expect(screen.getByLabelText("Plumas ganadas: 20")).toBeOnTheScreen();
-    });
-
-    it("explains a session that earned none", async () => {
-      await render(
-        <SessionSummary
-          {...base}
-          plumas={{ total: 0, detail: "Repetir no da plumas, pero te ayuda a recordar." }}
-        />,
-      );
-
-      expect(screen.getByText("Plumas: 0")).toBeOnTheScreen();
-      expect(screen.getByText("Repetir no da plumas, pero te ayuda a recordar.")).toBeOnTheScreen();
-    });
-
-    it("shows only the total when there is no breakdown, never a negative number", async () => {
-      await render(<SessionSummary {...base} plumas={{ total: 12, detail: "" }} />);
-      const row = screen.getByTestId("summary-plumas");
-      expect(row).toHaveTextContent("Plumas: +12", { exact: true });
-
-      await render(<SessionSummary {...base} plumas={{ total: -5, detail: "" }} />);
-      expect(screen.getByText("Plumas: 0")).toBeOnTheScreen();
-      expect(screen.getByLabelText("Plumas ganadas: 0")).toBeOnTheScreen();
-    });
-
-    it("has no plumas row without plumas", async () => {
-      await render(<SessionSummary {...base} />);
-
-      expect(screen.queryByTestId("summary-plumas")).not.toBeOnTheScreen();
-    });
-
-    it("counts the plumas up with the XP when motion is allowed", async () => {
-      withMotion();
-      jest.useFakeTimers();
-      try {
-        await render(<SessionSummary {...base} plumas={plumas} />);
-
-        expect(screen.getByText("Plumas: +0")).toBeOnTheScreen();
-        await act(async () => jest.advanceTimersByTime(2000));
-        expect(screen.getByText("Plumas: +20")).toBeOnTheScreen();
-      } finally {
-        jest.useRealTimers();
-      }
-    });
+    expect(screen.queryByTestId("summary-plumas")).not.toBeOnTheScreen();
+    expect(screen.queryByText(/Plumas/)).not.toBeOnTheScreen();
   });
 
   describe("with reduced motion", () => {

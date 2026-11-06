@@ -1,13 +1,13 @@
 {
-  "version": 2,
-  "fingerprint": "v2-ae278b0f",
+  "version": 3,
+  "fingerprint": "v3-ffeb61fa",
   "snapshot": {
-    "v": 2,
+    "v": 3,
     "cursor": {
-      "localDate": "2026-01-15",
-      "occurredAt": 7000,
-      "id": "p44",
-      "key": "{\"deviceId\":\"A\",\"id\":\"p44\",\"localDate\":\"2026-01-15\",\"occurredAt\":7000,\"payload\":{\"itemId\":\"gafas-3d\",\"slot\":\"future_slot\",\"v\":1},\"type\":\"item_equipped\"}"
+      "localDate": "2026-01-10",
+      "occurredAt": 1000,
+      "id": "w03",
+      "key": "{\"deviceId\":\"A\",\"id\":\"w03\",\"localDate\":\"2026-01-10\",\"occurredAt\":1000,\"payload\":{\"slot\":7,\"v\":2},\"type\":\"item_equipped\"}"
     },
     "states": [
       {
@@ -44,14 +44,14 @@
       },
       {
         "itemId": "i5",
-        "ease": 2.6,
-        "intervalDays": 6,
-        "reps": 2,
+        "ease": 2.5,
+        "intervalDays": 1,
+        "reps": 1,
         "lapses": 0,
-        "dueDate": "2026-01-16"
+        "dueDate": "2026-01-10"
       }
     ],
-    "xp": 555,
+    "xp": 285,
     "baselineStreak": {
       "current": 1,
       "longest": 5,
@@ -61,19 +61,8 @@
       "level": "B1",
       "theta": 0.4
     },
-    "activeDates": [
-      "2026-01-02",
-      "2026-01-03",
-      "2026-01-05",
-      "2026-01-09",
-      "2026-01-10",
-      "2026-01-11",
-      "2026-01-12",
-      "2026-01-13",
-      "2026-01-14",
-      "2026-01-15"
-    ],
-    "completedLessonIds": ["L0", "L1", "L2", "L3", "L4", "L5", "L6", "L7"],
+    "activeDates": ["2026-01-02", "2026-01-03", "2026-01-05", "2026-01-09"],
+    "completedLessonIds": ["L0", "L1", "L2"],
     "lessonResults": [
       {
         "lessonId": "L0",
@@ -83,88 +72,16 @@
       {
         "lessonId": "L1",
         "bestAccuracy": 1,
-        "completions": 3
+        "completions": 2
       },
       {
         "lessonId": "L2",
         "bestAccuracy": 0.5,
         "completions": 1
-      },
-      {
-        "lessonId": "L3",
-        "bestAccuracy": 1,
-        "completions": 1
-      },
-      {
-        "lessonId": "L4",
-        "bestAccuracy": 1,
-        "completions": 1
-      },
-      {
-        "lessonId": "L5",
-        "bestAccuracy": 1,
-        "completions": 1
-      },
-      {
-        "lessonId": "L6",
-        "bestAccuracy": 1,
-        "completions": 1
-      },
-      {
-        "lessonId": "L7",
-        "bestAccuracy": 1,
-        "completions": 1
       }
     ],
-    "completedSessionIds": [
-      "cap0",
-      "cap1",
-      "cap2",
-      "cap3",
-      "cap4",
-      "s1",
-      "s10",
-      "s2",
-      "s3",
-      "s4",
-      "s7",
-      "s8",
-      "s9",
-      "w12",
-      "w13",
-      "w14",
-      "w15"
-    ],
-    "reviewedSessionIds": ["s1", "s2", "s3", "s4", "s7", "s8"],
-    "rewards": {
-      "earned": 145,
-      "spent": 290,
-      "earnedBySource": {
-        "study_day": 50,
-        "new_lesson": 25,
-        "perfect_page": 40,
-        "on_time_review": 5,
-        "daily_review": 5,
-        "study_week": 15,
-        "welcome": 5
-      },
-      "overCap": 40,
-      "owned": ["corona-de-papel", "estrella"],
-      "equipped": {
-        "future_slot": "gafas-3d",
-        "head": "gorra",
-        "sticker": null
-      },
-      "day": {
-        "date": "2026-01-15",
-        "earned": 5,
-        "reviewBonus": false
-      },
-      "run": {
-        "lastDate": "2026-01-15",
-        "length": 7
-      }
-    },
+    "completedSessionIds": ["s1", "s2", "s3", "s4", "s7"],
+    "reviewedSessionIds": ["s1", "s2", "s3", "s4", "s7"],
     "envelopeAnomalies": [
       {
         "kind": "invalid_event",

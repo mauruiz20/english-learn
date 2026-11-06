@@ -73,6 +73,37 @@ describe("ReviewView", () => {
     expect(screen.getByText("despertarse")).toBeOnTheScreen();
   });
 
+  it.each([
+    [25, "Te quedan 25 para otro repaso."],
+    [1, "Te queda 1 para otro repaso."],
+  ])("says when %i more wait for another review", async (remaining, text) => {
+    await renderView({
+      status: "summary",
+      correct: 18,
+      total: 18,
+      xpEarned: 180,
+      streakDays: 2,
+      toReview: [],
+      remaining,
+    });
+
+    expect(screen.getByText(text)).toBeOnTheScreen();
+  });
+
+  it("says nothing more when the review left nothing due today", async () => {
+    await renderView({
+      status: "summary",
+      correct: 4,
+      total: 4,
+      xpEarned: 40,
+      streakDays: 2,
+      toReview: [],
+      remaining: 0,
+    });
+
+    expect(screen.queryByText(/para otro repaso/)).not.toBeOnTheScreen();
+  });
+
   it("explains load and save errors", async () => {
     await renderView({ status: "load-error" });
     expect(screen.getByRole("alert")).toHaveTextContent("No pudimos cargar tu repaso.");

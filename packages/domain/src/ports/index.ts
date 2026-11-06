@@ -7,9 +7,4 @@ export type {
   ProgressTotals,
   RemoteEvent,
 } from "./progress-repository";
-export type {
-  AccountMarker,
-  PlumasWelcome,
-  SettingsRepository,
-  ThemePreference,
-} from "./settings-repository";
+export type { AccountMarker, SettingsRepository, ThemePreference } from "./settings-repository";

@@ -13,7 +13,6 @@ import type { ReviewNote } from "@/features/lesson/model/items-to-review";
 import { answerIsEnglish } from "@/features/lesson/model/lookup-policy";
 import type { PreparedExercise } from "@/features/lesson/model/prepare-exercise";
 import type { ExerciseResponse } from "@/features/lesson/model/response";
-import type { SessionPlumas } from "@/features/rewards/model/plumas-copy";
 import { Button } from "@/shared/ui/button";
 import { Doodle } from "@/shared/ui/doodle";
 import { PageTurn } from "@/shared/ui/page-turn";
@@ -49,8 +48,6 @@ export type ReviewViewState =
       readonly correct: number;
       readonly total: number;
       readonly xpEarned: number;
-      /** Plumas the review earned and why. */
-      readonly plumas?: SessionPlumas | undefined;
       readonly streakDays: number;
       /** This session extended the streak (the summary rolls the number). */
       readonly streakIncreased?: boolean;
@@ -58,6 +55,8 @@ export type ReviewViewState =
       readonly toReview: readonly ReviewNote[];
       /** Album stickers the session earned. */
       readonly achievements?: readonly EarnedSticker[];
+      /** Exercises later reviews will serve today (absent: not known yet). */
+      readonly remaining?: number;
     };
 
 type ReviewViewProps = {
@@ -72,6 +71,14 @@ type ReviewViewProps = {
 };
 
 const TITLE = "Repaso";
+
+/** "Te quedan 25 para otro repaso.": more were due than one review holds. */
+function remainingText(remaining: number | undefined): string | undefined {
+  if (remaining === undefined || remaining <= 0) return undefined;
+  return remaining === 1
+    ? "Te queda 1 para otro repaso."
+    : `Te quedan ${remaining} para otro repaso.`;
+}
 
 export function ReviewView({
   state,
@@ -117,7 +124,14 @@ export function ReviewView({
         />
       );
     case "summary":
-      return <SessionSummary title="¡Repaso completado!" {...state} onGoHome={onGoHome} />;
+      return (
+        <SessionSummary
+          title="¡Repaso completado!"
+          {...state}
+          next={remainingText(state.remaining)}
+          onGoHome={onGoHome}
+        />
+      );
     case "exercise":
       return (
         <ScreenContainer

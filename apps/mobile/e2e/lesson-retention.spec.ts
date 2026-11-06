@@ -55,9 +55,6 @@ test("a lesson recaps its new items, shows its best result on the path and can b
   await withMistakes.click();
   await playSessionCorrectly(page, "¡Lección completada!");
   await expect(page.getByText("XP ganada: 60")).toBeVisible();
-  // The same day: only the first perfect page pays (no new day, no new lesson).
-  await expect(page.getByText("Plumas: +10", { exact: true })).toBeVisible();
-  await expect(page.getByText("Página perfecta +10", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
   await expect(
     page.getByRole("button", {
@@ -67,10 +64,17 @@ test("a lesson recaps its new items, shows its best result on the path and can b
   await expect(page.getByText("Perfecta · 6/6")).toBeVisible();
   await expect(page.getByText("130 XP", { exact: true })).toBeVisible();
 
-  // The next day, all five items of the lesson are due for review.
+  // The next day, all five items of the lesson are due for review. Home counts the exercises the
+  // review serves (one exercise may review several of them), exactly as the review shows them.
   await page.goto(`/?today=${DAY_2}`);
-  await expect(page.getByText("5 pendientes", { exact: true })).toBeVisible();
+  const pending = page.getByText(/^\d pendientes?$/);
+  await expect(pending).toBeVisible();
+  const count = Number((await pending.textContent())?.match(/\d/)?.[0]);
+  expect(count).toBeGreaterThan(0);
+  expect(count).toBeLessThanOrEqual(5);
   await expect(page.getByText("Perfecta · 6/6")).toBeVisible();
+  await page.getByRole("button", { name: "Repasar", exact: true }).click();
+  await expect(page.getByText(`Ejercicio 1 de ${count}`, { exact: true })).toBeVisible();
 
   expect(problems).toEqual([]);
 });
