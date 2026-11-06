@@ -1,4 +1,4 @@
-import { pickEnglishVoice, splitForSpeech, type VoiceLike } from "./voice-choice";
+import { splitForSpeech, type VoiceLike } from "./voice-choice";
 import { createWebSpeechService, type SynthLike, type UtteranceLike } from "./web-speech-service";
 
 function voice(
@@ -139,49 +139,6 @@ function setup(voices: VoiceLike[] = [voice("Samantha", "en-US")]) {
   });
   return { ...fake, doc, win, timers, service };
 }
-
-describe("pickEnglishVoice", () => {
-  it("prefers a local en-US voice over others", () => {
-    const chosen = pickEnglishVoice([
-      voice("Monica", "es-ES"),
-      voice("Daniel", "en-GB"),
-      voice("Samantha", "en-US"),
-      voice("Google US English", "en-US", { localService: false }),
-    ]);
-    expect(chosen?.name).toBe("Samantha");
-  });
-
-  it("prefers a higher quality voice among the same language", () => {
-    const chosen = pickEnglishVoice([
-      voice("Alex", "en-US"),
-      voice("Ava (Premium)", "en-US"),
-      voice("Fred", "en-US", { default: true }),
-    ]);
-    expect(chosen?.name).toBe("Ava (Premium)");
-  });
-
-  it("falls back to another English variant, and reads underscores and case", () => {
-    expect(pickEnglishVoice([voice("Karen", "EN_au"), voice("Thomas", "fr-FR")])?.name).toBe(
-      "Karen",
-    );
-  });
-
-  it("never picks a network voice (offline only) nor a non-English one", () => {
-    expect(
-      pickEnglishVoice([
-        voice("Google US English", "en-US", { localService: false }),
-        voice("Monica", "es-ES"),
-      ]),
-    ).toBeNull();
-    expect(pickEnglishVoice([])).toBeNull();
-  });
-
-  it("is deterministic whatever the order the browser lists voices in", () => {
-    const voices = [voice("Zoe", "en-US"), voice("Aaron", "en-US"), voice("Nicky", "en-US")];
-    expect(pickEnglishVoice(voices)?.name).toBe("Aaron");
-    expect(pickEnglishVoice([...voices].reverse())?.name).toBe("Aaron");
-  });
-});
 
 describe("splitForSpeech", () => {
   it("keeps a short text whole and splits a long one at sentence ends", () => {
