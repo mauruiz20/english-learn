@@ -65,6 +65,30 @@
       ]
     },
     {
+      "id": "glossary.jargon",
+      "headword": "jargon",
+      "kind": "word",
+      "forms": ["jargon"],
+      "senses": [
+        {
+          "es": "jerga técnica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.jazz",
+      "headword": "jazz",
+      "kind": "word",
+      "forms": ["jazz"],
+      "senses": [
+        {
+          "es": "jazz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.jealous",
       "headword": "jealous",
       "kind": "word",
@@ -101,6 +125,18 @@
       ]
     },
     {
+      "id": "glossary.jointly",
+      "headword": "jointly",
+      "kind": "word",
+      "forms": ["jointly"],
+      "senses": [
+        {
+          "es": "conjuntamente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.joke",
       "headword": "joke",
       "kind": "word",
@@ -108,6 +144,18 @@
       "senses": [
         {
           "es": "broma, chiste",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.journalism",
+      "headword": "journalism",
+      "kind": "word",
+      "forms": ["journalism"],
+      "senses": [
+        {
+          "es": "periodismo",
           "pos": "noun"
         }
       ]

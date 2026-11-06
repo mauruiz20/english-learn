@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.unable",
+      "headword": "unable",
+      "kind": "word",
+      "forms": ["unable"],
+      "senses": [
+        {
+          "es": "incapaz (be unable to: no poder)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.uncle",
       "headword": "uncle",
       "kind": "word",
@@ -33,6 +45,18 @@
         {
           "es": "tío",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.uncomfortable",
+      "headword": "uncomfortable",
+      "kind": "word",
+      "forms": ["uncomfortable"],
+      "senses": [
+        {
+          "es": "incómodo",
+          "pos": "adjective"
         }
       ]
     },
@@ -61,6 +85,18 @@
       ]
     },
     {
+      "id": "glossary.under-no-circumstances",
+      "headword": "under no circumstances",
+      "kind": "phrase",
+      "forms": ["under no circumstances"],
+      "senses": [
+        {
+          "es": "bajo ninguna circunstancia",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.undermine",
       "headword": "undermine",
       "kind": "word",
@@ -81,6 +117,54 @@
         {
           "es": "entender",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.understandably",
+      "headword": "understandably",
+      "kind": "word",
+      "forms": ["understandably"],
+      "senses": [
+        {
+          "es": "comprensiblemente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.undo",
+      "headword": "undo",
+      "kind": "word",
+      "forms": ["undo"],
+      "senses": [
+        {
+          "es": "deshacer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unemployment",
+      "headword": "unemployment",
+      "kind": "word",
+      "forms": ["unemployment"],
+      "senses": [
+        {
+          "es": "desempleo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unequal",
+      "headword": "unequal",
+      "kind": "word",
+      "forms": ["unequal"],
+      "senses": [
+        {
+          "es": "desigual",
+          "pos": "adjective"
         }
       ]
     },
@@ -169,6 +253,18 @@
       ]
     },
     {
+      "id": "glossary.unknown",
+      "headword": "unknown",
+      "kind": "word",
+      "forms": ["unknown"],
+      "senses": [
+        {
+          "es": "desconocido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.unless",
       "headword": "unless",
       "kind": "word",
@@ -177,6 +273,54 @@
         {
           "es": "a menos que, si no",
           "pos": "conjunction"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unlikely",
+      "headword": "unlikely",
+      "kind": "word",
+      "forms": ["unlikely"],
+      "senses": [
+        {
+          "es": "poco probable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unprofitable",
+      "headword": "unprofitable",
+      "kind": "word",
+      "forms": ["unprofitable"],
+      "senses": [
+        {
+          "es": "no rentable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unremarkable",
+      "headword": "unremarkable",
+      "kind": "word",
+      "forms": ["unremarkable"],
+      "senses": [
+        {
+          "es": "normal, sin nada destacable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.unsaid",
+      "headword": "unsaid",
+      "kind": "word",
+      "forms": ["unsaid"],
+      "senses": [
+        {
+          "es": "sin decir",
+          "pos": "adjective"
         }
       ]
     },

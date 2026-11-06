@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.naive",
+      "headword": "naive",
+      "kind": "word",
+      "forms": ["naive"],
+      "senses": [
+        {
+          "es": "ingenuo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.name",
       "headword": "name",
       "kind": "word",
@@ -141,6 +153,30 @@
       ]
     },
     {
+      "id": "glossary.negotiation",
+      "headword": "negotiation",
+      "kind": "word",
+      "forms": ["negotiation", "negotiations"],
+      "senses": [
+        {
+          "es": "negociación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.negotiator",
+      "headword": "negotiator",
+      "kind": "word",
+      "forms": ["negotiator", "negotiators"],
+      "senses": [
+        {
+          "es": "negociador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.neighbor",
       "headword": "neighbor",
       "kind": "word",
@@ -161,6 +197,22 @@
         {
           "es": "barrio, vecindario",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.neither",
+      "headword": "neither",
+      "kind": "word",
+      "forms": ["neither"],
+      "senses": [
+        {
+          "es": "ninguno de los dos",
+          "pos": "determiner"
+        },
+        {
+          "es": "(neither… nor) ni… ni",
+          "pos": "conjunction"
         }
       ]
     },
@@ -381,6 +433,30 @@
       ]
     },
     {
+      "id": "glossary.nominalization",
+      "headword": "nominalization",
+      "kind": "word",
+      "forms": ["nominalization"],
+      "senses": [
+        {
+          "es": "nominalización",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.non-expert",
+      "headword": "non-expert",
+      "kind": "word",
+      "forms": ["non-expert", "non-experts"],
+      "senses": [
+        {
+          "es": "persona no experta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.none",
       "headword": "none",
       "kind": "word",
@@ -405,6 +481,18 @@
       ]
     },
     {
+      "id": "glossary.nor",
+      "headword": "nor",
+      "kind": "word",
+      "forms": ["nor"],
+      "senses": [
+        {
+          "es": "ni",
+          "pos": "conjunction"
+        }
+      ]
+    },
+    {
       "id": "glossary.nora",
       "headword": "Nora",
       "kind": "word",
@@ -412,6 +500,18 @@
       "senses": [
         {
           "es": "(nombre propio)"
+        }
+      ]
+    },
+    {
+      "id": "glossary.normal",
+      "headword": "normal",
+      "kind": "word",
+      "forms": ["normal"],
+      "senses": [
+        {
+          "es": "normal",
+          "pos": "adjective"
         }
       ]
     },
@@ -523,6 +623,18 @@
       "senses": [
         {
           "es": "sustantivo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.novel",
+      "headword": "novel",
+      "kind": "word",
+      "forms": ["novel", "novels"],
+      "senses": [
+        {
+          "es": "novela",
           "pos": "noun"
         }
       ]

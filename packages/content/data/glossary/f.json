@@ -1,6 +1,22 @@
 {
   "glossary": [
     {
+      "id": "glossary.face",
+      "headword": "face",
+      "kind": "word",
+      "forms": ["face", "faces", "faced", "facing"],
+      "senses": [
+        {
+          "es": "enfrentarse a",
+          "pos": "verb"
+        },
+        {
+          "es": "cara",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fact",
       "headword": "fact",
       "kind": "word",
@@ -21,6 +37,18 @@
         {
           "es": "verificar (datos)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.factor",
+      "headword": "factor",
+      "kind": "word",
+      "forms": ["factor", "factors"],
+      "senses": [
+        {
+          "es": "factor",
+          "pos": "noun"
         }
       ]
     },
@@ -49,6 +77,54 @@
         {
           "es": "fallar, fracasar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.failure",
+      "headword": "failure",
+      "kind": "word",
+      "forms": ["failure", "failures"],
+      "senses": [
+        {
+          "es": "fracaso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fair",
+      "headword": "fair",
+      "kind": "word",
+      "forms": ["fair"],
+      "senses": [
+        {
+          "es": "justo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fairness",
+      "headword": "fairness",
+      "kind": "word",
+      "forms": ["fairness"],
+      "senses": [
+        {
+          "es": "imparcialidad, justicia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.faith",
+      "headword": "faith",
+      "kind": "word",
+      "forms": ["faith"],
+      "senses": [
+        {
+          "es": "fe (in good faith: de buena fe)",
+          "pos": "noun"
         }
       ]
     },
@@ -148,6 +224,42 @@
       "senses": [
         {
           "es": "falso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.falsify",
+      "headword": "falsify",
+      "kind": "word",
+      "forms": ["falsify", "falsifies", "falsified", "falsifying"],
+      "senses": [
+        {
+          "es": "falsificar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fame",
+      "headword": "fame",
+      "kind": "word",
+      "forms": ["fame"],
+      "senses": [
+        {
+          "es": "fama",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.familiar",
+      "headword": "familiar",
+      "kind": "word",
+      "forms": ["familiar"],
+      "senses": [
+        {
+          "es": "conocido",
           "pos": "adjective"
         }
       ]
@@ -381,6 +493,18 @@
       ]
     },
     {
+      "id": "glossary.fence",
+      "headword": "fence",
+      "kind": "word",
+      "forms": ["fence", "fences"],
+      "senses": [
+        {
+          "es": "cerca, valla",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fever",
       "headword": "fever",
       "kind": "word",
@@ -396,7 +520,7 @@
       "id": "glossary.few",
       "headword": "few",
       "kind": "word",
-      "forms": ["few"],
+      "forms": ["few", "fewer"],
       "senses": [
         {
           "es": "pocos",
@@ -404,6 +528,10 @@
         },
         {
           "es": "(a few) unos pocos, algunos",
+          "pos": "determiner"
+        },
+        {
+          "es": "(fewer) menos",
           "pos": "determiner"
         }
       ]
@@ -428,6 +556,18 @@
       "senses": [
         {
           "es": "quince",
+          "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fifth",
+      "headword": "fifth",
+      "kind": "word",
+      "forms": ["fifth"],
+      "senses": [
+        {
+          "es": "quinto",
           "pos": "number"
         }
       ]
@@ -601,6 +741,18 @@
         {
           "es": "descubrir, averiguar, enterarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.findings",
+      "headword": "findings",
+      "kind": "word",
+      "forms": ["findings"],
+      "senses": [
+        {
+          "es": "hallazgo, resultado",
+          "pos": "noun"
         }
       ]
     },
@@ -805,6 +957,18 @@
       ]
     },
     {
+      "id": "glossary.flaw",
+      "headword": "flaw",
+      "kind": "word",
+      "forms": ["flaw", "flaws"],
+      "senses": [
+        {
+          "es": "defecto, fallo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.flight",
       "headword": "flight",
       "kind": "word",
@@ -981,6 +1145,22 @@
       ]
     },
     {
+      "id": "glossary.force",
+      "headword": "force",
+      "kind": "word",
+      "forms": ["force", "forces", "forced", "forcing"],
+      "senses": [
+        {
+          "es": "obligar, forzar",
+          "pos": "verb"
+        },
+        {
+          "es": "fuerza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.forecast",
       "headword": "forecast",
       "kind": "word",
@@ -1005,6 +1185,18 @@
       ]
     },
     {
+      "id": "glossary.forever",
+      "headword": "forever",
+      "kind": "word",
+      "forms": ["forever"],
+      "senses": [
+        {
+          "es": "para siempre",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.forget",
       "headword": "forget",
       "kind": "word",
@@ -1012,6 +1204,18 @@
       "senses": [
         {
           "es": "olvidar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.forgive",
+      "headword": "forgive",
+      "kind": "word",
+      "forms": ["forgive", "forgives", "forgave", "forgiven", "forgiving"],
+      "senses": [
+        {
+          "es": "perdonar",
           "pos": "verb"
         }
       ]
@@ -1041,6 +1245,30 @@
         {
           "es": "formal",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.formally",
+      "headword": "formally",
+      "kind": "word",
+      "forms": ["formally"],
+      "senses": [
+        {
+          "es": "formalmente",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fortune",
+      "headword": "fortune",
+      "kind": "word",
+      "forms": ["fortune"],
+      "senses": [
+        {
+          "es": "fortuna",
+          "pos": "noun"
         }
       ]
     },
@@ -1085,6 +1313,18 @@
       ]
     },
     {
+      "id": "glossary.founder",
+      "headword": "founder",
+      "kind": "word",
+      "forms": ["founder", "founders"],
+      "senses": [
+        {
+          "es": "fundador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.fountain",
       "headword": "fountain",
       "kind": "word",
@@ -1117,6 +1357,18 @@
         {
           "es": "catorce",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.fraction",
+      "headword": "fraction",
+      "kind": "word",
+      "forms": ["fraction"],
+      "senses": [
+        {
+          "es": "fracción",
+          "pos": "noun"
         }
       ]
     },
@@ -1181,6 +1433,18 @@
         {
           "es": "francés",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.frequently",
+      "headword": "frequently",
+      "kind": "word",
+      "forms": ["frequently"],
+      "senses": [
+        {
+          "es": "con frecuencia",
+          "pos": "adverb"
         }
       ]
     },
@@ -1357,6 +1621,22 @@
         {
           "es": "muebles",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.further",
+      "headword": "further",
+      "kind": "word",
+      "forms": ["further"],
+      "senses": [
+        {
+          "es": "más, adicional",
+          "pos": "adjective"
+        },
+        {
+          "es": "más allá",
+          "pos": "adverb"
         }
       ]
     },

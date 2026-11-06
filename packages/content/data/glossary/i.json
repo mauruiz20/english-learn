@@ -93,6 +93,18 @@
       ]
     },
     {
+      "id": "glossary.iceberg",
+      "headword": "iceberg",
+      "kind": "word",
+      "forms": ["iceberg", "icebergs"],
+      "senses": [
+        {
+          "es": "iceberg",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.id",
       "headword": "ID",
       "kind": "word",
@@ -113,6 +125,18 @@
         {
           "es": "idea",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.identify",
+      "headword": "identify",
+      "kind": "word",
+      "forms": ["identify", "identifies", "identified", "identifying"],
+      "senses": [
+        {
+          "es": "identificar",
+          "pos": "verb"
         }
       ]
     },
@@ -145,6 +169,18 @@
       ]
     },
     {
+      "id": "glossary.ignore",
+      "headword": "ignore",
+      "kind": "word",
+      "forms": ["ignore", "ignores", "ignored", "ignoring"],
+      "senses": [
+        {
+          "es": "ignorar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.ill",
       "headword": "ill",
       "kind": "word",
@@ -152,6 +188,18 @@
       "senses": [
         {
           "es": "enfermo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.illegal",
+      "headword": "illegal",
+      "kind": "word",
+      "forms": ["illegal"],
+      "senses": [
+        {
+          "es": "ilegal",
           "pos": "adjective"
         }
       ]
@@ -193,6 +241,30 @@
       ]
     },
     {
+      "id": "glossary.imagine",
+      "headword": "imagine",
+      "kind": "word",
+      "forms": ["imagine", "imagines", "imagined"],
+      "senses": [
+        {
+          "es": "imaginar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.immediate",
+      "headword": "immediate",
+      "kind": "word",
+      "forms": ["immediate"],
+      "senses": [
+        {
+          "es": "inmediato",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.immediately",
       "headword": "immediately",
       "kind": "word",
@@ -212,6 +284,42 @@
       "senses": [
         {
           "es": "imperativo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.implement",
+      "headword": "implement",
+      "kind": "word",
+      "forms": ["implement", "implements", "implemented", "implementing"],
+      "senses": [
+        {
+          "es": "aplicar, poner en práctica",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.implementation",
+      "headword": "implementation",
+      "kind": "word",
+      "forms": ["implementation"],
+      "senses": [
+        {
+          "es": "aplicación, puesta en práctica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.importance",
+      "headword": "importance",
+      "kind": "word",
+      "forms": ["importance"],
+      "senses": [
+        {
+          "es": "importancia",
           "pos": "noun"
         }
       ]
@@ -261,6 +369,18 @@
         {
           "es": "mejorar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.improvement",
+      "headword": "improvement",
+      "kind": "word",
+      "forms": ["improvement", "improvements"],
+      "senses": [
+        {
+          "es": "mejora",
+          "pos": "noun"
         }
       ]
     },
@@ -381,6 +501,30 @@
       ]
     },
     {
+      "id": "glossary.income",
+      "headword": "income",
+      "kind": "word",
+      "forms": ["income", "incomes"],
+      "senses": [
+        {
+          "es": "ingresos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.incorrect",
+      "headword": "incorrect",
+      "kind": "word",
+      "forms": ["incorrect"],
+      "senses": [
+        {
+          "es": "incorrecto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.increase",
       "headword": "increase",
       "kind": "word",
@@ -393,6 +537,18 @@
         {
           "es": "aumento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.increasingly",
+      "headword": "increasingly",
+      "kind": "word",
+      "forms": ["increasingly"],
+      "senses": [
+        {
+          "es": "cada vez más",
+          "pos": "adverb"
         }
       ]
     },
@@ -428,6 +584,18 @@
       "senses": [
         {
           "es": "individuo, persona",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.inequality",
+      "headword": "inequality",
+      "kind": "word",
+      "forms": ["inequality", "inequalities"],
+      "senses": [
+        {
+          "es": "desigualdad",
           "pos": "noun"
         }
       ]
@@ -469,6 +637,22 @@
       ]
     },
     {
+      "id": "glossary.influence",
+      "headword": "influence",
+      "kind": "word",
+      "forms": ["influence", "influences", "influenced"],
+      "senses": [
+        {
+          "es": "influir en",
+          "pos": "verb"
+        },
+        {
+          "es": "influencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.information",
       "headword": "information",
       "kind": "word",
@@ -493,6 +677,54 @@
       ]
     },
     {
+      "id": "glossary.innocent",
+      "headword": "innocent",
+      "kind": "word",
+      "forms": ["innocent"],
+      "senses": [
+        {
+          "es": "inocente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.innovation",
+      "headword": "innovation",
+      "kind": "word",
+      "forms": ["innovation"],
+      "senses": [
+        {
+          "es": "innovación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.inquire",
+      "headword": "inquire",
+      "kind": "word",
+      "forms": ["inquire", "inquires", "inquired"],
+      "senses": [
+        {
+          "es": "preguntar, informarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.insecure",
+      "headword": "insecure",
+      "kind": "word",
+      "forms": ["insecure"],
+      "senses": [
+        {
+          "es": "inseguro",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.inside",
       "headword": "inside",
       "kind": "word",
@@ -505,6 +737,18 @@
         {
           "es": "dentro de",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.insist",
+      "headword": "insist",
+      "kind": "word",
+      "forms": ["insist", "insists", "insisted"],
+      "senses": [
+        {
+          "es": "insistir",
+          "pos": "verb"
         }
       ]
     },
@@ -537,6 +781,18 @@
       ]
     },
     {
+      "id": "glossary.institution",
+      "headword": "institution",
+      "kind": "word",
+      "forms": ["institution", "institutions"],
+      "senses": [
+        {
+          "es": "institución",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.instrument",
       "headword": "instrument",
       "kind": "word",
@@ -544,6 +800,30 @@
       "senses": [
         {
           "es": "instrumento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.intend",
+      "headword": "intend",
+      "kind": "word",
+      "forms": ["intend", "intends", "intended"],
+      "senses": [
+        {
+          "es": "tener la intención de",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.interest",
+      "headword": "interest",
+      "kind": "word",
+      "forms": ["interest", "interests"],
+      "senses": [
+        {
+          "es": "interés",
           "pos": "noun"
         }
       ]
@@ -569,6 +849,18 @@
         {
           "es": "interesante",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.interestingly",
+      "headword": "interestingly",
+      "kind": "word",
+      "forms": ["interestingly"],
+      "senses": [
+        {
+          "es": "curiosamente",
+          "pos": "adverb"
         }
       ]
     },
@@ -612,11 +904,15 @@
       "id": "glossary.interview",
       "headword": "interview",
       "kind": "word",
-      "forms": ["interview", "interviews"],
+      "forms": ["interview", "interviews", "interviewed", "interviewing"],
       "senses": [
         {
           "es": "entrevista",
           "pos": "noun"
+        },
+        {
+          "es": "entrevistar",
+          "pos": "verb"
         }
       ]
     },
@@ -645,6 +941,18 @@
         {
           "es": "a",
           "pos": "preposition"
+        }
+      ]
+    },
+    {
+      "id": "glossary.introduction",
+      "headword": "introduction",
+      "kind": "word",
+      "forms": ["introduction", "introductions"],
+      "senses": [
+        {
+          "es": "introducción",
+          "pos": "noun"
         }
       ]
     },
@@ -685,6 +993,30 @@
       ]
     },
     {
+      "id": "glossary.investigative",
+      "headword": "investigative",
+      "kind": "word",
+      "forms": ["investigative"],
+      "senses": [
+        {
+          "es": "de investigación",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.investment",
+      "headword": "investment",
+      "kind": "word",
+      "forms": ["investment", "investments"],
+      "senses": [
+        {
+          "es": "inversión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.invite",
       "headword": "invite",
       "kind": "word",
@@ -709,6 +1041,58 @@
       ]
     },
     {
+      "id": "glossary.iron",
+      "headword": "iron",
+      "kind": "word",
+      "forms": ["iron", "irons", "ironed", "ironing"],
+      "senses": [
+        {
+          "es": "planchar",
+          "pos": "verb"
+        },
+        {
+          "es": "hierro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.iron-out",
+      "headword": "iron out",
+      "kind": "phrase",
+      "forms": ["iron out", "irons out", "ironed out", "ironing out"],
+      "senses": [
+        {
+          "es": "resolver, limar (problemas)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.irrigation",
+      "headword": "irrigation",
+      "kind": "word",
+      "forms": ["irrigation"],
+      "senses": [
+        {
+          "es": "riego",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.irritating",
+      "headword": "irritating",
+      "kind": "word",
+      "forms": ["irritating"],
+      "senses": [
+        {
+          "es": "irritante, molesto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.is",
       "headword": "is",
       "kind": "word",
@@ -717,6 +1101,18 @@
         {
           "es": "es, está (3.ª persona de be)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.island",
+      "headword": "island",
+      "kind": "word",
+      "forms": ["island", "islands"],
+      "senses": [
+        {
+          "es": "isla",
+          "pos": "noun"
         }
       ]
     },
@@ -733,6 +1129,30 @@
         {
           "es": "(there isn't) no hay",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.isolated",
+      "headword": "isolated",
+      "kind": "word",
+      "forms": ["isolated"],
+      "senses": [
+        {
+          "es": "aislado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.issue",
+      "headword": "issue",
+      "kind": "word",
+      "forms": ["issue", "issues"],
+      "senses": [
+        {
+          "es": "tema, cuestión, problema",
+          "pos": "noun"
         }
       ]
     },
@@ -825,6 +1245,18 @@
         {
           "es": "su (de una cosa o animal)",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.itself",
+      "headword": "itself",
+      "kind": "word",
+      "forms": ["itself"],
+      "senses": [
+        {
+          "es": "sí mismo, en sí",
+          "pos": "pronoun"
         }
       ]
     }

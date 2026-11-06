@@ -85,6 +85,30 @@
       ]
     },
     {
+      "id": "glossary.rapid",
+      "headword": "rapid",
+      "kind": "word",
+      "forms": ["rapid"],
+      "senses": [
+        {
+          "es": "rápido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rarely",
+      "headword": "rarely",
+      "kind": "word",
+      "forms": ["rarely"],
+      "senses": [
+        {
+          "es": "rara vez",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.rather",
       "headword": "rather",
       "kind": "word",
@@ -113,6 +137,18 @@
       ]
     },
     {
+      "id": "glossary.react",
+      "headword": "react",
+      "kind": "word",
+      "forms": ["react", "reacts", "reacted"],
+      "senses": [
+        {
+          "es": "reaccionar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.reaction",
       "headword": "reaction",
       "kind": "word",
@@ -133,6 +169,18 @@
         {
           "es": "leer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.read-between-the-lines",
+      "headword": "read between the lines",
+      "kind": "phrase",
+      "forms": ["read between the lines"],
+      "senses": [
+        {
+          "es": "leer entre líneas",
+          "pos": "expression"
         }
       ]
     },
@@ -185,6 +233,18 @@
       ]
     },
     {
+      "id": "glossary.reality",
+      "headword": "reality",
+      "kind": "word",
+      "forms": ["reality"],
+      "senses": [
+        {
+          "es": "realidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.realize",
       "headword": "realize",
       "kind": "word",
@@ -225,6 +285,18 @@
       ]
     },
     {
+      "id": "glossary.reasonable",
+      "headword": "reasonable",
+      "kind": "word",
+      "forms": ["reasonable"],
+      "senses": [
+        {
+          "es": "razonable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.receipt",
       "headword": "receipt",
       "kind": "word",
@@ -233,6 +305,18 @@
         {
           "es": "recibo, comprobante",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.receive",
+      "headword": "receive",
+      "kind": "word",
+      "forms": ["receive", "receives", "received", "receiving"],
+      "senses": [
+        {
+          "es": "recibir",
+          "pos": "verb"
         }
       ]
     },
@@ -261,6 +345,18 @@
       ]
     },
     {
+      "id": "glossary.recognize",
+      "headword": "recognize",
+      "kind": "word",
+      "forms": ["recognize", "recognizes", "recognized", "recognizing"],
+      "senses": [
+        {
+          "es": "reconocer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.recommend",
       "headword": "recommend",
       "kind": "word",
@@ -269,6 +365,18 @@
         {
           "es": "recomendar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.record",
+      "headword": "record",
+      "kind": "word",
+      "forms": ["record", "records"],
+      "senses": [
+        {
+          "es": "récord; registro",
+          "pos": "noun"
         }
       ]
     },
@@ -321,6 +429,54 @@
       ]
     },
     {
+      "id": "glossary.reduction",
+      "headword": "reduction",
+      "kind": "word",
+      "forms": ["reduction", "reductions"],
+      "senses": [
+        {
+          "es": "reducción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.refer",
+      "headword": "refer",
+      "kind": "word",
+      "forms": ["refer", "refers", "referred", "referring"],
+      "senses": [
+        {
+          "es": "referirse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reform",
+      "headword": "reform",
+      "kind": "word",
+      "forms": ["reform", "reforms"],
+      "senses": [
+        {
+          "es": "reforma",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.refreshing",
+      "headword": "refreshing",
+      "kind": "word",
+      "forms": ["refreshing"],
+      "senses": [
+        {
+          "es": "refrescante",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.refund",
       "headword": "refund",
       "kind": "word",
@@ -337,6 +493,18 @@
       ]
     },
     {
+      "id": "glossary.refusal",
+      "headword": "refusal",
+      "kind": "word",
+      "forms": ["refusal"],
+      "senses": [
+        {
+          "es": "negativa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.refuse",
       "headword": "refuse",
       "kind": "word",
@@ -345,6 +513,18 @@
         {
           "es": "rechazar, negarse a",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.regard",
+      "headword": "regard",
+      "kind": "word",
+      "forms": ["regard"],
+      "senses": [
+        {
+          "es": "(in regard to, with regard to) en relación con",
+          "pos": "noun"
         }
       ]
     },
@@ -409,6 +589,42 @@
       ]
     },
     {
+      "id": "glossary.regularly",
+      "headword": "regularly",
+      "kind": "word",
+      "forms": ["regularly"],
+      "senses": [
+        {
+          "es": "con regularidad",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.regulate",
+      "headword": "regulate",
+      "kind": "word",
+      "forms": ["regulate", "regulates", "regulated"],
+      "senses": [
+        {
+          "es": "regular",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.regulation",
+      "headword": "regulation",
+      "kind": "word",
+      "forms": ["regulation", "regulations"],
+      "senses": [
+        {
+          "es": "regulación, normativa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.reject",
       "headword": "reject",
       "kind": "word",
@@ -417,6 +633,30 @@
         {
           "es": "rechazar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.related",
+      "headword": "related",
+      "kind": "word",
+      "forms": ["related"],
+      "senses": [
+        {
+          "es": "relacionado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.relation",
+      "headword": "relation",
+      "kind": "word",
+      "forms": ["relation", "relations"],
+      "senses": [
+        {
+          "es": "relación (in relation to: en relación con)",
+          "pos": "noun"
         }
       ]
     },
@@ -473,6 +713,18 @@
       ]
     },
     {
+      "id": "glossary.relevant",
+      "headword": "relevant",
+      "kind": "word",
+      "forms": ["relevant"],
+      "senses": [
+        {
+          "es": "pertinente, relevante",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.reliable",
       "headword": "reliable",
       "kind": "word",
@@ -481,6 +733,18 @@
         {
           "es": "confiable, fiable",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.relief",
+      "headword": "relief",
+      "kind": "word",
+      "forms": ["relief"],
+      "senses": [
+        {
+          "es": "alivio",
+          "pos": "noun"
         }
       ]
     },
@@ -505,6 +769,42 @@
         {
           "es": "contar con, depender de",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.remain",
+      "headword": "remain",
+      "kind": "word",
+      "forms": ["remain", "remains", "remained", "remaining"],
+      "senses": [
+        {
+          "es": "seguir, permanecer",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.remark",
+      "headword": "remark",
+      "kind": "word",
+      "forms": ["remark", "remarks"],
+      "senses": [
+        {
+          "es": "comentario",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.remarkable",
+      "headword": "remarkable",
+      "kind": "word",
+      "forms": ["remarkable"],
+      "senses": [
+        {
+          "es": "extraordinario, notable",
+          "pos": "adjective"
         }
       ]
     },
@@ -757,6 +1057,42 @@
       ]
     },
     {
+      "id": "glossary.resilience",
+      "headword": "resilience",
+      "kind": "word",
+      "forms": ["resilience"],
+      "senses": [
+        {
+          "es": "resiliencia, capacidad de recuperación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.resilient",
+      "headword": "resilient",
+      "kind": "word",
+      "forms": ["resilient"],
+      "senses": [
+        {
+          "es": "resistente, capaz de recuperarse",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.resource",
+      "headword": "resource",
+      "kind": "word",
+      "forms": ["resource", "resources"],
+      "senses": [
+        {
+          "es": "recurso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.respect",
       "headword": "respect",
       "kind": "word",
@@ -769,6 +1105,18 @@
         {
           "es": "respeto",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.respond",
+      "headword": "respond",
+      "kind": "word",
+      "forms": ["respond", "responds", "responded"],
+      "senses": [
+        {
+          "es": "responder",
+          "pos": "verb"
         }
       ]
     },
@@ -881,6 +1229,18 @@
       ]
     },
     {
+      "id": "glossary.reveal",
+      "headword": "reveal",
+      "kind": "word",
+      "forms": ["reveal", "reveals", "revealed"],
+      "senses": [
+        {
+          "es": "revelar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.review",
       "headword": "review",
       "kind": "word",
@@ -905,6 +1265,22 @@
         {
           "es": "corregir, modificar (un texto)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.reward",
+      "headword": "reward",
+      "kind": "word",
+      "forms": ["reward", "rewards", "rewarded"],
+      "senses": [
+        {
+          "es": "recompensar",
+          "pos": "verb"
+        },
+        {
+          "es": "recompensa",
+          "pos": "noun"
         }
       ]
     },
@@ -945,6 +1321,18 @@
         {
           "es": "viaje, paseo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.ridicule",
+      "headword": "ridicule",
+      "kind": "word",
+      "forms": ["ridicule", "ridiculed"],
+      "senses": [
+        {
+          "es": "ridiculizar",
+          "pos": "verb"
         }
       ]
     },
@@ -1021,6 +1409,22 @@
       ]
     },
     {
+      "id": "glossary.risk",
+      "headword": "risk",
+      "kind": "word",
+      "forms": ["risk", "risks"],
+      "senses": [
+        {
+          "es": "riesgo",
+          "pos": "noun"
+        },
+        {
+          "es": "arriesgarse",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.risky",
       "headword": "risky",
       "kind": "word",
@@ -1081,6 +1485,18 @@
       ]
     },
     {
+      "id": "glossary.role",
+      "headword": "role",
+      "kind": "word",
+      "forms": ["role", "roles"],
+      "senses": [
+        {
+          "es": "papel, función",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.rome",
       "headword": "Rome",
       "kind": "word",
@@ -1121,6 +1537,18 @@
       ]
     },
     {
+      "id": "glossary.root",
+      "headword": "root",
+      "kind": "word",
+      "forms": ["root", "roots"],
+      "senses": [
+        {
+          "es": "raíz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ross",
       "headword": "Ross",
       "kind": "word",
@@ -1152,6 +1580,18 @@
         {
           "es": "fila",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.rude",
+      "headword": "rude",
+      "kind": "word",
+      "forms": ["rude"],
+      "senses": [
+        {
+          "es": "grosero, maleducado",
+          "pos": "adjective"
         }
       ]
     },

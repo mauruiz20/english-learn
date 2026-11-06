@@ -13,6 +13,30 @@
       ]
     },
     {
+      "id": "glossary.a-double-edged-sword",
+      "headword": "a double-edged sword",
+      "kind": "phrase",
+      "forms": ["a double-edged sword"],
+      "senses": [
+        {
+          "es": "un arma de doble filo",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.a-drop-in-the-bucket",
+      "headword": "a drop in the bucket",
+      "kind": "phrase",
+      "forms": ["a drop in the bucket"],
+      "senses": [
+        {
+          "es": "una gota en el océano",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.a-few",
       "headword": "a few",
       "kind": "phrase",
@@ -81,6 +105,18 @@
       ]
     },
     {
+      "id": "glossary.abandon",
+      "headword": "abandon",
+      "kind": "word",
+      "forms": ["abandon", "abandons", "abandoned", "abandoning"],
+      "senses": [
+        {
+          "es": "abandonar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.ability",
       "headword": "ability",
       "kind": "word",
@@ -145,6 +181,42 @@
       ]
     },
     {
+      "id": "glossary.absence",
+      "headword": "absence",
+      "kind": "word",
+      "forms": ["absence"],
+      "senses": [
+        {
+          "es": "ausencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.absent",
+      "headword": "absent",
+      "kind": "word",
+      "forms": ["absent"],
+      "senses": [
+        {
+          "es": "ausente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.abstract",
+      "headword": "abstract",
+      "kind": "word",
+      "forms": ["abstract"],
+      "senses": [
+        {
+          "es": "abstracto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.accent",
       "headword": "accent",
       "kind": "word",
@@ -169,6 +241,30 @@
       ]
     },
     {
+      "id": "glossary.acceptable",
+      "headword": "acceptable",
+      "kind": "word",
+      "forms": ["acceptable"],
+      "senses": [
+        {
+          "es": "aceptable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.access",
+      "headword": "access",
+      "kind": "word",
+      "forms": ["access"],
+      "senses": [
+        {
+          "es": "acceso",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.accident",
       "headword": "accident",
       "kind": "word",
@@ -177,6 +273,18 @@
         {
           "es": "accidente",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.acclaimed",
+      "headword": "acclaimed",
+      "kind": "word",
+      "forms": ["acclaimed"],
+      "senses": [
+        {
+          "es": "aclamado, elogiado",
+          "pos": "adjective"
         }
       ]
     },
@@ -205,6 +313,18 @@
       ]
     },
     {
+      "id": "glossary.accordingly",
+      "headword": "accordingly",
+      "kind": "word",
+      "forms": ["accordingly"],
+      "senses": [
+        {
+          "es": "en consecuencia, como corresponde",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.account",
       "headword": "account",
       "kind": "word",
@@ -217,6 +337,54 @@
         {
           "es": "relato",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.account-for",
+      "headword": "account for",
+      "kind": "phrase",
+      "forms": ["account for", "accounts for", "accounted for", "accounting for"],
+      "senses": [
+        {
+          "es": "explicar, ser la causa de; representar (una proporción)",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.accountable",
+      "headword": "accountable",
+      "kind": "word",
+      "forms": ["accountable"],
+      "senses": [
+        {
+          "es": "responsable (que debe rendir cuentas)",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.accounting",
+      "headword": "accounting",
+      "kind": "word",
+      "forms": ["accounting"],
+      "senses": [
+        {
+          "es": "contabilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.accuse",
+      "headword": "accuse",
+      "kind": "word",
+      "forms": ["accuse", "accuses", "accused", "accusing"],
+      "senses": [
+        {
+          "es": "acusar",
+          "pos": "verb"
         }
       ]
     },
@@ -241,6 +409,30 @@
         {
           "es": "lograr, alcanzar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.acquire",
+      "headword": "acquire",
+      "kind": "word",
+      "forms": ["acquire", "acquires", "acquired", "acquiring"],
+      "senses": [
+        {
+          "es": "adquirir",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.acquired-taste",
+      "headword": "acquired taste",
+      "kind": "phrase",
+      "forms": ["acquired taste"],
+      "senses": [
+        {
+          "es": "algo que se aprende a apreciar con el tiempo",
+          "pos": "expression"
         }
       ]
     },
@@ -373,6 +565,18 @@
       ]
     },
     {
+      "id": "glossary.adapt",
+      "headword": "adapt",
+      "kind": "word",
+      "forms": ["adapt", "adapts", "adapted", "adapting"],
+      "senses": [
+        {
+          "es": "adaptarse, adaptar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.add",
       "headword": "add",
       "kind": "word",
@@ -381,6 +585,18 @@
         {
           "es": "agregar, añadir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.additional",
+      "headword": "additional",
+      "kind": "word",
+      "forms": ["additional"],
+      "senses": [
+        {
+          "es": "adicional",
+          "pos": "adjective"
         }
       ]
     },
@@ -409,6 +625,18 @@
       ]
     },
     {
+      "id": "glossary.admire",
+      "headword": "admire",
+      "kind": "word",
+      "forms": ["admire", "admires", "admired", "admiring"],
+      "senses": [
+        {
+          "es": "admirar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.admit",
       "headword": "admit",
       "kind": "word",
@@ -417,6 +645,30 @@
         {
           "es": "admitir, reconocer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.admittedly",
+      "headword": "admittedly",
+      "kind": "word",
+      "forms": ["admittedly"],
+      "senses": [
+        {
+          "es": "hay que reconocer que, es cierto que",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.adoption",
+      "headword": "adoption",
+      "kind": "word",
+      "forms": ["adoption"],
+      "senses": [
+        {
+          "es": "adopción",
+          "pos": "noun"
         }
       ]
     },
@@ -433,6 +685,30 @@
       ]
     },
     {
+      "id": "glossary.advance",
+      "headword": "advance",
+      "kind": "word",
+      "forms": ["advance", "advances"],
+      "senses": [
+        {
+          "es": "avance",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.advantage",
+      "headword": "advantage",
+      "kind": "word",
+      "forms": ["advantage", "advantages"],
+      "senses": [
+        {
+          "es": "ventaja",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.adventure",
       "headword": "adventure",
       "kind": "word",
@@ -440,6 +716,42 @@
       "senses": [
         {
           "es": "aventura",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.advertisement",
+      "headword": "advertisement",
+      "kind": "word",
+      "forms": ["advertisement", "advertisements"],
+      "senses": [
+        {
+          "es": "anuncio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.advertiser",
+      "headword": "advertiser",
+      "kind": "word",
+      "forms": ["advertiser", "advertisers"],
+      "senses": [
+        {
+          "es": "anunciante",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.advertising",
+      "headword": "advertising",
+      "kind": "word",
+      "forms": ["advertising"],
+      "senses": [
+        {
+          "es": "publicidad",
           "pos": "noun"
         }
       ]
@@ -613,6 +925,30 @@
       ]
     },
     {
+      "id": "glossary.aggressive",
+      "headword": "aggressive",
+      "kind": "word",
+      "forms": ["aggressive"],
+      "senses": [
+        {
+          "es": "agresivo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aggressively",
+      "headword": "aggressively",
+      "kind": "word",
+      "forms": ["aggressively"],
+      "senses": [
+        {
+          "es": "de forma agresiva",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
       "id": "glossary.ago",
       "headword": "ago",
       "kind": "word",
@@ -641,6 +977,18 @@
       ]
     },
     {
+      "id": "glossary.agreement",
+      "headword": "agreement",
+      "kind": "word",
+      "forms": ["agreement", "agreements"],
+      "senses": [
+        {
+          "es": "acuerdo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ahead",
       "headword": "ahead",
       "kind": "word",
@@ -649,6 +997,22 @@
         {
           "es": "adelante, al frente",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aim",
+      "headword": "aim",
+      "kind": "word",
+      "forms": ["aim", "aims", "aimed", "aiming"],
+      "senses": [
+        {
+          "es": "tener como objetivo, buscar",
+          "pos": "verb"
+        },
+        {
+          "es": "objetivo",
+          "pos": "noun"
         }
       ]
     },
@@ -753,6 +1117,22 @@
       ]
     },
     {
+      "id": "glossary.allege",
+      "headword": "allege",
+      "kind": "word",
+      "forms": ["allege", "alleges", "alleged"],
+      "senses": [
+        {
+          "es": "afirmar (sin pruebas)",
+          "pos": "verb"
+        },
+        {
+          "es": "presunto",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.allow",
       "headword": "allow",
       "kind": "word",
@@ -825,6 +1205,22 @@
         {
           "es": "también",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.alternative",
+      "headword": "alternative",
+      "kind": "word",
+      "forms": ["alternative", "alternatives"],
+      "senses": [
+        {
+          "es": "alternativa",
+          "pos": "noun"
+        },
+        {
+          "es": "alternativo",
+          "pos": "adjective"
         }
       ]
     },
@@ -921,6 +1317,18 @@
         {
           "es": "Ana (nombre propio)",
           "pos": "proper noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.analyze",
+      "headword": "analyze",
+      "kind": "word",
+      "forms": ["analyze", "analyzes", "analyzed", "analyzing"],
+      "senses": [
+        {
+          "es": "analizar",
+          "pos": "verb"
         }
       ]
     },
@@ -1201,6 +1609,22 @@
       ]
     },
     {
+      "id": "glossary.application",
+      "headword": "application",
+      "kind": "word",
+      "forms": ["application", "applications"],
+      "senses": [
+        {
+          "es": "solicitud",
+          "pos": "noun"
+        },
+        {
+          "es": "aplicación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.apply",
       "headword": "apply",
       "kind": "word",
@@ -1265,6 +1689,18 @@
       ]
     },
     {
+      "id": "glossary.area",
+      "headword": "area",
+      "kind": "word",
+      "forms": ["area", "areas"],
+      "senses": [
+        {
+          "es": "zona, área",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.aren-t",
       "headword": "aren't",
       "kind": "word",
@@ -1305,6 +1741,18 @@
         {
           "es": "argumento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.arise",
+      "headword": "arise",
+      "kind": "word",
+      "forms": ["arise", "arises", "arose", "arisen", "arising"],
+      "senses": [
+        {
+          "es": "surgir",
+          "pos": "verb"
         }
       ]
     },
@@ -1493,6 +1941,18 @@
       ]
     },
     {
+      "id": "glossary.assistance",
+      "headword": "assistance",
+      "kind": "word",
+      "forms": ["assistance"],
+      "senses": [
+        {
+          "es": "ayuda, asistencia",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.assistant",
       "headword": "assistant",
       "kind": "word",
@@ -1501,6 +1961,18 @@
         {
           "es": "asistente",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.assume",
+      "headword": "assume",
+      "kind": "word",
+      "forms": ["assume", "assumes", "assumed", "assuming"],
+      "senses": [
+        {
+          "es": "suponer, dar por sentado",
+          "pos": "verb"
         }
       ]
     },
@@ -1617,6 +2089,22 @@
       ]
     },
     {
+      "id": "glossary.attack",
+      "headword": "attack",
+      "kind": "word",
+      "forms": ["attack", "attacks", "attacked", "attacking"],
+      "senses": [
+        {
+          "es": "atacar",
+          "pos": "verb"
+        },
+        {
+          "es": "ataque",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.attend",
       "headword": "attend",
       "kind": "word",
@@ -1677,6 +2165,30 @@
       ]
     },
     {
+      "id": "glossary.authority",
+      "headword": "authority",
+      "kind": "word",
+      "forms": ["authority", "authorities"],
+      "senses": [
+        {
+          "es": "autoridad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.automatic",
+      "headword": "automatic",
+      "kind": "word",
+      "forms": ["automatic"],
+      "senses": [
+        {
+          "es": "automático",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.automatically",
       "headword": "automatically",
       "kind": "word",
@@ -1704,11 +2216,15 @@
       "id": "glossary.average",
       "headword": "average",
       "kind": "word",
-      "forms": ["average"],
+      "forms": ["average", "averages"],
       "senses": [
         {
           "es": "promedio, medio",
           "pos": "adjective"
+        },
+        {
+          "es": "promedio",
+          "pos": "noun"
         }
       ]
     },
@@ -1721,6 +2237,58 @@
         {
           "es": "evitar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.avoidance",
+      "headword": "avoidance",
+      "kind": "word",
+      "forms": ["avoidance"],
+      "senses": [
+        {
+          "es": "el hecho de evitar algo; (tax avoidance) elusión fiscal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.award",
+      "headword": "award",
+      "kind": "word",
+      "forms": ["award", "awards", "awarded", "awarding"],
+      "senses": [
+        {
+          "es": "otorgar, adjudicar",
+          "pos": "verb"
+        },
+        {
+          "es": "premio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.aware",
+      "headword": "aware",
+      "kind": "word",
+      "forms": ["aware"],
+      "senses": [
+        {
+          "es": "consciente",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.awareness",
+      "headword": "awareness",
+      "kind": "word",
+      "forms": ["awareness"],
+      "senses": [
+        {
+          "es": "conciencia, conocimiento",
+          "pos": "noun"
         }
       ]
     },
