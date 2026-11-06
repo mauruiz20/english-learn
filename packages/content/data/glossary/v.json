@@ -37,6 +37,18 @@
       ]
     },
     {
+      "id": "glossary.vast",
+      "headword": "vast",
+      "kind": "word",
+      "forms": ["vast"],
+      "senses": [
+        {
+          "es": "vasto, inmenso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.vegetable",
       "headword": "vegetable",
       "kind": "word",
@@ -157,6 +169,18 @@
       ]
     },
     {
+      "id": "glossary.vision",
+      "headword": "vision",
+      "kind": "word",
+      "forms": ["vision"],
+      "senses": [
+        {
+          "es": "visión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.visit",
       "headword": "visit",
       "kind": "word",
@@ -185,6 +209,30 @@
       ]
     },
     {
+      "id": "glossary.vocabulary",
+      "headword": "vocabulary",
+      "kind": "word",
+      "forms": ["vocabulary"],
+      "senses": [
+        {
+          "es": "vocabulario",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.voice",
+      "headword": "voice",
+      "kind": "word",
+      "forms": ["voice", "voices"],
+      "senses": [
+        {
+          "es": "voz",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.volume",
       "headword": "volume",
       "kind": "word",
@@ -192,6 +240,34 @@
       "senses": [
         {
           "es": "volumen",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.vote",
+      "headword": "vote",
+      "kind": "word",
+      "forms": ["vote", "votes", "voted", "voting"],
+      "senses": [
+        {
+          "es": "votar",
+          "pos": "verb"
+        },
+        {
+          "es": "voto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.voter",
+      "headword": "voter",
+      "kind": "word",
+      "forms": ["voter", "voters"],
+      "senses": [
+        {
+          "es": "votante",
           "pos": "noun"
         }
       ]

@@ -43,23 +43,26 @@ every check passes; installable and usable offline; progress is stored in your b
   (perfect or "5/6"), and any lesson can be redone to get everything right. A done lesson also
   offers the study cards that go deeper into it ("Profundiza"), with their best result.
 - **Progress as a game**: XP in sheets of stickers, a daily streak as a paperclip chain, the
-  level's lessons as a path of stickers, and an album of nineteen achievements, all derived from
+  level's lessons as a path of stickers, and an album of achievements (one sticker per level with
+  lessons), all derived from
   the stored progress.
 - **A path through the levels**: home starts at the placement level and moves on to the next
-  level once every lesson of the current one is done (A2 → B1 → B2).
+  level once every lesson of the current one is done (A1 → A2 → B1 → B2 → C1); the learner can
+  also pick a level by hand.
 - **Fully offline**: progress lives in SQLite on the device (WebAssembly + OPFS on web).
-- **Content**: A2, B1 and B2 courses, plus a placement bank covering A1 to C1. Every B2 study
-  card is linked from the B2 lesson that teaches it.
+- **Content**: A1, A2, B1, B2 and C1 courses, plus a placement bank covering A1 to C1. Every A1,
+  B2 and C1 study card is linked from the lesson that teaches it.
 
-| Content                | A2  | B1  | B2  | Total |
-| ---------------------- | --- | --- | --- | ----- |
-| Topics                 | 10  | 11  | 8   | 29    |
-| Lessons                | 20  | 22  | 16  | 58    |
-| Exercises              | 143 | 159 | 119 | 421   |
-| Items (words, phrases) | 115 | 133 | 64  | 312   |
-| Reading passages       | 10  | 12  | 8   | 30    |
+| Content                | A1  | A2  | B1  | B2  | C1  | Total |
+| ---------------------- | --- | --- | --- | --- | --- | ----- |
+| Topics                 | 8   | 10  | 11  | 8   | 8   | 45    |
+| Lessons                | 16  | 20  | 22  | 16  | 16  | 90    |
+| Exercises              | 114 | 143 | 159 | 119 | 128 | 663   |
+| Items (words, phrases) | 87  | 115 | 133 | 64  | 57  | 456   |
+| Reading passages       | 8   | 10  | 12  | 8   | 16  | 54    |
 
-B2 lessons also practice the items of the B2 study cards they link (19 more).
+A1, B2 and C1 lessons also practice the items of the study cards they link (A1: 4 more, B2: 19
+more).
 
 Placement bank: 65 questions, 13 per level from A1 to C1.
 
@@ -169,7 +172,7 @@ backups and a monthly restore drill: see [docs/deploy.md](docs/deploy.md).
 
 - **Original content** is written for this project. No copyrighted word lists or textbook
   material are copied.
-- **Tatoeba sentences** (138 of 421 lesson exercises) are used under
+- **Tatoeba sentences** (139 of 663 lesson exercises) are used under
   [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/). Each one records the sentence
   id and author in its `source` field, a pipeline check verifies the English text matches the
   attributed sentence exactly, and the app's About screen credits Tatoeba with the license.

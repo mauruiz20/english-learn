@@ -17,6 +17,22 @@
       ]
     },
     {
+      "id": "glossary.sacrifice",
+      "headword": "sacrifice",
+      "kind": "word",
+      "forms": ["sacrifice"],
+      "senses": [
+        {
+          "es": "sacrificar",
+          "pos": "verb"
+        },
+        {
+          "es": "sacrificio",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sad",
       "headword": "sad",
       "kind": "word",
@@ -37,6 +53,18 @@
         {
           "es": "seguro, a salvo",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.safety",
+      "headword": "safety",
+      "kind": "word",
+      "forms": ["safety"],
+      "senses": [
+        {
+          "es": "seguridad",
+          "pos": "noun"
         }
       ]
     },
@@ -153,6 +181,18 @@
       ]
     },
     {
+      "id": "glossary.sample",
+      "headword": "sample",
+      "kind": "word",
+      "forms": ["sample", "samples"],
+      "senses": [
+        {
+          "es": "muestra",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sandwich",
       "headword": "sandwich",
       "kind": "word",
@@ -261,6 +301,42 @@
       ]
     },
     {
+      "id": "glossary.scan",
+      "headword": "scan",
+      "kind": "word",
+      "forms": ["scan", "scans"],
+      "senses": [
+        {
+          "es": "exploración (médica), escáner",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scandal",
+      "headword": "scandal",
+      "kind": "word",
+      "forms": ["scandal", "scandals"],
+      "senses": [
+        {
+          "es": "escándalo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scarcity",
+      "headword": "scarcity",
+      "kind": "word",
+      "forms": ["scarcity"],
+      "senses": [
+        {
+          "es": "escasez",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.scared",
       "headword": "scared",
       "kind": "word",
@@ -333,6 +409,18 @@
       ]
     },
     {
+      "id": "glossary.scientific",
+      "headword": "scientific",
+      "kind": "word",
+      "forms": ["scientific"],
+      "senses": [
+        {
+          "es": "científico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.scientist",
       "headword": "scientist",
       "kind": "word",
@@ -377,6 +465,18 @@
         {
           "es": "desplazarse hacia abajo (en la pantalla)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.scrutiny",
+      "headword": "scrutiny",
+      "kind": "word",
+      "forms": ["scrutiny"],
+      "senses": [
+        {
+          "es": "escrutinio, examen minucioso",
+          "pos": "noun"
         }
       ]
     },
@@ -461,6 +561,18 @@
       ]
     },
     {
+      "id": "glossary.second-nature",
+      "headword": "second nature",
+      "kind": "phrase",
+      "forms": ["second nature"],
+      "senses": [
+        {
+          "es": "algo natural, automático",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.secret",
       "headword": "secret",
       "kind": "word",
@@ -513,6 +625,30 @@
       ]
     },
     {
+      "id": "glossary.see-you-later",
+      "headword": "see you later",
+      "kind": "phrase",
+      "forms": ["see you later"],
+      "senses": [
+        {
+          "es": "hasta luego",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.seek",
+      "headword": "seek",
+      "kind": "word",
+      "forms": ["seek", "seeks", "sought", "seeking"],
+      "senses": [
+        {
+          "es": "buscar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.seem",
       "headword": "seem",
       "kind": "word",
@@ -521,6 +657,30 @@
         {
           "es": "parecer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.self-criticism",
+      "headword": "self-criticism",
+      "kind": "word",
+      "forms": ["self-criticism"],
+      "senses": [
+        {
+          "es": "autocrítica",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.self-esteem",
+      "headword": "self-esteem",
+      "kind": "word",
+      "forms": ["self-esteem"],
+      "senses": [
+        {
+          "es": "autoestima",
+          "pos": "noun"
         }
       ]
     },
@@ -556,6 +716,18 @@
       "senses": [
         {
           "es": "semestre",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.senator",
+      "headword": "senator",
+      "kind": "word",
+      "forms": ["senator", "senators"],
+      "senses": [
+        {
+          "es": "senador",
           "pos": "noun"
         }
       ]
@@ -741,6 +913,18 @@
       ]
     },
     {
+      "id": "glossary.setback",
+      "headword": "setback",
+      "kind": "word",
+      "forms": ["setback", "setbacks"],
+      "senses": [
+        {
+          "es": "revés, contratiempo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.settle",
       "headword": "settle",
       "kind": "word",
@@ -833,6 +1017,18 @@
       ]
     },
     {
+      "id": "glossary.shareholder",
+      "headword": "shareholder",
+      "kind": "word",
+      "forms": ["shareholder", "shareholders"],
+      "senses": [
+        {
+          "es": "accionista",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.shark",
       "headword": "shark",
       "kind": "word",
@@ -841,6 +1037,30 @@
         {
           "es": "tiburón",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sharp",
+      "headword": "sharp",
+      "kind": "word",
+      "forms": ["sharp"],
+      "senses": [
+        {
+          "es": "fuerte, marcado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sharply",
+      "headword": "sharply",
+      "kind": "word",
+      "forms": ["sharply"],
+      "senses": [
+        {
+          "es": "marcadamente, bruscamente",
+          "pos": "adverb"
         }
       ]
     },
@@ -1108,6 +1328,18 @@
       ]
     },
     {
+      "id": "glossary.sibling",
+      "headword": "sibling",
+      "kind": "word",
+      "forms": ["sibling", "siblings"],
+      "senses": [
+        {
+          "es": "hermano o hermana",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sick",
       "headword": "sick",
       "kind": "word",
@@ -1212,6 +1444,18 @@
       ]
     },
     {
+      "id": "glossary.significant",
+      "headword": "significant",
+      "kind": "word",
+      "forms": ["significant"],
+      "senses": [
+        {
+          "es": "significativo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.silent",
       "headword": "silent",
       "kind": "word",
@@ -1255,6 +1499,30 @@
         {
           "es": "simple, sencillo",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.simplification",
+      "headword": "simplification",
+      "kind": "word",
+      "forms": ["simplification"],
+      "senses": [
+        {
+          "es": "simplificación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.simply",
+      "headword": "simply",
+      "kind": "word",
+      "forms": ["simply"],
+      "senses": [
+        {
+          "es": "simplemente",
+          "pos": "adverb"
         }
       ]
     },
@@ -1303,6 +1571,30 @@
       ]
     },
     {
+      "id": "glossary.single",
+      "headword": "single",
+      "kind": "word",
+      "forms": ["single"],
+      "senses": [
+        {
+          "es": "solo, único",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sir",
+      "headword": "sir",
+      "kind": "word",
+      "forms": ["sir"],
+      "senses": [
+        {
+          "es": "señor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.sister",
       "headword": "sister",
       "kind": "word",
@@ -1339,6 +1631,18 @@
         {
           "es": "sentarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sit-on-the-fence",
+      "headword": "sit on the fence",
+      "kind": "phrase",
+      "forms": ["sit on the fence", "sitting on the fence", "sits on the fence"],
+      "senses": [
+        {
+          "es": "no tomar partido",
+          "pos": "expression"
         }
       ]
     },
@@ -1415,6 +1719,18 @@
         {
           "es": "tamaño",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.skeptical",
+      "headword": "skeptical",
+      "kind": "word",
+      "forms": ["skeptical"],
+      "senses": [
+        {
+          "es": "escéptico",
+          "pos": "adjective"
         }
       ]
     },
@@ -1507,6 +1823,18 @@
         {
           "es": "frenar, reducir (la velocidad)",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.slowly",
+      "headword": "slowly",
+      "kind": "word",
+      "forms": ["slowly"],
+      "senses": [
+        {
+          "es": "lentamente",
+          "pos": "adverb"
         }
       ]
     },
@@ -1662,6 +1990,18 @@
       "senses": [
         {
           "es": "redes sociales",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.society",
+      "headword": "society",
+      "kind": "word",
+      "forms": ["society", "societies"],
+      "senses": [
+        {
+          "es": "sociedad",
           "pos": "noun"
         }
       ]
@@ -2059,6 +2399,18 @@
       ]
     },
     {
+      "id": "glossary.speak-out",
+      "headword": "speak out",
+      "kind": "phrase",
+      "forms": ["speak out", "speaks out", "spoke out", "spoken out", "speaking out"],
+      "senses": [
+        {
+          "es": "alzar la voz, denunciar públicamente",
+          "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.speak-up",
       "headword": "speak up",
       "kind": "phrase",
@@ -2067,6 +2419,18 @@
         {
           "es": "hablar más fuerte",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.special",
+      "headword": "special",
+      "kind": "word",
+      "forms": ["special"],
+      "senses": [
+        {
+          "es": "especial",
+          "pos": "adjective"
         }
       ]
     },
@@ -2099,6 +2463,18 @@
       ]
     },
     {
+      "id": "glossary.speed",
+      "headword": "speed",
+      "kind": "word",
+      "forms": ["speed"],
+      "senses": [
+        {
+          "es": "velocidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.spend",
       "headword": "spend",
       "kind": "word",
@@ -2123,6 +2499,18 @@
         {
           "es": "picante",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.spirit",
+      "headword": "spirit",
+      "kind": "word",
+      "forms": ["spirit"],
+      "senses": [
+        {
+          "es": "espíritu",
+          "pos": "noun"
         }
       ]
     },
@@ -2203,6 +2591,18 @@
       ]
     },
     {
+      "id": "glossary.stability",
+      "headword": "stability",
+      "kind": "word",
+      "forms": ["stability"],
+      "senses": [
+        {
+          "es": "estabilidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.staff",
       "headword": "staff",
       "kind": "word",
@@ -2259,6 +2659,35 @@
       ]
     },
     {
+      "id": "glossary.stand-firm",
+      "headword": "stand firm",
+      "kind": "phrase",
+      "forms": ["stand firm"],
+      "senses": [
+        {
+          "es": "mantenerse firme",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.stand-the-test-of-time",
+      "headword": "stand the test of time",
+      "kind": "phrase",
+      "forms": [
+        "stand the test of time",
+        "stood the test of time",
+        "stands the test of time",
+        "standing the test of time"
+      ],
+      "senses": [
+        {
+          "es": "resistir el paso del tiempo",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.stand-up",
       "headword": "stand up",
       "kind": "phrase",
@@ -2302,6 +2731,18 @@
       "senses": [
         {
           "es": "estación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.statue",
+      "headword": "statue",
+      "kind": "word",
+      "forms": ["statue", "statues"],
+      "senses": [
+        {
+          "es": "estatua",
           "pos": "noun"
         }
       ]
@@ -2590,7 +3031,7 @@
       "id": "glossary.strict",
       "headword": "strict",
       "kind": "word",
-      "forms": ["strict"],
+      "forms": ["strict", "stricter"],
       "senses": [
         {
           "es": "estricto",
@@ -2655,6 +3096,18 @@
       ]
     },
     {
+      "id": "glossary.style",
+      "headword": "style",
+      "kind": "word",
+      "forms": ["style", "styles"],
+      "senses": [
+        {
+          "es": "estilo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.subject",
       "headword": "subject",
       "kind": "word",
@@ -2678,6 +3131,18 @@
       "senses": [
         {
           "es": "suscripción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.subtlety",
+      "headword": "subtlety",
+      "kind": "word",
+      "forms": ["subtlety"],
+      "senses": [
+        {
+          "es": "sutileza",
           "pos": "noun"
         }
       ]
@@ -2707,6 +3172,18 @@
       ]
     },
     {
+      "id": "glossary.successful",
+      "headword": "successful",
+      "kind": "word",
+      "forms": ["successful"],
+      "senses": [
+        {
+          "es": "exitoso",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.such",
       "headword": "such",
       "kind": "word",
@@ -2719,6 +3196,18 @@
         {
           "es": "tal, tan",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sudden",
+      "headword": "sudden",
+      "kind": "word",
+      "forms": ["sudden"],
+      "senses": [
+        {
+          "es": "repentino",
+          "pos": "adjective"
         }
       ]
     },
@@ -2867,6 +3356,30 @@
       ]
     },
     {
+      "id": "glossary.supplier",
+      "headword": "supplier",
+      "kind": "word",
+      "forms": ["supplier", "suppliers"],
+      "senses": [
+        {
+          "es": "proveedor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.supply",
+      "headword": "supply",
+      "kind": "word",
+      "forms": ["supply"],
+      "senses": [
+        {
+          "es": "suministro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.support",
       "headword": "support",
       "kind": "word",
@@ -2879,6 +3392,30 @@
         {
           "es": "apoyo",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.supporter",
+      "headword": "supporter",
+      "kind": "word",
+      "forms": ["supporter", "supporters"],
+      "senses": [
+        {
+          "es": "partidario, seguidor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.supposed",
+      "headword": "supposed",
+      "kind": "word",
+      "forms": ["supposed"],
+      "senses": [
+        {
+          "es": "(be supposed to) deber, se supone que",
+          "pos": "adjective"
         }
       ]
     },
@@ -2967,6 +3504,18 @@
       ]
     },
     {
+      "id": "glossary.suspicious",
+      "headword": "suspicious",
+      "kind": "word",
+      "forms": ["suspicious"],
+      "senses": [
+        {
+          "es": "sospechoso; desconfiado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.sweater",
       "headword": "sweater",
       "kind": "word",
@@ -2998,6 +3547,30 @@
       "senses": [
         {
           "es": "nadador, nadadora",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.sword",
+      "headword": "sword",
+      "kind": "word",
+      "forms": ["sword", "swords"],
+      "senses": [
+        {
+          "es": "espada",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.symptom",
+      "headword": "symptom",
+      "kind": "word",
+      "forms": ["symptom", "symptoms"],
+      "senses": [
+        {
+          "es": "síntoma",
           "pos": "noun"
         }
       ]

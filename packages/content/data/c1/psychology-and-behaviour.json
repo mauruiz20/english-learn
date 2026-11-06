@@ -1,0 +1,455 @@
+{
+  "items": [
+    {
+      "id": "c1.psychology-and-behaviour.procrastinate",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "kind": "word",
+      "term": "procrastinate",
+      "es": "dejar las cosas para más tarde, procrastinar",
+      "example": {
+        "en": "I always procrastinate when I have to write a report.",
+        "es": "Siempre dejo las cosas para más tarde cuando tengo que escribir un informe."
+      }
+    },
+    {
+      "id": "c1.psychology-and-behaviour.self-esteem",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "kind": "word",
+      "term": "self-esteem",
+      "es": "autoestima",
+      "example": {
+        "en": "Exercise can improve your self-esteem.",
+        "es": "El ejercicio puede mejorar tu autoestima."
+      }
+    },
+    {
+      "id": "c1.psychology-and-behaviour.resilient",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "kind": "word",
+      "term": "resilient",
+      "es": "resistente, capaz de recuperarse",
+      "example": {
+        "en": "Children are often more resilient than adults think.",
+        "es": "Los niños suelen ser más resistentes de lo que creen los adultos."
+      }
+    },
+    {
+      "id": "c1.psychology-and-behaviour.peer-pressure",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "kind": "phrase",
+      "term": "peer pressure",
+      "es": "presión de grupo",
+      "example": {
+        "en": "Adults feel peer pressure too.",
+        "es": "Los adultos también sienten la presión de grupo."
+      }
+    },
+    {
+      "id": "c1.psychology-and-behaviour.comfort-zone",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "kind": "phrase",
+      "term": "comfort zone",
+      "es": "zona de confort",
+      "example": {
+        "en": "Moving abroad took me out of my comfort zone.",
+        "es": "Mudarme al extranjero me sacó de mi zona de confort."
+      }
+    },
+    {
+      "id": "c1.psychology-and-behaviour.second-nature",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "kind": "phrase",
+      "term": "second nature",
+      "es": "algo natural, automático",
+      "example": {
+        "en": "After years of practice, driving is second nature to her.",
+        "es": "Después de años de práctica, manejar es algo automático para ella."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.psychology-and-behaviour.why-we-put-things-off",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "title": "Why we put things off",
+      "text": "Most of us procrastinate from time to time, but some people do so to such an extent that it affects their health and careers. For a long time, procrastination was put down to laziness or poor time management. Recent research, however, suggests that it has more to do with emotions than with organization. When a task makes us feel anxious, bored or insecure, delaying it brings immediate relief, even though it creates more stress later. This may account for the fact that people with low self-esteem are particularly likely to procrastinate: every task becomes a test they are afraid of failing. Psychologists therefore tend to play down the importance of productivity apps and detailed schedules. What they recommend instead is learning to tolerate uncomfortable feelings. Breaking a task into very small steps, forgiving yourself for past delays and weighing the real cost of waiting can all bring about lasting change. Interestingly, people who are kinder to themselves after a failure appear to procrastinate less, not more. Self-criticism, it seems, does not motivate us; it simply makes the task feel even more threatening.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.psychology-and-behaviour.habits-and-the-comfort-zone",
+      "level": "C1",
+      "topics": ["psychology-and-behaviour"],
+      "title": "Habits and the comfort zone",
+      "text": "What keeps most of us in our comfort zone is not laziness but the brain's preference for the familiar. Routines save energy: once a behavior has become second nature, we no longer need to think about it. The problem is that the same mechanism makes change difficult. It is only when we repeat a new behavior many times that it starts to feel automatic, and the first weeks are usually the hardest. Social factors also play a part. Teenagers are often warned about peer pressure, but adults are just as influenced by the people around them, whether they realize it or not. If your friends exercise regularly, you are far more likely to do the same. Psychologists describe people who cope well with setbacks as resilient. Contrary to popular belief, resilience is not a fixed personality trait. It is a set of skills, such as asking for help and seeing failure as temporary, that can be learned at any age. What resilient people seem to share is not an absence of fear, but a willingness to act in spite of it.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.psychology-and-behaviour.vocab-001",
+      "itemIds": ["c1.psychology-and-behaviour.procrastinate"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'procrastinate' mean in 'I always procrastinate when I have to write a report'?",
+      "options": [
+        "trabajar de más",
+        "preocuparse",
+        "dejar las cosas para más tarde",
+        "prepararse con tiempo"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "c1.psychology-and-behaviour.cloze-001",
+      "itemIds": ["c1.phrasal-verbs.account-for"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Stress may account ___ many of these symptoms.",
+      "answers": ["for"],
+      "distractors": ["of", "to", "with"],
+      "es": "El estrés puede explicar muchos de estos síntomas."
+    },
+    {
+      "id": "c1.psychology-and-behaviour.order-001",
+      "itemIds": ["c1.phrasal-verbs.weigh-up"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "to",
+        "up",
+        "weigh",
+        "the",
+        "We",
+        "and",
+        "pros",
+        "need",
+        "before",
+        "we",
+        "decide.",
+        "cons"
+      ],
+      "accepted": [
+        "We need to weigh up the pros and cons before we decide.",
+        "We need to weigh the pros and cons up before we decide."
+      ],
+      "es": "Tenemos que sopesar los pros y los contras antes de decidir."
+    },
+    {
+      "id": "c1.psychology-and-behaviour.choice-001",
+      "itemIds": ["c1.psychology-and-behaviour.self-esteem"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Constant criticism can damage a child's self-esteem.",
+      "options": [
+        "Las críticas constantes pueden mejorar el respeto de un niño.",
+        "Las críticas constantes pueden dañar la autoestima de un niño.",
+        "Las críticas constantes pueden dañar la salud de un niño.",
+        "Un niño puede dañar su autoestima criticando a los demás."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.psychology-and-behaviour.reading-001",
+      "itemIds": [
+        "c1.psychology-and-behaviour.procrastinate",
+        "c1.psychology-and-behaviour.self-esteem",
+        "c1.phrasal-verbs.account-for"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.psychology-and-behaviour.why-we-put-things-off",
+      "questions": [
+        {
+          "prompt": "According to recent research, what is procrastination mainly related to?",
+          "options": ["Laziness", "Poor time management", "Emotions"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "Why are people with low self-esteem particularly likely to procrastinate?",
+          "options": [
+            "Every task feels like a test they might fail.",
+            "They have more tasks than other people.",
+            "They use too many productivity apps."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What happens to people who are kinder to themselves after a failure?",
+          "options": [
+            "They procrastinate more.",
+            "They procrastinate less.",
+            "They stop making schedules."
+          ],
+          "answerIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "c1.psychology-and-behaviour.write-001",
+      "itemIds": ["c1.phrasal-verbs.bring-about"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Los pequeños cambios pueden provocar grandes resultados.",
+      "accepted": [
+        "Small changes can {bring about|lead to|produce|result in|cause} {big|great|major|significant|huge} results."
+      ]
+    },
+    {
+      "id": "c1.psychology-and-behaviour.cloze-002",
+      "itemIds": ["c1.phrasal-verbs.play-down"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The doctor tried to play ___ the risks, but the patient was still worried.",
+      "answers": ["down"],
+      "distractors": ["over", "out", "off"],
+      "es": "El médico intentó restarles importancia a los riesgos, pero el paciente seguía preocupado."
+    },
+    {
+      "id": "c1.psychology-and-behaviour.vocab-002",
+      "itemIds": ["c1.psychology-and-behaviour.self-esteem"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'autoestima'.",
+      "options": ["self-service", "selfish", "self-control", "self-esteem"],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.psychology-and-behaviour.vocab-003",
+      "itemIds": ["c1.psychology-and-behaviour.resilient"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'resilient' mean in 'Children are often more resilient than adults think'?",
+      "options": ["resentido", "capaz de recuperarse", "reservado", "residente"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.psychology-and-behaviour.cloze-003",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ I need right now is a long vacation.",
+      "answers": ["What", "All"],
+      "distractors": ["That", "Which", "It"],
+      "es": "Lo que necesito ahora mismo son unas largas vacaciones."
+    },
+    {
+      "id": "c1.psychology-and-behaviour.cloze-004",
+      "itemIds": ["c1.psychology-and-behaviour.comfort-zone"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Speaking in public forces me out of my comfort ___.",
+      "answers": ["zone"],
+      "distractors": ["area", "place", "room"],
+      "es": "Hablar en público me obliga a salir de mi zona de confort."
+    },
+    {
+      "id": "c1.psychology-and-behaviour.order-002",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "to",
+        "me",
+        "It",
+        "failure",
+        "coach",
+        "was",
+        "temporary.",
+        "as",
+        "my",
+        "taught",
+        "who",
+        "see"
+      ],
+      "accepted": ["It was my coach who taught me to see failure as temporary."],
+      "es": "Fue mi entrenador quien me enseñó a ver el fracaso como algo temporal."
+    },
+    {
+      "id": "c1.psychology-and-behaviour.choice-002",
+      "itemIds": ["c1.psychology-and-behaviour.peer-pressure"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Many teenagers start smoking because of peer pressure.",
+      "options": [
+        "Muchos adolescentes dejan de fumar por la presión de sus padres.",
+        "Muchos adolescentes empiezan a fumar por el estrés de los exámenes.",
+        "Muchos adolescentes presionan a sus amigos para que fumen.",
+        "Muchos adolescentes empiezan a fumar por la presión de grupo."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.psychology-and-behaviour.reading-002",
+      "itemIds": [
+        "c1.psychology-and-behaviour.comfort-zone",
+        "c1.psychology-and-behaviour.peer-pressure",
+        "c1.psychology-and-behaviour.resilient",
+        "c1.psychology-and-behaviour.second-nature"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.psychology-and-behaviour.habits-and-the-comfort-zone",
+      "questions": [
+        {
+          "prompt": "Why is it difficult to change our behavior, according to the text?",
+          "options": [
+            "The brain prefers what is familiar.",
+            "Adults learn more slowly than teenagers.",
+            "New habits never become automatic."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "What does the text say about peer pressure?",
+          "options": [
+            "It only affects teenagers.",
+            "It affects adults as well as teenagers.",
+            "It always has negative effects."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "According to the text, what is resilience?",
+          "options": [
+            "A personality trait that you are born with",
+            "An absence of fear",
+            "A set of skills that can be learned"
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.psychology-and-behaviour.write-002",
+      "itemIds": ["c1.psychology-and-behaviour.second-nature"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Después de unos meses, hacer ejercicio se volvió algo natural para mí.",
+      "accepted": [
+        "After a few months, {exercising|exercise|working out} became second nature {to|for} me.",
+        "{Exercising|Exercise|Working out} became second nature {to|for} me after a few months."
+      ]
+    },
+    {
+      "id": "c1.psychology-and-behaviour.write-003",
+      "itemIds": ["c1.grammar.cleft-sentences"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Lo que más me preocupa es la falta de sueño.",
+      "accepted": [
+        "What {worries|concerns} me {most|the most} is {the |}lack of sleep.",
+        "The thing that {worries|concerns} me {most|the most} is {the |}lack of sleep.",
+        "What I'm most worried about is {the |}lack of sleep."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.psychology-and-behaviour.lesson-001",
+      "level": "C1",
+      "topic": "psychology-and-behaviour",
+      "title": "¿Por qué lo dejamos para mañana?",
+      "exerciseIds": [
+        "c1.psychology-and-behaviour.vocab-001",
+        "c1.psychology-and-behaviour.cloze-001",
+        "c1.psychology-and-behaviour.order-001",
+        "c1.psychology-and-behaviour.choice-001",
+        "c1.psychology-and-behaviour.reading-001",
+        "c1.psychology-and-behaviour.write-001",
+        "c1.psychology-and-behaviour.cloze-002",
+        "c1.psychology-and-behaviour.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.phrasal-verbs.account-for",
+        "c1.phrasal-verbs.weigh-up",
+        "c1.phrasal-verbs.bring-about",
+        "c1.phrasal-verbs.play-down",
+        "c1.psychology-and-behaviour.procrastinate"
+      ],
+      "deepenCardIds": ["c1.phrasal-verbs.causes-and-solutions"]
+    },
+    {
+      "id": "c1.psychology-and-behaviour.lesson-002",
+      "level": "C1",
+      "topic": "psychology-and-behaviour",
+      "title": "Salir de la zona de confort",
+      "exerciseIds": [
+        "c1.psychology-and-behaviour.vocab-003",
+        "c1.psychology-and-behaviour.cloze-003",
+        "c1.psychology-and-behaviour.cloze-004",
+        "c1.psychology-and-behaviour.order-002",
+        "c1.psychology-and-behaviour.choice-002",
+        "c1.psychology-and-behaviour.reading-002",
+        "c1.psychology-and-behaviour.write-002",
+        "c1.psychology-and-behaviour.write-003"
+      ],
+      "newItemIds": [
+        "c1.grammar.cleft-sentences",
+        "c1.psychology-and-behaviour.comfort-zone",
+        "c1.psychology-and-behaviour.resilient",
+        "c1.psychology-and-behaviour.peer-pressure",
+        "c1.psychology-and-behaviour.second-nature"
+      ],
+      "deepenCardIds": ["c1.grammar.cleft-sentences"]
+    }
+  ]
+}

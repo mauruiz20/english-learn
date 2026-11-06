@@ -25,6 +25,18 @@
       ]
     },
     {
+      "id": "glossary.ear",
+      "headword": "ear",
+      "kind": "word",
+      "forms": ["ear", "ears"],
+      "senses": [
+        {
+          "es": "oreja, oído",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.early",
       "headword": "early",
       "kind": "word",
@@ -49,6 +61,18 @@
         {
           "es": "ganar (dinero)",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.easily",
+      "headword": "easily",
+      "kind": "word",
+      "forms": ["easily"],
+      "senses": [
+        {
+          "es": "fácilmente",
+          "pos": "adverb"
         }
       ]
     },
@@ -89,6 +113,42 @@
       ]
     },
     {
+      "id": "glossary.echo",
+      "headword": "echo",
+      "kind": "word",
+      "forms": ["echo", "echoes"],
+      "senses": [
+        {
+          "es": "eco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.echo-chamber",
+      "headword": "echo chamber",
+      "kind": "phrase",
+      "forms": ["echo chamber", "echo chambers"],
+      "senses": [
+        {
+          "es": "cámara de eco",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.economic",
+      "headword": "economic",
+      "kind": "word",
+      "forms": ["economic"],
+      "senses": [
+        {
+          "es": "económico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.economics",
       "headword": "economics",
       "kind": "word",
@@ -96,6 +156,18 @@
       "senses": [
         {
           "es": "economía (carrera)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.economy",
+      "headword": "economy",
+      "kind": "word",
+      "forms": ["economy", "economies"],
+      "senses": [
+        {
+          "es": "economía",
           "pos": "noun"
         }
       ]
@@ -125,6 +197,18 @@
       ]
     },
     {
+      "id": "glossary.editor",
+      "headword": "editor",
+      "kind": "word",
+      "forms": ["editor", "editors"],
+      "senses": [
+        {
+          "es": "editor, director (de un periódico)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.effect",
       "headword": "effect",
       "kind": "word",
@@ -133,6 +217,18 @@
         {
           "es": "efecto",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.effective",
+      "headword": "effective",
+      "kind": "word",
+      "forms": ["effective"],
+      "senses": [
+        {
+          "es": "eficaz",
+          "pos": "adjective"
         }
       ]
     },
@@ -169,6 +265,34 @@
         {
           "es": "ocho",
           "pos": "number"
+        }
+      ]
+    },
+    {
+      "id": "glossary.either",
+      "headword": "either",
+      "kind": "word",
+      "forms": ["either"],
+      "senses": [
+        {
+          "es": "cualquiera de los dos",
+          "pos": "determiner"
+        },
+        {
+          "es": "tampoco (not… either)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.election",
+      "headword": "election",
+      "kind": "word",
+      "forms": ["election", "elections"],
+      "senses": [
+        {
+          "es": "elección",
+          "pos": "noun"
         }
       ]
     },
@@ -228,6 +352,18 @@
       "senses": [
         {
           "es": "más, otro (something else: otra cosa)",
+          "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.elsewhere",
+      "headword": "elsewhere",
+      "kind": "word",
+      "forms": ["elsewhere"],
+      "senses": [
+        {
+          "es": "en otro lugar",
           "pos": "adverb"
         }
       ]
@@ -328,6 +464,18 @@
       ]
     },
     {
+      "id": "glossary.employer",
+      "headword": "employer",
+      "kind": "word",
+      "forms": ["employer", "employers"],
+      "senses": [
+        {
+          "es": "empleador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.empty",
       "headword": "empty",
       "kind": "word",
@@ -336,6 +484,30 @@
         {
           "es": "vacío",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.encounter",
+      "headword": "encounter",
+      "kind": "word",
+      "forms": ["encounter", "encounters"],
+      "senses": [
+        {
+          "es": "encuentro",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.encourage",
+      "headword": "encourage",
+      "kind": "word",
+      "forms": ["encourage", "encourages", "encouraged", "encouraging"],
+      "senses": [
+        {
+          "es": "animar, alentar",
+          "pos": "verb"
         }
       ]
     },
@@ -364,6 +536,18 @@
         {
           "es": "energía",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.engage",
+      "headword": "engage",
+      "kind": "word",
+      "forms": ["engage", "engages"],
+      "senses": [
+        {
+          "es": "interactuar (engage with)",
+          "pos": "verb"
         }
       ]
     },
@@ -420,6 +604,18 @@
       ]
     },
     {
+      "id": "glossary.enormous",
+      "headword": "enormous",
+      "kind": "word",
+      "forms": ["enormous"],
+      "senses": [
+        {
+          "es": "enorme",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.enough",
       "headword": "enough",
       "kind": "word",
@@ -448,6 +644,42 @@
       ]
     },
     {
+      "id": "glossary.ensure",
+      "headword": "ensure",
+      "kind": "word",
+      "forms": ["ensure", "ensures", "ensured"],
+      "senses": [
+        {
+          "es": "asegurar, garantizar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.entertaining",
+      "headword": "entertaining",
+      "kind": "word",
+      "forms": ["entertaining"],
+      "senses": [
+        {
+          "es": "entretenido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.entire",
+      "headword": "entire",
+      "kind": "word",
+      "forms": ["entire"],
+      "senses": [
+        {
+          "es": "entero",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.entry",
       "headword": "entry",
       "kind": "word",
@@ -467,6 +699,30 @@
       "senses": [
         {
           "es": "medio ambiente",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.environmental",
+      "headword": "environmental",
+      "kind": "word",
+      "forms": ["environmental"],
+      "senses": [
+        {
+          "es": "ambiental",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.era",
+      "headword": "era",
+      "kind": "word",
+      "forms": ["era", "eras"],
+      "senses": [
+        {
+          "es": "época",
           "pos": "noun"
         }
       ]
@@ -520,6 +776,18 @@
       ]
     },
     {
+      "id": "glossary.esteem",
+      "headword": "esteem",
+      "kind": "word",
+      "forms": ["esteem"],
+      "senses": [
+        {
+          "es": "estima",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.ethical",
       "headword": "ethical",
       "kind": "word",
@@ -544,6 +812,18 @@
       ]
     },
     {
+      "id": "glossary.evasion",
+      "headword": "evasion",
+      "kind": "word",
+      "forms": ["evasion"],
+      "senses": [
+        {
+          "es": "evasión",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.even",
       "headword": "even",
       "kind": "word",
@@ -556,6 +836,18 @@
         {
           "es": "(even though) aunque",
           "pos": "adverb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.even-so",
+      "headword": "even so",
+      "kind": "phrase",
+      "forms": ["even so"],
+      "senses": [
+        {
+          "es": "aun así",
+          "pos": "expression"
         }
       ]
     },
@@ -592,6 +884,18 @@
         {
           "es": "evento, acontecimiento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.eventually",
+      "headword": "eventually",
+      "kind": "word",
+      "forms": ["eventually"],
+      "senses": [
+        {
+          "es": "finalmente, con el tiempo",
+          "pos": "adverb"
         }
       ]
     },
@@ -692,6 +996,18 @@
       ]
     },
     {
+      "id": "glossary.exaggerate",
+      "headword": "exaggerate",
+      "kind": "word",
+      "forms": ["exaggerate", "exaggerates", "exaggerated", "exaggerating"],
+      "senses": [
+        {
+          "es": "exagerar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.exam",
       "headword": "exam",
       "kind": "word",
@@ -700,6 +1016,18 @@
         {
           "es": "examen",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.examine",
+      "headword": "examine",
+      "kind": "word",
+      "forms": ["examine", "examines", "examined", "examining"],
+      "senses": [
+        {
+          "es": "examinar",
+          "pos": "verb"
         }
       ]
     },
@@ -728,6 +1056,18 @@
       ]
     },
     {
+      "id": "glossary.excessive",
+      "headword": "excessive",
+      "kind": "word",
+      "forms": ["excessive"],
+      "senses": [
+        {
+          "es": "excesivo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.exchange",
       "headword": "exchange",
       "kind": "word",
@@ -751,6 +1091,18 @@
       "senses": [
         {
           "es": "emocionado, entusiasmado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exciting",
+      "headword": "exciting",
+      "kind": "word",
+      "forms": ["exciting"],
+      "senses": [
+        {
+          "es": "emocionante",
           "pos": "adjective"
         }
       ]
@@ -787,7 +1139,7 @@
       "id": "glossary.exercise",
       "headword": "exercise",
       "kind": "word",
-      "forms": ["exercise", "exercises"],
+      "forms": ["exercise", "exercises", "exercised", "exercising"],
       "senses": [
         {
           "es": "ejercicio",
@@ -820,6 +1172,18 @@
         {
           "es": "exposición",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exist",
+      "headword": "exist",
+      "kind": "word",
+      "forms": ["exist", "exists", "existed"],
+      "senses": [
+        {
+          "es": "existir",
+          "pos": "verb"
         }
       ]
     },
@@ -860,6 +1224,18 @@
       ]
     },
     {
+      "id": "glossary.experienced",
+      "headword": "experienced",
+      "kind": "word",
+      "forms": ["experienced"],
+      "senses": [
+        {
+          "es": "experimentado, con experiencia",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.experiment",
       "headword": "experiment",
       "kind": "word",
@@ -868,6 +1244,18 @@
         {
           "es": "experimento",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.experimental",
+      "headword": "experimental",
+      "kind": "word",
+      "forms": ["experimental"],
+      "senses": [
+        {
+          "es": "experimental",
+          "pos": "adjective"
         }
       ]
     },
@@ -896,6 +1284,30 @@
       ]
     },
     {
+      "id": "glossary.exploit",
+      "headword": "exploit",
+      "kind": "word",
+      "forms": ["exploit", "exploits", "exploited", "exploiting"],
+      "senses": [
+        {
+          "es": "aprovecharse de, explotar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.exposure",
+      "headword": "exposure",
+      "kind": "word",
+      "forms": ["exposure"],
+      "senses": [
+        {
+          "es": "exposición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.express",
       "headword": "express",
       "kind": "word",
@@ -908,6 +1320,18 @@
       ]
     },
     {
+      "id": "glossary.extent",
+      "headword": "extent",
+      "kind": "word",
+      "forms": ["extent"],
+      "senses": [
+        {
+          "es": "medida, grado (to some extent: hasta cierto punto)",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.extra",
       "headword": "extra",
       "kind": "word",
@@ -915,6 +1339,18 @@
       "senses": [
         {
           "es": "adicional, extra",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.extreme",
+      "headword": "extreme",
+      "kind": "word",
+      "forms": ["extreme"],
+      "senses": [
+        {
+          "es": "extremo",
           "pos": "adjective"
         }
       ]

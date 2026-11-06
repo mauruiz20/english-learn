@@ -1,0 +1,378 @@
+{
+  "items": [
+    {
+      "id": "a1.greetings.hello",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "word",
+      "term": "hello",
+      "es": "hola",
+      "example": {
+        "en": "Hello! I'm Ana.",
+        "es": "¡Hola! Soy Ana."
+      }
+    },
+    {
+      "id": "a1.greetings.hi",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "word",
+      "term": "hi",
+      "es": "hola (informal)"
+    },
+    {
+      "id": "a1.greetings.goodbye",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "word",
+      "term": "goodbye",
+      "es": "adiós"
+    },
+    {
+      "id": "a1.greetings.good-morning",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "good morning",
+      "es": "buenos días"
+    },
+    {
+      "id": "a1.greetings.good-night",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "good night",
+      "es": "buenas noches (al despedirse)"
+    },
+    {
+      "id": "a1.greetings.how-are-you",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "How are you?",
+      "es": "¿Cómo estás?"
+    },
+    {
+      "id": "a1.greetings.fine-thanks",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "I'm fine, thanks.",
+      "es": "Estoy bien, gracias.",
+      "example": {
+        "en": "I'm fine, thanks. And you?",
+        "es": "Estoy bien, gracias. ¿Y tú?"
+      }
+    },
+    {
+      "id": "a1.greetings.whats-your-name",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "What's your name?",
+      "es": "¿Cómo te llamas?"
+    },
+    {
+      "id": "a1.greetings.my-name-is",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "My name is...",
+      "es": "Me llamo..."
+    },
+    {
+      "id": "a1.greetings.nice-to-meet-you",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "Nice to meet you.",
+      "es": "Mucho gusto. / Encantado de conocerte."
+    },
+    {
+      "id": "a1.greetings.see-you-later",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "See you later.",
+      "es": "Hasta luego."
+    },
+    {
+      "id": "a1.greetings.thank-you",
+      "level": "A1",
+      "topics": ["greetings"],
+      "kind": "phrase",
+      "term": "thank you",
+      "es": "gracias",
+      "example": {
+        "en": "Thank you very much!",
+        "es": "¡Muchas gracias!"
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.greetings.nice-to-meet-you",
+      "level": "A1",
+      "topics": ["greetings"],
+      "title": "Nice to meet you",
+      "text": "Tom: Hi! I'm Tom. What's your name? Ana: Hello, Tom. My name is Ana. Tom: Nice to meet you, Ana. How are you? Ana: I'm fine, thanks. Tom: Good. See you later! Ana: Goodbye, Tom!",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.greetings.vocab-001",
+      "itemIds": ["a1.greetings.hello"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'hello' mean?",
+      "options": ["adiós", "gracias", "hola", "perdón"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.greetings.cloze-001",
+      "itemIds": ["a1.greetings.good-morning"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Good ___! How are you?",
+      "answers": ["morning"],
+      "distractors": ["night", "bye"],
+      "es": "¡Buenos días! ¿Cómo estás?"
+    },
+    {
+      "id": "a1.greetings.choice-001",
+      "itemIds": ["a1.greetings.how-are-you"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "How are you?",
+      "options": ["¿Cómo te llamas?", "¿Dónde estás?", "¿Quién eres?", "¿Cómo estás?"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.greetings.vocab-002",
+      "itemIds": ["a1.greetings.fine-thanks"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'Estoy bien, gracias'.",
+      "options": [
+        "I'm fine, thanks.",
+        "I'm sorry, thanks.",
+        "I'm from Mexico.",
+        "I'm nine, thanks."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "a1.greetings.order-001",
+      "itemIds": ["a1.greetings.hi", "a1.greetings.how-are-you"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["today?", "are", "Hi,", "you", "how"],
+      "accepted": ["Hi, how are you today?"],
+      "es": "Hola, ¿cómo estás hoy?"
+    },
+    {
+      "id": "a1.greetings.write-001",
+      "itemIds": ["a1.greetings.goodbye"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Adiós, Tom.",
+      "accepted": ["{Goodbye|Bye}[,] Tom."]
+    },
+    {
+      "id": "a1.greetings.vocab-003",
+      "itemIds": ["a1.greetings.good-night"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'good night' mean?",
+      "options": ["buenas tardes", "buenas noches", "buenos días", "hasta mañana"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.greetings.vocab-004",
+      "itemIds": ["a1.greetings.nice-to-meet-you"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'Nice to meet you.' mean?",
+      "options": ["Hasta luego.", "De nada.", "Buenas noches.", "Mucho gusto."],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.greetings.cloze-002",
+      "itemIds": ["a1.greetings.my-name-is"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "My ___ is Carlos.",
+      "answers": ["name"],
+      "distractors": ["names", "am", "mine"],
+      "es": "Me llamo Carlos."
+    },
+    {
+      "id": "a1.greetings.cloze-003",
+      "itemIds": ["a1.greetings.whats-your-name"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Hello! What's ___ name?",
+      "answers": ["your"],
+      "distractors": ["you", "you're"],
+      "es": "¡Hola! ¿Cómo te llamas?"
+    },
+    {
+      "id": "a1.greetings.order-002",
+      "itemIds": ["a1.greetings.whats-your-name"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["your", "Hello,", "name?", "what's"],
+      "accepted": ["Hello, what's your name?"],
+      "es": "Hola, ¿cómo te llamas?"
+    },
+    {
+      "id": "a1.greetings.reading-001",
+      "itemIds": [
+        "a1.greetings.nice-to-meet-you",
+        "a1.greetings.see-you-later",
+        "a1.greetings.my-name-is"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.greetings.nice-to-meet-you",
+      "questions": [
+        {
+          "prompt": "How is Ana?",
+          "options": ["She's sad.", "She's fine.", "She's tired."],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Who says 'Nice to meet you'?",
+          "options": ["Tom", "Ana", "Tom and Ana"],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Who says 'Goodbye'?",
+          "options": ["Tom", "Tom and Ana", "Ana"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a1.greetings.choice-002",
+      "itemIds": ["a1.greetings.see-you-later"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "See you later, Ana!",
+      "options": ["¡Hola, Ana!", "¡Gracias, Ana!", "¡Hasta luego, Ana!", "¡Te veo bien, Ana!"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.greetings.write-002",
+      "itemIds": ["a1.greetings.my-name-is", "a1.greetings.nice-to-meet-you"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Me llamo Ana. Mucho gusto.",
+      "accepted": ["{My name is|I'm} Ana{.|,} {Nice|It's nice|Pleased} to meet you."]
+    },
+    {
+      "id": "a1.greetings.vocab-005",
+      "itemIds": ["a1.greetings.thank-you"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'gracias'.",
+      "options": ["please", "sorry", "you're welcome", "thank you"],
+      "answerIndex": 3
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.greetings.lesson-001",
+      "level": "A1",
+      "topic": "greetings",
+      "title": "¡Hola!",
+      "exerciseIds": [
+        "a1.greetings.vocab-001",
+        "a1.greetings.cloze-001",
+        "a1.greetings.choice-001",
+        "a1.greetings.vocab-002",
+        "a1.greetings.order-001",
+        "a1.greetings.write-001",
+        "a1.greetings.vocab-003"
+      ],
+      "newItemIds": [
+        "a1.greetings.hello",
+        "a1.greetings.good-morning",
+        "a1.greetings.how-are-you",
+        "a1.greetings.fine-thanks",
+        "a1.greetings.hi"
+      ]
+    },
+    {
+      "id": "a1.greetings.lesson-002",
+      "level": "A1",
+      "topic": "greetings",
+      "title": "¿Cómo te llamas?",
+      "exerciseIds": [
+        "a1.greetings.vocab-004",
+        "a1.greetings.cloze-002",
+        "a1.greetings.cloze-003",
+        "a1.greetings.order-002",
+        "a1.greetings.reading-001",
+        "a1.greetings.choice-002",
+        "a1.greetings.write-002",
+        "a1.greetings.vocab-005"
+      ],
+      "newItemIds": [
+        "a1.greetings.nice-to-meet-you",
+        "a1.greetings.my-name-is",
+        "a1.greetings.whats-your-name",
+        "a1.greetings.see-you-later",
+        "a1.greetings.thank-you"
+      ]
+    }
+  ]
+}

@@ -37,6 +37,18 @@
       ]
     },
     {
+      "id": "glossary.tackle",
+      "headword": "tackle",
+      "kind": "word",
+      "forms": ["tackle", "tackles", "tackled", "tackling"],
+      "senses": [
+        {
+          "es": "hacer frente a, abordar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.taco",
       "headword": "taco",
       "kind": "word",
@@ -45,6 +57,18 @@
         {
           "es": "taco",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tactful",
+      "headword": "tactful",
+      "kind": "word",
+      "forms": ["tactful"],
+      "senses": [
+        {
+          "es": "con tacto, diplomático",
+          "pos": "adjective"
         }
       ]
     },
@@ -249,6 +273,18 @@
       ]
     },
     {
+      "id": "glossary.talent",
+      "headword": "talent",
+      "kind": "word",
+      "forms": ["talent"],
+      "senses": [
+        {
+          "es": "talento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.talk",
       "headword": "talk",
       "kind": "word",
@@ -285,6 +321,18 @@
       ]
     },
     {
+      "id": "glossary.taste",
+      "headword": "taste",
+      "kind": "word",
+      "forms": ["taste", "tastes"],
+      "senses": [
+        {
+          "es": "gusto, sabor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tax",
       "headword": "tax",
       "kind": "word",
@@ -292,6 +340,30 @@
       "senses": [
         {
           "es": "impuesto",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tax-avoidance",
+      "headword": "tax avoidance",
+      "kind": "phrase",
+      "forms": ["tax avoidance"],
+      "senses": [
+        {
+          "es": "elusión fiscal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tax-evasion",
+      "headword": "tax evasion",
+      "kind": "phrase",
+      "forms": ["tax evasion"],
+      "senses": [
+        {
+          "es": "evasión fiscal",
           "pos": "noun"
         }
       ]
@@ -369,6 +441,18 @@
       ]
     },
     {
+      "id": "glossary.technical",
+      "headword": "technical",
+      "kind": "word",
+      "forms": ["technical"],
+      "senses": [
+        {
+          "es": "técnico",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.technician",
       "headword": "technician",
       "kind": "word",
@@ -417,6 +501,18 @@
       ]
     },
     {
+      "id": "glossary.telephone",
+      "headword": "telephone",
+      "kind": "word",
+      "forms": ["telephone"],
+      "senses": [
+        {
+          "es": "teléfono",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tell",
       "headword": "tell",
       "kind": "word",
@@ -457,6 +553,30 @@
       ]
     },
     {
+      "id": "glossary.tempted",
+      "headword": "tempted",
+      "kind": "word",
+      "forms": ["tempted"],
+      "senses": [
+        {
+          "es": "tentado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tempting",
+      "headword": "tempting",
+      "kind": "word",
+      "forms": ["tempting"],
+      "senses": [
+        {
+          "es": "tentador",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.ten",
       "headword": "ten",
       "kind": "word",
@@ -477,6 +597,18 @@
         {
           "es": "inquilino",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tend",
+      "headword": "tend",
+      "kind": "word",
+      "forms": ["tend", "tends", "tended", "tending"],
+      "senses": [
+        {
+          "es": "tender a, soler",
+          "pos": "verb"
         }
       ]
     },
@@ -505,6 +637,18 @@
       ]
     },
     {
+      "id": "glossary.term",
+      "headword": "term",
+      "kind": "word",
+      "forms": ["term", "terms"],
+      "senses": [
+        {
+          "es": "término; (terms) condiciones",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.terrible",
       "headword": "terrible",
       "kind": "word",
@@ -520,11 +664,15 @@
       "id": "glossary.test",
       "headword": "test",
       "kind": "word",
-      "forms": ["test", "tests"],
+      "forms": ["test", "tests", "tested"],
       "senses": [
         {
           "es": "prueba, examen",
           "pos": "noun"
+        },
+        {
+          "es": "probar, poner a prueba",
+          "pos": "verb"
         }
       ]
     },
@@ -613,6 +761,30 @@
         {
           "es": "el, la, los, las",
           "pos": "determiner"
+        }
+      ]
+    },
+    {
+      "id": "glossary.the-bottom-line",
+      "headword": "the bottom line",
+      "kind": "phrase",
+      "forms": ["the bottom line"],
+      "senses": [
+        {
+          "es": "lo esencial, lo fundamental",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.the-tip-of-the-iceberg",
+      "headword": "the tip of the iceberg",
+      "kind": "phrase",
+      "forms": ["the tip of the iceberg"],
+      "senses": [
+        {
+          "es": "la punta del iceberg",
+          "pos": "expression"
         }
       ]
     },
@@ -729,6 +901,18 @@
         {
           "es": "hay (there is)",
           "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.therefore",
+      "headword": "therefore",
+      "kind": "word",
+      "forms": ["therefore"],
+      "senses": [
+        {
+          "es": "por lo tanto",
+          "pos": "adverb"
         }
       ]
     },
@@ -856,6 +1040,18 @@
       ]
     },
     {
+      "id": "glossary.thirst",
+      "headword": "thirst",
+      "kind": "word",
+      "forms": ["thirst"],
+      "senses": [
+        {
+          "es": "sed",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.thirsty",
       "headword": "thirsty",
       "kind": "word",
@@ -864,6 +1060,18 @@
         {
           "es": "sediento (be thirsty = tener sed)",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.thirteen",
+      "headword": "thirteen",
+      "kind": "word",
+      "forms": ["thirteen"],
+      "senses": [
+        {
+          "es": "trece",
+          "pos": "number"
         }
       ]
     },
@@ -924,6 +1132,18 @@
       ]
     },
     {
+      "id": "glossary.thought-provoking",
+      "headword": "thought-provoking",
+      "kind": "word",
+      "forms": ["thought-provoking"],
+      "senses": [
+        {
+          "es": "que invita a reflexionar",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.thousand",
       "headword": "thousand",
       "kind": "word",
@@ -936,6 +1156,34 @@
         {
           "es": "(thousands of) miles de",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.threat",
+      "headword": "threat",
+      "kind": "word",
+      "forms": ["threat", "threats"],
+      "senses": [
+        {
+          "es": "amenaza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.threaten",
+      "headword": "threaten",
+      "kind": "word",
+      "forms": ["threaten", "threatens", "threatened", "threatening"],
+      "senses": [
+        {
+          "es": "amenazar",
+          "pos": "verb"
+        },
+        {
+          "es": "amenazante (threatening)",
+          "pos": "adjective"
         }
       ]
     },
@@ -1112,6 +1360,18 @@
       ]
     },
     {
+      "id": "glossary.tip",
+      "headword": "tip",
+      "kind": "word",
+      "forms": ["tip", "tips"],
+      "senses": [
+        {
+          "es": "punta; consejo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.tired",
       "headword": "tired",
       "kind": "word",
@@ -1187,6 +1447,18 @@
       "senses": [
         {
           "es": "dijo (a alguien), contó (pasado de tell)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.tolerate",
+      "headword": "tolerate",
+      "kind": "word",
+      "forms": ["tolerate", "tolerates", "tolerated"],
+      "senses": [
+        {
+          "es": "tolerar",
           "pos": "verb"
         }
       ]
@@ -1268,6 +1540,18 @@
       ]
     },
     {
+      "id": "glossary.tool",
+      "headword": "tool",
+      "kind": "word",
+      "forms": ["tool", "tools"],
+      "senses": [
+        {
+          "es": "herramienta",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.top",
       "headword": "top",
       "kind": "word",
@@ -1312,6 +1596,22 @@
         {
           "es": "total",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.touch",
+      "headword": "touch",
+      "kind": "word",
+      "forms": ["touch"],
+      "senses": [
+        {
+          "es": "tacto, contacto",
+          "pos": "noun"
+        },
+        {
+          "es": "tocar",
+          "pos": "verb"
         }
       ]
     },
@@ -1376,6 +1676,30 @@
       ]
     },
     {
+      "id": "glossary.tradition",
+      "headword": "tradition",
+      "kind": "word",
+      "forms": ["tradition", "traditions"],
+      "senses": [
+        {
+          "es": "tradición",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.traditional",
+      "headword": "traditional",
+      "kind": "word",
+      "forms": ["traditional"],
+      "senses": [
+        {
+          "es": "tradicional",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.traffic",
       "headword": "traffic",
       "kind": "word",
@@ -1424,6 +1748,30 @@
       ]
     },
     {
+      "id": "glossary.trait",
+      "headword": "trait",
+      "kind": "word",
+      "forms": ["trait", "traits"],
+      "senses": [
+        {
+          "es": "rasgo",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.transform",
+      "headword": "transform",
+      "kind": "word",
+      "forms": ["transform", "transforms", "transformed"],
+      "senses": [
+        {
+          "es": "transformar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.translate",
       "headword": "translate",
       "kind": "word",
@@ -1432,6 +1780,30 @@
         {
           "es": "traducir",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.translation",
+      "headword": "translation",
+      "kind": "word",
+      "forms": ["translation", "translations"],
+      "senses": [
+        {
+          "es": "traducción",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.transport",
+      "headword": "transport",
+      "kind": "word",
+      "forms": ["transport"],
+      "senses": [
+        {
+          "es": "transporte",
+          "pos": "noun"
         }
       ]
     },
@@ -1488,6 +1860,18 @@
       ]
     },
     {
+      "id": "glossary.treat",
+      "headword": "treat",
+      "kind": "word",
+      "forms": ["treat", "treats", "treated", "treating"],
+      "senses": [
+        {
+          "es": "tratar",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.tree",
       "headword": "tree",
       "kind": "word",
@@ -1495,6 +1879,18 @@
       "senses": [
         {
           "es": "árbol",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.trend",
+      "headword": "trend",
+      "kind": "word",
+      "forms": ["trend", "trends"],
+      "senses": [
+        {
+          "es": "tendencia",
           "pos": "noun"
         }
       ]
@@ -1532,6 +1928,18 @@
         {
           "es": "verdadero, cierto",
           "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.truly",
+      "headword": "truly",
+      "kind": "word",
+      "forms": ["truly"],
+      "senses": [
+        {
+          "es": "realmente, verdaderamente",
+          "pos": "adverb"
         }
       ]
     },
@@ -1624,6 +2032,23 @@
         {
           "es": "(turn off) apagar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.turn-a-blind-eye",
+      "headword": "turn a blind eye",
+      "kind": "phrase",
+      "forms": [
+        "turn a blind eye",
+        "turned a blind eye",
+        "turns a blind eye",
+        "turning a blind eye"
+      ],
+      "senses": [
+        {
+          "es": "hacer la vista gorda",
+          "pos": "expression"
         }
       ]
     },

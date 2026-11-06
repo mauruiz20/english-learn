@@ -1,0 +1,361 @@
+{
+  "items": [
+    {
+      "id": "a1.to-be-and-questions.student",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "word",
+      "term": "student",
+      "es": "estudiante",
+      "example": {
+        "en": "I'm a student.",
+        "es": "Soy estudiante."
+      }
+    },
+    {
+      "id": "a1.to-be-and-questions.teacher",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "word",
+      "term": "teacher",
+      "es": "maestro, maestra; profesor, profesora"
+    },
+    {
+      "id": "a1.to-be-and-questions.friend",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "word",
+      "term": "friend",
+      "es": "amigo, amiga"
+    },
+    {
+      "id": "a1.to-be-and-questions.happy",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "word",
+      "term": "happy",
+      "es": "feliz, contento"
+    },
+    {
+      "id": "a1.to-be-and-questions.sad",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "word",
+      "term": "sad",
+      "es": "triste"
+    },
+    {
+      "id": "a1.to-be-and-questions.where",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "word",
+      "term": "where",
+      "es": "dónde",
+      "example": {
+        "en": "Where is my bag?",
+        "es": "¿Dónde está mi bolsa?"
+      }
+    },
+    {
+      "id": "a1.to-be-and-questions.who",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "word",
+      "term": "who",
+      "es": "quién"
+    },
+    {
+      "id": "a1.to-be-and-questions.not",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "grammar",
+      "term": "be + not (I'm not, isn't, aren't)",
+      "es": "no ser / no estar"
+    },
+    {
+      "id": "a1.to-be-and-questions.yes-no-questions",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "grammar",
+      "term": "Are you...? / Is she...?",
+      "es": "¿Eres...? / ¿Está ella...? (preguntas con to be)"
+    },
+    {
+      "id": "a1.to-be-and-questions.where-are-you-from",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "phrase",
+      "term": "Where are you from?",
+      "es": "¿De dónde eres?"
+    },
+    {
+      "id": "a1.to-be-and-questions.im-from",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "kind": "phrase",
+      "term": "I'm from...",
+      "es": "Soy de..."
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.to-be-and-questions.a-new-student",
+      "level": "A1",
+      "topics": ["to-be-and-questions"],
+      "title": "A new student",
+      "text": "Leo: Hi, I'm Leo. Are you a new student? Mia: Yes, I am. I'm Mia. Leo: Where are you from, Mia? Mia: I'm from Peru. And you? Leo: I'm from Mexico. Who is your teacher? Mia: Ms. Brown. She's very nice.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.to-be-and-questions.cloze-001",
+      "itemIds": ["a1.grammar.to-be"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I ___ a student.",
+      "answers": ["am"],
+      "distractors": ["is", "are"],
+      "es": "Soy estudiante."
+    },
+    {
+      "id": "a1.to-be-and-questions.vocab-001",
+      "itemIds": ["a1.to-be-and-questions.student"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'student' mean?",
+      "options": ["maestro", "estudiante", "escuela", "amigo"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.to-be-and-questions.cloze-002",
+      "itemIds": ["a1.grammar.to-be", "a1.to-be-and-questions.teacher"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "She ___ my teacher.",
+      "answers": ["is"],
+      "distractors": ["am", "are"],
+      "es": "Ella es mi maestra."
+    },
+    {
+      "id": "a1.to-be-and-questions.choice-001",
+      "itemIds": ["a1.grammar.to-be", "a1.to-be-and-questions.happy"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We are very happy today.",
+      "options": [
+        "Estamos muy tristes hoy.",
+        "Están muy contentos hoy.",
+        "Estamos muy contentos hoy.",
+        "Estábamos muy contentos ayer."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.to-be-and-questions.order-001",
+      "itemIds": ["a1.grammar.to-be", "a1.to-be-and-questions.friend"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["friends.", "are", "Leo", "my", "Ana", "and"],
+      "accepted": ["Ana and Leo are my friends.", "Leo and Ana are my friends."],
+      "es": "Ana y Leo son mis amigos."
+    },
+    {
+      "id": "a1.to-be-and-questions.write-001",
+      "itemIds": ["a1.grammar.to-be", "a1.to-be-and-questions.sad"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Ella está triste.",
+      "accepted": ["She {is|feels} sad."]
+    },
+    {
+      "id": "a1.to-be-and-questions.vocab-002",
+      "itemIds": ["a1.to-be-and-questions.teacher"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'maestra'.",
+      "options": ["student", "friend", "doctor", "teacher"],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.to-be-and-questions.vocab-003",
+      "itemIds": ["a1.to-be-and-questions.where"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'where' mean?",
+      "options": ["cuándo", "quién", "dónde", "qué"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.to-be-and-questions.cloze-003",
+      "itemIds": ["a1.to-be-and-questions.not"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Tom is ___ at home. He is at school.",
+      "answers": ["not"],
+      "distractors": ["no", "don't"],
+      "es": "Tom no está en casa. Está en la escuela."
+    },
+    {
+      "id": "a1.to-be-and-questions.cloze-004",
+      "itemIds": ["a1.to-be-and-questions.yes-no-questions"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "___ you a student?",
+      "answers": ["Are"],
+      "distractors": ["Do", "Is", "Am"],
+      "es": "¿Eres estudiante?"
+    },
+    {
+      "id": "a1.to-be-and-questions.order-002",
+      "itemIds": ["a1.to-be-and-questions.where-are-you-from"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["from?", "you", "Where", "are"],
+      "accepted": ["Where are you from?"],
+      "es": "¿De dónde eres?"
+    },
+    {
+      "id": "a1.to-be-and-questions.reading-001",
+      "itemIds": [
+        "a1.to-be-and-questions.where-are-you-from",
+        "a1.to-be-and-questions.im-from",
+        "a1.to-be-and-questions.who",
+        "a1.to-be-and-questions.yes-no-questions"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.to-be-and-questions.a-new-student",
+      "questions": [
+        {
+          "prompt": "Where is Mia from?",
+          "options": ["Mexico", "Peru", "Chile"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "Is Mia a new student?",
+          "options": ["Yes, she is.", "No, she isn't.", "No, she's a teacher."],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Who is Mia's teacher?",
+          "options": ["Leo", "Mia", "Ms. Brown"],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "a1.to-be-and-questions.choice-002",
+      "itemIds": ["a1.to-be-and-questions.who"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Who is your teacher?",
+      "options": [
+        "¿Dónde está tu maestro?",
+        "¿Quién es tu maestro?",
+        "¿Quién es tu amigo?",
+        "¿Cómo es tu maestro?"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.to-be-and-questions.write-002",
+      "itemIds": ["a1.to-be-and-questions.im-from", "a1.to-be-and-questions.not"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "No soy de México. Soy de Perú.",
+      "accepted": ["I'm not from Mexico{.|,} I'm from Peru."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.to-be-and-questions.lesson-001",
+      "level": "A1",
+      "topic": "to-be-and-questions",
+      "title": "Soy, eres, es",
+      "exerciseIds": [
+        "a1.to-be-and-questions.cloze-001",
+        "a1.to-be-and-questions.vocab-001",
+        "a1.to-be-and-questions.cloze-002",
+        "a1.to-be-and-questions.choice-001",
+        "a1.to-be-and-questions.order-001",
+        "a1.to-be-and-questions.write-001",
+        "a1.to-be-and-questions.vocab-002"
+      ],
+      "newItemIds": [
+        "a1.grammar.to-be",
+        "a1.to-be-and-questions.student",
+        "a1.to-be-and-questions.teacher",
+        "a1.to-be-and-questions.happy",
+        "a1.to-be-and-questions.friend"
+      ],
+      "deepenCardIds": ["a1.grammar.to-be"]
+    },
+    {
+      "id": "a1.to-be-and-questions.lesson-002",
+      "level": "A1",
+      "topic": "to-be-and-questions",
+      "title": "¿De dónde eres?",
+      "exerciseIds": [
+        "a1.to-be-and-questions.vocab-003",
+        "a1.to-be-and-questions.cloze-003",
+        "a1.to-be-and-questions.cloze-004",
+        "a1.to-be-and-questions.order-002",
+        "a1.to-be-and-questions.reading-001",
+        "a1.to-be-and-questions.choice-002",
+        "a1.to-be-and-questions.write-002"
+      ],
+      "newItemIds": [
+        "a1.to-be-and-questions.where",
+        "a1.to-be-and-questions.not",
+        "a1.to-be-and-questions.yes-no-questions",
+        "a1.to-be-and-questions.where-are-you-from",
+        "a1.to-be-and-questions.im-from"
+      ]
+    }
+  ]
+}

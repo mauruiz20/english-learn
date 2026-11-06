@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.quality",
+      "headword": "quality",
+      "kind": "word",
+      "forms": ["quality", "qualities"],
+      "senses": [
+        {
+          "es": "calidad; cualidad",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.question",
       "headword": "question",
       "kind": "word",

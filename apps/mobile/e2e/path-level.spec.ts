@@ -1,13 +1,14 @@
 import type { Page } from "@playwright/test";
 import { expect, test, type ConsoleMessage } from "./support/test";
-import { answerPlacementAs, playSessionCorrectly } from "./support/content";
+import { placementTakerAt, playSessionCorrectly } from "./support/content";
 
 // `?today=` is a test-only clock override, compiled in only with EXPO_PUBLIC_E2E=1.
 const DAY_1 = "2030-01-01";
 const FIRST_B1_LESSON = "La vida en la ciudad";
 
-/** Takes the placement test as a B2 learner (right up to B2, wrong above). */
+/** Takes the placement test as a B2 learner (see `placementTakerAt`). */
 async function placeAtB2(page: Page) {
+  const answerAsB2 = placementTakerAt("b2");
   await page.getByRole("button", { name: "Hacer test de nivel" }).click();
   await page.getByRole("button", { name: "Empezar", exact: true }).click();
   const result = page.getByText(/^Tu nivel estimado/);
@@ -15,7 +16,7 @@ async function placeAtB2(page: Page) {
   await expect(page.getByText("Pregunta 1 de hasta 20")).toBeVisible();
   while (!(await result.isVisible())) {
     asked += 1;
-    await answerPlacementAs(page, "b2");
+    await answerAsB2(page);
     await expect(result.or(page.getByText(`Pregunta ${asked + 1} de hasta 20`))).toBeVisible();
   }
   await page.getByRole("button", { name: "Ir a mis lecciones", exact: true }).click();

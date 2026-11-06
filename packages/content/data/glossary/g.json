@@ -1,6 +1,30 @@
 {
   "glossary": [
     {
+      "id": "glossary.gain",
+      "headword": "gain",
+      "kind": "word",
+      "forms": ["gain", "gains", "gained", "gaining"],
+      "senses": [
+        {
+          "es": "ganar, obtener",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gallery",
+      "headword": "gallery",
+      "kind": "word",
+      "forms": ["gallery", "galleries"],
+      "senses": [
+        {
+          "es": "galería",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.game",
       "headword": "game",
       "kind": "word",
@@ -133,6 +157,30 @@
       ]
     },
     {
+      "id": "glossary.generation",
+      "headword": "generation",
+      "kind": "word",
+      "forms": ["generation", "generations"],
+      "senses": [
+        {
+          "es": "generación",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.genuine",
+      "headword": "genuine",
+      "kind": "word",
+      "forms": ["genuine"],
+      "senses": [
+        {
+          "es": "auténtico, genuino",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.gerund",
       "headword": "gerund",
       "kind": "word",
@@ -218,6 +266,18 @@
         {
           "es": "entrar",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.get-in-touch",
+      "headword": "get in touch",
+      "kind": "phrase",
+      "forms": ["get in touch", "gets in touch", "got in touch", "getting in touch"],
+      "senses": [
+        {
+          "es": "ponerse en contacto",
+          "pos": "expression"
         }
       ]
     },
@@ -686,6 +746,30 @@
       ]
     },
     {
+      "id": "glossary.good-morning",
+      "headword": "good morning",
+      "kind": "phrase",
+      "forms": ["good morning"],
+      "senses": [
+        {
+          "es": "buenos días",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.good-night",
+      "headword": "good night",
+      "kind": "phrase",
+      "forms": ["good night"],
+      "senses": [
+        {
+          "es": "buenas noches (al despedirse)",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
       "id": "glossary.goodbye",
       "headword": "goodbye",
       "kind": "word",
@@ -734,6 +818,30 @@
         {
           "es": "graduarse, titularse",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grammar",
+      "headword": "grammar",
+      "kind": "word",
+      "forms": ["grammar"],
+      "senses": [
+        {
+          "es": "gramática",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grammatically",
+      "headword": "grammatically",
+      "kind": "word",
+      "forms": ["grammatically"],
+      "senses": [
+        {
+          "es": "gramaticalmente",
+          "pos": "adverb"
         }
       ]
     },
@@ -809,6 +917,54 @@
         },
         {
           "es": "(grandparents) abuelos",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.grateful",
+      "headword": "grateful",
+      "kind": "word",
+      "forms": ["grateful"],
+      "senses": [
+        {
+          "es": "agradecido",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gratitude",
+      "headword": "gratitude",
+      "kind": "word",
+      "forms": ["gratitude"],
+      "senses": [
+        {
+          "es": "gratitud",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gray",
+      "headword": "gray",
+      "kind": "word",
+      "forms": ["gray"],
+      "senses": [
+        {
+          "es": "gris",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
+      "id": "glossary.gray-area",
+      "headword": "gray area",
+      "kind": "phrase",
+      "forms": ["gray area", "gray areas"],
+      "senses": [
+        {
+          "es": "zona gris",
           "pos": "noun"
         }
       ]
@@ -890,6 +1046,18 @@
       ]
     },
     {
+      "id": "glossary.groundbreaking",
+      "headword": "groundbreaking",
+      "kind": "word",
+      "forms": ["groundbreaking"],
+      "senses": [
+        {
+          "es": "pionero, innovador",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.group",
       "headword": "group",
       "kind": "word",
@@ -926,6 +1094,34 @@
         {
           "es": "crecer, criarse",
           "pos": "phrasal verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.growth",
+      "headword": "growth",
+      "kind": "word",
+      "forms": ["growth"],
+      "senses": [
+        {
+          "es": "crecimiento",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.guarantee",
+      "headword": "guarantee",
+      "kind": "word",
+      "forms": ["guarantee", "guarantees", "guaranteed"],
+      "senses": [
+        {
+          "es": "garantizar",
+          "pos": "verb"
+        },
+        {
+          "es": "garantía",
+          "pos": "noun"
         }
       ]
     },

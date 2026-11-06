@@ -1,0 +1,355 @@
+{
+  "items": [
+    {
+      "id": "a1.days-and-time.monday",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "Monday",
+      "es": "lunes"
+    },
+    {
+      "id": "a1.days-and-time.wednesday",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "Wednesday",
+      "es": "miércoles"
+    },
+    {
+      "id": "a1.days-and-time.friday",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "Friday",
+      "es": "viernes"
+    },
+    {
+      "id": "a1.days-and-time.saturday",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "Saturday",
+      "es": "sábado"
+    },
+    {
+      "id": "a1.days-and-time.sunday",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "Sunday",
+      "es": "domingo"
+    },
+    {
+      "id": "a1.days-and-time.today",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "today",
+      "es": "hoy"
+    },
+    {
+      "id": "a1.days-and-time.tomorrow",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "tomorrow",
+      "es": "mañana (el día siguiente)"
+    },
+    {
+      "id": "a1.days-and-time.week",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "week",
+      "es": "semana"
+    },
+    {
+      "id": "a1.days-and-time.what-time-is-it",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "phrase",
+      "term": "What time is it?",
+      "es": "¿Qué hora es?"
+    },
+    {
+      "id": "a1.days-and-time.oclock",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "word",
+      "term": "o'clock",
+      "es": "en punto (it's six o'clock: son las seis)"
+    },
+    {
+      "id": "a1.days-and-time.in-the-morning",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "kind": "phrase",
+      "term": "in the morning",
+      "es": "de la mañana, por la mañana"
+    }
+  ],
+  "passages": [
+    {
+      "id": "a1.days-and-time.no-class-today",
+      "level": "A1",
+      "topics": ["days-and-time"],
+      "title": "No class today",
+      "text": "Leo: What time is it? Mia: It's eight o'clock. Leo: Oh no! My class is at nine. Mia: Today? It's Saturday! Leo: Oh, right. My class is on Monday. Mia: Go back to bed, Leo!",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "a1.days-and-time.vocab-001",
+      "itemIds": ["a1.days-and-time.monday"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'Monday' mean?",
+      "options": ["martes", "lunes", "domingo", "sábado"],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.days-and-time.cloze-001",
+      "itemIds": ["a1.days-and-time.friday", "a1.days-and-time.tomorrow"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Today is Thursday. Tomorrow is ___.",
+      "answers": ["Friday"],
+      "distractors": ["Wednesday", "Sunday", "Tuesday"],
+      "es": "Hoy es jueves. Mañana es viernes."
+    },
+    {
+      "id": "a1.days-and-time.choice-001",
+      "itemIds": ["a1.days-and-time.sunday"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "We don't work on Sunday.",
+      "options": [
+        "No trabajamos el sábado.",
+        "Trabajamos el domingo.",
+        "No trabajamos el domingo.",
+        "No trabajan el domingo."
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.days-and-time.order-001",
+      "itemIds": ["a1.days-and-time.saturday"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["on", "party", "Saturday.", "is", "My"],
+      "accepted": ["My party is on Saturday."],
+      "es": "Mi fiesta es el sábado."
+    },
+    {
+      "id": "a1.days-and-time.cloze-002",
+      "itemIds": ["a1.days-and-time.today", "a1.days-and-time.wednesday"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "It's Wednesday ___. Tomorrow is Thursday.",
+      "answers": ["today"],
+      "distractors": ["tomorrow", "Monday"],
+      "es": "Hoy es miércoles. Mañana es jueves."
+    },
+    {
+      "id": "a1.days-and-time.write-001",
+      "itemIds": ["a1.days-and-time.today", "a1.days-and-time.monday"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Hoy es lunes.",
+      "accepted": ["Today is Monday.", "It's Monday today."]
+    },
+    {
+      "id": "a1.days-and-time.vocab-002",
+      "itemIds": ["a1.days-and-time.week"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'semana'.",
+      "options": ["weekend", "day", "week", "month"],
+      "answerIndex": 2
+    },
+    {
+      "id": "a1.days-and-time.vocab-003",
+      "itemIds": ["a1.days-and-time.oclock"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'It's ten o'clock.' mean?",
+      "options": [
+        "Son las diez y media.",
+        "Son las diez en punto.",
+        "Tengo diez relojes.",
+        "Son las doce."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "a1.days-and-time.cloze-003",
+      "itemIds": ["a1.days-and-time.what-time-is-it"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "What ___ is it? It's six o'clock.",
+      "answers": ["time"],
+      "distractors": ["hour", "day"],
+      "es": "¿Qué hora es? Son las seis."
+    },
+    {
+      "id": "a1.days-and-time.cloze-004",
+      "itemIds": ["a1.days-and-time.in-the-morning"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "I have breakfast at seven in the ___.",
+      "answers": ["morning"],
+      "distractors": ["night", "week"],
+      "es": "Desayuno a las siete de la mañana."
+    },
+    {
+      "id": "a1.days-and-time.order-002",
+      "itemIds": ["a1.days-and-time.what-time-is-it"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": ["is", "time", "What", "it?"],
+      "accepted": ["What time is it?"],
+      "es": "¿Qué hora es?"
+    },
+    {
+      "id": "a1.days-and-time.reading-001",
+      "itemIds": [
+        "a1.days-and-time.what-time-is-it",
+        "a1.days-and-time.oclock",
+        "a1.days-and-time.saturday",
+        "a1.days-and-time.monday"
+      ],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "a1.days-and-time.no-class-today",
+      "questions": [
+        {
+          "prompt": "What time is it?",
+          "options": ["Seven o'clock", "Eight o'clock", "Nine o'clock"],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "What day is it today?",
+          "options": ["Monday", "Friday", "Saturday"],
+          "answerIndex": 2
+        },
+        {
+          "prompt": "When is Leo's class?",
+          "options": ["On Monday", "Today", "On Saturday"],
+          "answerIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "a1.days-and-time.choice-002",
+      "itemIds": ["a1.days-and-time.oclock", "a1.days-and-time.in-the-morning"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "My class is at nine o'clock in the morning.",
+      "options": [
+        "Mi clase es a las nueve de la noche.",
+        "Mi clase es a las once de la mañana.",
+        "Mi clase es el lunes a las nueve.",
+        "Mi clase es a las nueve de la mañana."
+      ],
+      "answerIndex": 3
+    },
+    {
+      "id": "a1.days-and-time.write-002",
+      "itemIds": ["a1.days-and-time.oclock"],
+      "level": "A1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Son las tres en punto.",
+      "accepted": ["It's {three|3} o'clock.", "It's 3:00."]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "a1.days-and-time.lesson-001",
+      "level": "A1",
+      "topic": "days-and-time",
+      "title": "Los días de la semana",
+      "exerciseIds": [
+        "a1.days-and-time.vocab-001",
+        "a1.days-and-time.cloze-001",
+        "a1.days-and-time.choice-001",
+        "a1.days-and-time.order-001",
+        "a1.days-and-time.cloze-002",
+        "a1.days-and-time.write-001",
+        "a1.days-and-time.vocab-002"
+      ],
+      "newItemIds": [
+        "a1.days-and-time.monday",
+        "a1.days-and-time.friday",
+        "a1.days-and-time.tomorrow",
+        "a1.days-and-time.sunday",
+        "a1.days-and-time.saturday"
+      ]
+    },
+    {
+      "id": "a1.days-and-time.lesson-002",
+      "level": "A1",
+      "topic": "days-and-time",
+      "title": "¿Qué hora es?",
+      "exerciseIds": [
+        "a1.days-and-time.vocab-003",
+        "a1.days-and-time.cloze-003",
+        "a1.days-and-time.cloze-004",
+        "a1.days-and-time.order-002",
+        "a1.days-and-time.reading-001",
+        "a1.days-and-time.choice-002",
+        "a1.days-and-time.write-002"
+      ],
+      "newItemIds": [
+        "a1.days-and-time.oclock",
+        "a1.days-and-time.what-time-is-it",
+        "a1.days-and-time.in-the-morning"
+      ]
+    }
+  ]
+}

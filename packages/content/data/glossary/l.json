@@ -1,6 +1,22 @@
 {
   "glossary": [
     {
+      "id": "glossary.lack",
+      "headword": "lack",
+      "kind": "word",
+      "forms": ["lack", "lacks", "lacked"],
+      "senses": [
+        {
+          "es": "falta, carencia",
+          "pos": "noun"
+        },
+        {
+          "es": "carecer de",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.lake",
       "headword": "lake",
       "kind": "word",
@@ -8,6 +24,18 @@
       "senses": [
         {
           "es": "lago",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lamp",
+      "headword": "lamp",
+      "kind": "word",
+      "forms": ["lamp", "lamps"],
+      "senses": [
+        {
+          "es": "lámpara",
           "pos": "noun"
         }
       ]
@@ -121,6 +149,18 @@
       ]
     },
     {
+      "id": "glossary.lasting",
+      "headword": "lasting",
+      "kind": "word",
+      "forms": ["lasting"],
+      "senses": [
+        {
+          "es": "duradero",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.late",
       "headword": "late",
       "kind": "word",
@@ -177,6 +217,30 @@
       ]
     },
     {
+      "id": "glossary.law",
+      "headword": "law",
+      "kind": "word",
+      "forms": ["law", "laws"],
+      "senses": [
+        {
+          "es": "ley",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lawmaker",
+      "headword": "lawmaker",
+      "kind": "word",
+      "forms": ["lawmaker", "lawmakers"],
+      "senses": [
+        {
+          "es": "legislador",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.lawyer",
       "headword": "lawyer",
       "kind": "word",
@@ -213,6 +277,30 @@
       ]
     },
     {
+      "id": "glossary.layer",
+      "headword": "layer",
+      "kind": "word",
+      "forms": ["layer", "layers"],
+      "senses": [
+        {
+          "es": "capa",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.laziness",
+      "headword": "laziness",
+      "kind": "word",
+      "forms": ["laziness"],
+      "senses": [
+        {
+          "es": "pereza",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.lead",
       "headword": "lead",
       "kind": "word",
@@ -245,6 +333,18 @@
         {
           "es": "aprender",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.learner",
+      "headword": "learner",
+      "kind": "word",
+      "forms": ["learner", "learners"],
+      "senses": [
+        {
+          "es": "estudiante, aprendiz",
+          "pos": "noun"
         }
       ]
     },
@@ -316,6 +416,18 @@
         {
           "es": "izquierda",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.legal",
+      "headword": "legal",
+      "kind": "word",
+      "forms": ["legal"],
+      "senses": [
+        {
+          "es": "legal, jurídico",
+          "pos": "adjective"
         }
       ]
     },
@@ -422,6 +534,30 @@
       ]
     },
     {
+      "id": "glossary.leverage",
+      "headword": "leverage",
+      "kind": "word",
+      "forms": ["leverage"],
+      "senses": [
+        {
+          "es": "poder de negociación, ventaja",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.liable",
+      "headword": "liable",
+      "kind": "word",
+      "forms": ["liable"],
+      "senses": [
+        {
+          "es": "legalmente responsable",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.library",
       "headword": "library",
       "kind": "word",
@@ -482,6 +618,18 @@
         {
           "es": "estilo de vida",
           "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lift",
+      "headword": "lift",
+      "kind": "word",
+      "forms": ["lift", "lifts", "lifted", "lifting"],
+      "senses": [
+        {
+          "es": "levantar",
+          "pos": "verb"
         }
       ]
     },
@@ -606,6 +754,18 @@
         {
           "es": "escuchar",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.literacy",
+      "headword": "literacy",
+      "kind": "word",
+      "forms": ["literacy"],
+      "senses": [
+        {
+          "es": "alfabetización (media literacy: alfabetización mediática)",
+          "pos": "noun"
         }
       ]
     },
@@ -778,6 +938,18 @@
       ]
     },
     {
+      "id": "glossary.long-term",
+      "headword": "long-term",
+      "kind": "word",
+      "forms": ["long-term"],
+      "senses": [
+        {
+          "es": "a largo plazo",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.look",
       "headword": "look",
       "kind": "word",
@@ -874,6 +1046,18 @@
       ]
     },
     {
+      "id": "glossary.loophole",
+      "headword": "loophole",
+      "kind": "word",
+      "forms": ["loophole", "loopholes"],
+      "senses": [
+        {
+          "es": "vacío legal",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
       "id": "glossary.lose",
       "headword": "lose",
       "kind": "word",
@@ -897,6 +1081,42 @@
       "senses": [
         {
           "es": "bajar de peso",
+          "pos": "expression"
+        }
+      ]
+    },
+    {
+      "id": "glossary.loser",
+      "headword": "loser",
+      "kind": "word",
+      "forms": ["loser", "losers"],
+      "senses": [
+        {
+          "es": "perdedor",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.loss",
+      "headword": "loss",
+      "kind": "word",
+      "forms": ["loss", "losses"],
+      "senses": [
+        {
+          "es": "pérdida",
+          "pos": "noun"
+        }
+      ]
+    },
+    {
+      "id": "glossary.lost-in-translation",
+      "headword": "lost in translation",
+      "kind": "phrase",
+      "forms": ["lost in translation"],
+      "senses": [
+        {
+          "es": "perdido en la traducción",
           "pos": "expression"
         }
       ]

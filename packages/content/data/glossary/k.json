@@ -1,6 +1,18 @@
 {
   "glossary": [
     {
+      "id": "glossary.keen",
+      "headword": "keen",
+      "kind": "word",
+      "forms": ["keen"],
+      "senses": [
+        {
+          "es": "deseoso, interesado",
+          "pos": "adjective"
+        }
+      ]
+    },
+    {
       "id": "glossary.keep",
       "headword": "keep",
       "kind": "word",
@@ -201,6 +213,18 @@
         {
           "es": "conocer",
           "pos": "verb"
+        }
+      ]
+    },
+    {
+      "id": "glossary.knowledge",
+      "headword": "knowledge",
+      "kind": "word",
+      "forms": ["knowledge"],
+      "senses": [
+        {
+          "es": "conocimiento",
+          "pos": "noun"
         }
       ]
     },

@@ -7,7 +7,7 @@ import { Sticker } from "@/shared/ui/sticker";
 import { Text } from "@/shared/ui/text";
 import { radius, spacing } from "@/shared/ui/theme";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
-import { ACHIEVEMENTS, type Achievement } from "./model/achievements";
+import type { Achievement } from "./model/achievements";
 
 export type AlbumViewState =
   | { readonly status: "loading" }
@@ -20,7 +20,16 @@ const STAR = "M12 3 14.6 9 21 9.6 16.2 13.8 17.6 20.2 12 16.9 6.4 20.2 7.8 13.8 
  * The album: every sticker the learner can earn, won ones stuck on the page (rare ones with a
  * holographic rim), the rest as dashed slots that say how to win them. Nothing here moves.
  */
-export function AlbumView({ state, onGoHome }: { state: AlbumViewState; onGoHome: () => void }) {
+export function AlbumView({
+  state,
+  achievements,
+  onGoHome,
+}: {
+  state: AlbumViewState;
+  /** The stickers to show, in order (`albumAchievements`). */
+  achievements: readonly Achievement[];
+  onGoHome: () => void;
+}) {
   const styles = useStyles();
   const { colors } = useTheme();
   return (
@@ -39,13 +48,13 @@ export function AlbumView({ state, onGoHome }: { state: AlbumViewState; onGoHome
             <Avi mood={state.unlocked.length > 0 ? "cheer" : "happy"} size={56} />
             <View style={styles.introText}>
               <Text variant="title">
-                {`${state.unlocked.length} de ${ACHIEVEMENTS.length} insignias`}
+                {`${state.unlocked.length} de ${achievements.length} insignias`}
               </Text>
               <Text tone="muted">Cada lección, racha y tema te acerca a una nueva.</Text>
             </View>
           </View>
           <View style={styles.grid}>
-            {ACHIEVEMENTS.map((a, i) => (
+            {achievements.map((a, i) => (
               <AlbumSlot key={a.id} achievement={a} won={state.unlocked.includes(a.id)} index={i} />
             ))}
           </View>

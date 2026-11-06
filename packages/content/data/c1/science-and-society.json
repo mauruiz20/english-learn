@@ -1,0 +1,445 @@
+{
+  "items": [
+    {
+      "id": "c1.science-and-society.peer-review",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "kind": "phrase",
+      "term": "peer review",
+      "es": "revisión por pares",
+      "example": {
+        "en": "Every article goes through peer review before publication.",
+        "es": "Todos los artículos pasan por una revisión por pares antes de publicarse."
+      }
+    },
+    {
+      "id": "c1.science-and-society.skeptical",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "kind": "word",
+      "term": "skeptical (of)",
+      "es": "escéptico (ante), desconfiado",
+      "example": {
+        "en": "Many readers are skeptical of new diets.",
+        "es": "Muchos lectores desconfían de las dietas nuevas."
+      }
+    },
+    {
+      "id": "c1.science-and-society.consensus",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "kind": "word",
+      "term": "consensus",
+      "es": "consenso",
+      "example": {
+        "en": "There is a broad consensus that the policy has worked.",
+        "es": "Existe un amplio consenso en que la política ha funcionado."
+      }
+    },
+    {
+      "id": "c1.science-and-society.groundbreaking",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "kind": "word",
+      "term": "groundbreaking",
+      "es": "pionero, innovador",
+      "example": {
+        "en": "Her research was truly groundbreaking.",
+        "es": "Su investigación fue realmente pionera."
+      }
+    },
+    {
+      "id": "c1.science-and-society.shed-light-on",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "kind": "phrase",
+      "term": "shed light on",
+      "es": "arrojar luz sobre, aclarar",
+      "example": {
+        "en": "The letters shed light on the writer's private life.",
+        "es": "Las cartas arrojan luz sobre la vida privada del escritor."
+      }
+    },
+    {
+      "id": "c1.science-and-society.double-edged-sword",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "kind": "phrase",
+      "term": "a double-edged sword",
+      "es": "un arma de doble filo",
+      "example": {
+        "en": "Fame can be a double-edged sword.",
+        "es": "La fama puede ser un arma de doble filo."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "c1.science-and-society.trust-in-science",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "title": "Trust in science",
+      "text": "Scientific findings are rarely as simple as the headlines suggest. A single study may appear to show that coffee protects the heart, only for another to suggest the opposite a few months later. To the public, this can look like confusion; to scientists, it is simply how knowledge advances. Before a study is published, it is checked by other experts through peer review, and even then its conclusions remain open to challenge. This is why researchers tend to choose their words carefully. Rather than claiming that a drug cures a disease, they are more likely to say that it may reduce the risk in certain groups. It could be argued that such caution makes science harder to communicate. Journalists want clear answers, and readers are understandably skeptical of experts who seem unable to give them. Yet the alternative is worse. When scientists overstate their results and are later proved wrong, public trust suffers far more than if they had been cautious from the start. A genuine consensus, built slowly from many studies, is worth more than any single headline.",
+      "source": {
+        "kind": "original"
+      }
+    },
+    {
+      "id": "c1.science-and-society.a-double-edged-sword",
+      "level": "C1",
+      "topics": ["science-and-society"],
+      "title": "A double-edged sword",
+      "text": "The development of artificial intelligence has been described as the most groundbreaking change of the century. Its supporters point to the speed with which it can analyze medical scans, a task that once required years of training. Its critics, by contrast, are concerned about the loss of jobs, the spread of false information and the concentration of power in the hands of a few companies. Both views contain some truth. Like many technologies before it, artificial intelligence is a double-edged sword: the same tools that help doctors detect cancer earlier can be used to create convincing fake videos. What is new is the pace of change. The introduction of the printing press took centuries to transform society; the adoption of artificial intelligence is being measured in months. Recent research has shed light on how quickly people come to rely on these systems, often without understanding how they reach their conclusions. The challenge for governments is therefore not to stop innovation, which would be neither possible nor desirable, but to ensure that its benefits are shared and its risks are properly regulated.",
+      "source": {
+        "kind": "original"
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "c1.science-and-society.vocab-001",
+      "itemIds": ["c1.science-and-society.skeptical"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'skeptical' mean in 'Many readers are skeptical of new diets'?",
+      "options": ["entusiasmado", "desconfiado, escéptico", "enfermo", "experto"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.science-and-society.cloze-001",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The study ___ to show that the drug works, but the sample was very small.",
+      "answers": ["seems", "appears"],
+      "distractors": ["seem", "seeming", "looks"],
+      "es": "El estudio parece demostrar que el medicamento funciona, pero la muestra era muy pequeña."
+    },
+    {
+      "id": "c1.science-and-society.order-001",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "appears",
+        "to",
+        "The",
+        "heart",
+        "reduce",
+        "disease.",
+        "drug",
+        "new",
+        "the",
+        "risk",
+        "of"
+      ],
+      "accepted": ["The new drug appears to reduce the risk of heart disease."],
+      "es": "El nuevo medicamento parece reducir el riesgo de enfermedades cardíacas."
+    },
+    {
+      "id": "c1.science-and-society.choice-001",
+      "itemIds": ["c1.science-and-society.consensus"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "There is a broad consensus among scientists that the climate is changing.",
+      "options": [
+        "Los científicos no se ponen de acuerdo sobre si el clima está cambiando.",
+        "Existe un amplio consenso entre los científicos de que el clima está cambiando.",
+        "Un amplio grupo de científicos niega que el clima esté cambiando.",
+        "Existe un amplio consenso entre los científicos de que el clima no cambiará."
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.science-and-society.reading-001",
+      "itemIds": [
+        "c1.science-and-society.peer-review",
+        "c1.science-and-society.skeptical",
+        "c1.science-and-society.consensus"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.science-and-society.trust-in-science",
+      "questions": [
+        {
+          "prompt": "Why might scientific findings look confusing to the public?",
+          "options": [
+            "Studies sometimes seem to contradict each other.",
+            "Scientists refuse to publish their results.",
+            "Peer review takes too long."
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Why do researchers tend to choose their words carefully?",
+          "options": [
+            "Journalists ask them to use simple language.",
+            "Their conclusions remain open to challenge.",
+            "They want their results to sound more exciting."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "According to the writer, what damages public trust most?",
+          "options": [
+            "Using cautious language",
+            "Waiting for a consensus",
+            "Overstating results that later prove wrong"
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.science-and-society.write-001",
+      "itemIds": ["c1.grammar.hedging"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Los jóvenes suelen confiar menos en los expertos.",
+      "accepted": [
+        "{Young|Younger} people tend to {trust experts less|have less trust in experts|be less trusting of experts}.",
+        "{Young|Younger} people {usually|generally|often} trust experts less."
+      ]
+    },
+    {
+      "id": "c1.science-and-society.cloze-002",
+      "itemIds": ["c1.science-and-society.peer-review"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "Before it is published, every study goes through peer ___.",
+      "answers": ["review"],
+      "distractors": ["vision", "group", "views"],
+      "es": "Antes de publicarse, todo estudio pasa por una revisión por pares."
+    },
+    {
+      "id": "c1.science-and-society.vocab-002",
+      "itemIds": ["c1.science-and-society.consensus"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "Choose the English for 'consenso'.",
+      "options": ["consent", "census", "conscience", "consensus"],
+      "answerIndex": 3
+    },
+    {
+      "id": "c1.science-and-society.vocab-003",
+      "itemIds": ["c1.science-and-society.groundbreaking"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "vocab",
+      "prompt": "What does 'groundbreaking' mean in 'Her research was truly groundbreaking'?",
+      "options": ["demoledor", "pionero, innovador", "subterráneo", "agotador"],
+      "answerIndex": 1
+    },
+    {
+      "id": "c1.science-and-society.cloze-003",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The ___ of the new vaccine took less than a year.",
+      "answers": ["development"],
+      "distractors": ["develop", "developed", "develops"],
+      "es": "El desarrollo de la nueva vacuna llevó menos de un año."
+    },
+    {
+      "id": "c1.science-and-society.cloze-004",
+      "itemIds": ["c1.science-and-society.shed-light-on"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "cloze",
+      "sentence": "The new study sheds ___ on how memory works.",
+      "answers": ["light"],
+      "distractors": ["lamp", "shadow", "sun"],
+      "es": "El nuevo estudio arroja luz sobre cómo funciona la memoria."
+    },
+    {
+      "id": "c1.science-and-society.order-002",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "word_order",
+      "tokens": [
+        "scientists.",
+        "The",
+        "widely",
+        "new",
+        "introduction",
+        "welcomed",
+        "of",
+        "the",
+        "by",
+        "rules",
+        "was"
+      ],
+      "accepted": ["The introduction of the new rules was widely welcomed by scientists."],
+      "es": "La entrada en vigor de las nuevas normas fue muy bien recibida por los científicos."
+    },
+    {
+      "id": "c1.science-and-society.choice-002",
+      "itemIds": ["c1.science-and-society.double-edged-sword"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translation_choice",
+      "sentence": "Social media is a double-edged sword for scientists.",
+      "options": [
+        "Las redes sociales son un arma de doble filo para los científicos.",
+        "Las redes sociales son una herramienta inútil para los científicos.",
+        "Los científicos usan las redes sociales para defenderse.",
+        "Las redes sociales son una gran ventaja para los científicos, sin ningún riesgo."
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "c1.science-and-society.reading-002",
+      "itemIds": [
+        "c1.science-and-society.double-edged-sword",
+        "c1.science-and-society.shed-light-on",
+        "c1.grammar.nominalization"
+      ],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "reading",
+      "passageId": "c1.science-and-society.a-double-edged-sword",
+      "questions": [
+        {
+          "prompt": "What do supporters of artificial intelligence point to?",
+          "options": [
+            "How fast it can analyze medical scans",
+            "The loss of jobs in hospitals",
+            "The concentration of power in a few companies"
+          ],
+          "answerIndex": 0
+        },
+        {
+          "prompt": "Why does the writer call artificial intelligence a double-edged sword?",
+          "options": [
+            "It is too expensive for most governments.",
+            "The same tools can be used for good and for harm.",
+            "It took centuries to transform society."
+          ],
+          "answerIndex": 1
+        },
+        {
+          "prompt": "According to the writer, what should governments do?",
+          "options": [
+            "Stop innovation until the risks are clear",
+            "Leave the technology to private companies",
+            "Make sure the benefits are shared and the risks are regulated"
+          ],
+          "answerIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "c1.science-and-society.write-002",
+      "itemIds": ["b2.grammar.reporting-passive"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "Se cree que el virus se originó en murciélagos.",
+      "accepted": [
+        "The virus is {believed|thought} to have originated {in|from} bats.",
+        "It is {believed|thought} [that ]the virus originated {in|from} bats."
+      ]
+    },
+    {
+      "id": "c1.science-and-society.write-003",
+      "itemIds": ["c1.grammar.nominalization"],
+      "level": "C1",
+      "source": {
+        "kind": "original"
+      },
+      "type": "translate_write",
+      "es": "El desarrollo de la inteligencia artificial plantea nuevos riesgos.",
+      "accepted": [
+        "The development of artificial intelligence {poses|raises|brings|creates|presents} new risks."
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "c1.science-and-society.lesson-001",
+      "level": "C1",
+      "topic": "science-and-society",
+      "title": "Lo que dicen los datos",
+      "exerciseIds": [
+        "c1.science-and-society.vocab-001",
+        "c1.science-and-society.cloze-001",
+        "c1.science-and-society.order-001",
+        "c1.science-and-society.choice-001",
+        "c1.science-and-society.reading-001",
+        "c1.science-and-society.write-001",
+        "c1.science-and-society.cloze-002",
+        "c1.science-and-society.vocab-002"
+      ],
+      "newItemIds": [
+        "c1.grammar.hedging",
+        "c1.science-and-society.skeptical",
+        "c1.science-and-society.peer-review",
+        "c1.science-and-society.consensus"
+      ],
+      "deepenCardIds": ["c1.grammar.hedging"]
+    },
+    {
+      "id": "c1.science-and-society.lesson-002",
+      "level": "C1",
+      "topic": "science-and-society",
+      "title": "Un arma de doble filo",
+      "exerciseIds": [
+        "c1.science-and-society.vocab-003",
+        "c1.science-and-society.cloze-003",
+        "c1.science-and-society.cloze-004",
+        "c1.science-and-society.order-002",
+        "c1.science-and-society.choice-002",
+        "c1.science-and-society.reading-002",
+        "c1.science-and-society.write-002",
+        "c1.science-and-society.write-003"
+      ],
+      "newItemIds": [
+        "c1.grammar.nominalization",
+        "c1.science-and-society.groundbreaking",
+        "c1.science-and-society.shed-light-on",
+        "c1.science-and-society.double-edged-sword"
+      ],
+      "deepenCardIds": ["c1.grammar.nominalization", "b2.grammar.reporting-passive"]
+    }
+  ]
+}
