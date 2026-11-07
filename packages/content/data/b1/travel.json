@@ -396,7 +396,27 @@
         "b1.travel.book",
         "b1.travel.get-lost"
       ],
-      "deepenCardIds": ["b1.grammar.although", "b1.vocabulary.get-adjective"]
+      "deepenCardIds": ["b1.grammar.although", "b1.vocabulary.get-adjective"],
+      "intro": {
+        "points": [
+          "«although» significa aunque: une dos ideas que contrastan.",
+          "«but» va en medio de la oración; «However,» empieza una oración nueva.",
+          "«book» también es verbo, reservar: «We booked a room online».",
+          "«get lost» es perderse: «We got lost in the old town»."
+        ],
+        "examples": [
+          {
+            "en": "Although the flight was delayed, we arrived on time.",
+            "es": "Aunque el vuelo se retrasó, llegamos a tiempo."
+          },
+          { "en": "We booked a room online.", "es": "Reservamos una habitación por internet." }
+        ],
+        "mistake": {
+          "wrong": "Although it was expensive, but we stayed.",
+          "right": "Although it was expensive, we stayed.",
+          "note": "Con «although» no hace falta «but»: usa solo uno de los dos."
+        }
+      }
     },
     {
       "id": "b1.travel.lesson-002",
@@ -420,7 +440,24 @@
         "b1.travel.set-off",
         "b1.travel.check-in"
       ],
-      "deepenCardIds": ["b1.grammar.present-perfect-past-simple", "b1.phrasal-verbs.travel"]
+      "deepenCardIds": ["b1.grammar.present-perfect-past-simple", "b1.phrasal-verbs.travel"],
+      "intro": {
+        "points": [
+          "Presente perfecto para experiencias sin fecha: «Have you ever been to Mexico?».",
+          "Pasado simple cuando dices cuándo: «We went to Rome last summer».",
+          "«been to» es haber ido y volver; «gone to», haberse ido y seguir allá.",
+          "«luggage» es incontable: «a lot of luggage», nunca con -s."
+        ],
+        "examples": [
+          { "en": "Have you ever been to Mexico?", "es": "¿Alguna vez has estado en México?" },
+          { "en": "We went to Rome last summer.", "es": "Fuimos a Roma el verano pasado." }
+        ],
+        "mistake": {
+          "wrong": "I have been to Rome last year.",
+          "right": "I went to Rome last year.",
+          "note": "Con un momento concreto del pasado («last year», «in 2019») usa el pasado simple."
+        }
+      }
     }
   ]
 }

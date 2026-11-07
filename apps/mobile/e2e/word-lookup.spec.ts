@@ -1,4 +1,4 @@
-import { answerCorrectly } from "./support/content";
+import { answerCorrectly, skipLessonIntro } from "./support/content";
 import { expect, test, type ConsoleMessage, type Page } from "./support/test";
 
 const lookup = (page: Page, word: string) =>
@@ -7,6 +7,7 @@ const lookup = (page: Page, word: string) =>
 async function openRoutineLesson(page: Page) {
   await page.goto("/");
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
 }
 

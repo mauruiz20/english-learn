@@ -339,7 +339,27 @@
         "b2.travel-and-identity.off-the-beaten-track",
         "b2.travel-and-identity.homesick"
       ],
-      "deepenCardIds": ["b2.grammar.be-worth"]
+      "deepenCardIds": ["b2.grammar.be-worth"],
+      "intro": {
+        "points": [
+          "«be worth» + -ing es valer la pena: «It's worth visiting that museum».",
+          "También va con un sustantivo: «The view is worth the long climb».",
+          "«off the beaten track» es lejos de las rutas turísticas.",
+          "«homesick» describe a quien extraña su casa o su país: «I felt homesick»."
+        ],
+        "examples": [
+          { "en": "That town is worth visiting.", "es": "Vale la pena visitar ese pueblo." },
+          {
+            "en": "The view from the top is worth the long climb.",
+            "es": "La vista desde la cima compensa la larga subida."
+          }
+        ],
+        "mistake": {
+          "wrong": "This museum is worth to visit.",
+          "right": "This museum is worth visiting.",
+          "note": "Después de «worth» va el verbo con -ing, no «to» + verbo."
+        }
+      }
     },
     {
       "id": "b2.travel-and-identity.lesson-002",
@@ -360,7 +380,29 @@
         "b2.travel-and-identity.culture-shock",
         "b2.travel-and-identity.belong"
       ],
-      "deepenCardIds": ["b2.grammar.despite", "b2.grammar.used-to"]
+      "deepenCardIds": ["b2.grammar.despite", "b2.grammar.used-to"],
+      "intro": {
+        "points": [
+          "«get used to» + sustantivo o -ing: «It takes time to get used to a new place».",
+          "«despite» e «in spite of» significan a pesar de: «Despite the culture shock, she stayed».",
+          "«belong» es pertenecer o sentirse parte de un lugar: «I don't feel that I belong anywhere»."
+        ],
+        "examples": [
+          {
+            "en": "Despite the culture shock, she never wanted to go home.",
+            "es": "A pesar del choque cultural, nunca quiso volver a casa."
+          },
+          {
+            "en": "At first I was homesick, but I got used to it.",
+            "es": "Al principio extrañaba mi casa, pero me acostumbré."
+          }
+        ],
+        "mistake": {
+          "wrong": "In spite the language difficulty, we became friends.",
+          "right": "In spite of the language difficulty, we became friends.",
+          "note": "«in spite» siempre lleva «of»; si no quieres «of», usa «despite»."
+        }
+      }
     }
   ]
 }

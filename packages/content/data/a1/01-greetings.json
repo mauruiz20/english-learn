@@ -349,7 +349,29 @@
         "a1.greetings.how-are-you",
         "a1.greetings.fine-thanks",
         "a1.greetings.hi"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«Hello» sirve en cualquier situación; «hi» es más informal, para amigos y familia.",
+          "Saluda según la hora: «good morning» (mañana), «good afternoon» (tarde), «good evening» (noche).",
+          "Para preguntar cómo está alguien: «How are you?». Respuesta típica: «I'm fine, thanks.»"
+        ],
+        "examples": [
+          {
+            "en": "Hello! How are you?",
+            "es": "¡Hola! ¿Cómo estás?"
+          },
+          {
+            "en": "I'm fine, thanks.",
+            "es": "Estoy bien, gracias."
+          }
+        ],
+        "mistake": {
+          "wrong": "Good night! How are you?",
+          "right": "Good evening! How are you?",
+          "note": "«Good night» es para despedirse o ir a dormir; para saludar de noche se dice «good evening»."
+        }
+      }
     },
     {
       "id": "a1.greetings.lesson-002",
@@ -372,7 +394,29 @@
         "a1.greetings.whats-your-name",
         "a1.greetings.see-you-later",
         "a1.greetings.thank-you"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "Para presentarte: «My name is…» o «I'm…» («I'm» es «I am»).",
+          "Para preguntar el nombre: «What's your name?». «What's» es «what is».",
+          "Al conocer a alguien: «Nice to meet you.» Para despedirte: «See you later.»"
+        ],
+        "examples": [
+          {
+            "en": "Hello, what's your name?",
+            "es": "Hola, ¿cómo te llamas?"
+          },
+          {
+            "en": "My name is Ana. Nice to meet you.",
+            "es": "Me llamo Ana. Mucho gusto."
+          }
+        ],
+        "mistake": {
+          "wrong": "I call me Carlos.",
+          "right": "My name is Carlos.",
+          "note": "«Me llamo» no se traduce palabra por palabra: se dice «my name is» o «I'm»."
+        }
+      }
     }
   ]
 }

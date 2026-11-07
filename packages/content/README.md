@@ -14,7 +14,8 @@ scripts/       validate.ts CLI: main(dir) => errors; build-corpus.ts generator
 data/          a1/ a2/ b1/ b2/ c1/ placement/ glossary/ practice/ — many small ContentFile JSON files (never one giant file)
 ```
 
-Every file lives under `data/<a1|a2|b1|b2|c1|placement|glossary|practice>/` (subdirectories are fine). Files at the
+Every file lives under `data/<a1|a2|b1|b2|c1|placement|glossary|practice>/` (subdirectories are fine).
+A level directory may also hold `level.json`, the level's intro (see [Intros](#intros)). Files at the
 root of `data/` or in any other directory are errors. Study cards live directly in their level
 directory, in the file of their topic: `data/<level>/grammar.json`, `phrasal-verbs.json`,
 `vocabulary.json` (see [Study cards](#study-cards-fichas)). Free practice lives in
@@ -179,6 +180,13 @@ Practice rules ([Práctica libre](#práctica-libre)):
     repeats a path item's term (without its parenthesized part) under another id, so practice
     never changes path progress; no lesson id is also a card id (results are kept by id).
 
+Intro rules ([Intros](#intros)):
+
+27. Intros, per file: a lesson intro's mistake has different `wrong` and `right` (normalized); a
+    level intro lives in its own level's `level.json` (`a2/level.json` holds `"level": "A2"`).
+    Counts and lengths are the schema's; voseo (rule 8) and glossary coverage (rule 16) check
+    intros like any other text.
+
 Dialogue rules ([Diálogos](#diálogos)):
 
 25. Dialogues, per file: the id is `<level>.dialogues.<slug>` and its level prefix matches
@@ -241,7 +249,8 @@ Static English → Spanish lookup for hover (web) / tap (mobile). Tokenizing and
   question prompts and options; translate_write accepted answers (shown as corrections); passage
   titles and texts; placement exercises; translate_write accepted answers are checked as every sentence their patterns
   stand for. Cards: pitfall `right` sentences, example `en` sentences, phrasal verbs and their
-  example `en`, collocation `en` and the false friend's `en`. A pitfall's `wrong` sentence is
+  example `en`, collocation `en` and the false friend's `en`. Lesson intros: example `en` and the
+  mistake's `right` (its `wrong`, like a pitfall's, is skipped). A pitfall's `wrong` sentence is
   skipped: its deliberate mistakes (`lended`, `rised`) must never become glossary forms. A possessive (`Ana's`) resolves to its base form when it
   is not itself a form. Forms no text uses are allowed; `validate` prints their count as a warning.
 - **Authoring**: `pnpm --filter @english-learn/content glossary:gaps [--limit N]` lists uncovered
@@ -249,7 +258,8 @@ Static English → Spanish lookup for hover (web) / tap (mobile). Tokenizing and
 
 ## Lessons
 
-A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds?, deepenCardIds? }`.
+A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds?, deepenCardIds?, intro? }`
+(`intro`: see [Intros](#intros)).
 
 - `newItemIds` (optional, 3 to 5 item ids): what the lesson introduces, shown in the app's
   end-of-lesson recap "Lo nuevo de hoy" (each one linked to its study card when a card teaches
@@ -277,6 +287,38 @@ A lesson is `{ id, level, topic, title, exerciseIds (≥ 5), newItemIds?, deepen
   Spanish. The recap shows it; without it, it takes a sentence (with its Spanish) from an
   exercise that practices the item and links the item's glossary entry. Recap items with no such
   exercise sentence carry one; its `en` counts for glossary coverage.
+
+## Intros
+
+**Lesson intro** (`lesson.intro`, optional): the short theory screen the app shows before the
+first exercise ("Antes de empezar"), 30 to 60 seconds of reading.
+
+```ts
+intro?: {
+  points: string[]; // 2–4 short bullets in neutral Spanish, each ≤ 140 chars, English in «»
+  examples: { en: string; es: string }[]; // 1–2 examples
+  mistake?: { wrong: string; right: string; note: string }; // note in Spanish, ≤ 120 chars
+}
+```
+
+- Focus on what the lesson teaches (its `newItemIds` and exercises): the rule, the form, one or
+  two short examples built from the lesson's own sentences, and the mistake Spanish speakers
+  really make (`I have nine years.` → `I'm nine years old.`). No new vocabulary.
+- Without `intro` the app derives one from the lesson's first linked card (`deepenCardIds`): its
+  first uses, first example and first pitfall. Lessons with neither show no intro.
+- Practice lessons and dialogues need none.
+- **Coverage**: `src/validate/intro-coverage.test.ts` requires an intro on every path lesson of
+  every level (A1 to C1) and a `level.json` for each.
+
+**Level intro** (`data/<level>/level.json`, a bare object, not a content file):
+
+```ts
+{ level: "A1", title: string, canDo: string[] /* 3–5 "Al terminar podrás…" bullets */, topics: string[] }
+```
+
+All Spanish. The app shows it once per device, the first time the path shows the level.
+Validation and the generated corpus load it as `{ levelIntro }`; `createCorpus` lists them in
+`levelIntros` / `levelIntrosByLevel`.
 
 ## Práctica libre
 

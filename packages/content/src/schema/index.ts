@@ -1,5 +1,6 @@
 export * from "./common";
 export * from "./entities";
+export * from "./intro";
 export * from "./exercise";
 export * from "./placement";
 export * from "./glossary";

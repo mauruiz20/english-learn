@@ -348,7 +348,30 @@
         "b2.health-and-psychology.cope-with",
         "b2.health-and-psychology.stress"
       ],
-      "deepenCardIds": ["b2.grammar.used-to"]
+      "deepenCardIds": ["b2.grammar.used-to"],
+      "intro": {
+        "points": [
+          "«be used to» + sustantivo o -ing es estar acostumbrado: «I'm used to working from home».",
+          "«get used to» + sustantivo o -ing es acostumbrarse, el proceso: «You'll get used to it».",
+          "No lo confundas con «used to» + verbo, que habla de hábitos del pasado.",
+          "«cope with» es sobrellevar algo difícil: «cope with stress»."
+        ],
+        "examples": [
+          {
+            "en": "You will soon get used to speaking in public.",
+            "es": "Pronto te acostumbrarás a hablar en público."
+          },
+          {
+            "en": "She copes with stress by going for a run every morning.",
+            "es": "Sobrelleva el estrés saliendo a correr cada mañana."
+          }
+        ],
+        "mistake": {
+          "wrong": "I'm used to work from home.",
+          "right": "I'm used to working from home.",
+          "note": "Aquí «to» es preposición: después de «be used to» va el verbo con -ing."
+        }
+      }
     },
     {
       "id": "b2.health-and-psychology.lesson-002",
@@ -369,7 +392,29 @@
         "b2.health-and-psychology.well-being",
         "b2.health-and-psychology.mental-health"
       ],
-      "deepenCardIds": ["b2.grammar.wish-if-only"]
+      "deepenCardIds": ["b2.grammar.wish-if-only"],
+      "intro": {
+        "points": [
+          "«I wish» + pasado expresa un deseo sobre el presente: «I wish I didn't worry so much».",
+          "«I wish» + «had» + participio lamenta el pasado: «I wish I had followed his advice».",
+          "«If only…» funciona igual, pero suena más intenso: «If only I could sleep better!»."
+        ],
+        "examples": [
+          {
+            "en": "I wish I didn't worry so much about everything.",
+            "es": "Ojalá no me preocupara tanto por todo."
+          },
+          {
+            "en": "I wish I had followed the doctor's advice.",
+            "es": "Ojalá hubiera seguido el consejo del médico."
+          }
+        ],
+        "mistake": {
+          "wrong": "I wish I can sleep more.",
+          "right": "I wish I could sleep more.",
+          "note": "Después de «wish» el verbo retrocede un tiempo: «can» pasa a «could»."
+        }
+      }
     }
   ]
 }

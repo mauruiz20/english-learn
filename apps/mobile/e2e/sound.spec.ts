@@ -1,4 +1,5 @@
 import { expect, test, waitForServiceWorker, type ConsoleMessage } from "./support/test";
+import { skipLessonIntro } from "./support/content";
 
 test("muting sounds is remembered after a reload and shows in the lesson header", async ({
   page,
@@ -28,6 +29,7 @@ test("muting sounds is remembered after a reload and shows in the lesson header"
 
   // The same switch sits in the exercise screens' header.
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
   await page.getByRole("button", { name: "Activar sonidos", exact: true }).click();
   await expect(page.getByRole("button", { name: "Silenciar sonidos", exact: true })).toBeVisible();
@@ -60,15 +62,16 @@ test("buttons click softly, and stay silent while sounds are off", async ({ page
   await page.goto("/");
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
 
-  // A lesson on the path: one soft click.
+  // A lesson on the path, then "Empezar" on its intro: one soft click each.
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
-  await expect.poll(played).toEqual(["press"]);
+  await expect.poll(played).toEqual(["press", "press"]);
 
   // Muted: neither the switch nor the header's back arrow makes a sound.
   await page.getByRole("button", { name: "Silenciar sonidos", exact: true }).click();
   await page.getByRole("button", { name: /^Volver/ }).click();
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
-  expect(await played()).toEqual(["press"]);
+  expect(await played()).toEqual(["press", "press"]);
   expect(problems).toEqual([]);
 });

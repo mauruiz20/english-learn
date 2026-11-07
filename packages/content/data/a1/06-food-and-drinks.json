@@ -333,7 +333,29 @@
         "a1.food-and-drinks.banana",
         "a1.food-and-drinks.like-dont-like"
       ],
-      "deepenCardIds": ["a1.grammar.a-an"]
+      "deepenCardIds": ["a1.grammar.a-an"],
+      "intro": {
+        "points": [
+          "«A» va antes de un sonido de consonante («a banana») y «an», antes de un sonido de vocal («an egg»).",
+          "Cuenta el sonido, no la letra: «an hour», «a university».",
+          "«I like» es me gusta y «I don't like», no me gusta: «I don't like cheese»."
+        ],
+        "examples": [
+          {
+            "en": "I eat an egg every morning.",
+            "es": "Como un huevo todas las mañanas."
+          },
+          {
+            "en": "I don't like cheese.",
+            "es": "No me gusta el queso."
+          }
+        ],
+        "mistake": {
+          "wrong": "I want a apple.",
+          "right": "I want an apple.",
+          "note": "«Apple» empieza con sonido de vocal, así que lleva «an»."
+        }
+      }
     },
     {
       "id": "a1.food-and-drinks.lesson-002",
@@ -355,7 +377,29 @@
         "a1.food-and-drinks.water",
         "a1.food-and-drinks.milk",
         "a1.food-and-drinks.tea"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "Para pedir algo: «Can I have…, please?». Es amable y muy común.",
+          "«Water», «milk», «juice» y «tea» no se cuentan: «some water», «a glass of milk».",
+          "Con «he» o «she», el negativo es «doesn't»: «He doesn't like milk»."
+        ],
+        "examples": [
+          {
+            "en": "Can I have some water, please?",
+            "es": "¿Me das un poco de agua, por favor?"
+          },
+          {
+            "en": "I drink tea every day.",
+            "es": "Tomo té todos los días."
+          }
+        ],
+        "mistake": {
+          "wrong": "My brother don't like milk.",
+          "right": "My brother doesn't like milk.",
+          "note": "Con «he», «she» o una persona en singular, el negativo es «doesn't», no «don't»."
+        }
+      }
     }
   ]
 }

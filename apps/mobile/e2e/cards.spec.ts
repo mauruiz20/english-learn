@@ -1,5 +1,5 @@
 import { expect, test, type ConsoleMessage } from "./support/test";
-import { playSessionCorrectly } from "./support/content";
+import { playSessionCorrectly, skipLessonIntro } from "./support/content";
 
 // `?today=` is a test-only clock override, compiled in only with EXPO_PUBLIC_E2E=1.
 const DAY_1 = "2030-01-01";
@@ -82,6 +82,7 @@ test("study cards: 'Ver ficha' after a missed lesson exercise opens the card and
 }) => {
   await page.goto(`/?today=${DAY_1}`);
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
 
   // The lesson's first exercise practices "wake up", taught by the daily-routine phrasal verbs card.
   const exercise = page.getByTestId("exercise-a2.daily-routine.vocab-001");

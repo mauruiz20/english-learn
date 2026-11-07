@@ -1,4 +1,4 @@
-import { answerCorrectly } from "./support/content";
+import { answerCorrectly, skipLessonIntro } from "./support/content";
 import { expect, test } from "./support/test";
 
 test("browser back right as the lesson saves keeps the save once and home shows it", async ({
@@ -7,6 +7,7 @@ test("browser back right as the lesson saves keeps the save once and home shows 
   await page.goto("/");
   await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
 
   // Answer every exercise; stop on the last feedback, before the save starts.
   for (let n = 1; n <= 6; n++) {

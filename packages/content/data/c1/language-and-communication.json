@@ -449,7 +449,30 @@
         "c1.language-and-communication.beat-around-the-bush",
         "c1.language-and-communication.read-between-the-lines"
       ],
-      "deepenCardIds": ["c1.vocabulary.register"]
+      "deepenCardIds": ["c1.vocabulary.register"],
+      "intro": {
+        "points": [
+          "En un correo formal se pide de forma indirecta: «I would be grateful if you could…».",
+          "«blunt» es demasiado directo, casi brusco; «tactful», con tacto.",
+          "«beat around the bush» es andarse con rodeos; «read between the lines», leer entre líneas.",
+          "El registro también cambia las palabras: «buy» → «purchase», «ask for» → «request»."
+        ],
+        "examples": [
+          {
+            "en": "I would be grateful if you could send me the document.",
+            "es": "Le agradecería que me enviara el documento."
+          },
+          {
+            "en": "Stop beating around the bush and tell me what happened.",
+            "es": "Deja de andarte con rodeos y dime qué pasó."
+          }
+        ],
+        "mistake": {
+          "wrong": "I want that you send me the document.",
+          "right": "I would be grateful if you could send me the document.",
+          "note": "“Quiero que…” no se dice con «want that», y en un correo formal suena brusco."
+        }
+      }
     },
     {
       "id": "c1.language-and-communication.lesson-002",
@@ -473,7 +496,30 @@
         "c1.language-and-communication.get-your-point-across",
         "c1.language-and-communication.lost-in-translation"
       ],
-      "deepenCardIds": ["c1.grammar.nominalization"]
+      "deepenCardIds": ["c1.grammar.nominalization"],
+      "intro": {
+        "points": [
+          "Nominalizar es convertir verbos en sustantivos: «decide» → «decision», «develop» → «development».",
+          "Es típico del inglés formal: «the introduction of the rules» en vez de «when they introduced the rules».",
+          "Pero el exceso cansa: «plain language» es escribir claro, sin «jargon» (jerga técnica).",
+          "«get your point across» es lograr que te entiendan."
+        ],
+        "examples": [
+          {
+            "en": "The implementation of the new rules has been delayed.",
+            "es": "La aplicación de las nuevas normas se ha retrasado."
+          },
+          {
+            "en": "She struggled to get her point across in English.",
+            "es": "Le costó hacerse entender en inglés."
+          }
+        ],
+        "mistake": {
+          "wrong": "The implement of the rules was delayed.",
+          "right": "The implementation of the rules was delayed.",
+          "note": "Después de «the» va un sustantivo: «implementation», no el verbo «implement»."
+        }
+      }
     }
   ]
 }

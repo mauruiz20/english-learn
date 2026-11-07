@@ -51,6 +51,16 @@ describe("renderCorpusModule", () => {
     expect(source).toContain("createCorpus(files)");
     expect(source).not.toMatch(/from "zod"/);
   });
+
+  it("passes a level's level.json as its level intro", async () => {
+    const source = await renderCorpusModule(
+      ["a2/routine.json", "a2/level.json", "practice/level.json"],
+      "../../data",
+    );
+
+    expect(source).toContain('import file0 from "../../data/a2/level.json";');
+    expect(source).toMatch(/const files = \[\s*\{ levelIntro: file0 \},\s*file1,\s*file2,?\s*\]/);
+  });
 });
 
 describe("buildCorpus", () => {
@@ -63,6 +73,15 @@ describe("buildCorpus", () => {
     expect(await buildCorpus({ dataDir, outFile, mode: "check" })).toEqual({
       status: "up-to-date",
     });
+  });
+
+  it("accepts a level intro file", async () => {
+    write("b1/travel.json", fx.validFile());
+    write("b1/level.json", fx.levelIntro());
+    writeGlossary();
+
+    expect(await buildCorpus({ dataDir, outFile, mode: "write" })).toEqual({ status: "written" });
+    expect(readFileSync(outFile, "utf8")).toContain("{ levelIntro: file0 }");
   });
 
   it("detects a stale module when a data file is added", async () => {

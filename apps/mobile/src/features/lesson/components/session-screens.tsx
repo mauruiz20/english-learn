@@ -141,6 +141,8 @@ type SummaryProps = {
   onOpenCard?: ((cardId: string) => void) | undefined;
   /** "Repetir lección": runs the lesson again (lessons only). */
   onRedo?: (() => void) | undefined;
+  /** "Ver teoría": reopens the lesson's intro (lessons with one only). */
+  onOpenTheory?: (() => void) | undefined;
   /** What comes next, above the done button (a review: "Te quedan 25 para otro repaso."). */
   next?: string | undefined;
   /** Shown under the sticker, before the results (a dialogue: how it ended, its best result). */
@@ -197,6 +199,7 @@ export function SessionSummary({
   recap = [],
   onOpenCard,
   onRedo,
+  onOpenTheory,
   next,
   header,
   correctLabel,
@@ -316,6 +319,14 @@ export function SessionSummary({
         )}
       </View>
       {recap.length > 0 && <Recap items={recap} onOpenCard={onOpenCard} />}
+      {onOpenTheory !== undefined && (
+        <Button
+          label="Ver teoría"
+          variant="text"
+          accessibilityHint="Vuelve a mostrar la explicación del principio de la lección"
+          onPress={onOpenTheory}
+        />
+      )}
       {next !== undefined && <Text variant="bodyStrong">{next}</Text>}
       <Button label={doneLabel} onPress={onGoHome} />
       {onRedo !== undefined && (

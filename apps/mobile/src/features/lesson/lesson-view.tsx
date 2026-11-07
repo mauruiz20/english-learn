@@ -1,9 +1,12 @@
 import type { DailyGoalStatus, Verdict } from "@english-learn/domain";
-import type { Passage } from "@english-learn/content";
+import type { LessonIntro, Passage } from "@english-learn/content";
+import { StyleSheet, View } from "react-native";
 import { PageTurn } from "@/shared/ui/page-turn";
 import { ScreenContainer } from "@/shared/ui/screen-container";
+import { spacing } from "@/shared/ui/theme";
 import { AnswerFeedback } from "./components/answer-feedback";
 import { ExerciseBody } from "./components/exercise-body";
+import { IntroToggle, LessonIntroScreen } from "./components/lesson-intro";
 import {
   SavingScreen,
   SessionMessage,
@@ -51,6 +54,15 @@ export type ShownFeedback = GradeResult & {
 export type LessonViewState =
   | { readonly status: "not-found" }
   | {
+      /** "Antes de empezar": the lesson's theory, before its first exercise or from the summary. */
+      readonly status: "intro";
+      readonly title: string;
+      readonly topic: string | undefined;
+      readonly intro: LessonIntro;
+      /** start: "Empezar" runs the exercises; back: "Volver al resumen". */
+      readonly action: "start" | "back";
+    }
+  | {
       readonly status: "exercise";
       readonly title: string;
       /** The lesson's topic slug (its highlighter tints the progress line and the title). */
@@ -67,6 +79,8 @@ export type LessonViewState =
       readonly results?: readonly Verdict[];
       /** The study card that explains this exercise, if any. */
       readonly card?: ExerciseCard | undefined;
+      /** The lesson's theory, collapsed above the exercise ("Repasar la teoría"). */
+      readonly intro?: LessonIntro | undefined;
     }
   | { readonly status: "saving" }
   | { readonly status: "save-error" }
@@ -88,6 +102,8 @@ export type LessonViewState =
       readonly recap?: readonly RecapItem[] | undefined;
       /** Today's count against the daily goal (absent: unknown). */
       readonly dailyGoal?: DailyGoalStatus | undefined;
+      /** The lesson has an intro the summary can reopen ("Ver teoría"). */
+      readonly hasIntro?: boolean | undefined;
     };
 
 type LessonViewProps = {
@@ -103,6 +119,10 @@ type LessonViewProps = {
   onOpenRecapCard?: ((cardId: string) => void) | undefined;
   /** "Repetir lección" on the summary. */
   onRedo?: (() => void) | undefined;
+  /** "Empezar" on the intro. */
+  onStart?: (() => void) | undefined;
+  /** "Ver teoría" on the summary, and "Volver al resumen" on the reopened intro. */
+  onToggleTheory?: (() => void) | undefined;
   copy?: SessionCopy;
 };
 
@@ -116,9 +136,21 @@ export function LessonView({
   onOpenCard,
   onOpenRecapCard,
   onRedo,
+  onStart,
+  onToggleTheory,
   copy = LESSON_COPY,
 }: LessonViewProps) {
   switch (state.status) {
+    case "intro":
+      return (
+        <LessonIntroScreen
+          title={state.title}
+          topic={state.topic}
+          intro={state.intro}
+          actionLabel={state.action === "start" ? "Empezar" : "Volver al resumen"}
+          onAction={(state.action === "start" ? onStart : onToggleTheory) ?? (() => {})}
+        />
+      );
     case "not-found":
       return <SessionMessage title={copy.name} text={copy.notFound} onGoHome={onGoHome} />;
     case "save-error":
@@ -141,6 +173,7 @@ export function LessonView({
           onGoHome={onGoHome}
           onOpenCard={onOpenRecapCard}
           onRedo={onRedo}
+          onOpenTheory={state.hasIntro === true ? onToggleTheory : undefined}
         />
       );
     case "exercise":
@@ -178,6 +211,11 @@ export function LessonView({
                 ),
               })}
         >
+          {state.intro !== undefined && (
+            <View style={styles.introToggle}>
+              <IntroToggle intro={state.intro} />
+            </View>
+          )}
           <PageTurn pageKey={state.prepared.exercise.id}>
             <ExerciseBody
               key={state.prepared.exercise.id}
@@ -201,3 +239,7 @@ export function cardLink(
   if (card === undefined || onOpenCard === undefined) return undefined;
   return { title: card.title, onOpen: () => onOpenCard(card.id) };
 }
+
+const styles = StyleSheet.create({
+  introToggle: { marginBottom: spacing.sm },
+});

@@ -25,6 +25,7 @@ import { Text } from "@/shared/ui/text";
 import { radius, spacing, type HighlighterName } from "@/shared/ui/theme";
 import { XpBar } from "@/shared/ui/xp-bar";
 import { PathLevelPicker, type HomePathLevel } from "./path-level-picker";
+import { LevelIntroNote, type HomeLevelIntro } from "./level-intro-note";
 import { themedStyles, useTheme } from "@/shared/ui/use-theme";
 import { topicHighlighter } from "@/features/topics/topic-colors";
 import { topicLabel } from "@/features/topics/topic-labels";
@@ -67,6 +68,8 @@ export type HomeLessons = {
   readonly chosen?: boolean;
   /** The levels the learner can pick, with their progress; fewer than two: no picker. */
   readonly levels?: readonly HomePathLevel[];
+  /** The level's intro (none: the level has no `level.json`). */
+  readonly intro?: HomeLevelIntro | undefined;
 };
 
 export type HomeViewState =
@@ -129,6 +132,10 @@ type HomeViewProps = {
   onOpenCard?: (cardId: string) => void;
   /** Shows the path of a level picked by hand; null goes back to the automatic level. */
   onChoosePathLevel?: (level: Level | null) => void;
+  /** Opens the level's intro again ("Qué aprenderás en el nivel A2"). */
+  onOpenLevelIntro?: () => void;
+  /** Closes the level's intro ("Entendido"). */
+  onDismissLevelIntro?: () => void;
   /** Stores a daily goal picked on the progress card or the one-time note. */
   onChooseDailyGoal?: (goal: DailyGoal) => void;
   /** Closes the one-time daily goal note ("Ahora no"). */
@@ -809,11 +816,15 @@ function LessonIndex({
   onOpenLesson,
   onOpenCard,
   onChoosePathLevel,
+  onOpenLevelIntro,
+  onDismissLevelIntro,
 }: {
   lessons: HomeLessons;
   onOpenLesson: (id: string) => void;
   onOpenCard?: ((cardId: string) => void) | undefined;
   onChoosePathLevel?: ((level: Level | null) => void) | undefined;
+  onOpenLevelIntro?: (() => void) | undefined;
+  onDismissLevelIntro?: (() => void) | undefined;
 }) {
   const styles = useStyles();
   const [width, setWidth] = useState(0);
@@ -844,7 +855,18 @@ function LessonIndex({
             <Text variant="small" tone="muted">{`${percent} % completado`}</Text>
           </>
         )}
+        {lessons.intro !== undefined && !lessons.intro.open && onOpenLevelIntro !== undefined && (
+          <Button
+            label={`Qué aprenderás en el nivel ${lessons.level}`}
+            variant="text"
+            accessibilityHint="Muestra lo que podrás hacer al terminar el nivel"
+            onPress={onOpenLevelIntro}
+          />
+        )}
       </View>
+      {lessons.intro?.open === true && onDismissLevelIntro !== undefined && (
+        <LevelIntroNote intro={lessons.intro} onDismiss={onDismissLevelIntro} />
+      )}
       {total === 0 ? (
         <Text tone="muted">Todavía no hay lecciones para este nivel.</Text>
       ) : (
@@ -914,6 +936,8 @@ function ReadyHome({
   onOpenLesson,
   onOpenCard,
   onChoosePathLevel,
+  onOpenLevelIntro,
+  onDismissLevelIntro,
   onStartPlacement,
   onOpenReview,
   onOpenAbout,
@@ -948,6 +972,8 @@ function ReadyHome({
         onOpenLesson={onOpenLesson}
         onOpenCard={onOpenCard}
         onChoosePathLevel={onChoosePathLevel}
+        onOpenLevelIntro={onOpenLevelIntro}
+        onDismissLevelIntro={onDismissLevelIntro}
       />
 
       <View style={styles.footer}>

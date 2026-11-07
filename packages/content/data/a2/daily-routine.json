@@ -338,7 +338,29 @@
         "a2.daily-routine.go-to-bed",
         "a2.daily-routine.commute"
       ],
-      "deepenCardIds": ["a2.phrasal-verbs.daily-routine"]
+      "deepenCardIds": ["a2.phrasal-verbs.daily-routine"],
+      "intro": {
+        "points": [
+          "Para la rutina se usa el presente simple: «I wake up at six», «I go to bed at eleven».",
+          "«Usually» (normalmente) va antes del verbo: «I usually wake up early»; pero después de «be»: «I'm usually tired».",
+          "Las comidas del día van con «have»: «have breakfast», «have lunch», «have dinner»."
+        ],
+        "examples": [
+          {
+            "en": "I usually wake up at six.",
+            "es": "Normalmente me despierto a las seis."
+          },
+          {
+            "en": "She goes to bed at eleven.",
+            "es": "Ella se va a la cama a las once."
+          }
+        ],
+        "mistake": {
+          "wrong": "I take breakfast at seven.",
+          "right": "I have breakfast at seven.",
+          "note": "«Tomar el desayuno» es «have breakfast», no «take breakfast»."
+        }
+      }
     },
     {
       "id": "a2.daily-routine.lesson-002",
@@ -361,7 +383,29 @@
         "a2.daily-routine.every-morning",
         "a2.daily-routine.take-a-shower"
       ],
-      "deepenCardIds": ["a2.vocabulary.take-a-break", "a2.grammar.present-simple"]
+      "deepenCardIds": ["a2.vocabulary.take-a-break", "a2.grammar.present-simple"],
+      "intro": {
+        "points": [
+          "En presente, con «he», «she» e «it» el verbo lleva «-s»: «She gets up early».",
+          "Algunos verbos llevan «-es»: «go», «goes»; «watch», «watches».",
+          "Para la mañana: «get up» (levantarse), «take a shower» (ducharse), «get dressed» (vestirse)."
+        ],
+        "examples": [
+          {
+            "en": "She gets up early every morning.",
+            "es": "Ella se levanta temprano todas las mañanas."
+          },
+          {
+            "en": "I usually take a shower before breakfast.",
+            "es": "Normalmente me ducho antes del desayuno."
+          }
+        ],
+        "mistake": {
+          "wrong": "She get up early every morning.",
+          "right": "She gets up early every morning.",
+          "note": "Con «he», «she» o «it», el verbo en presente lleva «-s»: «she gets»."
+        }
+      }
     }
   ]
 }

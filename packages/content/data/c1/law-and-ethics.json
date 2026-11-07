@@ -442,7 +442,29 @@
         "c1.law-and-ethics.gray-area",
         "c1.law-and-ethics.liable"
       ],
-      "deepenCardIds": ["c1.grammar.inversion"]
+      "deepenCardIds": ["c1.grammar.inversion"],
+      "intro": {
+        "points": [
+          "«Under no circumstances» + auxiliar + sujeto expresa una prohibición enfática y formal.",
+          "«Only when…» invierte la oración principal: «Only when the loophole is closed will the problem disappear».",
+          "«comply with» es cumplir una norma; «loophole», un vacío legal; «liable for», legalmente responsable de."
+        ],
+        "examples": [
+          {
+            "en": "Under no circumstances should you sign that contract.",
+            "es": "Bajo ninguna circunstancia debes firmar ese contrato."
+          },
+          {
+            "en": "All companies must comply with the new regulations.",
+            "es": "Todas las empresas deben cumplir con las nuevas normas."
+          }
+        ],
+        "mistake": {
+          "wrong": "Under no circumstances you should sign it.",
+          "right": "Under no circumstances should you sign it.",
+          "note": "Tras una expresión negativa al inicio, el auxiliar va antes del sujeto."
+        }
+      }
     },
     {
       "id": "c1.law-and-ethics.lesson-002",
@@ -465,7 +487,29 @@
         "c1.law-and-ethics.turn-a-blind-eye",
         "c1.law-and-ethics.ethical-dilemma"
       ],
-      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"],
+      "intro": {
+        "points": [
+          "«whistleblower» es quien denuncia irregularidades desde dentro de una organización.",
+          "«speak out against» es alzar la voz en público; «turn a blind eye to», hacer la vista gorda.",
+          "Repasa el condicional mixto: «If she hadn't spoken out, the problem would still be hidden today»."
+        ],
+        "examples": [
+          {
+            "en": "Few employees dare to speak out against their bosses.",
+            "es": "Pocos empleados se atreven a alzar la voz contra sus jefes."
+          },
+          {
+            "en": "The managers knew about the problem but turned a blind eye.",
+            "es": "Los gerentes sabían del problema, pero hicieron la vista gorda."
+          }
+        ],
+        "mistake": {
+          "wrong": "She denounced the fraud to the police.",
+          "right": "She reported the fraud to the police.",
+          "note": "Denunciar algo ante la policía es «report»; «denounce» es condenar algo en público."
+        }
+      }
     }
   ]
 }

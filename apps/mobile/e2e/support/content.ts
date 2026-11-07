@@ -76,8 +76,24 @@ export function reviewableItemIds(n: number): string[] {
   return sorted.slice(0, n);
 }
 
-/** Id of the exercise on screen. */
+const LESSON_INTRO = '[data-testid="lesson-intro"]';
+
+/**
+ * Waits for the session's first screen and, when it is a lesson's intro ("Antes de empezar"),
+ * presses "Empezar". Path lessons with an intro open on it the first time.
+ */
+export async function skipLessonIntro(page: Page): Promise<void> {
+  const intro = page.locator(LESSON_INTRO);
+  await expect(page.locator(EXERCISE).first().or(intro)).toBeVisible();
+  if (await intro.isVisible()) {
+    await page.getByRole("button", { name: "Empezar", exact: true }).click();
+    await expect(page.locator(EXERCISE).first()).toBeVisible();
+  }
+}
+
+/** Id of the exercise on screen (past a lesson's intro, which it starts). */
 export async function currentExerciseId(page: Page): Promise<string> {
+  await skipLessonIntro(page);
   const testId = await page.locator(EXERCISE).first().getAttribute("data-testid");
   if (testId === null) throw new Error("No exercise on screen");
   return testId.slice("exercise-".length);
@@ -260,7 +276,7 @@ async function answerPlacementWrongly(page: Page, id: string): Promise<string> {
 export async function playSessionCorrectly(page: Page, finishedText: string): Promise<number> {
   let answered = 0;
   while (!(await page.getByText(finishedText).isVisible())) {
-    await expect(page.locator(EXERCISE).first()).toBeVisible();
+    await skipLessonIntro(page);
     await answerCorrectly(page, "Comprobar");
     await expect(page.getByRole("alert")).toHaveText("Correcto");
     await page.getByRole("button", { name: "Continuar", exact: true }).click();

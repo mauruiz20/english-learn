@@ -339,7 +339,29 @@
         "a1.my-family.sister",
         "a1.my-family.father",
         "a1.my-family.mother"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«Have» es tener: «I have», «you have», «we have», «they have».",
+          "Con «he», «she» e «it» cambia a «has»: «My mom has three brothers».",
+          "«Mom» y «dad» son más familiares que «mother» y «father»."
+        ],
+        "examples": [
+          {
+            "en": "I have two sisters.",
+            "es": "Tengo dos hermanas."
+          },
+          {
+            "en": "My mother is from Chile.",
+            "es": "Mi madre es de Chile."
+          }
+        ],
+        "mistake": {
+          "wrong": "My mom have three brothers.",
+          "right": "My mom has three brothers.",
+          "note": "Con «he», «she» o una persona en singular, «have» pasa a «has»."
+        }
+      }
     },
     {
       "id": "a1.my-family.lesson-002",
@@ -363,7 +385,29 @@
         "a1.my-family.wife",
         "a1.my-family.husband"
       ],
-      "deepenCardIds": ["a1.grammar.plurals"]
+      "deepenCardIds": ["a1.grammar.plurals"],
+      "intro": {
+        "points": [
+          "El plural suele llevar «-s» («sons») o «-es» («boxes»). Algunos son irregulares: «child», «children».",
+          "«His» es su (de él) y «her», su (de ella): depende de quién tiene la cosa, no de la cosa.",
+          "«Wife» es esposa y «husband», esposo; «daughter» es hija y «son», hijo."
+        ],
+        "examples": [
+          {
+            "en": "They have two children.",
+            "es": "Tienen dos hijos."
+          },
+          {
+            "en": "Her husband is from Canada.",
+            "es": "Su esposo es de Canadá."
+          }
+        ],
+        "mistake": {
+          "wrong": "Mr. Lee is my teacher. Her wife is a doctor.",
+          "right": "Mr. Lee is my teacher. His wife is a doctor.",
+          "note": "La esposa es de él, así que es «his wife»; «her» se usa cuando la dueña es una mujer."
+        }
+      }
     }
   ]
 }

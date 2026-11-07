@@ -1,4 +1,9 @@
-import { createCorpus, type Corpus, type VocabExercise } from "@english-learn/content";
+import {
+  createCorpus,
+  type Corpus,
+  type LevelIntro,
+  type VocabExercise,
+} from "@english-learn/content";
 import {
   initialState,
   localDate,
@@ -1004,5 +1009,67 @@ describe("HomeContainer", () => {
 
       expect(await screen.findByText("¡Lo lograste!")).toBeOnTheScreen();
     });
+  });
+});
+
+describe("HomeContainer level intro", () => {
+  const a2Intro: LevelIntro = {
+    level: "A2",
+    title: "Nivel A2: el día a día",
+    canDo: ["Contar tu rutina.", "Pedir indicaciones.", "Comprar ropa."],
+    topics: ["Rutina diaria", "Compras"],
+  };
+  const b1Intro: LevelIntro = { ...a2Intro, level: "B1", title: "Nivel B1: te defiendes" };
+  const introContent = createCorpus([
+    { exercises: allExercises, passages: [passage], lessons: [lesson, b1Lesson], cards: [card] },
+    { levelIntro: a2Intro },
+    { levelIntro: b1Intro },
+  ]);
+
+  it("shows the level's intro above its lessons the first time, once", async () => {
+    const settings = createFakeSettingsRepository();
+    await renderContainer(createFakeRepository(), createCompletionMemory(), settings, introContent);
+
+    expect(await screen.findByText("Al terminar este nivel podrás…")).toBeOnTheScreen();
+    expect(screen.getByText("Nivel A2: el día a día")).toBeOnTheScreen();
+    expect(screen.getByText("Contar tu rutina.")).toBeOnTheScreen();
+    await waitFor(() => expect(settings.seenLevelIntros()).toEqual(["A2"]));
+
+    await fireEvent.press(screen.getByRole("button", { name: "Entendido" }));
+    expect(screen.queryByText("Al terminar este nivel podrás…")).not.toBeOnTheScreen();
+  });
+
+  it("keeps a seen intro closed, and reopens it from the path's header", async () => {
+    await renderContainer(
+      createFakeRepository(),
+      createCompletionMemory(),
+      createFakeSettingsRepository({ seenLevelIntros: ["A2"] }),
+      introContent,
+    );
+
+    const reopen = await screen.findByRole("button", { name: "Qué aprenderás en el nivel A2" });
+    expect(screen.queryByText("Al terminar este nivel podrás…")).not.toBeOnTheScreen();
+
+    await fireEvent.press(reopen);
+    expect(screen.getByText("Al terminar este nivel podrás…")).toBeOnTheScreen();
+  });
+
+  it("shows another level's intro the first time the path shows it", async () => {
+    const settings = createFakeSettingsRepository({ seenLevelIntros: ["A2"] });
+    await renderContainer(createFakeRepository(), createCompletionMemory(), settings, introContent);
+
+    await fireEvent.press(await screen.findByRole("button", { name: /^Nivel del recorrido/ }));
+    await fireEvent.press(screen.getByRole("radio", { name: "B1, 0 % completado" }));
+
+    expect(await screen.findByText("Nivel B1: te defiendes")).toBeOnTheScreen();
+    await waitFor(() => expect(settings.seenLevelIntros()).toEqual(["A2", "B1"]));
+  });
+
+  it("shows nothing for a level without an intro", async () => {
+    await renderContainer(createFakeRepository());
+
+    expect(await screen.findByLabelText("Racha: 0 días")).toBeOnTheScreen();
+    expect(screen.queryByText("Al terminar este nivel podrás…")).not.toBeOnTheScreen();
+    expect(screen.queryByRole("button", { name: /^Qué aprenderás/ })).not.toBeOnTheScreen();
   });
 });

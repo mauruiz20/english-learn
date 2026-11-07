@@ -384,7 +384,29 @@
         "a2.weather.what-is-the-weather-like",
         "a2.weather.umbrella"
       ],
-      "deepenCardIds": ["a2.grammar.going-to-predictions"]
+      "deepenCardIds": ["a2.grammar.going-to-predictions"],
+      "intro": {
+        "points": [
+          "«What's the weather like?» es ¿qué tiempo hace? Se responde con «it»: «It's cloudy».",
+          "«Going to» predice lo que ves venir: «Look at those clouds. It's going to rain».",
+          "«Rain» es llover y también lluvia; el paraguas es «umbrella»."
+        ],
+        "examples": [
+          {
+            "en": "It's going to rain today.",
+            "es": "Hoy va a llover."
+          },
+          {
+            "en": "What is the weather like?",
+            "es": "¿Qué tiempo hace?"
+          }
+        ],
+        "mistake": {
+          "wrong": "Is going to rain today.",
+          "right": "It's going to rain today.",
+          "note": "Para el tiempo, el sujeto «it» es obligatorio: «it's going to rain»."
+        }
+      }
     },
     {
       "id": "a2.weather.lesson-002",
@@ -400,7 +422,29 @@
         "a2.weather.choice-003",
         "a2.weather.write-002"
       ],
-      "newItemIds": ["a2.weather.forecast", "a2.weather.sunny", "a2.weather.cold"]
+      "newItemIds": ["a2.weather.forecast", "a2.weather.sunny", "a2.weather.cold"],
+      "intro": {
+        "points": [
+          "El tiempo se describe con «it is»: «It's sunny», «It's cold», «It was a hot day».",
+          "Para comparar: «colder than», «hotter than»: «It's colder today than yesterday».",
+          "«Forecast» es pronóstico: «The forecast says it'll rain»."
+        ],
+        "examples": [
+          {
+            "en": "It's very sunny today.",
+            "es": "Hoy hace mucho sol."
+          },
+          {
+            "en": "It's colder today than yesterday.",
+            "es": "Hoy hace más frío que ayer."
+          }
+        ],
+        "mistake": {
+          "wrong": "It makes cold today.",
+          "right": "It's cold today.",
+          "note": "«Hace frío» no se dice con «make»: es «it's cold»."
+        }
+      }
     }
   ]
 }

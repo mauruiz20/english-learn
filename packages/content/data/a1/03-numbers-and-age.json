@@ -327,7 +327,29 @@
         "a1.numbers-and-age.fifteen",
         "a1.numbers-and-age.twenty",
         "a1.numbers-and-age.thirty"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "Del 13 al 19 terminan en «-teen»: «thirteen», «fifteen», «nineteen».",
+          "Las decenas terminan en «-ty»: «twenty», «thirty», «forty».",
+          "Al pronunciar, «-teen» se marca al final (thir-TEEN) y «-ty», al principio (THIR-ty)."
+        ],
+        "examples": [
+          {
+            "en": "I have twenty books.",
+            "es": "Tengo veinte libros."
+          },
+          {
+            "en": "My class has thirty students.",
+            "es": "Mi clase tiene treinta estudiantes."
+          }
+        ],
+        "mistake": {
+          "wrong": "Ten plus five is fiveteen.",
+          "right": "Ten plus five is fifteen.",
+          "note": "El 15 es «fifteen», no «fiveteen»; y el 13 es «thirteen», no «threeteen»."
+        }
+      }
     },
     {
       "id": "a1.numbers-and-age.lesson-002",
@@ -348,7 +370,29 @@
         "a1.numbers-and-age.years-old",
         "a1.numbers-and-age.how-old-are-you",
         "a1.numbers-and-age.phone-number"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "La edad se dice con «to be», no con «have»: «I'm ten years old».",
+          "Puedes acortarla: «I'm ten.» Para preguntar: «How old are you?»",
+          "Para el teléfono: «What's your phone number?». El número se dice cifra por cifra."
+        ],
+        "examples": [
+          {
+            "en": "How old are you?",
+            "es": "¿Cuántos años tienes?"
+          },
+          {
+            "en": "I'm nine years old.",
+            "es": "Tengo nueve años."
+          }
+        ],
+        "mistake": {
+          "wrong": "I have nine years.",
+          "right": "I'm nine years old.",
+          "note": "«Tener años» no se traduce con «have»: la edad va con «to be»."
+        }
+      }
     }
   ]
 }

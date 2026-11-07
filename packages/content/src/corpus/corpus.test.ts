@@ -36,6 +36,19 @@ describe("createCorpus", () => {
     expect(corpus.itemsById.get("missing")).toBeUndefined();
   });
 
+  it("collects the level intros, by level", () => {
+    const a2 = fx.levelIntro({ level: "A2", title: "Nivel A2" });
+    const corpus = createCorpus([
+      fx.validFile(),
+      { levelIntro: fx.levelIntro() },
+      { levelIntro: a2 },
+    ]);
+
+    expect(corpus.levelIntros).toEqual([fx.levelIntro(), a2]);
+    expect(corpus.levelIntrosByLevel.get("A2")).toBe(a2);
+    expect(corpus.levelIntrosByLevel.get("C1")).toBeUndefined();
+  });
+
   it("returns an empty corpus for no files", () => {
     const corpus = createCorpus([]);
 

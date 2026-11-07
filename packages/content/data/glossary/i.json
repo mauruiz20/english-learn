@@ -1033,6 +1033,22 @@
       ]
     },
     {
+      "id": "glossary.introduce",
+      "headword": "introduce",
+      "kind": "word",
+      "forms": ["introduce", "introduces", "introduced", "introducing"],
+      "senses": [
+        {
+          "es": "introducir, implantar",
+          "pos": "verb"
+        },
+        {
+          "es": "presentar (a alguien)",
+          "pos": "verb"
+        }
+      ]
+    },
+    {
       "id": "glossary.introduction",
       "headword": "introduction",
       "kind": "word",

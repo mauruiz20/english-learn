@@ -338,7 +338,29 @@
         "a2.family.uncle",
         "a2.family.only-child"
       ],
-      "deepenCardIds": ["a2.grammar.comparatives"]
+      "deepenCardIds": ["a2.grammar.comparatives"],
+      "intro": {
+        "points": [
+          "Para comparar con un adjetivo corto: «-er» + «than»: «My mother is older than my father».",
+          "Con adjetivos largos se usa «more»: «more interesting than».",
+          "«Aunt» y «uncle» son tía y tío; «only child», hijo único o hija única."
+        ],
+        "examples": [
+          {
+            "en": "My mother is older than my father.",
+            "es": "Mi madre es mayor que mi padre."
+          },
+          {
+            "en": "Where does your grandmother live?",
+            "es": "¿Dónde vive tu abuela?"
+          }
+        ],
+        "mistake": {
+          "wrong": "My mother is more old than my father.",
+          "right": "My mother is older than my father.",
+          "note": "Con adjetivos cortos se agrega «-er»: «older», no «more old»."
+        }
+      }
     },
     {
       "id": "a2.family.lesson-002",
@@ -355,7 +377,29 @@
         "a2.family.write-002"
       ],
       "newItemIds": ["a2.family.look-like", "a2.family.possessive-s", "a2.family.get-married"],
-      "deepenCardIds": ["a2.grammar.possessive-s", "a2.vocabulary.look-like", "a2.vocabulary.get"]
+      "deepenCardIds": ["a2.grammar.possessive-s", "a2.vocabulary.look-like", "a2.vocabulary.get"],
+      "intro": {
+        "points": [
+          "Para decir de quién es algo: persona + «'s» + cosa: «my father's car» (el auto de mi padre).",
+          "«Look like» es parecerse en el aspecto: «She looks like her mother».",
+          "«Get married» es casarse: «My uncle got married last summer»."
+        ],
+        "examples": [
+          {
+            "en": "My sister looks like our mother.",
+            "es": "Mi hermana se parece a nuestra madre."
+          },
+          {
+            "en": "This is my father's car.",
+            "es": "Este es el auto de mi padre."
+          }
+        ],
+        "mistake": {
+          "wrong": "This is the car of my father.",
+          "right": "This is my father's car.",
+          "note": "Con personas, «el auto de mi padre» se dice «my father's car»."
+        }
+      }
     }
   ]
 }

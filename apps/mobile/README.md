@@ -253,6 +253,19 @@ Content comes from `@english-learn/content/corpus` (generated, bundled, no Zod a
   headword even under another item id ("look forward to + -ing" in "Una noche de cultura" opens
   "Look forward to + -ing"); else a card that lists the item. Terms are never matched against
   cards the lesson does not link. Card practice and the daily review have no recap.
+- **"Antes de empezar"** (`model/lesson-intro.ts`, `components/lesson-intro.tsx`): a path lesson
+  with an intro opens on a short theory screen, one phone screen tall: the lesson title (in its
+  topic's highlighter), the points, the examples (English with its `SpeakButton`, then the
+  Spanish) and the typical mistake as ✗ wrong (struck in red pen) → ✓ right with its note, then
+  "Empezar" pinned at the bottom. The intro is the lesson's own `intro`, or else one derived from
+  its first linked card (`deepenCardIds`): the card's first three uses as points, its first
+  example and its first pitfall. Lessons with neither, practice lessons and dialogues show none.
+  On a redo, or when the lesson is already done (every item it practices has a review state, read
+  once when the screen opens; "Cargando la lección" meanwhile), the intro is not a screen but a
+  small "Repasar la teoría" toggle above the first exercise that opens it in place (44 pt,
+  `aria-expanded`). The summary offers "Ver teoría" (a text button after the recap), which
+  reopens the intro with "Volver al resumen". Plain text: no word lookups (they would cap the
+  grade of the lesson's items). Nothing animates.
 - **"Repetir lección"** on the lesson summary (a secondary button with mistakes, a text button on
   a perfect page) runs the lesson again from the start as a new session (`LessonContainer`
   remounts the session with a new key): answer XP again, never a second completion bonus.
@@ -288,6 +301,16 @@ value reads as automatic) and forgotten with the progress on a sign-out that del
 (`clearPathLevel`). The next lesson, "Siguiente" and Avi on the path follow the level shown.
 Showing another level never draws checks again: the completion memory remembers the done lessons
 of every level.
+
+**Level intros.** The first time the path shows a level on this device (its own level, or one
+picked by hand), a dashed note above its first lesson shows the level's intro
+(`data/<level>/level.json`): its title, "Al terminar este nivel podrás…" with the can-do list,
+and its topics, with "Entendido" to close it. It is remembered as seen at once
+(`SettingsRepository.getSeenLevelIntros` / `markLevelIntroSeen`, device only, no event), so it
+shows once; it also closes when home loses focus. "Qué aprenderás en el nivel A2", a text button
+under the path's heading, reopens it. A full sign-out that deletes the progress forgets the seen
+levels (`clearSeenLevelIntros`), like the path level. A level without a `level.json` shows
+neither.
 
 **Lesson results on the path.** A done lesson also shows its best result, from the fold's
 `lessonResults` (the best `accuracy` of its `session_completed` events; no new event):

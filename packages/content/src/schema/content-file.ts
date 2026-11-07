@@ -4,6 +4,7 @@ import { DialogueSchema } from "./dialogue";
 import { ExerciseSchema } from "./exercise";
 import { GlossaryEntrySchema } from "./glossary";
 import { ItemSchema, LessonSchema, PassageSchema } from "./entities";
+import { LevelIntroSchema } from "./intro";
 import { PlacementQuestionSchema } from "./placement";
 import { PracticeCollectionSchema } from "./practice";
 
@@ -20,5 +21,10 @@ export const ContentFileSchema = z.strictObject({
   practice: z.array(PracticeCollectionSchema).optional(),
   /** Interactive dialogues (only under `data/practice/<collection>/`). */
   dialogues: z.array(DialogueSchema).optional(),
+  /**
+   * The level's intro. Never written under this key: `data/<level>/level.json` holds a bare
+   * `LevelIntro`, which validation and the generated corpus load as `{ levelIntro }`.
+   */
+  levelIntro: LevelIntroSchema.optional(),
 });
 export type ContentFile = z.infer<typeof ContentFileSchema>;

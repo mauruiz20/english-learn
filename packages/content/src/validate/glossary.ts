@@ -194,6 +194,14 @@ export function glossaryTexts(files: readonly LoadedFile[]): GlossaryText[] {
     (data.placement ?? []).forEach((q, i) =>
       exerciseTexts(q.exercise, `placement[${i}].exercise`).forEach(add),
     );
+    (data.lessons ?? []).forEach((lesson, i) => {
+      if (lesson.intro === undefined) return;
+      const at = `lessons[${i}].intro`;
+      lesson.intro.examples.forEach((e, j) => add([`${at}.examples[${j}].en`, e.en]));
+      // Like a card pitfall, `wrong` holds deliberate mistakes that must not become forms.
+      if (lesson.intro.mistake !== undefined)
+        add([`${at}.mistake.right`, lesson.intro.mistake.right]);
+    });
     (data.cards ?? []).forEach((card, i) => cardTexts(card, `cards[${i}]`).forEach(add));
     (data.dialogues ?? []).forEach((d, i) => dialogueTexts(d, `dialogues[${i}]`).forEach(add));
   }

@@ -370,7 +370,29 @@
         "a2.directions.across-from",
         "a2.directions.excuse-me"
       ],
-      "deepenCardIds": ["a2.grammar.directions"]
+      "deepenCardIds": ["a2.grammar.directions"],
+      "intro": {
+        "points": [
+          "Para indicar el camino se usa el imperativo, el verbo solo: «Turn left.», «Go straight ahead.»",
+          "Para preguntar con cortesía: «Excuse me, where is…?»",
+          "Lugares: «across from» (enfrente de), «next to» (al lado de), «on the corner» (en la esquina)."
+        ],
+        "examples": [
+          {
+            "en": "Go two blocks and turn left.",
+            "es": "Sigue dos cuadras y gira a la izquierda."
+          },
+          {
+            "en": "Excuse me, where's the subway station?",
+            "es": "Disculpe, ¿dónde está la estación del metro?"
+          }
+        ],
+        "mistake": {
+          "wrong": "Turn right in the next corner.",
+          "right": "Turn right at the next corner.",
+          "note": "Para girar en una esquina o un cruce se usa «at»: «at the next corner»."
+        }
+      }
     },
     {
       "id": "a2.directions.lesson-002",
@@ -386,7 +408,29 @@
         "a2.directions.choice-003",
         "a2.directions.write-002"
       ],
-      "newItemIds": ["a2.directions.between", "a2.directions.map", "a2.directions.imperative"]
+      "newItemIds": ["a2.directions.between", "a2.directions.map", "a2.directions.imperative"],
+      "intro": {
+        "points": [
+          "«Between» es entre dos cosas: «between the bakery and the bookstore».",
+          "«Far from» es lejos de y «near», cerca de: «I live far from here».",
+          "Para seguir y girar: «Go straight ahead and turn right at the bank»."
+        ],
+        "examples": [
+          {
+            "en": "The bank is between the bakery and the bookstore.",
+            "es": "El banco está entre la panadería y la librería."
+          },
+          {
+            "en": "Go straight ahead and turn right at the bank.",
+            "es": "Sigue derecho y gira a la derecha en el banco."
+          }
+        ],
+        "mistake": {
+          "wrong": "I live far of here.",
+          "right": "I live far from here.",
+          "note": "«Lejos de» es «far from», nunca «far of»."
+        }
+      }
     }
   ]
 }

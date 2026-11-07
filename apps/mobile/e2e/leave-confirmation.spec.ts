@@ -1,9 +1,10 @@
-import { answerCorrectly } from "./support/content";
+import { answerCorrectly, skipLessonIntro } from "./support/content";
 import { expect, test, type Page } from "./support/test";
 
 async function startLessonAndAnswerOne(page: Page) {
   await page.goto("/");
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
   await answerCorrectly(page, "Comprobar");
   await expect(page.getByRole("alert")).toHaveText("Correcto");
@@ -48,6 +49,7 @@ test("leaving a lesson with the browser back button asks first", async ({ page }
 test("leaving before answering does not ask", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
 
   await page.goBack();
