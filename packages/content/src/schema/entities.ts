@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { IdSchema, LevelSchema, NonEmptyString, SourceSchema, TopicsSchema } from "./common";
+import { LessonIntroSchema } from "./intro";
 
 export const ItemSchema = z.strictObject({
   id: IdSchema,
@@ -46,5 +47,10 @@ export const LessonSchema = z.strictObject({
    * recap items they teach to them. Optional.
    */
   deepenCardIds: z.array(IdSchema).min(1).max(3).optional(),
+  /**
+   * The short theory screen shown before the lesson's first exercise ("Antes de empezar").
+   * Optional: without it the app derives one from the first linked card, or shows none.
+   */
+  intro: LessonIntroSchema.optional(),
 });
 export type Lesson = z.infer<typeof LessonSchema>;

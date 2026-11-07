@@ -70,6 +70,14 @@ export interface SettingsRepository {
   /** Forgets it (a sign-out that deletes this device's progress): the next learner picks anew. */
   clearPathLevel(): Promise<void>;
   /**
+   * The levels whose intro ("Al terminar este nivel podrás…") the path already showed on this
+   * device, in CEFR order: each shows once. Device only, never part of the progress.
+   */
+  getSeenLevelIntros(): Promise<readonly Level[]>;
+  markLevelIntroSeen(level: Level): Promise<void>;
+  /** Forgets them (a sign-out that deletes this device's progress): the next learner sees them. */
+  clearSeenLevelIntros(): Promise<void>;
+  /**
    * The date home was last opened on this device, or null before the first visit: Avi says
    * "welcome back" on the first visit of a new day. Device only, never synced.
    */

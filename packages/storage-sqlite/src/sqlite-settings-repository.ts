@@ -26,6 +26,7 @@ const SPEECH_RATE = "speech_rate";
 const DAILY_GOAL = "daily_goal";
 const DAILY_GOAL_PROMPT_DISMISSED = "daily_goal_prompt_dismissed";
 const SPEECH_VOICE = "speech_voice";
+const SEEN_LEVEL_INTROS = "seen_level_intros";
 
 /** `SettingsRepository` over the `setting` key/value table. Call `migrate(db)` first. */
 export function createSqliteSettingsRepository(db: SqlDatabase): SettingsRepository {
@@ -87,6 +88,14 @@ export function createSqliteSettingsRepository(db: SqlDatabase): SettingsReposit
     clearPathLevel: async () => {
       await db.runAsync("DELETE FROM setting WHERE key = ?", [PATH_LEVEL]);
     },
+    getSeenLevelIntros: async () => parseLevels(await read(SEEN_LEVEL_INTROS)),
+    markLevelIntroSeen: async (level) => {
+      const seen = new Set<Level>([...parseLevels(await read(SEEN_LEVEL_INTROS)), level]);
+      await write(SEEN_LEVEL_INTROS, LEVELS.filter((l) => seen.has(l)).join(","));
+    },
+    clearSeenLevelIntros: async () => {
+      await db.runAsync("DELETE FROM setting WHERE key = ?", [SEEN_LEVEL_INTROS]);
+    },
     getLastHomeVisit: async () => parseLocalDate(await read(LAST_HOME_VISIT)),
     setLastHomeVisit: (date) => write(LAST_HOME_VISIT, date),
     getDailyGoal: async () => parseDailyGoal(await read(DAILY_GOAL)),
@@ -109,6 +118,12 @@ function parseLocalDate(value: string | null): LocalDate | null {
 /** Anything but an explicit light or dark follows the system (the default). */
 function parseThemePreference(value: string | null): ThemePreference {
   return value === "light" || value === "dark" ? value : "system";
+}
+
+/** Comma-separated levels, in CEFR order; anything else in the list is ignored. */
+function parseLevels(value: string | null): Level[] {
+  const listed = new Set((value ?? "").split(","));
+  return LEVELS.filter((level) => listed.has(level));
 }
 
 /** Anything but a CEFR level follows the automatic path level. */

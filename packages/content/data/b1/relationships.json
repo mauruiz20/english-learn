@@ -355,7 +355,23 @@
         "b1.relationships.make-up",
         "b1.relationships.if-i-were-you"
       ],
-      "deepenCardIds": ["b1.phrasal-verbs.relationships", "b1.grammar.second-conditional"]
+      "deepenCardIds": ["b1.phrasal-verbs.relationships", "b1.grammar.second-conditional"],
+      "intro": {
+        "points": [
+          "Muchos verbos de relaciones llevan partícula y preposición: «get along with», «break up with».",
+          "«fall in love with» es enamorarse de: la preposición es «with», no «of».",
+          "Para aconsejar: «If I were you, I would…» equivale a yo que tú…"
+        ],
+        "examples": [
+          { "en": "Do you get along with your boss?", "es": "¿Te llevas bien con tu jefe?" },
+          { "en": "If I were you, I'd trust her.", "es": "Yo que tú, confiaría en ella." }
+        ],
+        "mistake": {
+          "wrong": "He fell in love of her.",
+          "right": "He fell in love with her.",
+          "note": "“Enamorarse de” se dice «fall in love with»."
+        }
+      }
     },
     {
       "id": "b1.relationships.lesson-002",
@@ -376,7 +392,27 @@
         "b1.relationships.each-other",
         "b1.relationships.support"
       ],
-      "deepenCardIds": ["b1.grammar.each-other", "b1.vocabulary.get-adjective"]
+      "deepenCardIds": ["b1.grammar.each-other", "b1.vocabulary.get-adjective"],
+      "intro": {
+        "points": [
+          "«each other» es el uno al otro, algo mutuo: «They support each other».",
+          "«themselves» es reflexivo: cada uno a sí mismo. No lo confundas con «each other».",
+          "«get married» es casarse; con quién: «get married to».",
+          "«make up» es hacer las paces después de una pelea."
+        ],
+        "examples": [
+          { "en": "They always support each other.", "es": "Siempre se apoyan el uno al otro." },
+          {
+            "en": "After the argument, they made up.",
+            "es": "Después de la discusión, hicieron las paces."
+          }
+        ],
+        "mistake": {
+          "wrong": "She married with a doctor.",
+          "right": "She married a doctor.",
+          "note": "«marry» va sin preposición; con «get married» usa «to»: «got married to a doctor»."
+        }
+      }
     }
   ]
 }

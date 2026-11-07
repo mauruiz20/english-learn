@@ -425,7 +425,30 @@
         "c1.phrasal-verbs.play-down",
         "c1.psychology-and-behaviour.procrastinate"
       ],
-      "deepenCardIds": ["c1.phrasal-verbs.causes-and-solutions"]
+      "deepenCardIds": ["c1.phrasal-verbs.causes-and-solutions"],
+      "intro": {
+        "points": [
+          "Estos phrasal verbs hablan de causas y decisiones, y son comunes en textos de análisis.",
+          "«account for» es explicar o ser la causa: «Stress may account for these symptoms».",
+          "«bring about» es provocar un cambio; «weigh up», sopesar; «play down», restar importancia.",
+          "Los separables llevan el pronombre en medio: «play it down», «weigh them up»."
+        ],
+        "examples": [
+          {
+            "en": "We need to weigh up the pros and cons before we decide.",
+            "es": "Tenemos que sopesar los pros y los contras antes de decidir."
+          },
+          {
+            "en": "Small changes can bring about big results.",
+            "es": "Los pequeños cambios pueden provocar grandes resultados."
+          }
+        ],
+        "mistake": {
+          "wrong": "Stress may account of these symptoms.",
+          "right": "Stress may account for these symptoms.",
+          "note": "«account for» siempre lleva «for»: explicar algo o ser su causa."
+        }
+      }
     },
     {
       "id": "c1.psychology-and-behaviour.lesson-002",
@@ -449,7 +472,29 @@
         "c1.psychology-and-behaviour.peer-pressure",
         "c1.psychology-and-behaviour.second-nature"
       ],
-      "deepenCardIds": ["c1.grammar.cleft-sentences"]
+      "deepenCardIds": ["c1.grammar.cleft-sentences"],
+      "intro": {
+        "points": [
+          "Repasa las cleft sentences: «What I need right now is a long vacation».",
+          "«It was my coach who taught me…» destaca a la persona: fue mi entrenador quien…",
+          "«second nature» es algo que ya haces sin pensar; «peer pressure», la presión del grupo."
+        ],
+        "examples": [
+          {
+            "en": "What worries me most is the lack of sleep.",
+            "es": "Lo que más me preocupa es la falta de sueño."
+          },
+          {
+            "en": "After a few months, exercise became second nature to me.",
+            "es": "Después de unos meses, hacer ejercicio se volvió algo natural para mí."
+          }
+        ],
+        "mistake": {
+          "wrong": "Was my coach who taught me this.",
+          "right": "It was my coach who taught me this.",
+          "note": "“Fue… quien” necesita sujeto en inglés: «It was… who»."
+        }
+      }
     }
   ]
 }

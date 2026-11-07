@@ -358,7 +358,30 @@
         "b2.science-and-ethics.side-effect",
         "b2.science-and-ethics.privacy"
       ],
-      "deepenCardIds": ["b2.grammar.reporting-passive"]
+      "deepenCardIds": ["b2.grammar.reporting-passive"],
+      "intro": {
+        "points": [
+          "Para opiniones generales: «It is said / believed / thought that…» = se dice, se cree que…",
+          "Con un sujeto: «The drug is said to have side effects»; para el pasado: «to have» + participio.",
+          "Es típico de las noticias y los textos formales: no dices quién lo afirma.",
+          "«research» es incontable: «a lot of research», nunca con -s."
+        ],
+        "examples": [
+          {
+            "en": "It is believed that whales have their own language.",
+            "es": "Se cree que las ballenas tienen su propio idioma."
+          },
+          {
+            "en": "The new drug is said to have serious side effects.",
+            "es": "Se dice que el nuevo medicamento tiene efectos secundarios graves."
+          }
+        ],
+        "mistake": {
+          "wrong": "Is believed that the drug works.",
+          "right": "It is believed that the drug works.",
+          "note": "En inglés la oración necesita sujeto: “se cree que” es «It is believed that»."
+        }
+      }
     },
     {
       "id": "b2.science-and-ethics.lesson-002",
@@ -379,7 +402,30 @@
         "b2.science-and-ethics.invention",
         "b2.science-and-ethics.ethical"
       ],
-      "deepenCardIds": ["b2.grammar.mixed-conditionals"]
+      "deepenCardIds": ["b2.grammar.mixed-conditionals"],
+      "intro": {
+        "points": [
+          "Repasa el condicional mixto: un pasado distinto con efecto hoy.",
+          "«If the internet hadn't been invented, our lives would be very different today».",
+          "«invention» es algo nuevo que se crea; «discovery», algo que ya existía y se encuentra.",
+          "«ethical» es ético: «Is it ethical to use animals in experiments?»."
+        ],
+        "examples": [
+          {
+            "en": "If scientists hadn't developed vaccines, many more people would be sick now.",
+            "es": "Si los científicos no hubieran desarrollado vacunas, ahora habría mucha más gente enferma."
+          },
+          {
+            "en": "Is it ethical to use animals in experiments?",
+            "es": "¿Es ético usar animales en experimentos?"
+          }
+        ],
+        "mistake": {
+          "wrong": "If the internet wasn't invented, life would be different today.",
+          "right": "If the internet hadn't been invented, life would be different today.",
+          "note": "Si la condición es pasada, usa «had» + participio, aunque el resultado sea de hoy."
+        }
+      }
     }
   ]
 }

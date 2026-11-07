@@ -1,0 +1,21 @@
+{
+  "level": "A1",
+  "title": "Nivel A1: tus primeros pasos",
+  "canDo": [
+    "Saludar, presentarte y preguntarle el nombre a alguien.",
+    "Hablar de tu familia, tu edad y de dónde eres.",
+    "Decir qué te gusta comer y pedir algo para tomar.",
+    "Decir la hora y los días de la semana.",
+    "Describir tu casa y tu ropa con frases simples."
+  ],
+  "topics": [
+    "Saludos y presentaciones",
+    "To be y preguntas",
+    "Números y edad",
+    "Mi familia",
+    "Colores y ropa",
+    "Comidas y bebidas",
+    "Días y horas",
+    "Mi casa"
+  ]
+}

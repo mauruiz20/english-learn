@@ -1,5 +1,6 @@
 import type { Locator } from "@playwright/test";
 import { expect, test, type Page } from "./support/test";
+import { skipLessonIntro } from "./support/content";
 
 async function checkAndContinue(page: Page) {
   await page.getByRole("button", { name: "Comprobar", exact: true }).click();
@@ -63,6 +64,7 @@ test("builds the word-order sentence by dragging paper strips, and reorders it",
 }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
   await page.getByRole("radio", { name: "despertarse", exact: true }).click();
   await checkAndContinue(page);
   await page.getByRole("radio", { name: "have", exact: true }).click();
@@ -94,6 +96,7 @@ test("builds the word-order sentence by dragging paper strips, and reorders it",
 test("a strip dragged off the answer line goes back to the bank", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+  await skipLessonIntro(page);
   await page.getByRole("radio", { name: "despertarse", exact: true }).click();
   await checkAndContinue(page);
   await page.getByRole("radio", { name: "have", exact: true }).click();

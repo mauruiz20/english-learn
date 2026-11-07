@@ -1,6 +1,7 @@
 import type { AddressInfo } from "node:net";
 import { join } from "node:path";
 import { expect, expectOneDatabaseWorker, test, waitForServiceWorker } from "./support/test";
+import { skipLessonIntro } from "./support/content";
 
 // The installable web app (PWA): after one online visit, the service worker serves the whole
 // app from its cache, still cross-origin isolated (expo-sqlite needs SharedArrayBuffer).
@@ -60,21 +61,28 @@ test.describe("offline web app", () => {
 
     // A deep link whose id contains dots is a navigation, not a file: it gets the app shell.
     await page.goto(LESSON);
-    await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
+    await expect(page.getByTestId("lesson-intro")).toBeVisible();
     expect(await page.evaluate(() => self.crossOriginIsolated)).toBe(true);
-    // Sounds on again (the switch clicks), then answer: the press click, the tap and the feedback
-    // sound come from the cache ("Comprobar" leaves its sound to the verdict).
+    // Sounds on again (the switch clicks), past the lesson's intro ("Empezar" clicks too), then
+    // answer: the press clicks, the tap and the feedback sound come from the cache ("Comprobar"
+    // leaves its sound to the verdict).
     await page.getByRole("button", { name: "Activar sonidos", exact: true }).click();
+    await skipLessonIntro(page);
+    await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
     await page.getByRole("radio", { name: "despertarse", exact: true }).click();
     await page.getByRole("button", { name: "Comprobar", exact: true }).click();
     await expect(page.getByRole("alert")).toHaveText("Correcto");
-    // They really played, offline: the e2e build logs each sound Web Audio started.
+    // They really played, offline: the e2e build logs each sound Web Audio started. The two quick
+    // clicks may count once (WebKit drops the first click while it starts the audio context).
     await expect
-      .poll(() =>
-        page.evaluate(
-          () => (window as unknown as { __e2e?: { playedSounds?: string[] } }).__e2e?.playedSounds,
-        ),
-      )
+      .poll(async () => {
+        const played = await page.evaluate(
+          () =>
+            (window as unknown as { __e2e?: { playedSounds?: string[] } }).__e2e?.playedSounds ??
+            [],
+        );
+        return played.filter((sound, i) => sound !== played[i - 1]);
+      })
       .toEqual(["press", "tap", "correct"]);
 
     // Fonts load on demand: the ones this screen uses came from the cache, none failed.

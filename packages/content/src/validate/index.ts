@@ -1,5 +1,6 @@
 export type { LoadedFile, Rule, ValidationError } from "./types";
-export { validateSchema } from "./schema";
+export { LEVEL_INTRO_FILE, validateSchema } from "./schema";
+export { validateIntros } from "./intros";
 export { validateUniqueIds } from "./unique-ids";
 export { validateReferences } from "./references";
 export { validateAnswerIndexes, validateOptionDuplicates } from "./options";

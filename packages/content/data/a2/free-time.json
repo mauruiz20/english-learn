@@ -356,7 +356,29 @@
         "a2.free-time.can-ability",
         "a2.free-time.go-swimming"
       ],
-      "deepenCardIds": ["a2.grammar.can-ability"]
+      "deepenCardIds": ["a2.grammar.can-ability"],
+      "intro": {
+        "points": [
+          "«Can» expresa lo que sabes o puedes hacer: «He can play the guitar». No cambia con «he» o «she».",
+          "Después de «can», el verbo va sin «to»: «I can swim».",
+          "Deportes con «play» («play soccer»), instrumentos con «play the» («play the guitar»)."
+        ],
+        "examples": [
+          {
+            "en": "He can play the guitar.",
+            "es": "Él sabe tocar la guitarra."
+          },
+          {
+            "en": "I play soccer every day.",
+            "es": "Juego al fútbol todos los días."
+          }
+        ],
+        "mistake": {
+          "wrong": "He can to play the guitar.",
+          "right": "He can play the guitar.",
+          "note": "Después de «can», el verbo va solo, sin «to»."
+        }
+      }
     },
     {
       "id": "a2.free-time.lesson-002",
@@ -373,7 +395,29 @@
         "a2.free-time.write-002"
       ],
       "newItemIds": ["a2.free-time.hobby", "a2.free-time.like-ing", "a2.free-time.can-ability"],
-      "deepenCardIds": ["a2.grammar.like-ing"]
+      "deepenCardIds": ["a2.grammar.like-ing"],
+      "intro": {
+        "points": [
+          "Después de «like», «love» y «hate», el verbo suele ir con «-ing»: «I like reading».",
+          "Con «enjoy» siempre va «-ing»: «I enjoy swimming».",
+          "Para actividades se usa «go» + «-ing»: «We go swimming every Sunday»."
+        ],
+        "examples": [
+          {
+            "en": "My brother likes playing video games.",
+            "es": "A mi hermano le gusta jugar videojuegos."
+          },
+          {
+            "en": "My hobby is reading comics.",
+            "es": "Mi pasatiempo es leer cómics."
+          }
+        ],
+        "mistake": {
+          "wrong": "I enjoy to swim.",
+          "right": "I enjoy swimming.",
+          "note": "Después de «enjoy», el verbo va con «-ing»: «enjoy swimming»."
+        }
+      }
     }
   ]
 }

@@ -187,6 +187,27 @@ describe("createSqliteSettingsRepository", () => {
     expect(await createSqliteSettingsRepository(db).getPathLevel()).toBeNull();
   });
 
+  it("remembers which level intros this device has seen, until a full sign-out", async () => {
+    expect(await settings.getSeenLevelIntros()).toEqual([]);
+
+    await settings.markLevelIntroSeen("A2");
+    await settings.markLevelIntroSeen("A1");
+    await settings.markLevelIntroSeen("A2");
+    expect(await createSqliteSettingsRepository(db).getSeenLevelIntros()).toEqual(["A1", "A2"]);
+
+    await settings.clearSeenLevelIntros();
+    expect(await settings.getSeenLevelIntros()).toEqual([]);
+  });
+
+  it("ignores unreadable seen level intros", async () => {
+    await db.runAsync(
+      "INSERT INTO setting (key, value) VALUES ('seen_level_intros', 'B1,Z9,,a2')",
+      [],
+    );
+
+    expect(await settings.getSeenLevelIntros()).toEqual(["B1"]);
+  });
+
   it("treats an unreadable path level as automatic", async () => {
     await db.runAsync("INSERT INTO setting (key, value) VALUES ('path_level', 'Z9')", []);
 

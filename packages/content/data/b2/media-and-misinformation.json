@@ -340,7 +340,29 @@
         "b2.media-and-misinformation.spread",
         "b2.media-and-misinformation.headline"
       ],
-      "deepenCardIds": ["b2.grammar.past-deduction"]
+      "deepenCardIds": ["b2.grammar.past-deduction"],
+      "intro": {
+        "points": [
+          "Para deducir algo del pasado: modal + «have» + participio.",
+          "«must have done» (seguro que sí), «might have done» (quizás), «can't have done» (imposible).",
+          "«spread» es difundir(se); su pasado y su participio no cambian: «spread»."
+        ],
+        "examples": [
+          {
+            "en": "Someone must have edited the photo.",
+            "es": "Alguien debe de haber editado la foto."
+          },
+          {
+            "en": "She can't have written it herself.",
+            "es": "Es imposible que lo haya escrito ella misma."
+          }
+        ],
+        "mistake": {
+          "wrong": "She mustn't have written it.",
+          "right": "She can't have written it.",
+          "note": "Para decir que es imposible que algo pasara, usa «can't have», no «mustn't have»."
+        }
+      }
     },
     {
       "id": "b2.media-and-misinformation.lesson-002",
@@ -363,7 +385,26 @@
         "b2.media-and-misinformation.rumor",
         "b2.media-and-misinformation.fact-check"
       ],
-      "deepenCardIds": ["b2.phrasal-verbs.ideas-and-results"]
+      "deepenCardIds": ["b2.phrasal-verbs.ideas-and-results"],
+      "intro": {
+        "points": [
+          "«turn out» es resultar: «The rumor turned out to be false», «It turned out that…».",
+          "«rule out» es descartar: «We can't rule out an accident»; con pronombre: «rule it out».",
+          "«source» es la fuente de una información; «fact-check» es verificar los datos."
+        ],
+        "examples": [
+          { "en": "It turned out that I was right.", "es": "Resultó que yo tenía razón." },
+          {
+            "en": "The journalists fact-checked the story before publishing it.",
+            "es": "Los periodistas verificaron la noticia antes de publicarla."
+          }
+        ],
+        "mistake": {
+          "wrong": "The rumor resulted false.",
+          "right": "The rumor turned out to be false.",
+          "note": "“Resultar” + adjetivo no se dice con «result»: usa «turn out to be»."
+        }
+      }
     }
   ]
 }

@@ -308,7 +308,29 @@
         "a1.my-house.room",
         "a1.my-house.big",
         "a1.my-house.lamp"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«There is» presenta una cosa y «there are», varias: «There is a lamp», «There are four chairs».",
+          "El adjetivo va antes del sustantivo y no cambia: «a big room», «big rooms».",
+          "«Big» es grande y «small», pequeño; «room» es cuarto o habitación."
+        ],
+        "examples": [
+          {
+            "en": "There is a lamp in my room.",
+            "es": "Hay una lámpara en mi cuarto."
+          },
+          {
+            "en": "My house is big, but my room is small.",
+            "es": "Mi casa es grande, pero mi cuarto es pequeño."
+          }
+        ],
+        "mistake": {
+          "wrong": "In my room have a bed.",
+          "right": "There is a bed in my room.",
+          "note": "«Hay» se dice «there is» o «there are», nunca con «have»."
+        }
+      }
     },
     {
       "id": "a1.my-house.lesson-002",
@@ -324,7 +346,29 @@
         "a1.my-house.choice-002",
         "a1.my-house.write-002"
       ],
-      "newItemIds": ["a1.my-house.in-on-under", "a1.my-house.table", "a1.my-house.sofa"]
+      "newItemIds": ["a1.my-house.in-on-under", "a1.my-house.table", "a1.my-house.sofa"],
+      "intro": {
+        "points": [
+          "«In» es dentro de: «in the fridge». «On» es sobre o encima de: «on the table».",
+          "«Under» es debajo de: «The cat is under the bed».",
+          "Para preguntar dónde está algo: «Where is…?» o «Where's…?»"
+        ],
+        "examples": [
+          {
+            "en": "The dog is on the sofa.",
+            "es": "El perro está en el sofá."
+          },
+          {
+            "en": "Your keys are on the table.",
+            "es": "Tus llaves están sobre la mesa."
+          }
+        ],
+        "mistake": {
+          "wrong": "The milk is on the fridge.",
+          "right": "The milk is in the fridge.",
+          "note": "«En» puede ser «in» u «on»: si está dentro, es «in»; si está encima, «on»."
+        }
+      }
     }
   ]
 }

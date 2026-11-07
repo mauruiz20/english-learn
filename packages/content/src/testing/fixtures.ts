@@ -13,6 +13,8 @@ import type {
   GlossaryEntry,
   Item,
   Lesson,
+  LessonIntro,
+  LevelIntro,
   Passage,
   PlacementQuestion,
   PracticeCollection,
@@ -148,6 +150,38 @@ export function lesson(o: Partial<Lesson> = {}): Lesson {
       "b1.travel.tchoice-001",
       "b1.travel.write-001",
     ],
+    ...o,
+  };
+}
+
+/** A lesson intro ("Antes de empezar") whose English the fixture glossary covers. */
+export function lessonIntro(o: Partial<LessonIntro> = {}): LessonIntro {
+  return {
+    points: [
+      "«Although» une dos ideas que contrastan: es «aunque».",
+      "Va al principio de la frase o en el medio.",
+    ],
+    examples: [{ en: "Although it rained, we went out.", es: "Aunque llovió, salimos." }],
+    mistake: {
+      wrong: "Although it rained, but we went out.",
+      right: "Although it rained, we went out.",
+      note: "Con «although» no se agrega «but».",
+    },
+    ...o,
+  };
+}
+
+/** A level intro (`<level>/level.json`). */
+export function levelIntro(o: Partial<LevelIntro> = {}): LevelIntro {
+  return {
+    level: "B1",
+    title: "Nivel B1: te defiendes",
+    canDo: [
+      "Contar un viaje con sus detalles.",
+      "Dar tu opinión y explicar por qué.",
+      "Entender lo esencial de una noticia.",
+    ],
+    topics: ["Viajes", "Trabajo"],
     ...o,
   };
 }

@@ -208,6 +208,10 @@ async function capture(browserType, size, scheme) {
     // Lesson: one screen per exercise type, with each feedback state.
     await goHome(page, DAY_1);
     await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
+    // The lesson's theory first ("Antes de empezar").
+    await page.getByTestId("lesson-intro").waitFor();
+    await snap("04b-lesson-intro");
+    await button(page, "Empezar").click();
     const check = () => button(page, "Comprobar").click();
     const next = async () => {
       await button(page, "Continuar").click();

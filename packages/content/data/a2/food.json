@@ -357,7 +357,29 @@
         "a2.food.rice",
         "a2.food.how-much-many"
       ],
-      "deepenCardIds": ["a2.grammar.much-many"]
+      "deepenCardIds": ["a2.grammar.much-many"],
+      "intro": {
+        "points": [
+          "«How many» es para lo que se cuenta («How many apples?») y «how much», para lo que no («How much rice?»).",
+          "«Rice», «water» y «bread» no se cuentan: no llevan «-s» ni «a».",
+          "Las comidas van con «have»: «We have dinner at seven»."
+        ],
+        "examples": [
+          {
+            "en": "How much rice do you eat every day?",
+            "es": "¿Cuánto arroz comes cada día?"
+          },
+          {
+            "en": "I eat a lot of vegetables.",
+            "es": "Como muchas verduras."
+          }
+        ],
+        "mistake": {
+          "wrong": "How many rice do you eat?",
+          "right": "How much rice do you eat?",
+          "note": "«Rice» no se cuenta, así que va con «how much»."
+        }
+      }
     },
     {
       "id": "a2.food.lesson-002",
@@ -380,7 +402,29 @@
         "a2.food.lunch",
         "a2.food.bread"
       ],
-      "deepenCardIds": ["a2.grammar.some-any"]
+      "deepenCardIds": ["a2.grammar.some-any"],
+      "intro": {
+        "points": [
+          "«Some» va en frases afirmativas y «any», en negativas y preguntas: «There isn't any milk».",
+          "Para pedir con cortesía: «I would like…» o «I'd like…» (quisiera).",
+          "Al ofrecer algo, «some» también va en preguntas: «Would you like some bread?»"
+        ],
+        "examples": [
+          {
+            "en": "I would like a chicken sandwich, please.",
+            "es": "Quisiera un sándwich de pollo, por favor."
+          },
+          {
+            "en": "There isn't any milk in the fridge.",
+            "es": "No hay leche en el refrigerador."
+          }
+        ],
+        "mistake": {
+          "wrong": "There isn't some milk in the fridge.",
+          "right": "There isn't any milk in the fridge.",
+          "note": "En frases negativas se usa «any», no «some»."
+        }
+      }
     }
   ]
 }

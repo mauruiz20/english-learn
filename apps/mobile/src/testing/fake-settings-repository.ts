@@ -21,6 +21,7 @@ export function createFakeSettingsRepository(
     themePreference?: ThemePreference;
     migratedTo?: string | null;
     pathLevel?: Level | null;
+    seenLevelIntros?: readonly Level[];
     lastHomeVisit?: LocalDate | null;
     dailyGoal?: DailyGoal;
     dailyGoalPromptDismissed?: boolean;
@@ -36,6 +37,7 @@ export function createFakeSettingsRepository(
   readonly themePreference: () => ThemePreference;
   readonly migratedTo: () => string | null;
   readonly pathLevel: () => Level | null;
+  readonly seenLevelIntros: () => readonly Level[];
   readonly lastHomeVisit: () => LocalDate | null;
   readonly dailyGoal: () => DailyGoal;
   readonly dailyGoalPromptDismissed: () => boolean;
@@ -50,6 +52,7 @@ export function createFakeSettingsRepository(
   let themePreference = initial.themePreference ?? "system";
   let migratedTo = initial.migratedTo ?? null;
   let pathLevel = initial.pathLevel ?? null;
+  let seenLevelIntros: readonly Level[] = initial.seenLevelIntros ?? [];
   let lastHomeVisit = initial.lastHomeVisit ?? null;
   let dailyGoal = initial.dailyGoal ?? "normal";
   let dailyGoalPromptDismissed = initial.dailyGoalPromptDismissed ?? false;
@@ -71,6 +74,14 @@ export function createFakeSettingsRepository(
     },
     clearPathLevel: async () => {
       pathLevel = null;
+    },
+    seenLevelIntros: () => seenLevelIntros,
+    getSeenLevelIntros: async () => seenLevelIntros,
+    markLevelIntroSeen: async (level) => {
+      if (!seenLevelIntros.includes(level)) seenLevelIntros = [...seenLevelIntros, level];
+    },
+    clearSeenLevelIntros: async () => {
+      seenLevelIntros = [];
     },
     lastHomeVisit: () => lastHomeVisit,
     getLastHomeVisit: async () => lastHomeVisit,

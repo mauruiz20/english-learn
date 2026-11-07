@@ -351,7 +351,23 @@
         "b1.health-and-lifestyle.keep-fit",
         "b1.health-and-lifestyle.get-enough-sleep"
       ],
-      "deepenCardIds": ["b1.phrasal-verbs.problems"]
+      "deepenCardIds": ["b1.phrasal-verbs.problems"],
+      "intro": {
+        "points": [
+          "Algunos verbos van con -ing: «enjoy», «finish», «give up»: «I gave up smoking».",
+          "Otros van con «to» + verbo: «want», «decide», «try»: «I've decided to eat more vegetables».",
+          "«lose weight» es bajar de peso y «keep fit», mantenerse en forma."
+        ],
+        "examples": [
+          { "en": "I gave up smoking a year ago.", "es": "Dejé de fumar hace un año." },
+          { "en": "I'm trying to lose weight.", "es": "Estoy tratando de bajar de peso." }
+        ],
+        "mistake": {
+          "wrong": "I enjoy to swim.",
+          "right": "I enjoy swimming.",
+          "note": "Después de «enjoy» va el verbo con -ing, nunca «to» + verbo."
+        }
+      }
     },
     {
       "id": "b1.health-and-lifestyle.lesson-002",
@@ -374,7 +390,27 @@
         "b1.health-and-lifestyle.stop-doing",
         "b1.health-and-lifestyle.diet"
       ],
-      "deepenCardIds": ["b1.grammar.gerund-infinitive", "b1.grammar.used-to", "a2.grammar.should"]
+      "deepenCardIds": ["b1.grammar.gerund-infinitive", "b1.grammar.used-to", "a2.grammar.should"],
+      "intro": {
+        "points": [
+          "«should» + verbo sirve para dar consejos: «You should go to bed earlier».",
+          "«used to» + verbo habla de hábitos del pasado que ya no tienes: «I used to drink a lot of soda».",
+          "«stop eating» es dejar de comer; «stop to eat» es detenerse para comer.",
+          "«diet» es tu alimentación en general, no solo un régimen: «a healthy diet»."
+        ],
+        "examples": [
+          {
+            "en": "You look tired. You should go to bed earlier.",
+            "es": "Te ves cansado. Deberías acostarte más temprano."
+          },
+          { "en": "She stopped eating sugar.", "es": "Dejó de comer azúcar." }
+        ],
+        "mistake": {
+          "wrong": "You should to rest more.",
+          "right": "You should rest more.",
+          "note": "Después de «should» va el verbo sin «to»."
+        }
+      }
     }
   ]
 }

@@ -371,7 +371,29 @@
         "a2.work.job",
         "a2.work.work-from-home",
         "a2.work.look-for"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "«Job» es tu empleo concreto («a good job»); «work» es trabajar o el trabajo en general.",
+          "«Look for» es buscar y siempre lleva «for»: «I'm looking for a job».",
+          "«Work from home» es trabajar desde casa; «boss», jefe o jefa."
+        ],
+        "examples": [
+          {
+            "en": "Are you looking for a job?",
+            "es": "¿Estás buscando trabajo?"
+          },
+          {
+            "en": "I work from home on Fridays.",
+            "es": "Trabajo desde casa los viernes."
+          }
+        ],
+        "mistake": {
+          "wrong": "I'm looking a job.",
+          "right": "I'm looking for a job.",
+          "note": "«Buscar» es «look for»: no olvides el «for»."
+        }
+      }
     },
     {
       "id": "a2.work.lesson-002",
@@ -388,7 +410,29 @@
         "a2.work.write-002"
       ],
       "newItemIds": ["a2.work.salary", "a2.work.on-monday", "a2.work.part-time"],
-      "deepenCardIds": ["a2.grammar.have-to", "a2.grammar.time-prepositions"]
+      "deepenCardIds": ["a2.grammar.have-to", "a2.grammar.time-prepositions"],
+      "intro": {
+        "points": [
+          "Días con «on» («on Monday»), horas con «at» («at ten») y meses con «in» («in May»).",
+          "«Have to» es una obligación; «doesn't have to», que no hace falta.",
+          "«Part-time» es a tiempo parcial y «salary», sueldo."
+        ],
+        "examples": [
+          {
+            "en": "Do you work on Monday?",
+            "es": "¿Trabajas el lunes?"
+          },
+          {
+            "en": "I have a meeting with my boss at ten.",
+            "es": "Tengo una reunión con mi jefe a las diez."
+          }
+        ],
+        "mistake": {
+          "wrong": "She doesn't has to work on Saturdays.",
+          "right": "She doesn't have to work on Saturdays.",
+          "note": "Después de «doesn't», el verbo vuelve a su forma base: «have»."
+        }
+      }
     }
   ]
 }

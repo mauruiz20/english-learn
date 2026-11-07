@@ -339,7 +339,29 @@
         "a1.colors-and-clothes.black",
         "a1.colors-and-clothes.green",
         "a1.colors-and-clothes.what-color"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "El color va antes de la cosa: «a red shirt» es una camisa roja.",
+          "Los adjetivos no cambian en plural: «a black shoe», «two black shoes».",
+          "Para preguntar el color: «What color is…?», «It's green.»"
+        ],
+        "examples": [
+          {
+            "en": "I have a green bag.",
+            "es": "Tengo una bolsa verde."
+          },
+          {
+            "en": "What color is your car?",
+            "es": "¿De qué color es tu auto?"
+          }
+        ],
+        "mistake": {
+          "wrong": "I have a dog white.",
+          "right": "I have a white dog.",
+          "note": "El adjetivo va antes del sustantivo: «a white dog», no «a dog white»."
+        }
+      }
     },
     {
       "id": "a1.colors-and-clothes.lesson-002",
@@ -362,7 +384,29 @@
         "a1.colors-and-clothes.jacket",
         "a1.colors-and-clothes.pants"
       ],
-      "deepenCardIds": ["a1.grammar.this-that"]
+      "deepenCardIds": ["a1.grammar.this-that"],
+      "intro": {
+        "points": [
+          "«This» (este) y «these» (estos) son para lo que está cerca; «that» (ese) y «those» (esos), para lo lejano.",
+          "Singular con «this» y «that»; plural con «these» y «those»: «this shirt», «these shoes».",
+          "«Pants» siempre va en plural, aunque sea uno solo: «These pants are new»."
+        ],
+        "examples": [
+          {
+            "en": "These shoes are new.",
+            "es": "Estos zapatos son nuevos."
+          },
+          {
+            "en": "Look at that jacket over there.",
+            "es": "Mira esa chaqueta de allá."
+          }
+        ],
+        "mistake": {
+          "wrong": "This shoes are new.",
+          "right": "These shoes are new.",
+          "note": "Con un plural, «this» pasa a «these» y «that», a «those»."
+        }
+      }
     }
   ]
 }

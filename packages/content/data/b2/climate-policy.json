@@ -351,7 +351,29 @@
         "b2.climate-policy.policy",
         "b2.climate-policy.emissions"
       ],
-      "deepenCardIds": ["b2.vocabulary.raise-rise"]
+      "deepenCardIds": ["b2.vocabulary.raise-rise"],
+      "intro": {
+        "points": [
+          "«raise» lleva objeto: alguien sube algo: «The government raised taxes».",
+          "«rise» va sin objeto: algo sube solo: «The sea level is rising». Pasado: «rose», «risen».",
+          "«policy» es una política o medida concreta; «politics» es la política en general."
+        ],
+        "examples": [
+          {
+            "en": "The government raised the tax on gasoline.",
+            "es": "El gobierno subió el impuesto a la gasolina."
+          },
+          {
+            "en": "Prices rose drastically as a result of this policy.",
+            "es": "Los precios subieron drásticamente como resultado de esta política."
+          }
+        ],
+        "mistake": {
+          "wrong": "Prices raised last year.",
+          "right": "Prices rose last year.",
+          "note": "Si los precios suben solos, sin que nadie los suba, usa «rise» (pasado «rose»)."
+        }
+      }
     },
     {
       "id": "b2.climate-policy.lesson-002",
@@ -373,7 +395,30 @@
         "b2.climate-policy.renewable-energy",
         "b2.climate-policy.ban"
       ],
-      "deepenCardIds": ["b2.grammar.despite"]
+      "deepenCardIds": ["b2.grammar.despite"],
+      "intro": {
+        "points": [
+          "«despite» e «in spite of» van con un sustantivo o con -ing: «Despite the protests, …».",
+          "Con una oración completa: «despite the fact that» + sujeto + verbo.",
+          "«whereas» contrasta dos hechos: «Some countries cut emissions, whereas others increased them».",
+          "«ban» es prohibir y también una prohibición: «a ban on plastic bags»."
+        ],
+        "examples": [
+          {
+            "en": "Despite the protests, the city banned cars from the center.",
+            "es": "A pesar de las protestas, la ciudad prohibió los autos en el centro."
+          },
+          {
+            "en": "Solar power is getting cheaper, whereas coal is becoming more expensive.",
+            "es": "La energía solar es cada vez más barata, mientras que el carbón es cada vez más caro."
+          }
+        ],
+        "mistake": {
+          "wrong": "Despite of the rain, we went out.",
+          "right": "Despite the rain, we went out.",
+          "note": "«despite» va sin «of»; con «of» se dice «in spite of»."
+        }
+      }
     }
   ]
 }

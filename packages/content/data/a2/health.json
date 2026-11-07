@@ -365,7 +365,29 @@
         "a2.health.doctor",
         "a2.health.have-a-cold",
         "a2.health.feel-better"
-      ]
+      ],
+      "intro": {
+        "points": [
+          "Los malestares van con «have» y «a»: «I have a headache», «I have a fever», «I have a cold».",
+          "«Feel» es sentirse: «I feel tired», «I feel better».",
+          "Para ir al médico: «see a doctor» o «go to the doctor»."
+        ],
+        "examples": [
+          {
+            "en": "He has a fever and a headache.",
+            "es": "Tiene fiebre y dolor de cabeza."
+          },
+          {
+            "en": "Did you see a doctor?",
+            "es": "¿Fuiste al médico?"
+          }
+        ],
+        "mistake": {
+          "wrong": "He has fever and headache.",
+          "right": "He has a fever and a headache.",
+          "note": "Los malestares llevan «a»: «a fever», «a headache», «a cold»."
+        }
+      }
     },
     {
       "id": "a2.health.lesson-002",
@@ -382,7 +404,29 @@
         "a2.health.write-002"
       ],
       "newItemIds": ["a2.health.should", "a2.health.hurt", "a2.health.medicine"],
-      "deepenCardIds": ["a2.grammar.should"]
+      "deepenCardIds": ["a2.grammar.should"],
+      "intro": {
+        "points": [
+          "«Should» da consejos: «You should go to bed early». Lo contrario es «shouldn't».",
+          "Después de «should», el verbo va sin «to»: «You should rest».",
+          "«Hurt» es doler; lo que duele es el sujeto: «My back hurts»."
+        ],
+        "examples": [
+          {
+            "en": "You should go to bed early.",
+            "es": "Deberías acostarte temprano."
+          },
+          {
+            "en": "My back hurts.",
+            "es": "Me duele la espalda."
+          }
+        ],
+        "mistake": {
+          "wrong": "My back hurts me.",
+          "right": "My back hurts.",
+          "note": "«Hurt» no lleva «me»: «me duele la espalda» es «my back hurts»."
+        }
+      }
     }
   ]
 }

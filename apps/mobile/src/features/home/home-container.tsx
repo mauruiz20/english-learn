@@ -32,6 +32,7 @@ import { cardPath } from "@/features/cards/card-routes";
 import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
+import type { HomeLevelIntro } from "./level-intro-note";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
 import { deepenSteps } from "./model/deepen-steps";
 import {
@@ -127,6 +128,25 @@ function markJustCompleted(
   };
 }
 
+/** The path's level intro (`level.json`), open when it is `openLevel`. */
+function withLevelIntro(
+  state: HomeViewState,
+  content: Corpus,
+  openLevel: Level | null,
+): HomeViewState {
+  if (state.status !== "ready") return state;
+  const intro = content.levelIntrosByLevel.get(state.lessons.level);
+  if (intro === undefined) return state;
+  const shown: HomeLevelIntro = {
+    level: intro.level,
+    title: intro.title,
+    canDo: intro.canDo,
+    topics: intro.topics,
+    open: openLevel === intro.level,
+  };
+  return { ...state, lessons: { ...state.lessons, intro: shown } };
+}
+
 const QUIET_AVI = {
   kind: "idle",
   mood: "happy",
@@ -149,6 +169,9 @@ export function HomeContainer({
   const { progressRepository, settingsRepository, clock } = useAppServices();
   const router = useRouter();
   const [state, setState] = useState<HomeViewState>({ status: "loading" });
+  // The level whose intro is open above the path: the first time the path shows it on this
+  // device (then remembered as seen), or reopened by hand. Closed when home loses focus.
+  const [openIntroLevel, setOpenIntroLevel] = useState<Level | null>(null);
   // Avi beside the greeting: idle and quiet until the progress says more.
   const [avi, setAvi] = useState<HomeAviState>(QUIET_AVI);
   // Home is the focused screen (Avi's bob and blink pause under another screen).
@@ -176,6 +199,8 @@ export function HomeContainer({
       // Device preferences: unreadable, the default goal counts and the note stays closed.
       settingsRepository.getDailyGoal().catch(() => DEFAULT_DAILY_GOAL),
       settingsRepository.getDailyGoalPromptDismissed().catch(() => true),
+      // Unreadable: no level intro opens on its own (it could open on every visit).
+      settingsRepository.getSeenLevelIntros().catch(() => null),
     ]).then(
       ([
         streak,
@@ -188,6 +213,7 @@ export function HomeContainer({
         dailyExercises,
         goal,
         goalPromptDismissed,
+        seenLevelIntros,
       ]) => {
         if (!active) return;
         // Every event leaves a trace here (a baseline always holds progress), so an empty store
@@ -227,6 +253,17 @@ export function HomeContainer({
             news: { ...news, lessonDone: lessons.items.some((l) => l.justCompleted === true) },
           }),
         );
+        const shownLevel = lessons.level;
+        if (
+          seenLevelIntros !== null &&
+          content.levelIntrosByLevel.has(shownLevel) &&
+          !seenLevelIntros.includes(shownLevel)
+        ) {
+          setOpenIntroLevel(shownLevel);
+          settingsRepository.markLevelIntroSeen(shownLevel).catch((error: unknown) => {
+            console.error("Failed to remember the level intro", error);
+          });
+        }
         if (lastHomeVisit !== today) {
           settingsRepository.setLastHomeVisit(today).catch((error: unknown) => {
             console.error("Failed to remember the home visit", error);
@@ -276,7 +313,10 @@ export function HomeContainer({
   useFocusEffect(
     useCallback(() => {
       setFocused(true);
-      return () => setFocused(false);
+      return () => {
+        setFocused(false);
+        setOpenIntroLevel(null);
+      };
     }, []),
   );
 
@@ -311,7 +351,7 @@ export function HomeContainer({
 
   return (
     <HomeView
-      state={state}
+      state={withLevelIntro(state, content, openIntroLevel)}
       greetingName={session.status === "signed-in" ? session.account.givenName : undefined}
       avi={{ state: avi, active: focused }}
       soundEnabled={sound.enabled}
@@ -330,6 +370,10 @@ export function HomeContainer({
       onOpenProgress={() => router.push("/progreso")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       onChoosePathLevel={choosePathLevel}
+      onOpenLevelIntro={() => {
+        if (state.status === "ready") setOpenIntroLevel(state.lessons.level);
+      }}
+      onDismissLevelIntro={() => setOpenIntroLevel(null)}
       onChooseDailyGoal={chooseDailyGoal}
       onDismissDailyGoalPrompt={dismissDailyGoalPrompt}
       notice={

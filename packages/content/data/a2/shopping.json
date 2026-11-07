@@ -366,7 +366,29 @@
         "a2.shopping.try-on",
         "a2.shopping.pay-in-cash"
       ],
-      "deepenCardIds": ["a2.grammar.too-enough"]
+      "deepenCardIds": ["a2.grammar.too-enough"],
+      "intro": {
+        "points": [
+          "Para preguntar el precio: «How much is it?» o, en plural, «How much are they?»",
+          "«Too» + adjetivo es demasiado y marca un problema: «It's too expensive».",
+          "«Try on» es probarse ropa y «pay in cash», pagar en efectivo."
+        ],
+        "examples": [
+          {
+            "en": "How much is an apple?",
+            "es": "¿Cuánto cuesta una manzana?"
+          },
+          {
+            "en": "The book is too expensive.",
+            "es": "El libro es demasiado caro."
+          }
+        ],
+        "mistake": {
+          "wrong": "The book is too much expensive.",
+          "right": "The book is too expensive.",
+          "note": "Antes de un adjetivo va «too» solo: «too expensive», no «too much expensive»."
+        }
+      }
     },
     {
       "id": "a2.shopping.lesson-002",
@@ -382,7 +404,29 @@
         "a2.shopping.choice-003",
         "a2.shopping.write-002"
       ],
-      "newItemIds": ["a2.shopping.price", "a2.shopping.too-adjective", "a2.shopping.market"]
+      "newItemIds": ["a2.shopping.price", "a2.shopping.too-adjective", "a2.shopping.market"],
+      "intro": {
+        "points": [
+          "«Is» con una cosa y «are» con varias: «How much is this shirt?», «How much are these shoes?»",
+          "«Too» marca un problema: «These shoes are too small for me».",
+          "Para probarte algo: «Can I try it on?». El pronombre va entre «try» y «on»."
+        ],
+        "examples": [
+          {
+            "en": "These shoes are too small for me.",
+            "es": "Estos zapatos me quedan demasiado pequeños."
+          },
+          {
+            "en": "Can I try it on, please?",
+            "es": "¿Puedo probármelo, por favor?"
+          }
+        ],
+        "mistake": {
+          "wrong": "Can I try on it?",
+          "right": "Can I try it on?",
+          "note": "Con «it», el pronombre va en el medio: «try it on», no «try on it»."
+        }
+      }
     }
   ]
 }
