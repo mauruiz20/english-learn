@@ -103,6 +103,18 @@ export type AnswerDisputedEvent = EventEnvelope<
 
 export const MAX_DISPUTED_ANSWER_LENGTH = 200;
 
+/** A three-question delayed check, separate from ordinary lesson/review progress. */
+export type CheckpointCompletedEvent = EventEnvelope<
+  "checkpoint_completed",
+  {
+    readonly v: 1;
+    readonly checkpointId: string;
+    readonly lessonId: string;
+    readonly correct: number;
+    readonly total: 3;
+  }
+>;
+
 /**
  * Event types an older app wrote and this one no longer reads (Avi's wardrobe and its plumas,
  * withdrawn: `docs/design/avi-rewards.md`). Logs and the sync server may still hold them, so the
@@ -115,6 +127,7 @@ export type ProgressEvent =
   | SessionCompletedEvent
   | PlacementCompletedEvent
   | BaselineImportedEvent
+  | CheckpointCompletedEvent
   | AnswerDisputedEvent;
 
 export type ProgressEventType = ProgressEvent["type"];

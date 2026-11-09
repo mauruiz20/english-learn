@@ -15,6 +15,9 @@ import {
   type Streak,
 } from "@english-learn/domain";
 import fc from "fast-check";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { migrate } from "./migrations";
 import {
@@ -27,6 +30,56 @@ type Db = ReturnType<typeof createNodeSqliteDatabase>;
 
 const DAY = localDate("2026-10-29");
 const NEXT_DAY = localDate("2026-10-30");
+
+describe("checkpoint evidence in the event log", () => {
+  it("reads completed lesson time and a synced checkpoint score without altering progress", async () => {
+    const scratch = mkdtempSync(join(tmpdir(), "checkpoint-storage-"));
+    const path = join(scratch, "progress.sqlite");
+    let database = createNodeSqliteDatabase(path);
+    try {
+      await migrate(database);
+      const repository = createSqliteProgressRepository(database);
+      const completed = lessonDone(DAY, "greetings", "a1.greetings.lesson-001", 10);
+      await repository.appendEvents([completed]);
+      const before = await repository.getLessonResults();
+      await repository.insertRemoteEvents([
+        {
+          ...envelope(NEXT_DAY, completed.occurredAt + 86_400_000),
+          type: "checkpoint_completed",
+          payload: {
+            v: 1,
+            checkpointId: "a1.introductions",
+            lessonId: "a1.greetings.lesson-001",
+            correct: 2,
+            total: 3,
+          },
+        },
+      ]);
+      database.close();
+      database = createNodeSqliteDatabase(path);
+      const reopened = createSqliteProgressRepository(database);
+      expect(
+        await reopened.getCheckpointEvidence("a1.introductions", "a1.greetings.lesson-001"),
+      ).toEqual({
+        completedAt: completed.occurredAt,
+        result: {
+          correct: 2,
+          total: 3,
+          occurredAt: completed.occurredAt + 86_400_000,
+          localDate: NEXT_DAY,
+        },
+      });
+      expect(await reopened.getLessonResults()).toEqual(before);
+      await reopened.clearProgress();
+      expect(
+        await reopened.getCheckpointEvidence("a1.introductions", "a1.greetings.lesson-001"),
+      ).toEqual({ completedAt: null, result: null });
+    } finally {
+      database.close();
+      rmSync(scratch, { recursive: true, force: true });
+    }
+  });
+});
 
 let seq = 0;
 /** Unique, time-ordered test ids (the fold only needs non-empty unique strings). */

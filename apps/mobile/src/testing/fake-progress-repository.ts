@@ -1,5 +1,6 @@
 import {
   EMPTY_STREAK,
+  checkpointEvidence,
   foldEvents,
   type PlacementResult,
   type ProgressEvent,
@@ -72,6 +73,8 @@ export function createFakeRepository(
     getXp: async () => progress().xp,
     getPlacementResult: async () => progress().placement,
     getLessonResults: async () => progress().lessonResults,
+    getCheckpointEvidence: async (checkpointId, lessonId) =>
+      checkpointEvidence(log, checkpointId, lessonId),
     getItemHistories: async () => progress().itemHistory,
     getDailyExercises: async () => progress().dailyExercises,
     getDeviceId: async () => FAKE_DEVICE_ID,

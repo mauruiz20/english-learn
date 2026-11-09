@@ -2,6 +2,7 @@ export { EVENT_PAYLOAD_VERSION, MAX_DISPUTED_ANSWER_LENGTH, RETIRED_EVENT_TYPES 
 export type {
   AnswerDisputedEvent,
   BaselineImportedEvent,
+  CheckpointCompletedEvent,
   EventEnvelope,
   ItemReviewedEvent,
   PlacementCompletedEvent,
