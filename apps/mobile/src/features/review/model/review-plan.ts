@@ -1,11 +1,5 @@
 import type { Exercise } from "@english-learn/content";
-import {
-  addDays,
-  selectSession,
-  type LocalDate,
-  type ReviewState,
-  type Rng,
-} from "@english-learn/domain";
+import { selectSession, type LocalDate, type ReviewState, type Rng } from "@english-learn/domain";
 import type { LessonSummary } from "@/features/lesson/model/lesson-session";
 
 /** Most items one daily review session practices. */
@@ -200,7 +194,6 @@ export function hasDeferredReviewExercises(input: ReviewPlanInput): boolean {
     planReview({
       ...input,
       states,
-      today: addDays(input.today, 1),
       remainingExercises: REVIEW_MAX_EXERCISES_PER_DAY,
     }).exercises.length > 0
   );

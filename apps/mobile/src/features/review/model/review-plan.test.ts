@@ -355,3 +355,16 @@ describe("planReview and reviewOutlook: home says what the next review serves", 
     expect(reviewOutlook(input)).toEqual({ next: 0, later: 0 });
   });
 });
+
+describe("daily-cap deferred notice", () => {
+  it("does not label naturally scheduled tomorrow reviews as deferred by the cap", () => {
+    const input = {
+      states: [{ ...due(vocab.itemIds[0]!), dueDate: addDays(today, 1) }],
+      today,
+      exercises: [vocab],
+      remainingExercises: 20,
+    };
+    expect(reviewOutlook(input)).toEqual({ next: 0, later: 0 });
+    expect(hasDeferredReviewExercises(input)).toBe(false);
+  });
+});
