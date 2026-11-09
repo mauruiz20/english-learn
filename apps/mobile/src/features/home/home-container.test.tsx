@@ -36,7 +36,11 @@ import { StyleSheet } from "react-native";
 import { testRandomBytes } from "@/testing/random-bytes";
 import { corpus } from "@english-learn/content/corpus";
 import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
-import { planReview, reviewOutlook } from "@/features/review/model/review-plan";
+import {
+  hasDeferredReviewExercises,
+  planReview,
+  reviewOutlook,
+} from "@/features/review/model/review-plan";
 
 const mockPush = jest.fn();
 
@@ -719,6 +723,9 @@ describe("HomeContainer", () => {
       expect(await screen.findByText(`${next} pendientes`)).toBeOnTheScreen();
       if (later > 0) expect(screen.getByText(`y ${later} más después`)).toBeOnTheScreen();
       else expect(screen.queryByText(/más después/)).not.toBeOnTheScreen();
+      if (hasDeferredReviewExercises(input)) {
+        expect(screen.getByText("El resto queda para mañana.")).toBeOnTheScreen();
+      }
     },
   );
 

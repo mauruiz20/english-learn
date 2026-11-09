@@ -30,6 +30,14 @@ describe("ReviewView", () => {
     expect(handlers.onGoHome).toHaveBeenCalledTimes(1);
   });
 
+  it("explains that a completed daily allowance resumes tomorrow", async () => {
+    await renderView({ status: "empty", reason: "daily-limit" });
+
+    expect(
+      screen.getByText("Ya repasaste tus 20 ejercicios de hoy. El resto queda para mañana."),
+    ).toBeOnTheScreen();
+  });
+
   it("shows the progress, the exercise and its feedback", async () => {
     await renderView({
       status: "exercise",
@@ -74,8 +82,8 @@ describe("ReviewView", () => {
   });
 
   it.each([
-    [25, "Te quedan 25 para otro repaso."],
-    [1, "Te queda 1 para otro repaso."],
+    [25, "Te quedan 25 para repasar hoy."],
+    [1, "Te queda 1 para repasar hoy."],
   ])("says when %i more wait for another review", async (remaining, text) => {
     await renderView({
       status: "summary",
@@ -101,7 +109,22 @@ describe("ReviewView", () => {
       remaining: 0,
     });
 
-    expect(screen.queryByText(/para otro repaso/)).not.toBeOnTheScreen();
+    expect(screen.queryByText(/para repasar hoy/)).not.toBeOnTheScreen();
+  });
+
+  it("says when deferred exercises are due tomorrow", async () => {
+    await renderView({
+      status: "summary",
+      correct: 20,
+      total: 20,
+      xpEarned: 200,
+      streakDays: 2,
+      toReview: [],
+      remaining: 0,
+      tomorrow: true,
+    });
+
+    expect(screen.getByText("El resto queda para mañana.")).toBeOnTheScreen();
   });
 
   it("explains load and save errors", async () => {

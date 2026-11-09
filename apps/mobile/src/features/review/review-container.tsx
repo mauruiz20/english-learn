@@ -29,7 +29,14 @@ import { SessionGlossary } from "@/features/glossary/session-glossary";
 import { topicByExerciseId, topicByItemId } from "@/features/topics/topic-colors";
 import { useAppServices } from "@/infrastructure/services/app-services";
 import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
-import { listeningRng, planReview, restrictToItems, reviewOutlook } from "./model/review-plan";
+import {
+  listeningRng,
+  planReview,
+  restrictToItems,
+  reviewOutlook,
+  hasDeferredReviewExercises,
+  REVIEW_MAX_EXERCISES_PER_DAY,
+} from "./model/review-plan";
 import { ReviewView, type ReviewViewState } from "./review-view";
 import { sessionResults } from "@/features/lesson/model/session-results";
 import { useNewAchievements } from "@/features/achievements/use-new-achievements";
@@ -37,7 +44,8 @@ import { useNewAchievements } from "@/features/achievements/use-new-achievements
 type Plan = { readonly session: ExerciseSession; readonly itemIds: readonly string[] };
 
 type Load =
-  | { readonly status: "loading" | "load-error" | "empty" }
+  | { readonly status: "loading" | "load-error" }
+  | { readonly status: "empty"; readonly reason: "no-due" | "daily-limit" }
   | { readonly status: "ready"; readonly plan: Plan };
 
 const REVIEW_INFO = { id: "review", title: "Repaso" } as const;
@@ -54,15 +62,20 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
   useEffect(() => {
     if (!ready) return;
     let active = true;
-    progressRepository.getReviewStates().then(
-      (states) => {
+    const today = clock.today();
+    Promise.all([
+      progressRepository.getReviewStates(),
+      progressRepository.getDailyReviewExercises(today),
+    ]).then(
+      ([states, reviewedExercises]) => {
         if (!active) return;
         // The same plan home counted (`reviewOutlook`): the day's rng picks the exercises.
-        const today = clock.today();
+        const remainingExercises = Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewedExercises);
         const { itemIds, exercises: planned } = planReview({
           states,
           today,
           exercises: content.exercises,
+          remainingExercises,
         });
         // Up to two of them are heard instead of read (same items, same count: see
         // `mixListening`); the day's own rng, so it is the same all day.
@@ -73,7 +86,10 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
             })
           : planned;
         if (exercises.length === 0) {
-          setLoad({ status: "empty" });
+          setLoad({
+            status: "empty",
+            reason: remainingExercises === 0 ? "daily-limit" : "no-due",
+          });
           return;
         }
         setLoad({
@@ -168,7 +184,9 @@ function ReviewSession({
       ? {
           ...viewState,
           ...(achievements.length > 0 ? { achievements } : {}),
-          ...(remaining === null ? {} : { remaining }),
+          ...(remaining === null
+            ? {}
+            : { remaining: remaining.today, tomorrow: remaining.tomorrow }),
         }
       : viewState;
 
@@ -199,21 +217,30 @@ function ReviewSession({
  * Once the review is saved, what today's later reviews will serve (home's count after it), or
  * `null` until known. A failed read only costs the line.
  */
-function useRemainingReviews(saved: boolean, content: Corpus): number | null {
+function useRemainingReviews(
+  saved: boolean,
+  content: Corpus,
+): { today: number; tomorrow: boolean } | null {
   const { progressRepository, clock } = useAppServices();
-  const [remaining, setRemaining] = useState<number | null>(null);
+  const [remaining, setRemaining] = useState<{ today: number; tomorrow: boolean } | null>(null);
   useEffect(() => {
     if (!saved) return;
     let active = true;
-    progressRepository.getReviewStates().then(
-      (states) => {
+    const today = clock.today();
+    Promise.all([
+      progressRepository.getReviewStates(),
+      progressRepository.getDailyReviewExercises(today),
+    ]).then(
+      ([states, reviewedExercises]) => {
         if (!active) return;
-        const { next, later } = reviewOutlook({
+        const input = {
           states,
-          today: clock.today(),
+          today,
           exercises: content.exercises,
-        });
-        setRemaining(next + later);
+          remainingExercises: Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewedExercises),
+        };
+        const { next, later } = reviewOutlook(input);
+        setRemaining({ today: next + later, tomorrow: hasDeferredReviewExercises(input) });
       },
       (error: unknown) => console.error("Failed to count the remaining reviews", error),
     );

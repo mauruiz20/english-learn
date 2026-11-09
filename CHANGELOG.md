@@ -25,6 +25,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- **Daily review limit**: reviews now serve at most 20 actual exercises per local date across
+  sessions and app restarts. Lessons remain unaffected, and any due backlog stays scheduled for
+  tomorrow.
 - **Pronunciation**: choose an installed English voice and try it from settings. Automatic
   selection avoids novelty and Eloquence voices on iOS; an explicit "Más lento" control replaces
   the hidden second-tap speed toggle and always replays more slowly.

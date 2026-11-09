@@ -99,6 +99,36 @@ describe("ReviewContainer", () => {
     expect(await screen.findByText("Nada para repasar hoy")).toBeOnTheScreen();
   });
 
+  it("blocks another review after 20 completed exercises, including after remount", async () => {
+    const repository = createFakeRepository({
+      states: [learnedYesterday("a2.routine.wake-up")],
+      events: [
+        {
+          id: "daily-cap",
+          deviceId: "test-device",
+          occurredAt: 1,
+          localDate: TODAY,
+          type: "session_completed",
+          payload: {
+            v: 1,
+            sessionId: "previous-review",
+            kind: "review",
+            answerXp: 0,
+            accuracy: 1,
+            exercises: 20,
+          },
+        },
+      ],
+    });
+
+    await renderReview(repository);
+
+    expect(
+      await screen.findByText("Ya repasaste tus 20 ejercicios de hoy. El resto queda para mañana."),
+    ).toBeOnTheScreen();
+    expect(screen.queryByText(/Ejercicio 1 de/)).not.toBeOnTheScreen();
+  });
+
   it("reviews the due items, saves them with answer XP only and the streak", async () => {
     const repository = createFakeRepository({
       xp: 100,
@@ -226,8 +256,8 @@ describe("ReviewContainer", () => {
     },
   );
 
-  it("says on the summary how many wait for another review", async () => {
-    // 21 due items, one exercise each: the review serves 20 and leaves one for later.
+  it("says on the summary when deferred exercises wait for tomorrow", async () => {
+    // 21 due items, one exercise each: the review serves 20 and leaves one for tomorrow.
     const many = Array.from(
       { length: 21 },
       (_, i) => `a2.routine.extra-${String(i).padStart(2, "0")}`,
@@ -250,7 +280,7 @@ describe("ReviewContainer", () => {
     }
 
     expect(await screen.findByText("¡Repaso completado!")).toBeOnTheScreen();
-    expect(await screen.findByText("Te queda 1 para otro repaso.")).toBeOnTheScreen();
+    expect(await screen.findByText("El resto queda para mañana.")).toBeOnTheScreen();
   });
 
   it("explains when the review cannot be loaded", async () => {

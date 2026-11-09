@@ -4,6 +4,8 @@ import type { LessonSummary } from "@/features/lesson/model/lesson-session";
 
 /** Most items one daily review session practices. */
 export const REVIEW_MAX_ITEMS = 20;
+/** Most review exercises served per local date, including later sessions. */
+export const REVIEW_MAX_EXERCISES_PER_DAY = 20;
 
 /** Reading is too long for a quick review; every other type can review an item. */
 function isReviewable(exercise: Exercise): boolean {
@@ -129,6 +131,8 @@ export type ReviewPlanInput = {
   readonly states: readonly ReviewState[];
   readonly today: LocalDate;
   readonly exercises: readonly Exercise[];
+  /** Remaining daily exercise allowance; omitted only by callers that plan a fresh day. */
+  readonly remainingExercises?: number;
 };
 
 export type ReviewPlan = {
@@ -148,8 +152,9 @@ export function planReview(input: ReviewPlanInput): ReviewPlan {
     itemIds,
     exercises: input.exercises,
     rng: reviewPlanRng(input.today),
-  });
-  return { itemIds, exercises };
+  }).slice(0, Math.max(0, input.remainingExercises ?? REVIEW_MAX_EXERCISES_PER_DAY));
+  const coveredItems = new Set(exercises.flatMap((exercise) => exercise.itemIds));
+  return { itemIds: itemIds.filter((itemId) => coveredItems.has(itemId)), exercises };
 }
 
 /**
@@ -161,15 +166,37 @@ export function planReview(input: ReviewPlanInput): ReviewPlan {
 export function reviewOutlook(input: ReviewPlanInput): { next: number; later: number } {
   let states = input.states;
   const sizes: number[] = [];
-  for (;;) {
-    const plan = planReview({ ...input, states });
+  let remainingExercises = Math.max(0, input.remainingExercises ?? REVIEW_MAX_EXERCISES_PER_DAY);
+  while (remainingExercises > 0) {
+    const plan = planReview({ ...input, states, remainingExercises });
     if (plan.exercises.length === 0) break;
     sizes.push(plan.exercises.length);
+    remainingExercises -= plan.exercises.length;
     const planned = new Set(plan.itemIds);
     states = states.filter((s) => !planned.has(s.itemId));
   }
   const [next = 0, ...rest] = sizes;
   return { next, later: rest.reduce((sum, size) => sum + size, 0) };
+}
+
+/** Whether any reviewable due exercises remain after today's allowance, for tomorrow's note. */
+export function hasDeferredReviewExercises(input: ReviewPlanInput): boolean {
+  let states = input.states;
+  let remainingExercises = Math.max(0, input.remainingExercises ?? REVIEW_MAX_EXERCISES_PER_DAY);
+  while (remainingExercises > 0) {
+    const plan = planReview({ ...input, states, remainingExercises });
+    if (plan.exercises.length === 0) break;
+    remainingExercises -= plan.exercises.length;
+    const planned = new Set(plan.itemIds);
+    states = states.filter((s) => !planned.has(s.itemId));
+  }
+  return (
+    planReview({
+      ...input,
+      states,
+      remainingExercises: REVIEW_MAX_EXERCISES_PER_DAY,
+    }).exercises.length > 0
+  );
 }
 
 /**
