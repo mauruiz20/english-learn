@@ -68,11 +68,13 @@ describe("awaitPendingWrites", () => {
     const saved = repository.appendEvents([reviewSession]);
     // e.g. the learner pressed browser back mid-save and home loads its data.
     const xp = repository.getXp();
+    const reviewedToday = repository.getDailyReviewExercises(TODAY);
     const streak = repository.getStreak();
     slow.commit();
 
     await expect(saved).resolves.toMatchObject({ after: { xp: 10 } });
     await expect(xp).resolves.toBe(10);
+    await expect(reviewedToday).resolves.toBe(20);
     await expect(streak).resolves.toMatchObject({ current: 1 });
   });
 

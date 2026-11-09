@@ -9,6 +9,7 @@ export * from "./placement";
 export * from "./ports";
 export * from "./progress";
 export * from "./progress-log";
+export * from "./review-exercises";
 export * from "./scoring";
 export * from "./shuffle";
 export * from "./srs";

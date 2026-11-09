@@ -18,6 +18,7 @@ import { createFakeRepository } from "@/testing/fake-progress-repository";
 import { testRandomBytes } from "@/testing/random-bytes";
 import {
   REVIEW_MAX_ITEMS,
+  hasDeferredReviewExercises,
   pendingReviewItems,
   pickReviewExercises,
   planReview,
@@ -206,6 +207,35 @@ describe("pickReviewExercises", () => {
   });
 });
 
+describe("daily review allowance", () => {
+  const exercises: Exercise[] = Array.from({ length: 8 }, (_, i) => ({
+    ...vocab,
+    id: `daily.vocab-${i}`,
+    itemIds: [`daily.item-${i}`],
+  }));
+  const states = exercises.map((exercise) => due(exercise.itemIds[0] ?? ""));
+
+  it("serves only the exercises left in today's allowance and saves only covered items", () => {
+    const plan = planReview({ states, today, exercises, remainingExercises: 3 });
+
+    expect(plan.exercises).toHaveLength(3);
+    expect(plan.itemIds).toHaveLength(3);
+    expect(
+      plan.itemIds.every((id) => plan.exercises.some((exercise) => exercise.itemIds.includes(id))),
+    ).toBe(true);
+  });
+
+  it("serves nothing after today's 20 exercises are used, without changing the next day's plan", () => {
+    expect(planReview({ states, today, exercises, remainingExercises: 0 })).toEqual({
+      itemIds: [],
+      exercises: [],
+    });
+    expect(planReview({ states, today, exercises, remainingExercises: 20 }).exercises).toHaveLength(
+      8,
+    );
+  });
+});
+
 describe("restrictToItems", () => {
   it("keeps only the outcomes of the reviewed items", () => {
     const summary: LessonSummary = {
@@ -282,19 +312,27 @@ describe("planReview and reviewOutlook: home says what the next review serves", 
     expect(reviewOutlook(input).later).toBe(0);
   });
 
-  it("counts what later sessions of the day will serve when more are due than one holds", () => {
+  it("defers backlog beyond today's allowance without including it in today's sessions", () => {
     const states = dueCorpusStates(45);
     const input = { states, today, exercises: corpus.exercises };
     const { next, later } = reviewOutlook(input);
-    expect(later).toBeGreaterThan(0);
+    expect(next + later).toBeLessThanOrEqual(20);
+    expect(hasDeferredReviewExercises(input)).toBe(true);
 
     // Every session of the day, played in turn: the planned items leave today's due set.
     let left = states;
+    let allowance = 20;
     const sizes: number[] = [];
-    for (;;) {
-      const plan = planReview({ states: left, today, exercises: corpus.exercises });
+    while (allowance > 0) {
+      const plan = planReview({
+        states: left,
+        today,
+        exercises: corpus.exercises,
+        remainingExercises: allowance,
+      });
       if (plan.exercises.length === 0) break;
       sizes.push(plan.exercises.length);
+      allowance -= plan.exercises.length;
       left = left.filter((s) => !plan.itemIds.includes(s.itemId));
     }
     expect(sizes[0]).toBe(next);

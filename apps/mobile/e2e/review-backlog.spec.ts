@@ -19,6 +19,7 @@ const test = base.extend<{ account: FakeAccount }>({
 
 const DUE = "2030-01-01";
 const TODAY = "2030-01-02";
+const TOMORROW = "2030-01-03";
 const BACKLOG = 45;
 
 /** Another device's pre-event progress: `BACKLOG` items learned, all due on `DUE`. */
@@ -59,6 +60,28 @@ async function homeCount(page: Page): Promise<{ next: number; later: number }> {
 
 const total = ({ next, later }: { next: number; later: number }) => next + later;
 
+function uploadedReviewExercises(account: FakeAccount): number {
+  const uploaded = new Map<string, number>();
+  for (const event of account.syncs.flatMap((sync) => sync.events)) {
+    if (
+      event.type !== "session_completed" ||
+      typeof event.payload !== "object" ||
+      event.payload === null
+    ) {
+      continue;
+    }
+    const payload = event.payload as { sessionId?: unknown; kind?: unknown; exercises?: unknown };
+    if (
+      typeof payload.sessionId === "string" &&
+      payload.kind === "review" &&
+      typeof payload.exercises === "number"
+    ) {
+      uploaded.set(payload.sessionId, payload.exercises);
+    }
+  }
+  return [...uploaded.values()].reduce((sum, exercises) => sum + exercises, 0);
+}
+
 test("a backlog bigger than one review: home counts what each review serves and it stays saved", async ({
   page,
   account,
@@ -80,33 +103,52 @@ test("a backlog bigger than one review: home counts what each review serves and 
 
   await page.getByRole("button", { name: "Repasar", exact: true }).click();
   await expect(page.getByText(`Ejercicio 1 de ${first.next}`, { exact: true })).toBeVisible();
-  expect(await playSessionCorrectly(page, "¡Repaso completado!")).toBe(first.next);
+  const firstServed = await playSessionCorrectly(page, "¡Repaso completado!");
+  expect(firstServed).toBe(first.next);
   await expect(
-    page.getByText(
-      first.later === 1
-        ? "Te queda 1 para otro repaso."
-        : `Te quedan ${first.later} para otro repaso.`,
-    ),
+    page.getByText(new RegExp(`Te quedan ${first.later} para repasar hoy`)),
   ).toBeVisible();
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
 
   // Home drops by exactly what the review served.
   await expect.poll(async () => total(await homeCount(page))).toBe(first.later);
   const second = await homeCount(page);
+  expect(second.next).toBe(first.later);
+  expect(second.later).toBe(0);
   await expect.poll(() => account.storedTypes()).toContain("session_completed");
 
   // Saved: the same count after a reload (and the sync pull that comes with it).
   await page.reload();
   expect(await homeCount(page)).toEqual(second);
 
-  // The next review serves the next items, and the count keeps going down.
+  // The remaining allowance serves four more exercises, completing today's limit.
   await page.getByRole("button", { name: "Repasar", exact: true }).click();
   await expect(page.getByText(`Ejercicio 1 de ${second.next}`, { exact: true })).toBeVisible();
-  await playSessionCorrectly(page, "¡Repaso completado!");
+  const secondServed = await playSessionCorrectly(page, "¡Repaso completado!");
+  expect(firstServed + secondServed).toBe(20);
+  await expect(page.getByText(/El resto queda para mañana\./).last()).toBeVisible();
+  await expect.poll(() => uploadedReviewExercises(account)).toBe(20);
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
-  if (second.later === 0) {
-    await expect(page.getByText("Nada para repasar hoy")).toBeVisible();
-  } else {
-    await expect.poll(async () => total(await homeCount(page))).toBe(second.later);
-  }
+  await page.goto(`/?today=${TODAY}`);
+  await expect(page.getByText("El resto queda para mañana.").last()).toBeVisible();
+
+  // Reload and opening /review directly cannot spend a fresh same-day allowance.
+  await page.reload();
+  await expect(page.getByText("El resto queda para mañana.").last()).toBeVisible();
+  await expect(page.getByRole("button", { name: "Repasar", exact: true })).toHaveCount(0);
+  await page.goto(`/review?today=${TODAY}`);
+  await expect(
+    page.getByText("Ya repasaste tus 20 ejercicios de hoy. El resto queda para mañana."),
+  ).toBeVisible();
+  await page.reload();
+  await expect(
+    page.getByText("Ya repasaste tus 20 ejercicios de hoy. El resto queda para mañana."),
+  ).toBeVisible();
+
+  // The date-scoped allowance resets tomorrow, while the unreviewed backlog remains due.
+  await page.goto(`/?today=${TOMORROW}`);
+  const nextDay = await homeCount(page);
+  expect(nextDay.next).toBeGreaterThan(0);
+  await page.getByRole("button", { name: "Repasar", exact: true }).click();
+  await expect(page.getByText(`Ejercicio 1 de ${nextDay.next}`, { exact: true })).toBeVisible();
 });

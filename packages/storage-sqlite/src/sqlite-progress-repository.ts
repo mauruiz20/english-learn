@@ -17,6 +17,7 @@ import {
   type Grade,
   type ItemHistory,
   type LessonResult,
+  type LocalDate,
   type Level,
   type PlacementResult,
   type ProgressRepository,
@@ -27,6 +28,7 @@ import {
   type StoredEvent,
   type Streak,
 } from "@english-learn/domain";
+import * as domain from "@english-learn/domain";
 import type { SqlDatabase, SqlValue } from "./sql-database";
 
 type ReviewStateRow = {
@@ -690,6 +692,13 @@ export function createSqliteProgressRepository(
     },
     getItemHistories: readItemHistories,
     getDailyExercises: readDailyExercises,
+    async getDailyReviewExercises(date: LocalDate) {
+      return domain.countDailyReviewExercises(
+        await readEvents("WHERE type = 'session_completed'"),
+        date,
+        20,
+      );
+    },
 
     async getDeviceId() {
       const id = await readSyncState(DEVICE_ID);

@@ -70,6 +70,7 @@ export function awaitPendingWrites(
       read(() => repository.getCheckpointEvidence(checkpointId, lessonId)),
     getItemHistories: () => read(() => repository.getItemHistories()),
     getDailyExercises: () => read(() => repository.getDailyExercises()),
+    getDailyReviewExercises: (date) => read(() => repository.getDailyReviewExercises(date)),
     getDeviceId: () => repository.getDeviceId(),
     appendEvents: (events) => tracker.write(() => repository.appendEvents(events)),
     rebuildFromEvents: () => tracker.write(() => repository.rebuildFromEvents()),

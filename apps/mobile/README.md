@@ -564,10 +564,14 @@ seeded by the date), so home and `/review` plan the same session from the same s
 a sticky note "Repaso, N pendientes" where N is the next review's number of EXERCISES (what
 "Ejercicio 1 de N" shows; one exercise may review several due items), plus "y M más después" when
 more is due today than one review holds (M: what the later reviews of the day will serve; a
-reviewed item is never due again the same day), with a "Repasar" button, or "Nada para repasar
-hoy". The review's summary says "Te quedan M para otro repaso." in that case. Before this, home
-counted due ITEMS capped at 20: after a 20-item review with a big backlog it still said "20
-pendientes" (it looked unsaved) and the review then served 18 exercises.
+reviewed item is never due again the same day), with a "Repasar" button. A maximum of 20 actual
+review exercises can be completed per local date across sessions and app restarts. Lessons do not
+use that allowance; due review items beyond it stay unchanged until tomorrow. Home and `/review`
+read completed review counts from the event log, and the summary says "El resto queda para
+mañana." when there is deferred backlog. Older review events without an exercise count reserve the full
+20-exercise allowance for that date. Before this limit, home counted due ITEMS capped at 20: after
+a 20-item review with a big backlog it still said "20 pendientes" (it looked unsaved) and the
+review then served 18 exercises.
 
 ## Study cards, "Fichas" (`src/features/cards/`)
 
