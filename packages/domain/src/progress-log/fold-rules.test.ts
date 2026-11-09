@@ -70,6 +70,7 @@ describe("fold rules golden (stored snapshots depend on them)", () => {
         "session_completed",
         "placement_completed",
         "answer_disputed",
+        "checkpoint_completed",
         "item_purchased",
         "item_equipped",
         "streak_frozen",

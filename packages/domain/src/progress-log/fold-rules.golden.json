@@ -1,13 +1,13 @@
 {
-  "version": 5,
-  "fingerprint": "v5-a54e78b5",
+  "version": 6,
+  "fingerprint": "v6-55d137cc",
   "snapshot": {
-    "v": 5,
+    "v": 6,
     "cursor": {
-      "localDate": "2026-01-10",
+      "localDate": "2026-01-11",
       "occurredAt": 1000,
-      "id": "w03",
-      "key": "{\"deviceId\":\"A\",\"id\":\"w03\",\"localDate\":\"2026-01-10\",\"occurredAt\":1000,\"payload\":{\"slot\":7,\"v\":2},\"type\":\"item_equipped\"}"
+      "id": "c01",
+      "key": "{\"deviceId\":\"A\",\"id\":\"c01\",\"localDate\":\"2026-01-11\",\"occurredAt\":1000,\"payload\":{\"checkpointId\":\"introductions\",\"correct\":2,\"lessonId\":\"L1\",\"total\":3,\"v\":1},\"type\":\"checkpoint_completed\"}"
     },
     "states": [
       {

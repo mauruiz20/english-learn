@@ -1,5 +1,6 @@
 export * from "./answer-matching";
 export * from "./cefr";
+export * from "./checkpoint";
 export * from "./daily-goal";
 export * from "./difficulty";
 export * from "./glossary";

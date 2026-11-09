@@ -66,6 +66,8 @@ export function awaitPendingWrites(
     getXp: () => read(() => repository.getXp()),
     getPlacementResult: () => read(() => repository.getPlacementResult()),
     getLessonResults: () => read(() => repository.getLessonResults()),
+    getCheckpointEvidence: (checkpointId, lessonId) =>
+      read(() => repository.getCheckpointEvidence(checkpointId, lessonId)),
     getItemHistories: () => read(() => repository.getItemHistories()),
     getDailyExercises: () => read(() => repository.getDailyExercises()),
     getDeviceId: () => repository.getDeviceId(),

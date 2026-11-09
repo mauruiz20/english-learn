@@ -4,6 +4,7 @@ import {
   FOLD_SNAPSHOT_VERSION,
   LEVELS,
   advanceFold,
+  checkpointEvidence,
   foldEvents,
   foldRulesFingerprint,
   foldSnapshot,
@@ -680,6 +681,13 @@ export function createSqliteProgressRepository(
     getXp: readXp,
     getPlacementResult: readPlacement,
     getLessonResults: readLessonResults,
+    async getCheckpointEvidence(checkpointId, lessonId) {
+      return checkpointEvidence(
+        await readEvents("WHERE type IN ('session_completed', 'checkpoint_completed')"),
+        checkpointId,
+        lessonId,
+      );
+    },
     getItemHistories: readItemHistories,
     getDailyExercises: readDailyExercises,
 

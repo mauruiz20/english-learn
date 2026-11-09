@@ -169,7 +169,7 @@ function mergeStreaks(a: Streak, b: Streak): Streak {
 }
 
 /** The snapshot format; a stored snapshot of another version is discarded (refold). */
-export const FOLD_SNAPSHOT_VERSION = 5;
+export const FOLD_SNAPSHOT_VERSION = 6;
 
 /**
  * Everything the fold knows after the events it applied, as plain JSON-safe data, so later
@@ -294,6 +294,9 @@ class Folder {
         return;
       case "baseline_imported":
         return this.applyBaseline(event.payload);
+      case "checkpoint_completed":
+        // A separate evidence query reads the score; it must not change ordinary progress.
+        return;
       case "answer_disputed":
         // Content feedback only: the session's own events already carry the regraded answer.
         return;
