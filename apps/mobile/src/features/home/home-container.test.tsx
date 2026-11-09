@@ -157,6 +157,20 @@ function renderContainerElement(
 beforeEach(() => jest.clearAllMocks());
 
 describe("HomeContainer", () => {
+  it("keeps the A1 checkpoint entry available from the home path", async () => {
+    await renderContainer(
+      createFakeRepository({ placement: { level: "A1", theta: -2 } }),
+      undefined,
+      undefined,
+      corpus,
+    );
+
+    expect(await screen.findByText("Comprobación de presentaciones")).toBeOnTheScreen();
+    expect(
+      screen.getByRole("button", { name: "Abrir la lección «¿Cómo te llamas?»" }),
+    ).toBeOnTheScreen();
+  });
+
   it("shows the move banner on the old web address, wired to the offer", async () => {
     const offer: OriginMoveOffer = {
       newOrigin: "https://english.maumar.com.ar",

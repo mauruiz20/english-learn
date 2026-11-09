@@ -142,6 +142,8 @@ type HomeViewProps = {
   onDismissDailyGoalPrompt?: () => void;
   /** News above everything but the greeting (the old web address's move banner). */
   notice?: ReactNode;
+  /** Delayed checkpoint entry, shown only while the A1 path is active. */
+  checkpointEntry?: ReactNode;
   /** The signed-in learner's first name for the greeting; without it, a plain "¡Hola!". */
   greetingName?: string | undefined;
   /** Avi beside the greeting. */
@@ -941,6 +943,7 @@ function ReadyHome({
   onStartPlacement,
   onOpenReview,
   onOpenAbout,
+  checkpointEntry,
 }: Omit<
   HomeViewProps,
   "state" | "soundEnabled" | "onToggleSound" | "themePreference" | "onCycleTheme" | "greetingName"
@@ -954,6 +957,8 @@ function ReadyHome({
         color={state.reviewNoteColor}
         onOpenReview={onOpenReview}
       />
+
+      {checkpointEntry}
 
       {state.level === null && (
         <View style={styles.placement}>
@@ -1009,6 +1014,7 @@ export function HomeView({
   onChooseDailyGoal,
   onDismissDailyGoalPrompt,
   notice,
+  checkpointEntry,
   greetingName,
   avi,
   ...handlers
@@ -1064,7 +1070,9 @@ export function HomeView({
         </Text>
       )}
 
-      {state.status === "ready" && <ReadyHome state={state} {...handlers} />}
+      {state.status === "ready" && (
+        <ReadyHome state={state} checkpointEntry={checkpointEntry} {...handlers} />
+      )}
     </ScreenContainer>
   );
 }

@@ -1,7 +1,8 @@
 # @english-learn/content
 
-Static, validated learning content. No AI at runtime: everything is JSON under `data/`, checked by
-Zod schemas plus corpus-wide semantic rules. CI fails on malformed content (`pnpm validate:content`).
+Static, validated learning content. No AI at runtime: the ordinary corpus is JSON under `data/`,
+checked by Zod schemas plus corpus-wide semantic rules. CI fails on malformed content
+(`pnpm validate:content`). The held-out checkpoint pilot is a separate typed module (see below).
 
 ## Layout
 
@@ -20,6 +21,18 @@ root of `data/` or in any other directory are errors. Study cards live directly 
 directory, in the file of their topic: `data/<level>/grammar.json`, `phrasal-verbs.json`,
 `vocabulary.json` (see [Study cards](#study-cards-fichas)). Free practice lives in
 `data/practice/<collection>/` (see [Práctica libre](#práctica-libre)).
+
+## Held-out checkpoint pilot
+
+`src/checkpoints/introductions.ts` contains three new self-introduction scenarios using concepts
+from `a1.greetings.lesson-002`. It is exported separately, not added to `corpus.exercises` or any
+lesson/review index: ordinary practice must not reveal the checkpoint questions before the
+delayed check. Do not edit the generated corpus to include them.
+
+The pack uses the existing exercise types and deterministic grader. Its dedicated tests pin
+three distinct questions, source-lesson item coverage and isolation from the ordinary corpus.
+Spanish framing belongs beside the English target utterance, not inside the target as more
+advanced English instructions. The pack defines questions, not a pass threshold or mastery claim.
 
 ## Study cards ("Fichas")
 

@@ -9,6 +9,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- **Delayed A1 checkpoint (pilot)**: three new self-introduction questions become available
+  24 hours after "¿Cómo te llamas?". A separate score and date stay visible on the A1 home path;
+  the result is not a mastery rating and does not change lesson completion, XP or SRS.
 - **Lesson and level intros**: short theory before each lesson's first exercise and an
   introduction to each level from A1 to C1, shown once per device.
 - **Interactive dialogues** in Práctica libre: 25 bundled branching conversations in seven
