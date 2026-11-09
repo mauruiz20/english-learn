@@ -1,6 +1,7 @@
 import {
   EMPTY_STREAK,
   checkpointEvidence,
+  countDailyReviewExercises,
   foldEvents,
   type PlacementResult,
   type ProgressEvent,
@@ -77,6 +78,7 @@ export function createFakeRepository(
       checkpointEvidence(log, checkpointId, lessonId),
     getItemHistories: async () => progress().itemHistory,
     getDailyExercises: async () => progress().dailyExercises,
+    getDailyReviewExercises: async (date) => countDailyReviewExercises(log, date, 20),
     getDeviceId: async () => FAKE_DEVICE_ID,
     // Mirrors the SQLite all-or-nothing contract: validate before writing anything.
     appendEvents: async (events) => {

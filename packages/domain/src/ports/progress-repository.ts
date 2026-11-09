@@ -1,5 +1,6 @@
 import type { Level } from "../cefr";
 import type { CheckpointEvidence } from "../checkpoint";
+import type { LocalDate } from "../local-date";
 import type { ProgressEvent, StoredEvent } from "../progress-log/events";
 import type { DailyExercises, ItemHistory, LessonResult } from "../progress-log/fold";
 import type { ReviewState } from "../srs";
@@ -45,6 +46,8 @@ export interface ProgressRepository {
    * one row per active day). `exercisesOn` reads one day from it.
    */
   getDailyExercises(): Promise<readonly DailyExercises[]>;
+  /** Completed review exercises on one local date, including legacy completions conservatively. */
+  getDailyReviewExercises(date: LocalDate): Promise<number>;
 
   /** Stable id of this install; every event it writes carries it as `deviceId`. */
   getDeviceId(): Promise<string>;

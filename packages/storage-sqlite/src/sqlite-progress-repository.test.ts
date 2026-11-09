@@ -487,6 +487,17 @@ describe("createSqliteProgressRepository", () => {
       await repo.clearProgress();
       expect(await repo.getDailyExercises()).toEqual([]);
     });
+
+    it("counts completed reviews by local date without counting lessons", async () => {
+      await repo.appendEvents([
+        reviewDone(DAY, "review-today", 10, 7),
+        lessonDone(DAY, "lesson-today", "l1", 10),
+        reviewDone(NEXT_DAY, "review-next-day", 10, 3),
+      ]);
+
+      expect(await repo.getDailyReviewExercises(DAY)).toBe(7);
+      expect(await repo.getDailyReviewExercises(NEXT_DAY)).toBe(3);
+    });
   });
 
   describe("rebuildFromEvents", () => {

@@ -222,6 +222,12 @@ describe("HomeView", () => {
     expect(screen.queryByRole("button", { name: "Repasar" })).not.toBeOnTheScreen();
   });
 
+  it("shows the backlog date after today's review allowance is exhausted", async () => {
+    await renderView({ ...ready, pendingReviews: 0, tomorrowReviews: true });
+
+    expect(screen.getByText("El resto queda para mañana.")).toBeOnTheScreen();
+  });
+
   it("navigates to about", async () => {
     await renderView(ready);
 

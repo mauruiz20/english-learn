@@ -7,7 +7,12 @@ import { completeSession } from "@/features/lesson/application/complete-session"
 import { lessonItemIds } from "@/features/lesson/model/lesson-catalog";
 import type { LessonSummary } from "@/features/lesson/model/lesson-session";
 import { createTestRandomBytes } from "@/testing/random-bytes";
-import { planReview, restrictToItems, reviewOutlook } from "./model/review-plan";
+import {
+  REVIEW_MAX_EXERCISES_PER_DAY,
+  planReview,
+  restrictToItems,
+  reviewOutlook,
+} from "./model/review-plan";
 
 type Db = ReturnType<typeof createNodeSqliteDatabase>;
 
@@ -72,7 +77,13 @@ async function doReview(
   wrong = new Set<string>(),
 ) {
   const states = await repository.getReviewStates();
-  const { itemIds, exercises } = planReview({ states, today, exercises: corpus.exercises });
+  const reviewed = await repository.getDailyReviewExercises(today);
+  const { itemIds, exercises } = planReview({
+    states,
+    today,
+    exercises: corpus.exercises,
+    remainingExercises: Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewed),
+  });
   const summary = restrictToItems(summaryOf("review", exercises, wrong), itemIds);
   await save(repository, summary, today, "review", nowMs);
   return { itemIds: [...itemIds], served: exercises.length };
@@ -81,13 +92,27 @@ async function doReview(
 /** The items the next review will serve. */
 async function pending(repository: ProgressRepository, today: LocalDate) {
   const states = await repository.getReviewStates();
-  return [...planReview({ states, today, exercises: corpus.exercises }).itemIds];
+  const reviewed = await repository.getDailyReviewExercises(today);
+  return [
+    ...planReview({
+      states,
+      today,
+      exercises: corpus.exercises,
+      remainingExercises: Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewed),
+    }).itemIds,
+  ];
 }
 
 /** Home's count: what the next review serves, and what later reviews serve today. */
 async function homeCount(repository: ProgressRepository, today: LocalDate) {
   const states = await repository.getReviewStates();
-  return reviewOutlook({ states, today, exercises: corpus.exercises });
+  const reviewed = await repository.getDailyReviewExercises(today);
+  return reviewOutlook({
+    states,
+    today,
+    exercises: corpus.exercises,
+    remainingExercises: Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewed),
+  });
 }
 
 describe("a finished daily review is saved", () => {

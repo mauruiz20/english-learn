@@ -20,7 +20,11 @@ import {
   pathLevels,
 } from "@/features/lesson/model/lesson-catalog";
 import { lessonScore } from "@/features/lesson/model/lesson-score";
-import { reviewOutlook } from "@/features/review/model/review-plan";
+import {
+  REVIEW_MAX_EXERCISES_PER_DAY,
+  hasDeferredReviewExercises,
+  reviewOutlook,
+} from "@/features/review/model/review-plan";
 import { PronunciationSettingsButton } from "@/features/pronunciation/pronunciation-settings";
 import { useSoundPreference } from "@/features/sound/sound-preference";
 import { useThemePreference } from "@/features/theme/theme-preference";
@@ -186,6 +190,7 @@ export function HomeContainer({
 
   const load = useCallback(() => {
     let active = true;
+    const today = clock.today();
     Promise.all([
       progressRepository.getStreak(),
       progressRepository.getXp(),
@@ -197,6 +202,7 @@ export function HomeContainer({
       // A settings read that fails only costs Avi's "welcome back".
       settingsRepository.getLastHomeVisit().catch(() => null),
       progressRepository.getDailyExercises(),
+      progressRepository.getDailyReviewExercises(today),
       // Device preferences: unreadable, the default goal counts and the note stays closed.
       settingsRepository.getDailyGoal().catch(() => DEFAULT_DAILY_GOAL),
       settingsRepository.getDailyGoalPromptDismissed().catch(() => true),
@@ -212,6 +218,7 @@ export function HomeContainer({
         chosenLevel,
         lastHomeVisit,
         dailyExercises,
+        reviewedExercises,
         goal,
         goalPromptDismissed,
         seenLevelIntros,
@@ -226,9 +233,14 @@ export function HomeContainer({
           streak.lastActiveDate !== null ||
           results.length > 0;
         const level = placement?.level ?? null;
-        const today = clock.today();
-        // Exactly what `/review` will serve next (same plan), and what later reviews serve today.
-        const outlook = reviewOutlook({ states, today, exercises: content.exercises });
+        // Exactly what `/review` will serve next; overflow stays due for tomorrow.
+        const reviewInput = {
+          states,
+          today,
+          exercises: content.exercises,
+          remainingExercises: Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewedExercises),
+        };
+        const outlook = reviewOutlook(reviewInput);
         const pendingReviews = outlook.next;
         const lessons = markJustCompleted(
           homeLessons(content, level, states, results, chosenLevel),
@@ -274,6 +286,7 @@ export function HomeContainer({
           status: "ready",
           pendingReviews,
           laterReviews: outlook.later,
+          tomorrowReviews: hasDeferredReviewExercises(reviewInput),
           reviewNoteColor: stickyNoteHighlighter(today),
           streakDays: isStreakAlive(streak, today) ? streak.current : 0,
           xp,

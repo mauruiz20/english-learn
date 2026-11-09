@@ -81,6 +81,8 @@ export type HomeViewState =
       readonly pendingReviews: number;
       /** Exercises later reviews will serve today, once the next one is done (absent: none). */
       readonly laterReviews?: number;
+      /** Due exercises deferred until tomorrow by the daily review allowance. */
+      readonly tomorrowReviews?: boolean;
       /** Paper of today's review sticky note. */
       readonly reviewNoteColor: HighlighterName;
       readonly streakDays: number;
@@ -478,11 +480,13 @@ function AlbumLink({
 function ReviewNote({
   pending,
   later,
+  tomorrow,
   color,
   onOpenReview,
 }: {
   pending: number;
   later: number;
+  tomorrow: boolean;
   color: HighlighterName;
   onOpenReview: () => void;
 }) {
@@ -491,7 +495,9 @@ function ReviewNote({
     return (
       <View style={styles.emptyReview}>
         <Avi testID="avi-nap" mood="sleepy" size={52} />
-        <Text tone="muted">Nada para repasar hoy</Text>
+        <Text tone="muted">
+          {tomorrow ? "El resto queda para mañana." : "Nada para repasar hoy"}
+        </Text>
       </View>
     );
   }
@@ -503,6 +509,7 @@ function ReviewNote({
             <Text variant="title">Repaso</Text>
             <Text>{`${pending} ${pending === 1 ? "pendiente" : "pendientes"}`}</Text>
             {later > 0 && <Text tone="muted">{`y ${later} más después`}</Text>}
+            {tomorrow && <Text tone="muted">El resto queda para mañana.</Text>}
           </View>
           <Button label="Repasar" onPress={onOpenReview} />
         </View>
@@ -954,6 +961,7 @@ function ReadyHome({
       <ReviewNote
         pending={state.pendingReviews}
         later={state.laterReviews ?? 0}
+        tomorrow={state.tomorrowReviews ?? false}
         color={state.reviewNoteColor}
         onOpenReview={onOpenReview}
       />
