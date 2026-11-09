@@ -7,8 +7,28 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- **Lesson and level intros**: short theory before each lesson's first exercise and an
+  introduction to each level from A1 to C1, shown once per device.
+- **Interactive dialogues** in Práctica libre: 25 bundled branching conversations in seven
+  groups from A1 to C1, with feedback on each reply and no network service required.
+- **Tu progreso**: word groups ("Dominadas", "En proceso" and "Difíciles") based on review state
+  and recent answer history, with a practice session for difficult words.
+- **Daily goal**: aim for 10, 20 or 40 exercises per day, or turn the goal off. Home and session
+  summaries show progress toward the goal; the preference stays on the device.
+
+### Changed
+
+- **Pronunciation**: choose an installed English voice and try it from settings. Automatic
+  selection avoids novelty and Eloquence voices on iOS; an explicit "Más lento" control replaces
+  the hidden second-tap speed toggle and always replays more slowly.
+
 ### Fixed
 
+- Difficult-word classification no longer treats low ease alone as a recent difficulty.
+- Web accessibility now exposes the checked state of choice rows and the expanded state of
+  lesson theory.
 - The neutral-Spanish guard now accepts "descortés" without treating it as voseo.
 - Account deletion reauthentication with a different Google account now ends that unintended
   sign-in without synchronizing or deleting progress.
