@@ -9,6 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- The neutral-Spanish guard now accepts "descortés" without treating it as voseo.
 - Account deletion reauthentication with a different Google account now ends that unintended
   sign-in without synchronizing or deleting progress.
 - Temporary network, server or rate-limit failures during session refresh no longer sign the

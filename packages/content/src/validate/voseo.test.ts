@@ -30,6 +30,7 @@ describe("findVoseo", () => {
     "El estrés, el interés, a través de, quizás. Compraré, iré, diré.",
     "París, Tomás, Nicolás, Andrés, Inés y Moisés viajan a Panamá.",
     "Send an SOS. The sun sets at seven.",
+    "No es cortés: es descortés.",
   ])("accepts neutral Spanish: %j", (text) => {
     expect(findVoseo(text)).toEqual([]);
   });

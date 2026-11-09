@@ -29,6 +29,7 @@ const PRESENT_EXCEPTIONS = new Set([
   "bebés",
   "cafés",
   "cortés",
+  "descortés",
   "después",
   "escocés",
   "estés",
