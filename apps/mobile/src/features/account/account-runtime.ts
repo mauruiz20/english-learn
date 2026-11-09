@@ -47,7 +47,7 @@ export function createAccountRuntime({
   const engine = createSyncEngine({
     api,
     store: storage.syncStore,
-    refreshSession: () => session.refresh().catch(() => false),
+    refreshSession: () => session.refresh(),
     newDeviceId: () => uuidv7(clock.nowMs(), randomBytes),
     sleep,
     random: Math.random,

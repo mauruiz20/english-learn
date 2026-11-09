@@ -141,7 +141,10 @@ export function createAccountController({
       }
       if (signIn.intent === "delete-account") {
         if (signIn.accountId !== undefined && signIn.accountId !== account.userId) {
-          void coordinator.request();
+          // This sign-in only authorized deleting the original account, not switching accounts.
+          // Stop background sync before ending the unintended session; keep local progress intact.
+          await coordinator.stop();
+          await session.signOut();
           throw new CallbackError("wrong-account");
         }
         // The fresh sign-in satisfies the API's recent-authentication rule.

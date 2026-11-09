@@ -43,6 +43,11 @@ SQLite implementation of the domain `ProgressRepository` and `SettingsRepository
 bench`, median): saving a 13-event session ≈ 4.5 ms (was ≈ 240 ms, a full refold per write);
     a write that must refold ≈ 240 ms. The snapshot is ≈ 475 KiB (review states, item histories, completed
     and reviewed session ids).
+  - `getCheckpointEvidence(checkpointId, lessonId)`: reads lesson/checkpoint events from the
+    existing log and derives the first completion timestamp and latest eligible score/date.
+    It includes synced events and survives reopening the database; no new table or SQL migration
+    is needed. Checkpoints leave ordinary progress unchanged. The fold snapshot is now version 6,
+    so older derived caches are rebuilt from the preserved log through the existing mechanism.
   - `appendEvents(events)`: inserts local events (malformed ones are refused) and refreshes the
     cache, in ONE transaction; resolves to `{ before, after }` totals (XP, streak), so the caller
     shows exactly what the fold paid. All or nothing, so a failed save can be retried.

@@ -156,6 +156,11 @@ export const FOLD_RULES_CORPUS: readonly StoredEvent[] = [
   retired(at("w01", "2026-01-10"), "item_purchased", { v: 1, itemId: "gorra", price: 80 }),
   retired(at("w02", "2026-01-10"), "item_equipped", { v: 1, slot: "head", itemId: "gorra" }),
   retired(at("w03", "2026-01-10"), "item_equipped", { v: 2, slot: 7 }),
+  {
+    ...at("c01", "2026-01-11"),
+    type: "checkpoint_completed",
+    payload: { v: 1, checkpointId: "introductions", lessonId: "L1", correct: 2, total: 3 },
+  },
 ];
 
 /** 32-bit FNV-1a of the UTF-16 code units, as 8 hex digits. */

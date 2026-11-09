@@ -358,6 +358,23 @@ C1 lessons must use exactly these slugs (ids `c1.<slug>.…`); a C1 topic outsid
 its name and color added here. If the C1 files sort in another order, check the neighbor-color
 test.
 
+## Delayed A1 checkpoint (`src/features/checkpoint/`)
+
+The A1 home path links to `/comprobacion`, a three-question pilot about introducing yourself.
+It opens 24 elapsed hours after the first recorded completion of `a1.greetings.lesson-002`
+("¿Cómo te llamas?"). A redo does not restart that delay. The home entry and direct route both
+check stored evidence; a pre-event baseline without a timestamp offers the source lesson instead.
+
+Questions are held outside the ordinary corpus, use the existing deterministic grader, and
+record one `checkpoint_completed` event with score/date only. Saving rechecks eligibility and
+guards duplicate submission; a failed save can be retried. The separate summary and home entry
+show the result without calling it retained knowledge or CEFR proficiency. Checkpoints do not
+change XP, streak, daily goal, SRS or lesson completion. Later practice stays in the usual review.
+
+The pilot is offline and results use the existing event log and optional account sync. Unit
+tests cover the time boundary, direct route, save/retry and result persistence;
+`e2e/checkpoint.spec.ts` covers the learner flow in the exported web app.
+
 ## Word lookup (`src/features/glossary/`)
 
 Learners look up the Spanish of English words and phrases from the static glossary

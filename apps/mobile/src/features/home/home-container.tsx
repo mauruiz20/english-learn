@@ -31,6 +31,7 @@ import { cardScores, cardsSummary } from "@/features/cards/model/card-catalog";
 import { cardPath } from "@/features/cards/card-routes";
 import { useOriginMoveOffer } from "@/features/transfer/origin-move-gate";
 import { useAppServices } from "@/infrastructure/services/app-services";
+import { CheckpointEntry } from "@/features/checkpoint/checkpoint-entry";
 import { HomeView, type HomeDeepenCard, type HomeLessons, type HomeViewState } from "./home-view";
 import type { HomeLevelIntro } from "./level-intro-note";
 import { sessionCompletionMemory, type CompletionMemory } from "./model/completion-memory";
@@ -385,6 +386,9 @@ export function HomeContainer({
             onSkip={moveOffer.skip}
           />
         )
+      }
+      checkpointEntry={
+        state.status === "ready" && state.lessons.level === "A1" && <CheckpointEntry />
       }
     />
   );

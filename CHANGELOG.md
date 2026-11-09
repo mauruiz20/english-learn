@@ -7,6 +7,39 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-09
+
+### Added
+
+- **Delayed A1 checkpoint (pilot)**: three new self-introduction questions become available
+  24 hours after "¿Cómo te llamas?". A separate score and date stay visible on the A1 home path;
+  the result is not a mastery rating and does not change lesson completion, XP or SRS.
+- **Lesson and level intros**: short theory before each lesson's first exercise and an
+  introduction to each level from A1 to C1, shown once per device.
+- **Interactive dialogues** in Práctica libre: 25 bundled branching conversations in seven
+  groups from A1 to C1, with feedback on each reply and no network service required.
+- **Tu progreso**: word groups ("Dominadas", "En proceso" and "Difíciles") based on review state
+  and recent answer history, with a practice session for difficult words.
+- **Daily goal**: aim for 10, 20 or 40 exercises per day, or turn the goal off. Home and session
+  summaries show progress toward the goal; the preference stays on the device.
+
+### Changed
+
+- **Pronunciation**: choose an installed English voice and try it from settings. Automatic
+  selection avoids novelty and Eloquence voices on iOS; an explicit "Más lento" control replaces
+  the hidden second-tap speed toggle and always replays more slowly.
+
+### Fixed
+
+- Difficult-word classification no longer treats low ease alone as a recent difficulty.
+- Web accessibility now exposes the checked state of choice rows and the expanded state of
+  lesson theory.
+- The neutral-Spanish guard now accepts "descortés" without treating it as voseo.
+- Account deletion reauthentication with a different Google account now ends that unintended
+  sign-in without synchronizing or deleting progress.
+- Temporary network, server or rate-limit failures during session refresh no longer sign the
+  learner out while syncing. Pending local progress remains available for the next attempt.
+
 ## [0.3.0] - 2026-11-06
 
 The full path from A1 to C1, free practice by topic, pronunciation with the device's voice and

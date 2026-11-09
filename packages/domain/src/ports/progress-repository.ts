@@ -1,4 +1,5 @@
 import type { Level } from "../cefr";
+import type { CheckpointEvidence } from "../checkpoint";
 import type { ProgressEvent, StoredEvent } from "../progress-log/events";
 import type { DailyExercises, ItemHistory, LessonResult } from "../progress-log/fold";
 import type { ReviewState } from "../srs";
@@ -35,6 +36,8 @@ export interface ProgressRepository {
   getPlacementResult(): Promise<PlacementResult | null>;
   /** The cached best result of every lesson completed in the log (sorted by lessonId). */
   getLessonResults(): Promise<readonly LessonResult[]>;
+  /** First dated lesson completion and latest eligible checkpoint result, not mastery. */
+  getCheckpointEvidence(checkpointId: string, lessonId: string): Promise<CheckpointEvidence>;
   /** The cached answer history of every reviewed item (sorted by itemId). */
   getItemHistories(): Promise<readonly ItemHistory[]>;
   /**
