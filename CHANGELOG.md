@@ -7,6 +7,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Account deletion reauthentication with a different Google account now ends that unintended
+  sign-in without synchronizing or deleting progress.
+- Temporary network, server or rate-limit failures during session refresh no longer sign the
+  learner out while syncing. Pending local progress remains available for the next attempt.
+
 ## [0.3.0] - 2026-11-06
 
 The full path from A1 to C1, free practice by topic, pronunciation with the device's voice and

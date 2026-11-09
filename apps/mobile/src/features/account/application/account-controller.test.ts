@@ -194,7 +194,7 @@ describe("createAccountController", () => {
   });
 
   it("re-authenticates with Google when the sign-in is too old, then deletes on return", async () => {
-    const { controller, deleteAccount, redirects, callbackHash, session } = setup();
+    const { controller, deleteAccount, redirects, callbackHash, session, coordinator } = setup();
     deleteAccount.mockRejectedValueOnce(
       new ApiError(401, "reauthentication_required", "sign in again"),
     );
@@ -206,11 +206,12 @@ describe("createAccountController", () => {
 
     expect(deleteAccount).toHaveBeenCalledTimes(2);
     expect(session.forget).toHaveBeenCalled();
+    expect(coordinator.request).not.toHaveBeenCalled();
     expect(returnTo).toBe("/cuenta?eliminada=1");
   });
 
   it("never deletes another account than the one that asked", async () => {
-    const { controller, deleteAccount, callbackHash, session } = setup();
+    const { controller, deleteAccount, callbackHash, session, coordinator, store } = setup();
     deleteAccount.mockRejectedValueOnce(
       new ApiError(401, "reauthentication_required", "sign in again"),
     );
@@ -221,6 +222,14 @@ describe("createAccountController", () => {
       reason: "wrong-account",
     });
     expect(deleteAccount).toHaveBeenCalledTimes(1);
+    expect(coordinator.request).not.toHaveBeenCalled();
+    expect(coordinator.stop).toHaveBeenCalledTimes(1);
+    expect(session.signOut).toHaveBeenCalledTimes(1);
+    expect(coordinator.stop.mock.invocationCallOrder[0]).toBeLessThan(
+      session.signOut.mock.invocationCallOrder[0]!,
+    );
+    expect(store.resetSyncState).not.toHaveBeenCalled();
+    expect(store.clearProgress).not.toHaveBeenCalled();
   });
 });
 
