@@ -141,13 +141,14 @@ Envelope: `{ id, deviceId, occurredAt, localDate, type, payload }`. `id` is a UU
 (`uuidv7(nowMs, random)`, RFC 9562: 48-bit ms timestamp, version 7, variant `10`, 74 random bits;
 ids from different milliseconds sort by time). Every payload carries `v: 1`.
 
-| `type`                | Payload                                                                            | Written                                   |
-| --------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------- |
-| `item_reviewed`       | `sessionId, itemId, grade`                                                         | once per item per session, FINAL grade    |
-| `session_completed`   | `sessionId, kind: "lesson" \| "review", lessonId?, answerXp, accuracy, exercises?` | when a session is saved                   |
-| `placement_completed` | `level, theta`                                                                     | when the placement test ends              |
-| `baseline_imported`   | `states, xp, streak, placement, completedLessonIds?`                               | once per device, migrating pre-event data |
-| `answer_disputed`     | `exerciseId, itemIds, answer (trimmed, ≤ 200 chars), accepted: false`              | with a session, per self-regraded answer  |
+| `type`                 | Payload                                                                            | Written                                   |
+| ---------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------- |
+| `item_reviewed`        | `sessionId, itemId, grade`                                                         | once per item per session, FINAL grade    |
+| `session_completed`    | `sessionId, kind: "lesson" \| "review", lessonId?, answerXp, accuracy, exercises?` | when a session is saved                   |
+| `placement_completed`  | `level, theta`                                                                     | when the placement test ends              |
+| `baseline_imported`    | `states, xp, streak, placement, completedLessonIds?`                               | once per device, migrating pre-event data |
+| `answer_disputed`      | `exerciseId, itemIds, answer (trimmed, ≤ 200 chars), accepted: false`              | with a session, per self-regraded answer  |
+| `checkpoint_completed` | `checkpointId, lessonId, correct: 0..3, total: 3`                                  | a separate delayed checkpoint result      |
 
 **Retired types** (`RETIRED_EVENT_TYPES`): `item_purchased` and `item_equipped`, written by the
 withdrawn plumas wardrobe (`docs/design/avi-rewards.md`). Logs and the sync server may still hold
@@ -258,6 +259,20 @@ already had.
 - Ids from the same millisecond have no monotonic counter; order there falls back to the random
   bits (still deterministic, since the id is part of the event).
 - A device whose calendar is wrong writes events on the wrong date; the fold cannot detect that.
+
+## Delayed checkpoint evidence
+
+`checkpointEvidence(events, checkpointId, lessonId)` reads the earliest actual lesson completion
+timestamp and the latest valid checkpoint score/date at least `CHECKPOINT_DELAY_MS` (24 elapsed
+hours) later. Redoing the lesson does not postpone that boundary. A pre-event baseline has no
+completion timestamp: it cannot stand in for evidence. Invalid, early and unrelated results are
+ignored; ties use event IDs so arrival order does not change the result.
+
+`checkpointAvailable(evidence, nowMs)` is true at that boundary only when no result has been
+recorded. `ProgressRepository.getCheckpointEvidence` provides the same view over stored events.
+Checkpoint events store a score, never answer text, and are known no-ops in the ordinary fold:
+they do not change SRS, XP, streak, lesson completion or daily exercise counts. A score is evidence
+about three answers, not a retention or CEFR claim.
 
 ## Daily goal
 

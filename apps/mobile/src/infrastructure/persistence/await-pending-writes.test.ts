@@ -44,6 +44,22 @@ function withSlowAppend(repository: ProgressRepository) {
 }
 
 describe("awaitPendingWrites", () => {
+  it("waits for lesson completion before reading checkpoint eligibility", async () => {
+    const fake = createFakeRepository();
+    const slow = withSlowAppend(fake);
+    const repository = awaitPendingWrites(fake);
+    const saved = repository.appendEvents([
+      {
+        ...reviewSession,
+        payload: { ...reviewSession.payload, kind: "lesson", lessonId: "greetings" },
+      },
+    ]);
+    const evidence = repository.getCheckpointEvidence("introductions", "greetings");
+    slow.commit();
+    await saved;
+    await expect(evidence).resolves.toEqual({ completedAt: 1, result: null });
+  });
+
   it("makes reads started during a save wait for it to commit", async () => {
     const fake = createFakeRepository();
     const slow = withSlowAppend(fake);
@@ -67,9 +83,11 @@ describe("awaitPendingWrites", () => {
 
     const saved = repository.appendEvents([reviewSession]);
     const xp = repository.getXp();
+    const checkpoint = repository.getCheckpointEvidence("introductions", "greetings");
 
     await expect(saved).rejects.toThrow("disk I/O error");
     await expect(xp).resolves.toBe(5);
+    await expect(checkpoint).resolves.toEqual({ completedAt: null, result: null });
   });
 
   it("reads right away when nothing is being written", async () => {
