@@ -7,6 +7,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Offline phrasal-verb reference, reachable from home, with 110 course entries grouped by topic,
+  Spanish translations and bilingual examples. Browsing does not change learning progress.
+
 ### Changed
 
 - Reviews prioritize today’s latest wrong answers, then fill the remaining daily allowance with

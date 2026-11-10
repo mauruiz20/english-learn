@@ -128,6 +128,7 @@ type HomeViewProps = {
   onOpenCards?: () => void;
   /** "Práctica libre", under the study cards. */
   onOpenPractice?: () => void;
+  onOpenReference?: () => void;
   /** "Tu progreso" (`/progreso`): the word buckets and the difficult words. */
   onOpenProgress?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
@@ -181,6 +182,7 @@ function ProgressCard({
   onOpenCards,
   practiceTopics,
   onOpenPractice,
+  onOpenReference,
   onOpenProgress,
 }: {
   /** `null` while the progress loads: a dash, never a "0 días" that then jumps. */
@@ -195,6 +197,7 @@ function ProgressCard({
   onOpenCards?: (() => void) | undefined;
   practiceTopics?: readonly string[] | undefined;
   onOpenPractice?: (() => void) | undefined;
+  onOpenReference?: (() => void) | undefined;
   /** Absent while the progress loads. */
   onOpenProgress?: (() => void) | undefined;
 }) {
@@ -237,6 +240,13 @@ function ProgressCard({
         onOpenPractice !== undefined && (
           <PracticeLink topics={practiceTopics} onPress={onOpenPractice} />
         )}
+      {onOpenReference !== undefined && (
+        <Button
+          label="Referencia: phrasal verbs por tema"
+          variant="secondary"
+          onPress={onOpenReference}
+        />
+      )}
       {onOpenProgress !== undefined && <ProgressLink onPress={onOpenProgress} />}
     </View>
   );
@@ -1018,6 +1028,7 @@ export function HomeView({
   onOpenAlbum,
   onOpenCards,
   onOpenPractice,
+  onOpenReference,
   onOpenProgress,
   onChooseDailyGoal,
   onDismissDailyGoalPrompt,
@@ -1051,6 +1062,7 @@ export function HomeView({
         onOpenCards={onOpenCards}
         practiceTopics={state.status === "ready" ? state.practiceTopics : undefined}
         onOpenPractice={onOpenPractice}
+        onOpenReference={onOpenReference}
         onOpenProgress={state.status === "ready" ? onOpenProgress : undefined}
         goal={
           dailyGoal !== undefined &&

@@ -1228,3 +1228,8 @@ console errors, or if progress loaded from the database is not rendered.
 Daily reviews prioritize items whose latest answer today was wrong, including items scheduled
 for a later date. A correct retry removes that priority. Other due reviews fill the remaining
 allowance, without exceeding 20 completed review exercises per local date.
+
+**Referencia** (`/diccionario`) is a read-only phrasal-verb appendix: 110 authored entries from
+phrasal-verb cards and free-practice groups, organized under their existing topic titles. Select
+a topic to see the Spanish meanings and bilingual examples. All text comes from the bundled
+corpus; browsing makes no progress writes and works offline after the app is cached.

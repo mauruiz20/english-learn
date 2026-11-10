@@ -1094,3 +1094,11 @@ describe("HomeContainer level intro", () => {
     expect(screen.queryByRole("button", { name: /^Qué aprenderás/ })).not.toBeOnTheScreen();
   });
 });
+
+it("opens the offline reference from home", async () => {
+  await renderContainer(createFakeRepository());
+  await fireEvent.press(
+    await screen.findByRole("button", { name: "Referencia: phrasal verbs por tema" }),
+  );
+  expect(mockPush).toHaveBeenCalledWith("/diccionario");
+});
