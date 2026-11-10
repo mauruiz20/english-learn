@@ -368,3 +368,48 @@ describe("daily-cap deferred notice", () => {
     expect(hasDeferredReviewExercises(input)).toBe(false);
   });
 });
+
+describe("today's wrong answers first", () => {
+  const missed = "a2.routine.wake-up";
+  const ordinary = "a2.routine.breakfast";
+  const history = (grade: 1 | 5, day = today) => ({
+    itemId: missed,
+    lastSeen: day,
+    lastLapse: null,
+    recentGrades: [grade],
+  });
+
+  it("reviews a mistake from today's lesson before overdue items, even before its due date", () => {
+    const input = {
+      states: [due(ordinary, 4), notDue(missed)],
+      today,
+      exercises: allExercises,
+      histories: [history(1)],
+      remainingExercises: 1,
+    };
+    expect(planReview(input).itemIds).toContain(missed);
+    expect(planReview(input).itemIds).not.toContain(ordinary);
+    expect(planReview(input).exercises).toHaveLength(1);
+  });
+
+  it("fills the rest with due reviews and never exceeds the remaining daily allowance", () => {
+    const input = {
+      states: [due(ordinary, 4), notDue(missed)],
+      today,
+      exercises: allExercises,
+      histories: [history(1)],
+      remainingExercises: 2,
+    };
+    expect(planReview(input).itemIds).toEqual([missed, ordinary]);
+    expect(reviewOutlook(input)).toEqual({ next: 2, later: 0 });
+    expect(planReview({ ...input, remainingExercises: 0 }).exercises).toEqual([]);
+  });
+
+  it("stops giving an early item priority after a correct answer or after the date changes", () => {
+    const input = { states: [due(ordinary, 4), notDue(missed)], today, exercises: allExercises };
+    expect(planReview({ ...input, histories: [history(5)] }).itemIds).toEqual([ordinary]);
+    expect(planReview({ ...input, histories: [history(1, addDays(today, -1))] }).itemIds).toEqual([
+      ordinary,
+    ]);
+  });
+});

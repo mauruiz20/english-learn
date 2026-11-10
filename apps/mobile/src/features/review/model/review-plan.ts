@@ -1,5 +1,11 @@
 import type { Exercise } from "@english-learn/content";
-import { selectSession, type LocalDate, type ReviewState, type Rng } from "@english-learn/domain";
+import {
+  selectSession,
+  type ItemHistory,
+  type LocalDate,
+  type ReviewState,
+  type Rng,
+} from "@english-learn/domain";
 import type { LessonSummary } from "@/features/lesson/model/lesson-session";
 
 /** Most items one daily review session practices. */
@@ -32,8 +38,8 @@ function inFirstSteps(state: ReviewState): boolean {
 }
 
 /**
- * Items the daily review practices today: due states that some reviewable exercise covers,
- * capped at `REVIEW_MAX_ITEMS`. Items in their first steps (interval ≤ 1 day: yesterday's new
+ * Items the daily review practices today: latest wrong answers from today, then due states,
+ * capped at `REVIEW_MAX_ITEMS`. Among due items, those in their first steps (interval ≤ 1 day: yesterday's new
  * lesson items, lapses) come first, so a backlog never pushes them out; within each group,
  * `selectSession` orders them (most overdue, then most lapsed). New items are never added here:
  * they come from lessons.
@@ -42,10 +48,12 @@ export function pendingReviewItems({
   states,
   today,
   exercises,
+  histories = [],
 }: {
   states: readonly ReviewState[];
   today: LocalDate;
   exercises: readonly Exercise[];
+  histories?: readonly ItemHistory[];
 }): string[] {
   const byItem = exercisesByItem(exercises);
   const reviewable = states.filter((s) => byItem.has(s.itemId));
@@ -57,9 +65,18 @@ export function pendingReviewItems({
       maxReviews: REVIEW_MAX_ITEMS,
       maxNew: 0,
     }).reviews;
+  const known = new Set(reviewable.map((state) => state.itemId));
+  // The latest failed answer today gets a retry even if SRS schedules it for tomorrow.
+  const mistakes = histories
+    .filter((history) => history.lastSeen === today && (history.recentGrades.at(-1) ?? 5) < 3)
+    .map((history) => history.itemId)
+    .filter((itemId) => known.has(itemId));
   return [
-    ...plan(reviewable.filter(inFirstSteps)),
-    ...plan(reviewable.filter((s) => !inFirstSteps(s))),
+    ...new Set([
+      ...mistakes,
+      ...plan(reviewable.filter(inFirstSteps)),
+      ...plan(reviewable.filter((s) => !inFirstSteps(s))),
+    ]),
   ].slice(0, REVIEW_MAX_ITEMS);
 }
 
@@ -133,6 +150,7 @@ export type ReviewPlanInput = {
   readonly exercises: readonly Exercise[];
   /** Remaining daily exercise allowance; omitted only by callers that plan a fresh day. */
   readonly remainingExercises?: number;
+  readonly histories?: readonly ItemHistory[];
 };
 
 export type ReviewPlan = {

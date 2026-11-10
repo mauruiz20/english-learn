@@ -1224,3 +1224,7 @@ console errors, or if progress loaded from the database is not rendered.
   works offline; an update downloads only the files that changed.
 - **No storage in private browsing on Safari / WebKit.** Without OPFS the database cannot open
   and the app shows "No pudimos abrir tus datos."
+
+Daily reviews prioritize items whose latest answer today was wrong, including items scheduled
+for a later date. A correct retry removes that priority. Other due reviews fill the remaining
+allowance, without exceeding 20 completed review exercises per local date.
