@@ -18,7 +18,11 @@
       "topics": ["lifelong-learning"],
       "kind": "phrase",
       "term": "pick up",
-      "es": "aprender (sin estudiar formalmente)"
+      "es": "aprender (sin estudiar formalmente)",
+      "example": {
+        "en": "She picked up some Italian while living in Rome.",
+        "es": "Aprendió algo de italiano mientras vivía en Roma."
+      }
     },
     {
       "id": "b2.lifelong-learning.brush-up-on",
@@ -26,7 +30,11 @@
       "topics": ["lifelong-learning"],
       "kind": "phrase",
       "term": "brush up on",
-      "es": "repasar, refrescar (un conocimiento)"
+      "es": "repasar, refrescar (un conocimiento)",
+      "example": {
+        "en": "I need to brush up on my English.",
+        "es": "Necesito repasar mi inglés."
+      }
     },
     {
       "id": "b2.lifelong-learning.online-course",
@@ -54,7 +62,11 @@
       "topics": ["lifelong-learning"],
       "kind": "phrase",
       "term": "keep up with",
-      "es": "mantenerse al día con, seguir el ritmo de"
+      "es": "mantenerse al día con, seguir el ritmo de",
+      "example": {
+        "en": "It's hard to keep up with new technology.",
+        "es": "Es difícil mantenerse al día con las nuevas tecnologías."
+      }
     },
     {
       "id": "b2.lifelong-learning.retire",

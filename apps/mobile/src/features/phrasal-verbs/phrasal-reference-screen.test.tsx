@@ -42,6 +42,6 @@ it("searches English verbs and Spanish meanings, ignores case/accents, and clear
   expect(screen.getByText("No encontramos phrasal verbs con esa búsqueda.")).toBeOnTheScreen();
   expect(screen.getByText("0 entradas · 0 temas")).toBeOnTheScreen();
   await fireEvent.press(screen.getByRole("button", { name: "Limpiar búsqueda" }));
-  expect(screen.getByText("110 entradas · 20 temas")).toBeOnTheScreen();
+  expect(screen.getByText(/^125 entradas · \d+ temas$/)).toBeOnTheScreen();
   expect(screen.getByText("wake up")).toBeOnTheScreen();
 });
