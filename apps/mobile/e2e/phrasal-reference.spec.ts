@@ -10,7 +10,7 @@ test("the phrasal reference is reachable from home and works offline without ear
     .click();
   await expect(page.getByRole("heading", { name: "Phrasal verbs", exact: true })).toBeVisible();
   await expect(page.getByText("110 entradas · 20 temas", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "Casa y rutina", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Casa y rutina", exact: true })).toBeVisible();
   await expect(page.getByText("clean (something) up", { exact: true })).toBeVisible();
   await expect(page.getByText("ordenar, limpiar", { exact: true })).toBeVisible();
   await expect(
@@ -19,11 +19,12 @@ test("the phrasal reference is reachable from home and works offline without ear
   await expect(
     page.getByText("Por favor, ordena tu cuarto antes de la cena.", { exact: true }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Ver todos los temas", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Viajes", exact: true })).toBeAttached();
+  await expect(page.getByRole("button", { name: "Casa y rutina", exact: true })).toHaveCount(0);
   await page.evaluate(() => navigator.serviceWorker.ready.then(() => undefined));
   await context.setOffline(true);
   await page.reload();
-  await page.getByRole("button", { name: "Casa y rutina", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Casa y rutina", exact: true })).toBeVisible();
   await expect(
     page.getByText("Please clean up your room before dinner.", { exact: true }),
   ).toBeVisible();

@@ -1,15 +1,20 @@
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { render, screen } from "@testing-library/react-native";
+import { corpus } from "@english-learn/content/corpus";
+import { phrasalReference } from "./model/phrasal-reference";
 import { PhrasalReferenceScreen } from "./phrasal-reference-screen";
 
-it("opens a topic, shows translations and examples, and returns to the topic list", async () => {
+it("shows every entry in one list with a heading separating each topic, without topic selection", async () => {
   await render(<PhrasalReferenceScreen />);
   expect(screen.getByRole("header", { name: "Phrasal verbs" })).toBeOnTheScreen();
-  await fireEvent.press(screen.getByRole("button", { name: "Casa y rutina" }));
-  expect(screen.getByText("clean (something) up")).toBeOnTheScreen();
-  expect(screen.getByText("ordenar, limpiar")).toBeOnTheScreen();
-  expect(screen.getByText("Please clean up your room before dinner.")).toBeOnTheScreen();
-  expect(screen.getByText("Por favor, ordena tu cuarto antes de la cena.")).toBeOnTheScreen();
-  await fireEvent.press(screen.getByRole("button", { name: "Ver todos los temas" }));
-  expect(screen.queryByText("Please clean up your room before dinner.")).toBeNull();
-  expect(screen.getByRole("button", { name: "Casa y rutina" })).toBeOnTheScreen();
+  for (const group of phrasalReference(corpus)) {
+    expect(screen.getByRole("header", { name: group.title })).toBeOnTheScreen();
+    for (const entry of group.entries) {
+      expect(screen.getAllByText(entry.verb).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(entry.es).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(entry.example.en).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(entry.example.es).length).toBeGreaterThan(0);
+    }
+  }
+  expect(screen.queryByRole("button", { name: "Casa y rutina" })).toBeNull();
+  expect(screen.queryByRole("button", { name: "Ver todos los temas" })).toBeNull();
 });
