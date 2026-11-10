@@ -1233,3 +1233,6 @@ allowance, without exceeding 20 completed review exercises per local date.
 phrasal-verb cards and free-practice groups, organized under their existing topic titles. All topics appear in one continuous list with headings and dividers, followed by
 the Spanish meanings and bilingual examples. All text comes from the bundled
 corpus; browsing makes no progress writes and works offline after the app is cached.
+
+The reference search filters English verbs and Spanish meanings locally, ignoring case and
+accents. Empty topics disappear from results; clearing the query restores the complete list.

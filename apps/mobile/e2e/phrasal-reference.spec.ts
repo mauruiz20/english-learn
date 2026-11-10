@@ -28,6 +28,18 @@ test("the phrasal reference is reachable from home and works offline without ear
   await expect(
     page.getByText("Please clean up your room before dinner.", { exact: true }),
   ).toBeVisible();
+  const search = page.getByLabel("Buscar phrasal verbs", { exact: true });
+  await search.fill("CLEAN UP");
+  await expect(page.getByText("clean (something) up", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Viajes", exact: true })).toHaveCount(0);
+  await search.fill("limpiar");
+  await expect(page.getByText("clean (something) up", { exact: true })).toBeVisible();
+  await search.fill("zz-no-match-zz");
+  await expect(
+    page.getByText("No encontramos phrasal verbs con esa búsqueda.", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Limpiar búsqueda", exact: true }).click();
+  await expect(page.getByText("110 entradas · 20 temas", { exact: true })).toBeVisible();
   await context.setOffline(false);
   await page.goto("/");
   await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
