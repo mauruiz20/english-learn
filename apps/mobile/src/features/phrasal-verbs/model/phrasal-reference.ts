@@ -1,4 +1,5 @@
 import type { Corpus } from "@english-learn/content";
+import { topicLabel } from "@/features/topics/topic-labels";
 
 export type ReferenceEntry = {
   readonly id: string;
@@ -49,5 +50,46 @@ export function phrasalReference(content: Corpus): ReferenceGroup[] {
     });
     return entries.length ? [{ id: group.id, title: group.title, entries }] : [];
   });
-  return [...practice, ...cards];
+  const groups = [...practice, ...cards];
+  for (const source of SUPPLEMENTAL_ITEMS) {
+    const item = content.itemsById.get(source.id);
+    if (!item?.example) continue;
+    const entry = {
+      id: item.id,
+      verb: source.verb ?? item.term,
+      es: item.es,
+      example: item.example,
+    };
+    const title = topicLabel(source.topic);
+    const index = groups.findIndex(
+      (group) => group.title.toLocaleLowerCase("es") === title.toLocaleLowerCase("es"),
+    );
+    const existing = groups[index];
+    if (existing) groups[index] = { ...existing, entries: [...existing.entries, entry] };
+    else groups.push({ id: `reference.${source.topic}`, title, entries: [entry] });
+  }
+  return groups;
 }
+
+// Audited course senses outside the phrasal-card/practice categories. IDs preserve distinct meanings.
+const SUPPLEMENTAL_ITEMS: readonly { id: string; topic: string; verb?: string }[] = [
+  { id: "a2.family.look-like", topic: "family" },
+  { id: "a2.free-time.go-out", topic: "free-time" },
+  { id: "a2.shopping.try-on", topic: "shopping" },
+  { id: "a2.work.look-for", topic: "work" },
+  { id: "a2.situations.walk-past", topic: "directions" },
+  {
+    id: "b1.culture-and-entertainment.look-forward",
+    topic: "culture-and-entertainment",
+    verb: "look forward to",
+  },
+  { id: "b1.environment.throw-away", topic: "environment" },
+  { id: "b1.media-and-news.find-out", topic: "media-and-news" },
+  { id: "b1.money-and-shopping.pay-back", topic: "money-and-shopping" },
+  { id: "b1.money-and-shopping.save-up", topic: "money-and-shopping" },
+  { id: "b1.travel.set-off", topic: "travel" },
+  { id: "b2.lifelong-learning.pick-up", topic: "lifelong-learning" },
+  { id: "b2.lifelong-learning.brush-up-on", topic: "lifelong-learning" },
+  { id: "b2.lifelong-learning.keep-up-with", topic: "lifelong-learning" },
+  { id: "c1.law-and-ethics.speak-out", topic: "law-and-ethics" },
+];

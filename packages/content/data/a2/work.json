@@ -72,7 +72,11 @@
       "topics": ["work"],
       "kind": "phrase",
       "term": "look for",
-      "es": "buscar"
+      "es": "buscar",
+      "example": {
+        "en": "I'm looking for my keys.",
+        "es": "Estoy buscando mis llaves."
+      }
     },
     {
       "id": "a2.work.finish",

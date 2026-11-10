@@ -90,7 +90,11 @@
       "topics": ["travel"],
       "kind": "phrase",
       "term": "set off",
-      "es": "salir, ponerse en camino"
+      "es": "salir, ponerse en camino",
+      "example": {
+        "en": "We set off early in the morning.",
+        "es": "Nos ponemos en camino temprano por la mañana."
+      }
     },
     {
       "id": "b1.travel.have-ever-been",

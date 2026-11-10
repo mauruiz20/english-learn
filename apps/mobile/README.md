@@ -1229,8 +1229,8 @@ Daily reviews prioritize items whose latest answer today was wrong, including it
 for a later date. A correct retry removes that priority. Other due reviews fill the remaining
 allowance, without exceeding 20 completed review exercises per local date.
 
-**Referencia** (`/diccionario`) is a read-only phrasal-verb appendix: 110 authored entries from
-phrasal-verb cards and free-practice groups, organized under their existing topic titles. All topics appear in one continuous list with headings and dividers, followed by
+**Referencia** (`/diccionario`) is a read-only phrasal-verb appendix: 125 authored entries from
+phrasal-verb cards, free-practice groups and an audited list of course items taught under other topics, organized under their existing topic titles. All topics appear in one continuous list with headings and dividers, followed by
 the Spanish meanings and bilingual examples. All text comes from the bundled
 corpus; browsing makes no progress writes and works offline after the app is cached.
 

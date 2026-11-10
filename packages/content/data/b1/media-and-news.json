@@ -70,7 +70,11 @@
       "topics": ["media-and-news"],
       "kind": "phrase",
       "term": "find out",
-      "es": "averiguar, enterarse (de)"
+      "es": "averiguar, enterarse (de)",
+      "example": {
+        "en": "I need to find out the price.",
+        "es": "Necesito averiguar el precio."
+      }
     },
     {
       "id": "b1.media-and-news.however",

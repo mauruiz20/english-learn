@@ -54,7 +54,11 @@
       "topics": ["family", "vocabulary"],
       "kind": "phrase",
       "term": "look like",
-      "es": "parecerse a"
+      "es": "parecerse a",
+      "example": {
+        "en": "You look like your father.",
+        "es": "Te pareces a tu padre."
+      }
     },
     {
       "id": "a2.family.get-married",
