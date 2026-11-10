@@ -9,9 +9,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Added 15 omitted phrasal-verb meanings to the reference, including look forward to and the
+  informal-learning meaning of pick up, with bilingual examples.
+
 - Search the phrasal-verb reference by English verb or Spanish meaning, including offline.
 
-- Offline phrasal-verb reference, reachable from home, with 110 course entries grouped by topic,
+- Offline phrasal-verb reference, reachable from home, with 125 course entries grouped by topic,
   Spanish translations and bilingual examples in one list with topic headings and dividers.
   Browsing does not change learning progress.
 

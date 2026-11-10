@@ -66,7 +66,11 @@
       "topics": ["free-time"],
       "kind": "phrase",
       "term": "go out",
-      "es": "salir (a divertirse)"
+      "es": "salir (a divertirse)",
+      "example": {
+        "en": "We go out on Fridays.",
+        "es": "Salimos los viernes."
+      }
     },
     {
       "id": "a2.free-time.dance",

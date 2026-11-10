@@ -78,7 +78,11 @@
       "topics": ["culture-and-entertainment"],
       "kind": "phrase",
       "term": "look forward to + -ing",
-      "es": "tener muchas ganas de, esperar con ilusión"
+      "es": "tener muchas ganas de, esperar con ilusión",
+      "example": {
+        "en": "We're looking forward to seeing you.",
+        "es": "Tenemos muchas ganas de verte."
+      }
     },
     {
       "id": "b1.culture-and-entertainment.worth",
