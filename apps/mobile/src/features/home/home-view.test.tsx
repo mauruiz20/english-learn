@@ -755,3 +755,18 @@ describe("HomeView nothing to review", () => {
     expect(screen.queryByTestId("avi-nap", { includeHiddenElements: true })).not.toBeOnTheScreen();
   });
 });
+
+it("opens the phrasal-verb reference apart from lessons and practice", async () => {
+  const onOpenReference = jest.fn();
+  await render(
+    <HomeView
+      state={ready}
+      soundEnabled
+      themePreference="system"
+      {...handlers}
+      onOpenReference={onOpenReference}
+    />,
+  );
+  await fireEvent.press(screen.getByRole("button", { name: "Referencia: phrasal verbs por tema" }));
+  expect(onOpenReference).toHaveBeenCalledTimes(1);
+});

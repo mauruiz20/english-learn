@@ -167,6 +167,10 @@ export default function RootLayout() {
                       name="progreso/practicar"
                       options={{ title: "Palabras difíciles", headerRight }}
                     />
+                    <Stack.Screen
+                      name="diccionario"
+                      options={{ title: "Referencia", ...homeFallback }}
+                    />
                     <Stack.Screen name="about" options={{ title: "Acerca de", ...homeFallback }} />
                     <Stack.Screen name="cuenta" options={{ title: "Cuenta", ...homeFallback }} />
                     <Stack.Screen
