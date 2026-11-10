@@ -54,7 +54,7 @@ test("hard words: missed review words show under Difíciles, can be practiced an
   await expect(page.getByText("¡Repaso completado!")).toBeVisible();
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
   // Today's wrong answers receive priority immediately, within the remaining daily allowance.
-  expect(await pendingOnHome(page)).toBe(FAILED);
+  await expect.poll(() => pendingOnHome(page)).toBe(FAILED);
 
   // Tu progreso: the missed words are difficult.
   await page
