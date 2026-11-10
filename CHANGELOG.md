@@ -9,6 +9,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Search the phrasal-verb reference by English verb or Spanish meaning, including offline.
+
 - Offline phrasal-verb reference, reachable from home, with 110 course entries grouped by topic,
   Spanish translations and bilingual examples in one list with topic headings and dividers.
   Browsing does not change learning progress.
