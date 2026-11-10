@@ -27,6 +27,8 @@ async function placeAtB1(page: Page) {
 test("deepen: a done lesson links its study card in the recap and on the path, with its result", async ({
   page,
 }) => {
+  // This flow includes placement, a full lesson and card practice; CI WebKit needs a larger total budget.
+  test.setTimeout(60_000);
   const problems: string[] = [];
   page.on("console", (message: ConsoleMessage) => {
     if (message.type() === "error") problems.push(message.text());
