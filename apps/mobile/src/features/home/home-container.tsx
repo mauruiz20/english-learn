@@ -208,6 +208,7 @@ export function HomeContainer({
       settingsRepository.getDailyGoalPromptDismissed().catch(() => true),
       // Unreadable: no level intro opens on its own (it could open on every visit).
       settingsRepository.getSeenLevelIntros().catch(() => null),
+      progressRepository.getItemHistories(),
     ]).then(
       ([
         streak,
@@ -222,6 +223,7 @@ export function HomeContainer({
         goal,
         goalPromptDismissed,
         seenLevelIntros,
+        histories,
       ]) => {
         if (!active) return;
         // Every event leaves a trace here (a baseline always holds progress), so an empty store
@@ -236,6 +238,7 @@ export function HomeContainer({
         // Exactly what `/review` will serve next; overflow stays due for tomorrow.
         const reviewInput = {
           states,
+          histories,
           today,
           exercises: content.exercises,
           remainingExercises: Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewedExercises),

@@ -66,13 +66,15 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
     Promise.all([
       progressRepository.getReviewStates(),
       progressRepository.getDailyReviewExercises(today),
+      progressRepository.getItemHistories(),
     ]).then(
-      ([states, reviewedExercises]) => {
+      ([states, reviewedExercises, histories]) => {
         if (!active) return;
         // The same plan home counted (`reviewOutlook`): the day's rng picks the exercises.
         const remainingExercises = Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewedExercises);
         const { itemIds, exercises: planned } = planReview({
           states,
+          histories,
           today,
           exercises: content.exercises,
           remainingExercises,
@@ -230,11 +232,13 @@ function useRemainingReviews(
     Promise.all([
       progressRepository.getReviewStates(),
       progressRepository.getDailyReviewExercises(today),
+      progressRepository.getItemHistories(),
     ]).then(
-      ([states, reviewedExercises]) => {
+      ([states, reviewedExercises, histories]) => {
         if (!active) return;
         const input = {
           states,
+          histories,
           today,
           exercises: content.exercises,
           remainingExercises: Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewedExercises),

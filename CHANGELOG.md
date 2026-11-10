@@ -7,6 +7,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Reviews prioritize today’s latest wrong answers, then fill the remaining daily allowance with
+  scheduled reviews. The total remains capped at 20 review exercises per day.
+
 ## [0.4.0] - 2026-11-09
 
 ### Added

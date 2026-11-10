@@ -169,3 +169,43 @@ describe("a finished daily review is saved", () => {
     expect(second.served).toBeLessThanOrEqual(before.later);
   });
 });
+
+it("prioritizes today's saved wrong answers and removes their priority after a correct retry", async () => {
+  const db = createNodeSqliteDatabase();
+  try {
+    await migrate(db);
+    const repository = createSqliteProgressRepository(db);
+    const [missed, regular] = corpus.exercises
+      .filter((e) => e.type === "vocab" && e.itemIds.length === 1)
+      .slice(0, 2);
+    if (!missed || !regular) throw new Error("Two vocabulary exercises required");
+    await save(repository, summaryOf("older-lesson", [regular]), DAY1, "lesson", 1000);
+    await save(
+      repository,
+      summaryOf("today-lesson", [missed], new Set(missed.itemIds)),
+      DAY2,
+      "lesson",
+      2000,
+    );
+    const input = async () => ({
+      states: await repository.getReviewStates(),
+      histories: await repository.getItemHistories(),
+      today: DAY2,
+      exercises: [missed, regular],
+      remainingExercises: 20 - (await repository.getDailyReviewExercises(DAY2)),
+    });
+    const first = planReview({ ...(await input()), remainingExercises: 1 });
+    expect(first.itemIds).toEqual(missed.itemIds);
+    await save(
+      repository,
+      restrictToItems(summaryOf("review", first.exercises), first.itemIds),
+      DAY2,
+      "review",
+      3000,
+    );
+    expect(await repository.getDailyReviewExercises(DAY2)).toBe(1);
+    expect(planReview(await input()).itemIds).toEqual(regular.itemIds);
+  } finally {
+    db.close();
+  }
+});
