@@ -24,6 +24,7 @@ import {
   REVIEW_MAX_EXERCISES_PER_DAY,
   hasDeferredReviewExercises,
   reviewOutlook,
+  reviewContext,
 } from "@/features/review/model/review-plan";
 import { PronunciationSettingsButton } from "@/features/pronunciation/pronunciation-settings";
 import { useSoundPreference } from "@/features/sound/sound-preference";
@@ -237,6 +238,7 @@ export function HomeContainer({
         const level = placement?.level ?? null;
         // Exactly what `/review` will serve next; overflow stays due for tomorrow.
         const reviewInput = {
+          ...reviewContext(content, level, states),
           states,
           histories,
           today,
