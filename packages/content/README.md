@@ -445,7 +445,7 @@ character speaks and the learner replies by choosing or by writing. A dialogue g
   work like a practice lesson's.
 - Every reply that is not `good` is clearly worse for a reason the feedback names; the app
   shows the turn's first good reply after it ("Mejor: …").
-- **Bundled**: 25 dialogues in seven groups, building on the Situaciones themes. A1 "Primeros
+- **Bundled**: 26 dialogues in seven groups, building on the Situaciones themes. A1 "Primeros
   pasos": `introducing-yourself`, `buying-coffee`, `time-and-day` (very short lines, Spanish
   prompts and tips); A2 "Fuera de casa": `airport-check-in`, `restaurant-order` (the server
   brings the wrong dish), `doctor-visit`, `asking-directions`; A2 "Compras y recados":

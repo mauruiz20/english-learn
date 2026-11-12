@@ -1,0 +1,257 @@
+{
+  "dialogues": [
+    {
+      "id": "b1.dialogues.change-plans-with-friend",
+      "level": "B1",
+      "title": "Cambiar planes con un amigo",
+      "setting": "Habías quedado con Alex para tomar un café el sábado a las seis, pero necesitas cambiar el día. Tu objetivo es acordar otro momento y confirmar el plan. Puedes escuchar a Alex con el audio del dispositivo o leer sus mensajes.",
+      "characters": [
+        {
+          "id": "alex",
+          "name": "Alex",
+          "role": "tu amigo"
+        }
+      ],
+      "start": "hello",
+      "nodes": [
+        {
+          "id": "hello",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Hi! Are we still meeting for coffee at six on Saturday?",
+          "es": "¡Hola! ¿Sigue en pie lo de tomar un café el sábado a las seis?",
+          "next": "explain"
+        },
+        {
+          "id": "explain",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "I'm looking forward to it, but something has come up.",
+              "rating": "good",
+              "feedback": "Expresas que tienes ganas de verlo y avisas de un imprevisto. Después de «look forward to» va un nombre o un verbo con -ing.",
+              "next": "change"
+            },
+            {
+              "en": "I can't come.",
+              "rating": "ok",
+              "feedback": "Se entiende, pero una explicación breve y una alternativa ayudan a mantener el plan.",
+              "next": "change-short"
+            },
+            {
+              "en": "I had coffee yesterday.",
+              "rating": "wrong",
+              "feedback": "Alex pregunta por el plan del sábado, no por lo que hiciste ayer. Responde a ese plan.",
+              "next": "change-confused"
+            }
+          ]
+        },
+        {
+          "id": "change",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "No problem. What would you like to change?",
+          "es": "No hay problema. ¿Qué te gustaría cambiar?",
+          "next": "postpone"
+        },
+        {
+          "id": "change-short",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Oh, okay. Could we choose another day?",
+          "es": "Ah, de acuerdo. ¿Podemos elegir otro día?",
+          "next": "postpone"
+        },
+        {
+          "id": "change-confused",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "I mean our plan for this Saturday. Do you need to change it?",
+          "es": "Me refiero a nuestro plan para este sábado. ¿Necesitas cambiarlo?",
+          "next": "postpone"
+        },
+        {
+          "id": "postpone",
+          "kind": "write",
+          "prompt": "Propón posponerlo hasta el domingo. Usa «put it off» y «Sunday».",
+          "accepted": [
+            "{Could|Can} we put it off until Sunday[ instead]?",
+            "I'd like to put it off until Sunday."
+          ],
+          "tip": "«Put it off» significa posponerlo. Con «it», el pronombre va entre «put» y «off».",
+          "next": "time-window",
+          "wrongNext": "time-window-help",
+          "itemIds": ["b1.phrasal-verbs.put-off"]
+        },
+        {
+          "id": "time-window",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Sunday works for me. Would you prefer morning or afternoon?",
+          "es": "El domingo me viene bien. ¿Prefieres por la mañana o por la tarde?",
+          "next": "choose-time"
+        },
+        {
+          "id": "time-window-help",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Do you mean Sunday instead? That works for me. Would you prefer morning or afternoon?",
+          "es": "¿Quieres decir el domingo en su lugar? Me viene bien. ¿Prefieres por la mañana o por la tarde?",
+          "next": "choose-time"
+        },
+        {
+          "id": "choose-time",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "In the afternoon would be better for me.",
+              "rating": "good",
+              "feedback": "«Would be better for me» expresa una preferencia sin imponerla.",
+              "next": "offer-five"
+            },
+            {
+              "en": "Could we meet in the morning?",
+              "rating": "good",
+              "feedback": "«Could we…?» propone otra posibilidad. Alex puede aceptar o sugerir un ajuste.",
+              "next": "morning-busy"
+            },
+            {
+              "en": "It is under the table.",
+              "rating": "wrong",
+              "feedback": "Necesitas elegir un momento del día, no indicar dónde está algo.",
+              "next": "time-confused"
+            }
+          ]
+        },
+        {
+          "id": "offer-five",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Great! How about five in the afternoon?",
+          "es": "¡Genial! ¿Qué te parecen las cinco de la tarde?",
+          "next": "confirm-time"
+        },
+        {
+          "id": "morning-busy",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "I'm busy in the morning. Could we meet at five in the afternoon instead?",
+          "es": "Estoy ocupado por la mañana. ¿Podemos vernos a las cinco de la tarde en su lugar?",
+          "next": "confirm-time"
+        },
+        {
+          "id": "time-confused",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "I mean the time. I'm free at five in the afternoon. Would that work?",
+          "es": "Me refiero a la hora. Estoy libre a las cinco de la tarde. ¿Te viene bien?",
+          "next": "confirm-time"
+        },
+        {
+          "id": "confirm-time",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Five sounds good. Where shall we meet?",
+              "rating": "good",
+              "feedback": "Confirmas la hora y preguntas por el lugar. «Sounds good» significa «me parece bien».",
+              "next": "place"
+            },
+            {
+              "en": "Fine.",
+              "rating": "ok",
+              "feedback": "Alex te entiende, pero repetir la hora evita confusiones.",
+              "next": "place"
+            },
+            {
+              "en": "Saturday at six, then.",
+              "rating": "wrong",
+              "feedback": "Ese era el plan anterior. El nuevo es el domingo a las cinco.",
+              "next": "place-correction"
+            }
+          ]
+        },
+        {
+          "id": "place",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Let's meet outside the cafe. Can you confirm the day and time?",
+          "es": "Veámonos frente al café. ¿Puedes confirmar el día y la hora?",
+          "next": "confirm-plan"
+        },
+        {
+          "id": "place-correction",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Sunday at five, not Saturday. Let's meet outside the cafe. Can you confirm the plan?",
+          "es": "El domingo a las cinco, no el sábado. Veámonos frente al café. ¿Puedes confirmar el plan?",
+          "next": "confirm-plan"
+        },
+        {
+          "id": "confirm-plan",
+          "kind": "write",
+          "prompt": "Confirma el plan: frente al café, el domingo a las cinco. Empieza con «Let's meet…».",
+          "accepted": [
+            "{Let's|Let us} meet outside {the cafe|the café} at {five|5}[ o'clock] on Sunday.",
+            "{Let's|Let us} meet on Sunday at {five|5}[ o'clock] outside {the cafe|the café}.",
+            "{Let's|Let us} meet outside {the cafe|the café} on Sunday at {five|5}[ o'clock]."
+          ],
+          "tip": "Puedes ordenar la información así: lugar + hora + día. «Let's meet outside the cafe at five on Sunday.»",
+          "next": "looking-forward",
+          "wrongNext": "confirm-help"
+        },
+        {
+          "id": "looking-forward",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "Perfect! I'm looking forward to seeing you!",
+          "es": "¡Perfecto! ¡Tengo muchas ganas de verte!",
+          "next": "say-goodbye"
+        },
+        {
+          "id": "confirm-help",
+          "kind": "npc",
+          "speaker": "alex",
+          "en": "The new plan is Sunday at five, outside the cafe. I'm looking forward to seeing you!",
+          "es": "El nuevo plan es el domingo a las cinco, frente al café. ¡Tengo muchas ganas de verte!",
+          "next": "say-goodbye"
+        },
+        {
+          "id": "say-goodbye",
+          "kind": "choose",
+          "options": [
+            {
+              "en": "Me too! See you on Sunday.",
+              "rating": "good",
+              "feedback": "Cierras la conversación con entusiasmo y confirmas el nuevo día.",
+              "next": "end-good"
+            },
+            {
+              "en": "Okay, bye.",
+              "rating": "ok",
+              "feedback": "Es una despedida válida, aunque confirmar el nuevo día resulta más claro.",
+              "next": "end-good"
+            },
+            {
+              "en": "See you on Saturday at six.",
+              "rating": "wrong",
+              "feedback": "Vuelves al horario anterior. Confirma el domingo a las cinco.",
+              "next": "end-confused"
+            }
+          ]
+        },
+        {
+          "id": "end-good",
+          "kind": "end",
+          "text": "Acordaron verse el domingo a las cinco frente al café. Cambiaste el plan y mantuviste el encuentro."
+        },
+        {
+          "id": "end-confused",
+          "kind": "end",
+          "text": "El día del encuentro sigue sin quedar claro. Puedes volver a intentarlo y confirmar el nuevo plan."
+        }
+      ],
+      "cardIds": ["b1.grammar.look-forward-to"]
+    }
+  ]
+}
