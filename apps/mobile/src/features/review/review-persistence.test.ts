@@ -10,6 +10,7 @@ import { createTestRandomBytes } from "@/testing/random-bytes";
 import {
   REVIEW_MAX_EXERCISES_PER_DAY,
   planReview,
+  reviewContext,
   restrictToItems,
   reviewOutlook,
 } from "./model/review-plan";
@@ -205,6 +206,63 @@ it("prioritizes today's saved wrong answers and removes their priority after a c
     );
     expect(await repository.getDailyReviewExercises(DAY2)).toBe(1);
     expect(planReview(await input()).itemIds).toEqual(regular.itemIds);
+  } finally {
+    db.close();
+  }
+});
+
+it("keeps yesterday's error first, then studied B2 material ahead of an older A1 backlog", async () => {
+  const db = createNodeSqliteDatabase();
+  try {
+    await migrate(db);
+    const repository = createSqliteProgressRepository(db);
+    const vocabulary = corpus.exercises.filter(
+      (exercise) => exercise.type === "vocab" && exercise.itemIds.length === 1,
+    );
+    const basic = vocabulary
+      .filter((exercise) => corpus.itemsById.get(exercise.itemIds[0]!)?.level === "A1")
+      .slice(0, 20);
+    const [missed, advanced] = vocabulary
+      .filter((exercise) => corpus.itemsById.get(exercise.itemIds[0]!)?.level === "B2")
+      .slice(0, 2);
+    if (!missed || !advanced || basic.length !== 20)
+      throw new Error("Expected mixed-level corpus fixtures");
+    await save(repository, summaryOf("old-basic", basic), addDays(DAY1, -5), "lesson", 1);
+    await save(
+      repository,
+      summaryOf("yesterday-missed", [missed], new Set(missed.itemIds)),
+      DAY1,
+      "lesson",
+      2,
+    );
+    await save(repository, summaryOf("yesterday-advanced", [advanced]), DAY1, "lesson", 3);
+    const input = async () => {
+      const states = await repository.getReviewStates();
+      return {
+        ...reviewContext(corpus, "B2", states),
+        states,
+        histories: await repository.getItemHistories(),
+        today: DAY2,
+        exercises: corpus.exercises,
+        remainingExercises: 20 - (await repository.getDailyReviewExercises(DAY2)),
+      };
+    };
+    const planned = planReview(await input());
+    expect(planned.itemIds[0]).toBe(missed.itemIds[0]);
+    expect(planned.itemIds.indexOf(advanced.itemIds[0]!)).toBeLessThan(
+      planned.itemIds.indexOf(basic[0]!.itemIds[0]!),
+    );
+    const first = planReview({ ...(await input()), remainingExercises: 1 });
+    await save(
+      repository,
+      restrictToItems(summaryOf("review", first.exercises), first.itemIds),
+      DAY2,
+      "review",
+      4,
+    );
+    expect(await repository.getDailyReviewExercises(DAY2)).toBe(1);
+    expect(planReview(await input()).itemIds).not.toContain(missed.itemIds[0]);
+    expect(planReview(await input()).exercises.length).toBeLessThanOrEqual(19);
   } finally {
     db.close();
   }

@@ -32,6 +32,7 @@ import { useLeaveConfirmation } from "@/shared/navigation/leave-confirmation";
 import {
   listeningRng,
   planReview,
+  reviewContext,
   restrictToItems,
   reviewOutlook,
   hasDeferredReviewExercises,
@@ -67,12 +68,14 @@ export function ReviewContainer({ content = corpus }: { content?: Corpus }) {
       progressRepository.getReviewStates(),
       progressRepository.getDailyReviewExercises(today),
       progressRepository.getItemHistories(),
+      progressRepository.getPlacementResult(),
     ]).then(
-      ([states, reviewedExercises, histories]) => {
+      ([states, reviewedExercises, histories, placement]) => {
         if (!active) return;
         // The same plan home counted (`reviewOutlook`): the day's rng picks the exercises.
         const remainingExercises = Math.max(0, REVIEW_MAX_EXERCISES_PER_DAY - reviewedExercises);
         const { itemIds, exercises: planned } = planReview({
+          ...reviewContext(content, placement?.level ?? null, states),
           states,
           histories,
           today,
@@ -233,10 +236,12 @@ function useRemainingReviews(
       progressRepository.getReviewStates(),
       progressRepository.getDailyReviewExercises(today),
       progressRepository.getItemHistories(),
+      progressRepository.getPlacementResult(),
     ]).then(
-      ([states, reviewedExercises, histories]) => {
+      ([states, reviewedExercises, histories, placement]) => {
         if (!active) return;
         const input = {
+          ...reviewContext(content, placement?.level ?? null, states),
           states,
           histories,
           today,

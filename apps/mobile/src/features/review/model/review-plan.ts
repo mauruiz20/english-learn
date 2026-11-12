@@ -1,11 +1,13 @@
-import type { Exercise } from "@english-learn/content";
+import type { Corpus, Exercise, Level } from "@english-learn/content";
 import {
+  LEVELS,
   selectSession,
   type ItemHistory,
   type LocalDate,
   type ReviewState,
   type Rng,
 } from "@english-learn/domain";
+import { autoPathLevel, isLessonDone } from "@/features/lesson/model/lesson-catalog";
 import type { LessonSummary } from "@/features/lesson/model/lesson-session";
 
 /** Most items one daily review session practices. */
@@ -38,22 +40,24 @@ function inFirstSteps(state: ReviewState): boolean {
 }
 
 /**
- * Items the daily review practices today: latest wrong answers from today, then due states,
- * capped at `REVIEW_MAX_ITEMS`. Among due items, those in their first steps (interval ≤ 1 day: yesterday's new
- * lesson items, lapses) come first, so a backlog never pushes them out; within each group,
- * `selectSession` orders them (most overdue, then most lapsed). New items are never added here:
- * they come from lessons.
+ * Unresolved wrong answers (including previous days) come first. Due reviews then favor the
+ * automatic path level and nearby studied levels; each band retains the existing SRS order.
+ * Only stored, reviewable items are eligible: this never introduces new learning material.
  */
 export function pendingReviewItems({
   states,
   today,
   exercises,
   histories = [],
+  level,
+  itemsById,
 }: {
   states: readonly ReviewState[];
   today: LocalDate;
   exercises: readonly Exercise[];
   histories?: readonly ItemHistory[];
+  level?: Level;
+  itemsById?: ReadonlyMap<string, { readonly level: Level }>;
 }): string[] {
   const byItem = exercisesByItem(exercises);
   const reviewable = states.filter((s) => byItem.has(s.itemId));
@@ -66,18 +70,37 @@ export function pendingReviewItems({
       maxNew: 0,
     }).reviews;
   const known = new Set(reviewable.map((state) => state.itemId));
-  // The latest failed answer today gets a retry even if SRS schedules it for tomorrow.
+  // A wrong answer keeps its priority across dates until a newer non-failing answer replaces it.
   const mistakes = histories
-    .filter((history) => history.lastSeen === today && (history.recentGrades.at(-1) ?? 5) < 3)
+    .filter((history) => history.lastSeen <= today && (history.recentGrades.at(-1) ?? 5) < 3)
+    .sort((a, b) => b.lastSeen.localeCompare(a.lastSeen) || a.itemId.localeCompare(b.itemId))
     .map((history) => history.itemId)
     .filter((itemId) => known.has(itemId));
-  return [
-    ...new Set([
-      ...mistakes,
-      ...plan(reviewable.filter(inFirstSteps)),
-      ...plan(reviewable.filter((s) => !inFirstSteps(s))),
-    ]),
-  ].slice(0, REVIEW_MAX_ITEMS);
+  const rankedLevels =
+    level === undefined
+      ? []
+      : [...LEVELS].sort(
+          (a, b) =>
+            Math.abs(LEVELS.indexOf(a) - LEVELS.indexOf(level)) -
+              Math.abs(LEVELS.indexOf(b) - LEVELS.indexOf(level)) ||
+            LEVELS.indexOf(a) - LEVELS.indexOf(b),
+        );
+  const itemLevel = (state: ReviewState) =>
+    itemsById?.get(state.itemId)?.level ?? byItem.get(state.itemId)?.[0]?.level;
+  const bands =
+    itemsById && level
+      ? [
+          ...rankedLevels.map((candidate) =>
+            reviewable.filter((state) => itemLevel(state) === candidate),
+          ),
+          reviewable.filter((state) => itemLevel(state) === undefined),
+        ]
+      : [reviewable];
+  const due = bands.flatMap((band) => [
+    ...plan(band.filter(inFirstSteps)),
+    ...plan(band.filter((state) => !inFirstSteps(state))),
+  ]);
+  return [...new Set([...mistakes, ...due])].slice(0, REVIEW_MAX_ITEMS);
 }
 
 /**
@@ -151,10 +174,27 @@ export type ReviewPlanInput = {
   /** Remaining daily exercise allowance; omitted only by callers that plan a fresh day. */
   readonly remainingExercises?: number;
   readonly histories?: readonly ItemHistory[];
+  readonly level?: Level;
+  readonly itemsById?: ReadonlyMap<string, { readonly level: Level }>;
 };
 
+/** Use the same automatic course progression as home, not a manually browsed level. */
+export function reviewContext(
+  content: Corpus,
+  placementLevel: Level | null,
+  states: readonly ReviewState[],
+) {
+  const reviewed = new Set(states.map((state) => state.itemId));
+  return {
+    level: autoPathLevel(content.lessons, placementLevel, (lesson) =>
+      isLessonDone(lesson, content.exercisesById, reviewed),
+    ),
+    itemsById: content.itemsById,
+  };
+}
+
 export type ReviewPlan = {
-  /** The due items the session reviews (and saves). */
+  /** The items the session reviews (and saves). */
   readonly itemIds: readonly string[];
   /** The exercises it serves: one exercise may review several of `itemIds`. */
   readonly exercises: readonly Exercise[];
@@ -177,9 +217,8 @@ export function planReview(input: ReviewPlanInput): ReviewPlan {
 
 /**
  * What today's reviews will serve, in exercises (the unit the review screen counts): `next` is
- * the next session's size, `later` what the sessions after it will serve today. A reviewed item
- * is never due again the same day (a pass moves it ahead, a lapse to tomorrow), so later sessions
- * plan over the due items the earlier ones left.
+ * the next session's size, `later` what fits the remaining allowance after it. Each planned item
+ * is counted once here; after saving, a failed answer can reappear while allowance remains.
  */
 export function reviewOutlook(input: ReviewPlanInput): { next: number; later: number } {
   let states = input.states;

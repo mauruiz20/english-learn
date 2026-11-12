@@ -20,8 +20,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Reviews prioritize today’s latest wrong answers, then fill the remaining daily allowance with
-  scheduled reviews. The total remains capped at 20 review exercises per day.
+- Reviews prioritize unresolved wrong answers from any previous day, then favor scheduled
+  reviews at the learner’s automatic course level and nearby studied levels. The total remains capped at 20 review exercises per day.
 
 ## [0.4.0] - 2026-11-09
 

@@ -1,4 +1,4 @@
-import type { Exercise } from "@english-learn/content";
+import type { Exercise, Level } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import { addDays, initialState, localDate, type ReviewState } from "@english-learn/domain";
 import {
@@ -22,6 +22,7 @@ import {
   pendingReviewItems,
   pickReviewExercises,
   planReview,
+  reviewContext,
   restrictToItems,
   reviewOutlook,
 } from "./review-plan";
@@ -405,11 +406,106 @@ describe("today's wrong answers first", () => {
     expect(planReview({ ...input, remainingExercises: 0 }).exercises).toEqual([]);
   });
 
-  it("stops giving an early item priority after a correct answer or after the date changes", () => {
+  it("stops giving an early item priority after a correct answer, but not just a date change", () => {
     const input = { states: [due(ordinary, 4), notDue(missed)], today, exercises: allExercises };
     expect(planReview({ ...input, histories: [history(5)] }).itemIds).toEqual([ordinary]);
     expect(planReview({ ...input, histories: [history(1, addDays(today, -1))] }).itemIds).toEqual([
+      missed,
       ordinary,
     ]);
   });
+});
+
+describe("unresolved mistakes and current-level priority", () => {
+  const basic = Array.from({ length: 20 }, (_, index) => `a1.probe.basic-${index}`);
+  const advanced = "b2.probe.advanced";
+  const middle = "b1.probe.middle";
+  const exercises = [...basic, advanced, middle].map((itemId, index) => ({
+    ...vocab,
+    id: `probe.exercise-${index}`,
+    itemIds: [itemId],
+  }));
+  const itemsById = new Map<string, { level: Level }>([
+    ...basic.map((id) => [id, { level: "A1" as const }] as const),
+    [advanced, { level: "B2" as const }] as const,
+    [middle, { level: "B1" as const }] as const,
+  ]);
+  const input = {
+    states: [...basic.map((id) => due(id, 10)), due(advanced), due(middle)],
+    today,
+    exercises,
+    itemsById,
+    level: "B2" as const,
+  };
+  it.each([1, 4])(
+    "keeps an unresolved mistake from %i days ago ahead of a full basic backlog",
+    (daysAgo) => {
+      const plan = planReview({
+        ...input,
+        remainingExercises: 1,
+        histories: [
+          {
+            itemId: advanced,
+            lastSeen: addDays(today, -daysAgo),
+            lastLapse: addDays(today, -daysAgo),
+            recentGrades: [1],
+          },
+        ],
+      });
+      expect(plan.itemIds).toEqual([advanced]);
+      expect(plan.exercises).toHaveLength(1);
+    },
+  );
+  it("fills the daily allowance with studied current-level items before much lower levels, without adding unseen content", () => {
+    const plan = planReview(input);
+    expect(plan.itemIds.slice(0, 2)).toEqual([advanced, middle]);
+    expect(plan.exercises).toHaveLength(20);
+    expect(plan.itemIds.every((id) => input.states.some((state) => state.itemId === id))).toBe(
+      true,
+    );
+    expect(planReview({ ...input, remainingExercises: 0 }).exercises).toEqual([]);
+  });
+  it("still puts unresolved lower-level errors before correct advanced items", () => {
+    const missed = basic[19]!;
+    expect(
+      planReview({
+        ...input,
+        remainingExercises: 1,
+        histories: [
+          { itemId: missed, lastSeen: addDays(today, -1), lastLapse: null, recentGrades: [1] },
+        ],
+      }).itemIds,
+    ).toEqual([missed]);
+  });
+});
+
+it("preserves SRS tie ordering when a fixture lacks item metadata but its exercises have a level", () => {
+  const states = [due("a2.routine.wake-up"), due("a2.routine.breakfast")];
+  expect(
+    planReview({
+      states,
+      today,
+      exercises: allExercises,
+      level: "A2",
+      itemsById: new Map([["a2.routine.wake-up", { level: "A2" }]]),
+    }).itemIds,
+  ).toEqual(["a2.routine.breakfast", "a2.routine.wake-up"]);
+});
+
+it("derives the review level from the existing automatic course progression", () => {
+  expect(reviewContext(corpus, "B2", []).level).toBe("B2");
+  const learned = new Set(
+    corpus.lessons
+      .filter((lesson) => lesson.level === "B2")
+      .flatMap((lesson) =>
+        lesson.exerciseIds.flatMap((id) => corpus.exercisesById.get(id)?.itemIds ?? []),
+      ),
+  );
+  expect(
+    reviewContext(
+      corpus,
+      "B2",
+      [...learned].map((id) => initialState(id, today)),
+    ).level,
+  ).toBe("C1");
 });
