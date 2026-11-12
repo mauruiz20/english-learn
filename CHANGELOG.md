@@ -9,6 +9,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Optional B1 lesson pilot, "Cambiar planes con un amigo": one connected conversation with
+  branching replies, two short written responses, contextual feedback and optional device audio.
+
 - Added 15 omitted phrasal-verb meanings to the reference, including look forward to and the
   informal-learning meaning of pick up, with bilingual examples.
 

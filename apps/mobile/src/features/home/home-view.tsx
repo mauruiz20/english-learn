@@ -129,6 +129,7 @@ type HomeViewProps = {
   /** "Práctica libre", under the study cards. */
   onOpenPractice?: () => void;
   onOpenReference?: () => void;
+  onOpenLessonPilot?: () => void;
   /** "Tu progreso" (`/progreso`): the word buckets and the difficult words. */
   onOpenProgress?: () => void;
   /** Opens one study card (the "Profundiza" steps under done lessons). */
@@ -1029,6 +1030,7 @@ export function HomeView({
   onOpenCards,
   onOpenPractice,
   onOpenReference,
+  onOpenLessonPilot,
   onOpenProgress,
   onChooseDailyGoal,
   onDismissDailyGoalPrompt,
@@ -1090,6 +1092,18 @@ export function HomeView({
         </Text>
       )}
 
+      {state.status === "ready" && onOpenLessonPilot !== undefined && (
+        <View style={{ gap: spacing.sm }}>
+          <Text variant="smallStrong" tone="ink">
+            Prueba una lección diferente
+          </Text>
+          <Text>Una conversación B1 con decisiones, audio opcional y respuestas escritas.</Text>
+          <Button
+            label="Lección piloto B1: Cambiar planes con un amigo"
+            onPress={onOpenLessonPilot}
+          />
+        </View>
+      )}
       {state.status === "ready" && (
         <ReadyHome state={state} checkpointEntry={checkpointEntry} {...handlers} />
       )}

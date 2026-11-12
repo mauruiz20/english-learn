@@ -54,7 +54,7 @@ async function openAirportDialogue(page: Page, status: string) {
   await page.goto(`/?today=${DAY_1}`);
   await page.getByRole("button", { name: /^Práctica libre: .*Diálogos.*, a tu ritmo$/ }).click();
   await expect(page.getByRole("heading", { name: "Práctica libre", exact: true })).toBeVisible();
-  await page.getByRole("button", { name: /^Diálogos: 7 grupos, 25 diálogos/ }).click();
+  await page.getByRole("button", { name: /^Diálogos: 7 grupos, 26 diálogos/ }).click();
   await expect(page.getByRole("heading", { name: "Diálogos", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fuera de casa, nivel A2" })).toBeVisible();
   await page.getByRole("button", { name: `${AIRPORT.title}, ${status}`, exact: true }).click();
