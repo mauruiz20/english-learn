@@ -43,11 +43,12 @@
           "id": "practice.dialogues.day-to-day",
           "level": "B1",
           "title": "Del día a día",
-          "summary": "Devoluciones, charlas en el trabajo y llamadas.",
+          "summary": "Planes con amigos, devoluciones, charlas en el trabajo y llamadas.",
           "dialogueIds": [
             "b1.dialogues.returning-headphones",
             "b1.dialogues.coworker-small-talk",
-            "b1.dialogues.reschedule-appointment"
+            "b1.dialogues.reschedule-appointment",
+            "b1.dialogues.change-plans-with-friend"
           ]
         },
         {

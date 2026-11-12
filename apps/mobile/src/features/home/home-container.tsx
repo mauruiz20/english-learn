@@ -1,3 +1,4 @@
+import { dialoguePath } from "@/features/practice/practice-routes";
 import type { Corpus } from "@english-learn/content";
 import { corpus } from "@english-learn/content/corpus";
 import {
@@ -387,6 +388,12 @@ export function HomeContainer({
       onOpenCards={() => router.push("/fichas")}
       onOpenPractice={() => router.push("/practica")}
       onOpenReference={() => router.push("/diccionario")}
+      {...(content.dialoguesById.has("b1.dialogues.change-plans-with-friend")
+        ? {
+            onOpenLessonPilot: () =>
+              router.push(dialoguePath("b1.dialogues.change-plans-with-friend")),
+          }
+        : {})}
       onOpenProgress={() => router.push("/progreso")}
       onOpenCard={(cardId) => router.push(cardPath(cardId))}
       onChoosePathLevel={choosePathLevel}

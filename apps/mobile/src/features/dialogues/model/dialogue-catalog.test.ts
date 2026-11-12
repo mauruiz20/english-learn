@@ -110,11 +110,11 @@ describe("dialogues in Práctica libre", () => {
     ]);
   });
 
-  it("bundles the Diálogos collection with 25 dialogues from A1 to C1", () => {
+  it("bundles the Diálogos collection with 26 dialogues from A1 to C1", () => {
     const collection = practiceCollectionBySlug(corpus, "dialogues");
     expect(collection?.title).toBe("Diálogos");
     const groups = practiceGroupRows(collection!, corpus, []);
     expect(groups.map((g) => g.level)).toEqual(["A1", "A2", "A2", "B1", "B1", "B2", "C1"]);
-    expect(groups.flatMap((g) => g.lessons)).toHaveLength(25);
+    expect(groups.flatMap((g) => g.lessons)).toHaveLength(26);
   });
 });
