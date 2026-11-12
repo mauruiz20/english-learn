@@ -1225,9 +1225,11 @@ console errors, or if progress loaded from the database is not rendered.
 - **No storage in private browsing on Safari / WebKit.** Without OPFS the database cannot open
   and the app shows "No pudimos abrir tus datos."
 
-Daily reviews prioritize items whose latest answer today was wrong, including items scheduled
-for a later date. A correct retry removes that priority. Other due reviews fill the remaining
-allowance, without exceeding 20 completed review exercises per local date.
+Daily reviews prioritize unresolved wrong answers across dates, including items scheduled for a
+later date. A newer non-failing answer removes that priority. Other due reviews favor the
+automatic course level and nearby already-studied levels before much lower-level backlogs,
+retaining SRS ordering within each level. Manually browsing a level does not change this target.
+No unstudied items are introduced; the limit remains 20 completed review exercises per local date.
 
 **Referencia** (`/diccionario`) is a read-only phrasal-verb appendix: 125 authored entries from
 phrasal-verb cards, free-practice groups and an audited list of course items taught under other topics, organized under their existing topic titles. All topics appear in one continuous list with headings and dividers, followed by
