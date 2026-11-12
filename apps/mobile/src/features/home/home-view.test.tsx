@@ -770,3 +770,20 @@ it("opens the phrasal-verb reference apart from lessons and practice", async () 
   await fireEvent.press(screen.getByRole("button", { name: "Referencia: phrasal verbs por tema" }));
   expect(onOpenReference).toHaveBeenCalledTimes(1);
 });
+
+it("offers the optional B1 lesson pilot without changing the learning path", async () => {
+  const onOpenLessonPilot = jest.fn();
+  await render(
+    <HomeView
+      state={ready}
+      soundEnabled
+      themePreference="system"
+      {...handlers}
+      onOpenLessonPilot={onOpenLessonPilot}
+    />,
+  );
+  await fireEvent.press(
+    screen.getByRole("button", { name: "Lección piloto B1: Cambiar planes con un amigo" }),
+  );
+  expect(onOpenLessonPilot).toHaveBeenCalledTimes(1);
+});
