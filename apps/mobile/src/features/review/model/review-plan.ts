@@ -10,7 +10,10 @@ import {
 import { autoPathLevel, isLessonDone } from "@/features/lesson/model/lesson-catalog";
 import type { LessonSummary } from "@/features/lesson/model/lesson-session";
 
-/** Most items one daily review session practices. */
+/**
+ * Default cap of `pendingReviewItems`. A planned session is bounded by exercises instead
+ * (`REVIEW_MAX_EXERCISES_PER_DAY`), so it may save more items when one exercise reviews several.
+ */
 export const REVIEW_MAX_ITEMS = 20;
 /** Most review exercises served per local date, including later sessions. */
 export const REVIEW_MAX_EXERCISES_PER_DAY = 20;
@@ -51,6 +54,7 @@ export function pendingReviewItems({
   histories = [],
   level,
   itemsById,
+  limit = REVIEW_MAX_ITEMS,
 }: {
   states: readonly ReviewState[];
   today: LocalDate;
@@ -58,6 +62,8 @@ export function pendingReviewItems({
   histories?: readonly ItemHistory[];
   level?: Level;
   itemsById?: ReadonlyMap<string, { readonly level: Level }>;
+  /** Most items to return; `planReview` asks for every due item and caps by exercises instead. */
+  limit?: number;
 }): string[] {
   const byItem = exercisesByItem(exercises);
   const reviewable = states.filter((s) => byItem.has(s.itemId));
@@ -66,7 +72,7 @@ export function pendingReviewItems({
       states: group,
       today,
       newItemIds: [],
-      maxReviews: REVIEW_MAX_ITEMS,
+      maxReviews: limit,
       maxNew: 0,
     }).reviews;
   const known = new Set(reviewable.map((state) => state.itemId));
@@ -100,7 +106,7 @@ export function pendingReviewItems({
     ...plan(band.filter(inFirstSteps)),
     ...plan(band.filter((state) => !inFirstSteps(state))),
   ]);
-  return [...new Set([...mistakes, ...due])].slice(0, REVIEW_MAX_ITEMS);
+  return [...new Set([...mistakes, ...due])].slice(0, limit);
 }
 
 /**
@@ -201,11 +207,14 @@ export type ReviewPlan = {
 };
 
 /**
- * The next daily review session: its items (`pendingReviewItems`) and its exercises, picked with
- * the day's rng (`reviewPlanRng`). Deterministic: home counts with it and `/review` plays it.
+ * The next daily review session: its exercises, picked with the day's rng (`reviewPlanRng`) over
+ * every due item in priority order (`pendingReviewItems`) until the remaining daily allowance is
+ * full, and the items those exercises review. Filling by exercises rather than stopping at a fixed
+ * number of items means a session is never cut short when one exercise reviews several items.
+ * Deterministic: home counts with it and `/review` plays it.
  */
 export function planReview(input: ReviewPlanInput): ReviewPlan {
-  const itemIds = pendingReviewItems(input);
+  const itemIds = pendingReviewItems({ ...input, limit: Number.POSITIVE_INFINITY });
   const exercises = pickReviewExercises({
     itemIds,
     exercises: input.exercises,
