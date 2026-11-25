@@ -211,6 +211,7 @@ pnpm validate:content      # validate packages/content/data
 pnpm --filter @english-learn/mobile export:web   # production export to apps/mobile/dist
 pnpm --filter @english-learn/mobile exec playwright install chromium webkit   # first time only
 pnpm --filter @english-learn/mobile e2e:web
+pnpm --filter @english-learn/mobile e2e:quick e2e/review.spec.ts   # small change: all Chromium + named WebKit specs
 ```
 
 Android APK/AAB builds (EAS or local Gradle) and web hosting headers are covered in

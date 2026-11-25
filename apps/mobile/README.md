@@ -565,7 +565,10 @@ a sticky note "Repaso, N pendientes" where N is the next review's number of EXER
 "Ejercicio 1 de N" shows; one exercise may review several due items), plus "y M más después" when
 more is due today than one review holds (M: what the later reviews of the day will serve; a
 reviewed item is never due again the same day), with a "Repasar" button. A maximum of 20 actual
-review exercises can be completed per local date across sessions and app restarts. Lessons do not
+review exercises can be completed per local date across sessions and app restarts. A session is
+filled by exercises, not by a fixed number of items: it walks every due item in priority order
+until the remaining allowance is full, so a backlog gives one 20-exercise session instead of, say,
+19 plus a leftover session of 1 (20 items whose exercises covered two of them). Lessons do not
 use that allowance; due review items beyond it stay unchanged until tomorrow. Home and `/review`
 read completed review counts from the event log, and the summary says "El resto queda para
 mañana." when there is deferred backlog. Older review events without an exercise count reserve the full
@@ -1018,7 +1021,14 @@ pnpm export:web     # production static SPA export to dist/, then sw.js, then ch
 pnpm serve:web      # serve dist/ on http://localhost:4173 with the required headers
 pnpm export:web:e2e # e2e export to dist-e2e/ (EXPO_PUBLIC_E2E=1), with its sw.js
 pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
+pnpm e2e:quick [spec ...]  # small changes: every spec on Chromium, only the named specs on WebKit
 ```
+
+**Choosing the e2e run.** WebKit runs on one worker and takes more than half of the full suite.
+For a small change, `pnpm e2e:quick e2e/<area>*.spec.ts` runs the whole suite on Chromium and the
+specs of the touched area on WebKit (the smoke spec when none is named). Run the full suite
+(`pnpm e2e:web`) for large changes, anything touching storage, the service worker or iOS-specific
+code, and before a release.
 
 ### Screenshots (dev tool)
 

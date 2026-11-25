@@ -58,8 +58,6 @@ async function homeCount(page: Page): Promise<{ next: number; later: number }> {
   return { next, later };
 }
 
-const total = ({ next, later }: { next: number; later: number }) => next + later;
-
 function uploadedReviewExercises(account: FakeAccount): number {
   const uploaded = new Map<string, number>();
   for (const event of account.syncs.flatMap((sync) => sync.events)) {
@@ -94,41 +92,25 @@ test("a backlog bigger than one review: home counts what each review serves and 
   await page.getByRole("button", { name: "Continuar con Google", exact: true }).click();
   await expect(page.getByRole("heading", { name: `Hola, ${account.givenName}` })).toBeVisible();
 
+  // One review fills today's whole allowance: no leftover one-exercise session ("y 1 más
+  // después"), and the backlog beyond it is announced for tomorrow.
   await page.goto(`/?today=${TODAY}`);
-  await expect(page.getByText(/^y \d+ más después$/)).toBeVisible();
+  await expect(page.getByText("20 pendientes", { exact: true })).toBeVisible();
+  await expect(page.getByText("El resto queda para mañana.").last()).toBeVisible();
   const first = await homeCount(page);
-  expect(first.next).toBeGreaterThan(0);
-  expect(first.next).toBeLessThanOrEqual(20);
-  expect(first.later).toBeGreaterThan(0);
+  expect(first).toEqual({ next: 20, later: 0 });
+  await expect(page.getByText(/más después/)).toHaveCount(0);
 
   await page.getByRole("button", { name: "Repasar", exact: true }).click();
-  await expect(page.getByText(`Ejercicio 1 de ${first.next}`, { exact: true })).toBeVisible();
+  await expect(page.getByText("Ejercicio 1 de 20", { exact: true })).toBeVisible();
   const firstServed = await playSessionCorrectly(page, "¡Repaso completado!");
-  expect(firstServed).toBe(first.next);
-  await expect(
-    page.getByText(new RegExp(`Te quedan ${first.later} para repasar hoy`)),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
-
-  // Home drops by exactly what the review served.
-  await expect.poll(async () => total(await homeCount(page))).toBe(first.later);
-  const second = await homeCount(page);
-  expect(second.next).toBe(first.later);
-  expect(second.later).toBe(0);
-  await expect.poll(() => account.storedTypes()).toContain("session_completed");
-
-  // Saved: the same count after a reload (and the sync pull that comes with it).
-  await page.reload();
-  expect(await homeCount(page)).toEqual(second);
-
-  // The remaining allowance serves four more exercises, completing today's limit.
-  await page.getByRole("button", { name: "Repasar", exact: true }).click();
-  await expect(page.getByText(`Ejercicio 1 de ${second.next}`, { exact: true })).toBeVisible();
-  const secondServed = await playSessionCorrectly(page, "¡Repaso completado!");
-  expect(firstServed + secondServed).toBe(20);
+  expect(firstServed).toBe(20);
   await expect(page.getByText(/El resto queda para mañana\./).last()).toBeVisible();
+  await expect.poll(() => account.storedTypes()).toContain("session_completed");
   await expect.poll(() => uploadedReviewExercises(account)).toBe(20);
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
+  // Let home finish loading before navigating again, or the goto is aborted mid-navigation.
+  await expect(page.getByText("El resto queda para mañana.").last()).toBeVisible();
   await page.goto(`/?today=${TODAY}`);
   await expect(page.getByText("El resto queda para mañana.").last()).toBeVisible();
 

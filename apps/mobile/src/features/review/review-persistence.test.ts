@@ -130,8 +130,12 @@ describe("a finished daily review is saved", () => {
   it.each([12, 20, 45])("reviews %i due items and none of them is due again today", async (n) => {
     const learned = await learnLessons(repository, n);
     const before = await pending(repository, DAY2);
-    expect(before.length).toBe(Math.min(learned, 20));
+    // A session is capped by exercises, so it may save more items than the allowance when one
+    // exercise reviews several; it never plans an item nobody learned.
+    expect(before.length).toBeGreaterThanOrEqual(Math.min(learned, 20));
+    expect(before.length).toBeLessThanOrEqual(learned);
     const countBefore = await homeCount(repository, DAY2);
+    expect(countBefore.next).toBeLessThanOrEqual(REVIEW_MAX_EXERCISES_PER_DAY);
 
     const { itemIds: reviewed, served } = await doReview(
       repository,
