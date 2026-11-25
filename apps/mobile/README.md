@@ -1024,11 +1024,23 @@ pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
 pnpm e2e:quick [spec ...]  # small changes: every spec on Chromium, only the named specs on WebKit
 ```
 
-**Choosing the e2e run.** WebKit runs on one worker and takes more than half of the full suite.
+**Which browser runs a test.** A test runs on Chromium and WebKit unless its title carries a tag
+(`playwright.config.ts` gives each project a `grepInvert`):
+
+| Tag         | Runs on       | Used for                                                                                                                                                                                        |
+| ----------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| none        | both          | storage and database errors, back/forward cache, offline and updates, sign-in and sync, the address transfer, the smoke test, the core lesson, placement, leaving a lesson, word-order dragging |
+| `@chromium` | Chromium only | journeys whose logic does not depend on the browser (cards, review, practice, goals, …)                                                                                                         |
+| `@webkit`   | WebKit only   | Safari / iOS storage cases: no OPFS in private browsing, files held by a stuck page                                                                                                             |
+
+Tag a new test `@chromium` unless it exercises something the browsers do differently (storage,
+the service worker, navigation and history, pointer or drag input, audio).
+
+**Choosing the e2e run.** WebKit runs on one worker and is the slow half of the full suite.
 For a small change, `pnpm e2e:quick e2e/<area>*.spec.ts` runs the whole suite on Chromium and the
-specs of the touched area on WebKit (the smoke spec when none is named). Run the full suite
-(`pnpm e2e:web`) for large changes, anything touching storage, the service worker or iOS-specific
-code, and before a release.
+specs of the touched area on WebKit (the smoke spec when none is named; a named spec with only
+`@chromium` tests runs nothing there). Run the full suite (`pnpm e2e:web`) for large changes,
+anything touching storage, the service worker or iOS-specific code, and before a release.
 
 ### Screenshots (dev tool)
 
@@ -1066,8 +1078,9 @@ again about a second after each navigation without sending cookies, so a cookie-
 looked rolled back and was offered again after "Actualizar". Specs that write and reload at once call
 `waitForServiceWorker` first so the first visit's precaching does not slow the write down.
 
-First-time Playwright setup: `pnpm exec playwright install chromium webkit`. Every spec runs on
-Chromium and on WebKit (Safari / iOS web). Specs import `test` from `e2e/support/test.ts`, which
+First-time Playwright setup: `pnpm exec playwright install chromium webkit`. Untagged tests run on
+Chromium and on WebKit (Safari / iOS web); `@chromium` and `@webkit` tests on one of them (see
+"Which browser runs a test" above). Specs import `test` from `e2e/support/test.ts`, which
 runs each test in a fresh persistent browser profile: WebKit has no OPFS in Playwright's default
 ephemeral contexts (like Safari Private Browsing), so expo-sqlite could not open the database
 there. Playwright's WebKit also shares website data between profiles, so the webkit project runs
@@ -1195,7 +1208,7 @@ console errors, or if progress loaded from the database is not rendered.
 ## Known limitations
 
 - **Pronunciation depends on the device's voices and is not verified on an iPhone yet.** Unit
-  tests drive the service with a fake `speechSynthesis` and e2e stubs it on Chromium and WebKit;
+  tests drive the service with a fake `speechSynthesis` and e2e stubs it on Chromium;
   real iOS still needs a manual check (Home Screen app included). The voice and its quality are the
   device's: iOS ships compact voices, and better ones ("Enhanced", "Premium") must be downloaded
   in Settings → Accessibility → Spoken Content. Desktop Chrome's Google voices are network voices
@@ -1204,7 +1217,7 @@ console errors, or if progress loaded from the database is not rendered.
   expo-speech).
 
 - **Word lookup on native is not verified on a device yet.** RNTL covers the native card;
-  e2e covers web (Chromium and WebKit). Android draws the lookup underline solid and in the text
+  e2e covers web (Chromium). Android draws the lookup underline solid and in the text
   color (no dotted style or decoration color there). Inside a revealed choice row (a radio) or
   the feedback, a screen reader reads the row's label rather than each lookup button.
 
