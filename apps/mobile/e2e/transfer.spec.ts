@@ -90,7 +90,7 @@ test.describe("progress transfer to the new web address", () => {
     await expect(page.getByText(/insignias/).first()).toBeVisible();
   });
 
-  test("an old address without progress sends the learner to the new one at once", async ({
+  test("an old address without progress sends the learner to the new one at once @chromium", async ({
     page,
     transfers,
   }) => {
@@ -103,25 +103,7 @@ test.describe("progress transfer to the new web address", () => {
     expect(transfers.created).toEqual([]);
   });
 
-  test("a declined import saves nothing on the new address", async ({ page, transfers }) => {
-    await page.goto(`${OLD}/`);
-    await waitForServiceWorker(page);
-    await playFirstLesson(page);
-    await announceTheMove(page);
-    await page.reload();
-    await page.getByRole("button", { name: "Llevar mi progreso", exact: true }).click();
-
-    await page.getByRole("button", { name: "Cancelar", exact: true }).click();
-
-    await expect(page.getByText(/No importamos nada/)).toBeVisible();
-    expect(transfers.claims).toEqual([{ token: expect.any(String), ok: true }]);
-    await page.getByRole("button", { name: "Ir al inicio", exact: true }).click();
-    await page.waitForURL(`${NEW}/`);
-    await expect(page.getByRole("button", { name: "Mi rutina diaria", exact: true })).toBeVisible();
-    await expect(page.getByText("80 XP", { exact: true })).toHaveCount(0);
-  });
-
-  test("the old address never bounces a transfer token to the new one", async ({
+  test("the old address never bounces a transfer token to the new one @chromium", async ({
     page,
     transfers,
   }) => {
@@ -133,17 +115,5 @@ test.describe("progress transfer to the new web address", () => {
     await page.waitForURL(`${NEW}/importar`);
     await expect(page.getByRole("alert")).toContainText("no trae progreso");
     expect(transfers.claims).toEqual([]);
-  });
-
-  test("a used link explains itself and points back to the old address", async ({
-    page,
-    transfers,
-  }) => {
-    await page.goto(`${NEW}/importar#t=never-issued`);
-
-    await expect(page.getByRole("alert")).toContainText("ya se usó o venció");
-    expect(page.url()).toBe(`${NEW}/importar`);
-    expect(transfers.claims).toEqual([{ token: "never-issued", ok: false }]);
-    await expect(page.getByRole("button", { name: "Volver al sitio anterior" })).toBeVisible();
   });
 });

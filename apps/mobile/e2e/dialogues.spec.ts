@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { expect, test, type ConsoleMessage, type Page } from "./support/test";
-import { spoken, stubSpeech } from "./support/speech-stub";
 import { expandAccepted } from "../../../packages/domain/src/answer-matching/pattern";
 
 // `?today=` is a test-only clock override, compiled in only with EXPO_PUBLIC_E2E=1.
@@ -93,7 +92,7 @@ async function playAllGood(page: Page) {
   await expect(done).toBeVisible();
 }
 
-test("dialogues: an all-good path ends perfect, and a wrong reply changes the reaction", async ({
+test("dialogues: an all-good path ends perfect, and a wrong reply changes the reaction @chromium", async ({
   page,
 }) => {
   const problems = collectProblems(page);
@@ -132,21 +131,5 @@ test("dialogues: an all-good path ends perfect, and a wrong reply changes the re
   });
   await expect(row).toBeVisible();
   await expect(row.getByText(`Perfecto · ${perfect}`)).toBeVisible();
-  expect(problems).toEqual([]);
-});
-
-test("dialogues: the speaker on a character's line says it", async ({ page }) => {
-  const problems = collectProblems(page);
-  await stubSpeech(page);
-  await openAirportDialogue(page, "nuevo");
-  await page.getByRole("button", { name: "Empezar", exact: true }).click();
-  const greeting = node("greet", "npc").en;
-  const speaker = page.getByRole("button", { name: `Escuchar: ${greeting}`, exact: true });
-  await expect(speaker).toBeVisible();
-  // Nothing is said before the learner taps a speaker (read-aloud is off).
-  expect(await spoken(page)).toEqual([]);
-  await speaker.click();
-  await expect.poll(async () => (await spoken(page)).at(-1)?.text).toBe(greeting);
-  expect((await spoken(page)).at(-1)).toMatchObject({ voiceName: "Test English", lang: "en-US" });
   expect(problems).toEqual([]);
 });

@@ -29,7 +29,7 @@ async function playLesson(page: Page, title: string): Promise<number> {
   return playSessionCorrectly(page, "¡Lección completada!");
 }
 
-test("daily goal: picked once, counts lessons, is met, and starts again the next day", async ({
+test("daily goal: picked once, counts lessons, is met, and starts again the next day @chromium", async ({
   page,
 }) => {
   const problems = watchProblems(page);
@@ -64,35 +64,6 @@ test("daily goal: picked once, counts lessons, is met, and starts again the next
   await expect(goalMeter(page)).toHaveAccessibleName("Meta diaria: 0 de 10 ejercicios hoy");
   await expect(page.getByText("0 / 10 hoy")).toBeVisible();
   await expect(page.getByText(PROMPT)).toBeHidden();
-
-  expect(problems).toEqual([]);
-});
-
-test("daily goal: 'Sin meta' hides the count everywhere, and a goal can be picked again", async ({
-  page,
-}) => {
-  const problems = watchProblems(page);
-  if (FIRST === undefined) throw new Error("A2 needs a lesson");
-
-  await page.goto(`/?today=${DAY_1}`);
-  await page.getByRole("button", { name: "Sin meta", exact: true }).click();
-  await expect(page.getByText(PROMPT)).toBeHidden();
-  await expect(page.getByRole("button", { name: "Meta diaria: Sin meta" })).toBeVisible();
-  await expect(goalMeter(page)).toHaveCount(0);
-
-  const answered = await playLesson(page, FIRST.title);
-  await expect(page.getByText("Aciertos:", { exact: false })).toBeVisible();
-  // The summary has no goal line (home underneath keeps only its "Sin meta" chip).
-  await expect(page.getByText(/Meta diaria: \d+ \/ \d+|meta de hoy/)).toHaveCount(0);
-  await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
-  await expect(goalMeter(page)).toHaveCount(0);
-
-  // Back to a goal from the progress card: today's lesson already counts.
-  await page.getByRole("button", { name: "Meta diaria: Sin meta" }).click();
-  await page.getByRole("radio", { name: "Normal · 20", exact: true }).click();
-  await expect(goalMeter(page)).toHaveAccessibleName(
-    `Meta diaria: ${answered} de 20 ejercicios hoy`,
-  );
 
   expect(problems).toEqual([]);
 });

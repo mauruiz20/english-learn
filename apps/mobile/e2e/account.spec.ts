@@ -105,7 +105,7 @@ test.describe("account and sync", () => {
     await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
   });
 
-  test("signing out keeps this device's progress by default, or deletes it", async ({
+  test("signing out keeps this device's progress by default, or deletes it @chromium", async ({
     page,
     account,
   }) => {

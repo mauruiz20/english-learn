@@ -14,7 +14,7 @@ type ExerciseData =
   | { type: "reading"; questions: ({ prompt: string } & Choice)[] };
 
 type ContentFile = {
-  exercises?: ({ id: string; itemIds?: string[] } & ExerciseData)[];
+  exercises?: ({ id: string } & ExerciseData)[];
   placement?: { id: string; exercise: ExerciseData }[];
   lessons?: { id: string; level: string; title: string }[];
 };
@@ -61,21 +61,6 @@ export function levelsWithLessons(): string[] {
 
 const EXERCISE = '[data-testid^="exercise-"]';
 
-/** The first `n` item ids (sorted) that some non-reading exercise practices: reviewable items. */
-export function reviewableItemIds(n: number): string[] {
-  const ids = new Set<string>();
-  for (const path of jsonFiles(DATA_DIR)) {
-    const file = JSON.parse(readFileSync(path, "utf8")) as ContentFile;
-    for (const exercise of file.exercises ?? []) {
-      if (exercise.type === "reading") continue;
-      for (const id of exercise.itemIds ?? []) ids.add(id);
-    }
-  }
-  const sorted = [...ids].sort();
-  if (sorted.length < n) throw new Error(`Only ${sorted.length} reviewable items`);
-  return sorted.slice(0, n);
-}
-
 const LESSON_INTRO = '[data-testid="lesson-intro"]';
 
 /**
@@ -102,13 +87,13 @@ export async function currentExerciseId(page: Page): Promise<string> {
 /** A listening exercise's id: its source exercise's id and this suffix (made by the app). */
 const LISTEN_SUFFIX = "~listen";
 
-export const isListeningExercise = (id: string) => id.endsWith(LISTEN_SUFFIX);
+const isListeningExercise = (id: string) => id.endsWith(LISTEN_SUFFIX);
 
 /**
  * The sentence a listening exercise says: its source's word_order sentence or translate_write
  * reference answer (the app's `listenSource`).
  */
-export function listeningSentence(id: string): string {
+function listeningSentence(id: string): string {
   const source = exercisesById.get(id.slice(0, -LISTEN_SUFFIX.length));
   if (source?.type === "word_order") return source.accepted[0] ?? "";
   if (source?.type === "translate_write") return expandAccepted(source.accepted)[0] ?? "";

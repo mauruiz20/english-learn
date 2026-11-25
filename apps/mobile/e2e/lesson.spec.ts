@@ -11,7 +11,9 @@ async function checkAndContinue(page: Page, verdict: string) {
   await page.getByRole("button", { name: "Continuar", exact: true }).click();
 }
 
-test("completes the seed A2 lesson and keeps XP and streak after a reload", async ({ page }) => {
+test("completes the seed A2 lesson and keeps XP and streak after a reload and a rebuild from the event log", async ({
+  page,
+}) => {
   const problems: string[] = [];
   page.on("console", (message: ConsoleMessage) => {
     if (message.type() === "error") problems.push(message.text());
@@ -64,6 +66,13 @@ test("completes the seed A2 lesson and keeps XP and streak after a reload", asyn
   await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
 
   await page.reload();
+  await expect(page.getByLabel("Racha: 1 día")).toBeVisible();
+  await expect(page.getByText("75 XP", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();
+
+  // `?rebuildProgress=1` is test-only (EXPO_PUBLIC_E2E=1): at start the app recomputes its
+  // progress cache from the event log, so whatever survives it was written as events.
+  await page.goto("/?rebuildProgress=1");
   await expect(page.getByLabel("Racha: 1 día")).toBeVisible();
   await expect(page.getByText("75 XP", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Mi rutina diaria, completada" })).toBeVisible();

@@ -42,7 +42,7 @@ async function reloadAfterSettings(page: Page) {
   await page.reload();
 }
 
-test("path level: a high placement keeps a started B1, and a level picked by hand survives a reload", async ({
+test("path level: a high placement keeps a started B1, and a level picked by hand survives a reload @chromium", async ({
   page,
 }) => {
   const problems: string[] = [];

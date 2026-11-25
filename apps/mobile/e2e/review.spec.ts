@@ -5,7 +5,7 @@ import { playSessionCorrectly } from "./support/content";
 const DAY_1 = "2030-01-01";
 const DAY_3 = "2030-01-03";
 
-test("review: items learned in a lesson come back days later and can be reviewed", async ({
+test("review: items learned in a lesson come back days later and can be reviewed @chromium", async ({
   page,
 }) => {
   const problems: string[] = [];

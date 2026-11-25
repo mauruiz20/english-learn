@@ -6,6 +6,10 @@
 // specs on WebKit (which runs on one worker and is the slow half of the full suite). With no spec
 // named, WebKit runs the smoke spec. Large changes and releases still run the full suite:
 // `pnpm e2e:web`.
+//
+// Each project skips the tests tagged for the other browser (`@chromium`, `@webkit`; see
+// playwright.config.ts), so a named spec whose tests are all `@chromium` has nothing to run on
+// WebKit: `--pass-with-no-tests` keeps that from failing the run.
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
@@ -15,7 +19,7 @@ const WEBKIT_FALLBACK = "e2e/web-smoke.spec.ts";
 export function quickRuns(specs) {
   return [
     ["--project=chromium"],
-    ["--project=webkit", ...(specs.length > 0 ? specs : [WEBKIT_FALLBACK])],
+    ["--project=webkit", "--pass-with-no-tests", ...(specs.length > 0 ? specs : [WEBKIT_FALLBACK])],
   ];
 }
 

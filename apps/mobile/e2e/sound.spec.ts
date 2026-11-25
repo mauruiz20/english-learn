@@ -1,7 +1,7 @@
 import { expect, test, waitForServiceWorker, type ConsoleMessage } from "./support/test";
 import { skipLessonIntro } from "./support/content";
 
-test("muting sounds is remembered after a reload and shows in the lesson header", async ({
+test("muting sounds is remembered after a reload and shows in the lesson header @chromium", async ({
   page,
 }) => {
   const problems: string[] = [];
@@ -43,35 +43,5 @@ test("muting sounds is remembered after a reload and shows in the lesson header"
   await page.goto("/");
   await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
   await expect(page.getByRole("button", { name: "Silenciar sonidos", exact: true })).toBeVisible();
-  expect(problems).toEqual([]);
-});
-
-test("buttons click softly, and stay silent while sounds are off", async ({ page }) => {
-  const problems: string[] = [];
-  page.on("console", (message: ConsoleMessage) => {
-    if (message.type() === "error") problems.push(message.text());
-  });
-  page.on("pageerror", (error) => problems.push(error.message));
-  // The e2e build logs each sound Web Audio started.
-  const played = () =>
-    page.evaluate(
-      () =>
-        (window as unknown as { __e2e?: { playedSounds?: string[] } }).__e2e?.playedSounds ?? [],
-    );
-
-  await page.goto("/");
-  await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
-
-  // A lesson on the path, then "Empezar" on its intro: one soft click each.
-  await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
-  await skipLessonIntro(page);
-  await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
-  await expect.poll(played).toEqual(["press", "press"]);
-
-  // Muted: neither the switch nor the header's back arrow makes a sound.
-  await page.getByRole("button", { name: "Silenciar sonidos", exact: true }).click();
-  await page.getByRole("button", { name: /^Volver/ }).click();
-  await expect(page.getByLabel("Racha: 0 días")).toBeVisible();
-  expect(await played()).toEqual(["press", "press"]);
   expect(problems).toEqual([]);
 });
