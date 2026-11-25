@@ -294,9 +294,27 @@ describe("planReview and reviewOutlook: home says what the next review serves", 
 
       expect(planReview(input)).toEqual(plan);
       expect(reviewOutlook(input).next).toBe(plan.exercises.length);
-      expect(plan.itemIds).toEqual(pendingReviewItems(input));
+      // Every saved item is one its exercises review, in the planner's priority order.
+      const covered = new Set(plan.exercises.flatMap((e) => e.itemIds));
+      expect(plan.itemIds.every((id) => covered.has(id))).toBe(true);
+      const order = pendingReviewItems({ ...input, limit: Number.POSITIVE_INFINITY });
+      expect([...plan.itemIds].sort((a, b) => order.indexOf(a) - order.indexOf(b))).toEqual(
+        plan.itemIds,
+      );
     },
   );
+
+  it("fills one session up to the daily allowance instead of leaving a one-exercise session", () => {
+    // The owner's report: home said "19 pendientes y 1 más después" with a large backlog,
+    // because 20 items gave 19 exercises and the allowance left room for 1 more.
+    const states = dueCorpusStates(45);
+    const input = { states, today, exercises: corpus.exercises };
+    const plan = planReview(input);
+
+    expect(plan.exercises).toHaveLength(20);
+    expect(reviewOutlook(input)).toEqual({ next: 20, later: 0 });
+    expect(hasDeferredReviewExercises(input)).toBe(true);
+  });
 
   it("counts the exercises, not the items, when one exercise reviews several due items", () => {
     // The owner's report: home said 20 (items) and the review served 18 (exercises).
@@ -304,7 +322,7 @@ describe("planReview and reviewOutlook: home says what the next review serves", 
     const input = { states, today, exercises: corpus.exercises };
     const plan = planReview(input);
     expect(plan.itemIds).toHaveLength(20);
-    expect(plan.exercises.length).toBeLessThan(20);
+    expect(plan.exercises.length).toBeLessThan(plan.itemIds.length);
     expect(reviewOutlook(input).next).toBe(plan.exercises.length);
   });
 

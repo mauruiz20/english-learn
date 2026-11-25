@@ -565,7 +565,10 @@ a sticky note "Repaso, N pendientes" where N is the next review's number of EXER
 "Ejercicio 1 de N" shows; one exercise may review several due items), plus "y M más después" when
 more is due today than one review holds (M: what the later reviews of the day will serve; a
 reviewed item is never due again the same day), with a "Repasar" button. A maximum of 20 actual
-review exercises can be completed per local date across sessions and app restarts. Lessons do not
+review exercises can be completed per local date across sessions and app restarts. A session is
+filled by exercises, not by a fixed number of items: it walks every due item in priority order
+until the remaining allowance is full, so a backlog gives one 20-exercise session instead of, say,
+19 plus a leftover session of 1 (20 items whose exercises covered two of them). Lessons do not
 use that allowance; due review items beyond it stay unchanged until tomorrow. Home and `/review`
 read completed review counts from the event log, and the summary says "El resto queda para
 mañana." when there is deferred backlog. Older review events without an exercise count reserve the full
