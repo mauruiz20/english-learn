@@ -21,7 +21,9 @@ async function placeAtA1(page: Page) {
   await page.getByRole("button", { name: "Ir a mis lecciones", exact: true }).click();
 }
 
-test("A1 checkpoint stays gated for 24 hours, then saves its own result", async ({ page }) => {
+test("A1 checkpoint stays gated for 24 hours, then saves its own result @chromium", async ({
+  page,
+}) => {
   const firstCompletion = new Date(`${DAY_1}T09:00:00`);
   await page.clock.install({ time: firstCompletion });
   await page.goto(`/?today=${DAY_1}`);

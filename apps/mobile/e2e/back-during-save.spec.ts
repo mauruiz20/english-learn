@@ -1,7 +1,7 @@
 import { answerCorrectly, skipLessonIntro } from "./support/content";
 import { expect, test } from "./support/test";
 
-test("browser back right as the lesson saves keeps the save once and home shows it", async ({
+test("browser back right as the lesson saves keeps the save once and home shows it @chromium", async ({
   page,
 }) => {
   await page.goto("/");

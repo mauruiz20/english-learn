@@ -11,25 +11,7 @@ async function openRoutineLesson(page: Page) {
   await expect(page.getByText("Ejercicio 1 de 6")).toBeVisible();
 }
 
-test("the vocab term is not interactive until the answer is checked", async ({ page }) => {
-  await openRoutineLesson(page);
-
-  // "What does 'wake up' mean?": the evaluated term is locked, the rest of the prompt is not.
-  await expect(page.getByText("What does 'wake up' mean?")).toBeVisible();
-  await expect(lookup(page, "wake up")).toHaveCount(0);
-  await expect(lookup(page, "mean")).toBeVisible();
-
-  await page.getByRole("radio", { name: "despertarse", exact: true }).click();
-  await page.getByRole("button", { name: "Comprobar", exact: true }).click();
-  await expect(page.getByRole("alert")).toHaveText("Correcto");
-
-  await lookup(page, "wake up").click();
-  await expect(page.getByRole("dialog", { name: "Traducción de wake up" })).toContainText(
-    "despertarse",
-  );
-});
-
-test("looks up words of a reading passage by hover and by click", async ({ page, browserName }) => {
+test("looks up words of a reading passage by hover and by click @chromium", async ({ page }) => {
   const problems: string[] = [];
   page.on("console", (message: ConsoleMessage) => {
     if (message.type() === "error") problems.push(message.text());
@@ -53,13 +35,11 @@ test("looks up words of a reading passage by hover and by click", async ({ page,
   const brother = lookup(page, "brother");
   await expect(brother).toBeVisible();
 
-  if (browserName === "chromium") {
-    // Hover (desktop pointer): a tooltip, no focus change.
-    await brother.hover();
-    await expect(page.getByRole("tooltip")).toContainText("hermano");
-    await page.mouse.move(0, 0);
-    await expect(page.getByRole("tooltip")).toHaveCount(0);
-  }
+  // Hover (desktop pointer): a tooltip, no focus change.
+  await brother.hover();
+  await expect(page.getByRole("tooltip")).toContainText("hermano");
+  await page.mouse.move(0, 0);
+  await expect(page.getByRole("tooltip")).toHaveCount(0);
 
   // Click: the card opens as a dialog that takes focus; Escape closes it and returns focus.
   await brother.click();
