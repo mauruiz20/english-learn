@@ -38,7 +38,7 @@ const themeAttribute = (page: Page) =>
 const pageBackground = (page: Page) =>
   page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
-test("the chosen theme applies at once, survives a reload without a flash, and Sistema follows the system", async ({
+test("the chosen theme applies at once, survives a reload without a flash, and Sistema follows the system @chromium", async ({
   page,
 }) => {
   const problems: string[] = [];

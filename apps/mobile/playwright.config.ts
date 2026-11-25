@@ -20,11 +20,18 @@ export default defineConfig({
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
   },
+  // Tests run on both browsers unless tagged: `@chromium` runs on Chromium only (journeys whose
+  // logic does not depend on the browser), `@webkit` on WebKit only (Safari / iOS storage cases).
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "chromium", use: { ...devices["Desktop Chrome"] }, grepInvert: /@webkit/ },
     // WebKit stands in for Safari / iOS web (COEP `require-corp` only; see e2e/support/test.ts
     // for why it runs on one worker).
-    { name: "webkit", use: { ...devices["Desktop Safari"] }, workers: 1 },
+    {
+      name: "webkit",
+      use: { ...devices["Desktop Safari"] },
+      workers: 1,
+      grepInvert: /@chromium/,
+    },
   ],
   webServer: [PORT, OLD_PORT].map((port) => ({
     command: `node scripts/serve-web.mjs --port ${port} --dir dist-e2e`,

@@ -32,11 +32,20 @@ async function placeAtA1(page: Page) {
   await page.getByRole("button", { name: "Ir a mis lecciones", exact: true }).click();
 }
 
+/** Waits for background settings writes to commit (test-only hook, EXPO_PUBLIC_E2E=1). */
+async function settingsSettled(page: Page) {
+  await page.evaluate(() =>
+    (
+      window as unknown as { __e2e: { settingsWritesSettled: () => Promise<void> } }
+    ).__e2e.settingsWritesSettled(),
+  );
+}
+
 function levelPicker(page: Page) {
   return page.getByRole("button", { name: /^Nivel del recorrido: / });
 }
 
-test("A1: a learner placed at A1 gets the A1 path, does its first lesson and can pick A1", async ({
+test("A1: a learner placed at A1 gets the A1 path and its intro once, does its first lesson and can pick A1 @chromium", async ({
   page,
 }) => {
   expect(A1_LESSONS.length).toBeGreaterThan(0);
@@ -55,6 +64,13 @@ test("A1: a learner placed at A1 gets the A1 path, does its first lesson and can
   const first = page.getByRole("button", { name: FIRST_LESSON, exact: true });
   await expect(first).toBeVisible();
 
+  // The first visit to the level shows its intro, once.
+  const intro = page.getByTestId("level-intro");
+  await expect(intro).toBeVisible();
+  await expect(intro.getByText("Nivel A1: tus primeros pasos")).toBeVisible();
+  await expect(intro.getByText("Al terminar este nivel podrás…")).toBeVisible();
+  await settingsSettled(page);
+
   await first.click();
   await playSessionCorrectly(page, "¡Lección completada!");
 
@@ -64,6 +80,13 @@ test("A1: a learner placed at A1 gets the A1 path, does its first lesson and can
   await expect(
     page.getByRole("button", { name: new RegExp(`^${FIRST_LESSON}, completada`) }),
   ).toBeVisible();
+
+  // The intro stays closed now; the path's header reopens it by hand, and it closes again.
+  await expect(intro).toHaveCount(0);
+  await page.getByRole("button", { name: "Qué aprenderás en el nivel A1" }).click();
+  await expect(intro).toBeVisible();
+  await intro.getByRole("button", { name: "Entendido", exact: true }).click();
+  await expect(intro).toHaveCount(0);
 
   // The picker lists A1 with its progress, and exactly the levels that have lessons.
   await levelPicker(page).click();

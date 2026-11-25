@@ -14,7 +14,7 @@ sign in to sync it).
 | ------------ | --------------------------------------------------------------------------------- |
 | Stack        | Expo SDK 58 · React Native 0.88 · React 19 · TypeScript · expo-router · SQLite    |
 | Architecture | pnpm monorepo · hexagonal (ports & adapters) · screaming architecture             |
-| Quality      | TDD · 2,227 unit/integration tests · 27 Playwright e2e specs on Chromium + WebKit |
+| Quality      | TDD · 2,227 unit/integration tests · 25 Playwright e2e specs on Chromium + WebKit |
 | Delivery     | GitFlow · Conventional Commits · GitHub Actions (format, lint, types, tests, e2e) |
 | Version      | 0.3.0, see [CHANGELOG](CHANGELOG.md)                                              |
 
@@ -136,15 +136,21 @@ Package READMEs hold the details (algorithms, rules, error handling).
 
 Written test-first (TDD). Numbers from `pnpm test` and `playwright test --list` at v0.3.0:
 
-| Package                   | Runner                                 | Tests                                      |
-| ------------------------- | -------------------------------------- | ------------------------------------------ |
-| `packages/domain`         | Vitest                                 | 414                                        |
-| `packages/content`        | Vitest                                 | 277                                        |
-| `packages/storage-sqlite` | Vitest (real SQLite via `node:sqlite`) | 78                                         |
-| `packages/api-client`     | Vitest                                 | 15                                         |
-| `tools/content-pipeline`  | Vitest (fixtures, no network)          | 23                                         |
-| `apps/mobile`             | Jest + React Native Testing Library    | 1420                                       |
-| `apps/mobile` e2e         | Playwright on Chromium + WebKit        | 27 specs (124 runs) against the web export |
+| Package                   | Runner                                 | Tests                                     |
+| ------------------------- | -------------------------------------- | ----------------------------------------- |
+| `packages/domain`         | Vitest                                 | 414                                       |
+| `packages/content`        | Vitest                                 | 277                                       |
+| `packages/storage-sqlite` | Vitest (real SQLite via `node:sqlite`) | 78                                        |
+| `packages/api-client`     | Vitest                                 | 15                                        |
+| `tools/content-pipeline`  | Vitest (fixtures, no network)          | 23                                        |
+| `apps/mobile`             | Jest + React Native Testing Library    | 1420                                      |
+| `apps/mobile` e2e         | Playwright on Chromium + WebKit        | 25 specs (63 runs) against the web export |
+
+The e2e count is the pruned suite (44 tests: 40 on Chromium, 23 on WebKit). A test runs on both
+browsers unless its title carries a tag: `@chromium` runs it on Chromium only (journeys whose
+logic does not depend on the browser), `@webkit` on WebKit only (Safari / iOS storage cases).
+Storage, the service worker, sync, transfer, the smoke test and a few core lesson flows stay on
+both. See [`apps/mobile/README.md`](apps/mobile/README.md#commands) for which run to choose.
 
 CI (`.github/workflows/ci.yml`) runs on pushes and pull requests to `main` and `develop`:
 format, lint, typecheck, unit tests, content validation, corpus freshness, production web export

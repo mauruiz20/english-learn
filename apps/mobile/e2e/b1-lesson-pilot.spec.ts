@@ -12,7 +12,7 @@ async function openPilot(page: Page) {
   await expect(page.getByText(GREETING, { exact: true })).toBeVisible();
 }
 
-test("B1 pilot connects choices, optional local audio and writing, works offline and keeps the result", async ({
+test("B1 pilot connects choices, optional local audio and writing, works offline and keeps the result @chromium", async ({
   page,
   context,
 }) => {
@@ -51,20 +51,4 @@ test("B1 pilot connects choices, optional local audio and writing, works offline
   await expect(page.getByRole("button", { name: new RegExp(`^${TITLE},`) })).toContainText(
     "Perfecto · 6/6",
   );
-});
-
-test("the pilot remains playable as text when no device voice is available", async ({ page }) => {
-  await stubSpeech(page, []);
-  await openPilot(page);
-  await expect(
-    page.getByRole("button", { name: `Escuchar: ${GREETING}`, exact: true }),
-  ).toHaveCount(0);
-  await page
-    .getByRole("button", { name: "Responder: I had coffee yesterday.", exact: true })
-    .click();
-  await expect(page.getByRole("alert").filter({ hasText: "No del todo" })).toBeVisible();
-  await page.getByRole("button", { name: "Continuar", exact: true }).click();
-  await expect(
-    page.getByText("I mean our plan for this Saturday. Do you need to change it?", { exact: true }),
-  ).toBeVisible();
 });

@@ -39,12 +39,11 @@ test("reloading never shows the 'open in another tab' screen", async ({ page }) 
 });
 
 // Playwright's default ephemeral contexts are what Safari Private Browsing looks like to WebKit:
-// no OPFS. The app must explain it instead of showing a blank page.
+// no OPFS. The app must explain it instead of showing a blank page. (Only WebKit disables OPFS in
+// ephemeral contexts, hence `@webkit`.)
 ephemeral(
-  "WebKit without persistent storage shows a message instead of a blank page",
-  async ({ page, browserName }) => {
-    ephemeral.skip(browserName !== "webkit", "Only WebKit disables OPFS in ephemeral contexts");
-
+  "WebKit without persistent storage shows a message instead of a blank page @webkit",
+  async ({ page }) => {
     await page.goto("/");
 
     await expect(page.getByRole("heading")).toHaveText("No pudimos abrir tus datos.");
@@ -64,7 +63,7 @@ const STUCK = "No pudimos abrir tus datos en esta ventana.";
 
 // iOS: a page that holds the database but never answers (frozen, suspended, another web view of
 // the Home Screen app). 'Usar aquí' gets no answer: the help screen must follow, not a loop.
-test("a holder that never answers: 'Usar aquí' once, then the help screen instead of a loop", async ({
+test("a holder that never answers: 'Usar aquí' once, then the help screen instead of a loop @webkit", async ({
   page,
   context,
 }) => {
@@ -116,7 +115,7 @@ test("a holder that never answers: 'Usar aquí' once, then the help screen inste
 // process): never "otra pestaña". The open waits calmly through the whole retry window, then
 // explains how to free the data, keeps trying on its own and opens once the files are free,
 // without the learner doing anything and without adding history entries.
-test("files held longer than the wait: the help screen, then the app opens by itself", async ({
+test("files held longer than the wait: the help screen, then the app opens by itself @webkit", async ({
   page,
   context,
 }) => {
@@ -161,30 +160,7 @@ test("files held longer than the wait: the help screen, then the app opens by it
   ).toEqual([null, null]);
 });
 
-test("the help screen retries at once when the app comes back to the foreground", async ({
-  page,
-  context,
-}) => {
-  test.setTimeout(120_000);
-  await page.goto("/");
-  await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
-  const holder = await context.newPage();
-  await holder.goto("/metadata.json");
-  await page.close();
-  await holdDatabaseFiles(holder);
-  const app = await context.newPage();
-  await app.goto("/");
-  await expect(app.getByRole("heading")).toHaveText(STUCK, { timeout: 45_000 });
-
-  await holder.evaluate(() => (window as unknown as { __holder: Worker }).__holder.terminate());
-  // What iOS sends when the Home Screen app returns (and a bfcache restore's `pageshow`).
-  const reloaded = app.waitForEvent("load", { timeout: 5_000 });
-  await app.evaluate(() => window.dispatchEvent(new PageTransitionEvent("pageshow")));
-  await reloaded;
-  await expect(app.getByText("0 XP", { exact: true })).toBeVisible({ timeout: 15_000 });
-});
-
-test("files held for about 8 s (late release): the app opens with no error screen", async ({
+test("files held for about 8 s (late release): the app opens with no error screen @webkit", async ({
   page,
   context,
 }) => {

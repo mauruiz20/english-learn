@@ -23,7 +23,7 @@ async function pendingOnHome(page: Page): Promise<number> {
   return Number((await pending.textContent())?.match(/\d+/)?.[0]);
 }
 
-test("hard words: missed review words show under Difíciles, can be practiced and move on", async ({
+test("hard words: missed review words show under Difíciles, can be practiced and move on @chromium", async ({
   page,
 }) => {
   const problems: string[] = [];
