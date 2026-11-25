@@ -25,14 +25,15 @@ test("home loads progress from SQLite in the static web build", async ({ page })
   expect(problems).toEqual([]);
 });
 
-test("deep links fall back to the SPA and explain an unknown lesson", async ({ page }) => {
+test("deep links fall back to the SPA: an unknown lesson explains itself, and the about page shows the Tatoeba attribution @chromium", async ({
+  page,
+}) => {
   await page.goto("/lesson/a1-01");
 
   await expect(page.getByText("No encontramos esta lección.")).toBeVisible();
   await expect(page.getByRole("button", { name: "Volver al inicio" })).toBeVisible();
-});
 
-test("about page shows the Tatoeba attribution", async ({ page }) => {
+  // The Tatoeba sentences are CC BY 2.0 FR: the attribution must stay reachable (licensing).
   await page.goto("/about");
 
   await expect(page.getByText(/CC BY 2\.0 FR/).first()).toBeVisible();

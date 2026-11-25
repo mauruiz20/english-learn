@@ -12,7 +12,7 @@ test.describe("offline web app", () => {
   // Runs on Chromium and WebKit: both take the worker offline with `setOffline` (the
   // not-precached probe at the end proves it).
 
-  test("opens the home and a dotted deep link offline, with data, fonts and sounds", async ({
+  test("opens the home, a dotted deep link and the phrasal reference offline, with data, fonts and sounds", async ({
     page,
     context,
   }) => {
@@ -105,6 +105,46 @@ test.describe("offline web app", () => {
     expect(failed).toEqual([]);
     // Every request the worker sent to the (offline) network was a navigation.
     expect(networkFirstAttempts.filter((path) => path !== "/" && path !== LESSON)).toEqual([]);
+    expect(problems).toEqual([]);
+
+    // The phrasal reference, reached from home, works offline (search included) and earns no XP.
+    await page.goto("/");
+    await page
+      .getByRole("button", { name: "Referencia: phrasal verbs por tema", exact: true })
+      .click();
+    await expect(page.getByRole("heading", { name: "Phrasal verbs", exact: true })).toBeVisible();
+    await expect(page.getByText(/^125 entradas · \d+ temas$/, { exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Casa y rutina", exact: true })).toBeVisible();
+    await expect(page.getByText("clean (something) up", { exact: true })).toBeVisible();
+    await expect(page.getByText("ordenar, limpiar", { exact: true })).toBeVisible();
+    await expect(
+      page.getByText("Please clean up your room before dinner.", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Por favor, ordena tu cuarto antes de la cena.", { exact: true }),
+    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Viajes", exact: true })).toBeAttached();
+    await expect(page.getByRole("button", { name: "Casa y rutina", exact: true })).toHaveCount(0);
+    const search = page.getByLabel("Buscar phrasal verbs", { exact: true });
+    await search.fill("look forward");
+    await expect(page.getByText("look forward to", { exact: true })).toBeVisible();
+    await expect(
+      page.getByText("We're looking forward to seeing you.", { exact: true }),
+    ).toBeVisible();
+    await search.fill("CLEAN UP");
+    await expect(page.getByText("clean (something) up", { exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Viajes", exact: true })).toHaveCount(0);
+    await search.fill("limpiar");
+    await expect(page.getByText("clean (something) up", { exact: true })).toBeVisible();
+    await search.fill("zz-no-match-zz");
+    await expect(
+      page.getByText("No encontramos phrasal verbs con esa búsqueda.", { exact: true }),
+    ).toBeVisible();
+    await page.getByRole("button", { name: "Limpiar búsqueda", exact: true }).click();
+    await expect(page.getByText(/^125 entradas · \d+ temas$/, { exact: true })).toBeVisible();
+    await page.goto("/");
+    await expect(page.getByText("0 XP", { exact: true })).toBeVisible();
+    await expect(page.getByText("Nada para repasar hoy", { exact: true })).toBeVisible();
     expect(problems).toEqual([]);
 
     // Really offline (last: the browser logs the failure): what was not precached cannot load.

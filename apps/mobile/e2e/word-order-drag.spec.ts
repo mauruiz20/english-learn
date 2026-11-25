@@ -59,7 +59,7 @@ async function sentence(page: Page) {
   return names.map((name) => name.replace(/^Quitar /, ""));
 }
 
-test("builds the word-order sentence by dragging paper strips, and reorders it", async ({
+test("builds the word-order sentence by dragging paper strips, reorders it, and drags one back to the bank", async ({
   page,
 }) => {
   await page.goto("/");
@@ -69,6 +69,18 @@ test("builds the word-order sentence by dragging paper strips, and reorders it",
   await checkAndContinue(page);
   await page.getByRole("radio", { name: "have", exact: true }).click();
   await checkAndContinue(page);
+
+  // A strip dragged off the answer line goes back to the bank: released below the bank, over
+  // the (disabled) "Comprobar" button.
+  await dragToLineEnd(page, "wake");
+  const bankBox = await bank(page).boundingBox();
+  if (bankBox === null) throw new Error("The bank is not on screen");
+  await drag(page, line(page).getByRole("button", { name: "Quitar wake" }), {
+    x: bankBox.x + bankBox.width / 2,
+    y: bankBox.y + bankBox.height + 40,
+  });
+  await expect(bank(page).getByRole("button", { name: "wake", exact: true })).toBeVisible();
+  expect(await sentence(page)).toEqual([]);
 
   // Out of order on purpose: "usually" first.
   await dragToLineEnd(page, "usually");
@@ -91,26 +103,4 @@ test("builds the word-order sentence by dragging paper strips, and reorders it",
 
   await checkAndContinue(page);
   await expect(page.getByText("Ejercicio 4 de 6")).toBeVisible();
-});
-
-test("a strip dragged off the answer line goes back to the bank", async ({ page }) => {
-  await page.goto("/");
-  await page.getByRole("button", { name: "Mi rutina diaria", exact: true }).click();
-  await skipLessonIntro(page);
-  await page.getByRole("radio", { name: "despertarse", exact: true }).click();
-  await checkAndContinue(page);
-  await page.getByRole("radio", { name: "have", exact: true }).click();
-  await checkAndContinue(page);
-
-  await dragToLineEnd(page, "wake");
-  const bankBox = await bank(page).boundingBox();
-  if (bankBox === null) throw new Error("The bank is not on screen");
-  // Released below the bank, over the (disabled) "Comprobar" button.
-  await drag(page, line(page).getByRole("button", { name: "Quitar wake" }), {
-    x: bankBox.x + bankBox.width / 2,
-    y: bankBox.y + bankBox.height + 40,
-  });
-
-  await expect(bank(page).getByRole("button", { name: "wake", exact: true })).toBeVisible();
-  expect(await sentence(page)).toEqual([]);
 });
