@@ -1021,7 +1021,14 @@ pnpm export:web     # production static SPA export to dist/, then sw.js, then ch
 pnpm serve:web      # serve dist/ on http://localhost:4173 with the required headers
 pnpm export:web:e2e # e2e export to dist-e2e/ (EXPO_PUBLIC_E2E=1), with its sw.js
 pnpm e2e:web        # export:web:e2e, then Playwright against dist-e2e/
+pnpm e2e:quick [spec ...]  # small changes: every spec on Chromium, only the named specs on WebKit
 ```
+
+**Choosing the e2e run.** WebKit runs on one worker and takes more than half of the full suite.
+For a small change, `pnpm e2e:quick e2e/<area>*.spec.ts` runs the whole suite on Chromium and the
+specs of the touched area on WebKit (the smoke spec when none is named). Run the full suite
+(`pnpm e2e:web`) for large changes, anything touching storage, the service worker or iOS-specific
+code, and before a release.
 
 ### Screenshots (dev tool)
 
