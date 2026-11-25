@@ -109,6 +109,8 @@ test("a backlog bigger than one review: home counts what each review serves and 
   await expect.poll(() => account.storedTypes()).toContain("session_completed");
   await expect.poll(() => uploadedReviewExercises(account)).toBe(20);
   await page.getByRole("button", { name: "Volver al inicio", exact: true }).click();
+  // Let home finish loading before navigating again, or the goto is aborted mid-navigation.
+  await expect(page.getByText("El resto queda para mañana.").last()).toBeVisible();
   await page.goto(`/?today=${TODAY}`);
   await expect(page.getByText("El resto queda para mañana.").last()).toBeVisible();
 
